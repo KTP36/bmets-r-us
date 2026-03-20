@@ -2105,6 +2105,48 @@ export default function App() {
     saveProgress(selectedSet, newScore);
   };
 
+  const handleImageClick = (e) => {
+    if (!selectedLabel || !(selectedSet === "Hand" || selectedSet === "Foot")) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = (e.clientX - rect.left) / rect.width * currentSet.boardWidth;
+    const clickY = (e.clientY - rect.top) / rect.height * currentSet.boardHeight;
+
+    // Find the closest part
+    let closestPart = null;
+    let closestDistance = 80; // Tolerance in pixels
+
+    currentSet.parts.forEach((part) => {
+      const distance = Math.sqrt(
+        Math.pow(part.x - clickX, 2) + Math.pow(part.y - clickY, 2)
+      );
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestPart = part;
+      }
+    });
+
+    if (!closestPart) return;
+
+    if (closestPart.name === selectedLabel && placed[closestPart.name] !== "correct") {
+      correctSound.currentTime = 0;
+      correctSound.play();
+      setPlaced((prev) => ({ ...prev, [closestPart.name]: "correct" }));
+      setFeedback((prev) => ({ ...prev, [closestPart.name]: "correct" }));
+      const newScore = score + 1;
+      setScore(newScore);
+      saveProgress(selectedSet, newScore);
+      setSelectedLabel("");
+    } else if (placed[closestPart.name] !== "correct") {
+      wrongSound.currentTime = 0;
+      wrongSound.play();
+      setFeedback((prev) => ({ ...prev, [closestPart.name]: "wrong" }));
+      setTimeout(() => {
+        setFeedback((prev) => ({ ...prev, [closestPart.name]: "" }));
+      }, 700);
+    }
+  };
+
   const resetGame = () => {
     setPlaced({});
     setFeedback({});
@@ -2628,9 +2670,11 @@ return (
         border: "3px solid #12355b",
         borderRadius: 12,
         backgroundColor: "#f8fafc",
-        overflow: "hidden"
+        overflow: "hidden",
+        cursor: (selectedSet === "Hand" || selectedSet === "Foot") && selectedLabel ? "crosshair" : "default"
       }}
       onDragOver={(e) => e.preventDefault()}
+      onClick={handleImageClick}
     >
       <img
   src={currentSet.image}
@@ -2640,14 +2684,8 @@ return (
     width: "100%",
     height: "100%",
     objectFit: "contain",
-    objectPosition:
-      isSmallScreen && (selectedSet === "Hand" || selectedSet === "Foot")
-        ? "center center"
-        : currentSet.imageStyle.objectPosition,
-    transform:
-      isSmallScreen && (selectedSet === "Hand" || selectedSet === "Foot")
-        ? "none"
-        : currentSet.imageStyle.transform
+    objectPosition: "center center",
+    transform: isSmallScreen ? "none" : currentSet.imageStyle.transform
   }}
 />
 
@@ -2673,6 +2711,24 @@ return (
       {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isWrong = feedback[part.name] === "wrong";
+  const mobileSizeScale = isSmallScreen ? 0.35 : 1;
+  
+  // Hide drop zones for Hand and Foot
+  if (selectedSet === "Hand" || selectedSet === "Foot") {
+    return null;
+  }
+  
+  // Scale coordinates proportionally for Hand/Foot on mobile to fit actual viewport
+  let partX = part.x;
+  let partY = part.y;
+  
+  if (isSmallScreen && (selectedSet === "Hand" || selectedSet === "Foot")) {
+    // Scale down coordinates proportionally since board height is larger on these
+    const mobileWidthScale = 0.6; // Reduce width scaling
+    const mobileHeightScale = 0.45; // Reduce height scaling more
+    partX = (part.x * mobileWidthScale) + 125;
+    partY = (part.y * mobileHeightScale) + 50;
+  }
 
   return (
     <div
@@ -2681,10 +2737,10 @@ return (
       onDragOver={(e) => e.preventDefault()}
       style={{
         position: "absolute",
-        left: `${(part.x / currentSet.boardWidth) * 100}%`,
-        top: `${(part.y / currentSet.boardHeight) * 100}%`,
-        width: `${((currentSet.dropWidth * mobileDropScale) / currentSet.boardWidth) * 100}%`,
-        height: `${((currentSet.dropHeight * mobileDropScale) / currentSet.boardHeight) * 100}%`,
+        left: `${(partX / currentSet.boardWidth) * 100}%`,
+        top: `${(partY / currentSet.boardHeight) * 100}%`,
+        width: `${((currentSet.dropWidth * mobileSizeScale) / currentSet.boardWidth) * 100}%`,
+        height: `${((currentSet.dropHeight * mobileSizeScale) / currentSet.boardHeight) * 100}%`,
         transform: "translate(-50%, -50%)",
         border: isCorrect
           ? "2px solid green"
@@ -2699,15 +2755,16 @@ return (
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: isSmallScreen ? "9px" : "clamp(9px, 1.4vw, 13px)",
+        fontSize: isSmallScreen ? "7px" : "clamp(9px, 1.4vw, 13px)",
         fontWeight: 700,
         textAlign: "center",
-        padding: isSmallScreen ? "1px 3px" : "2px 6px",
+        padding: isSmallScreen ? "1px 2px" : "2px 6px",
         borderRadius: 6,
         color: "#475569",
         boxSizing: "border-box",
         overflow: "hidden",
-        lineHeight: 1.1
+        lineHeight: 1.1,
+        cursor: "pointer"
       }}
     >
       {isCorrect ? part.name : "Drop"}
@@ -2731,19 +2788,20 @@ return (
   const isCorrect = placed[part.name] === "correct";
   const isDragging = draggingLabel === part.name;
   const isSelected = selectedLabel === part.name;
+  const isHandOrFoot = selectedSet === "Hand" || selectedSet === "Foot";
 
   return (
     <div
       key={part.name}
-      draggable={!isCorrect && !isSmallScreen}
+      draggable={!isCorrect && !isSmallScreen && !isHandOrFoot}
       onDragStart={(e) => {
         e.dataTransfer.setData("text/plain", part.name);
         setDraggingLabel(part.name);
       }}
       onDragEnd={() => setDraggingLabel("")}
       onClick={() => {
-        if (isSmallScreen && !isCorrect) {
-          setSelectedLabel(part.name);
+        if (!isCorrect) {
+          setSelectedLabel(isSelected ? "" : part.name);
         }
       }}
       style={{
@@ -2752,16 +2810,23 @@ return (
         border: isSelected ? "2px solid #2563eb" : "1px solid #334155",
         background: isCorrect ? "#d9f7d9" : isSelected ? "#dbeafe" : "#e2e8f0",
         color: "#5b4967",
-        cursor: isCorrect ? "default" : isSmallScreen ? "pointer" : "grab",
+        cursor: isCorrect ? "default" : "pointer",
         width: "100%",
         textAlign: "center",
         opacity: isDragging ? 0.5 : 1,
         borderRadius: 4,
         fontSize: 18,
-        boxSizing: "border-box"
+        boxSizing: "border-box",
+        boxShadow: isSelected ? "0 0 8px rgba(37, 99, 235, 0.5)" : "none"
       }}
     >
-      {isCorrect ? `✔ ${part.name}` : isSmallScreen ? `Tap: ${part.name}` : part.name}
+      {isCorrect 
+        ? `✔ ${part.name}` 
+        : isSelected && isHandOrFoot 
+        ? `✓ ${part.name} - Tap image`
+        : isSelected 
+        ? `✓ ${part.name}`
+        : part.name}
     </div>
   );
 })}
