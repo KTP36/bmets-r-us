@@ -2106,7 +2106,7 @@ export default function App() {
   };
 
   const handleImageClick = (e) => {
-    if (!selectedLabel || !(selectedSet === "Hand" || selectedSet === "Foot")) return;
+    if (!selectedLabel) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = (e.clientX - rect.left) / rect.width * currentSet.boardWidth;
@@ -2114,7 +2114,7 @@ export default function App() {
 
     // Find the closest part
     let closestPart = null;
-    let closestDistance = 80; // Tolerance in pixels
+    let closestDistance = 120; // Increased tolerance in pixels for easier clicking
 
     currentSet.parts.forEach((part) => {
       const distance = Math.sqrt(
@@ -2137,7 +2137,7 @@ export default function App() {
       setScore(newScore);
       saveProgress(selectedSet, newScore);
       setSelectedLabel("");
-    } else if (placed[closestPart.name] !== "correct") {
+    } else if (closestPart.name !== selectedLabel && placed[closestPart.name] !== "correct") {
       wrongSound.currentTime = 0;
       wrongSound.play();
       setFeedback((prev) => ({ ...prev, [closestPart.name]: "wrong" }));
@@ -2711,7 +2711,8 @@ return (
       {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isWrong = feedback[part.name] === "wrong";
-  const mobileSizeScale = isSmallScreen ? 0.35 : 1;
+  // Larger drop zones on mobile for better visibility and clickability
+  const mobileSizeScale = isSmallScreen ? 0.65 : 1;
   
   // Hide drop zones for Hand and Foot
   if (selectedSet === "Hand" || selectedSet === "Foot") {
@@ -2755,10 +2756,10 @@ return (
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: isSmallScreen ? "7px" : "clamp(9px, 1.4vw, 13px)",
+        fontSize: isSmallScreen ? "8px" : "clamp(9px, 1.4vw, 13px)",
         fontWeight: 700,
         textAlign: "center",
-        padding: isSmallScreen ? "1px 2px" : "2px 6px",
+        padding: isSmallScreen ? "2px 4px" : "2px 6px",
         borderRadius: 6,
         color: "#475569",
         boxSizing: "border-box",
@@ -2822,7 +2823,7 @@ return (
     >
       {isCorrect 
         ? `✔ ${part.name}` 
-        : isSelected && isHandOrFoot 
+        : isSelected && isSmallScreen
         ? `✓ ${part.name} - Tap image`
         : isSelected 
         ? `✓ ${part.name}`
