@@ -2158,6 +2158,81 @@ export default function App() {
     const selected = cbetAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
+  const rnMissedQuestions = shuffledRnQuestions.filter((q, index) => {
+    const selected = rnAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
+
+  const saveRnProgress = () => {
+    const progress = {
+      shuffledRnQuestions,
+      rnIndex,
+      rnScore,
+      rnAnswers,
+      rnShowResult,
+      showRnMissedReview
+    };
+    localStorage.setItem("rnProgress", JSON.stringify(progress));
+  };
+
+  const resetRnExam = () => {
+    const reshuffled = shuffleArray(rnQuestions);
+    localStorage.removeItem("rnProgress");
+    setShuffledRnQuestions(reshuffled);
+    setRnIndex(0);
+    setRnScore(0);
+    setRnAnswers({});
+    setRnShowResult(false);
+    setShowRnMissedReview(false);
+  };
+
+  const restartRnExam = () => {
+    const reshuffled = shuffleArray(rnQuestions);
+    localStorage.removeItem("rnProgress");
+    setShuffledRnQuestions(reshuffled);
+    setRnIndex(0);
+    setRnScore(0);
+    setRnAnswers({});
+    setRnShowResult(false);
+    setShowRnMissedReview(false);
+  };
+
+  useEffect(() => {
+    const savedRn = JSON.parse(localStorage.getItem("rnProgress"));
+    if (savedRn) {
+      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleArray(rnQuestions));
+      setRnIndex(savedRn.rnIndex || 0);
+      setRnScore(savedRn.rnScore || 0);
+      setRnAnswers(savedRn.rnAnswers || {});
+      setRnShowResult(savedRn.rnShowResult || false);
+      setShowRnMissedReview(savedRn.showRnMissedReview || false);
+    }
+  }, []);
+
+  const navButtonStyle = (isActive) => ({
+    padding: "10px 18px",
+    borderRadius: 999,
+    border: "none",
+    background: isActive
+      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+      : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+    color: isActive ? "white" : "#12355b",
+    fontWeight: 700,
+    cursor: "pointer",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+  });
+
+  const cbetStatCardStyle = {
+    padding: "12px 16px",
+    borderRadius: 10,
+    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+    border: "1px solid #d8e4f2",
+    fontWeight: 700,
+    color: "#12355b",
+    textAlign: "center",
+    minWidth: 120,
+    boxShadow: "0 4px 10px rgba(0,0,0,0.04)"
+  };
 
   const homeCardStyle = {
     background: "rgba(255,255,255,0.85)",
@@ -2726,7 +2801,7 @@ return (
           </div>
         )}
 
-        {activeTab === "CBET" && (
+               {activeTab === "CBET" && (
           <div
             style={{
               background: "rgba(255,255,255,0.9)",
@@ -2834,7 +2909,8 @@ return (
                     const correct = shuffledCbetQuestions[cbetIndex].answer;
                     const isAnswered = selected !== undefined;
                     const isCorrectOption = i === correct;
-                    const isSelectedWrong = isAnswered && i === selected && selected !== correct;
+                    const isSelectedWrong =
+                      isAnswered && i === selected && selected !== correct;
 
                     return (
                       <button
@@ -2859,16 +2935,18 @@ return (
                           padding: "14px 16px",
                           marginBottom: 12,
                           borderRadius: 12,
-                          border: isCorrectOption && isAnswered
-                            ? "2px solid green"
-                            : isSelectedWrong
-                            ? "2px solid red"
-                            : "1px solid #cbd5e1",
-                          background: isCorrectOption && isAnswered
-                            ? "#d9f7d9"
-                            : isSelectedWrong
-                            ? "#fee2e2"
-                            : "#f8fafc",
+                          border:
+                            isCorrectOption && isAnswered
+                              ? "2px solid green"
+                              : isSelectedWrong
+                              ? "2px solid red"
+                              : "1px solid #cbd5e1",
+                          background:
+                            isCorrectOption && isAnswered
+                              ? "#d9f7d9"
+                              : isSelectedWrong
+                              ? "#fee2e2"
+                              : "#f8fafc",
                           color: "#1e293b",
                           fontSize: 16,
                           fontWeight: 600,
@@ -2899,7 +2977,10 @@ return (
                         background: "linear-gradient(135deg, #12355b, #1d6fa5)",
                         color: "white",
                         fontWeight: 700,
-                        cursor: cbetAnswers[cbetIndex] === undefined ? "not-allowed" : "pointer",
+                        cursor:
+                          cbetAnswers[cbetIndex] === undefined
+                            ? "not-allowed"
+                            : "pointer",
                         opacity: cbetAnswers[cbetIndex] === undefined ? 0.6 : 1,
                         boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
                       }}
@@ -2911,3 +2992,447 @@ return (
                   </div>
                 </div>
               </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b" }}>CBET Exam Complete</h2>
+                <p style={{ fontSize: 20, color: "#1e293b" }}>
+                  Your score: {cbetScore} / {shuffledCbetQuestions.length}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginTop: 20
+                  }}
+                >
+                  <button
+                    onClick={() => setShowMissedReview(true)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={restartCbetExam}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Restart Exam
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showMissedReview && (
+              <div style={{ marginTop: 24 }}>
+                <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                  Missed Questions Review
+                </h2>
+
+                {missedQuestions.length === 0 ? (
+                  <p style={{ textAlign: "center", color: "#1e293b" }}>
+                    You did not miss any questions.
+                  </p>
+                ) : (
+                  missedQuestions.map((q, idx) => {
+                    const originalIndex = shuffledCbetQuestions.findIndex(
+                      (item) => item.question === q.question
+                    );
+                    const selected = cbetAnswers[originalIndex];
+
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          background: "#fff",
+                          border: "1px solid #d8e4f2",
+                          borderRadius: 16,
+                          padding: 20,
+                          marginBottom: 16,
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: 700,
+                            color: "#12355b",
+                            marginBottom: 12,
+                            fontSize: 18
+                          }}
+                        >
+                          {q.question}
+                        </div>
+
+                        {q.options.map((opt, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              padding: "10px 12px",
+                              marginBottom: 8,
+                              borderRadius: 10,
+                              background:
+                                i === q.answer
+                                  ? "#d9f7d9"
+                                  : i === selected
+                                  ? "#fee2e2"
+                                  : "#f8fafc",
+                              border:
+                                i === q.answer
+                                  ? "2px solid green"
+                                  : i === selected
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1"
+                            }}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })
+                )}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button
+                    onClick={() => setShowMissedReview(false)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Back to Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "RN" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 900,
+              margin: "0 auto"
+            }}
+          >
+            {!rnShowResult && !showRnMissedReview ? (
+              <>
+                <div style={{ textAlign: "center", marginBottom: 20 }}>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>RN Practice Exam</h2>
+                  <p style={{ color: "#4f6275", margin: 0 }}>
+                    Select one answer. The correct answer will highlight after you answer.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <div style={cbetStatCardStyle}>
+                    Question {rnIndex + 1} / {shuffledRnQuestions.length}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Score: {rnScore}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Passing: 70%
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                    borderRadius: 18,
+                    padding: 24,
+                    border: "1px solid #d8e4f2",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 700,
+                      color: "#12355b",
+                      marginBottom: 18
+                    }}
+                  >
+                    {shuffledRnQuestions[rnIndex].question}
+                  </div>
+
+                  {shuffledRnQuestions[rnIndex].options.map((opt, i) => {
+                    const selected = rnAnswers[rnIndex];
+                    const correct = shuffledRnQuestions[rnIndex].answer;
+                    const isAnswered = selected !== undefined;
+                    const isCorrectOption = i === correct;
+                    const isSelectedWrong =
+                      isAnswered && i === selected && selected !== correct;
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          if (isAnswered) return;
+
+                          setRnAnswers((prev) => ({ ...prev, [rnIndex]: i }));
+
+                          if (i === correct) {
+                            setRnScore((prev) => prev + 1);
+                            correctSound.currentTime = 0;
+                            correctSound.play();
+                          } else {
+                            wrongSound.currentTime = 0;
+                            wrongSound.play();
+                          }
+                        }}
+                        style={{
+                          width: "100%",
+                          textAlign: "left",
+                          padding: "14px 16px",
+                          marginBottom: 12,
+                          borderRadius: 12,
+                          border:
+                            isCorrectOption && isAnswered
+                              ? "2px solid green"
+                              : isSelectedWrong
+                              ? "2px solid red"
+                              : "1px solid #cbd5e1",
+                          background:
+                            isCorrectOption && isAnswered
+                              ? "#d9f7d9"
+                              : isSelectedWrong
+                              ? "#fee2e2"
+                              : "#f8fafc",
+                          color: "#1e293b",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          cursor: isAnswered ? "default" : "pointer",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                        }}
+                      >
+                        {String.fromCharCode(65 + i)}. {opt}
+                      </button>
+                    );
+                  })}
+
+                  <div style={{ textAlign: "center", marginTop: 20 }}>
+                    <button
+                      onClick={() => {
+                        if (rnAnswers[rnIndex] === undefined) return;
+
+                        if (rnIndex + 1 === shuffledRnQuestions.length) {
+                          setRnShowResult(true);
+                        } else {
+                          setRnIndex((prev) => prev + 1);
+                        }
+                      }}
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor:
+                          rnAnswers[rnIndex] === undefined
+                            ? "not-allowed"
+                            : "pointer",
+                        opacity: rnAnswers[rnIndex] === undefined ? 0.6 : 1,
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      {rnIndex + 1 === shuffledRnQuestions.length
+                        ? "Finish Exam"
+                        : "Next Question"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b" }}>RN Exam Complete</h2>
+                <p style={{ fontSize: 20, color: "#1e293b" }}>
+                  Your score: {rnScore} / {shuffledRnQuestions.length}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginTop: 20
+                  }}
+                >
+                  <button
+                    onClick={() => setShowRnMissedReview(true)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setShuffledRnQuestions(shuffleArray(rnQuestions));
+                      setRnIndex(0);
+                      setRnScore(0);
+                      setRnAnswers({});
+                      setRnShowResult(false);
+                      setShowRnMissedReview(false);
+                    }}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Restart RN Exam
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showRnMissedReview && (
+              <div style={{ marginTop: 24 }}>
+                <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                  RN Missed Questions Review
+                </h2>
+
+                {shuffledRnQuestions.filter((q, index) => {
+                  const selected = rnAnswers[index];
+                  return selected !== undefined && selected !== q.answer;
+                }).length === 0 ? (
+                  <p style={{ textAlign: "center", color: "#1e293b" }}>
+                    You did not miss any questions.
+                  </p>
+                ) : (
+                  shuffledRnQuestions
+                    .filter((q, index) => {
+                      const selected = rnAnswers[index];
+                      return selected !== undefined && selected !== q.answer;
+                    })
+                    .map((q, idx) => {
+                      const originalIndex = shuffledRnQuestions.findIndex(
+                        (item) => item.question === q.question
+                      );
+                      const selected = rnAnswers[originalIndex];
+
+                      return (
+                        <div
+                          key={idx}
+                          style={{
+                            background: "#fff",
+                            border: "1px solid #d8e4f2",
+                            borderRadius: 16,
+                            padding: 20,
+                            marginBottom: 16,
+                            boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                          }}
+                        >
+                          <div
+                            style={{
+                              fontWeight: 700,
+                              color: "#12355b",
+                              marginBottom: 12,
+                              fontSize: 18
+                            }}
+                          >
+                            {q.question}
+                          </div>
+
+                          {q.options.map((opt, i) => (
+                            <div
+                              key={i}
+                              style={{
+                                padding: "10px 12px",
+                                marginBottom: 8,
+                                borderRadius: 10,
+                                background:
+                                  i === q.answer
+                                    ? "#d9f7d9"
+                                    : i === selected
+                                    ? "#fee2e2"
+                                    : "#f8fafc",
+                                border:
+                                  i === q.answer
+                                    ? "2px solid green"
+                                    : i === selected
+                                    ? "2px solid red"
+                                    : "1px solid #cbd5e1"
+                              }}
+                            >
+                              {String.fromCharCode(65 + i)}. {opt}
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })
+                )}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button
+                    onClick={() => setShowRnMissedReview(false)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Back to Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
