@@ -1,4 +1,11 @@
 
+import React, { useState, useEffect } from "react";
+import logo from "./assets/logo.png";
+
+// --- SOUND EFFECTS ---
+const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
+const wrongSound = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
+
 // --- HELPERS ---
 function shuffleArray(array) {
   const copy = [...array];
@@ -6,13 +13,7 @@ function shuffleArray(array) {
     const j = Math.floor(Math.random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
-  return copy;import React, { useState, useEffect } from "react";
-import logo from "./assets/logo.png";
-
-// --- SOUND EFFECTS ---
-const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
-const wrongSound = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
-
+  return copy;
 }
 
 // --- CBET QUESTIONS ---
@@ -1628,11 +1629,11 @@ return (
         flexWrap: "wrap"
       }}
     >
-     <img
-  src={logo}
-  alt="MedSkillBuilder Logo"
-  style={{ height: "140px", width: "140px", border: "4px solid red" }}
-/>
+      <img
+        src={logo}
+        alt="MedSkillBuilder Logo"
+        style={{ height: "140px", width: "140px", }}
+      />
       <h1 style={{ margin: 0 }}>MedSkillBuilder</h1>
     </div>
 
@@ -1642,6 +1643,7 @@ return (
         margin: "0 auto"
       }}
     >
+      {/* HERO HEADER */}
       <div
         style={{
           textAlign: "center",
@@ -1653,73 +1655,101 @@ return (
           boxShadow: "0 10px 28px rgba(18,53,91,0.25)"
         }}
       >
-        <h1 style={{ margin: 0, fontSize: 42, letterSpacing: 1 }}>BMETS-R-US</h1>
+        <h1 style={{ margin: 0, fontSize: 42, letterSpacing: 1 }}>
+          BMETS-R-US
+        </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
           Interactive anatomy, bone labeling, and CBET practice
         </p>
       </div>
-          <button
-            onClick={() => setActiveTab("Home")}
-            style={navButtonStyle(activeTab === "Home")}
-          >
-            Home
-          </button>
 
-          <button
-            onClick={() => {
-              setActiveTab("Anatomy");
-              setMode("organs");
-              setSelectedSet(null);
-            }}
-            style={navButtonStyle(activeTab === "Anatomy")}
-          >
-            Anatomy
-          </button>
+      {/* NAV BUTTONS (FIXED WRAPPER) */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 12,
+          flexWrap: "wrap",
+          marginBottom: 20
+        }}
+      >
+        <button
+          onClick={() => setActiveTab("Home")}
+          style={navButtonStyle(activeTab === "Home")}
+        >
+          Home
+        </button>
 
-          <button
-            onClick={() => {
-              setActiveTab("Bones");
-              setMode("bones");
-              setSelectedSet(null);
-            }}
-            style={navButtonStyle(activeTab === "Bones")}
-          >
-            Bones
-          </button>
+        <button
+          onClick={() => {
+            setActiveTab("Anatomy");
+            setMode("organs");
+            setSelectedSet(null);
+          }}
+          style={navButtonStyle(activeTab === "Anatomy")}
+        >
+          Anatomy
+        </button>
 
-          <button
-            onClick={() => setActiveTab("Dashboard")}
-            style={navButtonStyle(activeTab === "Dashboard")}
-          >
-            Dashboard
-          </button>
+        <button
+          onClick={() => {
+            setActiveTab("Bones");
+            setMode("bones");
+            setSelectedSet(null);
+          }}
+          style={navButtonStyle(activeTab === "Bones")}
+        >
+          Bones
+        </button>
 
-          <button
-            onClick={() => setActiveTab("CBET")}
-            style={navButtonStyle(activeTab === "CBET")}
-          >
-            CBET Exam
-          </button>
-        </div>
+        <button
+          onClick={() => setActiveTab("Dashboard")}
+          style={navButtonStyle(activeTab === "Dashboard")}
+        >
+          Dashboard
+        </button>
 
-        {activeTab === "Home" && (
-          <div
-            style={{
-              background: "rgba(255,255,255,0.78)",
-              borderRadius: 24,
-              padding: 30,
-              boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
-            }}
-          >
-            <div style={{ textAlign: "center", marginBottom: 30 }}>
-              <h2 style={{ color: "#12355b", fontSize: 32, marginBottom: 10 }}>
-                Welcome to Your Medical Training Game
-              </h2>
-              <p style={{ fontSize: 18, color: "#385170", maxWidth: 800, margin: "0 auto" }}>
-                Practice identifying organs and bones with drag-and-drop activities, then
-                build your confidence with CBET multiple-choice review.
-              </p>
-            </div>
+        <button
+          onClick={() => setActiveTab("CBET")}
+          style={navButtonStyle(activeTab === "CBET")}
+        >
+          CBET Exam
+        </button>
+      </div>
+
+      {/* HOME TAB */}
+      {activeTab === "Home" && (
+        <div
+          style={{
+            background: "rgba(255,255,255,0.78)",
+            borderRadius: 24,
+            padding: 30,
+            boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+          }}
+        >
+          <div style={{ textAlign: "center", marginBottom: 30 }}>
+            <h2
+              style={{
+                color: "#12355b",
+                fontSize: 32,
+                marginBottom: 10
+              }}
+            >
+              Welcome to Your Medical Training Game
+            </h2>
+            <p
+              style={{
+                fontSize: 18,
+                color: "#385170",
+                maxWidth: 800,
+                margin: "0 auto"
+              }}
+            >
+              Practice identifying organs and bones with drag-and-drop
+              activities, then build your confidence with CBET
+              multiple-choice review.
+            </p>
+          </div>
 
             <div
               style={{
