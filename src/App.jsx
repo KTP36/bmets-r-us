@@ -1,13 +1,3 @@
-import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import logo from "./assets/logo.png";
-=======
-import logo from "./assets/logo.png";  //
->>>>>>> 0e2e681d62b0c0ddeb05a0d86de803d89dce0b38
-
-// --- SOUND EFFECTS ---
-const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
-const wrongSound = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
 
 // --- HELPERS ---
 function shuffleArray(array) {
@@ -16,7 +6,13 @@ function shuffleArray(array) {
     const j = Math.floor(Math.random() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
-  return copy;
+  return copy;import React, { useState, useEffect } from "react";
+import logo from "./assets/logo.png";
+
+// --- SOUND EFFECTS ---
+const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
+const wrongSound = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
+
 }
 
 // --- CBET QUESTIONS ---
@@ -1632,11 +1628,11 @@ return (
         flexWrap: "wrap"
       }}
     >
-      <img
-        src={logo}
-        alt="MedSkillBuilder Logo"
-        style={{ height: "50px", maxWidth: "100%" }}
-      />
+     <img
+  src={logo}
+  alt="MedSkillBuilder Logo"
+  style={{ height: "140px", width: "140px", border: "4px solid red" }}
+/>
       <h1 style={{ margin: 0 }}>MedSkillBuilder</h1>
     </div>
 
