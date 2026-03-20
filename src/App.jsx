@@ -2109,12 +2109,41 @@ export default function App() {
     if (!selectedLabel) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = (e.clientX - rect.left) / rect.width * currentSet.boardWidth;
-    const clickY = (e.clientY - rect.top) / rect.height * currentSet.boardHeight;
+    let clickX = (e.clientX - rect.left) / rect.width * currentSet.boardWidth;
+    let clickY = (e.clientY - rect.top) / rect.height * currentSet.boardHeight;
+
+    // Reverse-transform the click coordinates to match the part coordinate system
+    // The image displays with transforms, so we need to undo them
+    if (currentSet.imageStyle.transform && !isSmallScreen) {
+      const transformStr = currentSet.imageStyle.transform;
+      
+      // Parse scale transform
+      const scaleMatch = transformStr.match(/scale\(([\d.]+)\)/);
+      if (scaleMatch) {
+        const scale = parseFloat(scaleMatch[1]);
+        clickX = clickX / scale;
+        clickY = clickY / scale;
+      }
+      
+      // Parse translateY transform
+      const translateMatch = transformStr.match(/translateY\((-?[\d]+)px\)/);
+      if (translateMatch) {
+        const translateY = parseInt(translateMatch[1]);
+        clickY = clickY - translateY;
+      }
+    }
+    
+    // For Hand and Foot, add additional offset to account for visual positioning
+    if (selectedSet === "Hand") {
+      clickY = clickY + 60; // Shift zones down for Hand
+    } else if (selectedSet === "Foot") {
+      clickY = clickY + 50; // Shift zones down for Foot
+    }
 
     // Find the closest part
     let closestPart = null;
-    let closestDistance = 120; // Increased tolerance in pixels for easier clicking
+    const tolerance = 100;
+    let closestDistance = tolerance;
 
     currentSet.parts.forEach((part) => {
       const distance = Math.sqrt(
@@ -2126,9 +2155,11 @@ export default function App() {
       }
     });
 
-    if (!closestPart) return;
+    if (!closestPart || placed[closestPart.name] === "correct") return;
 
-    if (closestPart.name === selectedLabel && placed[closestPart.name] !== "correct") {
+    // Check if this part matches the selected label
+    if (closestPart.name === selectedLabel) {
+      // CORRECT!
       correctSound.currentTime = 0;
       correctSound.play();
       setPlaced((prev) => ({ ...prev, [closestPart.name]: "correct" }));
@@ -2136,14 +2167,16 @@ export default function App() {
       const newScore = score + 1;
       setScore(newScore);
       saveProgress(selectedSet, newScore);
-      setSelectedLabel("");
-    } else if (closestPart.name !== selectedLabel && placed[closestPart.name] !== "correct") {
+      setSelectedLabel(""); // Clear selection after correct answer
+    } else {
+      // WRONG - show red feedback but keep label selected for retry
       wrongSound.currentTime = 0;
       wrongSound.play();
       setFeedback((prev) => ({ ...prev, [closestPart.name]: "wrong" }));
       setTimeout(() => {
         setFeedback((prev) => ({ ...prev, [closestPart.name]: "" }));
-      }, 700);
+      }, 500);
+      // selectedLabel stays selected so user can try again
     }
   };
 
@@ -2708,6 +2741,34 @@ return (
           : selectedSet}
       </div>
 
+      {/* Debug numbers for Hand and Foot */}
+      {(selectedSet === "Hand" || selectedSet === "Foot") && currentSet.parts.map((part, idx) => (
+        <div
+          key={`num-${part.name}`}
+          style={{
+            position: "absolute",
+            left: `${(part.x / currentSet.boardWidth) * 100}%`,
+            top: `${(part.y / currentSet.boardHeight) * 100}%`,
+            transform: "translate(-50%, -50%)",
+            width: "24px",
+            height: "24px",
+            background: "rgba(255, 0, 0, 0.7)",
+            color: "white",
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "12px",
+            fontWeight: "bold",
+            border: "2px solid white",
+            zIndex: 10,
+            pointerEvents: "none"
+          }}
+        >
+          {idx + 1}
+        </div>
+      ))}
+
       {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isWrong = feedback[part.name] === "wrong";
@@ -2785,6 +2846,18 @@ return (
       boxShadow: "0 6px 20px rgba(0,0,0,0.08)"
     }}
   >
+    {/* Debug reference for Hand and Foot */}
+    {(selectedSet === "Hand" || selectedSet === "Foot") && (
+      <div style={{ marginBottom: 16, padding: 12, background: "#fff3cd", borderRadius: 8, border: "1px solid #ffc107" }}>
+        <div style={{ fontWeight: 700, color: "#856404", marginBottom: 8, fontSize: 14 }}>Zone Numbers:</div>
+        {currentSet.parts.map((part, idx) => (
+          <div key={`ref-${part.name}`} style={{ fontSize: 11, color: "#856404", marginBottom: 4 }}>
+            <strong>{idx + 1}.</strong> {part.name}
+          </div>
+        ))}
+      </div>
+    )}
+
     {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isDragging = draggingLabel === part.name;
