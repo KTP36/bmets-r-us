@@ -1619,23 +1619,35 @@ return (
     }}
   >
     {/* LOGO HEADER */}
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "10px",
-        padding: "10px",
-        flexWrap: "wrap"
-      }}
-    >
-      <img
-        src={logo}
-        alt="MedSkillBuilder Logo"
-        style={{ height: "140px", width: "140px", }}
-      />
-      <h1 style={{ margin: 0 }}>MedSkillBuilder</h1>
-    </div>
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "12px",
+    padding: "12px",
+    flexWrap: "wrap",
+    textAlign: "center"
+  }}
+>
+  <img
+    src={logo}
+    alt="MedSkillBuilder Logo"
+    style={{
+      width: "min(140px, 28vw)",
+      height: "auto"
+    }}
+  />
+  <h1
+    style={{
+      margin: 0,
+      color: "#12355b",
+      fontSize: "clamp(28px, 4vw, 40px)"
+    }}
+  >
+    MedSkillBuilder
+  </h1>
+</div>
 
     <div
       style={{
@@ -1930,184 +1942,201 @@ return (
 
             {selectedSet && currentSet && (
               <>
-                <div style={{ textAlign: "center", marginBottom: 12 }}>
-                  <button
-                    onClick={resetGame}
-                    style={{
-                      padding: "10px 18px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #f59e0b, #fbbf24)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Retry
-                  </button>
-                </div>
+               <div style={{ textAlign: "center", marginBottom: 12 }}>
+  <button
+    onClick={resetGame}
+    style={{
+      padding: "10px 18px",
+      borderRadius: 999,
+      border: "none",
+      background: "linear-gradient(135deg, #f59e0b, #fbbf24)",
+      color: "white",
+      fontWeight: 700,
+      cursor: "pointer",
+      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+    }}
+  >
+    Retry
+  </button>
+</div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 30,
-                    marginTop: 10,
-                    flexWrap: "wrap",
-                    alignItems: "flex-start"
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      width: currentSet.boardWidth,
-                      height: currentSet.boardHeight,
-                      border: "3px solid #12355b",
-                      borderRadius: 12,
-                      backgroundColor: "#f8fafc",
-                      overflow: "hidden"
-                    }}
-                    onDragOver={(e) => e.preventDefault()}
-                  >
-                    <img
-                      src={currentSet.image}
-                      alt={selectedSet}
-                      style={currentSet.imageStyle}
-                    />
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    gap: 30,
+    marginTop: 10,
+    flexWrap: "wrap",
+    alignItems: "flex-start"
+  }}
+>
+  <div
+    style={{
+      width: "100%",
+      maxWidth: currentSet.boardWidth,
+      flex: `1 1 ${Math.min(currentSet.boardWidth, 620)}px`
+    }}
+  >
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: `${currentSet.boardWidth} / ${currentSet.boardHeight}`,
+        border: "3px solid #12355b",
+        borderRadius: 12,
+        backgroundColor: "#f8fafc",
+        overflow: "hidden"
+      }}
+      onDragOver={(e) => e.preventDefault()}
+    >
+      <img
+        src={currentSet.image}
+        alt={selectedSet}
+        style={{
+          ...currentSet.imageStyle,
+          width: "100%",
+          height: "100%"
+        }}
+      />
 
-                    <div
-                      style={{
-                        position: "absolute",
-                        left: 35,
-                        top: 35,
-                        fontSize: 24,
-                        fontWeight: 700,
-                        color: "#222",
-                        textShadow: "0 1px 2px rgba(255,255,255,0.7)"
-                      }}
-                    >
-                      {selectedSet === "Hand"
-                        ? "Hand Bones"
-                        : selectedSet === "Foot"
-                        ? "Foot Bones"
-                        : selectedSet}
-                    </div>
+      <div
+        style={{
+          position: "absolute",
+          left: `${(35 / currentSet.boardWidth) * 100}%`,
+          top: `${(35 / currentSet.boardHeight) * 100}%`,
+          fontSize: "clamp(16px, 2.5vw, 24px)",
+          fontWeight: 700,
+          color: "#222",
+          textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+          transform: "translateY(-50%)"
+        }}
+      >
+        {selectedSet === "Hand"
+          ? "Hand Bones"
+          : selectedSet === "Foot"
+          ? "Foot Bones"
+          : selectedSet}
+      </div>
 
-                    {currentSet.parts.map((part) => {
-                      const isCorrect = placed[part.name] === "correct";
-                      const isWrong = feedback[part.name] === "wrong";
+      {currentSet.parts.map((part) => {
+        const isCorrect = placed[part.name] === "correct";
+        const isWrong = feedback[part.name] === "wrong";
 
-                      return (
-                        <div
-                          key={part.name}
-                          onDrop={(e) => handleDrop(e, part)}
-                          onDragOver={(e) => e.preventDefault()}
-                          style={{
-                            position: "absolute",
-                            left: part.x,
-                            top: part.y,
-                            width: currentSet.dropWidth,
-                            height: currentSet.dropHeight,
-                            transform: "translate(-50%, -50%)",
-                            border: isCorrect
-                              ? "3px solid green"
-                              : isWrong
-                              ? "3px solid red"
-                              : "3px solid #1d4ed8",
-                            backgroundColor: isCorrect
-                              ? "rgba(144, 238, 144, 0.9)"
-                              : isWrong
-                              ? "rgba(255, 214, 214, 0.92)"
-                              : "rgba(219, 234, 254, 0.72)",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: 13,
-                            fontWeight: 700,
-                            textAlign: "center",
-                            padding: "2px 6px",
-                            borderRadius: 6,
-                            color: "#475569"
-                          }}
-                        >
-                          {isCorrect ? part.name : "Drop"}
-                        </div>
-                      );
-                    })}
-                  </div>
+        return (
+          <div
+            key={part.name}
+            onDrop={(e) => handleDrop(e, part)}
+            onDragOver={(e) => e.preventDefault()}
+            style={{
+              position: "absolute",
+              left: `${(part.x / currentSet.boardWidth) * 100}%`,
+              top: `${(part.y / currentSet.boardHeight) * 100}%`,
+              width: `${(currentSet.dropWidth / currentSet.boardWidth) * 100}%`,
+              height: `${(currentSet.dropHeight / currentSet.boardHeight) * 100}%`,
+              transform: "translate(-50%, -50%)",
+              border: isCorrect
+                ? "3px solid green"
+                : isWrong
+                ? "3px solid red"
+                : "3px solid #1d4ed8",
+              backgroundColor: isCorrect
+                ? "rgba(144, 238, 144, 0.9)"
+                : isWrong
+                ? "rgba(255, 214, 214, 0.92)"
+                : "rgba(219, 234, 254, 0.72)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "clamp(9px, 1.4vw, 13px)",
+              fontWeight: 700,
+              textAlign: "center",
+              padding: "2px 6px",
+              borderRadius: 6,
+              color: "#475569",
+              boxSizing: "border-box",
+              overflow: "hidden"
+            }}
+          >
+            {isCorrect ? part.name : "Drop"}
+          </div>
+        );
+      })}
+    </div>
+  </div>
 
-                  <div
-                    style={{
-                      background: "linear-gradient(180deg, #f8fafc, #eef4ff)",
-                      borderRadius: 16,
-                      padding: 16,
-                      minWidth: 220,
-                      boxShadow: "0 6px 20px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    {currentSet.parts.map((part) => {
-                      const isCorrect = placed[part.name] === "correct";
-                      const isDragging = draggingLabel === part.name;
+  <div
+    style={{
+      background: "linear-gradient(180deg, #f8fafc, #eef4ff)",
+      borderRadius: 16,
+      padding: 16,
+      width: "100%",
+      maxWidth: 260,
+      boxShadow: "0 6px 20px rgba(0,0,0,0.08)"
+    }}
+  >
+    {currentSet.parts.map((part) => {
+      const isCorrect = placed[part.name] === "correct";
+      const isDragging = draggingLabel === part.name;
 
-                      return (
-                        <div
-                          key={part.name}
-                          draggable={!isCorrect}
-                          onDragStart={(e) => {
-                            e.dataTransfer.setData("text/plain", part.name);
-                            setDraggingLabel(part.name);
-                          }}
-                          onDragEnd={() => setDraggingLabel("")}
-                          style={{
-                            padding: 12,
-                            margin: "0 0 8px 0",
-                            border: "1px solid #334155",
-                            background: isCorrect ? "#d9f7d9" : "#e2e8f0",
-                            color: "#5b4967",
-                            cursor: isCorrect ? "default" : "grab",
-                            minWidth: 180,
-                            textAlign: "center",
-                            opacity: isDragging ? 0.5 : 1,
-                            borderRadius: 4,
-                            fontSize: 18
-                          }}
-                        >
-                          {isCorrect ? `✔ ${part.name}` : part.name}
-                        </div>
-                      );
-                    })}
+      return (
+        <div
+          key={part.name}
+          draggable={!isCorrect}
+          onDragStart={(e) => {
+            e.dataTransfer.setData("text/plain", part.name);
+            setDraggingLabel(part.name);
+          }}
+          onDragEnd={() => setDraggingLabel("")}
+          style={{
+            padding: 12,
+            margin: "0 0 8px 0",
+            border: "1px solid #334155",
+            background: isCorrect ? "#d9f7d9" : "#e2e8f0",
+            color: "#5b4967",
+            cursor: isCorrect ? "default" : "grab",
+            width: "100%",
+            textAlign: "center",
+            opacity: isDragging ? 0.5 : 1,
+            borderRadius: 4,
+            fontSize: 18,
+            boxSizing: "border-box"
+          }}
+        >
+          {isCorrect ? `✔ ${part.name}` : part.name}
+        </div>
+      );
+    })}
 
-                    <div
-                      style={{
-                        marginTop: 20,
-                        fontWeight: 700,
-                        fontSize: 18,
-                        textAlign: "center",
-                        color: "#5b4967"
-                      }}
-                    >
-                      Score: {score} / {currentSet.parts.length}
-                    </div>
+    <div
+      style={{
+        marginTop: 20,
+        fontWeight: 700,
+        fontSize: 18,
+        textAlign: "center",
+        color: "#5b4967"
+      }}
+    >
+      Score: {score} / {currentSet.parts.length}
+    </div>
 
-                    {score === currentSet.parts.length && (
-                      <div
-                        style={{
-                          marginTop: 15,
-                          padding: 12,
-                          backgroundColor: "#dff6dd",
-                          border: "1px solid green",
-                          borderRadius: 8,
-                          fontWeight: 700,
-                          textAlign: "center",
-                          color: "#14532d"
-                        }}
-                      >
-                        Great job! You completed {selectedSet}.
-                      </div>
-                    )}
-                  </div>
-                </div>
+    {score === currentSet.parts.length && (
+      <div
+        style={{
+          marginTop: 15,
+          padding: 12,
+          backgroundColor: "#dff6dd",
+          border: "1px solid green",
+          borderRadius: 8,
+          fontWeight: 700,
+          textAlign: "center",
+          color: "#14532d"
+        }}
+      >
+           Great job! You completed {selectedSet}.
+      </div>
+    )}
+  </div>
+</div>
               </>
             )}
           </div>
@@ -2298,283 +2327,3 @@ return (
                   </div>
                 </div>
               </>
-            ) : cbetShowResult && !showMissedReview ? (
-              <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b", fontSize: 32 }}>Exam Complete</h2>
-                <div
-                  style={{
-                    margin: "20px auto",
-                    maxWidth: 500,
-                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                    borderRadius: 18,
-                    padding: 24,
-                    border: "1px solid #d8e4f2"
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: 22,
-                      fontWeight: 700,
-                      color: "#12355b",
-                      marginBottom: 12
-                    }}
-                  >
-                    Score: {cbetScore} / {shuffledCbetQuestions.length}
-                  </div>
-                  <div style={{ fontSize: 20, color: "#1d6fa5", marginBottom: 12 }}>
-                    Percentage: {Math.round((cbetScore / shuffledCbetQuestions.length) * 100)}%
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 24,
-                      fontWeight: 800,
-                      color: cbetScore / shuffledCbetQuestions.length >= 0.7 ? "#166534" : "#b91c1c"
-                    }}
-                  >
-                    {cbetScore / shuffledCbetQuestions.length >= 0.7 ? "PASS" : "FAIL"}
-                  </div>
-                  <div style={{ marginTop: 12, color: "#475569", fontWeight: 600 }}>
-                    Missed Questions: {missedQuestions.length}
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 12,
-                    flexWrap: "wrap"
-                  }}
-                >
-                  <button
-                    onClick={saveCbetProgress}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Save Progress
-                  </button>
-
-                  <button
-                    onClick={() => setShowMissedReview(true)}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Review Missed Questions
-                  </button>
-
-                  <button
-                    onClick={resetCbetExam}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #f59e0b, #fbbf24)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Retry Exam
-                  </button>
-
-                  <button
-                    onClick={restartCbetExam}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Restart Exam
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <div style={{ textAlign: "center", marginBottom: 20 }}>
-                  <h2 style={{ color: "#12355b", fontSize: 32, marginBottom: 8 }}>
-                    Missed Questions Review
-                  </h2>
-                  <p style={{ color: "#4f6275", margin: 0 }}>
-                    Review the questions you missed and compare your answer with the correct one.
-                  </p>
-                </div>
-
-                <div style={{ display: "grid", gap: 18 }}>
-                  {missedQuestions.length === 0 ? (
-                    <div
-                      style={{
-                        background: "linear-gradient(135deg, #dcfce7, #f0fdf4)",
-                        border: "1px solid #86efac",
-                        borderRadius: 16,
-                        padding: 20,
-                        textAlign: "center",
-                        fontWeight: 700,
-                        color: "#166534"
-                      }}
-                    >
-                      Perfect score — no missed questions to review.
-                    </div>
-                  ) : (
-                    missedQuestions.map((q, missedIndex) => {
-                      const originalIndex = shuffledCbetQuestions.findIndex(
-                        (item) => item.question === q.question && item.answer === q.answer
-                      );
-                      const selectedAnswer = cbetAnswers[originalIndex];
-
-                      return (
-                        <div
-                          key={`${q.question}-${missedIndex}`}
-                          style={{
-                            background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                            borderRadius: 18,
-                            padding: 20,
-                            border: "1px solid #d8e4f2",
-                            boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                          }}
-                        >
-                          <div
-                            style={{
-                              fontSize: 20,
-                              fontWeight: 700,
-                              color: "#12355b",
-                              marginBottom: 14
-                            }}
-                          >
-                            {q.question}
-                          </div>
-
-                          <div style={{ display: "grid", gap: 10 }}>
-                            {q.options.map((option, optionIndex) => {
-                              const isCorrect = optionIndex === q.answer;
-                              const isUserChoice = optionIndex === selectedAnswer;
-
-                              return (
-                                <div
-                                  key={`${q.question}-${optionIndex}`}
-                                  style={{
-                                    padding: "12px 14px",
-                                    borderRadius: 12,
-                                    border: isCorrect
-                                      ? "2px solid green"
-                                      : isUserChoice
-                                      ? "2px solid red"
-                                      : "1px solid #cbd5e1",
-                                    background: isCorrect
-                                      ? "#d9f7d9"
-                                      : isUserChoice
-                                      ? "#fee2e2"
-                                      : "#f8fafc",
-                                    color: "#1e293b",
-                                    fontWeight: 600
-                                  }}
-                                >
-                                  {String.fromCharCode(65 + optionIndex)}. {option}
-                                  {isCorrect ? " — Correct Answer" : ""}
-                                  {isUserChoice && !isCorrect ? " — Your Answer" : ""}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginTop: 24
-                  }}
-                >
-                  <button
-                    onClick={() => setShowMissedReview(false)}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Back to Results
-                  </button>
-
-                  <button
-                    onClick={restartCbetExam}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Restart with New Shuffle
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function navButtonStyle(active) {
-  return {
-    padding: "10px 20px",
-    borderRadius: 999,
-    border: "none",
-    cursor: "pointer",
-    fontWeight: 700,
-    fontSize: 16,
-    color: active ? "white" : "#12355b",
-    background: active
-      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
-      : "linear-gradient(135deg, #ffffff, #dbeafe)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.08)"
-  };
-}
-
-const cbetStatCardStyle = {
-  background: "linear-gradient(135deg, #dbeafe, #eff6ff)",
-  color: "#12355b",
-  fontWeight: 700,
-  padding: "10px 16px",
-  borderRadius: 999,
-  boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
-};
