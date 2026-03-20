@@ -1965,18 +1965,18 @@ const bones = {
       transform: "translateY(-40px) scale(0.95)"
     },
     parts: [
-      { name: "Distal Phalanges", x: 325, y: 20 },
-      { name: "Middle Phalanges", x: 460, y: 145 },
-      { name: "Proximal Phalanges", x: 330, y: 220 },
-      { name: "Metacarpals", x: 310, y: 345 },
-      { name: "Scaphoid", x: 250, y: 540 },
-      { name: "Lunate", x: 476, y: 510 },
-      { name: "Triquetrum", x: 490, y: 465 },
-      { name: "Pisiform", x: 390, y: 551 },
-      { name: "Trapezium", x: 169, y: 455 },
-      { name: "Trapezoid", x: 115, y: 510 },
-      { name: "Capitate", x: 275, y: 412 },
-      { name: "Hamate", x: 460, y: 415 }
+      { name: "Distal Phalanges", x: 325, y: 220 },
+      { name: "Middle Phalanges", x: 460, y: 345 },
+      { name: "Proximal Phalanges", x: 330, y: 420 },
+      { name: "Metacarpals", x: 310, y: 545 },
+      { name: "Scaphoid", x: 250, y: 740 },
+      { name: "Lunate", x: 476, y: 710 },
+      { name: "Triquetrum", x: 490, y: 665 },
+      { name: "Pisiform", x: 390, y: 751 },
+      { name: "Trapezium", x: 169, y: 655 },
+      { name: "Trapezoid", x: 115, y: 710 },
+      { name: "Capitate", x: 275, y: 612 },
+      { name: "Hamate", x: 460, y: 615 }
     ]
   },
 
@@ -2000,17 +2000,17 @@ const bones = {
       transform: "translateY(35px) scale(0.9)"
     },
     parts: [
-      { name: "Distal Phalanges", x: 310, y: 95 },
-      { name: "Middle Phalanges", x: 500, y: 225 },
-      { name: "Proximal Phalanges", x: 490, y: 270 },
-      { name: "Metatarsals", x: 495, y: 325 },
-      { name: "Medial Cuneiform", x: 205, y: 375 },
-      { name: "Intermediate Cuneiform", x: 370, y: 370 },
-      { name: "Lateral Cuneiform", x: 414, y: 415 },
-      { name: "Navicular", x: 205, y: 430 },
-      { name: "Cuboid", x: 444, y: 460 },
-      { name: "Talus", x: 230, y: 485 },
-      { name: "Calcaneus", x: 350, y: 580 }
+      { name: "Distal Phalanges", x: 310, y: 255 },
+      { name: "Middle Phalanges", x: 500, y: 415 },
+      { name: "Proximal Phalanges", x: 490, y: 460 },
+      { name: "Metatarsals", x: 495, y: 515 },
+      { name: "Medial Cuneiform", x: 205, y: 565 },
+      { name: "Intermediate Cuneiform", x: 370, y: 560 },
+      { name: "Lateral Cuneiform", x: 414, y: 605 },
+      { name: "Navicular", x: 205, y: 620 },
+      { name: "Cuboid", x: 444, y: 650 },
+      { name: "Talus", x: 230, y: 675 },
+      { name: "Calcaneus", x: 350, y: 770 }
     ]
   }
 };
@@ -2131,13 +2131,6 @@ export default function App() {
         const translateY = parseInt(translateMatch[1]);
         clickY = clickY - translateY;
       }
-    }
-    
-    // For Hand and Foot, add additional offset to account for visual positioning
-    if (selectedSet === "Hand") {
-      clickY = clickY + 60; // Shift zones down for Hand
-    } else if (selectedSet === "Foot") {
-      clickY = clickY + 50; // Shift zones down for Foot
     }
 
     // Find the closest part
