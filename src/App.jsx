@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import logo from "./assets/logo.png";
+=======
+import logo from "./assets/logo.png";  //
+>>>>>>> 0e2e681d62b0c0ddeb05a0d86de803d89dce0b38
 
 // --- SOUND EFFECTS ---
 const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
@@ -1607,48 +1611,57 @@ export default function App() {
     textAlign: "center"
   };
 
-  return (
+return (
+  <div
+    style={{
+      minHeight: "100vh",
+      padding: 20,
+      fontFamily: "Arial, sans-serif",
+      background:
+        "linear-gradient(135deg, #e0f7fa 0%, #eef4ff 35%, #fdf2f8 70%, #fff8e1 100%)"
+    }}
+  >
+    {/* LOGO HEADER */}
     <div
       style={{
-        minHeight: "100vh",
-        padding: 20,
-        fontFamily: "Arial, sans-serif",
-        background:
-          "linear-gradient(135deg, #e0f7fa 0%, #eef4ff 35%, #fdf2f8 70%, #fff8e1 100%)"
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "10px",
+        padding: "10px",
+        flexWrap: "wrap"
+      }}
+    >
+      <img
+        src={logo}
+        alt="MedSkillBuilder Logo"
+        style={{ height: "50px", maxWidth: "100%" }}
+      />
+      <h1 style={{ margin: 0 }}>MedSkillBuilder</h1>
+    </div>
+
+    <div
+      style={{
+        maxWidth: 1300,
+        margin: "0 auto"
       }}
     >
       <div
         style={{
-          maxWidth: 1300,
-          margin: "0 auto"
+          textAlign: "center",
+          marginBottom: 20,
+          padding: "20px 10px",
+          borderRadius: 22,
+          background: "linear-gradient(135deg, #12355b, #1d6fa5, #58b4d8)",
+          color: "white",
+          boxShadow: "0 10px 28px rgba(18,53,91,0.25)"
         }}
       >
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom: 20,
-            padding: "20px 10px",
-            borderRadius: 22,
-            background: "linear-gradient(135deg, #12355b, #1d6fa5, #58b4d8)",
-            color: "white",
-            boxShadow: "0 10px 28px rgba(18,53,91,0.25)"
-          }}
-        >
-          <h1 style={{ margin: 0, fontSize: 42, letterSpacing: 1 }}>BMETS-R-US</h1>
-          <p style={{ marginTop: 10, fontSize: 18 }}>
-            Interactive anatomy, bone labeling, and CBET practice
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 12,
-            flexWrap: "wrap",
-            marginBottom: 20
-          }}
-        >
+        <h1 style={{ margin: 0, fontSize: 42, letterSpacing: 1 }}>BMETS-R-US</h1>
+        <p style={{ marginTop: 10, fontSize: 18 }}>
+          Interactive anatomy, bone labeling, and CBET practice
+        </p>
+      </div>
           <button
             onClick={() => setActiveTab("Home")}
             style={navButtonStyle(activeTab === "Home")}
