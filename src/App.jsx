@@ -2027,18 +2027,18 @@ const rnQuestions = [
     parts: [
       { name: "Right Lobe", x: 350, y: 200 },
       { name: "Left Lobe", x: 250, y: 220 },
-      { name: "Hepatic Artery", x: 300, y: 280 },
+      { name: "Hepatic Artery", x: 310, y: 305 },
       { name: "Portal Vein", x: 320, y: 300 },
       { name: "Bile Duct", x: 380, y: 320 },
       { name: "Gallbladder", x: 420, y: 350 },
       { name: "Falciform Ligament", x: 310, y: 170 },
-      { name: "Caudate Lobe", x: 280, y: 280 }
+      { name: "Caudate Lobe", x: 280, y: 330 }
     ]
   },
 
   Eye: {
     image: "/eye.jpg",
-    boardWidth: 620,
+    boardWidth: 720,
     boardHeight: 600,
     dropWidth: 80,
     dropHeight: 32,
@@ -2055,18 +2055,18 @@ const rnQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Cornea", x: 520, y: 220 },
-      { name: "Iris", x: 480, y: 240 },
-      { name: "Lens", x: 450, y: 250 },
-      { name: "Pupil", x: 490, y: 245 },
-      { name: "Aqueous Humor", x: 500, y: 200 },
-      { name: "Vitreous Humor", x: 420, y: 300 },
-      { name: "Retina", x: 380, y: 300 },
+      { name: "Cornea", x: 580, y: 220 },
+      { name: "Iris", x: 540, y: 240 },
+      { name: "Lens", x: 500, y: 250 },
+      { name: "Pupil", x: 550, y: 245 },
+      { name: "Aqueous Humor", x: 560, y: 200 },
+      { name: "Vitreous Humor", x: 460, y: 300 },
+      { name: "Retina", x: 400, y: 300 },
       { name: "Optic Nerve", x: 300, y: 320 },
-      { name: "Sclera", x: 350, y: 270 },
-      { name: "Choroid", x: 400, y: 280 },
-      { name: "Macula", x: 360, y: 310 },
-      { name: "Ciliary Body", x: 420, y: 220 }
+      { name: "Sclera", x: 370, y: 270 },
+      { name: "Choroid", x: 430, y: 280 },
+      { name: "Macula", x: 380, y: 310 },
+      { name: "Ciliary Body", x: 470, y: 220 }
     ]
   },
 
