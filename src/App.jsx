@@ -2201,17 +2201,17 @@ const bones = {
       transform: "translateY(0px) scale(0.9)"
     },
     parts: [
-      { name: "Distal Phalanges", x: 310, y: 180 },
-      { name: "Middle Phalanges", x: 318, y: 220 },
-      { name: "Proximal Phalanges", x: 330, y: 280 },
-      { name: "Metatarsals", x: 310, y: 405 },
-      { name: "Medial Cuneiform", x: 280, y: 445 },
-      { name: "Intermediate Cuneiform", x: 335, y: 445 },
-      { name: "Lateral Cuneiform", x: 390, y: 445 },
-      { name: "Navicular", x: 315, y: 480 },
-      { name: "Cuboid", x: 385, y: 485 },
-      { name: "Talus", x: 265, y: 535 },
-      { name: "Calcaneus", x: 330, y: 615 }
+      { name: "Distal Phalanges", x: 310, y: 280 },
+      { name: "Middle Phalanges", x: 318, y: 320 },
+      { name: "Proximal Phalanges", x: 330, y: 380 },
+      { name: "Metatarsals", x: 310, y: 505 },
+      { name: "Medial Cuneiform", x: 280, y: 545 },
+      { name: "Intermediate Cuneiform", x: 335, y: 545 },
+      { name: "Lateral Cuneiform", x: 390, y: 545 },
+      { name: "Navicular", x: 315, y: 580 },
+      { name: "Cuboid", x: 385, y: 585 },
+      { name: "Talus", x: 265, y: 635 },
+      { name: "Calcaneus", x: 330, y: 715 }
     ]
   }
 };
@@ -3058,7 +3058,7 @@ return (
             transform: "translate(-50%, -50%)",
             width: "24px",
             height: "24px",
-            background: "rgba(255, 0, 0, 0.7)",
+            background: placed[part.name] === "correct" ? "rgba(34, 197, 94, 0.85)" : "rgba(255, 0, 0, 0.7)",
             color: "white",
             borderRadius: "50%",
             display: "flex",
@@ -3066,7 +3066,7 @@ return (
             justifyContent: "center",
             fontSize: "12px",
             fontWeight: "bold",
-            border: "2px solid white",
+            border: placed[part.name] === "correct" ? "2px solid #166534" : "2px solid white",
             zIndex: 10,
             pointerEvents: "none"
           }}
