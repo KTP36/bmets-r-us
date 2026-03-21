@@ -2599,6 +2599,10 @@ export default function App() {
   const [contactStatus, setContactStatus] = useState("idle");
   const [contactError, setContactError] = useState("");
   const contactFormRef = useRef(null);
+  const cashAppSupportUrl = "https://cash.app/$KevinPugh23";
+  const adsenseClient = "ca-pub-4355354977115217";
+  const topAdSlot = "";
+  const bottomAdSlot = "";
   const [mode, setMode] = useState("organs");
   const [selectedSet, setSelectedSet] = useState(null);
   const [placed, setPlaced] = useState({});
@@ -3198,6 +3202,40 @@ export default function App() {
     }
   };
 
+  const renderAdSlot = (slotId) => {
+    if (!adsenseClient || !slotId) {
+      return (
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 980,
+            margin: "0 auto",
+            borderRadius: 14,
+            border: "1px solid #d8e4f2",
+            background: "rgba(255,255,255,0.75)",
+            color: "#64748b",
+            textAlign: "center",
+            padding: "10px 12px",
+            fontSize: 12
+          }}
+        >
+          Ad space reserved
+        </div>
+      );
+    }
+
+    return (
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client={adsenseClient}
+        data-ad-slot={slotId}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    );
+  };
+
 return (
   <div
     style={{
@@ -3264,6 +3302,10 @@ return (
         <p style={{ marginTop: 10, fontSize: 18 }}>
           Interactive anatomy, bone labeling, and practice modules for CBET, RN, and TEAS
         </p>
+      </div>
+
+      <div style={{ marginBottom: 16 }}>
+        {renderAdSlot(topAdSlot)}
       </div>
 
       {/* NAV BUTTONS (FIXED WRAPPER) */}
@@ -3345,6 +3387,13 @@ return (
           style={navButtonStyle(activeTab === "Contact")}
         >
           Contact
+        </button>
+
+        <button
+          onClick={() => setActiveTab("Support")}
+          style={navButtonStyle(activeTab === "Support")}
+        >
+          Support Our Content
         </button>
 
         <button
@@ -5417,6 +5466,85 @@ return (
           </div>
         )}
 
+        {activeTab === "Support" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 900,
+              margin: "0 auto",
+              color: "#1e293b"
+            }}
+          >
+            <div style={{ textAlign: "center", marginBottom: 20 }}>
+              <h2 style={{ color: "#12355b", margin: "0 0 8px 0" }}>Support Our Content</h2>
+              <p style={{ color: "#4f6275", margin: 0 }}>
+                If this platform helps your studying, you can support future content and updates.
+              </p>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gap: 14,
+                maxWidth: 700,
+                margin: "0 auto"
+              }}
+            >
+              <div
+                style={{
+                  padding: 16,
+                  borderRadius: 14,
+                  border: "1px solid #d8e4f2",
+                  background: "#f8fafc",
+                  textAlign: "center"
+                }}
+              >
+                <a
+                  href={cashAppSupportUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    padding: "12px 24px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                    color: "white",
+                    fontWeight: 700,
+                    textDecoration: "none",
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                  }}
+                >
+                  Support via Cash App
+                </a>
+                <div style={{ marginTop: 10, fontSize: 13, color: "#64748b" }}>
+                  Update the link in app code to your real cashtag if needed.
+                </div>
+              </div>
+
+              <div
+                style={{
+                  padding: 16,
+                  borderRadius: 14,
+                  border: "1px solid #e2e8f0",
+                  background: "#fff",
+                  lineHeight: 1.6
+                }}
+              >
+                <h3 style={{ margin: "0 0 8px 0", color: "#12355b" }}>Support Disclaimer</h3>
+                <p style={{ margin: 0 }}>
+                  Donations are voluntary and are not required to use MedSkillBuilder. Donations are
+                  non-refundable and do not purchase medical advice, certification, or guaranteed exam
+                  outcomes. MedSkillBuilder is an educational resource only.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {activeTab === "Privacy" && (
           <div
             style={{
@@ -5499,6 +5627,19 @@ return (
             Contact
           </button>
           <button
+            onClick={() => setActiveTab("Support")}
+            style={{
+              border: "none",
+              background: "transparent",
+              color: "#12355b",
+              textDecoration: "underline",
+              cursor: "pointer",
+              fontWeight: 600
+            }}
+          >
+            Support Our Content
+          </button>
+          <button
             onClick={() => setActiveTab("Privacy")}
             style={{
               border: "none",
@@ -5511,6 +5652,10 @@ return (
           >
             Privacy Policy
           </button>
+        </div>
+
+        <div style={{ marginTop: 8 }}>
+          {renderAdSlot(bottomAdSlot)}
         </div>
       </div>
     </div>
