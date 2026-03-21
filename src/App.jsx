@@ -1970,12 +1970,12 @@ const bones = {
       { name: "Proximal Phalanges", x: 330, y: 420 },
       { name: "Metacarpals", x: 310, y: 545 },
       { name: "Scaphoid", x: 250, y: 740 },
-      { name: "Lunate", x: 476, y: 710 },
-      { name: "Triquetrum", x: 490, y: 665 },
+      { name: "Lunate", x: 466, y: 710 },
+      { name: "Triquetrum", x: 470, y: 665 },
       { name: "Pisiform", x: 390, y: 751 },
       { name: "Trapezium", x: 169, y: 655 },
-      { name: "Trapezoid", x: 115, y: 710 },
-      { name: "Capitate", x: 275, y: 612 },
+      { name: "Trapezoid", x: 135, y: 730 },
+      { name: "Capitate", x: 275, y: 632 },
       { name: "Hamate", x: 460, y: 615 }
     ]
   },
