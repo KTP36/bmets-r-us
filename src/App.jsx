@@ -2248,6 +2248,7 @@ export default function App() {
   const [rnAnswers, setRnAnswers] = useState({});
   const [rnShowResult, setRnShowResult] = useState(false);
   const [showRnMissedReview, setShowRnMissedReview] = useState(false);
+  const [hoveredHomeCard, setHoveredHomeCard] = useState("");
   
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
@@ -2510,7 +2511,30 @@ export default function App() {
     boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
     minWidth: 220,
     flex: "1 1 220px",
-    textAlign: "center"
+    textAlign: "center",
+    border: "1px solid transparent",
+    transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease"
+  };
+
+  const getInteractiveHomeCardStyle = (cardId) => {
+    const isActive = hoveredHomeCard === cardId;
+
+    return {
+      ...homeCardStyle,
+      cursor: "pointer",
+      transform: isActive ? "translateY(-4px) scale(1.01)" : "translateY(0) scale(1)",
+      borderColor: isActive ? "#7fb7e8" : "transparent",
+      boxShadow: isActive
+        ? "0 14px 34px rgba(18,53,91,0.18), 0 0 0 4px rgba(88,180,216,0.16)"
+        : homeCardStyle.boxShadow
+    };
+  };
+
+  const handleHomeCardKeyDown = (event, action) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      action();
+    }
   };
 
 return (
@@ -2685,7 +2709,27 @@ return (
                 marginBottom: 30
               }}
             >
-              <div style={homeCardStyle}>
+              <div
+                role="button"
+                tabIndex={0}
+                onMouseEnter={() => setHoveredHomeCard("anatomy")}
+                onMouseLeave={() => setHoveredHomeCard("")}
+                onFocus={() => setHoveredHomeCard("anatomy")}
+                onBlur={() => setHoveredHomeCard("")}
+                onClick={() => {
+                  setActiveTab("Anatomy");
+                  setMode("organs");
+                  setSelectedSet(null);
+                }}
+                onKeyDown={(event) =>
+                  handleHomeCardKeyDown(event, () => {
+                    setActiveTab("Anatomy");
+                    setMode("organs");
+                    setSelectedSet(null);
+                  })
+                }
+                style={getInteractiveHomeCardStyle("anatomy")}
+              >
                 <div style={{ fontSize: 42, marginBottom: 8 }}>🫀</div>
                 <h3 style={{ color: "#12355b" }}>Anatomy Practice</h3>
                 <p style={{ color: "#4f6275" }}>
@@ -2694,7 +2738,27 @@ return (
                 </p>
               </div>
 
-              <div style={homeCardStyle}>
+              <div
+                role="button"
+                tabIndex={0}
+                onMouseEnter={() => setHoveredHomeCard("bones")}
+                onMouseLeave={() => setHoveredHomeCard("")}
+                onFocus={() => setHoveredHomeCard("bones")}
+                onBlur={() => setHoveredHomeCard("")}
+                onClick={() => {
+                  setActiveTab("Bones");
+                  setMode("bones");
+                  setSelectedSet(null);
+                }}
+                onKeyDown={(event) =>
+                  handleHomeCardKeyDown(event, () => {
+                    setActiveTab("Bones");
+                    setMode("bones");
+                    setSelectedSet(null);
+                  })
+                }
+                style={getInteractiveHomeCardStyle("bones")}
+              >
                 <div style={{ fontSize: 42, marginBottom: 8 }}>🦴</div>
                 <h3 style={{ color: "#12355b" }}>Bone Practice</h3>
                 <p style={{ color: "#4f6275" }}>
@@ -2702,16 +2766,61 @@ return (
                 </p>
               </div>
 
-              <div style={homeCardStyle}>
+              <div
+                role="button"
+                tabIndex={0}
+                onMouseEnter={() => setHoveredHomeCard("cbet")}
+                onMouseLeave={() => setHoveredHomeCard("")}
+                onFocus={() => setHoveredHomeCard("cbet")}
+                onBlur={() => setHoveredHomeCard("")}
+                onClick={() => setActiveTab("CBET")}
+                onKeyDown={(event) =>
+                  handleHomeCardKeyDown(event, () => setActiveTab("CBET"))
+                }
+                style={getInteractiveHomeCardStyle("cbet")}
+              >
                 <div style={{ fontSize: 42, marginBottom: 8 }}>📝</div>
                 <h3 style={{ color: "#12355b" }}>CBET Exam Prep</h3>
                 <p style={{ color: "#4f6275" }}>
-                  Take CBET and RN practice questions with instant feedback
-                  and score tracking.
+                  Take CBET practice questions with instant feedback and score
+                  tracking.
                 </p>
               </div>
 
-              <div style={homeCardStyle}>
+              <div
+                role="button"
+                tabIndex={0}
+                onMouseEnter={() => setHoveredHomeCard("rn")}
+                onMouseLeave={() => setHoveredHomeCard("")}
+                onFocus={() => setHoveredHomeCard("rn")}
+                onBlur={() => setHoveredHomeCard("")}
+                onClick={() => setActiveTab("RN")}
+                onKeyDown={(event) =>
+                  handleHomeCardKeyDown(event, () => setActiveTab("RN"))
+                }
+                style={getInteractiveHomeCardStyle("rn")}
+              >
+                <div style={{ fontSize: 42, marginBottom: 8 }}>🩺</div>
+                <h3 style={{ color: "#12355b" }}>Nursing Exam Prep</h3>
+                <p style={{ color: "#4f6275" }}>
+                  Practice RN-style questions with immediate answer review and
+                  score tracking.
+                </p>
+              </div>
+
+              <div
+                role="button"
+                tabIndex={0}
+                onMouseEnter={() => setHoveredHomeCard("dashboard")}
+                onMouseLeave={() => setHoveredHomeCard("")}
+                onFocus={() => setHoveredHomeCard("dashboard")}
+                onBlur={() => setHoveredHomeCard("")}
+                onClick={() => setActiveTab("Dashboard")}
+                onKeyDown={(event) =>
+                  handleHomeCardKeyDown(event, () => setActiveTab("Dashboard"))
+                }
+                style={getInteractiveHomeCardStyle("dashboard")}
+              >
                 <div style={{ fontSize: 42, marginBottom: 8 }}>📈</div>
                 <h3 style={{ color: "#12355b" }}>Track Progress</h3>
                 <p style={{ color: "#4f6275" }}>
