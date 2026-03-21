@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import logo from "./assets/logo.png";
+import { teasQuestions } from "./teasQuestions";
 
 // --- SOUND EFFECTS ---
 const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
@@ -1933,6 +1934,14 @@ const rnQuestions = [
     image: "/heart.png",
     boardWidth: 420,
     boardHeight: 420,
+      functionTitle: "Circulates blood through the body",
+      functionSummary:
+        "The heart works as a muscular pump that sends oxygen-poor blood to the lungs and oxygen-rich blood out to the rest of the body.",
+      studyHighlights: [
+        "Maintains blood flow and blood pressure",
+        "Supplies tissues with oxygen and nutrients",
+        "Helps remove carbon dioxide and metabolic waste"
+      ],
     dropWidth: 100,
     dropHeight: 40,
     mobileDropScale: 0.42,
@@ -1960,6 +1969,14 @@ const rnQuestions = [
     image: "/brain.png",
     boardWidth: 420,
     boardHeight: 420,
+    functionTitle: "Controls the body and processes information",
+    functionSummary:
+      "The brain interprets sensory input, directs movement, stores memory, and coordinates automatic functions needed to stay alive.",
+    studyHighlights: [
+      "Coordinates thought, memory, and decision-making",
+      "Controls movement, speech, and sensation",
+      "Regulates breathing, heart rate, and other vital functions"
+    ],
     dropWidth: 100,
     dropHeight: 40,
     mobileDropScale: 0.42,
@@ -1985,6 +2002,14 @@ const rnQuestions = [
     image: "/lungs.png",
     boardWidth: 420,
     boardHeight: 420,
+    functionTitle: "Exchange oxygen and carbon dioxide",
+    functionSummary:
+      "The lungs bring oxygen into the bloodstream and remove carbon dioxide so the body can produce energy and maintain acid-base balance.",
+    studyHighlights: [
+      "Oxygenates blood for delivery to tissues",
+      "Removes carbon dioxide during exhalation",
+      "Supports normal pH balance in the body"
+    ],
     dropWidth: 100,
     dropHeight: 40,
     mobileDropScale: 0.42,
@@ -2010,6 +2035,14 @@ const rnQuestions = [
     image: "/liver.jpg",
     boardWidth: 700,
     boardHeight: 600,
+    functionTitle: "Filters blood and processes nutrients",
+    functionSummary:
+      "The liver detoxifies blood, stores energy, produces bile, and helps regulate metabolism so the body can use nutrients efficiently.",
+    studyHighlights: [
+      "Breaks down toxins, drugs, and waste products",
+      "Produces bile to help digest fats",
+      "Stores glycogen, vitamins, and important nutrients"
+    ],
     dropWidth: 80,
     dropHeight: 32,
     mobileDropScale: 0.35,
@@ -2040,6 +2073,14 @@ const rnQuestions = [
     image: "/eye.jpg",
     boardWidth: 750,
     boardHeight: 700,
+    functionTitle: "Captures light and creates vision",
+    functionSummary:
+      "The eye focuses incoming light, converts it into nerve signals, and sends those signals to the brain so images can be interpreted.",
+    studyHighlights: [
+      "Focuses light through the cornea and lens",
+      "Converts light into signals in the retina",
+      "Sends visual information to the brain through the optic nerve"
+    ],
     dropWidth: 80,
     dropHeight: 32,
     mobileDropScale: 0.35,
@@ -2074,6 +2115,14 @@ const rnQuestions = [
     image: "/arterial-system.jpg",
     boardWidth: 620,
     boardHeight: 950,
+    functionTitle: "Delivers oxygen-rich blood throughout the body",
+    functionSummary:
+      "The arterial system carries blood away from the heart so oxygen and nutrients can reach organs, muscles, and other tissues.",
+    studyHighlights: [
+      "Distributes oxygen-rich blood from the heart",
+      "Supports tissue perfusion from head to toe",
+      "Helps maintain blood pressure and circulation pathways"
+    ],
     dropWidth: 80,
     dropHeight: 32,
     mobileDropScale: 0.38,
@@ -2248,6 +2297,14 @@ export default function App() {
   const [rnAnswers, setRnAnswers] = useState({});
   const [rnShowResult, setRnShowResult] = useState(false);
   const [showRnMissedReview, setShowRnMissedReview] = useState(false);
+  const [shuffledTeasQuestions, setShuffledTeasQuestions] = useState(() =>
+    shuffleArray(teasQuestions)
+  );
+  const [teasIndex, setTeasIndex] = useState(0);
+  const [teasScore, setTeasScore] = useState(0);
+  const [teasAnswers, setTeasAnswers] = useState({});
+  const [teasShowResult, setTeasShowResult] = useState(false);
+  const [showTeasMissedReview, setShowTeasMissedReview] = useState(false);
   const [hoveredHomeCard, setHoveredHomeCard] = useState("");
   
   const data = mode === "organs" ? organs : bones;
@@ -2267,6 +2324,18 @@ export default function App() {
       setCbetAnswers(savedCbet.cbetAnswers || {});
       setCbetShowResult(savedCbet.cbetShowResult || false);
       setShowMissedReview(savedCbet.showMissedReview || false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedTeas = JSON.parse(localStorage.getItem("teasProgress"));
+    if (savedTeas) {
+      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleArray(teasQuestions));
+      setTeasIndex(savedTeas.teasIndex || 0);
+      setTeasScore(savedTeas.teasScore || 0);
+      setTeasAnswers(savedTeas.teasAnswers || {});
+      setTeasShowResult(savedTeas.teasShowResult || false);
+      setShowTeasMissedReview(savedTeas.showTeasMissedReview || false);
     }
   }, []);
 
@@ -2437,6 +2506,10 @@ export default function App() {
     const selected = rnAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
+  const teasMissedQuestions = shuffledTeasQuestions.filter((q, index) => {
+    const selected = teasAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
 
   const saveRnProgress = () => {
     const progress = {
@@ -2470,6 +2543,33 @@ export default function App() {
     setRnAnswers({});
     setRnShowResult(false);
     setShowRnMissedReview(false);
+  };
+
+  const saveTeasProgress = () => {
+    const progress = {
+      shuffledTeasQuestions,
+      teasIndex,
+      teasScore,
+      teasAnswers,
+      teasShowResult,
+      showTeasMissedReview
+    };
+    localStorage.setItem("teasProgress", JSON.stringify(progress));
+  };
+
+  const resetTeasExam = () => {
+    const reshuffled = shuffleArray(teasQuestions);
+    localStorage.removeItem("teasProgress");
+    setShuffledTeasQuestions(reshuffled);
+    setTeasIndex(0);
+    setTeasScore(0);
+    setTeasAnswers({});
+    setTeasShowResult(false);
+    setShowTeasMissedReview(false);
+  };
+
+  const restartTeasExam = () => {
+    resetTeasExam();
   };
 
   useEffect(() => {
@@ -2542,6 +2642,140 @@ export default function App() {
     }
   };
 
+  const anatomyStudyCard =
+    mode === "organs" && currentSet && currentSet.functionTitle ? (
+      <div
+        style={{
+          marginBottom: 18,
+          padding: isSmallScreen ? 18 : 22,
+          borderRadius: 22,
+          background:
+            "linear-gradient(135deg, rgba(18,53,91,0.96), rgba(29,111,165,0.92), rgba(88,180,216,0.88))",
+          color: "white",
+          boxShadow: "0 14px 34px rgba(18,53,91,0.22)",
+          overflow: "hidden",
+          position: "relative"
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 35%), radial-gradient(circle at bottom left, rgba(255,255,255,0.14), transparent 30%)",
+            pointerEvents: "none"
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            gap: 16,
+            flexWrap: "wrap",
+            alignItems: "flex-start",
+            justifyContent: "space-between"
+          }}
+        >
+          <div style={{ flex: "1 1 320px", minWidth: 0 }}>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 12px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.16)",
+                fontSize: 12,
+                fontWeight: 800,
+                letterSpacing: 0.6,
+                textTransform: "uppercase"
+              }}
+            >
+              Study Snapshot
+            </div>
+
+            <h3
+              style={{
+                margin: "14px 0 8px",
+                fontSize: isSmallScreen ? 24 : 28,
+                lineHeight: 1.15
+              }}
+            >
+              {selectedSet}
+            </h3>
+
+            <div
+              style={{
+                fontSize: isSmallScreen ? 16 : 18,
+                fontWeight: 700,
+                color: "#e0f2fe",
+                marginBottom: 10
+              }}
+            >
+              {currentSet.functionTitle}
+            </div>
+
+            <p
+              style={{
+                margin: 0,
+                fontSize: 15,
+                lineHeight: 1.7,
+                color: "rgba(255,255,255,0.94)",
+                maxWidth: 700
+              }}
+            >
+              {currentSet.functionSummary}
+            </p>
+          </div>
+
+          <div
+            style={{
+              flex: "0 1 250px",
+              minWidth: isSmallScreen ? "100%" : 220,
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              borderRadius: 18,
+              padding: 16,
+              backdropFilter: "blur(4px)"
+            }}
+          >
+            <div
+              style={{
+                fontSize: 13,
+                fontWeight: 800,
+                letterSpacing: 0.5,
+                textTransform: "uppercase",
+                color: "#dbeafe",
+                marginBottom: 10
+              }}
+            >
+              Why It Matters
+            </div>
+
+            <div style={{ display: "grid", gap: 10 }}>
+              {currentSet.studyHighlights.map((highlight) => (
+                <div
+                  key={highlight}
+                  style={{
+                    padding: "10px 12px",
+                    borderRadius: 14,
+                    background: "rgba(255,255,255,0.1)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    fontSize: 14,
+                    lineHeight: 1.4,
+                    color: "white"
+                  }}
+                >
+                  {highlight}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    ) : null;
+
 return (
   <div
     style={{
@@ -2606,7 +2840,7 @@ return (
           BMETS-R-US
         </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
-          Interactive anatomy, bone labeling, and CBET practice
+          Interactive anatomy, bone labeling, and exam practice for CBET, RN, and TEAS
         </p>
       </div>
 
@@ -2668,6 +2902,13 @@ return (
           style={navButtonStyle(activeTab === "RN")}
         >
           RN Practice
+        </button>
+
+        <button
+          onClick={() => setActiveTab("TEAS")}
+          style={navButtonStyle(activeTab === "TEAS")}
+        >
+          TEAS Practice
         </button>
 
         <button
@@ -2823,6 +3064,27 @@ return (
               <div
                 role="button"
                 tabIndex={0}
+                onMouseEnter={() => setHoveredHomeCard("teas")}
+                onMouseLeave={() => setHoveredHomeCard("")}
+                onFocus={() => setHoveredHomeCard("teas")}
+                onBlur={() => setHoveredHomeCard("")}
+                onClick={() => setActiveTab("TEAS")}
+                onKeyDown={(event) =>
+                  handleHomeCardKeyDown(event, () => setActiveTab("TEAS"))
+                }
+                style={getInteractiveHomeCardStyle("teas")}
+              >
+                <div style={{ fontSize: 42, marginBottom: 8 }}>📚</div>
+                <h3 style={{ color: "#12355b" }}>TEAS Practice</h3>
+                <p style={{ color: "#4f6275" }}>
+                  Work through 150 randomized TEAS-style questions covering
+                  reading, math, science, and English usage.
+                </p>
+              </div>
+
+              <div
+                role="button"
+                tabIndex={0}
                 onMouseEnter={() => setHoveredHomeCard("dashboard")}
                 onMouseLeave={() => setHoveredHomeCard("")}
                 onFocus={() => setHoveredHomeCard("dashboard")}
@@ -2938,6 +3200,22 @@ return (
                   {cbetScore} / {shuffledCbetQuestions.length}
                 </div>
               </div>
+
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                  border: "1px solid #d8e4f2",
+                  borderRadius: 16,
+                  padding: 16,
+                  minWidth: 200,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                }}
+              >
+                <div style={{ fontWeight: 700, color: "#12355b" }}>TEAS Practice</div>
+                <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
+                  {teasScore} / {shuffledTeasQuestions.length}
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -2978,6 +3256,7 @@ return (
 
             {selectedSet && currentSet && (
               <>
+               {anatomyStudyCard}
                <div style={{ textAlign: "center", marginBottom: 12 }}>
   <button
     onClick={resetGame}
@@ -3875,6 +4154,353 @@ return (
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowRnMissedReview(false)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Back to Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "TEAS" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 980,
+              margin: "0 auto"
+            }}
+          >
+            {!teasShowResult && !showTeasMissedReview ? (
+              <>
+                <div style={{ textAlign: "center", marginBottom: 20 }}>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>
+                    TEAS Practice
+                  </h2>
+                  <p style={{ color: "#4f6275", margin: 0, maxWidth: 760, marginInline: "auto" }}>
+                    This bank includes 150 randomized TEAS-style questions across
+                    reading, math, science, and English language usage. Select one
+                    answer, then move to the next question after reviewing the result.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <div style={cbetStatCardStyle}>
+                    Question {teasIndex + 1} / {shuffledTeasQuestions.length}
+                  </div>
+                  <div style={cbetStatCardStyle}>Score: {teasScore}</div>
+                  <div style={cbetStatCardStyle}>Questions: 150</div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <button
+                    onClick={saveTeasProgress}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Save Progress
+                  </button>
+
+                  <button
+                    onClick={restartTeasExam}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Restart Test
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                    borderRadius: 18,
+                    padding: 24,
+                    border: "1px solid #d8e4f2",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      padding: "6px 12px",
+                      borderRadius: 999,
+                      background: "#dbeafe",
+                      color: "#12355b",
+                      fontSize: 12,
+                      fontWeight: 800,
+                      letterSpacing: 0.5,
+                      textTransform: "uppercase",
+                      marginBottom: 16
+                    }}
+                  >
+                    TEAS Exam Mode
+                  </div>
+
+                  <div
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 700,
+                      color: "#12355b",
+                      marginBottom: 18
+                    }}
+                  >
+                    {shuffledTeasQuestions[teasIndex].question}
+                  </div>
+
+                  {shuffledTeasQuestions[teasIndex].options.map((opt, i) => {
+                    const selected = teasAnswers[teasIndex];
+                    const correct = shuffledTeasQuestions[teasIndex].answer;
+                    const isAnswered = selected !== undefined;
+                    const isCorrectOption = i === correct;
+                    const isSelectedWrong =
+                      isAnswered && i === selected && selected !== correct;
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          if (isAnswered) return;
+
+                          setTeasAnswers((prev) => ({ ...prev, [teasIndex]: i }));
+
+                          if (i === correct) {
+                            setTeasScore((prev) => prev + 1);
+                            correctSound.currentTime = 0;
+                            correctSound.play();
+                          } else {
+                            wrongSound.currentTime = 0;
+                            wrongSound.play();
+                          }
+                        }}
+                        style={{
+                          width: "100%",
+                          textAlign: "left",
+                          padding: "14px 16px",
+                          marginBottom: 12,
+                          borderRadius: 12,
+                          border:
+                            isCorrectOption && isAnswered
+                              ? "2px solid green"
+                              : isSelectedWrong
+                              ? "2px solid red"
+                              : "1px solid #cbd5e1",
+                          background:
+                            isCorrectOption && isAnswered
+                              ? "#d9f7d9"
+                              : isSelectedWrong
+                              ? "#fee2e2"
+                              : "#f8fafc",
+                          color: "#1e293b",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          cursor: isAnswered ? "default" : "pointer",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                        }}
+                      >
+                        {String.fromCharCode(65 + i)}. {opt}
+                      </button>
+                    );
+                  })}
+
+                  <div style={{ textAlign: "center", marginTop: 20 }}>
+                    <button
+                      onClick={() => {
+                        if (teasAnswers[teasIndex] === undefined) return;
+
+                        if (teasIndex + 1 === shuffledTeasQuestions.length) {
+                          setTeasShowResult(true);
+                        } else {
+                          setTeasIndex((prev) => prev + 1);
+                        }
+                      }}
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor:
+                          teasAnswers[teasIndex] === undefined
+                            ? "not-allowed"
+                            : "pointer",
+                        opacity: teasAnswers[teasIndex] === undefined ? 0.6 : 1,
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      {teasIndex + 1 === shuffledTeasQuestions.length
+                        ? "Finish Practice"
+                        : "Next Question"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b" }}>TEAS Practice Complete</h2>
+                <p style={{ fontSize: 20, color: "#1e293b" }}>
+                  Your score: {teasScore} / {shuffledTeasQuestions.length}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginTop: 20
+                  }}
+                >
+                  <button
+                    onClick={() => setShowTeasMissedReview(true)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={restartTeasExam}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showTeasMissedReview && (
+              <div style={{ marginTop: 24 }}>
+                <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                  TEAS Missed Questions Review
+                </h2>
+
+                {teasMissedQuestions.length === 0 ? (
+                  <p style={{ textAlign: "center", color: "#1e293b" }}>
+                    You did not miss any questions.
+                  </p>
+                ) : (
+                  teasMissedQuestions.map((q, idx) => {
+                    const originalIndex = shuffledTeasQuestions.findIndex(
+                      (item) => item.question === q.question
+                    );
+                    const selected = teasAnswers[originalIndex];
+
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          background: "#fff",
+                          border: "1px solid #d8e4f2",
+                          borderRadius: 16,
+                          padding: 20,
+                          marginBottom: 16,
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: 700,
+                            color: "#12355b",
+                            marginBottom: 12,
+                            fontSize: 18
+                          }}
+                        >
+                          {q.question}
+                        </div>
+
+                        {q.options.map((opt, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              padding: "10px 12px",
+                              marginBottom: 8,
+                              borderRadius: 10,
+                              background:
+                                i === q.answer
+                                  ? "#d9f7d9"
+                                  : i === selected
+                                  ? "#fee2e2"
+                                  : "#f8fafc",
+                              border:
+                                i === q.answer
+                                  ? "2px solid green"
+                                  : i === selected
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1"
+                            }}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })
+                )}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button
+                    onClick={() => setShowTeasMissedReview(false)}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
