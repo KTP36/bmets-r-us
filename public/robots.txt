@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://medskillbuilder.com/sitemap.xml

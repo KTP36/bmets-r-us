@@ -2840,7 +2840,7 @@ return (
           BMETS-R-US
         </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
-          Interactive anatomy, bone labeling, and exam practice for CBET, RN, and TEAS
+          Interactive anatomy, bone labeling, and practice modules for CBET, RN, and TEAS
         </p>
       </div>
 
@@ -2894,7 +2894,7 @@ return (
           onClick={() => setActiveTab("CBET")}
           style={navButtonStyle(activeTab === "CBET")}
         >
-          CBET Exam
+          CBET Practice
         </button>
 
         <button
@@ -3033,7 +3033,7 @@ return (
                 style={getInteractiveHomeCardStyle("cbet")}
               >
                 <div style={{ fontSize: 42, marginBottom: 8 }}>📝</div>
-                <h3 style={{ color: "#12355b" }}>CBET Exam Prep</h3>
+                <h3 style={{ color: "#12355b" }}>CBET Practice</h3>
                 <p style={{ color: "#4f6275" }}>
                   Take CBET practice questions with instant feedback and score
                   tracking.
@@ -3054,7 +3054,7 @@ return (
                 style={getInteractiveHomeCardStyle("rn")}
               >
                 <div style={{ fontSize: 42, marginBottom: 8 }}>🩺</div>
-                <h3 style={{ color: "#12355b" }}>Nursing Exam Prep</h3>
+                <h3 style={{ color: "#12355b" }}>RN Practice</h3>
                 <p style={{ color: "#4f6275" }}>
                   Practice RN-style questions with immediate answer review and
                   score tracking.
@@ -3554,7 +3554,7 @@ return (
             {!cbetShowResult && !showMissedReview ? (
               <>
                 <div style={{ textAlign: "center", marginBottom: 20 }}>
-                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>CBET Practice Exam</h2>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>CBET Practice</h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
                     Questions are shuffled each restart. Select one answer. The correct
                     answer will highlight after you answer.
@@ -3619,7 +3619,7 @@ return (
                       boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
                     }}
                   >
-                    Restart Exam
+                    Restart Practice
                   </button>
                 </div>
 
@@ -3725,7 +3725,7 @@ return (
                       }}
                     >
                       {cbetIndex + 1 === shuffledCbetQuestions.length
-                        ? "Finish Exam"
+                        ? "Finish Practice"
                         : "Next Question"}
                     </button>
                   </div>
@@ -3733,7 +3733,7 @@ return (
               </>
             ) : (
               <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b" }}>CBET Exam Complete</h2>
+                <h2 style={{ color: "#12355b" }}>CBET Practice Complete</h2>
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {cbetScore} / {shuffledCbetQuestions.length}
                 </p>
@@ -3774,7 +3774,7 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Restart Exam
+                    Restart Practice
                   </button>
                 </div>
               </div>
@@ -3884,7 +3884,7 @@ return (
             {!rnShowResult && !showRnMissedReview ? (
               <>
                 <div style={{ textAlign: "center", marginBottom: 20 }}>
-                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>RN Practice Exam</h2>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>RN Practice</h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
                     Select one answer. The correct answer will highlight after you answer.
                   </p>
@@ -4012,7 +4012,7 @@ return (
                       }}
                     >
                       {rnIndex + 1 === shuffledRnQuestions.length
-                        ? "Finish Exam"
+                        ? "Finish Practice"
                         : "Next Question"}
                     </button>
                   </div>
@@ -4020,7 +4020,7 @@ return (
               </>
             ) : (
               <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b" }}>RN Exam Complete</h2>
+                <h2 style={{ color: "#12355b" }}>RN Practice Complete</h2>
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {rnScore} / {shuffledRnQuestions.length}
                 </p>
@@ -4068,7 +4068,7 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Restart RN Exam
+                    Restart Practice
                   </button>
                 </div>
               </div>
@@ -4250,7 +4250,7 @@ return (
                       boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
                     }}
                   >
-                    Restart Test
+                    Restart Practice
                   </button>
                 </div>
 
@@ -4263,24 +4263,6 @@ return (
                     boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
                   }}
                 >
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      padding: "6px 12px",
-                      borderRadius: 999,
-                      background: "#dbeafe",
-                      color: "#12355b",
-                      fontSize: 12,
-                      fontWeight: 800,
-                      letterSpacing: 0.5,
-                      textTransform: "uppercase",
-                      marginBottom: 16
-                    }}
-                  >
-                    TEAS Exam Mode
-                  </div>
-
                   <div
                     style={{
                       fontSize: 24,
