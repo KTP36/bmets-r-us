@@ -3300,6 +3300,13 @@ return (
         </button>
 
         <button
+          onClick={() => setActiveTab("Contact")}
+          style={navButtonStyle(activeTab === "Contact")}
+        >
+          Contact
+        </button>
+
+        <button
           onClick={() => setActiveTab("Privacy")}
           style={navButtonStyle(activeTab === "Privacy")}
         >
@@ -5220,6 +5227,104 @@ return (
           </div>
         )}
 
+        {activeTab === "Contact" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 900,
+              margin: "0 auto",
+              color: "#1e293b"
+            }}
+          >
+            <div style={{ textAlign: "center", marginBottom: 20 }}>
+              <h2 style={{ color: "#12355b", margin: "0 0 8px 0" }}>Contact MedSkillBuilder</h2>
+              <p style={{ color: "#4f6275", margin: 0 }}>
+                Send us a message and we will get back to you as soon as we can.
+              </p>
+            </div>
+
+            <form
+              action="https://formspree.io/f/xgonbzaj"
+              method="POST"
+              style={{
+                display: "grid",
+                gap: 12,
+                maxWidth: 640,
+                margin: "0 auto"
+              }}
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+                style={{
+                  padding: "12px 14px",
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                  fontSize: 16
+                }}
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+                style={{
+                  padding: "12px 14px",
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                  fontSize: 16
+                }}
+              />
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                style={{
+                  padding: "12px 14px",
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                  fontSize: 16
+                }}
+              />
+              <textarea
+                name="message"
+                placeholder="How can we help you?"
+                required
+                rows={6}
+                style={{
+                  padding: "12px 14px",
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                  fontSize: 16,
+                  resize: "vertical"
+                }}
+              />
+
+              <button
+                type="submit"
+                style={{
+                  padding: "12px 18px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+                  justifySelf: "center"
+                }}
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        )}
+
         {activeTab === "Privacy" && (
           <div
             style={{
@@ -5277,7 +5382,30 @@ return (
           </div>
         )}
 
-        <div style={{ textAlign: "center", marginTop: 16, marginBottom: 8 }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: 16,
+            marginBottom: 8,
+            display: "flex",
+            justifyContent: "center",
+            gap: 16,
+            flexWrap: "wrap"
+          }}
+        >
+          <button
+            onClick={() => setActiveTab("Contact")}
+            style={{
+              border: "none",
+              background: "transparent",
+              color: "#12355b",
+              textDecoration: "underline",
+              cursor: "pointer",
+              fontWeight: 600
+            }}
+          >
+            Contact
+          </button>
           <button
             onClick={() => setActiveTab("Privacy")}
             style={{
