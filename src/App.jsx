@@ -2201,17 +2201,17 @@ const bones = {
       transform: "translateY(35px) scale(0.9)"
     },
     parts: [
-      { name: "Distal Phalanges", x: 310, y: 255 },
-      { name: "Middle Phalanges", x: 480, y: 415 },
-      { name: "Proximal Phalanges", x: 470, y: 460 },
-      { name: "Metatarsals", x: 475, y: 515 },
-      { name: "Medial Cuneiform", x: 205, y: 565 },
-      { name: "Intermediate Cuneiform", x: 370, y: 560 },
-      { name: "Lateral Cuneiform", x: 414, y: 605 },
-      { name: "Navicular", x: 205, y: 620 },
-      { name: "Cuboid", x: 436, y: 665 },
-      { name: "Talus", x: 230, y: 675 },
-      { name: "Calcaneus", x: 350, y: 770 }
+      { name: "Distal Phalanges", x: 300, y: 220 },
+      { name: "Middle Phalanges", x: 320, y: 265 },
+      { name: "Proximal Phalanges", x: 340, y: 315 },
+      { name: "Metatarsals", x: 360, y: 380 },
+      { name: "Medial Cuneiform", x: 290, y: 440 },
+      { name: "Intermediate Cuneiform", x: 340, y: 445 },
+      { name: "Lateral Cuneiform", x: 385, y: 460 },
+      { name: "Navicular", x: 310, y: 485 },
+      { name: "Cuboid", x: 420, y: 485 },
+      { name: "Talus", x: 250, y: 540 },
+      { name: "Calcaneus", x: 300, y: 620 }
     ]
   }
 };
