@@ -1,33 +1,116 @@
-# React + Vite
+# MedSkillBuilder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive study app for CBET, RN, and TEAS prep with anatomy and bone labeling games.
 
-Currently, two official plugins are available:
+## Local Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Install dependencies:
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Start dev server:
 
-## Expanding the ESLint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Build for production:
 
-## Google Analytics (GA4)
+```bash
+npm run build
+```
 
-1. Create a GA4 Web Data Stream in Google Analytics.
-2. Copy your Measurement ID (format: `G-XXXXXXXXXX`).
-3. Create `.env.local` in the project root and add:
+## Analytics
+
+GA4 is loaded from `src/main.jsx`.
+
+- Default Measurement ID is set in code.
+- To override per environment, create `.env.local` with:
 
 ```env
 VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-4. Restart the dev server.
+## Traffic Growth Plan
 
-Notes:
+Use this as a weekly execution checklist.
 
-- Tracking initializes automatically from `src/main.jsx` only when `VITE_GA_MEASUREMENT_ID` is set.
-- `.env.local` is ignored by git in this project.
+### 1) Improve CTR From Search
+
+- Keep title and description focused on high-intent terms:
+  - CBET practice test
+  - RN practice questions
+  - TEAS practice test
+  - anatomy labeling game
+- Verify indexing and performance in Google Search Console.
+- Check top pages weekly and rewrite snippets for pages with low CTR.
+
+### 2) Build Long-Tail Content Around Your Tool
+
+Create supporting pages or posts (on your main site/blog) that link to the app:
+
+- "50 CBET Practice Questions With Rationales"
+- "RN Prioritization Questions: 30 Free Practice Items"
+- "TEAS Science Practice Quiz"
+- "Eye Anatomy Labeling Practice"
+- "Hand and Foot Bones Labeling Guide"
+
+Each content page should:
+
+- Target one search intent.
+- Include screenshots/GIFs of the app.
+- Link directly to the matching in-app module.
+- Include a clear CTA: "Start free practice now".
+
+### 3) Repurpose to High-Reach Channels
+
+Post short clips and carousels from real questions/modules:
+
+- TikTok/Reels/YouTube Shorts: 20-45s "Can you answer this RN question?"
+- LinkedIn: 2-3 educational posts/week for CBET and nursing audiences.
+- Pinterest: anatomy and memory-aid graphics linking back to practice pages.
+- Reddit/Facebook groups: share value-first study tips, then link when relevant.
+
+### 4) Launch a Referral Loop
+
+- Add a simple in-app "Share this quiz" button with pre-filled message.
+- Offer a weekly challenge scorecard users can share.
+- Track shares as GA4 events.
+
+### 5) Capture and Nurture Returning Users
+
+- Add email capture for a free printable study pack.
+- Send weekly email:
+  - 5 practice questions
+  - 1 study tip
+  - direct link back to one module
+
+### 6) Conversion and Retention Optimization
+
+- Track where users drop off:
+  - home -> module click
+  - question 1 -> question 5
+  - quiz complete rate
+- Improve first 60 seconds:
+  - one clear CTA above the fold
+  - one-line value proposition
+  - social proof/testimonials if available
+
+## KPI Targets (First 60 Days)
+
+- Organic clicks: +30%
+- Homepage CTR from Google: +2 to +4 percentage points
+- Session-to-practice start rate: +20%
+- Quiz completion rate: +15%
+- Returning users: +20%
+
+## Weekly Marketing Cadence
+
+- Monday: Publish one SEO article.
+- Tuesday: Post one short-form video.
+- Wednesday: Share one question carousel.
+- Thursday: Publish one community post.
+- Friday: Send study email and review analytics.
+- Sunday: Update next week content plan based on top performers.
