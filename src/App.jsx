@@ -2316,7 +2316,12 @@ export default function App() {
 
     // Reverse-transform the click coordinates to match the part coordinate system
     // The image displays with transforms, so we need to undo them
-    if (currentSet.imageStyle.transform && !isSmallScreen) {
+    if (
+      currentSet.imageStyle.transform &&
+      !isSmallScreen &&
+      selectedSet !== "Hand" &&
+      selectedSet !== "Foot"
+    ) {
       const transformStr = currentSet.imageStyle.transform;
       
       // Parse scale transform
@@ -3024,7 +3029,10 @@ return (
     height: "100%",
     objectFit: "contain",
     objectPosition: "center center",
-    transform: isSmallScreen ? "none" : currentSet.imageStyle.transform
+    transform:
+      isSmallScreen || selectedSet === "Hand" || selectedSet === "Foot"
+        ? "none"
+        : currentSet.imageStyle.transform
   }}
 />
 
