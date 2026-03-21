@@ -2669,9 +2669,9 @@ return (
                 margin: "0 auto"
               }}
             >
-              Practice identifying organs and bones with drag-and-drop
-              activities, then build your confidence with CBET
-              multiple-choice review.
+              Practice identifying organs and bones with interactive
+              label-to-image activities, then build confidence with CBET
+              and RN multiple-choice review.
             </p>
           </div>
 
@@ -2688,7 +2688,8 @@ return (
                 <div style={{ fontSize: 42, marginBottom: 8 }}>🫀</div>
                 <h3 style={{ color: "#12355b" }}>Anatomy Practice</h3>
                 <p style={{ color: "#4f6275" }}>
-                  Learn the heart, brain, and lungs with interactive labeling.
+                  Learn heart, brain, lungs, liver, eye, and arterial anatomy
+                  with interactive labeling.
                 </p>
               </div>
 
@@ -2704,7 +2705,8 @@ return (
                 <div style={{ fontSize: 42, marginBottom: 8 }}>📝</div>
                 <h3 style={{ color: "#12355b" }}>CBET Exam Prep</h3>
                 <p style={{ color: "#4f6275" }}>
-                  Take multiple-choice practice questions and track your score.
+                  Take CBET and RN practice questions with instant feedback
+                  and score tracking.
                 </p>
               </div>
 
@@ -2736,8 +2738,8 @@ return (
               >
                 <h3 style={{ color: "#0f4c5c", marginTop: 0 }}>How to Play</h3>
                 <p style={{ color: "#345" }}>
-                  Pick a category, choose a body part set, then drag each label to the
-                  correct drop box or answer questions in CBET mode.
+                  Pick a category, choose a body part set, tap/click a label,
+                  then tap/click the matching zone on the image.
                 </p>
               </div>
 
@@ -2752,8 +2754,8 @@ return (
               >
                 <h3 style={{ color: "#7c4a03", marginTop: 0 }}>Tip</h3>
                 <p style={{ color: "#5f4a1c" }}>
-                  In the CBET section, the correct answer is highlighted after you choose,
-                  so you can learn as you go.
+                  New modules are live: Liver, Eye, and Arterial System.
+                  Use Retry to practice each set until perfect.
                 </p>
               </div>
             </div>
