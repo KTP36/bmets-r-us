@@ -1927,6 +1927,336 @@ const rnQuestions = [
     answer: 0
   }
 ];
+
+// --- CRES QUESTIONS ---
+const cresQuestions = [
+  {
+    question: "What is the primary function of the cathode filament in an X-ray tube?",
+    options: [
+      "Convert X-rays into visible light",
+      "Emit electrons through thermionic emission",
+      "Rotate the anode at high speed",
+      "Filter low-energy photons from the beam"
+    ],
+    answer: 1
+  },
+  {
+    question: "Which X-ray tube component converts electron kinetic energy into X-rays and heat?",
+    options: ["Cathode", "Collimator", "Anode", "Rotor"],
+    answer: 2
+  },
+  {
+    question: "kVp in an X-ray system primarily controls:",
+    options: [
+      "The quantity of X-rays (number of photons)",
+      "The penetrating power (quality) of the X-ray beam",
+      "The speed of anode rotation",
+      "The size of the focal spot"
+    ],
+    answer: 1
+  },
+  {
+    question: "Increasing mAs in radiography primarily affects:",
+    options: [
+      "X-ray beam energy (kV)",
+      "Image brightness/density and patient dose",
+      "Contrast resolution only",
+      "Focal spot size"
+    ],
+    answer: 1
+  },
+  {
+    question: "The heel effect in X-ray imaging refers to:",
+    options: [
+      "Variation in beam intensity across the field due to the anode angle",
+      "Motion artifact caused by patient movement",
+      "Image distortion from off-center positioning",
+      "Loss of detail from backscattered radiation"
+    ],
+    answer: 0
+  },
+  {
+    question: "The half-value layer (HVL) is a measure of:",
+    options: [
+      "X-ray beam intensity at the detector",
+      "Image receptor sensitivity",
+      "X-ray beam quality (penetrating ability)",
+      "Patient entrance skin dose"
+    ],
+    answer: 2
+  },
+  {
+    question: "In digital radiography (DR), which detector type converts X-ray photons DIRECTLY to an electrical signal?",
+    options: [
+      "Photostimulable phosphor plate (CR)",
+      "Amorphous silicon flat-panel with scintillator (indirect)",
+      "Amorphous selenium flat-panel detector (direct)",
+      "Image intensifier with CCD camera"
+    ],
+    answer: 2
+  },
+  {
+    question: "In computed radiography (CR), the latent image is stored in:",
+    options: [
+      "A CCD sensor array",
+      "An amorphous silicon thin-film transistor panel",
+      "A photostimulable phosphor (PSP) plate",
+      "A sodium iodide scintillation crystal"
+    ],
+    answer: 2
+  },
+  {
+    question: "Which CT image artifact is caused by preferential absorption of low-energy photons as the beam passes through dense objects?",
+    options: [
+      "Ring artifact",
+      "Beam hardening artifact",
+      "Partial volume artifact",
+      "Motion artifact"
+    ],
+    answer: 1
+  },
+  {
+    question: "The CT number (Hounsfield Unit) for water is:",
+    options: ["-1000", "0", "+400", "+1000"],
+    answer: 1
+  },
+  {
+    question: "In fluoroscopy, the automatic brightness control (ABC) system maintains image brightness by automatically adjusting:",
+    options: [
+      "Patient table height and tilt",
+      "kVp and/or mA",
+      "Image intensifier input screen size",
+      "Monitor gamma and black level"
+    ],
+    answer: 1
+  },
+  {
+    question: "Per FDA regulations, the maximum patient entrance skin exposure rate for conventional fluoroscopy is:",
+    options: ["1 R/min", "5 R/min", "10 R/min", "25 R/min"],
+    answer: 2
+  },
+  {
+    question: "Mammography X-ray tubes use molybdenum or rhodium targets primarily to:",
+    options: [
+      "Increase beam penetration for dense breasts",
+      "Produce characteristic X-rays that optimize soft-tissue contrast at low dose",
+      "Reduce heat loading on the anode",
+      "Minimize geometric unsharpness"
+    ],
+    answer: 1
+  },
+  {
+    question: "In MRI, the Larmor frequency is the:",
+    options: [
+      "Number of slices acquired per second",
+      "Resonant precession frequency of protons in a given magnetic field strength",
+      "Repetition time between RF pulse sequences",
+      "Bandwidth of the radiofrequency receiver coil"
+    ],
+    answer: 1
+  },
+  {
+    question: "Which MRI pulse sequence produces images where fluid (e.g., CSF) appears brightest?",
+    options: [
+      "T1-weighted spin echo",
+      "T2-weighted spin echo",
+      "FLAIR (fluid-attenuated inversion recovery)",
+      "Gradient echo with short TR"
+    ],
+    answer: 1
+  },
+  {
+    question: "Gradient coils in an MRI system are used to:",
+    options: [
+      "Generate the main static magnetic field (B0)",
+      "Provide spatial localization/encoding of the MRI signal",
+      "Excite hydrogen protons into resonance",
+      "Shield the scanner room from radiofrequency interference"
+    ],
+    answer: 1
+  },
+  {
+    question: "Which ultrasound artifact appears as multiple equally spaced hyperechoic lines extending deep to a strong reflector?",
+    options: [
+      "Posterior acoustic shadowing",
+      "Posterior acoustic enhancement",
+      "Reverberation artifact",
+      "Side lobe artifact"
+    ],
+    answer: 2
+  },
+  {
+    question: "Higher-frequency ultrasound transducers provide:",
+    options: [
+      "Greater depth penetration but lower spatial resolution",
+      "Better spatial resolution but reduced depth penetration",
+      "Identical resolution and penetration to lower-frequency transducers",
+      "Better penetration and resolution simultaneously"
+    ],
+    answer: 1
+  },
+  {
+    question: "In nuclear medicine gamma camera QC, the daily peaking procedure verifies that:",
+    options: [
+      "The collimator is free of cracks",
+      "The energy window is centered on the photopeak of the radionuclide",
+      "Flood field uniformity is within tolerance",
+      "Spatial resolution meets ACR standards"
+    ],
+    answer: 1
+  },
+  {
+    question: "The radionuclide most commonly used in PET imaging is:",
+    options: ["Tc-99m", "I-131", "F-18 (fluorodeoxyglucose, FDG)", "Ga-67"],
+    answer: 2
+  },
+  {
+    question: "ALARA stands for:",
+    options: [
+      "Automatic Limiting And Radiation Attenuation",
+      "As Low As Reasonably Achievable",
+      "Applied Low-dose Attenuation Radiation Analysis",
+      "Average Longitudinal Absorbed Radiation Assessment"
+    ],
+    answer: 1
+  },
+  {
+    question: "Which federal agency enforces the performance standards for diagnostic X-ray equipment manufacturers under 21 CFR Part 1020?",
+    options: [
+      "Nuclear Regulatory Commission (NRC)",
+      "American College of Radiology (ACR)",
+      "FDA Center for Devices and Radiological Health (CDRH)",
+      "Centers for Medicare & Medicaid Services (CMS)"
+    ],
+    answer: 2
+  },
+  {
+    question: "The Modulation Transfer Function (MTF) describes a system's:",
+    options: [
+      "Ability to deliver consistent patient dose across exposures",
+      "Spatial resolution performance across a range of spatial frequencies",
+      "Signal-to-noise ratio at a given dose level",
+      "Contrast sensitivity independent of spatial frequency"
+    ],
+    answer: 1
+  },
+  {
+    question: "Detective Quantum Efficiency (DQE) measures:",
+    options: [
+      "The efficiency of the X-ray generator's high-voltage circuit",
+      "How efficiently a detector converts incident X-ray signal into useful image signal relative to added noise",
+      "The generator's voltage ripple percentage",
+      "The patient's entrance surface dose per image"
+    ],
+    answer: 1
+  },
+  {
+    question: "A high-frequency (inverter) X-ray generator produces what approximate voltage ripple?",
+    options: ["100%", "13%", "4%", "Less than 1%"],
+    answer: 3
+  },
+  {
+    question: "Added filtration in the X-ray beam is used primarily to:",
+    options: [
+      "Increase beam intensity at the image receptor",
+      "Remove low-energy photons that increase patient dose without improving image quality",
+      "Reduce the kVp required for a given penetration",
+      "Increase the production of scatter radiation"
+    ],
+    answer: 1
+  },
+  {
+    question: "Inherent filtration in an X-ray tube originates from:",
+    options: [
+      "Added aluminum or copper filters in the collimator",
+      "The glass envelope, insulating oil, and tube port window",
+      "The Bucky grid beneath the table top",
+      "The lead collimator blades"
+    ],
+    answer: 1
+  },
+  {
+    question: "An anti-scatter grid (Bucky) in radiography is used to:",
+    options: [
+      "Increase magnification of the anatomy of interest",
+      "Reduce scattered radiation reaching the image receptor, improving contrast",
+      "Focus the primary X-ray beam onto a smaller field",
+      "Decrease the required mAs for a given exposure"
+    ],
+    answer: 1
+  },
+  {
+    question: "Which CT quality control test evaluates the ability to distinguish objects with small differences in contrast from background?",
+    options: [
+      "CT number linearity (Hounsfield unit accuracy) test",
+      "Noise and uniformity test",
+      "Low-contrast detectability test",
+      "High-contrast spatial resolution test"
+    ],
+    answer: 2
+  },
+  {
+    question: "The radiation protection principle that uses time, distance, and shielding is applied to:",
+    options: [
+      "Optimize image contrast and resolution",
+      "Reduce occupational radiation exposure",
+      "Calibrate imaging equipment output",
+      "Calculate patient effective dose"
+    ],
+    answer: 1
+  },
+  {
+    question: "Spatial resolution in digital imaging is most commonly expressed as:",
+    options: [
+      "Line pairs per millimeter (lp/mm)",
+      "Hounsfield units (HU)",
+      "Signal-to-noise ratio (SNR)",
+      "Effective dose in millisieverts (mSv)"
+    ],
+    answer: 0
+  },
+  {
+    question: "Which test is used in X-ray QC to verify that the radiation field matches the light field from the collimator?",
+    options: [
+      "Sensitometry test",
+      "Beam/light field alignment test",
+      "Half-value layer (HVL) measurement",
+      "Detective quantum efficiency (DQE) test"
+    ],
+    answer: 1
+  },
+  {
+    question: "In a 3-phase, 12-pulse X-ray generator, the approximate voltage ripple is:",
+    options: ["100%", "13%", "4%", "Less than 1%"],
+    answer: 2
+  },
+  {
+    question: "What is the purpose of the focal spot in an X-ray tube?",
+    options: [
+      "To filter out scattered X-rays before they reach the patient",
+      "To define the area on the anode where electrons strike and X-rays are produced, affecting image sharpness",
+      "To collimate the beam to the anatomy of interest",
+      "To store charge between exposures"
+    ],
+    answer: 1
+  },
+  {
+    question: "Ring artifacts in CT images are caused by:",
+    options: [
+      "Patient motion during the scan",
+      "A miscalibrated or defective detector element",
+      "Beam hardening through metallic implants",
+      "Undersampling of the projection data"
+    ],
+    answer: 1
+  },
+  {
+    question: "The annual occupational radiation dose limit for radiation workers in the US is:",
+    options: ["1 mSv (100 mrem)", "5 mSv (500 mrem)", "20 mSv (2000 mrem)", "50 mSv (5000 mrem)"],
+    answer: 3
+  }
+];
+
 // --- DATA SETS ---
 
  const organs = {
@@ -2306,7 +2636,17 @@ export default function App() {
   const [teasShowResult, setTeasShowResult] = useState(false);
   const [showTeasMissedReview, setShowTeasMissedReview] = useState(false);
   const [hoveredHomeCard, setHoveredHomeCard] = useState("");
-  
+
+  // --- CRES STATE ---
+  const [shuffledCresQuestions, setShuffledCresQuestions] = useState(() =>
+    shuffleArray(cresQuestions)
+  );
+  const [cresIndex, setCresIndex] = useState(0);
+  const [cresScore, setCresScore] = useState(0);
+  const [cresAnswers, setCresAnswers] = useState({});
+  const [cresShowResult, setCresShowResult] = useState(false);
+  const [showCresMissedReview, setShowCresMissedReview] = useState(false);
+
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
@@ -2338,6 +2678,18 @@ export default function App() {
       setTeasAnswers(savedTeas.teasAnswers || {});
       setTeasShowResult(savedTeas.teasShowResult || false);
       setShowTeasMissedReview(savedTeas.showTeasMissedReview || false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedCres = JSON.parse(localStorage.getItem("cresProgress"));
+    if (savedCres) {
+      setShuffledCresQuestions(savedCres.shuffledCresQuestions || shuffleArray(cresQuestions));
+      setCresIndex(savedCres.cresIndex || 0);
+      setCresScore(savedCres.cresScore || 0);
+      setCresAnswers(savedCres.cresAnswers || {});
+      setCresShowResult(savedCres.cresShowResult || false);
+      setShowCresMissedReview(savedCres.showCresMissedReview || false);
     }
   }, []);
 
@@ -2512,6 +2864,33 @@ export default function App() {
     const selected = teasAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
+  const cresMissedQuestions = shuffledCresQuestions.filter((q, index) => {
+    const selected = cresAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
+
+  const saveCresProgress = () => {
+    const progress = {
+      shuffledCresQuestions,
+      cresIndex,
+      cresScore,
+      cresAnswers,
+      cresShowResult,
+      showCresMissedReview
+    };
+    localStorage.setItem("cresProgress", JSON.stringify(progress));
+  };
+
+  const restartCresExam = () => {
+    const reshuffled = shuffleArray(cresQuestions);
+    localStorage.removeItem("cresProgress");
+    setShuffledCresQuestions(reshuffled);
+    setCresIndex(0);
+    setCresScore(0);
+    setCresAnswers({});
+    setCresShowResult(false);
+    setShowCresMissedReview(false);
+  };
 
   const saveRnProgress = () => {
     const progress = {
@@ -2911,6 +3290,13 @@ return (
           style={navButtonStyle(activeTab === "TEAS")}
         >
           TEAS Practice
+        </button>
+
+        <button
+          onClick={() => setActiveTab("CRES")}
+          style={navButtonStyle(activeTab === "CRES")}
+        >
+          CRES Practice
         </button>
 
         <button
@@ -4486,6 +4872,331 @@ return (
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowTeasMissedReview(false)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Back to Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "CRES" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 900,
+              margin: "0 auto"
+            }}
+          >
+            {!cresShowResult && !showCresMissedReview ? (
+              <>
+                <div style={{ textAlign: "center", marginBottom: 20 }}>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>CRES Practice</h2>
+                  <p style={{ color: "#4f6275", margin: 0 }}>
+                    Certified Radiology Equipment Specialist — questions are shuffled each restart.
+                    Select one answer. The correct answer will highlight after you answer.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <div style={cbetStatCardStyle}>
+                    Question {cresIndex + 1} / {shuffledCresQuestions.length}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Score: {cresScore}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Passing: 70%
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <button
+                    onClick={saveCresProgress}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Save Progress
+                  </button>
+
+                  <button
+                    onClick={restartCresExam}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                    borderRadius: 18,
+                    padding: 24,
+                    border: "1px solid #d8e4f2",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 700,
+                      color: "#12355b",
+                      marginBottom: 18
+                    }}
+                  >
+                    {shuffledCresQuestions[cresIndex].question}
+                  </div>
+
+                  {shuffledCresQuestions[cresIndex].options.map((opt, i) => {
+                    const selected = cresAnswers[cresIndex];
+                    const correct = shuffledCresQuestions[cresIndex].answer;
+                    const isAnswered = selected !== undefined;
+                    const isCorrectOption = i === correct;
+                    const isSelectedWrong =
+                      isAnswered && i === selected && selected !== correct;
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          if (isAnswered) return;
+                          setCresAnswers((prev) => ({ ...prev, [cresIndex]: i }));
+                          if (i === correct) {
+                            setCresScore((prev) => prev + 1);
+                            correctSound.currentTime = 0;
+                            correctSound.play();
+                          } else {
+                            wrongSound.currentTime = 0;
+                            wrongSound.play();
+                          }
+                        }}
+                        style={{
+                          width: "100%",
+                          textAlign: "left",
+                          padding: "14px 16px",
+                          marginBottom: 12,
+                          borderRadius: 12,
+                          border:
+                            isCorrectOption && isAnswered
+                              ? "2px solid green"
+                              : isSelectedWrong
+                              ? "2px solid red"
+                              : "1px solid #cbd5e1",
+                          background:
+                            isCorrectOption && isAnswered
+                              ? "#d9f7d9"
+                              : isSelectedWrong
+                              ? "#fee2e2"
+                              : "#f8fafc",
+                          color: "#1e293b",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          cursor: isAnswered ? "default" : "pointer",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                        }}
+                      >
+                        {String.fromCharCode(65 + i)}. {opt}
+                      </button>
+                    );
+                  })}
+
+                  <div style={{ textAlign: "center", marginTop: 20 }}>
+                    <button
+                      onClick={() => {
+                        if (cresAnswers[cresIndex] === undefined) return;
+                        if (cresIndex + 1 === shuffledCresQuestions.length) {
+                          setCresShowResult(true);
+                        } else {
+                          setCresIndex((prev) => prev + 1);
+                        }
+                      }}
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor:
+                          cresAnswers[cresIndex] === undefined ? "not-allowed" : "pointer",
+                        opacity: cresAnswers[cresIndex] === undefined ? 0.6 : 1,
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      {cresIndex + 1 === shuffledCresQuestions.length
+                        ? "Finish Practice"
+                        : "Next Question"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b" }}>CRES Practice Complete</h2>
+                <p style={{ fontSize: 20, color: "#1e293b" }}>
+                  Your score: {cresScore} / {shuffledCresQuestions.length}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginTop: 20
+                  }}
+                >
+                  <button
+                    onClick={() => setShowCresMissedReview(true)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={restartCresExam}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showCresMissedReview && (
+              <div style={{ marginTop: 24 }}>
+                <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                  Missed Questions Review
+                </h2>
+
+                {cresMissedQuestions.length === 0 ? (
+                  <p style={{ textAlign: "center", color: "#1e293b" }}>
+                    You did not miss any questions.
+                  </p>
+                ) : (
+                  cresMissedQuestions.map((q, idx) => {
+                    const originalIndex = shuffledCresQuestions.findIndex(
+                      (item) => item.question === q.question
+                    );
+                    const selected = cresAnswers[originalIndex];
+
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          background: "#fff",
+                          border: "1px solid #d8e4f2",
+                          borderRadius: 16,
+                          padding: 20,
+                          marginBottom: 16,
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: 700,
+                            color: "#12355b",
+                            marginBottom: 12,
+                            fontSize: 18
+                          }}
+                        >
+                          {q.question}
+                        </div>
+
+                        {q.options.map((opt, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              padding: "10px 12px",
+                              marginBottom: 8,
+                              borderRadius: 10,
+                              background:
+                                i === q.answer
+                                  ? "#d9f7d9"
+                                  : i === selected
+                                  ? "#fee2e2"
+                                  : "#f8fafc",
+                              border:
+                                i === q.answer
+                                  ? "2px solid green"
+                                  : i === selected
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1"
+                            }}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })
+                )}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button
+                    onClick={() => setShowCresMissedReview(false)}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
