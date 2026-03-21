@@ -2540,7 +2540,8 @@ return (
     alt="MedSkillBuilder Logo"
     style={{
       width: "min(140px, 28vw)",
-      height: "auto"
+      height: "auto",
+      filter: "drop-shadow(0 0 6px rgba(88, 180, 216, 0.55)) drop-shadow(0 0 16px rgba(29, 111, 165, 0.35))"
     }}
   />
   <h1
