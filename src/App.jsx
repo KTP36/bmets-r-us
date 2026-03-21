@@ -5566,32 +5566,45 @@ return (
             <h3 style={{ color: "#12355b" }}>What We Collect</h3>
             <p>
               We use Google Analytics to collect limited usage information such as pages visited,
-              approximate location (region/city), device and browser details, and interaction events.
-              We do not intentionally collect sensitive personal health information through analytics.
+              approximate location (region/city), device and browser details, interaction events, and
+              ad-related consent choices where required. We do not intentionally collect sensitive
+              personal health information through analytics or advertising tools.
             </p>
 
             <h3 style={{ color: "#12355b" }}>How We Use Data</h3>
             <p>
               We use analytics data to understand how learners use MedSkillBuilder, improve site
-              performance, and enhance training content and user experience.
+              performance, enhance training content and user experience, and support limited website
+              monetization through advertising.
             </p>
 
             <h3 style={{ color: "#12355b" }}>Cookies and Tracking</h3>
             <p>
-              Google Analytics may use cookies or similar technologies to distinguish visitors and
-              measure site activity over time.
+              Google Analytics and Google AdSense may use cookies or similar technologies to
+              distinguish visitors, measure site activity, support advertising, and help determine
+              whether ads are personalized or non-personalized based on visitor consent and applicable
+              regional requirements.
             </p>
 
             <h3 style={{ color: "#12355b" }}>Your Choices</h3>
             <p>
               You can block or delete cookies in your browser settings. You can also opt out of Google
               Analytics using the official browser add-on: https://tools.google.com/dlpage/gaoptout
+              . Where required by law, visitors may also be shown a consent message to manage cookie
+              and advertising preferences.
             </p>
 
             <h3 style={{ color: "#12355b" }}>Third-Party Services</h3>
             <p>
-              Google Analytics is provided by Google. Learn more about how Google uses data here:
-              https://policies.google.com/technologies/partner-sites
+              Google Analytics and Google AdSense are provided by Google. Learn more about how Google
+              uses data here: https://policies.google.com/technologies/partner-sites
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>Advertising Disclosure</h3>
+            <p>
+              MedSkillBuilder may display advertisements to support the site. Ads may be personalized
+              or non-personalized depending on consent choices, browser settings, location, and Google
+              advertising policies.
             </p>
 
             <h3 style={{ color: "#12355b" }}>Updates to This Policy</h3>
