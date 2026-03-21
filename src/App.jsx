@@ -2201,17 +2201,17 @@ const bones = {
       transform: "translateY(0px) scale(0.9)"
     },
     parts: [
-      { name: "Distal Phalanges", x: 310, y: 480 },
-      { name: "Middle Phalanges", x: 318, y: 520 },
-      { name: "Proximal Phalanges", x: 330, y: 580 },
-      { name: "Metatarsals", x: 310, y: 705 },
-      { name: "Medial Cuneiform", x: 280, y: 745 },
-      { name: "Intermediate Cuneiform", x: 335, y: 745 },
-      { name: "Lateral Cuneiform", x: 390, y: 745 },
-      { name: "Navicular", x: 315, y: 780 },
-      { name: "Cuboid", x: 385, y: 785 },
-      { name: "Talus", x: 265, y: 835 },
-      { name: "Calcaneus", x: 330, y: 915 }
+      { name: "Distal Phalanges", x: 310, y: 305 },
+      { name: "Middle Phalanges", x: 310, y: 330 },
+      { name: "Proximal Phalanges", x: 318, y: 370 },
+      { name: "Metatarsals", x: 330, y: 480 },
+      { name: "Medial Cuneiform", x: 280, y: 595 },
+      { name: "Intermediate Cuneiform", x: 310, y: 595 },
+      { name: "Lateral Cuneiform", x: 335, y: 595 },
+      { name: "Navicular", x: 295, y: 645 },
+      { name: "Cuboid", x: 385, y: 635 },
+      { name: "Talus", x: 265, y: 735 },
+      { name: "Calcaneus", x: 330, y: 815 }
     ]
   }
 };
@@ -2668,6 +2668,13 @@ return (
           style={navButtonStyle(activeTab === "RN")}
         >
           RN Practice
+        </button>
+
+        <button
+          onClick={() => setActiveTab("Privacy")}
+          style={navButtonStyle(activeTab === "Privacy")}
+        >
+          Privacy
         </button>
       </div>
 
@@ -3885,6 +3892,79 @@ return (
             )}
           </div>
         )}
+
+        {activeTab === "Privacy" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 900,
+              margin: "0 auto",
+              color: "#1e293b",
+              lineHeight: 1.6
+            }}
+          >
+            <h2 style={{ color: "#12355b", marginTop: 0 }}>Privacy Policy</h2>
+            <p>
+              Effective date: March 21, 2026
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>What We Collect</h3>
+            <p>
+              We use Google Analytics to collect limited usage information such as pages visited,
+              approximate location (region/city), device and browser details, and interaction events.
+              We do not intentionally collect sensitive personal health information through analytics.
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>How We Use Data</h3>
+            <p>
+              We use analytics data to understand how learners use MedSkillBuilder, improve site
+              performance, and enhance training content and user experience.
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>Cookies and Tracking</h3>
+            <p>
+              Google Analytics may use cookies or similar technologies to distinguish visitors and
+              measure site activity over time.
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>Your Choices</h3>
+            <p>
+              You can block or delete cookies in your browser settings. You can also opt out of Google
+              Analytics using the official browser add-on: https://tools.google.com/dlpage/gaoptout
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>Third-Party Services</h3>
+            <p>
+              Google Analytics is provided by Google. Learn more about how Google uses data here:
+              https://policies.google.com/technologies/partner-sites
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>Updates to This Policy</h3>
+            <p>
+              We may update this policy from time to time. Changes will be posted on this page with an
+              updated effective date.
+            </p>
+          </div>
+        )}
+
+        <div style={{ textAlign: "center", marginTop: 16, marginBottom: 8 }}>
+          <button
+            onClick={() => setActiveTab("Privacy")}
+            style={{
+              border: "none",
+              background: "transparent",
+              color: "#12355b",
+              textDecoration: "underline",
+              cursor: "pointer",
+              fontWeight: 600
+            }}
+          >
+            Privacy Policy
+          </button>
+        </div>
       </div>
     </div>
   );

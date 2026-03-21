@@ -14,3 +14,20 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Google Analytics (GA4)
+
+1. Create a GA4 Web Data Stream in Google Analytics.
+2. Copy your Measurement ID (format: `G-XXXXXXXXXX`).
+3. Create `.env.local` in the project root and add:
+
+```env
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+4. Restart the dev server.
+
+Notes:
+
+- Tracking initializes automatically from `src/main.jsx` only when `VITE_GA_MEASUREMENT_ID` is set.
+- `.env.local` is ignored by git in this project.
