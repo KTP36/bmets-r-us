@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "./assets/logo.png";
 import { teasQuestions } from "./teasQuestions";
 
@@ -2596,6 +2596,9 @@ const bones = {
 };
 export default function App() {
   const [activeTab, setActiveTab] = useState("Home");
+  const [contactStatus, setContactStatus] = useState("idle");
+  const [contactError, setContactError] = useState("");
+  const contactFormRef = useRef(null);
   const [mode, setMode] = useState("organs");
   const [selectedSet, setSelectedSet] = useState(null);
   const [placed, setPlaced] = useState({});
@@ -3156,6 +3159,44 @@ export default function App() {
         </div>
       </div>
     ) : null;
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setContactError("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const honeypotValue = (formData.get("_gotcha") || "").toString().trim();
+
+    // Silently accept bot submissions caught by the honeypot.
+    if (honeypotValue) {
+      setContactStatus("success");
+      form.reset();
+      return;
+    }
+
+    setContactStatus("sending");
+
+    try {
+      const response = await fetch("https://formspree.io/f/xgonbzaj", {
+        method: "POST",
+        headers: {
+          Accept: "application/json"
+        },
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error("submit_failed");
+      }
+
+      setContactStatus("success");
+      contactFormRef.current?.reset();
+    } catch (error) {
+      setContactStatus("error");
+      setContactError("Message failed to send. Please try again.");
+    }
+  };
 
 return (
   <div
@@ -5247,8 +5288,10 @@ return (
             </div>
 
             <form
+              ref={contactFormRef}
               action="https://formspree.io/f/xgonbzaj"
               method="POST"
+              onSubmit={handleContactSubmit}
               style={{
                 display: "grid",
                 gap: 12,
@@ -5256,6 +5299,19 @@ return (
                 margin: "0 auto"
               }}
             >
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{
+                  position: "absolute",
+                  left: "-5000px",
+                  opacity: 0,
+                  pointerEvents: "none"
+                }}
+                aria-hidden="true"
+              />
               <input
                 type="text"
                 name="name"
@@ -5307,6 +5363,7 @@ return (
 
               <button
                 type="submit"
+                disabled={contactStatus === "sending"}
                 style={{
                   padding: "12px 18px",
                   borderRadius: 999,
@@ -5314,13 +5371,48 @@ return (
                   background: "linear-gradient(135deg, #12355b, #1d6fa5)",
                   color: "white",
                   fontWeight: 700,
-                  cursor: "pointer",
+                  cursor: contactStatus === "sending" ? "not-allowed" : "pointer",
+                  opacity: contactStatus === "sending" ? 0.75 : 1,
                   boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
                   justifySelf: "center"
                 }}
               >
-                Send Message
+                {contactStatus === "sending" ? "Sending..." : "Send Message"}
               </button>
+
+              {contactStatus === "success" && (
+                <div
+                  style={{
+                    marginTop: 4,
+                    padding: "10px 12px",
+                    borderRadius: 10,
+                    border: "1px solid #16a34a",
+                    background: "#dcfce7",
+                    color: "#166534",
+                    textAlign: "center",
+                    fontWeight: 600
+                  }}
+                >
+                  Message sent successfully.
+                </div>
+              )}
+
+              {contactStatus === "error" && (
+                <div
+                  style={{
+                    marginTop: 4,
+                    padding: "10px 12px",
+                    borderRadius: 10,
+                    border: "1px solid #ef4444",
+                    background: "#fee2e2",
+                    color: "#991b1b",
+                    textAlign: "center",
+                    fontWeight: 600
+                  }}
+                >
+                  {contactError}
+                </div>
+              )}
             </form>
           </div>
         )}
