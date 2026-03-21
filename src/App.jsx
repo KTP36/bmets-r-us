@@ -2096,18 +2096,18 @@ const rnQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Cornea", x: 620, y: 150 },
-      { name: "Iris", x: 580, y: 200 },
-      { name: "Lens", x: 550, y: 240 },
-      { name: "Pupil", x: 580, y: 210 },
-      { name: "Aqueous Humor", x: 600, y: 170 },
-      { name: "Vitreous Humor", x: 400, y: 350 },
-      { name: "Retina", x: 300, y: 380 },
-      { name: "Optic Nerve", x: 200, y: 500 },
-      { name: "Sclera", x: 200, y: 300 },
-      { name: "Choroid", x: 280, y: 380 },
-      { name: "Macula", x: 350, y: 380 },
-      { name: "Ciliary Body", x: 520, y: 280 }
+      { name: "Cornea", x: 28, y: 355 },
+      { name: "Iris", x: 73, y: 406 },
+      { name: "Lens", x: 121, y: 355 },
+      { name: "Pupil", x: 58, y: 354 },
+      { name: "Aqueous Humor", x: 32, y: 296 },
+      { name: "Vitreous Humor", x: 370, y: 355 },
+      { name: "Retina", x: 548, y: 227 },
+      { name: "Optic Nerve", x: 675, y: 465 },
+      { name: "Sclera", x: 578, y: 165 },
+      { name: "Choroid", x: 556, y: 184 },
+      { name: "Macula", x: 556, y: 505 },
+      { name: "Ciliary Body", x: 108, y: 240 }
     ]
   },
 
@@ -2309,6 +2309,8 @@ export default function App() {
   
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
+  const usesNumberedZones =
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye";
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
@@ -3301,7 +3303,7 @@ return (
         borderRadius: 12,
         backgroundColor: "#f8fafc",
         overflow: "hidden",
-        cursor: (selectedSet === "Hand" || selectedSet === "Foot") && selectedLabel ? "crosshair" : "default"
+        cursor: usesNumberedZones && selectedLabel ? "crosshair" : "default"
       }}
       onDragOver={(e) => e.preventDefault()}
       onClick={handleImageClick}
@@ -3338,11 +3340,12 @@ return (
           ? "Hand Bones"
           : selectedSet === "Foot"
           ? "Foot Bones"
+          : selectedSet === "Eye"
+          ? "Eye Anatomy"
           : selectedSet}
       </div>
 
-      {/* Debug numbers for Hand and Foot */}
-      {(selectedSet === "Hand" || selectedSet === "Foot") && currentSet.parts.map((part, idx) => (
+      {usesNumberedZones && currentSet.parts.map((part, idx) => (
         <div
           key={`num-${part.name}`}
           style={{
@@ -3375,8 +3378,8 @@ return (
   // Larger drop zones on mobile for better visibility and clickability
   const mobileSizeScale = isSmallScreen ? 0.65 : 1;
   
-  // Hide drop zones for Hand and Foot
-  if (selectedSet === "Hand" || selectedSet === "Foot") {
+  // Hide drop zones for numbered-zone sets.
+  if (usesNumberedZones) {
     return null;
   }
   
@@ -3447,7 +3450,7 @@ return (
     }}
   >
     {/* Debug reference for Hand and Foot */}
-    {(selectedSet === "Hand" || selectedSet === "Foot") && (
+    {usesNumberedZones && (
       <div style={{ marginBottom: 16, padding: 12, background: "#fff3cd", borderRadius: 8, border: "1px solid #ffc107" }}>
         <div style={{ fontWeight: 700, color: "#856404", marginBottom: 8, fontSize: 14 }}>Zone Numbers:</div>
         {currentSet.parts.map((part, idx) => (
@@ -3462,12 +3465,12 @@ return (
   const isCorrect = placed[part.name] === "correct";
   const isDragging = draggingLabel === part.name;
   const isSelected = selectedLabel === part.name;
-  const isHandOrFoot = selectedSet === "Hand" || selectedSet === "Foot";
+  const isNumberedZoneSet = usesNumberedZones;
 
   return (
     <div
       key={part.name}
-      draggable={!isCorrect && !isSmallScreen && !isHandOrFoot}
+      draggable={!isCorrect && !isSmallScreen && !isNumberedZoneSet}
       onDragStart={(e) => {
         e.dataTransfer.setData("text/plain", part.name);
         setDraggingLabel(part.name);
