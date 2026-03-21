@@ -2001,14 +2001,14 @@ const bones = {
     },
     parts: [
       { name: "Distal Phalanges", x: 310, y: 255 },
-      { name: "Middle Phalanges", x: 500, y: 415 },
-      { name: "Proximal Phalanges", x: 490, y: 460 },
-      { name: "Metatarsals", x: 495, y: 515 },
+      { name: "Middle Phalanges", x: 480, y: 415 },
+      { name: "Proximal Phalanges", x: 470, y: 460 },
+      { name: "Metatarsals", x: 475, y: 515 },
       { name: "Medial Cuneiform", x: 205, y: 565 },
       { name: "Intermediate Cuneiform", x: 370, y: 560 },
       { name: "Lateral Cuneiform", x: 414, y: 605 },
       { name: "Navicular", x: 205, y: 620 },
-      { name: "Cuboid", x: 444, y: 650 },
+      { name: "Cuboid", x: 436, y: 665 },
       { name: "Talus", x: 230, y: 675 },
       { name: "Calcaneus", x: 350, y: 770 }
     ]
