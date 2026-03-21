@@ -3831,7 +3831,8 @@ return (
       borderRadius: 16,
       padding: 16,
       width: "100%",
-      maxWidth: 260,
+      maxWidth: 340,
+      flex: "1 1 280px",
       boxShadow: "0 6px 20px rgba(0,0,0,0.08)"
     }}
   >
@@ -3839,14 +3840,17 @@ return (
     {usesNumberedZones && (
       <div style={{ marginBottom: 16, padding: 12, background: "#fff3cd", borderRadius: 8, border: "1px solid #ffc107" }}>
         <div style={{ fontWeight: 700, color: "#856404", marginBottom: 8, fontSize: 14 }}>Zone Numbers:</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
         {currentSet.parts.map((part, idx) => (
-          <div key={`ref-${part.name}`} style={{ fontSize: 11, color: "#856404", marginBottom: 4 }}>
+          <div key={`ref-${part.name}`} style={{ fontSize: 11, color: "#856404" }}>
             <strong>{idx + 1}.</strong> {part.name}
           </div>
         ))}
+        </div>
       </div>
     )}
 
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
     {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isDragging = draggingLabel === part.name;
@@ -3868,8 +3872,7 @@ return (
         }
       }}
       style={{
-        padding: 12,
-        margin: "0 0 8px 0",
+        padding: "8px 4px",
         border: isSelected ? "2px solid #2563eb" : "1px solid #334155",
         background: isCorrect ? "#d9f7d9" : isSelected ? "#dbeafe" : "#e2e8f0",
         color: "#5b4967",
@@ -3878,9 +3881,10 @@ return (
         textAlign: "center",
         opacity: isDragging ? 0.5 : 1,
         borderRadius: 4,
-        fontSize: 18,
+        fontSize: 13,
         boxSizing: "border-box",
-        boxShadow: isSelected ? "0 0 8px rgba(37, 99, 235, 0.5)" : "none"
+        boxShadow: isSelected ? "0 0 8px rgba(37, 99, 235, 0.5)" : "none",
+        lineHeight: 1.2
       }}
     >
       {isCorrect 
@@ -3893,6 +3897,7 @@ return (
     </div>
   );
 })}
+    </div>
 
     <div
       style={{
