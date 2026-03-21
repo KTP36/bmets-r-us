@@ -1971,10 +1971,10 @@ const bones = {
       { name: "Metacarpals", x: 310, y: 545 },
       { name: "Scaphoid", x: 250, y: 740 },
       { name: "Lunate", x: 466, y: 710 },
-      { name: "Triquetrum", x: 470, y: 665 },
+      { name: "Triquetrum", x: 455, y: 665 },
       { name: "Pisiform", x: 390, y: 751 },
-      { name: "Trapezium", x: 169, y: 655 },
-      { name: "Trapezoid", x: 135, y: 730 },
+      { name: "Trapezium", x: 184, y: 655 },
+      { name: "Trapezoid", x: 140, y: 730 },
       { name: "Capitate", x: 275, y: 632 },
       { name: "Hamate", x: 460, y: 615 }
     ]
