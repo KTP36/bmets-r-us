@@ -2198,7 +2198,7 @@ const bones = {
       height: "100%",
       objectFit: "contain",
       objectPosition: "center top",
-      transform: "translateY(-150px) scale(0.9)"
+      transform: "translateY(0px) scale(0.9)"
     },
     parts: [
       { name: "Distal Phalanges", x: 310, y: 180 },
