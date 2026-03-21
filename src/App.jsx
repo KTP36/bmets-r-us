@@ -2219,14 +2219,14 @@ const bones = {
       { name: "Middle Phalanges", x: 460, y: 345 },
       { name: "Proximal Phalanges", x: 330, y: 420 },
       { name: "Metacarpals", x: 310, y: 545 },
-      { name: "Scaphoid", x: 250, y: 740 },
-      { name: "Lunate", x: 466, y: 710 },
-      { name: "Triquetrum", x: 455, y: 665 },
-      { name: "Pisiform", x: 390, y: 751 },
-      { name: "Trapezium", x: 184, y: 655 },
-      { name: "Trapezoid", x: 140, y: 730 },
-      { name: "Capitate", x: 275, y: 632 },
-      { name: "Hamate", x: 460, y: 615 }
+      { name: "Scaphoid", x: 279, y: 766 },
+      { name: "Lunate", x: 413, y: 745 },
+      { name: "Triquetrum", x: 455, y: 696 },
+      { name: "Pisiform", x: 371, y: 784 },
+      { name: "Trapezium", x: 234, y: 690 },
+      { name: "Trapezoid", x: 164, y: 750 },
+      { name: "Capitate", x: 289, y: 649 },
+      { name: "Hamate", x: 427, y: 670 }
     ]
   },
 
