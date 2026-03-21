@@ -1317,6 +1317,41 @@ const cbetQuestions = [
     question: "A patient cable with intermittent noise when flexed likely has:",
     options: ["A broken or damaged conductor", "Improved shielding", "Normal operation", "Higher insulation strength"],
     answer: 0
+  },
+  {
+    question: "The liver's primary function includes:",
+    options: ["Filtering blood and producing bile", "Pumping oxygenated blood", "Filtering urine", "Producing hormones"],
+    answer: 0
+  },
+  {
+    question: "Which vessel delivers blood directly to the liver?",
+    options: ["The aorta", "The portal vein", "The pulmonary artery", "The inferior vena cava"],
+    answer: 1
+  },
+  {
+    question: "Ultrasound imaging of the liver is commonly used to:",
+    options: ["Measure electrical activity", "Detect masses and assess blood flow", "Count white blood cells", "Measure oxygen saturation"],
+    answer: 1
+  },
+  {
+    question: "The retina of the eye contains:",
+    options: ["Muscles for focusing", "Photoreceptor cells for vision", "Tear glands", "Aqueous humor"],
+    answer: 1
+  },
+  {
+    question: "The optic nerve carries:",
+    options: ["Nutrients to the eye", "Visual information to the brain", "Tears to the eye surface", "Messages to control eye muscles"],
+    answer: 1
+  },
+  {
+    question: "The largest artery in the body is:",
+    options: ["The carotid artery", "The femoral artery", "The aorta", "The radial artery"],
+    answer: 2
+  },
+  {
+    question: "Pulse points are commonly palpated at which arterial locations? (Select the most common)",
+    options: ["Radial and femoral", "Subclavian only", "Renal arteries", "Celiac artery"],
+    answer: 0
   }
 ];
 const rnQuestions = [
@@ -1829,6 +1864,66 @@ const rnQuestions = [
       "Give meds based on the medication cart list"
     ],
     answer: 0
+  },
+  {
+    question: "A client with liver cirrhosis is at highest risk for:",
+    options: [
+      "Hepatic encephalopathy and ascites",
+      "Acute myocardial infarction",
+      "Type 1 diabetes mellitus",
+      "Acute kidney injury only"
+    ],
+    answer: 0
+  },
+  {
+    question: "Which is the most important nursing assessment for a client on acetaminophen?",
+    options: [
+      "Liver function and total daily dose not exceeding 4 grams",
+      "Kidney function only",
+      "Heart rate only",
+      "Respiratory rate"
+    ],
+    answer: 0
+  },
+  {
+    question: "A client complains of floaters and flashes in their vision. The nurse should:",
+    options: [
+      "Report this immediately; it may indicate retinal detachment",
+      "Reassure them this is normal",
+      "Apply a warm compress",
+      "Administer eye drops"
+    ],
+    answer: 0
+  },
+  {
+    question: "Which intervention is correct for a client with conjunctivitis?",
+    options: [
+      "Clean eye from inner canthus to outer canthus",
+      "Patch both eyes",
+      "Apply light to test pupils",
+      "Avoid saline rinses"
+    ],
+    answer: 0
+  },
+  {
+    question: "Which pulse point is commonly assessed for stroke risk in clients with atrial fibrillation?",
+    options: [
+      "Carotid artery",
+      "Dorsalis pedis",
+      "Brachial artery",
+      "Popliteal artery"
+    ],
+    answer: 0
+  },
+  {
+    question: "A client is found to have a weak femoral pulse. The nurse should:",
+    options: [
+      "Assess both legs and report findings",
+      "Assume this is normal",
+      "Immediately loosen all bandages",
+      "Have the client stand and ambulate"
+    ],
+    answer: 0
   }
 ];
 // --- DATA SETS ---
@@ -1908,6 +2003,112 @@ const rnQuestions = [
       { name: "Left Lung", x: 140, y: 150 },
       { name: "Right Lung", x: 260, y: 150 },
       { name: "Trachea", x: 200, y: 50 }
+    ]
+  },
+
+  Liver: {
+    image: "/liver.jpg",
+    boardWidth: 620,
+    boardHeight: 600,
+    dropWidth: 80,
+    dropHeight: 32,
+    mobileDropScale: 0.35,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.8,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Right Lobe", x: 350, y: 200 },
+      { name: "Left Lobe", x: 250, y: 220 },
+      { name: "Hepatic Artery", x: 300, y: 280 },
+      { name: "Portal Vein", x: 320, y: 300 },
+      { name: "Bile Duct", x: 380, y: 320 },
+      { name: "Gallbladder", x: 420, y: 350 },
+      { name: "Falciform Ligament", x: 310, y: 170 },
+      { name: "Caudate Lobe", x: 280, y: 280 }
+    ]
+  },
+
+  Eye: {
+    image: "/eye.jpg",
+    boardWidth: 620,
+    boardHeight: 600,
+    dropWidth: 80,
+    dropHeight: 32,
+    mobileDropScale: 0.35,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.8,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Cornea", x: 520, y: 220 },
+      { name: "Iris", x: 480, y: 240 },
+      { name: "Lens", x: 450, y: 250 },
+      { name: "Pupil", x: 490, y: 245 },
+      { name: "Aqueous Humor", x: 500, y: 200 },
+      { name: "Vitreous Humor", x: 420, y: 300 },
+      { name: "Retina", x: 380, y: 300 },
+      { name: "Optic Nerve", x: 300, y: 320 },
+      { name: "Sclera", x: 350, y: 270 },
+      { name: "Choroid", x: 400, y: 280 },
+      { name: "Macula", x: 360, y: 310 },
+      { name: "Ciliary Body", x: 420, y: 220 }
+    ]
+  },
+
+  "Arterial System": {
+    image: "/arterial-system.jpg",
+    boardWidth: 620,
+    boardHeight: 950,
+    dropWidth: 80,
+    dropHeight: 32,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.95,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Aorta", x: 310, y: 100 },
+      { name: "Ascending Aorta", x: 320, y: 130 },
+      { name: "Aortic Arch", x: 310, y: 160 },
+      { name: "Descending Aorta", x: 310, y: 240 },
+      { name: "Right Carotid", x: 380, y: 140 },
+      { name: "Left Carotid", x: 240, y: 140 },
+      { name: "Right Subclavian", x: 380, y: 175 },
+      { name: "Left Subclavian", x: 240, y: 175 },
+      { name: "Right Axillary", x: 420, y: 220 },
+      { name: "Left Axillary", x: 160, y: 220 },
+      { name: "Right Radial", x: 480, y: 350 },
+      { name: "Left Radial", x: 80, y: 350 },
+      { name: "Celiac Artery", x: 310, y: 350 },
+      { name: "Superior Mesenteric", x: 320, y: 400 },
+      { name: "Right Renal", x: 360, y: 380 },
+      { name: "Left Renal", x: 260, y: 385 },
+      { name: "Right Iliac", x: 360, y: 500 },
+      { name: "Left Iliac", x: 260, y: 505 },
+      { name: "Right Femoral", x: 380, y: 570 },
+      { name: "Left Femoral", x: 240, y: 575 }
     ]
   }
 };
