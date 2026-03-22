@@ -2820,6 +2820,48 @@ const terminologyQuestions = [
       { name: "Right Femoral", x: 345, y: 650, description: "Main artery of right leg" },
       { name: "Left Femoral", x: 275, y: 650, description: "Main artery of left leg" }
     ]
+  },
+
+  "Venous System": {
+    image: "/venous system.jpg",
+    boardWidth: 1680,
+    boardHeight: 928,
+    functionTitle: "Returns oxygen-poor blood back to the heart",
+    functionSummary:
+      "The venous system collects blood from tissues and returns it to the right side of the heart for reoxygenation in the lungs.",
+    studyHighlights: [
+      "Venous blood flows back to the heart at lower pressure",
+      "Large central veins drain the head, arms, trunk, and legs",
+      "Deep leg veins are clinically important for DVT risk"
+    ],
+    dropWidth: 80,
+    dropHeight: 32,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1,
+    mobileImageTranslateX: 0,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Superior Vena Cava", x: 850, y: 198, description: "Major vein returning blood from head, neck, and upper limbs to the heart" },
+      { name: "Inferior Vena Cava", x: 842, y: 320, description: "Largest vein returning blood from abdomen, pelvis, and legs to the heart" },
+      { name: "Right Internal Jugular Vein", x: 804, y: 84, description: "Drains venous blood from the brain and deep face on the right" },
+      { name: "Left Internal Jugular Vein", x: 876, y: 84, description: "Drains venous blood from the brain and deep face on the left" },
+      { name: "Right Brachiocephalic Vein", x: 822, y: 168, description: "Formed by right jugular and subclavian veins before joining the SVC" },
+      { name: "Left Brachiocephalic Vein", x: 874, y: 168, description: "Formed by left jugular and subclavian veins before joining the SVC" },
+      { name: "Right Subclavian Vein", x: 715, y: 152, description: "Drains venous blood from the right upper limb" },
+      { name: "Left Subclavian Vein", x: 965, y: 152, description: "Drains venous blood from the left upper limb" },
+      { name: "Right Common Iliac Vein", x: 805, y: 405, description: "Drains pelvis and right lower limb into the inferior vena cava" },
+      { name: "Left Common Iliac Vein", x: 875, y: 405, description: "Drains pelvis and left lower limb into the inferior vena cava" },
+      { name: "Right Femoral Vein", x: 790, y: 545, description: "Major deep vein of the right thigh" },
+      { name: "Left Femoral Vein", x: 890, y: 545, description: "Major deep vein of the left thigh" }
+    ]
   }
 };
 
