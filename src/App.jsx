@@ -4415,6 +4415,25 @@ return (
       </div>
     )}
 
+    <div
+      style={{
+        background: "linear-gradient(135deg, #e0f2fe, #f0f9ff)",
+        border: "1px solid #0ea5e9",
+        borderRadius: 10,
+        padding: "12px 14px",
+        marginBottom: 14,
+        fontSize: 13,
+        fontWeight: 600,
+        color: "#0c4a6e",
+        textAlign: "center",
+        lineHeight: 1.4
+      }}
+    >
+      {usesNumberedZones
+        ? isSmallScreen ? "👆 Tap zones to place labels" : "🖱️ Click zones to place labels"
+        : isSmallScreen ? "👆 Tap labels to match zones" : "🖱️ Drag labels to drop zones"}
+    </div>
+
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
     {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
