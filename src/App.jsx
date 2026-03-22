@@ -3830,7 +3830,7 @@ return (
           BMETS-R-US
         </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
-          Interactive anatomy, bone labeling, and practice modules for CBET, RN, and TEAS
+          Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, and Medical Terminology
         </p>
       </div>
 
