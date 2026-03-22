@@ -1484,6 +1484,93 @@ const harderCbetQuestions = [
   }
 ];
 
+const equipmentQuestions = [
+  {
+    image: "/equipment/anesthesia machine.jpg",
+    question: "Identify this equipment.",
+    options: ["Anesthesia machine", "Ventilator", "Defibrillator", "Suction machine"],
+    answer: 0,
+    studyTip: "Used to deliver inhaled anesthetics, oxygen, and ventilation support during procedures."
+  },
+  {
+    image: "/equipment/defibrillator.jpg",
+    question: "Identify this equipment.",
+    options: ["Patient monitor", "Defibrillator", "Infusion pump", "ECG machine"],
+    answer: 1,
+    studyTip: "Used to deliver controlled shocks for life-threatening arrhythmias."
+  },
+  {
+    image: "/equipment/ekg machine.jpg",
+    question: "Identify this equipment.",
+    options: ["ECG/EKG machine", "Pulse oximeter", "Ventilator", "Fetal monitor"],
+    answer: 0,
+    studyTip: "Records electrical activity of the heart using surface electrodes."
+  },
+  {
+    image: "/equipment/electrosurgical unit.jpg",
+    question: "Identify this equipment.",
+    options: ["Syringe pump", "Electrosurgical unit", "Anesthesia machine", "Ultrasound machine"],
+    answer: 1,
+    studyTip: "Provides high-frequency electrical energy for cutting/coagulation in surgery."
+  },
+  {
+    image: "/equipment/fetal monitor.jpg",
+    question: "Identify this equipment.",
+    options: ["Fetal monitor", "Patient monitor", "Infusion pump", "Defibrillator"],
+    answer: 0,
+    studyTip: "Tracks fetal heart rate and uterine contractions during pregnancy/labor."
+  },
+  {
+    image: "/equipment/infusion pump.jpg",
+    question: "Identify this equipment.",
+    options: ["Infusion pump", "Suction regulator", "Pulse oximeter", "Ventilator"],
+    answer: 0,
+    studyTip: "Delivers IV fluids and medications at controlled rates."
+  },
+  {
+    image: "/equipment/patient monitor.jpg",
+    question: "Identify this equipment.",
+    options: ["Defibrillator", "Patient monitor", "Ultrasound machine", "ECG machine"],
+    answer: 1,
+    studyTip: "Displays vital signs such as ECG, SpO2, blood pressure, and respiration."
+  },
+  {
+    image: "/equipment/pulse oximeter.jpg",
+    question: "Identify this equipment.",
+    options: ["Pulse oximeter", "Syringe pump", "Suction machine", "Anesthesia machine"],
+    answer: 0,
+    studyTip: "Measures oxygen saturation (SpO2) and pulse rate noninvasively."
+  },
+  {
+    image: "/equipment/suction machine.jpg",
+    question: "Identify this equipment.",
+    options: ["Ventilator", "Suction machine", "Patient monitor", "Defibrillator"],
+    answer: 1,
+    studyTip: "Provides negative pressure to remove fluids/secretions from airways or surgical fields."
+  },
+  {
+    image: "/equipment/suction regulator.jpg",
+    question: "Identify this equipment.",
+    options: ["Suction regulator", "Pulse oximeter", "Infusion pump", "Fetal monitor"],
+    answer: 0,
+    studyTip: "Controls and limits wall-vacuum suction pressure for safe clinical use."
+  },
+  {
+    image: "/equipment/syringe pump.jpg",
+    question: "Identify this equipment.",
+    options: ["Syringe pump", "ECG machine", "Electrosurgical unit", "Anesthesia machine"],
+    answer: 0,
+    studyTip: "Accurately delivers small-volume medications using a loaded syringe."
+  },
+  {
+    image: "/equipment/ultrasound machine.jpg",
+    question: "Identify this equipment.",
+    options: ["Ultrasound machine", "Defibrillator", "Patient monitor", "Suction regulator"],
+    answer: 0,
+    studyTip: "Uses high-frequency sound waves to generate real-time diagnostic images."
+  }
+];
+
 const rnQuestions = [
   {
     question: "Which patient should the nurse see first?",
@@ -2785,6 +2872,16 @@ export default function App() {
   const [hoveredHomeCard, setHoveredHomeCard] = useState("");
   const [hoveredNavTab, setHoveredNavTab] = useState("");
 
+  // --- EQUIPMENT ID STATE ---
+  const [shuffledEquipmentQuestions, setShuffledEquipmentQuestions] = useState(() =>
+    shuffleArray(equipmentQuestions)
+  );
+  const [equipmentIndex, setEquipmentIndex] = useState(0);
+  const [equipmentScore, setEquipmentScore] = useState(0);
+  const [equipmentAnswers, setEquipmentAnswers] = useState({});
+  const [equipmentShowResult, setEquipmentShowResult] = useState(false);
+  const [showEquipmentMissedReview, setShowEquipmentMissedReview] = useState(false);
+
   // --- CRES STATE ---
   const [shuffledCresQuestions, setShuffledCresQuestions] = useState(() =>
     shuffleArray(cresQuestions)
@@ -2840,6 +2937,20 @@ export default function App() {
       setTeasAnswers(savedTeas.teasAnswers || {});
       setTeasShowResult(savedTeas.teasShowResult || false);
       setShowTeasMissedReview(savedTeas.showTeasMissedReview || false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedEquipment = JSON.parse(localStorage.getItem("equipmentProgress"));
+    if (savedEquipment) {
+      setShuffledEquipmentQuestions(
+        savedEquipment.shuffledEquipmentQuestions || shuffleArray(equipmentQuestions)
+      );
+      setEquipmentIndex(savedEquipment.equipmentIndex || 0);
+      setEquipmentScore(savedEquipment.equipmentScore || 0);
+      setEquipmentAnswers(savedEquipment.equipmentAnswers || {});
+      setEquipmentShowResult(savedEquipment.equipmentShowResult || false);
+      setShowEquipmentMissedReview(savedEquipment.showEquipmentMissedReview || false);
     }
   }, []);
 
@@ -3049,12 +3160,39 @@ export default function App() {
     setShowHarderCbetMissedReview(false);
   };
 
+  const saveEquipmentProgress = () => {
+    const progress = {
+      shuffledEquipmentQuestions,
+      equipmentIndex,
+      equipmentScore,
+      equipmentAnswers,
+      equipmentShowResult,
+      showEquipmentMissedReview
+    };
+    localStorage.setItem("equipmentProgress", JSON.stringify(progress));
+  };
+
+  const restartEquipmentQuiz = () => {
+    const reshuffled = shuffleArray(equipmentQuestions);
+    localStorage.removeItem("equipmentProgress");
+    setShuffledEquipmentQuestions(reshuffled);
+    setEquipmentIndex(0);
+    setEquipmentScore(0);
+    setEquipmentAnswers({});
+    setEquipmentShowResult(false);
+    setShowEquipmentMissedReview(false);
+  };
+
   const missedQuestions = shuffledCbetQuestions.filter((q, index) => {
     const selected = cbetAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
   const harderCbetMissedQuestions = shuffledHarderCbetQuestions.filter((q, index) => {
     const selected = harderCbetAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
+  const equipmentMissedQuestions = shuffledEquipmentQuestions.filter((q, index) => {
+    const selected = equipmentAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
   const rnMissedQuestions = shuffledRnQuestions.filter((q, index) => {
@@ -3621,6 +3759,15 @@ return (
           style={navButtonStyle(activeTab === "CRES", hoveredNavTab === "CRES")}
         >
           CRES Practice
+        </button>
+
+        <button
+          onClick={() => setActiveTab("Equipment")}
+          onMouseEnter={() => setHoveredNavTab("Equipment")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Equipment", hoveredNavTab === "Equipment")}
+        >
+          Medical Equipment ID
         </button>
 
         <button
@@ -4983,6 +5130,402 @@ return (
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowHarderCbetMissedReview(false)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Back to Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "Equipment" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 960,
+              margin: "0 auto"
+            }}
+          >
+            {!equipmentShowResult && !showEquipmentMissedReview ? (
+              <>
+                <div style={{ textAlign: "center", marginBottom: 20 }}>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment ID</h2>
+                  <p style={{ color: "#4f6275", margin: 0 }}>
+                    Identify each device from the image and choose the best answer.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <div style={cbetStatCardStyle}>
+                    Question {equipmentIndex + 1} / {shuffledEquipmentQuestions.length}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Score: {equipmentScore}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Visual Recognition
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <button
+                    onClick={saveEquipmentProgress}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Save Progress
+                  </button>
+
+                  <button
+                    onClick={restartEquipmentQuiz}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                    borderRadius: 18,
+                    padding: 24,
+                    border: "1px solid #d8e4f2",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "#fff",
+                      border: "1px solid #d8e4f2",
+                      borderRadius: 14,
+                      padding: 12,
+                      marginBottom: 16,
+                      textAlign: "center"
+                    }}
+                  >
+                    <img
+                      src={shuffledEquipmentQuestions[equipmentIndex].image}
+                      alt="Medical equipment"
+                      style={{
+                        width: "100%",
+                        maxHeight: 320,
+                        objectFit: "contain",
+                        borderRadius: 10
+                      }}
+                    />
+                  </div>
+
+                  <div
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 700,
+                      color: "#12355b",
+                      marginBottom: 18,
+                      textAlign: "center"
+                    }}
+                  >
+                    {shuffledEquipmentQuestions[equipmentIndex].question}
+                  </div>
+
+                  {shuffledEquipmentQuestions[equipmentIndex].options.map((opt, i) => {
+                    const selected = equipmentAnswers[equipmentIndex];
+                    const correct = shuffledEquipmentQuestions[equipmentIndex].answer;
+                    const isAnswered = selected !== undefined;
+                    const isCorrectOption = i === correct;
+                    const isSelectedWrong =
+                      isAnswered && i === selected && selected !== correct;
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          if (isAnswered) return;
+
+                          setEquipmentAnswers((prev) => ({ ...prev, [equipmentIndex]: i }));
+
+                          if (i === correct) {
+                            setEquipmentScore((prev) => prev + 1);
+                            correctSound.currentTime = 0;
+                            correctSound.play();
+                          } else {
+                            wrongSound.currentTime = 0;
+                            wrongSound.play();
+                          }
+                        }}
+                        style={{
+                          width: "100%",
+                          textAlign: "left",
+                          padding: "14px 16px",
+                          marginBottom: 12,
+                          borderRadius: 12,
+                          border:
+                            isCorrectOption && isAnswered
+                              ? "2px solid green"
+                              : isSelectedWrong
+                              ? "2px solid red"
+                              : "1px solid #cbd5e1",
+                          background:
+                            isCorrectOption && isAnswered
+                              ? "#d9f7d9"
+                              : isSelectedWrong
+                              ? "#fee2e2"
+                              : "#f8fafc",
+                          color: "#1e293b",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          cursor: isAnswered ? "default" : "pointer",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                        }}
+                      >
+                        {String.fromCharCode(65 + i)}. {opt}
+                      </button>
+                    );
+                  })}
+
+                  {equipmentAnswers[equipmentIndex] !== undefined && (
+                    <div
+                      style={{
+                        marginTop: 8,
+                        marginBottom: 8,
+                        padding: "10px 12px",
+                        borderRadius: 10,
+                        background: "#eff6ff",
+                        border: "1px solid #bfdbfe",
+                        color: "#1e3a8a",
+                        fontWeight: 600
+                      }}
+                    >
+                      Tip: {shuffledEquipmentQuestions[equipmentIndex].studyTip}
+                    </div>
+                  )}
+
+                  <div style={{ textAlign: "center", marginTop: 20 }}>
+                    <button
+                      onClick={() => {
+                        if (equipmentAnswers[equipmentIndex] === undefined) return;
+
+                        if (equipmentIndex + 1 === shuffledEquipmentQuestions.length) {
+                          setEquipmentShowResult(true);
+                        } else {
+                          setEquipmentIndex((prev) => prev + 1);
+                        }
+                      }}
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor:
+                          equipmentAnswers[equipmentIndex] === undefined
+                            ? "not-allowed"
+                            : "pointer",
+                        opacity: equipmentAnswers[equipmentIndex] === undefined ? 0.6 : 1,
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      {equipmentIndex + 1 === shuffledEquipmentQuestions.length
+                        ? "Finish Practice"
+                        : "Next Question"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b" }}>Medical Equipment ID Complete</h2>
+                <p style={{ fontSize: 20, color: "#1e293b" }}>
+                  Your score: {equipmentScore} / {shuffledEquipmentQuestions.length}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginTop: 20
+                  }}
+                >
+                  <button
+                    onClick={() => setShowEquipmentMissedReview(true)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={restartEquipmentQuiz}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showEquipmentMissedReview && (
+              <div style={{ marginTop: 24 }}>
+                <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                  Missed Questions Review
+                </h2>
+
+                {equipmentMissedQuestions.length === 0 ? (
+                  <p style={{ textAlign: "center", color: "#1e293b" }}>
+                    You did not miss any questions.
+                  </p>
+                ) : (
+                  equipmentMissedQuestions.map((q, idx) => {
+                    const originalIndex = shuffledEquipmentQuestions.findIndex(
+                      (item) => item.question === q.question && item.image === q.image
+                    );
+                    const selected = equipmentAnswers[originalIndex];
+
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          background: "#fff",
+                          border: "1px solid #d8e4f2",
+                          borderRadius: 16,
+                          padding: 20,
+                          marginBottom: 16,
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                        }}
+                      >
+                        <img
+                          src={q.image}
+                          alt="Medical equipment review"
+                          style={{
+                            width: "100%",
+                            maxHeight: 220,
+                            objectFit: "contain",
+                            borderRadius: 10,
+                            border: "1px solid #e2e8f0",
+                            marginBottom: 12
+                          }}
+                        />
+
+                        <div
+                          style={{
+                            fontWeight: 700,
+                            color: "#12355b",
+                            marginBottom: 12,
+                            fontSize: 18
+                          }}
+                        >
+                          {q.question}
+                        </div>
+
+                        {q.options.map((opt, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              padding: "10px 12px",
+                              marginBottom: 8,
+                              borderRadius: 10,
+                              background:
+                                i === q.answer
+                                  ? "#d9f7d9"
+                                  : i === selected
+                                  ? "#fee2e2"
+                                  : "#f8fafc",
+                              border:
+                                i === q.answer
+                                  ? "2px solid green"
+                                  : i === selected
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1"
+                            }}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </div>
+                        ))}
+
+                        <div
+                          style={{
+                            marginTop: 8,
+                            padding: "10px 12px",
+                            borderRadius: 10,
+                            background: "#eff6ff",
+                            border: "1px solid #bfdbfe",
+                            color: "#1e3a8a",
+                            fontWeight: 600
+                          }}
+                        >
+                          Tip: {q.studyTip}
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button
+                    onClick={() => setShowEquipmentMissedReview(false)}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
