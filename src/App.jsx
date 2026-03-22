@@ -2646,7 +2646,10 @@ const terminologyQuestions = [
     parts: [
       { name: "Left Lung", x: 140, y: 150, description: "Smaller lung with two lobes; exchanges oxygen and CO2" },
       { name: "Right Lung", x: 260, y: 150, description: "Larger lung with three lobes; exchanges oxygen and CO2" },
-      { name: "Trachea", x: 200, y: 50, description: "Windpipe; carries air from throat to bronchi in lungs" }
+      { name: "Trachea", x: 200, y: 50, description: "Windpipe; carries air from throat to bronchi in lungs" },
+      { name: "Carina", x: 200, y: 118, description: "Ridge at the tracheal split where airways divide into main bronchi" },
+      { name: "Right Main Bronchus", x: 238, y: 140, description: "Main airway branch carrying air into the right lung" },
+      { name: "Left Main Bronchus", x: 162, y: 140, description: "Main airway branch carrying air into the left lung" }
     ]
   },
 
