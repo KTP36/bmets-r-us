@@ -2866,7 +2866,6 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [dashboard, setDashboard] = useState({});
   const [feedback, setFeedback] = useState({});
-  const [draggingLabel, setDraggingLabel] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
   const [hoveredPartName, setHoveredPartName] = useState("");
   const [placementMessage, setPlacementMessage] = useState({ text: "", tone: "idle" });
@@ -3048,15 +3047,11 @@ export default function App() {
     setDashboard(saved);
   };
 
-  const handleDrop = (e, part) => {
-    e.preventDefault();
-    const label = e.dataTransfer.getData("text/plain");
-    setDraggingLabel("");
+  const handlePlacementAttempt = (part) => {
+    if (!selectedLabel) return;
+    if (!part || placed[part.name] === "correct") return;
 
-    if (!label) return;
-    if (placed[part.name] === "correct") return;
-
-    if (label !== part.name) {
+    if (part.name !== selectedLabel) {
       wrongSound.currentTime = 0;
       wrongSound.play();
       setFeedback((prev) => ({ ...prev, [part.name]: "wrong" }));
@@ -3074,6 +3069,7 @@ export default function App() {
     setPlacementMessage({ text: "", tone: "idle" });
     setPlaced((prev) => ({ ...prev, [part.name]: "correct" }));
     setFeedback((prev) => ({ ...prev, [part.name]: "correct" }));
+    setSelectedLabel("");
 
     const newScore = score + 1;
     setScore(newScore);
@@ -3081,7 +3077,7 @@ export default function App() {
   };
 
   const handleImageClick = (e) => {
-    if (!selectedLabel) return;
+    if (!selectedLabel || !usesNumberedZones) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
     let clickX = (e.clientX - rect.left) / rect.width * currentSet.boardWidth;
@@ -3128,37 +3124,13 @@ export default function App() {
       }
     });
 
-    if (!closestPart || placed[closestPart.name] === "correct") return;
-
-    // Check if this part matches the selected label
-    if (closestPart.name === selectedLabel) {
-      // CORRECT!
-      correctSound.currentTime = 0;
-      correctSound.play();
-      setPlaced((prev) => ({ ...prev, [closestPart.name]: "correct" }));
-      setFeedback((prev) => ({ ...prev, [closestPart.name]: "correct" }));
-      const newScore = score + 1;
-      setScore(newScore);
-      saveProgress(selectedSet, newScore);
-      setSelectedLabel(""); // Clear selection after correct answer
-    } else {
-      // WRONG - show red feedback but keep label selected for retry
-      wrongSound.currentTime = 0;
-      wrongSound.play();
-      setFeedback((prev) => ({ ...prev, [closestPart.name]: "wrong" }));
-      showPlacementMessage("Wrong, try again.");
-      setTimeout(() => {
-        setFeedback((prev) => ({ ...prev, [closestPart.name]: "" }));
-      }, 500);
-      // selectedLabel stays selected so user can try again
-    }
+    handlePlacementAttempt(closestPart);
   };
 
   const resetGame = () => {
     setPlaced({});
     setFeedback({});
     setScore(0);
-    setDraggingLabel("");
     setSelectedLabel("");
     setPlacementMessage({ text: "", tone: "idle" });
   };
@@ -3168,7 +3140,6 @@ export default function App() {
     setPlaced({});
     setFeedback({});
     setScore(0);
-    setDraggingLabel("");
     setSelectedLabel("");
     setPlacementMessage({ text: "", tone: "idle" });
   };
@@ -4283,9 +4254,8 @@ return (
         borderRadius: 12,
         backgroundColor: "#f8fafc",
         overflow: "hidden",
-        cursor: usesNumberedZones && selectedLabel ? "crosshair" : "default"
+        cursor: selectedLabel ? "crosshair" : "default"
       }}
-      onDragOver={(e) => e.preventDefault()}
       onClick={handleImageClick}
     >
       <img
@@ -4392,8 +4362,7 @@ return (
   return (
     <div
       key={part.name}
-      onDrop={(e) => handleDrop(e, part)}
-      onDragOver={(e) => e.preventDefault()}
+      onClick={() => handlePlacementAttempt(part)}
       style={{
         position: "absolute",
         left: `${(partX / currentSet.boardWidth) * 100}%`,
@@ -4474,7 +4443,7 @@ return (
     >
       {usesNumberedZones
         ? isSmallScreen ? "👆 Tap zones to place labels" : "🖱️ Click zones to place labels"
-        : isSmallScreen ? "👆 Tap labels to match zones" : "🖱️ Drag labels to drop zones"}
+        : isSmallScreen ? "👆 Tap a label, then tap the drop zone" : "🖱️ Click a label, then click the drop zone"}
     </div>
 
     {placementMessage.text && (
@@ -4502,7 +4471,6 @@ return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
     {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
-  const isDragging = draggingLabel === part.name;
   const isSelected = selectedLabel === part.name;
   const isNumberedZoneSet = usesNumberedZones;
   const isHovered = hoveredPartName === part.name;
@@ -4510,12 +4478,6 @@ return (
   return (
     <div
       key={part.name}
-      draggable={!isCorrect && !isSmallScreen && !isNumberedZoneSet}
-      onDragStart={(e) => {
-        e.dataTransfer.setData("text/plain", part.name);
-        setDraggingLabel(part.name);
-      }}
-      onDragEnd={() => setDraggingLabel("")}
       onClick={() => {
         if (!isCorrect) {
           setSelectedLabel(isSelected ? "" : part.name);
@@ -4531,7 +4493,7 @@ return (
         cursor: isCorrect ? "default" : "pointer",
         width: "100%",
         textAlign: "center",
-        opacity: isDragging ? 0.5 : 1,
+        opacity: 1,
         borderRadius: 4,
         fontSize: 13,
         boxSizing: "border-box",
