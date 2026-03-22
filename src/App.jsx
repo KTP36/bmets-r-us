@@ -2933,6 +2933,7 @@ export default function App() {
   const [selectedLabel, setSelectedLabel] = useState("");
   const [hoveredPartName, setHoveredPartName] = useState("");
   const [placementMessage, setPlacementMessage] = useState({ text: "", tone: "idle" });
+  const [showZoneAnswers, setShowZoneAnswers] = useState(false);
 
   const isSmallScreen = window.innerWidth < 768;
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
@@ -3221,6 +3222,7 @@ export default function App() {
     setScore(0);
     setSelectedLabel("");
     setPlacementMessage({ text: "", tone: "idle" });
+    setShowZoneAnswers(false);
   };
 
   const selectSet = (item) => {
@@ -3230,6 +3232,7 @@ export default function App() {
     setScore(0);
     setSelectedLabel("");
     setPlacementMessage({ text: "", tone: "idle" });
+    setShowZoneAnswers(false);
   };
 
   const resetCbetExam = () => {
@@ -4573,16 +4576,58 @@ return (
       boxShadow: "0 6px 20px rgba(0,0,0,0.08)"
     }}
   >
-    {/* Debug reference for numbered-zone sets */}
     {usesNumberedZones && (
-      <div style={{ marginBottom: 16, padding: 12, background: "#fff3cd", borderRadius: 8, border: "1px solid #ffc107" }}>
-        <div style={{ fontWeight: 700, color: "#856404", marginBottom: 8, fontSize: 14 }}>Zone Numbers:</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
-        {currentSet.parts.map((part, idx) => (
-          <div key={`ref-${part.name}`} style={{ fontSize: 11, color: "#856404" }}>
-            <strong>{idx + 1}.</strong> {part.name}
+      <div style={{ marginBottom: 14 }}>
+        <button
+          onClick={() => setShowZoneAnswers((prev) => !prev)}
+          style={{
+            width: "100%",
+            padding: "10px 12px",
+            borderRadius: 10,
+            border: "1px solid #f59e0b",
+            background: "linear-gradient(135deg, #fffbeb, #fef3c7)",
+            color: "#92400e",
+            fontWeight: 700,
+            fontSize: 13,
+            cursor: "pointer",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.06)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"
+          }}
+        >
+          <span>{showZoneAnswers ? "Hide Zone Answers" : "Show Zone Answers"}</span>
+          <span style={{ fontSize: 14 }}>{showZoneAnswers ? "▲" : "▼"}</span>
+        </button>
+
+        <div
+          style={{
+            maxHeight: showZoneAnswers ? "360px" : "0px",
+            overflow: "hidden",
+            transition: "max-height 0.25s ease, opacity 0.2s ease",
+            opacity: showZoneAnswers ? 1 : 0
+          }}
+        >
+          <div
+            style={{
+              marginTop: 10,
+              padding: 12,
+              background: "#fff3cd",
+              borderRadius: 8,
+              border: "1px solid #ffc107"
+            }}
+          >
+            <div style={{ fontWeight: 700, color: "#856404", marginBottom: 8, fontSize: 14 }}>
+              Zone Answer Key:
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
+              {currentSet.parts.map((part, idx) => (
+                <div key={`ref-${part.name}`} style={{ fontSize: 11, color: "#856404" }}>
+                  <strong>{idx + 1}.</strong> {part.name}
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
         </div>
       </div>
     )}
