@@ -1355,6 +1355,135 @@ const cbetQuestions = [
     answer: 0
   }
 ];
+
+const harderCbetQuestions = [
+  {
+    question: "A defibrillator fails an energy output test at 200 J but passes at lower settings. Which issue is MOST likely?",
+    options: ["Weak battery in the ECG module", "High-voltage capacitor or charging circuit problem", "Damaged patient cable only", "Printer paper sensor failure"],
+    answer: 1
+  },
+  {
+    question: "During preventive maintenance, leakage current exceeds limits only when the device polarity is reversed. What should you suspect first?",
+    options: ["Normal operation with no action needed", "Compromised insulation or line filter issue", "Low battery capacity", "Incorrect heart rate alarm settings"],
+    answer: 1
+  },
+  {
+    question: "A monitor intermittently reboots when plugged into wall power but runs normally on battery. The MOST likely source is:",
+    options: ["The display backlight only", "The AC input or power supply section", "The speaker volume setting", "The SpO2 sensor"],
+    answer: 1
+  },
+  {
+    question: "What is the BEST reason to verify a complaint before replacing parts?",
+    options: ["It improves cosmetic appearance", "It reduces unnecessary parts replacement and misdiagnosis", "It avoids documenting the issue", "It lets nursing recalibrate the device"],
+    answer: 1
+  },
+  {
+    question: "A device repeatedly blows its fuse immediately on power-up. After verifying correct fuse type, what is the next BEST step?",
+    options: ["Install a larger fuse", "Inspect for a short in the power input stage", "Bypass the fuse temporarily", "Replace the enclosure label"],
+    answer: 1
+  },
+  {
+    question: "An infusion pump passes flow-rate accuracy but its occlusion alarm does not activate within specification. The device should be:",
+    options: ["Returned to service because flow is accurate", "Tagged out until the alarm function is corrected", "Used only in low-risk areas", "Released if the nurse is informed"],
+    answer: 1
+  },
+  {
+    question: "When a service manual specifies torque values for internal hardware, why should they be followed?",
+    options: ["To reduce cleaning time", "To maintain safety, alignment, and reliable assembly", "Only to improve appearance", "Because torque values affect battery charge time"],
+    answer: 1
+  },
+  {
+    question: "A patient monitor shows noisy ECG only when connected to AC power in one room. Which troubleshooting approach is MOST appropriate?",
+    options: ["Replace the monitor main board immediately", "Compare operation on battery and evaluate power quality/grounding in that room", "Ignore it if alarms still sound", "Replace the ECG electrodes with temperature probes"],
+    answer: 1
+  },
+  {
+    question: "A ventilator returns from outside repair. Before clinical use, the technician should FIRST ensure:",
+    options: ["The unit has a new asset tag", "Incoming inspection, safety checks, and functional verification are complete", "The staff has already used it once", "The battery has been removed"],
+    answer: 1
+  },
+  {
+    question: "Which document is MOST important for demonstrating that a device was safe to return to service after repair?",
+    options: ["A handwritten sticky note", "Completed service documentation with test results", "An email that parts were ordered", "A user complaint log only"],
+    answer: 1
+  },
+  {
+    question: "An ESU fails output power verification across multiple load settings. Which instrument is specifically intended to evaluate this?",
+    options: ["Oscilloscope only", "ESU analyzer", "Infusion device analyzer", "NIBP simulator"],
+    answer: 1
+  },
+  {
+    question: "A medical device has a damaged power cord strain relief. Why is this significant?",
+    options: ["It only affects cosmetic appearance", "It increases risk of conductor damage, shock, and intermittent faults", "It lowers speaker volume", "It changes screen brightness"],
+    answer: 1
+  },
+  {
+    question: "In troubleshooting, a symptom that appears only after the unit warms up for 20 minutes suggests:",
+    options: ["A purely mechanical shipping issue", "A thermal or intermittent electronic fault", "A labeling problem only", "A guaranteed software licensing issue"],
+    answer: 1
+  },
+  {
+    question: "Which action BEST supports root-cause repair instead of repeated temporary fixes?",
+    options: ["Resetting the breaker and sending the device back each time", "Trending failures, reproducing conditions, and verifying the failed stage", "Replacing accessories randomly", "Skipping final test to save time"],
+    answer: 1
+  },
+  {
+    question: "A device alarm volume is functioning, but the visual alarm indicator does not illuminate. The device should be considered:",
+    options: ["Acceptable because one alarm path still works", "Incomplete alarm functionality and not ready for service", "Safe for day shift only", "Ready if documented as a known issue"],
+    answer: 1
+  },
+  {
+    question: "What is the strongest reason to use manufacturer-approved accessories when specified?",
+    options: ["They always cost less", "Compatibility and validated safety/performance", "They eliminate the need for PM", "They remove the need for user training"],
+    answer: 1
+  },
+  {
+    question: "A preventive maintenance interval should primarily be based on:",
+    options: ["The technician's preference", "Manufacturer guidance, device risk, and facility policy", "How often stickers are available", "Whether the unit is stored near nursing"],
+    answer: 1
+  },
+  {
+    question: "A unit intermittently fails self-test, but only after transport between departments. What is the BEST next step?",
+    options: ["Assume user error", "Inspect connectors, mounting, and transport-related intermittents while reproducing movement", "Replace the battery only", "Disable self-test if possible"],
+    answer: 1
+  },
+  {
+    question: "If a device repeatedly returns with the same failure after board replacement, the BEST conclusion is:",
+    options: ["Board replacement always fails", "The underlying cause may be elsewhere and has not been identified", "The user is definitely at fault", "Documentation can be skipped next time"],
+    answer: 1
+  },
+  {
+    question: "Which step is MOST appropriate immediately after completing a repair on a life-support device?",
+    options: ["Return it directly to the unit", "Perform required functional and safety verification before release", "Ask clinical staff to watch it closely", "Clear the service history"],
+    answer: 1
+  },
+  {
+    question: "A battery-operated device shows drastically reduced runtime but otherwise functions. The BEST classification is:",
+    options: ["No issue if AC power is available", "A performance/safety concern that should be corrected before expected battery use", "A cosmetic problem", "A network configuration fault"],
+    answer: 1
+  },
+  {
+    question: "When measuring a low resistance value in a circuit, what common issue can significantly affect accuracy?",
+    options: ["Ambient room color", "Test lead resistance and contact quality", "Battery label orientation", "Ground pin length only"],
+    answer: 1
+  },
+  {
+    question: "A service report says 'unable to duplicate,' but the customer can reproduce the issue easily. What should be improved FIRST?",
+    options: ["Inventory labeling", "Complaint intake details and test conditions used to reproduce the problem", "Screen brightness", "Cleaning agent selection"],
+    answer: 1
+  },
+  {
+    question: "Why is configuration verification important after replacing a main board in a medical device?",
+    options: ["It is only needed for cosmetic repairs", "Incorrect configuration can affect alarms, options, calibration, or clinical behavior", "It prevents the unit from being cleaned", "It only changes the serial number label"],
+    answer: 1
+  },
+  {
+    question: "The BEST reason to quarantine a device with an intermittent safety-related fault is that intermittent problems:",
+    options: ["Are easier for users to work around", "Can recur unpredictably and create unacceptable patient risk", "Always disappear on their own", "Only affect accessories and not the main device"],
+    answer: 1
+  }
+];
+
 const rnQuestions = [
   {
     question: "Which patient should the nurse see first?",
@@ -2624,6 +2753,17 @@ export default function App() {
   const [cbetAnswers, setCbetAnswers] = useState({});
   const [cbetShowResult, setCbetShowResult] = useState(false);
   const [showMissedReview, setShowMissedReview] = useState(false);
+  const [harderCbetUnlocked, setHarderCbetUnlocked] = useState(
+    () => localStorage.getItem("harderCbetUnlocked") === "true"
+  );
+  const [shuffledHarderCbetQuestions, setShuffledHarderCbetQuestions] = useState(() =>
+    shuffleArray(harderCbetQuestions)
+  );
+  const [harderCbetIndex, setHarderCbetIndex] = useState(0);
+  const [harderCbetScore, setHarderCbetScore] = useState(0);
+  const [harderCbetAnswers, setHarderCbetAnswers] = useState({});
+  const [harderCbetShowResult, setHarderCbetShowResult] = useState(false);
+  const [showHarderCbetMissedReview, setShowHarderCbetMissedReview] = useState(false);
 
   // --- RN PRACTICE STATE ---
   const [shuffledRnQuestions, setShuffledRnQuestions] = useState(() =>
@@ -2643,6 +2783,7 @@ export default function App() {
   const [teasShowResult, setTeasShowResult] = useState(false);
   const [showTeasMissedReview, setShowTeasMissedReview] = useState(false);
   const [hoveredHomeCard, setHoveredHomeCard] = useState("");
+  const [hoveredNavTab, setHoveredNavTab] = useState("");
 
   // --- CRES STATE ---
   const [shuffledCresQuestions, setShuffledCresQuestions] = useState(() =>
@@ -2677,6 +2818,20 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const savedHarderCbet = JSON.parse(localStorage.getItem("harderCbetProgress"));
+    if (savedHarderCbet) {
+      setShuffledHarderCbetQuestions(
+        savedHarderCbet.shuffledHarderCbetQuestions || shuffleArray(harderCbetQuestions)
+      );
+      setHarderCbetIndex(savedHarderCbet.harderCbetIndex || 0);
+      setHarderCbetScore(savedHarderCbet.harderCbetScore || 0);
+      setHarderCbetAnswers(savedHarderCbet.harderCbetAnswers || {});
+      setHarderCbetShowResult(savedHarderCbet.harderCbetShowResult || false);
+      setShowHarderCbetMissedReview(savedHarderCbet.showHarderCbetMissedReview || false);
+    }
+  }, []);
+
+  useEffect(() => {
     const savedTeas = JSON.parse(localStorage.getItem("teasProgress"));
     if (savedTeas) {
       setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleArray(teasQuestions));
@@ -2699,6 +2854,18 @@ export default function App() {
       setShowCresMissedReview(savedCres.showCresMissedReview || false);
     }
   }, []);
+
+  useEffect(() => {
+    if (
+      cbetShowResult &&
+      shuffledCbetQuestions.length > 0 &&
+      cbetScore / shuffledCbetQuestions.length >= 0.7 &&
+      !harderCbetUnlocked
+    ) {
+      setHarderCbetUnlocked(true);
+      localStorage.setItem("harderCbetUnlocked", "true");
+    }
+  }, [cbetShowResult, cbetScore, shuffledCbetQuestions.length, harderCbetUnlocked]);
 
   const saveProgress = (key, newScore) => {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
@@ -2859,8 +3026,35 @@ export default function App() {
     setShowMissedReview(false);
   };
 
+  const saveHarderCbetProgress = () => {
+    const progress = {
+      shuffledHarderCbetQuestions,
+      harderCbetIndex,
+      harderCbetScore,
+      harderCbetAnswers,
+      harderCbetShowResult,
+      showHarderCbetMissedReview
+    };
+    localStorage.setItem("harderCbetProgress", JSON.stringify(progress));
+  };
+
+  const restartHarderCbetExam = () => {
+    const reshuffled = shuffleArray(harderCbetQuestions);
+    localStorage.removeItem("harderCbetProgress");
+    setShuffledHarderCbetQuestions(reshuffled);
+    setHarderCbetIndex(0);
+    setHarderCbetScore(0);
+    setHarderCbetAnswers({});
+    setHarderCbetShowResult(false);
+    setShowHarderCbetMissedReview(false);
+  };
+
   const missedQuestions = shuffledCbetQuestions.filter((q, index) => {
     const selected = cbetAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
+  const harderCbetMissedQuestions = shuffledHarderCbetQuestions.filter((q, index) => {
+    const selected = harderCbetAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
   const rnMissedQuestions = shuffledRnQuestions.filter((q, index) => {
@@ -2972,17 +3166,23 @@ export default function App() {
     }
   }, []);
 
-  const navButtonStyle = (isActive) => ({
+  const navButtonStyle = (isActive, isHovered) => ({
     padding: "10px 18px",
     borderRadius: 999,
     border: "none",
     background: isActive
       ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+      : isHovered
+      ? "linear-gradient(135deg, #bfdbfe, #dbeafe)"
       : "linear-gradient(135deg, #dbeafe, #eff6ff)",
     color: isActive ? "white" : "#12355b",
     fontWeight: 700,
     cursor: "pointer",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+    boxShadow: isHovered
+      ? "0 8px 18px rgba(29,111,165,0.18)"
+      : "0 4px 10px rgba(0,0,0,0.08)",
+    transform: isHovered ? "translateY(-2px)" : "translateY(0)",
+    transition: "background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease"
   });
 
   const cbetStatCardStyle = {
@@ -3202,6 +3402,9 @@ export default function App() {
     }
   };
 
+  const cbetPassed =
+    shuffledCbetQuestions.length > 0 && cbetScore / shuffledCbetQuestions.length >= 0.7;
+
   const renderAdSlot = (slotId) => {
     if (!adsenseClient || !slotId) {
       return (
@@ -3320,7 +3523,9 @@ return (
       >
         <button
           onClick={() => setActiveTab("Home")}
-          style={navButtonStyle(activeTab === "Home")}
+          onMouseEnter={() => setHoveredNavTab("Home")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Home", hoveredNavTab === "Home")}
         >
           Home
         </button>
@@ -3331,7 +3536,9 @@ return (
             setMode("organs");
             setSelectedSet(null);
           }}
-          style={navButtonStyle(activeTab === "Anatomy")}
+          onMouseEnter={() => setHoveredNavTab("Anatomy")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Anatomy", hoveredNavTab === "Anatomy")}
         >
           Anatomy
         </button>
@@ -3342,63 +3549,103 @@ return (
             setMode("bones");
             setSelectedSet(null);
           }}
-          style={navButtonStyle(activeTab === "Bones")}
+          onMouseEnter={() => setHoveredNavTab("Bones")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Bones", hoveredNavTab === "Bones")}
         >
           Bones
         </button>
 
         <button
           onClick={() => setActiveTab("Dashboard")}
-          style={navButtonStyle(activeTab === "Dashboard")}
+          onMouseEnter={() => setHoveredNavTab("Dashboard")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Dashboard", hoveredNavTab === "Dashboard")}
         >
          Dashboard
         </button>
 
         <button
           onClick={() => setActiveTab("CBET")}
-          style={navButtonStyle(activeTab === "CBET")}
+          onMouseEnter={() => setHoveredNavTab("CBET")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "CBET", hoveredNavTab === "CBET")}
         >
           CBET Practice
         </button>
 
         <button
+          onClick={() => {
+            if (harderCbetUnlocked) {
+              setActiveTab("HarderCBET");
+            }
+          }}
+          title={
+            harderCbetUnlocked
+              ? "Harder CBET Questions"
+              : "Pass CBET Practice with 70% to unlock"
+          }
+          onMouseEnter={() => setHoveredNavTab("HarderCBET")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={{
+            ...navButtonStyle(activeTab === "HarderCBET", hoveredNavTab === "HarderCBET"),
+            opacity: harderCbetUnlocked ? 1 : 0.65,
+            cursor: harderCbetUnlocked ? "pointer" : "not-allowed"
+          }}
+        >
+          {harderCbetUnlocked ? "CBET Harder Questions" : "CBET Harder Questions (Locked)"}
+        </button>
+
+        <button
           onClick={() => setActiveTab("RN")}
-          style={navButtonStyle(activeTab === "RN")}
+          onMouseEnter={() => setHoveredNavTab("RN")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "RN", hoveredNavTab === "RN")}
         >
           RN Practice
         </button>
 
         <button
           onClick={() => setActiveTab("TEAS")}
-          style={navButtonStyle(activeTab === "TEAS")}
+          onMouseEnter={() => setHoveredNavTab("TEAS")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "TEAS", hoveredNavTab === "TEAS")}
         >
           TEAS Practice
         </button>
 
         <button
           onClick={() => setActiveTab("CRES")}
-          style={navButtonStyle(activeTab === "CRES")}
+          onMouseEnter={() => setHoveredNavTab("CRES")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "CRES", hoveredNavTab === "CRES")}
         >
           CRES Practice
         </button>
 
         <button
           onClick={() => setActiveTab("Contact")}
-          style={navButtonStyle(activeTab === "Contact")}
+          onMouseEnter={() => setHoveredNavTab("Contact")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Contact", hoveredNavTab === "Contact")}
         >
           Contact
         </button>
 
         <button
           onClick={() => setActiveTab("Support")}
-          style={navButtonStyle(activeTab === "Support")}
+          onMouseEnter={() => setHoveredNavTab("Support")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Support", hoveredNavTab === "Support")}
         >
           Support Our Content
         </button>
 
         <button
           onClick={() => setActiveTab("Privacy")}
-          style={navButtonStyle(activeTab === "Privacy")}
+          onMouseEnter={() => setHoveredNavTab("Privacy")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Privacy", hoveredNavTab === "Privacy")}
         >
           Privacy
         </button>
@@ -4050,6 +4297,9 @@ return (
                     Questions are shuffled each restart. Select one answer. The correct
                     answer will highlight after you answer.
                   </p>
+                  <p style={{ color: "#1d6fa5", margin: "8px 0 0 0", fontWeight: 700 }}>
+                    Finish CBET Practice with a score of 70% or higher to unlock CBET Harder Questions.
+                  </p>
                 </div>
 
                 <div
@@ -4231,6 +4481,25 @@ return (
 
                 <div
                   style={{
+                    marginTop: 12,
+                    padding: "12px 14px",
+                    borderRadius: 12,
+                    background: cbetPassed ? "#dcfce7" : "#eff6ff",
+                    border: cbetPassed ? "1px solid #22c55e" : "1px solid #bfdbfe",
+                    color: cbetPassed ? "#166534" : "#1d4ed8",
+                    fontWeight: 700,
+                    maxWidth: 520,
+                    marginLeft: "auto",
+                    marginRight: "auto"
+                  }}
+                >
+                  {cbetPassed
+                    ? "CBET Harder Questions unlocked."
+                    : "Complete CBET Practice and score 70% or higher to unlock CBET Harder Questions."}
+                </div>
+
+                <div
+                  style={{
                     display: "flex",
                     justifyContent: "center",
                     gap: 12,
@@ -4252,6 +4521,23 @@ return (
                   >
                     Review Missed Questions
                   </button>
+
+                  {harderCbetUnlocked && (
+                    <button
+                      onClick={() => setActiveTab("HarderCBET")}
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor: "pointer"
+                      }}
+                    >
+                      Go to CBET Harder Questions
+                    </button>
+                  )}
 
                   <button
                     onClick={restartCbetExam}
@@ -4343,6 +4629,360 @@ return (
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowMissedReview(false)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Back to Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "HarderCBET" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 900,
+              margin: "0 auto"
+            }}
+          >
+            {!harderCbetUnlocked ? (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b", marginBottom: 8 }}>CBET Harder Questions</h2>
+                <p style={{ color: "#4f6275", marginBottom: 16 }}>
+                  To unlock this tab, complete CBET Practice and score at least 70% on the regular question set.
+                </p>
+                <button
+                  onClick={() => setActiveTab("CBET")}
+                  style={{
+                    padding: "12px 24px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                    color: "white",
+                    fontWeight: 700,
+                    cursor: "pointer"
+                  }}
+                >
+                  Go to CBET Practice
+                </button>
+              </div>
+            ) : !harderCbetShowResult && !showHarderCbetMissedReview ? (
+              <>
+                <div style={{ textAlign: "center", marginBottom: 20 }}>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>CBET Harder Questions</h2>
+                  <p style={{ color: "#4f6275", margin: 0 }}>
+                    Advanced CBET-style troubleshooting and safety scenarios. Questions are shuffled
+                    each restart.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <div style={cbetStatCardStyle}>
+                    Question {harderCbetIndex + 1} / {shuffledHarderCbetQuestions.length}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Score: {harderCbetScore}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Advanced Tier
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <button
+                    onClick={saveHarderCbetProgress}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Save Progress
+                  </button>
+
+                  <button
+                    onClick={restartHarderCbetExam}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                    borderRadius: 18,
+                    padding: 24,
+                    border: "1px solid #d8e4f2",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 700,
+                      color: "#12355b",
+                      marginBottom: 18
+                    }}
+                  >
+                    {shuffledHarderCbetQuestions[harderCbetIndex].question}
+                  </div>
+
+                  {shuffledHarderCbetQuestions[harderCbetIndex].options.map((opt, i) => {
+                    const selected = harderCbetAnswers[harderCbetIndex];
+                    const correct = shuffledHarderCbetQuestions[harderCbetIndex].answer;
+                    const isAnswered = selected !== undefined;
+                    const isCorrectOption = i === correct;
+                    const isSelectedWrong =
+                      isAnswered && i === selected && selected !== correct;
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          if (isAnswered) return;
+
+                          setHarderCbetAnswers((prev) => ({
+                            ...prev,
+                            [harderCbetIndex]: i
+                          }));
+
+                          if (i === correct) {
+                            setHarderCbetScore((prev) => prev + 1);
+                            correctSound.currentTime = 0;
+                            correctSound.play();
+                          } else {
+                            wrongSound.currentTime = 0;
+                            wrongSound.play();
+                          }
+                        }}
+                        style={{
+                          width: "100%",
+                          textAlign: "left",
+                          padding: "14px 16px",
+                          marginBottom: 12,
+                          borderRadius: 12,
+                          border:
+                            isCorrectOption && isAnswered
+                              ? "2px solid green"
+                              : isSelectedWrong
+                              ? "2px solid red"
+                              : "1px solid #cbd5e1",
+                          background:
+                            isCorrectOption && isAnswered
+                              ? "#d9f7d9"
+                              : isSelectedWrong
+                              ? "#fee2e2"
+                              : "#f8fafc",
+                          color: "#1e293b",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          cursor: isAnswered ? "default" : "pointer",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                        }}
+                      >
+                        {String.fromCharCode(65 + i)}. {opt}
+                      </button>
+                    );
+                  })}
+
+                  <div style={{ textAlign: "center", marginTop: 20 }}>
+                    <button
+                      onClick={() => {
+                        if (harderCbetAnswers[harderCbetIndex] === undefined) return;
+
+                        if (harderCbetIndex + 1 === shuffledHarderCbetQuestions.length) {
+                          setHarderCbetShowResult(true);
+                        } else {
+                          setHarderCbetIndex((prev) => prev + 1);
+                        }
+                      }}
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor:
+                          harderCbetAnswers[harderCbetIndex] === undefined
+                            ? "not-allowed"
+                            : "pointer",
+                        opacity: harderCbetAnswers[harderCbetIndex] === undefined ? 0.6 : 1,
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      {harderCbetIndex + 1 === shuffledHarderCbetQuestions.length
+                        ? "Finish Practice"
+                        : "Next Question"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b" }}>CBET Harder Questions Complete</h2>
+                <p style={{ fontSize: 20, color: "#1e293b" }}>
+                  Your score: {harderCbetScore} / {shuffledHarderCbetQuestions.length}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginTop: 20
+                  }}
+                >
+                  <button
+                    onClick={() => setShowHarderCbetMissedReview(true)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={restartHarderCbetExam}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showHarderCbetMissedReview && (
+              <div style={{ marginTop: 24 }}>
+                <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                  Missed Questions Review
+                </h2>
+
+                {harderCbetMissedQuestions.length === 0 ? (
+                  <p style={{ textAlign: "center", color: "#1e293b" }}>
+                    You did not miss any questions.
+                  </p>
+                ) : (
+                  harderCbetMissedQuestions.map((q, idx) => {
+                    const originalIndex = shuffledHarderCbetQuestions.findIndex(
+                      (item) => item.question === q.question
+                    );
+                    const selected = harderCbetAnswers[originalIndex];
+
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          background: "#fff",
+                          border: "1px solid #d8e4f2",
+                          borderRadius: 16,
+                          padding: 20,
+                          marginBottom: 16,
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: 700,
+                            color: "#12355b",
+                            marginBottom: 12,
+                            fontSize: 18
+                          }}
+                        >
+                          {q.question}
+                        </div>
+
+                        {q.options.map((opt, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              padding: "10px 12px",
+                              marginBottom: 8,
+                              borderRadius: 10,
+                              background:
+                                i === q.answer
+                                  ? "#d9f7d9"
+                                  : i === selected
+                                  ? "#fee2e2"
+                                  : "#f8fafc",
+                              border:
+                                i === q.answer
+                                  ? "2px solid green"
+                                  : i === selected
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1"
+                            }}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })
+                )}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button
+                    onClick={() => setShowHarderCbetMissedReview(false)}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
