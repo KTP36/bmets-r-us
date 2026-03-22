@@ -2564,7 +2564,8 @@ const terminologyQuestions = [
       width: "100%",
       height: "100%",
       objectFit: "contain",
-      objectPosition: "center"
+      objectPosition: "center",
+      transform: "scale(1.2)"
     },
     parts: [
       { name: "Left Atrium", x: 250, y: 100, description: "Receives oxygen-rich blood from the lungs" },
