@@ -2503,11 +2503,11 @@ const cresQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Left Atrium", x: 250, y: 100 },
-      { name: "Right Atrium", x: 130, y: 100 },
-      { name: "Left Ventricle", x: 260, y: 230 },
-      { name: "Right Ventricle", x: 150, y: 230 },
-      { name: "Aorta", x: 210, y: 40 }
+      { name: "Left Atrium", x: 250, y: 100, description: "Receives oxygen-rich blood from the lungs" },
+      { name: "Right Atrium", x: 130, y: 100, description: "Receives oxygen-poor blood from the body" },
+      { name: "Left Ventricle", x: 260, y: 230, description: "Pumps oxygen-rich blood out to the body via the aorta" },
+      { name: "Right Ventricle", x: 150, y: 230, description: "Pumps oxygen-poor blood to the lungs" },
+      { name: "Aorta", x: 210, y: 40, description: "Main artery that carries oxygenated blood from heart to body" }
     ]
   },
 
@@ -2538,9 +2538,9 @@ const cresQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Frontal Lobe", x: 280, y: 120 },
-      { name: "Parietal Lobe", x: 220, y: 80 },
-      { name: "Occipital Lobe", x: 120, y: 120 }
+      { name: "Frontal Lobe", x: 280, y: 120, description: "Controls decision-making, personality, movement, and speech" },
+      { name: "Parietal Lobe", x: 220, y: 80, description: "Processes sensations like touch, temperature, and pain" },
+      { name: "Occipital Lobe", x: 120, y: 120, description: "Processes visual information and color perception" }
     ]
   },
 
@@ -2571,9 +2571,9 @@ const cresQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Left Lung", x: 140, y: 150 },
-      { name: "Right Lung", x: 260, y: 150 },
-      { name: "Trachea", x: 200, y: 50 }
+      { name: "Left Lung", x: 140, y: 150, description: "Smaller lung with two lobes; exchanges oxygen and CO2" },
+      { name: "Right Lung", x: 260, y: 150, description: "Larger lung with three lobes; exchanges oxygen and CO2" },
+      { name: "Trachea", x: 200, y: 50, description: "Windpipe; carries air from throat to bronchi in lungs" }
     ]
   },
 
@@ -2604,14 +2604,14 @@ const cresQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Right Lobe", x: 450, y: 190 },
-      { name: "Left Lobe", x: 280, y: 210 },
-      { name: "Hepatic Artery", x: 340, y: 310 },
-      { name: "Portal Vein", x: 360, y: 315 },
-      { name: "Bile Duct", x: 380, y: 325 },
-      { name: "Gallbladder", x: 480, y: 380 },
-      { name: "Falciform Ligament", x: 350, y: 140 },
-      { name: "Caudate Lobe", x: 380, y: 280 }
+      { name: "Right Lobe", x: 450, y: 190, description: "Larger lobe; performs most liver functions" },
+      { name: "Left Lobe", x: 280, y: 210, description: "Smaller lobe; works with right lobe for detoxification" },
+      { name: "Hepatic Artery", x: 340, y: 310, description: "Carries oxygen-rich blood to liver from the heart" },
+      { name: "Portal Vein", x: 360, y: 315, description: "Carries nutrient-rich blood from intestines to liver" },
+      { name: "Bile Duct", x: 380, y: 325, description: "Carries bile from liver and gallbladder to intestines" },
+      { name: "Gallbladder", x: 480, y: 380, description: "Stores bile until needed to digest fats" },
+      { name: "Falciform Ligament", x: 350, y: 140, description: "Tissue that attaches liver to abdominal wall" },
+      { name: "Caudate Lobe", x: 380, y: 280, description: "Small lobe on the back; helps with venous drainage" }
     ]
   },
 
@@ -2642,18 +2642,18 @@ const cresQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Cornea", x: 28, y: 355 },
-      { name: "Iris", x: 73, y: 406 },
-      { name: "Lens", x: 121, y: 355 },
-      { name: "Pupil", x: 58, y: 354 },
-      { name: "Aqueous Humor", x: 32, y: 296 },
-      { name: "Vitreous Humor", x: 370, y: 355 },
-      { name: "Retina", x: 548, y: 227 },
-      { name: "Optic Nerve", x: 675, y: 465 },
-      { name: "Sclera", x: 578, y: 165 },
-      { name: "Choroid", x: 556, y: 184 },
-      { name: "Macula", x: 556, y: 505 },
-      { name: "Ciliary Body", x: 108, y: 240 }
+      { name: "Cornea", x: 28, y: 355, description: "Clear front layer that protects the eye and focuses light" },
+      { name: "Iris", x: 73, y: 406, description: "Colored muscle that controls pupil size and light entry" },
+      { name: "Lens", x: 121, y: 355, description: "Clear structure that focuses light precisely on retina" },
+      { name: "Pupil", x: 58, y: 354, description: "Opening in iris that regulates light entering the eye" },
+      { name: "Aqueous Humor", x: 32, y: 296, description: "Clear fluid in front of lens; maintains eye pressure" },
+      { name: "Vitreous Humor", x: 370, y: 355, description: "Clear gel filling most of eye; maintains shape" },
+      { name: "Retina", x: 548, y: 227, description: "Light-sensitive tissue that captures visual images" },
+      { name: "Optic Nerve", x: 675, y: 465, description: "Transmits visual signals from retina to brain" },
+      { name: "Sclera", x: 578, y: 165, description: "White outer layer; provides shape and protection" },
+      { name: "Choroid", x: 556, y: 184, description: "Blood vessel layer that supplies nutrients to retina" },
+      { name: "Macula", x: 556, y: 505, description: "Central area of retina for sharp, detailed vision" },
+      { name: "Ciliary Body", x: 108, y: 240, description: "Produces aqueous fluid and adjusts lens shape" }
     ]
   },
 
@@ -2684,16 +2684,16 @@ const cresQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Auricle (Pinna)", x: 105, y: 290 },
-      { name: "External Auditory Canal", x: 170, y: 295 },
-      { name: "Tympanic Membrane", x: 347, y: 272 },
-      { name: "Malleus", x: 332, y: 222 },
-      { name: "Incus", x: 366, y: 196 },
-      { name: "Stapes", x: 447, y: 272 },
-      { name: "Cochlea", x: 505, y: 296 },
-      { name: "Semicircular Canals", x: 473, y: 124 },
-      { name: "Eustachian Tube", x: 512, y: 412 },
-      { name: "Auditory Nerve", x: 600, y: 195 }
+      { name: "Auricle (Pinna)", x: 105, y: 290, description: "Outer visible part that funnels sound waves into the ear canal" },
+      { name: "External Auditory Canal", x: 170, y: 295, description: "Tube that directs sound waves toward the eardrum" },
+      { name: "Tympanic Membrane", x: 347, y: 272, description: "Eardrum; vibrates in response to sound waves" },
+      { name: "Malleus", x: 332, y: 222, description: "Hammer bone; first of three tiny bones that amplify vibrations" },
+      { name: "Incus", x: 366, y: 196, description: "Anvil bone; transfers vibrations from malleus to stapes" },
+      { name: "Stapes", x: 447, y: 272, description: "Stirrup bone; smallest bone in body; transfers vibrations to inner ear" },
+      { name: "Cochlea", x: 505, y: 296, description: "Spiral-shaped chamber; converts vibrations to electrical nerve signals" },
+      { name: "Semicircular Canals", x: 473, y: 124, description: "Three fluid-filled loops that detect head movement and maintain balance" },
+      { name: "Eustachian Tube", x: 512, y: 412, description: "Connects middle ear to throat; equalizes air pressure" },
+      { name: "Auditory Nerve", x: 600, y: 195, description: "Transmits electrical signals from cochlea to brain for sound interpretation" }
     ]
   },
 
@@ -2724,26 +2724,26 @@ const cresQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Aorta", x: 310, y: 150 },
-      { name: "Ascending Aorta", x: 320, y: 170 },
-      { name: "Aortic Arch", x: 310, y: 190 },
-      { name: "Descending Aorta", x: 310, y: 260 },
-      { name: "Right Carotid", x: 375, y: 190 },
-      { name: "Left Carotid", x: 245, y: 190 },
-      { name: "Right Subclavian", x: 380, y: 245 },
-      { name: "Left Subclavian", x: 240, y: 245 },
-      { name: "Right Axillary", x: 425, y: 305 },
-      { name: "Left Axillary", x: 165, y: 305 },
-      { name: "Right Radial", x: 455, y: 425 },
-      { name: "Left Radial", x: 170, y: 425 },
-      { name: "Celiac Artery", x: 310, y: 360 },
-      { name: "Superior Mesenteric", x: 310, y: 430 },
-      { name: "Right Renal", x: 345, y: 430 },
-      { name: "Left Renal", x: 275, y: 430 },
-      { name: "Right Iliac", x: 345, y: 540 },
-      { name: "Left Iliac", x: 275, y: 540 },
-      { name: "Right Femoral", x: 345, y: 650 },
-      { name: "Left Femoral", x: 275, y: 650 }
+      { name: "Aorta", x: 310, y: 150, description: "Largest artery; main vessel carrying blood from heart" },
+      { name: "Ascending Aorta", x: 320, y: 170, description: "Initial portion rising from left ventricle" },
+      { name: "Aortic Arch", x: 310, y: 190, description: "Curved portion supplying head, neck, and arms" },
+      { name: "Descending Aorta", x: 310, y: 260, description: "Portion descending through chest and abdomen" },
+      { name: "Right Carotid", x: 375, y: 190, description: "Supplies blood to right side of head and brain" },
+      { name: "Left Carotid", x: 245, y: 190, description: "Supplies blood to left side of head and brain" },
+      { name: "Right Subclavian", x: 380, y: 245, description: "Supplies blood to right shoulder and arm" },
+      { name: "Left Subclavian", x: 240, y: 245, description: "Supplies blood to left shoulder and arm" },
+      { name: "Right Axillary", x: 425, y: 305, description: "Continuation of subclavian into right arm" },
+      { name: "Left Axillary", x: 165, y: 305, description: "Continuation of subclavian into left arm" },
+      { name: "Right Radial", x: 455, y: 425, description: "Supplies blood to right forearm and hand" },
+      { name: "Left Radial", x: 170, y: 425, description: "Supplies blood to left forearm and hand" },
+      { name: "Celiac Artery", x: 310, y: 360, description: "Supplies stomach, liver, and spleen" },
+      { name: "Superior Mesenteric", x: 310, y: 430, description: "Supplies small intestine and parts of colon" },
+      { name: "Right Renal", x: 345, y: 430, description: "Supplies blood to right kidney" },
+      { name: "Left Renal", x: 275, y: 430, description: "Supplies blood to left kidney" },
+      { name: "Right Iliac", x: 345, y: 540, description: "Supplies blood to right pelvic region and leg" },
+      { name: "Left Iliac", x: 275, y: 540, description: "Supplies blood to left pelvic region and leg" },
+      { name: "Right Femoral", x: 345, y: 650, description: "Main artery of right leg" },
+      { name: "Left Femoral", x: 275, y: 650, description: "Main artery of left leg" }
     ]
   }
 };
@@ -2768,16 +2768,16 @@ const bones = {
       objectPosition: "center"
     },
     parts: [
-      { name: "Skull", x: 315, y: 108 },
-      { name: "Clavicle", x: 390, y: 220 },
-      { name: "Sternum", x: 315, y: 270 },
-      { name: "Ribs", x: 390, y: 320 },
-      { name: "Humerus", x: 180, y: 255 },
-      { name: "Radius", x: 100, y: 365 },
-      { name: "Ulna", x: 189, y: 430 },
-      { name: "Pelvis", x: 315, y: 395 },
-      { name: "Femur", x: 315, y: 560 },
-      { name: "Tibia", x: 390, y: 735 }
+      { name: "Skull", x: 315, y: 108, description: "Protects brain and supports facial structure" },
+      { name: "Clavicle", x: 390, y: 220, description: "Collarbone; connects shoulder to sternum" },
+      { name: "Sternum", x: 315, y: 270, description: "Breastbone; protects heart and lungs" },
+      { name: "Ribs", x: 390, y: 320, description: "Curved bones protecting organs in chest" },
+      { name: "Humerus", x: 180, y: 255, description: "Upper arm bone; connects shoulder to elbow" },
+      { name: "Radius", x: 100, y: 365, description: "Forearm bone on thumb side; aids arm movement" },
+      { name: "Ulna", x: 189, y: 430, description: "Forearm bone on pinky side; supports elbow" },
+      { name: "Pelvis", x: 315, y: 395, description: "Hip bones; supports and protects abdominal organs" },
+      { name: "Femur", x: 315, y: 560, description: "Thigh bone; longest bone in body" },
+      { name: "Tibia", x: 390, y: 735, description: "Shin bone; supports weight during walking" }
     ]
   },
 
@@ -2801,18 +2801,18 @@ const bones = {
       transform: "translateY(-40px) scale(0.95)"
     },
     parts: [
-      { name: "Distal Phalanges", x: 325, y: 220 },
-      { name: "Middle Phalanges", x: 460, y: 345 },
-      { name: "Proximal Phalanges", x: 330, y: 420 },
-      { name: "Metacarpals", x: 310, y: 545 },
-      { name: "Scaphoid", x: 279, y: 766 },
-      { name: "Lunate", x: 413, y: 745 },
-      { name: "Triquetrum", x: 455, y: 696 },
-      { name: "Pisiform", x: 371, y: 784 },
-      { name: "Trapezium", x: 234, y: 690 },
-      { name: "Trapezoid", x: 164, y: 750 },
-      { name: "Capitate", x: 289, y: 649 },
-      { name: "Hamate", x: 427, y: 670 }
+      { name: "Distal Phalanges", x: 325, y: 220, description: "Fingertip bones; provide dexterity and sensation" },
+      { name: "Middle Phalanges", x: 460, y: 345, description: "Middle finger bones; support gripping" },
+      { name: "Proximal Phalanges", x: 330, y: 420, description: "Base finger bones; connect to metacarpals" },
+      { name: "Metacarpals", x: 310, y: 545, description: "Palm bones; form structure and support" },
+      { name: "Scaphoid", x: 279, y: 766, description: "Wrist carpal; commonly fractured in falls" },
+      { name: "Lunate", x: 413, y: 745, description: "Moon-shaped wrist carpal" },
+      { name: "Triquetrum", x: 455, y: 696, description: "Three-cornered wrist carpal" },
+      { name: "Pisiform", x: 371, y: 784, description: "Pea-shaped wrist carpal" },
+      { name: "Trapezium", x: 234, y: 690, description: "Thumb-side wrist carpal" },
+      { name: "Trapezoid", x: 164, y: 750, description: "Irregular wrist carpal" },
+      { name: "Capitate", x: 289, y: 649, description: "Largest wrist carpal; head-shaped" },
+      { name: "Hamate", x: 427, y: 670, description: "Hook-shaped wrist carpal" }
     ]
   },
 
@@ -2836,17 +2836,17 @@ const bones = {
       transform: "translateY(0px) scale(0.9)"
     },
     parts: [
-      { name: "Distal Phalanges", x: 310, y: 305 },
-      { name: "Middle Phalanges", x: 310, y: 330 },
-      { name: "Proximal Phalanges", x: 318, y: 370 },
-      { name: "Metatarsals", x: 330, y: 480 },
-      { name: "Medial Cuneiform", x: 280, y: 595 },
-      { name: "Intermediate Cuneiform", x: 310, y: 595 },
-      { name: "Lateral Cuneiform", x: 335, y: 595 },
-      { name: "Navicular", x: 295, y: 645 },
-      { name: "Cuboid", x: 385, y: 635 },
-      { name: "Talus", x: 265, y: 735 },
-      { name: "Calcaneus", x: 330, y: 815 }
+      { name: "Distal Phalanges", x: 310, y: 305, description: "Toe tip bones; provide touch sensation" },
+      { name: "Middle Phalanges", x: 310, y: 330, description: "Middle toe bones" },
+      { name: "Proximal Phalanges", x: 318, y: 370, description: "Base toe bones; connect to metatarsals" },
+      { name: "Metatarsals", x: 330, y: 480, description: "Long bones in middle of foot; support weight" },
+      { name: "Medial Cuneiform", x: 280, y: 595, description: "Inner wedge-shaped tarsal bone" },
+      { name: "Intermediate Cuneiform", x: 310, y: 595, description: "Middle wedge-shaped tarsal bone" },
+      { name: "Lateral Cuneiform", x: 335, y: 595, description: "Outer wedge-shaped tarsal bone" },
+      { name: "Navicular", x: 295, y: 645, description: "Boat-shaped tarsal bone; links midfoot to heel" },
+      { name: "Cuboid", x: 385, y: 635, description: "Cube-shaped outer tarsal bone" },
+      { name: "Talus", x: 265, y: 735, description: "Ankle bone; connects foot to leg" },
+      { name: "Calcaneus", x: 330, y: 815, description: "Heel bone; largest foot bone; supports body weight" }
     ]
   }
 };
@@ -2867,6 +2867,7 @@ export default function App() {
   const [feedback, setFeedback] = useState({});
   const [draggingLabel, setDraggingLabel] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
+  const [hoveredPartName, setHoveredPartName] = useState("");
 
   const isSmallScreen = window.innerWidth < 768;
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
@@ -4420,6 +4421,7 @@ return (
   const isDragging = draggingLabel === part.name;
   const isSelected = selectedLabel === part.name;
   const isNumberedZoneSet = usesNumberedZones;
+  const isHovered = hoveredPartName === part.name;
 
   return (
     <div
@@ -4435,6 +4437,8 @@ return (
           setSelectedLabel(isSelected ? "" : part.name);
         }
       }}
+      onMouseEnter={() => setHoveredPartName(part.name)}
+      onMouseLeave={() => setHoveredPartName("")}
       style={{
         padding: "8px 4px",
         border: isSelected ? "2px solid #2563eb" : "1px solid #334155",
@@ -4447,8 +4451,9 @@ return (
         borderRadius: 4,
         fontSize: 13,
         boxSizing: "border-box",
-        boxShadow: isSelected ? "0 0 8px rgba(37, 99, 235, 0.5)" : "none",
-        lineHeight: 1.2
+        boxShadow: isSelected ? "0 0 8px rgba(37, 99, 235, 0.5)" : isHovered ? "0 0 6px rgba(37, 99, 235, 0.3)" : "none",
+        lineHeight: 1.2,
+        transition: "box-shadow 0.2s ease"
       }}
     >
       {isCorrect 
@@ -4458,6 +4463,21 @@ return (
         : isSelected 
         ? `✓ ${part.name}`
         : part.name}
+      {isHovered && part.description && (
+        <div
+          style={{
+            marginTop: "6px",
+            fontSize: "11px",
+            fontStyle: "italic",
+            color: "#475569",
+            paddingTop: "4px",
+            borderTop: "1px solid #cbd5e1",
+            lineHeight: 1.3
+          }}
+        >
+          {part.description}
+        </div>
+      )}
     </div>
   );
 })}
