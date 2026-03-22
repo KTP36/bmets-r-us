@@ -2855,6 +2855,7 @@ export default function App() {
   const [contactStatus, setContactStatus] = useState("idle");
   const [contactError, setContactError] = useState("");
   const contactFormRef = useRef(null);
+  const placementMessageTimeoutRef = useRef(null);
   const cashAppSupportUrl = "https://cash.app/$KevinPugh23";
   const adsenseClient = "ca-pub-4355354977115217";
   const topAdSlot = "";
@@ -2868,6 +2869,7 @@ export default function App() {
   const [draggingLabel, setDraggingLabel] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
   const [hoveredPartName, setHoveredPartName] = useState("");
+  const [placementMessage, setPlacementMessage] = useState({ text: "", tone: "idle" });
 
   const isSmallScreen = window.innerWidth < 768;
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
@@ -2938,9 +2940,29 @@ export default function App() {
   const usesNumberedZones =
     selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear";
 
+  const showPlacementMessage = (text, tone = "wrong") => {
+    if (placementMessageTimeoutRef.current) {
+      clearTimeout(placementMessageTimeoutRef.current);
+    }
+
+    setPlacementMessage({ text, tone });
+    placementMessageTimeoutRef.current = setTimeout(() => {
+      setPlacementMessage({ text: "", tone: "idle" });
+      placementMessageTimeoutRef.current = null;
+    }, 900);
+  };
+
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
     setDashboard(saved);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (placementMessageTimeoutRef.current) {
+        clearTimeout(placementMessageTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -3038,6 +3060,7 @@ export default function App() {
       wrongSound.currentTime = 0;
       wrongSound.play();
       setFeedback((prev) => ({ ...prev, [part.name]: "wrong" }));
+      showPlacementMessage("Wrong, try again.");
 
       setTimeout(() => {
         setFeedback((prev) => ({ ...prev, [part.name]: "" }));
@@ -3048,6 +3071,7 @@ export default function App() {
 
     correctSound.currentTime = 0;
     correctSound.play();
+    setPlacementMessage({ text: "", tone: "idle" });
     setPlaced((prev) => ({ ...prev, [part.name]: "correct" }));
     setFeedback((prev) => ({ ...prev, [part.name]: "correct" }));
 
@@ -3122,6 +3146,7 @@ export default function App() {
       wrongSound.currentTime = 0;
       wrongSound.play();
       setFeedback((prev) => ({ ...prev, [closestPart.name]: "wrong" }));
+      showPlacementMessage("Wrong, try again.");
       setTimeout(() => {
         setFeedback((prev) => ({ ...prev, [closestPart.name]: "" }));
       }, 500);
@@ -3134,6 +3159,8 @@ export default function App() {
     setFeedback({});
     setScore(0);
     setDraggingLabel("");
+    setSelectedLabel("");
+    setPlacementMessage({ text: "", tone: "idle" });
   };
 
   const selectSet = (item) => {
@@ -3142,6 +3169,8 @@ export default function App() {
     setFeedback({});
     setScore(0);
     setDraggingLabel("");
+    setSelectedLabel("");
+    setPlacementMessage({ text: "", tone: "idle" });
   };
 
   const resetCbetExam = () => {
@@ -4303,23 +4332,37 @@ return (
             position: "absolute",
             left: `${(part.x / currentSet.boardWidth) * 100}%`,
             top: `${(part.y / currentSet.boardHeight) * 100}%`,
-            transform: "translate(-50%, -50%)",
+            transform: feedback[part.name] === "wrong"
+              ? "translate(-50%, -50%) scale(1.08)"
+              : "translate(-50%, -50%)",
             width: "24px",
             height: "24px",
-            background: placed[part.name] === "correct" ? "rgba(34, 197, 94, 0.85)" : "rgba(255, 0, 0, 0.7)",
+            background: placed[part.name] === "correct"
+              ? "rgba(34, 197, 94, 0.85)"
+              : feedback[part.name] === "wrong"
+              ? "rgba(185, 28, 28, 0.92)"
+              : "rgba(255, 0, 0, 0.7)",
             color: "white",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: "12px",
+            fontSize: feedback[part.name] === "wrong" ? "14px" : "12px",
             fontWeight: "bold",
-            border: placed[part.name] === "correct" ? "2px solid #166534" : "2px solid white",
+            border: placed[part.name] === "correct"
+              ? "2px solid #166534"
+              : feedback[part.name] === "wrong"
+              ? "2px solid #fecaca"
+              : "2px solid white",
             zIndex: 10,
-            pointerEvents: "none"
+            pointerEvents: "none",
+            boxShadow: feedback[part.name] === "wrong"
+              ? "0 0 0 4px rgba(239, 68, 68, 0.18)"
+              : "none",
+            transition: "transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease"
           }}
         >
-          {idx + 1}
+          {feedback[part.name] === "wrong" ? "X" : idx + 1}
         </div>
       ))}
 
@@ -4433,6 +4476,28 @@ return (
         ? isSmallScreen ? "👆 Tap zones to place labels" : "🖱️ Click zones to place labels"
         : isSmallScreen ? "👆 Tap labels to match zones" : "🖱️ Drag labels to drop zones"}
     </div>
+
+    {placementMessage.text && (
+      <div
+        style={{
+          marginBottom: 14,
+          padding: "10px 12px",
+          borderRadius: 10,
+          border: placementMessage.tone === "wrong" ? "1px solid #fca5a5" : "1px solid #93c5fd",
+          background: placementMessage.tone === "wrong"
+            ? "linear-gradient(135deg, #fff1f2, #ffe4e6)"
+            : "linear-gradient(135deg, #eff6ff, #dbeafe)",
+          color: placementMessage.tone === "wrong" ? "#b91c1c" : "#1d4ed8",
+          fontSize: 13,
+          fontWeight: 700,
+          textAlign: "center",
+          letterSpacing: 0.2,
+          boxShadow: "0 6px 16px rgba(15, 23, 42, 0.08)"
+        }}
+      >
+        {placementMessage.text}
+      </div>
+    )}
 
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
     {currentSet.parts.map((part) => {
