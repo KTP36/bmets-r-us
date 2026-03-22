@@ -2657,6 +2657,46 @@ const cresQuestions = [
     ]
   },
 
+  Ear: {
+    image: "/ear.jpg",
+    boardWidth: 700,
+    boardHeight: 600,
+    functionTitle: "Supports hearing and balance",
+    functionSummary:
+      "The ear collects and transmits sound for hearing and contains structures that help maintain equilibrium and spatial orientation.",
+    studyHighlights: [
+      "Outer ear funnels sound toward the eardrum",
+      "Middle ear bones amplify vibration",
+      "Inner ear structures convert vibration to nerve signals and support balance"
+    ],
+    dropWidth: 90,
+    dropHeight: 34,
+    mobileDropScale: 0.36,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.8,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Auricle (Pinna)", x: 105, y: 290 },
+      { name: "External Auditory Canal", x: 170, y: 295 },
+      { name: "Tympanic Membrane", x: 347, y: 272 },
+      { name: "Malleus", x: 332, y: 222 },
+      { name: "Incus", x: 366, y: 196 },
+      { name: "Stapes", x: 447, y: 272 },
+      { name: "Cochlea", x: 505, y: 296 },
+      { name: "Semicircular Canals", x: 473, y: 124 },
+      { name: "Eustachian Tube", x: 512, y: 412 },
+      { name: "Auditory Nerve", x: 600, y: 195 }
+    ]
+  },
+
   "Arterial System": {
     image: "/arterial-system.jpg",
     boardWidth: 620,
@@ -2895,7 +2935,7 @@ export default function App() {
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
-    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye";
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear";
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
@@ -4360,7 +4400,7 @@ return (
       boxShadow: "0 6px 20px rgba(0,0,0,0.08)"
     }}
   >
-    {/* Debug reference for Hand and Foot */}
+    {/* Debug reference for numbered-zone sets */}
     {usesNumberedZones && (
       <div style={{ marginBottom: 16, padding: 12, background: "#fff3cd", borderRadius: 8, border: "1px solid #ffc107" }}>
         <div style={{ fontWeight: 700, color: "#856404", marginBottom: 8, fontSize: 14 }}>Zone Numbers:</div>
