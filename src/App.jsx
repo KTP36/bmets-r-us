@@ -3540,6 +3540,39 @@ export default function App() {
     }
   };
 
+  const shareQuizResult = async (quizName, scoreValue, totalValue) => {
+    const baseUrl =
+      typeof window !== "undefined" ? window.location.origin : "https://medskillbuilder.com";
+    const shareText = `I scored ${scoreValue}/${totalValue} on ${quizName} at MedSkillBuilder. Try it: ${baseUrl}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${quizName} - MedSkillBuilder`,
+          text: `I scored ${scoreValue}/${totalValue} on ${quizName} at MedSkillBuilder.`,
+          url: baseUrl
+        });
+        return;
+      } catch (error) {
+        if (error?.name === "AbortError") {
+          return;
+        }
+      }
+    }
+
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(shareText);
+        window.alert("Share text copied to clipboard.");
+        return;
+      } catch (error) {
+        // Fall through to prompt when clipboard is unavailable.
+      }
+    }
+
+    window.prompt("Copy and share this:", shareText);
+  };
+
   const cbetPassed =
     shuffledCbetQuestions.length > 0 && cbetScore / shuffledCbetQuestions.length >= 0.7;
 
@@ -4669,6 +4702,27 @@ return (
                     Review Missed Questions
                   </button>
 
+                  <button
+                    onClick={() =>
+                      shareQuizResult(
+                        "CBET Practice",
+                        cbetScore,
+                        shuffledCbetQuestions.length
+                      )
+                    }
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Share Quiz
+                  </button>
+
                   {harderCbetUnlocked && (
                     <button
                       onClick={() => setActiveTab("HarderCBET")}
@@ -5041,6 +5095,27 @@ return (
                   </button>
 
                   <button
+                    onClick={() =>
+                      shareQuizResult(
+                        "CBET Harder Questions",
+                        harderCbetScore,
+                        shuffledHarderCbetQuestions.length
+                      )
+                    }
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Share Quiz
+                  </button>
+
+                  <button
                     onClick={restartHarderCbetExam}
                     style={{
                       padding: "12px 24px",
@@ -5410,6 +5485,27 @@ return (
                   </button>
 
                   <button
+                    onClick={() =>
+                      shareQuizResult(
+                        "Medical Equipment ID",
+                        equipmentScore,
+                        shuffledEquipmentQuestions.length
+                      )
+                    }
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Share Quiz
+                  </button>
+
+                  <button
                     onClick={restartEquipmentQuiz}
                     style={{
                       padding: "12px 24px",
@@ -5721,6 +5817,27 @@ return (
                     }}
                   >
                     Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      shareQuizResult(
+                        "RN Practice",
+                        rnScore,
+                        shuffledRnQuestions.length
+                      )
+                    }
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Share Quiz
                   </button>
 
                   <button
@@ -6068,6 +6185,27 @@ return (
                   </button>
 
                   <button
+                    onClick={() =>
+                      shareQuizResult(
+                        "TEAS Practice",
+                        teasScore,
+                        shuffledTeasQuestions.length
+                      )
+                    }
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Share Quiz
+                  </button>
+
+                  <button
                     onClick={restartTeasExam}
                     style={{
                       padding: "12px 24px",
@@ -6390,6 +6528,27 @@ return (
                     }}
                   >
                     Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      shareQuizResult(
+                        "CRES Practice",
+                        cresScore,
+                        shuffledCresQuestions.length
+                      )
+                    }
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Share Quiz
                   </button>
 
                   <button
