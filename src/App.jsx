@@ -2668,14 +2668,13 @@ const terminologyQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Right Lobe", x: 450, y: 190, description: "Larger lobe; performs most liver functions" },
-      { name: "Left Lobe", x: 280, y: 210, description: "Smaller lobe; works with right lobe for detoxification" },
-      { name: "Hepatic Artery", x: 340, y: 310, description: "Carries oxygen-rich blood to liver from the heart" },
-      { name: "Portal Vein", x: 360, y: 315, description: "Carries nutrient-rich blood from intestines to liver" },
-      { name: "Bile Duct", x: 380, y: 325, description: "Carries bile from liver and gallbladder to intestines" },
+      { name: "Right Lobe", x: 280, y: 210, description: "Larger lobe; performs most liver functions" },
+      { name: "Left Lobe", x: 468, y: 190, description: "Smaller lobe; works with right lobe for detoxification" },
+      { name: "Portal Triad (Hilum)", x: 392, y: 304, description: "Convergence area containing portal vein, hepatic artery, and bile duct" },
+      { name: "Bile Duct", x: 456, y: 352, description: "Main downward duct carrying bile toward the gallbladder and intestine" },
       { name: "Gallbladder", x: 480, y: 380, description: "Stores bile until needed to digest fats" },
       { name: "Falciform Ligament", x: 350, y: 140, description: "Tissue that attaches liver to abdominal wall" },
-      { name: "Caudate Lobe", x: 380, y: 280, description: "Small lobe on the back; helps with venous drainage" }
+      { name: "Inferior Border", x: 430, y: 360, description: "Lower edge of the liver visible on this anterior view" }
     ]
   },
 
@@ -4502,8 +4501,7 @@ return (
       {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isWrong = feedback[part.name] === "wrong";
-  // Larger drop zones on mobile for better visibility and clickability
-  const mobileSizeScale = isSmallScreen ? 0.65 : 1;
+  const zoneDiameter = isSmallScreen ? 28 : 24;
   
   // Hide drop zones for numbered-zone sets.
   if (usesNumberedZones) {
@@ -4530,35 +4528,38 @@ return (
         position: "absolute",
         left: `${(partX / currentSet.boardWidth) * 100}%`,
         top: `${(partY / currentSet.boardHeight) * 100}%`,
-        width: `${((currentSet.dropWidth * mobileSizeScale) / currentSet.boardWidth) * 100}%`,
-        height: `${((currentSet.dropHeight * mobileSizeScale) / currentSet.boardHeight) * 100}%`,
-        transform: "translate(-50%, -50%)",
+        width: `${(zoneDiameter / currentSet.boardWidth) * 100}%`,
+        height: `${(zoneDiameter / currentSet.boardHeight) * 100}%`,
+        transform: isWrong ? "translate(-50%, -50%) scale(1.08)" : "translate(-50%, -50%)",
         border: isCorrect
-          ? "2px solid green"
+          ? "2px solid #166534"
           : isWrong
-          ? "2px solid red"
-          : "2px solid #1d4ed8",
+          ? "2px solid #fecaca"
+          : "2px solid white",
         backgroundColor: isCorrect
-          ? "rgba(144, 238, 144, 0.9)"
+          ? "rgba(34, 197, 94, 0.85)"
           : isWrong
-          ? "rgba(255, 214, 214, 0.92)"
-          : "rgba(219, 234, 254, 0.72)",
+          ? "rgba(185, 28, 28, 0.92)"
+          : "rgba(255, 0, 0, 0.7)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: isSmallScreen ? "8px" : "clamp(9px, 1.4vw, 13px)",
+        fontSize: isWrong ? "14px" : "12px",
         fontWeight: 700,
         textAlign: "center",
-        padding: isSmallScreen ? "2px 4px" : "2px 6px",
-        borderRadius: 6,
-        color: "#475569",
+        borderRadius: "50%",
+        color: "white",
         boxSizing: "border-box",
         overflow: "hidden",
-        lineHeight: 1.1,
-        cursor: "pointer"
+        lineHeight: 1,
+        cursor: "pointer",
+        boxShadow: isWrong
+          ? "0 0 0 4px rgba(239, 68, 68, 0.18)"
+          : "none",
+        transition: "transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease"
       }}
     >
-      {isCorrect ? part.name : "Drop"}
+      {isCorrect ? "✓" : isWrong ? "X" : ""}
     </div>
   );
 })}
