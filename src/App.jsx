@@ -2473,6 +2473,70 @@ const cresQuestions = [
   }
 ];
 
+// --- MEDICAL TERMINOLOGY QUESTIONS ---
+const terminologyQuestions = [
+  { question: "What is the best definition of 'bradykinesia'?", options: ["Rapid involuntary tremor", "Slowness of movement", "Muscle rigidity from spasm", "Loss of balance when standing"], answer: 1 },
+  { question: "What is the best definition of 'anisocoria'?", options: ["Unequal pupil size", "Inflammation of the iris", "Double vision on lateral gaze", "Blurred near vision"], answer: 0 },
+  { question: "What is the best definition of 'dysphagia'?", options: ["Painful swallowing", "Difficulty swallowing", "Excessive salivation", "Reflux of gastric acid"], answer: 1 },
+  { question: "What is the best definition of 'orthopnea'?", options: ["Shortness of breath when lying flat", "Shortness of breath on exertion", "Wheezing at night", "Breathing pause during sleep"], answer: 0 },
+  { question: "What is the best definition of 'hematemesis'?", options: ["Blood in stool", "Vomiting blood", "Coughing blood", "Blood in urine"], answer: 1 },
+  { question: "What is the best definition of 'melena'?", options: ["Bright red rectal bleeding", "Black tarry stool from digested blood", "Fatty foul-smelling stool", "Mucus in stool"], answer: 1 },
+  { question: "What is the best definition of 'hemoptysis'?", options: ["Bleeding from gums", "Vomiting blood", "Coughing up blood", "Nosebleed"], answer: 2 },
+  { question: "What is the best definition of 'paresthesia'?", options: ["Numbness and tingling sensation", "Complete loss of sensation", "Burning chest pain", "Pain in a joint during motion"], answer: 0 },
+  { question: "What is the best definition of 'ascites'?", options: ["Fluid in pleural space", "Generalized tissue edema", "Fluid in pericardial sac", "Fluid accumulation in the peritoneal cavity"], answer: 3 },
+  { question: "What is the best definition of 'cyanosis'?", options: ["Yellow skin discoloration", "Blue discoloration from low oxygenation", "Redness from vasodilation", "Pallor from anemia"], answer: 1 },
+  { question: "What is the best definition of 'aphasia'?", options: ["Difficulty articulating speech", "Loss of language comprehension and/or expression", "Memory loss after trauma", "Inability to swallow solids"], answer: 1 },
+  { question: "What is the best definition of 'ataxia'?", options: ["Involuntary jerking movements", "Lack of coordinated voluntary movement", "Muscle weakness on one side", "Loss of pain sensation"], answer: 1 },
+  { question: "What is the best definition of 'diplopia'?", options: ["Tunnel vision", "Night blindness", "Double vision", "Loss of central vision"], answer: 2 },
+  { question: "What is the best definition of 'petechiae'?", options: ["Large raised welts", "Small pinpoint non-blanching hemorrhages", "Extensive purple bruises", "Erythematous plaques"], answer: 1 },
+  { question: "What is the best definition of 'ecchymosis'?", options: ["A superficial skin scratch", "A pressure ulcer", "A large bruise from subcutaneous bleeding", "A fungal skin lesion"], answer: 2 },
+  { question: "What is the best definition of 'oliguria'?", options: ["Low urine output", "No urine output", "Frequent nighttime urination", "Painful urination"], answer: 0 },
+  { question: "What is the best definition of 'anuria'?", options: ["Excessive urine output", "Urine with pus", "Near absence of urine output", "Urinary urgency"], answer: 2 },
+  { question: "What is the best definition of 'polyuria'?", options: ["Large urine volume", "Blood in urine", "Protein in urine", "Retained urine after voiding"], answer: 0 },
+  { question: "What is the best definition of 'nocturia'?", options: ["Urination only during daytime", "Frequent nighttime urination", "Pain with urination", "Urinary incontinence"], answer: 1 },
+  { question: "What is the best definition of 'hematuria'?", options: ["Cloudy urine", "Blood in urine", "Glucose in urine", "Ketones in urine"], answer: 1 },
+  { question: "What is the best definition of 'pyuria'?", options: ["Pus in urine", "Sugar in urine", "Urinary crystals", "Urinary retention"], answer: 0 },
+  { question: "What is the best definition of 'steatorrhea'?", options: ["Bloody diarrhea", "Fatty stool due to malabsorption", "Mucous stool from IBS", "Constipation from dehydration"], answer: 1 },
+  { question: "What is the best definition of 'tenesmus'?", options: ["Involuntary stool leakage", "Painful defecation", "Rectal urgency with sensation of incomplete evacuation", "Absent bowel sounds"], answer: 2 },
+  { question: "What is the best definition of 'dysuria'?", options: ["Frequent urination", "Painful or difficult urination", "Inability to urinate", "Urinary urgency"], answer: 1 },
+  { question: "What is the best definition of 'pruritus'?", options: ["Skin peeling", "Itching", "Bruising", "Burning neuropathic pain"], answer: 1 },
+  { question: "What is the best definition of 'urticaria'?", options: ["Hives with transient raised wheals", "Deep skin ulcer", "Purulent skin infection", "Scaly fungal rash"], answer: 0 },
+  { question: "What is the best definition of 'tachypnea'?", options: ["Rapid respiratory rate", "Deep slow breathing", "Absent respiratory effort", "Noisy inspiratory breathing"], answer: 0 },
+  { question: "What is the best definition of 'bradypnea'?", options: ["Rapid shallow breathing", "Slow respiratory rate", "Labored breathing when supine", "Intermittent apnea"], answer: 1 },
+  { question: "What is the best definition of 'apnea'?", options: ["Rapid breathing with low tidal volume", "Temporary cessation of breathing", "Difficulty exhaling", "Noisy breathing from upper airway edema"], answer: 1 },
+  { question: "What is the best definition of 'stridor'?", options: ["Low-pitched snoring breath sound", "High-pitched inspiratory sound from upper airway obstruction", "Crackling sound at lung bases", "Pleural friction rub"], answer: 1 },
+  { question: "What is the best definition of 'wheeze'?", options: ["High-pitched musical sound from narrowed lower airways", "Gurgling throat sound", "Percussion dullness", "Bronchial breath sounds"], answer: 0 },
+  { question: "What is the best definition of 'rales (crackles)'?", options: ["Pleural rubbing sounds", "Fine popping sounds from fluid-filled alveoli", "Upper airway snoring noise", "Whistling expiratory sounds"], answer: 1 },
+  { question: "What is the best definition of 'rhonchi'?", options: ["Harsh low-pitched rattling from airway secretions", "Fine bibasilar crackles only", "Inspiratory stridor", "Absence of breath sounds"], answer: 0 },
+  { question: "What is the best definition of 'claudication'?", options: ["Resting chest pain due to CAD", "Leg pain with exertion from arterial insufficiency", "Joint stiffness after inactivity", "Neuropathic foot burning at night"], answer: 1 },
+  { question: "What is the best definition of 'edema'?", options: ["Localized erythema", "Excess fluid accumulation in interstitial tissues", "Subcutaneous hemorrhage", "Skin desquamation"], answer: 1 },
+  { question: "What is the best definition of 'cachexia'?", options: ["Fluid overload with edema", "Severe weight and muscle loss from chronic disease", "Vitamin deficiency anemia", "Obesity from endocrine disorder"], answer: 1 },
+  { question: "What is the best definition of 'kyphosis'?", options: ["Exaggerated lumbar inward curvature", "Lateral spinal curvature", "Exaggerated thoracic posterior curvature", "Rotation of vertebral bodies only"], answer: 2 },
+  { question: "What is the best definition of 'lordosis'?", options: ["Exaggerated lumbar inward curvature", "Thoracic posterior hump", "Lateral spinal deviation", "Flattening of cervical spine"], answer: 0 },
+  { question: "What is the best definition of 'scoliosis'?", options: ["Posterior spinal hump", "Lateral curvature of the spine", "Anterior pelvic tilt", "Degenerative disc narrowing"], answer: 1 },
+  { question: "What is the best definition of 'hemiparesis'?", options: ["Complete paralysis of one side", "Partial weakness of one side", "Weakness of both legs", "Bilateral arm weakness"], answer: 1 },
+  { question: "What is the best definition of 'hemiplegia'?", options: ["Partial weakness of one side", "Complete paralysis of one side", "Paralysis below the waist", "Transient numbness in one arm"], answer: 1 },
+  { question: "What is the best definition of 'syncope'?", options: ["Sudden temporary loss of consciousness", "Brief vertigo with nausea", "Sudden seizure activity", "Transient amnesia"], answer: 0 },
+  { question: "What is the best definition of 'presyncope'?", options: ["Near-faint sensation without complete loss of consciousness", "Brief complete unconsciousness", "Postural tremor", "Transient aphasia"], answer: 0 },
+  { question: "What is the best definition of 'vertigo'?", options: ["Lightheadedness from dehydration", "Illusion of spinning or motion", "Loss of hearing in one ear", "Double vision with headache"], answer: 1 },
+  { question: "What is the best definition of 'nystagmus'?", options: ["Fixed dilated pupil", "Involuntary rhythmic eye movements", "Drooping upper eyelid", "Conjunctival hemorrhage"], answer: 1 },
+  { question: "What is the best definition of 'photophobia'?", options: ["Fear of darkness", "Sensitivity to light", "Night blindness", "Inability to focus near objects"], answer: 1 },
+  { question: "What is the best definition of 'odynophagia'?", options: ["Difficulty swallowing", "Painful swallowing", "Inability to open mouth", "Esophageal reflux"], answer: 1 },
+  { question: "What is the best definition of 'xerostomia'?", options: ["Dry mouth", "Excessive salivation", "Mouth ulceration", "Tongue swelling"], answer: 0 },
+  { question: "What is the best definition of 'dysarthria'?", options: ["Language comprehension deficit", "Impaired speech articulation from motor dysfunction", "Inability to read words", "Stuttering from anxiety"], answer: 1 },
+  { question: "What is the best definition of 'asterixis'?", options: ["Fine resting tremor", "Flapping hand tremor from metabolic encephalopathy", "Intention tremor during movement", "Myoclonic jerks in sleep"], answer: 1 },
+  { question: "What is the best definition of 'jaundice'?", options: ["Pale skin from anemia", "Yellow discoloration from elevated bilirubin", "Blue skin from hypoxemia", "Red skin from flushing"], answer: 1 },
+  { question: "What is the best definition of 'hepatomegaly'?", options: ["Enlarged spleen", "Enlarged liver", "Inflamed pancreas", "Distended gallbladder"], answer: 1 },
+  { question: "What is the best definition of 'splenomegaly'?", options: ["Enlarged kidney", "Enlarged spleen", "Liver enlargement", "Pancreatic enlargement"], answer: 1 },
+  { question: "What is the best definition of 'cardiomegaly'?", options: ["Dilated aorta", "Enlarged heart", "Pericardial inflammation", "Reduced ejection fraction only"], answer: 1 },
+  { question: "What is the best definition of 'thrombocytopenia'?", options: ["Low platelet count", "Low white blood cell count", "Low red blood cell count", "High platelet count"], answer: 0 },
+  { question: "What is the best definition of 'leukocytosis'?", options: ["Low WBC count", "Elevated WBC count", "Abnormal RBC shape", "Elevated hemoglobin"], answer: 1 },
+  { question: "What is the best definition of 'erythema'?", options: ["Bluish skin discoloration", "Yellow skin discoloration", "Redness of the skin from increased blood flow", "Skin thickening from fibrosis"], answer: 2 },
+  { question: "What is the best definition of 'ischemia'?", options: ["Tissue swelling due to fluid overload", "Reduced blood supply causing oxygen deprivation", "Infection of the bloodstream", "Excess blood flow to tissue"], answer: 1 },
+  { question: "What is the best definition of 'infarction'?", options: ["Reversible tissue hypoxia", "Tissue necrosis due to prolonged ischemia", "Inflammation of blood vessels", "Bleeding into tissue"], answer: 1 },
+  { question: "What is the best definition of 'anasarca'?", options: ["Localized ankle edema", "Generalized severe body edema", "Pleural fluid accumulation", "Ascites only"], answer: 1 }
+];
+
 // --- DATA SETS ---
 
  const organs = {
@@ -2934,6 +2998,16 @@ export default function App() {
   const [cresShowResult, setCresShowResult] = useState(false);
   const [showCresMissedReview, setShowCresMissedReview] = useState(false);
 
+  // --- MEDICAL TERMINOLOGY STATE ---
+  const [shuffledTerminologyQuestions, setShuffledTerminologyQuestions] = useState(() =>
+    shuffleArray(terminologyQuestions)
+  );
+  const [terminologyIndex, setTerminologyIndex] = useState(0);
+  const [terminologyScore, setTerminologyScore] = useState(0);
+  const [terminologyAnswers, setTerminologyAnswers] = useState({});
+  const [terminologyShowResult, setTerminologyShowResult] = useState(false);
+  const [showTerminologyMissedReview, setShowTerminologyMissedReview] = useState(false);
+
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
@@ -3025,6 +3099,20 @@ export default function App() {
       setCresAnswers(savedCres.cresAnswers || {});
       setCresShowResult(savedCres.cresShowResult || false);
       setShowCresMissedReview(savedCres.showCresMissedReview || false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedTerminology = JSON.parse(localStorage.getItem("terminologyProgress"));
+    if (savedTerminology) {
+      setShuffledTerminologyQuestions(
+        savedTerminology.shuffledTerminologyQuestions || shuffleArray(terminologyQuestions)
+      );
+      setTerminologyIndex(savedTerminology.terminologyIndex || 0);
+      setTerminologyScore(savedTerminology.terminologyScore || 0);
+      setTerminologyAnswers(savedTerminology.terminologyAnswers || {});
+      setTerminologyShowResult(savedTerminology.terminologyShowResult || false);
+      setShowTerminologyMissedReview(savedTerminology.showTerminologyMissedReview || false);
     }
   }, []);
 
@@ -3248,6 +3336,10 @@ export default function App() {
     const selected = cresAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
+  const terminologyMissedQuestions = shuffledTerminologyQuestions.filter((q, index) => {
+    const selected = terminologyAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
 
   const saveCresProgress = () => {
     const progress = {
@@ -3270,6 +3362,29 @@ export default function App() {
     setCresAnswers({});
     setCresShowResult(false);
     setShowCresMissedReview(false);
+  };
+
+  const saveTerminologyProgress = () => {
+    const progress = {
+      shuffledTerminologyQuestions,
+      terminologyIndex,
+      terminologyScore,
+      terminologyAnswers,
+      terminologyShowResult,
+      showTerminologyMissedReview
+    };
+    localStorage.setItem("terminologyProgress", JSON.stringify(progress));
+  };
+
+  const restartTerminologyQuiz = () => {
+    const reshuffled = shuffleArray(terminologyQuestions);
+    localStorage.removeItem("terminologyProgress");
+    setShuffledTerminologyQuestions(reshuffled);
+    setTerminologyIndex(0);
+    setTerminologyScore(0);
+    setTerminologyAnswers({});
+    setTerminologyShowResult(false);
+    setShowTerminologyMissedReview(false);
   };
 
   const saveRnProgress = () => {
@@ -3836,6 +3951,15 @@ return (
         </button>
 
         <button
+          onClick={() => setActiveTab("Terminology")}
+          onMouseEnter={() => setHoveredNavTab("Terminology")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Terminology", hoveredNavTab === "Terminology")}
+        >
+          Medical Terminology
+        </button>
+
+        <button
           onClick={() => setActiveTab("Equipment")}
           onMouseEnter={() => setHoveredNavTab("Equipment")}
           onMouseLeave={() => setHoveredNavTab("")}
@@ -3901,8 +4025,8 @@ return (
               }}
             >
               Practice identifying organs and bones with interactive
-              label-to-image activities, then build confidence with CBET
-              and RN multiple-choice review.
+              label-to-image activities, then build confidence with CBET,
+              RN, TEAS, and Medical Terminology multiple-choice review.
             </p>
           </div>
 
@@ -4038,6 +4162,26 @@ return (
               <div
                 role="button"
                 tabIndex={0}
+                onMouseEnter={() => setHoveredHomeCard("terminology")}
+                onMouseLeave={() => setHoveredHomeCard("")}
+                onFocus={() => setHoveredHomeCard("terminology")}
+                onBlur={() => setHoveredHomeCard("")}
+                onClick={() => setActiveTab("Terminology")}
+                onKeyDown={(event) =>
+                  handleHomeCardKeyDown(event, () => setActiveTab("Terminology"))
+                }
+                style={getInteractiveHomeCardStyle("terminology")}
+              >
+                <div style={{ fontSize: 42, marginBottom: 8 }}>🧠</div>
+                <h3 style={{ color: "#12355b" }}>Medical Terminology</h3>
+                <p style={{ color: "#4f6275" }}>
+                  Master hard medical terms by matching each word to its correct definition.
+                </p>
+              </div>
+
+              <div
+                role="button"
+                tabIndex={0}
                 onMouseEnter={() => setHoveredHomeCard("dashboard")}
                 onMouseLeave={() => setHoveredHomeCard("")}
                 onFocus={() => setHoveredHomeCard("dashboard")}
@@ -4167,6 +4311,22 @@ return (
                 <div style={{ fontWeight: 700, color: "#12355b" }}>TEAS Practice</div>
                 <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
                   {teasScore} / {shuffledTeasQuestions.length}
+                </div>
+              </div>
+
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                  border: "1px solid #d8e4f2",
+                  borderRadius: 16,
+                  padding: 16,
+                  minWidth: 220,
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                }}
+              >
+                <div style={{ fontWeight: 700, color: "#12355b" }}>Medical Terminology</div>
+                <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
+                  {terminologyScore} / {shuffledTerminologyQuestions.length}
                 </div>
               </div>
             </div>
@@ -6747,6 +6907,354 @@ return (
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowCresMissedReview(false)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Back to Results
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "Terminology" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 900,
+              margin: "0 auto"
+            }}
+          >
+            {!terminologyShowResult && !showTerminologyMissedReview ? (
+              <>
+                <div style={{ textAlign: "center", marginBottom: 20 }}>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Terminology Practice</h2>
+                  <p style={{ color: "#4f6275", margin: 0 }}>
+                    Hard terminology drill. Each question shows a medical term, and you select the
+                    best definition from multiple choices.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <div style={cbetStatCardStyle}>
+                    Question {terminologyIndex + 1} / {shuffledTerminologyQuestions.length}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Score: {terminologyScore}
+                  </div>
+                  <div style={cbetStatCardStyle}>
+                    Difficulty: Hard
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <button
+                    onClick={saveTerminologyProgress}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Save Progress
+                  </button>
+
+                  <button
+                    onClick={restartTerminologyQuiz}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+
+                <div
+                  style={{
+                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                    borderRadius: 18,
+                    padding: 24,
+                    border: "1px solid #d8e4f2",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 700,
+                      color: "#12355b",
+                      marginBottom: 18
+                    }}
+                  >
+                    {shuffledTerminologyQuestions[terminologyIndex].question}
+                  </div>
+
+                  {shuffledTerminologyQuestions[terminologyIndex].options.map((opt, i) => {
+                    const selected = terminologyAnswers[terminologyIndex];
+                    const correct = shuffledTerminologyQuestions[terminologyIndex].answer;
+                    const isAnswered = selected !== undefined;
+                    const isCorrectOption = i === correct;
+                    const isSelectedWrong =
+                      isAnswered && i === selected && selected !== correct;
+
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => {
+                          if (isAnswered) return;
+                          setTerminologyAnswers((prev) => ({ ...prev, [terminologyIndex]: i }));
+                          if (i === correct) {
+                            setTerminologyScore((prev) => prev + 1);
+                            correctSound.currentTime = 0;
+                            correctSound.play();
+                          } else {
+                            wrongSound.currentTime = 0;
+                            wrongSound.play();
+                          }
+                        }}
+                        style={{
+                          width: "100%",
+                          textAlign: "left",
+                          padding: "14px 16px",
+                          marginBottom: 12,
+                          borderRadius: 12,
+                          border:
+                            isCorrectOption && isAnswered
+                              ? "2px solid green"
+                              : isSelectedWrong
+                              ? "2px solid red"
+                              : "1px solid #cbd5e1",
+                          background:
+                            isCorrectOption && isAnswered
+                              ? "#d9f7d9"
+                              : isSelectedWrong
+                              ? "#fee2e2"
+                              : "#f8fafc",
+                          color: "#1e293b",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          cursor: isAnswered ? "default" : "pointer",
+                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                        }}
+                      >
+                        {String.fromCharCode(65 + i)}. {opt}
+                      </button>
+                    );
+                  })}
+
+                  <div style={{ textAlign: "center", marginTop: 20 }}>
+                    <button
+                      onClick={() => {
+                        if (terminologyAnswers[terminologyIndex] === undefined) return;
+                        if (terminologyIndex + 1 === shuffledTerminologyQuestions.length) {
+                          setTerminologyShowResult(true);
+                        } else {
+                          setTerminologyIndex((prev) => prev + 1);
+                        }
+                      }}
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor:
+                          terminologyAnswers[terminologyIndex] === undefined
+                            ? "not-allowed"
+                            : "pointer",
+                        opacity: terminologyAnswers[terminologyIndex] === undefined ? 0.6 : 1,
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      {terminologyIndex + 1 === shuffledTerminologyQuestions.length
+                        ? "Finish Practice"
+                        : "Next Question"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ textAlign: "center" }}>
+                <h2 style={{ color: "#12355b" }}>Medical Terminology Practice Complete</h2>
+                <p style={{ fontSize: 20, color: "#1e293b" }}>
+                  Your score: {terminologyScore} / {shuffledTerminologyQuestions.length}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginTop: 20
+                  }}
+                >
+                  <button
+                    onClick={() => setShowTerminologyMissedReview(true)}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Review Missed Questions
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      shareQuizResult(
+                        "Medical Terminology Practice",
+                        terminologyScore,
+                        shuffledTerminologyQuestions.length
+                      )
+                    }
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Share Quiz
+                  </button>
+
+                  <button
+                    onClick={restartTerminologyQuiz}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: "pointer"
+                    }}
+                  >
+                    Restart Practice
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {showTerminologyMissedReview && (
+              <div style={{ marginTop: 24 }}>
+                <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                  Missed Questions Review
+                </h2>
+
+                {terminologyMissedQuestions.length === 0 ? (
+                  <p style={{ textAlign: "center", color: "#1e293b" }}>
+                    You did not miss any questions.
+                  </p>
+                ) : (
+                  terminologyMissedQuestions.map((q, idx) => {
+                    const originalIndex = shuffledTerminologyQuestions.findIndex(
+                      (item) => item.question === q.question
+                    );
+                    const selected = terminologyAnswers[originalIndex];
+
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          background: "#fff",
+                          border: "1px solid #d8e4f2",
+                          borderRadius: 16,
+                          padding: 20,
+                          marginBottom: 16,
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: 700,
+                            color: "#12355b",
+                            marginBottom: 12,
+                            fontSize: 18
+                          }}
+                        >
+                          {q.question}
+                        </div>
+
+                        {q.options.map((opt, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              padding: "10px 12px",
+                              marginBottom: 8,
+                              borderRadius: 10,
+                              background:
+                                i === q.answer
+                                  ? "#d9f7d9"
+                                  : i === selected
+                                  ? "#fee2e2"
+                                  : "#f8fafc",
+                              border:
+                                i === q.answer
+                                  ? "2px solid green"
+                                  : i === selected
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1"
+                            }}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })
+                )}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button
+                    onClick={() => setShowTerminologyMissedReview(false)}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
