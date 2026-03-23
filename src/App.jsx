@@ -2943,12 +2943,12 @@ const bones = {
       { name: "Clavicle", x: 390, y: 220, description: "Collarbone; connects shoulder to sternum" },
       { name: "Sternum", x: 315, y: 270, description: "Breastbone; protects heart and lungs" },
       { name: "Ribs", x: 390, y: 320, description: "Curved bones protecting organs in chest" },
-      { name: "Humerus", x: 180, y: 255, description: "Upper arm bone; connects shoulder to elbow" },
-      { name: "Radius", x: 100, y: 365, description: "Forearm bone on thumb side; aids arm movement" },
-      { name: "Ulna", x: 189, y: 430, description: "Forearm bone on pinky side; supports elbow" },
+      { name: "Humerus", x: 212, y: 305, description: "Upper arm bone; connects shoulder to elbow" },
+      { name: "Radius", x: 134, y: 400, description: "Forearm bone on thumb side; aids arm movement" },
+      { name: "Ulna", x: 169, y: 400, description: "Forearm bone on pinky side; supports elbow" },
       { name: "Pelvis", x: 315, y: 395, description: "Hip bones; supports and protects abdominal organs" },
       { name: "Femur", x: 315, y: 560, description: "Thigh bone; longest bone in body" },
-      { name: "Tibia", x: 390, y: 735, description: "Shin bone; supports weight during walking" }
+      { name: "Tibia", x: 355, y: 695, description: "Shin bone; supports weight during walking" }
     ]
   },
 
