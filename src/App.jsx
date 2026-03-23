@@ -2744,6 +2744,51 @@ const wordPartQuestions = [
     ]
   },
 
+  Kidneys: {
+    image: "/kidney.jpg",
+    boardWidth: 620,
+    boardHeight: 950,
+    functionTitle: "Filter blood and regulate fluid-electrolyte balance",
+    functionSummary:
+      "The kidneys remove metabolic waste, regulate fluid and electrolytes, maintain acid-base balance, and support blood pressure and red blood cell production.",
+    studyHighlights: [
+      "Filters blood to form urine and remove waste",
+      "Regulates sodium, potassium, and water balance",
+      "Supports blood pressure and endocrine signaling"
+    ],
+    dropWidth: 88,
+    dropHeight: 34,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.95,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Renal Pelvis", x: 330, y: 445, description: "Central funnel-shaped collecting region where urine enters the ureter" },
+      { name: "Major Calyx (Superior)", x: 290, y: 290, description: "Large collecting branch that drains multiple minor calyces" },
+      { name: "Major Calyx (Middle)", x: 390, y: 440, description: "Large collecting branch connecting minor calyces to the renal pelvis" },
+      { name: "Major Calyx (Inferior)", x: 328, y: 650, description: "Large inferior collecting branch leading toward the renal pelvis" },
+      { name: "Minor Calyx (Upper Left)", x: 248, y: 690, description: "Small cup-like structure collecting urine from a papilla" },
+      { name: "Minor Calyx (Upper Right)", x: 358, y: 404, description: "Small cup-like structure collecting urine from a papilla" },
+      { name: "Minor Calyx (Lower Left)", x: 244, y: 520, description: "Small cup-like structure draining a lower pyramid tip" },
+      { name: "Minor Calyx (Lower Right)", x: 372, y: 524, description: "Small cup-like structure draining a lower pyramid tip" },
+      { name: "Renal Pyramid (Upper Left)", x: 556, y: 438, description: "Triangular medullary structure that channels urine toward papillae" },
+      { name: "Renal Pyramid (Upper Right)", x: 492, y: 438, description: "Triangular medullary structure that channels urine toward papillae" },
+      { name: "Renal Pyramid (Lower Left)", x: 155, y: 665, description: "Lower triangular medullary region that contributes to urine concentration" },
+      { name: "Renal Pyramid (Lower Right)", x: 396, y: 560, description: "Lower triangular medullary region that contributes to urine concentration" },
+      { name: "Renal Artery (Red)", x: 85, y: 255, description: "Thick red vessel delivering oxygenated blood into the kidney" },
+      { name: "Renal Vein (Blue)", x: 75, y: 310, description: "Thick blue vessel draining filtered blood out of the kidney" },
+      { name: "Ureter", x: 34, y: 620, description: "Tube carrying urine downward from the renal pelvis to the bladder" }
+    ]
+  },
+
   Eye: {
     image: "/eye.jpg",
     boardWidth: 750,
@@ -3155,7 +3200,7 @@ export default function App() {
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
-    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear";
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys";
 
   const showPlacementMessage = (text, tone = "wrong") => {
     if (placementMessageTimeoutRef.current) {
@@ -8342,7 +8387,9 @@ return (
                 <p style={{ margin: 0 }}>
                   Donations are voluntary and are not required to use MedSkillBuilder. Donations are
                   non-refundable and do not purchase medical advice, certification, or guaranteed exam
-                  outcomes. MedSkillBuilder is an educational resource only.
+                  outcomes. MedSkillBuilder is an educational resource only. MedSkillBuilder is an
+                  independent platform and is not affiliated with or endorsed by AAMI, ATI, Cash App,
+                  Google, or any certification provider.
                 </p>
               </div>
             </div>
@@ -8409,6 +8456,14 @@ return (
               MedSkillBuilder may display advertisements to support the site. Ads may be personalized
               or non-personalized depending on consent choices, browser settings, location, and Google
               advertising policies.
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>Non-Affiliation and Trademarks</h3>
+            <p>
+              MedSkillBuilder is an independent educational platform. References to third-party
+              products, organizations, certifications, and trademarks (including CBET, TEAS, AAMI,
+              ATI, Cash App, and Google) are used for descriptive educational purposes only and do not
+              imply endorsement, sponsorship, or affiliation.
             </p>
 
             <h3 style={{ color: "#12355b" }}>Updates to This Policy</h3>
