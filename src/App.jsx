@@ -3849,20 +3849,11 @@ return (
     src={logo}
     alt="MedSkillBuilder Logo"
     style={{
-      width: "min(140px, 28vw)",
+      width: "min(200px, 42vw)",
       height: "auto",
       filter: "drop-shadow(0 0 6px rgba(88, 180, 216, 0.55)) drop-shadow(0 0 16px rgba(29, 111, 165, 0.35))"
     }}
   />
-  <h1
-    style={{
-      margin: 0,
-      color: "#12355b",
-      fontSize: "clamp(28px, 4vw, 40px)"
-    }}
-  >
-    MedSkillBuilder
-  </h1>
 </div>
 
     <div
@@ -3884,7 +3875,7 @@ return (
         }}
       >
         <h1 style={{ margin: 0, fontSize: 42, letterSpacing: 1 }}>
-          BMETS-R-US
+          MedSkillBuilder
         </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
           Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, and Medical Terminology
