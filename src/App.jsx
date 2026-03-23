@@ -3027,7 +3027,15 @@ export default function App() {
   const [contactError, setContactError] = useState("");
   const contactFormRef = useRef(null);
   const placementMessageTimeoutRef = useRef(null);
-  const cashAppSupportUrl = "https://cash.app/$KevinPugh23";
+  const cashAppSupportUrl = import.meta.env.VITE_CASH_APP_URL || "https://cash.app/$KevinPugh23";
+  const cashAppQrImage = import.meta.env.VITE_CASH_APP_QR_IMAGE || "";
+  const supportQrImage =
+    cashAppQrImage ||
+    (cashAppSupportUrl
+      ? `https://api.qrserver.com/v1/create-qr-code/?size=420x420&data=${encodeURIComponent(
+          cashAppSupportUrl
+        )}`
+      : "");
   const adsenseClient = "ca-pub-4355354977115217";
   const topAdSlot = "";
   const bottomAdSlot = "";
@@ -8038,26 +8046,42 @@ return (
                   textAlign: "center"
                 }}
               >
-                <a
-                  href={cashAppSupportUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-block",
-                    padding: "12px 24px",
-                    borderRadius: 999,
-                    border: "none",
-                    background: "linear-gradient(135deg, #16a34a, #22c55e)",
-                    color: "white",
-                    fontWeight: 700,
-                    textDecoration: "none",
-                    boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                  }}
-                >
-                  Support via Cash App
-                </a>
+                {supportQrImage && (
+                  <img
+                    src={supportQrImage}
+                    alt="Cash App QR code"
+                    style={{
+                      width: "100%",
+                      maxWidth: 280,
+                      borderRadius: 12,
+                      border: "1px solid #d8e4f2",
+                      display: "block",
+                      margin: "0 auto 12px auto"
+                    }}
+                  />
+                )}
+                {cashAppSupportUrl && (
+                  <a
+                    href={cashAppSupportUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-block",
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                      color: "white",
+                      fontWeight: 700,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Support via Cash App
+                  </a>
+                )}
                 <div style={{ marginTop: 10, fontSize: 13, color: "#64748b" }}>
-                  Update the link in app code to your real cashtag if needed.
+                  Scan the QR code or use the support link when configured.
                 </div>
               </div>
 
