@@ -2537,6 +2537,59 @@ const terminologyQuestions = [
   { question: "What is the best definition of 'anasarca'?", options: ["Localized ankle edema", "Generalized severe body edema", "Pleural fluid accumulation", "Ascites only"], answer: 1 }
 ];
 
+const wordPartQuestions = [
+  { question: "What does the prefix 'brady-' mean?", options: ["Fast", "Slow", "Around", "Below"], answer: 1 },
+  { question: "What does the prefix 'tachy-' mean?", options: ["Slow", "Deep", "Fast", "Pain"], answer: 2 },
+  { question: "What does the prefix 'hyper-' mean?", options: ["Excessive or above normal", "Below normal", "Against", "Within"], answer: 0 },
+  { question: "What does the prefix 'hypo-' mean?", options: ["After", "Below normal", "Large", "Over"], answer: 1 },
+  { question: "What does the prefix 'peri-' mean?", options: ["Inside", "Before", "Around", "After"], answer: 2 },
+  { question: "What does the prefix 'endo-' mean?", options: ["Outer", "Within or inner", "Around", "New"], answer: 1 },
+  { question: "What does the prefix 'epi-' mean?", options: ["On, upon, or upper", "Below", "Away from", "Through"], answer: 0 },
+  { question: "What does the prefix 'trans-' mean?", options: ["Across or through", "Near", "Below", "One"], answer: 0 },
+  { question: "What does the prefix 'sub-' mean?", options: ["Above", "Below or under", "Double", "Against"], answer: 1 },
+  { question: "What does the prefix 'supra-' mean?", options: ["Below", "Outside", "Above", "Partial"], answer: 2 },
+  { question: "What does the prefix 'inter-' mean?", options: ["Within", "Between", "After", "Without"], answer: 1 },
+  { question: "What does the prefix 'intra-' mean?", options: ["Within", "Around", "Before", "Across"], answer: 0 },
+  { question: "What does the prefix 'uni-' mean?", options: ["Two", "Many", "One", "Half"], answer: 2 },
+  { question: "What does the prefix 'bi-' mean?", options: ["One", "Two", "Three", "Half"], answer: 1 },
+  { question: "What does the prefix 'tri-' mean?", options: ["Three", "Two", "Ten", "One"], answer: 0 },
+  { question: "What does the prefix 'poly-' mean?", options: ["Few", "Single", "Many", "Less"], answer: 2 },
+  { question: "What does the prefix 'oligo-' mean?", options: ["Few or scant", "Many", "Large", "Rapid"], answer: 0 },
+  { question: "What does the prefix 'hemi-' mean?", options: ["Whole", "Half", "Double", "Small"], answer: 1 },
+  { question: "What does the prefix 'a-' or 'an-' usually indicate?", options: ["With", "Without or lacking", "Excess", "Around"], answer: 1 },
+  { question: "What does the prefix 'dys-' mean?", options: ["Normal", "Difficult, painful, or abnormal", "Slow", "Complete"], answer: 1 },
+  { question: "What does the suffix '-itis' mean?", options: ["Surgical removal", "Inflammation", "Tumor", "Incision"], answer: 1 },
+  { question: "What does the suffix '-algia' mean?", options: ["Pain", "Swelling", "Numbness", "Paralysis"], answer: 0 },
+  { question: "What does the suffix '-megaly' mean?", options: ["Softening", "Condition", "Enlargement", "Repair"], answer: 2 },
+  { question: "What does the suffix '-oma' commonly mean?", options: ["Tumor or mass", "Study of", "Disease of blood", "Suture"], answer: 0 },
+  { question: "What does the suffix '-osis' most often indicate?", options: ["Surgical fixation", "Abnormal condition", "Pain", "Incision"], answer: 1 },
+  { question: "What does the suffix '-emia' refer to?", options: ["Urine condition", "Blood condition", "Bone condition", "Skin condition"], answer: 1 },
+  { question: "What does the suffix '-uria' refer to?", options: ["Breathing", "Blood", "Urine condition", "Stomach condition"], answer: 2 },
+  { question: "What does the suffix '-cyte' mean?", options: ["Cell", "Tissue", "Organ", "Fluid"], answer: 0 },
+  { question: "What does the suffix '-penia' mean?", options: ["Increase", "Deficiency or decrease", "Inflammation", "Measurement"], answer: 1 },
+  { question: "What does the suffix '-ectomy' mean?", options: ["Surgical repair", "Surgical removal", "Visual examination", "Incision"], answer: 1 },
+  { question: "What does the suffix '-otomy' mean?", options: ["Incision into", "Removal", "Crushing", "Suturing"], answer: 0 },
+  { question: "What does the suffix '-ostomy' mean?", options: ["Surgical opening creation", "Surgical closure", "Endoscopic exam", "Biopsy"], answer: 0 },
+  { question: "What does the suffix '-plasty' mean?", options: ["Surgical repair or reconstruction", "Inflammation", "Condition", "Pain"], answer: 0 },
+  { question: "What does the suffix '-scopy' mean?", options: ["Incision", "Visual examination", "Removal", "Puncture"], answer: 1 },
+  { question: "What does the suffix '-gram' mean?", options: ["Instrument", "Record or picture", "Process of recording", "Specialist"], answer: 1 },
+  { question: "What does the suffix '-graphy' mean?", options: ["Process of recording", "Written record", "Incision", "Suture"], answer: 0 },
+  { question: "What does the suffix '-graph' mean?", options: ["A written record", "Instrument for recording", "Abnormal condition", "Cell"], answer: 1 },
+  { question: "What does the suffix '-logy' mean?", options: ["Disease", "Study of", "Pain", "Tissue"], answer: 1 },
+  { question: "What does the suffix '-logist' mean?", options: ["Instrument", "Specialist in the study of", "Record", "Incision"], answer: 1 },
+  { question: "What does the suffix '-pathy' mean?", options: ["Disease", "Surgical repair", "Measurement", "Shape"], answer: 0 },
+  { question: "What does the suffix '-plegia' mean?", options: ["Weakness", "Paralysis", "Pain", "Inflammation"], answer: 1 },
+  { question: "What does the suffix '-paresis' mean?", options: ["Complete paralysis", "Partial weakness", "Severe pain", "Numbness"], answer: 1 },
+  { question: "What does the suffix '-rrhea' mean?", options: ["Flow or discharge", "Pain", "Swelling", "Hardening"], answer: 0 },
+  { question: "What does the suffix '-rrhage' mean?", options: ["Surgical repair", "Bursting forth or heavy bleeding", "Condition of blood", "Slow movement"], answer: 1 },
+  { question: "What does the suffix '-rrhagia' mean?", options: ["Excessive bleeding", "Slow process", "Incision", "Absence"], answer: 0 },
+  { question: "What does the suffix '-sclerosis' mean?", options: ["Hardening", "Softening", "Inflammation", "Tumor"], answer: 0 },
+  { question: "What does the suffix '-malacia' mean?", options: ["Hardening", "Softening", "Enlargement", "Fixation"], answer: 1 },
+  { question: "What does the suffix '-stasis' mean?", options: ["Stopping or controlling", "Flowing", "Removal", "Inflammation"], answer: 0 },
+  { question: "What does the suffix '-trophy' mean?", options: ["Nourishment or development", "Pain", "Record", "Incision"], answer: 0 },
+  { question: "What does the suffix '-ptosis' mean?", options: ["Drooping or prolapse", "Swelling", "Repair", "Rapid movement"], answer: 0 }
+];
+
 // --- DATA SETS ---
 
  const organs = {
@@ -3057,11 +3110,20 @@ export default function App() {
   const [shuffledTerminologyQuestions, setShuffledTerminologyQuestions] = useState(() =>
     shuffleArray(terminologyQuestions)
   );
+  const [terminologySubTab, setTerminologySubTab] = useState("terms");
   const [terminologyIndex, setTerminologyIndex] = useState(0);
   const [terminologyScore, setTerminologyScore] = useState(0);
   const [terminologyAnswers, setTerminologyAnswers] = useState({});
   const [terminologyShowResult, setTerminologyShowResult] = useState(false);
   const [showTerminologyMissedReview, setShowTerminologyMissedReview] = useState(false);
+  const [shuffledWordPartQuestions, setShuffledWordPartQuestions] = useState(() =>
+    shuffleArray(wordPartQuestions)
+  );
+  const [wordPartIndex, setWordPartIndex] = useState(0);
+  const [wordPartScore, setWordPartScore] = useState(0);
+  const [wordPartAnswers, setWordPartAnswers] = useState({});
+  const [wordPartShowResult, setWordPartShowResult] = useState(false);
+  const [showWordPartMissedReview, setShowWordPartMissedReview] = useState(false);
 
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
@@ -3168,6 +3230,20 @@ export default function App() {
       setTerminologyAnswers(savedTerminology.terminologyAnswers || {});
       setTerminologyShowResult(savedTerminology.terminologyShowResult || false);
       setShowTerminologyMissedReview(savedTerminology.showTerminologyMissedReview || false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const savedWordParts = JSON.parse(localStorage.getItem("wordPartProgress"));
+    if (savedWordParts) {
+      setShuffledWordPartQuestions(
+        savedWordParts.shuffledWordPartQuestions || shuffleArray(wordPartQuestions)
+      );
+      setWordPartIndex(savedWordParts.wordPartIndex || 0);
+      setWordPartScore(savedWordParts.wordPartScore || 0);
+      setWordPartAnswers(savedWordParts.wordPartAnswers || {});
+      setWordPartShowResult(savedWordParts.wordPartShowResult || false);
+      setShowWordPartMissedReview(savedWordParts.showWordPartMissedReview || false);
     }
   }, []);
 
@@ -3397,6 +3473,10 @@ export default function App() {
     const selected = terminologyAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
+  const wordPartMissedQuestions = shuffledWordPartQuestions.filter((q, index) => {
+    const selected = wordPartAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
 
   const saveCresProgress = () => {
     const progress = {
@@ -3442,6 +3522,29 @@ export default function App() {
     setTerminologyAnswers({});
     setTerminologyShowResult(false);
     setShowTerminologyMissedReview(false);
+  };
+
+  const saveWordPartProgress = () => {
+    const progress = {
+      shuffledWordPartQuestions,
+      wordPartIndex,
+      wordPartScore,
+      wordPartAnswers,
+      wordPartShowResult,
+      showWordPartMissedReview
+    };
+    localStorage.setItem("wordPartProgress", JSON.stringify(progress));
+  };
+
+  const restartWordPartQuiz = () => {
+    const reshuffled = shuffleArray(wordPartQuestions);
+    localStorage.removeItem("wordPartProgress");
+    setShuffledWordPartQuestions(reshuffled);
+    setWordPartIndex(0);
+    setWordPartScore(0);
+    setWordPartAnswers({});
+    setWordPartShowResult(false);
+    setShowWordPartMissedReview(false);
   };
 
   const saveRnProgress = () => {
@@ -7028,339 +7131,724 @@ return (
               margin: "0 auto"
             }}
           >
-            {!terminologyShowResult && !showTerminologyMissedReview ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 10,
+                marginBottom: 20,
+                flexWrap: "wrap"
+              }}
+            >
+              <button
+                onClick={() => setTerminologySubTab("terms")}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: 999,
+                  border: "none",
+                  background:
+                    terminologySubTab === "terms"
+                      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                      : "#e2e8f0",
+                  color: terminologySubTab === "terms" ? "white" : "#12355b",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Terms
+              </button>
+              <button
+                onClick={() => setTerminologySubTab("wordParts")}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: 999,
+                  border: "none",
+                  background:
+                    terminologySubTab === "wordParts"
+                      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                      : "#e2e8f0",
+                  color: terminologySubTab === "wordParts" ? "white" : "#12355b",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Prefixes and Suffixes
+              </button>
+            </div>
+
+            {terminologySubTab === "terms" ? (
               <>
-                <div style={{ textAlign: "center", marginBottom: 20 }}>
-                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Terminology Practice</h2>
-                  <p style={{ color: "#4f6275", margin: 0 }}>
-                    Hard terminology drill. Each question shows a medical term, and you select the
-                    best definition from multiple choices.
-                  </p>
-                </div>
+                {!terminologyShowResult && !showTerminologyMissedReview ? (
+                  <>
+                    <div style={{ textAlign: "center", marginBottom: 20 }}>
+                      <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Terminology Practice</h2>
+                      <p style={{ color: "#4f6275", margin: 0 }}>
+                        Hard terminology drill. Each question shows a medical term, and you select the
+                        best definition from multiple choices.
+                      </p>
+                    </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: 10,
-                    flexWrap: "wrap",
-                    marginBottom: 20
-                  }}
-                >
-                  <div style={cbetStatCardStyle}>
-                    Question {terminologyIndex + 1} / {shuffledTerminologyQuestions.length}
-                  </div>
-                  <div style={cbetStatCardStyle}>
-                    Score: {terminologyScore}
-                  </div>
-                  <div style={cbetStatCardStyle}>
-                    Difficulty: Hard
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginBottom: 20
-                  }}
-                >
-                  <button
-                    onClick={saveTerminologyProgress}
-                    style={{
-                      padding: "10px 18px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Save Progress
-                  </button>
-
-                  <button
-                    onClick={restartTerminologyQuiz}
-                    style={{
-                      padding: "10px 18px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Restart Practice
-                  </button>
-                </div>
-
-                <div
-                  style={{
-                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                    borderRadius: 18,
-                    padding: 24,
-                    border: "1px solid #d8e4f2",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: 24,
-                      fontWeight: 700,
-                      color: "#12355b",
-                      marginBottom: 18
-                    }}
-                  >
-                    {shuffledTerminologyQuestions[terminologyIndex].question}
-                  </div>
-
-                  {shuffledTerminologyQuestions[terminologyIndex].options.map((opt, i) => {
-                    const selected = terminologyAnswers[terminologyIndex];
-                    const correct = shuffledTerminologyQuestions[terminologyIndex].answer;
-                    const isAnswered = selected !== undefined;
-                    const isCorrectOption = i === correct;
-                    const isSelectedWrong =
-                      isAnswered && i === selected && selected !== correct;
-
-                    return (
-                      <button
-                        key={i}
-                        onClick={() => {
-                          if (isAnswered) return;
-                          setTerminologyAnswers((prev) => ({ ...prev, [terminologyIndex]: i }));
-                          if (i === correct) {
-                            setTerminologyScore((prev) => prev + 1);
-                            correctSound.currentTime = 0;
-                            correctSound.play();
-                          } else {
-                            wrongSound.currentTime = 0;
-                            wrongSound.play();
-                          }
-                        }}
-                        style={{
-                          width: "100%",
-                          textAlign: "left",
-                          padding: "14px 16px",
-                          marginBottom: 12,
-                          borderRadius: 12,
-                          border:
-                            isCorrectOption && isAnswered
-                              ? "2px solid green"
-                              : isSelectedWrong
-                              ? "2px solid red"
-                              : "1px solid #cbd5e1",
-                          background:
-                            isCorrectOption && isAnswered
-                              ? "#d9f7d9"
-                              : isSelectedWrong
-                              ? "#fee2e2"
-                              : "#f8fafc",
-                          color: "#1e293b",
-                          fontSize: 16,
-                          fontWeight: 600,
-                          cursor: isAnswered ? "default" : "pointer",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
-                        }}
-                      >
-                        {String.fromCharCode(65 + i)}. {opt}
-                      </button>
-                    );
-                  })}
-
-                  <div style={{ textAlign: "center", marginTop: 20 }}>
-                    <button
-                      onClick={() => {
-                        if (terminologyAnswers[terminologyIndex] === undefined) return;
-                        if (terminologyIndex + 1 === shuffledTerminologyQuestions.length) {
-                          setTerminologyShowResult(true);
-                        } else {
-                          setTerminologyIndex((prev) => prev + 1);
-                        }
-                      }}
+                    <div
                       style={{
-                        padding: "12px 24px",
-                        borderRadius: 999,
-                        border: "none",
-                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                        color: "white",
-                        fontWeight: 700,
-                        cursor:
-                          terminologyAnswers[terminologyIndex] === undefined
-                            ? "not-allowed"
-                            : "pointer",
-                        opacity: terminologyAnswers[terminologyIndex] === undefined ? 0.6 : 1,
-                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                        display: "flex",
+                        justifyContent: "space-between",
+                        gap: 10,
+                        flexWrap: "wrap",
+                        marginBottom: 20
                       }}
                     >
-                      {terminologyIndex + 1 === shuffledTerminologyQuestions.length
-                        ? "Finish Practice"
-                        : "Next Question"}
-                    </button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b" }}>Medical Terminology Practice Complete</h2>
-                <p style={{ fontSize: 20, color: "#1e293b" }}>
-                  Your score: {terminologyScore} / {shuffledTerminologyQuestions.length}
-                </p>
+                      <div style={cbetStatCardStyle}>
+                        Question {terminologyIndex + 1} / {shuffledTerminologyQuestions.length}
+                      </div>
+                      <div style={cbetStatCardStyle}>
+                        Score: {terminologyScore}
+                      </div>
+                      <div style={cbetStatCardStyle}>
+                        Difficulty: Hard
+                      </div>
+                    </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginTop: 20
-                  }}
-                >
-                  <button
-                    onClick={() => setShowTerminologyMissedReview(true)}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Review Missed Questions
-                  </button>
-
-                  <button
-                    onClick={() =>
-                      shareQuizResult(
-                        "Medical Terminology Practice",
-                        terminologyScore,
-                        shuffledTerminologyQuestions.length
-                      )
-                    }
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Share Quiz
-                  </button>
-
-                  <button
-                    onClick={restartTerminologyQuiz}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Restart Practice
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {showTerminologyMissedReview && (
-              <div style={{ marginTop: 24 }}>
-                <h2 style={{ color: "#12355b", textAlign: "center" }}>
-                  Missed Questions Review
-                </h2>
-
-                {terminologyMissedQuestions.length === 0 ? (
-                  <p style={{ textAlign: "center", color: "#1e293b" }}>
-                    You did not miss any questions.
-                  </p>
-                ) : (
-                  terminologyMissedQuestions.map((q, idx) => {
-                    const originalIndex = shuffledTerminologyQuestions.findIndex(
-                      (item) => item.question === q.question
-                    );
-                    const selected = terminologyAnswers[originalIndex];
-
-                    return (
-                      <div
-                        key={idx}
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: 12,
+                        flexWrap: "wrap",
+                        marginBottom: 20
+                      }}
+                    >
+                      <button
+                        onClick={saveTerminologyProgress}
                         style={{
-                          background: "#fff",
-                          border: "1px solid #d8e4f2",
-                          borderRadius: 16,
-                          padding: 20,
-                          marginBottom: 16,
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                          padding: "10px 18px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer",
+                          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
                         }}
                       >
-                        <div
-                          style={{
-                            fontWeight: 700,
-                            color: "#12355b",
-                            marginBottom: 12,
-                            fontSize: 18
-                          }}
-                        >
-                          {q.question}
-                        </div>
+                        Save Progress
+                      </button>
 
-                        {q.options.map((opt, i) => (
-                          <div
+                      <button
+                        onClick={restartTerminologyQuiz}
+                        style={{
+                          padding: "10px 18px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer",
+                          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                        }}
+                      >
+                        Restart Practice
+                      </button>
+                    </div>
+
+                    <div
+                      style={{
+                        background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                        borderRadius: 18,
+                        padding: 24,
+                        border: "1px solid #d8e4f2",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: 24,
+                          fontWeight: 700,
+                          color: "#12355b",
+                          marginBottom: 18
+                        }}
+                      >
+                        {shuffledTerminologyQuestions[terminologyIndex].question}
+                      </div>
+
+                      {shuffledTerminologyQuestions[terminologyIndex].options.map((opt, i) => {
+                        const selected = terminologyAnswers[terminologyIndex];
+                        const correct = shuffledTerminologyQuestions[terminologyIndex].answer;
+                        const isAnswered = selected !== undefined;
+                        const isCorrectOption = i === correct;
+                        const isSelectedWrong =
+                          isAnswered && i === selected && selected !== correct;
+
+                        return (
+                          <button
                             key={i}
+                            onClick={() => {
+                              if (isAnswered) return;
+                              setTerminologyAnswers((prev) => ({ ...prev, [terminologyIndex]: i }));
+                              if (i === correct) {
+                                setTerminologyScore((prev) => prev + 1);
+                                correctSound.currentTime = 0;
+                                correctSound.play();
+                              } else {
+                                wrongSound.currentTime = 0;
+                                wrongSound.play();
+                              }
+                            }}
                             style={{
-                              padding: "10px 12px",
-                              marginBottom: 8,
-                              borderRadius: 10,
+                              width: "100%",
+                              textAlign: "left",
+                              padding: "14px 16px",
+                              marginBottom: 12,
+                              borderRadius: 12,
+                              border:
+                                isCorrectOption && isAnswered
+                                  ? "2px solid green"
+                                  : isSelectedWrong
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1",
                               background:
-                                i === q.answer
+                                isCorrectOption && isAnswered
                                   ? "#d9f7d9"
-                                  : i === selected
+                                  : isSelectedWrong
                                   ? "#fee2e2"
                                   : "#f8fafc",
-                              border:
-                                i === q.answer
-                                  ? "2px solid green"
-                                  : i === selected
-                                  ? "2px solid red"
-                                  : "1px solid #cbd5e1"
+                              color: "#1e293b",
+                              fontSize: 16,
+                              fontWeight: 600,
+                              cursor: isAnswered ? "default" : "pointer",
+                              boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
                             }}
                           >
                             {String.fromCharCode(65 + i)}. {opt}
-                          </div>
-                        ))}
+                          </button>
+                        );
+                      })}
+
+                      <div style={{ textAlign: "center", marginTop: 20 }}>
+                        <button
+                          onClick={() => {
+                            if (terminologyAnswers[terminologyIndex] === undefined) return;
+                            if (terminologyIndex + 1 === shuffledTerminologyQuestions.length) {
+                              setTerminologyShowResult(true);
+                            } else {
+                              setTerminologyIndex((prev) => prev + 1);
+                            }
+                          }}
+                          style={{
+                            padding: "12px 24px",
+                            borderRadius: 999,
+                            border: "none",
+                            background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                            color: "white",
+                            fontWeight: 700,
+                            cursor:
+                              terminologyAnswers[terminologyIndex] === undefined
+                                ? "not-allowed"
+                                : "pointer",
+                            opacity: terminologyAnswers[terminologyIndex] === undefined ? 0.6 : 1,
+                            boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                          }}
+                        >
+                          {terminologyIndex + 1 === shuffledTerminologyQuestions.length
+                            ? "Finish Practice"
+                            : "Next Question"}
+                        </button>
                       </div>
-                    );
-                  })
+                    </div>
+                  </>
+                ) : (
+                  <div style={{ textAlign: "center" }}>
+                    <h2 style={{ color: "#12355b" }}>Medical Terminology Practice Complete</h2>
+                    <p style={{ fontSize: 20, color: "#1e293b" }}>
+                      Your score: {terminologyScore} / {shuffledTerminologyQuestions.length}
+                    </p>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: 12,
+                        flexWrap: "wrap",
+                        marginTop: 20
+                      }}
+                    >
+                      <button
+                        onClick={() => setShowTerminologyMissedReview(true)}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Review Missed Questions
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          shareQuizResult(
+                            "Medical Terminology Practice",
+                            terminologyScore,
+                            shuffledTerminologyQuestions.length
+                          )
+                        }
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Share Quiz
+                      </button>
+
+                      <button
+                        onClick={restartTerminologyQuiz}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Restart Practice
+                      </button>
+                    </div>
+                  </div>
                 )}
 
-                <div style={{ textAlign: "center", marginTop: 20 }}>
-                  <button
-                    onClick={() => setShowTerminologyMissedReview(false)}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Back to Results
-                  </button>
-                </div>
-              </div>
+                {showTerminologyMissedReview && (
+                  <div style={{ marginTop: 24 }}>
+                    <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                      Missed Questions Review
+                    </h2>
+
+                    {terminologyMissedQuestions.length === 0 ? (
+                      <p style={{ textAlign: "center", color: "#1e293b" }}>
+                        You did not miss any questions.
+                      </p>
+                    ) : (
+                      terminologyMissedQuestions.map((q, idx) => {
+                        const originalIndex = shuffledTerminologyQuestions.findIndex(
+                          (item) => item.question === q.question
+                        );
+                        const selected = terminologyAnswers[originalIndex];
+
+                        return (
+                          <div
+                            key={idx}
+                            style={{
+                              background: "#fff",
+                              border: "1px solid #d8e4f2",
+                              borderRadius: 16,
+                              padding: 20,
+                              marginBottom: 16,
+                              boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                            }}
+                          >
+                            <div
+                              style={{
+                                fontWeight: 700,
+                                color: "#12355b",
+                                marginBottom: 12,
+                                fontSize: 18
+                              }}
+                            >
+                              {q.question}
+                            </div>
+
+                            {q.options.map((opt, i) => (
+                              <div
+                                key={i}
+                                style={{
+                                  padding: "10px 12px",
+                                  marginBottom: 8,
+                                  borderRadius: 10,
+                                  background:
+                                    i === q.answer
+                                      ? "#d9f7d9"
+                                      : i === selected
+                                      ? "#fee2e2"
+                                      : "#f8fafc",
+                                  border:
+                                    i === q.answer
+                                      ? "2px solid green"
+                                      : i === selected
+                                      ? "2px solid red"
+                                      : "1px solid #cbd5e1"
+                                }}
+                              >
+                                {String.fromCharCode(65 + i)}. {opt}
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })
+                    )}
+
+                    <div style={{ textAlign: "center", marginTop: 20 }}>
+                      <button
+                        onClick={() => setShowTerminologyMissedReview(false)}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Back to Results
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {!wordPartShowResult && !showWordPartMissedReview ? (
+                  <>
+                    <div style={{ textAlign: "center", marginBottom: 20 }}>
+                      <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Prefix and Suffix Practice</h2>
+                      <p style={{ color: "#4f6275", margin: 0 }}>
+                        Drill core word parts so you can decode unfamiliar medical terms faster.
+                      </p>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        gap: 10,
+                        flexWrap: "wrap",
+                        marginBottom: 20
+                      }}
+                    >
+                      <div style={cbetStatCardStyle}>
+                        Question {wordPartIndex + 1} / {shuffledWordPartQuestions.length}
+                      </div>
+                      <div style={cbetStatCardStyle}>
+                        Score: {wordPartScore}
+                      </div>
+                      <div style={cbetStatCardStyle}>
+                        Difficulty: Intermediate
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: 12,
+                        flexWrap: "wrap",
+                        marginBottom: 20
+                      }}
+                    >
+                      <button
+                        onClick={saveWordPartProgress}
+                        style={{
+                          padding: "10px 18px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer",
+                          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                        }}
+                      >
+                        Save Progress
+                      </button>
+
+                      <button
+                        onClick={restartWordPartQuiz}
+                        style={{
+                          padding: "10px 18px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer",
+                          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                        }}
+                      >
+                        Restart Practice
+                      </button>
+                    </div>
+
+                    <div
+                      style={{
+                        background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                        borderRadius: 18,
+                        padding: 24,
+                        border: "1px solid #d8e4f2",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: 24,
+                          fontWeight: 700,
+                          color: "#12355b",
+                          marginBottom: 18
+                        }}
+                      >
+                        {shuffledWordPartQuestions[wordPartIndex].question}
+                      </div>
+
+                      {shuffledWordPartQuestions[wordPartIndex].options.map((opt, i) => {
+                        const selected = wordPartAnswers[wordPartIndex];
+                        const correct = shuffledWordPartQuestions[wordPartIndex].answer;
+                        const isAnswered = selected !== undefined;
+                        const isCorrectOption = i === correct;
+                        const isSelectedWrong =
+                          isAnswered && i === selected && selected !== correct;
+
+                        return (
+                          <button
+                            key={i}
+                            onClick={() => {
+                              if (isAnswered) return;
+                              setWordPartAnswers((prev) => ({ ...prev, [wordPartIndex]: i }));
+                              if (i === correct) {
+                                setWordPartScore((prev) => prev + 1);
+                                correctSound.currentTime = 0;
+                                correctSound.play();
+                              } else {
+                                wrongSound.currentTime = 0;
+                                wrongSound.play();
+                              }
+                            }}
+                            style={{
+                              width: "100%",
+                              textAlign: "left",
+                              padding: "14px 16px",
+                              marginBottom: 12,
+                              borderRadius: 12,
+                              border:
+                                isCorrectOption && isAnswered
+                                  ? "2px solid green"
+                                  : isSelectedWrong
+                                  ? "2px solid red"
+                                  : "1px solid #cbd5e1",
+                              background:
+                                isCorrectOption && isAnswered
+                                  ? "#d9f7d9"
+                                  : isSelectedWrong
+                                  ? "#fee2e2"
+                                  : "#f8fafc",
+                              color: "#1e293b",
+                              fontSize: 16,
+                              fontWeight: 600,
+                              cursor: isAnswered ? "default" : "pointer",
+                              boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                            }}
+                          >
+                            {String.fromCharCode(65 + i)}. {opt}
+                          </button>
+                        );
+                      })}
+
+                      <div style={{ textAlign: "center", marginTop: 20 }}>
+                        <button
+                          onClick={() => {
+                            if (wordPartAnswers[wordPartIndex] === undefined) return;
+                            if (wordPartIndex + 1 === shuffledWordPartQuestions.length) {
+                              setWordPartShowResult(true);
+                            } else {
+                              setWordPartIndex((prev) => prev + 1);
+                            }
+                          }}
+                          style={{
+                            padding: "12px 24px",
+                            borderRadius: 999,
+                            border: "none",
+                            background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                            color: "white",
+                            fontWeight: 700,
+                            cursor:
+                              wordPartAnswers[wordPartIndex] === undefined
+                                ? "not-allowed"
+                                : "pointer",
+                            opacity: wordPartAnswers[wordPartIndex] === undefined ? 0.6 : 1,
+                            boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                          }}
+                        >
+                          {wordPartIndex + 1 === shuffledWordPartQuestions.length
+                            ? "Finish Practice"
+                            : "Next Question"}
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div style={{ textAlign: "center" }}>
+                    <h2 style={{ color: "#12355b" }}>Medical Prefix and Suffix Practice Complete</h2>
+                    <p style={{ fontSize: 20, color: "#1e293b" }}>
+                      Your score: {wordPartScore} / {shuffledWordPartQuestions.length}
+                    </p>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: 12,
+                        flexWrap: "wrap",
+                        marginTop: 20
+                      }}
+                    >
+                      <button
+                        onClick={() => setShowWordPartMissedReview(true)}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Review Missed Questions
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          shareQuizResult(
+                            "Medical Prefix and Suffix Practice",
+                            wordPartScore,
+                            shuffledWordPartQuestions.length
+                          )
+                        }
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Share Quiz
+                      </button>
+
+                      <button
+                        onClick={restartWordPartQuiz}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Restart Practice
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {showWordPartMissedReview && (
+                  <div style={{ marginTop: 24 }}>
+                    <h2 style={{ color: "#12355b", textAlign: "center" }}>
+                      Missed Questions Review
+                    </h2>
+
+                    {wordPartMissedQuestions.length === 0 ? (
+                      <p style={{ textAlign: "center", color: "#1e293b" }}>
+                        You did not miss any questions.
+                      </p>
+                    ) : (
+                      wordPartMissedQuestions.map((q, idx) => {
+                        const originalIndex = shuffledWordPartQuestions.findIndex(
+                          (item) => item.question === q.question
+                        );
+                        const selected = wordPartAnswers[originalIndex];
+
+                        return (
+                          <div
+                            key={idx}
+                            style={{
+                              background: "#fff",
+                              border: "1px solid #d8e4f2",
+                              borderRadius: 16,
+                              padding: 20,
+                              marginBottom: 16,
+                              boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                            }}
+                          >
+                            <div
+                              style={{
+                                fontWeight: 700,
+                                color: "#12355b",
+                                marginBottom: 12,
+                                fontSize: 18
+                              }}
+                            >
+                              {q.question}
+                            </div>
+
+                            {q.options.map((opt, i) => (
+                              <div
+                                key={i}
+                                style={{
+                                  padding: "10px 12px",
+                                  marginBottom: 8,
+                                  borderRadius: 10,
+                                  background:
+                                    i === q.answer
+                                      ? "#d9f7d9"
+                                      : i === selected
+                                      ? "#fee2e2"
+                                      : "#f8fafc",
+                                  border:
+                                    i === q.answer
+                                      ? "2px solid green"
+                                      : i === selected
+                                      ? "2px solid red"
+                                      : "1px solid #cbd5e1"
+                                }}
+                              >
+                                {String.fromCharCode(65 + i)}. {opt}
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })
+                    )}
+
+                    <div style={{ textAlign: "center", marginTop: 20 }}>
+                      <button
+                        onClick={() => setShowWordPartMissedReview(false)}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Back to Results
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
         )}
