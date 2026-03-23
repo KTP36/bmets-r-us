@@ -3023,6 +3023,25 @@ const bones = {
 };
 export default function App() {
   const [activeTab, setActiveTab] = useState("Home");
+  const ownerAnalyticsEnabled = import.meta.env.VITE_OWNER_ANALYTICS_TAB === "true";
+  const [ownerExamStats, setOwnerExamStats] = useState(() => {
+    if (typeof window === "undefined") return {};
+    try {
+      return JSON.parse(localStorage.getItem("ownerExamStats")) || {};
+    } catch {
+      return {};
+    }
+  });
+  const ownerExamNames = [
+    "CBET Practice",
+    "CBET Harder Practice",
+    "RN Practice",
+    "TEAS Practice",
+    "CRES Practice",
+    "Medical Terminology Practice",
+    "Medical Prefix and Suffix Practice",
+    "Medical Equipment ID Practice"
+  ];
   const [contactStatus, setContactStatus] = useState("idle");
   const [contactError, setContactError] = useState("");
   const contactFormRef = useRef(null);
@@ -3898,6 +3917,19 @@ export default function App() {
   };
 
   const trackExamCompletion = (examName, scoreValue, totalValue) => {
+    setOwnerExamStats((prev) => {
+      const current = prev?.[examName] || { started: 0, completed: 0 };
+      const next = {
+        ...prev,
+        [examName]: {
+          ...current,
+          completed: (current.completed || 0) + 1
+        }
+      };
+      localStorage.setItem("ownerExamStats", JSON.stringify(next));
+      return next;
+    });
+
     if (typeof window === "undefined" || typeof window.gtag !== "function") {
       return;
     }
@@ -3911,6 +3943,19 @@ export default function App() {
   };
 
   const trackExamStart = (examName) => {
+    setOwnerExamStats((prev) => {
+      const current = prev?.[examName] || { started: 0, completed: 0 };
+      const next = {
+        ...prev,
+        [examName]: {
+          ...current,
+          started: (current.started || 0) + 1
+        }
+      };
+      localStorage.setItem("ownerExamStats", JSON.stringify(next));
+      return next;
+    });
+
     if (typeof window === "undefined" || typeof window.gtag !== "function") {
       return;
     }
@@ -4075,6 +4120,17 @@ return (
         >
          Dashboard
         </button>
+
+        {ownerAnalyticsEnabled && (
+          <button
+            onClick={() => setActiveTab("OwnerAnalytics")}
+            onMouseEnter={() => setHoveredNavTab("OwnerAnalytics")}
+            onMouseLeave={() => setHoveredNavTab("")}
+            style={navButtonStyle(activeTab === "OwnerAnalytics", hoveredNavTab === "OwnerAnalytics")}
+          >
+            Owner Analytics
+          </button>
+        )}
 
         <button
           onClick={() => {
@@ -4592,6 +4648,63 @@ return (
                   {terminologyScore} / {shuffledTerminologyQuestions.length}
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {ownerAnalyticsEnabled && activeTab === "OwnerAnalytics" && (
+          <div
+            style={{
+              background: "rgba(255,255,255,0.9)",
+              borderRadius: 24,
+              padding: 28,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+              maxWidth: 980,
+              margin: "0 auto",
+              color: "#1e293b"
+            }}
+          >
+            <h2 style={{ color: "#12355b", marginTop: 0 }}>Owner Analytics (Local View)</h2>
+            <p style={{ color: "#4f6275" }}>
+              Visible only when <strong>VITE_OWNER_ANALYTICS_TAB=true</strong>. These local counters are useful for quick checks; GA4 remains your source of truth for real traffic.
+            </p>
+
+            <div style={{ overflowX: "auto" }}>
+              <table
+                style={{
+                  width: "100%",
+                  borderCollapse: "collapse",
+                  background: "#fff",
+                  border: "1px solid #d8e4f2",
+                  borderRadius: 12,
+                  overflow: "hidden"
+                }}
+              >
+                <thead>
+                  <tr style={{ background: "#eef4ff", color: "#12355b" }}>
+                    <th style={{ textAlign: "left", padding: 12, borderBottom: "1px solid #d8e4f2" }}>Exam</th>
+                    <th style={{ textAlign: "center", padding: 12, borderBottom: "1px solid #d8e4f2" }}>Started</th>
+                    <th style={{ textAlign: "center", padding: 12, borderBottom: "1px solid #d8e4f2" }}>Completed</th>
+                    <th style={{ textAlign: "center", padding: 12, borderBottom: "1px solid #d8e4f2" }}>Completion %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ownerExamNames.map((exam) => {
+                    const started = ownerExamStats?.[exam]?.started || 0;
+                    const completed = ownerExamStats?.[exam]?.completed || 0;
+                    const completionPct = started > 0 ? Math.round((completed / started) * 100) : 0;
+
+                    return (
+                      <tr key={exam}>
+                        <td style={{ padding: 12, borderBottom: "1px solid #eef2f7" }}>{exam}</td>
+                        <td style={{ padding: 12, textAlign: "center", borderBottom: "1px solid #eef2f7" }}>{started}</td>
+                        <td style={{ padding: 12, textAlign: "center", borderBottom: "1px solid #eef2f7" }}>{completed}</td>
+                        <td style={{ padding: 12, textAlign: "center", borderBottom: "1px solid #eef2f7" }}>{completionPct}%</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
