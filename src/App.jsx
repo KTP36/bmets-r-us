@@ -4445,6 +4445,64 @@ return (
                 </p>
               </div>
             </div>
+
+            <div
+              style={{
+                marginTop: 24,
+                background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                borderRadius: 18,
+                padding: 20,
+                border: "1px solid #d8e4f2"
+              }}
+            >
+              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 10 }}>
+                Study Guides and SEO Pages
+              </h3>
+              <p style={{ color: "#4f6275", marginTop: 0 }}>
+                Prefer article-style prep? Open these content pages, then jump back into interactive practice.
+              </p>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <a
+                  href="/cbet-practice-questions.html"
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 999,
+                    background: "#12355b",
+                    color: "white",
+                    textDecoration: "none",
+                    fontWeight: 600
+                  }}
+                >
+                  CBET Practice Questions Guide
+                </a>
+                <a
+                  href="/how-to-pass-cbet-exam.html"
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 999,
+                    background: "#1d6fa5",
+                    color: "white",
+                    textDecoration: "none",
+                    fontWeight: 600
+                  }}
+                >
+                  How to Pass CBET Exam
+                </a>
+                <a
+                  href="/anatomy-labeling-practice.html"
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 999,
+                    background: "#0f766e",
+                    color: "white",
+                    textDecoration: "none",
+                    fontWeight: 600
+                  }}
+                >
+                  Anatomy Labeling Practice
+                </a>
+              </div>
+            </div>
           </div>
         )}
 
@@ -8298,6 +8356,39 @@ return (
           >
             Privacy Policy
           </button>
+          <a
+            href="/cbet-practice-questions.html"
+            style={{
+              color: "#12355b",
+              textDecoration: "underline",
+              cursor: "pointer",
+              fontWeight: 600
+            }}
+          >
+            CBET Guide
+          </a>
+          <a
+            href="/how-to-pass-cbet-exam.html"
+            style={{
+              color: "#12355b",
+              textDecoration: "underline",
+              cursor: "pointer",
+              fontWeight: 600
+            }}
+          >
+            Pass CBET Tips
+          </a>
+          <a
+            href="/anatomy-labeling-practice.html"
+            style={{
+              color: "#12355b",
+              textDecoration: "underline",
+              cursor: "pointer",
+              fontWeight: 600
+            }}
+          >
+            Anatomy Guide
+          </a>
         </div>
 
         <div style={{ marginTop: 8 }}>
