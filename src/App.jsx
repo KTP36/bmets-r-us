@@ -2784,7 +2784,7 @@ const wordPartQuestions = [
       { name: "Renal Pyramid (Lower Left)", x: 155, y: 665, description: "Lower triangular medullary region that contributes to urine concentration" },
       { name: "Renal Pyramid (Lower Right)", x: 396, y: 560, description: "Lower triangular medullary region that contributes to urine concentration" },
       { name: "Renal Artery (Red)", x: 85, y: 255, description: "Thick red vessel delivering oxygenated blood into the kidney" },
-      { name: "Renal Vein (Blue)", x: 75, y: 310, description: "Thick blue vessel draining filtered blood out of the kidney" },
+      { name: "Renal Vein (Blue)", x: 75, y: 334, description: "Thick blue vessel draining filtered blood out of the kidney" },
       { name: "Ureter", x: 34, y: 620, description: "Tube carrying urine downward from the renal pelvis to the bladder" }
     ]
   },
