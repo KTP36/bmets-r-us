@@ -3897,6 +3897,29 @@ export default function App() {
     window.prompt("Copy and share this:", shareText);
   };
 
+  const trackExamCompletion = (examName, scoreValue, totalValue) => {
+    if (typeof window === "undefined" || typeof window.gtag !== "function") {
+      return;
+    }
+
+    window.gtag("event", "exam_completed", {
+      exam_name: examName,
+      score: scoreValue,
+      total_questions: totalValue,
+      completion_rate: totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0
+    });
+  };
+
+  const trackExamStart = (examName) => {
+    if (typeof window === "undefined" || typeof window.gtag !== "function") {
+      return;
+    }
+
+    window.gtag("event", "exam_started", {
+      exam_name: examName
+    });
+  };
+
   const cbetPassed =
     shuffledCbetQuestions.length > 0 && cbetScore / shuffledCbetQuestions.length >= 0.7;
 
@@ -4054,7 +4077,10 @@ return (
         </button>
 
         <button
-          onClick={() => setActiveTab("CBET")}
+          onClick={() => {
+            trackExamStart("CBET Practice");
+            setActiveTab("CBET");
+          }}
           onMouseEnter={() => setHoveredNavTab("CBET")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "CBET", hoveredNavTab === "CBET")}
@@ -4065,6 +4091,7 @@ return (
         <button
           onClick={() => {
             if (harderCbetUnlocked) {
+              trackExamStart("CBET Harder Practice");
               setActiveTab("HarderCBET");
             }
           }}
@@ -4085,7 +4112,10 @@ return (
         </button>
 
         <button
-          onClick={() => setActiveTab("RN")}
+          onClick={() => {
+            trackExamStart("RN Practice");
+            setActiveTab("RN");
+          }}
           onMouseEnter={() => setHoveredNavTab("RN")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "RN", hoveredNavTab === "RN")}
@@ -4094,7 +4124,10 @@ return (
         </button>
 
         <button
-          onClick={() => setActiveTab("TEAS")}
+          onClick={() => {
+            trackExamStart("TEAS Practice");
+            setActiveTab("TEAS");
+          }}
           onMouseEnter={() => setHoveredNavTab("TEAS")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "TEAS", hoveredNavTab === "TEAS")}
@@ -4103,7 +4136,10 @@ return (
         </button>
 
         <button
-          onClick={() => setActiveTab("CRES")}
+          onClick={() => {
+            trackExamStart("CRES Practice");
+            setActiveTab("CRES");
+          }}
           onMouseEnter={() => setHoveredNavTab("CRES")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "CRES", hoveredNavTab === "CRES")}
@@ -4112,7 +4148,10 @@ return (
         </button>
 
         <button
-          onClick={() => setActiveTab("Terminology")}
+          onClick={() => {
+            trackExamStart("Medical Terminology Practice");
+            setActiveTab("Terminology");
+          }}
           onMouseEnter={() => setHoveredNavTab("Terminology")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "Terminology", hoveredNavTab === "Terminology")}
@@ -4121,7 +4160,10 @@ return (
         </button>
 
         <button
-          onClick={() => setActiveTab("Equipment")}
+          onClick={() => {
+            trackExamStart("Medical Equipment ID Practice");
+            setActiveTab("Equipment");
+          }}
           onMouseEnter={() => setHoveredNavTab("Equipment")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "Equipment", hoveredNavTab === "Equipment")}
@@ -5098,6 +5140,7 @@ return (
                         if (cbetAnswers[cbetIndex] === undefined) return;
 
                         if (cbetIndex + 1 === shuffledCbetQuestions.length) {
+                          trackExamCompletion("CBET Practice", cbetScore, shuffledCbetQuestions.length);
                           setCbetShowResult(true);
                         } else {
                           setCbetIndex((prev) => prev + 1);
@@ -5509,6 +5552,11 @@ return (
                         if (harderCbetAnswers[harderCbetIndex] === undefined) return;
 
                         if (harderCbetIndex + 1 === shuffledHarderCbetQuestions.length) {
+                          trackExamCompletion(
+                            "CBET Harder Practice",
+                            harderCbetScore,
+                            shuffledHarderCbetQuestions.length
+                          );
                           setHarderCbetShowResult(true);
                         } else {
                           setHarderCbetIndex((prev) => prev + 1);
@@ -5899,6 +5947,11 @@ return (
                         if (equipmentAnswers[equipmentIndex] === undefined) return;
 
                         if (equipmentIndex + 1 === shuffledEquipmentQuestions.length) {
+                          trackExamCompletion(
+                            "Medical Equipment ID Practice",
+                            equipmentScore,
+                            shuffledEquipmentQuestions.length
+                          );
                           setEquipmentShowResult(true);
                         } else {
                           setEquipmentIndex((prev) => prev + 1);
@@ -6234,6 +6287,7 @@ return (
                         if (rnAnswers[rnIndex] === undefined) return;
 
                         if (rnIndex + 1 === shuffledRnQuestions.length) {
+                          trackExamCompletion("RN Practice", rnScore, shuffledRnQuestions.length);
                           setRnShowResult(true);
                         } else {
                           setRnIndex((prev) => prev + 1);
@@ -6599,6 +6653,7 @@ return (
                         if (teasAnswers[teasIndex] === undefined) return;
 
                         if (teasIndex + 1 === shuffledTeasQuestions.length) {
+                          trackExamCompletion("TEAS Practice", teasScore, shuffledTeasQuestions.length);
                           setTeasShowResult(true);
                         } else {
                           setTeasIndex((prev) => prev + 1);
@@ -6947,6 +7002,7 @@ return (
                       onClick={() => {
                         if (cresAnswers[cresIndex] === undefined) return;
                         if (cresIndex + 1 === shuffledCresQuestions.length) {
+                          trackExamCompletion("CRES Practice", cresScore, shuffledCresQuestions.length);
                           setCresShowResult(true);
                         } else {
                           setCresIndex((prev) => prev + 1);
@@ -7170,7 +7226,10 @@ return (
                 Terms
               </button>
               <button
-                onClick={() => setTerminologySubTab("wordParts")}
+                onClick={() => {
+                  trackExamStart("Medical Prefix and Suffix Practice");
+                  setTerminologySubTab("wordParts");
+                }}
                 style={{
                   padding: "8px 16px",
                   borderRadius: 999,
@@ -7340,6 +7399,11 @@ return (
                           onClick={() => {
                             if (terminologyAnswers[terminologyIndex] === undefined) return;
                             if (terminologyIndex + 1 === shuffledTerminologyQuestions.length) {
+                              trackExamCompletion(
+                                "Medical Terminology Practice",
+                                terminologyScore,
+                                shuffledTerminologyQuestions.length
+                              );
                               setTerminologyShowResult(true);
                             } else {
                               setTerminologyIndex((prev) => prev + 1);
@@ -7676,6 +7740,11 @@ return (
                           onClick={() => {
                             if (wordPartAnswers[wordPartIndex] === undefined) return;
                             if (wordPartIndex + 1 === shuffledWordPartQuestions.length) {
+                              trackExamCompletion(
+                                "Medical Prefix and Suffix Practice",
+                                wordPartScore,
+                                shuffledWordPartQuestions.length
+                              );
                               setWordPartShowResult(true);
                             } else {
                               setWordPartIndex((prev) => prev + 1);
