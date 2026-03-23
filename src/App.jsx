@@ -4016,6 +4016,8 @@ return (
           Home
         </button>
 
+        {activeTab === "Home" && (
+          <>
         <button
           onClick={() => {
             setActiveTab("Anatomy");
@@ -4153,6 +4155,8 @@ return (
         >
           Privacy
         </button>
+          </>
+        )}
       </div>
 
       {/* HOME TAB */}
