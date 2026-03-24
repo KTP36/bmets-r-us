@@ -2789,46 +2789,6 @@ const wordPartQuestions = [
     ]
   },
 
-  Spine: {
-    image: "/spine.png",
-    boardWidth: 1024,
-    boardHeight: 1024,
-    functionTitle: "Supports posture and protects the spinal cord",
-    functionSummary:
-      "The spine provides structural support, allows flexible movement, protects the spinal cord, and transfers body weight into the pelvis.",
-    studyHighlights: [
-      "Supports the head and trunk in upright posture",
-      "Protects the spinal cord and nerve roots",
-      "Allows bending, rotation, and weight transfer"
-    ],
-    dropWidth: 88,
-    dropHeight: 34,
-    mobileDropScale: 0.38,
-    mobileLabelOffsetX: -145,
-    mobileLabelOffsetY: 0,
-    mobileImageScale: 1.95,
-    mobileImageTranslateX: -70,
-    mobileImageTranslateY: 0,
-    imageStyle: {
-      width: "100%",
-      height: "100%",
-      objectFit: "contain",
-      objectPosition: "center"
-    },
-    parts: [
-      { name: "Atlas (C1)", x: 520, y: 42, description: "Top cervical vertebra that supports the skull and allows nodding motion" },
-      { name: "Cervical Vertebrae", x: 534, y: 126, description: "Upper spine vertebrae in the neck that support the head and allow mobility" },
-      { name: "Thoracic Vertebrae", x: 542, y: 246, description: "Mid-back vertebrae that articulate with the ribs and support the thorax" },
-      { name: "Lumbar Vertebrae", x: 500, y: 618, description: "Large lower-back vertebrae that bear much of the body's weight" },
-      { name: "Sacrum", x: 505, y: 880, description: "Triangular fused bone that connects the spine to the pelvis" },
-      { name: "Coccyx", x: 520, y: 982, description: "Tailbone at the inferior end of the vertebral column" },
-      { name: "Intervertebral Disc", x: 506, y: 568, description: "Fibrocartilaginous cushion between vertebral bodies that absorbs shock" },
-      { name: "Vertebral Body", x: 548, y: 344, description: "Large anterior weight-bearing portion of a vertebra" },
-      { name: "Spinous Process", x: 650, y: 322, description: "Posterior bony projection that serves as a muscle and ligament attachment point" },
-      { name: "Transverse Process", x: 612, y: 350, description: "Lateral bony projection extending from the vertebra for muscle attachment" }
-    ]
-  },
-
   Eye: {
     image: "/eye.jpg",
     boardWidth: 750,
@@ -3104,6 +3064,86 @@ const bones = {
       { name: "Talus", x: 265, y: 735, description: "Ankle bone; connects foot to leg" },
       { name: "Calcaneus", x: 330, y: 815, description: "Heel bone; largest foot bone; supports body weight" }
     ]
+  },
+
+  Spine: {
+    image: "/spine.png",
+    boardWidth: 1024,
+    boardHeight: 1024,
+    functionTitle: "Supports posture and protects the spinal cord",
+    functionSummary:
+      "The spine provides structural support, allows flexible movement, protects the spinal cord, and transfers body weight into the pelvis.",
+    studyHighlights: [
+      "Supports the head and trunk in upright posture",
+      "Protects the spinal cord and nerve roots",
+      "Allows bending, rotation, and weight transfer"
+    ],
+    dropWidth: 88,
+    dropHeight: 34,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.95,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Atlas (C1)", x: 520, y: 42, description: "Top cervical vertebra that supports the skull and allows nodding motion" },
+      { name: "Cervical Vertebrae", x: 534, y: 126, description: "Upper spine vertebrae in the neck that support the head and allow mobility" },
+      { name: "Thoracic Vertebrae", x: 542, y: 246, description: "Mid-back vertebrae that articulate with the ribs and support the thorax" },
+      { name: "Lumbar Vertebrae", x: 500, y: 618, description: "Large lower-back vertebrae that bear much of the body's weight" },
+      { name: "Sacrum", x: 505, y: 880, description: "Triangular fused bone that connects the spine to the pelvis" },
+      { name: "Coccyx", x: 520, y: 982, description: "Tailbone at the inferior end of the vertebral column" },
+      { name: "Intervertebral Disc", x: 506, y: 568, description: "Fibrocartilaginous cushion between vertebral bodies that absorbs shock" },
+      { name: "Vertebral Body", x: 548, y: 344, description: "Large anterior weight-bearing portion of a vertebra" },
+      { name: "Spinous Process", x: 650, y: 322, description: "Posterior bony projection that serves as a muscle and ligament attachment point" },
+      { name: "Transverse Process", x: 612, y: 350, description: "Lateral bony projection extending from the vertebra for muscle attachment" }
+    ]
+  },
+
+  Skull: {
+    image: "/skull.png",
+    boardWidth: 800,
+    boardHeight: 700,
+    functionTitle: "Protects the brain and supports facial structures",
+    functionSummary:
+      "The skull encases and protects the brain, houses the sensory organs, and provides attachment points for muscles of the head, face, and neck.",
+    studyHighlights: [
+      "Cranial bones protect the brain from injury",
+      "Facial bones support airways, vision, and mastication",
+      "Sutures are immovable joints that fuse during development"
+    ],
+    dropWidth: 88,
+    dropHeight: 34,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.95,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Frontal Bone", x: 560, y: 135, description: "Forms the forehead and the upper part of the eye sockets" },
+      { name: "Parietal Bone", x: 340, y: 80, description: "Paired bones forming the top and sides of the cranium" },
+      { name: "Temporal Bone", x: 210, y: 200, description: "Houses the ear structures and forms part of the skull base and sides" },
+      { name: "Occipital Bone", x: 120, y: 190, description: "Forms the back and base of the cranium; contains the foramen magnum" },
+      { name: "Sphenoid Bone", x: 400, y: 260, description: "Butterfly-shaped bone forming part of the skull base and eye sockets" },
+      { name: "Ethmoid Bone", x: 520, y: 260, description: "Delicate bone forming the roof of the nasal cavity and part of the eye sockets" },
+      { name: "Nasal Bone", x: 630, y: 228, description: "Paired bones forming the bridge of the nose" },
+      { name: "Zygomatic Bone", x: 390, y: 320, description: "Cheekbone; forms part of the lateral eye socket and cheek arch" },
+      { name: "Maxilla", x: 435, y: 390, description: "Upper jaw bone; supports upper teeth and forms part of hard palate and eye sockets" },
+      { name: "Mandible", x: 370, y: 490, description: "Lower jaw — the only movable bone of the skull" }
+    ]
   }
 };
 export default function App() {
@@ -3240,7 +3280,7 @@ export default function App() {
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
-    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine";
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull";
 
   const showPlacementMessage = (text, tone = "wrong") => {
     if (placementMessageTimeoutRef.current) {
@@ -3589,6 +3629,156 @@ export default function App() {
     const selected = wordPartAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
+
+  const getMissedExplanation = (question, selectedIndex) => {
+    if (typeof question?.explanation === "string" && question.explanation.trim()) {
+      return question.explanation;
+    }
+
+    const correctOption = question?.options?.[question.answer];
+    if (!correctOption) {
+      return "Review the correct option and key concept before retaking this question.";
+    }
+
+    if (selectedIndex !== undefined && selectedIndex !== question.answer) {
+      const selectedOption = question?.options?.[selectedIndex];
+      if (selectedOption) {
+        return `You chose "${selectedOption}". The best answer is "${correctOption}".`;
+      }
+    }
+
+    return `The best answer is "${correctOption}".`;
+  };
+
+  const renderMissedQuestionCards = (
+    missedQuestionsList,
+    shuffledQuestions,
+    answers,
+    options = {}
+  ) => {
+    const { showImage = false, showStudyTip = false } = options;
+
+    return missedQuestionsList.map((q, idx) => {
+      const originalIndex = shuffledQuestions.findIndex((item) => item === q);
+      const selected = originalIndex >= 0 ? answers[originalIndex] : undefined;
+
+      return (
+        <div
+          key={idx}
+          style={{
+            background: "#fff",
+            border: "1px solid #d8e4f2",
+            borderRadius: 16,
+            padding: 20,
+            marginBottom: 16,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+          }}
+        >
+          {showImage && q.image && (
+            <img
+              src={q.image}
+              alt="Medical equipment review"
+              style={{
+                width: "100%",
+                maxHeight: 220,
+                objectFit: "contain",
+                borderRadius: 10,
+                border: "1px solid #e2e8f0",
+                marginBottom: 12
+              }}
+            />
+          )}
+
+          <div
+            style={{
+              fontWeight: 700,
+              color: "#12355b",
+              marginBottom: 12,
+              fontSize: 18
+            }}
+          >
+            {q.question}
+          </div>
+
+          {q.options.map((opt, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "10px 12px",
+                marginBottom: 8,
+                borderRadius: 10,
+                background:
+                  i === q.answer
+                    ? "#d9f7d9"
+                    : i === selected
+                    ? "#fee2e2"
+                    : "#f8fafc",
+                border:
+                  i === q.answer
+                    ? "2px solid green"
+                    : i === selected
+                    ? "2px solid red"
+                    : "1px solid #cbd5e1"
+              }}
+            >
+              {String.fromCharCode(65 + i)}. {opt}
+            </div>
+          ))}
+
+          <div
+            style={{
+              marginTop: 8,
+              padding: "10px 12px",
+              borderRadius: 10,
+              background: "#fffbeb",
+              border: "1px solid #fcd34d",
+              color: "#78350f",
+              fontWeight: 600
+            }}
+          >
+            Why this answer: {getMissedExplanation(q, selected)}
+          </div>
+
+          {showStudyTip && q.studyTip && (
+            <div
+              style={{
+                marginTop: 8,
+                padding: "10px 12px",
+                borderRadius: 10,
+                background: "#eff6ff",
+                border: "1px solid #bfdbfe",
+                color: "#1e3a8a",
+                fontWeight: 600
+              }}
+            >
+              Tip: {q.studyTip}
+            </div>
+          )}
+        </div>
+      );
+    });
+  };
+
+  const startRetakeMissedQuestions = ({
+    missedQuestionsList,
+    setShuffledQuestions,
+    setIndex,
+    setScore,
+    setAnswers,
+    setShowResult,
+    setShowMissedReview,
+    storageKey
+  }) => {
+    if (!missedQuestionsList.length) return;
+
+    localStorage.removeItem(storageKey);
+    setShuffledQuestions(shuffleArray(missedQuestionsList));
+    setIndex(0);
+    setScore(0);
+    setAnswers({});
+    setShowResult(false);
+    setShowMissedReview(false);
+  };
 
   const saveCresProgress = () => {
     const progress = {
@@ -5471,7 +5661,35 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Review Missed Questions
+                    Study Misses (Optional)
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      startRetakeMissedQuestions({
+                        missedQuestionsList: missedQuestions,
+                        setShuffledQuestions: setShuffledCbetQuestions,
+                        setIndex: setCbetIndex,
+                        setScore: setCbetScore,
+                        setAnswers: setCbetAnswers,
+                        setShowResult: setCbetShowResult,
+                        setShowMissedReview: setShowMissedReview,
+                        storageKey: "cbetProgress"
+                      })
+                    }
+                    disabled={missedQuestions.length === 0}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: missedQuestions.length === 0 ? "not-allowed" : "pointer",
+                      opacity: missedQuestions.length === 0 ? 0.55 : 1
+                    }}
+                  >
+                    Retake Missed Only
                   </button>
 
                   <button
@@ -5541,62 +5759,11 @@ return (
                     You did not miss any questions.
                   </p>
                 ) : (
-                  missedQuestions.map((q, idx) => {
-                    const originalIndex = shuffledCbetQuestions.findIndex(
-                      (item) => item.question === q.question
-                    );
-                    const selected = cbetAnswers[originalIndex];
-
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          background: "#fff",
-                          border: "1px solid #d8e4f2",
-                          borderRadius: 16,
-                          padding: 20,
-                          marginBottom: 16,
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontWeight: 700,
-                            color: "#12355b",
-                            marginBottom: 12,
-                            fontSize: 18
-                          }}
-                        >
-                          {q.question}
-                        </div>
-
-                        {q.options.map((opt, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              padding: "10px 12px",
-                              marginBottom: 8,
-                              borderRadius: 10,
-                              background:
-                                i === q.answer
-                                  ? "#d9f7d9"
-                                  : i === selected
-                                  ? "#fee2e2"
-                                  : "#f8fafc",
-                              border:
-                                i === q.answer
-                                  ? "2px solid green"
-                                  : i === selected
-                                  ? "2px solid red"
-                                  : "1px solid #cbd5e1"
-                            }}
-                          >
-                            {String.fromCharCode(65 + i)}. {opt}
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  })
+                  renderMissedQuestionCards(
+                    missedQuestions,
+                    shuffledCbetQuestions,
+                    cbetAnswers
+                  )
                 )}
 
                 <div style={{ textAlign: "center", marginTop: 20 }}>
