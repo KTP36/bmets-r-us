@@ -5135,12 +5135,6 @@ return (
                 >
                   Newest on TikTok
                 </div>
-                <h4 style={{ color: "#12355b", marginTop: 0, marginBottom: 8, fontSize: 18 }}>
-                  Keep the social link visible, not noisy
-                </h4>
-                <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 14 }}>
-                  Open your latest lesson directly or send people to the full profile.
-                </p>
                 <div style={{ display: "grid", gap: 10 }}>
                   <a
                     href={tiktokLatestVideoUrl}
