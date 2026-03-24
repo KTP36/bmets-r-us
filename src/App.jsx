@@ -4040,14 +4040,38 @@ export default function App() {
   const homeCardStyle = {
     background: "rgba(255,255,255,0.85)",
     borderRadius: 18,
-    padding: 20,
+    padding: 22,
     boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-    minWidth: 220,
-    flex: "1 1 220px",
+    minWidth: 0,
+    width: "100%",
     textAlign: "center",
     border: "1px solid transparent",
+    minHeight: 168,
     transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease"
   };
+
+  const homeInfoCardStyle = {
+    flex: "1 1 300px",
+    minWidth: 0,
+    background: "rgba(255,255,255,0.9)",
+    borderRadius: 20,
+    padding: 22,
+    border: "1px solid #d8e4f2",
+    boxShadow: "0 8px 22px rgba(0,0,0,0.05)"
+  };
+
+  const homeActionLinkStyle = (background) => ({
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "10px 16px",
+    borderRadius: 999,
+    background,
+    color: "white",
+    textDecoration: "none",
+    fontWeight: 700,
+    boxShadow: "0 10px 22px rgba(0,0,0,0.14)"
+  });
 
   const getInteractiveHomeCardStyle = (cardId) => {
     const isActive = hoveredHomeCard === cardId;
@@ -4620,352 +4644,534 @@ return (
       {activeTab === "Home" && (
         <div
           style={{
-            background: "rgba(255,255,255,0.78)",
-            borderRadius: 24,
+            background: "linear-gradient(180deg, rgba(255,255,255,0.84), rgba(244,250,255,0.96))",
+            borderRadius: 28,
             padding: 30,
-            boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+            boxShadow: "0 18px 46px rgba(18,53,91,0.10)",
+            border: "1px solid rgba(216,228,242,0.95)"
           }}
         >
-          <div style={{ textAlign: "center", marginBottom: 30 }}>
-            <h2
-              style={{
-                color: "#12355b",
-                fontSize: 32,
-                marginBottom: 10
-              }}
-            >
-              Welcome to Your Medical Training Game
-            </h2>
-            <p
-              style={{
-                fontSize: 18,
-                color: "#385170",
-                maxWidth: 800,
-                margin: "0 auto"
-              }}
-            >
-              Practice identifying organs and bones with interactive
-              label-to-image activities, then build confidence with CBET,
-              RN, TEAS, and Medical Terminology multiple-choice review.
-            </p>
-          </div>
-
+          <div
+            style={{
+              display: "flex",
+              gap: 20,
+              flexWrap: "wrap",
+              alignItems: "stretch",
+              marginBottom: 28
+            }}
+          >
             <div
               style={{
-                display: "flex",
-                gap: 20,
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginBottom: 30
+                flex: "1.8 1 520px",
+                minWidth: 0,
+                borderRadius: 24,
+                padding: 28,
+                background: "linear-gradient(135deg, #12355b 0%, #1d6fa5 58%, #63c1d7 100%)",
+                boxShadow: "0 22px 42px rgba(18,53,91,0.24)",
+                color: "white",
+                textAlign: "left"
               }}
             >
               <div
-                role="button"
-                tabIndex={0}
-                onMouseEnter={() => setHoveredHomeCard("anatomy")}
-                onMouseLeave={() => setHoveredHomeCard("")}
-                onFocus={() => setHoveredHomeCard("anatomy")}
-                onBlur={() => setHoveredHomeCard("")}
-                onClick={() => {
-                  setActiveTab("Anatomy");
-                  setMode("organs");
-                  setSelectedSet(null);
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "7px 12px",
+                  borderRadius: 999,
+                  background: "rgba(255,255,255,0.16)",
+                  fontSize: 13,
+                  fontWeight: 700,
+                  letterSpacing: 0.4,
+                  textTransform: "uppercase",
+                  marginBottom: 16
                 }}
-                onKeyDown={(event) =>
-                  handleHomeCardKeyDown(event, () => {
+              >
+                Study smarter
+              </div>
+
+              <h2
+                style={{
+                  color: "white",
+                  fontSize: 34,
+                  lineHeight: 1.12,
+                  marginTop: 0,
+                  marginBottom: 12,
+                  maxWidth: 620
+                }}
+              >
+                Build anatomy speed and exam confidence from one clean home base.
+              </h2>
+
+              <p
+                style={{
+                  fontSize: 18,
+                  color: "rgba(255,255,255,0.92)",
+                  maxWidth: 700,
+                  margin: 0
+                }}
+              >
+                Practice interactive label-to-image activities, switch into exam-style review when you want pressure, and keep your newest TikTok lesson one click away.
+              </p>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: 12,
+                  flexWrap: "wrap",
+                  marginTop: 20,
+                  marginBottom: 20
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
                     setActiveTab("Anatomy");
                     setMode("organs");
                     setSelectedSet(null);
-                  })
-                }
-                style={getInteractiveHomeCardStyle("anatomy")}
-              >
-                <div style={{ fontSize: 42, marginBottom: 8 }}>🫀</div>
-                <h3 style={{ color: "#12355b" }}>Anatomy Practice</h3>
-                <p style={{ color: "#4f6275" }}>
-                  Learn heart, brain, lungs, liver, eye, and arterial anatomy
-                  with interactive labeling.
-                </p>
+                  }}
+                  style={{
+                    padding: "11px 18px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "#ffffff",
+                    color: "#12355b",
+                    fontWeight: 800,
+                    cursor: "pointer",
+                    boxShadow: "0 12px 28px rgba(10,22,40,0.18)"
+                  }}
+                >
+                  Open Anatomy Practice
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("CBET")}
+                  style={{
+                    padding: "11px 18px",
+                    borderRadius: 999,
+                    border: "1px solid rgba(255,255,255,0.45)",
+                    background: "rgba(255,255,255,0.10)",
+                    color: "white",
+                    fontWeight: 800,
+                    cursor: "pointer"
+                  }}
+                >
+                  Jump to CBET Questions
+                </button>
               </div>
 
               <div
-                role="button"
-                tabIndex={0}
-                onMouseEnter={() => setHoveredHomeCard("bones")}
-                onMouseLeave={() => setHoveredHomeCard("")}
-                onFocus={() => setHoveredHomeCard("bones")}
-                onBlur={() => setHoveredHomeCard("")}
-                onClick={() => {
-                  setActiveTab("Bones");
-                  setMode("bones");
-                  setSelectedSet(null);
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                  gap: 12
                 }}
-                onKeyDown={(event) =>
-                  handleHomeCardKeyDown(event, () => {
-                    setActiveTab("Bones");
-                    setMode("bones");
-                    setSelectedSet(null);
-                  })
-                }
-                style={getInteractiveHomeCardStyle("bones")}
               >
-                <div style={{ fontSize: 42, marginBottom: 8 }}>🦴</div>
-                <h3 style={{ color: "#12355b" }}>Bone Practice</h3>
-                <p style={{ color: "#4f6275" }}>
-                  Study the skeleton, hand bones, and foot bones in detail.
-                </p>
-              </div>
-
-              <div
-                role="button"
-                tabIndex={0}
-                onMouseEnter={() => setHoveredHomeCard("cbet")}
-                onMouseLeave={() => setHoveredHomeCard("")}
-                onFocus={() => setHoveredHomeCard("cbet")}
-                onBlur={() => setHoveredHomeCard("")}
-                onClick={() => setActiveTab("CBET")}
-                onKeyDown={(event) =>
-                  handleHomeCardKeyDown(event, () => setActiveTab("CBET"))
-                }
-                style={getInteractiveHomeCardStyle("cbet")}
-              >
-                <div style={{ fontSize: 42, marginBottom: 8 }}>📝</div>
-                <h3 style={{ color: "#12355b" }}>CBET Practice</h3>
-                <p style={{ color: "#4f6275" }}>
-                  Take CBET practice questions with instant feedback and score
-                  tracking.
-                </p>
-              </div>
-
-              <div
-                role="button"
-                tabIndex={0}
-                onMouseEnter={() => setHoveredHomeCard("rn")}
-                onMouseLeave={() => setHoveredHomeCard("")}
-                onFocus={() => setHoveredHomeCard("rn")}
-                onBlur={() => setHoveredHomeCard("")}
-                onClick={() => setActiveTab("RN")}
-                onKeyDown={(event) =>
-                  handleHomeCardKeyDown(event, () => setActiveTab("RN"))
-                }
-                style={getInteractiveHomeCardStyle("rn")}
-              >
-                <div style={{ fontSize: 42, marginBottom: 8 }}>🩺</div>
-                <h3 style={{ color: "#12355b" }}>RN Practice</h3>
-                <p style={{ color: "#4f6275" }}>
-                  Practice RN-style questions with immediate answer review and
-                  score tracking.
-                </p>
-              </div>
-
-              <div
-                role="button"
-                tabIndex={0}
-                onMouseEnter={() => setHoveredHomeCard("teas")}
-                onMouseLeave={() => setHoveredHomeCard("")}
-                onFocus={() => setHoveredHomeCard("teas")}
-                onBlur={() => setHoveredHomeCard("")}
-                onClick={() => setActiveTab("TEAS")}
-                onKeyDown={(event) =>
-                  handleHomeCardKeyDown(event, () => setActiveTab("TEAS"))
-                }
-                style={getInteractiveHomeCardStyle("teas")}
-              >
-                <div style={{ fontSize: 42, marginBottom: 8 }}>📚</div>
-                <h3 style={{ color: "#12355b" }}>TEAS Practice</h3>
-                <p style={{ color: "#4f6275" }}>
-                  Work through 150 randomized TEAS-style questions covering
-                  reading, math, science, and English usage.
-                </p>
-              </div>
-
-              <div
-                role="button"
-                tabIndex={0}
-                onMouseEnter={() => setHoveredHomeCard("terminology")}
-                onMouseLeave={() => setHoveredHomeCard("")}
-                onFocus={() => setHoveredHomeCard("terminology")}
-                onBlur={() => setHoveredHomeCard("")}
-                onClick={() => setActiveTab("Terminology")}
-                onKeyDown={(event) =>
-                  handleHomeCardKeyDown(event, () => setActiveTab("Terminology"))
-                }
-                style={getInteractiveHomeCardStyle("terminology")}
-              >
-                <div style={{ fontSize: 42, marginBottom: 8 }}>🧠</div>
-                <h3 style={{ color: "#12355b" }}>Medical Terminology</h3>
-                <p style={{ color: "#4f6275" }}>
-                  Master hard medical terms by matching each word to its correct definition.
-                </p>
-              </div>
-
-              <div
-                role="button"
-                tabIndex={0}
-                onMouseEnter={() => setHoveredHomeCard("dashboard")}
-                onMouseLeave={() => setHoveredHomeCard("")}
-                onFocus={() => setHoveredHomeCard("dashboard")}
-                onBlur={() => setHoveredHomeCard("")}
-                onClick={() => setActiveTab("Dashboard")}
-                onKeyDown={(event) =>
-                  handleHomeCardKeyDown(event, () => setActiveTab("Dashboard"))
-                }
-                style={getInteractiveHomeCardStyle("dashboard")}
-              >
-                <div style={{ fontSize: 42, marginBottom: 8 }}>📈</div>
-                <h3 style={{ color: "#12355b" }}>Track Progress</h3>
-                <p style={{ color: "#4f6275" }}>
-                  Monitor your score and see how much you have mastered.
-                </p>
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.14)",
+                    borderRadius: 18,
+                    padding: "14px 16px"
+                  }}
+                >
+                  <div style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.1 }}>
+                    Visual drills
+                  </div>
+                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
+                    Organs, bones, and guided labeling
+                  </div>
+                </div>
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.14)",
+                    borderRadius: 18,
+                    padding: "14px 16px"
+                  }}
+                >
+                  <div style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.1 }}>
+                    Exam review
+                  </div>
+                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
+                    CBET, RN, TEAS, CRES, and terminology
+                  </div>
+                </div>
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.14)",
+                    borderRadius: 18,
+                    padding: "14px 16px"
+                  }}
+                >
+                  <div style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.1 }}>
+                    Fast restart
+                  </div>
+                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
+                    Retry mistakes and keep your progress moving
+                  </div>
+                </div>
               </div>
             </div>
 
             <div
               style={{
-                marginTop: 24,
-                background: "linear-gradient(135deg, #f8fbff, #ffffff)",
-                borderRadius: 20,
-                padding: 22,
-                border: "1px solid #d8e4f2",
-                boxShadow: "0 8px 22px rgba(0,0,0,0.05)",
-                textAlign: "center"
+                ...homeInfoCardStyle,
+                flex: "1 1 280px",
+                background: "linear-gradient(180deg, #fffdf8, #ffffff)",
+                border: "1px solid #f1e1b8",
+                textAlign: "left"
               }}
             >
-              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
-                Quick Start, Guides, and TikTok
+              <div
+                style={{
+                  color: "#9a6700",
+                  fontWeight: 800,
+                  fontSize: 12,
+                  letterSpacing: 0.6,
+                  textTransform: "uppercase",
+                  marginBottom: 10
+                }}
+              >
+                Best flow
+              </div>
+              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 14 }}>
+                Use the site in this order
               </h3>
-              <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 16 }}>
-                Start practicing fast, open article guides when needed, and watch your newest TikTok lesson.
+
+              {[
+                ["1", "Start with anatomy or bones", "Warm up visually before taking quiz-style review."],
+                ["2", "Switch into practice questions", "Use CBET, RN, TEAS, or terminology to test recall."],
+                ["3", "Revisit misses and dashboard", "Tighten weak spots and watch your progress improve."]
+              ].map(([stepNumber, title, description]) => (
+                <div
+                  key={stepNumber}
+                  style={{
+                    display: "flex",
+                    gap: 12,
+                    alignItems: "flex-start",
+                    padding: "12px 0",
+                    borderTop: stepNumber === "1" ? "none" : "1px solid #eef2f7"
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: 999,
+                      background: "linear-gradient(135deg, #facc15, #f59e0b)",
+                      color: "#12355b",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontWeight: 800,
+                      flexShrink: 0
+                    }}
+                  >
+                    {stepNumber}
+                  </div>
+                  <div>
+                    <div style={{ color: "#12355b", fontWeight: 700 }}>{title}</div>
+                    <div style={{ color: "#5b6f82", fontSize: 14, marginTop: 4 }}>{description}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 18,
+              marginBottom: 28
+            }}
+          >
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseEnter={() => setHoveredHomeCard("anatomy")}
+              onMouseLeave={() => setHoveredHomeCard("")}
+              onFocus={() => setHoveredHomeCard("anatomy")}
+              onBlur={() => setHoveredHomeCard("")}
+              onClick={() => {
+                setActiveTab("Anatomy");
+                setMode("organs");
+                setSelectedSet(null);
+              }}
+              onKeyDown={(event) =>
+                handleHomeCardKeyDown(event, () => {
+                  setActiveTab("Anatomy");
+                  setMode("organs");
+                  setSelectedSet(null);
+                })
+              }
+              style={getInteractiveHomeCardStyle("anatomy")}
+            >
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🫀</div>
+              <h3 style={{ color: "#12355b" }}>Anatomy Practice</h3>
+              <p style={{ color: "#4f6275" }}>
+                Learn heart, brain, lungs, liver, eye, and arterial anatomy with interactive labeling.
               </p>
+            </div>
 
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16, justifyContent: "center" }}>
-                <span
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseEnter={() => setHoveredHomeCard("bones")}
+              onMouseLeave={() => setHoveredHomeCard("")}
+              onFocus={() => setHoveredHomeCard("bones")}
+              onBlur={() => setHoveredHomeCard("")}
+              onClick={() => {
+                setActiveTab("Bones");
+                setMode("bones");
+                setSelectedSet(null);
+              }}
+              onKeyDown={(event) =>
+                handleHomeCardKeyDown(event, () => {
+                  setActiveTab("Bones");
+                  setMode("bones");
+                  setSelectedSet(null);
+                })
+              }
+              style={getInteractiveHomeCardStyle("bones")}
+            >
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🦴</div>
+              <h3 style={{ color: "#12355b" }}>Bone Practice</h3>
+              <p style={{ color: "#4f6275" }}>
+                Study the skeleton, hand bones, foot bones, spine, skull, knee, and shoulder in detail.
+              </p>
+            </div>
+
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseEnter={() => setHoveredHomeCard("cbet")}
+              onMouseLeave={() => setHoveredHomeCard("")}
+              onFocus={() => setHoveredHomeCard("cbet")}
+              onBlur={() => setHoveredHomeCard("")}
+              onClick={() => setActiveTab("CBET")}
+              onKeyDown={(event) =>
+                handleHomeCardKeyDown(event, () => setActiveTab("CBET"))
+              }
+              style={getInteractiveHomeCardStyle("cbet")}
+            >
+              <div style={{ fontSize: 42, marginBottom: 8 }}>📝</div>
+              <h3 style={{ color: "#12355b" }}>CBET Practice</h3>
+              <p style={{ color: "#4f6275" }}>
+                Take CBET practice questions with instant feedback and score tracking.
+              </p>
+            </div>
+
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseEnter={() => setHoveredHomeCard("rn")}
+              onMouseLeave={() => setHoveredHomeCard("")}
+              onFocus={() => setHoveredHomeCard("rn")}
+              onBlur={() => setHoveredHomeCard("")}
+              onClick={() => setActiveTab("RN")}
+              onKeyDown={(event) =>
+                handleHomeCardKeyDown(event, () => setActiveTab("RN"))
+              }
+              style={getInteractiveHomeCardStyle("rn")}
+            >
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🩺</div>
+              <h3 style={{ color: "#12355b" }}>RN Practice</h3>
+              <p style={{ color: "#4f6275" }}>
+                Practice RN-style questions with immediate answer review and score tracking.
+              </p>
+            </div>
+
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseEnter={() => setHoveredHomeCard("teas")}
+              onMouseLeave={() => setHoveredHomeCard("")}
+              onFocus={() => setHoveredHomeCard("teas")}
+              onBlur={() => setHoveredHomeCard("")}
+              onClick={() => setActiveTab("TEAS")}
+              onKeyDown={(event) =>
+                handleHomeCardKeyDown(event, () => setActiveTab("TEAS"))
+              }
+              style={getInteractiveHomeCardStyle("teas")}
+            >
+              <div style={{ fontSize: 42, marginBottom: 8 }}>📚</div>
+              <h3 style={{ color: "#12355b" }}>TEAS Practice</h3>
+              <p style={{ color: "#4f6275" }}>
+                Work through 150 randomized TEAS-style questions covering reading, math, science, and English usage.
+              </p>
+            </div>
+
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseEnter={() => setHoveredHomeCard("terminology")}
+              onMouseLeave={() => setHoveredHomeCard("")}
+              onFocus={() => setHoveredHomeCard("terminology")}
+              onBlur={() => setHoveredHomeCard("")}
+              onClick={() => setActiveTab("Terminology")}
+              onKeyDown={(event) =>
+                handleHomeCardKeyDown(event, () => setActiveTab("Terminology"))
+              }
+              style={getInteractiveHomeCardStyle("terminology")}
+            >
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🧠</div>
+              <h3 style={{ color: "#12355b" }}>Medical Terminology</h3>
+              <p style={{ color: "#4f6275" }}>
+                Master hard medical terms by matching each word to its correct definition.
+              </p>
+            </div>
+
+            <div
+              role="button"
+              tabIndex={0}
+              onMouseEnter={() => setHoveredHomeCard("dashboard")}
+              onMouseLeave={() => setHoveredHomeCard("")}
+              onFocus={() => setHoveredHomeCard("dashboard")}
+              onBlur={() => setHoveredHomeCard("")}
+              onClick={() => setActiveTab("Dashboard")}
+              onKeyDown={(event) =>
+                handleHomeCardKeyDown(event, () => setActiveTab("Dashboard"))
+              }
+              style={getInteractiveHomeCardStyle("dashboard")}
+            >
+              <div style={{ fontSize: 42, marginBottom: 8 }}>📈</div>
+              <h3 style={{ color: "#12355b" }}>Track Progress</h3>
+              <p style={{ color: "#4f6275" }}>
+                Monitor your score, revisit weak spots, and see how much you have mastered.
+              </p>
+            </div>
+          </div>
+
+          <div
+            style={{
+              marginTop: 24,
+              background: "linear-gradient(135deg, #f8fbff, #ffffff)",
+              borderRadius: 24,
+              padding: 22,
+              border: "1px solid #d8e4f2",
+              boxShadow: "0 8px 22px rgba(0,0,0,0.05)"
+            }}
+          >
+            <div style={{ textAlign: "center", marginBottom: 18 }}>
+              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
+                Guides and TikTok
+              </h3>
+              <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 0 }}>
+                Open article guides when needed and keep your latest lesson easy to reach.
+              </p>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                gap: 16,
+                flexWrap: "wrap",
+                alignItems: "stretch",
+                justifyContent: "center"
+              }}
+            >
+              <div
+                style={{
+                  ...homeInfoCardStyle,
+                  flex: "1.15 1 380px",
+                  maxWidth: 560,
+                  textAlign: "left"
+                }}
+              >
+                <div
                   style={{
-                    padding: "8px 12px",
-                    borderRadius: 999,
-                    background: "#e0f2fe",
-                    color: "#0c4a6e",
-                    fontWeight: 600
+                    color: "#14532d",
+                    fontWeight: 800,
+                    fontSize: 12,
+                    letterSpacing: 0.6,
+                    textTransform: "uppercase",
+                    marginBottom: 10
                   }}
                 >
-                  1. Pick a category
-                </span>
-                <span
-                  style={{
-                    padding: "8px 12px",
-                    borderRadius: 999,
-                    background: "#dcfce7",
-                    color: "#166534",
-                    fontWeight: 600
-                  }}
-                >
-                  2. Match labels to zones
-                </span>
-                <span
-                  style={{
-                    padding: "8px 12px",
-                    borderRadius: 999,
-                    background: "#fef3c7",
-                    color: "#78350f",
-                    fontWeight: 600
-                  }}
-                >
-                  3. Use Retry until perfect
-                </span>
+                  Study guides
+                </div>
+                <h4 style={{ color: "#12355b", marginTop: 0, marginBottom: 14, fontSize: 18 }}>
+                  Extra reading when you need it
+                </h4>
+                <div style={{ display: "grid", gap: 10 }}>
+                  <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>
+                    CBET Practice Questions Guide
+                  </a>
+                  <a href="/how-to-pass-cbet-exam.html" style={homeActionLinkStyle("#1d6fa5")}>
+                    How to Pass CBET Exam
+                  </a>
+                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
+                    Anatomy Labeling Practice
+                  </a>
+                </div>
               </div>
 
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16, justifyContent: "center" }}>
-                <a
-                  href="/cbet-practice-questions.html"
+              <div
+                style={{
+                  ...homeInfoCardStyle,
+                  flex: "0.9 1 320px",
+                  maxWidth: 440,
+                  textAlign: "left",
+                  background: "linear-gradient(180deg, #fff7fb, #ffffff)",
+                  border: "1px solid #f4c7d7"
+                }}
+              >
+                <div
                   style={{
-                    padding: "8px 12px",
-                    borderRadius: 999,
-                    background: "#12355b",
-                    color: "white",
-                    textDecoration: "none",
-                    fontWeight: 600
+                    color: "#be185d",
+                    fontWeight: 800,
+                    fontSize: 12,
+                    letterSpacing: 0.6,
+                    textTransform: "uppercase",
+                    marginBottom: 10
                   }}
                 >
-                  CBET Practice Questions Guide
-                </a>
-                <a
-                  href="/how-to-pass-cbet-exam.html"
-                  style={{
-                    padding: "8px 12px",
-                    borderRadius: 999,
-                    background: "#1d6fa5",
-                    color: "white",
-                    textDecoration: "none",
-                    fontWeight: 600
-                  }}
-                >
-                  How to Pass CBET Exam
-                </a>
-                <a
-                  href="/anatomy-labeling-practice.html"
-                  style={{
-                    padding: "8px 12px",
-                    borderRadius: 999,
-                    background: "#0f766e",
-                    color: "white",
-                    textDecoration: "none",
-                    fontWeight: 600
-                  }}
-                >
-                  Anatomy Labeling Practice
-                </a>
-              </div>
-
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
-                <a
-                  href={tiktokLatestVideoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    padding: "10px 14px",
-                    borderRadius: 999,
-                    background: "linear-gradient(135deg, #111827, #1f2937)",
-                    color: "white",
-                    textDecoration: "none",
-                    fontWeight: 700
-                  }}
-                >
-                  {hasTikTokLatestVideo ? "Watch Latest TikTok" : "Open TikTok Profile"}
-                </a>
-
-                <a
-                  href={tiktokProfileUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    padding: "10px 14px",
-                    borderRadius: 999,
-                    background: "linear-gradient(135deg, #ec4899, #f43f5e)",
-                    color: "white",
-                    textDecoration: "none",
-                    fontWeight: 700
-                  }}
-                >
-                  Follow on TikTok
-                </a>
+                  Newest on TikTok
+                </div>
+                <h4 style={{ color: "#12355b", marginTop: 0, marginBottom: 8, fontSize: 18 }}>
+                  Keep the social link visible, not noisy
+                </h4>
+                <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 14 }}>
+                  Open your latest lesson directly or send people to the full profile.
+                </p>
+                <div style={{ display: "grid", gap: 10 }}>
+                  <a
+                    href={tiktokLatestVideoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={homeActionLinkStyle("linear-gradient(135deg, #111827, #1f2937)")}
+                  >
+                    {hasTikTokLatestVideo ? "Watch Latest TikTok" : "Open TikTok Profile"}
+                  </a>
+                  <a
+                    href={tiktokProfileUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={homeActionLinkStyle("linear-gradient(135deg, #ec4899, #f43f5e)")}
+                  >
+                    Follow on TikTok
+                  </a>
+                </div>
 
                 {!hasTikTokLatestVideo && (
-                  <span
+                  <div
                     style={{
-                      padding: "10px 14px",
-                      borderRadius: 999,
+                      marginTop: 12,
+                      padding: "10px 12px",
+                      borderRadius: 14,
                       background: "#fee2e2",
                       color: "#7f1d1d",
                       fontWeight: 600
                     }}
                   >
-                    Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video
-                  </span>
+                    Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video.
+                  </div>
                 )}
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
         {activeTab === "Dashboard" && (
           <div
