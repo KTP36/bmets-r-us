@@ -3261,6 +3261,9 @@ export default function App() {
           cashAppSupportUrl
         )}`
       : "");
+  const tiktokProfileUrl = import.meta.env.VITE_TIKTOK_PROFILE_URL || "https://www.tiktok.com";
+  const hasTikTokLatestVideo = Boolean(import.meta.env.VITE_TIKTOK_LATEST_VIDEO_URL);
+  const tiktokLatestVideoUrl = import.meta.env.VITE_TIKTOK_LATEST_VIDEO_URL || tiktokProfileUrl;
   const adsenseClient = "ca-pub-4355354977115217";
   const topAdSlot = "";
   const bottomAdSlot = "";
@@ -4819,61 +4822,59 @@ return (
 
             <div
               style={{
-                display: "flex",
-                gap: 20,
-                flexWrap: "wrap",
-                justifyContent: "center"
-              }}
-            >
-              <div
-                style={{
-                  background: "linear-gradient(135deg, #d1fae5, #ecfeff)",
-                  borderRadius: 18,
-                  padding: 22,
-                  minWidth: 280,
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.06)"
-                }}
-              >
-                <h3 style={{ color: "#0f4c5c", marginTop: 0 }}>How to Play</h3>
-                <p style={{ color: "#345" }}>
-                  Pick a category, choose a body part set, tap/click a label,
-                  then tap/click the matching zone on the image.
-                </p>
-              </div>
-
-              <div
-                style={{
-                  background: "linear-gradient(135deg, #fde68a, #fef3c7)",
-                  borderRadius: 18,
-                  padding: 22,
-                  minWidth: 280,
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.06)"
-                }}
-              >
-                <h3 style={{ color: "#7c4a03", marginTop: 0 }}>Tip</h3>
-                <p style={{ color: "#5f4a1c" }}>
-                  New modules are live: Liver, Eye, and Arterial System.
-                  Use Retry to practice each set until perfect.
-                </p>
-              </div>
-            </div>
-
-            <div
-              style={{
                 marginTop: 24,
-                background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                borderRadius: 18,
-                padding: 20,
-                border: "1px solid #d8e4f2"
+                background: "linear-gradient(135deg, #f8fbff, #ffffff)",
+                borderRadius: 20,
+                padding: 22,
+                border: "1px solid #d8e4f2",
+                boxShadow: "0 8px 22px rgba(0,0,0,0.05)",
+                textAlign: "center"
               }}
             >
-              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 10 }}>
-                Study Guides and SEO Pages
+              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
+                Quick Start, Guides, and TikTok
               </h3>
-              <p style={{ color: "#4f6275", marginTop: 0 }}>
-                Prefer article-style prep? Open these content pages, then jump back into interactive practice.
+              <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 16 }}>
+                Start practicing fast, open article guides when needed, and watch your newest TikTok lesson.
               </p>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16, justifyContent: "center" }}>
+                <span
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 999,
+                    background: "#e0f2fe",
+                    color: "#0c4a6e",
+                    fontWeight: 600
+                  }}
+                >
+                  1. Pick a category
+                </span>
+                <span
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 999,
+                    background: "#dcfce7",
+                    color: "#166534",
+                    fontWeight: 600
+                  }}
+                >
+                  2. Match labels to zones
+                </span>
+                <span
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 999,
+                    background: "#fef3c7",
+                    color: "#78350f",
+                    fontWeight: 600
+                  }}
+                >
+                  3. Use Retry until perfect
+                </span>
+              </div>
+
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16, justifyContent: "center" }}>
                 <a
                   href="/cbet-practice-questions.html"
                   style={{
@@ -4913,6 +4914,54 @@ return (
                 >
                   Anatomy Labeling Practice
                 </a>
+              </div>
+
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
+                <a
+                  href={tiktokLatestVideoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    padding: "10px 14px",
+                    borderRadius: 999,
+                    background: "linear-gradient(135deg, #111827, #1f2937)",
+                    color: "white",
+                    textDecoration: "none",
+                    fontWeight: 700
+                  }}
+                >
+                  {hasTikTokLatestVideo ? "Watch Latest TikTok" : "Open TikTok Profile"}
+                </a>
+
+                <a
+                  href={tiktokProfileUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    padding: "10px 14px",
+                    borderRadius: 999,
+                    background: "linear-gradient(135deg, #ec4899, #f43f5e)",
+                    color: "white",
+                    textDecoration: "none",
+                    fontWeight: 700
+                  }}
+                >
+                  Follow on TikTok
+                </a>
+
+                {!hasTikTokLatestVideo && (
+                  <span
+                    style={{
+                      padding: "10px 14px",
+                      borderRadius: 999,
+                      background: "#fee2e2",
+                      color: "#7f1d1d",
+                      fontWeight: 600
+                    }}
+                  >
+                    Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video
+                  </span>
+                )}
               </div>
             </div>
           </div>
