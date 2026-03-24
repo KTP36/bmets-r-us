@@ -2789,6 +2789,46 @@ const wordPartQuestions = [
     ]
   },
 
+  Spine: {
+    image: "/spine.png",
+    boardWidth: 1024,
+    boardHeight: 1024,
+    functionTitle: "Supports posture and protects the spinal cord",
+    functionSummary:
+      "The spine provides structural support, allows flexible movement, protects the spinal cord, and transfers body weight into the pelvis.",
+    studyHighlights: [
+      "Supports the head and trunk in upright posture",
+      "Protects the spinal cord and nerve roots",
+      "Allows bending, rotation, and weight transfer"
+    ],
+    dropWidth: 88,
+    dropHeight: 34,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.95,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Atlas (C1)", x: 520, y: 42, description: "Top cervical vertebra that supports the skull and allows nodding motion" },
+      { name: "Cervical Vertebrae", x: 534, y: 126, description: "Upper spine vertebrae in the neck that support the head and allow mobility" },
+      { name: "Thoracic Vertebrae", x: 542, y: 246, description: "Mid-back vertebrae that articulate with the ribs and support the thorax" },
+      { name: "Lumbar Vertebrae", x: 500, y: 618, description: "Large lower-back vertebrae that bear much of the body's weight" },
+      { name: "Sacrum", x: 505, y: 880, description: "Triangular fused bone that connects the spine to the pelvis" },
+      { name: "Coccyx", x: 520, y: 982, description: "Tailbone at the inferior end of the vertebral column" },
+      { name: "Intervertebral Disc", x: 506, y: 568, description: "Fibrocartilaginous cushion between vertebral bodies that absorbs shock" },
+      { name: "Vertebral Body", x: 548, y: 344, description: "Large anterior weight-bearing portion of a vertebra" },
+      { name: "Spinous Process", x: 650, y: 322, description: "Posterior bony projection that serves as a muscle and ligament attachment point" },
+      { name: "Transverse Process", x: 612, y: 350, description: "Lateral bony projection extending from the vertebra for muscle attachment" }
+    ]
+  },
+
   Eye: {
     image: "/eye.jpg",
     boardWidth: 750,
@@ -3200,7 +3240,7 @@ export default function App() {
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
-    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys";
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine";
 
   const showPlacementMessage = (text, tone = "wrong") => {
     if (placementMessageTimeoutRef.current) {
