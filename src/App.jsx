@@ -4055,7 +4055,7 @@ export default function App() {
     minWidth: 0,
     background: "rgba(255,255,255,0.9)",
     borderRadius: 20,
-    padding: 22,
+    padding: isSmallScreen ? 18 : 22,
     border: "1px solid #d8e4f2",
     boxShadow: "0 8px 22px rgba(0,0,0,0.05)"
   };
@@ -4645,8 +4645,8 @@ return (
         <div
           style={{
             background: "linear-gradient(180deg, rgba(255,255,255,0.84), rgba(244,250,255,0.96))",
-            borderRadius: 28,
-            padding: 30,
+            borderRadius: isSmallScreen ? 22 : 28,
+            padding: isSmallScreen ? 18 : 30,
             boxShadow: "0 18px 46px rgba(18,53,91,0.10)",
             border: "1px solid rgba(216,228,242,0.95)"
           }}
@@ -4654,18 +4654,18 @@ return (
           <div
             style={{
               display: "flex",
-              gap: 20,
+              gap: isSmallScreen ? 16 : 20,
               flexWrap: "wrap",
               alignItems: "stretch",
-              marginBottom: 28
+              marginBottom: isSmallScreen ? 20 : 28
             }}
           >
             <div
               style={{
                 flex: "1.8 1 520px",
                 minWidth: 0,
-                borderRadius: 24,
-                padding: 28,
+                borderRadius: isSmallScreen ? 20 : 24,
+                padding: isSmallScreen ? 20 : 28,
                 background: "linear-gradient(135deg, #12355b 0%, #1d6fa5 58%, #63c1d7 100%)",
                 boxShadow: "0 22px 42px rgba(18,53,91,0.24)",
                 color: "white",
@@ -4680,7 +4680,7 @@ return (
                   padding: "7px 12px",
                   borderRadius: 999,
                   background: "rgba(255,255,255,0.16)",
-                  fontSize: 13,
+                  fontSize: isSmallScreen ? 11 : 13,
                   fontWeight: 700,
                   letterSpacing: 0.4,
                   textTransform: "uppercase",
@@ -4693,7 +4693,7 @@ return (
               <h2
                 style={{
                   color: "white",
-                  fontSize: 34,
+                  fontSize: isSmallScreen ? 28 : 34,
                   lineHeight: 1.12,
                   marginTop: 0,
                   marginBottom: 12,
@@ -4705,7 +4705,7 @@ return (
 
               <p
                 style={{
-                  fontSize: 18,
+                  fontSize: isSmallScreen ? 16 : 18,
                   color: "rgba(255,255,255,0.92)",
                   maxWidth: 700,
                   margin: 0
@@ -4720,7 +4720,8 @@ return (
                   gap: 12,
                   flexWrap: "wrap",
                   marginTop: 20,
-                  marginBottom: 20
+                  marginBottom: 20,
+                  flexDirection: isSmallScreen ? "column" : "row"
                 }}
               >
                 <button
@@ -4738,7 +4739,8 @@ return (
                     color: "#12355b",
                     fontWeight: 800,
                     cursor: "pointer",
-                    boxShadow: "0 12px 28px rgba(10,22,40,0.18)"
+                    boxShadow: "0 12px 28px rgba(10,22,40,0.18)",
+                    width: isSmallScreen ? "100%" : "auto"
                   }}
                 >
                   Open Anatomy Practice
@@ -4753,7 +4755,8 @@ return (
                     background: "rgba(255,255,255,0.10)",
                     color: "white",
                     fontWeight: 800,
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    width: isSmallScreen ? "100%" : "auto"
                   }}
                 >
                   Jump to CBET Questions
@@ -4763,7 +4766,9 @@ return (
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                  gridTemplateColumns: isSmallScreen
+                    ? "1fr"
+                    : "repeat(auto-fit, minmax(150px, 1fr))",
                   gap: 12
                 }}
               >
@@ -4771,10 +4776,10 @@ return (
                   style={{
                     background: "rgba(255,255,255,0.14)",
                     borderRadius: 18,
-                    padding: "14px 16px"
+                    padding: isSmallScreen ? "12px 14px" : "14px 16px"
                   }}
                 >
-                  <div style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.1 }}>
+                  <div style={{ fontSize: isSmallScreen ? 22 : 26, fontWeight: 800, lineHeight: 1.1 }}>
                     Visual drills
                   </div>
                   <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
@@ -4785,10 +4790,10 @@ return (
                   style={{
                     background: "rgba(255,255,255,0.14)",
                     borderRadius: 18,
-                    padding: "14px 16px"
+                    padding: isSmallScreen ? "12px 14px" : "14px 16px"
                   }}
                 >
-                  <div style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.1 }}>
+                  <div style={{ fontSize: isSmallScreen ? 22 : 26, fontWeight: 800, lineHeight: 1.1 }}>
                     Exam review
                   </div>
                   <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
@@ -4799,10 +4804,10 @@ return (
                   style={{
                     background: "rgba(255,255,255,0.14)",
                     borderRadius: 18,
-                    padding: "14px 16px"
+                    padding: isSmallScreen ? "12px 14px" : "14px 16px"
                   }}
                 >
-                  <div style={{ fontSize: 26, fontWeight: 800, lineHeight: 1.1 }}>
+                  <div style={{ fontSize: isSmallScreen ? 22 : 26, fontWeight: 800, lineHeight: 1.1 }}>
                     Fast restart
                   </div>
                   <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
@@ -4815,7 +4820,7 @@ return (
             <div
               style={{
                 ...homeInfoCardStyle,
-                flex: "1 1 280px",
+                flex: isSmallScreen ? "1 1 100%" : "1 1 280px",
                 background: "linear-gradient(180deg, #fffdf8, #ffffff)",
                 border: "1px solid #f1e1b8",
                 textAlign: "left"
@@ -4880,9 +4885,11 @@ return (
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 18,
-              marginBottom: 28
+              gridTemplateColumns: isSmallScreen
+                ? "1fr"
+                : "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: isSmallScreen ? 14 : 18,
+              marginBottom: isSmallScreen ? 20 : 28
             }}
           >
             <div
@@ -5046,8 +5053,8 @@ return (
             style={{
               marginTop: 24,
               background: "linear-gradient(135deg, #f8fbff, #ffffff)",
-              borderRadius: 24,
-              padding: 22,
+              borderRadius: isSmallScreen ? 20 : 24,
+              padding: isSmallScreen ? 18 : 22,
               border: "1px solid #d8e4f2",
               boxShadow: "0 8px 22px rgba(0,0,0,0.05)"
             }}
@@ -5073,8 +5080,8 @@ return (
               <div
                 style={{
                   ...homeInfoCardStyle,
-                  flex: "1.15 1 380px",
-                  maxWidth: 560,
+                  flex: isSmallScreen ? "1 1 100%" : "1.15 1 380px",
+                  maxWidth: isSmallScreen ? "none" : 560,
                   textAlign: "left"
                 }}
               >
@@ -5109,8 +5116,8 @@ return (
               <div
                 style={{
                   ...homeInfoCardStyle,
-                  flex: "0.9 1 320px",
-                  maxWidth: 440,
+                  flex: isSmallScreen ? "1 1 100%" : "0.9 1 320px",
+                  maxWidth: isSmallScreen ? "none" : 440,
                   textAlign: "left",
                   background: "linear-gradient(180deg, #fff7fb, #ffffff)",
                   border: "1px solid #f4c7d7"
