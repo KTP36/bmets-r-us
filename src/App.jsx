@@ -6035,7 +6035,35 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Review Missed Questions
+                    Study Misses (Optional)
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      startRetakeMissedQuestions({
+                        missedQuestionsList: harderCbetMissedQuestions,
+                        setShuffledQuestions: setShuffledHarderCbetQuestions,
+                        setIndex: setHarderCbetIndex,
+                        setScore: setHarderCbetScore,
+                        setAnswers: setHarderCbetAnswers,
+                        setShowResult: setHarderCbetShowResult,
+                        setShowMissedReview: setShowHarderCbetMissedReview,
+                        storageKey: "harderCbetProgress"
+                      })
+                    }
+                    disabled={harderCbetMissedQuestions.length === 0}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: harderCbetMissedQuestions.length === 0 ? "not-allowed" : "pointer",
+                      opacity: harderCbetMissedQuestions.length === 0 ? 0.55 : 1
+                    }}
+                  >
+                    Retake Missed Only
                   </button>
 
                   <button
@@ -6088,62 +6116,11 @@ return (
                     You did not miss any questions.
                   </p>
                 ) : (
-                  harderCbetMissedQuestions.map((q, idx) => {
-                    const originalIndex = shuffledHarderCbetQuestions.findIndex(
-                      (item) => item.question === q.question
-                    );
-                    const selected = harderCbetAnswers[originalIndex];
-
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          background: "#fff",
-                          border: "1px solid #d8e4f2",
-                          borderRadius: 16,
-                          padding: 20,
-                          marginBottom: 16,
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontWeight: 700,
-                            color: "#12355b",
-                            marginBottom: 12,
-                            fontSize: 18
-                          }}
-                        >
-                          {q.question}
-                        </div>
-
-                        {q.options.map((opt, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              padding: "10px 12px",
-                              marginBottom: 8,
-                              borderRadius: 10,
-                              background:
-                                i === q.answer
-                                  ? "#d9f7d9"
-                                  : i === selected
-                                  ? "#fee2e2"
-                                  : "#f8fafc",
-                              border:
-                                i === q.answer
-                                  ? "2px solid green"
-                                  : i === selected
-                                  ? "2px solid red"
-                                  : "1px solid #cbd5e1"
-                            }}
-                          >
-                            {String.fromCharCode(65 + i)}. {opt}
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  })
+                  renderMissedQuestionCards(
+                    harderCbetMissedQuestions,
+                    shuffledHarderCbetQuestions,
+                    harderCbetAnswers
+                  )
                 )}
 
                 <div style={{ textAlign: "center", marginTop: 20 }}>
@@ -6430,7 +6407,35 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Review Missed Questions
+                    Study Misses (Optional)
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      startRetakeMissedQuestions({
+                        missedQuestionsList: equipmentMissedQuestions,
+                        setShuffledQuestions: setShuffledEquipmentQuestions,
+                        setIndex: setEquipmentIndex,
+                        setScore: setEquipmentScore,
+                        setAnswers: setEquipmentAnswers,
+                        setShowResult: setEquipmentShowResult,
+                        setShowMissedReview: setShowEquipmentMissedReview,
+                        storageKey: "equipmentProgress"
+                      })
+                    }
+                    disabled={equipmentMissedQuestions.length === 0}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: equipmentMissedQuestions.length === 0 ? "not-allowed" : "pointer",
+                      opacity: equipmentMissedQuestions.length === 0 ? 0.55 : 1
+                    }}
+                  >
+                    Retake Missed Only
                   </button>
 
                   <button
@@ -6483,89 +6488,12 @@ return (
                     You did not miss any questions.
                   </p>
                 ) : (
-                  equipmentMissedQuestions.map((q, idx) => {
-                    const originalIndex = shuffledEquipmentQuestions.findIndex(
-                      (item) => item.question === q.question && item.image === q.image
-                    );
-                    const selected = equipmentAnswers[originalIndex];
-
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          background: "#fff",
-                          border: "1px solid #d8e4f2",
-                          borderRadius: 16,
-                          padding: 20,
-                          marginBottom: 16,
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                        }}
-                      >
-                        <img
-                          src={q.image}
-                          alt="Medical equipment review"
-                          style={{
-                            width: "100%",
-                            maxHeight: 220,
-                            objectFit: "contain",
-                            borderRadius: 10,
-                            border: "1px solid #e2e8f0",
-                            marginBottom: 12
-                          }}
-                        />
-
-                        <div
-                          style={{
-                            fontWeight: 700,
-                            color: "#12355b",
-                            marginBottom: 12,
-                            fontSize: 18
-                          }}
-                        >
-                          {q.question}
-                        </div>
-
-                        {q.options.map((opt, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              padding: "10px 12px",
-                              marginBottom: 8,
-                              borderRadius: 10,
-                              background:
-                                i === q.answer
-                                  ? "#d9f7d9"
-                                  : i === selected
-                                  ? "#fee2e2"
-                                  : "#f8fafc",
-                              border:
-                                i === q.answer
-                                  ? "2px solid green"
-                                  : i === selected
-                                  ? "2px solid red"
-                                  : "1px solid #cbd5e1"
-                            }}
-                          >
-                            {String.fromCharCode(65 + i)}. {opt}
-                          </div>
-                        ))}
-
-                        <div
-                          style={{
-                            marginTop: 8,
-                            padding: "10px 12px",
-                            borderRadius: 10,
-                            background: "#eff6ff",
-                            border: "1px solid #bfdbfe",
-                            color: "#1e3a8a",
-                            fontWeight: 600
-                          }}
-                        >
-                          Tip: {q.studyTip}
-                        </div>
-                      </div>
-                    );
-                  })
+                  renderMissedQuestionCards(
+                    equipmentMissedQuestions,
+                    shuffledEquipmentQuestions,
+                    equipmentAnswers,
+                    { showImage: true, showStudyTip: true }
+                  )
                 )}
 
                 <div style={{ textAlign: "center", marginTop: 20 }}>
@@ -6766,7 +6694,35 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Review Missed Questions
+                    Study Misses (Optional)
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      startRetakeMissedQuestions({
+                        missedQuestionsList: rnMissedQuestions,
+                        setShuffledQuestions: setShuffledRnQuestions,
+                        setIndex: setRnIndex,
+                        setScore: setRnScore,
+                        setAnswers: setRnAnswers,
+                        setShowResult: setRnShowResult,
+                        setShowMissedReview: setShowRnMissedReview,
+                        storageKey: "rnProgress"
+                      })
+                    }
+                    disabled={rnMissedQuestions.length === 0}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: rnMissedQuestions.length === 0 ? "not-allowed" : "pointer",
+                      opacity: rnMissedQuestions.length === 0 ? 0.55 : 1
+                    }}
+                  >
+                    Retake Missed Only
                   </button>
 
                   <button
@@ -6821,75 +6777,16 @@ return (
                   RN Missed Questions Review
                 </h2>
 
-                {shuffledRnQuestions.filter((q, index) => {
-                  const selected = rnAnswers[index];
-                  return selected !== undefined && selected !== q.answer;
-                }).length === 0 ? (
+                {rnMissedQuestions.length === 0 ? (
                   <p style={{ textAlign: "center", color: "#1e293b" }}>
                     You did not miss any questions.
                   </p>
                 ) : (
-                  shuffledRnQuestions
-                    .filter((q, index) => {
-                      const selected = rnAnswers[index];
-                      return selected !== undefined && selected !== q.answer;
-                    })
-                    .map((q, idx) => {
-                      const originalIndex = shuffledRnQuestions.findIndex(
-                        (item) => item.question === q.question
-                      );
-                      const selected = rnAnswers[originalIndex];
-
-                      return (
-                        <div
-                          key={idx}
-                          style={{
-                            background: "#fff",
-                            border: "1px solid #d8e4f2",
-                            borderRadius: 16,
-                            padding: 20,
-                            marginBottom: 16,
-                            boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                          }}
-                        >
-                          <div
-                            style={{
-                              fontWeight: 700,
-                              color: "#12355b",
-                              marginBottom: 12,
-                              fontSize: 18
-                            }}
-                          >
-                            {q.question}
-                          </div>
-
-                          {q.options.map((opt, i) => (
-                            <div
-                              key={i}
-                              style={{
-                                padding: "10px 12px",
-                                marginBottom: 8,
-                                borderRadius: 10,
-                                background:
-                                  i === q.answer
-                                    ? "#d9f7d9"
-                                    : i === selected
-                                    ? "#fee2e2"
-                                    : "#f8fafc",
-                                border:
-                                  i === q.answer
-                                    ? "2px solid green"
-                                    : i === selected
-                                    ? "2px solid red"
-                                    : "1px solid #cbd5e1"
-                              }}
-                            >
-                              {String.fromCharCode(65 + i)}. {opt}
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })
+                  renderMissedQuestionCards(
+                    rnMissedQuestions,
+                    shuffledRnQuestions,
+                    rnAnswers
+                  )
                 )}
 
                 <div style={{ textAlign: "center", marginTop: 20 }}>
@@ -7132,7 +7029,35 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Review Missed Questions
+                    Study Misses (Optional)
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      startRetakeMissedQuestions({
+                        missedQuestionsList: teasMissedQuestions,
+                        setShuffledQuestions: setShuffledTeasQuestions,
+                        setIndex: setTeasIndex,
+                        setScore: setTeasScore,
+                        setAnswers: setTeasAnswers,
+                        setShowResult: setTeasShowResult,
+                        setShowMissedReview: setShowTeasMissedReview,
+                        storageKey: "teasProgress"
+                      })
+                    }
+                    disabled={teasMissedQuestions.length === 0}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: teasMissedQuestions.length === 0 ? "not-allowed" : "pointer",
+                      opacity: teasMissedQuestions.length === 0 ? 0.55 : 1
+                    }}
+                  >
+                    Retake Missed Only
                   </button>
 
                   <button
@@ -7185,62 +7110,11 @@ return (
                     You did not miss any questions.
                   </p>
                 ) : (
-                  teasMissedQuestions.map((q, idx) => {
-                    const originalIndex = shuffledTeasQuestions.findIndex(
-                      (item) => item.question === q.question
-                    );
-                    const selected = teasAnswers[originalIndex];
-
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          background: "#fff",
-                          border: "1px solid #d8e4f2",
-                          borderRadius: 16,
-                          padding: 20,
-                          marginBottom: 16,
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontWeight: 700,
-                            color: "#12355b",
-                            marginBottom: 12,
-                            fontSize: 18
-                          }}
-                        >
-                          {q.question}
-                        </div>
-
-                        {q.options.map((opt, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              padding: "10px 12px",
-                              marginBottom: 8,
-                              borderRadius: 10,
-                              background:
-                                i === q.answer
-                                  ? "#d9f7d9"
-                                  : i === selected
-                                  ? "#fee2e2"
-                                  : "#f8fafc",
-                              border:
-                                i === q.answer
-                                  ? "2px solid green"
-                                  : i === selected
-                                  ? "2px solid red"
-                                  : "1px solid #cbd5e1"
-                            }}
-                          >
-                            {String.fromCharCode(65 + i)}. {opt}
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  })
+                  renderMissedQuestionCards(
+                    teasMissedQuestions,
+                    shuffledTeasQuestions,
+                    teasAnswers
+                  )
                 )}
 
                 <div style={{ textAlign: "center", marginTop: 20 }}>
@@ -7479,7 +7353,35 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Review Missed Questions
+                    Study Misses (Optional)
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      startRetakeMissedQuestions({
+                        missedQuestionsList: cresMissedQuestions,
+                        setShuffledQuestions: setShuffledCresQuestions,
+                        setIndex: setCresIndex,
+                        setScore: setCresScore,
+                        setAnswers: setCresAnswers,
+                        setShowResult: setCresShowResult,
+                        setShowMissedReview: setShowCresMissedReview,
+                        storageKey: "cresProgress"
+                      })
+                    }
+                    disabled={cresMissedQuestions.length === 0}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                      color: "white",
+                      fontWeight: 700,
+                      cursor: cresMissedQuestions.length === 0 ? "not-allowed" : "pointer",
+                      opacity: cresMissedQuestions.length === 0 ? 0.55 : 1
+                    }}
+                  >
+                    Retake Missed Only
                   </button>
 
                   <button
@@ -7532,62 +7434,11 @@ return (
                     You did not miss any questions.
                   </p>
                 ) : (
-                  cresMissedQuestions.map((q, idx) => {
-                    const originalIndex = shuffledCresQuestions.findIndex(
-                      (item) => item.question === q.question
-                    );
-                    const selected = cresAnswers[originalIndex];
-
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          background: "#fff",
-                          border: "1px solid #d8e4f2",
-                          borderRadius: 16,
-                          padding: 20,
-                          marginBottom: 16,
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontWeight: 700,
-                            color: "#12355b",
-                            marginBottom: 12,
-                            fontSize: 18
-                          }}
-                        >
-                          {q.question}
-                        </div>
-
-                        {q.options.map((opt, i) => (
-                          <div
-                            key={i}
-                            style={{
-                              padding: "10px 12px",
-                              marginBottom: 8,
-                              borderRadius: 10,
-                              background:
-                                i === q.answer
-                                  ? "#d9f7d9"
-                                  : i === selected
-                                  ? "#fee2e2"
-                                  : "#f8fafc",
-                              border:
-                                i === q.answer
-                                  ? "2px solid green"
-                                  : i === selected
-                                  ? "2px solid red"
-                                  : "1px solid #cbd5e1"
-                            }}
-                          >
-                            {String.fromCharCode(65 + i)}. {opt}
-                          </div>
-                        ))}
-                      </div>
-                    );
-                  })
+                  renderMissedQuestionCards(
+                    cresMissedQuestions,
+                    shuffledCresQuestions,
+                    cresAnswers
+                  )
                 )}
 
                 <div style={{ textAlign: "center", marginTop: 20 }}>
@@ -7882,7 +7733,35 @@ return (
                           cursor: "pointer"
                         }}
                       >
-                        Review Missed Questions
+                        Study Misses (Optional)
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          startRetakeMissedQuestions({
+                            missedQuestionsList: terminologyMissedQuestions,
+                            setShuffledQuestions: setShuffledTerminologyQuestions,
+                            setIndex: setTerminologyIndex,
+                            setScore: setTerminologyScore,
+                            setAnswers: setTerminologyAnswers,
+                            setShowResult: setTerminologyShowResult,
+                            setShowMissedReview: setShowTerminologyMissedReview,
+                            storageKey: "terminologyProgress"
+                          })
+                        }
+                        disabled={terminologyMissedQuestions.length === 0}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: terminologyMissedQuestions.length === 0 ? "not-allowed" : "pointer",
+                          opacity: terminologyMissedQuestions.length === 0 ? 0.55 : 1
+                        }}
+                      >
+                        Retake Missed Only
                       </button>
 
                       <button
@@ -7935,62 +7814,11 @@ return (
                         You did not miss any questions.
                       </p>
                     ) : (
-                      terminologyMissedQuestions.map((q, idx) => {
-                        const originalIndex = shuffledTerminologyQuestions.findIndex(
-                          (item) => item.question === q.question
-                        );
-                        const selected = terminologyAnswers[originalIndex];
-
-                        return (
-                          <div
-                            key={idx}
-                            style={{
-                              background: "#fff",
-                              border: "1px solid #d8e4f2",
-                              borderRadius: 16,
-                              padding: 20,
-                              marginBottom: 16,
-                              boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                            }}
-                          >
-                            <div
-                              style={{
-                                fontWeight: 700,
-                                color: "#12355b",
-                                marginBottom: 12,
-                                fontSize: 18
-                              }}
-                            >
-                              {q.question}
-                            </div>
-
-                            {q.options.map((opt, i) => (
-                              <div
-                                key={i}
-                                style={{
-                                  padding: "10px 12px",
-                                  marginBottom: 8,
-                                  borderRadius: 10,
-                                  background:
-                                    i === q.answer
-                                      ? "#d9f7d9"
-                                      : i === selected
-                                      ? "#fee2e2"
-                                      : "#f8fafc",
-                                  border:
-                                    i === q.answer
-                                      ? "2px solid green"
-                                      : i === selected
-                                      ? "2px solid red"
-                                      : "1px solid #cbd5e1"
-                                }}
-                              >
-                                {String.fromCharCode(65 + i)}. {opt}
-                              </div>
-                            ))}
-                          </div>
-                        );
-                      })
+                      renderMissedQuestionCards(
+                        terminologyMissedQuestions,
+                        shuffledTerminologyQuestions,
+                        terminologyAnswers
+                      )
                     )}
 
                     <div style={{ textAlign: "center", marginTop: 20 }}>
@@ -8223,7 +8051,35 @@ return (
                           cursor: "pointer"
                         }}
                       >
-                        Review Missed Questions
+                        Study Misses (Optional)
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          startRetakeMissedQuestions({
+                            missedQuestionsList: wordPartMissedQuestions,
+                            setShuffledQuestions: setShuffledWordPartQuestions,
+                            setIndex: setWordPartIndex,
+                            setScore: setWordPartScore,
+                            setAnswers: setWordPartAnswers,
+                            setShowResult: setWordPartShowResult,
+                            setShowMissedReview: setShowWordPartMissedReview,
+                            storageKey: "wordPartProgress"
+                          })
+                        }
+                        disabled={wordPartMissedQuestions.length === 0}
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                          color: "white",
+                          fontWeight: 700,
+                          cursor: wordPartMissedQuestions.length === 0 ? "not-allowed" : "pointer",
+                          opacity: wordPartMissedQuestions.length === 0 ? 0.55 : 1
+                        }}
+                      >
+                        Retake Missed Only
                       </button>
 
                       <button
@@ -8276,62 +8132,11 @@ return (
                         You did not miss any questions.
                       </p>
                     ) : (
-                      wordPartMissedQuestions.map((q, idx) => {
-                        const originalIndex = shuffledWordPartQuestions.findIndex(
-                          (item) => item.question === q.question
-                        );
-                        const selected = wordPartAnswers[originalIndex];
-
-                        return (
-                          <div
-                            key={idx}
-                            style={{
-                              background: "#fff",
-                              border: "1px solid #d8e4f2",
-                              borderRadius: 16,
-                              padding: 20,
-                              marginBottom: 16,
-                              boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                            }}
-                          >
-                            <div
-                              style={{
-                                fontWeight: 700,
-                                color: "#12355b",
-                                marginBottom: 12,
-                                fontSize: 18
-                              }}
-                            >
-                              {q.question}
-                            </div>
-
-                            {q.options.map((opt, i) => (
-                              <div
-                                key={i}
-                                style={{
-                                  padding: "10px 12px",
-                                  marginBottom: 8,
-                                  borderRadius: 10,
-                                  background:
-                                    i === q.answer
-                                      ? "#d9f7d9"
-                                      : i === selected
-                                      ? "#fee2e2"
-                                      : "#f8fafc",
-                                  border:
-                                    i === q.answer
-                                      ? "2px solid green"
-                                      : i === selected
-                                      ? "2px solid red"
-                                      : "1px solid #cbd5e1"
-                                }}
-                              >
-                                {String.fromCharCode(65 + i)}. {opt}
-                              </div>
-                            ))}
-                          </div>
-                        );
-                      })
+                      renderMissedQuestionCards(
+                        wordPartMissedQuestions,
+                        shuffledWordPartQuestions,
+                        wordPartAnswers
+                      )
                     )}
 
                     <div style={{ textAlign: "center", marginTop: 20 }}>
