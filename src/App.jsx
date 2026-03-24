@@ -3106,6 +3106,47 @@ const bones = {
     ]
   },
 
+
+  Shoulder: {
+    image: "/shoulder.jpg",
+    boardWidth: 800,
+    boardHeight: 900,
+    functionTitle: "Enables the greatest range of motion of any joint",
+    functionSummary:
+      "The shoulder is a ball-and-socket joint where the humerus meets the scapula. It allows the arm to move in nearly every direction, stabilized by the rotator cuff muscles, ligaments, and the bony architecture of the glenoid and acromion.",
+    studyHighlights: [
+      "The rotator cuff is made up of four muscles: supraspinatus, infraspinatus, teres minor, and subscapularis",
+      "The glenoid cavity is shallow, making the shoulder mobile but prone to dislocation",
+      "The acromioclavicular joint connects the clavicle to the scapula at the acromion"
+    ],
+    dropWidth: 88,
+    dropHeight: 34,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.95,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Clavicle", x: 280, y: 140, description: "Collarbone; connects the sternum to the scapula and helps stabilize the shoulder" },
+      { name: "Scapula", x: 560, y: 360, description: "Shoulder blade; provides attachment points for rotator cuff muscles and forms the glenoid cavity" },
+      { name: "Humerus", x: 520, y: 620, description: "Upper arm bone; the ball of the ball-and-socket shoulder joint" },
+      { name: "Acromion", x: 430, y: 200, description: "Bony projection of the scapula that forms the roof of the shoulder joint" },
+      { name: "Coracoid Process", x: 360, y: 270, description: "Hook-shaped projection of the scapula; attachment point for muscles and ligaments" },
+      { name: "Glenoid Cavity", x: 480, y: 360, description: "Shallow socket of the scapula that receives the humeral head; enables wide range of motion" },
+      { name: "Rotator Cuff", x: 525, y: 328, description: "Group of four muscles and tendons that stabilize the humeral head in the glenoid cavity" },
+      { name: "Bicipital Groove", x: 515, y: 420, description: "Groove on the anterior humerus where the biceps tendon runs" },
+      { name: "Acromioclavicular Joint", x: 410, y: 185, description: "Joint between the acromion and clavicle; commonly injured in shoulder separations" },
+      { name: "Glenohumeral Joint", x: 510, y: 390, description: "The main ball-and-socket joint of the shoulder between the humeral head and glenoid" }
+    ]
+  },
+
   Spine: {
     image: "/spine.png",
     boardWidth: 1024,
@@ -3320,7 +3361,7 @@ export default function App() {
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
-    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull" || selectedSet === "Knee";
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull" || selectedSet === "Knee" || selectedSet === "Shoulder";
 
   const showPlacementMessage = (text, tone = "wrong") => {
     if (placementMessageTimeoutRef.current) {
