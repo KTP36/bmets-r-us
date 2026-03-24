@@ -3066,6 +3066,46 @@ const bones = {
     ]
   },
 
+  Knee: {
+    image: "/knee.jpg",
+    boardWidth: 800,
+    boardHeight: 900,
+    functionTitle: "Supports weight-bearing and leg movement",
+    functionSummary:
+      "The knee is the largest joint in the body, connecting the femur to the tibia. It enables flexion, extension, and slight rotation, and is stabilized by ligaments, menisci, and the patella.",
+    studyHighlights: [
+      "The ACL and PCL cross inside the joint to prevent forward/backward sliding",
+      "Menisci act as shock absorbers between femur and tibia",
+      "The patella increases the mechanical advantage of the quadriceps"
+    ],
+    dropWidth: 88,
+    dropHeight: 34,
+    mobileDropScale: 0.38,
+    mobileLabelOffsetX: -145,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.95,
+    mobileImageTranslateX: -70,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Femur", x: 400, y: 80, description: "Thigh bone; the upper bone of the knee joint" },
+      { name: "Patella", x: 400, y: 290, description: "Kneecap; protects the knee joint and improves quadriceps leverage" },
+      { name: "Tibia", x: 370, y: 700, description: "Shin bone; main weight-bearing bone of the lower leg" },
+      { name: "Fibula", x: 530, y: 720, description: "Smaller lower leg bone; runs lateral to the tibia" },
+      { name: "Medial Condyle", x: 225, y: 480, description: "Inner rounded projection at the base of the femur forming part of the joint surface" },
+      { name: "Lateral Condyle", x: 548, y: 480, description: "Outer rounded projection at the base of the femur forming part of the joint surface" },
+      { name: "Medial Meniscus", x: 225, y: 522, description: "C-shaped fibrocartilage on the inner knee that absorbs shock and stabilizes the joint" },
+      { name: "Lateral Meniscus", x: 548, y: 522, description: "Near-circular fibrocartilage on the outer knee that cushions and distributes load" },
+      { name: "ACL", x: 400, y: 512, description: "Anterior cruciate ligament; prevents forward sliding of the tibia on the femur" },
+      { name: "Tibial Tuberosity", x: 400, y: 790, description: "Bony prominence on the front of the tibia where the patellar tendon attaches" }
+    ]
+  },
+
   Spine: {
     image: "/spine.png",
     boardWidth: 1024,
@@ -3280,7 +3320,7 @@ export default function App() {
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
-    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull";
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull" || selectedSet === "Knee";
 
   const showPlacementMessage = (text, tone = "wrong") => {
     if (placementMessageTimeoutRef.current) {
