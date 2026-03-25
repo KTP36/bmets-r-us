@@ -3279,6 +3279,7 @@ export default function App() {
   const [showZoneAnswers, setShowZoneAnswers] = useState(false);
 
   const isSmallScreen = window.innerWidth < 768;
+  const isMediumScreen = window.innerWidth < 1120;
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
 
   // --- CBET STATE ---
@@ -4039,14 +4040,20 @@ export default function App() {
 
   const homeCardStyle = {
     background: "rgba(255,255,255,0.85)",
-    borderRadius: 18,
-    padding: 22,
-    boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+    borderRadius: 16,
+    padding: isSmallScreen ? 14 : 18,
+    boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
     minWidth: 0,
     width: "100%",
+    height: "100%",
+    boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
     textAlign: "center",
     border: "1px solid transparent",
-    minHeight: 168,
+    minHeight: isSmallScreen ? 0 : 152,
     transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease"
   };
 
@@ -4079,10 +4086,10 @@ export default function App() {
     return {
       ...homeCardStyle,
       cursor: "pointer",
-      transform: isActive ? "translateY(-4px) scale(1.01)" : "translateY(0) scale(1)",
+      transform: isActive ? "translateY(-2px)" : "translateY(0)",
       borderColor: isActive ? "#7fb7e8" : "transparent",
       boxShadow: isActive
-        ? "0 14px 34px rgba(18,53,91,0.18), 0 0 0 4px rgba(88,180,216,0.16)"
+        ? "0 10px 20px rgba(18,53,91,0.14)"
         : homeCardStyle.boxShadow
     };
   };
@@ -4648,7 +4655,8 @@ return (
             borderRadius: isSmallScreen ? 22 : 28,
             padding: isSmallScreen ? 18 : 30,
             boxShadow: "0 18px 46px rgba(18,53,91,0.10)",
-            border: "1px solid rgba(216,228,242,0.95)"
+            border: "1px solid rgba(216,228,242,0.95)",
+            overflow: "hidden"
           }}
         >
           <div
@@ -4887,8 +4895,11 @@ return (
               display: "grid",
               gridTemplateColumns: isSmallScreen
                 ? "1fr"
-                : "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: isSmallScreen ? 14 : 18,
+                : isMediumScreen
+                ? "repeat(2, minmax(0, 1fr))"
+                : "repeat(3, minmax(0, 1fr))",
+              gridAutoRows: "1fr",
+              gap: isSmallScreen ? 16 : 22,
               marginBottom: isSmallScreen ? 20 : 28
             }}
           >
@@ -4913,9 +4924,9 @@ return (
               }
               style={getInteractiveHomeCardStyle("anatomy")}
             >
-              <div style={{ fontSize: 42, marginBottom: 8 }}>🫀</div>
-              <h3 style={{ color: "#12355b" }}>Anatomy Practice</h3>
-              <p style={{ color: "#4f6275" }}>
+              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🫀</div>
+              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Anatomy Practice</h3>
+              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
                 Learn heart, brain, lungs, liver, eye, and arterial anatomy with interactive labeling.
               </p>
             </div>
@@ -4941,9 +4952,9 @@ return (
               }
               style={getInteractiveHomeCardStyle("bones")}
             >
-              <div style={{ fontSize: 42, marginBottom: 8 }}>🦴</div>
-              <h3 style={{ color: "#12355b" }}>Bone Practice</h3>
-              <p style={{ color: "#4f6275" }}>
+              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🦴</div>
+              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Bone Practice</h3>
+              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
                 Study the skeleton, hand bones, foot bones, spine, skull, knee, and shoulder in detail.
               </p>
             </div>
@@ -4961,9 +4972,9 @@ return (
               }
               style={getInteractiveHomeCardStyle("cbet")}
             >
-              <div style={{ fontSize: 42, marginBottom: 8 }}>📝</div>
-              <h3 style={{ color: "#12355b" }}>CBET Practice</h3>
-              <p style={{ color: "#4f6275" }}>
+              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>📝</div>
+              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>CBET Practice</h3>
+              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
                 Take CBET practice questions with instant feedback and score tracking.
               </p>
             </div>
@@ -4981,9 +4992,9 @@ return (
               }
               style={getInteractiveHomeCardStyle("rn")}
             >
-              <div style={{ fontSize: 42, marginBottom: 8 }}>🩺</div>
-              <h3 style={{ color: "#12355b" }}>RN Practice</h3>
-              <p style={{ color: "#4f6275" }}>
+              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🩺</div>
+              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>RN Practice</h3>
+              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
                 Practice RN-style questions with immediate answer review and score tracking.
               </p>
             </div>
@@ -5001,9 +5012,9 @@ return (
               }
               style={getInteractiveHomeCardStyle("teas")}
             >
-              <div style={{ fontSize: 42, marginBottom: 8 }}>📚</div>
-              <h3 style={{ color: "#12355b" }}>TEAS Practice</h3>
-              <p style={{ color: "#4f6275" }}>
+              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>📚</div>
+              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>TEAS Practice</h3>
+              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
                 Work through 150 randomized TEAS-style questions covering reading, math, science, and English usage.
               </p>
             </div>
@@ -5021,9 +5032,9 @@ return (
               }
               style={getInteractiveHomeCardStyle("terminology")}
             >
-              <div style={{ fontSize: 42, marginBottom: 8 }}>🧠</div>
-              <h3 style={{ color: "#12355b" }}>Medical Terminology</h3>
-              <p style={{ color: "#4f6275" }}>
+              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🧠</div>
+              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Medical Terminology</h3>
+              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
                 Master hard medical terms by matching each word to its correct definition.
               </p>
             </div>
@@ -5041,9 +5052,9 @@ return (
               }
               style={getInteractiveHomeCardStyle("dashboard")}
             >
-              <div style={{ fontSize: 42, marginBottom: 8 }}>📈</div>
-              <h3 style={{ color: "#12355b" }}>Track Progress</h3>
-              <p style={{ color: "#4f6275" }}>
+              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>📈</div>
+              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Track Progress</h3>
+              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
                 Monitor your score, revisit weak spots, and see how much you have mastered.
               </p>
             </div>
