@@ -5115,6 +5115,9 @@ return (
                   <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#0b5cab")}>
                     Free CBET Practice Test
                   </a>
+                  <a href="/teas-practice-questions.html" style={homeActionLinkStyle("#b45309")}>
+                    TEAS Practice Questions
+                  </a>
                   <a href="/medical-terminology-practice.html" style={homeActionLinkStyle("#7c3aed")}>
                     Medical Terminology Practice
                   </a>
