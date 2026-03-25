@@ -5112,6 +5112,9 @@ return (
                   Extra reading when you need it
                 </h4>
                 <div style={{ display: "grid", gap: 10 }}>
+                  <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#0b5cab")}>
+                    Free CBET Practice Test
+                  </a>
                   <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>
                     CBET Practice Questions Guide
                   </a>
