@@ -5115,6 +5115,15 @@ return (
                   <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#0b5cab")}>
                     Free CBET Practice Test
                   </a>
+                  <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>
+                    RN Practice Questions
+                  </a>
+                  <a href="/cres-practice-questions.html" style={homeActionLinkStyle("#1e40af")}>
+                    CRES Practice Questions
+                  </a>
+                  <a href="/medical-prefix-suffix-practice.html" style={homeActionLinkStyle("#166534")}>
+                    Medical Prefix &amp; Suffix
+                  </a>
                   <a href="/teas-practice-questions.html" style={homeActionLinkStyle("#b45309")}>
                     TEAS Practice Questions
                   </a>
