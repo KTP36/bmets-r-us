@@ -5115,6 +5115,12 @@ return (
                   <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#0b5cab")}>
                     Free CBET Practice Test
                   </a>
+                  <a href="/medical-terminology-practice.html" style={homeActionLinkStyle("#7c3aed")}>
+                    Medical Terminology Practice
+                  </a>
+                  <a href="/medical-equipment-identification-practice.html" style={homeActionLinkStyle("#0d9488")}>
+                    Medical Equipment ID Practice
+                  </a>
                   <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>
                     CBET Practice Questions Guide
                   </a>
