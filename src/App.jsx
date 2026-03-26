@@ -17,6 +17,619 @@ function shuffleArray(array) {
   return copy;
 }
 
+// --- SKELETAL ANATOMY QUIZ COMPONENT ---
+function SkeletalAnatomyQuiz() {
+  const allQuestions = [
+    // --- Additional Easy Questions ---
+    {
+      question: "Which bone is commonly called the shoulder blade?",
+      options: ["Scapula", "Clavicle", "Sternum", "Humerus"],
+      answer: 0,
+      explanation: "The scapula is also known as the shoulder blade.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bones form the fingers?",
+      options: ["Carpals", "Metacarpals", "Phalanges", "Tarsals"],
+      answer: 2,
+      explanation: "The phalanges are the bones of the fingers and toes.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone is found in the thigh?",
+      options: ["Femur", "Tibia", "Fibula", "Patella"],
+      answer: 0,
+      explanation: "The femur is the thigh bone.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone is NOT found in the foot?",
+      options: ["Tarsal", "Metatarsal", "Phalange", "Radius"],
+      answer: 3,
+      explanation: "The radius is found in the forearm, not the foot.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone protects the heart and lungs?",
+      options: ["Sternum", "Femur", "Mandible", "Scapula"],
+      answer: 0,
+      explanation: "The sternum, along with the rib cage, protects the heart and lungs.",
+      difficulty: "easy"
+    },
+    // --- Additional Medium Questions ---
+    {
+      question: "Which bone is located between the hip and the knee?",
+      options: ["Femur", "Tibia", "Fibula", "Patella"],
+      answer: 0,
+      explanation: "The femur is the bone between the hip and the knee.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone forms the upper part of the nasal septum?",
+      options: ["Vomer", "Ethmoid", "Maxilla", "Palatine"],
+      answer: 1,
+      explanation: "The perpendicular plate of the ethmoid bone forms the upper part of the nasal septum.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is NOT part of the cranium?",
+      options: ["Temporal", "Parietal", "Mandible", "Occipital"],
+      answer: 2,
+      explanation: "The mandible is the lower jaw and not part of the cranium.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is directly inferior to the lumbar vertebrae?",
+      options: ["Sacrum", "Coccyx", "Ilium", "Femur"],
+      answer: 0,
+      explanation: "The sacrum is directly below the lumbar vertebrae.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is NOT paired in the adult human skull?",
+      options: ["Parietal", "Temporal", "Frontal", "Zygomatic"],
+      answer: 2,
+      explanation: "The frontal bone is a single (unpaired) bone in the adult skull.",
+      difficulty: "medium"
+    },
+    // --- Additional Hard Questions ---
+    {
+      question: "Which bone contains the cribriform plate?",
+      options: ["Ethmoid", "Sphenoid", "Temporal", "Occipital"],
+      answer: 0,
+      explanation: "The ethmoid bone contains the cribriform plate, which transmits olfactory nerves.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone forms the anterior portion of the hard palate?",
+      options: ["Maxilla", "Palatine", "Vomer", "Mandible"],
+      answer: 0,
+      explanation: "The maxilla forms the anterior part of the hard palate.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone articulates with the occipital condyles?",
+      options: ["Atlas (C1)", "Axis (C2)", "Mandible", "Sphenoid"],
+      answer: 0,
+      explanation: "The atlas (C1 vertebra) articulates with the occipital condyles of the skull.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone contains the sella turcica?",
+      options: ["Sphenoid", "Ethmoid", "Temporal", "Occipital"],
+      answer: 0,
+      explanation: "The sella turcica, which houses the pituitary gland, is part of the sphenoid bone.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone is the only bone in the body that does not articulate with any other bone?",
+      options: ["Hyoid", "Vomer", "Lacrimal", "Stapes"],
+      answer: 0,
+      explanation: "The hyoid bone does not articulate with any other bone in the body.",
+      difficulty: "hard"
+    },
+    // Easy
+    {
+      question: "Which bone is known as the collarbone?",
+      options: ["Scapula", "Clavicle", "Sternum", "Humerus"],
+      answer: 1,
+      explanation: "The clavicle is commonly called the collarbone.",
+      difficulty: "easy"
+    },
+    {
+      question: "What is the largest bone in the human body?",
+      options: ["Femur", "Tibia", "Fibula", "Humerus"],
+      answer: 0,
+      explanation: "The femur (thigh bone) is the largest bone in the body.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which part of the skeleton protects the brain?",
+      options: ["Rib cage", "Pelvis", "Skull", "Vertebral column"],
+      answer: 2,
+      explanation: "The skull encases and protects the brain.",
+      difficulty: "easy"
+    },
+    {
+      question: "How many cervical vertebrae are there?",
+      options: ["5", "7", "12", "8"],
+      answer: 1,
+      explanation: "There are 7 cervical vertebrae in the neck.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone forms the lower jaw?",
+      options: ["Maxilla", "Mandible", "Zygomatic", "Temporal"],
+      answer: 1,
+      explanation: "The mandible is the lower jaw bone.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone is commonly referred to as the kneecap?",
+      options: ["Patella", "Tibia", "Fibula", "Femur"],
+      answer: 0,
+      explanation: "The patella is the kneecap.",
+      difficulty: "easy"
+    },
+    {
+      question: "How many ribs does a typical human have?",
+      options: ["10", "12", "14", "24"],
+      answer: 1,
+      explanation: "Most humans have 12 pairs of ribs (24 total).",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone is found in the upper arm?",
+      options: ["Radius", "Ulna", "Humerus", "Scapula"],
+      answer: 2,
+      explanation: "The humerus is the bone of the upper arm.",
+      difficulty: "easy"
+    },
+    {
+      question: "How many bones are in the adult human skeleton?",
+      options: ["206", "210", "201", "208"],
+      answer: 0,
+      explanation: "There are 206 bones in the adult human skeleton.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone is also known as the breastbone?",
+      options: ["Sternum", "Clavicle", "Scapula", "Mandible"],
+      answer: 0,
+      explanation: "The sternum is the breastbone.",
+      difficulty: "easy"
+    },
+    // Medium
+    {
+      question: "Which bone is NOT part of the arm?",
+      options: ["Radius", "Ulna", "Femur", "Humerus"],
+      answer: 2,
+      explanation: "The femur is in the leg, not the arm.",
+      difficulty: "medium"
+    },
+    {
+      question: "What is the name of the bone that forms the forehead?",
+      options: ["Parietal", "Frontal", "Temporal", "Occipital"],
+      answer: 1,
+      explanation: "The frontal bone forms the forehead.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bones make up the wrist?",
+      options: ["Carpals", "Tarsals", "Metacarpals", "Phalanges"],
+      answer: 0,
+      explanation: "The wrist is made up of the carpal bones.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is NOT part of the axial skeleton?",
+      options: ["Skull", "Rib cage", "Femur", "Vertebral column"],
+      answer: 2,
+      explanation: "The femur is part of the appendicular skeleton.",
+      difficulty: "medium"
+    },
+    {
+      question: "What is the heel bone called?",
+      options: ["Talus", "Calcaneus", "Navicular", "Cuboid"],
+      answer: 1,
+      explanation: "The calcaneus is the heel bone.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is the most commonly fractured in the body?",
+      options: ["Clavicle", "Radius", "Femur", "Scapula"],
+      answer: 0,
+      explanation: "The clavicle is the most commonly fractured bone.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone forms the base of the skull and contains the foramen magnum?",
+      options: ["Temporal", "Occipital", "Parietal", "Sphenoid"],
+      answer: 1,
+      explanation: "The occipital bone contains the foramen magnum.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is NOT part of the leg?",
+      options: ["Tibia", "Fibula", "Femur", "Ulna"],
+      answer: 3,
+      explanation: "The ulna is in the forearm, not the leg.",
+      difficulty: "medium"
+    },
+    {
+      question: "How many thoracic vertebrae are there?",
+      options: ["5", "7", "12", "8"],
+      answer: 2,
+      explanation: "There are 12 thoracic vertebrae.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is the longest in the forearm?",
+      options: ["Ulna", "Radius", "Humerus", "Scapula"],
+      answer: 0,
+      explanation: "The ulna is the longer of the two forearm bones.",
+      difficulty: "medium"
+    },
+    // Hard
+    {
+      question: "Which bone forms the prominent part of the cheek?",
+      options: ["Maxilla", "Zygomatic", "Temporal", "Mandible"],
+      answer: 1,
+      explanation: "The zygomatic bone forms the cheek prominence.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone is the main weight-bearing bone of the lower leg?",
+      options: ["Fibula", "Tibia", "Femur", "Patella"],
+      answer: 1,
+      explanation: "The tibia is the main weight-bearing bone of the lower leg.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone is NOT part of the pelvis?",
+      options: ["Ilium", "Ischium", "Pubis", "Scapula"],
+      answer: 3,
+      explanation: "The scapula is part of the shoulder, not the pelvis.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone is located at the back and base of the skull?",
+      options: ["Frontal", "Occipital", "Temporal", "Parietal"],
+      answer: 1,
+      explanation: "The occipital bone is at the back and base of the skull.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone is the smallest in the human body?",
+      options: ["Stapes", "Malleus", "Incus", "Lacrimal"],
+      answer: 0,
+      explanation: "The stapes (in the ear) is the smallest bone.",
+      difficulty: "hard"
+    },
+    // More questions for all levels (examples)
+    {
+      question: "Which bone articulates with the acetabulum?",
+      options: ["Femur", "Tibia", "Fibula", "Humerus"],
+      answer: 0,
+      explanation: "The femur articulates with the acetabulum of the pelvis.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone is known as the shin bone?",
+      options: ["Tibia", "Fibula", "Femur", "Patella"],
+      answer: 0,
+      explanation: "The tibia is commonly called the shin bone.",
+      difficulty: "easy"
+    },
+    {
+      question: "Which bone forms the roof of the mouth?",
+      options: ["Maxilla", "Palatine", "Mandible", "Vomer"],
+      answer: 1,
+      explanation: "The palatine bone forms the posterior part of the hard palate.",
+      difficulty: "hard"
+    },
+    {
+      question: "Which bone is directly lateral to the ulna in the anatomical position?",
+      options: ["Radius", "Humerus", "Scapula", "Clavicle"],
+      answer: 0,
+      explanation: "The radius is lateral to the ulna in anatomical position.",
+      difficulty: "medium"
+    },
+    {
+      question: "Which bone contains the glenoid cavity?",
+      options: ["Scapula", "Clavicle", "Humerus", "Sternum"],
+      answer: 0,
+      explanation: "The scapula contains the glenoid cavity for the humerus.",
+      difficulty: "hard"
+    }
+  ];
+
+  // Difficulty selection and shuffle
+  const [difficulty, setDifficulty] = React.useState(null);
+  const [questions, setQuestions] = React.useState([]);
+  const [current, setCurrent] = React.useState(0);
+  const [selected, setSelected] = React.useState(null);
+  const [score, setScore] = React.useState(0);
+  const [showResult, setShowResult] = React.useState(false);
+  const [reviewMode, setReviewMode] = React.useState(false);
+  const [userAnswers, setUserAnswers] = React.useState([]);
+
+  // Shuffle helper
+  function shuffle(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  // Start quiz with selected difficulty
+  function startQuiz(selectedDifficulty) {
+    setDifficulty(selectedDifficulty);
+    const filtered = allQuestions.filter(q => selectedDifficulty === 'all' ? true : q.difficulty === selectedDifficulty);
+    setQuestions(shuffle(filtered));
+    setCurrent(0);
+    setSelected(null);
+    setScore(0);
+    setShowResult(false);
+    setReviewMode(false);
+    setUserAnswers([]);
+  }
+
+  // Show difficulty selection if not chosen
+  if (!difficulty) {
+    return (
+      <div style={{ background: "#fff", borderRadius: 18, padding: 32, maxWidth: 420, margin: "0 auto", textAlign: "center" }}>
+        <h2 style={{ color: "#12355b", marginBottom: 18 }}>Skeletal Anatomy Quiz</h2>
+        <div style={{ fontWeight: 600, marginBottom: 18 }}>Choose difficulty:</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          <button onClick={() => startQuiz('easy')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#e0f2fe", color: "#0369a1", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Easy</button>
+          <button onClick={() => startQuiz('medium')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#fef9c3", color: "#b45309", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Medium</button>
+          <button onClick={() => startQuiz('hard')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#fee2e2", color: "#b91c1c", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Hard</button>
+          <button onClick={() => startQuiz('all')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#f1f5f9", color: "#334155", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>All Levels (Mixed)</button>
+        </div>
+      </div>
+    );
+  }
+
+  function handleSelect(optionIdx) {
+    if (selected !== null) return;
+    setSelected(optionIdx);
+    setUserAnswers((prev) => {
+      const updated = [...prev];
+      updated[current] = optionIdx;
+      return updated;
+    });
+    if (optionIdx === questions[current].answer) {
+      setScore((s) => s + 1);
+    }
+  }
+
+  function handleNext() {
+    if (current + 1 === questions.length) {
+      setShowResult(true);
+    } else {
+      setCurrent((c) => c + 1);
+      setSelected(null);
+    }
+  }
+
+  if (showResult) {
+    if (reviewMode) {
+      // Review screen: show all questions, user's answer, correct answer, and explanation
+      return (
+        <div style={{
+          background: "rgba(255,255,255,0.97)",
+          borderRadius: 24,
+          padding: 28,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          maxWidth: 620,
+          margin: "0 auto",
+          textAlign: "left"
+        }}>
+          <h2 style={{ color: "#12355b", marginBottom: 8 }}>Review Your Answers</h2>
+          <div style={{ marginBottom: 18, color: "#1e293b", fontWeight: 600 }}>
+            Your score: {score} / {questions.length}
+          </div>
+          <div>
+            {questions.map((q, idx) => {
+              const userAns = userAnswers[idx];
+              const isCorrect = userAns === q.answer;
+              return (
+                <div key={idx} style={{
+                  marginBottom: 18,
+                  padding: 16,
+                  borderRadius: 12,
+                  background: isCorrect ? "#f0fdf4" : "#fef2f2",
+                  border: isCorrect ? "1px solid #22c55e" : "1px solid #ef4444"
+                }}>
+                  <div style={{ fontWeight: 700, color: "#12355b" }}>
+                    Q{idx + 1}: {q.question}
+                  </div>
+                  <div style={{ marginTop: 6 }}>
+                    <span style={{ fontWeight: 600 }}>Your answer: </span>
+                    {userAns !== undefined ? (
+                      <span style={{ color: isCorrect ? "#16a34a" : "#dc2626", fontWeight: 600 }}>
+                        {userAns !== null ? String.fromCharCode(65 + userAns) + ". " + q.options[userAns] : "No answer"}
+                      </span>
+                    ) : <span style={{ color: "#64748b" }}>No answer</span>}
+                  </div>
+                  {!isCorrect && (
+                    <div style={{ marginTop: 2 }}>
+                      <span style={{ fontWeight: 600 }}>Correct answer: </span>
+                      <span style={{ color: "#166534", fontWeight: 600 }}>
+                        {String.fromCharCode(65 + q.answer)}. {q.options[q.answer]}
+                      </span>
+                    </div>
+                  )}
+                  <div style={{ marginTop: 6, color: "#334155", fontStyle: "italic" }}>
+                    <span style={{ fontWeight: 600 }}>Explanation: </span>{q.explanation}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
+            <button
+              onClick={() => {
+                setDifficulty(null);
+                setQuestions([]);
+                setCurrent(0);
+                setSelected(null);
+                setScore(0);
+                setShowResult(false);
+                setReviewMode(false);
+                setUserAnswers([]);
+              }}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Restart / Choose Level
+            </button>
+          </div>
+        </div>
+      );
+    }
+    // Result screen with option to review
+    return (
+      <div style={{
+        background: "rgba(255,255,255,0.9)",
+        borderRadius: 24,
+        padding: 28,
+        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+        maxWidth: 520,
+        margin: "0 auto",
+        textAlign: "center"
+      }}>
+        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Skeletal Anatomy Quiz Complete</h2>
+        <p style={{ fontSize: 20, color: "#1e293b" }}>
+          Your score: {score} / {questions.length}
+        </p>
+        <div style={{ marginTop: 12, padding: "12px 14px", borderRadius: 12, background: score >= Math.ceil(questions.length * 0.7) ? "#dcfce7" : "#eff6ff", border: score >= Math.ceil(questions.length * 0.7) ? "1px solid #22c55e" : "1px solid #bfdbfe", color: score >= Math.ceil(questions.length * 0.7) ? "#166534" : "#1d4ed8", fontWeight: 700, maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
+          {score >= Math.ceil(questions.length * 0.7)
+            ? "Great job!"
+            : "Try again to improve your score."}
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
+          <button
+            onClick={() => {
+              setReviewMode(true);
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #1d6fa5, #12355b)",
+              color: "white",
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Review Answers
+          </button>
+          <button
+            onClick={() => {
+              setDifficulty(null);
+              setQuestions([]);
+              setCurrent(0);
+              setSelected(null);
+              setScore(0);
+              setShowResult(false);
+              setReviewMode(false);
+              setUserAnswers([]);
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #dc2626, #ef4444)",
+              color: "white",
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Restart / Choose Level
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const q = questions[current];
+  return (
+    <div style={{
+      background: "rgba(255,255,255,0.9)",
+      borderRadius: 24,
+      padding: 28,
+      boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+      maxWidth: 520,
+      margin: "0 auto"
+    }}>
+      <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+        <div style={{ background: "#eef4ff", borderRadius: 12, padding: "8px 16px", fontWeight: 700, color: "#12355b" }}>
+          Question {current + 1} / {questions.length}
+        </div>
+        <div style={{ background: "#eef4ff", borderRadius: 12, padding: "8px 16px", fontWeight: 700, color: "#12355b" }}>
+          Score: {score}
+        </div>
+      </div>
+      <div style={{ fontWeight: 700, fontSize: 18, marginBottom: 18, color: "#12355b" }}>{q.question}</div>
+      {q.options.map((opt, i) => {
+        const isCorrect = selected !== null && i === q.answer;
+        const isWrong = selected === i && selected !== q.answer;
+        return (
+          <button
+            key={i}
+            onClick={() => handleSelect(i)}
+            disabled={selected !== null}
+            style={{
+              width: "100%",
+              textAlign: "left",
+              padding: "14px 16px",
+              marginBottom: 12,
+              borderRadius: 12,
+              border: isCorrect ? "2px solid green" : isWrong ? "2px solid red" : "1px solid #cbd5e1",
+              background: isCorrect ? "#d9f7d9" : isWrong ? "#fee2e2" : "#f8fafc",
+              color: "#1e293b",
+              fontWeight: 600,
+              cursor: selected !== null ? "default" : "pointer",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+            }}
+          >
+            {String.fromCharCode(65 + i)}. {opt}
+          </button>
+        );
+      })}
+      <div style={{ textAlign: "center", marginTop: 20 }}>
+        <button
+          onClick={handleNext}
+          disabled={selected === null}
+          style={{
+            padding: "12px 24px",
+            borderRadius: 999,
+            border: "none",
+            background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+            color: "white",
+            fontWeight: 700,
+            cursor: selected === null ? "not-allowed" : "pointer",
+            opacity: selected === null ? 0.6 : 1
+          }}
+        >
+          {current + 1 === questions.length ? "Finish Practice" : "Next Question"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // --- CBET QUESTIONS ---
 const cbetQuestions = [
   {
@@ -5097,19 +5710,19 @@ return (
         style={{
           display: "flex",
           justifyContent: "center",
-          gap: 12,
-          flexWrap: "wrap",
-          marginBottom: 20
-        }}
-      >
-        <button
-          onClick={() => setActiveTab("Home")}
-          onMouseEnter={() => setHoveredNavTab("Home")}
-          onMouseLeave={() => setHoveredNavTab("")}
-          style={navButtonStyle(activeTab === "Home", hoveredNavTab === "Home")}
-        >
-          Home
-        </button>
+	  gap: 12,
+	  flexWrap: "wrap",
+	  marginBottom: 20
+	}}
+  >
+    <button
+      onClick={() => setActiveTab("Home")}
+      onMouseEnter={() => setHoveredNavTab("Home")}
+      onMouseLeave={() => setHoveredNavTab("")}
+      style={navButtonStyle(activeTab === "Home", hoveredNavTab === "Home")}
+    >
+      Home
+    </button>
 
         {activeTab === "Home" && (
           <>
@@ -5126,6 +5739,8 @@ return (
           Anatomy
         </button>
 
+
+
         <button
           onClick={() => {
             setActiveTab("Bones");
@@ -5137,6 +5752,14 @@ return (
           style={navButtonStyle(activeTab === "Bones", hoveredNavTab === "Bones")}
         >
           Bones
+        </button>
+        <button
+          onClick={() => setActiveTab("SkeletalAnatomy")}
+          onMouseEnter={() => setHoveredNavTab("SkeletalAnatomy")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "SkeletalAnatomy", hoveredNavTab === "SkeletalAnatomy")}
+        >
+          Skeletal Anatomy Quiz
         </button>
 
         <button
@@ -5258,7 +5881,11 @@ return (
         )}
       </div>
 
-      {/* HOME TAB */}
+
+      {/* SKELETAL ANATOMY QUIZ TAB */}
+      {activeTab === "SkeletalAnatomy" && (
+        <SkeletalAnatomyQuiz />
+      )}
       {activeTab === "Home" && (
         <div
           style={{
