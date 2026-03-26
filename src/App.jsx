@@ -3531,6 +3531,20 @@ export default function App() {
   const tiktokProfileUrl = import.meta.env.VITE_TIKTOK_PROFILE_URL || "https://www.tiktok.com";
   const hasTikTokLatestVideo = Boolean(import.meta.env.VITE_TIKTOK_LATEST_VIDEO_URL);
   const tiktokLatestVideoUrl = import.meta.env.VITE_TIKTOK_LATEST_VIDEO_URL || tiktokProfileUrl;
+  const studyGuideLinks = [
+    { href: "/free-cbet-practice-test.html", label: "Free CBET Practice Test", color: "#0b5cab" },
+    { href: "/rn-practice-questions.html", label: "RN Practice Questions", color: "#be123c" },
+    { href: "/teas-practice-questions.html", label: "TEAS Practice Questions", color: "#b45309" },
+    { href: "/medical-terminology-practice.html", label: "Medical Terminology Practice", color: "#7c3aed" },
+    { href: "/medical-prefix-suffix-practice.html", label: "Medical Prefix & Suffix", color: "#166534" },
+    { href: "/cres-practice-questions.html", label: "CRES Practice Questions", color: "#1e40af" },
+    { href: "/medical-equipment-identification-practice.html", label: "Medical Equipment ID Practice", color: "#0d9488" },
+    { href: "/cbet-practice-questions.html", label: "CBET Practice Questions Guide", color: "#12355b" },
+    { href: "/how-to-pass-cbet-exam.html", label: "How to Pass CBET Exam", color: "#1d6fa5" },
+    { href: "/anatomy-labeling-practice.html", label: "Anatomy Labeling Practice", color: "#0f766e" }
+  ];
+  const featuredStudyGuides = studyGuideLinks.slice(0, 5);
+  const extraStudyGuides = studyGuideLinks.slice(5);
   const adsenseClient = "ca-pub-4355354977115217";
   const topAdSlot = "";
   const bottomAdSlot = "";
@@ -5434,37 +5448,32 @@ return (
                   Extra reading when you need it
                 </h4>
                 <div style={{ display: "grid", gap: 10 }}>
-                  <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#0b5cab")}>
-                    Free CBET Practice Test
-                  </a>
-                  <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>
-                    RN Practice Questions
-                  </a>
-                  <a href="/cres-practice-questions.html" style={homeActionLinkStyle("#1e40af")}>
-                    CRES Practice Questions
-                  </a>
-                  <a href="/medical-prefix-suffix-practice.html" style={homeActionLinkStyle("#166534")}>
-                    Medical Prefix &amp; Suffix
-                  </a>
-                  <a href="/teas-practice-questions.html" style={homeActionLinkStyle("#b45309")}>
-                    TEAS Practice Questions
-                  </a>
-                  <a href="/medical-terminology-practice.html" style={homeActionLinkStyle("#7c3aed")}>
-                    Medical Terminology Practice
-                  </a>
-                  <a href="/medical-equipment-identification-practice.html" style={homeActionLinkStyle("#0d9488")}>
-                    Medical Equipment ID Practice
-                  </a>
-                  <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>
-                    CBET Practice Questions Guide
-                  </a>
-                  <a href="/how-to-pass-cbet-exam.html" style={homeActionLinkStyle("#1d6fa5")}>
-                    How to Pass CBET Exam
-                  </a>
-                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
-                    Anatomy Labeling Practice
-                  </a>
+                  {featuredStudyGuides.map((guide) => (
+                    <a key={guide.href} href={guide.href} style={homeActionLinkStyle(guide.color)}>
+                      {guide.label}
+                    </a>
+                  ))}
                 </div>
+
+                <details style={{ marginTop: 12 }}>
+                  <summary
+                    style={{
+                      cursor: "pointer",
+                      color: "#12355b",
+                      fontWeight: 700,
+                      fontSize: 14
+                    }}
+                  >
+                    View all study guides
+                  </summary>
+                  <div style={{ display: "grid", gap: 8, marginTop: 10 }}>
+                    {extraStudyGuides.map((guide) => (
+                      <a key={guide.href} href={guide.href} style={homeActionLinkStyle(guide.color)}>
+                        {guide.label}
+                      </a>
+                    ))}
+                  </div>
+                </details>
               </div>
 
               <div
@@ -5489,6 +5498,79 @@ return (
                 >
                   Newest on TikTok
                 </div>
+
+                <div
+                  style={{
+                    borderRadius: 16,
+                    overflow: "hidden",
+                    background: "#111827",
+                    border: "1px solid #e5e7eb",
+                    marginBottom: 12
+                  }}
+                >
+                  <a
+                    href={tiktokLatestVideoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ textDecoration: "none", display: "block" }}
+                    aria-label="Open latest TikTok in a new tab"
+                  >
+                    <div
+                      style={{
+                        width: "100%",
+                        minHeight: isSmallScreen ? 220 : 260,
+                        display: "block",
+                        background:
+                          "radial-gradient(circle at 20% 20%, #ec4899 0%, transparent 35%), radial-gradient(circle at 80% 30%, #111827 10%, #1f2937 55%), radial-gradient(circle at 70% 80%, #f43f5e 0%, transparent 30%), linear-gradient(160deg, #0f172a, #111827)",
+                        color: "#f8fafc",
+                        padding: isSmallScreen ? 18 : 22,
+                        position: "relative"
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 42,
+                          height: 42,
+                          borderRadius: 999,
+                          background: "rgba(255,255,255,0.92)",
+                          color: "#111827",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: 900,
+                          fontSize: 18,
+                          boxShadow: "0 8px 20px rgba(0,0,0,0.22)",
+                          marginBottom: 12
+                        }}
+                      >
+                        ▶
+                      </div>
+
+                      <div style={{ fontSize: 19, fontWeight: 800, lineHeight: 1.2, marginBottom: 6 }}>
+                        {hasTikTokLatestVideo
+                          ? "Watch the latest video from MedSkillBuilder"
+                          : "Open MedSkillBuilder on TikTok"}
+                      </div>
+
+                    </div>
+                  </a>
+
+                  {!hasTikTokLatestVideo && (
+                    <div
+                      style={{
+                        padding: "10px 12px",
+                        background: "#f8fafc",
+                        borderTop: "1px solid #e2e8f0",
+                        color: "#475569",
+                        fontSize: 13,
+                        fontWeight: 600
+                      }}
+                    >
+                      Add VITE_TIKTOK_LATEST_VIDEO_URL to point this card to your newest post.
+                    </div>
+                  )}
+                </div>
+
                 <div style={{ display: "grid", gap: 10 }}>
                   <a
                     href={tiktokLatestVideoUrl}
@@ -5508,20 +5590,6 @@ return (
                   </a>
                 </div>
 
-                {!hasTikTokLatestVideo && (
-                  <div
-                    style={{
-                      marginTop: 12,
-                      padding: "10px 12px",
-                      borderRadius: 14,
-                      background: "#fee2e2",
-                      color: "#7f1d1d",
-                      fontWeight: 600
-                    }}
-                  >
-                    Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video.
-                  </div>
-                )}
               </div>
             </div>
           </div>
