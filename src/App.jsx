@@ -1585,32 +1585,32 @@ const rnQuestions = [
   {
     question: "Which finding requires immediate intervention?",
     options: [
-      "Post-op client with urine output of 20 mL/hr",
       "Client with a temperature of 99.1°F",
+      "Post-op client with urine output of 20 mL/hr",
       "Client with mild nausea after lunch",
       "Client requesting help to the bathroom"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which action is most important when administering insulin?",
     options: [
       "Shake the vial vigorously",
-      "Check the blood glucose level first",
       "Administer before verifying the meal tray",
+      "Check the blood glucose level first",
       "Massage the injection site"
     ],
-    answer: 1
+    answer: 2
   },
   {
     question: "Which lab value is most concerning?",
     options: [
-      "Potassium 6.2 mEq/L",
       "Sodium 138 mEq/L",
       "Calcium 9.2 mg/dL",
-      "Glucose 102 mg/dL"
+      "Glucose 102 mg/dL",
+      "Potassium 6.2 mEq/L"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "A client receiving warfarin should be monitored for:",
@@ -1625,32 +1625,32 @@ const rnQuestions = [
   {
     question: "Which symptom is expected with hypoglycemia?",
     options: [
-      "Cool clammy skin",
       "Dry flushed skin",
+      "Cool clammy skin",
       "Bradycardia",
       "Decreased hunger"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which client is highest priority?",
     options: [
-      "Client with chest pain and diaphoresis",
       "Client with a sprained ankle",
       "Client requesting a blanket",
+      "Client with chest pain and diaphoresis",
       "Client with chronic constipation"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "The nurse should question which prescription?",
     options: [
-      "Potassium for a client with potassium of 5.8",
       "Acetaminophen for fever",
       "Normal saline bolus for hypotension",
-      "Oxygen for shortness of breath"
+      "Oxygen for shortness of breath",
+      "Potassium for a client with potassium of 5.8"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which finding suggests fluid volume overload?",
@@ -1665,32 +1665,32 @@ const rnQuestions = [
   {
     question: "Which intervention is appropriate for seizure precautions?",
     options: [
-      "Pad side rails",
       "Place a tongue blade at bedside",
+      "Pad side rails",
       "Restrain the client during seizure",
       "Keep the room brightly lit"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which patient statement shows understanding of digoxin teaching?",
     options: [
-      "I will check my pulse before taking it",
       "I should take an extra dose if I miss one",
       "I can stop it when I feel better",
+      "I will check my pulse before taking it",
       "Blurred vision means the medicine is working"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "A client with suspected stroke should receive priority for:",
     options: [
-      "Rapid neurologic assessment",
       "A high-protein snack",
       "Passive range-of-motion exercises",
-      "Routine bedtime medications"
+      "Routine bedtime medications",
+      "Rapid neurologic assessment"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which position is best for a client with shortness of breath?",
@@ -1705,32 +1705,32 @@ const rnQuestions = [
   {
     question: "Which action prevents infection most effectively?",
     options: [
-      "Hand hygiene",
       "Wearing a mask at all times",
+      "Hand hygiene",
       "Using sterile gloves for all care",
       "Keeping the room door closed"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "A nurse is caring for a client with a potassium of 2.9 mEq/L. The priority assessment is:",
     options: [
-      "Cardiac rhythm",
       "Bowel sounds",
       "Vision changes",
+      "Cardiac rhythm",
       "Skin color"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "Which finding is expected with dehydration?",
     options: [
-      "Tachycardia",
       "Bounding pulses",
       "Jugular vein distention",
-      "Pulmonary crackles"
+      "Pulmonary crackles",
+      "Tachycardia"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which nursing action is appropriate when transfusing blood?",
@@ -1745,32 +1745,32 @@ const rnQuestions = [
   {
     question: "Which patient is at highest risk for falls?",
     options: [
-      "An older adult taking sedatives",
       "A teenager with a sprained wrist",
+      "An older adult taking sedatives",
       "A middle-aged adult with a headache",
       "A child with a sore throat"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which finding suggests anaphylaxis?",
     options: [
-      "Wheezing and facial swelling",
       "Mild rash on one arm",
       "Low-grade fever",
+      "Wheezing and facial swelling",
       "Constipation"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "A nurse should hold which medication for a pulse of 52/min?",
     options: [
-      "Metoprolol",
       "Acetaminophen",
       "Cefazolin",
-      "Docusate"
+      "Docusate",
+      "Metoprolol"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which client requires droplet precautions?",
@@ -1785,32 +1785,32 @@ const rnQuestions = [
   {
     question: "Which symptom is most common in a urinary tract infection?",
     options: [
-      "Burning on urination",
       "Bradycardia",
+      "Burning on urination",
       "Blurred vision",
       "Constipation"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which food should a client taking warfarin consume consistently?",
     options: [
-      "Green leafy vegetables",
       "Bananas",
       "Milk",
+      "Green leafy vegetables",
       "Oranges"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "The best indicator of oxygenation is:",
     options: [
-      "Pulse oximetry",
       "Capillary refill",
       "Blood pressure",
-      "Urine output"
+      "Urine output",
+      "Pulse oximetry"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which client teaching is correct for nitroglycerin tablets?",
@@ -1825,32 +1825,32 @@ const rnQuestions = [
   {
     question: "Which finding indicates worsening respiratory status?",
     options: [
-      "Use of accessory muscles",
       "Respiratory rate 16/min",
+      "Use of accessory muscles",
       "Clear speech",
       "Pink nail beds"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which intervention is priority for a client with active bleeding?",
     options: [
-      "Apply direct pressure",
       "Offer oral fluids",
       "Elevate the head of bed",
+      "Apply direct pressure",
       "Provide discharge instructions"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "Which client is most likely experiencing hypovolemic shock?",
     options: [
-      "Client with severe blood loss and low blood pressure",
       "Client with hypertension and edema",
       "Client with fever and flushed skin",
-      "Client with chronic kidney disease"
+      "Client with chronic kidney disease",
+      "Client with severe blood loss and low blood pressure"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which assessment finding is expected after opioid administration?",
@@ -1865,32 +1865,32 @@ const rnQuestions = [
   {
     question: "A postoperative client has absent bowel sounds. The nurse should:",
     options: [
-      "Continue to assess and hold oral intake if prescribed",
       "Give a laxative immediately",
+      "Continue to assess and hold oral intake if prescribed",
       "Encourage a large meal",
       "Place the client flat"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which electrolyte imbalance can cause muscle weakness and dysrhythmias?",
     options: [
-      "Hypokalemia",
       "Hypercalcemia",
       "Hypernatremia",
+      "Hypokalemia",
       "Hypophosphatemia"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "Which action is appropriate for chest tube care?",
     options: [
-      "Keep the drainage system below chest level",
       "Clamp the tube routinely for transport",
       "Milk the tube every hour",
-      "Disconnect the system to empty it"
+      "Disconnect the system to empty it",
+      "Keep the drainage system below chest level"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "A nurse is teaching a client with heart failure. Which statement shows understanding?",
@@ -1905,32 +1905,32 @@ const rnQuestions = [
   {
     question: "Which finding is most concerning in a client with diabetes?",
     options: [
-      "Foot ulcer with drainage",
       "Mild hunger before lunch",
+      "Foot ulcer with drainage",
       "Blood glucose 118 mg/dL",
       "Dry skin on elbows"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which nurse action is correct when a client has a seizure?",
     options: [
-      "Turn the client on their side",
       "Insert an oral airway",
       "Hold the client down",
+      "Turn the client on their side",
       "Place a pillow under the knees"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "A nurse should first assess a client who has:",
     options: [
-      "Sudden confusion and restlessness",
       "A request for pain medicine",
       "A dressing change due in 30 minutes",
-      "Questions about diet"
+      "Questions about diet",
+      "Sudden confusion and restlessness"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which finding is expected with hyperglycemia?",
@@ -1945,32 +1945,32 @@ const rnQuestions = [
   {
     question: "Which intervention reduces pressure injury risk?",
     options: [
-      "Reposition at least every 2 hours",
       "Massage reddened skin",
+      "Reposition at least every 2 hours",
       "Use donut cushions under bony prominences",
       "Keep the head of bed at 90 degrees"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "A client on heparin should be monitored using:",
     options: [
-      "aPTT",
       "INR only",
       "Hemoglobin A1c",
+      "aPTT",
       "Troponin"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "Which sign may indicate digoxin toxicity?",
     options: [
-      "Nausea and visual halos",
       "Increased appetite",
       "Dry cough",
-      "Constipation"
+      "Constipation",
+      "Nausea and visual halos"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which client should the nurse assign to an LPN/LVN?",
@@ -1985,32 +1985,32 @@ const rnQuestions = [
   {
     question: "Which intervention is priority for a client with a new tracheostomy?",
     options: [
-      "Keep a trach obturator and suction available",
       "Limit all visitors",
+      "Keep a trach obturator and suction available",
       "Place the client flat after meals",
       "Provide thin liquids frequently"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "A client with pneumonia should be encouraged to:",
     options: [
-      "Cough and deep breathe",
       "Remain flat in bed",
       "Restrict all fluids",
+      "Cough and deep breathe",
       "Avoid ambulation completely"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "Which finding suggests poor perfusion?",
     options: [
-      "Cool pale extremities",
       "Warm dry skin",
       "Strong peripheral pulses",
-      "Capillary refill less than 2 seconds"
+      "Capillary refill less than 2 seconds",
+      "Cool pale extremities"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "A nurse should question which diet order for a client with dysphagia?",
@@ -2025,32 +2025,32 @@ const rnQuestions = [
   {
     question: "Which medication is commonly used to reverse opioid overdose?",
     options: [
-      "Naloxone",
       "Atropine",
+      "Naloxone",
       "Epinephrine",
       "Flumazenil"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "A client with asthma is wheezing and short of breath. The priority medication is:",
     options: [
-      "Albuterol",
       "Montelukast",
       "Prednisone tablet for next week",
+      "Albuterol",
       "Acetaminophen"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "Which statement by a new parent needs further teaching?",
     options: [
-      "I will put my baby to sleep on their stomach",
       "I will place my baby on their back to sleep",
       "I will use a firm mattress",
-      "I will keep loose blankets out of the crib"
+      "I will keep loose blankets out of the crib",
+      "I will put my baby to sleep on their stomach"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which symptom is classic for appendicitis?",
@@ -2065,32 +2065,32 @@ const rnQuestions = [
   {
     question: "A nurse caring for a client with meningitis should assess for:",
     options: [
-      "Neck stiffness",
       "Bradycardia only after meals",
+      "Neck stiffness",
       "Decreased urine output after activity",
       "Yellow sclera"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which action best promotes client safety before giving medication?",
     options: [
-      "Use two identifiers",
       "Ask the roommate to confirm the name",
       "Check only the room number",
+      "Use two identifiers",
       "Give meds based on the medication cart list"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "A client with liver cirrhosis is at highest risk for:",
     options: [
-      "Hepatic encephalopathy and ascites",
       "Acute myocardial infarction",
       "Type 1 diabetes mellitus",
-      "Acute kidney injury only"
+      "Acute kidney injury only",
+      "Hepatic encephalopathy and ascites"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "Which is the most important nursing assessment for a client on acetaminophen?",
@@ -2105,32 +2105,32 @@ const rnQuestions = [
   {
     question: "A client complains of floaters and flashes in their vision. The nurse should:",
     options: [
-      "Report this immediately; it may indicate retinal detachment",
       "Reassure them this is normal",
+      "Report this immediately; it may indicate retinal detachment",
       "Apply a warm compress",
       "Administer eye drops"
     ],
-    answer: 0
+    answer: 1
   },
   {
     question: "Which intervention is correct for a client with conjunctivitis?",
     options: [
-      "Clean eye from inner canthus to outer canthus",
       "Patch both eyes",
       "Apply light to test pupils",
+      "Clean eye from inner canthus to outer canthus",
       "Avoid saline rinses"
     ],
-    answer: 0
+    answer: 2
   },
   {
     question: "Which pulse point is commonly assessed for stroke risk in clients with atrial fibrillation?",
     options: [
-      "Carotid artery",
       "Dorsalis pedis",
       "Brachial artery",
-      "Popliteal artery"
+      "Popliteal artery",
+      "Carotid artery"
     ],
-    answer: 0
+    answer: 3
   },
   {
     question: "A client is found to have a weak femoral pulse. The nurse should:",
@@ -2141,6 +2141,273 @@ const rnQuestions = [
       "Have the client stand and ambulate"
     ],
     answer: 0
+  }
+];
+
+const harderRnQuestions = [
+  {
+    question: "A nurse receives four clients from report. Which client should be assessed first?",
+    options: [
+      "A client with COPD and chronic oxygen saturation of 90% on 2 L/min",
+      "A postoperative client who reports sudden shortness of breath and pleuritic chest pain",
+      "A client with heart failure requesting an extra pillow",
+      "A client with pneumonia whose temperature increased from 99.4°F to 100.2°F"
+    ],
+    answer: 1,
+    explanation: "Sudden dyspnea with pleuritic pain after surgery suggests pulmonary embolism, which is immediately life-threatening."
+  },
+  {
+    question: "The nurse is caring for a client receiving heparin infusion. Which finding requires the most urgent action?",
+    options: [
+      "aPTT of 98 seconds",
+      "Platelet count dropping from 220,000 to 88,000/mm3",
+      "Small bruises at old IV sites",
+      "Mild headache rated 2/10"
+    ],
+    answer: 1,
+    explanation: "A major platelet drop on heparin raises concern for HIT, which can cause life-threatening thrombosis and requires prompt intervention."
+  },
+  {
+    question: "A client with diabetic ketoacidosis is being treated. Which trend indicates treatment is effective?",
+    options: [
+      "Serum potassium increases from 5.6 to 6.1 mEq/L",
+      "Urine ketones increase from moderate to large",
+      "Serum bicarbonate rises from 14 to 21 mEq/L",
+      "Respiratory rate rises from 24 to 32/min"
+    ],
+    answer: 2,
+    explanation: "Increasing bicarbonate indicates metabolic acidosis is resolving, a key marker of DKA improvement."
+  },
+  {
+    question: "The nurse is delegating care to an LPN/LVN and UAP. Which task is appropriate to assign to the UAP?",
+    options: [
+      "Reinforce teaching on newly prescribed warfarin",
+      "Assess pain after IV morphine administration",
+      "Evaluate effectiveness of a bronchodilator",
+      "Obtain and document orthostatic vital signs"
+    ],
+    answer: 3,
+    explanation: "UAPs may collect routine data such as orthostatic vitals, while assessment, teaching, and evaluation remain with licensed nurses."
+  },
+  {
+    question: "A client with SIADH has worsening confusion. Which provider order should the nurse implement first?",
+    options: [
+      "Restrict fluids to 800 mL/day",
+      "Administer oral sodium tablets",
+      "Place on seizure precautions",
+      "Provide frequent mouth care"
+    ],
+    answer: 2,
+    explanation: "Neurologic worsening in SIADH suggests severe hyponatremia risk; seizure precautions are the immediate safety priority."
+  },
+  {
+    question: "A nurse is reviewing telemetry and finds new peaked T waves. Which laboratory value is most likely?",
+    options: [
+      "Potassium 6.5 mEq/L",
+      "Calcium 8.8 mg/dL",
+      "Magnesium 2.0 mg/dL",
+      "Sodium 140 mEq/L"
+    ],
+    answer: 0,
+    explanation: "Peaked T waves are a classic ECG finding of hyperkalemia."
+  },
+  {
+    question: "Which client is most appropriate to transfer from ICU to a medical-surgical unit?",
+    options: [
+      "Client with septic shock requiring vasopressors",
+      "Client 12 hours post-thrombolytic with frequent neurologic checks",
+      "Client with DKA whose anion gap has closed and insulin infusion is discontinued",
+      "Client with GI bleed receiving transfusion and active melena"
+    ],
+    answer: 2,
+    explanation: "A closed anion gap with discontinuation of insulin infusion indicates stabilization and lower acuity compared with the other clients."
+  },
+  {
+    question: "A postoperative client has BP 86/52, HR 124, cool clammy skin, and urine output 20 mL/hr. What is the priority action?",
+    options: [
+      "Administer PRN opioid for pain",
+      "Increase oxygen and notify provider/rapid response",
+      "Encourage oral fluid intake",
+      "Place in high-Fowler position"
+    ],
+    answer: 1,
+    explanation: "This pattern suggests hypoperfusion and potential shock; escalate immediately while supporting oxygenation."
+  },
+  {
+    question: "A nurse is preparing to administer 10 units of regular insulin IV. Which action is required for high-alert safety?",
+    options: [
+      "Mix with dextrose before administration",
+      "Administer within 30 minutes of meal tray arrival",
+      "Have a second licensed nurse independently verify dose",
+      "Use the deltoid intramuscular site"
+    ],
+    answer: 2,
+    explanation: "IV insulin is high-alert medication and requires independent double-check per standard safety practices."
+  },
+  {
+    question: "A client with chest pain receives nitroglycerin. Which finding requires immediate follow-up before another dose?",
+    options: [
+      "Blood pressure decreased from 132/78 to 94/58",
+      "Pain decreased from 8/10 to 5/10",
+      "Heart rate increased from 82 to 92/min",
+      "Client reports mild headache"
+    ],
+    answer: 0,
+    explanation: "Significant hypotension after nitroglycerin can compromise perfusion and contraindicate additional dosing."
+  },
+  {
+    question: "A nurse is caring for a neutropenic client (ANC 400). Which action is most appropriate?",
+    options: [
+      "Place fresh flowers in the room",
+      "Use strict aseptic technique and avoid raw foods",
+      "Limit oral care to once daily",
+      "Administer rectal suppositories for constipation"
+    ],
+    answer: 1,
+    explanation: "Severe neutropenia requires infection-prevention strategies, including asepsis and avoiding high bacterial exposures like raw foods."
+  },
+  {
+    question: "A client with heart failure has these morning findings: weight +2.2 lb in 24 hours, crackles, and ankle edema. Which order should the nurse anticipate implementing first?",
+    options: [
+      "Hold all antihypertensives",
+      "Increase oral fluid intake",
+      "Administer prescribed loop diuretic",
+      "Encourage high-sodium snacks"
+    ],
+    answer: 2,
+    explanation: "Rapid weight gain with crackles and edema indicates fluid overload; diuresis is a priority intervention."
+  },
+  {
+    question: "Which finding in a client with traumatic brain injury should the nurse report immediately?",
+    options: [
+      "Increasing drowsiness and unequal pupils",
+      "Headache rated 3/10",
+      "One episode of nausea",
+      "Systolic blood pressure of 128 mmHg"
+    ],
+    answer: 0,
+    explanation: "Neurologic decline with anisocoria may indicate rising intracranial pressure and possible herniation."
+  },
+  {
+    question: "The nurse is caring for a client receiving blood transfusion. Which sign suggests acute hemolytic reaction?",
+    options: [
+      "Pruritus and urticaria",
+      "Fever, flank pain, and hypotension",
+      "Mild dyspnea after ambulation",
+      "New crackles and hypertension"
+    ],
+    answer: 1,
+    explanation: "Fever, flank pain, and hypotension during transfusion are classic for acute hemolytic reaction and require immediate stop of transfusion."
+  },
+  {
+    question: "A client on continuous tube feeding has gastric residuals rising and is now coughing during repositioning. What is the priority nursing action?",
+    options: [
+      "Increase feeding rate to maintain calories",
+      "Lower head of bed for comfort",
+      "Stop feeding and assess airway/lung status",
+      "Flush tube with 30 mL water"
+    ],
+    answer: 2,
+    explanation: "Signs suggest aspiration risk; stop feeding first and assess respiratory status immediately."
+  },
+  {
+    question: "A nurse receives these ABGs: pH 7.30, PaCO2 52, HCO3 26. How should this be interpreted?",
+    options: [
+      "Metabolic acidosis",
+      "Respiratory acidosis",
+      "Respiratory alkalosis",
+      "Fully compensated metabolic alkalosis"
+    ],
+    answer: 1,
+    explanation: "Low pH with elevated PaCO2 and near-normal HCO3 indicates primary respiratory acidosis without full compensation."
+  },
+  {
+    question: "A client with suspected stroke arrives within the treatment window. Which action has the highest priority?",
+    options: [
+      "Complete bedside swallow screening",
+      "Obtain non-contrast head CT quickly",
+      "Administer aspirin immediately",
+      "Start D5W infusion"
+    ],
+    answer: 1,
+    explanation: "Rapid head CT is needed to differentiate ischemic vs hemorrhagic stroke and guide urgent treatment decisions."
+  },
+  {
+    question: "A nurse is caring for a client with COPD exacerbation on 2 L/min nasal cannula. Which assessment finding indicates worsening status?",
+    options: [
+      "SpO2 91%",
+      "Mild expiratory wheeze",
+      "Drowsiness with rising PaCO2",
+      "Productive cough of yellow sputum"
+    ],
+    answer: 2,
+    explanation: "Increasing drowsiness with rising carbon dioxide suggests CO2 retention and possible impending respiratory failure."
+  },
+  {
+    question: "A client with sepsis has lactate 5.2 mmol/L after initial fluids. Which outcome is most important to monitor for early response?",
+    options: [
+      "Decreasing lactate trend",
+      "Normalization of white blood cell count in 2 hours",
+      "Resolution of all edema",
+      "Return of appetite"
+    ],
+    answer: 0,
+    explanation: "Lactate clearance is an important early marker of improving tissue perfusion in sepsis management."
+  },
+  {
+    question: "Which client should the nurse see first after receiving morning report?",
+    options: [
+      "Client with chronic atrial fibrillation and HR 102",
+      "Client with new tracheostomy who has coarse breath sounds and visible secretions",
+      "Client with stage 2 pressure injury due for dressing change",
+      "Client awaiting discharge teaching"
+    ],
+    answer: 1,
+    explanation: "Airway comes first; a fresh tracheostomy with retained secretions risks obstruction and respiratory compromise."
+  },
+  {
+    question: "A nurse notes sudden unilateral leg swelling and warmth in a postoperative client. What is the priority action?",
+    options: [
+      "Massage the calf to improve circulation",
+      "Ambulate the client immediately",
+      "Apply sequential compression sleeves tighter",
+      "Keep client on bed rest and notify provider"
+    ],
+    answer: 3,
+    explanation: "Findings suggest possible DVT; avoid dislodging clot and promptly notify provider for urgent evaluation."
+  },
+  {
+    question: "Which order should the nurse question for a client with acute kidney injury and potassium of 5.9 mEq/L?",
+    options: [
+      "Sodium polystyrene sulfonate as prescribed",
+      "Telemetry monitoring",
+      "Lisinopril 20 mg PO daily",
+      "Repeat basic metabolic panel in 4 hours"
+    ],
+    answer: 2,
+    explanation: "ACE inhibitors can increase potassium and should be questioned in hyperkalemia with kidney injury."
+  },
+  {
+    question: "A client with upper GI bleed has black tarry stool and BP 98/56. Which intervention is priority?",
+    options: [
+      "Administer stool softener",
+      "Maintain two large-bore IV lines",
+      "Encourage ambulation",
+      "Offer clear liquids"
+    ],
+    answer: 1,
+    explanation: "Potential hemodynamic instability from GI bleeding requires reliable large-bore IV access for fluids and blood products."
+  },
+  {
+    question: "Which statement by a nurse indicates correct understanding of sepsis bundles?",
+    options: [
+      "Blood cultures should be drawn after first antibiotic dose",
+      "Broad-spectrum antibiotics should be delayed until all labs finalize",
+      "Initial lactate and early antibiotics are time-sensitive priorities",
+      "Urine output is not useful in sepsis monitoring"
+    ],
+    answer: 2,
+    explanation: "Sepsis care emphasizes rapid lactate measurement and prompt empiric antibiotics to reduce morbidity and mortality."
   }
 ];
 
@@ -3307,6 +3574,7 @@ export default function App() {
   const [shuffledRnQuestions, setShuffledRnQuestions] = useState(() =>
     shuffleArray(rnQuestions)
   );
+  const [rnDifficulty, setRnDifficulty] = useState("core");
   const [rnIndex, setRnIndex] = useState(0);
   const [rnScore, setRnScore] = useState(0);
   const [rnAnswers, setRnAnswers] = useState({});
@@ -3936,6 +4204,7 @@ export default function App() {
 
   const saveRnProgress = () => {
     const progress = {
+      rnDifficulty,
       shuffledRnQuestions,
       rnIndex,
       rnScore,
@@ -3947,7 +4216,8 @@ export default function App() {
   };
 
   const resetRnExam = () => {
-    const reshuffled = shuffleArray(rnQuestions);
+    const activeRnQuestionBank = rnDifficulty === "hard" ? harderRnQuestions : rnQuestions;
+    const reshuffled = shuffleArray(activeRnQuestionBank);
     localStorage.removeItem("rnProgress");
     setShuffledRnQuestions(reshuffled);
     setRnIndex(0);
@@ -3958,7 +4228,8 @@ export default function App() {
   };
 
   const restartRnExam = () => {
-    const reshuffled = shuffleArray(rnQuestions);
+    const activeRnQuestionBank = rnDifficulty === "hard" ? harderRnQuestions : rnQuestions;
+    const reshuffled = shuffleArray(activeRnQuestionBank);
     localStorage.removeItem("rnProgress");
     setShuffledRnQuestions(reshuffled);
     setRnIndex(0);
@@ -3998,7 +4269,10 @@ export default function App() {
   useEffect(() => {
     const savedRn = JSON.parse(localStorage.getItem("rnProgress"));
     if (savedRn) {
-      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleArray(rnQuestions));
+      const savedDifficulty = savedRn.rnDifficulty === "hard" ? "hard" : "core";
+      const fallbackBank = savedDifficulty === "hard" ? harderRnQuestions : rnQuestions;
+      setRnDifficulty(savedDifficulty);
+      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleArray(fallbackBank));
       setRnIndex(savedRn.rnIndex || 0);
       setRnScore(savedRn.rnScore || 0);
       setRnAnswers(savedRn.rnAnswers || {});
@@ -4449,6 +4723,80 @@ return (
         <p style={{ marginTop: 10, fontSize: 18 }}>
           Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, and Medical Terminology
         </p>
+
+        <div
+          style={{
+            marginTop: 14,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 12
+          }}
+        >
+          <button
+            onClick={() => setActiveTab("Contact")}
+            onMouseEnter={() => setHoveredNavTab("HeaderContact")}
+            onMouseLeave={() => setHoveredNavTab("")}
+            style={{
+              border: "1px solid rgba(255,255,255,0.46)",
+              background:
+                hoveredNavTab === "HeaderContact"
+                  ? "rgba(255,255,255,0.26)"
+                  : "rgba(255,255,255,0.14)",
+              color: "white",
+              borderRadius: 999,
+              padding: "8px 14px",
+              fontSize: 13,
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Contact Us
+          </button>
+
+          <button
+            onClick={() => setActiveTab("Support")}
+            onMouseEnter={() => setHoveredNavTab("HeaderSupport")}
+            onMouseLeave={() => setHoveredNavTab("")}
+            style={{
+              border: "1px solid rgba(255,255,255,0.46)",
+              background:
+                hoveredNavTab === "HeaderSupport"
+                  ? "rgba(255,255,255,0.26)"
+                  : "rgba(255,255,255,0.14)",
+              color: "white",
+              borderRadius: 999,
+              padding: "8px 14px",
+              fontSize: 13,
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Support Our Content
+          </button>
+
+          <button
+            onClick={() => setActiveTab("Privacy")}
+            onMouseEnter={() => setHoveredNavTab("HeaderPrivacy")}
+            onMouseLeave={() => setHoveredNavTab("")}
+            style={{
+              border: "1px solid rgba(255,255,255,0.46)",
+              background:
+                hoveredNavTab === "HeaderPrivacy"
+                  ? "rgba(255,255,255,0.26)"
+                  : "rgba(255,255,255,0.14)",
+              color: "white",
+              borderRadius: 999,
+              padding: "8px 14px",
+              fontSize: 13,
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Privacy
+          </button>
+        </div>
       </div>
 
       <div style={{ marginBottom: 16 }}>
@@ -4617,32 +4965,6 @@ return (
           Medical Equipment ID
         </button>
 
-        <button
-          onClick={() => setActiveTab("Contact")}
-          onMouseEnter={() => setHoveredNavTab("Contact")}
-          onMouseLeave={() => setHoveredNavTab("")}
-          style={navButtonStyle(activeTab === "Contact", hoveredNavTab === "Contact")}
-        >
-          Contact
-        </button>
-
-        <button
-          onClick={() => setActiveTab("Support")}
-          onMouseEnter={() => setHoveredNavTab("Support")}
-          onMouseLeave={() => setHoveredNavTab("")}
-          style={navButtonStyle(activeTab === "Support", hoveredNavTab === "Support")}
-        >
-          Support Our Content
-        </button>
-
-        <button
-          onClick={() => setActiveTab("Privacy")}
-          onMouseEnter={() => setHoveredNavTab("Privacy")}
-          onMouseLeave={() => setHoveredNavTab("")}
-          style={navButtonStyle(activeTab === "Privacy", hoveredNavTab === "Privacy")}
-        >
-          Privacy
-        </button>
           </>
         )}
       </div>
@@ -6904,6 +7226,72 @@ return (
                   <p style={{ color: "#4f6275", margin: 0 }}>
                     Select one answer. The correct answer will highlight after you answer.
                   </p>
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      gap: 8,
+                      marginTop: 14,
+                      padding: 6,
+                      borderRadius: 999,
+                      background: "#eef4ff",
+                      border: "1px solid #d8e4f2"
+                    }}
+                  >
+                    <button
+                      onClick={() => {
+                        if (rnDifficulty === "core") return;
+                        setRnDifficulty("core");
+                        setShuffledRnQuestions(shuffleArray(rnQuestions));
+                        setRnIndex(0);
+                        setRnScore(0);
+                        setRnAnswers({});
+                        setRnShowResult(false);
+                        setShowRnMissedReview(false);
+                        localStorage.removeItem("rnProgress");
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: 999,
+                        border: "none",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        background:
+                          rnDifficulty === "core"
+                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                            : "transparent",
+                        color: rnDifficulty === "core" ? "white" : "#12355b"
+                      }}
+                    >
+                      Core RN
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (rnDifficulty === "hard") return;
+                        setRnDifficulty("hard");
+                        setShuffledRnQuestions(shuffleArray(harderRnQuestions));
+                        setRnIndex(0);
+                        setRnScore(0);
+                        setRnAnswers({});
+                        setRnShowResult(false);
+                        setShowRnMissedReview(false);
+                        localStorage.removeItem("rnProgress");
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: 999,
+                        border: "none",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        background:
+                          rnDifficulty === "hard"
+                            ? "linear-gradient(135deg, #7c2d12, #b45309)"
+                            : "transparent",
+                        color: rnDifficulty === "hard" ? "white" : "#7c2d12"
+                      }}
+                    >
+                      Hard RN
+                    </button>
+                  </div>
                 </div>
 
                 <div
@@ -7041,6 +7429,9 @@ return (
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {rnScore} / {shuffledRnQuestions.length}
                 </p>
+                <p style={{ color: "#4f6275", marginTop: 6 }}>
+                  Mode: {rnDifficulty === "hard" ? "Hard RN" : "Core RN"}
+                </p>
 
                 <div
                   style={{
@@ -7116,14 +7507,7 @@ return (
                   </button>
 
                   <button
-                    onClick={() => {
-                      setShuffledRnQuestions(shuffleArray(rnQuestions));
-                      setRnIndex(0);
-                      setRnScore(0);
-                      setRnAnswers({});
-                      setRnShowResult(false);
-                      setShowRnMissedReview(false);
-                    }}
+                    onClick={restartRnExam}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
