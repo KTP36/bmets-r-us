@@ -1,3 +1,1235 @@
+                  const allQuestions = [
+                                // --- Arterial System Anatomy Questions ---
+                              {
+                                question: "What is the largest artery in the human body?",
+                                options: ["Aorta", "Carotid artery", "Femoral artery", "Pulmonary artery"],
+                                answer: 0,
+                                explanation: "The aorta is the largest artery in the human body.",
+                                difficulty: "easy",
+                                category: "arterial system"
+                              },
+                              // --- Venous System Anatomy Questions: Easy ---
+                              {
+                                question: "What is the largest vein in the human body?",
+                                options: ["Inferior vena cava", "Superior vena cava", "Jugular vein", "Femoral vein"],
+                                answer: 0,
+                                explanation: "The inferior vena cava is the largest vein in the human body.",
+                                difficulty: "easy",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein returns blood from the head to the heart?",
+                                options: ["Jugular vein", "Femoral vein", "Basilic vein", "Great saphenous vein"],
+                                answer: 0,
+                                explanation: "The jugular veins return blood from the head to the heart.",
+                                difficulty: "easy",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is commonly used for drawing blood?",
+                                options: ["Median cubital vein", "Femoral vein", "Jugular vein", "Inferior vena cava"],
+                                answer: 0,
+                                explanation: "The median cubital vein is commonly used for venipuncture (drawing blood).",
+                                difficulty: "easy",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein drains blood from the lower limbs?",
+                                options: ["Great saphenous vein", "Jugular vein", "Basilic vein", "Cephalic vein"],
+                                answer: 0,
+                                explanation: "The great saphenous vein is the longest vein and drains blood from the lower limbs.",
+                                difficulty: "easy",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein carries oxygenated blood?",
+                                options: ["Pulmonary vein", "Inferior vena cava", "Jugular vein", "Femoral vein"],
+                                answer: 0,
+                                explanation: "The pulmonary veins carry oxygenated blood from the lungs to the heart.",
+                                difficulty: "easy",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is found in the arm and is often visible?",
+                                options: ["Cephalic vein", "Femoral vein", "Jugular vein", "Great saphenous vein"],
+                                answer: 0,
+                                explanation: "The cephalic vein is a superficial vein often visible in the arm.",
+                                difficulty: "easy",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein drains blood from the intestines to the liver?",
+                                options: ["Hepatic portal vein", "Inferior vena cava", "Jugular vein", "Femoral vein"],
+                                answer: 0,
+                                explanation: "The hepatic portal vein carries blood from the intestines to the liver.",
+                                difficulty: "easy",
+                                category: "venous system"
+                              },
+                              // --- Venous System Anatomy Questions: Medium ---
+                              {
+                                question: "Which vein is the main deep vein of the thigh?",
+                                options: ["Femoral vein", "Great saphenous vein", "Jugular vein", "Cephalic vein"],
+                                answer: 0,
+                                explanation: "The femoral vein is the main deep vein of the thigh.",
+                                difficulty: "medium",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is commonly affected by varicose veins?",
+                                options: ["Great saphenous vein", "Jugular vein", "Femoral vein", "Basilic vein"],
+                                answer: 0,
+                                explanation: "The great saphenous vein is commonly affected by varicose veins.",
+                                difficulty: "medium",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein drains blood from the brain?",
+                                options: ["Internal jugular vein", "Cephalic vein", "Femoral vein", "Great saphenous vein"],
+                                answer: 0,
+                                explanation: "The internal jugular vein drains blood from the brain.",
+                                difficulty: "medium",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is paired with the radial artery in the forearm?",
+                                options: ["Radial vein", "Cephalic vein", "Basilic vein", "Jugular vein"],
+                                answer: 0,
+                                explanation: "The radial vein runs alongside the radial artery in the forearm.",
+                                difficulty: "medium",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is formed by the union of the subclavian and internal jugular veins?",
+                                options: ["Brachiocephalic vein", "Femoral vein", "Great saphenous vein", "Cephalic vein"],
+                                answer: 0,
+                                explanation: "The brachiocephalic vein is formed by the union of the subclavian and internal jugular veins.",
+                                difficulty: "medium",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein drains blood from the hand and forearm?",
+                                options: ["Basilic vein", "Jugular vein", "Femoral vein", "Great saphenous vein"],
+                                answer: 0,
+                                explanation: "The basilic vein drains blood from the hand and forearm.",
+                                difficulty: "medium",
+                                category: "venous system"
+                              },
+                              // --- Venous System Anatomy Questions: Hard ---
+                              {
+                                question: "Which vein is most commonly used for central venous catheterization?",
+                                options: ["Internal jugular vein", "Cephalic vein", "Great saphenous vein", "Femoral vein"],
+                                answer: 0,
+                                explanation: "The internal jugular vein is commonly used for central venous catheterization.",
+                                difficulty: "hard",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein receives blood from the coronary circulation?",
+                                options: ["Coronary sinus", "Inferior vena cava", "Jugular vein", "Femoral vein"],
+                                answer: 0,
+                                explanation: "The coronary sinus receives blood from the coronary veins and empties into the right atrium.",
+                                difficulty: "hard",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is the longest in the body?",
+                                options: ["Great saphenous vein", "Femoral vein", "Jugular vein", "Cephalic vein"],
+                                answer: 0,
+                                explanation: "The great saphenous vein is the longest vein in the body.",
+                                difficulty: "hard",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is responsible for draining the superficial structures of the face?",
+                                options: ["Facial vein", "Jugular vein", "Cephalic vein", "Femoral vein"],
+                                answer: 0,
+                                explanation: "The facial vein drains the superficial structures of the face.",
+                                difficulty: "hard",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein is formed by the union of the anterior and posterior tibial veins?",
+                                options: ["Popliteal vein", "Femoral vein", "Great saphenous vein", "Jugular vein"],
+                                answer: 0,
+                                explanation: "The popliteal vein is formed by the union of the anterior and posterior tibial veins.",
+                                difficulty: "hard",
+                                category: "venous system"
+                              },
+                              {
+                                question: "Which vein drains blood from the pelvic organs?",
+                                options: ["Internal iliac vein", "Femoral vein", "Great saphenous vein", "Cephalic vein"],
+                                answer: 0,
+                                explanation: "The internal iliac vein drains blood from the pelvic organs.",
+                                difficulty: "hard",
+                                category: "venous system"
+                              },
+                              // --- Arterial System Anatomy Questions: Medium ---
+                              {
+                                question: "Which artery supplies blood to the intestines?",
+                                options: ["Superior mesenteric artery", "Renal artery", "Coronary artery", "Carotid artery"],
+                                answer: 0,
+                                explanation: "The superior mesenteric artery supplies blood to most of the intestines.",
+                                difficulty: "medium",
+                                category: "arterial system"
+                              },
+                              {
+                                question: "Which artery is the main supplier of blood to the forearm?",
+                                options: ["Radial artery", "Ulnar artery", "Brachial artery", "Femoral artery"],
+                                answer: 2,
+                                explanation: "The brachial artery divides into the radial and ulnar arteries, supplying the forearm.",
+                                difficulty: "medium",
+                                category: "arterial system"
+                              },
+                              {
+                                question: "Which artery supplies blood to the spleen?",
+                                options: ["Splenic artery", "Renal artery", "Hepatic artery", "Coronary artery"],
+                                answer: 0,
+                                explanation: "The splenic artery supplies blood to the spleen.",
+                                difficulty: "medium",
+                                category: "arterial system"
+                              },
+                              {
+                                question: "Which artery is found behind the knee?",
+                                options: ["Femoral artery", "Popliteal artery", "Radial artery", "Carotid artery"],
+                                answer: 1,
+                                explanation: "The popliteal artery is found behind the knee.",
+                                difficulty: "medium",
+                                category: "arterial system"
+                              },
+                              {
+                                question: "Which artery supplies blood to the lungs?",
+                                options: ["Pulmonary artery", "Aorta", "Carotid artery", "Femoral artery"],
+                                answer: 0,
+                                explanation: "The pulmonary artery carries deoxygenated blood from the heart to the lungs.",
+                                difficulty: "medium",
+                                category: "arterial system"
+                              },
+                              // Hard
+                              {
+                                question: "Which artery forms the palmar arches in the hand?",
+                                options: ["Radial and ulnar arteries", "Brachial artery", "Femoral artery", "Carotid artery"],
+                                answer: 0,
+                                explanation: "The radial and ulnar arteries form the superficial and deep palmar arches in the hand.",
+                                difficulty: "hard",
+                                category: "arterial system"
+                              },
+                              {
+                                question: "Which artery is the main supplier of blood to the pelvic organs?",
+                                options: ["Internal iliac artery", "Femoral artery", "Aorta", "Renal artery"],
+                                answer: 0,
+                                explanation: "The internal iliac artery supplies blood to the pelvic organs.",
+                                difficulty: "hard",
+                                category: "arterial system"
+                              },
+                              {
+                                question: "Which artery is commonly used for arterial blood gas sampling?",
+                                options: ["Radial artery", "Femoral artery", "Carotid artery", "Aorta"],
+                                answer: 0,
+                                explanation: "The radial artery is commonly used for arterial blood gas sampling.",
+                                difficulty: "hard",
+                                category: "arterial system"
+                              },
+                          // --- Ear Anatomy Questions ---
+                          {
+                            question: "What is the outer part of the ear called?",
+                            options: ["Auricle (pinna)", "Cochlea", "Stapes", "Tympanic membrane"],
+                            answer: 0,
+                            explanation: "The auricle (pinna) is the visible outer part of the ear.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "What is the function of the tympanic membrane?",
+                            options: ["Transmit sound", "Produce wax", "Balance", "Protect the eye"],
+                            answer: 0,
+                            explanation: "The tympanic membrane (eardrum) vibrates to transmit sound to the middle ear.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "How many ossicles are in the middle ear?",
+                            options: ["1", "2", "3", "4"],
+                            answer: 2,
+                            explanation: "There are three ossicles: malleus, incus, and stapes.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which structure connects the middle ear to the throat?",
+                            options: ["Cochlea", "Eustachian tube", "Semicircular canals", "Auricle"],
+                            answer: 1,
+                            explanation: "The Eustachian tube connects the middle ear to the pharynx (throat).",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "What is the snail-shaped structure in the inner ear called?",
+                            options: ["Cochlea", "Stapes", "Auricle", "Tympanic membrane"],
+                            answer: 0,
+                            explanation: "The cochlea is a spiral-shaped organ responsible for hearing.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which part of the ear is responsible for balance?",
+                            options: ["Cochlea", "Semicircular canals", "Auricle", "Tympanic membrane"],
+                            answer: 1,
+                            explanation: "The semicircular canals in the inner ear help maintain balance.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "What is the smallest bone in the human body?",
+                            options: ["Malleus", "Incus", "Stapes", "Femur"],
+                            answer: 2,
+                            explanation: "The stapes is the smallest bone in the human body, located in the middle ear.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which nerve carries sound signals from the ear to the brain?",
+                            options: ["Facial nerve", "Vestibulocochlear nerve", "Trigeminal nerve", "Optic nerve"],
+                            answer: 1,
+                            explanation: "The vestibulocochlear nerve (cranial nerve VIII) carries sound and balance signals.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "What is the function of earwax (cerumen)?",
+                            options: ["Aid hearing", "Protect ear canal", "Transmit sound", "Balance"],
+                            answer: 1,
+                            explanation: "Earwax protects and lubricates the ear canal, trapping dust and debris.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which part of the ear amplifies sound vibrations?",
+                            options: ["Auricle", "Ossicles", "Cochlea", "Semicircular canals"],
+                            answer: 1,
+                            explanation: "The ossicles amplify sound vibrations from the eardrum to the inner ear.",
+                            difficulty: "easy",
+                            category: "ear"
+                          },
+                          // Medium
+                          {
+                            question: "What is the oval window?",
+                            options: ["Opening to cochlea", "Part of auricle", "Middle ear bone", "Ear canal"],
+                            answer: 0,
+                            explanation: "The oval window is a membrane-covered opening to the cochlea.",
+                            difficulty: "medium",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which structure equalizes air pressure on both sides of the eardrum?",
+                            options: ["Cochlea", "Eustachian tube", "Auricle", "Stapes"],
+                            answer: 1,
+                            explanation: "The Eustachian tube equalizes air pressure between the middle ear and throat.",
+                            difficulty: "medium",
+                            category: "ear"
+                          },
+                          {
+                            question: "What is the round window?",
+                            options: ["Opening to cochlea", "Part of auricle", "Middle ear bone", "Ear canal"],
+                            answer: 0,
+                            explanation: "The round window is a membrane-covered opening in the cochlea that allows fluid movement.",
+                            difficulty: "medium",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which fluid fills the cochlea?",
+                            options: ["Endolymph", "Perilymph", "Cerebrospinal fluid", "Blood"],
+                            answer: 1,
+                            explanation: "Perilymph is the fluid that fills the cochlea and helps transmit sound.",
+                            difficulty: "medium",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which structure detects rotational movements of the head?",
+                            options: ["Cochlea", "Semicircular canals", "Auricle", "Ossicles"],
+                            answer: 1,
+                            explanation: "The semicircular canals detect rotational movements and help with balance.",
+                            difficulty: "medium",
+                            category: "ear"
+                          },
+                          // Hard
+                          {
+                            question: "What is the organ of Corti?",
+                            options: ["Hearing receptor", "Balance organ", "Ear canal", "Middle ear bone"],
+                            answer: 0,
+                            explanation: "The organ of Corti is the sensory organ for hearing, located in the cochlea.",
+                            difficulty: "hard",
+                            category: "ear"
+                          },
+                          {
+                            question: "Which cells in the cochlea are responsible for converting sound vibrations into nerve impulses?",
+                            options: ["Hair cells", "Ossicles", "Ceruminous cells", "Epithelial cells"],
+                            answer: 0,
+                            explanation: "Hair cells in the organ of Corti convert sound vibrations into nerve impulses.",
+                            difficulty: "hard",
+                            category: "ear"
+                          },
+                          {
+                            question: "What is the helicotrema?",
+                            options: ["Apex of cochlea", "Middle ear bone", "Part of auricle", "Ear canal"],
+                            answer: 0,
+                            explanation: "The helicotrema is the apex of the cochlea where the scala tympani and scala vestibuli meet.",
+                            difficulty: "hard",
+                            category: "ear"
+                          },
+                      // --- Eye Anatomy Questions ---
+                      {
+                        question: "What is the colored part of the eye called?",
+                        options: ["Cornea", "Iris", "Lens", "Retina"],
+                        answer: 1,
+                        explanation: "The iris is the colored part of the eye that controls pupil size.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which structure focuses light onto the retina?",
+                        options: ["Cornea", "Lens", "Iris", "Sclera"],
+                        answer: 1,
+                        explanation: "The lens focuses light onto the retina for clear vision.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "What is the transparent front part of the eye called?",
+                        options: ["Cornea", "Lens", "Retina", "Iris"],
+                        answer: 0,
+                        explanation: "The cornea is the transparent front part of the eye covering the iris and pupil.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which part of the eye detects light and sends signals to the brain?",
+                        options: ["Retina", "Lens", "Cornea", "Iris"],
+                        answer: 0,
+                        explanation: "The retina contains photoreceptors that detect light and send signals to the brain.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "What is the opening in the center of the iris called?",
+                        options: ["Cornea", "Lens", "Pupil", "Retina"],
+                        answer: 2,
+                        explanation: "The pupil is the opening in the center of the iris that lets light into the eye.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which structure gives the eye its shape and protects it?",
+                        options: ["Sclera", "Cornea", "Lens", "Retina"],
+                        answer: 0,
+                        explanation: "The sclera is the white, tough outer layer that gives the eye its shape and protection.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "What is the clear, jelly-like substance that fills the eyeball?",
+                        options: ["Aqueous humor", "Vitreous humor", "Tears", "Plasma"],
+                        answer: 1,
+                        explanation: "The vitreous humor is the clear, jelly-like substance filling the eyeball behind the lens.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which nerve carries visual information from the eye to the brain?",
+                        options: ["Optic nerve", "Olfactory nerve", "Trigeminal nerve", "Facial nerve"],
+                        answer: 0,
+                        explanation: "The optic nerve transmits visual information from the retina to the brain.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "What is the function of the lacrimal gland?",
+                        options: ["Produce tears", "Focus light", "Control pupil size", "Move the eye"],
+                        answer: 0,
+                        explanation: "The lacrimal gland produces tears to lubricate and protect the eye.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which muscle moves the eye upward?",
+                        options: ["Inferior rectus", "Superior rectus", "Lateral rectus", "Medial rectus"],
+                        answer: 1,
+                        explanation: "The superior rectus muscle moves the eye upward.",
+                        difficulty: "easy",
+                        category: "eye"
+                      },
+                      // Medium
+                      {
+                        question: "Which part of the retina is responsible for sharp central vision?",
+                        options: ["Fovea", "Optic disc", "Macula", "Ciliary body"],
+                        answer: 0,
+                        explanation: "The fovea is a small pit in the retina responsible for sharp central vision.",
+                        difficulty: "medium",
+                        category: "eye"
+                      },
+                      {
+                        question: "What is the name of the area where the optic nerve exits the eye, creating a blind spot?",
+                        options: ["Fovea", "Optic disc", "Macula", "Lens"],
+                        answer: 1,
+                        explanation: "The optic disc is where the optic nerve exits the eye, creating a blind spot.",
+                        difficulty: "medium",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which cells in the retina are responsible for color vision?",
+                        options: ["Rods", "Cones", "Ganglion cells", "Bipolar cells"],
+                        answer: 1,
+                        explanation: "Cones are photoreceptor cells responsible for color vision.",
+                        difficulty: "medium",
+                        category: "eye"
+                      },
+                      {
+                        question: "What is the function of the ciliary body?",
+                        options: ["Produce tears", "Change lens shape", "Control pupil size", "Move the eye"],
+                        answer: 1,
+                        explanation: "The ciliary body changes the shape of the lens for focusing.",
+                        difficulty: "medium",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which fluid fills the space between the cornea and the lens?",
+                        options: ["Vitreous humor", "Aqueous humor", "Plasma", "Tears"],
+                        answer: 1,
+                        explanation: "Aqueous humor fills the space between the cornea and the lens.",
+                        difficulty: "medium",
+                        category: "eye"
+                      },
+                      // Hard
+                      {
+                        question: "Which layer of the eye contains blood vessels that nourish the retina?",
+                        options: ["Sclera", "Choroid", "Retina", "Cornea"],
+                        answer: 1,
+                        explanation: "The choroid is the vascular layer that nourishes the retina.",
+                        difficulty: "hard",
+                        category: "eye"
+                      },
+                      {
+                        question: "What is the name of the transparent membrane covering the white of the eye?",
+                        options: ["Cornea", "Conjunctiva", "Sclera", "Retina"],
+                        answer: 1,
+                        explanation: "The conjunctiva is a thin membrane covering the sclera and inside of the eyelids.",
+                        difficulty: "hard",
+                        category: "eye"
+                      },
+                      {
+                        question: "Which muscle is responsible for closing the eyelids?",
+                        options: ["Orbicularis oculi", "Levator palpebrae", "Superior rectus", "Inferior oblique"],
+                        answer: 0,
+                        explanation: "The orbicularis oculi muscle closes the eyelids.",
+                        difficulty: "hard",
+                        category: "eye"
+                      },
+                  // --- Kidneys Anatomy Questions ---
+                  {
+                    question: "How many kidneys does a typical human have?",
+                    options: ["1", "2", "3", "4"],
+                    answer: 1,
+                    explanation: "Most people have two kidneys, one on each side of the spine.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "What is the main function of the kidneys?",
+                    options: ["Produce hormones", "Filter blood", "Store urine", "Digest food"],
+                    answer: 1,
+                    explanation: "The kidneys filter waste products from the blood to form urine.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Where are the kidneys located?",
+                    options: ["Pelvis", "Thoracic cavity", "Retroperitoneal space", "Cranial cavity"],
+                    answer: 2,
+                    explanation: "The kidneys are located in the retroperitoneal space of the abdomen.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "What is the outer region of the kidney called?",
+                    options: ["Medulla", "Cortex", "Pelvis", "Papilla"],
+                    answer: 1,
+                    explanation: "The cortex is the outer region of the kidney.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "What is the functional unit of the kidney?",
+                    options: ["Neuron", "Nephron", "Alveolus", "Osteon"],
+                    answer: 1,
+                    explanation: "The nephron is the functional unit of the kidney.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Which vessel brings blood to the kidney?",
+                    options: ["Renal artery", "Renal vein", "Aorta", "Inferior vena cava"],
+                    answer: 0,
+                    explanation: "The renal artery brings oxygenated blood to the kidney.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "What is the name of the funnel-shaped structure that collects urine in the kidney?",
+                    options: ["Calyx", "Papilla", "Renal pelvis", "Ureter"],
+                    answer: 2,
+                    explanation: "The renal pelvis collects urine before it passes into the ureter.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Which hormone regulates water reabsorption in the kidneys?",
+                    options: ["Insulin", "ADH (antidiuretic hormone)", "Aldosterone", "Cortisol"],
+                    answer: 1,
+                    explanation: "ADH increases water reabsorption in the kidneys.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "What tube carries urine from the kidney to the bladder?",
+                    options: ["Urethra", "Ureter", "Vas deferens", "Fallopian tube"],
+                    answer: 1,
+                    explanation: "The ureter carries urine from the kidney to the bladder.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Which side of the body is the left kidney located on?",
+                    options: ["Right", "Left", "Both", "Neither"],
+                    answer: 1,
+                    explanation: "The left kidney is on the left side of the body, behind the lower ribs.",
+                    difficulty: "easy",
+                    category: "kidneys"
+                  },
+                  // Medium
+                  {
+                    question: "What is the name of the capillary tuft inside the nephron?",
+                    options: ["Bowman's capsule", "Glomerulus", "Loop of Henle", "Distal tubule"],
+                    answer: 1,
+                    explanation: "The glomerulus is a capillary tuft where filtration begins in the nephron.",
+                    difficulty: "medium",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Which structure surrounds the glomerulus and collects the filtrate?",
+                    options: ["Loop of Henle", "Bowman's capsule", "Proximal tubule", "Collecting duct"],
+                    answer: 1,
+                    explanation: "Bowman's capsule surrounds the glomerulus and collects the filtrate.",
+                    difficulty: "medium",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Which hormone stimulates the kidneys to retain sodium and water?",
+                    options: ["Aldosterone", "ADH", "Insulin", "Glucagon"],
+                    answer: 0,
+                    explanation: "Aldosterone increases sodium and water reabsorption in the kidneys.",
+                    difficulty: "medium",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "What is the name of the loop that extends into the medulla and concentrates urine?",
+                    options: ["Loop of Henle", "Distal tubule", "Proximal tubule", "Collecting duct"],
+                    answer: 0,
+                    explanation: "The Loop of Henle extends into the medulla and concentrates urine.",
+                    difficulty: "medium",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Which vessel carries filtered blood away from the kidney?",
+                    options: ["Renal artery", "Renal vein", "Aorta", "Inferior vena cava"],
+                    answer: 1,
+                    explanation: "The renal vein carries filtered blood away from the kidney.",
+                    difficulty: "medium",
+                    category: "kidneys"
+                  },
+                  // Hard
+                  {
+                    question: "Which cells in the juxtaglomerular apparatus secrete renin?",
+                    options: ["Podocytes", "Macula densa", "Juxtaglomerular cells", "Mesangial cells"],
+                    answer: 2,
+                    explanation: "Juxtaglomerular cells secrete renin to regulate blood pressure.",
+                    difficulty: "hard",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "What is the name of the process by which substances are transported from the blood into the nephron tubule?",
+                    options: ["Filtration", "Reabsorption", "Secretion", "Excretion"],
+                    answer: 2,
+                    explanation: "Secretion is the process of moving substances from blood into the nephron tubule.",
+                    difficulty: "hard",
+                    category: "kidneys"
+                  },
+                  {
+                    question: "Which part of the nephron is responsible for most reabsorption of water and solutes?",
+                    options: ["Distal tubule", "Proximal tubule", "Loop of Henle", "Collecting duct"],
+                    answer: 1,
+                    explanation: "The proximal tubule reabsorbs most water and solutes from the filtrate.",
+                    difficulty: "hard",
+                    category: "kidneys"
+                  },
+              // --- Liver Anatomy Questions ---
+              {
+                question: "What is the largest internal organ in the human body?",
+                options: ["Heart", "Liver", "Lung", "Kidney"],
+                answer: 1,
+                explanation: "The liver is the largest internal organ in the human body.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "Which quadrant of the abdomen is the liver primarily located in?",
+                options: ["Left upper", "Right upper", "Right lower", "Left lower"],
+                answer: 1,
+                explanation: "The liver is primarily located in the right upper quadrant of the abdomen.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "What is the main function of the liver?",
+                options: ["Pump blood", "Produce bile", "Store urine", "Absorb nutrients"],
+                answer: 1,
+                explanation: "The liver produces bile, which helps digest fats.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "Which vessel brings nutrient-rich blood from the intestines to the liver?",
+                options: ["Hepatic artery", "Portal vein", "Inferior vena cava", "Aorta"],
+                answer: 1,
+                explanation: "The portal vein brings nutrient-rich blood from the intestines to the liver.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "What is the name of the functional cells of the liver?",
+                options: ["Nephrons", "Hepatocytes", "Alveoli", "Osteocytes"],
+                answer: 1,
+                explanation: "Hepatocytes are the main functional cells of the liver.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "Which structure stores bile produced by the liver?",
+                options: ["Gallbladder", "Pancreas", "Spleen", "Stomach"],
+                answer: 0,
+                explanation: "The gallbladder stores bile produced by the liver.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "How many lobes does the human liver have?",
+                options: ["2", "3", "4", "5"],
+                answer: 2,
+                explanation: "The human liver has four lobes: right, left, caudate, and quadrate.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "Which vitamin is primarily stored in the liver?",
+                options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin K"],
+                answer: 0,
+                explanation: "The liver stores large amounts of vitamin A.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "What is the name of the ligament that separates the right and left lobes of the liver?",
+                options: ["Round ligament", "Falciform ligament", "Coronary ligament", "Triangular ligament"],
+                answer: 1,
+                explanation: "The falciform ligament separates the right and left lobes of the liver.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              {
+                question: "Which duct carries bile from the liver to the gallbladder?",
+                options: ["Cystic duct", "Common bile duct", "Hepatic duct", "Pancreatic duct"],
+                answer: 2,
+                explanation: "The hepatic duct carries bile from the liver to the gallbladder.",
+                difficulty: "easy",
+                category: "liver"
+              },
+              // Medium
+              {
+                question: "Which enzyme is primarily produced by the liver for protein metabolism?",
+                options: ["Amylase", "Lipase", "Urease", "Trypsin"],
+                answer: 2,
+                explanation: "Urease is produced by the liver to help metabolize proteins and convert ammonia to urea.",
+                difficulty: "medium",
+                category: "liver"
+              },
+              {
+                question: "What is the name of the process by which the liver detoxifies harmful substances?",
+                options: ["Glycogenesis", "Gluconeogenesis", "Biotransformation", "Lipolysis"],
+                answer: 2,
+                explanation: "Biotransformation is the process by which the liver detoxifies substances.",
+                difficulty: "medium",
+                category: "liver"
+              },
+              {
+                question: "Which blood vessel drains blood from the liver into the inferior vena cava?",
+                options: ["Hepatic vein", "Portal vein", "Renal vein", "Splenic vein"],
+                answer: 0,
+                explanation: "The hepatic vein drains blood from the liver into the inferior vena cava.",
+                difficulty: "medium",
+                category: "liver"
+              },
+              {
+                question: "Which plasma protein is synthesized by the liver and is important for maintaining blood osmotic pressure?",
+                options: ["Hemoglobin", "Albumin", "Globulin", "Fibrinogen"],
+                answer: 1,
+                explanation: "Albumin is synthesized by the liver and maintains blood osmotic pressure.",
+                difficulty: "medium",
+                category: "liver"
+              },
+              {
+                question: "Which condition is characterized by yellowing of the skin due to liver dysfunction?",
+                options: ["Cirrhosis", "Jaundice", "Hepatitis", "Gallstones"],
+                answer: 1,
+                explanation: "Jaundice is yellowing of the skin and eyes due to buildup of bilirubin from liver dysfunction.",
+                difficulty: "medium",
+                category: "liver"
+              },
+              // Hard
+              {
+                question: "What is the name of the specialized capillaries in the liver?",
+                options: ["Glomeruli", "Sinusoids", "Vasa recta", "Lacteals"],
+                answer: 1,
+                explanation: "Sinusoids are specialized capillaries in the liver that allow exchange between blood and hepatocytes.",
+                difficulty: "hard",
+                category: "liver"
+              },
+              {
+                question: "Which cells in the liver are responsible for phagocytosis of bacteria and debris?",
+                options: ["Kupffer cells", "Hepatocytes", "Stellate cells", "Endothelial cells"],
+                answer: 0,
+                explanation: "Kupffer cells are specialized macrophages in the liver that perform phagocytosis.",
+                difficulty: "hard",
+                category: "liver"
+              },
+              {
+                question: "What is the anatomical term for the depression on the liver where the portal vein, hepatic artery, and bile duct enter or exit?",
+                options: ["Hilum", "Sinusoid", "Fossa", "Lobule"],
+                answer: 0,
+                explanation: "The hilum (porta hepatis) is the entry/exit site for vessels and ducts in the liver.",
+                difficulty: "hard",
+                category: "liver"
+              },
+          // --- Lungs Anatomy Questions ---
+          {
+            question: "How many lobes does the right lung have?",
+            options: ["2", "3", "4", "5"],
+            answer: 1,
+            explanation: "The right lung has three lobes: superior, middle, and inferior.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "What is the main muscle responsible for breathing?",
+            options: ["Diaphragm", "Intercostal muscles", "Rectus abdominis", "Pectoralis major"],
+            answer: 0,
+            explanation: "The diaphragm is the primary muscle of respiration.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "Which structure carries air from the larynx to the bronchi?",
+            options: ["Pharynx", "Trachea", "Esophagus", "Alveolus"],
+            answer: 1,
+            explanation: "The trachea (windpipe) carries air from the larynx to the bronchi.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "Where does gas exchange occur in the lungs?",
+            options: ["Bronchi", "Alveoli", "Trachea", "Pleura"],
+            answer: 1,
+            explanation: "Gas exchange occurs in the alveoli, tiny air sacs in the lungs.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "What is the name of the membrane that surrounds the lungs?",
+            options: ["Pericardium", "Pleura", "Peritoneum", "Meninges"],
+            answer: 1,
+            explanation: "The pleura is a double-layered membrane surrounding each lung.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "Which bronchus is wider and more vertical?",
+            options: ["Right bronchus", "Left bronchus", "Both are equal", "Neither"],
+            answer: 0,
+            explanation: "The right main bronchus is wider, shorter, and more vertical than the left.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "What is the function of surfactant in the lungs?",
+            options: ["Increase mucus", "Reduce surface tension", "Transport oxygen", "Protect from infection"],
+            answer: 1,
+            explanation: "Surfactant reduces surface tension in the alveoli, preventing collapse.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "Which blood vessels carry oxygenated blood from the lungs to the heart?",
+            options: ["Pulmonary arteries", "Pulmonary veins", "Aorta", "Bronchial arteries"],
+            answer: 1,
+            explanation: "Pulmonary veins carry oxygenated blood from the lungs to the left atrium.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "Which part of the respiratory tract is shared with the digestive system?",
+            options: ["Trachea", "Pharynx", "Bronchi", "Alveoli"],
+            answer: 1,
+            explanation: "The pharynx is shared by the respiratory and digestive systems.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          {
+            question: "What is the main function of the lungs?",
+            options: ["Digest food", "Exchange gases", "Pump blood", "Produce hormones"],
+            answer: 1,
+            explanation: "The lungs exchange oxygen and carbon dioxide between air and blood.",
+            difficulty: "easy",
+            category: "lungs"
+          },
+          // Medium
+          {
+            question: "Which structure divides the nasal cavity into two halves?",
+            options: ["Nasal septum", "Nasal conchae", "Hard palate", "Soft palate"],
+            answer: 0,
+            explanation: "The nasal septum divides the nasal cavity into right and left halves.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "What is the name of the small airways that lead directly to the alveoli?",
+            options: ["Bronchi", "Bronchioles", "Trachea", "Larynx"],
+            answer: 1,
+            explanation: "Bronchioles are small airways that lead to the alveoli.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "Which part of the brain controls the rate of breathing?",
+            options: ["Cerebrum", "Medulla oblongata", "Cerebellum", "Thalamus"],
+            answer: 1,
+            explanation: "The medulla oblongata controls the rate and depth of breathing.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "What is the volume of air inhaled or exhaled in a normal breath called?",
+            options: ["Residual volume", "Tidal volume", "Vital capacity", "Inspiratory reserve volume"],
+            answer: 1,
+            explanation: "Tidal volume is the amount of air inhaled or exhaled in a normal breath.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "Which cells in the alveoli are responsible for gas exchange?",
+            options: ["Type I pneumocytes", "Type II pneumocytes", "Macrophages", "Ciliated cells"],
+            answer: 0,
+            explanation: "Type I pneumocytes are thin cells that allow gas exchange in the alveoli.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "Which structure prevents food from entering the trachea during swallowing?",
+            options: ["Epiglottis", "Uvula", "Soft palate", "Tongue"],
+            answer: 0,
+            explanation: "The epiglottis covers the trachea during swallowing to prevent aspiration.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "What is the function of cilia in the respiratory tract?",
+            options: ["Produce mucus", "Move particles out", "Exchange gases", "Absorb oxygen"],
+            answer: 1,
+            explanation: "Cilia move mucus and trapped particles out of the respiratory tract.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "Which lung is smaller and why?",
+            options: ["Right, because of the liver", "Left, because of the heart", "Right, because of the heart", "Left, because of the liver"],
+            answer: 1,
+            explanation: "The left lung is smaller to accommodate the heart.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "Which structure is the site of the carina?",
+            options: ["At the bifurcation of the trachea", "At the larynx", "At the alveoli", "At the nasal cavity"],
+            answer: 0,
+            explanation: "The carina is the ridge at the bifurcation of the trachea into the main bronchi.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          {
+            question: "Which vessels supply the lung tissue itself with oxygenated blood?",
+            options: ["Pulmonary arteries", "Bronchial arteries", "Pulmonary veins", "Aorta"],
+            answer: 1,
+            explanation: "Bronchial arteries supply oxygenated blood to the lung tissue.",
+            difficulty: "medium",
+            category: "lungs"
+          },
+          // Hard
+          {
+            question: "Which type of cell produces surfactant in the alveoli?",
+            options: ["Type I pneumocytes", "Type II pneumocytes", "Macrophages", "Ciliated cells"],
+            answer: 1,
+            explanation: "Type II pneumocytes produce surfactant in the alveoli.",
+            difficulty: "hard",
+            category: "lungs"
+          },
+          {
+            question: "What is the anatomical term for the area where vessels and bronchi enter the lung?",
+            options: ["Apex", "Base", "Hilum", "Lobe"],
+            answer: 2,
+            explanation: "The hilum is the area where vessels, nerves, and bronchi enter the lung.",
+            difficulty: "hard",
+            category: "lungs"
+          },
+          {
+            question: "Which nerve provides the main motor supply to the diaphragm?",
+            options: ["Vagus nerve", "Phrenic nerve", "Intercostal nerve", "Recurrent laryngeal nerve"],
+            answer: 1,
+            explanation: "The phrenic nerve innervates the diaphragm.",
+            difficulty: "hard",
+            category: "lungs"
+          },
+          {
+            question: "Which condition is characterized by destruction of alveolar walls?",
+            options: ["Asthma", "Emphysema", "Bronchitis", "Pneumonia"],
+            answer: 1,
+            explanation: "Emphysema involves destruction of alveolar walls, reducing surface area for gas exchange.",
+            difficulty: "hard",
+            category: "lungs"
+          },
+          {
+            question: "Which structure is NOT part of the lower respiratory tract?",
+            options: ["Trachea", "Bronchi", "Larynx", "Alveoli"],
+            answer: 2,
+            explanation: "The larynx is part of the upper respiratory tract.",
+            difficulty: "hard",
+            category: "lungs"
+            },
+          // --- Brain Anatomy Questions ---
+      {
+        question: "Which part of the brain controls voluntary muscle movements?",
+        options: ["Cerebellum", "Medulla oblongata", "Cerebrum", "Pons"],
+        answer: 2,
+        explanation: "The cerebrum controls voluntary muscle movements, reasoning, and memory.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which lobe of the brain is responsible for vision?",
+        options: ["Frontal lobe", "Temporal lobe", "Parietal lobe", "Occipital lobe"],
+        answer: 3,
+        explanation: "The occipital lobe processes visual information.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which structure connects the two cerebral hemispheres?",
+        options: ["Corpus callosum", "Thalamus", "Hypothalamus", "Cerebellum"],
+        answer: 0,
+        explanation: "The corpus callosum is a bundle of nerve fibers connecting the left and right hemispheres.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which part of the brain regulates breathing and heart rate?",
+        options: ["Cerebellum", "Medulla oblongata", "Cerebrum", "Thalamus"],
+        answer: 1,
+        explanation: "The medulla oblongata controls vital functions like breathing and heart rate.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which lobe is primarily responsible for hearing and language?",
+        options: ["Frontal lobe", "Temporal lobe", "Parietal lobe", "Occipital lobe"],
+        answer: 1,
+        explanation: "The temporal lobe is involved in hearing and language comprehension.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which part of the brain coordinates balance and posture?",
+        options: ["Cerebellum", "Cerebrum", "Medulla", "Pons"],
+        answer: 0,
+        explanation: "The cerebellum coordinates balance, posture, and fine motor movements.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which structure acts as a relay station for sensory information?",
+        options: ["Thalamus", "Hypothalamus", "Pons", "Medulla"],
+        answer: 0,
+        explanation: "The thalamus relays sensory signals to the appropriate areas of the cerebrum.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which part of the brain controls body temperature and hunger?",
+        options: ["Thalamus", "Hypothalamus", "Cerebellum", "Medulla"],
+        answer: 1,
+        explanation: "The hypothalamus regulates body temperature, hunger, thirst, and other autonomic functions.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which lobe is responsible for reasoning, planning, and problem-solving?",
+        options: ["Frontal lobe", "Temporal lobe", "Parietal lobe", "Occipital lobe"],
+        answer: 0,
+        explanation: "The frontal lobe is involved in reasoning, planning, and problem-solving.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      {
+        question: "Which groove separates the frontal and parietal lobes?",
+        options: ["Central sulcus", "Lateral sulcus", "Longitudinal fissure", "Parieto-occipital sulcus"],
+        answer: 0,
+        explanation: "The central sulcus separates the frontal and parietal lobes.",
+        difficulty: "easy",
+        category: "brain"
+      },
+      // Medium
+      {
+        question: "Which area of the brain is responsible for speech production?",
+        options: ["Broca's area", "Wernicke's area", "Primary motor cortex", "Primary auditory cortex"],
+        answer: 0,
+        explanation: "Broca's area, in the frontal lobe, is responsible for speech production.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which area is responsible for understanding spoken and written language?",
+        options: ["Broca's area", "Wernicke's area", "Primary visual cortex", "Cerebellum"],
+        answer: 1,
+        explanation: "Wernicke's area, in the temporal lobe, is responsible for language comprehension.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which structure produces cerebrospinal fluid (CSF)?",
+        options: ["Choroid plexus", "Thalamus", "Pineal gland", "Pituitary gland"],
+        answer: 0,
+        explanation: "The choroid plexus, found in the ventricles, produces CSF.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which part of the brain is responsible for circadian rhythms?",
+        options: ["Pineal gland", "Pituitary gland", "Hypothalamus", "Thalamus"],
+        answer: 0,
+        explanation: "The pineal gland produces melatonin and regulates circadian rhythms.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which structure connects the brain to the spinal cord?",
+        options: ["Cerebellum", "Medulla oblongata", "Pons", "Thalamus"],
+        answer: 1,
+        explanation: "The medulla oblongata connects the brain to the spinal cord.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which ventricle is located between the two halves of the thalamus?",
+        options: ["Lateral ventricle", "Third ventricle", "Fourth ventricle", "Cerebral aqueduct"],
+        answer: 1,
+        explanation: "The third ventricle is located between the two halves of the thalamus.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which structure is responsible for the sense of smell?",
+        options: ["Optic nerve", "Olfactory bulb", "Trigeminal nerve", "Facial nerve"],
+        answer: 1,
+        explanation: "The olfactory bulb processes information about odors.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which part of the brain is most affected by alcohol?",
+        options: ["Cerebrum", "Cerebellum", "Medulla", "Thalamus"],
+        answer: 1,
+        explanation: "The cerebellum, which controls coordination and balance, is most affected by alcohol.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which structure regulates the pituitary gland?",
+        options: ["Thalamus", "Hypothalamus", "Pineal gland", "Cerebellum"],
+        answer: 1,
+        explanation: "The hypothalamus regulates the pituitary gland and many autonomic functions.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      {
+        question: "Which part of the brain is responsible for forming new memories?",
+        options: ["Amygdala", "Hippocampus", "Cerebellum", "Pons"],
+        answer: 1,
+        explanation: "The hippocampus is essential for forming new memories.",
+        difficulty: "medium",
+        category: "brain"
+      },
+      // Hard
+      {
+        question: "Which artery supplies most of the lateral surface of the cerebral hemisphere?",
+        options: ["Anterior cerebral artery", "Middle cerebral artery", "Posterior cerebral artery", "Basilar artery"],
+        answer: 1,
+        explanation: "The middle cerebral artery supplies most of the lateral surface of the cerebrum.",
+        difficulty: "hard",
+        category: "brain"
+      },
+      {
+        question: "Which structure is responsible for the blood-brain barrier?",
+        options: ["Astrocytes", "Microglia", "Oligodendrocytes", "Ependymal cells"],
+        answer: 0,
+        explanation: "Astrocytes help form the blood-brain barrier, protecting the brain from harmful substances.",
+        difficulty: "hard",
+        category: "brain"
+      },
+      {
+        question: "Which area of the brain is damaged in Parkinson's disease?",
+        options: ["Substantia nigra", "Hippocampus", "Amygdala", "Cerebellum"],
+        answer: 0,
+        explanation: "The substantia nigra, which produces dopamine, is damaged in Parkinson's disease.",
+        difficulty: "hard",
+        category: "brain"
+      },
+      {
+        question: "Which structure is involved in emotional responses and fear?",
+        options: ["Hippocampus", "Amygdala", "Thalamus", "Cerebellum"],
+        answer: 1,
+        explanation: "The amygdala is involved in processing emotions, especially fear.",
+        difficulty: "hard",
+        category: "brain"
+      },
+      {
+        question: "Which tract connects Broca's and Wernicke's areas?",
+        options: ["Corticospinal tract", "Arcuate fasciculus", "Spinothalamic tract", "Corpus callosum"],
+        answer: 1,
+        explanation: "The arcuate fasciculus connects Broca's and Wernicke's areas, important for language.",
+        difficulty: "hard",
+        category: "brain"
+      }
+    ];
+  function handleBack() {
+    if (current > 0) {
+      setCurrent((c) => c - 1);
+      setSelected(userAnswers[current - 1] !== undefined ? userAnswers[current - 1] : null);
+    }
+  }
 
 import React, { useState, useEffect, useRef } from "react";
 import logo from "./assets/logo.png";
@@ -20,41 +1252,373 @@ function shuffleArray(array) {
 // --- SKELETAL ANATOMY QUIZ COMPONENT ---
 function SkeletalAnatomyQuiz() {
   const allQuestions = [
+    // --- Heart Anatomy Questions ---
+    {
+      question: "Which chamber of the heart receives oxygen-poor blood from the body?",
+      options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
+      answer: 1,
+      explanation: "The right atrium receives deoxygenated blood from the body via the superior and inferior vena cava.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which valve is located between the left atrium and left ventricle?",
+      options: ["Tricuspid valve", "Pulmonary valve", "Mitral (bicuspid) valve", "Aortic valve"],
+      answer: 2,
+      explanation: "The mitral (bicuspid) valve separates the left atrium and left ventricle.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which vessel carries oxygenated blood from the lungs to the heart?",
+      options: ["Pulmonary artery", "Pulmonary vein", "Aorta", "Superior vena cava"],
+      answer: 1,
+      explanation: "The pulmonary veins carry oxygenated blood from the lungs to the left atrium.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which chamber of the heart pumps blood into the pulmonary circulation?",
+      options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
+      answer: 3,
+      explanation: "The right ventricle pumps blood into the pulmonary artery toward the lungs.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "What is the largest artery in the body?",
+      options: ["Pulmonary artery", "Aorta", "Carotid artery", "Coronary artery"],
+      answer: 1,
+      explanation: "The aorta is the largest artery, carrying blood from the left ventricle to the body.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which structure prevents backflow of blood into the right atrium?",
+      options: ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"],
+      answer: 1,
+      explanation: "The tricuspid valve prevents backflow into the right atrium.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which node is known as the heart's natural pacemaker?",
+      options: ["AV node", "SA node", "Bundle of His", "Purkinje fibers"],
+      answer: 1,
+      explanation: "The sinoatrial (SA) node initiates the electrical impulses that set the heart rate.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which vessel returns blood from the lower body to the heart?",
+      options: ["Superior vena cava", "Inferior vena cava", "Pulmonary vein", "Aorta"],
+      answer: 1,
+      explanation: "The inferior vena cava returns blood from the lower body to the right atrium.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which layer of the heart is responsible for contraction?",
+      options: ["Endocardium", "Epicardium", "Myocardium", "Pericardium"],
+      answer: 2,
+      explanation: "The myocardium is the muscular layer responsible for contraction.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    {
+      question: "Which artery supplies blood to the heart muscle itself?",
+      options: ["Carotid artery", "Coronary artery", "Aorta", "Pulmonary artery"],
+      answer: 1,
+      explanation: "The coronary arteries supply blood to the myocardium.",
+      difficulty: "easy",
+      category: "heart"
+    },
+    // Medium
+    {
+      question: "Which structure electrically connects the atria and ventricles?",
+      options: ["SA node", "AV node", "Purkinje fibers", "Chordae tendineae"],
+      answer: 1,
+      explanation: "The AV node is the only normal electrical connection between atria and ventricles.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "What is the function of the chordae tendineae?",
+      options: ["Conduct electrical impulses", "Anchor heart valves", "Supply blood to the heart", "Separate atria and ventricles"],
+      answer: 1,
+      explanation: "The chordae tendineae anchor the valve leaflets to papillary muscles, preventing valve prolapse.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which heart valve opens during ventricular systole to allow blood into the aorta?",
+      options: ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"],
+      answer: 2,
+      explanation: "The aortic valve opens during left ventricular contraction (systole).",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which part of the heart forms the apex?",
+      options: ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"],
+      answer: 3,
+      explanation: "The apex of the heart is formed by the tip of the left ventricle.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which structure separates the right and left ventricles?",
+      options: ["Interatrial septum", "Interventricular septum", "Chordae tendineae", "Papillary muscles"],
+      answer: 1,
+      explanation: "The interventricular septum separates the right and left ventricles.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which vein drains blood from the heart muscle into the right atrium?",
+      options: ["Great cardiac vein", "Coronary sinus", "Inferior vena cava", "Pulmonary vein"],
+      answer: 1,
+      explanation: "The coronary sinus collects blood from the cardiac veins and drains into the right atrium.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which part of the conduction system distributes impulses to the ventricular walls?",
+      options: ["SA node", "AV node", "Bundle of His", "Purkinje fibers"],
+      answer: 3,
+      explanation: "The Purkinje fibers rapidly conduct impulses throughout the ventricles.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which valve prevents backflow from the pulmonary artery into the right ventricle?",
+      options: ["Aortic valve", "Mitral valve", "Pulmonary valve", "Tricuspid valve"],
+      answer: 2,
+      explanation: "The pulmonary valve prevents backflow into the right ventricle.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which structure surrounds and protects the heart?",
+      options: ["Endocardium", "Epicardium", "Pericardium", "Myocardium"],
+      answer: 2,
+      explanation: "The pericardium is a double-walled sac that encloses the heart.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    {
+      question: "Which chamber has the thickest wall?",
+      options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
+      answer: 2,
+      explanation: "The left ventricle has the thickest wall to pump blood throughout the body.",
+      difficulty: "medium",
+      category: "heart"
+    },
+    // Hard
+    {
+      question: "Which structure delays the electrical impulse before it passes to the ventricles?",
+      options: ["SA node", "AV node", "Bundle of His", "Purkinje fibers"],
+      answer: 1,
+      explanation: "The AV node delays the impulse, allowing the atria to contract before the ventricles.",
+      difficulty: "hard",
+      category: "heart"
+    },
+    {
+      question: "Which artery supplies the interventricular septum?",
+      options: ["Right coronary artery", "Left anterior descending artery", "Circumflex artery", "Posterior descending artery"],
+      answer: 1,
+      explanation: "The left anterior descending (LAD) artery supplies the interventricular septum.",
+      difficulty: "hard",
+      category: "heart"
+    },
+    {
+      question: "Which structure anchors the heart to the diaphragm?",
+      options: ["Epicardium", "Fibrous pericardium", "Chordae tendineae", "Papillary muscles"],
+      answer: 1,
+      explanation: "The fibrous pericardium anchors the heart to the diaphragm and great vessels.",
+      difficulty: "hard",
+      category: "heart"
+    },
+    {
+      question: "Which valve is most commonly affected in rheumatic heart disease?",
+      options: ["Aortic valve", "Mitral valve", "Tricuspid valve", "Pulmonary valve"],
+      answer: 1,
+      explanation: "The mitral valve is most commonly affected in rheumatic heart disease.",
+      difficulty: "hard",
+      category: "heart"
+    },
+    {
+      question: "Which structure is responsible for the 'lub' sound of the heartbeat?",
+      options: ["Closure of semilunar valves", "Opening of AV valves", "Closure of AV valves", "Opening of semilunar valves"],
+      answer: 2,
+      explanation: "The 'lub' (first heart sound) is caused by closure of the AV valves (mitral and tricuspid).",
+      difficulty: "hard",
+      category: "heart"
+    },
+
     // --- Additional Easy Questions ---
+    // --- Muscular Anatomy Questions: Easy ---
+    {
+      question: "Which muscle is known as the calf muscle?",
+      options: ["Gastrocnemius", "Biceps brachii", "Deltoid", "Trapezius"],
+      answer: 0,
+      explanation: "The gastrocnemius is commonly called the calf muscle.",
+      difficulty: "easy",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is found in the upper arm and is responsible for flexing the elbow?",
+      options: ["Triceps brachii", "Biceps brachii", "Quadriceps", "Latissimus dorsi"],
+      answer: 1,
+      explanation: "The biceps brachii flexes the elbow.",
+      difficulty: "easy",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is located in the chest?",
+      options: ["Pectoralis major", "Gluteus maximus", "Rectus femoris", "Sartorius"],
+      answer: 0,
+      explanation: "The pectoralis major is the large chest muscle.",
+      difficulty: "easy",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is responsible for closing the jaw?",
+      options: ["Masseter", "Sternocleidomastoid", "Trapezius", "Orbicularis oculi"],
+      answer: 0,
+      explanation: "The masseter is the main muscle for closing the jaw.",
+      difficulty: "easy",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle forms the buttocks?",
+      options: ["Gluteus maximus", "Rectus abdominis", "Biceps femoris", "Pectoralis minor"],
+      answer: 0,
+      explanation: "The gluteus maximus forms the bulk of the buttocks.",
+      difficulty: "easy",
+      category: "muscular"
+    },
+    // --- Muscular Anatomy Questions: Medium ---
+    {
+      question: "Which muscle group is responsible for extending the knee?",
+      options: ["Hamstrings", "Quadriceps", "Adductors", "Gastrocnemius"],
+      answer: 1,
+      explanation: "The quadriceps extend the knee.",
+      difficulty: "medium",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is the primary muscle used in breathing?",
+      options: ["Diaphragm", "Rectus abdominis", "Latissimus dorsi", "Obliques"],
+      answer: 0,
+      explanation: "The diaphragm is the main muscle for breathing.",
+      difficulty: "medium",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle abducts the arm at the shoulder?",
+      options: ["Deltoid", "Trapezius", "Pectoralis major", "Biceps brachii"],
+      answer: 0,
+      explanation: "The deltoid abducts the arm at the shoulder.",
+      difficulty: "medium",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is located on the front of the thigh?",
+      options: ["Biceps femoris", "Rectus femoris", "Soleus", "Tibialis anterior"],
+      answer: 1,
+      explanation: "The rectus femoris is one of the quadriceps muscles on the front of the thigh.",
+      difficulty: "medium",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is responsible for plantar flexion of the foot?",
+      options: ["Tibialis anterior", "Gastrocnemius", "Sartorius", "Gracilis"],
+      answer: 1,
+      explanation: "The gastrocnemius is a major plantar flexor of the foot.",
+      difficulty: "medium",
+      category: "muscular"
+    },
+    // --- Muscular Anatomy Questions: Hard ---
+    {
+      question: "Which muscle inserts on the olecranon process of the ulna?",
+      options: ["Biceps brachii", "Triceps brachii", "Brachialis", "Pronator teres"],
+      answer: 1,
+      explanation: "The triceps brachii inserts on the olecranon process.",
+      difficulty: "hard",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is innervated by the long thoracic nerve?",
+      options: ["Serratus anterior", "Latissimus dorsi", "Pectoralis minor", "Trapezius"],
+      answer: 0,
+      explanation: "The serratus anterior is innervated by the long thoracic nerve.",
+      difficulty: "hard",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is the antagonist to the biceps brachii during elbow flexion?",
+      options: ["Triceps brachii", "Brachialis", "Deltoid", "Supinator"],
+      answer: 0,
+      explanation: "The triceps brachii is the antagonist to the biceps during elbow flexion.",
+      difficulty: "hard",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle forms the medial border of the femoral triangle?",
+      options: ["Sartorius", "Adductor longus", "Gracilis", "Rectus femoris"],
+      answer: 1,
+      explanation: "The adductor longus forms the medial border of the femoral triangle.",
+      difficulty: "hard",
+      category: "muscular"
+    },
+    {
+      question: "Which muscle is responsible for the \"winged scapula\" if paralyzed?",
+      options: ["Serratus anterior", "Trapezius", "Levator scapulae", "Rhomboid major"],
+      answer: 0,
+      explanation: "Paralysis of the serratus anterior causes winged scapula.",
+      difficulty: "hard",
+      category: "muscular"
+    },
     {
       question: "Which bone is commonly called the shoulder blade?",
       options: ["Scapula", "Clavicle", "Sternum", "Humerus"],
       answer: 0,
       explanation: "The scapula is also known as the shoulder blade.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bones form the fingers?",
       options: ["Carpals", "Metacarpals", "Phalanges", "Tarsals"],
       answer: 2,
       explanation: "The phalanges are the bones of the fingers and toes.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone is found in the thigh?",
       options: ["Femur", "Tibia", "Fibula", "Patella"],
       answer: 0,
       explanation: "The femur is the thigh bone.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone is NOT found in the foot?",
       options: ["Tarsal", "Metatarsal", "Phalange", "Radius"],
       answer: 3,
       explanation: "The radius is found in the forearm, not the foot.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone protects the heart and lungs?",
       options: ["Sternum", "Femur", "Mandible", "Scapula"],
       answer: 0,
       explanation: "The sternum, along with the rib cage, protects the heart and lungs.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     // --- Additional Medium Questions ---
     {
@@ -62,35 +1626,40 @@ function SkeletalAnatomyQuiz() {
       options: ["Femur", "Tibia", "Fibula", "Patella"],
       answer: 0,
       explanation: "The femur is the bone between the hip and the knee.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone forms the upper part of the nasal septum?",
       options: ["Vomer", "Ethmoid", "Maxilla", "Palatine"],
       answer: 1,
       explanation: "The perpendicular plate of the ethmoid bone forms the upper part of the nasal septum.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is NOT part of the cranium?",
       options: ["Temporal", "Parietal", "Mandible", "Occipital"],
       answer: 2,
       explanation: "The mandible is the lower jaw and not part of the cranium.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is directly inferior to the lumbar vertebrae?",
       options: ["Sacrum", "Coccyx", "Ilium", "Femur"],
       answer: 0,
       explanation: "The sacrum is directly below the lumbar vertebrae.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is NOT paired in the adult human skull?",
       options: ["Parietal", "Temporal", "Frontal", "Zygomatic"],
       answer: 2,
       explanation: "The frontal bone is a single (unpaired) bone in the adult skull.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     // --- Additional Hard Questions ---
     {
@@ -98,35 +1667,40 @@ function SkeletalAnatomyQuiz() {
       options: ["Ethmoid", "Sphenoid", "Temporal", "Occipital"],
       answer: 0,
       explanation: "The ethmoid bone contains the cribriform plate, which transmits olfactory nerves.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone forms the anterior portion of the hard palate?",
       options: ["Maxilla", "Palatine", "Vomer", "Mandible"],
       answer: 0,
       explanation: "The maxilla forms the anterior part of the hard palate.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone articulates with the occipital condyles?",
       options: ["Atlas (C1)", "Axis (C2)", "Mandible", "Sphenoid"],
       answer: 0,
       explanation: "The atlas (C1 vertebra) articulates with the occipital condyles of the skull.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone contains the sella turcica?",
       options: ["Sphenoid", "Ethmoid", "Temporal", "Occipital"],
       answer: 0,
       explanation: "The sella turcica, which houses the pituitary gland, is part of the sphenoid bone.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone is the only bone in the body that does not articulate with any other bone?",
       options: ["Hyoid", "Vomer", "Lacrimal", "Stapes"],
       answer: 0,
       explanation: "The hyoid bone does not articulate with any other bone in the body.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     // Easy
     {
@@ -134,70 +1708,80 @@ function SkeletalAnatomyQuiz() {
       options: ["Scapula", "Clavicle", "Sternum", "Humerus"],
       answer: 1,
       explanation: "The clavicle is commonly called the collarbone.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "What is the largest bone in the human body?",
       options: ["Femur", "Tibia", "Fibula", "Humerus"],
       answer: 0,
       explanation: "The femur (thigh bone) is the largest bone in the body.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which part of the skeleton protects the brain?",
       options: ["Rib cage", "Pelvis", "Skull", "Vertebral column"],
       answer: 2,
       explanation: "The skull encases and protects the brain.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "How many cervical vertebrae are there?",
       options: ["5", "7", "12", "8"],
       answer: 1,
       explanation: "There are 7 cervical vertebrae in the neck.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone forms the lower jaw?",
       options: ["Maxilla", "Mandible", "Zygomatic", "Temporal"],
       answer: 1,
       explanation: "The mandible is the lower jaw bone.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone is commonly referred to as the kneecap?",
       options: ["Patella", "Tibia", "Fibula", "Femur"],
       answer: 0,
       explanation: "The patella is the kneecap.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "How many ribs does a typical human have?",
       options: ["10", "12", "14", "24"],
       answer: 1,
       explanation: "Most humans have 12 pairs of ribs (24 total).",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone is found in the upper arm?",
       options: ["Radius", "Ulna", "Humerus", "Scapula"],
       answer: 2,
       explanation: "The humerus is the bone of the upper arm.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "How many bones are in the adult human skeleton?",
       options: ["206", "210", "201", "208"],
       answer: 0,
       explanation: "There are 206 bones in the adult human skeleton.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone is also known as the breastbone?",
       options: ["Sternum", "Clavicle", "Scapula", "Mandible"],
       answer: 0,
       explanation: "The sternum is the breastbone.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     // Medium
     {
@@ -205,70 +1789,80 @@ function SkeletalAnatomyQuiz() {
       options: ["Radius", "Ulna", "Femur", "Humerus"],
       answer: 2,
       explanation: "The femur is in the leg, not the arm.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "What is the name of the bone that forms the forehead?",
       options: ["Parietal", "Frontal", "Temporal", "Occipital"],
       answer: 1,
       explanation: "The frontal bone forms the forehead.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bones make up the wrist?",
       options: ["Carpals", "Tarsals", "Metacarpals", "Phalanges"],
       answer: 0,
       explanation: "The wrist is made up of the carpal bones.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is NOT part of the axial skeleton?",
       options: ["Skull", "Rib cage", "Femur", "Vertebral column"],
       answer: 2,
       explanation: "The femur is part of the appendicular skeleton.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "What is the heel bone called?",
       options: ["Talus", "Calcaneus", "Navicular", "Cuboid"],
       answer: 1,
       explanation: "The calcaneus is the heel bone.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is the most commonly fractured in the body?",
       options: ["Clavicle", "Radius", "Femur", "Scapula"],
       answer: 0,
       explanation: "The clavicle is the most commonly fractured bone.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone forms the base of the skull and contains the foramen magnum?",
       options: ["Temporal", "Occipital", "Parietal", "Sphenoid"],
       answer: 1,
       explanation: "The occipital bone contains the foramen magnum.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is NOT part of the leg?",
       options: ["Tibia", "Fibula", "Femur", "Ulna"],
       answer: 3,
       explanation: "The ulna is in the forearm, not the leg.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "How many thoracic vertebrae are there?",
       options: ["5", "7", "12", "8"],
       answer: 2,
       explanation: "There are 12 thoracic vertebrae.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is the longest in the forearm?",
       options: ["Ulna", "Radius", "Humerus", "Scapula"],
       answer: 0,
       explanation: "The ulna is the longer of the two forearm bones.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     // Hard
     {
@@ -276,35 +1870,40 @@ function SkeletalAnatomyQuiz() {
       options: ["Maxilla", "Zygomatic", "Temporal", "Mandible"],
       answer: 1,
       explanation: "The zygomatic bone forms the cheek prominence.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone is the main weight-bearing bone of the lower leg?",
       options: ["Fibula", "Tibia", "Femur", "Patella"],
       answer: 1,
       explanation: "The tibia is the main weight-bearing bone of the lower leg.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone is NOT part of the pelvis?",
       options: ["Ilium", "Ischium", "Pubis", "Scapula"],
       answer: 3,
       explanation: "The scapula is part of the shoulder, not the pelvis.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone is located at the back and base of the skull?",
       options: ["Frontal", "Occipital", "Temporal", "Parietal"],
       answer: 1,
       explanation: "The occipital bone is at the back and base of the skull.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone is the smallest in the human body?",
       options: ["Stapes", "Malleus", "Incus", "Lacrimal"],
       answer: 0,
       explanation: "The stapes (in the ear) is the smallest bone.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     // More questions for all levels (examples)
     {
@@ -312,39 +1911,45 @@ function SkeletalAnatomyQuiz() {
       options: ["Femur", "Tibia", "Fibula", "Humerus"],
       answer: 0,
       explanation: "The femur articulates with the acetabulum of the pelvis.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone is known as the shin bone?",
       options: ["Tibia", "Fibula", "Femur", "Patella"],
       answer: 0,
       explanation: "The tibia is commonly called the shin bone.",
-      difficulty: "easy"
+      difficulty: "easy",
+      category: "skeletal"
     },
     {
       question: "Which bone forms the roof of the mouth?",
       options: ["Maxilla", "Palatine", "Mandible", "Vomer"],
       answer: 1,
       explanation: "The palatine bone forms the posterior part of the hard palate.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     },
     {
       question: "Which bone is directly lateral to the ulna in the anatomical position?",
       options: ["Radius", "Humerus", "Scapula", "Clavicle"],
       answer: 0,
       explanation: "The radius is lateral to the ulna in anatomical position.",
-      difficulty: "medium"
+      difficulty: "medium",
+      category: "skeletal"
     },
     {
       question: "Which bone contains the glenoid cavity?",
       options: ["Scapula", "Clavicle", "Humerus", "Sternum"],
       answer: 0,
       explanation: "The scapula contains the glenoid cavity for the humerus.",
-      difficulty: "hard"
+      difficulty: "hard",
+      category: "skeletal"
     }
   ];
 
-  // Difficulty selection and shuffle
+  // Category, difficulty selection and shuffle
+  const [categorySelection, setCategorySelection] = React.useState([]); // array of selected categories
   const [difficulty, setDifficulty] = React.useState(null);
   const [questions, setQuestions] = React.useState([]);
   const [current, setCurrent] = React.useState(0);
@@ -364,10 +1969,13 @@ function SkeletalAnatomyQuiz() {
     return arr;
   }
 
-  // Start quiz with selected difficulty
+  // Start quiz with selected categories and difficulty
   function startQuiz(selectedDifficulty) {
     setDifficulty(selectedDifficulty);
-    const filtered = allQuestions.filter(q => selectedDifficulty === 'all' ? true : q.difficulty === selectedDifficulty);
+    const filtered = allQuestions.filter(q =>
+      (selectedDifficulty === 'all' ? true : q.difficulty === selectedDifficulty) &&
+      (categorySelection.length === 0 ? true : categorySelection.includes(q.category))
+    );
     setQuestions(shuffle(filtered));
     setCurrent(0);
     setSelected(null);
@@ -377,11 +1985,79 @@ function SkeletalAnatomyQuiz() {
     setUserAnswers([]);
   }
 
-  // Show difficulty selection if not chosen
+  // Step 1: Category selection
+  let allCategories = Array.from(new Set(allQuestions.map(q => q.category)));
+  if (!allCategories.includes("venous system")) {
+    allCategories.push("venous system");
+  }
+  allCategories = allCategories.sort();
+  if (categorySelection.length === 0) {
+    return (
+      <div style={{
+        background: "#fff",
+        borderRadius: 18,
+        padding: "clamp(16px, 4vw, 48px)",
+        maxWidth: "clamp(340px, 90vw, 800px)",
+        margin: "0 auto",
+        textAlign: "center",
+        boxSizing: "border-box",
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+      }}>
+        <h2 style={{ color: "#12355b", marginBottom: 18 }}>Anatomy Quiz</h2>
+        <div style={{ fontWeight: 600, marginBottom: 18 }}>Choose categories:</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
+          {allCategories.map(cat => (
+            <label key={cat} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 600, cursor: "pointer" }}>
+              <input type="checkbox" onChange={e => {
+                if (e.target.checked) {
+                  setCategorySelection(prev => [...prev, cat]);
+                } else {
+                  setCategorySelection(prev => prev.filter(c => c !== cat));
+                }
+              }} />
+              {/* Improve display name for category */}
+              {cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+            </label>
+          ))}
+        </div>
+        <button
+          onClick={() => setCategorySelection([...allCategories])}
+          style={{ marginBottom: 10, padding: "8px 0", borderRadius: 8, border: "none", background: "#f1f5f9", color: "#334155", fontWeight: 700, fontSize: 16, cursor: "pointer", width: "100%" }}
+        >
+          Select All
+        </button>
+        <button
+          onClick={() => setCategorySelection([allCategories[0]])}
+          style={{ padding: "8px 0", borderRadius: 8, border: "none", background: "#e0f2fe", color: "#0369a1", fontWeight: 700, fontSize: 16, cursor: "pointer", width: "100%" }}
+        >
+          Start with {allCategories[0].replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Only
+        </button>
+      </div>
+    );
+  }
+
+  // Step 2: Difficulty selection
   if (!difficulty) {
     return (
-      <div style={{ background: "#fff", borderRadius: 18, padding: 32, maxWidth: 420, margin: "0 auto", textAlign: "center" }}>
-        <h2 style={{ color: "#12355b", marginBottom: 18 }}>Skeletal Anatomy Quiz</h2>
+      <div style={{
+        background: "#fff",
+        borderRadius: 18,
+        padding: "clamp(16px, 4vw, 48px)",
+        maxWidth: "clamp(340px, 90vw, 800px)",
+        margin: "0 auto",
+        textAlign: "center",
+        boxSizing: "border-box",
+        width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+      }}>
+        <h2 style={{ color: "#12355b", marginBottom: 18 }}>Anatomy Quiz</h2>
         <div style={{ fontWeight: 600, marginBottom: 18 }}>Choose difficulty:</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <button onClick={() => startQuiz('easy')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#e0f2fe", color: "#0369a1", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Easy</button>
@@ -499,6 +2175,8 @@ function SkeletalAnatomyQuiz() {
       );
     }
     // Result screen with option to review
+    const percent = Math.round((score / questions.length) * 100);
+    const passed = percent >= 70;
     return (
       <div style={{
         background: "rgba(255,255,255,0.9)",
@@ -510,13 +2188,14 @@ function SkeletalAnatomyQuiz() {
         textAlign: "center"
       }}>
         <h2 style={{ color: "#12355b", marginBottom: 8 }}>Skeletal Anatomy Quiz Complete</h2>
-        <p style={{ fontSize: 20, color: "#1e293b" }}>
+        <p style={{ fontSize: 20, color: "#1e293b", marginBottom: 4 }}>
           Your score: {score} / {questions.length}
         </p>
-        <div style={{ marginTop: 12, padding: "12px 14px", borderRadius: 12, background: score >= Math.ceil(questions.length * 0.7) ? "#dcfce7" : "#eff6ff", border: score >= Math.ceil(questions.length * 0.7) ? "1px solid #22c55e" : "1px solid #bfdbfe", color: score >= Math.ceil(questions.length * 0.7) ? "#166534" : "#1d4ed8", fontWeight: 700, maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
-          {score >= Math.ceil(questions.length * 0.7)
-            ? "Great job!"
-            : "Try again to improve your score."}
+        <div style={{ fontSize: 18, color: passed ? "#166534" : "#b91c1c", fontWeight: 700, marginBottom: 8 }}>
+          Percentage: {percent}% ({passed ? "Passing" : "Not Passing"})
+        </div>
+        <div style={{ marginTop: 12, padding: "12px 14px", borderRadius: 12, background: passed ? "#dcfce7" : "#fee2e2", border: passed ? "1px solid #22c55e" : "1px solid #ef4444", color: passed ? "#166534" : "#b91c1c", fontWeight: 700, maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
+          {passed ? "Great job! You passed." : "Try again to reach a passing score (70%)."}
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
           <button
@@ -534,6 +2213,31 @@ function SkeletalAnatomyQuiz() {
             }}
           >
             Review Answers
+          </button>
+          <button
+            onClick={() => {
+              // Retry missed questions logic
+              const missedQuestions = questions.filter((q, idx) => userAnswers[idx] !== q.answer);
+              setQuestions(missedQuestions);
+              setCurrent(0);
+              setSelected(null);
+              setScore(0);
+              setShowResult(false);
+              setReviewMode(false);
+              setUserAnswers([]);
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #fbbf24, #f59e42)",
+              color: "#1e293b",
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+            disabled={questions.filter((q, idx) => userAnswers[idx] !== q.answer).length === 0}
+          >
+            Retry Missed Questions
           </button>
           <button
             onClick={() => {
@@ -568,10 +2272,16 @@ function SkeletalAnatomyQuiz() {
     <div style={{
       background: "rgba(255,255,255,0.9)",
       borderRadius: 24,
-      padding: 28,
+      padding: "clamp(16px, 4vw, 48px)",
       boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-      maxWidth: 520,
-      margin: "0 auto"
+      maxWidth: "clamp(340px, 90vw, 800px)",
+      margin: "0 auto",
+      boxSizing: "border-box",
+      width: "100%",
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
         <div style={{ background: "#eef4ff", borderRadius: 12, padding: "8px 16px", fontWeight: 700, color: "#12355b" }}>
@@ -608,7 +2318,40 @@ function SkeletalAnatomyQuiz() {
           </button>
         );
       })}
-      <div style={{ textAlign: "center", marginTop: 20 }}>
+      <div style={{ textAlign: "center", marginTop: 20, display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
+        <button
+          onClick={() => {
+            setCategorySelection([]);
+            setDifficulty(null);
+          }}
+          style={{
+            padding: "12px 24px",
+            borderRadius: 999,
+            border: "none",
+            background: "linear-gradient(135deg, #f1f5f9, #e0e7ef)",
+            color: "#334155",
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          Back to Anatomy Quiz
+        </button>
+        <button
+          onClick={handleBack}
+          disabled={current === 0}
+          style={{
+            padding: "12px 24px",
+            borderRadius: 999,
+            border: "none",
+            background: current === 0 ? "#e5e7eb" : "linear-gradient(135deg, #64748b, #334155)",
+            color: current === 0 ? "#94a3b8" : "white",
+            fontWeight: 700,
+            cursor: current === 0 ? "not-allowed" : "pointer",
+            opacity: current === 0 ? 0.6 : 1
+          }}
+        >
+          Previous
+        </button>
         <button
           onClick={handleNext}
           disabled={selected === null}
