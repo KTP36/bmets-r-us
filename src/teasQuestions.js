@@ -1780,3 +1780,220 @@ export const teasQuestions = [
     answer: 1
   }
 ];
+
+export const harderTeasQuestions = [
+  // --- READING ---
+  {
+    question: "A passage argues that mandatory nurse-to-patient ratios reduce medication errors. Which finding would most WEAKEN this argument?",
+    options: [
+      "Hospitals with lower ratios reported higher patient satisfaction scores",
+      "A meta-analysis found no significant difference in error rates between ratio-mandated and non-mandated hospitals",
+      "Some states without ratio laws still voluntarily adopted lower staffing levels",
+      "Nurses in ratio-mandated states reported lower burnout"
+    ],
+    answer: 1,
+    explanation: "A meta-analysis showing no significant error-rate difference directly undercuts the central claim, making it the strongest weakening evidence."
+  },
+  {
+    question: "An author uses the phrase 'a ticking time bomb' to describe the rise in antibiotic-resistant bacteria. This is an example of:",
+    options: ["Hyperbole", "Metaphor", "Simile", "Personification"],
+    answer: 1,
+    explanation: "Calling the bacteria situation 'a ticking time bomb' equates it to a bomb without using 'like' or 'as,' making it a metaphor."
+  },
+  {
+    question: "A research article's abstract states: 'Results were statistically significant (p < 0.05).' A reader should conclude that:",
+    options: [
+      "The treatment is clinically meaningful for all patients",
+      "The probability of the results occurring by chance alone is less than 5%",
+      "The sample size was large enough to eliminate all bias",
+      "The study is ready for clinical implementation"
+    ],
+    answer: 1,
+    explanation: "p < 0.05 means there is less than a 5% probability that the observed result occurred by random chance. It does not by itself imply clinical significance."
+  },
+  {
+    question: "Which sentence contains a logical fallacy known as a false dilemma?",
+    options: [
+      "Vaccination rates are rising in most counties.",
+      "You either support this new hospital policy or you don't care about patient safety.",
+      "Studies show that hand-washing reduces infection rates by 40%.",
+      "The committee reviewed three policy alternatives before voting."
+    ],
+    answer: 1,
+    explanation: "A false dilemma (either/or fallacy) presents only two options when more exist. The phrase 'either support the policy or don't care about safety' ignores nuanced middle positions."
+  },
+  {
+    question: "An author of a health article uses only testimonials from patients who recovered quickly. This is an example of:",
+    options: ["Objective reporting", "Selection bias in evidence", "Deductive reasoning", "Counterargument"],
+    answer: 1,
+    explanation: "Featuring only positive testimonials while ignoring poor outcomes represents selection bias — intentionally or unintentionally slanting the evidence presented."
+  },
+  {
+    question: "A passage describes a study that found coffee drinkers have lower rates of type 2 diabetes. A critical reader should first question:",
+    options: [
+      "Whether the study was published in a journal",
+      "Whether correlation has been confused with causation",
+      "Whether the researchers liked coffee",
+      "Whether the test subjects could read"
+    ],
+    answer: 1,
+    explanation: "Observational studies show association, not causation. Coffee drinking and lower diabetes rates co-occurring does not mean coffee prevents diabetes — a key critical reading skill."
+  },
+  // --- MATH ---
+  {
+    question: "A nurse needs to administer 1.5 mg/kg of a drug to a patient weighing 176 lbs. How many mg should the nurse administer? (Round to nearest whole number; 1 kg = 2.2 lbs)",
+    options: ["96 mg", "108 mg", "120 mg", "132 mg"],
+    answer: 2,
+    explanation: "176 ÷ 2.2 = 80 kg. 80 × 1.5 = 120 mg."
+  },
+  {
+    question: "A solution is 0.9% NaCl. How many grams of NaCl are in 500 mL of this solution?",
+    options: ["0.9 g", "4.5 g", "9 g", "45 g"],
+    answer: 1,
+    explanation: "0.9% means 0.9 g per 100 mL. For 500 mL: 0.9 × 5 = 4.5 g."
+  },
+  {
+    question: "A patient's IV is flowing at 42 drops/min using a 20 gtt/mL drip set. Approximately how many mL/hr is the patient receiving?",
+    options: ["98 mL/hr", "114 mL/hr", "126 mL/hr", "140 mL/hr"],
+    answer: 2,
+    explanation: "42 drops/min ÷ 20 gtt/mL = 2.1 mL/min. 2.1 × 60 = 126 mL/hr."
+  },
+  {
+    question: "Solve for x: (3x − 4) / 2 = 7",
+    options: ["x = 5", "x = 6", "x = 7", "x = 8"],
+    answer: 1,
+    explanation: "Multiply both sides by 2: 3x − 4 = 14. Add 4: 3x = 18. x = 6."
+  },
+  {
+    question: "A patient's temperature is 102.2°F. What is this in Celsius? (°C = (°F − 32) × 5/9)",
+    options: ["36.8°C", "38.2°C", "39.0°C", "40.1°C"],
+    answer: 2,
+    explanation: "(102.2 − 32) × 5/9 = 70.2 × 5/9 = 351/9 = 39.0°C."
+  },
+  {
+    question: "If 3 out of every 25 patients develop a post-op infection, what is the infection rate as a percentage?",
+    options: ["8%", "10%", "12%", "15%"],
+    answer: 2,
+    explanation: "3/25 = 0.12 = 12%."
+  },
+  {
+    question: "A hospital reduced its readmission rate from 18% to 13.5%. What is the percent decrease?",
+    options: ["4.5%", "22%", "25%", "33%"],
+    answer: 2,
+    explanation: "Percent decrease = (18 − 13.5) / 18 × 100 = 4.5 / 18 × 100 = 25%."
+  },
+  // --- SCIENCE ---
+  {
+    question: "During vigorous exercise, which metabolic process primarily supplies ATP when oxygen delivery is insufficient?",
+    options: [
+      "Beta-oxidation of fatty acids",
+      "Anaerobic glycolysis producing lactic acid",
+      "Oxidative phosphorylation in mitochondria",
+      "Gluconeogenesis in the liver"
+    ],
+    answer: 1,
+    explanation: "When oxygen supply is insufficient (anaerobic conditions), cells rely on anaerobic glycolysis, which rapidly produces ATP and generates lactic acid as a byproduct."
+  },
+  {
+    question: "A patient has a blood pH of 7.30, PaCO2 of 50 mmHg, and HCO3− of 24 mEq/L. This is consistent with:",
+    options: [
+      "Metabolic acidosis",
+      "Metabolic alkalosis",
+      "Respiratory acidosis",
+      "Respiratory alkalosis"
+    ],
+    answer: 2,
+    explanation: "Low pH with elevated PaCO2 and normal bicarbonate indicates the acidosis is respiratory in origin (hypoventilation causing CO2 retention)."
+  },
+  {
+    question: "The sodium-potassium (Na⁺/K⁺) ATPase pump moves:",
+    options: [
+      "3 Na⁺ out of the cell and 2 K⁺ into the cell per cycle",
+      "2 Na⁺ out and 3 K⁺ in per cycle",
+      "3 Na⁺ into and 2 K⁺ out of the cell per cycle",
+      "Equal amounts of Na⁺ and K⁺ in opposite directions"
+    ],
+    answer: 0,
+    explanation: "The Na⁺/K⁺-ATPase exports 3 sodium ions out of the cell and imports 2 potassium ions per ATP hydrolyzed, maintaining resting membrane potential."
+  },
+  {
+    question: "Which type of chemical bond is responsible for the high surface tension of water?",
+    options: ["Covalent bonds between water molecules", "Ionic bonds", "Hydrogen bonds between water molecules", "Van der Waals forces"],
+    answer: 2,
+    explanation: "Water molecules form hydrogen bonds with each other; these intermolecular attractions create cohesion and high surface tension."
+  },
+  {
+    question: "A drug has a half-life of 6 hours. If you take 400 mg at time zero, approximately how much remains after 24 hours?",
+    options: ["50 mg", "25 mg", "12.5 mg", "6.25 mg"],
+    answer: 1,
+    explanation: "24 hours = 4 half-lives. 400 → 200 → 100 → 50 → 25 mg after 4 half-lives."
+  },
+  {
+    question: "Which part of the nephron is primarily responsible for concentrating urine by reabsorbing water via osmosis?",
+    options: [
+      "Proximal convoluted tubule",
+      "Bowman's capsule",
+      "Loop of Henle and collecting duct",
+      "Glomerulus"
+    ],
+    answer: 2,
+    explanation: "The descending limb of the Loop of Henle and the collecting duct (under ADH influence) are the main sites of water reabsorption that concentrate the urine."
+  },
+  {
+    question: "A scientist observes that a plant growing toward light has higher auxin concentrations on the shaded side. This is an example of:",
+    options: ["Negative feedback", "Phototropism driven by differential auxin distribution", "Thigmotropism", "Gravitropism"],
+    answer: 1,
+    explanation: "Auxin redistributes to the shaded side, promoting cell elongation there and causing the plant to bend toward the light source — phototropism."
+  },
+  // --- ENGLISH LANGUAGE USAGE ---
+  {
+    question: "Which sentence uses the subjunctive mood correctly?",
+    options: [
+      "If the patient was stable, we would discharge him.",
+      "If the patient were stable, we would discharge him.",
+      "If the patient is stable, we would discharge him.",
+      "If the patient will be stable, we would discharge him."
+    ],
+    answer: 1,
+    explanation: "The subjunctive mood uses 'were' (not 'was') for hypothetical or conditional situations contrary to fact: 'If the patient were stable…'"
+  },
+  {
+    question: "Which sentence correctly uses a semicolon?",
+    options: [
+      "The patient was discharged; and given follow-up instructions.",
+      "The lab results were abnormal; however, the physician decided to wait.",
+      "She completed her shift; quickly.",
+      "The nurse; who had years of experience, handled it well."
+    ],
+    answer: 1,
+    explanation: "A semicolon correctly joins two independent clauses. 'However' as a conjunctive adverb following a semicolon is proper punctuation: 'The lab results were abnormal; however, the physician decided to wait.'"
+  },
+  {
+    question: "Choose the correctly punctuated sentence:",
+    options: [
+      "Dr. Smith an experienced surgeon performed the operation.",
+      "Dr. Smith, an experienced surgeon performed the operation.",
+      "Dr. Smith, an experienced surgeon, performed the operation.",
+      "Dr. Smith an experienced surgeon, performed the operation."
+    ],
+    answer: 2,
+    explanation: "The appositive phrase 'an experienced surgeon' must be set off by commas on both sides: 'Dr. Smith, an experienced surgeon, performed the operation.'"
+  },
+  {
+    question: "Which word correctly completes the sentence? 'The committee will _____ its decision next Tuesday.'",
+    options: ["announce", "anounce", "anounced", "announces"],
+    answer: 0,
+    explanation: "'Announce' is the correct spelling and the correct verb form after the modal 'will' (base form required)."
+  },
+  {
+    question: "Which sentence demonstrates parallel structure?",
+    options: [
+      "The nurse assessed the patient, documenting findings, and she ordered labs.",
+      "The nurse assessed the patient, documented findings, and ordered labs.",
+      "The nurse was assessing the patient, documented findings, and orders labs.",
+      "The nurse assessed the patient and documenting, then ordered labs."
+    ],
+    answer: 1,
+    explanation: "Parallel structure requires all items in a list to use the same grammatical form. 'assessed … documented … ordered' uses consistent past-tense verbs."
+  }
+];

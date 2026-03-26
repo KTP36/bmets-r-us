@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import logo from "./assets/logo.png";
-import { teasQuestions } from "./teasQuestions";
+import { teasQuestions, harderTeasQuestions } from "./teasQuestions";
 
 // --- SOUND EFFECTS ---
 const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
@@ -3857,6 +3857,7 @@ export default function App() {
   const [rnAnswers, setRnAnswers] = useState({});
   const [rnShowResult, setRnShowResult] = useState(false);
   const [showRnMissedReview, setShowRnMissedReview] = useState(false);
+  const [teasDifficulty, setTeasDifficulty] = useState("core");
   const [shuffledTeasQuestions, setShuffledTeasQuestions] = useState(() =>
     shuffleArray(teasQuestions)
   );
@@ -3967,7 +3968,10 @@ export default function App() {
   useEffect(() => {
     const savedTeas = JSON.parse(localStorage.getItem("teasProgress"));
     if (savedTeas) {
-      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleArray(teasQuestions));
+      const savedDifficulty = savedTeas.teasDifficulty === "hard" ? "hard" : "core";
+      const fallbackBank = savedDifficulty === "hard" ? harderTeasQuestions : teasQuestions;
+      setTeasDifficulty(savedDifficulty);
+      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleArray(fallbackBank));
       setTeasIndex(savedTeas.teasIndex || 0);
       setTeasScore(savedTeas.teasScore || 0);
       setTeasAnswers(savedTeas.teasAnswers || {});
@@ -4524,6 +4528,7 @@ export default function App() {
 
   const saveTeasProgress = () => {
     const progress = {
+      teasDifficulty,
       shuffledTeasQuestions,
       teasIndex,
       teasScore,
@@ -4535,7 +4540,8 @@ export default function App() {
   };
 
   const resetTeasExam = () => {
-    const reshuffled = shuffleArray(teasQuestions);
+    const activeTeasBank = teasDifficulty === "hard" ? harderTeasQuestions : teasQuestions;
+    const reshuffled = shuffleArray(activeTeasBank);
     localStorage.removeItem("teasProgress");
     setShuffledTeasQuestions(reshuffled);
     setTeasIndex(0);
@@ -7922,6 +7928,72 @@ return (
                     reading, math, science, and English language usage. Select one
                     answer, then move to the next question after reviewing the result.
                   </p>
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      gap: 8,
+                      marginTop: 14,
+                      padding: 6,
+                      borderRadius: 999,
+                      background: "#eef4ff",
+                      border: "1px solid #d8e4f2"
+                    }}
+                  >
+                    <button
+                      onClick={() => {
+                        if (teasDifficulty === "core") return;
+                        setTeasDifficulty("core");
+                        setShuffledTeasQuestions(shuffleArray(teasQuestions));
+                        setTeasIndex(0);
+                        setTeasScore(0);
+                        setTeasAnswers({});
+                        setTeasShowResult(false);
+                        setShowTeasMissedReview(false);
+                        localStorage.removeItem("teasProgress");
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: 999,
+                        border: "none",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        background:
+                          teasDifficulty === "core"
+                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                            : "transparent",
+                        color: teasDifficulty === "core" ? "white" : "#12355b"
+                      }}
+                    >
+                      Core TEAS
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (teasDifficulty === "hard") return;
+                        setTeasDifficulty("hard");
+                        setShuffledTeasQuestions(shuffleArray(harderTeasQuestions));
+                        setTeasIndex(0);
+                        setTeasScore(0);
+                        setTeasAnswers({});
+                        setTeasShowResult(false);
+                        setShowTeasMissedReview(false);
+                        localStorage.removeItem("teasProgress");
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: 999,
+                        border: "none",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        background:
+                          teasDifficulty === "hard"
+                            ? "linear-gradient(135deg, #7c2d12, #b45309)"
+                            : "transparent",
+                        color: teasDifficulty === "hard" ? "white" : "#7c2d12"
+                      }}
+                    >
+                      Hard TEAS
+                    </button>
+                  </div>
                 </div>
 
                 <div
