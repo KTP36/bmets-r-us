@@ -2740,6 +2740,269 @@ const cresQuestions = [
   }
 ];
 
+// --- HARDER CRES QUESTIONS ---
+const harderCresQuestions = [
+  {
+    question: "A CT scanner shows ring artifacts in all reconstructed images. The most likely cause is:",
+    options: [
+      "Motion by the patient during acquisition",
+      "A miscalibrated or failed detector channel",
+      "Incorrect X-ray tube current (mA) selection",
+      "Reconstruction filter kernel set too sharp"
+    ],
+    answer: 1,
+    explanation: "Ring artifacts in CT are caused by a single detector element (or channel) that is out of calibration or has failed, producing a consistent signal error at a fixed radial distance."
+  },
+  {
+    question: "During fluoroscopy QA, the measured entrance exposure rate exceeds the FDA limit at the standard mode. Which corrective action is most appropriate?",
+    options: [
+      "Reduce the image intensifier magnification mode to lower the dose",
+      "Disable the automatic brightness control and set manual technique",
+      "Service the ABC circuit and verify kVp/mA output are within spec",
+      "Replace the image intensifier output phosphor"
+    ],
+    answer: 2,
+    explanation: "Exceeding the 10 R/min FDA limit requires investigation of the ABC system and verification that kVp and mA outputs are correctly calibrated before further clinical use."
+  },
+  {
+    question: "Which MRI safety zone includes the MRI scanner room itself where the static field exceeds 5 gauss?",
+    options: ["Zone I", "Zone II", "Zone III", "Zone IV"],
+    answer: 3,
+    explanation: "Per ACR guidelines Zone IV is the magnet room. Zone III is the control room area with restricted access; Zone IV is the scanner bore environment."
+  },
+  {
+    question: "In mammography, the average glandular dose (AGD) is preferred over entrance skin exposure because it:",
+    options: [
+      "Is easier to measure with a standard ion chamber",
+      "Better represents the dose to the radiation-sensitive glandular tissue",
+      "Accounts for scattered radiation reaching the detector",
+      "Is required by FDA MQSA for equipment acceptance testing only"
+    ],
+    answer: 1,
+    explanation: "AGD reflects dose to the glandular tissue that is most sensitive to radiation-induced breast cancer, making it the preferred dosimetric endpoint for mammography."
+  },
+  {
+    question: "A technologist notices that increasing kVp on a fluoroscopy unit does not increase patient dose rate but also doesn't improve image contrast. The most likely problem is:",
+    options: [
+      "Failing grid causing scatter to reach the detector",
+      "ABC system compensating by reducing mA when kVp rises",
+      "Defective collimator blades reducing field size",
+      "Monitor white balance drift"
+    ],
+    answer: 1,
+    explanation: "The Automatic Brightness Control actively adjusts mA (and kVp) to maintain target brightness. If kVp is raised manually, ABC may lower mA proportionally, keeping dose rate and contrast effectively unchanged."
+  },
+  {
+    question: "T1 relaxation time in MRI represents:",
+    options: [
+      "The time for 63% of the transverse magnetization to decay",
+      "The time required for longitudinal magnetization to recover to 63% of equilibrium",
+      "Dephasing of proton spins due to magnetic field inhomogeneity",
+      "Echo time between the RF pulse and signal acquisition"
+    ],
+    answer: 1,
+    explanation: "T1 (longitudinal or spin-lattice relaxation) is the time constant for recovery of Mz; after one T1 period, 63% of equilibrium magnetization is restored."
+  },
+  {
+    question: "Which ultrasound artifact can cause a structure deep to a highly attenuating object to appear darker than expected?",
+    options: [
+      "Acoustic enhancement (posterior enhancement)",
+      "Reverberation artifact",
+      "Acoustic shadowing",
+      "Side-lobe artifact"
+    ],
+    answer: 2,
+    explanation: "Acoustic shadowing occurs when a highly attenuating structure (e.g., calcification) absorbs most of the ultrasound beam, leaving reduced signal — a dark shadow — distal to it."
+  },
+  {
+    question: "During annual CT QA, the measured CT number for water is +8 HU instead of 0 HU. The technologist should:",
+    options: [
+      "Accept the value; it is within the ±10 HU tolerance",
+      "Immediately remove the scanner from service",
+      "Recalibrate using the water phantom and document",
+      "Increase tube current to bring the value closer to zero"
+    ],
+    answer: 2,
+    explanation: "A CT number deviation from 0 HU for water indicates the scanner needs air/water calibration. Values within ±10 HU are typically acceptable but should still be corrected through calibration, not ignored."
+  },
+  {
+    question: "Specific Absorption Rate (SAR) in MRI is a measure of:",
+    options: [
+      "The rate of signal decay from T2* effects",
+      "The radiofrequency energy absorbed per unit mass of tissue",
+      "The gradient switching rate that can cause peripheral nerve stimulation",
+      "The spatial averaging of B0 field inhomogeneity"
+    ],
+    answer: 1,
+    explanation: "SAR (W/kg) quantifies RF energy deposition in tissue and is the primary safety limit for tissue heating in MRI, regulated by IEC and FDA guidelines."
+  },
+  {
+    question: "A reject analysis program shows a high repeat rate for lateral lumbar spine radiographs due to 'overexposure.' Which parameter adjustment most directly addresses this?",
+    options: [
+      "Increase source-to-image distance (SID)",
+      "Reduce mAs",
+      "Increase grid ratio",
+      "Use a larger focal spot"
+    ],
+    answer: 1,
+    explanation: "Overexposure results from too much radiation reaching the detector. Reducing mAs directly lowers the quantity of photons, correcting the excess exposure index."
+  },
+  {
+    question: "In a CR system, residual latent image on a previously exposed PSP plate is eliminated by:",
+    options: [
+      "Running the plate through the laser scanner without reading it",
+      "Exposing the plate uniformly to a bright white light (erasing)",
+      "Placing the plate in a dark cassette for 24 hours",
+      "Wiping the plate surface with an antistatic cloth"
+    ],
+    answer: 1,
+    explanation: "CR PSP plates are erased by flooding with bright white light, which releases all remaining trapped electrons and clears the residual latent image."
+  },
+  {
+    question: "An X-ray tube rating chart shows a maximum single-exposure rating of 70 kVp / 300 mA / 0.05 s. A requested single shot is 70 kVp / 400 mA / 0.05 s. The technologist should:",
+    options: [
+      "Proceed — exposure time is within rating",
+      "Increase kVp to compensate for lower mA",
+      "Refuse the exposure; the mA exceeds the single-exposure rating and could damage the tube",
+      "Switch to the small focal spot to handle the higher mA"
+    ],
+    answer: 2,
+    explanation: "Single-exposure tube ratings define maximum combinations of kVp, mA, and time. Exceeding mA can overheat the focal spot instantly, causing tube damage. The exposure must be adjusted to stay within rating."
+  },
+  {
+    question: "Which CT quality metric directly evaluates low-contrast detectability (the ability to see subtle tissue differences)?",
+    options: [
+      "Modulation Transfer Function (MTF)",
+      "Noise Power Spectrum (NPS)",
+      "Low-contrast object detectability phantom test",
+      "CT number linearity test"
+    ],
+    answer: 2,
+    explanation: "The low-contrast detectability (LCD) phantom test measures the scanner's ability to visualize objects with small HU differences from background — the key clinical metric for soft-tissue imaging."
+  },
+  {
+    question: "A patient with a pacemaker is referred for MRI. Which is the correct initial action?",
+    options: [
+      "Proceed if the field strength is 1.0 T or lower",
+      "Check whether the pacemaker is labeled MR Conditional and follow all specified conditions",
+      "Remove the pacemaker before scanning",
+      "Place the patient on a non-ferromagnetic stretcher and scan at 3 T"
+    ],
+    answer: 1,
+    explanation: "Modern MR Conditional pacemakers are approved for scanning only under specific conditions (field strength, SAR limits, etc.). These conditions must be verified exactly; unconditional scanning is unsafe."
+  },
+  {
+    question: "In nuclear medicine, the collimator on a gamma camera restricts which photons reach the NaI crystal?",
+    options: [
+      "Only photons traveling perpendicular to detector face within accepted angular tolerance",
+      "All photons below 140 keV to remove scatter",
+      "Photons with energy above the photopeak window",
+      "Only photons emitted from superficial structures"
+    ],
+    answer: 0,
+    explanation: "A parallel-hole collimator allows only photons traveling nearly perpendicular (parallel) to the detector through its holes, providing spatial localization. Angled and scattered photons are absorbed in the lead septa."
+  },
+  {
+    question: "The modulation transfer function (MTF) curve for an imaging system is used to evaluate:",
+    options: [
+      "Radiation dose efficiency (DQE)",
+      "Spatial resolution as a function of spatial frequency",
+      "Signal-to-noise ratio in low-contrast regions",
+      "Temporal resolution for dynamic imaging"
+    ],
+    answer: 1,
+    explanation: "MTF describes how well a system reproduces spatial detail across different spatial frequencies (line pairs/mm), quantifying the resolution performance of the imaging chain."
+  },
+  {
+    question: "Which preventive maintenance task is most important for prolonging X-ray tube life in a high-volume CT department?",
+    options: [
+      "Replacing anode lubricant monthly",
+      "Performing manufacturer-specified tube conditioning (warm-up) procedures daily",
+      "Reducing kVp by 10% on all examinations",
+      "Cleaning the tube housing exterior with alcohol weekly"
+    ],
+    answer: 1,
+    explanation: "Tube conditioning (seasoning) gradually heats the anode, allowing absorbed gases to dissipate, preventing arcing and thermal shock. Daily adherence significantly extends tube life in high-volume environments."
+  },
+  {
+    question: "In multislice CT (MSCT), pitch is defined as:",
+    options: [
+      "Table travel per rotation divided by total beam width (detector coverage)",
+      "Number of detector rows times rotation speed",
+      "Ratio of reconstruction field of view to scan field of view",
+      "Effective slice thickness after reconstruction"
+    ],
+    answer: 0,
+    explanation: "Pitch = table feed per rotation ÷ total beam collimation width. A pitch of 1 means table travel equals beam width; >1 mean there are gaps; <1 means overlapping coverage."
+  },
+  {
+    question: "Penumbra (geometric unsharpness) in radiography is minimized by:",
+    options: [
+      "Using a large focal spot and short OID",
+      "Using a small focal spot and maximum SID with minimum OID",
+      "Increasing mAs at fixed kVp",
+      "Using a high-ratio grid to reduce scatter"
+    ],
+    answer: 1,
+    explanation: "Geometric unsharpness (Ug) = focal spot size × OID / SOD. It is minimized by using the smallest focal spot, shortest object-to-detector distance, and maximum source-to-image distance."
+  },
+  {
+    question: "A fluoroscopy unit's image intensifier conversion factor (gain) is found to be 40% below the baseline value during QA. This most likely indicates:",
+    options: [
+      "The ABC circuit is over-compensating for high patient dose",
+      "Vignetting due to dirty output phosphor window",
+      "Deterioration of the image intensifier requiring service or replacement",
+      "Improper monitor calibration"
+    ],
+    answer: 2,
+    explanation: "Conversion factor (brightness gain × flux gain) declines as the II ages due to phosphor degradation and CsI crystal damage. A >20–25% drop from baseline is typically grounds for II service."
+  },
+  {
+    question: "Which MRI gradient parameter is most closely associated with the risk of peripheral nerve stimulation (PNS)?",
+    options: [
+      "Static field strength (B0)",
+      "RF pulse flip angle",
+      "Slew rate (dB/dt)",
+      "Receive coil impedance"
+    ],
+    answer: 2,
+    explanation: "Peripheral nerve stimulation is caused by rapidly changing gradient fields (dB/dt / slew rate). IEC and FDA set limits on slew rate to prevent PNS and cardiac stimulation."
+  },
+  {
+    question: "In DEXA (dual-energy X-ray absorptiometry), bone mineral density (BMD) is calculated by:",
+    options: [
+      "Measuring attenuation at two different X-ray energies to separate bone and soft tissue contributions",
+      "Counting back-scattered electrons from cortical bone surfaces",
+      "Calculating the CT number of trabecular bone in HU",
+      "Measuring the natural gamma emission of calcium-40 in bone"
+    ],
+    answer: 0,
+    explanation: "DEXA uses two X-ray energies where attenuation differs between bone mineral and soft tissue. Subtracting the two energy images isolates bone mass to calculate BMD (g/cm²)."
+  },
+  {
+    question: "A preventive maintenance report flags increased ground leakage current on an X-ray generator chassis. The correct immediate action is:",
+    options: [
+      "Tape the chassis ground wire to reduce resistance",
+      "Reduce the maximum kVp until the next scheduled PM",
+      "Remove the equipment from service and notify biomedical engineering for repair",
+      "Install an additional circuit breaker on the unit's power line"
+    ],
+    answer: 2,
+    explanation: "Chassis leakage current above NEMA/AAMI limits (typically >500 µA) presents an electric shock hazard to patients and staff. The equipment must be taken out of service immediately until repaired."
+  },
+  {
+    question: "Which statement best describes the detective quantum efficiency (DQE) of an imaging system?",
+    options: [
+      "The number of photons the detector requires to produce one gray of dose",
+      "The ratio of output SNR squared to input SNR squared, measuring how efficiently dose is converted to signal",
+      "The fraction of incident photons absorbed by the scintillator layer",
+      "The maximum spatial frequency resolved at 50% MTF"
+    ],
+    answer: 1,
+    explanation: "DQE = (SNRout² / SNRin²) and describes overall system efficiency in converting X-ray dose to useful signal. Higher DQE means better image quality per unit dose."
+  }
+];
+
 // --- MEDICAL TERMINOLOGY QUESTIONS ---
 const terminologyQuestions = [
   { question: "What is the best definition of 'bradykinesia'?", options: ["Rapid involuntary tremor", "Slowness of movement", "Muscle rigidity from spasm", "Loss of balance when standing"], answer: 1 },
@@ -3616,6 +3879,7 @@ export default function App() {
   const [showEquipmentMissedReview, setShowEquipmentMissedReview] = useState(false);
 
   // --- CRES STATE ---
+  const [cresDifficulty, setCresDifficulty] = useState("core");
   const [shuffledCresQuestions, setShuffledCresQuestions] = useState(() =>
     shuffleArray(cresQuestions)
   );
@@ -3729,7 +3993,10 @@ export default function App() {
   useEffect(() => {
     const savedCres = JSON.parse(localStorage.getItem("cresProgress"));
     if (savedCres) {
-      setShuffledCresQuestions(savedCres.shuffledCresQuestions || shuffleArray(cresQuestions));
+      const savedDifficulty = savedCres.cresDifficulty === "hard" ? "hard" : "core";
+      const fallbackBank = savedDifficulty === "hard" ? harderCresQuestions : cresQuestions;
+      setCresDifficulty(savedDifficulty);
+      setShuffledCresQuestions(savedCres.shuffledCresQuestions || shuffleArray(fallbackBank));
       setCresIndex(savedCres.cresIndex || 0);
       setCresScore(savedCres.cresScore || 0);
       setCresAnswers(savedCres.cresAnswers || {});
@@ -4149,6 +4416,7 @@ export default function App() {
 
   const saveCresProgress = () => {
     const progress = {
+      cresDifficulty,
       shuffledCresQuestions,
       cresIndex,
       cresScore,
@@ -4160,7 +4428,8 @@ export default function App() {
   };
 
   const restartCresExam = () => {
-    const reshuffled = shuffleArray(cresQuestions);
+    const activeCresBank = cresDifficulty === "hard" ? harderCresQuestions : cresQuestions;
+    const reshuffled = shuffleArray(activeCresBank);
     localStorage.removeItem("cresProgress");
     setShuffledCresQuestions(reshuffled);
     setCresIndex(0);
@@ -7978,6 +8247,72 @@ return (
                     Certified Radiology Equipment Specialist — questions are shuffled each restart.
                     Select one answer. The correct answer will highlight after you answer.
                   </p>
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      gap: 8,
+                      marginTop: 14,
+                      padding: 6,
+                      borderRadius: 999,
+                      background: "#eef4ff",
+                      border: "1px solid #d8e4f2"
+                    }}
+                  >
+                    <button
+                      onClick={() => {
+                        if (cresDifficulty === "core") return;
+                        setCresDifficulty("core");
+                        setShuffledCresQuestions(shuffleArray(cresQuestions));
+                        setCresIndex(0);
+                        setCresScore(0);
+                        setCresAnswers({});
+                        setCresShowResult(false);
+                        setShowCresMissedReview(false);
+                        localStorage.removeItem("cresProgress");
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: 999,
+                        border: "none",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        background:
+                          cresDifficulty === "core"
+                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                            : "transparent",
+                        color: cresDifficulty === "core" ? "white" : "#12355b"
+                      }}
+                    >
+                      Core CRES
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (cresDifficulty === "hard") return;
+                        setCresDifficulty("hard");
+                        setShuffledCresQuestions(shuffleArray(harderCresQuestions));
+                        setCresIndex(0);
+                        setCresScore(0);
+                        setCresAnswers({});
+                        setCresShowResult(false);
+                        setShowCresMissedReview(false);
+                        localStorage.removeItem("cresProgress");
+                      }}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: 999,
+                        border: "none",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        background:
+                          cresDifficulty === "hard"
+                            ? "linear-gradient(135deg, #7c2d12, #b45309)"
+                            : "transparent",
+                        color: cresDifficulty === "hard" ? "white" : "#7c2d12"
+                      }}
+                    >
+                      Hard CRES
+                    </button>
+                  </div>
                 </div>
 
                 <div
