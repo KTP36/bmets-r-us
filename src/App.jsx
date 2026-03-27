@@ -2187,7 +2187,7 @@ function SkeletalAnatomyQuiz() {
         margin: "0 auto",
         textAlign: "center"
       }}>
-        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Skeletal Anatomy Quiz Complete</h2>
+        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Anatomy Quiz Complete</h2>
         <p style={{ fontSize: 20, color: "#1e293b", marginBottom: 4 }}>
           Your score: {score} / {questions.length}
         </p>
@@ -2275,13 +2275,12 @@ function SkeletalAnatomyQuiz() {
       padding: "clamp(16px, 4vw, 48px)",
       boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
       maxWidth: "clamp(340px, 90vw, 800px)",
-      margin: "0 auto",
+      margin: "8px auto 0 auto",
       boxSizing: "border-box",
       width: "100%",
-      minHeight: "100vh",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center"
+      justifyContent: "flex-start"
     }}>
       <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
         <div style={{ background: "#eef4ff", borderRadius: 12, padding: "8px 16px", fontWeight: 700, color: "#12355b" }}>
@@ -7453,10 +7452,9 @@ return (
         style={{
           display: "flex",
           justifyContent: "center",
-	  gap: 12,
-	  flexWrap: "wrap",
-	  marginBottom: 20
-	}}
+          gap: 12,
+          flexWrap: "wrap"
+        }}
   >
     <button
       onClick={() => setActiveTab("Home")}
@@ -7502,7 +7500,7 @@ return (
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "SkeletalAnatomy", hoveredNavTab === "SkeletalAnatomy")}
         >
-          Skeletal Anatomy Quiz
+          Click for Anatomy Quiz
         </button>
 
         <button
