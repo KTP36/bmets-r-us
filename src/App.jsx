@@ -1,1244 +1,10 @@
-                  const allQuestions = [
-                                // --- Arterial System Anatomy Questions ---
-                              {
-                                question: "What is the largest artery in the human body?",
-                                options: ["Aorta", "Carotid artery", "Femoral artery", "Pulmonary artery"],
-                                answer: 0,
-                                explanation: "The aorta is the largest artery in the human body.",
-                                difficulty: "easy",
-                                category: "arterial system"
-                              },
-                              // --- Venous System Anatomy Questions: Easy ---
-                              {
-                                question: "What is the largest vein in the human body?",
-                                options: ["Inferior vena cava", "Superior vena cava", "Jugular vein", "Femoral vein"],
-                                answer: 0,
-                                explanation: "The inferior vena cava is the largest vein in the human body.",
-                                difficulty: "easy",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein returns blood from the head to the heart?",
-                                options: ["Jugular vein", "Femoral vein", "Basilic vein", "Great saphenous vein"],
-                                answer: 0,
-                                explanation: "The jugular veins return blood from the head to the heart.",
-                                difficulty: "easy",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is commonly used for drawing blood?",
-                                options: ["Median cubital vein", "Femoral vein", "Jugular vein", "Inferior vena cava"],
-                                answer: 0,
-                                explanation: "The median cubital vein is commonly used for venipuncture (drawing blood).",
-                                difficulty: "easy",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein drains blood from the lower limbs?",
-                                options: ["Great saphenous vein", "Jugular vein", "Basilic vein", "Cephalic vein"],
-                                answer: 0,
-                                explanation: "The great saphenous vein is the longest vein and drains blood from the lower limbs.",
-                                difficulty: "easy",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein carries oxygenated blood?",
-                                options: ["Pulmonary vein", "Inferior vena cava", "Jugular vein", "Femoral vein"],
-                                answer: 0,
-                                explanation: "The pulmonary veins carry oxygenated blood from the lungs to the heart.",
-                                difficulty: "easy",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is found in the arm and is often visible?",
-                                options: ["Cephalic vein", "Femoral vein", "Jugular vein", "Great saphenous vein"],
-                                answer: 0,
-                                explanation: "The cephalic vein is a superficial vein often visible in the arm.",
-                                difficulty: "easy",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein drains blood from the intestines to the liver?",
-                                options: ["Hepatic portal vein", "Inferior vena cava", "Jugular vein", "Femoral vein"],
-                                answer: 0,
-                                explanation: "The hepatic portal vein carries blood from the intestines to the liver.",
-                                difficulty: "easy",
-                                category: "venous system"
-                              },
-                              // --- Venous System Anatomy Questions: Medium ---
-                              {
-                                question: "Which vein is the main deep vein of the thigh?",
-                                options: ["Femoral vein", "Great saphenous vein", "Jugular vein", "Cephalic vein"],
-                                answer: 0,
-                                explanation: "The femoral vein is the main deep vein of the thigh.",
-                                difficulty: "medium",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is commonly affected by varicose veins?",
-                                options: ["Great saphenous vein", "Jugular vein", "Femoral vein", "Basilic vein"],
-                                answer: 0,
-                                explanation: "The great saphenous vein is commonly affected by varicose veins.",
-                                difficulty: "medium",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein drains blood from the brain?",
-                                options: ["Internal jugular vein", "Cephalic vein", "Femoral vein", "Great saphenous vein"],
-                                answer: 0,
-                                explanation: "The internal jugular vein drains blood from the brain.",
-                                difficulty: "medium",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is paired with the radial artery in the forearm?",
-                                options: ["Radial vein", "Cephalic vein", "Basilic vein", "Jugular vein"],
-                                answer: 0,
-                                explanation: "The radial vein runs alongside the radial artery in the forearm.",
-                                difficulty: "medium",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is formed by the union of the subclavian and internal jugular veins?",
-                                options: ["Brachiocephalic vein", "Femoral vein", "Great saphenous vein", "Cephalic vein"],
-                                answer: 0,
-                                explanation: "The brachiocephalic vein is formed by the union of the subclavian and internal jugular veins.",
-                                difficulty: "medium",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein drains blood from the hand and forearm?",
-                                options: ["Basilic vein", "Jugular vein", "Femoral vein", "Great saphenous vein"],
-                                answer: 0,
-                                explanation: "The basilic vein drains blood from the hand and forearm.",
-                                difficulty: "medium",
-                                category: "venous system"
-                              },
-                              // --- Venous System Anatomy Questions: Hard ---
-                              {
-                                question: "Which vein is most commonly used for central venous catheterization?",
-                                options: ["Internal jugular vein", "Cephalic vein", "Great saphenous vein", "Femoral vein"],
-                                answer: 0,
-                                explanation: "The internal jugular vein is commonly used for central venous catheterization.",
-                                difficulty: "hard",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein receives blood from the coronary circulation?",
-                                options: ["Coronary sinus", "Inferior vena cava", "Jugular vein", "Femoral vein"],
-                                answer: 0,
-                                explanation: "The coronary sinus receives blood from the coronary veins and empties into the right atrium.",
-                                difficulty: "hard",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is the longest in the body?",
-                                options: ["Great saphenous vein", "Femoral vein", "Jugular vein", "Cephalic vein"],
-                                answer: 0,
-                                explanation: "The great saphenous vein is the longest vein in the body.",
-                                difficulty: "hard",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is responsible for draining the superficial structures of the face?",
-                                options: ["Facial vein", "Jugular vein", "Cephalic vein", "Femoral vein"],
-                                answer: 0,
-                                explanation: "The facial vein drains the superficial structures of the face.",
-                                difficulty: "hard",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein is formed by the union of the anterior and posterior tibial veins?",
-                                options: ["Popliteal vein", "Femoral vein", "Great saphenous vein", "Jugular vein"],
-                                answer: 0,
-                                explanation: "The popliteal vein is formed by the union of the anterior and posterior tibial veins.",
-                                difficulty: "hard",
-                                category: "venous system"
-                              },
-                              {
-                                question: "Which vein drains blood from the pelvic organs?",
-                                options: ["Internal iliac vein", "Femoral vein", "Great saphenous vein", "Cephalic vein"],
-                                answer: 0,
-                                explanation: "The internal iliac vein drains blood from the pelvic organs.",
-                                difficulty: "hard",
-                                category: "venous system"
-                              },
-                              // --- Arterial System Anatomy Questions: Medium ---
-                              {
-                                question: "Which artery supplies blood to the intestines?",
-                                options: ["Superior mesenteric artery", "Renal artery", "Coronary artery", "Carotid artery"],
-                                answer: 0,
-                                explanation: "The superior mesenteric artery supplies blood to most of the intestines.",
-                                difficulty: "medium",
-                                category: "arterial system"
-                              },
-                              {
-                                question: "Which artery is the main supplier of blood to the forearm?",
-                                options: ["Radial artery", "Ulnar artery", "Brachial artery", "Femoral artery"],
-                                answer: 2,
-                                explanation: "The brachial artery divides into the radial and ulnar arteries, supplying the forearm.",
-                                difficulty: "medium",
-                                category: "arterial system"
-                              },
-                              {
-                                question: "Which artery supplies blood to the spleen?",
-                                options: ["Splenic artery", "Renal artery", "Hepatic artery", "Coronary artery"],
-                                answer: 0,
-                                explanation: "The splenic artery supplies blood to the spleen.",
-                                difficulty: "medium",
-                                category: "arterial system"
-                              },
-                              {
-                                question: "Which artery is found behind the knee?",
-                                options: ["Femoral artery", "Popliteal artery", "Radial artery", "Carotid artery"],
-                                answer: 1,
-                                explanation: "The popliteal artery is found behind the knee.",
-                                difficulty: "medium",
-                                category: "arterial system"
-                              },
-                              {
-                                question: "Which artery supplies blood to the lungs?",
-                                options: ["Pulmonary artery", "Aorta", "Carotid artery", "Femoral artery"],
-                                answer: 0,
-                                explanation: "The pulmonary artery carries deoxygenated blood from the heart to the lungs.",
-                                difficulty: "medium",
-                                category: "arterial system"
-                              },
-                              // Hard
-                              {
-                                question: "Which artery forms the palmar arches in the hand?",
-                                options: ["Radial and ulnar arteries", "Brachial artery", "Femoral artery", "Carotid artery"],
-                                answer: 0,
-                                explanation: "The radial and ulnar arteries form the superficial and deep palmar arches in the hand.",
-                                difficulty: "hard",
-                                category: "arterial system"
-                              },
-                              {
-                                question: "Which artery is the main supplier of blood to the pelvic organs?",
-                                options: ["Internal iliac artery", "Femoral artery", "Aorta", "Renal artery"],
-                                answer: 0,
-                                explanation: "The internal iliac artery supplies blood to the pelvic organs.",
-                                difficulty: "hard",
-                                category: "arterial system"
-                              },
-                              {
-                                question: "Which artery is commonly used for arterial blood gas sampling?",
-                                options: ["Radial artery", "Femoral artery", "Carotid artery", "Aorta"],
-                                answer: 0,
-                                explanation: "The radial artery is commonly used for arterial blood gas sampling.",
-                                difficulty: "hard",
-                                category: "arterial system"
-                              },
-                          // --- Ear Anatomy Questions ---
-                          {
-                            question: "What is the outer part of the ear called?",
-                            options: ["Auricle (pinna)", "Cochlea", "Stapes", "Tympanic membrane"],
-                            answer: 0,
-                            explanation: "The auricle (pinna) is the visible outer part of the ear.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "What is the function of the tympanic membrane?",
-                            options: ["Transmit sound", "Produce wax", "Balance", "Protect the eye"],
-                            answer: 0,
-                            explanation: "The tympanic membrane (eardrum) vibrates to transmit sound to the middle ear.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "How many ossicles are in the middle ear?",
-                            options: ["1", "2", "3", "4"],
-                            answer: 2,
-                            explanation: "There are three ossicles: malleus, incus, and stapes.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which structure connects the middle ear to the throat?",
-                            options: ["Cochlea", "Eustachian tube", "Semicircular canals", "Auricle"],
-                            answer: 1,
-                            explanation: "The Eustachian tube connects the middle ear to the pharynx (throat).",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "What is the snail-shaped structure in the inner ear called?",
-                            options: ["Cochlea", "Stapes", "Auricle", "Tympanic membrane"],
-                            answer: 0,
-                            explanation: "The cochlea is a spiral-shaped organ responsible for hearing.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which part of the ear is responsible for balance?",
-                            options: ["Cochlea", "Semicircular canals", "Auricle", "Tympanic membrane"],
-                            answer: 1,
-                            explanation: "The semicircular canals in the inner ear help maintain balance.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "What is the smallest bone in the human body?",
-                            options: ["Malleus", "Incus", "Stapes", "Femur"],
-                            answer: 2,
-                            explanation: "The stapes is the smallest bone in the human body, located in the middle ear.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which nerve carries sound signals from the ear to the brain?",
-                            options: ["Facial nerve", "Vestibulocochlear nerve", "Trigeminal nerve", "Optic nerve"],
-                            answer: 1,
-                            explanation: "The vestibulocochlear nerve (cranial nerve VIII) carries sound and balance signals.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "What is the function of earwax (cerumen)?",
-                            options: ["Aid hearing", "Protect ear canal", "Transmit sound", "Balance"],
-                            answer: 1,
-                            explanation: "Earwax protects and lubricates the ear canal, trapping dust and debris.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which part of the ear amplifies sound vibrations?",
-                            options: ["Auricle", "Ossicles", "Cochlea", "Semicircular canals"],
-                            answer: 1,
-                            explanation: "The ossicles amplify sound vibrations from the eardrum to the inner ear.",
-                            difficulty: "easy",
-                            category: "ear"
-                          },
-                          // Medium
-                          {
-                            question: "What is the oval window?",
-                            options: ["Opening to cochlea", "Part of auricle", "Middle ear bone", "Ear canal"],
-                            answer: 0,
-                            explanation: "The oval window is a membrane-covered opening to the cochlea.",
-                            difficulty: "medium",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which structure equalizes air pressure on both sides of the eardrum?",
-                            options: ["Cochlea", "Eustachian tube", "Auricle", "Stapes"],
-                            answer: 1,
-                            explanation: "The Eustachian tube equalizes air pressure between the middle ear and throat.",
-                            difficulty: "medium",
-                            category: "ear"
-                          },
-                          {
-                            question: "What is the round window?",
-                            options: ["Opening to cochlea", "Part of auricle", "Middle ear bone", "Ear canal"],
-                            answer: 0,
-                            explanation: "The round window is a membrane-covered opening in the cochlea that allows fluid movement.",
-                            difficulty: "medium",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which fluid fills the cochlea?",
-                            options: ["Endolymph", "Perilymph", "Cerebrospinal fluid", "Blood"],
-                            answer: 1,
-                            explanation: "Perilymph is the fluid that fills the cochlea and helps transmit sound.",
-                            difficulty: "medium",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which structure detects rotational movements of the head?",
-                            options: ["Cochlea", "Semicircular canals", "Auricle", "Ossicles"],
-                            answer: 1,
-                            explanation: "The semicircular canals detect rotational movements and help with balance.",
-                            difficulty: "medium",
-                            category: "ear"
-                          },
-                          // Hard
-                          {
-                            question: "What is the organ of Corti?",
-                            options: ["Hearing receptor", "Balance organ", "Ear canal", "Middle ear bone"],
-                            answer: 0,
-                            explanation: "The organ of Corti is the sensory organ for hearing, located in the cochlea.",
-                            difficulty: "hard",
-                            category: "ear"
-                          },
-                          {
-                            question: "Which cells in the cochlea are responsible for converting sound vibrations into nerve impulses?",
-                            options: ["Hair cells", "Ossicles", "Ceruminous cells", "Epithelial cells"],
-                            answer: 0,
-                            explanation: "Hair cells in the organ of Corti convert sound vibrations into nerve impulses.",
-                            difficulty: "hard",
-                            category: "ear"
-                          },
-                          {
-                            question: "What is the helicotrema?",
-                            options: ["Apex of cochlea", "Middle ear bone", "Part of auricle", "Ear canal"],
-                            answer: 0,
-                            explanation: "The helicotrema is the apex of the cochlea where the scala tympani and scala vestibuli meet.",
-                            difficulty: "hard",
-                            category: "ear"
-                          },
-                      // --- Eye Anatomy Questions ---
-                      {
-                        question: "What is the colored part of the eye called?",
-                        options: ["Cornea", "Iris", "Lens", "Retina"],
-                        answer: 1,
-                        explanation: "The iris is the colored part of the eye that controls pupil size.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which structure focuses light onto the retina?",
-                        options: ["Cornea", "Lens", "Iris", "Sclera"],
-                        answer: 1,
-                        explanation: "The lens focuses light onto the retina for clear vision.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "What is the transparent front part of the eye called?",
-                        options: ["Cornea", "Lens", "Retina", "Iris"],
-                        answer: 0,
-                        explanation: "The cornea is the transparent front part of the eye covering the iris and pupil.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which part of the eye detects light and sends signals to the brain?",
-                        options: ["Retina", "Lens", "Cornea", "Iris"],
-                        answer: 0,
-                        explanation: "The retina contains photoreceptors that detect light and send signals to the brain.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "What is the opening in the center of the iris called?",
-                        options: ["Cornea", "Lens", "Pupil", "Retina"],
-                        answer: 2,
-                        explanation: "The pupil is the opening in the center of the iris that lets light into the eye.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which structure gives the eye its shape and protects it?",
-                        options: ["Sclera", "Cornea", "Lens", "Retina"],
-                        answer: 0,
-                        explanation: "The sclera is the white, tough outer layer that gives the eye its shape and protection.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "What is the clear, jelly-like substance that fills the eyeball?",
-                        options: ["Aqueous humor", "Vitreous humor", "Tears", "Plasma"],
-                        answer: 1,
-                        explanation: "The vitreous humor is the clear, jelly-like substance filling the eyeball behind the lens.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which nerve carries visual information from the eye to the brain?",
-                        options: ["Optic nerve", "Olfactory nerve", "Trigeminal nerve", "Facial nerve"],
-                        answer: 0,
-                        explanation: "The optic nerve transmits visual information from the retina to the brain.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "What is the function of the lacrimal gland?",
-                        options: ["Produce tears", "Focus light", "Control pupil size", "Move the eye"],
-                        answer: 0,
-                        explanation: "The lacrimal gland produces tears to lubricate and protect the eye.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which muscle moves the eye upward?",
-                        options: ["Inferior rectus", "Superior rectus", "Lateral rectus", "Medial rectus"],
-                        answer: 1,
-                        explanation: "The superior rectus muscle moves the eye upward.",
-                        difficulty: "easy",
-                        category: "eye"
-                      },
-                      // Medium
-                      {
-                        question: "Which part of the retina is responsible for sharp central vision?",
-                        options: ["Fovea", "Optic disc", "Macula", "Ciliary body"],
-                        answer: 0,
-                        explanation: "The fovea is a small pit in the retina responsible for sharp central vision.",
-                        difficulty: "medium",
-                        category: "eye"
-                      },
-                      {
-                        question: "What is the name of the area where the optic nerve exits the eye, creating a blind spot?",
-                        options: ["Fovea", "Optic disc", "Macula", "Lens"],
-                        answer: 1,
-                        explanation: "The optic disc is where the optic nerve exits the eye, creating a blind spot.",
-                        difficulty: "medium",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which cells in the retina are responsible for color vision?",
-                        options: ["Rods", "Cones", "Ganglion cells", "Bipolar cells"],
-                        answer: 1,
-                        explanation: "Cones are photoreceptor cells responsible for color vision.",
-                        difficulty: "medium",
-                        category: "eye"
-                      },
-                      {
-                        question: "What is the function of the ciliary body?",
-                        options: ["Produce tears", "Change lens shape", "Control pupil size", "Move the eye"],
-                        answer: 1,
-                        explanation: "The ciliary body changes the shape of the lens for focusing.",
-                        difficulty: "medium",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which fluid fills the space between the cornea and the lens?",
-                        options: ["Vitreous humor", "Aqueous humor", "Plasma", "Tears"],
-                        answer: 1,
-                        explanation: "Aqueous humor fills the space between the cornea and the lens.",
-                        difficulty: "medium",
-                        category: "eye"
-                      },
-                      // Hard
-                      {
-                        question: "Which layer of the eye contains blood vessels that nourish the retina?",
-                        options: ["Sclera", "Choroid", "Retina", "Cornea"],
-                        answer: 1,
-                        explanation: "The choroid is the vascular layer that nourishes the retina.",
-                        difficulty: "hard",
-                        category: "eye"
-                      },
-                      {
-                        question: "What is the name of the transparent membrane covering the white of the eye?",
-                        options: ["Cornea", "Conjunctiva", "Sclera", "Retina"],
-                        answer: 1,
-                        explanation: "The conjunctiva is a thin membrane covering the sclera and inside of the eyelids.",
-                        difficulty: "hard",
-                        category: "eye"
-                      },
-                      {
-                        question: "Which muscle is responsible for closing the eyelids?",
-                        options: ["Orbicularis oculi", "Levator palpebrae", "Superior rectus", "Inferior oblique"],
-                        answer: 0,
-                        explanation: "The orbicularis oculi muscle closes the eyelids.",
-                        difficulty: "hard",
-                        category: "eye"
-                      },
-                  // --- Kidneys Anatomy Questions ---
-                  {
-                    question: "How many kidneys does a typical human have?",
-                    options: ["1", "2", "3", "4"],
-                    answer: 1,
-                    explanation: "Most people have two kidneys, one on each side of the spine.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "What is the main function of the kidneys?",
-                    options: ["Produce hormones", "Filter blood", "Store urine", "Digest food"],
-                    answer: 1,
-                    explanation: "The kidneys filter waste products from the blood to form urine.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Where are the kidneys located?",
-                    options: ["Pelvis", "Thoracic cavity", "Retroperitoneal space", "Cranial cavity"],
-                    answer: 2,
-                    explanation: "The kidneys are located in the retroperitoneal space of the abdomen.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "What is the outer region of the kidney called?",
-                    options: ["Medulla", "Cortex", "Pelvis", "Papilla"],
-                    answer: 1,
-                    explanation: "The cortex is the outer region of the kidney.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "What is the functional unit of the kidney?",
-                    options: ["Neuron", "Nephron", "Alveolus", "Osteon"],
-                    answer: 1,
-                    explanation: "The nephron is the functional unit of the kidney.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Which vessel brings blood to the kidney?",
-                    options: ["Renal artery", "Renal vein", "Aorta", "Inferior vena cava"],
-                    answer: 0,
-                    explanation: "The renal artery brings oxygenated blood to the kidney.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "What is the name of the funnel-shaped structure that collects urine in the kidney?",
-                    options: ["Calyx", "Papilla", "Renal pelvis", "Ureter"],
-                    answer: 2,
-                    explanation: "The renal pelvis collects urine before it passes into the ureter.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Which hormone regulates water reabsorption in the kidneys?",
-                    options: ["Insulin", "ADH (antidiuretic hormone)", "Aldosterone", "Cortisol"],
-                    answer: 1,
-                    explanation: "ADH increases water reabsorption in the kidneys.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "What tube carries urine from the kidney to the bladder?",
-                    options: ["Urethra", "Ureter", "Vas deferens", "Fallopian tube"],
-                    answer: 1,
-                    explanation: "The ureter carries urine from the kidney to the bladder.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Which side of the body is the left kidney located on?",
-                    options: ["Right", "Left", "Both", "Neither"],
-                    answer: 1,
-                    explanation: "The left kidney is on the left side of the body, behind the lower ribs.",
-                    difficulty: "easy",
-                    category: "kidneys"
-                  },
-                  // Medium
-                  {
-                    question: "What is the name of the capillary tuft inside the nephron?",
-                    options: ["Bowman's capsule", "Glomerulus", "Loop of Henle", "Distal tubule"],
-                    answer: 1,
-                    explanation: "The glomerulus is a capillary tuft where filtration begins in the nephron.",
-                    difficulty: "medium",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Which structure surrounds the glomerulus and collects the filtrate?",
-                    options: ["Loop of Henle", "Bowman's capsule", "Proximal tubule", "Collecting duct"],
-                    answer: 1,
-                    explanation: "Bowman's capsule surrounds the glomerulus and collects the filtrate.",
-                    difficulty: "medium",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Which hormone stimulates the kidneys to retain sodium and water?",
-                    options: ["Aldosterone", "ADH", "Insulin", "Glucagon"],
-                    answer: 0,
-                    explanation: "Aldosterone increases sodium and water reabsorption in the kidneys.",
-                    difficulty: "medium",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "What is the name of the loop that extends into the medulla and concentrates urine?",
-                    options: ["Loop of Henle", "Distal tubule", "Proximal tubule", "Collecting duct"],
-                    answer: 0,
-                    explanation: "The Loop of Henle extends into the medulla and concentrates urine.",
-                    difficulty: "medium",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Which vessel carries filtered blood away from the kidney?",
-                    options: ["Renal artery", "Renal vein", "Aorta", "Inferior vena cava"],
-                    answer: 1,
-                    explanation: "The renal vein carries filtered blood away from the kidney.",
-                    difficulty: "medium",
-                    category: "kidneys"
-                  },
-                  // Hard
-                  {
-                    question: "Which cells in the juxtaglomerular apparatus secrete renin?",
-                    options: ["Podocytes", "Macula densa", "Juxtaglomerular cells", "Mesangial cells"],
-                    answer: 2,
-                    explanation: "Juxtaglomerular cells secrete renin to regulate blood pressure.",
-                    difficulty: "hard",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "What is the name of the process by which substances are transported from the blood into the nephron tubule?",
-                    options: ["Filtration", "Reabsorption", "Secretion", "Excretion"],
-                    answer: 2,
-                    explanation: "Secretion is the process of moving substances from blood into the nephron tubule.",
-                    difficulty: "hard",
-                    category: "kidneys"
-                  },
-                  {
-                    question: "Which part of the nephron is responsible for most reabsorption of water and solutes?",
-                    options: ["Distal tubule", "Proximal tubule", "Loop of Henle", "Collecting duct"],
-                    answer: 1,
-                    explanation: "The proximal tubule reabsorbs most water and solutes from the filtrate.",
-                    difficulty: "hard",
-                    category: "kidneys"
-                  },
-              // --- Liver Anatomy Questions ---
-              {
-                question: "What is the largest internal organ in the human body?",
-                options: ["Heart", "Liver", "Lung", "Kidney"],
-                answer: 1,
-                explanation: "The liver is the largest internal organ in the human body.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "Which quadrant of the abdomen is the liver primarily located in?",
-                options: ["Left upper", "Right upper", "Right lower", "Left lower"],
-                answer: 1,
-                explanation: "The liver is primarily located in the right upper quadrant of the abdomen.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "What is the main function of the liver?",
-                options: ["Pump blood", "Produce bile", "Store urine", "Absorb nutrients"],
-                answer: 1,
-                explanation: "The liver produces bile, which helps digest fats.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "Which vessel brings nutrient-rich blood from the intestines to the liver?",
-                options: ["Hepatic artery", "Portal vein", "Inferior vena cava", "Aorta"],
-                answer: 1,
-                explanation: "The portal vein brings nutrient-rich blood from the intestines to the liver.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "What is the name of the functional cells of the liver?",
-                options: ["Nephrons", "Hepatocytes", "Alveoli", "Osteocytes"],
-                answer: 1,
-                explanation: "Hepatocytes are the main functional cells of the liver.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "Which structure stores bile produced by the liver?",
-                options: ["Gallbladder", "Pancreas", "Spleen", "Stomach"],
-                answer: 0,
-                explanation: "The gallbladder stores bile produced by the liver.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "How many lobes does the human liver have?",
-                options: ["2", "3", "4", "5"],
-                answer: 2,
-                explanation: "The human liver has four lobes: right, left, caudate, and quadrate.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "Which vitamin is primarily stored in the liver?",
-                options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin K"],
-                answer: 0,
-                explanation: "The liver stores large amounts of vitamin A.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "What is the name of the ligament that separates the right and left lobes of the liver?",
-                options: ["Round ligament", "Falciform ligament", "Coronary ligament", "Triangular ligament"],
-                answer: 1,
-                explanation: "The falciform ligament separates the right and left lobes of the liver.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              {
-                question: "Which duct carries bile from the liver to the gallbladder?",
-                options: ["Cystic duct", "Common bile duct", "Hepatic duct", "Pancreatic duct"],
-                answer: 2,
-                explanation: "The hepatic duct carries bile from the liver to the gallbladder.",
-                difficulty: "easy",
-                category: "liver"
-              },
-              // Medium
-              {
-                question: "Which enzyme is primarily produced by the liver for protein metabolism?",
-                options: ["Amylase", "Lipase", "Urease", "Trypsin"],
-                answer: 2,
-                explanation: "Urease is produced by the liver to help metabolize proteins and convert ammonia to urea.",
-                difficulty: "medium",
-                category: "liver"
-              },
-              {
-                question: "What is the name of the process by which the liver detoxifies harmful substances?",
-                options: ["Glycogenesis", "Gluconeogenesis", "Biotransformation", "Lipolysis"],
-                answer: 2,
-                explanation: "Biotransformation is the process by which the liver detoxifies substances.",
-                difficulty: "medium",
-                category: "liver"
-              },
-              {
-                question: "Which blood vessel drains blood from the liver into the inferior vena cava?",
-                options: ["Hepatic vein", "Portal vein", "Renal vein", "Splenic vein"],
-                answer: 0,
-                explanation: "The hepatic vein drains blood from the liver into the inferior vena cava.",
-                difficulty: "medium",
-                category: "liver"
-              },
-              {
-                question: "Which plasma protein is synthesized by the liver and is important for maintaining blood osmotic pressure?",
-                options: ["Hemoglobin", "Albumin", "Globulin", "Fibrinogen"],
-                answer: 1,
-                explanation: "Albumin is synthesized by the liver and maintains blood osmotic pressure.",
-                difficulty: "medium",
-                category: "liver"
-              },
-              {
-                question: "Which condition is characterized by yellowing of the skin due to liver dysfunction?",
-                options: ["Cirrhosis", "Jaundice", "Hepatitis", "Gallstones"],
-                answer: 1,
-                explanation: "Jaundice is yellowing of the skin and eyes due to buildup of bilirubin from liver dysfunction.",
-                difficulty: "medium",
-                category: "liver"
-              },
-              // Hard
-              {
-                question: "What is the name of the specialized capillaries in the liver?",
-                options: ["Glomeruli", "Sinusoids", "Vasa recta", "Lacteals"],
-                answer: 1,
-                explanation: "Sinusoids are specialized capillaries in the liver that allow exchange between blood and hepatocytes.",
-                difficulty: "hard",
-                category: "liver"
-              },
-              {
-                question: "Which cells in the liver are responsible for phagocytosis of bacteria and debris?",
-                options: ["Kupffer cells", "Hepatocytes", "Stellate cells", "Endothelial cells"],
-                answer: 0,
-                explanation: "Kupffer cells are specialized macrophages in the liver that perform phagocytosis.",
-                difficulty: "hard",
-                category: "liver"
-              },
-              {
-                question: "What is the anatomical term for the depression on the liver where the portal vein, hepatic artery, and bile duct enter or exit?",
-                options: ["Hilum", "Sinusoid", "Fossa", "Lobule"],
-                answer: 0,
-                explanation: "The hilum (porta hepatis) is the entry/exit site for vessels and ducts in the liver.",
-                difficulty: "hard",
-                category: "liver"
-              },
-          // --- Lungs Anatomy Questions ---
-          {
-            question: "How many lobes does the right lung have?",
-            options: ["2", "3", "4", "5"],
-            answer: 1,
-            explanation: "The right lung has three lobes: superior, middle, and inferior.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "What is the main muscle responsible for breathing?",
-            options: ["Diaphragm", "Intercostal muscles", "Rectus abdominis", "Pectoralis major"],
-            answer: 0,
-            explanation: "The diaphragm is the primary muscle of respiration.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "Which structure carries air from the larynx to the bronchi?",
-            options: ["Pharynx", "Trachea", "Esophagus", "Alveolus"],
-            answer: 1,
-            explanation: "The trachea (windpipe) carries air from the larynx to the bronchi.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "Where does gas exchange occur in the lungs?",
-            options: ["Bronchi", "Alveoli", "Trachea", "Pleura"],
-            answer: 1,
-            explanation: "Gas exchange occurs in the alveoli, tiny air sacs in the lungs.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "What is the name of the membrane that surrounds the lungs?",
-            options: ["Pericardium", "Pleura", "Peritoneum", "Meninges"],
-            answer: 1,
-            explanation: "The pleura is a double-layered membrane surrounding each lung.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "Which bronchus is wider and more vertical?",
-            options: ["Right bronchus", "Left bronchus", "Both are equal", "Neither"],
-            answer: 0,
-            explanation: "The right main bronchus is wider, shorter, and more vertical than the left.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "What is the function of surfactant in the lungs?",
-            options: ["Increase mucus", "Reduce surface tension", "Transport oxygen", "Protect from infection"],
-            answer: 1,
-            explanation: "Surfactant reduces surface tension in the alveoli, preventing collapse.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "Which blood vessels carry oxygenated blood from the lungs to the heart?",
-            options: ["Pulmonary arteries", "Pulmonary veins", "Aorta", "Bronchial arteries"],
-            answer: 1,
-            explanation: "Pulmonary veins carry oxygenated blood from the lungs to the left atrium.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "Which part of the respiratory tract is shared with the digestive system?",
-            options: ["Trachea", "Pharynx", "Bronchi", "Alveoli"],
-            answer: 1,
-            explanation: "The pharynx is shared by the respiratory and digestive systems.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          {
-            question: "What is the main function of the lungs?",
-            options: ["Digest food", "Exchange gases", "Pump blood", "Produce hormones"],
-            answer: 1,
-            explanation: "The lungs exchange oxygen and carbon dioxide between air and blood.",
-            difficulty: "easy",
-            category: "lungs"
-          },
-          // Medium
-          {
-            question: "Which structure divides the nasal cavity into two halves?",
-            options: ["Nasal septum", "Nasal conchae", "Hard palate", "Soft palate"],
-            answer: 0,
-            explanation: "The nasal septum divides the nasal cavity into right and left halves.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "What is the name of the small airways that lead directly to the alveoli?",
-            options: ["Bronchi", "Bronchioles", "Trachea", "Larynx"],
-            answer: 1,
-            explanation: "Bronchioles are small airways that lead to the alveoli.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "Which part of the brain controls the rate of breathing?",
-            options: ["Cerebrum", "Medulla oblongata", "Cerebellum", "Thalamus"],
-            answer: 1,
-            explanation: "The medulla oblongata controls the rate and depth of breathing.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "What is the volume of air inhaled or exhaled in a normal breath called?",
-            options: ["Residual volume", "Tidal volume", "Vital capacity", "Inspiratory reserve volume"],
-            answer: 1,
-            explanation: "Tidal volume is the amount of air inhaled or exhaled in a normal breath.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "Which cells in the alveoli are responsible for gas exchange?",
-            options: ["Type I pneumocytes", "Type II pneumocytes", "Macrophages", "Ciliated cells"],
-            answer: 0,
-            explanation: "Type I pneumocytes are thin cells that allow gas exchange in the alveoli.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "Which structure prevents food from entering the trachea during swallowing?",
-            options: ["Epiglottis", "Uvula", "Soft palate", "Tongue"],
-            answer: 0,
-            explanation: "The epiglottis covers the trachea during swallowing to prevent aspiration.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "What is the function of cilia in the respiratory tract?",
-            options: ["Produce mucus", "Move particles out", "Exchange gases", "Absorb oxygen"],
-            answer: 1,
-            explanation: "Cilia move mucus and trapped particles out of the respiratory tract.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "Which lung is smaller and why?",
-            options: ["Right, because of the liver", "Left, because of the heart", "Right, because of the heart", "Left, because of the liver"],
-            answer: 1,
-            explanation: "The left lung is smaller to accommodate the heart.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "Which structure is the site of the carina?",
-            options: ["At the bifurcation of the trachea", "At the larynx", "At the alveoli", "At the nasal cavity"],
-            answer: 0,
-            explanation: "The carina is the ridge at the bifurcation of the trachea into the main bronchi.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          {
-            question: "Which vessels supply the lung tissue itself with oxygenated blood?",
-            options: ["Pulmonary arteries", "Bronchial arteries", "Pulmonary veins", "Aorta"],
-            answer: 1,
-            explanation: "Bronchial arteries supply oxygenated blood to the lung tissue.",
-            difficulty: "medium",
-            category: "lungs"
-          },
-          // Hard
-          {
-            question: "Which type of cell produces surfactant in the alveoli?",
-            options: ["Type I pneumocytes", "Type II pneumocytes", "Macrophages", "Ciliated cells"],
-            answer: 1,
-            explanation: "Type II pneumocytes produce surfactant in the alveoli.",
-            difficulty: "hard",
-            category: "lungs"
-          },
-          {
-            question: "What is the anatomical term for the area where vessels and bronchi enter the lung?",
-            options: ["Apex", "Base", "Hilum", "Lobe"],
-            answer: 2,
-            explanation: "The hilum is the area where vessels, nerves, and bronchi enter the lung.",
-            difficulty: "hard",
-            category: "lungs"
-          },
-          {
-            question: "Which nerve provides the main motor supply to the diaphragm?",
-            options: ["Vagus nerve", "Phrenic nerve", "Intercostal nerve", "Recurrent laryngeal nerve"],
-            answer: 1,
-            explanation: "The phrenic nerve innervates the diaphragm.",
-            difficulty: "hard",
-            category: "lungs"
-          },
-          {
-            question: "Which condition is characterized by destruction of alveolar walls?",
-            options: ["Asthma", "Emphysema", "Bronchitis", "Pneumonia"],
-            answer: 1,
-            explanation: "Emphysema involves destruction of alveolar walls, reducing surface area for gas exchange.",
-            difficulty: "hard",
-            category: "lungs"
-          },
-          {
-            question: "Which structure is NOT part of the lower respiratory tract?",
-            options: ["Trachea", "Bronchi", "Larynx", "Alveoli"],
-            answer: 2,
-            explanation: "The larynx is part of the upper respiratory tract.",
-            difficulty: "hard",
-            category: "lungs"
-            },
-          // --- Brain Anatomy Questions ---
-      {
-        question: "Which part of the brain controls voluntary muscle movements?",
-        options: ["Cerebellum", "Medulla oblongata", "Cerebrum", "Pons"],
-        answer: 2,
-        explanation: "The cerebrum controls voluntary muscle movements, reasoning, and memory.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which lobe of the brain is responsible for vision?",
-        options: ["Frontal lobe", "Temporal lobe", "Parietal lobe", "Occipital lobe"],
-        answer: 3,
-        explanation: "The occipital lobe processes visual information.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which structure connects the two cerebral hemispheres?",
-        options: ["Corpus callosum", "Thalamus", "Hypothalamus", "Cerebellum"],
-        answer: 0,
-        explanation: "The corpus callosum is a bundle of nerve fibers connecting the left and right hemispheres.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which part of the brain regulates breathing and heart rate?",
-        options: ["Cerebellum", "Medulla oblongata", "Cerebrum", "Thalamus"],
-        answer: 1,
-        explanation: "The medulla oblongata controls vital functions like breathing and heart rate.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which lobe is primarily responsible for hearing and language?",
-        options: ["Frontal lobe", "Temporal lobe", "Parietal lobe", "Occipital lobe"],
-        answer: 1,
-        explanation: "The temporal lobe is involved in hearing and language comprehension.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which part of the brain coordinates balance and posture?",
-        options: ["Cerebellum", "Cerebrum", "Medulla", "Pons"],
-        answer: 0,
-        explanation: "The cerebellum coordinates balance, posture, and fine motor movements.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which structure acts as a relay station for sensory information?",
-        options: ["Thalamus", "Hypothalamus", "Pons", "Medulla"],
-        answer: 0,
-        explanation: "The thalamus relays sensory signals to the appropriate areas of the cerebrum.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which part of the brain controls body temperature and hunger?",
-        options: ["Thalamus", "Hypothalamus", "Cerebellum", "Medulla"],
-        answer: 1,
-        explanation: "The hypothalamus regulates body temperature, hunger, thirst, and other autonomic functions.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which lobe is responsible for reasoning, planning, and problem-solving?",
-        options: ["Frontal lobe", "Temporal lobe", "Parietal lobe", "Occipital lobe"],
-        answer: 0,
-        explanation: "The frontal lobe is involved in reasoning, planning, and problem-solving.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      {
-        question: "Which groove separates the frontal and parietal lobes?",
-        options: ["Central sulcus", "Lateral sulcus", "Longitudinal fissure", "Parieto-occipital sulcus"],
-        answer: 0,
-        explanation: "The central sulcus separates the frontal and parietal lobes.",
-        difficulty: "easy",
-        category: "brain"
-      },
-      // Medium
-      {
-        question: "Which area of the brain is responsible for speech production?",
-        options: ["Broca's area", "Wernicke's area", "Primary motor cortex", "Primary auditory cortex"],
-        answer: 0,
-        explanation: "Broca's area, in the frontal lobe, is responsible for speech production.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which area is responsible for understanding spoken and written language?",
-        options: ["Broca's area", "Wernicke's area", "Primary visual cortex", "Cerebellum"],
-        answer: 1,
-        explanation: "Wernicke's area, in the temporal lobe, is responsible for language comprehension.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which structure produces cerebrospinal fluid (CSF)?",
-        options: ["Choroid plexus", "Thalamus", "Pineal gland", "Pituitary gland"],
-        answer: 0,
-        explanation: "The choroid plexus, found in the ventricles, produces CSF.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which part of the brain is responsible for circadian rhythms?",
-        options: ["Pineal gland", "Pituitary gland", "Hypothalamus", "Thalamus"],
-        answer: 0,
-        explanation: "The pineal gland produces melatonin and regulates circadian rhythms.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which structure connects the brain to the spinal cord?",
-        options: ["Cerebellum", "Medulla oblongata", "Pons", "Thalamus"],
-        answer: 1,
-        explanation: "The medulla oblongata connects the brain to the spinal cord.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which ventricle is located between the two halves of the thalamus?",
-        options: ["Lateral ventricle", "Third ventricle", "Fourth ventricle", "Cerebral aqueduct"],
-        answer: 1,
-        explanation: "The third ventricle is located between the two halves of the thalamus.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which structure is responsible for the sense of smell?",
-        options: ["Optic nerve", "Olfactory bulb", "Trigeminal nerve", "Facial nerve"],
-        answer: 1,
-        explanation: "The olfactory bulb processes information about odors.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which part of the brain is most affected by alcohol?",
-        options: ["Cerebrum", "Cerebellum", "Medulla", "Thalamus"],
-        answer: 1,
-        explanation: "The cerebellum, which controls coordination and balance, is most affected by alcohol.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which structure regulates the pituitary gland?",
-        options: ["Thalamus", "Hypothalamus", "Pineal gland", "Cerebellum"],
-        answer: 1,
-        explanation: "The hypothalamus regulates the pituitary gland and many autonomic functions.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      {
-        question: "Which part of the brain is responsible for forming new memories?",
-        options: ["Amygdala", "Hippocampus", "Cerebellum", "Pons"],
-        answer: 1,
-        explanation: "The hippocampus is essential for forming new memories.",
-        difficulty: "medium",
-        category: "brain"
-      },
-      // Hard
-      {
-        question: "Which artery supplies most of the lateral surface of the cerebral hemisphere?",
-        options: ["Anterior cerebral artery", "Middle cerebral artery", "Posterior cerebral artery", "Basilar artery"],
-        answer: 1,
-        explanation: "The middle cerebral artery supplies most of the lateral surface of the cerebrum.",
-        difficulty: "hard",
-        category: "brain"
-      },
-      {
-        question: "Which structure is responsible for the blood-brain barrier?",
-        options: ["Astrocytes", "Microglia", "Oligodendrocytes", "Ependymal cells"],
-        answer: 0,
-        explanation: "Astrocytes help form the blood-brain barrier, protecting the brain from harmful substances.",
-        difficulty: "hard",
-        category: "brain"
-      },
-      {
-        question: "Which area of the brain is damaged in Parkinson's disease?",
-        options: ["Substantia nigra", "Hippocampus", "Amygdala", "Cerebellum"],
-        answer: 0,
-        explanation: "The substantia nigra, which produces dopamine, is damaged in Parkinson's disease.",
-        difficulty: "hard",
-        category: "brain"
-      },
-      {
-        question: "Which structure is involved in emotional responses and fear?",
-        options: ["Hippocampus", "Amygdala", "Thalamus", "Cerebellum"],
-        answer: 1,
-        explanation: "The amygdala is involved in processing emotions, especially fear.",
-        difficulty: "hard",
-        category: "brain"
-      },
-      {
-        question: "Which tract connects Broca's and Wernicke's areas?",
-        options: ["Corticospinal tract", "Arcuate fasciculus", "Spinothalamic tract", "Corpus callosum"],
-        answer: 1,
-        explanation: "The arcuate fasciculus connects Broca's and Wernicke's areas, important for language.",
-        difficulty: "hard",
-        category: "brain"
-      }
-    ];
-  function handleBack() {
-    if (current > 0) {
-      setCurrent((c) => c - 1);
-      setSelected(userAnswers[current - 1] !== undefined ? userAnswers[current - 1] : null);
-    }
-  }
-
 import React, { useState, useEffect, useRef } from "react";
 import logo from "./assets/logo.png";
-import { teasQuestions, harderTeasQuestions } from "./teasQuestions";
-
+import { teasQuestions } from "./teasQuestions";
+import AnatomyQuiz from "./AnatomyQuiz";
 // --- SOUND EFFECTS ---
 const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
 const wrongSound = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
-
 // --- HELPERS ---
 function shuffleArray(array) {
   const copy = [...array];
@@ -1248,1130 +14,6 @@ function shuffleArray(array) {
   }
   return copy;
 }
-
-// --- SKELETAL ANATOMY QUIZ COMPONENT ---
-function SkeletalAnatomyQuiz() {
-  const allQuestions = [
-    // --- Heart Anatomy Questions ---
-    {
-      question: "Which chamber of the heart receives oxygen-poor blood from the body?",
-      options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
-      answer: 1,
-      explanation: "The right atrium receives deoxygenated blood from the body via the superior and inferior vena cava.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which valve is located between the left atrium and left ventricle?",
-      options: ["Tricuspid valve", "Pulmonary valve", "Mitral (bicuspid) valve", "Aortic valve"],
-      answer: 2,
-      explanation: "The mitral (bicuspid) valve separates the left atrium and left ventricle.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which vessel carries oxygenated blood from the lungs to the heart?",
-      options: ["Pulmonary artery", "Pulmonary vein", "Aorta", "Superior vena cava"],
-      answer: 1,
-      explanation: "The pulmonary veins carry oxygenated blood from the lungs to the left atrium.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which chamber of the heart pumps blood into the pulmonary circulation?",
-      options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
-      answer: 3,
-      explanation: "The right ventricle pumps blood into the pulmonary artery toward the lungs.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "What is the largest artery in the body?",
-      options: ["Pulmonary artery", "Aorta", "Carotid artery", "Coronary artery"],
-      answer: 1,
-      explanation: "The aorta is the largest artery, carrying blood from the left ventricle to the body.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which structure prevents backflow of blood into the right atrium?",
-      options: ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"],
-      answer: 1,
-      explanation: "The tricuspid valve prevents backflow into the right atrium.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which node is known as the heart's natural pacemaker?",
-      options: ["AV node", "SA node", "Bundle of His", "Purkinje fibers"],
-      answer: 1,
-      explanation: "The sinoatrial (SA) node initiates the electrical impulses that set the heart rate.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which vessel returns blood from the lower body to the heart?",
-      options: ["Superior vena cava", "Inferior vena cava", "Pulmonary vein", "Aorta"],
-      answer: 1,
-      explanation: "The inferior vena cava returns blood from the lower body to the right atrium.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which layer of the heart is responsible for contraction?",
-      options: ["Endocardium", "Epicardium", "Myocardium", "Pericardium"],
-      answer: 2,
-      explanation: "The myocardium is the muscular layer responsible for contraction.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    {
-      question: "Which artery supplies blood to the heart muscle itself?",
-      options: ["Carotid artery", "Coronary artery", "Aorta", "Pulmonary artery"],
-      answer: 1,
-      explanation: "The coronary arteries supply blood to the myocardium.",
-      difficulty: "easy",
-      category: "heart"
-    },
-    // Medium
-    {
-      question: "Which structure electrically connects the atria and ventricles?",
-      options: ["SA node", "AV node", "Purkinje fibers", "Chordae tendineae"],
-      answer: 1,
-      explanation: "The AV node is the only normal electrical connection between atria and ventricles.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "What is the function of the chordae tendineae?",
-      options: ["Conduct electrical impulses", "Anchor heart valves", "Supply blood to the heart", "Separate atria and ventricles"],
-      answer: 1,
-      explanation: "The chordae tendineae anchor the valve leaflets to papillary muscles, preventing valve prolapse.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which heart valve opens during ventricular systole to allow blood into the aorta?",
-      options: ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"],
-      answer: 2,
-      explanation: "The aortic valve opens during left ventricular contraction (systole).",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which part of the heart forms the apex?",
-      options: ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"],
-      answer: 3,
-      explanation: "The apex of the heart is formed by the tip of the left ventricle.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which structure separates the right and left ventricles?",
-      options: ["Interatrial septum", "Interventricular septum", "Chordae tendineae", "Papillary muscles"],
-      answer: 1,
-      explanation: "The interventricular septum separates the right and left ventricles.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which vein drains blood from the heart muscle into the right atrium?",
-      options: ["Great cardiac vein", "Coronary sinus", "Inferior vena cava", "Pulmonary vein"],
-      answer: 1,
-      explanation: "The coronary sinus collects blood from the cardiac veins and drains into the right atrium.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which part of the conduction system distributes impulses to the ventricular walls?",
-      options: ["SA node", "AV node", "Bundle of His", "Purkinje fibers"],
-      answer: 3,
-      explanation: "The Purkinje fibers rapidly conduct impulses throughout the ventricles.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which valve prevents backflow from the pulmonary artery into the right ventricle?",
-      options: ["Aortic valve", "Mitral valve", "Pulmonary valve", "Tricuspid valve"],
-      answer: 2,
-      explanation: "The pulmonary valve prevents backflow into the right ventricle.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which structure surrounds and protects the heart?",
-      options: ["Endocardium", "Epicardium", "Pericardium", "Myocardium"],
-      answer: 2,
-      explanation: "The pericardium is a double-walled sac that encloses the heart.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    {
-      question: "Which chamber has the thickest wall?",
-      options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
-      answer: 2,
-      explanation: "The left ventricle has the thickest wall to pump blood throughout the body.",
-      difficulty: "medium",
-      category: "heart"
-    },
-    // Hard
-    {
-      question: "Which structure delays the electrical impulse before it passes to the ventricles?",
-      options: ["SA node", "AV node", "Bundle of His", "Purkinje fibers"],
-      answer: 1,
-      explanation: "The AV node delays the impulse, allowing the atria to contract before the ventricles.",
-      difficulty: "hard",
-      category: "heart"
-    },
-    {
-      question: "Which artery supplies the interventricular septum?",
-      options: ["Right coronary artery", "Left anterior descending artery", "Circumflex artery", "Posterior descending artery"],
-      answer: 1,
-      explanation: "The left anterior descending (LAD) artery supplies the interventricular septum.",
-      difficulty: "hard",
-      category: "heart"
-    },
-    {
-      question: "Which structure anchors the heart to the diaphragm?",
-      options: ["Epicardium", "Fibrous pericardium", "Chordae tendineae", "Papillary muscles"],
-      answer: 1,
-      explanation: "The fibrous pericardium anchors the heart to the diaphragm and great vessels.",
-      difficulty: "hard",
-      category: "heart"
-    },
-    {
-      question: "Which valve is most commonly affected in rheumatic heart disease?",
-      options: ["Aortic valve", "Mitral valve", "Tricuspid valve", "Pulmonary valve"],
-      answer: 1,
-      explanation: "The mitral valve is most commonly affected in rheumatic heart disease.",
-      difficulty: "hard",
-      category: "heart"
-    },
-    {
-      question: "Which structure is responsible for the 'lub' sound of the heartbeat?",
-      options: ["Closure of semilunar valves", "Opening of AV valves", "Closure of AV valves", "Opening of semilunar valves"],
-      answer: 2,
-      explanation: "The 'lub' (first heart sound) is caused by closure of the AV valves (mitral and tricuspid).",
-      difficulty: "hard",
-      category: "heart"
-    },
-
-    // --- Additional Easy Questions ---
-    // --- Muscular Anatomy Questions: Easy ---
-    {
-      question: "Which muscle is known as the calf muscle?",
-      options: ["Gastrocnemius", "Biceps brachii", "Deltoid", "Trapezius"],
-      answer: 0,
-      explanation: "The gastrocnemius is commonly called the calf muscle.",
-      difficulty: "easy",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is found in the upper arm and is responsible for flexing the elbow?",
-      options: ["Triceps brachii", "Biceps brachii", "Quadriceps", "Latissimus dorsi"],
-      answer: 1,
-      explanation: "The biceps brachii flexes the elbow.",
-      difficulty: "easy",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is located in the chest?",
-      options: ["Pectoralis major", "Gluteus maximus", "Rectus femoris", "Sartorius"],
-      answer: 0,
-      explanation: "The pectoralis major is the large chest muscle.",
-      difficulty: "easy",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is responsible for closing the jaw?",
-      options: ["Masseter", "Sternocleidomastoid", "Trapezius", "Orbicularis oculi"],
-      answer: 0,
-      explanation: "The masseter is the main muscle for closing the jaw.",
-      difficulty: "easy",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle forms the buttocks?",
-      options: ["Gluteus maximus", "Rectus abdominis", "Biceps femoris", "Pectoralis minor"],
-      answer: 0,
-      explanation: "The gluteus maximus forms the bulk of the buttocks.",
-      difficulty: "easy",
-      category: "muscular"
-    },
-    // --- Muscular Anatomy Questions: Medium ---
-    {
-      question: "Which muscle group is responsible for extending the knee?",
-      options: ["Hamstrings", "Quadriceps", "Adductors", "Gastrocnemius"],
-      answer: 1,
-      explanation: "The quadriceps extend the knee.",
-      difficulty: "medium",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is the primary muscle used in breathing?",
-      options: ["Diaphragm", "Rectus abdominis", "Latissimus dorsi", "Obliques"],
-      answer: 0,
-      explanation: "The diaphragm is the main muscle for breathing.",
-      difficulty: "medium",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle abducts the arm at the shoulder?",
-      options: ["Deltoid", "Trapezius", "Pectoralis major", "Biceps brachii"],
-      answer: 0,
-      explanation: "The deltoid abducts the arm at the shoulder.",
-      difficulty: "medium",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is located on the front of the thigh?",
-      options: ["Biceps femoris", "Rectus femoris", "Soleus", "Tibialis anterior"],
-      answer: 1,
-      explanation: "The rectus femoris is one of the quadriceps muscles on the front of the thigh.",
-      difficulty: "medium",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is responsible for plantar flexion of the foot?",
-      options: ["Tibialis anterior", "Gastrocnemius", "Sartorius", "Gracilis"],
-      answer: 1,
-      explanation: "The gastrocnemius is a major plantar flexor of the foot.",
-      difficulty: "medium",
-      category: "muscular"
-    },
-    // --- Muscular Anatomy Questions: Hard ---
-    {
-      question: "Which muscle inserts on the olecranon process of the ulna?",
-      options: ["Biceps brachii", "Triceps brachii", "Brachialis", "Pronator teres"],
-      answer: 1,
-      explanation: "The triceps brachii inserts on the olecranon process.",
-      difficulty: "hard",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is innervated by the long thoracic nerve?",
-      options: ["Serratus anterior", "Latissimus dorsi", "Pectoralis minor", "Trapezius"],
-      answer: 0,
-      explanation: "The serratus anterior is innervated by the long thoracic nerve.",
-      difficulty: "hard",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is the antagonist to the biceps brachii during elbow flexion?",
-      options: ["Triceps brachii", "Brachialis", "Deltoid", "Supinator"],
-      answer: 0,
-      explanation: "The triceps brachii is the antagonist to the biceps during elbow flexion.",
-      difficulty: "hard",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle forms the medial border of the femoral triangle?",
-      options: ["Sartorius", "Adductor longus", "Gracilis", "Rectus femoris"],
-      answer: 1,
-      explanation: "The adductor longus forms the medial border of the femoral triangle.",
-      difficulty: "hard",
-      category: "muscular"
-    },
-    {
-      question: "Which muscle is responsible for the \"winged scapula\" if paralyzed?",
-      options: ["Serratus anterior", "Trapezius", "Levator scapulae", "Rhomboid major"],
-      answer: 0,
-      explanation: "Paralysis of the serratus anterior causes winged scapula.",
-      difficulty: "hard",
-      category: "muscular"
-    },
-    {
-      question: "Which bone is commonly called the shoulder blade?",
-      options: ["Scapula", "Clavicle", "Sternum", "Humerus"],
-      answer: 0,
-      explanation: "The scapula is also known as the shoulder blade.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bones form the fingers?",
-      options: ["Carpals", "Metacarpals", "Phalanges", "Tarsals"],
-      answer: 2,
-      explanation: "The phalanges are the bones of the fingers and toes.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is found in the thigh?",
-      options: ["Femur", "Tibia", "Fibula", "Patella"],
-      answer: 0,
-      explanation: "The femur is the thigh bone.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is NOT found in the foot?",
-      options: ["Tarsal", "Metatarsal", "Phalange", "Radius"],
-      answer: 3,
-      explanation: "The radius is found in the forearm, not the foot.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone protects the heart and lungs?",
-      options: ["Sternum", "Femur", "Mandible", "Scapula"],
-      answer: 0,
-      explanation: "The sternum, along with the rib cage, protects the heart and lungs.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    // --- Additional Medium Questions ---
-    {
-      question: "Which bone is located between the hip and the knee?",
-      options: ["Femur", "Tibia", "Fibula", "Patella"],
-      answer: 0,
-      explanation: "The femur is the bone between the hip and the knee.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone forms the upper part of the nasal septum?",
-      options: ["Vomer", "Ethmoid", "Maxilla", "Palatine"],
-      answer: 1,
-      explanation: "The perpendicular plate of the ethmoid bone forms the upper part of the nasal septum.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is NOT part of the cranium?",
-      options: ["Temporal", "Parietal", "Mandible", "Occipital"],
-      answer: 2,
-      explanation: "The mandible is the lower jaw and not part of the cranium.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is directly inferior to the lumbar vertebrae?",
-      options: ["Sacrum", "Coccyx", "Ilium", "Femur"],
-      answer: 0,
-      explanation: "The sacrum is directly below the lumbar vertebrae.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is NOT paired in the adult human skull?",
-      options: ["Parietal", "Temporal", "Frontal", "Zygomatic"],
-      answer: 2,
-      explanation: "The frontal bone is a single (unpaired) bone in the adult skull.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    // --- Additional Hard Questions ---
-    {
-      question: "Which bone contains the cribriform plate?",
-      options: ["Ethmoid", "Sphenoid", "Temporal", "Occipital"],
-      answer: 0,
-      explanation: "The ethmoid bone contains the cribriform plate, which transmits olfactory nerves.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone forms the anterior portion of the hard palate?",
-      options: ["Maxilla", "Palatine", "Vomer", "Mandible"],
-      answer: 0,
-      explanation: "The maxilla forms the anterior part of the hard palate.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone articulates with the occipital condyles?",
-      options: ["Atlas (C1)", "Axis (C2)", "Mandible", "Sphenoid"],
-      answer: 0,
-      explanation: "The atlas (C1 vertebra) articulates with the occipital condyles of the skull.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone contains the sella turcica?",
-      options: ["Sphenoid", "Ethmoid", "Temporal", "Occipital"],
-      answer: 0,
-      explanation: "The sella turcica, which houses the pituitary gland, is part of the sphenoid bone.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is the only bone in the body that does not articulate with any other bone?",
-      options: ["Hyoid", "Vomer", "Lacrimal", "Stapes"],
-      answer: 0,
-      explanation: "The hyoid bone does not articulate with any other bone in the body.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    // Easy
-    {
-      question: "Which bone is known as the collarbone?",
-      options: ["Scapula", "Clavicle", "Sternum", "Humerus"],
-      answer: 1,
-      explanation: "The clavicle is commonly called the collarbone.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "What is the largest bone in the human body?",
-      options: ["Femur", "Tibia", "Fibula", "Humerus"],
-      answer: 0,
-      explanation: "The femur (thigh bone) is the largest bone in the body.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which part of the skeleton protects the brain?",
-      options: ["Rib cage", "Pelvis", "Skull", "Vertebral column"],
-      answer: 2,
-      explanation: "The skull encases and protects the brain.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "How many cervical vertebrae are there?",
-      options: ["5", "7", "12", "8"],
-      answer: 1,
-      explanation: "There are 7 cervical vertebrae in the neck.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone forms the lower jaw?",
-      options: ["Maxilla", "Mandible", "Zygomatic", "Temporal"],
-      answer: 1,
-      explanation: "The mandible is the lower jaw bone.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is commonly referred to as the kneecap?",
-      options: ["Patella", "Tibia", "Fibula", "Femur"],
-      answer: 0,
-      explanation: "The patella is the kneecap.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "How many ribs does a typical human have?",
-      options: ["10", "12", "14", "24"],
-      answer: 1,
-      explanation: "Most humans have 12 pairs of ribs (24 total).",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is found in the upper arm?",
-      options: ["Radius", "Ulna", "Humerus", "Scapula"],
-      answer: 2,
-      explanation: "The humerus is the bone of the upper arm.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "How many bones are in the adult human skeleton?",
-      options: ["206", "210", "201", "208"],
-      answer: 0,
-      explanation: "There are 206 bones in the adult human skeleton.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is also known as the breastbone?",
-      options: ["Sternum", "Clavicle", "Scapula", "Mandible"],
-      answer: 0,
-      explanation: "The sternum is the breastbone.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    // Medium
-    {
-      question: "Which bone is NOT part of the arm?",
-      options: ["Radius", "Ulna", "Femur", "Humerus"],
-      answer: 2,
-      explanation: "The femur is in the leg, not the arm.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "What is the name of the bone that forms the forehead?",
-      options: ["Parietal", "Frontal", "Temporal", "Occipital"],
-      answer: 1,
-      explanation: "The frontal bone forms the forehead.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bones make up the wrist?",
-      options: ["Carpals", "Tarsals", "Metacarpals", "Phalanges"],
-      answer: 0,
-      explanation: "The wrist is made up of the carpal bones.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is NOT part of the axial skeleton?",
-      options: ["Skull", "Rib cage", "Femur", "Vertebral column"],
-      answer: 2,
-      explanation: "The femur is part of the appendicular skeleton.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "What is the heel bone called?",
-      options: ["Talus", "Calcaneus", "Navicular", "Cuboid"],
-      answer: 1,
-      explanation: "The calcaneus is the heel bone.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is the most commonly fractured in the body?",
-      options: ["Clavicle", "Radius", "Femur", "Scapula"],
-      answer: 0,
-      explanation: "The clavicle is the most commonly fractured bone.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone forms the base of the skull and contains the foramen magnum?",
-      options: ["Temporal", "Occipital", "Parietal", "Sphenoid"],
-      answer: 1,
-      explanation: "The occipital bone contains the foramen magnum.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is NOT part of the leg?",
-      options: ["Tibia", "Fibula", "Femur", "Ulna"],
-      answer: 3,
-      explanation: "The ulna is in the forearm, not the leg.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "How many thoracic vertebrae are there?",
-      options: ["5", "7", "12", "8"],
-      answer: 2,
-      explanation: "There are 12 thoracic vertebrae.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is the longest in the forearm?",
-      options: ["Ulna", "Radius", "Humerus", "Scapula"],
-      answer: 0,
-      explanation: "The ulna is the longer of the two forearm bones.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    // Hard
-    {
-      question: "Which bone forms the prominent part of the cheek?",
-      options: ["Maxilla", "Zygomatic", "Temporal", "Mandible"],
-      answer: 1,
-      explanation: "The zygomatic bone forms the cheek prominence.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is the main weight-bearing bone of the lower leg?",
-      options: ["Fibula", "Tibia", "Femur", "Patella"],
-      answer: 1,
-      explanation: "The tibia is the main weight-bearing bone of the lower leg.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is NOT part of the pelvis?",
-      options: ["Ilium", "Ischium", "Pubis", "Scapula"],
-      answer: 3,
-      explanation: "The scapula is part of the shoulder, not the pelvis.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is located at the back and base of the skull?",
-      options: ["Frontal", "Occipital", "Temporal", "Parietal"],
-      answer: 1,
-      explanation: "The occipital bone is at the back and base of the skull.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is the smallest in the human body?",
-      options: ["Stapes", "Malleus", "Incus", "Lacrimal"],
-      answer: 0,
-      explanation: "The stapes (in the ear) is the smallest bone.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    // More questions for all levels (examples)
-    {
-      question: "Which bone articulates with the acetabulum?",
-      options: ["Femur", "Tibia", "Fibula", "Humerus"],
-      answer: 0,
-      explanation: "The femur articulates with the acetabulum of the pelvis.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is known as the shin bone?",
-      options: ["Tibia", "Fibula", "Femur", "Patella"],
-      answer: 0,
-      explanation: "The tibia is commonly called the shin bone.",
-      difficulty: "easy",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone forms the roof of the mouth?",
-      options: ["Maxilla", "Palatine", "Mandible", "Vomer"],
-      answer: 1,
-      explanation: "The palatine bone forms the posterior part of the hard palate.",
-      difficulty: "hard",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone is directly lateral to the ulna in the anatomical position?",
-      options: ["Radius", "Humerus", "Scapula", "Clavicle"],
-      answer: 0,
-      explanation: "The radius is lateral to the ulna in anatomical position.",
-      difficulty: "medium",
-      category: "skeletal"
-    },
-    {
-      question: "Which bone contains the glenoid cavity?",
-      options: ["Scapula", "Clavicle", "Humerus", "Sternum"],
-      answer: 0,
-      explanation: "The scapula contains the glenoid cavity for the humerus.",
-      difficulty: "hard",
-      category: "skeletal"
-    }
-  ];
-
-  // Category, difficulty selection and shuffle
-  const [categorySelection, setCategorySelection] = React.useState([]); // array of selected categories
-  const [difficulty, setDifficulty] = React.useState(null);
-  const [questions, setQuestions] = React.useState([]);
-  const [current, setCurrent] = React.useState(0);
-  const [selected, setSelected] = React.useState(null);
-  const [score, setScore] = React.useState(0);
-  const [showResult, setShowResult] = React.useState(false);
-  const [reviewMode, setReviewMode] = React.useState(false);
-  const [userAnswers, setUserAnswers] = React.useState([]);
-
-  // Shuffle helper
-  function shuffle(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
-  // Start quiz with selected categories and difficulty
-  function startQuiz(selectedDifficulty) {
-    setDifficulty(selectedDifficulty);
-    const filtered = allQuestions.filter(q =>
-      (selectedDifficulty === 'all' ? true : q.difficulty === selectedDifficulty) &&
-      (categorySelection.length === 0 ? true : categorySelection.includes(q.category))
-    );
-    setQuestions(shuffle(filtered));
-    setCurrent(0);
-    setSelected(null);
-    setScore(0);
-    setShowResult(false);
-    setReviewMode(false);
-    setUserAnswers([]);
-  }
-
-  // Step 1: Category selection
-  let allCategories = Array.from(new Set(allQuestions.map(q => q.category)));
-  if (!allCategories.includes("venous system")) {
-    allCategories.push("venous system");
-  }
-  allCategories = allCategories.sort();
-  if (categorySelection.length === 0) {
-    return (
-      <div style={{
-        background: "#fff",
-        borderRadius: 18,
-        padding: "clamp(16px, 4vw, 48px)",
-        maxWidth: "clamp(340px, 90vw, 800px)",
-        margin: "0 auto",
-        textAlign: "center",
-        boxSizing: "border-box",
-        width: "100%",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center"
-      }}>
-        <h2 style={{ color: "#12355b", marginBottom: 18 }}>Anatomy Quiz</h2>
-        <div style={{ fontWeight: 600, marginBottom: 18 }}>Choose categories:</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
-          {allCategories.map(cat => (
-            <label key={cat} style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 600, cursor: "pointer" }}>
-              <input type="checkbox" onChange={e => {
-                if (e.target.checked) {
-                  setCategorySelection(prev => [...prev, cat]);
-                } else {
-                  setCategorySelection(prev => prev.filter(c => c !== cat));
-                }
-              }} />
-              {/* Improve display name for category */}
-              {cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-            </label>
-          ))}
-        </div>
-        <button
-          onClick={() => setCategorySelection([...allCategories])}
-          style={{ marginBottom: 10, padding: "8px 0", borderRadius: 8, border: "none", background: "#f1f5f9", color: "#334155", fontWeight: 700, fontSize: 16, cursor: "pointer", width: "100%" }}
-        >
-          Select All
-        </button>
-        <button
-          onClick={() => setCategorySelection([allCategories[0]])}
-          style={{ padding: "8px 0", borderRadius: 8, border: "none", background: "#e0f2fe", color: "#0369a1", fontWeight: 700, fontSize: 16, cursor: "pointer", width: "100%" }}
-        >
-          Start with {allCategories[0].replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Only
-        </button>
-      </div>
-    );
-  }
-
-  // Step 2: Difficulty selection
-  if (!difficulty) {
-    return (
-      <div style={{
-        background: "#fff",
-        borderRadius: 18,
-        padding: "clamp(16px, 4vw, 48px)",
-        maxWidth: "clamp(340px, 90vw, 800px)",
-        margin: "0 auto",
-        textAlign: "center",
-        boxSizing: "border-box",
-        width: "100%",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center"
-      }}>
-        <h2 style={{ color: "#12355b", marginBottom: 18 }}>Anatomy Quiz</h2>
-        <div style={{ fontWeight: 600, marginBottom: 18 }}>Choose difficulty:</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <button onClick={() => startQuiz('easy')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#e0f2fe", color: "#0369a1", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Easy</button>
-          <button onClick={() => startQuiz('medium')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#fef9c3", color: "#b45309", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Medium</button>
-          <button onClick={() => startQuiz('hard')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#fee2e2", color: "#b91c1c", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Hard</button>
-          <button onClick={() => startQuiz('all')} style={{ padding: "12px 0", borderRadius: 8, border: "none", background: "#f1f5f9", color: "#334155", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>All Levels (Mixed)</button>
-        </div>
-      </div>
-    );
-  }
-
-  function handleSelect(optionIdx) {
-    if (selected !== null) return;
-    setSelected(optionIdx);
-    setUserAnswers((prev) => {
-      const updated = [...prev];
-      updated[current] = optionIdx;
-      return updated;
-    });
-    if (optionIdx === questions[current].answer) {
-      setScore((s) => s + 1);
-    }
-  }
-
-  function handleNext() {
-    if (current + 1 === questions.length) {
-      setShowResult(true);
-    } else {
-      setCurrent((c) => c + 1);
-      setSelected(null);
-    }
-  }
-
-  if (showResult) {
-    if (reviewMode) {
-      // Review screen: show all questions, user's answer, correct answer, and explanation
-      return (
-        <div style={{
-          background: "rgba(255,255,255,0.97)",
-          borderRadius: 24,
-          padding: 28,
-          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-          maxWidth: 620,
-          margin: "0 auto",
-          textAlign: "left"
-        }}>
-          <h2 style={{ color: "#12355b", marginBottom: 8 }}>Review Your Answers</h2>
-          <div style={{ marginBottom: 18, color: "#1e293b", fontWeight: 600 }}>
-            Your score: {score} / {questions.length}
-          </div>
-          <div>
-            {questions.map((q, idx) => {
-              const userAns = userAnswers[idx];
-              const isCorrect = userAns === q.answer;
-              return (
-                <div key={idx} style={{
-                  marginBottom: 18,
-                  padding: 16,
-                  borderRadius: 12,
-                  background: isCorrect ? "#f0fdf4" : "#fef2f2",
-                  border: isCorrect ? "1px solid #22c55e" : "1px solid #ef4444"
-                }}>
-                  <div style={{ fontWeight: 700, color: "#12355b" }}>
-                    Q{idx + 1}: {q.question}
-                  </div>
-                  <div style={{ marginTop: 6 }}>
-                    <span style={{ fontWeight: 600 }}>Your answer: </span>
-                    {userAns !== undefined ? (
-                      <span style={{ color: isCorrect ? "#16a34a" : "#dc2626", fontWeight: 600 }}>
-                        {userAns !== null ? String.fromCharCode(65 + userAns) + ". " + q.options[userAns] : "No answer"}
-                      </span>
-                    ) : <span style={{ color: "#64748b" }}>No answer</span>}
-                  </div>
-                  {!isCorrect && (
-                    <div style={{ marginTop: 2 }}>
-                      <span style={{ fontWeight: 600 }}>Correct answer: </span>
-                      <span style={{ color: "#166534", fontWeight: 600 }}>
-                        {String.fromCharCode(65 + q.answer)}. {q.options[q.answer]}
-                      </span>
-                    </div>
-                  )}
-                  <div style={{ marginTop: 6, color: "#334155", fontStyle: "italic" }}>
-                    <span style={{ fontWeight: 600 }}>Explanation: </span>{q.explanation}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
-            <button
-              onClick={() => {
-                setDifficulty(null);
-                setQuestions([]);
-                setCurrent(0);
-                setSelected(null);
-                setScore(0);
-                setShowResult(false);
-                setReviewMode(false);
-                setUserAnswers([]);
-              }}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 999,
-                border: "none",
-                background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                color: "white",
-                fontWeight: 700,
-                cursor: "pointer"
-              }}
-            >
-              Restart / Choose Level
-            </button>
-          </div>
-        </div>
-      );
-    }
-    // Result screen with option to review
-    const percent = Math.round((score / questions.length) * 100);
-    const passed = percent >= 70;
-    return (
-      <div style={{
-        background: "rgba(255,255,255,0.9)",
-        borderRadius: 24,
-        padding: 28,
-        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-        maxWidth: 520,
-        margin: "0 auto",
-        textAlign: "center"
-      }}>
-        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Anatomy Quiz Complete</h2>
-        <p style={{ fontSize: 20, color: "#1e293b", marginBottom: 4 }}>
-          Your score: {score} / {questions.length}
-        </p>
-        <div style={{ fontSize: 18, color: passed ? "#166534" : "#b91c1c", fontWeight: 700, marginBottom: 8 }}>
-          Percentage: {percent}% ({passed ? "Passing" : "Not Passing"})
-        </div>
-        <div style={{ marginTop: 12, padding: "12px 14px", borderRadius: 12, background: passed ? "#dcfce7" : "#fee2e2", border: passed ? "1px solid #22c55e" : "1px solid #ef4444", color: passed ? "#166534" : "#b91c1c", fontWeight: 700, maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
-          {passed ? "Great job! You passed." : "Try again to reach a passing score (70%)."}
-        </div>
-        <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
-          <button
-            onClick={() => {
-              setReviewMode(true);
-            }}
-            style={{
-              padding: "12px 24px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #1d6fa5, #12355b)",
-              color: "white",
-              fontWeight: 700,
-              cursor: "pointer"
-            }}
-          >
-            Review Answers
-          </button>
-          <button
-            onClick={() => {
-              // Retry missed questions logic
-              const missedQuestions = questions.filter((q, idx) => userAnswers[idx] !== q.answer);
-              setQuestions(missedQuestions);
-              setCurrent(0);
-              setSelected(null);
-              setScore(0);
-              setShowResult(false);
-              setReviewMode(false);
-              setUserAnswers([]);
-            }}
-            style={{
-              padding: "12px 24px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #fbbf24, #f59e42)",
-              color: "#1e293b",
-              fontWeight: 700,
-              cursor: "pointer"
-            }}
-            disabled={questions.filter((q, idx) => userAnswers[idx] !== q.answer).length === 0}
-          >
-            Retry Missed Questions
-          </button>
-          <button
-            onClick={() => {
-              setDifficulty(null);
-              setQuestions([]);
-              setCurrent(0);
-              setSelected(null);
-              setScore(0);
-              setShowResult(false);
-              setReviewMode(false);
-              setUserAnswers([]);
-            }}
-            style={{
-              padding: "12px 24px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #dc2626, #ef4444)",
-              color: "white",
-              fontWeight: 700,
-              cursor: "pointer"
-            }}
-          >
-            Restart / Choose Level
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  const q = questions[current];
-  return (
-    <div style={{
-      background: "rgba(255,255,255,0.9)",
-      borderRadius: 24,
-      padding: "clamp(16px, 4vw, 48px)",
-      boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-      maxWidth: "clamp(340px, 90vw, 800px)",
-      margin: "8px auto 0 auto",
-      boxSizing: "border-box",
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start"
-    }}>
-      <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
-        <div style={{ background: "#eef4ff", borderRadius: 12, padding: "8px 16px", fontWeight: 700, color: "#12355b" }}>
-          Question {current + 1} / {questions.length}
-        </div>
-        <div style={{ background: "#eef4ff", borderRadius: 12, padding: "8px 16px", fontWeight: 700, color: "#12355b" }}>
-          Score: {score}
-        </div>
-      </div>
-      <div style={{ fontWeight: 700, fontSize: 18, marginBottom: 18, color: "#12355b" }}>{q.question}</div>
-      {q.options.map((opt, i) => {
-        const isCorrect = selected !== null && i === q.answer;
-        const isWrong = selected === i && selected !== q.answer;
-        return (
-          <button
-            key={i}
-            onClick={() => handleSelect(i)}
-            disabled={selected !== null}
-            style={{
-              width: "100%",
-              textAlign: "left",
-              padding: "14px 16px",
-              marginBottom: 12,
-              borderRadius: 12,
-              border: isCorrect ? "2px solid green" : isWrong ? "2px solid red" : "1px solid #cbd5e1",
-              background: isCorrect ? "#d9f7d9" : isWrong ? "#fee2e2" : "#f8fafc",
-              color: "#1e293b",
-              fontWeight: 600,
-              cursor: selected !== null ? "default" : "pointer",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
-            }}
-          >
-            {String.fromCharCode(65 + i)}. {opt}
-          </button>
-        );
-      })}
-      <div style={{ textAlign: "center", marginTop: 20, display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
-        <button
-          onClick={() => {
-            setCategorySelection([]);
-            setDifficulty(null);
-          }}
-          style={{
-            padding: "12px 24px",
-            borderRadius: 999,
-            border: "none",
-            background: "linear-gradient(135deg, #f1f5f9, #e0e7ef)",
-            color: "#334155",
-            fontWeight: 700,
-            cursor: "pointer"
-          }}
-        >
-          Back to Anatomy Quiz
-        </button>
-        <button
-          onClick={handleBack}
-          disabled={current === 0}
-          style={{
-            padding: "12px 24px",
-            borderRadius: 999,
-            border: "none",
-            background: current === 0 ? "#e5e7eb" : "linear-gradient(135deg, #64748b, #334155)",
-            color: current === 0 ? "#94a3b8" : "white",
-            fontWeight: 700,
-            cursor: current === 0 ? "not-allowed" : "pointer",
-            opacity: current === 0 ? 0.6 : 1
-          }}
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={selected === null}
-          style={{
-            padding: "12px 24px",
-            borderRadius: 999,
-            border: "none",
-            background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-            color: "white",
-            fontWeight: 700,
-            cursor: selected === null ? "not-allowed" : "pointer",
-            opacity: selected === null ? 0.6 : 1
-          }}
-        >
-          {current + 1 === questions.length ? "Finish Practice" : "Next Question"}
-        </button>
-      </div>
-    </div>
-  );
-}
-
 // --- CBET QUESTIONS ---
 const cbetQuestions = [
   {
@@ -3710,7 +1352,6 @@ const cbetQuestions = [
     answer: 0
   }
 ];
-
 const harderCbetQuestions = [
   {
     question: "A defibrillator fails an energy output test at 200 J but passes at lower settings. Which issue is MOST likely?",
@@ -3838,7 +1479,6 @@ const harderCbetQuestions = [
     answer: 1
   }
 ];
-
 const equipmentQuestions = [
   {
     image: "/equipment/anesthesia machine.jpg",
@@ -3925,7 +1565,6 @@ const equipmentQuestions = [
     studyTip: "Uses high-frequency sound waves to generate real-time diagnostic images."
   }
 ];
-
 const rnQuestions = [
   {
     question: "Which patient should the nurse see first?",
@@ -3940,32 +1579,32 @@ const rnQuestions = [
   {
     question: "Which finding requires immediate intervention?",
     options: [
-      "Client with a temperature of 99.1°F",
       "Post-op client with urine output of 20 mL/hr",
+      "Client with a temperature of 99.1°F",
       "Client with mild nausea after lunch",
       "Client requesting help to the bathroom"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which action is most important when administering insulin?",
     options: [
       "Shake the vial vigorously",
-      "Administer before verifying the meal tray",
       "Check the blood glucose level first",
+      "Administer before verifying the meal tray",
       "Massage the injection site"
     ],
-    answer: 2
+    answer: 1
   },
   {
     question: "Which lab value is most concerning?",
     options: [
+      "Potassium 6.2 mEq/L",
       "Sodium 138 mEq/L",
       "Calcium 9.2 mg/dL",
-      "Glucose 102 mg/dL",
-      "Potassium 6.2 mEq/L"
+      "Glucose 102 mg/dL"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "A client receiving warfarin should be monitored for:",
@@ -3980,32 +1619,32 @@ const rnQuestions = [
   {
     question: "Which symptom is expected with hypoglycemia?",
     options: [
-      "Dry flushed skin",
       "Cool clammy skin",
+      "Dry flushed skin",
       "Bradycardia",
       "Decreased hunger"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which client is highest priority?",
     options: [
+      "Client with chest pain and diaphoresis",
       "Client with a sprained ankle",
       "Client requesting a blanket",
-      "Client with chest pain and diaphoresis",
       "Client with chronic constipation"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "The nurse should question which prescription?",
     options: [
+      "Potassium for a client with potassium of 5.8",
       "Acetaminophen for fever",
       "Normal saline bolus for hypotension",
-      "Oxygen for shortness of breath",
-      "Potassium for a client with potassium of 5.8"
+      "Oxygen for shortness of breath"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which finding suggests fluid volume overload?",
@@ -4020,32 +1659,32 @@ const rnQuestions = [
   {
     question: "Which intervention is appropriate for seizure precautions?",
     options: [
-      "Place a tongue blade at bedside",
       "Pad side rails",
+      "Place a tongue blade at bedside",
       "Restrain the client during seizure",
       "Keep the room brightly lit"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which patient statement shows understanding of digoxin teaching?",
     options: [
+      "I will check my pulse before taking it",
       "I should take an extra dose if I miss one",
       "I can stop it when I feel better",
-      "I will check my pulse before taking it",
       "Blurred vision means the medicine is working"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "A client with suspected stroke should receive priority for:",
     options: [
+      "Rapid neurologic assessment",
       "A high-protein snack",
       "Passive range-of-motion exercises",
-      "Routine bedtime medications",
-      "Rapid neurologic assessment"
+      "Routine bedtime medications"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which position is best for a client with shortness of breath?",
@@ -4060,32 +1699,32 @@ const rnQuestions = [
   {
     question: "Which action prevents infection most effectively?",
     options: [
-      "Wearing a mask at all times",
       "Hand hygiene",
+      "Wearing a mask at all times",
       "Using sterile gloves for all care",
       "Keeping the room door closed"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "A nurse is caring for a client with a potassium of 2.9 mEq/L. The priority assessment is:",
     options: [
+      "Cardiac rhythm",
       "Bowel sounds",
       "Vision changes",
-      "Cardiac rhythm",
       "Skin color"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "Which finding is expected with dehydration?",
     options: [
+      "Tachycardia",
       "Bounding pulses",
       "Jugular vein distention",
-      "Pulmonary crackles",
-      "Tachycardia"
+      "Pulmonary crackles"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which nursing action is appropriate when transfusing blood?",
@@ -4100,32 +1739,32 @@ const rnQuestions = [
   {
     question: "Which patient is at highest risk for falls?",
     options: [
-      "A teenager with a sprained wrist",
       "An older adult taking sedatives",
+      "A teenager with a sprained wrist",
       "A middle-aged adult with a headache",
       "A child with a sore throat"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which finding suggests anaphylaxis?",
     options: [
+      "Wheezing and facial swelling",
       "Mild rash on one arm",
       "Low-grade fever",
-      "Wheezing and facial swelling",
       "Constipation"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "A nurse should hold which medication for a pulse of 52/min?",
     options: [
+      "Metoprolol",
       "Acetaminophen",
       "Cefazolin",
-      "Docusate",
-      "Metoprolol"
+      "Docusate"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which client requires droplet precautions?",
@@ -4140,32 +1779,32 @@ const rnQuestions = [
   {
     question: "Which symptom is most common in a urinary tract infection?",
     options: [
-      "Bradycardia",
       "Burning on urination",
+      "Bradycardia",
       "Blurred vision",
       "Constipation"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which food should a client taking warfarin consume consistently?",
     options: [
+      "Green leafy vegetables",
       "Bananas",
       "Milk",
-      "Green leafy vegetables",
       "Oranges"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "The best indicator of oxygenation is:",
     options: [
+      "Pulse oximetry",
       "Capillary refill",
       "Blood pressure",
-      "Urine output",
-      "Pulse oximetry"
+      "Urine output"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which client teaching is correct for nitroglycerin tablets?",
@@ -4180,32 +1819,32 @@ const rnQuestions = [
   {
     question: "Which finding indicates worsening respiratory status?",
     options: [
-      "Respiratory rate 16/min",
       "Use of accessory muscles",
+      "Respiratory rate 16/min",
       "Clear speech",
       "Pink nail beds"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which intervention is priority for a client with active bleeding?",
     options: [
+      "Apply direct pressure",
       "Offer oral fluids",
       "Elevate the head of bed",
-      "Apply direct pressure",
       "Provide discharge instructions"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "Which client is most likely experiencing hypovolemic shock?",
     options: [
+      "Client with severe blood loss and low blood pressure",
       "Client with hypertension and edema",
       "Client with fever and flushed skin",
-      "Client with chronic kidney disease",
-      "Client with severe blood loss and low blood pressure"
+      "Client with chronic kidney disease"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which assessment finding is expected after opioid administration?",
@@ -4220,32 +1859,32 @@ const rnQuestions = [
   {
     question: "A postoperative client has absent bowel sounds. The nurse should:",
     options: [
-      "Give a laxative immediately",
       "Continue to assess and hold oral intake if prescribed",
+      "Give a laxative immediately",
       "Encourage a large meal",
       "Place the client flat"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which electrolyte imbalance can cause muscle weakness and dysrhythmias?",
     options: [
+      "Hypokalemia",
       "Hypercalcemia",
       "Hypernatremia",
-      "Hypokalemia",
       "Hypophosphatemia"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "Which action is appropriate for chest tube care?",
     options: [
+      "Keep the drainage system below chest level",
       "Clamp the tube routinely for transport",
       "Milk the tube every hour",
-      "Disconnect the system to empty it",
-      "Keep the drainage system below chest level"
+      "Disconnect the system to empty it"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "A nurse is teaching a client with heart failure. Which statement shows understanding?",
@@ -4260,32 +1899,32 @@ const rnQuestions = [
   {
     question: "Which finding is most concerning in a client with diabetes?",
     options: [
-      "Mild hunger before lunch",
       "Foot ulcer with drainage",
+      "Mild hunger before lunch",
       "Blood glucose 118 mg/dL",
       "Dry skin on elbows"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which nurse action is correct when a client has a seizure?",
     options: [
+      "Turn the client on their side",
       "Insert an oral airway",
       "Hold the client down",
-      "Turn the client on their side",
       "Place a pillow under the knees"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "A nurse should first assess a client who has:",
     options: [
+      "Sudden confusion and restlessness",
       "A request for pain medicine",
       "A dressing change due in 30 minutes",
-      "Questions about diet",
-      "Sudden confusion and restlessness"
+      "Questions about diet"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which finding is expected with hyperglycemia?",
@@ -4300,32 +1939,32 @@ const rnQuestions = [
   {
     question: "Which intervention reduces pressure injury risk?",
     options: [
-      "Massage reddened skin",
       "Reposition at least every 2 hours",
+      "Massage reddened skin",
       "Use donut cushions under bony prominences",
       "Keep the head of bed at 90 degrees"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "A client on heparin should be monitored using:",
     options: [
+      "aPTT",
       "INR only",
       "Hemoglobin A1c",
-      "aPTT",
       "Troponin"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "Which sign may indicate digoxin toxicity?",
     options: [
+      "Nausea and visual halos",
       "Increased appetite",
       "Dry cough",
-      "Constipation",
-      "Nausea and visual halos"
+      "Constipation"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which client should the nurse assign to an LPN/LVN?",
@@ -4340,32 +1979,32 @@ const rnQuestions = [
   {
     question: "Which intervention is priority for a client with a new tracheostomy?",
     options: [
-      "Limit all visitors",
       "Keep a trach obturator and suction available",
+      "Limit all visitors",
       "Place the client flat after meals",
       "Provide thin liquids frequently"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "A client with pneumonia should be encouraged to:",
     options: [
+      "Cough and deep breathe",
       "Remain flat in bed",
       "Restrict all fluids",
-      "Cough and deep breathe",
       "Avoid ambulation completely"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "Which finding suggests poor perfusion?",
     options: [
+      "Cool pale extremities",
       "Warm dry skin",
       "Strong peripheral pulses",
-      "Capillary refill less than 2 seconds",
-      "Cool pale extremities"
+      "Capillary refill less than 2 seconds"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "A nurse should question which diet order for a client with dysphagia?",
@@ -4380,32 +2019,32 @@ const rnQuestions = [
   {
     question: "Which medication is commonly used to reverse opioid overdose?",
     options: [
-      "Atropine",
       "Naloxone",
+      "Atropine",
       "Epinephrine",
       "Flumazenil"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "A client with asthma is wheezing and short of breath. The priority medication is:",
     options: [
+      "Albuterol",
       "Montelukast",
       "Prednisone tablet for next week",
-      "Albuterol",
       "Acetaminophen"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "Which statement by a new parent needs further teaching?",
     options: [
+      "I will put my baby to sleep on their stomach",
       "I will place my baby on their back to sleep",
       "I will use a firm mattress",
-      "I will keep loose blankets out of the crib",
-      "I will put my baby to sleep on their stomach"
+      "I will keep loose blankets out of the crib"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which symptom is classic for appendicitis?",
@@ -4420,32 +2059,32 @@ const rnQuestions = [
   {
     question: "A nurse caring for a client with meningitis should assess for:",
     options: [
-      "Bradycardia only after meals",
       "Neck stiffness",
+      "Bradycardia only after meals",
       "Decreased urine output after activity",
       "Yellow sclera"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which action best promotes client safety before giving medication?",
     options: [
+      "Use two identifiers",
       "Ask the roommate to confirm the name",
       "Check only the room number",
-      "Use two identifiers",
       "Give meds based on the medication cart list"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "A client with liver cirrhosis is at highest risk for:",
     options: [
+      "Hepatic encephalopathy and ascites",
       "Acute myocardial infarction",
       "Type 1 diabetes mellitus",
-      "Acute kidney injury only",
-      "Hepatic encephalopathy and ascites"
+      "Acute kidney injury only"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "Which is the most important nursing assessment for a client on acetaminophen?",
@@ -4460,32 +2099,32 @@ const rnQuestions = [
   {
     question: "A client complains of floaters and flashes in their vision. The nurse should:",
     options: [
-      "Reassure them this is normal",
       "Report this immediately; it may indicate retinal detachment",
+      "Reassure them this is normal",
       "Apply a warm compress",
       "Administer eye drops"
     ],
-    answer: 1
+    answer: 0
   },
   {
     question: "Which intervention is correct for a client with conjunctivitis?",
     options: [
+      "Clean eye from inner canthus to outer canthus",
       "Patch both eyes",
       "Apply light to test pupils",
-      "Clean eye from inner canthus to outer canthus",
       "Avoid saline rinses"
     ],
-    answer: 2
+    answer: 0
   },
   {
     question: "Which pulse point is commonly assessed for stroke risk in clients with atrial fibrillation?",
     options: [
+      "Carotid artery",
       "Dorsalis pedis",
       "Brachial artery",
-      "Popliteal artery",
-      "Carotid artery"
+      "Popliteal artery"
     ],
-    answer: 3
+    answer: 0
   },
   {
     question: "A client is found to have a weak femoral pulse. The nurse should:",
@@ -4498,274 +2137,6 @@ const rnQuestions = [
     answer: 0
   }
 ];
-
-const harderRnQuestions = [
-  {
-    question: "A nurse receives four clients from report. Which client should be assessed first?",
-    options: [
-      "A client with COPD and chronic oxygen saturation of 90% on 2 L/min",
-      "A postoperative client who reports sudden shortness of breath and pleuritic chest pain",
-      "A client with heart failure requesting an extra pillow",
-      "A client with pneumonia whose temperature increased from 99.4°F to 100.2°F"
-    ],
-    answer: 1,
-    explanation: "Sudden dyspnea with pleuritic pain after surgery suggests pulmonary embolism, which is immediately life-threatening."
-  },
-  {
-    question: "The nurse is caring for a client receiving heparin infusion. Which finding requires the most urgent action?",
-    options: [
-      "aPTT of 98 seconds",
-      "Platelet count dropping from 220,000 to 88,000/mm3",
-      "Small bruises at old IV sites",
-      "Mild headache rated 2/10"
-    ],
-    answer: 1,
-    explanation: "A major platelet drop on heparin raises concern for HIT, which can cause life-threatening thrombosis and requires prompt intervention."
-  },
-  {
-    question: "A client with diabetic ketoacidosis is being treated. Which trend indicates treatment is effective?",
-    options: [
-      "Serum potassium increases from 5.6 to 6.1 mEq/L",
-      "Urine ketones increase from moderate to large",
-      "Serum bicarbonate rises from 14 to 21 mEq/L",
-      "Respiratory rate rises from 24 to 32/min"
-    ],
-    answer: 2,
-    explanation: "Increasing bicarbonate indicates metabolic acidosis is resolving, a key marker of DKA improvement."
-  },
-  {
-    question: "The nurse is delegating care to an LPN/LVN and UAP. Which task is appropriate to assign to the UAP?",
-    options: [
-      "Reinforce teaching on newly prescribed warfarin",
-      "Assess pain after IV morphine administration",
-      "Evaluate effectiveness of a bronchodilator",
-      "Obtain and document orthostatic vital signs"
-    ],
-    answer: 3,
-    explanation: "UAPs may collect routine data such as orthostatic vitals, while assessment, teaching, and evaluation remain with licensed nurses."
-  },
-  {
-    question: "A client with SIADH has worsening confusion. Which provider order should the nurse implement first?",
-    options: [
-      "Restrict fluids to 800 mL/day",
-      "Administer oral sodium tablets",
-      "Place on seizure precautions",
-      "Provide frequent mouth care"
-    ],
-    answer: 2,
-    explanation: "Neurologic worsening in SIADH suggests severe hyponatremia risk; seizure precautions are the immediate safety priority."
-  },
-  {
-    question: "A nurse is reviewing telemetry and finds new peaked T waves. Which laboratory value is most likely?",
-    options: [
-      "Potassium 6.5 mEq/L",
-      "Calcium 8.8 mg/dL",
-      "Magnesium 2.0 mg/dL",
-      "Sodium 140 mEq/L"
-    ],
-    answer: 0,
-    explanation: "Peaked T waves are a classic ECG finding of hyperkalemia."
-  },
-  {
-    question: "Which client is most appropriate to transfer from ICU to a medical-surgical unit?",
-    options: [
-      "Client with septic shock requiring vasopressors",
-      "Client 12 hours post-thrombolytic with frequent neurologic checks",
-      "Client with DKA whose anion gap has closed and insulin infusion is discontinued",
-      "Client with GI bleed receiving transfusion and active melena"
-    ],
-    answer: 2,
-    explanation: "A closed anion gap with discontinuation of insulin infusion indicates stabilization and lower acuity compared with the other clients."
-  },
-  {
-    question: "A postoperative client has BP 86/52, HR 124, cool clammy skin, and urine output 20 mL/hr. What is the priority action?",
-    options: [
-      "Administer PRN opioid for pain",
-      "Increase oxygen and notify provider/rapid response",
-      "Encourage oral fluid intake",
-      "Place in high-Fowler position"
-    ],
-    answer: 1,
-    explanation: "This pattern suggests hypoperfusion and potential shock; escalate immediately while supporting oxygenation."
-  },
-  {
-    question: "A nurse is preparing to administer 10 units of regular insulin IV. Which action is required for high-alert safety?",
-    options: [
-      "Mix with dextrose before administration",
-      "Administer within 30 minutes of meal tray arrival",
-      "Have a second licensed nurse independently verify dose",
-      "Use the deltoid intramuscular site"
-    ],
-    answer: 2,
-    explanation: "IV insulin is high-alert medication and requires independent double-check per standard safety practices."
-  },
-  {
-    question: "A client with chest pain receives nitroglycerin. Which finding requires immediate follow-up before another dose?",
-    options: [
-      "Blood pressure decreased from 132/78 to 94/58",
-      "Pain decreased from 8/10 to 5/10",
-      "Heart rate increased from 82 to 92/min",
-      "Client reports mild headache"
-    ],
-    answer: 0,
-    explanation: "Significant hypotension after nitroglycerin can compromise perfusion and contraindicate additional dosing."
-  },
-  {
-    question: "A nurse is caring for a neutropenic client (ANC 400). Which action is most appropriate?",
-    options: [
-      "Place fresh flowers in the room",
-      "Use strict aseptic technique and avoid raw foods",
-      "Limit oral care to once daily",
-      "Administer rectal suppositories for constipation"
-    ],
-    answer: 1,
-    explanation: "Severe neutropenia requires infection-prevention strategies, including asepsis and avoiding high bacterial exposures like raw foods."
-  },
-  {
-    question: "A client with heart failure has these morning findings: weight +2.2 lb in 24 hours, crackles, and ankle edema. Which order should the nurse anticipate implementing first?",
-    options: [
-      "Hold all antihypertensives",
-      "Increase oral fluid intake",
-      "Administer prescribed loop diuretic",
-      "Encourage high-sodium snacks"
-    ],
-    answer: 2,
-    explanation: "Rapid weight gain with crackles and edema indicates fluid overload; diuresis is a priority intervention."
-  },
-  {
-    question: "Which finding in a client with traumatic brain injury should the nurse report immediately?",
-    options: [
-      "Increasing drowsiness and unequal pupils",
-      "Headache rated 3/10",
-      "One episode of nausea",
-      "Systolic blood pressure of 128 mmHg"
-    ],
-    answer: 0,
-    explanation: "Neurologic decline with anisocoria may indicate rising intracranial pressure and possible herniation."
-  },
-  {
-    question: "The nurse is caring for a client receiving blood transfusion. Which sign suggests acute hemolytic reaction?",
-    options: [
-      "Pruritus and urticaria",
-      "Fever, flank pain, and hypotension",
-      "Mild dyspnea after ambulation",
-      "New crackles and hypertension"
-    ],
-    answer: 1,
-    explanation: "Fever, flank pain, and hypotension during transfusion are classic for acute hemolytic reaction and require immediate stop of transfusion."
-  },
-  {
-    question: "A client on continuous tube feeding has gastric residuals rising and is now coughing during repositioning. What is the priority nursing action?",
-    options: [
-      "Increase feeding rate to maintain calories",
-      "Lower head of bed for comfort",
-      "Stop feeding and assess airway/lung status",
-      "Flush tube with 30 mL water"
-    ],
-    answer: 2,
-    explanation: "Signs suggest aspiration risk; stop feeding first and assess respiratory status immediately."
-  },
-  {
-    question: "A nurse receives these ABGs: pH 7.30, PaCO2 52, HCO3 26. How should this be interpreted?",
-    options: [
-      "Metabolic acidosis",
-      "Respiratory acidosis",
-      "Respiratory alkalosis",
-      "Fully compensated metabolic alkalosis"
-    ],
-    answer: 1,
-    explanation: "Low pH with elevated PaCO2 and near-normal HCO3 indicates primary respiratory acidosis without full compensation."
-  },
-  {
-    question: "A client with suspected stroke arrives within the treatment window. Which action has the highest priority?",
-    options: [
-      "Complete bedside swallow screening",
-      "Obtain non-contrast head CT quickly",
-      "Administer aspirin immediately",
-      "Start D5W infusion"
-    ],
-    answer: 1,
-    explanation: "Rapid head CT is needed to differentiate ischemic vs hemorrhagic stroke and guide urgent treatment decisions."
-  },
-  {
-    question: "A nurse is caring for a client with COPD exacerbation on 2 L/min nasal cannula. Which assessment finding indicates worsening status?",
-    options: [
-      "SpO2 91%",
-      "Mild expiratory wheeze",
-      "Drowsiness with rising PaCO2",
-      "Productive cough of yellow sputum"
-    ],
-    answer: 2,
-    explanation: "Increasing drowsiness with rising carbon dioxide suggests CO2 retention and possible impending respiratory failure."
-  },
-  {
-    question: "A client with sepsis has lactate 5.2 mmol/L after initial fluids. Which outcome is most important to monitor for early response?",
-    options: [
-      "Decreasing lactate trend",
-      "Normalization of white blood cell count in 2 hours",
-      "Resolution of all edema",
-      "Return of appetite"
-    ],
-    answer: 0,
-    explanation: "Lactate clearance is an important early marker of improving tissue perfusion in sepsis management."
-  },
-  {
-    question: "Which client should the nurse see first after receiving morning report?",
-    options: [
-      "Client with chronic atrial fibrillation and HR 102",
-      "Client with new tracheostomy who has coarse breath sounds and visible secretions",
-      "Client with stage 2 pressure injury due for dressing change",
-      "Client awaiting discharge teaching"
-    ],
-    answer: 1,
-    explanation: "Airway comes first; a fresh tracheostomy with retained secretions risks obstruction and respiratory compromise."
-  },
-  {
-    question: "A nurse notes sudden unilateral leg swelling and warmth in a postoperative client. What is the priority action?",
-    options: [
-      "Massage the calf to improve circulation",
-      "Ambulate the client immediately",
-      "Apply sequential compression sleeves tighter",
-      "Keep client on bed rest and notify provider"
-    ],
-    answer: 3,
-    explanation: "Findings suggest possible DVT; avoid dislodging clot and promptly notify provider for urgent evaluation."
-  },
-  {
-    question: "Which order should the nurse question for a client with acute kidney injury and potassium of 5.9 mEq/L?",
-    options: [
-      "Sodium polystyrene sulfonate as prescribed",
-      "Telemetry monitoring",
-      "Lisinopril 20 mg PO daily",
-      "Repeat basic metabolic panel in 4 hours"
-    ],
-    answer: 2,
-    explanation: "ACE inhibitors can increase potassium and should be questioned in hyperkalemia with kidney injury."
-  },
-  {
-    question: "A client with upper GI bleed has black tarry stool and BP 98/56. Which intervention is priority?",
-    options: [
-      "Administer stool softener",
-      "Maintain two large-bore IV lines",
-      "Encourage ambulation",
-      "Offer clear liquids"
-    ],
-    answer: 1,
-    explanation: "Potential hemodynamic instability from GI bleeding requires reliable large-bore IV access for fluids and blood products."
-  },
-  {
-    question: "Which statement by a nurse indicates correct understanding of sepsis bundles?",
-    options: [
-      "Blood cultures should be drawn after first antibiotic dose",
-      "Broad-spectrum antibiotics should be delayed until all labs finalize",
-      "Initial lactate and early antibiotics are time-sensitive priorities",
-      "Urine output is not useful in sepsis monitoring"
-    ],
-    answer: 2,
-    explanation: "Sepsis care emphasizes rapid lactate measurement and prompt empiric antibiotics to reduce morbidity and mortality."
-  }
-];
-
 // --- CRES QUESTIONS ---
 const cresQuestions = [
   {
@@ -5094,270 +2465,6 @@ const cresQuestions = [
     answer: 3
   }
 ];
-
-// --- HARDER CRES QUESTIONS ---
-const harderCresQuestions = [
-  {
-    question: "A CT scanner shows ring artifacts in all reconstructed images. The most likely cause is:",
-    options: [
-      "Motion by the patient during acquisition",
-      "A miscalibrated or failed detector channel",
-      "Incorrect X-ray tube current (mA) selection",
-      "Reconstruction filter kernel set too sharp"
-    ],
-    answer: 1,
-    explanation: "Ring artifacts in CT are caused by a single detector element (or channel) that is out of calibration or has failed, producing a consistent signal error at a fixed radial distance."
-  },
-  {
-    question: "During fluoroscopy QA, the measured entrance exposure rate exceeds the FDA limit at the standard mode. Which corrective action is most appropriate?",
-    options: [
-      "Reduce the image intensifier magnification mode to lower the dose",
-      "Disable the automatic brightness control and set manual technique",
-      "Service the ABC circuit and verify kVp/mA output are within spec",
-      "Replace the image intensifier output phosphor"
-    ],
-    answer: 2,
-    explanation: "Exceeding the 10 R/min FDA limit requires investigation of the ABC system and verification that kVp and mA outputs are correctly calibrated before further clinical use."
-  },
-  {
-    question: "Which MRI safety zone includes the MRI scanner room itself where the static field exceeds 5 gauss?",
-    options: ["Zone I", "Zone II", "Zone III", "Zone IV"],
-    answer: 3,
-    explanation: "Per ACR guidelines Zone IV is the magnet room. Zone III is the control room area with restricted access; Zone IV is the scanner bore environment."
-  },
-  {
-    question: "In mammography, the average glandular dose (AGD) is preferred over entrance skin exposure because it:",
-    options: [
-      "Is easier to measure with a standard ion chamber",
-      "Better represents the dose to the radiation-sensitive glandular tissue",
-      "Accounts for scattered radiation reaching the detector",
-      "Is required by FDA MQSA for equipment acceptance testing only"
-    ],
-    answer: 1,
-    explanation: "AGD reflects dose to the glandular tissue that is most sensitive to radiation-induced breast cancer, making it the preferred dosimetric endpoint for mammography."
-  },
-  {
-    question: "A technologist notices that increasing kVp on a fluoroscopy unit does not increase patient dose rate but also doesn't improve image contrast. The most likely problem is:",
-    options: [
-      "Failing grid causing scatter to reach the detector",
-      "ABC system compensating by reducing mA when kVp rises",
-      "Defective collimator blades reducing field size",
-      "Monitor white balance drift"
-    ],
-    answer: 1,
-    explanation: "The Automatic Brightness Control actively adjusts mA (and kVp) to maintain target brightness. If kVp is raised manually, ABC may lower mA proportionally, keeping dose rate and contrast effectively unchanged."
-  },
-  {
-    question: "T1 relaxation time in MRI represents:",
-    options: [
-      "The time for 63% of the transverse magnetization to decay",
-      "The time required for longitudinal magnetization to recover to 63% of equilibrium",
-      "Dephasing of proton spins due to magnetic field inhomogeneity",
-      "Echo time between the RF pulse and signal acquisition"
-    ],
-    answer: 1,
-    explanation: "T1 (longitudinal or spin-lattice relaxation) is the time constant for recovery of Mz; after one T1 period, 63% of equilibrium magnetization is restored."
-  },
-  {
-    question: "Which ultrasound artifact can cause a structure deep to a highly attenuating object to appear darker than expected?",
-    options: [
-      "Acoustic enhancement (posterior enhancement)",
-      "Reverberation artifact",
-      "Acoustic shadowing",
-      "Side-lobe artifact"
-    ],
-    answer: 2,
-    explanation: "Acoustic shadowing occurs when a highly attenuating structure (e.g., calcification) absorbs most of the ultrasound beam, leaving reduced signal — a dark shadow — distal to it."
-  },
-  {
-    question: "During annual CT QA, the measured CT number for water is +8 HU instead of 0 HU. The technologist should:",
-    options: [
-      "Accept the value; it is within the ±10 HU tolerance",
-      "Immediately remove the scanner from service",
-      "Recalibrate using the water phantom and document",
-      "Increase tube current to bring the value closer to zero"
-    ],
-    answer: 2,
-    explanation: "A CT number deviation from 0 HU for water indicates the scanner needs air/water calibration. Values within ±10 HU are typically acceptable but should still be corrected through calibration, not ignored."
-  },
-  {
-    question: "Specific Absorption Rate (SAR) in MRI is a measure of:",
-    options: [
-      "The rate of signal decay from T2* effects",
-      "The radiofrequency energy absorbed per unit mass of tissue",
-      "The gradient switching rate that can cause peripheral nerve stimulation",
-      "The spatial averaging of B0 field inhomogeneity"
-    ],
-    answer: 1,
-    explanation: "SAR (W/kg) quantifies RF energy deposition in tissue and is the primary safety limit for tissue heating in MRI, regulated by IEC and FDA guidelines."
-  },
-  {
-    question: "A reject analysis program shows a high repeat rate for lateral lumbar spine radiographs due to 'overexposure.' Which parameter adjustment most directly addresses this?",
-    options: [
-      "Increase source-to-image distance (SID)",
-      "Reduce mAs",
-      "Increase grid ratio",
-      "Use a larger focal spot"
-    ],
-    answer: 1,
-    explanation: "Overexposure results from too much radiation reaching the detector. Reducing mAs directly lowers the quantity of photons, correcting the excess exposure index."
-  },
-  {
-    question: "In a CR system, residual latent image on a previously exposed PSP plate is eliminated by:",
-    options: [
-      "Running the plate through the laser scanner without reading it",
-      "Exposing the plate uniformly to a bright white light (erasing)",
-      "Placing the plate in a dark cassette for 24 hours",
-      "Wiping the plate surface with an antistatic cloth"
-    ],
-    answer: 1,
-    explanation: "CR PSP plates are erased by flooding with bright white light, which releases all remaining trapped electrons and clears the residual latent image."
-  },
-  {
-    question: "An X-ray tube rating chart shows a maximum single-exposure rating of 70 kVp / 300 mA / 0.05 s. A requested single shot is 70 kVp / 400 mA / 0.05 s. The technologist should:",
-    options: [
-      "Proceed — exposure time is within rating",
-      "Increase kVp to compensate for lower mA",
-      "Refuse the exposure; the mA exceeds the single-exposure rating and could damage the tube",
-      "Switch to the small focal spot to handle the higher mA"
-    ],
-    answer: 2,
-    explanation: "Single-exposure tube ratings define maximum combinations of kVp, mA, and time. Exceeding mA can overheat the focal spot instantly, causing tube damage. The exposure must be adjusted to stay within rating."
-  },
-  {
-    question: "Which CT quality metric directly evaluates low-contrast detectability (the ability to see subtle tissue differences)?",
-    options: [
-      "Modulation Transfer Function (MTF)",
-      "Noise Power Spectrum (NPS)",
-      "Low-contrast object detectability phantom test",
-      "CT number linearity test"
-    ],
-    answer: 2,
-    explanation: "The low-contrast detectability (LCD) phantom test measures the scanner's ability to visualize objects with small HU differences from background — the key clinical metric for soft-tissue imaging."
-  },
-  {
-    question: "A patient with a pacemaker is referred for MRI. Which is the correct initial action?",
-    options: [
-      "Proceed if the field strength is 1.0 T or lower",
-      "Check whether the pacemaker is labeled MR Conditional and follow all specified conditions",
-      "Remove the pacemaker before scanning",
-      "Place the patient on a non-ferromagnetic stretcher and scan at 3 T"
-    ],
-    answer: 1,
-    explanation: "Modern MR Conditional pacemakers are approved for scanning only under specific conditions (field strength, SAR limits, etc.). These conditions must be verified exactly; unconditional scanning is unsafe."
-  },
-  {
-    question: "In nuclear medicine, the collimator on a gamma camera restricts which photons reach the NaI crystal?",
-    options: [
-      "Only photons traveling perpendicular to detector face within accepted angular tolerance",
-      "All photons below 140 keV to remove scatter",
-      "Photons with energy above the photopeak window",
-      "Only photons emitted from superficial structures"
-    ],
-    answer: 0,
-    explanation: "A parallel-hole collimator allows only photons traveling nearly perpendicular (parallel) to the detector through its holes, providing spatial localization. Angled and scattered photons are absorbed in the lead septa."
-  },
-  {
-    question: "The modulation transfer function (MTF) curve for an imaging system is used to evaluate:",
-    options: [
-      "Radiation dose efficiency (DQE)",
-      "Spatial resolution as a function of spatial frequency",
-      "Signal-to-noise ratio in low-contrast regions",
-      "Temporal resolution for dynamic imaging"
-    ],
-    answer: 1,
-    explanation: "MTF describes how well a system reproduces spatial detail across different spatial frequencies (line pairs/mm), quantifying the resolution performance of the imaging chain."
-  },
-  {
-    question: "Which preventive maintenance task is most important for prolonging X-ray tube life in a high-volume CT department?",
-    options: [
-      "Replacing anode lubricant monthly",
-      "Performing manufacturer-specified tube conditioning (warm-up) procedures daily",
-      "Reducing kVp by 10% on all examinations",
-      "Cleaning the tube housing exterior with alcohol weekly"
-    ],
-    answer: 1,
-    explanation: "Tube conditioning (seasoning) gradually heats the anode, allowing absorbed gases to dissipate, preventing arcing and thermal shock. Daily adherence significantly extends tube life in high-volume environments."
-  },
-  {
-    question: "In multislice CT (MSCT), pitch is defined as:",
-    options: [
-      "Table travel per rotation divided by total beam width (detector coverage)",
-      "Number of detector rows times rotation speed",
-      "Ratio of reconstruction field of view to scan field of view",
-      "Effective slice thickness after reconstruction"
-    ],
-    answer: 0,
-    explanation: "Pitch = table feed per rotation ÷ total beam collimation width. A pitch of 1 means table travel equals beam width; >1 mean there are gaps; <1 means overlapping coverage."
-  },
-  {
-    question: "Penumbra (geometric unsharpness) in radiography is minimized by:",
-    options: [
-      "Using a large focal spot and short OID",
-      "Using a small focal spot and maximum SID with minimum OID",
-      "Increasing mAs at fixed kVp",
-      "Using a high-ratio grid to reduce scatter"
-    ],
-    answer: 1,
-    explanation: "Geometric unsharpness (Ug) = focal spot size × OID / SOD. It is minimized by using the smallest focal spot, shortest object-to-detector distance, and maximum source-to-image distance."
-  },
-  {
-    question: "A fluoroscopy unit's image intensifier conversion factor (gain) is found to be 40% below the baseline value during QA. This most likely indicates:",
-    options: [
-      "The ABC circuit is over-compensating for high patient dose",
-      "Vignetting due to dirty output phosphor window",
-      "Deterioration of the image intensifier requiring service or replacement",
-      "Improper monitor calibration"
-    ],
-    answer: 2,
-    explanation: "Conversion factor (brightness gain × flux gain) declines as the II ages due to phosphor degradation and CsI crystal damage. A >20–25% drop from baseline is typically grounds for II service."
-  },
-  {
-    question: "Which MRI gradient parameter is most closely associated with the risk of peripheral nerve stimulation (PNS)?",
-    options: [
-      "Static field strength (B0)",
-      "RF pulse flip angle",
-      "Slew rate (dB/dt)",
-      "Receive coil impedance"
-    ],
-    answer: 2,
-    explanation: "Peripheral nerve stimulation is caused by rapidly changing gradient fields (dB/dt / slew rate). IEC and FDA set limits on slew rate to prevent PNS and cardiac stimulation."
-  },
-  {
-    question: "In DEXA (dual-energy X-ray absorptiometry), bone mineral density (BMD) is calculated by:",
-    options: [
-      "Measuring attenuation at two different X-ray energies to separate bone and soft tissue contributions",
-      "Counting back-scattered electrons from cortical bone surfaces",
-      "Calculating the CT number of trabecular bone in HU",
-      "Measuring the natural gamma emission of calcium-40 in bone"
-    ],
-    answer: 0,
-    explanation: "DEXA uses two X-ray energies where attenuation differs between bone mineral and soft tissue. Subtracting the two energy images isolates bone mass to calculate BMD (g/cm²)."
-  },
-  {
-    question: "A preventive maintenance report flags increased ground leakage current on an X-ray generator chassis. The correct immediate action is:",
-    options: [
-      "Tape the chassis ground wire to reduce resistance",
-      "Reduce the maximum kVp until the next scheduled PM",
-      "Remove the equipment from service and notify biomedical engineering for repair",
-      "Install an additional circuit breaker on the unit's power line"
-    ],
-    answer: 2,
-    explanation: "Chassis leakage current above NEMA/AAMI limits (typically >500 µA) presents an electric shock hazard to patients and staff. The equipment must be taken out of service immediately until repaired."
-  },
-  {
-    question: "Which statement best describes the detective quantum efficiency (DQE) of an imaging system?",
-    options: [
-      "The number of photons the detector requires to produce one gray of dose",
-      "The ratio of output SNR squared to input SNR squared, measuring how efficiently dose is converted to signal",
-      "The fraction of incident photons absorbed by the scintillator layer",
-      "The maximum spatial frequency resolved at 50% MTF"
-    ],
-    answer: 1,
-    explanation: "DQE = (SNRout² / SNRin²) and describes overall system efficiency in converting X-ray dose to useful signal. Higher DQE means better image quality per unit dose."
-  }
-];
-
 // --- MEDICAL TERMINOLOGY QUESTIONS ---
 const terminologyQuestions = [
   { question: "What is the best definition of 'bradykinesia'?", options: ["Rapid involuntary tremor", "Slowness of movement", "Muscle rigidity from spasm", "Loss of balance when standing"], answer: 1 },
@@ -5421,7 +2528,6 @@ const terminologyQuestions = [
   { question: "What is the best definition of 'infarction'?", options: ["Reversible tissue hypoxia", "Tissue necrosis due to prolonged ischemia", "Inflammation of blood vessels", "Bleeding into tissue"], answer: 1 },
   { question: "What is the best definition of 'anasarca'?", options: ["Localized ankle edema", "Generalized severe body edema", "Pleural fluid accumulation", "Ascites only"], answer: 1 }
 ];
-
 const wordPartQuestions = [
   { question: "What does the prefix 'brady-' mean?", options: ["Fast", "Slow", "Around", "Below"], answer: 1 },
   { question: "What does the prefix 'tachy-' mean?", options: ["Slow", "Deep", "Fast", "Pain"], answer: 2 },
@@ -5474,9 +2580,7 @@ const wordPartQuestions = [
   { question: "What does the suffix '-trophy' mean?", options: ["Nourishment or development", "Pain", "Record", "Incision"], answer: 0 },
   { question: "What does the suffix '-ptosis' mean?", options: ["Drooping or prolapse", "Swelling", "Repair", "Rapid movement"], answer: 0 }
 ];
-
 // --- DATA SETS ---
-
  const organs = {
   Heart: {
     image: "/heart.png",
@@ -5513,7 +2617,6 @@ const wordPartQuestions = [
       { name: "Aorta", x: 210, y: 40, description: "Main artery that carries oxygenated blood from heart to body" }
     ]
   },
-
   Brain: {
     image: "/brain.png",
     boardWidth: 420,
@@ -5555,7 +2658,6 @@ const wordPartQuestions = [
       { name: "Medulla", x: 148, y: 323, description: "Lower brainstem center for respiration, heart rate, and blood pressure control" }
     ]
   },
-
   Lungs: {
     image: "/lungs.png",
     boardWidth: 420,
@@ -5591,7 +2693,6 @@ const wordPartQuestions = [
       { name: "Left Main Bronchus", x: 162, y: 140, description: "Main airway branch carrying air into the left lung" }
     ]
   },
-
   Liver: {
     image: "/liver.jpg",
     boardWidth: 700,
@@ -5628,7 +2729,6 @@ const wordPartQuestions = [
       { name: "Inferior Border", x: 430, y: 360, description: "Lower edge of the liver visible on this anterior view" }
     ]
   },
-
   Kidneys: {
     image: "/kidney.jpg",
     boardWidth: 620,
@@ -5673,7 +2773,6 @@ const wordPartQuestions = [
       { name: "Ureter", x: 34, y: 620, description: "Tube carrying urine downward from the renal pelvis to the bladder" }
     ]
   },
-
   Eye: {
     image: "/eye.jpg",
     boardWidth: 750,
@@ -5715,7 +2814,6 @@ const wordPartQuestions = [
       { name: "Ciliary Body", x: 108, y: 240, description: "Produces aqueous fluid and adjusts lens shape" }
     ]
   },
-
   Ear: {
     image: "/ear.jpg",
     boardWidth: 700,
@@ -5755,7 +2853,6 @@ const wordPartQuestions = [
       { name: "Auditory Nerve", x: 600, y: 195, description: "Transmits electrical signals from cochlea to brain for sound interpretation" }
     ]
   },
-
   "Arterial System": {
     image: "/arterial-system.jpg",
     boardWidth: 620,
@@ -5805,7 +2902,6 @@ const wordPartQuestions = [
       { name: "Left Femoral", x: 275, y: 650, description: "Main artery of left leg" }
     ]
   },
-
   "Venous System": {
     image: "/venous system.jpg",
     boardWidth: 1680,
@@ -5848,7 +2944,6 @@ const wordPartQuestions = [
     ]
   }
 };
-
 const bones = {
   Skeleton: {
     image: "/skeleton.jpg",
@@ -5881,7 +2976,6 @@ const bones = {
       { name: "Tibia", x: 355, y: 695, description: "Shin bone; supports weight during walking" }
     ]
   },
-
   Hand: {
     image: "/hand.jpg",
     boardWidth: 620,
@@ -5916,7 +3010,6 @@ const bones = {
       { name: "Hamate", x: 427, y: 670, description: "Hook-shaped wrist carpal" }
     ]
   },
-
   Foot: {
     image: "/foot.jpg",
     boardWidth: 620,
@@ -5950,7 +3043,6 @@ const bones = {
       { name: "Calcaneus", x: 330, y: 815, description: "Heel bone; largest foot bone; supports body weight" }
     ]
   },
-
   Knee: {
     image: "/knee.jpg",
     boardWidth: 800,
@@ -5990,8 +3082,6 @@ const bones = {
       { name: "Tibial Tuberosity", x: 400, y: 790, description: "Bony prominence on the front of the tibia where the patellar tendon attaches" }
     ]
   },
-
-
   Shoulder: {
     image: "/shoulder.jpg",
     boardWidth: 800,
@@ -6031,7 +3121,6 @@ const bones = {
       { name: "Glenohumeral Joint", x: 510, y: 390, description: "The main ball-and-socket joint of the shoulder between the humeral head and glenoid" }
     ]
   },
-
   Spine: {
     image: "/spine.png",
     boardWidth: 1024,
@@ -6071,7 +3160,6 @@ const bones = {
       { name: "Transverse Process", x: 612, y: 350, description: "Lateral bony projection extending from the vertebra for muscle attachment" }
     ]
   },
-
   Skull: {
     image: "/skull.png",
     boardWidth: 800,
@@ -6149,20 +3237,6 @@ export default function App() {
   const tiktokProfileUrl = import.meta.env.VITE_TIKTOK_PROFILE_URL || "https://www.tiktok.com";
   const hasTikTokLatestVideo = Boolean(import.meta.env.VITE_TIKTOK_LATEST_VIDEO_URL);
   const tiktokLatestVideoUrl = import.meta.env.VITE_TIKTOK_LATEST_VIDEO_URL || tiktokProfileUrl;
-  const studyGuideLinks = [
-    { href: "/free-cbet-practice-test.html", label: "Free CBET Practice Test", color: "#0b5cab" },
-    { href: "/rn-practice-questions.html", label: "RN Practice Questions", color: "#be123c" },
-    { href: "/teas-practice-questions.html", label: "TEAS Practice Questions", color: "#b45309" },
-    { href: "/medical-terminology-practice.html", label: "Medical Terminology Practice", color: "#7c3aed" },
-    { href: "/medical-prefix-suffix-practice.html", label: "Medical Prefix & Suffix", color: "#166534" },
-    { href: "/cres-practice-questions.html", label: "CRES Practice Questions", color: "#1e40af" },
-    { href: "/medical-equipment-identification-practice.html", label: "Medical Equipment ID Practice", color: "#0d9488" },
-    { href: "/cbet-practice-questions.html", label: "CBET Practice Questions Guide", color: "#12355b" },
-    { href: "/how-to-pass-cbet-exam.html", label: "How to Pass CBET Exam", color: "#1d6fa5" },
-    { href: "/anatomy-labeling-practice.html", label: "Anatomy Labeling Practice", color: "#0f766e" }
-  ];
-  const featuredStudyGuides = studyGuideLinks.slice(0, 5);
-  const extraStudyGuides = studyGuideLinks.slice(5);
   const adsenseClient = "ca-pub-4355354977115217";
   const topAdSlot = "";
   const bottomAdSlot = "";
@@ -6176,11 +3250,8 @@ export default function App() {
   const [hoveredPartName, setHoveredPartName] = useState("");
   const [placementMessage, setPlacementMessage] = useState({ text: "", tone: "idle" });
   const [showZoneAnswers, setShowZoneAnswers] = useState(false);
-
   const isSmallScreen = window.innerWidth < 768;
-  const isMediumScreen = window.innerWidth < 1120;
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
-
   // --- CBET STATE ---
   const [shuffledCbetQuestions, setShuffledCbetQuestions] = useState(() =>
     shuffleArray(cbetQuestions)
@@ -6201,18 +3272,15 @@ export default function App() {
   const [harderCbetAnswers, setHarderCbetAnswers] = useState({});
   const [harderCbetShowResult, setHarderCbetShowResult] = useState(false);
   const [showHarderCbetMissedReview, setShowHarderCbetMissedReview] = useState(false);
-
   // --- RN PRACTICE STATE ---
   const [shuffledRnQuestions, setShuffledRnQuestions] = useState(() =>
     shuffleArray(rnQuestions)
   );
-  const [rnDifficulty, setRnDifficulty] = useState("core");
   const [rnIndex, setRnIndex] = useState(0);
   const [rnScore, setRnScore] = useState(0);
   const [rnAnswers, setRnAnswers] = useState({});
   const [rnShowResult, setRnShowResult] = useState(false);
   const [showRnMissedReview, setShowRnMissedReview] = useState(false);
-  const [teasDifficulty, setTeasDifficulty] = useState("core");
   const [shuffledTeasQuestions, setShuffledTeasQuestions] = useState(() =>
     shuffleArray(teasQuestions)
   );
@@ -6223,7 +3291,6 @@ export default function App() {
   const [showTeasMissedReview, setShowTeasMissedReview] = useState(false);
   const [hoveredHomeCard, setHoveredHomeCard] = useState("");
   const [hoveredNavTab, setHoveredNavTab] = useState("");
-
   // --- EQUIPMENT ID STATE ---
   const [shuffledEquipmentQuestions, setShuffledEquipmentQuestions] = useState(() =>
     shuffleArray(equipmentQuestions)
@@ -6233,9 +3300,7 @@ export default function App() {
   const [equipmentAnswers, setEquipmentAnswers] = useState({});
   const [equipmentShowResult, setEquipmentShowResult] = useState(false);
   const [showEquipmentMissedReview, setShowEquipmentMissedReview] = useState(false);
-
   // --- CRES STATE ---
-  const [cresDifficulty, setCresDifficulty] = useState("core");
   const [shuffledCresQuestions, setShuffledCresQuestions] = useState(() =>
     shuffleArray(cresQuestions)
   );
@@ -6244,7 +3309,6 @@ export default function App() {
   const [cresAnswers, setCresAnswers] = useState({});
   const [cresShowResult, setCresShowResult] = useState(false);
   const [showCresMissedReview, setShowCresMissedReview] = useState(false);
-
   // --- MEDICAL TERMINOLOGY STATE ---
   const [shuffledTerminologyQuestions, setShuffledTerminologyQuestions] = useState(() =>
     shuffleArray(terminologyQuestions)
@@ -6263,29 +3327,24 @@ export default function App() {
   const [wordPartAnswers, setWordPartAnswers] = useState({});
   const [wordPartShowResult, setWordPartShowResult] = useState(false);
   const [showWordPartMissedReview, setShowWordPartMissedReview] = useState(false);
-
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
     selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull" || selectedSet === "Knee" || selectedSet === "Shoulder";
-
   const showPlacementMessage = (text, tone = "wrong") => {
     if (placementMessageTimeoutRef.current) {
       clearTimeout(placementMessageTimeoutRef.current);
     }
-
     setPlacementMessage({ text, tone });
     placementMessageTimeoutRef.current = setTimeout(() => {
       setPlacementMessage({ text: "", tone: "idle" });
       placementMessageTimeoutRef.current = null;
     }, 900);
   };
-
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
     setDashboard(saved);
   }, []);
-
   useEffect(() => {
     return () => {
       if (placementMessageTimeoutRef.current) {
@@ -6293,7 +3352,6 @@ export default function App() {
       }
     };
   }, []);
-
   useEffect(() => {
     const savedCbet = JSON.parse(localStorage.getItem("cbetProgress"));
     if (savedCbet) {
@@ -6305,7 +3363,6 @@ export default function App() {
       setShowMissedReview(savedCbet.showMissedReview || false);
     }
   }, []);
-
   useEffect(() => {
     const savedHarderCbet = JSON.parse(localStorage.getItem("harderCbetProgress"));
     if (savedHarderCbet) {
@@ -6319,14 +3376,10 @@ export default function App() {
       setShowHarderCbetMissedReview(savedHarderCbet.showHarderCbetMissedReview || false);
     }
   }, []);
-
   useEffect(() => {
     const savedTeas = JSON.parse(localStorage.getItem("teasProgress"));
     if (savedTeas) {
-      const savedDifficulty = savedTeas.teasDifficulty === "hard" ? "hard" : "core";
-      const fallbackBank = savedDifficulty === "hard" ? harderTeasQuestions : teasQuestions;
-      setTeasDifficulty(savedDifficulty);
-      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleArray(fallbackBank));
+      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleArray(teasQuestions));
       setTeasIndex(savedTeas.teasIndex || 0);
       setTeasScore(savedTeas.teasScore || 0);
       setTeasAnswers(savedTeas.teasAnswers || {});
@@ -6334,7 +3387,6 @@ export default function App() {
       setShowTeasMissedReview(savedTeas.showTeasMissedReview || false);
     }
   }, []);
-
   useEffect(() => {
     const savedEquipment = JSON.parse(localStorage.getItem("equipmentProgress"));
     if (savedEquipment) {
@@ -6348,14 +3400,10 @@ export default function App() {
       setShowEquipmentMissedReview(savedEquipment.showEquipmentMissedReview || false);
     }
   }, []);
-
   useEffect(() => {
     const savedCres = JSON.parse(localStorage.getItem("cresProgress"));
     if (savedCres) {
-      const savedDifficulty = savedCres.cresDifficulty === "hard" ? "hard" : "core";
-      const fallbackBank = savedDifficulty === "hard" ? harderCresQuestions : cresQuestions;
-      setCresDifficulty(savedDifficulty);
-      setShuffledCresQuestions(savedCres.shuffledCresQuestions || shuffleArray(fallbackBank));
+      setShuffledCresQuestions(savedCres.shuffledCresQuestions || shuffleArray(cresQuestions));
       setCresIndex(savedCres.cresIndex || 0);
       setCresScore(savedCres.cresScore || 0);
       setCresAnswers(savedCres.cresAnswers || {});
@@ -6363,7 +3411,6 @@ export default function App() {
       setShowCresMissedReview(savedCres.showCresMissedReview || false);
     }
   }, []);
-
   useEffect(() => {
     const savedTerminology = JSON.parse(localStorage.getItem("terminologyProgress"));
     if (savedTerminology) {
@@ -6377,7 +3424,6 @@ export default function App() {
       setShowTerminologyMissedReview(savedTerminology.showTerminologyMissedReview || false);
     }
   }, []);
-
   useEffect(() => {
     const savedWordParts = JSON.parse(localStorage.getItem("wordPartProgress"));
     if (savedWordParts) {
@@ -6391,7 +3437,6 @@ export default function App() {
       setShowWordPartMissedReview(savedWordParts.showWordPartMissedReview || false);
     }
   }, []);
-
   useEffect(() => {
     if (
       cbetShowResult &&
@@ -6403,50 +3448,40 @@ export default function App() {
       localStorage.setItem("harderCbetUnlocked", "true");
     }
   }, [cbetShowResult, cbetScore, shuffledCbetQuestions.length, harderCbetUnlocked]);
-
   const saveProgress = (key, newScore) => {
     const saved = JSON.parse(localStorage.getItem("progress")) || {};
     saved[key] = newScore;
     localStorage.setItem("progress", JSON.stringify(saved));
     setDashboard(saved);
   };
-
   const handlePlacementAttempt = (part) => {
     if (!selectedLabel) return;
     if (!part || placed[part.name] === "correct") return;
-
     if (part.name !== selectedLabel) {
       wrongSound.currentTime = 0;
       wrongSound.play();
       setFeedback((prev) => ({ ...prev, [part.name]: "wrong" }));
       showPlacementMessage("Wrong, try again.");
-
       setTimeout(() => {
         setFeedback((prev) => ({ ...prev, [part.name]: "" }));
       }, 700);
-
       return;
     }
-
     correctSound.currentTime = 0;
     correctSound.play();
     setPlacementMessage({ text: "", tone: "idle" });
     setPlaced((prev) => ({ ...prev, [part.name]: "correct" }));
     setFeedback((prev) => ({ ...prev, [part.name]: "correct" }));
     setSelectedLabel("");
-
     const newScore = score + 1;
     setScore(newScore);
     saveProgress(selectedSet, newScore);
   };
-
   const handleImageClick = (e) => {
     if (!selectedLabel || !usesNumberedZones) return;
-
     const rect = e.currentTarget.getBoundingClientRect();
     let clickX = (e.clientX - rect.left) / rect.width * currentSet.boardWidth;
     let clickY = (e.clientY - rect.top) / rect.height * currentSet.boardHeight;
-
     // Reverse-transform the click coordinates to match the part coordinate system
     // The image displays with transforms, so we need to undo them
     if (
@@ -6472,12 +3507,10 @@ export default function App() {
         clickY = clickY - translateY;
       }
     }
-
     // Find the closest part
     let closestPart = null;
     const tolerance = 100;
     let closestDistance = tolerance;
-
     currentSet.parts.forEach((part) => {
       const distance = Math.sqrt(
         Math.pow(part.x - clickX, 2) + Math.pow(part.y - clickY, 2)
@@ -6487,10 +3520,8 @@ export default function App() {
         closestPart = part;
       }
     });
-
     handlePlacementAttempt(closestPart);
   };
-
   const resetGame = () => {
     setPlaced({});
     setFeedback({});
@@ -6499,7 +3530,6 @@ export default function App() {
     setPlacementMessage({ text: "", tone: "idle" });
     setShowZoneAnswers(false);
   };
-
   const selectSet = (item) => {
     setSelectedSet(item);
     setPlaced({});
@@ -6509,7 +3539,6 @@ export default function App() {
     setPlacementMessage({ text: "", tone: "idle" });
     setShowZoneAnswers(false);
   };
-
   const resetCbetExam = () => {
     const reshuffled = shuffleArray(cbetQuestions);
     localStorage.removeItem("cbetProgress");
@@ -6520,7 +3549,6 @@ export default function App() {
     setCbetShowResult(false);
     setShowMissedReview(false);
   };
-
   const saveCbetProgress = () => {
     const progress = {
       shuffledCbetQuestions,
@@ -6532,7 +3560,6 @@ export default function App() {
     };
     localStorage.setItem("cbetProgress", JSON.stringify(progress));
   };
-
   const restartCbetExam = () => {
     const reshuffled = shuffleArray(cbetQuestions);
     localStorage.removeItem("cbetProgress");
@@ -6543,7 +3570,6 @@ export default function App() {
     setCbetShowResult(false);
     setShowMissedReview(false);
   };
-
   const saveHarderCbetProgress = () => {
     const progress = {
       shuffledHarderCbetQuestions,
@@ -6555,7 +3581,6 @@ export default function App() {
     };
     localStorage.setItem("harderCbetProgress", JSON.stringify(progress));
   };
-
   const restartHarderCbetExam = () => {
     const reshuffled = shuffleArray(harderCbetQuestions);
     localStorage.removeItem("harderCbetProgress");
@@ -6566,7 +3591,6 @@ export default function App() {
     setHarderCbetShowResult(false);
     setShowHarderCbetMissedReview(false);
   };
-
   const saveEquipmentProgress = () => {
     const progress = {
       shuffledEquipmentQuestions,
@@ -6578,7 +3602,6 @@ export default function App() {
     };
     localStorage.setItem("equipmentProgress", JSON.stringify(progress));
   };
-
   const restartEquipmentQuiz = () => {
     const reshuffled = shuffleArray(equipmentQuestions);
     localStorage.removeItem("equipmentProgress");
@@ -6589,7 +3612,6 @@ export default function App() {
     setEquipmentShowResult(false);
     setShowEquipmentMissedReview(false);
   };
-
   const missedQuestions = shuffledCbetQuestions.filter((q, index) => {
     const selected = cbetAnswers[index];
     return selected !== undefined && selected !== q.answer;
@@ -6622,27 +3644,22 @@ export default function App() {
     const selected = wordPartAnswers[index];
     return selected !== undefined && selected !== q.answer;
   });
-
   const getMissedExplanation = (question, selectedIndex) => {
     if (typeof question?.explanation === "string" && question.explanation.trim()) {
       return question.explanation;
     }
-
     const correctOption = question?.options?.[question.answer];
     if (!correctOption) {
       return "Review the correct option and key concept before retaking this question.";
     }
-
     if (selectedIndex !== undefined && selectedIndex !== question.answer) {
       const selectedOption = question?.options?.[selectedIndex];
       if (selectedOption) {
         return `You chose "${selectedOption}". The best answer is "${correctOption}".`;
       }
     }
-
     return `The best answer is "${correctOption}".`;
   };
-
   const renderMissedQuestionCards = (
     missedQuestionsList,
     shuffledQuestions,
@@ -6650,11 +3667,9 @@ export default function App() {
     options = {}
   ) => {
     const { showImage = false, showStudyTip = false } = options;
-
     return missedQuestionsList.map((q, idx) => {
       const originalIndex = shuffledQuestions.findIndex((item) => item === q);
       const selected = originalIndex >= 0 ? answers[originalIndex] : undefined;
-
       return (
         <div
           key={idx}
@@ -6681,7 +3696,6 @@ export default function App() {
               }}
             />
           )}
-
           <div
             style={{
               fontWeight: 700,
@@ -6692,7 +3706,6 @@ export default function App() {
           >
             {q.question}
           </div>
-
           {q.options.map((opt, i) => (
             <div
               key={i}
@@ -6717,7 +3730,6 @@ export default function App() {
               {String.fromCharCode(65 + i)}. {opt}
             </div>
           ))}
-
           <div
             style={{
               marginTop: 8,
@@ -6731,7 +3743,6 @@ export default function App() {
           >
             Why this answer: {getMissedExplanation(q, selected)}
           </div>
-
           {showStudyTip && q.studyTip && (
             <div
               style={{
@@ -6751,7 +3762,6 @@ export default function App() {
       );
     });
   };
-
   const startRetakeMissedQuestions = ({
     missedQuestionsList,
     setShuffledQuestions,
@@ -6763,7 +3773,6 @@ export default function App() {
     storageKey
   }) => {
     if (!missedQuestionsList.length) return;
-
     localStorage.removeItem(storageKey);
     setShuffledQuestions(shuffleArray(missedQuestionsList));
     setIndex(0);
@@ -6772,10 +3781,8 @@ export default function App() {
     setShowResult(false);
     setShowMissedReview(false);
   };
-
   const saveCresProgress = () => {
     const progress = {
-      cresDifficulty,
       shuffledCresQuestions,
       cresIndex,
       cresScore,
@@ -6785,10 +3792,8 @@ export default function App() {
     };
     localStorage.setItem("cresProgress", JSON.stringify(progress));
   };
-
   const restartCresExam = () => {
-    const activeCresBank = cresDifficulty === "hard" ? harderCresQuestions : cresQuestions;
-    const reshuffled = shuffleArray(activeCresBank);
+    const reshuffled = shuffleArray(cresQuestions);
     localStorage.removeItem("cresProgress");
     setShuffledCresQuestions(reshuffled);
     setCresIndex(0);
@@ -6797,7 +3802,6 @@ export default function App() {
     setCresShowResult(false);
     setShowCresMissedReview(false);
   };
-
   const saveTerminologyProgress = () => {
     const progress = {
       shuffledTerminologyQuestions,
@@ -6809,7 +3813,6 @@ export default function App() {
     };
     localStorage.setItem("terminologyProgress", JSON.stringify(progress));
   };
-
   const restartTerminologyQuiz = () => {
     const reshuffled = shuffleArray(terminologyQuestions);
     localStorage.removeItem("terminologyProgress");
@@ -6820,7 +3823,6 @@ export default function App() {
     setTerminologyShowResult(false);
     setShowTerminologyMissedReview(false);
   };
-
   const saveWordPartProgress = () => {
     const progress = {
       shuffledWordPartQuestions,
@@ -6832,7 +3834,6 @@ export default function App() {
     };
     localStorage.setItem("wordPartProgress", JSON.stringify(progress));
   };
-
   const restartWordPartQuiz = () => {
     const reshuffled = shuffleArray(wordPartQuestions);
     localStorage.removeItem("wordPartProgress");
@@ -6843,10 +3844,8 @@ export default function App() {
     setWordPartShowResult(false);
     setShowWordPartMissedReview(false);
   };
-
   const saveRnProgress = () => {
     const progress = {
-      rnDifficulty,
       shuffledRnQuestions,
       rnIndex,
       rnScore,
@@ -6856,10 +3855,8 @@ export default function App() {
     };
     localStorage.setItem("rnProgress", JSON.stringify(progress));
   };
-
   const resetRnExam = () => {
-    const activeRnQuestionBank = rnDifficulty === "hard" ? harderRnQuestions : rnQuestions;
-    const reshuffled = shuffleArray(activeRnQuestionBank);
+    const reshuffled = shuffleArray(rnQuestions);
     localStorage.removeItem("rnProgress");
     setShuffledRnQuestions(reshuffled);
     setRnIndex(0);
@@ -6868,10 +3865,8 @@ export default function App() {
     setRnShowResult(false);
     setShowRnMissedReview(false);
   };
-
   const restartRnExam = () => {
-    const activeRnQuestionBank = rnDifficulty === "hard" ? harderRnQuestions : rnQuestions;
-    const reshuffled = shuffleArray(activeRnQuestionBank);
+    const reshuffled = shuffleArray(rnQuestions);
     localStorage.removeItem("rnProgress");
     setShuffledRnQuestions(reshuffled);
     setRnIndex(0);
@@ -6880,10 +3875,8 @@ export default function App() {
     setRnShowResult(false);
     setShowRnMissedReview(false);
   };
-
   const saveTeasProgress = () => {
     const progress = {
-      teasDifficulty,
       shuffledTeasQuestions,
       teasIndex,
       teasScore,
@@ -6893,10 +3886,8 @@ export default function App() {
     };
     localStorage.setItem("teasProgress", JSON.stringify(progress));
   };
-
   const resetTeasExam = () => {
-    const activeTeasBank = teasDifficulty === "hard" ? harderTeasQuestions : teasQuestions;
-    const reshuffled = shuffleArray(activeTeasBank);
+    const reshuffled = shuffleArray(teasQuestions);
     localStorage.removeItem("teasProgress");
     setShuffledTeasQuestions(reshuffled);
     setTeasIndex(0);
@@ -6905,18 +3896,13 @@ export default function App() {
     setTeasShowResult(false);
     setShowTeasMissedReview(false);
   };
-
   const restartTeasExam = () => {
     resetTeasExam();
   };
-
   useEffect(() => {
     const savedRn = JSON.parse(localStorage.getItem("rnProgress"));
     if (savedRn) {
-      const savedDifficulty = savedRn.rnDifficulty === "hard" ? "hard" : "core";
-      const fallbackBank = savedDifficulty === "hard" ? harderRnQuestions : rnQuestions;
-      setRnDifficulty(savedDifficulty);
-      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleArray(fallbackBank));
+      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleArray(rnQuestions));
       setRnIndex(savedRn.rnIndex || 0);
       setRnScore(savedRn.rnScore || 0);
       setRnAnswers(savedRn.rnAnswers || {});
@@ -6924,7 +3910,6 @@ export default function App() {
       setShowRnMissedReview(savedRn.showRnMissedReview || false);
     }
   }, []);
-
   const navButtonStyle = (isActive, isHovered) => ({
     padding: "10px 18px",
     borderRadius: 999,
@@ -6943,7 +3928,6 @@ export default function App() {
     transform: isHovered ? "translateY(-2px)" : "translateY(0)",
     transition: "background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease"
   });
-
   const cbetStatCardStyle = {
     padding: "12px 16px",
     borderRadius: 10,
@@ -6955,26 +3939,18 @@ export default function App() {
     minWidth: 120,
     boxShadow: "0 4px 10px rgba(0,0,0,0.04)"
   };
-
   const homeCardStyle = {
     background: "rgba(255,255,255,0.85)",
-    borderRadius: 16,
-    padding: isSmallScreen ? 14 : 18,
-    boxShadow: "0 6px 16px rgba(0,0,0,0.06)",
+    borderRadius: 18,
+    padding: 22,
+    boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
     minWidth: 0,
     width: "100%",
-    height: "100%",
-    boxSizing: "border-box",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
     textAlign: "center",
     border: "1px solid transparent",
-    minHeight: isSmallScreen ? 0 : 152,
+    minHeight: 168,
     transition: "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease"
   };
-
   const homeInfoCardStyle = {
     flex: "1 1 300px",
     minWidth: 0,
@@ -6984,7 +3960,6 @@ export default function App() {
     border: "1px solid #d8e4f2",
     boxShadow: "0 8px 22px rgba(0,0,0,0.05)"
   };
-
   const homeActionLinkStyle = (background) => ({
     display: "inline-flex",
     alignItems: "center",
@@ -6997,28 +3972,24 @@ export default function App() {
     fontWeight: 700,
     boxShadow: "0 10px 22px rgba(0,0,0,0.14)"
   });
-
   const getInteractiveHomeCardStyle = (cardId) => {
     const isActive = hoveredHomeCard === cardId;
-
     return {
       ...homeCardStyle,
       cursor: "pointer",
-      transform: isActive ? "translateY(-2px)" : "translateY(0)",
+      transform: isActive ? "translateY(-4px) scale(1.01)" : "translateY(0) scale(1)",
       borderColor: isActive ? "#7fb7e8" : "transparent",
       boxShadow: isActive
-        ? "0 10px 20px rgba(18,53,91,0.14)"
+        ? "0 14px 34px rgba(18,53,91,0.18), 0 0 0 4px rgba(88,180,216,0.16)"
         : homeCardStyle.boxShadow
     };
   };
-
   const handleHomeCardKeyDown = (event, action) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       action();
     }
   };
-
   const anatomyStudyCard =
     mode === "organs" && currentSet && currentSet.functionTitle ? (
       <div
@@ -7043,7 +4014,6 @@ export default function App() {
             pointerEvents: "none"
           }}
         />
-
         <div
           style={{
             position: "relative",
@@ -7071,7 +4041,6 @@ export default function App() {
             >
               Study Snapshot
             </div>
-
             <h3
               style={{
                 margin: "14px 0 8px",
@@ -7081,7 +4050,6 @@ export default function App() {
             >
               {selectedSet}
             </h3>
-
             <div
               style={{
                 fontSize: isSmallScreen ? 16 : 18,
@@ -7092,7 +4060,6 @@ export default function App() {
             >
               {currentSet.functionTitle}
             </div>
-
             <p
               style={{
                 margin: 0,
@@ -7105,7 +4072,6 @@ export default function App() {
               {currentSet.functionSummary}
             </p>
           </div>
-
           <div
             style={{
               flex: "0 1 250px",
@@ -7129,7 +4095,6 @@ export default function App() {
             >
               Why It Matters
             </div>
-
             <div style={{ display: "grid", gap: 10 }}>
               {currentSet.studyHighlights.map((highlight) => (
                 <div
@@ -7152,24 +4117,19 @@ export default function App() {
         </div>
       </div>
     ) : null;
-
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     setContactError("");
-
     const form = e.currentTarget;
     const formData = new FormData(form);
     const honeypotValue = (formData.get("_gotcha") || "").toString().trim();
-
     // Silently accept bot submissions caught by the honeypot.
     if (honeypotValue) {
       setContactStatus("success");
       form.reset();
       return;
     }
-
     setContactStatus("sending");
-
     try {
       const response = await fetch("https://formspree.io/f/xgonbzaj", {
         method: "POST",
@@ -7178,11 +4138,9 @@ export default function App() {
         },
         body: formData
       });
-
       if (!response.ok) {
         throw new Error("submit_failed");
       }
-
       setContactStatus("success");
       contactFormRef.current?.reset();
     } catch (error) {
@@ -7190,12 +4148,10 @@ export default function App() {
       setContactError("Message failed to send. Please try again.");
     }
   };
-
   const shareQuizResult = async (quizName, scoreValue, totalValue) => {
     const baseUrl =
       typeof window !== "undefined" ? window.location.origin : "https://medskillbuilder.com";
     const shareText = `I scored ${scoreValue}/${totalValue} on ${quizName} at MedSkillBuilder. Try it: ${baseUrl}`;
-
     if (navigator.share) {
       try {
         await navigator.share({
@@ -7210,7 +4166,6 @@ export default function App() {
         }
       }
     }
-
     if (navigator.clipboard?.writeText) {
       try {
         await navigator.clipboard.writeText(shareText);
@@ -7220,10 +4175,8 @@ export default function App() {
         // Fall through to prompt when clipboard is unavailable.
       }
     }
-
     window.prompt("Copy and share this:", shareText);
   };
-
   const trackExamCompletion = (examName, scoreValue, totalValue) => {
     setOwnerExamStats((prev) => {
       const current = prev?.[examName] || { started: 0, completed: 0 };
@@ -7237,11 +4190,9 @@ export default function App() {
       localStorage.setItem("ownerExamStats", JSON.stringify(next));
       return next;
     });
-
     if (typeof window === "undefined" || typeof window.gtag !== "function") {
       return;
     }
-
     window.gtag("event", "exam_completed", {
       exam_name: examName,
       score: scoreValue,
@@ -7249,7 +4200,6 @@ export default function App() {
       completion_rate: totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0
     });
   };
-
   const trackExamStart = (examName) => {
     setOwnerExamStats((prev) => {
       const current = prev?.[examName] || { started: 0, completed: 0 };
@@ -7263,19 +4213,15 @@ export default function App() {
       localStorage.setItem("ownerExamStats", JSON.stringify(next));
       return next;
     });
-
     if (typeof window === "undefined" || typeof window.gtag !== "function") {
       return;
     }
-
     window.gtag("event", "exam_started", {
       exam_name: examName
     });
   };
-
   const cbetPassed =
     shuffledCbetQuestions.length > 0 && cbetScore / shuffledCbetQuestions.length >= 0.7;
-
   const renderAdSlot = (slotId) => {
     if (!adsenseClient || !slotId) {
       return (
@@ -7297,7 +4243,6 @@ export default function App() {
         </div>
       );
     }
-
     return (
       <ins
         className="adsbygoogle"
@@ -7309,7 +4254,6 @@ export default function App() {
       />
     );
   };
-
 return (
   <div
     style={{
@@ -7342,7 +4286,6 @@ return (
     }}
   />
 </div>
-
     <div
       style={{
         maxWidth: 1300,
@@ -7367,104 +4310,28 @@ return (
         <p style={{ marginTop: 10, fontSize: 18 }}>
           Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, and Medical Terminology
         </p>
-
-        <div
-          style={{
-            marginTop: 14,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 12
-          }}
-        >
-          <button
-            onClick={() => setActiveTab("Contact")}
-            onMouseEnter={() => setHoveredNavTab("HeaderContact")}
-            onMouseLeave={() => setHoveredNavTab("")}
-            style={{
-              border: "1px solid rgba(255,255,255,0.46)",
-              background:
-                hoveredNavTab === "HeaderContact"
-                  ? "rgba(255,255,255,0.26)"
-                  : "rgba(255,255,255,0.14)",
-              color: "white",
-              borderRadius: 999,
-              padding: "8px 14px",
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: "pointer"
-            }}
-          >
-            Contact Us
-          </button>
-
-          <button
-            onClick={() => setActiveTab("Support")}
-            onMouseEnter={() => setHoveredNavTab("HeaderSupport")}
-            onMouseLeave={() => setHoveredNavTab("")}
-            style={{
-              border: "1px solid rgba(255,255,255,0.46)",
-              background:
-                hoveredNavTab === "HeaderSupport"
-                  ? "rgba(255,255,255,0.26)"
-                  : "rgba(255,255,255,0.14)",
-              color: "white",
-              borderRadius: 999,
-              padding: "8px 14px",
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: "pointer"
-            }}
-          >
-            Support Our Content
-          </button>
-
-          <button
-            onClick={() => setActiveTab("Privacy")}
-            onMouseEnter={() => setHoveredNavTab("HeaderPrivacy")}
-            onMouseLeave={() => setHoveredNavTab("")}
-            style={{
-              border: "1px solid rgba(255,255,255,0.46)",
-              background:
-                hoveredNavTab === "HeaderPrivacy"
-                  ? "rgba(255,255,255,0.26)"
-                  : "rgba(255,255,255,0.14)",
-              color: "white",
-              borderRadius: 999,
-              padding: "8px 14px",
-              fontSize: 13,
-              fontWeight: 700,
-              cursor: "pointer"
-            }}
-          >
-            Privacy
-          </button>
-        </div>
       </div>
-
       <div style={{ marginBottom: 16 }}>
         {renderAdSlot(topAdSlot)}
       </div>
-
       {/* NAV BUTTONS (FIXED WRAPPER) */}
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           gap: 12,
-          flexWrap: "wrap"
+          flexWrap: "wrap",
+          marginBottom: 20
         }}
-  >
-    <button
-      onClick={() => setActiveTab("Home")}
-      onMouseEnter={() => setHoveredNavTab("Home")}
-      onMouseLeave={() => setHoveredNavTab("")}
-      style={navButtonStyle(activeTab === "Home", hoveredNavTab === "Home")}
-    >
-      Home
-    </button>
-
+      >
+        <button
+          onClick={() => setActiveTab("Home")}
+          onMouseEnter={() => setHoveredNavTab("Home")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Home", hoveredNavTab === "Home")}
+        >
+          Home
+        </button>
         {activeTab === "Home" && (
           <>
         <button
@@ -7479,9 +4346,6 @@ return (
         >
           Anatomy
         </button>
-
-
-
         <button
           onClick={() => {
             setActiveTab("Bones");
@@ -7495,15 +4359,6 @@ return (
           Bones
         </button>
         <button
-          onClick={() => setActiveTab("SkeletalAnatomy")}
-          onMouseEnter={() => setHoveredNavTab("SkeletalAnatomy")}
-          onMouseLeave={() => setHoveredNavTab("")}
-          style={navButtonStyle(activeTab === "SkeletalAnatomy", hoveredNavTab === "SkeletalAnatomy")}
-        >
-          Click for Anatomy Quiz
-        </button>
-
-        <button
           onClick={() => setActiveTab("Dashboard")}
           onMouseEnter={() => setHoveredNavTab("Dashboard")}
           onMouseLeave={() => setHoveredNavTab("")}
@@ -7511,7 +4366,6 @@ return (
         >
          Dashboard
         </button>
-
         {ownerAnalyticsEnabled && (
           <button
             onClick={() => setActiveTab("OwnerAnalytics")}
@@ -7522,7 +4376,6 @@ return (
             Owner Analytics
           </button>
         )}
-
         <button
           onClick={() => {
             trackExamStart("CBET Practice");
@@ -7534,7 +4387,6 @@ return (
         >
           CBET Practice
         </button>
-
         <button
           onClick={() => {
             if (harderCbetUnlocked) {
@@ -7557,7 +4409,6 @@ return (
         >
           {harderCbetUnlocked ? "CBET Harder Questions" : "CBET Harder Questions (Locked)"}
         </button>
-
         <button
           onClick={() => {
             trackExamStart("RN Practice");
@@ -7569,7 +4420,6 @@ return (
         >
           RN Practice
         </button>
-
         <button
           onClick={() => {
             trackExamStart("TEAS Practice");
@@ -7581,7 +4431,6 @@ return (
         >
           TEAS Practice
         </button>
-
         <button
           onClick={() => {
             trackExamStart("CRES Practice");
@@ -7593,7 +4442,6 @@ return (
         >
           CRES Practice
         </button>
-
         <button
           onClick={() => {
             trackExamStart("Medical Terminology Practice");
@@ -7605,7 +4453,6 @@ return (
         >
           Medical Terminology
         </button>
-
         <button
           onClick={() => {
             trackExamStart("Medical Equipment ID Practice");
@@ -7617,16 +4464,34 @@ return (
         >
           Medical Equipment ID
         </button>
-
+        <button
+          onClick={() => setActiveTab("Contact")}
+          onMouseEnter={() => setHoveredNavTab("Contact")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Contact", hoveredNavTab === "Contact")}
+        >
+          Contact
+        </button>
+        <button
+          onClick={() => setActiveTab("Support")}
+          onMouseEnter={() => setHoveredNavTab("Support")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Support", hoveredNavTab === "Support")}
+        >
+          Support Our Content
+        </button>
+        <button
+          onClick={() => setActiveTab("Privacy")}
+          onMouseEnter={() => setHoveredNavTab("Privacy")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Privacy", hoveredNavTab === "Privacy")}
+        >
+          Privacy
+        </button>
           </>
         )}
       </div>
-
-
-      {/* SKELETAL ANATOMY QUIZ TAB */}
-      {activeTab === "SkeletalAnatomy" && (
-        <SkeletalAnatomyQuiz />
-      )}
+      {/* HOME TAB */}
       {activeTab === "Home" && (
         <div
           style={{
@@ -7634,8 +4499,7 @@ return (
             borderRadius: isSmallScreen ? 22 : 28,
             padding: isSmallScreen ? 18 : 30,
             boxShadow: "0 18px 46px rgba(18,53,91,0.10)",
-            border: "1px solid rgba(216,228,242,0.95)",
-            overflow: "hidden"
+            border: "1px solid rgba(216,228,242,0.95)"
           }}
         >
           <div
@@ -7676,7 +4540,6 @@ return (
               >
                 Study smarter
               </div>
-
               <h2
                 style={{
                   color: "white",
@@ -7689,7 +4552,6 @@ return (
               >
                 Build anatomy speed and exam confidence from one clean home base.
               </h2>
-
               <p
                 style={{
                   fontSize: isSmallScreen ? 16 : 18,
@@ -7700,7 +4562,6 @@ return (
               >
                 Practice interactive label-to-image activities, switch into exam-style review when you want pressure, and keep your newest TikTok lesson one click away.
               </p>
-
               <div
                 style={{
                   display: "flex",
@@ -7749,7 +4610,6 @@ return (
                   Jump to CBET Questions
                 </button>
               </div>
-
               <div
                 style={{
                   display: "grid",
@@ -7803,7 +4663,6 @@ return (
                 </div>
               </div>
             </div>
-
             <div
               style={{
                 ...homeInfoCardStyle,
@@ -7828,7 +4687,6 @@ return (
               <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 14 }}>
                 Use the site in this order
               </h3>
-
               {[
                 ["1", "Start with anatomy or bones", "Warm up visually before taking quiz-style review."],
                 ["2", "Switch into practice questions", "Use CBET, RN, TEAS, or terminology to test recall."],
@@ -7868,17 +4726,13 @@ return (
               ))}
             </div>
           </div>
-
           <div
             style={{
               display: "grid",
               gridTemplateColumns: isSmallScreen
                 ? "1fr"
-                : isMediumScreen
-                ? "repeat(2, minmax(0, 1fr))"
-                : "repeat(3, minmax(0, 1fr))",
-              gridAutoRows: "1fr",
-              gap: isSmallScreen ? 16 : 22,
+                : "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: isSmallScreen ? 14 : 18,
               marginBottom: isSmallScreen ? 20 : 28
             }}
           >
@@ -7903,13 +4757,12 @@ return (
               }
               style={getInteractiveHomeCardStyle("anatomy")}
             >
-              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🫀</div>
-              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Anatomy Practice</h3>
-              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🫀</div>
+              <h3 style={{ color: "#12355b" }}>Anatomy Practice</h3>
+              <p style={{ color: "#4f6275" }}>
                 Learn heart, brain, lungs, liver, eye, and arterial anatomy with interactive labeling.
               </p>
             </div>
-
             <div
               role="button"
               tabIndex={0}
@@ -7931,13 +4784,12 @@ return (
               }
               style={getInteractiveHomeCardStyle("bones")}
             >
-              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🦴</div>
-              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Bone Practice</h3>
-              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🦴</div>
+              <h3 style={{ color: "#12355b" }}>Bone Practice</h3>
+              <p style={{ color: "#4f6275" }}>
                 Study the skeleton, hand bones, foot bones, spine, skull, knee, and shoulder in detail.
               </p>
             </div>
-
             <div
               role="button"
               tabIndex={0}
@@ -7951,13 +4803,12 @@ return (
               }
               style={getInteractiveHomeCardStyle("cbet")}
             >
-              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>📝</div>
-              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>CBET Practice</h3>
-              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
+              <div style={{ fontSize: 42, marginBottom: 8 }}>📝</div>
+              <h3 style={{ color: "#12355b" }}>CBET Practice</h3>
+              <p style={{ color: "#4f6275" }}>
                 Take CBET practice questions with instant feedback and score tracking.
               </p>
             </div>
-
             <div
               role="button"
               tabIndex={0}
@@ -7971,13 +4822,12 @@ return (
               }
               style={getInteractiveHomeCardStyle("rn")}
             >
-              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🩺</div>
-              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>RN Practice</h3>
-              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🩺</div>
+              <h3 style={{ color: "#12355b" }}>RN Practice</h3>
+              <p style={{ color: "#4f6275" }}>
                 Practice RN-style questions with immediate answer review and score tracking.
               </p>
             </div>
-
             <div
               role="button"
               tabIndex={0}
@@ -7991,13 +4841,12 @@ return (
               }
               style={getInteractiveHomeCardStyle("teas")}
             >
-              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>📚</div>
-              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>TEAS Practice</h3>
-              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
+              <div style={{ fontSize: 42, marginBottom: 8 }}>📚</div>
+              <h3 style={{ color: "#12355b" }}>TEAS Practice</h3>
+              <p style={{ color: "#4f6275" }}>
                 Work through 150 randomized TEAS-style questions covering reading, math, science, and English usage.
               </p>
             </div>
-
             <div
               role="button"
               tabIndex={0}
@@ -8011,13 +4860,12 @@ return (
               }
               style={getInteractiveHomeCardStyle("terminology")}
             >
-              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>🧠</div>
-              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Medical Terminology</h3>
-              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
+              <div style={{ fontSize: 42, marginBottom: 8 }}>🧠</div>
+              <h3 style={{ color: "#12355b" }}>Medical Terminology</h3>
+              <p style={{ color: "#4f6275" }}>
                 Master hard medical terms by matching each word to its correct definition.
               </p>
             </div>
-
             <div
               role="button"
               tabIndex={0}
@@ -8031,14 +4879,13 @@ return (
               }
               style={getInteractiveHomeCardStyle("dashboard")}
             >
-              <div style={{ fontSize: isSmallScreen ? 34 : 38, marginBottom: 8 }}>📈</div>
-              <h3 style={{ color: "#12355b", margin: "0 0 8px", lineHeight: 1.2 }}>Track Progress</h3>
-              <p style={{ color: "#4f6275", margin: 0, lineHeight: 1.45 }}>
+              <div style={{ fontSize: 42, marginBottom: 8 }}>📈</div>
+              <h3 style={{ color: "#12355b" }}>Track Progress</h3>
+              <p style={{ color: "#4f6275" }}>
                 Monitor your score, revisit weak spots, and see how much you have mastered.
               </p>
             </div>
           </div>
-
           <div
             style={{
               marginTop: 24,
@@ -8057,7 +4904,6 @@ return (
                 Open article guides when needed and keep your latest lesson easy to reach.
               </p>
             </div>
-
             <div
               style={{
                 display: "flex",
@@ -8091,34 +4937,17 @@ return (
                   Extra reading when you need it
                 </h4>
                 <div style={{ display: "grid", gap: 10 }}>
-                  {featuredStudyGuides.map((guide) => (
-                    <a key={guide.href} href={guide.href} style={homeActionLinkStyle(guide.color)}>
-                      {guide.label}
-                    </a>
-                  ))}
+                  <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>
+                    CBET Practice Questions Guide
+                  </a>
+                  <a href="/how-to-pass-cbet-exam.html" style={homeActionLinkStyle("#1d6fa5")}>
+                    How to Pass CBET Exam
+                  </a>
+                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
+                    Anatomy Labeling Practice
+                  </a>
                 </div>
-
-                <details style={{ marginTop: 12 }}>
-                  <summary
-                    style={{
-                      cursor: "pointer",
-                      color: "#12355b",
-                      fontWeight: 700,
-                      fontSize: 14
-                    }}
-                  >
-                    View all study guides
-                  </summary>
-                  <div style={{ display: "grid", gap: 8, marginTop: 10 }}>
-                    {extraStudyGuides.map((guide) => (
-                      <a key={guide.href} href={guide.href} style={homeActionLinkStyle(guide.color)}>
-                        {guide.label}
-                      </a>
-                    ))}
-                  </div>
-                </details>
               </div>
-
               <div
                 style={{
                   ...homeInfoCardStyle,
@@ -8141,79 +4970,6 @@ return (
                 >
                   Newest on TikTok
                 </div>
-
-                <div
-                  style={{
-                    borderRadius: 16,
-                    overflow: "hidden",
-                    background: "#111827",
-                    border: "1px solid #e5e7eb",
-                    marginBottom: 12
-                  }}
-                >
-                  <a
-                    href={tiktokLatestVideoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ textDecoration: "none", display: "block" }}
-                    aria-label="Open latest TikTok in a new tab"
-                  >
-                    <div
-                      style={{
-                        width: "100%",
-                        minHeight: isSmallScreen ? 220 : 260,
-                        display: "block",
-                        background:
-                          "radial-gradient(circle at 20% 20%, #ec4899 0%, transparent 35%), radial-gradient(circle at 80% 30%, #111827 10%, #1f2937 55%), radial-gradient(circle at 70% 80%, #f43f5e 0%, transparent 30%), linear-gradient(160deg, #0f172a, #111827)",
-                        color: "#f8fafc",
-                        padding: isSmallScreen ? 18 : 22,
-                        position: "relative"
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: 42,
-                          height: 42,
-                          borderRadius: 999,
-                          background: "rgba(255,255,255,0.92)",
-                          color: "#111827",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontWeight: 900,
-                          fontSize: 18,
-                          boxShadow: "0 8px 20px rgba(0,0,0,0.22)",
-                          marginBottom: 12
-                        }}
-                      >
-                        ▶
-                      </div>
-
-                      <div style={{ fontSize: 19, fontWeight: 800, lineHeight: 1.2, marginBottom: 6 }}>
-                        {hasTikTokLatestVideo
-                          ? "Watch the latest video from MedSkillBuilder"
-                          : "Open MedSkillBuilder on TikTok"}
-                      </div>
-
-                    </div>
-                  </a>
-
-                  {!hasTikTokLatestVideo && (
-                    <div
-                      style={{
-                        padding: "10px 12px",
-                        background: "#f8fafc",
-                        borderTop: "1px solid #e2e8f0",
-                        color: "#475569",
-                        fontSize: 13,
-                        fontWeight: 600
-                      }}
-                    >
-                      Add VITE_TIKTOK_LATEST_VIDEO_URL to point this card to your newest post.
-                    </div>
-                  )}
-                </div>
-
                 <div style={{ display: "grid", gap: 10 }}>
                   <a
                     href={tiktokLatestVideoUrl}
@@ -8232,13 +4988,25 @@ return (
                     Follow on TikTok
                   </a>
                 </div>
-
+                {!hasTikTokLatestVideo && (
+                  <div
+                    style={{
+                      marginTop: 12,
+                      padding: "10px 12px",
+                      borderRadius: 14,
+                      background: "#fee2e2",
+                      color: "#7f1d1d",
+                      fontWeight: 600
+                    }}
+                  >
+                    Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video.
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
       )}
-
         {activeTab === "Dashboard" && (
           <div
             style={{
@@ -8277,7 +5045,6 @@ return (
                   </div>
                 </div>
               ))}
-
               <div
                 style={{
                   background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -8293,7 +5060,6 @@ return (
                   {cbetScore} / {shuffledCbetQuestions.length}
                 </div>
               </div>
-
               <div
                 style={{
                   background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -8309,7 +5075,6 @@ return (
                   {teasScore} / {shuffledTeasQuestions.length}
                 </div>
               </div>
-
               <div
                 style={{
                   background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -8328,7 +5093,6 @@ return (
             </div>
           </div>
         )}
-
         {ownerAnalyticsEnabled && activeTab === "OwnerAnalytics" && (
           <div
             style={{
@@ -8345,7 +5109,6 @@ return (
             <p style={{ color: "#4f6275" }}>
               Visible only when <strong>VITE_OWNER_ANALYTICS_TAB=true</strong>. These local counters are useful for quick checks; GA4 remains your source of truth for real traffic.
             </p>
-
             <div style={{ overflowX: "auto" }}>
               <table
                 style={{
@@ -8370,7 +5133,6 @@ return (
                     const started = ownerExamStats?.[exam]?.started || 0;
                     const completed = ownerExamStats?.[exam]?.completed || 0;
                     const completionPct = started > 0 ? Math.round((completed / started) * 100) : 0;
-
                     return (
                       <tr key={exam}>
                         <td style={{ padding: 12, borderBottom: "1px solid #eef2f7" }}>{exam}</td>
@@ -8385,7 +5147,6 @@ return (
             </div>
           </div>
         )}
-
         {(activeTab === "Anatomy" || activeTab === "Bones") && (
           <div
             style={{
@@ -8395,6 +5156,93 @@ return (
               boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
             }}
           >
+            {activeTab === "Anatomy" && (
+              <>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "10px 0 8px 0"
+                  }}
+                >
+                  <div
+                    onClick={() => setActiveTab("AnatomyQuiz")}
+                    style={{
+                      background: "linear-gradient(90deg, #fbbf24 0%, #38bdf8 100%)",
+                      color: "#12355b",
+                      fontWeight: 900,
+                      fontSize: 26,
+                      borderRadius: 18,
+                      padding: "10px 34px",
+                      border: "2px solid #38bdf8",
+                      boxShadow: "0 4px 18px rgba(56,189,248,0.13)",
+                      cursor: "pointer",
+                      transition: "transform 0.15s ease, box-shadow 0.15s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.03)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                    }}
+                  >
+                    Click here to Test your Anatomy Knowledge "Quiz"
+                  </div>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "8px 0 12px 0"
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "linear-gradient(90deg, #38bdf8 0%, #fbbf24 100%)",
+                      color: "#12355b",
+                      fontWeight: 900,
+                      fontSize: 28,
+                      borderRadius: 18,
+                      padding: "12px 38px",
+                      border: "2px solid #38bdf8",
+                      boxShadow: "0 4px 18px rgba(56,189,248,0.13)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: 12
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 22,
+                        animation: "flashArrow 1s infinite alternate",
+                        display: "inline-block"
+                      }}
+                      aria-hidden="true"
+                    >
+                      ⬇️
+                    </span>
+
+                    <span>Click below to play Anatomy Games</span>
+
+                    <span
+                      style={{
+                        fontSize: 22,
+                        animation: "flashArrow 1s infinite alternate",
+                        display: "inline-block"
+                      }}
+                      aria-hidden="true"
+                    >
+                      ⬇️
+                    </span>
+                  </div>
+                </div>
+              </>
+            )}
             <div style={{ textAlign: "center", marginBottom: 14 }}>
               {Object.keys(data).map((item) => (
                 <button
@@ -8419,7 +5267,6 @@ return (
                 </button>
               ))}
             </div>
-
             {selectedSet && currentSet && (
               <>
                {anatomyStudyCard}
@@ -8440,7 +5287,6 @@ return (
     Retry
   </button>
 </div>
-
 <div
   style={{
     display: "flex",
@@ -8486,7 +5332,6 @@ return (
         : currentSet.imageStyle.transform
   }}
 />
-
       <div
         style={{
           position: "absolute",
@@ -8507,7 +5352,6 @@ return (
           ? "Eye Anatomy"
           : selectedSet}
       </div>
-
       {usesNumberedZones && currentSet.parts.map((part, idx) => (
         <div
           key={`num-${part.name}`}
@@ -8548,7 +5392,6 @@ return (
           {feedback[part.name] === "wrong" ? "X" : idx + 1}
         </div>
       ))}
-
       {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isWrong = feedback[part.name] === "wrong";
@@ -8570,7 +5413,6 @@ return (
     partX = (part.x * mobileWidthScale) + 125;
     partY = (part.y * mobileHeightScale) + 50;
   }
-
   return (
     <div
       key={part.name}
@@ -8616,7 +5458,6 @@ return (
 })}
     </div>
   </div>
-
   <div
     style={{
       background: "linear-gradient(180deg, #f8fafc, #eef4ff)",
@@ -8651,7 +5492,6 @@ return (
           <span>{showZoneAnswers ? "Hide Zone Answers" : "Show Zone Answers"}</span>
           <span style={{ fontSize: 14 }}>{showZoneAnswers ? "▲" : "▼"}</span>
         </button>
-
         <div
           style={{
             maxHeight: showZoneAnswers ? "360px" : "0px",
@@ -8683,7 +5523,6 @@ return (
         </div>
       </div>
     )}
-
     <div
       style={{
         background: "linear-gradient(135deg, #e0f2fe, #f0f9ff)",
@@ -8702,7 +5541,6 @@ return (
         ? isSmallScreen ? "👆 Tap zones to place labels" : "🖱️ Click zones to place labels"
         : isSmallScreen ? "👆 Tap a label, then tap the drop zone" : "🖱️ Click a label, then click the drop zone"}
     </div>
-
     {placementMessage.text && (
       <div
         style={{
@@ -8724,14 +5562,12 @@ return (
         {placementMessage.text}
       </div>
     )}
-
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
     {currentSet.parts.map((part) => {
   const isCorrect = placed[part.name] === "correct";
   const isSelected = selectedLabel === part.name;
   const isNumberedZoneSet = usesNumberedZones;
   const isHovered = hoveredPartName === part.name;
-
   return (
     <div
       key={part.name}
@@ -8785,7 +5621,6 @@ return (
   );
 })}
     </div>
-
     <div
       style={{
         marginTop: 20,
@@ -8797,7 +5632,6 @@ return (
     >
       Score: {score} / {currentSet.parts.length}
     </div>
-
     {score === currentSet.parts.length && (
       <div
         style={{
@@ -8820,7 +5654,7 @@ return (
             )}
           </div>
         )}
-
+        {activeTab === "AnatomyQuiz" && <AnatomyQuiz />}
                {activeTab === "CBET" && (
           <div
             style={{
@@ -8844,7 +5678,6 @@ return (
                     Finish CBET Practice with a score of 70% or higher to unlock CBET Harder Questions.
                   </p>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -8864,7 +5697,6 @@ return (
                     Passing: 70%
                   </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -8889,7 +5721,6 @@ return (
                   >
                     Save Progress
                   </button>
-
                   <button
                     onClick={restartCbetExam}
                     style={{
@@ -8906,7 +5737,6 @@ return (
                     Restart Practice
                   </button>
                 </div>
-
                 <div
                   style={{
                     background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -8926,7 +5756,6 @@ return (
                   >
                     {shuffledCbetQuestions[cbetIndex].question}
                   </div>
-
                   {shuffledCbetQuestions[cbetIndex].options.map((opt, i) => {
                     const selected = cbetAnswers[cbetIndex];
                     const correct = shuffledCbetQuestions[cbetIndex].answer;
@@ -8934,15 +5763,12 @@ return (
                     const isCorrectOption = i === correct;
                     const isSelectedWrong =
                       isAnswered && i === selected && selected !== correct;
-
                     return (
                       <button
                         key={i}
                         onClick={() => {
                           if (isAnswered) return;
-
                           setCbetAnswers((prev) => ({ ...prev, [cbetIndex]: i }));
-
                           if (i === correct) {
                             setCbetScore((prev) => prev + 1);
                             correctSound.currentTime = 0;
@@ -8981,12 +5807,10 @@ return (
                       </button>
                     );
                   })}
-
                   <div style={{ textAlign: "center", marginTop: 20 }}>
                     <button
                       onClick={() => {
                         if (cbetAnswers[cbetIndex] === undefined) return;
-
                         if (cbetIndex + 1 === shuffledCbetQuestions.length) {
                           trackExamCompletion("CBET Practice", cbetScore, shuffledCbetQuestions.length);
                           setCbetShowResult(true);
@@ -9022,7 +5846,6 @@ return (
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {cbetScore} / {shuffledCbetQuestions.length}
                 </p>
-
                 <div
                   style={{
                     marginTop: 12,
@@ -9041,7 +5864,6 @@ return (
                     ? "CBET Harder Questions unlocked."
                     : "Complete CBET Practice and score 70% or higher to unlock CBET Harder Questions."}
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -9065,7 +5887,6 @@ return (
                   >
                     Study Misses (Optional)
                   </button>
-
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -9093,7 +5914,6 @@ return (
                   >
                     Retake Missed Only
                   </button>
-
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -9114,7 +5934,6 @@ return (
                   >
                     Share Quiz
                   </button>
-
                   {harderCbetUnlocked && (
                     <button
                       onClick={() => setActiveTab("HarderCBET")}
@@ -9131,7 +5950,6 @@ return (
                       Go to CBET Harder Questions
                     </button>
                   )}
-
                   <button
                     onClick={restartCbetExam}
                     style={{
@@ -9149,13 +5967,11 @@ return (
                 </div>
               </div>
             )}
-
             {showMissedReview && (
               <div style={{ marginTop: 24 }}>
                 <h2 style={{ color: "#12355b", textAlign: "center" }}>
                   Missed Questions Review
                 </h2>
-
                 {missedQuestions.length === 0 ? (
                   <p style={{ textAlign: "center", color: "#1e293b" }}>
                     You did not miss any questions.
@@ -9167,7 +5983,6 @@ return (
                     cbetAnswers
                   )
                 )}
-
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowMissedReview(false)}
@@ -9188,7 +6003,6 @@ return (
             )}
           </div>
         )}
-
         {activeTab === "HarderCBET" && (
           <div
             style={{
@@ -9230,7 +6044,6 @@ return (
                     each restart.
                   </p>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -9250,7 +6063,6 @@ return (
                     Advanced Tier
                   </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -9275,7 +6087,6 @@ return (
                   >
                     Save Progress
                   </button>
-
                   <button
                     onClick={restartHarderCbetExam}
                     style={{
@@ -9292,7 +6103,6 @@ return (
                     Restart Practice
                   </button>
                 </div>
-
                 <div
                   style={{
                     background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -9312,7 +6122,6 @@ return (
                   >
                     {shuffledHarderCbetQuestions[harderCbetIndex].question}
                   </div>
-
                   {shuffledHarderCbetQuestions[harderCbetIndex].options.map((opt, i) => {
                     const selected = harderCbetAnswers[harderCbetIndex];
                     const correct = shuffledHarderCbetQuestions[harderCbetIndex].answer;
@@ -9320,18 +6129,15 @@ return (
                     const isCorrectOption = i === correct;
                     const isSelectedWrong =
                       isAnswered && i === selected && selected !== correct;
-
                     return (
                       <button
                         key={i}
                         onClick={() => {
                           if (isAnswered) return;
-
                           setHarderCbetAnswers((prev) => ({
                             ...prev,
                             [harderCbetIndex]: i
                           }));
-
                           if (i === correct) {
                             setHarderCbetScore((prev) => prev + 1);
                             correctSound.currentTime = 0;
@@ -9370,12 +6176,10 @@ return (
                       </button>
                     );
                   })}
-
                   <div style={{ textAlign: "center", marginTop: 20 }}>
                     <button
                       onClick={() => {
                         if (harderCbetAnswers[harderCbetIndex] === undefined) return;
-
                         if (harderCbetIndex + 1 === shuffledHarderCbetQuestions.length) {
                           trackExamCompletion(
                             "CBET Harder Practice",
@@ -9415,7 +6219,6 @@ return (
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {harderCbetScore} / {shuffledHarderCbetQuestions.length}
                 </p>
-
                 <div
                   style={{
                     display: "flex",
@@ -9439,7 +6242,6 @@ return (
                   >
                     Study Misses (Optional)
                   </button>
-
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -9467,7 +6269,6 @@ return (
                   >
                     Retake Missed Only
                   </button>
-
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -9488,7 +6289,6 @@ return (
                   >
                     Share Quiz
                   </button>
-
                   <button
                     onClick={restartHarderCbetExam}
                     style={{
@@ -9506,13 +6306,11 @@ return (
                 </div>
               </div>
             )}
-
             {showHarderCbetMissedReview && (
               <div style={{ marginTop: 24 }}>
                 <h2 style={{ color: "#12355b", textAlign: "center" }}>
                   Missed Questions Review
                 </h2>
-
                 {harderCbetMissedQuestions.length === 0 ? (
                   <p style={{ textAlign: "center", color: "#1e293b" }}>
                     You did not miss any questions.
@@ -9524,7 +6322,6 @@ return (
                     harderCbetAnswers
                   )
                 )}
-
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowHarderCbetMissedReview(false)}
@@ -9545,7 +6342,6 @@ return (
             )}
           </div>
         )}
-
         {activeTab === "Equipment" && (
           <div
             style={{
@@ -9565,7 +6361,6 @@ return (
                     Identify each device from the image and choose the best answer.
                   </p>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -9585,7 +6380,6 @@ return (
                     Visual Recognition
                   </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -9610,7 +6404,6 @@ return (
                   >
                     Save Progress
                   </button>
-
                   <button
                     onClick={restartEquipmentQuiz}
                     style={{
@@ -9627,7 +6420,6 @@ return (
                     Restart Practice
                   </button>
                 </div>
-
                 <div
                   style={{
                     background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -9658,7 +6450,6 @@ return (
                       }}
                     />
                   </div>
-
                   <div
                     style={{
                       fontSize: 24,
@@ -9670,7 +6461,6 @@ return (
                   >
                     {shuffledEquipmentQuestions[equipmentIndex].question}
                   </div>
-
                   {shuffledEquipmentQuestions[equipmentIndex].options.map((opt, i) => {
                     const selected = equipmentAnswers[equipmentIndex];
                     const correct = shuffledEquipmentQuestions[equipmentIndex].answer;
@@ -9678,15 +6468,12 @@ return (
                     const isCorrectOption = i === correct;
                     const isSelectedWrong =
                       isAnswered && i === selected && selected !== correct;
-
                     return (
                       <button
                         key={i}
                         onClick={() => {
                           if (isAnswered) return;
-
                           setEquipmentAnswers((prev) => ({ ...prev, [equipmentIndex]: i }));
-
                           if (i === correct) {
                             setEquipmentScore((prev) => prev + 1);
                             correctSound.currentTime = 0;
@@ -9725,7 +6512,6 @@ return (
                       </button>
                     );
                   })}
-
                   {equipmentAnswers[equipmentIndex] !== undefined && (
                     <div
                       style={{
@@ -9742,12 +6528,10 @@ return (
                       Tip: {shuffledEquipmentQuestions[equipmentIndex].studyTip}
                     </div>
                   )}
-
                   <div style={{ textAlign: "center", marginTop: 20 }}>
                     <button
                       onClick={() => {
                         if (equipmentAnswers[equipmentIndex] === undefined) return;
-
                         if (equipmentIndex + 1 === shuffledEquipmentQuestions.length) {
                           trackExamCompletion(
                             "Medical Equipment ID Practice",
@@ -9787,7 +6571,6 @@ return (
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {equipmentScore} / {shuffledEquipmentQuestions.length}
                 </p>
-
                 <div
                   style={{
                     display: "flex",
@@ -9811,7 +6594,6 @@ return (
                   >
                     Study Misses (Optional)
                   </button>
-
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -9839,7 +6621,6 @@ return (
                   >
                     Retake Missed Only
                   </button>
-
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -9860,7 +6641,6 @@ return (
                   >
                     Share Quiz
                   </button>
-
                   <button
                     onClick={restartEquipmentQuiz}
                     style={{
@@ -9878,13 +6658,11 @@ return (
                 </div>
               </div>
             )}
-
             {showEquipmentMissedReview && (
               <div style={{ marginTop: 24 }}>
                 <h2 style={{ color: "#12355b", textAlign: "center" }}>
                   Missed Questions Review
                 </h2>
-
                 {equipmentMissedQuestions.length === 0 ? (
                   <p style={{ textAlign: "center", color: "#1e293b" }}>
                     You did not miss any questions.
@@ -9897,7 +6675,6 @@ return (
                     { showImage: true, showStudyTip: true }
                   )
                 )}
-
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowEquipmentMissedReview(false)}
@@ -9918,7 +6695,6 @@ return (
             )}
           </div>
         )}
-
         {activeTab === "RN" && (
           <div
             style={{
@@ -9937,74 +6713,7 @@ return (
                   <p style={{ color: "#4f6275", margin: 0 }}>
                     Select one answer. The correct answer will highlight after you answer.
                   </p>
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      gap: 8,
-                      marginTop: 14,
-                      padding: 6,
-                      borderRadius: 999,
-                      background: "#eef4ff",
-                      border: "1px solid #d8e4f2"
-                    }}
-                  >
-                    <button
-                      onClick={() => {
-                        if (rnDifficulty === "core") return;
-                        setRnDifficulty("core");
-                        setShuffledRnQuestions(shuffleArray(rnQuestions));
-                        setRnIndex(0);
-                        setRnScore(0);
-                        setRnAnswers({});
-                        setRnShowResult(false);
-                        setShowRnMissedReview(false);
-                        localStorage.removeItem("rnProgress");
-                      }}
-                      style={{
-                        padding: "8px 16px",
-                        borderRadius: 999,
-                        border: "none",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        background:
-                          rnDifficulty === "core"
-                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
-                            : "transparent",
-                        color: rnDifficulty === "core" ? "white" : "#12355b"
-                      }}
-                    >
-                      Core RN
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (rnDifficulty === "hard") return;
-                        setRnDifficulty("hard");
-                        setShuffledRnQuestions(shuffleArray(harderRnQuestions));
-                        setRnIndex(0);
-                        setRnScore(0);
-                        setRnAnswers({});
-                        setRnShowResult(false);
-                        setShowRnMissedReview(false);
-                        localStorage.removeItem("rnProgress");
-                      }}
-                      style={{
-                        padding: "8px 16px",
-                        borderRadius: 999,
-                        border: "none",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        background:
-                          rnDifficulty === "hard"
-                            ? "linear-gradient(135deg, #7c2d12, #b45309)"
-                            : "transparent",
-                        color: rnDifficulty === "hard" ? "white" : "#7c2d12"
-                      }}
-                    >
-                      Hard RN
-                    </button>
-                  </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -10024,7 +6733,6 @@ return (
                     Passing: 70%
                   </div>
                 </div>
-
                 <div
                   style={{
                     background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -10044,7 +6752,6 @@ return (
                   >
                     {shuffledRnQuestions[rnIndex].question}
                   </div>
-
                   {shuffledRnQuestions[rnIndex].options.map((opt, i) => {
                     const selected = rnAnswers[rnIndex];
                     const correct = shuffledRnQuestions[rnIndex].answer;
@@ -10052,15 +6759,12 @@ return (
                     const isCorrectOption = i === correct;
                     const isSelectedWrong =
                       isAnswered && i === selected && selected !== correct;
-
                     return (
                       <button
                         key={i}
                         onClick={() => {
                           if (isAnswered) return;
-
                           setRnAnswers((prev) => ({ ...prev, [rnIndex]: i }));
-
                           if (i === correct) {
                             setRnScore((prev) => prev + 1);
                             correctSound.currentTime = 0;
@@ -10099,12 +6803,10 @@ return (
                       </button>
                     );
                   })}
-
                   <div style={{ textAlign: "center", marginTop: 20 }}>
                     <button
                       onClick={() => {
                         if (rnAnswers[rnIndex] === undefined) return;
-
                         if (rnIndex + 1 === shuffledRnQuestions.length) {
                           trackExamCompletion("RN Practice", rnScore, shuffledRnQuestions.length);
                           setRnShowResult(true);
@@ -10140,10 +6842,6 @@ return (
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {rnScore} / {shuffledRnQuestions.length}
                 </p>
-                <p style={{ color: "#4f6275", marginTop: 6 }}>
-                  Mode: {rnDifficulty === "hard" ? "Hard RN" : "Core RN"}
-                </p>
-
                 <div
                   style={{
                     display: "flex",
@@ -10167,7 +6865,6 @@ return (
                   >
                     Study Misses (Optional)
                   </button>
-
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -10195,7 +6892,6 @@ return (
                   >
                     Retake Missed Only
                   </button>
-
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -10216,9 +6912,15 @@ return (
                   >
                     Share Quiz
                   </button>
-
                   <button
-                    onClick={restartRnExam}
+                    onClick={() => {
+                      setShuffledRnQuestions(shuffleArray(rnQuestions));
+                      setRnIndex(0);
+                      setRnScore(0);
+                      setRnAnswers({});
+                      setRnShowResult(false);
+                      setShowRnMissedReview(false);
+                    }}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
@@ -10234,13 +6936,11 @@ return (
                 </div>
               </div>
             )}
-
             {showRnMissedReview && (
               <div style={{ marginTop: 24 }}>
                 <h2 style={{ color: "#12355b", textAlign: "center" }}>
                   RN Missed Questions Review
                 </h2>
-
                 {rnMissedQuestions.length === 0 ? (
                   <p style={{ textAlign: "center", color: "#1e293b" }}>
                     You did not miss any questions.
@@ -10252,7 +6952,6 @@ return (
                     rnAnswers
                   )
                 )}
-
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowRnMissedReview(false)}
@@ -10273,7 +6972,6 @@ return (
             )}
           </div>
         )}
-
         {activeTab === "TEAS" && (
           <div
             style={{
@@ -10296,74 +6994,7 @@ return (
                     reading, math, science, and English language usage. Select one
                     answer, then move to the next question after reviewing the result.
                   </p>
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      gap: 8,
-                      marginTop: 14,
-                      padding: 6,
-                      borderRadius: 999,
-                      background: "#eef4ff",
-                      border: "1px solid #d8e4f2"
-                    }}
-                  >
-                    <button
-                      onClick={() => {
-                        if (teasDifficulty === "core") return;
-                        setTeasDifficulty("core");
-                        setShuffledTeasQuestions(shuffleArray(teasQuestions));
-                        setTeasIndex(0);
-                        setTeasScore(0);
-                        setTeasAnswers({});
-                        setTeasShowResult(false);
-                        setShowTeasMissedReview(false);
-                        localStorage.removeItem("teasProgress");
-                      }}
-                      style={{
-                        padding: "8px 16px",
-                        borderRadius: 999,
-                        border: "none",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        background:
-                          teasDifficulty === "core"
-                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
-                            : "transparent",
-                        color: teasDifficulty === "core" ? "white" : "#12355b"
-                      }}
-                    >
-                      Core TEAS
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (teasDifficulty === "hard") return;
-                        setTeasDifficulty("hard");
-                        setShuffledTeasQuestions(shuffleArray(harderTeasQuestions));
-                        setTeasIndex(0);
-                        setTeasScore(0);
-                        setTeasAnswers({});
-                        setTeasShowResult(false);
-                        setShowTeasMissedReview(false);
-                        localStorage.removeItem("teasProgress");
-                      }}
-                      style={{
-                        padding: "8px 16px",
-                        borderRadius: 999,
-                        border: "none",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        background:
-                          teasDifficulty === "hard"
-                            ? "linear-gradient(135deg, #7c2d12, #b45309)"
-                            : "transparent",
-                        color: teasDifficulty === "hard" ? "white" : "#7c2d12"
-                      }}
-                    >
-                      Hard TEAS
-                    </button>
-                  </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -10379,7 +7010,6 @@ return (
                   <div style={cbetStatCardStyle}>Score: {teasScore}</div>
                   <div style={cbetStatCardStyle}>Questions: 150</div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -10404,7 +7034,6 @@ return (
                   >
                     Save Progress
                   </button>
-
                   <button
                     onClick={restartTeasExam}
                     style={{
@@ -10421,7 +7050,6 @@ return (
                     Restart Practice
                   </button>
                 </div>
-
                 <div
                   style={{
                     background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -10441,7 +7069,6 @@ return (
                   >
                     {shuffledTeasQuestions[teasIndex].question}
                   </div>
-
                   {shuffledTeasQuestions[teasIndex].options.map((opt, i) => {
                     const selected = teasAnswers[teasIndex];
                     const correct = shuffledTeasQuestions[teasIndex].answer;
@@ -10449,15 +7076,12 @@ return (
                     const isCorrectOption = i === correct;
                     const isSelectedWrong =
                       isAnswered && i === selected && selected !== correct;
-
                     return (
                       <button
                         key={i}
                         onClick={() => {
                           if (isAnswered) return;
-
                           setTeasAnswers((prev) => ({ ...prev, [teasIndex]: i }));
-
                           if (i === correct) {
                             setTeasScore((prev) => prev + 1);
                             correctSound.currentTime = 0;
@@ -10496,12 +7120,10 @@ return (
                       </button>
                     );
                   })}
-
                   <div style={{ textAlign: "center", marginTop: 20 }}>
                     <button
                       onClick={() => {
                         if (teasAnswers[teasIndex] === undefined) return;
-
                         if (teasIndex + 1 === shuffledTeasQuestions.length) {
                           trackExamCompletion("TEAS Practice", teasScore, shuffledTeasQuestions.length);
                           setTeasShowResult(true);
@@ -10537,7 +7159,6 @@ return (
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {teasScore} / {shuffledTeasQuestions.length}
                 </p>
-
                 <div
                   style={{
                     display: "flex",
@@ -10561,7 +7182,6 @@ return (
                   >
                     Study Misses (Optional)
                   </button>
-
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -10589,7 +7209,6 @@ return (
                   >
                     Retake Missed Only
                   </button>
-
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -10610,7 +7229,6 @@ return (
                   >
                     Share Quiz
                   </button>
-
                   <button
                     onClick={restartTeasExam}
                     style={{
@@ -10628,13 +7246,11 @@ return (
                 </div>
               </div>
             )}
-
             {showTeasMissedReview && (
               <div style={{ marginTop: 24 }}>
                 <h2 style={{ color: "#12355b", textAlign: "center" }}>
                   TEAS Missed Questions Review
                 </h2>
-
                 {teasMissedQuestions.length === 0 ? (
                   <p style={{ textAlign: "center", color: "#1e293b" }}>
                     You did not miss any questions.
@@ -10646,7 +7262,6 @@ return (
                     teasAnswers
                   )
                 )}
-
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowTeasMissedReview(false)}
@@ -10667,7 +7282,6 @@ return (
             )}
           </div>
         )}
-
         {activeTab === "CRES" && (
           <div
             style={{
@@ -10687,74 +7301,7 @@ return (
                     Certified Radiology Equipment Specialist — questions are shuffled each restart.
                     Select one answer. The correct answer will highlight after you answer.
                   </p>
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      gap: 8,
-                      marginTop: 14,
-                      padding: 6,
-                      borderRadius: 999,
-                      background: "#eef4ff",
-                      border: "1px solid #d8e4f2"
-                    }}
-                  >
-                    <button
-                      onClick={() => {
-                        if (cresDifficulty === "core") return;
-                        setCresDifficulty("core");
-                        setShuffledCresQuestions(shuffleArray(cresQuestions));
-                        setCresIndex(0);
-                        setCresScore(0);
-                        setCresAnswers({});
-                        setCresShowResult(false);
-                        setShowCresMissedReview(false);
-                        localStorage.removeItem("cresProgress");
-                      }}
-                      style={{
-                        padding: "8px 16px",
-                        borderRadius: 999,
-                        border: "none",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        background:
-                          cresDifficulty === "core"
-                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
-                            : "transparent",
-                        color: cresDifficulty === "core" ? "white" : "#12355b"
-                      }}
-                    >
-                      Core CRES
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (cresDifficulty === "hard") return;
-                        setCresDifficulty("hard");
-                        setShuffledCresQuestions(shuffleArray(harderCresQuestions));
-                        setCresIndex(0);
-                        setCresScore(0);
-                        setCresAnswers({});
-                        setCresShowResult(false);
-                        setShowCresMissedReview(false);
-                        localStorage.removeItem("cresProgress");
-                      }}
-                      style={{
-                        padding: "8px 16px",
-                        borderRadius: 999,
-                        border: "none",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        background:
-                          cresDifficulty === "hard"
-                            ? "linear-gradient(135deg, #7c2d12, #b45309)"
-                            : "transparent",
-                        color: cresDifficulty === "hard" ? "white" : "#7c2d12"
-                      }}
-                    >
-                      Hard CRES
-                    </button>
-                  </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -10774,7 +7321,6 @@ return (
                     Passing: 70%
                   </div>
                 </div>
-
                 <div
                   style={{
                     display: "flex",
@@ -10799,7 +7345,6 @@ return (
                   >
                     Save Progress
                   </button>
-
                   <button
                     onClick={restartCresExam}
                     style={{
@@ -10816,7 +7361,6 @@ return (
                     Restart Practice
                   </button>
                 </div>
-
                 <div
                   style={{
                     background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -10836,7 +7380,6 @@ return (
                   >
                     {shuffledCresQuestions[cresIndex].question}
                   </div>
-
                   {shuffledCresQuestions[cresIndex].options.map((opt, i) => {
                     const selected = cresAnswers[cresIndex];
                     const correct = shuffledCresQuestions[cresIndex].answer;
@@ -10844,7 +7387,6 @@ return (
                     const isCorrectOption = i === correct;
                     const isSelectedWrong =
                       isAnswered && i === selected && selected !== correct;
-
                     return (
                       <button
                         key={i}
@@ -10889,7 +7431,6 @@ return (
                       </button>
                     );
                   })}
-
                   <div style={{ textAlign: "center", marginTop: 20 }}>
                     <button
                       onClick={() => {
@@ -10927,7 +7468,6 @@ return (
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {cresScore} / {shuffledCresQuestions.length}
                 </p>
-
                 <div
                   style={{
                     display: "flex",
@@ -10951,7 +7491,6 @@ return (
                   >
                     Study Misses (Optional)
                   </button>
-
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -10979,7 +7518,6 @@ return (
                   >
                     Retake Missed Only
                   </button>
-
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -11000,7 +7538,6 @@ return (
                   >
                     Share Quiz
                   </button>
-
                   <button
                     onClick={restartCresExam}
                     style={{
@@ -11018,13 +7555,11 @@ return (
                 </div>
               </div>
             )}
-
             {showCresMissedReview && (
               <div style={{ marginTop: 24 }}>
                 <h2 style={{ color: "#12355b", textAlign: "center" }}>
                   Missed Questions Review
                 </h2>
-
                 {cresMissedQuestions.length === 0 ? (
                   <p style={{ textAlign: "center", color: "#1e293b" }}>
                     You did not miss any questions.
@@ -11036,7 +7571,6 @@ return (
                     cresAnswers
                   )
                 )}
-
                 <div style={{ textAlign: "center", marginTop: 20 }}>
                   <button
                     onClick={() => setShowCresMissedReview(false)}
@@ -11057,7 +7591,6 @@ return (
             )}
           </div>
         )}
-
         {activeTab === "Terminology" && (
           <div
             style={{
@@ -11116,7 +7649,6 @@ return (
                 Prefixes and Suffixes
               </button>
             </div>
-
             {terminologySubTab === "terms" ? (
               <>
                 {!terminologyShowResult && !showTerminologyMissedReview ? (
@@ -11128,7 +7660,6 @@ return (
                         best definition from multiple choices.
                       </p>
                     </div>
-
                     <div
                       style={{
                         display: "flex",
@@ -11148,7 +7679,6 @@ return (
                         Difficulty: Hard
                       </div>
                     </div>
-
                     <div
                       style={{
                         display: "flex",
@@ -11173,7 +7703,6 @@ return (
                       >
                         Save Progress
                       </button>
-
                       <button
                         onClick={restartTerminologyQuiz}
                         style={{
@@ -11190,7 +7719,6 @@ return (
                         Restart Practice
                       </button>
                     </div>
-
                     <div
                       style={{
                         background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -11210,7 +7738,6 @@ return (
                       >
                         {shuffledTerminologyQuestions[terminologyIndex].question}
                       </div>
-
                       {shuffledTerminologyQuestions[terminologyIndex].options.map((opt, i) => {
                         const selected = terminologyAnswers[terminologyIndex];
                         const correct = shuffledTerminologyQuestions[terminologyIndex].answer;
@@ -11218,7 +7745,6 @@ return (
                         const isCorrectOption = i === correct;
                         const isSelectedWrong =
                           isAnswered && i === selected && selected !== correct;
-
                         return (
                           <button
                             key={i}
@@ -11263,7 +7789,6 @@ return (
                           </button>
                         );
                       })}
-
                       <div style={{ textAlign: "center", marginTop: 20 }}>
                         <button
                           onClick={() => {
@@ -11307,7 +7832,6 @@ return (
                     <p style={{ fontSize: 20, color: "#1e293b" }}>
                       Your score: {terminologyScore} / {shuffledTerminologyQuestions.length}
                     </p>
-
                     <div
                       style={{
                         display: "flex",
@@ -11331,7 +7855,6 @@ return (
                       >
                         Study Misses (Optional)
                       </button>
-
                       <button
                         onClick={() =>
                           startRetakeMissedQuestions({
@@ -11359,7 +7882,6 @@ return (
                       >
                         Retake Missed Only
                       </button>
-
                       <button
                         onClick={() =>
                           shareQuizResult(
@@ -11380,7 +7902,6 @@ return (
                       >
                         Share Quiz
                       </button>
-
                       <button
                         onClick={restartTerminologyQuiz}
                         style={{
@@ -11398,13 +7919,11 @@ return (
                     </div>
                   </div>
                 )}
-
                 {showTerminologyMissedReview && (
                   <div style={{ marginTop: 24 }}>
                     <h2 style={{ color: "#12355b", textAlign: "center" }}>
                       Missed Questions Review
                     </h2>
-
                     {terminologyMissedQuestions.length === 0 ? (
                       <p style={{ textAlign: "center", color: "#1e293b" }}>
                         You did not miss any questions.
@@ -11416,7 +7935,6 @@ return (
                         terminologyAnswers
                       )
                     )}
-
                     <div style={{ textAlign: "center", marginTop: 20 }}>
                       <button
                         onClick={() => setShowTerminologyMissedReview(false)}
@@ -11446,7 +7964,6 @@ return (
                         Drill core word parts so you can decode unfamiliar medical terms faster.
                       </p>
                     </div>
-
                     <div
                       style={{
                         display: "flex",
@@ -11466,7 +7983,6 @@ return (
                         Difficulty: Intermediate
                       </div>
                     </div>
-
                     <div
                       style={{
                         display: "flex",
@@ -11491,7 +8007,6 @@ return (
                       >
                         Save Progress
                       </button>
-
                       <button
                         onClick={restartWordPartQuiz}
                         style={{
@@ -11508,7 +8023,6 @@ return (
                         Restart Practice
                       </button>
                     </div>
-
                     <div
                       style={{
                         background: "linear-gradient(135deg, #eef4ff, #ffffff)",
@@ -11528,7 +8042,6 @@ return (
                       >
                         {shuffledWordPartQuestions[wordPartIndex].question}
                       </div>
-
                       {shuffledWordPartQuestions[wordPartIndex].options.map((opt, i) => {
                         const selected = wordPartAnswers[wordPartIndex];
                         const correct = shuffledWordPartQuestions[wordPartIndex].answer;
@@ -11536,7 +8049,6 @@ return (
                         const isCorrectOption = i === correct;
                         const isSelectedWrong =
                           isAnswered && i === selected && selected !== correct;
-
                         return (
                           <button
                             key={i}
@@ -11581,7 +8093,6 @@ return (
                           </button>
                         );
                       })}
-
                       <div style={{ textAlign: "center", marginTop: 20 }}>
                         <button
                           onClick={() => {
@@ -11625,7 +8136,6 @@ return (
                     <p style={{ fontSize: 20, color: "#1e293b" }}>
                       Your score: {wordPartScore} / {shuffledWordPartQuestions.length}
                     </p>
-
                     <div
                       style={{
                         display: "flex",
@@ -11649,7 +8159,6 @@ return (
                       >
                         Study Misses (Optional)
                       </button>
-
                       <button
                         onClick={() =>
                           startRetakeMissedQuestions({
@@ -11677,7 +8186,6 @@ return (
                       >
                         Retake Missed Only
                       </button>
-
                       <button
                         onClick={() =>
                           shareQuizResult(
@@ -11698,7 +8206,6 @@ return (
                       >
                         Share Quiz
                       </button>
-
                       <button
                         onClick={restartWordPartQuiz}
                         style={{
@@ -11716,13 +8223,11 @@ return (
                     </div>
                   </div>
                 )}
-
                 {showWordPartMissedReview && (
                   <div style={{ marginTop: 24 }}>
                     <h2 style={{ color: "#12355b", textAlign: "center" }}>
                       Missed Questions Review
                     </h2>
-
                     {wordPartMissedQuestions.length === 0 ? (
                       <p style={{ textAlign: "center", color: "#1e293b" }}>
                         You did not miss any questions.
@@ -11734,7 +8239,6 @@ return (
                         wordPartAnswers
                       )
                     )}
-
                     <div style={{ textAlign: "center", marginTop: 20 }}>
                       <button
                         onClick={() => setShowWordPartMissedReview(false)}
@@ -11757,7 +8261,6 @@ return (
             )}
           </div>
         )}
-
         {activeTab === "Contact" && (
           <div
             style={{
@@ -11776,7 +8279,6 @@ return (
                 Send us a message and we will get back to you as soon as we can.
               </p>
             </div>
-
             <form
               ref={contactFormRef}
               action="https://formspree.io/f/xgonbzaj"
@@ -11850,7 +8352,6 @@ return (
                   resize: "vertical"
                 }}
               />
-
               <button
                 type="submit"
                 disabled={contactStatus === "sending"}
@@ -11869,7 +8370,6 @@ return (
               >
                 {contactStatus === "sending" ? "Sending..." : "Send Message"}
               </button>
-
               {contactStatus === "success" && (
                 <div
                   style={{
@@ -11886,7 +8386,6 @@ return (
                   Message sent successfully.
                 </div>
               )}
-
               {contactStatus === "error" && (
                 <div
                   style={{
@@ -11906,7 +8405,6 @@ return (
             </form>
           </div>
         )}
-
         {activeTab === "Support" && (
           <div
             style={{
@@ -11925,7 +8423,6 @@ return (
                 If this platform helps your studying, you can support future content and updates.
               </p>
             </div>
-
             <div
               style={{
                 display: "grid",
@@ -11981,7 +8478,6 @@ return (
                   Scan the QR code or use the support link when configured.
                 </div>
               </div>
-
               <div
                 style={{
                   padding: 16,
@@ -12003,7 +8499,6 @@ return (
             </div>
           </div>
         )}
-
         {activeTab === "Privacy" && (
           <div
             style={{
@@ -12021,7 +8516,6 @@ return (
             <p>
               Effective date: March 21, 2026
             </p>
-
             <h3 style={{ color: "#12355b" }}>What We Collect</h3>
             <p>
               We use Google Analytics to collect limited usage information such as pages visited,
@@ -12029,14 +8523,12 @@ return (
               ad-related consent choices where required. We do not intentionally collect sensitive
               personal health information through analytics or advertising tools.
             </p>
-
             <h3 style={{ color: "#12355b" }}>How We Use Data</h3>
             <p>
               We use analytics data to understand how learners use MedSkillBuilder, improve site
               performance, enhance training content and user experience, and support limited website
               monetization through advertising.
             </p>
-
             <h3 style={{ color: "#12355b" }}>Cookies and Tracking</h3>
             <p>
               Google Analytics and Google AdSense may use cookies or similar technologies to
@@ -12044,7 +8536,6 @@ return (
               whether ads are personalized or non-personalized based on visitor consent and applicable
               regional requirements.
             </p>
-
             <h3 style={{ color: "#12355b" }}>Your Choices</h3>
             <p>
               You can block or delete cookies in your browser settings. You can also opt out of Google
@@ -12052,20 +8543,17 @@ return (
               . Where required by law, visitors may also be shown a consent message to manage cookie
               and advertising preferences.
             </p>
-
             <h3 style={{ color: "#12355b" }}>Third-Party Services</h3>
             <p>
               Google Analytics and Google AdSense are provided by Google. Learn more about how Google
               uses data here: https://policies.google.com/technologies/partner-sites
             </p>
-
             <h3 style={{ color: "#12355b" }}>Advertising Disclosure</h3>
             <p>
               MedSkillBuilder may display advertisements to support the site. Ads may be personalized
               or non-personalized depending on consent choices, browser settings, location, and Google
               advertising policies.
             </p>
-
             <h3 style={{ color: "#12355b" }}>Non-Affiliation and Trademarks</h3>
             <p>
               MedSkillBuilder is an independent educational platform. References to third-party
@@ -12073,7 +8561,6 @@ return (
               ATI, Cash App, and Google) are used for descriptive educational purposes only and do not
               imply endorsement, sponsorship, or affiliation.
             </p>
-
             <h3 style={{ color: "#12355b" }}>Updates to This Policy</h3>
             <p>
               We may update this policy from time to time. Changes will be posted on this page with an
@@ -12081,7 +8568,6 @@ return (
             </p>
           </div>
         )}
-
         <div
           style={{
             textAlign: "center",
@@ -12166,7 +8652,6 @@ return (
             Anatomy Guide
           </a>
         </div>
-
         <div style={{ marginTop: 8 }}>
           {renderAdSlot(bottomAdSlot)}
         </div>

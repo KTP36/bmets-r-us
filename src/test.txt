@@ -1,0 +1,1 @@
+This is a test file to verify the correct src folder is being used by the dev server.
