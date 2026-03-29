@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import logo from "./assets/logo.png";
 import { teasQuestions } from "./teasQuestions";
 import AnatomyQuiz from "./AnatomyQuiz";
+import BonesQuiz from "./BonesQuiz";
 // --- SOUND EFFECTS ---
 const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
 const wrongSound = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
@@ -4777,7 +4778,7 @@ return (
               onClick={() => {
                 setActiveTab("Bones");
                 setMode("bones");
-                setSelectedSet(null);
+               setSelectedSet(null);
               }}
               onKeyDown={(event) =>
                 handleHomeCardKeyDown(event, () => {
@@ -5252,6 +5253,67 @@ return (
                 </div>
               </>
             )}
+            {activeTab === "Bones" && (
+              <>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "10px 0 8px 0"
+                  }}
+                >
+                  <div
+                    onClick={() => setActiveTab("BonesQuiz")}
+                    style={{
+                      background: "linear-gradient(90deg, #fbbf24 0%, #38bdf8 100%)",
+                      color: "#12355b",
+                      fontWeight: 900,
+                      fontSize: 26,
+                      borderRadius: 18,
+                      padding: "10px 34px",
+                      border: "2px solid #38bdf8",
+                      boxShadow: "0 4px 18px rgba(56,189,248,0.13)",
+                      cursor: "pointer",
+                      transition: "transform 0.15s ease, box-shadow 0.15s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.03)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                    }}
+                  >
+                    Click to Quiz yourself on Bones
+                  </div>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "10px 0 12px 0"
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "linear-gradient(90deg, #38bdf8 0%, #fbbf24 100%)",
+                      color: "#12355b",
+                      fontWeight: 900,
+                      fontSize: 26,
+                      borderRadius: 18,
+                      padding: "10px 34px",
+                      border: "2px solid #38bdf8",
+                      boxShadow: "0 4px 18px rgba(56,189,248,0.13)"
+                    }}
+                  >
+                    Click below to play interactive games
+                  </div>
+                </div>
+              </>
+            )}
             <div style={{ textAlign: "center", marginBottom: 14 }}>
               {Object.keys(data).map((item) => (
                 <button
@@ -5664,6 +5726,7 @@ return (
           </div>
         )}
         {activeTab === "AnatomyQuiz" && <AnatomyQuiz />}
+        {activeTab === "BonesQuiz" && <BonesQuiz />}
                {activeTab === "CBET" && (
           <div
             style={{

@@ -73,7 +73,30 @@ export default function AnatomyQuiz() {
           background: "none",
         }}
       >
-      <h2>Question {currentIndex + 1}</h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 12,
+          flexWrap: "wrap",
+          maxWidth: 700,
+          margin: "0 auto 20px auto",
+          padding: "12px 16px",
+          background: "#ffffff",
+          borderRadius: 16,
+          boxShadow: "0 4px 14px rgba(0,0,0,0.06)",
+          border: "1px solid #cbd5e1",
+          color: "#12355b",
+          fontWeight: 700,
+          fontSize: 16,
+          boxSizing: "border-box",
+        }}
+      >
+        <div>Question {currentIndex + 1} of {anatomyQuestions.length}</div>
+        <div>Score: {score}</div>
+      </div>
+      <h2>Anatomy Quiz</h2>
       <h3>{currentQuestion.question}</h3>
 
         <div
