@@ -76,16 +76,36 @@ export default function AnatomyQuiz() {
       <h2>Question {currentIndex + 1}</h2>
       <h3>{currentQuestion.question}</h3>
 
-        <div style={{ marginTop: 20, display: "flex", flexDirection: "column", alignItems: "center", gap: 0, width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
+        <div
+          style={{
+            marginTop: 20,
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            flexWrap: isMobile ? "nowrap" : "wrap",
+            justifyContent: "center",
+            alignItems: "stretch",
+            gap: isMobile ? 10 : 18,
+            width: "100%",
+            maxWidth: 700,
+            boxSizing: "border-box",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
           {currentQuestion.options.map((option, i) => (
             <div
               key={i}
               onClick={() => handleAnswer(i)}
               style={{
-                width: "100%",
-                maxWidth: "100%",
-                boxSizing: "border-box",
-                margin: isMobile ? "0 auto 10px auto" : "0 auto 14px auto",
+                flex: isMobile ? "1 1 100%" : "1 1 260px",
+                minWidth: isMobile ? "0" : "220px",
+                maxWidth: isMobile ? "100%" : "260px",
+                minHeight: "110px",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: 0,
                 padding: isMobile ? "14px 12px" : "18px 20px",
                 borderRadius: 18,
                 cursor: "pointer",

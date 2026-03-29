@@ -3943,7 +3943,7 @@ export default function App() {
     background: "rgba(255,255,255,0.85)",
     borderRadius: 18,
     padding: 22,
-    boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+    boxShadow: "0 4px 24px 0 rgba(18,53,91,0.13), 0 0 0 4px rgba(88,180,216,0.07)",
     minWidth: 0,
     width: "100%",
     textAlign: "center",
@@ -4731,9 +4731,13 @@ return (
               display: "grid",
               gridTemplateColumns: isSmallScreen
                 ? "1fr"
-                : "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: isSmallScreen ? 14 : 18,
-              marginBottom: isSmallScreen ? 20 : 28
+                : "repeat(3, 1fr)",
+              justifyItems: "center",
+              alignItems: "stretch",
+              columnGap: isSmallScreen ? 32 : 48,
+              rowGap: isSmallScreen ? 16 : 22,
+              marginBottom: isSmallScreen ? 20 : 28,
+              width: "100%"
             }}
           >
             <div
