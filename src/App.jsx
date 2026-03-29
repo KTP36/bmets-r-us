@@ -4941,15 +4941,20 @@ return (
                   Extra reading when you need it
                 </h4>
                 <div style={{ display: "grid", gap: 10 }}>
-                  <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>
-                    CBET Practice Questions Guide
-                  </a>
-                  <a href="/how-to-pass-cbet-exam.html" style={homeActionLinkStyle("#1d6fa5")}>
-                    How to Pass CBET Exam
-                  </a>
-                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
-                    Anatomy Labeling Practice
-                  </a>
+                  <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>CBET Practice Questions Guide</a>
+                  <a href="/how-to-pass-cbet-exam.html" style={homeActionLinkStyle("#1d6fa5")}>How to Pass CBET Exam</a>
+                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>Anatomy Labeling Practice</a>
+                  <a href="/medical-equipment-identification-practice.html" style={homeActionLinkStyle("#0e7490")}>Medical Equipment ID Practice</a>
+                  <a href="/medical-terminology-practice.html" style={homeActionLinkStyle("#7c3aed")}>Medical Terminology Practice</a>
+                  <a href="/medical-prefix-suffix-practice.html" style={homeActionLinkStyle("#be185d")}>Medical Prefix & Suffix Practice</a>
+                  <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>RN Practice Questions</a>
+                  <a href="/cres-practice-questions.html" style={homeActionLinkStyle("#1e40af")}>CRES Practice Questions</a>
+                  <a href="/teas-practice-questions.html" style={homeActionLinkStyle("#166534")}>TEAS Practice Questions</a>
+                  <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#f59e42")}>Free CBET Practice Test</a>
+                  <a href="/free-teas-practice-test.html" style={homeActionLinkStyle("#facc15")}>Free TEAS Practice Test</a>
+                  <a href="/how-to-pass-teas-exam.html" style={homeActionLinkStyle("#0e7490")}>How to Pass TEAS Exam</a>
+                  <a href="/how-to-pass-cres-exam.html" style={homeActionLinkStyle("#7c3aed")}>How to Pass CRES Exam</a>
+                  <a href="/how-to-pass-rn-nclex-exam.html" style={homeActionLinkStyle("#be185d")}>How to Pass RN NCLEX Exam</a>
                 </div>
               </div>
               <div
