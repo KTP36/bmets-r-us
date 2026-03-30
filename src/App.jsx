@@ -38,241 +38,6 @@ const cbetQuestions = [
     answer: 1
   },
   {
-    question: "What is the main purpose of protective grounding in medical equipment?",
-    options: [
-      "To increase battery life",
-      "To reduce display brightness",
-      "To protect patients and users from electrical shock",
-      "To improve signal resolution"
-    ],
-    answer: 2
-  },
-  {
-    question: "Normal adult resting heart rate is generally:",
-    options: ["20–40 bpm", "40–60 bpm", "60–100 bpm", "110–160 bpm"],
-    answer: 2
-  },
-  {
-    question: "AC stands for:",
-    options: ["Applied Current", "Alternating Current", "Average Current", "Amplified Current"],
-    answer: 1
-  },
-  {
-    question: "Which of the following measures voltage?",
-    options: ["Ammeter", "Voltmeter", "Ohmmeter", "Frequency meter"],
-    answer: 1
-  },
-  {
-    question: "Electrical power is measured in:",
-    options: ["Volts", "Watts", "Ohms", "Hertz"],
-    answer: 1
-  },
-  {
-    question: "Which organ is primarily responsible for pumping blood?",
-    options: ["Lungs", "Heart", "Liver", "Kidney"],
-    answer: 1
-  },
-  {
-    question: "A transformer is commonly used to:",
-    options: [
-      "Store charge",
-      "Isolate or change voltage",
-      "Measure current",
-      "Block all AC signals"
-    ],
-    answer: 1
-  },
-  {
-    question: "A fuse is designed to:",
-    options: [
-      "Boost current",
-      "Open the circuit when excessive current flows",
-      "Increase voltage",
-      "Reduce signal noise"
-    ],
-    answer: 1
-  },
-  {
-    question: "The respiratory system primarily exchanges:",
-    options: ["Calcium and sodium", "Oxygen and carbon dioxide", "Blood and plasma", "Hormones and enzymes"],
-    answer: 1
-  },
-  {
-    question: "What is the unit of frequency?",
-    options: ["Ohm", "Henry", "Hertz", "Volt"],
-    answer: 2
-  },
-  {
-    question: "A battery provides:",
-    options: ["Alternating current only", "Direct current", "Pulsed ultrasound", "Ground fault protection"],
-    answer: 1
-  },
-  {
-    question: "Which action should be taken first when troubleshooting equipment?",
-    options: [
-      "Replace all circuit boards",
-      "Verify the problem",
-      "Order parts",
-      "Calibrate the device"
-    ],
-    answer: 1
-  },
-  {
-    question: "What does an ammeter measure?",
-    options: ["Resistance", "Current", "Voltage", "Capacitance"],
-    answer: 1
-  },
-  {
-    question: "Which device is used to deliver electrical energy during cardiac arrest?",
-    options: ["Ventilator", "Defibrillator", "Pulse oximeter", "Infusion pump"],
-    answer: 1
-  },
-  {
-    question: "An infusion pump is used to:",
-    options: [
-      "Measure blood oxygen levels",
-      "Monitor ECG rhythm",
-      "Deliver fluids at a controlled rate",
-      "Measure temperature"
-    ],
-    answer: 2
-  },
-  {
-    question: "Preventive maintenance is best described as:",
-    options: [
-      "Repair after failure",
-      "Routine inspection and service to reduce failures",
-      "Removing equipment from inventory",
-      "Only electrical safety testing"
-    ],
-    answer: 1
-  },
-  {
-    question: "Which of the following is a unit of current?",
-    options: ["Ampere", "Watt", "Volt", "Ohm"],
-    answer: 0
-  },
-  {
-    question: "In the equation P = V × I, P stands for:",
-    options: ["Pressure", "Power", "Potential", "Phase"],
-    answer: 1
-  },
-  {
-    question: "A capacitor primarily stores:",
-    options: ["Current", "Magnetic flux", "Electrical charge", "Resistance"],
-    answer: 2
-  },
-  {
-    question: "A resistor’s function is to:",
-    options: ["Store energy", "Oppose current flow", "Generate AC", "Measure voltage"],
-    answer: 1
-  },
-  {
-    question: "Which component opposes changes in current?",
-    options: ["Capacitor", "Resistor", "Inductor", "Fuse"],
-    answer: 2
-  },
-  {
-    question: "What is continuity testing used for?",
-    options: [
-      "To check for an unbroken electrical path",
-      "To measure capacitance",
-      "To test battery chemistry",
-      "To calibrate a monitor"
-    ],
-    answer: 0
-  },
-  {
-    question: "A short circuit usually causes:",
-    options: ["Higher resistance", "Lower current", "Excessive current flow", "No voltage"],
-    answer: 2
-  },
-  {
-    question: "A step-down transformer will:",
-    options: ["Increase voltage", "Decrease voltage", "Store charge", "Rectify AC"],
-    answer: 1
-  },
-  {
-    question: "Which device converts AC to DC?",
-    options: ["Transformer", "Rectifier", "Resistor", "Oscillator"],
-    answer: 1
-  },
-  {
-    question: "What does a diode primarily allow?",
-    options: ["Current in both directions", "Current in one direction", "Voltage doubling", "Capacitance storage"],
-    answer: 1
-  },
-  {
-    question: "The symbol Ω represents:",
-    options: ["Voltage", "Current", "Resistance", "Frequency"],
-    answer: 2
-  },
-  {
-    question: "Which meter function would you use to test a wall outlet voltage?",
-    options: ["Ohms", "AC volts", "DC amps", "Continuity"],
-    answer: 1
-  },
-  {
-    question: "What is the likely result of an open fuse?",
-    options: ["Short circuit", "Complete continuity", "No current flow through that path", "Increased capacitance"],
-    answer: 2
-  },
-  {
-    question: "Which circuit connection has the same current through all components?",
-    options: ["Parallel", "Series", "Grounded", "Isolated"],
-    answer: 1
-  },
-  {
-    question: "Which circuit connection has the same voltage across branches?",
-    options: ["Series", "Parallel", "Open", "Rectified"],
-    answer: 1
-  },
-  {
-    question: "A multimeter set to resistance should be used on:",
-    options: [
-      "An energized circuit",
-      "A de-energized circuit",
-      "Only AC circuits",
-      "Only battery-powered devices"
-    ],
-    answer: 1
-  },
-  {
-    question: "What is the purpose of a circuit breaker?",
-    options: [
-      "To increase current",
-      "To interrupt current during overload",
-      "To rectify AC power",
-      "To regulate pressure"
-    ],
-    answer: 1
-  },
-  {
-    question: "A waveform’s amplitude refers to its:",
-    options: ["Frequency", "Maximum height", "Pulse width only", "Duty cycle"],
-    answer: 1
-  },
-  {
-    question: "A ground fault is best described as:",
-    options: [
-      "A normal condition",
-      "A connection between an energized conductor and ground",
-      "A battery failure",
-      "A loss of capacitance"
-    ],
-    answer: 1
-  },
-  {
-    question: "Which quantity is measured in farads?",
-    options: ["Inductance", "Resistance", "Capacitance", "Current"],
-    answer: 2
-  },
-  {
-    question: "Which quantity is measured in henrys?",
-    options: ["Capacitance", "Inductance", "Resistance", "Voltage"],
-    answer: 1
-  },
-  {
     question: "The sinoatrial node is known as the heart’s:",
     options: ["Valve", "Pacemaker", "Septum", "Ventricle"],
     answer: 1
@@ -1698,26 +1463,6 @@ const rnQuestions = [
     answer: 0
   },
   {
-    question: "Which action prevents infection most effectively?",
-    options: [
-      "Hand hygiene",
-      "Wearing a mask at all times",
-      "Using sterile gloves for all care",
-      "Keeping the room door closed"
-    ],
-    answer: 0
-  },
-  {
-    question: "A nurse is caring for a client with a potassium of 2.9 mEq/L. The priority assessment is:",
-    options: [
-      "Cardiac rhythm",
-      "Bowel sounds",
-      "Vision changes",
-      "Skin color"
-    ],
-    answer: 0
-  },
-  {
     question: "Which finding is expected with dehydration?",
     options: [
       "Tachycardia",
@@ -2611,11 +2356,12 @@ const wordPartQuestions = [
       transform: "scale(1.2)"
     },
     parts: [
-      { name: "Left Atrium", x: 250, y: 100, description: "Receives oxygen-rich blood from the lungs" },
-      { name: "Right Atrium", x: 130, y: 100, description: "Receives oxygen-poor blood from the body" },
-      { name: "Left Ventricle", x: 260, y: 230, description: "Pumps oxygen-rich blood out to the body via the aorta" },
-      { name: "Right Ventricle", x: 150, y: 230, description: "Pumps oxygen-poor blood to the lungs" },
-      { name: "Aorta", x: 210, y: 40, description: "Main artery that carries oxygenated blood from heart to body" }
+      { name: "Left Atrium", x: 238, y: 184, description: "Receives oxygen-rich blood from the lungs" },
+      { name: "Right Atrium", x: 120, y: 140, description: "Receives oxygen-poor blood from the body" },
+      { name: "Left Ventricle", x: 248, y: 278, description: "Pumps oxygen-rich blood out to the body via the aorta" },
+      { name: "Right Ventricle", x: 165, y: 210, description: "Pumps oxygen-poor blood to the lungs" },
+      { name: "Aorta", x: 200, y: 60, description: "Main artery that carries oxygenated blood from heart to body" },
+      { name: "Pulmonary Artery", x: 220, y: 115, description: "Carries oxygen-poor blood from the right ventricle to the lungs" }
     ]
   },
   Brain: {
@@ -4539,7 +4285,7 @@ return (
                   marginBottom: 16
                 }}
               >
-                Study smarter
+                STUDY SMARTER
               </div>
               <h2
                 style={{
@@ -4551,7 +4297,7 @@ return (
                   maxWidth: 620
                 }}
               >
-                Build anatomy speed and exam confidence from one clean home base.
+                Pass Your Medical Exams Faster with Interactive Practice [TEST]
               </h2>
               <p
                 style={{
@@ -4561,7 +4307,7 @@ return (
                   margin: 0
                 }}
               >
-                Practice interactive label-to-image activities, switch into exam-style review when you want pressure, and keep your newest TikTok lesson one click away.
+                Practice CBET, RN, and anatomy the right way — with real questions, instant feedback, and interactive learning.
               </p>
               <div
                 style={{
@@ -4611,58 +4357,6 @@ return (
                   Jump to CBET Questions
                 </button>
               </div>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: isSmallScreen
-                    ? "1fr"
-                    : "repeat(auto-fit, minmax(150px, 1fr))",
-                  gap: 12
-                }}
-              >
-                <div
-                  style={{
-                    background: "rgba(255,255,255,0.14)",
-                    borderRadius: 18,
-                    padding: isSmallScreen ? "12px 14px" : "14px 16px"
-                  }}
-                >
-                  <div style={{ fontSize: isSmallScreen ? 22 : 26, fontWeight: 800, lineHeight: 1.1 }}>
-                    Visual drills
-                  </div>
-                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
-                    Organs, bones, and guided labeling
-                  </div>
-                </div>
-                <div
-                  style={{
-                    background: "rgba(255,255,255,0.14)",
-                    borderRadius: 18,
-                    padding: isSmallScreen ? "12px 14px" : "14px 16px"
-                  }}
-                >
-                  <div style={{ fontSize: isSmallScreen ? 22 : 26, fontWeight: 800, lineHeight: 1.1 }}>
-                    Exam review
-                  </div>
-                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
-                    CBET, RN, TEAS, CRES, and terminology
-                  </div>
-                </div>
-                <div
-                  style={{
-                    background: "rgba(255,255,255,0.14)",
-                    borderRadius: 18,
-                    padding: isSmallScreen ? "12px 14px" : "14px 16px"
-                  }}
-                >
-                  <div style={{ fontSize: isSmallScreen ? 22 : 26, fontWeight: 800, lineHeight: 1.1 }}>
-                    Fast restart
-                  </div>
-                  <div style={{ fontSize: 14, color: "rgba(255,255,255,0.84)", marginTop: 4 }}>
-                    Retry mistakes and keep your progress moving
-                  </div>
-                </div>
-              </div>
             </div>
             <div
               style={{
@@ -4686,7 +4380,7 @@ return (
                 Best flow
               </div>
               <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 14 }}>
-                Use the site in this order
+                Best way to start
               </h3>
               {[
                 ["1", "Start with anatomy or bones", "Warm up visually before taking quiz-style review."],

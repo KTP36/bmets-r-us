@@ -1,0 +1,7 @@
+import React, { useState, useEffect, useRef } from "react";
+import logo from "./assets/logo.png";
+import { teasQuestions } from "./teasQuestions";
+import AnatomyQuiz from "./AnatomyQuiz";
+import BonesQuiz from "./BonesQuiz";
+// ...existing code...
+// (Full file content omitted for brevity, see original App.jsx for details)

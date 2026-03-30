@@ -24,12 +24,6 @@ const anatomyQuestions = [
     category: "Lungs",
   },
   {
-    question: "Where does gas exchange occur?",
-    options: ["Bronchi", "Alveoli", "Trachea", "Pleura"],
-    answer: 1,
-    explanation: "Gas exchange occurs in the alveoli where oxygen and carbon dioxide are exchanged."
-  },
-  {
     question: "Which chamber of the heart pumps oxygenated blood to the body?",
     options: ["Right atrium", "Right ventricle", "Left atrium", "Left ventricle"],
     answer: 3,
