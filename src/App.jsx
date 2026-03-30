@@ -4297,7 +4297,7 @@ return (
                   maxWidth: 620
                 }}
               >
-                Pass Your Medical Exams Faster with Interactive Practice [TEST]
+                Pass Your Medical Exams Faster with Interactive Practice
               </h2>
               <p
                 style={{
