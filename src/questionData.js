@@ -564,4 +564,5 @@ const rnQuestions = [
   },
 ];
 
-export { allQuestions, allCategories, equipmentQuestions, extraCategories, rnQuestions };
+const cbetQuestions = allQuestions;
+export { allQuestions, allCategories, equipmentQuestions, extraCategories, rnQuestions, cbetQuestions };

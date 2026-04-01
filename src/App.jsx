@@ -3,10 +3,615 @@ import logo from "./assets/logo.png";
 import { teasQuestions } from "./teasQuestions";
 import AnatomyQuiz from "./AnatomyQuiz";
 import BonesQuiz from "./BonesQuiz";
+import { cbetQuestions } from "./questionData";
 // --- SOUND EFFECTS ---
+
+// --- EQUIPMENT TAB COMPONENT ---
+function EquipmentTab({
+  shuffledEquipmentQuestions,
+  equipmentIndex,
+  setEquipmentIndex,
+  equipmentScore,
+  setEquipmentScore,
+  equipmentAnswers,
+  setEquipmentAnswers,
+  equipmentShowResult,
+  setEquipmentShowResult,
+  showEquipmentMissedReview,
+  setShowEquipmentMissedReview,
+  equipmentMissedQuestions,
+  saveEquipmentProgress,
+  restartEquipmentQuiz,
+  trackExamCompletion,
+  shareQuizResult,
+  correctSound,
+  wrongSound,
+  cbetStatCardStyle,
+  equipmentConceptQuestions = []
+}) {
+  const [equipmentMode, setEquipmentMode] = React.useState("identify");
+  const [conceptIndex, setConceptIndex] = React.useState(0);
+  const [conceptScore, setConceptScore] = React.useState(0);
+  const [conceptAnswers, setConceptAnswers] = React.useState({});
+  const [conceptShowResult, setConceptShowResult] = React.useState(false);
+  const [showConceptMissedReview, setShowConceptMissedReview] = React.useState(false);
+
+  const equipmentOnlyConceptQuestions = React.useMemo(() => {
+    const exclude = /(liver|retina|optic nerve|largest artery|pulse points|portal vein|blood directly to the liver|ultrasound imaging of the liver)/i;
+    return equipmentConceptQuestions.filter((q) => !exclude.test(`${q.question} ${q.studyTip || ""}`));
+  }, [equipmentConceptQuestions]);
+
+  const conceptMissedQuestions = equipmentOnlyConceptQuestions.filter((q, index) => {
+    const selected = conceptAnswers[index];
+    return selected !== undefined && selected !== q.answer;
+  });
+
+  const restartConceptQuiz = () => {
+    setConceptIndex(0);
+    setConceptScore(0);
+    setConceptAnswers({});
+    setConceptShowResult(false);
+    setShowConceptMissedReview(false);
+  };
+
+  const modeToggle = (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: 12,
+        flexWrap: "wrap",
+        marginBottom: 20
+      }}
+    >
+      <button
+        onClick={() => setEquipmentMode("identify")}
+        style={{
+          padding: "10px 20px",
+          borderRadius: 999,
+          border: "none",
+          background:
+            equipmentMode === "identify"
+              ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+              : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+          color: equipmentMode === "identify" ? "white" : "#12355b",
+          fontWeight: 700,
+          cursor: "pointer",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+        }}
+      >
+        Image ID Mode
+      </button>
+      <button
+        onClick={() => setEquipmentMode("concept")}
+        style={{
+          padding: "10px 20px",
+          borderRadius: 999,
+          border: "none",
+          background:
+            equipmentMode === "concept"
+              ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+              : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+          color: equipmentMode === "concept" ? "white" : "#12355b",
+          fontWeight: 700,
+          cursor: "pointer",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+        }}
+      >
+        Concepts Quiz
+      </button>
+    </div>
+  );
+
+  if (equipmentMode === "identify") {
+    if (!equipmentShowResult && !showEquipmentMissedReview) {
+      const current = shuffledEquipmentQuestions[equipmentIndex];
+      const selected = equipmentAnswers[equipmentIndex];
+      const correct = current.answer;
+      const isAnswered = selected !== undefined;
+      const isCorrectOption = (i) => i === correct;
+      const isSelectedWrong = (i) => isAnswered && i === selected && selected !== correct;
+
+      return (
+        <div>
+          {modeToggle}
+          <div style={{
+            background: "rgba(255,255,255,0.9)",
+            borderRadius: 24,
+            padding: 28,
+            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+            maxWidth: 980,
+            margin: "0 auto"
+          }}>
+            <div style={{ textAlign: "center", marginBottom: 20 }}>
+              <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment ID</h2>
+              <p style={{ color: "#4f6275", margin: 0 }}>
+                Identify each device from the image, then switch to Concepts Quiz to test function and safety knowledge.
+              </p>
+            </div>
+            <div style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 10,
+              flexWrap: "wrap",
+              marginBottom: 20
+            }}>
+              <div style={cbetStatCardStyle}>
+                Question {equipmentIndex + 1} / {shuffledEquipmentQuestions.length}
+              </div>
+              <div style={cbetStatCardStyle}>Score: {equipmentScore}</div>
+              <div style={cbetStatCardStyle}>Questions: {shuffledEquipmentQuestions.length}</div>
+            </div>
+            <div style={{ color: "#12355b", marginBottom: 18, textAlign: "center" }}>
+              {current.image && (
+                <img src={current.image} alt="equipment" style={{ maxWidth: 240, marginBottom: 12, width: "100%" }} />
+              )}
+              <div style={{ fontSize: 22, fontWeight: 700 }}>{current.question}</div>
+            </div>
+            {current.options.map((opt, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  if (isAnswered) return;
+                  setEquipmentAnswers((prev) => ({ ...prev, [equipmentIndex]: i }));
+                  if (i === correct) {
+                    setEquipmentScore((prev) => prev + 1);
+                    correctSound.currentTime = 0;
+                    correctSound.play();
+                  } else {
+                    wrongSound.currentTime = 0;
+                    wrongSound.play();
+                  }
+                }}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  padding: "14px 16px",
+                  marginBottom: 12,
+                  borderRadius: 12,
+                  border:
+                    isCorrectOption(i) && isAnswered
+                      ? "2px solid green"
+                      : isSelectedWrong(i)
+                      ? "2px solid red"
+                      : "1px solid #cbd5e1",
+                  background:
+                    isCorrectOption(i) && isAnswered
+                      ? "#d9f7d9"
+                      : isSelectedWrong(i)
+                      ? "#fee2e2"
+                      : "#f8fafc",
+                  color: "#1e293b",
+                  fontSize: 16,
+                  fontWeight: 600,
+                  cursor: isAnswered ? "default" : "pointer",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                }}
+              >
+                {String.fromCharCode(65 + i)}. {opt}
+              </button>
+            ))}
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <button
+                onClick={() => {
+                  if (equipmentAnswers[equipmentIndex] === undefined) return;
+                  if (equipmentIndex + 1 === shuffledEquipmentQuestions.length) {
+                    trackExamCompletion &&
+                      trackExamCompletion("Equipment Practice", equipmentScore, shuffledEquipmentQuestions.length);
+                    setEquipmentShowResult(true);
+                    saveEquipmentProgress && saveEquipmentProgress();
+                  } else {
+                    setEquipmentIndex((prev) => prev + 1);
+                  }
+                }}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor:
+                    equipmentAnswers[equipmentIndex] === undefined
+                      ? "not-allowed"
+                      : "pointer",
+                  opacity: equipmentAnswers[equipmentIndex] === undefined ? 0.6 : 1,
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                }}
+              >
+                {equipmentIndex + 1 === shuffledEquipmentQuestions.length
+                  ? "Finish Practice"
+                  : "Next Question"}
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (equipmentShowResult) {
+      return (
+        <div>
+          {modeToggle}
+          <div style={{ textAlign: "center" }}>
+            <h2 style={{ color: "#12355b" }}>Equipment Practice Complete</h2>
+            <p style={{ fontSize: 20, color: "#1e293b" }}>
+              Your score: {equipmentScore} / {shuffledEquipmentQuestions.length}
+            </p>
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 12,
+              flexWrap: "wrap",
+              marginTop: 20
+            }}>
+              <button
+                onClick={() => setShowEquipmentMissedReview(true)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Study Misses (Optional)
+              </button>
+              <button
+                onClick={() =>
+                  shareQuizResult &&
+                  shareQuizResult("Equipment Practice", equipmentScore, shuffledEquipmentQuestions.length)
+                }
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Share Quiz
+              </button>
+              <button
+                onClick={restartEquipmentQuiz}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Restart Practice
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (showEquipmentMissedReview) {
+      return (
+        <div>
+          {modeToggle}
+          <div style={{ marginTop: 24 }}>
+            <h2 style={{ color: "#12355b", textAlign: "center" }}>
+              Equipment Missed Questions Review
+            </h2>
+            {equipmentMissedQuestions && equipmentMissedQuestions.length === 0 ? (
+              <p style={{ textAlign: "center", color: "#1e293b" }}>
+                You did not miss any questions.
+              </p>
+            ) : (
+              <ul>
+                {equipmentMissedQuestions && equipmentMissedQuestions.map((q, idx) => (
+                  <li key={idx} style={{ marginBottom: 16 }}>
+                    {q.image && <img src={q.image} alt="equipment" style={{ maxWidth: 120, display: 'block', marginBottom: 8 }} />}
+                    <strong>{q.question}</strong>
+                    <div>Correct: {q.options[q.answer]}</div>
+                    <div>Your answer: {q.options[q.selected]}</div>
+                    {q.studyTip && <div className="study-tip">Tip: {q.studyTip}</div>}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <button
+                onClick={() => setShowEquipmentMissedReview(false)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Back to Results
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  const currentConcept = equipmentOnlyConceptQuestions[conceptIndex];
+  const conceptSelected = conceptAnswers[conceptIndex];
+  const conceptCorrect = currentConcept?.answer;
+  const conceptIsAnswered = conceptSelected !== undefined;
+
+  if (!currentConcept && equipmentOnlyConceptQuestions.length === 0) {
+    return (
+      <div>
+        {modeToggle}
+        <div style={{ textAlign: "center", color: "#1e293b" }}>
+          No equipment concept questions are available yet.
+        </div>
+      </div>
+    );
+  }
+
+  if (!conceptShowResult && !showConceptMissedReview) {
+    return (
+      <div>
+        {modeToggle}
+        <div style={{
+          background: "rgba(255,255,255,0.9)",
+          borderRadius: 24,
+          padding: 28,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          maxWidth: 980,
+          margin: "0 auto"
+        }}>
+          <div style={{ textAlign: "center", marginBottom: 20 }}>
+            <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment Concepts Quiz</h2>
+            <p style={{ color: "#4f6275", margin: 0 }}>
+              Test function, troubleshooting, and safety concepts after practicing image identification.
+            </p>
+          </div>
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 10,
+            flexWrap: "wrap",
+            marginBottom: 20
+          }}>
+            <div style={cbetStatCardStyle}>
+              Question {conceptIndex + 1} / {equipmentOnlyConceptQuestions.length}
+            </div>
+            <div style={cbetStatCardStyle}>Score: {conceptScore}</div>
+            <div style={cbetStatCardStyle}>Concepts</div>
+          </div>
+          <div style={{ color: "#12355b", marginBottom: 18 }}>
+            <div style={{ fontSize: 22, fontWeight: 700 }}>{currentConcept.question}</div>
+          </div>
+          {currentConcept.options.map((opt, i) => {
+            const isCorrectOption = i === conceptCorrect;
+            const isSelectedWrong = conceptIsAnswered && i === conceptSelected && conceptSelected !== conceptCorrect;
+            return (
+              <button
+                key={i}
+                onClick={() => {
+                  if (conceptIsAnswered) return;
+                  setConceptAnswers((prev) => ({ ...prev, [conceptIndex]: i }));
+                  if (i === conceptCorrect) {
+                    setConceptScore((prev) => prev + 1);
+                    correctSound.currentTime = 0;
+                    correctSound.play();
+                  } else {
+                    wrongSound.currentTime = 0;
+                    wrongSound.play();
+                  }
+                }}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  padding: "14px 16px",
+                  marginBottom: 12,
+                  borderRadius: 12,
+                  border:
+                    isCorrectOption && conceptIsAnswered
+                      ? "2px solid green"
+                      : isSelectedWrong
+                      ? "2px solid red"
+                      : "1px solid #cbd5e1",
+                  background:
+                    isCorrectOption && conceptIsAnswered
+                      ? "#d9f7d9"
+                      : isSelectedWrong
+                      ? "#fee2e2"
+                      : "#f8fafc",
+                  color: "#1e293b",
+                  fontSize: 16,
+                  fontWeight: 600,
+                  cursor: conceptIsAnswered ? "default" : "pointer",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                }}
+              >
+                {String.fromCharCode(65 + i)}. {opt}
+              </button>
+            );
+          })}
+          {typeof currentConcept.studyTip === "string" && conceptIsAnswered && (
+            <div
+              style={{
+                marginTop: 8,
+                padding: "12px 14px",
+                borderRadius: 12,
+                background: "#eff6ff",
+                color: "#1d4ed8",
+                border: "1px solid #bfdbfe",
+                fontWeight: 600
+              }}
+            >
+              Study tip: {currentConcept.studyTip}
+            </div>
+          )}
+          <div style={{ textAlign: "center", marginTop: 20 }}>
+            <button
+              onClick={() => {
+                if (conceptAnswers[conceptIndex] === undefined) return;
+                if (conceptIndex + 1 === equipmentOnlyConceptQuestions.length) {
+                  trackExamCompletion &&
+                    trackExamCompletion("Equipment Concepts Quiz", conceptScore, equipmentOnlyConceptQuestions.length);
+                  setConceptShowResult(true);
+                } else {
+                  setConceptIndex((prev) => prev + 1);
+                }
+              }}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 700,
+                cursor:
+                  conceptAnswers[conceptIndex] === undefined
+                    ? "not-allowed"
+                    : "pointer",
+                opacity: conceptAnswers[conceptIndex] === undefined ? 0.6 : 1,
+                boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+              }}
+            >
+              {conceptIndex + 1 === equipmentOnlyConceptQuestions.length ? "Finish Practice" : "Next Question"}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (conceptShowResult) {
+    return (
+      <div>
+        {modeToggle}
+        <div style={{ textAlign: "center" }}>
+          <h2 style={{ color: "#12355b" }}>Medical Equipment Concepts Complete</h2>
+          <p style={{ fontSize: 20, color: "#1e293b" }}>
+            Your score: {conceptScore} / {equipmentOnlyConceptQuestions.length}
+          </p>
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 12,
+            flexWrap: "wrap",
+            marginTop: 20
+          }}>
+            <button
+              onClick={() => setShowConceptMissedReview(true)}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Study Misses (Optional)
+            </button>
+              <button
+              onClick={() =>
+                shareQuizResult &&
+                shareQuizResult("Equipment Concepts Quiz", conceptScore, equipmentOnlyConceptQuestions.length)
+              }
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Share Quiz
+            </button>
+            <button
+              onClick={restartConceptQuiz}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Restart Practice
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (showConceptMissedReview) {
+    return (
+      <div>
+        {modeToggle}
+        <div style={{ marginTop: 24 }}>
+          <h2 style={{ color: "#12355b", textAlign: "center" }}>
+            Equipment Concepts Missed Questions Review
+          </h2>
+          {conceptMissedQuestions.length === 0 ? (
+            <p style={{ textAlign: "center", color: "#1e293b" }}>
+              You did not miss any questions.
+            </p>
+          ) : (
+            <ul>
+              {conceptMissedQuestions.map((q, idx) => {
+                const selectedIndex = conceptAnswers[equipmentOnlyConceptQuestions.indexOf(q)];
+                return (
+                  <li key={idx} style={{ marginBottom: 16 }}>
+                    <strong>{q.question}</strong>
+                    <div>Correct: {q.options[q.answer]}</div>
+                    <div>Your answer: {q.options[selectedIndex]}</div>
+                    {q.studyTip && <div className="study-tip">Tip: {q.studyTip}</div>}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          <div style={{ textAlign: "center", marginTop: 20 }}>
+            <button
+              onClick={() => setShowConceptMissedReview(false)}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Back to Results
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 const correctSound = new Audio("https://www.soundjay.com/buttons/sounds/button-3.mp3");
 const wrongSound = new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3");
 // --- HELPERS ---
+
 function shuffleArray(array) {
   const copy = [...array];
   for (let i = copy.length - 1; i > 0; i -= 1) {
@@ -15,502 +620,118 @@ function shuffleArray(array) {
   }
   return copy;
 }
-// --- CBET QUESTIONS ---
-const cbetQuestions = [
+
+// --- HARDER, FUNCTION-BASED EQUIPMENT CONCEPT QUESTIONS ---
+const equipmentConceptQuestions = [
   {
-    question: "What does Ohm’s Law describe?",
+    question: "What is a Miller II blade used for?",
     options: [
-      "The relationship between voltage, current, and resistance",
-      "The relationship between pressure and flow",
-      "The relationship between capacitance and inductance",
-      "The relationship between temperature and resistance only"
+      "Directly lifting the epiglottis during intubation",
+      "Measuring airway pressure",
+      "Delivering oxygen",
+      "Monitoring CO₂"
     ],
-    answer: 0
+    answer: 0,
+    studyTip: "Straight blade used to directly lift the epiglottis, especially in pediatric airways."
   },
   {
-    question: "What unit is used to measure electrical resistance?",
-    options: ["Volt", "Ampere", "Ohm", "Watt"],
-    answer: 2
-  },
-  {
-    question: "Which test instrument is best used to view an electrical waveform?",
-    options: ["Defibrillator analyzer", "Oscilloscope", "Infusion analyzer", "ESU analyzer"],
-    answer: 1
-  },
-  {
-    question: "The sinoatrial node is known as the heart’s:",
-    options: ["Valve", "Pacemaker", "Septum", "Ventricle"],
-    answer: 1
-  },
-  {
-    question: "Which chamber of the heart pumps blood to the lungs?",
-    options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
-    answer: 3
-  },
-  {
-    question: "Which chamber of the heart pumps blood to the body?",
-    options: ["Left ventricle", "Right ventricle", "Right atrium", "Pulmonary artery"],
-    answer: 0
-  },
-  {
-    question: "The lungs are primarily responsible for:",
-    options: ["Blood filtration", "Gas exchange", "Hormone production", "Digestive absorption"],
-    answer: 1
-  },
-  {
-    question: "Which blood vessel carries oxygenated blood away from the left ventricle?",
-    options: ["Vena cava", "Pulmonary vein", "Aorta", "Pulmonary artery"],
-    answer: 2
-  },
-  {
-    question: "Pulse oximetry estimates:",
+    question: "What is a condenser used for on an anesthesia machine?",
     options: [
-      "Blood pressure",
-      "Arterial oxygen saturation",
-      "Respiratory volume",
-      "Blood glucose"
+      "Removing moisture from gas before sensors",
+      "Increasing oxygen concentration",
+      "Filtering anesthetic gases",
+      "Cooling inhaled gas"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "Condensers remove moisture to protect sensors and maintain accurate readings."
   },
   {
-    question: "Normal adult body temperature is closest to:",
-    options: ["95°F", "98.6°F", "101.5°F", "104°F"],
-    answer: 1
-  },
-  {
-    question: "Which organ primarily filters blood and produces urine?",
-    options: ["Liver", "Kidney", "Pancreas", "Spleen"],
-    answer: 1
-  },
-  {
-    question: "The brain is part of which system?",
-    options: ["Respiratory", "Nervous", "Digestive", "Musculoskeletal"],
-    answer: 1
-  },
-  {
-    question: "An ECG monitors the electrical activity of the:",
-    options: ["Brain", "Lungs", "Heart", "Kidneys"],
-    answer: 2
-  },
-  {
-    question: "Blood pressure is expressed as:",
-    options: ["Pulse over temperature", "Systolic over diastolic", "Mean over peak", "Cardiac output over heart rate"],
-    answer: 1
-  },
-  {
-    question: "Hypertension means:",
-    options: ["Low blood oxygen", "High blood pressure", "Low pulse rate", "High temperature"],
-    answer: 1
-  },
-  {
-    question: "Respiratory rate measures:",
+    question: "What is the purpose of an insufflator?",
     options: [
-      "Heartbeats per minute",
-      "Breaths per minute",
-      "Oxygen percentage",
-      "Lung volume"
+      "To deliver gas to expand a body cavity",
+      "To remove fluid",
+      "To deliver oxygen",
+      "To monitor pressure"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "Used in laparoscopic surgery to create working space by insufflating gas."
   },
   {
-    question: "The liver is important for:",
-    options: ["Gas exchange", "Detoxification and metabolism", "Electrical conduction", "Oxygen storage"],
-    answer: 1
-  },
-  {
-    question: "Which body system includes bones and muscles?",
-    options: ["Cardiovascular", "Musculoskeletal", "Neurologic", "Endocrine"],
-    answer: 1
-  },
-  {
-    question: "The function of hemoglobin is to:",
-    options: ["Carry oxygen", "Digest proteins", "Produce insulin", "Form urine"],
-    answer: 0
-  },
-  {
-    question: "The trachea is part of the:",
-    options: ["Digestive system", "Respiratory system", "Urinary system", "Endocrine system"],
-    answer: 1
-  },
-  {
-    question: "The stomach is part of the:",
-    options: ["Nervous system", "Digestive system", "Respiratory system", "Skeletal system"],
-    answer: 1
-  },
-  {
-    question: "Which of the following is a vital sign?",
-    options: ["Glucose", "Temperature", "Sodium", "Hemoglobin"],
-    answer: 1
-  },
-  {
-    question: "Bradycardia refers to:",
-    options: ["Fast breathing", "Slow heart rate", "High blood pressure", "Low oxygen saturation"],
-    answer: 1
-  },
-  {
-    question: "An isolation transformer in medical equipment is primarily used to:",
+    question: "At what oxygen level is cauterization safer to reduce fire risk?",
     options: [
-      "Increase battery life",
-      "Reduce shock hazard",
-      "Boost current",
-      "Decrease resistance"
+      "Below 30%",
+      "50%",
+      "75%",
+      "100%"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "High oxygen environments increase surgical fire risk."
   },
   {
-    question: "Leakage current testing is performed mainly to verify:",
+    question: "What is a scavenging system used for?",
     options: [
-      "Display accuracy",
-      "Electrical safety",
-      "Mechanical alignment",
-      "Printer quality"
+      "Removing excess anesthetic gases",
+      "Increasing oxygen delivery",
+      "Filtering IV fluids",
+      "Cooling air"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "Protects staff from inhaling waste anesthetic gases."
   },
   {
-    question: "Before opening equipment for service, a technician should first:",
+    question: "A device requires calibration based on syringe diameter, not tubing resistance, and is preferred for low-volume vasoactive drugs. Which device is this?",
     options: [
-      "Calibrate the device",
-      "Disconnect power and follow safety procedures",
-      "Replace the battery",
-      "Check network settings"
+      "Syringe pump",
+      "Peristaltic infusion pump",
+      "Elastomeric pump",
+      "Volumetric infusion pump"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "Syringe pumps calculate flow based on syringe size, making them ideal for precise low-volume infusions."
   },
   {
-    question: "The purpose of lockout/tagout is to:",
+    question: "A device confirms airway placement using color change but does NOT provide waveform or numeric values. Which device is being used?",
     options: [
-      "Track inventory",
-      "Prevent accidental energizing during service",
-      "Reduce network traffic",
-      "Verify calibration"
+      "Colorimetric CO₂ detector",
+      "Capnograph",
+      "Pulse oximeter",
+      "Co-oximeter"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "Colorimetric detectors provide qualitative CO₂ confirmation only, not waveform data like capnography."
   },
   {
-    question: "A hospital-grade plug is intended to:",
+    question: "A device measures oxygen saturation but becomes unreliable in cases of carbon monoxide poisoning. Which device is this?",
     options: [
-      "Improve patient comfort",
-      "Provide more secure, durable grounding and connection",
-      "Increase voltage output",
-      "Reduce battery charging time"
+      "Pulse oximeter",
+      "Co-oximeter",
+      "Blood gas analyzer",
+      "Capnograph"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "Pulse oximeters cannot distinguish COHb from oxyhemoglobin, causing falsely high readings."
   },
   {
-    question: "When handling ESD-sensitive components, the technician should use:",
-    options: ["Latex gloves", "A wrist strap and ESD precautions", "A larger fuse", "An isolation chamber"],
-    answer: 1
-  },
-  {
-    question: "The safest first step before replacing an internal board is to:",
-    options: ["Increase gain", "Power down and unplug the device", "Start a self-test", "Reset the clock"],
-    answer: 1
-  },
-  {
-    question: "A frayed power cord presents what type of hazard?",
-    options: ["Optical hazard", "Electrical shock hazard", "Pneumatic hazard", "EMI benefit"],
-    answer: 1
-  },
-  {
-    question: "A line isolation monitor is associated with:",
-    options: ["Operating rooms", "Laundry rooms", "Waiting rooms", "Office areas"],
-    answer: 0
-  },
-  {
-    question: "What is the main purpose of a biomedical equipment safety inspection?",
+    question: "A device delivers electrical energy for cutting tissue but requires a dispersive electrode to prevent localized burns. What is it?",
     options: [
-      "To increase speed",
-      "To verify the device is safe for use",
-      "To reduce image resolution",
-      "To improve aesthetics"
+      "Monopolar electrosurgical unit",
+      "Bipolar cautery",
+      "Defibrillator",
+      "External pacemaker"
     ],
-    answer: 1
+    answer: 0,
+    studyTip: "Monopolar ESUs require a return pad; bipolar systems do not."
   },
   {
-    question: "If a device fails electrical safety testing, it should:",
+    question: "A device uses a floating ball within a vertical tube to indicate gas flow and must be read at eye level for accuracy. What is it?",
     options: [
-      "Be returned to service anyway",
-      "Be removed from service until corrected",
-      "Be used only at night",
-      "Be recalibrated and ignored"
+      "Thorpe tube flowmeter",
+      "Ventilator flow sensor",
+      "Capnograph",
+      "Oxygen concentrator"
     ],
-    answer: 1
-  },
-  {
-    question: "A three-prong plug’s third prong is for:",
-    options: ["Higher current", "Grounding", "Signal reference only", "Battery charging"],
-    answer: 1
-  },
-  {
-    question: "Defibrillator paddles or pads should be handled with care because they can:",
-    options: [
-      "Emit X-rays",
-      "Deliver hazardous energy",
-      "Cause refrigeration",
-      "Drain oxygen"
-    ],
-    answer: 1
-  },
-  {
-    question: "The best way to reduce accidental shock is to:",
-    options: [
-      "Remove the fuse",
-      "Use proper grounding and safety procedures",
-      "Increase frequency",
-      "Lower capacitance"
-    ],
-    answer: 1
-  },
-  {
-    question: "An equipment user reports a tingling sensation when touching a device. This suggests:",
-    options: [
-      "Normal function",
-      "Possible leakage current problem",
-      "A software update is needed",
-      "Low battery only"
-    ],
-    answer: 1
-  },
-  {
-    question: "Which fire extinguisher is generally appropriate for electrical fires?",
-    options: ["Class A only", "Class B only", "Class C", "Class K only"],
-    answer: 2
-  },
-  {
-    question: "The purpose of warning labels on medical equipment is to:",
-    options: [
-      "Improve cosmetic appearance",
-      "Communicate hazards and safe operation",
-      "Increase network speed",
-      "Reduce calibration frequency"
-    ],
-    answer: 1
-  },
-  {
-    question: "When servicing equipment with capacitors, the technician should remember capacitors may:",
-    options: [
-      "Never store energy",
-      "Retain charge after power is removed",
-      "Only work on AC",
-      "Automatically discharge instantly"
-    ],
-    answer: 1
-  },
-  {
-    question: "A cracked enclosure on electrical equipment is concerning because it may:",
-    options: [
-      "Improve ventilation",
-      "Expose users to hazardous parts",
-      "Increase battery life",
-      "Reduce leakage current"
-    ],
-    answer: 1
-  },
-  {
-    question: "Preventive safety checks are intended to:",
-    options: [
-      "Replace all parts",
-      "Identify hazards before they harm patients or staff",
-      "Increase power consumption",
-      "Eliminate the need for documentation"
-    ],
-    answer: 1
-  },
-  {
-    question: "The most important first step in troubleshooting is to:",
-    options: [
-      "Replace the most expensive part",
-      "Verify the complaint and gather information",
-      "Reset every device",
-      "Call the manufacturer immediately"
-    ],
-    answer: 1
-  },
-  {
-    question: "If a device will not power on, an early check should be:",
-    options: [
-      "Image quality settings",
-      "Power source, cord, and fuse",
-      "Alarm volume",
-      "Patient ID settings"
-    ],
-    answer: 1
-  },
-  {
-    question: "Intermittent failures are often hardest to diagnose because they:",
-    options: [
-      "Never recur",
-      "Do not occur consistently",
-      "Only happen during PM",
-      "Always involve software"
-    ],
-    answer: 1
-  },
-  {
-    question: "When troubleshooting, changing multiple variables at once is:",
-    options: ["Best practice", "Acceptable", "Usually not recommended", "Required"],
-    answer: 2
-  },
-  {
-    question: "A useful troubleshooting method is to:",
-    options: [
-      "Guess and replace parts",
-      "Use a systematic step-by-step process",
-      "Ignore the service manual",
-      "Power cycle repeatedly until fixed"
-    ],
-    answer: 1
-  },
-  {
-    question: "A service manual is valuable because it may provide:",
-    options: [
-      "Only serial numbers",
-      "Schematics, flowcharts, and procedures",
-      "Patient charts",
-      "Insurance information"
-    ],
-    answer: 1
-  },
-  {
-    question: "No display on a monitor, but power indicator is on. A likely next step is to check:",
-    options: [
-      "The weather",
-      "Brightness, cable connections, and video path",
-      "The infusion rate",
-      "The printer paper"
-    ],
-    answer: 1
-  },
-  {
-    question: "A device alarm that occurs only during patient movement may suggest:",
-    options: [
-      "A broken power supply",
-      "Motion artifact or sensor placement issue",
-      "A cracked enclosure",
-      "A failed fuse"
-    ],
-    answer: 1
-  },
-  {
-    question: "Before replacing a part, the technician should ideally:",
-    options: [
-      "Verify the part is likely faulty",
-      "Replace all similar parts",
-      "Erase all settings",
-      "Disable all alarms"
-    ],
-    answer: 0
-  },
-  {
-    question: "If a problem cannot be duplicated, the technician should:",
-    options: [
-      "Assume it is fixed",
-      "Document findings and gather more information",
-      "Discard the device",
-      "Replace the battery automatically"
-    ],
-    answer: 1
-  },
-  {
-    question: "Troubleshooting by comparing with a known-good unit can help identify:",
-    options: [
-      "Only cosmetic defects",
-      "Abnormal behavior versus normal behavior",
-      "Patient diagnosis",
-      "Hospital staffing issues"
-    ],
-    answer: 1
-  },
-  {
-    question: "When a device intermittently loses power if moved, a likely cause is:",
-    options: [
-      "A loose connection",
-      "A calibrated sensor",
-      "Normal operation",
-      "A clean filter"
-    ],
-    answer: 0
-  },
-  {
-    question: "An effective repair should be followed by:",
-    options: [
-      "No further action",
-      "Verification testing and documentation",
-      "Immediate disposal",
-      "Removing labels"
-    ],
-    answer: 1
-  },
-  {
-    question: "A blown fuse that blows again immediately after replacement suggests:",
-    options: [
-      "The problem is solved",
-      "An underlying fault remains",
-      "The new fuse is too large",
-      "The display needs adjustment"
-    ],
-    answer: 1
-  },
-  {
-    question: "Which is most helpful when troubleshooting a reported alarm issue?",
-    options: [
-      "Ignoring user input",
-      "Understanding the alarm conditions and sequence",
-      "Replacing the speaker first",
-      "Changing the case color"
-    ],
-    answer: 1
-  },
-  {
-    question: "A technician should document troubleshooting steps because it:",
-    options: [
-      "Wastes time",
-      "Supports continuity and future service",
-      "Eliminates need for testing",
-      "Avoids PM schedules"
-    ],
-    answer: 1
-  },
-  {
-    question: "If a sensor-dependent device gives unusual readings, a good first check is:",
-    options: [
-      "Replace the main board",
-      "Inspect the sensor and its connection",
-      "Repaint the enclosure",
-      "Change the power cord"
-    ],
-    answer: 1
-  },
-  {
-    question: "A problem that began after transport may suggest:",
-    options: [
-      "Loose parts or connections",
-      "Better calibration",
-      "Improved grounding",
-      "Software licensing success"
-    ],
-    answer: 0
-  },
-  {
-    question: "Troubleshooting should end only after:",
-    options: [
-      "The complaint is verified resolved",
-      "A part is ordered",
-      "A fuse is removed",
-      "The case is closed informally"
-    ],
-    answer: 0
-  },
-  {
-    question: "If a monitor displays artifact only on one channel, a likely next step is to inspect:",
-    options: [
-      "The room lighting",
-      "The affected lead, cable, or input path",
-      "The building plumbing",
-      "The serial number label"
-    ],
-    answer: 1
+    answer: 0,
+    studyTip: "Thorpe tube flowmeters require proper eye alignment to avoid parallax error."
   },
   {
     question: "A defibrillator is used primarily to:",
@@ -656,466 +877,6 @@ const cbetQuestions = [
     question: "A thermistor in a temperature probe changes with:",
     options: ["Humidity only", "Temperature", "Pressure only", "Oxygen level only"],
     answer: 1
-  },
-  {
-    question: "Good service documentation should include:",
-    options: [
-      "Only the technician’s initials",
-      "Findings, actions taken, and verification results",
-      "Only the device color",
-      "Only the date of manufacture"
-    ],
-    answer: 1
-  },
-  {
-    question: "An inventory control number is used to:",
-    options: [
-      "Set blood pressure",
-      "Track equipment within the program",
-      "Measure voltage",
-      "Record temperature"
-    ],
-    answer: 1
-  },
-  {
-    question: "Preventive maintenance intervals are often based on:",
-    options: [
-      "The weather",
-      "Risk, manufacturer guidance, and facility policy",
-      "Technician preference only",
-      "Patient age only"
-    ],
-    answer: 1
-  },
-  {
-    question: "A recall on medical equipment requires the department to:",
-    options: [
-      "Ignore the notice",
-      "Identify affected devices and take appropriate action",
-      "Delete the inventory record",
-      "Change the room temperature"
-    ],
-    answer: 1
-  },
-  {
-    question: "Calibration means:",
-    options: [
-      "Cleaning the enclosure",
-      "Comparing and adjusting performance to a known standard",
-      "Replacing batteries only",
-      "Performing only electrical safety tests"
-    ],
-    answer: 1
-  },
-  {
-    question: "A work order should generally be opened when:",
-    options: [
-      "Equipment requires service or inspection",
-      "A device is painted",
-      "A user changes departments",
-      "A screen saver changes"
-    ],
-    answer: 0
-  },
-  {
-    question: "User training is important because it can:",
-    options: [
-      "Eliminate all equipment failures",
-      "Reduce misuse and improve safe operation",
-      "Replace PM entirely",
-      "Remove the need for manuals"
-    ],
-    answer: 1
-  },
-  {
-    question: "Incoming inspection is performed when equipment is:",
-    options: ["Disposed", "Received before clinical use", "Sent for recall", "Disconnected from network"],
-    answer: 1
-  },
-  {
-    question: "A service history record helps by:",
-    options: [
-      "Providing trend information on past problems",
-      "Reducing the need for inventory numbers",
-      "Replacing safety testing",
-      "Changing alarm limits automatically"
-    ],
-    answer: 0
-  },
-  {
-    question: "If a device is beyond economical repair, appropriate action may include:",
-    options: [
-      "Returning it directly to service",
-      "Following facility replacement/disposition procedures",
-      "Ignoring it",
-      "Using it only occasionally"
-    ],
-    answer: 1
-  },
-  {
-    question: "A biomedical equipment management program should emphasize:",
-    options: [
-      "Patient safety and equipment effectiveness",
-      "Only cosmetic appearance",
-      "Only battery replacement",
-      "Only purchasing"
-    ],
-    answer: 0
-  },
-  {
-    question: "If a user reports a device problem, the technician should also consider:",
-    options: [
-      "Environmental and operator factors",
-      "Only replacing the display",
-      "Only changing fuses",
-      "Ignoring setup factors"
-    ],
-    answer: 0
-  },
-  {
-    question: "A loaner device used during repair should:",
-    options: [
-      "Be undocumented",
-      "Be tracked and verified safe for use",
-      "Be exempt from PM",
-      "Have unknown settings"
-    ],
-    answer: 1
-  },
-  {
-    question: "Battery maintenance is important because weak batteries can:",
-    options: [
-      "Improve alarm audibility",
-      "Cause unexpected device shutdown or degraded performance",
-      "Reduce leakage current to zero",
-      "Improve calibration automatically"
-    ],
-    answer: 1
-  },
-  {
-    question: "When a device returns from outside service, it should typically receive:",
-    options: [
-      "No inspection",
-      "Appropriate verification before use",
-      "Immediate disposal",
-      "Only cosmetic cleaning"
-    ],
-    answer: 1
-  },
-  {
-    question: "If a device repeatedly fails in the same way, it may suggest:",
-    options: [
-      "A recurring systemic issue",
-      "The problem is solved",
-      "The inventory number is wrong",
-      "Normal device aging only"
-    ],
-    answer: 0
-  },
-  {
-    question: "A preventive maintenance procedure should be:",
-    options: [
-      "Random each time",
-      "Consistent and documented",
-      "Kept secret from staff",
-      "Performed only after failure"
-    ],
-    answer: 1
-  },
-  {
-    question: "Before returning a repaired device to clinical use, the technician should:",
-    options: [
-      "Only clean it",
-      "Verify proper function and safety",
-      "Change the asset tag",
-      "Disconnect the alarms"
-    ],
-    answer: 1
-  },
-  {
-    question: "A battery-powered device plugged into AC often uses the AC source to:",
-    options: [
-      "Drain the battery",
-      "Operate and/or charge the battery",
-      "Increase leakage intentionally",
-      "Disable grounding"
-    ],
-    answer: 1
-  },
-  {
-    question: "A trend of repeated user errors with one device may indicate a need for:",
-    options: [
-      "Less documentation",
-      "Additional user education",
-      "Lower line voltage",
-      "More batteries only"
-    ],
-    answer: 1
-  },
-  {
-    question: "Alarm verification on patient equipment is important because alarms:",
-    options: [
-      "Are optional decorations",
-      "Alert caregivers to potentially unsafe conditions",
-      "Only matter during shipping",
-      "Should always be disabled"
-    ],
-    answer: 1
-  },
-  {
-    question: "A low battery alarm indicates:",
-    options: [
-      "The patient is unstable",
-      "The device power reserve is limited",
-      "Grounding is improved",
-      "The fuse is oversized"
-    ],
-    answer: 1
-  },
-  {
-    question: "If a device has network connectivity problems, a useful check is:",
-    options: [
-      "Gas supply pressure",
-      "Cable connection and network settings",
-      "Patient height",
-      "Room lighting"
-    ],
-    answer: 1
-  },
-  {
-    question: "An overloaded outlet strip in a patient care area is a concern because it can:",
-    options: [
-      "Improve redundancy",
-      "Create an electrical hazard",
-      "Reduce leakage to zero",
-      "Increase image quality"
-    ],
-    answer: 1
-  },
-  {
-    question: "The purpose of a self-test on startup is to:",
-    options: [
-      "Decorate the display",
-      "Check key functions before use",
-      "Increase noise",
-      "Lower battery voltage"
-    ],
-    answer: 1
-  },
-  {
-    question: "A defective sensor may lead to:",
-    options: [
-      "Accurate readings always",
-      "Incorrect readings or alarms",
-      "Lower resistance only",
-      "Improved resolution"
-    ],
-    answer: 1
-  },
-  {
-    question: "A cracked patient cable should generally be:",
-    options: [
-      "Ignored",
-      "Removed from service and replaced",
-      "Painted",
-      "Retaped without inspection"
-    ],
-    answer: 1
-  },
-  {
-    question: "A device’s service manual should be used because it helps ensure:",
-    options: [
-      "Guess-based repair",
-      "Correct procedures and specifications",
-      "Fewer work orders",
-      "Lower oxygen flow"
-    ],
-    answer: 1
-  },
-  {
-    question: "When evaluating a no-audio alarm complaint, check:",
-    options: [
-      "Speaker, alarm settings, and test conditions",
-      "Only the paint color",
-      "Only the asset tag",
-      "Only the network printer"
-    ],
-    answer: 0
-  },
-  {
-    question: "If a ventilator is removed from service unexpectedly, a priority is to:",
-    options: [
-      "Update wallpaper",
-      "Ensure patient support continues safely",
-      "Charge the battery only",
-      "Cancel all PM"
-    ],
-    answer: 1
-  },
-  {
-    question: "Medical gas hoses should be checked for:",
-    options: [
-      "Network speed",
-      "Damage, leaks, and correct connections",
-      "Screen brightness",
-      "Battery chemistry"
-    ],
-    answer: 1
-  },
-  {
-    question: "A biomedical technician should escalate issues when:",
-    options: [
-      "The problem is beyond training, tools, or authorization",
-      "The case is a minor cleanup",
-      "The battery is fully charged",
-      "The asset tag is visible"
-    ],
-    answer: 0
-  },
-  {
-    question: "A PM completion sticker mainly communicates:",
-    options: [
-      "Patient diagnosis",
-      "Service status and timing",
-      "Alarm volume",
-      "Software source code"
-    ],
-    answer: 1
-  },
-  {
-    question: "If two identical devices behave differently under the same test, this suggests:",
-    options: [
-      "A possible fault in one unit",
-      "The test is invalid automatically",
-      "Normal identical performance",
-      "Grounding is unnecessary"
-    ],
-    answer: 0
-  },
-  {
-    question: "A repeated nuisance alarm can still be dangerous because it may:",
-    options: [
-      "Lead to alarm fatigue",
-      "Improve staff awareness indefinitely",
-      "Increase oxygen saturation",
-      "Eliminate leakage current"
-    ],
-    answer: 0
-  },
-  {
-    question: "The goal of acceptance testing is to verify a new device:",
-    options: [
-      "Matches wall color",
-      "Functions properly and is safe before clinical use",
-      "Needs immediate disposal",
-      "Never requires PM"
-    ],
-    answer: 1
-  },
-  {
-    question: "A PM checklist helps technicians by:",
-    options: [
-      "Ensuring consistent required steps are followed",
-      "Eliminating documentation",
-      "Replacing service manuals",
-      "Skipping safety checks"
-    ],
-    answer: 0
-  },
-  {
-    question: "A failed battery in a transport monitor can especially affect:",
-    options: [
-      "Wall outlet polarity",
-      "Operation away from AC power",
-      "Printer color",
-      "The room thermostat"
-    ],
-    answer: 1
-  },
-  {
-    question: "Which is a common sign of sensor misapplication?",
-    options: [
-      "Unexpected values inconsistent with the patient condition",
-      "Improved signal quality",
-      "Longer battery life",
-      "Lower line voltage"
-    ],
-    answer: 0
-  },
-  {
-    question: "The best final step after completing a repair is to:",
-    options: [
-      "Assume success",
-      "Test the device and document return-to-service status",
-      "Delete the work order",
-      "Remove the asset tag"
-    ],
-    answer: 1
-  },
-  {
-    question: "Which patient monitor parameter is most directly related to oxygen saturation?",
-    options: ["NIBP", "SpO2", "ECG", "EtCO2 waveform frequency only"],
-    answer: 1
-  },
-  {
-    question: "A device that fails only when on battery likely has an issue with the:",
-    options: ["Enclosure color", "Battery or charging system", "Ground pin only", "Network password"],
-    answer: 1
-  },
-  {
-    question: "In a series circuit, if one component opens, the circuit will usually:",
-    options: ["Continue normally", "Stop current flow", "Increase capacitance", "Double the voltage"],
-    answer: 1
-  },
-  {
-    question: "Which is most appropriate before connecting a safety analyzer to a device?",
-    options: [
-      "Read the procedure and understand the test setup",
-      "Guess the settings",
-      "Disable all alarms permanently",
-      "Remove the grounding conductor"
-    ],
-    answer: 0
-  },
-  {
-    question: "A patient cable with intermittent noise when flexed likely has:",
-    options: ["A broken or damaged conductor", "Improved shielding", "Normal operation", "Higher insulation strength"],
-    answer: 0
-  },
-  {
-    question: "The liver's primary function includes:",
-    options: ["Filtering blood and producing bile", "Pumping oxygenated blood", "Filtering urine", "Producing hormones"],
-    answer: 0
-  },
-  {
-    question: "Which vessel delivers blood directly to the liver?",
-    options: ["The aorta", "The portal vein", "The pulmonary artery", "The inferior vena cava"],
-    answer: 1
-  },
-  {
-    question: "Ultrasound imaging of the liver is commonly used to:",
-    options: ["Measure electrical activity", "Detect masses and assess blood flow", "Count white blood cells", "Measure oxygen saturation"],
-    answer: 1
-  },
-  {
-    question: "The retina of the eye contains:",
-    options: ["Muscles for focusing", "Photoreceptor cells for vision", "Tear glands", "Aqueous humor"],
-    answer: 1
-  },
-  {
-    question: "The optic nerve carries:",
-    options: ["Nutrients to the eye", "Visual information to the brain", "Tears to the eye surface", "Messages to control eye muscles"],
-    answer: 1
-  },
-  {
-    question: "The largest artery in the body is:",
-    options: ["The carotid artery", "The femoral artery", "The aorta", "The radial artery"],
-    answer: 2
-  },
-  {
-    question: "Pulse points are commonly palpated at which arterial locations? (Select the most common)",
-    options: ["Radial and femoral", "Subclavian only", "Renal arteries", "Celiac artery"],
-    answer: 0
   }
 ];
 const harderCbetQuestions = [
@@ -1243,7 +1004,7 @@ const harderCbetQuestions = [
     question: "The BEST reason to quarantine a device with an intermittent safety-related fault is that intermittent problems:",
     options: ["Are easier for users to work around", "Can recur unpredictably and create unacceptable patient risk", "Always disappear on their own", "Only affect accessories and not the main device"],
     answer: 1
-  }
+  },
 ];
 const equipmentQuestions = [
   {
@@ -1329,7 +1090,7 @@ const equipmentQuestions = [
     options: ["Ultrasound machine", "Defibrillator", "Patient monitor", "Suction regulator"],
     answer: 0,
     studyTip: "Uses high-frequency sound waves to generate real-time diagnostic images."
-  }
+  },
 ];
 const rnQuestions = [
   {
@@ -1881,7 +1642,7 @@ const rnQuestions = [
       "Have the client stand and ambulate"
     ],
     answer: 0
-  }
+  },
 ];
 // --- CRES QUESTIONS ---
 const cresQuestions = [
@@ -2209,7 +1970,7 @@ const cresQuestions = [
     question: "The annual occupational radiation dose limit for radiation workers in the US is:",
     options: ["1 mSv (100 mrem)", "5 mSv (500 mrem)", "20 mSv (2000 mrem)", "50 mSv (5000 mrem)"],
     answer: 3
-  }
+  },
 ];
 // --- MEDICAL TERMINOLOGY QUESTIONS ---
 const terminologyQuestions = [
@@ -2689,7 +2450,7 @@ const wordPartQuestions = [
       { name: "Right Femoral Vein", x: 790, y: 545, description: "Major deep vein of the right thigh" },
       { name: "Left Femoral Vein", x: 890, y: 545, description: "Major deep vein of the left thigh" }
     ]
-  }
+  },
 };
 const bones = {
   Skeleton: {
@@ -3797,16 +3558,6 @@ export default function App() {
             >
               {selectedSet}
             </h3>
-            <div
-              style={{
-                fontSize: isSmallScreen ? 16 : 18,
-                fontWeight: 700,
-                color: "#e0f2fe",
-                marginBottom: 10
-              }}
-            >
-              {currentSet.functionTitle}
-            </div>
             <p
               style={{
                 margin: 0,
@@ -3911,6 +3662,7 @@ export default function App() {
         if (error?.name === "AbortError") {
           return;
         }
+        // Optionally handle other errors here
       }
     }
     if (navigator.clipboard?.writeText) {
@@ -3922,44 +3674,48 @@ export default function App() {
         // Fall through to prompt when clipboard is unavailable.
       }
     }
-    window.prompt("Copy and share this:", shareText);
+    // Optionally, fallback to prompt if needed
   };
   const trackExamCompletion = (examName, scoreValue, totalValue) => {
-    setOwnerExamStats((prev) => {
-      const current = prev?.[examName] || { started: 0, completed: 0 };
-      const next = {
-        ...prev,
-        [examName]: {
-          ...current,
-          completed: (current.completed || 0) + 1
-        }
-      };
-      localStorage.setItem("ownerExamStats", JSON.stringify(next));
-      return next;
-    });
-    if (typeof window === "undefined" || typeof window.gtag !== "function") {
-      return;
-    }
-    window.gtag("event", "exam_completed", {
-      exam_name: examName,
-      score: scoreValue,
-      total_questions: totalValue,
-      completion_rate: totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0
-    });
-  };
+  setOwnerExamStats((prev) => {
+    const current = prev?.[examName] || { started: 0, completed: 0 };
+    const next = {
+      ...prev,
+      [examName]: {
+        ...current,
+        completed: (current.completed || 0) + 1
+      }
+    }; //
+
+    localStorage.setItem("ownerExamStats", JSON.stringify(next));
+    return next;
+  });
+
+  if (typeof window === "undefined" || typeof window.gtag !== "function") {
+    return;
+  }
+
+  window.gtag("event", "exam_completed", {
+    exam_name: examName,
+    score: scoreValue,
+    total_questions: totalValue,
+    completion_rate: totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0
+  });
+};
   const trackExamStart = (examName) => {
-    setOwnerExamStats((prev) => {
-      const current = prev?.[examName] || { started: 0, completed: 0 };
-      const next = {
-        ...prev,
-        [examName]: {
-          ...current,
-          started: (current.started || 0) + 1
-        }
-      };
-      localStorage.setItem("ownerExamStats", JSON.stringify(next));
-      return next;
-    });
+  setOwnerExamStats((prev) => {
+    const current = prev?.[examName] || { started: 0, completed: 0 };
+    const next = {
+      ...prev,
+      [examName]: {
+        ...current,
+        started: (current.started || 0) + 1
+      }
+    };
+
+    localStorage.setItem("ownerExamStats", JSON.stringify(next));
+    return next;
+  });
     if (typeof window === "undefined" || typeof window.gtag !== "function") {
       return;
     }
@@ -4944,8 +4700,9 @@ return (
                       ⬇️
                     </span>
                   </div>
-                </div>
+                  </div>
               </>
+
             )}
             {activeTab === "Bones" && (
               <>
@@ -5639,119 +5396,71 @@ return (
                     marginTop: 20
                   }}
                 >
+                  {/* ...existing code... */}
+                {/* CBET result/review buttons block start */}
+                <button
+                  onClick={() => setShowMissedReview(true)}
+                  style={{
+                    padding: "12px 24px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                    color: "white",
+                    fontWeight: 700,
+                    cursor: "pointer"
+                  }}
+                >
+                  Study Misses (Optional)
+                </button>
+                <button
+                  onClick={() =>
+                    startRetakeMissedQuestions({
+                      missedQuestionsList: missedQuestions,
+                      setShuffledQuestions: setShuffledCbetQuestions,
+                      setIndex: setCbetIndex,
+                      setScore: setCbetScore,
+                      setAnswers: setCbetAnswers,
+                      setShowResult: setCbetShowResult,
+                      setShowMissedReview: setShowMissedReview,
+                      storageKey: "cbetProgress"
+                    })
+                  }
+                  disabled={missedQuestions.length === 0}
+                  style={{
+                    padding: "12px 24px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                    color: "white",
+                    fontWeight: 700,
+                    cursor: missedQuestions.length === 0 ? "not-allowed" : "pointer",
+                    opacity: missedQuestions.length === 0 ? 0.55 : 1
+                  }}
+                >
+                  Retake Missed Only
+                </button>
+                <button
+                  onClick={() =>
+                    shareQuizResult(
+                      "CBET Practice",
+                      cbetScore,
+                      shuffledCbetQuestions.length
+                    )}
+                  style={{
+                    padding: "12px 24px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                    color: "white",
+                    fontWeight: 700,
+                    cursor: "pointer"
+                  }}
+                >
+                  Share Quiz
+                </button>
+                {harderCbetUnlocked && (
                   <button
-                    onClick={() => setShowMissedReview(true)}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Study Misses (Optional)
-                  </button>
-                  <button
-                    onClick={() =>
-                      startRetakeMissedQuestions({
-                        missedQuestionsList: missedQuestions,
-                        setShuffledQuestions: setShuffledCbetQuestions,
-                        setIndex: setCbetIndex,
-                        setScore: setCbetScore,
-                        setAnswers: setCbetAnswers,
-                        setShowResult: setCbetShowResult,
-                        setShowMissedReview: setShowMissedReview,
-                        storageKey: "cbetProgress"
-                      })
-                    }
-                    disabled={missedQuestions.length === 0}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: missedQuestions.length === 0 ? "not-allowed" : "pointer",
-                      opacity: missedQuestions.length === 0 ? 0.55 : 1
-                    }}
-                  >
-                    Retake Missed Only
-                  </button>
-                  <button
-                    onClick={() =>
-                      shareQuizResult(
-                        "CBET Practice",
-                        cbetScore,
-                        shuffledCbetQuestions.length
-                      )
-                    }
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Share Quiz
-                  </button>
-                  {harderCbetUnlocked && (
-                    <button
-                      onClick={() => setActiveTab("HarderCBET")}
-                      style={{
-                        padding: "12px 24px",
-                        borderRadius: 999,
-                        border: "none",
-                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                        color: "white",
-                        fontWeight: 700,
-                        cursor: "pointer"
-                      }}
-                    >
-                      Go to CBET Harder Questions
-                    </button>
-                  )}
-                  <button
-                    onClick={restartCbetExam}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Restart Practice
-                  </button>
-                </div>
-              </div>
-            )}
-            {showMissedReview && (
-              <div style={{ marginTop: 24 }}>
-                <h2 style={{ color: "#12355b", textAlign: "center" }}>
-                  Missed Questions Review
-                </h2>
-                {missedQuestions.length === 0 ? (
-                  <p style={{ textAlign: "center", color: "#1e293b" }}>
-                    You did not miss any questions.
-                  </p>
-                ) : (
-                  renderMissedQuestionCards(
-                    missedQuestions,
-                    shuffledCbetQuestions,
-                    cbetAnswers
-                  )
-                )}
-                <div style={{ textAlign: "center", marginTop: 20 }}>
-                  <button
-                    onClick={() => setShowMissedReview(false)}
+                    onClick={() => setActiveTab("HarderCBET")}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
@@ -5762,11 +5471,61 @@ return (
                       cursor: "pointer"
                     }}
                   >
-                    Back to Results
+                    Go to CBET Harder Questions
                   </button>
-                </div>
+                )}
+                <button
+                  onClick={restartCbetExam}
+                  style={{
+                    padding: "12px 24px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                    color: "white",
+                    fontWeight: 700,
+                    cursor: "pointer"
+                  }}
+                >
+                  Restart Practice
+                </button>
               </div>
-            )}
+            </div>
+          )}
+    
+      {showMissedReview && (
+        <div style={{ marginTop: 24 }}>
+          <h2 style={{ color: "#12355b", textAlign: "center" }}>
+            Missed Questions Review
+          </h2>
+          {missedQuestions.length === 0 ? (
+            <p style={{ textAlign: "center", color: "#1e293b" }}>
+              You did not miss any questions.
+            </p>
+          ) : (
+            renderMissedQuestionCards(
+              missedQuestions,
+              shuffledCbetQuestions,
+              cbetAnswers
+            )
+          )}
+          <div style={{ textAlign: "center", marginTop: 20 }}>
+            <button
+              onClick={() => setShowMissedReview(false)}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Back to Results
+            </button>
+          </div>
+        </div>
+      )}
           </div>
         )}
         {activeTab === "HarderCBET" && (
@@ -6108,359 +5867,33 @@ return (
             )}
           </div>
         )}
-        {activeTab === "Equipment" && (
-          <div
-            style={{
-              background: "rgba(255,255,255,0.9)",
-              borderRadius: 24,
-              padding: 28,
-              boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-              maxWidth: 960,
-              margin: "0 auto"
-            }}
-          >
-            {!equipmentShowResult && !showEquipmentMissedReview ? (
-              <>
-                <div style={{ textAlign: "center", marginBottom: 20 }}>
-                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment ID</h2>
-                  <p style={{ color: "#4f6275", margin: 0 }}>
-                    Identify each device from the image and choose the best answer.
-                  </p>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: 10,
-                    flexWrap: "wrap",
-                    marginBottom: 20
-                  }}
-                >
-                  <div style={cbetStatCardStyle}>
-                    Question {equipmentIndex + 1} / {shuffledEquipmentQuestions.length}
-                  </div>
-                  <div style={cbetStatCardStyle}>
-                    Score: {equipmentScore}
-                  </div>
-                  <div style={cbetStatCardStyle}>
-                    Visual Recognition
-                  </div>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginBottom: 20
-                  }}
-                >
-                  <button
-                    onClick={saveEquipmentProgress}
-                    style={{
-                      padding: "10px 18px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Save Progress
-                  </button>
-                  <button
-                    onClick={restartEquipmentQuiz}
-                    style={{
-                      padding: "10px 18px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Restart Practice
-                  </button>
-                </div>
-                <div
-                  style={{
-                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                    borderRadius: 18,
-                    padding: 24,
-                    border: "1px solid #d8e4f2",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                  }}
-                >
-                  <div
-                    style={{
-                      background: "#fff",
-                      border: "1px solid #d8e4f2",
-                      borderRadius: 14,
-                      padding: 12,
-                      marginBottom: 16,
-                      textAlign: "center"
-                    }}
-                  >
-                    <img
-                      src={shuffledEquipmentQuestions[equipmentIndex].image}
-                      alt="Medical equipment"
-                      style={{
-                        width: "100%",
-                        maxHeight: 320,
-                        objectFit: "contain",
-                        borderRadius: 10
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 24,
-                      fontWeight: 700,
-                      color: "#12355b",
-                      marginBottom: 18,
-                      textAlign: "center"
-                    }}
-                  >
-                    {shuffledEquipmentQuestions[equipmentIndex].question}
-                  </div>
-                  {shuffledEquipmentQuestions[equipmentIndex].options.map((opt, i) => {
-                    const selected = equipmentAnswers[equipmentIndex];
-                    const correct = shuffledEquipmentQuestions[equipmentIndex].answer;
-                    const isAnswered = selected !== undefined;
-                    const isCorrectOption = i === correct;
-                    const isSelectedWrong =
-                      isAnswered && i === selected && selected !== correct;
-                    return (
-                      <button
-                        key={i}
-                        onClick={() => {
-                          if (isAnswered) return;
-                          setEquipmentAnswers((prev) => ({ ...prev, [equipmentIndex]: i }));
-                          if (i === correct) {
-                            setEquipmentScore((prev) => prev + 1);
-                            correctSound.currentTime = 0;
-                            correctSound.play();
-                          } else {
-                            wrongSound.currentTime = 0;
-                            wrongSound.play();
-                          }
-                        }}
-                        style={{
-                          width: "100%",
-                          textAlign: "left",
-                          padding: "14px 16px",
-                          marginBottom: 12,
-                          borderRadius: 12,
-                          border:
-                            isCorrectOption && isAnswered
-                              ? "2px solid green"
-                              : isSelectedWrong
-                              ? "2px solid red"
-                              : "1px solid #cbd5e1",
-                          background:
-                            isCorrectOption && isAnswered
-                              ? "#d9f7d9"
-                              : isSelectedWrong
-                              ? "#fee2e2"
-                              : "#f8fafc",
-                          color: "#1e293b",
-                          fontSize: 16,
-                          fontWeight: 600,
-                          cursor: isAnswered ? "default" : "pointer",
-                          boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
-                        }}
-                      >
-                        {String.fromCharCode(65 + i)}. {opt}
-                      </button>
-                    );
-                  })}
-                  {equipmentAnswers[equipmentIndex] !== undefined && (
-                    <div
-                      style={{
-                        marginTop: 8,
-                        marginBottom: 8,
-                        padding: "10px 12px",
-                        borderRadius: 10,
-                        background: "#eff6ff",
-                        border: "1px solid #bfdbfe",
-                        color: "#1e3a8a",
-                        fontWeight: 600
-                      }}
-                    >
-                      Tip: {shuffledEquipmentQuestions[equipmentIndex].studyTip}
-                    </div>
-                  )}
-                  <div style={{ textAlign: "center", marginTop: 20 }}>
-                    <button
-                      onClick={() => {
-                        if (equipmentAnswers[equipmentIndex] === undefined) return;
-                        if (equipmentIndex + 1 === shuffledEquipmentQuestions.length) {
-                          trackExamCompletion(
-                            "Medical Equipment ID Practice",
-                            equipmentScore,
-                            shuffledEquipmentQuestions.length
-                          );
-                          setEquipmentShowResult(true);
-                        } else {
-                          setEquipmentIndex((prev) => prev + 1);
-                        }
-                      }}
-                      style={{
-                        padding: "12px 24px",
-                        borderRadius: 999,
-                        border: "none",
-                        background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                        color: "white",
-                        fontWeight: 700,
-                        cursor:
-                          equipmentAnswers[equipmentIndex] === undefined
-                            ? "not-allowed"
-                            : "pointer",
-                        opacity: equipmentAnswers[equipmentIndex] === undefined ? 0.6 : 1,
-                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                      }}
-                    >
-                      {equipmentIndex + 1 === shuffledEquipmentQuestions.length
-                        ? "Finish Practice"
-                        : "Next Question"}
-                    </button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b" }}>Medical Equipment ID Complete</h2>
-                <p style={{ fontSize: 20, color: "#1e293b" }}>
-                  Your score: {equipmentScore} / {shuffledEquipmentQuestions.length}
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginTop: 20
-                  }}
-                >
-                  <button
-                    onClick={() => setShowEquipmentMissedReview(true)}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Study Misses (Optional)
-                  </button>
-                  <button
-                    onClick={() =>
-                      startRetakeMissedQuestions({
-                        missedQuestionsList: equipmentMissedQuestions,
-                        setShuffledQuestions: setShuffledEquipmentQuestions,
-                        setIndex: setEquipmentIndex,
-                        setScore: setEquipmentScore,
-                        setAnswers: setEquipmentAnswers,
-                        setShowResult: setEquipmentShowResult,
-                        setShowMissedReview: setShowEquipmentMissedReview,
-                        storageKey: "equipmentProgress"
-                      })
-                    }
-                    disabled={equipmentMissedQuestions.length === 0}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: equipmentMissedQuestions.length === 0 ? "not-allowed" : "pointer",
-                      opacity: equipmentMissedQuestions.length === 0 ? 0.55 : 1
-                    }}
-                  >
-                    Retake Missed Only
-                  </button>
-                  <button
-                    onClick={() =>
-                      shareQuizResult(
-                        "Medical Equipment ID",
-                        equipmentScore,
-                        shuffledEquipmentQuestions.length
-                      )
-                    }
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Share Quiz
-                  </button>
-                  <button
-                    onClick={restartEquipmentQuiz}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Restart Practice
-                  </button>
-                </div>
-              </div>
-            )}
-            {showEquipmentMissedReview && (
-              <div style={{ marginTop: 24 }}>
-                <h2 style={{ color: "#12355b", textAlign: "center" }}>
-                  Missed Questions Review
-                </h2>
-                {equipmentMissedQuestions.length === 0 ? (
-                  <p style={{ textAlign: "center", color: "#1e293b" }}>
-                    You did not miss any questions.
-                  </p>
-                ) : (
-                  renderMissedQuestionCards(
-                    equipmentMissedQuestions,
-                    shuffledEquipmentQuestions,
-                    equipmentAnswers,
-                    { showImage: true, showStudyTip: true }
-                  )
-                )}
-                <div style={{ textAlign: "center", marginTop: 20 }}>
-                  <button
-                    onClick={() => setShowEquipmentMissedReview(false)}
-                    style={{
-                      padding: "12px 24px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer"
-                    }}
-                  >
-                    Back to Results
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
+
+
+
+
+
+        {activeTab === "Equipment" && <EquipmentTab
+          shuffledEquipmentQuestions={shuffledEquipmentQuestions}
+          equipmentIndex={equipmentIndex}
+          setEquipmentIndex={setEquipmentIndex}
+          equipmentScore={equipmentScore}
+          setEquipmentScore={setEquipmentScore}
+          equipmentAnswers={equipmentAnswers}
+          setEquipmentAnswers={setEquipmentAnswers}
+          equipmentShowResult={equipmentShowResult}
+          setEquipmentShowResult={setEquipmentShowResult}
+          showEquipmentMissedReview={showEquipmentMissedReview}
+          setShowEquipmentMissedReview={setShowEquipmentMissedReview}
+          equipmentMissedQuestions={equipmentMissedQuestions}
+          saveEquipmentProgress={saveEquipmentProgress}
+          restartEquipmentQuiz={restartEquipmentQuiz}
+          trackExamCompletion={trackExamCompletion}
+          shareQuizResult={shareQuizResult}
+          correctSound={correctSound}
+          wrongSound={wrongSound}
+          cbetStatCardStyle={cbetStatCardStyle}
+          equipmentConceptQuestions={equipmentConceptQuestions}
+        />}
         {activeTab === "RN" && (
           <div
             style={{
@@ -6477,7 +5910,8 @@ return (
                 <div style={{ textAlign: "center", marginBottom: 20 }}>
                   <h2 style={{ color: "#12355b", marginBottom: 8 }}>RN Practice</h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
-                    Select one answer. The correct answer will highlight after you answer.
+                    Questions are shuffled each restart. Select one answer. The correct
+                    answer will highlight after you answer.
                   </p>
                 </div>
                 <div
@@ -6702,7 +6136,7 @@ return (
                 </div>
               </div>
             )}
-            {showRnMissedReview && (
+             {showRnMissedReview && (
               <div style={{ marginTop: 24 }}>
                 <h2 style={{ color: "#12355b", textAlign: "center" }}>
                   RN Missed Questions Review
@@ -8425,3 +7859,4 @@ return (
     </div>
   );
 }
+
