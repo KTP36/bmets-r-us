@@ -3,6 +3,7 @@ import logo from "./assets/logo.png";
 import { teasQuestions } from "./teasQuestions";
 import AnatomyQuiz from "./AnatomyQuiz";
 import BonesQuiz from "./BonesQuiz";
+import HeartQuiz from "./HeartQuiz";
 import { cbetQuestions } from "./questionData";
 // --- SOUND EFFECTS ---
 
@@ -620,7 +621,124 @@ function shuffleArray(array) {
   }
   return copy;
 }
-
+// --- HEART 4-CHAMBER / VALVE QUESTIONS ---
+const heartFourChamberQuestions = [
+  {
+    question: "Which chamber receives deoxygenated blood from the body?",
+    options: ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"],
+    answer: 0
+  },
+  {
+  question: "Which valve prevents backflow from the left ventricle into the left atrium?",
+  options: ["Tricuspid valve", "Pulmonary valve", "Mitral valve", "Aortic valve"],
+  answer: 2
+},
+{
+  question: "Which chamber is responsible for pumping oxygenated blood to the systemic circulation?",
+  options: ["Right atrium", "Right ventricle", "Left atrium", "Left ventricle"],
+  answer: 3
+},
+{
+  question: "Blood enters the right atrium through which vessels?",
+  options: ["Pulmonary veins", "Aorta", "Superior and inferior vena cava", "Pulmonary artery"],
+  answer: 2
+},
+{
+  question: "Which valve is located between the right atrium and right ventricle?",
+  options: ["Mitral valve", "Aortic valve", "Pulmonary valve", "Tricuspid valve"],
+  answer: 3
+},
+{
+  question: "Which structure ensures one-way blood flow by preventing valve prolapse during systole?",
+  options: ["Papillary muscles", "Chordae tendineae", "Septum", "Bundle branches"],
+  answer: 1
+},
+{
+  question: "Which chamber receives oxygenated blood directly from the lungs?",
+  options: ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"],
+  answer: 1
+},
+{
+  question: "Which valve opens during ventricular systole to allow blood to enter the aorta?",
+  options: ["Mitral valve", "Tricuspid valve", "Aortic valve", "Pulmonary valve"],
+  answer: 2
+},
+{
+  question: "Which chamber generates the highest pressure in the heart?",
+  options: ["Right atrium", "Right ventricle", "Left atrium", "Left ventricle"],
+  answer: 3
+},
+{
+  question: "The interventricular septum separates which two chambers?",
+  options: ["Atria", "Ventricles", "Left atrium and ventricle", "Right atrium and ventricle"],
+  answer: 1
+},
+{
+  question: "Which vessel carries deoxygenated blood away from the heart?",
+  options: ["Aorta", "Pulmonary artery", "Pulmonary vein", "Coronary artery"],
+  answer: 1
+},
+{
+  question: "Which valve prevents backflow into the right ventricle after contraction?",
+  options: ["Tricuspid valve", "Mitral valve", "Pulmonary valve", "Aortic valve"],
+  answer: 2
+},
+{
+  question: "Which phase of the cardiac cycle involves ventricular contraction?",
+  options: ["Diastole", "Systole", "Repolarization", "Filling phase"],
+  answer: 1
+},
+{
+  question: "Which structure separates the left and right atria?",
+  options: ["Interventricular septum", "Atrioventricular node", "Interatrial septum", "Chordae tendineae"],
+  answer: 2
+},
+{
+  question: "Which valve is also known as the bicuspid valve?",
+  options: ["Tricuspid valve", "Pulmonary valve", "Mitral valve", "Aortic valve"],
+  answer: 2
+},
+{
+  question: "Which chamber pumps blood into the pulmonary circulation?",
+  options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
+  answer: 3
+},
+{
+    question: "Which chamber pumps blood to the lungs?",
+    options: ["Right ventricle", "Left ventricle", "Right atrium", "Left atrium"],
+    answer: 0
+  },
+  {
+    question: "Which chamber receives oxygenated blood from the lungs?",
+    options: ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
+    answer: 0
+  },
+  {
+    question: "Which chamber pumps oxygenated blood to the body?",
+    options: ["Left ventricle", "Right ventricle", "Left atrium", "Right atrium"],
+    answer: 0
+  },
+  {
+    question: "Which valve is between the right atrium and right ventricle?",
+    options: ["Tricuspid valve", "Mitral valve", "Aortic valve", "Pulmonary valve"],
+    answer: 0
+  },
+  {
+    question: "Which valve is between the left atrium and left ventricle?",
+    options: ["Mitral valve", "Tricuspid valve", "Pulmonary valve", "Aortic valve"],
+    answer: 0
+  },
+  {
+    question: "Which valve controls blood flow from the right ventricle to the lungs?",
+    options: ["Pulmonary valve", "Aortic valve", "Mitral valve", "Tricuspid valve"],
+    answer: 0
+  },
+  {
+    question: "Which valve controls blood flow from the left ventricle to the body?",
+    options: ["Aortic valve", "Pulmonary valve", "Mitral valve", "Tricuspid valve"],
+    answer: 0
+  }
+];
 // --- HARDER, FUNCTION-BASED EQUIPMENT CONCEPT QUESTIONS ---
 const equipmentConceptQuestions = [
   {
@@ -3854,21 +3972,35 @@ return (
             setActiveTab("Bones");
             setMode("bones");
             setSelectedSet(null);
-          }}
+                  }}
           onMouseEnter={() => setHoveredNavTab("Bones")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "Bones", hoveredNavTab === "Bones")}
         >
           Bones
         </button>
+
+        <button
+          onClick={() => {
+            setActiveTab("HeartQuiz");
+            setSelectedSet(null);
+          }}
+          onMouseEnter={() => setHoveredNavTab("HeartQuiz")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "HeartQuiz", hoveredNavTab === "HeartQuiz")}
+        >
+          Heart Quiz
+        </button>
+
         <button
           onClick={() => setActiveTab("Dashboard")}
           onMouseEnter={() => setHoveredNavTab("Dashboard")}
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "Dashboard", hoveredNavTab === "Dashboard")}
         >
-         Dashboard
+          Dashboard
         </button>
+
         {ownerAnalyticsEnabled && (
           <button
             onClick={() => setActiveTab("OwnerAnalytics")}
@@ -4605,6 +4737,12 @@ return (
                 </tbody>
               </table>
             </div>
+          </div>
+        )}
+
+        {activeTab === "HeartQuiz" && (
+          <div style={{ padding: 20 }}>
+            <HeartQuiz questions={heartFourChamberQuestions} />
           </div>
         )}
         {(activeTab === "Anatomy" || activeTab === "Bones") && (
