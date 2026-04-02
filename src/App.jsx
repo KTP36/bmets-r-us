@@ -4,6 +4,7 @@ import { teasQuestions } from "./teasQuestions";
 import AnatomyQuiz from "./AnatomyQuiz";
 import BonesQuiz from "./BonesQuiz";
 import HeartQuiz from "./HeartQuiz";
+import DigestiveSystemQuiz from "./DigestiveSystemQuiz";
 import { cbetQuestions } from "./questionData";
 // --- SOUND EFFECTS ---
 
@@ -3991,6 +3992,18 @@ return (
         >
           Heart Quiz
         </button>
+        <button
+          onClick={() => {
+            setActiveTab("DigestiveQuiz");
+            setSelectedSet(null);
+          }}
+          onMouseEnter={() => setHoveredNavTab("DigestiveQuiz")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "DigestiveQuiz", hoveredNavTab === "DigestiveQuiz")}
+        >
+          Digestive Quiz
+        </button>
+
 
         <button
           onClick={() => setActiveTab("Dashboard")}
@@ -4750,6 +4763,11 @@ return (
         {activeTab === "HeartQuiz" && (
           <div style={{ padding: 20 }}>
             <HeartQuiz questions={heartFourChamberQuestions} />
+          </div>
+        )}
+        {activeTab === "DigestiveQuiz" && (
+          <div style={{ padding: 20 }}>
+            <DigestiveSystemQuiz />
           </div>
         )}
         {(activeTab === "Anatomy" || activeTab === "Bones") && (
