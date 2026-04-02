@@ -3966,7 +3966,7 @@ return (
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "Anatomy", hoveredNavTab === "Anatomy")}
         >
-          Anatomy
+          Anatomy Games
         </button>
         <button
           onClick={() => {
@@ -3978,7 +3978,7 @@ return (
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "Bones", hoveredNavTab === "Bones")}
         >
-          Bones
+          Bone Games
         </button>
 
         <button
