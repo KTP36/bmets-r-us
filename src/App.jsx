@@ -4520,85 +4520,92 @@ return (
                 >
                   Study guides
                 </div>
+
                 <h4 style={{ color: "#12355b", marginTop: 0, marginBottom: 14, fontSize: 18 }}>
-                  Extra reading when you need it
+                  Start here
                 </h4>
+
                 <div style={{ display: "grid", gap: 10 }}>
-                  <a href="/cbet-practice-questions.html" style={homeActionLinkStyle("#12355b")}>CBET Practice Questions Guide</a>
-                  <a href="/how-to-pass-cbet-exam.html" style={homeActionLinkStyle("#1d6fa5")}>How to Pass CBET Exam</a>
-                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>Anatomy Labeling Practice</a>
-                  <a href="/medical-equipment-identification-practice.html" style={homeActionLinkStyle("#0e7490")}>Medical Equipment ID Practice</a>
-                  <a href="/medical-terminology-practice.html" style={homeActionLinkStyle("#7c3aed")}>Medical Terminology Practice</a>
-                  <a href="/medical-prefix-suffix-practice.html" style={homeActionLinkStyle("#be185d")}>Medical Prefix & Suffix Practice</a>
-                  <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>RN Practice Questions</a>
-                  <a href="/cres-practice-questions.html" style={homeActionLinkStyle("#1e40af")}>CRES Practice Questions</a>
-                  <a href="/teas-practice-questions.html" style={homeActionLinkStyle("#166534")}>TEAS Practice Questions</a>
-                  <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#f59e42")}>Free CBET Practice Test</a>
-                  <a href="/free-teas-practice-test.html" style={homeActionLinkStyle("#facc15")}>Free TEAS Practice Test</a>
-                  <a href="/how-to-pass-teas-exam.html" style={homeActionLinkStyle("#0e7490")}>How to Pass TEAS Exam</a>
-                  <a href="/how-to-pass-cres-exam.html" style={homeActionLinkStyle("#7c3aed")}>How to Pass CRES Exam</a>
-                  <a href="/how-to-pass-rn-nclex-exam.html" style={homeActionLinkStyle("#be185d")}>How to Pass RN NCLEX Exam</a>
+                  <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#f59e42")}>
+                    Free CBET Practice Test
+                  </a>
+                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
+                    Anatomy Labeling Practice
+                  </a>
+                  <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>
+                    RN Practice Questions
+                  </a>
+                  <a href="/medical-terminology-practice.html" style={homeActionLinkStyle("#7c3aed")}>
+                    Medical Terminology Practice
+                  </a>
+                  <a href="/browse-all-practice.html" style={homeActionLinkStyle("#12355b")}>
+                    Browse All Practice →
+                  </a>
                 </div>
               </div>
-              <div
-                style={{
-                  ...homeInfoCardStyle,
-                  flex: isSmallScreen ? "1 1 100%" : "0.9 1 320px",
-                  maxWidth: isSmallScreen ? "none" : 440,
-                  textAlign: "left",
-                  background: "linear-gradient(180deg, #fff7fb, #ffffff)",
-                  border: "1px solid #f4c7d7"
-                }}
-              >
+
                 <div
                   style={{
-                    color: "#be185d",
-                    fontWeight: 800,
-                    fontSize: 12,
-                    letterSpacing: 0.6,
-                    textTransform: "uppercase",
-                    marginBottom: 10
+                    ...homeInfoCardStyle,
+                    flex: isSmallScreen ? "1 1 100%" : "0.9 1 320px",
+                    maxWidth: isSmallScreen ? "none" : 440,
+                    textAlign: "left",
+                    background: "linear-gradient(180deg, #fff7fb, #ffffff)",
+                    border: "1px solid #f4c7d7"
                   }}
                 >
-                  Newest on TikTok
-                </div>
-                <div style={{ display: "grid", gap: 10 }}>
-                  <a
-                    href={tiktokLatestVideoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={homeActionLinkStyle("linear-gradient(135deg, #111827, #1f2937)")}
-                  >
-                    {hasTikTokLatestVideo ? "Watch Latest TikTok" : "Open TikTok Profile"}
-                  </a>
-                  <a
-                    href={tiktokProfileUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={homeActionLinkStyle("linear-gradient(135deg, #ec4899, #f43f5e)")}
-                  >
-                    Follow on TikTok
-                  </a>
-                </div>
-                {!hasTikTokLatestVideo && (
                   <div
                     style={{
-                      marginTop: 12,
-                      padding: "10px 12px",
-                      borderRadius: 14,
-                      background: "#fee2e2",
-                      color: "#7f1d1d",
-                      fontWeight: 600
+                      color: "#be185d",
+                      fontWeight: 800,
+                      fontSize: 12,
+                      letterSpacing: 0.6,
+                      textTransform: "uppercase",
+                      marginBottom: 10
                     }}
                   >
-                    Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video.
+                    Newest on TikTok
                   </div>
-                )}
+
+                  <div style={{ display: "grid", gap: 10 }}>
+                    <a
+                      href={tiktokLatestVideoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={homeActionLinkStyle("linear-gradient(135deg, #111827, #1f2937)")}
+                    >
+                      {hasTikTokLatestVideo ? "Watch Latest TikTok" : "Open TikTok Profile"}
+                    </a>
+
+                    <a
+                      href={tiktokProfileUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={homeActionLinkStyle("linear-gradient(135deg, #ec4899, #f43f5e)")}
+                    >
+                      Follow on TikTok
+                    </a>
+                  </div>
+
+                  {!hasTikTokLatestVideo && (
+                    <div
+                      style={{
+                        marginTop: 12,
+                        padding: "10px 12px",
+                        borderRadius: 14,
+                        background: "#fee2e2",
+                        color: "#7f1d1d",
+                        fontWeight: 600
+                      }}
+                    >
+                      Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video.
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+          )}
         {activeTab === "Dashboard" && (
           <div
             style={{
