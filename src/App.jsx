@@ -2570,6 +2570,45 @@ const wordPartQuestions = [
       { name: "Left Femoral Vein", x: 890, y: 545, description: "Major deep vein of the left thigh" }
     ]
   },
+  Digestive: {
+    image: "/digestive-system.jpg",
+    boardWidth: 600,
+    boardHeight: 1000,
+    functionTitle: "Breaks down food and absorbs nutrients",
+    functionSummary:
+      "The digestive system moves food from the mouth through the esophagus, stomach, and intestines while accessory organs like the liver, gallbladder, and pancreas help digest fats, proteins, and carbohydrates.",
+    studyHighlights: [
+      "Begins digestion in the mouth and moves food by peristalsis",
+      "Uses stomach acid, bile, and pancreatic enzymes to break down food",
+      "Absorbs nutrients in the small intestine and water in the large intestine"
+    ],
+    dropWidth: 110,
+    dropHeight: 38,
+    mobileDropScale: 0.36,
+    mobileLabelOffsetX: -150,
+    mobileLabelOffsetY: 4,
+    mobileImageScale: 1.45,
+    mobileImageTranslateX: -40,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center top"
+    },
+ parts: [
+  { name: "Mouth", x: 335, y: 105, description: "Begins digestion by chewing and mixing food with saliva" },
+  { name: "Esophagus", x: 355, y: 215, description: "Carries food from the mouth to the stomach" },
+  { name: "Liver", x: 295, y: 500, description: "Produces bile and processes nutrients" },
+  { name: "Gallbladder", x: 270, y: 550, description: "Stores and concentrates bile" },
+  { name: "Stomach", x: 375, y: 555, description: "Breaks down food with acid and enzymes" },
+  { name: "Pancreas", x: 395, y: 630, description: "Releases digestive enzymes and insulin" },
+  { name: "Large Intestine", x: 320, y: 600, description: "Absorbs water and forms stool" },
+  { name: "Small Intestine", x: 400, y: 700, description: "Absorbs most nutrients from food" },
+  { name: "Rectum", x: 405, y: 920, description: "Stores waste before elimination" },
+  { name: "Anus", x: 405, y: 985, description: "Eliminates waste from the body" }
+]
+  },
 };
 const bones = {
   Skeleton: {
@@ -2957,7 +2996,7 @@ export default function App() {
   const data = mode === "organs" ? organs : bones;
   const currentSet = selectedSet ? data[selectedSet] : null;
   const usesNumberedZones =
-    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull" || selectedSet === "Knee" || selectedSet === "Shoulder";
+    selectedSet === "Hand" || selectedSet === "Foot" || selectedSet === "Eye" || selectedSet === "Ear" || selectedSet === "Kidneys" || selectedSet === "Spine" || selectedSet === "Skull" || selectedSet === "Knee" || selectedSet === "Shoulder" || selectedSet === "Digestive";
   const showPlacementMessage = (text, tone = "wrong") => {
     if (placementMessageTimeoutRef.current) {
       clearTimeout(placementMessageTimeoutRef.current);
