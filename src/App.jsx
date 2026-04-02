@@ -2813,18 +2813,18 @@ const bones = {
       objectFit: "contain",
       objectPosition: "center"
     },
-    parts: [
-      { name: "Frontal Bone", x: 560, y: 135, description: "Forms the forehead and the upper part of the eye sockets" },
-      { name: "Parietal Bone", x: 340, y: 80, description: "Paired bones forming the top and sides of the cranium" },
-      { name: "Temporal Bone", x: 210, y: 200, description: "Houses the ear structures and forms part of the skull base and sides" },
-      { name: "Occipital Bone", x: 120, y: 190, description: "Forms the back and base of the cranium; contains the foramen magnum" },
-      { name: "Sphenoid Bone", x: 400, y: 260, description: "Butterfly-shaped bone forming part of the skull base and eye sockets" },
-      { name: "Ethmoid Bone", x: 520, y: 260, description: "Delicate bone forming the roof of the nasal cavity and part of the eye sockets" },
-      { name: "Nasal Bone", x: 630, y: 228, description: "Paired bones forming the bridge of the nose" },
-      { name: "Zygomatic Bone", x: 390, y: 320, description: "Cheekbone; forms part of the lateral eye socket and cheek arch" },
-      { name: "Maxilla", x: 435, y: 390, description: "Upper jaw bone; supports upper teeth and forms part of hard palate and eye sockets" },
-      { name: "Mandible", x: 370, y: 490, description: "Lower jaw — the only movable bone of the skull" }
-    ]
+   parts: [
+  { name: "Frontal Bone", x: 560, y: 150, description: "Forms the forehead and the upper part of the eye sockets" },
+  { name: "Parietal Bone", x: 340, y: 90, description: "Paired bones forming the top and sides of the cranium" },
+  { name: "Temporal Bone", x: 440, y: 335, description: "Houses the ear structures and forms part of the skull base and sides" },
+  { name: "Occipital Bone", x: 140, y: 190, description: "Forms the back and base of the cranium; contains the foramen magnum" },
+  { name: "Sphenoid Bone", x: 455, y: 265, description: "Butterfly-shaped bone forming part of the skull base and eye sockets" },
+  { name: "Ethmoid Bone", x: 560, y: 285, description: "Delicate bone forming the roof of the nasal cavity and part of the eye sockets" },
+  { name: "Nasal Bone", x: 630, y: 225, description: "Paired bones forming the bridge of the nose" },
+  { name: "Zygomatic Bone", x: 520, y: 285, description: "Cheekbone; forms part of the lateral eye socket and cheek arch" },
+  { name: "Maxilla", x: 580, y: 425, description: "Upper jaw bone; supports upper teeth and forms part of hard palate and eye sockets" },
+  { name: "Mandible", x: 400, y: 515, description: "Lower jaw — the only movable bone of the skull" }
+]
   }
 };
 export default function App() {
