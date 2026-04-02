@@ -56,10 +56,130 @@ const digestiveQuestions = [
     explanation: "Bile emulsifies fats, making them easier for enzymes to digest."
   },
   {
-    question: "Which movement pushes food through the digestive tract?",
-    options: ["Diffusion", "Peristalsis", "Filtration", "Flexion"],
+    question: "Which part of the digestive system is also called the throat?",
+    options: ["Larynx", "Pharynx", "Trachea", "Duodenum"],
     answer: 1,
-    explanation: "Peristalsis is the wave-like muscular movement that moves food through the digestive system."
+    explanation: "The pharynx is also called the throat and serves as a pathway for food and air."
+  },
+  {
+    question: "Which part of the digestive system is also called the throat?",
+    options: ["Larynx", "Pharynx", "Trachea", "Duodenum"],
+    answer: 1,
+    explanation: "The pharynx is also called the throat and serves as a pathway for food and air."
+  },
+  {
+    question: "Which structure carries food from the pharynx to the stomach?",
+    options: ["Trachea", "Esophagus", "Ureter", "Bronchus"],
+    answer: 1,
+    explanation: "The esophagus is the muscular tube that transports food from the throat to the stomach."
+  },
+  {
+    question: "Which muscle action helps move food through the digestive tract?",
+    options: ["Diffusion", "Peristalsis", "Filtration", "Ventilation"],
+    answer: 1,
+    explanation: "Peristalsis is the wave-like muscle contraction that pushes food through the digestive system."
+  },
+  {
+    question: "Which sphincter helps prevent stomach acid from moving back into the esophagus?",
+    options: ["Pyloric sphincter", "Lower esophageal sphincter", "Anal sphincter", "Ileocecal valve"],
+    answer: 1,
+    explanation: "The lower esophageal sphincter helps prevent reflux of stomach contents into the esophagus."
+  },
+  {
+    question: "Which section of the small intestine comes after the duodenum?",
+    options: ["Ileum", "Colon", "Jejunum", "Cecum"],
+    answer: 2,
+    explanation: "The jejunum is the middle section of the small intestine, following the duodenum."
+  },
+  {
+    question: "Which section of the small intestine is last?",
+    options: ["Duodenum", "Jejunum", "Ileum", "Cecum"],
+    answer: 2,
+    explanation: "The ileum is the final section of the small intestine before the large intestine."
+  },
+  {
+    question: "Which valve connects the small intestine to the large intestine?",
+    options: ["Pyloric sphincter", "Ileocecal valve", "Lower esophageal sphincter", "Anal sphincter"],
+    answer: 1,
+    explanation: "The ileocecal valve regulates movement from the ileum into the large intestine."
+  },
+  {
+    question: "Which part of the large intestine comes first?",
+    options: ["Rectum", "Cecum", "Sigmoid colon", "Descending colon"],
+    answer: 1,
+    explanation: "The cecum is the first part of the large intestine."
+  },
+  {
+    question: "Which organ stores and concentrates bile?",
+    options: ["Liver", "Gallbladder", "Pancreas", "Appendix"],
+    answer: 1,
+    explanation: "The gallbladder stores and concentrates bile made by the liver."
+  },
+  {
+    question: "Which organ releases insulin in addition to digestive enzymes?",
+    options: ["Gallbladder", "Pancreas", "Liver", "Esophagus"],
+    answer: 1,
+    explanation: "The pancreas has both digestive and endocrine functions, including insulin secretion."
+  },
+  {
+    question: "Which organ is primarily responsible for water absorption?",
+    options: ["Stomach", "Small intestine", "Large intestine", "Liver"],
+    answer: 2,
+    explanation: "The large intestine absorbs water and electrolytes from undigested material."
+  },
+  {
+    question: "Which structure stores waste before elimination?",
+    options: ["Cecum", "Rectum", "Duodenum", "Appendix"],
+    answer: 1,
+    explanation: "The rectum stores feces until elimination."
+  },
+  {
+    question: "Which structure is responsible for eliminating waste from the body?",
+    options: ["Rectum", "Anus", "Colon", "Esophagus"],
+    answer: 1,
+    explanation: "The anus is the terminal opening through which waste exits the body."
+  },
+  {
+    question: "Which organ plays a major role in detoxification and nutrient processing?",
+    options: ["Stomach", "Liver", "Pancreas", "Gallbladder"],
+    answer: 1,
+    explanation: "The liver processes absorbed nutrients and detoxifies many chemicals and drugs."
+  },
+  {
+    question: "What increases the surface area for nutrient absorption in the small intestine?",
+    options: ["Alveoli", "Villi", "Nephrons", "Bronchi"],
+    answer: 1,
+    explanation: "Villi and microvilli greatly increase the surface area for absorption."
+  },
+  {
+    question: "Which enzyme begins carbohydrate digestion in the mouth?",
+    options: ["Pepsin", "Lipase", "Amylase", "Trypsin"],
+    answer: 2,
+    explanation: "Salivary amylase starts the digestion of carbohydrates in the mouth."
+  },
+  {
+    question: "Where is hydrochloric acid produced?",
+    options: ["Pancreas", "Small intestine", "Stomach", "Liver"],
+    answer: 2,
+    explanation: "The stomach produces hydrochloric acid to help digest food and kill pathogens."
+  },
+  {
+    question: "What is the main role of bile?",
+    options: ["Digest proteins", "Emulsify fats", "Absorb water", "Store glucose"],
+    answer: 1,
+    explanation: "Bile emulsifies fats into smaller droplets so enzymes can digest them more easily."
+  },
+  {
+    question: "Which organ comes directly after the esophagus?",
+    options: ["Liver", "Stomach", "Pancreas", "Colon"],
+    answer: 1,
+    explanation: "The esophagus connects directly to the stomach."
+  },
+  {
+    question: "Which organ comes directly after the stomach in the digestive tract?",
+    options: ["Esophagus", "Duodenum", "Colon", "Rectum"],
+    answer: 1,
+    explanation: "The duodenum is the first part of the small intestine and follows the stomach."
   }
 ];
 
