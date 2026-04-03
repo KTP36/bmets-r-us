@@ -2312,14 +2312,19 @@ const wordPartQuestions = [
       objectPosition: "center"
     },
     parts: [
-      { name: "Left Lung", x: 140, y: 150, description: "Smaller lung with two lobes; exchanges oxygen and CO2" },
-      { name: "Right Lung", x: 260, y: 150, description: "Larger lung with three lobes; exchanges oxygen and CO2" },
-      { name: "Trachea", x: 200, y: 50, description: "Windpipe; carries air from throat to bronchi in lungs" },
-      { name: "Carina", x: 200, y: 118, description: "Ridge at the tracheal split where airways divide into main bronchi" },
-      { name: "Right Main Bronchus", x: 238, y: 140, description: "Main airway branch carrying air into the right lung" },
-      { name: "Left Main Bronchus", x: 162, y: 140, description: "Main airway branch carrying air into the left lung" }
-    ]
-  },
+  { name: "Left Lung", x: 345, y: 310, description: "The left lung is slightly smaller to make room for the heart." },
+
+  { name: "Right Lung", x: 100, y: 310, description: "The right lung is larger and has three lobes." },
+
+  { name: "Trachea", x: 205, y: 150, description: "The trachea carries air from the throat toward the bronchi." },
+
+  { name: "Carina", x: 205, y: 240, description: "The carina is where the trachea splits into the bronchi." },
+
+  { name: "Right Main Bronchus", x: 175, y: 275, description: "Carries air into the right lung." },
+
+  { name: "Left Main Bronchus", x: 250, y: 275, description: "Carries air into the left lung." }
+]
+ },
   Liver: {
     image: "/liver.jpg",
     boardWidth: 700,
