@@ -7202,22 +7202,25 @@ return (
                         const currentQuestion = shuffledTerminologyQuestions[terminologyIndex];
                         const selected = terminologyAnswers[terminologyIndex];
                         const isAnswered = selected !== undefined;
-                        const isWrong = isAnswered && selected !== currentQuestion.answer;
+                        const isCorrect = isAnswered && selected === currentQuestion.answer;
                         return (
-                          isWrong && currentQuestion.explanation && (
+                          isAnswered && currentQuestion.explanation && (
                             <div
                               style={{
                                 marginTop: 12,
                                 padding: "12px 14px",
                                 borderRadius: 12,
-                                background: "#fff7ed",
-                                border: "1px solid #fdba74",
-                                color: "#9a3412",
+                                background: isCorrect ? "#eff6ff" : "#fff7ed",
+                                border: isCorrect ? "1px solid #bfdbfe" : "1px solid #fdba74",
+                                color: isCorrect ? "#1d4ed8" : "#9a3412",
                                 fontWeight: 600,
                                 lineHeight: 1.5
                               }}
                             >
-                              💡 {currentQuestion.explanation}
+                              <div>💡 {currentQuestion.explanation}</div>
+                              <div style={{ marginTop: 8, fontWeight: 500 }}>
+                                Why this matters: Breaking down the term helps you decode unfamiliar clinical words faster.
+                              </div>
                             </div>
                           )
                         );
@@ -7530,22 +7533,25 @@ return (
                         const currentQuestion = shuffledWordPartQuestions[wordPartIndex];
                         const selected = wordPartAnswers[wordPartIndex];
                         const isAnswered = selected !== undefined;
-                        const isWrong = isAnswered && selected !== currentQuestion.answer;
+                        const isCorrect = isAnswered && selected === currentQuestion.answer;
                         return (
-                          isWrong && currentQuestion.explanation && (
+                          isAnswered && currentQuestion.explanation && (
                             <div
                               style={{
                                 marginTop: 12,
                                 padding: "12px 14px",
                                 borderRadius: 12,
-                                background: "#fff7ed",
-                                border: "1px solid #fdba74",
-                                color: "#9a3412",
+                                background: isCorrect ? "#eff6ff" : "#fff7ed",
+                                border: isCorrect ? "1px solid #bfdbfe" : "1px solid #fdba74",
+                                color: isCorrect ? "#1d4ed8" : "#9a3412",
                                 fontWeight: 600,
                                 lineHeight: 1.5
                               }}
                             >
-                              💡 {currentQuestion.explanation}
+                              <div>💡 {currentQuestion.explanation}</div>
+                              <div style={{ marginTop: 8, fontWeight: 500 }}>
+                                Why this matters: Knowing the word part helps you understand many related medical terms.
+                              </div>
                             </div>
                           )
                         );
