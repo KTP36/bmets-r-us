@@ -622,6 +622,25 @@ function shuffleArray(array) {
   }
   return copy;
 }
+
+function shuffleQuestion(question) {
+  if (!question || !Array.isArray(question.options)) return question;
+  const optionsWithFlags = question.options.map((option, index) => ({
+    text: option,
+    isCorrect: index === question.answer
+  }));
+  const shuffledOptions = shuffleArray(optionsWithFlags);
+  return {
+    ...question,
+    options: shuffledOptions.map((item) => item.text),
+    answer: shuffledOptions.findIndex((item) => item.isCorrect)
+  };
+}
+
+function shuffleQuestionSet(questionSet) {
+  if (!Array.isArray(questionSet)) return [];
+  return shuffleArray(questionSet).map((question) => shuffleQuestion(question));
+}
 // --- HEART 4-CHAMBER / VALVE QUESTIONS ---
 const heartFourChamberQuestions = [
   {
@@ -2092,120 +2111,103 @@ const cresQuestions = [
   },
 ];
 // --- MEDICAL TERMINOLOGY QUESTIONS ---
+
 const terminologyQuestions = [
-  { question: "What is the best definition of 'bradykinesia'?", options: ["Rapid involuntary tremor", "Slowness of movement", "Muscle rigidity from spasm", "Loss of balance when standing"], answer: 1 },
-  { question: "What is the best definition of 'anisocoria'?", options: ["Unequal pupil size", "Inflammation of the iris", "Double vision on lateral gaze", "Blurred near vision"], answer: 0 },
-  { question: "What is the best definition of 'dysphagia'?", options: ["Painful swallowing", "Difficulty swallowing", "Excessive salivation", "Reflux of gastric acid"], answer: 1 },
-  { question: "What is the best definition of 'orthopnea'?", options: ["Shortness of breath when lying flat", "Shortness of breath on exertion", "Wheezing at night", "Breathing pause during sleep"], answer: 0 },
-  { question: "What is the best definition of 'hematemesis'?", options: ["Blood in stool", "Vomiting blood", "Coughing blood", "Blood in urine"], answer: 1 },
-  { question: "What is the best definition of 'melena'?", options: ["Bright red rectal bleeding", "Black tarry stool from digested blood", "Fatty foul-smelling stool", "Mucus in stool"], answer: 1 },
-  { question: "What is the best definition of 'hemoptysis'?", options: ["Bleeding from gums", "Vomiting blood", "Coughing up blood", "Nosebleed"], answer: 2 },
-  { question: "What is the best definition of 'paresthesia'?", options: ["Numbness and tingling sensation", "Complete loss of sensation", "Burning chest pain", "Pain in a joint during motion"], answer: 0 },
-  { question: "What is the best definition of 'ascites'?", options: ["Fluid in pleural space", "Generalized tissue edema", "Fluid in pericardial sac", "Fluid accumulation in the peritoneal cavity"], answer: 3 },
-  { question: "What is the best definition of 'cyanosis'?", options: ["Yellow skin discoloration", "Blue discoloration from low oxygenation", "Redness from vasodilation", "Pallor from anemia"], answer: 1 },
-  { question: "What is the best definition of 'aphasia'?", options: ["Difficulty articulating speech", "Loss of language comprehension and/or expression", "Memory loss after trauma", "Inability to swallow solids"], answer: 1 },
-  { question: "What is the best definition of 'ataxia'?", options: ["Involuntary jerking movements", "Lack of coordinated voluntary movement", "Muscle weakness on one side", "Loss of pain sensation"], answer: 1 },
-  { question: "What is the best definition of 'diplopia'?", options: ["Tunnel vision", "Night blindness", "Double vision", "Loss of central vision"], answer: 2 },
-  { question: "What is the best definition of 'petechiae'?", options: ["Large raised welts", "Small pinpoint non-blanching hemorrhages", "Extensive purple bruises", "Erythematous plaques"], answer: 1 },
-  { question: "What is the best definition of 'ecchymosis'?", options: ["A superficial skin scratch", "A pressure ulcer", "A large bruise from subcutaneous bleeding", "A fungal skin lesion"], answer: 2 },
-  { question: "What is the best definition of 'oliguria'?", options: ["Low urine output", "No urine output", "Frequent nighttime urination", "Painful urination"], answer: 0 },
-  { question: "What is the best definition of 'anuria'?", options: ["Excessive urine output", "Urine with pus", "Near absence of urine output", "Urinary urgency"], answer: 2 },
-  { question: "What is the best definition of 'polyuria'?", options: ["Large urine volume", "Blood in urine", "Protein in urine", "Retained urine after voiding"], answer: 0 },
-  { question: "What is the best definition of 'nocturia'?", options: ["Urination only during daytime", "Frequent nighttime urination", "Pain with urination", "Urinary incontinence"], answer: 1 },
-  { question: "What is the best definition of 'hematuria'?", options: ["Cloudy urine", "Blood in urine", "Glucose in urine", "Ketones in urine"], answer: 1 },
-  { question: "What is the best definition of 'pyuria'?", options: ["Pus in urine", "Sugar in urine", "Urinary crystals", "Urinary retention"], answer: 0 },
-  { question: "What is the best definition of 'steatorrhea'?", options: ["Bloody diarrhea", "Fatty stool due to malabsorption", "Mucous stool from IBS", "Constipation from dehydration"], answer: 1 },
-  { question: "What is the best definition of 'tenesmus'?", options: ["Involuntary stool leakage", "Painful defecation", "Rectal urgency with sensation of incomplete evacuation", "Absent bowel sounds"], answer: 2 },
-  { question: "What is the best definition of 'dysuria'?", options: ["Frequent urination", "Painful or difficult urination", "Inability to urinate", "Urinary urgency"], answer: 1 },
-  { question: "What is the best definition of 'pruritus'?", options: ["Skin peeling", "Itching", "Bruising", "Burning neuropathic pain"], answer: 1 },
-  { question: "What is the best definition of 'urticaria'?", options: ["Hives with transient raised wheals", "Deep skin ulcer", "Purulent skin infection", "Scaly fungal rash"], answer: 0 },
-  { question: "What is the best definition of 'tachypnea'?", options: ["Rapid respiratory rate", "Deep slow breathing", "Absent respiratory effort", "Noisy inspiratory breathing"], answer: 0 },
-  { question: "What is the best definition of 'bradypnea'?", options: ["Rapid shallow breathing", "Slow respiratory rate", "Labored breathing when supine", "Intermittent apnea"], answer: 1 },
-  { question: "What is the best definition of 'apnea'?", options: ["Rapid breathing with low tidal volume", "Temporary cessation of breathing", "Difficulty exhaling", "Noisy breathing from upper airway edema"], answer: 1 },
-  { question: "What is the best definition of 'stridor'?", options: ["Low-pitched snoring breath sound", "High-pitched inspiratory sound from upper airway obstruction", "Crackling sound at lung bases", "Pleural friction rub"], answer: 1 },
-  { question: "What is the best definition of 'wheeze'?", options: ["High-pitched musical sound from narrowed lower airways", "Gurgling throat sound", "Percussion dullness", "Bronchial breath sounds"], answer: 0 },
-  { question: "What is the best definition of 'rales (crackles)'?", options: ["Pleural rubbing sounds", "Fine popping sounds from fluid-filled alveoli", "Upper airway snoring noise", "Whistling expiratory sounds"], answer: 1 },
-  { question: "What is the best definition of 'rhonchi'?", options: ["Harsh low-pitched rattling from airway secretions", "Fine bibasilar crackles only", "Inspiratory stridor", "Absence of breath sounds"], answer: 0 },
-  { question: "What is the best definition of 'claudication'?", options: ["Resting chest pain due to CAD", "Leg pain with exertion from arterial insufficiency", "Joint stiffness after inactivity", "Neuropathic foot burning at night"], answer: 1 },
-  { question: "What is the best definition of 'edema'?", options: ["Localized erythema", "Excess fluid accumulation in interstitial tissues", "Subcutaneous hemorrhage", "Skin desquamation"], answer: 1 },
-  { question: "What is the best definition of 'cachexia'?", options: ["Fluid overload with edema", "Severe weight and muscle loss from chronic disease", "Vitamin deficiency anemia", "Obesity from endocrine disorder"], answer: 1 },
-  { question: "What is the best definition of 'kyphosis'?", options: ["Exaggerated lumbar inward curvature", "Lateral spinal curvature", "Exaggerated thoracic posterior curvature", "Rotation of vertebral bodies only"], answer: 2 },
-  { question: "What is the best definition of 'lordosis'?", options: ["Exaggerated lumbar inward curvature", "Thoracic posterior hump", "Lateral spinal deviation", "Flattening of cervical spine"], answer: 0 },
-  { question: "What is the best definition of 'scoliosis'?", options: ["Posterior spinal hump", "Lateral curvature of the spine", "Anterior pelvic tilt", "Degenerative disc narrowing"], answer: 1 },
-  { question: "What is the best definition of 'hemiparesis'?", options: ["Complete paralysis of one side", "Partial weakness of one side", "Weakness of both legs", "Bilateral arm weakness"], answer: 1 },
-  { question: "What is the best definition of 'hemiplegia'?", options: ["Partial weakness of one side", "Complete paralysis of one side", "Paralysis below the waist", "Transient numbness in one arm"], answer: 1 },
-  { question: "What is the best definition of 'syncope'?", options: ["Sudden temporary loss of consciousness", "Brief vertigo with nausea", "Sudden seizure activity", "Transient amnesia"], answer: 0 },
-  { question: "What is the best definition of 'presyncope'?", options: ["Near-faint sensation without complete loss of consciousness", "Brief complete unconsciousness", "Postural tremor", "Transient aphasia"], answer: 0 },
-  { question: "What is the best definition of 'vertigo'?", options: ["Lightheadedness from dehydration", "Illusion of spinning or motion", "Loss of hearing in one ear", "Double vision with headache"], answer: 1 },
-  { question: "What is the best definition of 'nystagmus'?", options: ["Fixed dilated pupil", "Involuntary rhythmic eye movements", "Drooping upper eyelid", "Conjunctival hemorrhage"], answer: 1 },
-  { question: "What is the best definition of 'photophobia'?", options: ["Fear of darkness", "Sensitivity to light", "Night blindness", "Inability to focus near objects"], answer: 1 },
-  { question: "What is the best definition of 'odynophagia'?", options: ["Difficulty swallowing", "Painful swallowing", "Inability to open mouth", "Esophageal reflux"], answer: 1 },
-  { question: "What is the best definition of 'xerostomia'?", options: ["Dry mouth", "Excessive salivation", "Mouth ulceration", "Tongue swelling"], answer: 0 },
-  { question: "What is the best definition of 'dysarthria'?", options: ["Language comprehension deficit", "Impaired speech articulation from motor dysfunction", "Inability to read words", "Stuttering from anxiety"], answer: 1 },
-  { question: "What is the best definition of 'asterixis'?", options: ["Fine resting tremor", "Flapping hand tremor from metabolic encephalopathy", "Intention tremor during movement", "Myoclonic jerks in sleep"], answer: 1 },
-  { question: "What is the best definition of 'jaundice'?", options: ["Pale skin from anemia", "Yellow discoloration from elevated bilirubin", "Blue skin from hypoxemia", "Red skin from flushing"], answer: 1 },
-  { question: "What is the best definition of 'hepatomegaly'?", options: ["Enlarged spleen", "Enlarged liver", "Inflamed pancreas", "Distended gallbladder"], answer: 1 },
-  { question: "What is the best definition of 'splenomegaly'?", options: ["Enlarged kidney", "Enlarged spleen", "Liver enlargement", "Pancreatic enlargement"], answer: 1 },
-  { question: "What is the best definition of 'cardiomegaly'?", options: ["Dilated aorta", "Enlarged heart", "Pericardial inflammation", "Reduced ejection fraction only"], answer: 1 },
-  { question: "What is the best definition of 'thrombocytopenia'?", options: ["Low platelet count", "Low white blood cell count", "Low red blood cell count", "High platelet count"], answer: 0 },
-  { question: "What is the best definition of 'leukocytosis'?", options: ["Low WBC count", "Elevated WBC count", "Abnormal RBC shape", "Elevated hemoglobin"], answer: 1 },
-  { question: "What is the best definition of 'erythema'?", options: ["Bluish skin discoloration", "Yellow skin discoloration", "Redness of the skin from increased blood flow", "Skin thickening from fibrosis"], answer: 2 },
-  { question: "What is the best definition of 'ischemia'?", options: ["Tissue swelling due to fluid overload", "Reduced blood supply causing oxygen deprivation", "Infection of the bloodstream", "Excess blood flow to tissue"], answer: 1 },
-  { question: "What is the best definition of 'infarction'?", options: ["Reversible tissue hypoxia", "Tissue necrosis due to prolonged ischemia", "Inflammation of blood vessels", "Bleeding into tissue"], answer: 1 },
-  { question: "What is the best definition of 'anasarca'?", options: ["Localized ankle edema", "Generalized severe body edema", "Pleural fluid accumulation", "Ascites only"], answer: 1 }
+  { question: "What is the best definition of 'bradykinesia'?", options: ["Rapid involuntary tremor", "Slowness of movement", "Muscle rigidity from spasm", "Loss of balance when standing"], answer: 1, explanation: "brady = slow, kinesia = movement. Bradykinesia means slowness of movement." },
+  { question: "What is the best definition of 'anisocoria'?", options: ["Unequal pupil size", "Inflammation of the iris", "Double vision on lateral gaze", "Blurred near vision"], answer: 0, explanation: "aniso = unequal, coria relates to pupils. Anisocoria means the pupils are unequal in size." },
+  { question: "What is the best definition of 'dysphagia'?", options: ["Painful swallowing", "Difficulty swallowing", "Excessive salivation", "Reflux of gastric acid"], answer: 1, explanation: "dys = difficult or abnormal, phagia = swallowing. Dysphagia means difficulty swallowing." },
+  { question: "What is the best definition of 'orthopnea'?", options: ["Shortness of breath when lying flat", "Shortness of breath on exertion", "Wheezing at night", "Breathing pause during sleep"], answer: 0, explanation: "ortho = straight or upright, pnea = breathing. Orthopnea is breathing difficulty when lying flat that improves when upright." },
+  { question: "What is the best definition of 'hematemesis'?", options: ["Blood in stool", "Vomiting blood", "Coughing blood", "Blood in urine"], answer: 1, explanation: "hemat = blood, emesis = vomiting. Hematemesis means vomiting blood." },
+  { question: "What is the best definition of 'melena'?", options: ["Bright red rectal bleeding", "Black tarry stool from digested blood", "Fatty foul-smelling stool", "Mucus in stool"], answer: 1, explanation: "Melena refers to black tarry stool, usually from digested blood in the GI tract." },
+  { question: "What is the best definition of 'hemoptysis'?", options: ["Bleeding from gums", "Vomiting blood", "Coughing up blood", "Nosebleed"], answer: 2, explanation: "hemo = blood, ptysis = spitting. Hemoptysis means coughing up blood." },
+  { question: "What is the best definition of 'paresthesia'?", options: ["Numbness and tingling sensation", "Complete loss of sensation", "Burning chest pain", "Pain in a joint during motion"], answer: 0, explanation: "para = abnormal, esthesia = sensation. Paresthesia means abnormal sensations such as tingling or pins and needles." },
+  { question: "What is the best definition of 'ascites'?", options: ["Fluid in pleural space", "Generalized tissue edema", "Fluid in pericardial sac", "Fluid accumulation in the peritoneal cavity"], answer: 3, explanation: "Ascites is excess fluid buildup in the abdominal or peritoneal cavity." },
+  { question: "What is the best definition of 'cyanosis'?", options: ["Yellow skin discoloration", "Blue discoloration from low oxygenation", "Redness from vasodilation", "Pallor from anemia"], answer: 1, explanation: "cyan = blue. Cyanosis is a bluish discoloration caused by low oxygen levels." },
+  { question: "What is the best definition of 'aphasia'?", options: ["Difficulty articulating speech", "Loss of language comprehension and/or expression", "Memory loss after trauma", "Inability to swallow solids"], answer: 1, explanation: "a = without, phasia = speech/language. Aphasia is impaired language comprehension and/or expression." },
+  { question: "What is the best definition of 'ataxia'?", options: ["Involuntary jerking movements", "Lack of coordinated voluntary movement", "Muscle weakness on one side", "Loss of pain sensation"], answer: 1, explanation: "a = without, taxis = order/coordination. Ataxia means poor coordination." },
+  { question: "What is the best definition of 'diplopia'?", options: ["Tunnel vision", "Night blindness", "Double vision", "Loss of central vision"], answer: 2, explanation: "diplo = double, opia = vision. Diplopia means double vision." },
+  { question: "What is the best definition of 'petechiae'?", options: ["Large raised welts", "Small pinpoint non-blanching hemorrhages", "Extensive purple bruises", "Erythematous plaques"], answer: 1, explanation: "Petechiae are tiny pinpoint spots caused by small capillary bleeding under the skin." },
+  { question: "What is the best definition of 'ecchymosis'?", options: ["A superficial skin scratch", "A pressure ulcer", "A large bruise from subcutaneous bleeding", "A fungal skin lesion"], answer: 2, explanation: "Ecchymosis means a larger bruise caused by bleeding under the skin." },
+  { question: "What is the best definition of 'oliguria'?", options: ["Low urine output", "No urine output", "Frequent nighttime urination", "Painful urination"], answer: 0, explanation: "oligo = scanty/few, uria = urine condition. Oliguria means low urine output." },
+  { question: "What is the best definition of 'anuria'?", options: ["Excessive urine output", "Urine with pus", "Near absence of urine output", "Urinary urgency"], answer: 2, explanation: "an = without, uria = urine condition. Anuria means almost no urine output." },
+  { question: "What is the best definition of 'polyuria'?", options: ["Large urine volume", "Blood in urine", "Protein in urine", "Retained urine after voiding"], answer: 0, explanation: "poly = many/much, uria = urine condition. Polyuria means excessive urine output." },
+  { question: "What is the best definition of 'nocturia'?", options: ["Urination only during daytime", "Frequent nighttime urination", "Pain with urination", "Urinary incontinence"], answer: 1, explanation: "noct = night, uria = urine condition. Nocturia means frequent nighttime urination." },
+  { question: "What is the best definition of 'hematuria'?", options: ["Cloudy urine", "Blood in urine", "Glucose in urine", "Ketones in urine"], answer: 1, explanation: "hemat = blood, uria = urine condition. Hematuria means blood in the urine." },
+  { question: "What is the best definition of 'pyuria'?", options: ["Pus in urine", "Sugar in urine", "Urinary crystals", "Urinary retention"], answer: 0, explanation: "py = pus, uria = urine condition. Pyuria means pus in the urine." },
+  { question: "What is the best definition of 'steatorrhea'?", options: ["Bloody diarrhea", "Fatty stool due to malabsorption", "Mucous stool from IBS", "Constipation from dehydration"], answer: 1, explanation: "steat = fat, rrhea = flow/discharge. Steatorrhea means fatty stool, often from malabsorption." },
+  { question: "What is the best definition of 'tenesmus'?", options: ["Involuntary stool leakage", "Painful defecation", "Rectal urgency with sensation of incomplete evacuation", "Absent bowel sounds"], answer: 2, explanation: "Tenesmus is a constant feeling of needing to pass stool even when the bowel is mostly empty." },
+  { question: "What is the best definition of 'dysuria'?", options: ["Frequent urination", "Painful or difficult urination", "Inability to urinate", "Urinary urgency"], answer: 1, explanation: "dys = painful/difficult, uria = urination. Dysuria means painful or difficult urination." },
+  { question: "What is the best definition of 'pruritus'?", options: ["Skin peeling", "Itching", "Bruising", "Burning neuropathic pain"], answer: 1, explanation: "Pruritus means itching." },
+  { question: "What is the best definition of 'urticaria'?", options: ["Hives with transient raised wheals", "Deep skin ulcer", "Purulent skin infection", "Scaly fungal rash"], answer: 0, explanation: "Urticaria is the medical term for hives." },
+  { question: "What is the best definition of 'tachypnea'?", options: ["Rapid respiratory rate", "Deep slow breathing", "Absent respiratory effort", "Noisy inspiratory breathing"], answer: 0, explanation: "tachy = fast, pnea = breathing. Tachypnea means rapid breathing." },
+  { question: "What is the best definition of 'bradypnea'?", options: ["Rapid shallow breathing", "Slow respiratory rate", "Labored breathing when supine", "Intermittent apnea"], answer: 1, explanation: "brady = slow, pnea = breathing. Bradypnea means slow breathing." },
+  { question: "What is the best definition of 'apnea'?", options: ["Rapid breathing with low tidal volume", "Temporary cessation of breathing", "Difficulty exhaling", "Noisy breathing from upper airway edema"], answer: 1, explanation: "a = without, pnea = breathing. Apnea means cessation of breathing." },
+  { question: "What is the best definition of 'stridor'?", options: ["Low-pitched snoring breath sound", "High-pitched inspiratory sound from upper airway obstruction", "Crackling sound at lung bases", "Pleural friction rub"], answer: 1, explanation: "Stridor is a harsh high-pitched sound, usually from upper airway obstruction." },
+  { question: "What is the best definition of 'wheeze'?", options: ["High-pitched musical sound from narrowed lower airways", "Gurgling throat sound", "Percussion dullness", "Bronchial breath sounds"], answer: 0, explanation: "Wheezes are musical breath sounds caused by narrowed lower airways." },
+  { question: "What is the best definition of 'rales (crackles)'?", options: ["Pleural rubbing sounds", "Fine popping sounds from fluid-filled alveoli", "Upper airway snoring noise", "Whistling expiratory sounds"], answer: 1, explanation: "Crackles are fine popping sounds often heard when fluid is in the alveoli." },
+  { question: "What is the best definition of 'rhonchi'?", options: ["Harsh low-pitched rattling from airway secretions", "Fine bibasilar crackles only", "Inspiratory stridor", "Absence of breath sounds"], answer: 0, explanation: "Rhonchi are low-pitched rattling sounds often caused by mucus in larger airways." },
+  { question: "What is the best definition of 'claudication'?", options: ["Resting chest pain due to CAD", "Leg pain with exertion from arterial insufficiency", "Joint stiffness after inactivity", "Neuropathic foot burning at night"], answer: 1, explanation: "Claudication is exertional leg pain caused by poor arterial blood flow." },
+  { question: "What is the best definition of 'edema'?", options: ["Localized erythema", "Excess fluid accumulation in interstitial tissues", "Subcutaneous hemorrhage", "Skin desquamation"], answer: 1, explanation: "Edema means swelling from excess fluid in the tissues." },
+  { question: "What is the best definition of 'cachexia'?", options: ["Fluid overload with edema", "Severe weight and muscle loss from chronic disease", "Vitamin deficiency anemia", "Obesity from endocrine disorder"], answer: 1, explanation: "Cachexia describes severe weight and muscle loss often seen with chronic disease." },
+  { question: "What is the best definition of 'kyphosis'?", options: ["Exaggerated lumbar inward curvature", "Lateral spinal curvature", "Exaggerated thoracic posterior curvature", "Rotation of vertebral bodies only"], answer: 2, explanation: "Kyphosis is an exaggerated forward rounding of the thoracic spine." },
+  { question: "What is the best definition of 'lordosis'?", options: ["Exaggerated lumbar inward curvature", "Thoracic posterior hump", "Lateral spinal deviation", "Flattening of cervical spine"], answer: 0, explanation: "Lordosis is an exaggerated inward lumbar curvature." },
+  { question: "What is the best definition of 'scoliosis'?", options: ["Posterior spinal hump", "Lateral curvature of the spine", "Anterior pelvic tilt", "Degenerative disc narrowing"], answer: 1, explanation: "Scoliosis is a lateral curvature of the spine." },
+  { question: "What is the best definition of 'hemiparesis'?", options: ["Complete paralysis of one side", "Partial weakness of one side", "Weakness of both legs", "Bilateral arm weakness"], answer: 1, explanation: "hemi = half, paresis = weakness. Hemiparesis means weakness on one side of the body." },
+  { question: "What is the best definition of 'hemiplegia'?", options: ["Partial weakness of one side", "Complete paralysis of one side", "Paralysis below the waist", "Transient numbness in one arm"], answer: 1, explanation: "hemi = half, plegia = paralysis. Hemiplegia means paralysis of one side." },
+  { question: "What is the best definition of 'syncope'?", options: ["Sudden temporary loss of consciousness", "Brief vertigo with nausea", "Sudden seizure activity", "Transient amnesia"], answer: 0, explanation: "Syncope means fainting or a brief loss of consciousness." },
+  { question: "What is the best definition of 'presyncope'?", options: ["Near-faint sensation without complete loss of consciousness", "Brief complete unconsciousness", "Postural tremor", "Transient aphasia"], answer: 0, explanation: "Presyncope is the sensation that you are about to faint without full loss of consciousness." },
+  { question: "What is the best definition of 'vertigo'?", options: ["Lightheadedness from dehydration", "Illusion of spinning or motion", "Loss of hearing in one ear", "Double vision with headache"], answer: 1, explanation: "Vertigo is the false sensation of spinning or motion." },
+  { question: "What is the best definition of 'nystagmus'?", options: ["Fixed dilated pupil", "Involuntary rhythmic eye movements", "Drooping upper eyelid", "Conjunctival hemorrhage"], answer: 1, explanation: "Nystagmus means involuntary rhythmic eye movements." },
+  { question: "What is the best definition of 'photophobia'?", options: ["Fear of darkness", "Sensitivity to light", "Night blindness", "Inability to focus near objects"], answer: 1, explanation: "photo = light, phobia = aversion. Photophobia means light sensitivity." },
+  { question: "What is the best definition of 'odynophagia'?", options: ["Difficulty swallowing", "Painful swallowing", "Inability to open mouth", "Esophageal reflux"], answer: 1, explanation: "odyno = pain, phagia = swallowing. Odynophagia means painful swallowing." },
+  { question: "What is the best definition of 'xerostomia'?", options: ["Dry mouth", "Excessive salivation", "Mouth ulceration", "Tongue swelling"], answer: 0, explanation: "xero = dry, stomia/stoma = mouth. Xerostomia means dry mouth." },
+  { question: "What is the best definition of 'dysarthria'?", options: ["Language comprehension deficit", "Impaired speech articulation from motor dysfunction", "Inability to read words", "Stuttering from anxiety"], answer: 1, explanation: "dys = difficult, arthria relates to articulation. Dysarthria means difficulty articulating speech." },
+  { question: "What is the best definition of 'asterixis'?", options: ["Fine resting tremor", "Flapping hand tremor from metabolic encephalopathy", "Intention tremor during movement", "Myoclonic jerks in sleep"], answer: 1, explanation: "Asterixis is a flapping tremor often seen with metabolic encephalopathy, especially liver failure." },
+  { question: "What is the best definition of 'jaundice'?", options: ["Pale skin from anemia", "Yellow discoloration from elevated bilirubin", "Blue skin from hypoxemia", "Red skin from flushing"], answer: 1, explanation: "Jaundice is yellowing of the skin and eyes due to elevated bilirubin." },
+  { question: "What is the best definition of 'hepatomegaly'?", options: ["Enlarged spleen", "Enlarged liver", "Inflamed pancreas", "Distended gallbladder"], answer: 1, explanation: "hepato = liver, megaly = enlargement. Hepatomegaly means enlarged liver." },
+  { question: "What is the best definition of 'splenomegaly'?", options: ["Enlarged kidney", "Enlarged spleen", "Liver enlargement", "Pancreatic enlargement"], answer: 1, explanation: "spleno = spleen, megaly = enlargement. Splenomegaly means enlarged spleen." },
+  { question: "What is the best definition of 'cardiomegaly'?", options: ["Dilated aorta", "Enlarged heart", "Pericardial inflammation", "Reduced ejection fraction only"], answer: 1, explanation: "cardio = heart, megaly = enlargement. Cardiomegaly means enlarged heart." },
+  { question: "What is the best definition of 'thrombocytopenia'?", options: ["Low platelet count", "Low white blood cell count", "Low red blood cell count", "High platelet count"], answer: 0, explanation: "thrombocyte = platelet, penia = deficiency. Thrombocytopenia means a low platelet count." },
+  { question: "What is the best definition of 'leukocytosis'?", options: ["Low WBC count", "Elevated WBC count", "Abnormal RBC shape", "Elevated hemoglobin"], answer: 1, explanation: "leuko = white, cyto = cell, osis = condition/increase. Leukocytosis means elevated white blood cells." },
+  { question: "What is the best definition of 'erythema'?", options: ["Bluish skin discoloration", "Yellow skin discoloration", "Redness of the skin from increased blood flow", "Skin thickening from fibrosis"], answer: 2, explanation: "Erythema means redness of the skin." },
+  { question: "What is the best definition of 'ischemia'?", options: ["Tissue swelling due to fluid overload", "Reduced blood supply causing oxygen deprivation", "Infection of the bloodstream", "Excess blood flow to tissue"], answer: 1, explanation: "Ischemia means inadequate blood supply leading to reduced oxygen delivery." },
+  { question: "What is the best definition of 'infarction'?", options: ["Reversible tissue hypoxia", "Tissue necrosis due to prolonged ischemia", "Inflammation of blood vessels", "Bleeding into tissue"], answer: 1, explanation: "Infarction means tissue death caused by prolonged ischemia." },
+  { question: "What is the best definition of 'anasarca'?", options: ["Localized ankle edema", "Generalized severe body edema", "Pleural fluid accumulation", "Ascites only"], answer: 1, explanation: "Anasarca means severe generalized edema throughout the body." }
 ];
+
+
 const wordPartQuestions = [
-  { question: "What does the prefix 'brady-' mean?", options: ["Fast", "Slow", "Around", "Below"], answer: 1 },
-  { question: "What does the prefix 'tachy-' mean?", options: ["Slow", "Deep", "Fast", "Pain"], answer: 2 },
-  { question: "What does the prefix 'hyper-' mean?", options: ["Excessive or above normal", "Below normal", "Against", "Within"], answer: 0 },
-  { question: "What does the prefix 'hypo-' mean?", options: ["After", "Below normal", "Large", "Over"], answer: 1 },
-  { question: "What does the prefix 'peri-' mean?", options: ["Inside", "Before", "Around", "After"], answer: 2 },
-  { question: "What does the prefix 'endo-' mean?", options: ["Outer", "Within or inner", "Around", "New"], answer: 1 },
-  { question: "What does the prefix 'epi-' mean?", options: ["On, upon, or upper", "Below", "Away from", "Through"], answer: 0 },
-  { question: "What does the prefix 'trans-' mean?", options: ["Across or through", "Near", "Below", "One"], answer: 0 },
-  { question: "What does the prefix 'sub-' mean?", options: ["Above", "Below or under", "Double", "Against"], answer: 1 },
-  { question: "What does the prefix 'supra-' mean?", options: ["Below", "Outside", "Above", "Partial"], answer: 2 },
-  { question: "What does the prefix 'inter-' mean?", options: ["Within", "Between", "After", "Without"], answer: 1 },
-  { question: "What does the prefix 'intra-' mean?", options: ["Within", "Around", "Before", "Across"], answer: 0 },
-  { question: "What does the prefix 'uni-' mean?", options: ["Two", "Many", "One", "Half"], answer: 2 },
-  { question: "What does the prefix 'bi-' mean?", options: ["One", "Two", "Three", "Half"], answer: 1 },
-  { question: "What does the prefix 'tri-' mean?", options: ["Three", "Two", "Ten", "One"], answer: 0 },
-  { question: "What does the prefix 'poly-' mean?", options: ["Few", "Single", "Many", "Less"], answer: 2 },
-  { question: "What does the prefix 'oligo-' mean?", options: ["Few or scant", "Many", "Large", "Rapid"], answer: 0 },
-  { question: "What does the prefix 'hemi-' mean?", options: ["Whole", "Half", "Double", "Small"], answer: 1 },
-  { question: "What does the prefix 'a-' or 'an-' usually indicate?", options: ["With", "Without or lacking", "Excess", "Around"], answer: 1 },
-  { question: "What does the prefix 'dys-' mean?", options: ["Normal", "Difficult, painful, or abnormal", "Slow", "Complete"], answer: 1 },
-  { question: "What does the suffix '-itis' mean?", options: ["Surgical removal", "Inflammation", "Tumor", "Incision"], answer: 1 },
-  { question: "What does the suffix '-algia' mean?", options: ["Pain", "Swelling", "Numbness", "Paralysis"], answer: 0 },
-  { question: "What does the suffix '-megaly' mean?", options: ["Softening", "Condition", "Enlargement", "Repair"], answer: 2 },
-  { question: "What does the suffix '-oma' commonly mean?", options: ["Tumor or mass", "Study of", "Disease of blood", "Suture"], answer: 0 },
-  { question: "What does the suffix '-osis' most often indicate?", options: ["Surgical fixation", "Abnormal condition", "Pain", "Incision"], answer: 1 },
-  { question: "What does the suffix '-emia' refer to?", options: ["Urine condition", "Blood condition", "Bone condition", "Skin condition"], answer: 1 },
-  { question: "What does the suffix '-uria' refer to?", options: ["Breathing", "Blood", "Urine condition", "Stomach condition"], answer: 2 },
-  { question: "What does the suffix '-cyte' mean?", options: ["Cell", "Tissue", "Organ", "Fluid"], answer: 0 },
-  { question: "What does the suffix '-penia' mean?", options: ["Increase", "Deficiency or decrease", "Inflammation", "Measurement"], answer: 1 },
-  { question: "What does the suffix '-ectomy' mean?", options: ["Surgical repair", "Surgical removal", "Visual examination", "Incision"], answer: 1 },
-  { question: "What does the suffix '-otomy' mean?", options: ["Incision into", "Removal", "Crushing", "Suturing"], answer: 0 },
-  { question: "What does the suffix '-ostomy' mean?", options: ["Surgical opening creation", "Surgical closure", "Endoscopic exam", "Biopsy"], answer: 0 },
-  { question: "What does the suffix '-plasty' mean?", options: ["Surgical repair or reconstruction", "Inflammation", "Condition", "Pain"], answer: 0 },
-  { question: "What does the suffix '-scopy' mean?", options: ["Incision", "Visual examination", "Removal", "Puncture"], answer: 1 },
-  { question: "What does the suffix '-gram' mean?", options: ["Instrument", "Record or picture", "Process of recording", "Specialist"], answer: 1 },
-  { question: "What does the suffix '-graphy' mean?", options: ["Process of recording", "Written record", "Incision", "Suture"], answer: 0 },
-  { question: "What does the suffix '-graph' mean?", options: ["A written record", "Instrument for recording", "Abnormal condition", "Cell"], answer: 1 },
-  { question: "What does the suffix '-logy' mean?", options: ["Disease", "Study of", "Pain", "Tissue"], answer: 1 },
-  { question: "What does the suffix '-logist' mean?", options: ["Instrument", "Specialist in the study of", "Record", "Incision"], answer: 1 },
-  { question: "What does the suffix '-pathy' mean?", options: ["Disease", "Surgical repair", "Measurement", "Shape"], answer: 0 },
-  { question: "What does the suffix '-plegia' mean?", options: ["Weakness", "Paralysis", "Pain", "Inflammation"], answer: 1 },
-  { question: "What does the suffix '-paresis' mean?", options: ["Complete paralysis", "Partial weakness", "Severe pain", "Numbness"], answer: 1 },
-  { question: "What does the suffix '-rrhea' mean?", options: ["Flow or discharge", "Pain", "Swelling", "Hardening"], answer: 0 },
-  { question: "What does the suffix '-rrhage' mean?", options: ["Surgical repair", "Bursting forth or heavy bleeding", "Condition of blood", "Slow movement"], answer: 1 },
-  { question: "What does the suffix '-rrhagia' mean?", options: ["Excessive bleeding", "Slow process", "Incision", "Absence"], answer: 0 },
-  { question: "What does the suffix '-sclerosis' mean?", options: ["Hardening", "Softening", "Inflammation", "Tumor"], answer: 0 },
-  { question: "What does the suffix '-malacia' mean?", options: ["Hardening", "Softening", "Enlargement", "Fixation"], answer: 1 },
-  { question: "What does the suffix '-stasis' mean?", options: ["Stopping or controlling", "Flowing", "Removal", "Inflammation"], answer: 0 },
-  { question: "What does the suffix '-trophy' mean?", options: ["Nourishment or development", "Pain", "Record", "Incision"], answer: 0 },
-  { question: "What does the suffix '-ptosis' mean?", options: ["Drooping or prolapse", "Swelling", "Repair", "Rapid movement"], answer: 0 }
+  { question: "What does the prefix 'brady-' mean?", options: ["Fast", "Slow", "Around", "Below"], answer: 1, explanation: "brady- means slow." },
+  { question: "What does the prefix 'tachy-' mean?", options: ["Slow", "Deep", "Fast", "Pain"], answer: 2, explanation: "tachy- means fast." },
+  { question: "What does the prefix 'hyper-' mean?", options: ["Excessive or above normal", "Below normal", "Against", "Within"], answer: 0, explanation: "hyper- means above normal or excessive." },
+  { question: "What does the prefix 'hypo-' mean?", options: ["After", "Below normal", "Large", "Over"], answer: 1, explanation: "hypo- means below normal or deficient." },
+  { question: "What does the prefix 'peri-' mean?", options: ["Inside", "Before", "Around", "After"], answer: 2, explanation: "peri- means around." },
+  { question: "What does the prefix 'endo-' mean?", options: ["Outer", "Within or inner", "Around", "New"], answer: 1, explanation: "endo- means within or inner." },
+  { question: "What does the prefix 'epi-' mean?", options: ["On, upon, or upper", "Below", "Away from", "Through"], answer: 0, explanation: "epi- means on, upon, or above." },
+  { question: "What does the prefix 'trans-' mean?", options: ["Across or through", "Near", "Below", "One"], answer: 0, explanation: "trans- means across or through." },
+  { question: "What does the prefix 'sub-' mean?", options: ["Above", "Below or under", "Double", "Against"], answer: 1, explanation: "sub- means under or below." },
+  { question: "What does the prefix 'supra-' mean?", options: ["Below", "Outside", "Above", "Partial"], answer: 2, explanation: "supra- means above." },
+  { question: "What does the prefix 'inter-' mean?", options: ["Within", "Between", "After", "Without"], answer: 1, explanation: "inter- means between." },
+  { question: "What does the prefix 'intra-' mean?", options: ["Within", "Around", "Before", "Across"], answer: 0, explanation: "intra- means within." },
+  { question: "What does the prefix 'uni-' mean?", options: ["Two", "Many", "One", "Half"], answer: 2, explanation: "uni- means one." },
+  { question: "What does the prefix 'bi-' mean?", options: ["One", "Two", "Three", "Half"], answer: 1, explanation: "bi- means two." },
+  { question: "What does the prefix 'tri-' mean?", options: ["Three", "Two", "Ten", "One"], answer: 0, explanation: "tri- means three." },
+  { question: "What does the prefix 'poly-' mean?", options: ["Few", "Single", "Many", "Less"], answer: 2, explanation: "poly- means many." },
+  { question: "What does the prefix 'oligo-' mean?", options: ["Few or scant", "Many", "Large", "Rapid"], answer: 0, explanation: "oligo- means few or scant." },
+  { question: "What does the prefix 'hemi-' mean?", options: ["Whole", "Half", "Double", "Small"], answer: 1, explanation: "hemi- means half." },
+  { question: "What does the prefix 'a-' or 'an-' usually indicate?", options: ["With", "Without or lacking", "Excess", "Around"], answer: 1, explanation: "a-/an- means without or lacking." },
+  { question: "What does the prefix 'dys-' mean?", options: ["Normal", "Difficult, painful, or abnormal", "Slow", "Complete"], answer: 1, explanation: "dys- means difficult, painful, or abnormal." },
+  { question: "What does the suffix '-itis' mean?", options: ["Surgical removal", "Inflammation", "Tumor", "Incision"], answer: 1, explanation: "-itis means inflammation." },
+  { question: "What does the suffix '-algia' mean?", options: ["Pain", "Swelling", "Numbness", "Paralysis"], answer: 0, explanation: "-algia means pain." },
+  { question: "What does the suffix '-megaly' mean?", options: ["Softening", "Condition", "Enlargement", "Repair"], answer: 2, explanation: "-megaly means enlargement." },
+  { question: "What does the suffix '-oma' commonly mean?", options: ["Tumor or mass", "Study of", "Disease of blood", "Suture"], answer: 0, explanation: "-oma commonly refers to a tumor or mass." },
+  { question: "What does the suffix '-osis' most often indicate?", options: ["Surgical fixation", "Abnormal condition", "Pain", "Incision"], answer: 1, explanation: "-osis usually means an abnormal condition." },
+  { question: "What does the suffix '-emia' refer to?", options: ["Urine condition", "Blood condition", "Bone condition", "Skin condition"], answer: 1, explanation: "-emia refers to a blood condition." },
+  { question: "What does the suffix '-uria' refer to?", options: ["Breathing", "Blood", "Urine condition", "Stomach condition"], answer: 2, explanation: "-uria refers to a urine condition." },
+  { question: "What does the suffix '-cyte' mean?", options: ["Cell", "Tissue", "Organ", "Fluid"], answer: 0, explanation: "-cyte means cell." },
+  { question: "What does the suffix '-penia' mean?", options: ["Increase", "Deficiency or decrease", "Inflammation", "Measurement"], answer: 1, explanation: "-penia means deficiency or decrease." }
 ];
+
 // --- DATA SETS ---
  const organs = {
   Heart: {
@@ -2925,7 +2927,7 @@ export default function App() {
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
   // --- CBET STATE ---
   const [shuffledCbetQuestions, setShuffledCbetQuestions] = useState(() =>
-    shuffleArray(cbetQuestions)
+    shuffleQuestionSet(cbetQuestions)
   );
   const [cbetIndex, setCbetIndex] = useState(0);
   const [cbetScore, setCbetScore] = useState(0);
@@ -2936,7 +2938,7 @@ export default function App() {
     () => localStorage.getItem("harderCbetUnlocked") === "true"
   );
   const [shuffledHarderCbetQuestions, setShuffledHarderCbetQuestions] = useState(() =>
-    shuffleArray(harderCbetQuestions)
+    shuffleQuestionSet(harderCbetQuestions)
   );
   const [harderCbetIndex, setHarderCbetIndex] = useState(0);
   const [harderCbetScore, setHarderCbetScore] = useState(0);
@@ -2945,7 +2947,7 @@ export default function App() {
   const [showHarderCbetMissedReview, setShowHarderCbetMissedReview] = useState(false);
   // --- RN PRACTICE STATE ---
   const [shuffledRnQuestions, setShuffledRnQuestions] = useState(() =>
-    shuffleArray(rnQuestions)
+    shuffleQuestionSet(rnQuestions)
   );
   const [rnIndex, setRnIndex] = useState(0);
   const [rnScore, setRnScore] = useState(0);
@@ -2953,7 +2955,7 @@ export default function App() {
   const [rnShowResult, setRnShowResult] = useState(false);
   const [showRnMissedReview, setShowRnMissedReview] = useState(false);
   const [shuffledTeasQuestions, setShuffledTeasQuestions] = useState(() =>
-    shuffleArray(teasQuestions)
+    shuffleQuestionSet(teasQuestions)
   );
   const [teasIndex, setTeasIndex] = useState(0);
   const [teasScore, setTeasScore] = useState(0);
@@ -2964,7 +2966,7 @@ export default function App() {
   const [hoveredNavTab, setHoveredNavTab] = useState("");
   // --- EQUIPMENT ID STATE ---
   const [shuffledEquipmentQuestions, setShuffledEquipmentQuestions] = useState(() =>
-    shuffleArray(equipmentQuestions)
+    shuffleQuestionSet(equipmentQuestions)
   );
   const [equipmentIndex, setEquipmentIndex] = useState(0);
   const [equipmentScore, setEquipmentScore] = useState(0);
@@ -2973,7 +2975,7 @@ export default function App() {
   const [showEquipmentMissedReview, setShowEquipmentMissedReview] = useState(false);
   // --- CRES STATE ---
   const [shuffledCresQuestions, setShuffledCresQuestions] = useState(() =>
-    shuffleArray(cresQuestions)
+    shuffleQuestionSet(cresQuestions)
   );
   const [cresIndex, setCresIndex] = useState(0);
   const [cresScore, setCresScore] = useState(0);
@@ -2982,7 +2984,7 @@ export default function App() {
   const [showCresMissedReview, setShowCresMissedReview] = useState(false);
   // --- MEDICAL TERMINOLOGY STATE ---
   const [shuffledTerminologyQuestions, setShuffledTerminologyQuestions] = useState(() =>
-    shuffleArray(terminologyQuestions)
+    shuffleQuestionSet(terminologyQuestions)
   );
   const [terminologySubTab, setTerminologySubTab] = useState("terms");
   const [terminologyIndex, setTerminologyIndex] = useState(0);
@@ -2991,7 +2993,7 @@ export default function App() {
   const [terminologyShowResult, setTerminologyShowResult] = useState(false);
   const [showTerminologyMissedReview, setShowTerminologyMissedReview] = useState(false);
   const [shuffledWordPartQuestions, setShuffledWordPartQuestions] = useState(() =>
-    shuffleArray(wordPartQuestions)
+    shuffleQuestionSet(wordPartQuestions)
   );
   const [wordPartIndex, setWordPartIndex] = useState(0);
   const [wordPartScore, setWordPartScore] = useState(0);
@@ -3026,7 +3028,7 @@ export default function App() {
   useEffect(() => {
     const savedCbet = JSON.parse(localStorage.getItem("cbetProgress"));
     if (savedCbet) {
-      setShuffledCbetQuestions(savedCbet.shuffledCbetQuestions || shuffleArray(cbetQuestions));
+      setShuffledCbetQuestions(savedCbet.shuffledCbetQuestions || shuffleQuestionSet(cbetQuestions));
       setCbetIndex(savedCbet.cbetIndex || 0);
       setCbetScore(savedCbet.cbetScore || 0);
       setCbetAnswers(savedCbet.cbetAnswers || {});
@@ -3038,7 +3040,7 @@ export default function App() {
     const savedHarderCbet = JSON.parse(localStorage.getItem("harderCbetProgress"));
     if (savedHarderCbet) {
       setShuffledHarderCbetQuestions(
-        savedHarderCbet.shuffledHarderCbetQuestions || shuffleArray(harderCbetQuestions)
+        savedHarderCbet.shuffledHarderCbetQuestions || shuffleQuestionSet(harderCbetQuestions)
       );
       setHarderCbetIndex(savedHarderCbet.harderCbetIndex || 0);
       setHarderCbetScore(savedHarderCbet.harderCbetScore || 0);
@@ -3050,7 +3052,7 @@ export default function App() {
   useEffect(() => {
     const savedTeas = JSON.parse(localStorage.getItem("teasProgress"));
     if (savedTeas) {
-      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleArray(teasQuestions));
+      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleQuestionSet(teasQuestions));
       setTeasIndex(savedTeas.teasIndex || 0);
       setTeasScore(savedTeas.teasScore || 0);
       setTeasAnswers(savedTeas.teasAnswers || {});
@@ -3062,7 +3064,7 @@ export default function App() {
     const savedEquipment = JSON.parse(localStorage.getItem("equipmentProgress"));
     if (savedEquipment) {
       setShuffledEquipmentQuestions(
-        savedEquipment.shuffledEquipmentQuestions || shuffleArray(equipmentQuestions)
+        savedEquipment.shuffledEquipmentQuestions || shuffleQuestionSet(equipmentQuestions)
       );
       setEquipmentIndex(savedEquipment.equipmentIndex || 0);
       setEquipmentScore(savedEquipment.equipmentScore || 0);
@@ -3074,7 +3076,7 @@ export default function App() {
   useEffect(() => {
     const savedCres = JSON.parse(localStorage.getItem("cresProgress"));
     if (savedCres) {
-      setShuffledCresQuestions(savedCres.shuffledCresQuestions || shuffleArray(cresQuestions));
+      setShuffledCresQuestions(savedCres.shuffledCresQuestions || shuffleQuestionSet(cresQuestions));
       setCresIndex(savedCres.cresIndex || 0);
       setCresScore(savedCres.cresScore || 0);
       setCresAnswers(savedCres.cresAnswers || {});
@@ -3086,7 +3088,7 @@ export default function App() {
     const savedTerminology = JSON.parse(localStorage.getItem("terminologyProgress"));
     if (savedTerminology) {
       setShuffledTerminologyQuestions(
-        savedTerminology.shuffledTerminologyQuestions || shuffleArray(terminologyQuestions)
+        savedTerminology.shuffledTerminologyQuestions || shuffleQuestionSet(terminologyQuestions)
       );
       setTerminologyIndex(savedTerminology.terminologyIndex || 0);
       setTerminologyScore(savedTerminology.terminologyScore || 0);
@@ -3099,7 +3101,7 @@ export default function App() {
     const savedWordParts = JSON.parse(localStorage.getItem("wordPartProgress"));
     if (savedWordParts) {
       setShuffledWordPartQuestions(
-        savedWordParts.shuffledWordPartQuestions || shuffleArray(wordPartQuestions)
+        savedWordParts.shuffledWordPartQuestions || shuffleQuestionSet(wordPartQuestions)
       );
       setWordPartIndex(savedWordParts.wordPartIndex || 0);
       setWordPartScore(savedWordParts.wordPartScore || 0);
@@ -3211,7 +3213,7 @@ export default function App() {
     setShowZoneAnswers(false);
   };
   const resetCbetExam = () => {
-    const reshuffled = shuffleArray(cbetQuestions);
+    const reshuffled = shuffleQuestionSet(cbetQuestions);
     localStorage.removeItem("cbetProgress");
     setShuffledCbetQuestions(reshuffled);
     setCbetIndex(0);
@@ -3232,7 +3234,7 @@ export default function App() {
     localStorage.setItem("cbetProgress", JSON.stringify(progress));
   };
   const restartCbetExam = () => {
-    const reshuffled = shuffleArray(cbetQuestions);
+    const reshuffled = shuffleQuestionSet(cbetQuestions);
     localStorage.removeItem("cbetProgress");
     setShuffledCbetQuestions(reshuffled);
     setCbetIndex(0);
@@ -3253,7 +3255,7 @@ export default function App() {
     localStorage.setItem("harderCbetProgress", JSON.stringify(progress));
   };
   const restartHarderCbetExam = () => {
-    const reshuffled = shuffleArray(harderCbetQuestions);
+    const reshuffled = shuffleQuestionSet(harderCbetQuestions);
     localStorage.removeItem("harderCbetProgress");
     setShuffledHarderCbetQuestions(reshuffled);
     setHarderCbetIndex(0);
@@ -3274,7 +3276,7 @@ export default function App() {
     localStorage.setItem("equipmentProgress", JSON.stringify(progress));
   };
   const restartEquipmentQuiz = () => {
-    const reshuffled = shuffleArray(equipmentQuestions);
+    const reshuffled = shuffleQuestionSet(equipmentQuestions);
     localStorage.removeItem("equipmentProgress");
     setShuffledEquipmentQuestions(reshuffled);
     setEquipmentIndex(0);
@@ -3445,7 +3447,7 @@ export default function App() {
   }) => {
     if (!missedQuestionsList.length) return;
     localStorage.removeItem(storageKey);
-    setShuffledQuestions(shuffleArray(missedQuestionsList));
+    setShuffledQuestions(shuffleQuestionSet(missedQuestionsList));
     setIndex(0);
     setScore(0);
     setAnswers({});
@@ -3464,7 +3466,7 @@ export default function App() {
     localStorage.setItem("cresProgress", JSON.stringify(progress));
   };
   const restartCresExam = () => {
-    const reshuffled = shuffleArray(cresQuestions);
+    const reshuffled = shuffleQuestionSet(cresQuestions);
     localStorage.removeItem("cresProgress");
     setShuffledCresQuestions(reshuffled);
     setCresIndex(0);
@@ -3485,7 +3487,7 @@ export default function App() {
     localStorage.setItem("terminologyProgress", JSON.stringify(progress));
   };
   const restartTerminologyQuiz = () => {
-    const reshuffled = shuffleArray(terminologyQuestions);
+    const reshuffled = shuffleQuestionSet(terminologyQuestions);
     localStorage.removeItem("terminologyProgress");
     setShuffledTerminologyQuestions(reshuffled);
     setTerminologyIndex(0);
@@ -3506,7 +3508,7 @@ export default function App() {
     localStorage.setItem("wordPartProgress", JSON.stringify(progress));
   };
   const restartWordPartQuiz = () => {
-    const reshuffled = shuffleArray(wordPartQuestions);
+    const reshuffled = shuffleQuestionSet(wordPartQuestions);
     localStorage.removeItem("wordPartProgress");
     setShuffledWordPartQuestions(reshuffled);
     setWordPartIndex(0);
@@ -3527,7 +3529,7 @@ export default function App() {
     localStorage.setItem("rnProgress", JSON.stringify(progress));
   };
   const resetRnExam = () => {
-    const reshuffled = shuffleArray(rnQuestions);
+    const reshuffled = shuffleQuestionSet(rnQuestions);
     localStorage.removeItem("rnProgress");
     setShuffledRnQuestions(reshuffled);
     setRnIndex(0);
@@ -3537,7 +3539,7 @@ export default function App() {
     setShowRnMissedReview(false);
   };
   const restartRnExam = () => {
-    const reshuffled = shuffleArray(rnQuestions);
+    const reshuffled = shuffleQuestionSet(rnQuestions);
     localStorage.removeItem("rnProgress");
     setShuffledRnQuestions(reshuffled);
     setRnIndex(0);
@@ -3558,7 +3560,7 @@ export default function App() {
     localStorage.setItem("teasProgress", JSON.stringify(progress));
   };
   const resetTeasExam = () => {
-    const reshuffled = shuffleArray(teasQuestions);
+    const reshuffled = shuffleQuestionSet(teasQuestions);
     localStorage.removeItem("teasProgress");
     setShuffledTeasQuestions(reshuffled);
     setTeasIndex(0);
@@ -3573,7 +3575,7 @@ export default function App() {
   useEffect(() => {
     const savedRn = JSON.parse(localStorage.getItem("rnProgress"));
     if (savedRn) {
-      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleArray(rnQuestions));
+      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleQuestionSet(rnQuestions));
       setRnIndex(savedRn.rnIndex || 0);
       setRnScore(savedRn.rnScore || 0);
       setRnAnswers(savedRn.rnAnswers || {});
@@ -4666,85 +4668,85 @@ return (
         {activeTab === "Dashboard" && (
           <div
             style={{
-              textAlign: "center",
               background: "rgba(255,255,255,0.82)",
               borderRadius: 22,
               padding: 28,
               boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
             }}
           >
-            <h2 style={{ color: "#12355b", fontSize: 30 }}>Progress Dashboard</h2>
-            <div
-              style={{
-                display: "flex",
-                gap: 14,
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginTop: 20
-              }}
-            >
-              {Object.keys({ ...organs, ...bones }).map((item) => (
-                <div
-                  key={item}
-                  style={{
-                    background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                    border: "1px solid #d8e4f2",
-                    borderRadius: 16,
-                    padding: 16,
-                    minWidth: 160,
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                  }}
-                >
-                  <div style={{ fontWeight: 700, color: "#12355b" }}>{item}</div>
-                  <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
-                    {dashboard[item] || 0}
+            <div style={{ textAlign: "center", marginBottom: 20 }}>
+              <h2 style={{ color: "#12355b", fontSize: 30, marginTop: 0, marginBottom: 8 }}>Progress Dashboard</h2>
+              <p style={{ color: "#4f6275", margin: 0 }}>
+                Track your anatomy game scores and quiz progress in one place.
+              </p>
+            </div>
+
+            <div style={{ marginBottom: 18 }}>
+              <h3 style={{ color: "#12355b", marginBottom: 12 }}>Anatomy & Bone Games</h3>
+              <div
+                style={{
+                  display: "grid",
+                  gap: 14,
+                  gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))"
+                }}
+              >
+                {Object.keys({ ...organs, ...bones }).map((item) => (
+                  <div
+                    key={item}
+                    style={{
+                      background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                      border: "1px solid #d8e4f2",
+                      borderRadius: 16,
+                      padding: 16,
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                    }}
+                  >
+                    <div style={{ fontWeight: 700, color: "#12355b" }}>{item}</div>
+                    <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
+                      {dashboard[item] || 0}
+                    </div>
+                    <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>Correct placements</div>
                   </div>
-                </div>
-              ))}
-              <div
-                style={{
-                  background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                  border: "1px solid #d8e4f2",
-                  borderRadius: 16,
-                  padding: 16,
-                  minWidth: 200,
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                }}
-              >
-                <div style={{ fontWeight: 700, color: "#12355b" }}>CBET Practice</div>
-                <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
-                  {cbetScore} / {shuffledCbetQuestions.length}
-                </div>
+                ))}
               </div>
+            </div>
+
+            <div>
+              <h3 style={{ color: "#12355b", marginBottom: 12 }}>Quiz Progress</h3>
               <div
                 style={{
-                  background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                  border: "1px solid #d8e4f2",
-                  borderRadius: 16,
-                  padding: 16,
-                  minWidth: 200,
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                  display: "grid",
+                  gap: 14,
+                  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))"
                 }}
               >
-                <div style={{ fontWeight: 700, color: "#12355b" }}>TEAS Practice</div>
-                <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
-                  {teasScore} / {shuffledTeasQuestions.length}
-                </div>
-              </div>
-              <div
-                style={{
-                  background: "linear-gradient(135deg, #eef4ff, #ffffff)",
-                  border: "1px solid #d8e4f2",
-                  borderRadius: 16,
-                  padding: 16,
-                  minWidth: 220,
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
-                }}
-              >
-                <div style={{ fontWeight: 700, color: "#12355b" }}>Medical Terminology</div>
-                <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>
-                  {terminologyScore} / {shuffledTerminologyQuestions.length}
-                </div>
+                {[
+                  { label: "CBET Practice", value: `${cbetScore} / ${shuffledCbetQuestions.length}`, hint: "Main question bank" },
+                  { label: "Harder CBET", value: `${harderCbetScore} / ${shuffledHarderCbetQuestions.length}`, hint: harderCbetUnlocked ? "Unlocked advanced set" : "Unlock by completing CBET" },
+                  { label: "RN Practice", value: `${rnScore} / ${shuffledRnQuestions.length}`, hint: "Randomized questions" },
+                  { label: "TEAS Practice", value: `${teasScore} / ${shuffledTeasQuestions.length}`, hint: "Randomized questions" },
+                  { label: "CRES Practice", value: `${cresScore} / ${shuffledCresQuestions.length}`, hint: "Biomedical systems review" },
+                  { label: "Equipment ID", value: `${equipmentScore} / ${shuffledEquipmentQuestions.length}`, hint: "Image identification mode" },
+                  { label: "Medical Terminology", value: `${terminologyScore} / ${shuffledTerminologyQuestions.length}`, hint: "Core medical terms" },
+                  { label: "Prefix & Suffix", value: `${wordPartScore} / ${shuffledWordPartQuestions.length}`, hint: "Word part builder" },
+                  { label: "Heart Quiz", value: `${heartFourChamberQuestions.length} questions`, hint: "Separate quiz tab" },
+                  { label: "Digestive Quiz", value: "Available", hint: "Separate quiz tab" }
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    style={{
+                      background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+                      border: "1px solid #d8e4f2",
+                      borderRadius: 16,
+                      padding: 16,
+                      boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+                    }}
+                  >
+                    <div style={{ fontWeight: 700, color: "#12355b" }}>{item.label}</div>
+                    <div style={{ fontSize: 24, marginTop: 8, color: "#1d6fa5" }}>{item.value}</div>
+                    <div style={{ fontSize: 12, color: "#64748b", marginTop: 6 }}>{item.hint}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -5331,7 +5333,7 @@ return (
         : isSelected 
         ? `✓ ${part.name}`
         : part.name}
-      {(part.description && (isHovered || isSelected)) && (
+      {part.description && (isHovered || isSelected) && (
         <div
           style={{
             marginTop: "6px",
@@ -6321,7 +6323,7 @@ return (
                   </button>
                   <button
                     onClick={() => {
-                      setShuffledRnQuestions(shuffleArray(rnQuestions));
+                      setShuffledRnQuestions(shuffleQuestionSet(rnQuestions));
                       setRnIndex(0);
                       setRnScore(0);
                       setRnAnswers({});
@@ -7196,6 +7198,30 @@ return (
                           </button>
                         );
                       })}
+                      {(() => {
+                        const currentQuestion = shuffledTerminologyQuestions[terminologyIndex];
+                        const selected = terminologyAnswers[terminologyIndex];
+                        const isAnswered = selected !== undefined;
+                        const isWrong = isAnswered && selected !== currentQuestion.answer;
+                        return (
+                          isWrong && currentQuestion.explanation && (
+                            <div
+                              style={{
+                                marginTop: 12,
+                                padding: "12px 14px",
+                                borderRadius: 12,
+                                background: "#fff7ed",
+                                border: "1px solid #fdba74",
+                                color: "#9a3412",
+                                fontWeight: 600,
+                                lineHeight: 1.5
+                              }}
+                            >
+                              💡 {currentQuestion.explanation}
+                            </div>
+                          )
+                        );
+                      })()}
                       <div style={{ textAlign: "center", marginTop: 20 }}>
                         <button
                           onClick={() => {
@@ -7500,6 +7526,30 @@ return (
                           </button>
                         );
                       })}
+                      {(() => {
+                        const currentQuestion = shuffledWordPartQuestions[wordPartIndex];
+                        const selected = wordPartAnswers[wordPartIndex];
+                        const isAnswered = selected !== undefined;
+                        const isWrong = isAnswered && selected !== currentQuestion.answer;
+                        return (
+                          isWrong && currentQuestion.explanation && (
+                            <div
+                              style={{
+                                marginTop: 12,
+                                padding: "12px 14px",
+                                borderRadius: 12,
+                                background: "#fff7ed",
+                                border: "1px solid #fdba74",
+                                color: "#9a3412",
+                                fontWeight: 600,
+                                lineHeight: 1.5
+                              }}
+                            >
+                              💡 {currentQuestion.explanation}
+                            </div>
+                          )
+                        );
+                      })()}
                       <div style={{ textAlign: "center", marginTop: 20 }}>
                         <button
                           onClick={() => {
