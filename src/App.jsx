@@ -5331,7 +5331,7 @@ return (
         : isSelected 
         ? `✓ ${part.name}`
         : part.name}
-      {isHovered && part.description && (
+      {(part.description && (isHovered || isSelected)) && (
         <div
           style={{
             marginTop: "6px",
