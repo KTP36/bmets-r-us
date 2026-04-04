@@ -149,10 +149,17 @@
   </url>
   
   <url>
-  <loc>https://medskillbuilder.com/medical-terminology-guide.html</loc>
-  <lastmod>2026-04-03</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.9</priority>
+   <loc>https://medskillbuilder.com/medical-terminology-guide.html</loc>
+   <lastmod>2026-04-03</lastmod>
+   <changefreq>weekly</changefreq>
+   <priority>0.9</priority>
+  </url>
+
+  <url>
+   <loc>https://medskillbuilder.com/medical-prefix-suffix-guide.html</loc>
+   <lastmod>2026-04-03</lastmod>
+   <changefreq>weekly</changefreq>
+   <priority>0.9</priority>
   </url>
   
 </urlset>
