@@ -759,7 +759,604 @@ const heartFourChamberQuestions = [
     answer: 0
   }
 ];
+
+const ekgQuestions = [
+  {
+    waveformType: "normal",
+    question: "What rhythm is shown on this strip?",
+    options: ["Normal Sinus Rhythm", "Atrial Fibrillation", "Ventricular Tachycardia", "Asystole"],
+    answer: 0,
+    explanation: "Regular rhythm with a visible P wave before each QRS and a normal narrow QRS complex.",
+    whyItMatters: "Normal sinus rhythm is the baseline rhythm students should recognize before learning abnormal rhythms."
+  },
+  {
+    waveformType: "normal",
+    question: "Which rhythm shows a normal P-QRS-T sequence with a steady rate?",
+    options: ["Normal Sinus Rhythm", "Atrial Flutter", "Ventricular Fibrillation", "Sinus Bradycardia"],
+    answer: 0,
+    explanation: "A steady rhythm with a P wave before each narrow QRS complex is normal sinus rhythm.",
+    whyItMatters: "Students should be able to identify normal sinus rhythm quickly before comparing abnormal strips."
+  },
+  {
+    waveformType: "afib",
+    question: "What rhythm is shown on this strip?",
+    options: ["Normal Sinus Rhythm", "Atrial Fibrillation", "Sinus Bradycardia", "Asystole"],
+    answer: 1,
+    explanation: "Irregularly irregular rhythm with no organized P waves suggests atrial fibrillation.",
+    whyItMatters: "Atrial fibrillation can increase stroke risk and often changes how rate control and anticoagulation are managed."
+  },
+  {
+    waveformType: "afib",
+    question: "Which rhythm is irregularly irregular and lacks clear P waves?",
+    options: ["Atrial Fibrillation", "Atrial Flutter", "Normal Sinus Rhythm", "First-Degree AV Block"],
+    answer: 0,
+    explanation: "The absence of organized P waves with an irregularly irregular rhythm points to atrial fibrillation.",
+    whyItMatters: "Recognizing atrial fibrillation helps learners connect rhythm interpretation with stroke prevention and rate control."
+  },
+  {
+    waveformType: "atrial_flutter",
+    question: "What rhythm is shown on this strip?",
+    options: ["Atrial Flutter", "Atrial Fibrillation", "Sinus Tachycardia", "SVT"],
+    answer: 0,
+    explanation: "Sawtooth flutter waves between QRS complexes suggest atrial flutter.",
+    whyItMatters: "Atrial flutter is a common exam rhythm and is often contrasted with atrial fibrillation."
+  },
+  {
+    waveformType: "atrial_flutter",
+    question: "Which rhythm commonly shows sawtooth waves between QRS complexes?",
+    options: ["Ventricular Tachycardia", "Atrial Flutter", "Asystole", "Sinus Bradycardia"],
+    answer: 1,
+    explanation: "Those repeating sawtooth atrial waves are classic for atrial flutter.",
+    whyItMatters: "This helps students distinguish flutter from other narrow-complex tachyarrhythmias."
+  },
+  {
+    waveformType: "vtach",
+    question: "What rhythm is shown on this strip?",
+    options: ["Atrial Flutter", "Normal Sinus Rhythm", "Ventricular Tachycardia", "Sinus Tachycardia"],
+    answer: 2,
+    explanation: "Fast rhythm with wide, repeating ventricular complexes is most consistent with ventricular tachycardia.",
+    whyItMatters: "V-tach can reduce cardiac output quickly and may require urgent treatment depending on the patient's stability."
+  },
+  {
+    waveformType: "vtach",
+    question: "Which rhythm shows a fast wide-complex pattern that can become life-threatening quickly?",
+    options: ["Sinus Tachycardia", "Ventricular Tachycardia", "Atrial Fibrillation", "First-Degree AV Block"],
+    answer: 1,
+    explanation: "A wide-complex, fast, regular rhythm is classic ventricular tachycardia.",
+    whyItMatters: "Learners should identify V-tach rapidly because it may need immediate treatment."
+  },
+  {
+    waveformType: "vfib",
+    question: "What rhythm is shown on this strip?",
+    options: ["Asystole", "Atrial Flutter", "Ventricular Fibrillation", "Normal Sinus Rhythm"],
+    answer: 2,
+    explanation: "Chaotic disorganized electrical activity without identifiable QRS complexes is ventricular fibrillation.",
+    whyItMatters: "V-fib is a shockable arrest rhythm and must be recognized immediately."
+  },
+  {
+    waveformType: "vfib",
+    question: "Which rhythm appears chaotic with no organized complexes?",
+    options: ["Ventricular Fibrillation", "Sinus Bradycardia", "Atrial Fibrillation", "SVT"],
+    answer: 0,
+    explanation: "The waveform is chaotic and disorganized, which is ventricular fibrillation.",
+    whyItMatters: "This is one of the most critical rhythms for emergency recognition."
+  },
+  {
+    waveformType: "asystole",
+    question: "What rhythm is shown on this strip?",
+    options: ["Pulseless Electrical Activity", "Asystole", "Atrial Fibrillation", "Ventricular Fibrillation"],
+    answer: 1,
+    explanation: "Nearly flat baseline without organized electrical activity is asystole.",
+    whyItMatters: "Asystole is a non-shockable rhythm and should be recognized immediately during resuscitation."
+  },
+  {
+    waveformType: "sinus_tach",
+    question: "What rhythm is shown on this strip?",
+    options: ["Sinus Bradycardia", "Atrial Flutter", "Sinus Tachycardia", "First-Degree AV Block"],
+    answer: 2,
+    explanation: "Regular rhythm with P waves before each QRS but a fast rate is sinus tachycardia.",
+    whyItMatters: "Sinus tachycardia often points to an underlying cause such as pain, fever, dehydration, or stress."
+  },
+  {
+    waveformType: "sinus_tach",
+    question: "Which strip shows a regular fast sinus rhythm with visible P waves before each QRS?",
+    options: ["SVT", "Sinus Tachycardia", "Atrial Fibrillation", "Ventricular Tachycardia"],
+    answer: 1,
+    explanation: "Visible P waves before each narrow QRS at a fast rate indicate sinus tachycardia.",
+    whyItMatters: "It helps learners separate sinus tachycardia from SVT and ventricular rhythms."
+  },
+  {
+    waveformType: "sinus_brady",
+    question: "What rhythm is shown on this strip?",
+    options: ["Sinus Bradycardia", "Normal Sinus Rhythm", "Atrial Fibrillation", "Ventricular Tachycardia"],
+    answer: 0,
+    explanation: "Regular rhythm with normal P-QRS relationship but a slow rate is sinus bradycardia.",
+    whyItMatters: "Sinus bradycardia may be normal in some patients but can also signal conduction or perfusion problems."
+  },
+  {
+    waveformType: "sinus_brady",
+    question: "Which rhythm is slow but still has a normal sinus pattern?",
+    options: ["Sinus Bradycardia", "First-Degree AV Block", "Asystole", "Atrial Flutter"],
+    answer: 0,
+    explanation: "A slow rate with a normal P wave before each QRS indicates sinus bradycardia.",
+    whyItMatters: "Students should learn that not every slow rhythm is a block or arrest rhythm."
+  },
+  {
+    waveformType: "svt",
+    question: "What rhythm is shown on this strip?",
+    options: ["SVT", "Sinus Tachycardia", "Atrial Flutter", "Normal Sinus Rhythm"],
+    answer: 0,
+    explanation: "Very fast narrow-complex rhythm with hard-to-see P waves is most consistent with SVT.",
+    whyItMatters: "SVT is a common exam rhythm and teaches the difference between sinus tachycardia and sudden supraventricular rhythms."
+  },
+  {
+    waveformType: "svt",
+    question: "Which rhythm is a very fast narrow-complex tachycardia where P waves may be hidden?",
+    options: ["Atrial Fibrillation", "SVT", "Ventricular Fibrillation", "Sinus Bradycardia"],
+    answer: 1,
+    explanation: "A rapid narrow-complex rhythm without clear P waves is classic SVT.",
+    whyItMatters: "This helps learners classify regular narrow tachycardias more confidently."
+  },
+  {
+    waveformType: "pvc",
+    question: "What finding is highlighted on this strip?",
+    options: ["A normal beat sequence", "Atrial flutter waves", "Premature ventricular contractions", "Asystole"],
+    answer: 2,
+    explanation: "An early wide ventricular beat appearing before the next expected sinus beat is a PVC.",
+    whyItMatters: "PVC recognition is a core rhythm concept that often appears in basic EKG review."
+  },
+  {
+    waveformType: "first_degree",
+    question: "Which rhythm shows a prolonged PR interval but otherwise regular conduction?",
+    options: ["First-Degree AV Block", "Sinus Tachycardia", "Atrial Fibrillation", "Ventricular Tachycardia"],
+    answer: 0,
+    explanation: "A consistently prolonged PR interval with every beat conducted suggests first-degree AV block.",
+    whyItMatters: "This teaches learners how to recognize a conduction delay without dropped beats."
+  }
+];
+
+function EkgWaveform({ type }) {
+  const waveforms = {
+    normal: "M10 60 L25 60 L32 52 L40 60 L54 60 L60 30 L66 84 L74 60 L90 60 L105 52 L112 60 L126 60 L132 30 L138 84 L146 60 L162 60 L176 52 L184 60 L198 60 L204 30 L210 84 L218 60 L234 60 L248 52 L256 60 L270 60 L276 30 L282 84 L290 60",
+    afib: "M10 64 C18 60, 24 70, 32 64 S46 58, 54 66 S70 72, 78 64 L88 62 L96 48 L104 78 L112 58 C120 52, 126 68, 134 62 S150 56, 160 66 L170 64 L178 46 L186 80 L194 60 C202 54, 210 70, 220 62 S236 56, 246 66 L256 64 L264 48 L272 78 L280 60 L290 64",
+    atrial_flutter: "M10 58 L26 58 L32 46 L38 58 L46 58 L54 68 L62 48 L70 68 L78 48 L86 68 L94 48 L102 68 L110 30 L116 84 L124 58 L136 58 L144 68 L152 48 L160 68 L168 48 L176 68 L184 48 L192 68 L200 30 L206 84 L214 58 L226 58 L234 68 L242 48 L250 68 L258 48 L266 68 L274 48 L282 68 L290 58",
+    vtach: "M10 72 L24 36 L40 86 L56 34 L72 86 L88 34 L104 86 L120 34 L136 86 L152 34 L168 86 L184 34 L200 86 L216 34 L232 86 L248 34 L264 86 L280 34 L290 72",
+    vfib: "M10 60 C18 20, 30 95, 44 45 S66 16, 84 74 S108 104, 126 36 S150 18, 168 80 S194 108, 212 44 S236 20, 252 78 S272 98, 290 56",
+    asystole: "M10 60 L60 60 L110 60 L160 60 L210 60 L260 60 L290 60",
+    sinus_tach: "M10 60 L20 60 L26 52 L32 60 L42 60 L48 28 L54 84 L62 60 L74 60 L80 52 L86 60 L96 60 L102 28 L108 84 L116 60 L128 60 L134 52 L140 60 L150 60 L156 28 L162 84 L170 60 L182 60 L188 52 L194 60 L204 60 L210 28 L216 84 L224 60 L236 60 L242 52 L248 60 L258 60 L264 28 L270 84 L278 60 L290 60",
+    sinus_brady: "M10 60 L34 60 L42 52 L50 60 L66 60 L74 30 L82 84 L94 60 L126 60 L134 52 L142 60 L158 60 L166 30 L174 84 L186 60 L218 60 L226 52 L234 60 L250 60 L258 30 L266 84 L278 60 L290 60",
+    svt: "M10 60 L20 60 L28 24 L36 90 L46 60 L58 60 L66 24 L74 90 L84 60 L96 60 L104 24 L112 90 L122 60 L134 60 L142 24 L150 90 L160 60 L172 60 L180 24 L188 90 L198 60 L210 60 L218 24 L226 90 L236 60 L248 60 L256 24 L264 90 L274 60 L290 60",
+    pvc: "M10 60 L24 60 L30 52 L36 60 L48 60 L56 28 L62 84 L72 60 L88 60 L100 60 L112 24 L124 96 L140 60 L156 60 L162 52 L168 60 L180 60 L188 28 L194 84 L204 60 L220 60 L226 52 L232 60 L244 60 L252 28 L258 84 L268 60 L290 60",
+    first_degree: "M10 60 L22 60 L28 54 L34 60 L56 60 L66 30 L72 84 L82 60 L106 60 L112 54 L118 60 L140 60 L150 30 L156 84 L166 60 L190 60 L196 54 L202 60 L224 60 L234 30 L240 84 L250 60 L290 60"
+  };
+  return (
+    <div
+      style={{
+        background: "#fff",
+        border: "1px solid #dbe4f0",
+        borderRadius: 16,
+        padding: 14,
+        marginBottom: 16,
+        boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.35)"
+      }}
+    >
+      <svg viewBox="0 0 300 120" style={{ width: "100%", maxWidth: 520, display: "block", margin: "0 auto" }}>
+        <rect x="0" y="0" width="300" height="120" fill="#fff5f7" rx="12" />
+        {Array.from({ length: 15 }).map((_, i) => (
+          <line key={`v-${i}`} x1={i * 20} y1="0" x2={i * 20} y2="120" stroke="#f8c7d3" strokeWidth="1" />
+        ))}
+        {Array.from({ length: 7 }).map((_, i) => (
+          <line key={`h-${i}`} x1="0" y1={i * 20} x2="300" y2={i * 20} stroke="#f8c7d3" strokeWidth="1" />
+        ))}
+        <path d={waveforms[type] || waveforms.normal} fill="none" stroke="#b91c1c" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  );
+}
+
+const ekgBasicsLessons = [
+  {
+    title: "Normal Sinus Rhythm",
+    waveformType: "normal",
+    pattern: "Regular rhythm with a P wave before every QRS.",
+    breakdown: "Rate is normal, rhythm is regular, and conduction looks organized.",
+    whyItMatters: "This is your reference rhythm. Knowing normal makes abnormal patterns easier to spot."
+  },
+  {
+    title: "Sinus Bradycardia",
+    waveformType: "sinus_brady",
+    pattern: "Regular sinus rhythm, but slower than normal.",
+    breakdown: "You still see P waves before each QRS, but the beats are spaced farther apart.",
+    whyItMatters: "Helps learners separate a slow sinus rhythm from blocks and arrest rhythms."
+  },
+  {
+    title: "Sinus Tachycardia",
+    waveformType: "sinus_tach",
+    pattern: "Regular sinus rhythm, but faster than normal.",
+    breakdown: "P waves are still present before each QRS, but the rhythm is clearly faster.",
+    whyItMatters: "Often reflects an underlying cause like pain, fever, anxiety, dehydration, or stress."
+  },
+  {
+    title: "Atrial Fibrillation",
+    waveformType: "afib",
+    pattern: "Irregularly irregular rhythm with no distinct P waves.",
+    breakdown: "The baseline looks uneven and the R-R intervals are unpredictable.",
+    whyItMatters: "A-fib is one of the most common rhythms learners need to recognize quickly."
+  },
+  {
+    title: "Atrial Flutter",
+    waveformType: "atrial_flutter",
+    pattern: "Sawtooth flutter waves between QRS complexes.",
+    breakdown: "Instead of clear P waves, the baseline shows repeating flutter waves.",
+    whyItMatters: "This teaches pattern recognition and helps separate flutter from fibrillation."
+  },
+  {
+    title: "SVT",
+    waveformType: "svt",
+    pattern: "Very fast narrow-complex rhythm with hard-to-see P waves.",
+    breakdown: "The rhythm is rapid and regular, and the P waves may be hidden in the preceding beat.",
+    whyItMatters: "Good for teaching the difference between sinus tachycardia and supraventricular tachycardia."
+  },
+  {
+    title: "PVC",
+    waveformType: "pvc",
+    pattern: "Premature wide beat interrupting a sinus rhythm.",
+    breakdown: "An early ventricular beat appears before the next expected sinus beat.",
+    whyItMatters: "PVCs are a core EKG concept and often appear in basic rhythm recognition."
+  },
+  {
+    title: "Ventricular Tachycardia",
+    waveformType: "vtach",
+    pattern: "Fast wide-complex rhythm.",
+    breakdown: "Wide repetitive ventricular complexes with a rapid rate point to V-tach.",
+    whyItMatters: "This is a high-risk rhythm that learners need to identify quickly."
+  },
+  {
+    title: "Ventricular Fibrillation",
+    waveformType: "vfib",
+    pattern: "Chaotic rhythm with no organized complexes.",
+    breakdown: "There are no identifiable P waves or QRS complexes, just disorganized activity.",
+    whyItMatters: "V-fib is a shockable arrest rhythm and a critical emergency pattern."
+  },
+  {
+    title: "Asystole",
+    waveformType: "asystole",
+    pattern: "Nearly flat line without organized electrical activity.",
+    breakdown: "There is no meaningful rhythm present on the strip.",
+    whyItMatters: "Learners should immediately recognize this as a non-shockable arrest rhythm."
+  },
+  {
+    title: "First-Degree AV Block",
+    waveformType: "first_degree",
+    pattern: "Every beat conducts, but the PR interval is prolonged.",
+    breakdown: "The rhythm is regular, but there is a longer-than-normal delay before each QRS.",
+    whyItMatters: "This teaches conduction delay recognition without dropped beats."
+  }
+];
+
+function EkgBasics() {
+  return (
+    <div style={{ padding: 20 }}>
+      <div
+        style={{
+          background: "rgba(255,255,255,0.9)",
+          borderRadius: 24,
+          padding: 28,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          maxWidth: 980,
+          margin: "0 auto"
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 24 }}>
+          <h2 style={{ color: "#12355b", marginBottom: 8 }}>EKG Basics</h2>
+          <p style={{ color: "#4f6275", margin: 0 }}>
+            Learn the look of common rhythms first, then switch to quiz mode and test yourself.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gap: 18 }}>
+          {ekgBasicsLessons.map((lesson) => (
+            <div
+              key={lesson.title}
+              style={{
+                background: "#ffffff",
+                border: "1px solid #dbe4f0",
+                borderRadius: 18,
+                padding: 18,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap", alignItems: "center", marginBottom: 12 }}>
+                <h3 style={{ margin: 0, color: "#12355b" }}>{lesson.title}</h3>
+                <div style={{ padding: "8px 12px", borderRadius: 999, background: "#eff6ff", color: "#12355b", fontWeight: 700 }}>
+                  Pattern focus
+                </div>
+              </div>
+              <EkgWaveform type={lesson.waveformType} />
+              <div style={{ color: "#1e293b", fontWeight: 700, marginBottom: 6 }}>{lesson.pattern}</div>
+              <div style={{ color: "#334155", marginBottom: 8 }}>{lesson.breakdown}</div>
+              <div
+                style={{
+                  marginTop: 8,
+                  padding: "12px 14px",
+                  borderRadius: 12,
+                  background: "#eff6ff",
+                  color: "#1d4ed8",
+                  border: "1px solid #bfdbfe",
+                  fontWeight: 600
+                }}
+              >
+                Why this matters: {lesson.whyItMatters}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EkgQuiz({ onComplete }) {
+  const [mode, setMode] = useState("quiz");
+  const [questions, setQuestions] = useState(() => shuffleQuestionSet(ekgQuestions));
+  const [index, setIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [showResults, setShowResults] = useState(false);
+
+  const currentQuestion = questions[index];
+  const selected = answers[index];
+  const isAnswered = selected !== undefined;
+
+  const restartQuiz = () => {
+    setQuestions(shuffleQuestionSet(ekgQuestions));
+    setIndex(0);
+    setScore(0);
+    setAnswers({});
+    setShowResults(false);
+  };
+
+  const modeToggle = (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: 12,
+        flexWrap: "wrap",
+        marginBottom: 20
+      }}
+    >
+      <button
+        onClick={() => setMode("basics")}
+        style={{
+          padding: "10px 20px",
+          borderRadius: 999,
+          border: "none",
+          background:
+            mode === "basics"
+              ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+              : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+          color: mode === "basics" ? "white" : "#12355b",
+          fontWeight: 700,
+          cursor: "pointer",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+        }}
+      >
+        EKG Basics
+      </button>
+      <button
+        onClick={() => setMode("quiz")}
+        style={{
+          padding: "10px 20px",
+          borderRadius: 999,
+          border: "none",
+          background:
+            mode === "quiz"
+              ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+              : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+          color: mode === "quiz" ? "white" : "#12355b",
+          fontWeight: 700,
+          cursor: "pointer",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+        }}
+      >
+        EKG Quiz
+      </button>
+    </div>
+  );
+
+  if (mode === "basics") {
+    return (
+      <div>
+        {modeToggle}
+        <EkgBasics />
+      </div>
+    );
+  }
+
+  if (showResults) {
+    return (
+      <div style={{ padding: 20 }}>
+        {modeToggle}
+        <div style={{
+          background: "rgba(255,255,255,0.92)",
+          borderRadius: 24,
+          padding: 28,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          maxWidth: 900,
+          margin: "0 auto",
+          textAlign: "center"
+        }}>
+          <h2 style={{ color: "#12355b", marginTop: 0 }}>EKG Waveform Quiz Complete</h2>
+          <p style={{ fontSize: 20, color: "#1e293b" }}>
+            Your score: {score} / {questions.length}
+          </p>
+          <p style={{ color: "#4f6275" }}>Practice recognizing common rhythms and keep reinforcing the pattern.</p>
+          <button
+            onClick={restartQuiz}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+              color: "white",
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Restart EKG Quiz
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ padding: 20 }}>
+      {modeToggle}
+      <div style={{
+        background: "rgba(255,255,255,0.9)",
+        borderRadius: 24,
+        padding: 28,
+        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+        maxWidth: 980,
+        margin: "0 auto"
+      }}>
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <h2 style={{ color: "#12355b", marginBottom: 8 }}>EKG Waveform Quiz</h2>
+          <p style={{ color: "#4f6275", margin: 0 }}>
+            Learn to recognize common rhythms by pattern. Read the strip, choose the rhythm, and review the explanation.
+          </p>
+        </div>
+
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 10,
+          flexWrap: "wrap",
+          marginBottom: 20
+        }}>
+          <div style={{
+            padding: "10px 16px",
+            borderRadius: 999,
+            background: "#eff6ff",
+            color: "#12355b",
+            fontWeight: 700
+          }}>
+            Question {index + 1} / {questions.length}
+          </div>
+          <div style={{
+            padding: "10px 16px",
+            borderRadius: 999,
+            background: "#ecfeff",
+            color: "#0f766e",
+            fontWeight: 700
+          }}>
+            Score: {score}
+          </div>
+        </div>
+
+        <EkgWaveform type={currentQuestion.waveformType} />
+
+        <div style={{ color: "#12355b", marginBottom: 18 }}>
+          <div style={{ fontSize: 22, fontWeight: 700 }}>{currentQuestion.question}</div>
+        </div>
+
+        {currentQuestion.options.map((opt, i) => {
+          const isCorrectOption = i === currentQuestion.answer;
+          const isSelectedWrong = isAnswered && i === selected && selected !== currentQuestion.answer;
+          return (
+            <button
+              key={i}
+              onClick={() => {
+                if (isAnswered) return;
+                setAnswers((prev) => ({ ...prev, [index]: i }));
+                if (i === currentQuestion.answer) {
+                  setScore((prev) => prev + 1);
+                }
+              }}
+              style={{
+                width: "100%",
+                textAlign: "left",
+                padding: "14px 16px",
+                marginBottom: 12,
+                borderRadius: 12,
+                border:
+                  isCorrectOption && isAnswered
+                    ? "2px solid green"
+                    : isSelectedWrong
+                    ? "2px solid red"
+                    : "1px solid #cbd5e1",
+                background:
+                  isCorrectOption && isAnswered
+                    ? "#d9f7d9"
+                    : isSelectedWrong
+                    ? "#fee2e2"
+                    : "#f8fafc",
+                color: "#1e293b",
+                fontSize: 16,
+                fontWeight: 600,
+                cursor: isAnswered ? "default" : "pointer",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+              }}
+            >
+              {String.fromCharCode(65 + i)}. {opt}
+            </button>
+          );
+        })}
+
+        {isAnswered && (
+          <div
+            style={{
+              marginTop: 8,
+              padding: "12px 14px",
+              borderRadius: 12,
+              background: selected === currentQuestion.answer ? "#eff6ff" : "#fff7ed",
+              color: selected === currentQuestion.answer ? "#1d4ed8" : "#9a3412",
+              border: selected === currentQuestion.answer ? "1px solid #bfdbfe" : "1px solid #fdba74",
+              fontWeight: 600
+            }}
+          >
+            <div>{currentQuestion.explanation}</div>
+            <div style={{ marginTop: 8, fontWeight: 500 }}>Why this matters: {currentQuestion.whyItMatters}</div>
+          </div>
+        )}
+
+        <div style={{ textAlign: "center", marginTop: 20 }}>
+          <button
+            onClick={() => {
+              if (!isAnswered) return;
+              if (index + 1 === questions.length) {
+                onComplete && onComplete(score + (selected === currentQuestion.answer ? 0 : 0), questions.length);
+                setShowResults(true);
+              } else {
+                setIndex((prev) => prev + 1);
+              }
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+              color: "white",
+              fontWeight: 700,
+              cursor: !isAnswered ? "not-allowed" : "pointer",
+              opacity: !isAnswered ? 0.6 : 1,
+              boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+            }}
+          >
+            {index + 1 === questions.length ? "Finish Quiz" : "Next Question"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- HARDER, FUNCTION-BASED EQUIPMENT CONCEPT QUESTIONS ---
+
+// --- HARDER, FUNCTION-BASED EQUIPMENT CONCEPT QUESTIONS ---
+
 const equipmentConceptQuestions = [
   {
     question: "What is a Miller II blade used for?",
@@ -2892,7 +3489,8 @@ export default function App() {
     "CRES Practice",
     "Medical Terminology Practice",
     "Medical Prefix and Suffix Practice",
-    "Medical Equipment ID Practice"
+    "Medical Equipment ID Practice",
+    "EKG Waveform Quiz"
   ];
   const [contactStatus, setContactStatus] = useState("idle");
   const [contactError, setContactError] = useState("");
@@ -4049,6 +4647,18 @@ return (
         >
           Digestive Quiz
         </button>
+        <button
+          onClick={() => {
+            trackExamStart("EKG Waveform Quiz");
+            setActiveTab("EKGQuiz");
+            setSelectedSet(null);
+          }}
+          onMouseEnter={() => setHoveredNavTab("EKGQuiz")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "EKGQuiz", hoveredNavTab === "EKGQuiz")}
+        >
+          EKG Quiz
+        </button>
 
 
         <button
@@ -4730,7 +5340,8 @@ return (
                   { label: "Medical Terminology", value: `${terminologyScore} / ${shuffledTerminologyQuestions.length}`, hint: "Core medical terms" },
                   { label: "Prefix & Suffix", value: `${wordPartScore} / ${shuffledWordPartQuestions.length}`, hint: "Word part builder" },
                   { label: "Heart Quiz", value: `${heartFourChamberQuestions.length} questions`, hint: "Separate quiz tab" },
-                  { label: "Digestive Quiz", value: "Available", hint: "Separate quiz tab" }
+                  { label: "Digestive Quiz", value: "Available", hint: "Separate quiz tab" },
+                  { label: "EKG Quiz", value: `${ekgQuestions.length} questions`, hint: "Waveform rhythm recognition" }
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -4815,6 +5426,9 @@ return (
           <div style={{ padding: 20 }}>
             <DigestiveSystemQuiz />
           </div>
+        )}
+        {activeTab === "EKGQuiz" && (
+          <EkgQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("EKG Waveform Quiz", finalScore, totalQuestions)} />
         )}
         {(activeTab === "Anatomy" || activeTab === "Bones") && (
           <div
