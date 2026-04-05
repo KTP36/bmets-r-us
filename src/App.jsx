@@ -4303,6 +4303,7 @@ export default function App() {
     setEquipmentAnswers({});
     setEquipmentShowResult(false);
     setShowEquipmentMissedReview(false);
+    trackExamStart("Equipment Practice");
   };
   const missedQuestions = shuffledCbetQuestions.filter((q, index) => {
     const selected = cbetAnswers[index];
@@ -4915,6 +4916,12 @@ export default function App() {
     });
   };
   React.useEffect(() => {
+    if (activeTab === "Equipment" && !equipmentShowResult && !examStartTimesRef.current["Equipment Practice"]) {
+      trackExamStart("Equipment Practice");
+    }
+  }, [activeTab, equipmentShowResult]);
+
+  React.useEffect(() => {
     if (!selectedSet || !currentSet) return;
     if (score !== currentSet.parts.length) return;
     if (anatomyCompletionSavedRef.current === selectedSet) return;
@@ -5077,6 +5084,7 @@ return (
         </button>
         <button
           onClick={() => {
+            trackExamStart("Digestive Quiz");
             setActiveTab("DigestiveQuiz");
             setSelectedSet(null);
           }}
@@ -5871,7 +5879,11 @@ return (
         )}
         {activeTab === "DigestiveQuiz" && (
           <div style={{ padding: 20 }}>
-            <DigestiveSystemQuiz />
+            <DigestiveSystemQuiz
+              onComplete={(finalScore, totalQuestions) =>
+                trackExamCompletion("Digestive Quiz", finalScore, totalQuestions)
+              }
+            />
           </div>
         )}
         {activeTab === "EKGQuiz" && (

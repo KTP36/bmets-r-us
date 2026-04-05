@@ -183,12 +183,21 @@ const digestiveQuestions = [
   }
 ];
 
-export default function DigestiveSystemQuiz() {
+function formatTime(totalSeconds) {
+  const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+  const minutes = Math.floor(safeSeconds / 60);
+  const seconds = safeSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+export default function DigestiveSystemQuiz({ onComplete }) {
   const questions = useMemo(() => digestiveQuestions, []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [startTime, setStartTime] = useState(Date.now());
+  const [completionSeconds, setCompletionSeconds] = useState(0);
 
   const currentQuestion = questions[currentIndex];
   const selected = selectedAnswers[currentIndex];
@@ -199,6 +208,8 @@ export default function DigestiveSystemQuiz() {
     setSelectedAnswers({});
     setScore(0);
     setShowResults(false);
+    setStartTime(Date.now());
+    setCompletionSeconds(0);
   };
 
   if (showResults) {
@@ -219,8 +230,11 @@ export default function DigestiveSystemQuiz() {
         <p style={{ fontSize: 20, color: "#1e293b", marginBottom: 10 }}>
           Your score: {score} / {questions.length}
         </p>
-        <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 24 }}>
+        <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 8 }}>
           Accuracy: {percent}%
+        </p>
+        <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 24 }}>
+          Time: {formatTime(completionSeconds)}
         </p>
         <div style={{ display: "grid", gap: 12, maxWidth: 340, margin: "0 auto" }}>
           <button
@@ -358,6 +372,12 @@ export default function DigestiveSystemQuiz() {
           onClick={() => {
             if (!isAnswered) return;
             if (currentIndex + 1 === questions.length) {
+              const finalScore = score;
+              const timeSpent = Math.max(1, Math.floor((Date.now() - startTime) / 1000));
+              setCompletionSeconds(timeSpent);
+              if (onComplete) {
+                onComplete(finalScore, questions.length, timeSpent, "Digestive System Quiz");
+              }
               setShowResults(true);
             } else {
               setCurrentIndex((prev) => prev + 1);
