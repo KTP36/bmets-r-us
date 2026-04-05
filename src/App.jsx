@@ -5073,6 +5073,7 @@ return (
 
         <button
           onClick={() => {
+            trackExamStart("Heart Quiz");
             setActiveTab("HeartQuiz");
             setSelectedSet(null);
           }}
@@ -5874,7 +5875,7 @@ return (
 
         {activeTab === "HeartQuiz" && (
           <div style={{ padding: 20 }}>
-            <HeartQuiz questions={heartFourChamberQuestions} />
+            <HeartQuiz questions={heartFourChamberQuestions} onComplete={(finalScore, totalQuestions) => trackExamCompletion("Heart Quiz", finalScore, totalQuestions)} />
           </div>
         )}
         {activeTab === "DigestiveQuiz" && (
@@ -5910,7 +5911,10 @@ return (
                   }}
                 >
                   <div
-                    onClick={() => setActiveTab("AnatomyQuiz")}
+                    onClick={() => {
+                      trackExamStart("Anatomy Quiz");
+                      setActiveTab("AnatomyQuiz");
+                    }}
                     style={{
                       background: "linear-gradient(90deg, #fbbf24 0%, #38bdf8 100%)",
                       color: "#12355b",
@@ -6031,7 +6035,10 @@ return (
                   }}
                 >
                   <div
-                    onClick={() => setActiveTab("BonesQuiz")}
+                    onClick={() => {
+                      trackExamStart("Bones Quiz");
+                      setActiveTab("BonesQuiz");
+                    }}
                     style={{
                       background: "linear-gradient(90deg, #fbbf24 0%, #38bdf8 100%)",
                       color: "#12355b",
@@ -6631,8 +6638,8 @@ return (
             )}
           </div>
         )}
-        {activeTab === "AnatomyQuiz" && <AnatomyQuiz />}
-        {activeTab === "BonesQuiz" && <BonesQuiz />}
+        {activeTab === "AnatomyQuiz" && <AnatomyQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Anatomy Quiz", finalScore, totalQuestions)} />}
+        {activeTab === "BonesQuiz" && <BonesQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Bones Quiz", finalScore, totalQuestions)} />}
         {activeTab === "MuscleQuiz" && <MuscleQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Muscle Quiz", finalScore, totalQuestions)} />}
                {activeTab === "CBET" && (
           <div

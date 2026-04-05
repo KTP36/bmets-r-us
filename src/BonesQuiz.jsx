@@ -1,13 +1,23 @@
+
 import React, { useState } from "react";
 import { bonesQuestions } from "./BonesQuizData";
 
-export default function BonesQuiz() {
+export default function BonesQuiz({ onComplete }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [startTime, setStartTime] = useState(Date.now());
+  const [completionTime, setCompletionTime] = useState(0);
 
   const currentQuestion = bonesQuestions[currentIndex];
+
+  const formatDuration = (totalSeconds) => {
+    const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+    const minutes = Math.floor(safeSeconds / 60);
+    const seconds = safeSeconds % 60;
+    return `${minutes}:${String(seconds).padStart(2, "0")}`;
+  };
 
   const handleAnswer = (index) => {
     if (selected !== null) return;
@@ -15,18 +25,35 @@ export default function BonesQuiz() {
     setSelected(index);
 
     if (index === currentQuestion.answer) {
-      setScore(score + 1);
+      setScore((prev) => prev + 1);
     }
   };
 
   const nextQuestion = () => {
-    setSelected(null);
+    if (selected === null) return;
 
     if (currentIndex + 1 < bonesQuestions.length) {
-      setCurrentIndex(currentIndex + 1);
+      setSelected(null);
+      setCurrentIndex((prev) => prev + 1);
     } else {
+      const elapsedSeconds = Math.max(1, Math.floor((Date.now() - startTime) / 1000));
+      setCompletionTime(elapsedSeconds);
+
+      if (onComplete) {
+        onComplete(score, bonesQuestions.length, elapsedSeconds, "Bones Quiz");
+      }
+
       setShowResult(true);
     }
+  };
+
+  const handleRestart = () => {
+    setCurrentIndex(0);
+    setSelected(null);
+    setScore(0);
+    setShowResult(false);
+    setCompletionTime(0);
+    setStartTime(Date.now());
   };
 
   if (showResult) {
@@ -34,7 +61,10 @@ export default function BonesQuiz() {
       <div style={{ textAlign: "center", padding: 40 }}>
         <h2>Your Score</h2>
         <h1>{score} / {bonesQuestions.length}</h1>
-        <button onClick={() => window.location.reload()}>
+        <div style={{ marginBottom: 20, fontWeight: 600 }}>
+          Time: {formatDuration(completionTime)}
+        </div>
+        <button onClick={handleRestart}>
           Restart Quiz
         </button>
       </div>
@@ -50,7 +80,6 @@ export default function BonesQuiz() {
         textAlign: "center",
       }}
     >
-
       <div
         style={{
           display: "flex",
@@ -74,6 +103,7 @@ export default function BonesQuiz() {
         <div>Question {currentIndex + 1} of {bonesQuestions.length}</div>
         <div>Score: {score}</div>
       </div>
+
       <h2>Bones Quiz</h2>
       <h3>{currentQuestion.question}</h3>
 
@@ -136,7 +166,7 @@ export default function BonesQuiz() {
               boxShadow: "0 4px 18px rgba(56,189,248,0.13)",
             }}
           >
-            Next Question
+            {currentIndex === bonesQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
           </button>
         </div>
       )}

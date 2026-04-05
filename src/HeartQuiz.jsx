@@ -1,10 +1,13 @@
+
 import React, { useState } from "react";
 
-function HeartQuiz({ questions = [] }) {
+function HeartQuiz({ questions = [], onComplete }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [startTime, setStartTime] = useState(Date.now());
+  const [completionTime, setCompletionTime] = useState(0);
 
   if (!questions.length) {
     return <div style={{ padding: 24, textAlign: "center" }}>No heart quiz questions available yet.</div>;
@@ -12,17 +15,35 @@ function HeartQuiz({ questions = [] }) {
 
   const current = questions[index];
 
+  const formatDuration = (totalSeconds) => {
+    const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+    const minutes = Math.floor(safeSeconds / 60);
+    const seconds = safeSeconds % 60;
+    return `${minutes}:${String(seconds).padStart(2, "0")}`;
+  };
+
   const handleOptionClick = (i) => {
     if (selected !== null) return;
     setSelected(i);
-    if (i === current.answer) setScore(score + 1);
+    if (i === current.answer) setScore((prev) => prev + 1);
   };
 
   const handleNext = () => {
+    if (selected === null) return;
+
     if (index < questions.length - 1) {
-      setIndex(index + 1);
+      setIndex((prev) => prev + 1);
       setSelected(null);
     } else {
+      const finalScore = score;
+      const elapsedSeconds = Math.max(1, Math.floor((Date.now() - startTime) / 1000));
+
+      setCompletionTime(elapsedSeconds);
+
+      if (onComplete) {
+        onComplete(finalScore, questions.length, elapsedSeconds, "Heart Quiz");
+      }
+
       setShowResult(true);
     }
   };
@@ -32,16 +53,44 @@ function HeartQuiz({ questions = [] }) {
     setSelected(null);
     setScore(0);
     setShowResult(false);
+    setCompletionTime(0);
+    setStartTime(Date.now());
   };
 
   if (showResult) {
     return (
-      <div style={{ maxWidth: 400, margin: "0 auto", textAlign: "center" }}>
-        <h2>Quiz Complete!</h2>
-        <div style={{ margin: "16px 0" }}>
+      <div
+        style={{
+          maxWidth: 500,
+          margin: "0 auto",
+          textAlign: "center",
+          background: "rgba(255,255,255,0.92)",
+          borderRadius: 24,
+          padding: 28,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+        }}
+      >
+        <h2 style={{ color: "#12355b", marginTop: 0 }}>Heart Quiz Complete</h2>
+        <div style={{ margin: "16px 0", fontSize: 20, color: "#1e293b" }}>
           Score: {score} / {questions.length}
         </div>
-        <button onClick={handleRestart}>Restart</button>
+        <div style={{ marginBottom: 20, color: "#4f6275", fontWeight: 600 }}>
+          Time: {formatDuration(completionTime)}
+        </div>
+        <button
+          onClick={handleRestart}
+          style={{
+            padding: "12px 24px",
+            borderRadius: 999,
+            background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+            color: "#fff",
+            border: "none",
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          Restart
+        </button>
       </div>
     );
   }
