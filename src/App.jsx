@@ -5,7 +5,139 @@ import AnatomyQuiz from "./AnatomyQuiz";
 import BonesQuiz from "./BonesQuiz";
 import HeartQuiz from "./HeartQuiz";
 import DigestiveSystemQuiz from "./DigestiveSystemQuiz";
-import { cbetQuestions } from "./questionData";
+import { cbetQuestions as baseCbetQuestions } from "./questionData";
+
+
+const extraCbetQuestions = [
+  {
+    question: "Which device is primarily used to monitor end-tidal CO2 during a procedure?",
+    options: ["Pulse oximeter", "Capnograph", "Electrosurgical unit", "Defibrillator"],
+    answer: 1
+  },
+  {
+    question: "What is the main purpose of preventive maintenance on biomedical equipment?",
+    options: ["Increase purchase cost", "Reduce equipment reliability", "Identify issues before failure", "Replace all accessories monthly"],
+    answer: 2
+  },
+  {
+    question: "Which measurement is most commonly used to verify electrical safety leakage current?",
+    options: ["Volts", "Amps", "Microamps", "Ohms per second"],
+    answer: 2
+  },
+  {
+    question: "A patient monitor repeatedly loses ECG signal. What should be checked first?",
+    options: ["Nurse call system", "Electrode placement and lead wires", "Printer paper", "Battery charger fan"],
+    answer: 1
+  },
+  {
+    question: "Which device is used to deliver a controlled amount of medication over time?",
+    options: ["Pulse oximeter", "Infusion pump", "Suction regulator", "Defibrillator"],
+    answer: 1
+  },
+  {
+    question: "What does a low battery alarm on a transport monitor indicate?",
+    options: ["Lead reversal", "Loss of AC power reserve", "High patient temperature", "Incorrect ECG gain"],
+    answer: 1
+  },
+  {
+    question: "What is the primary safety purpose of equipment grounding?",
+    options: ["Increase screen brightness", "Reduce shock hazard", "Improve battery life", "Increase pressure accuracy"],
+    answer: 1
+  },
+  {
+    question: "Which part of a defibrillator stores energy before shock delivery?",
+    options: ["Speaker", "Capacitor", "Fuse", "Relay coil only"],
+    answer: 1
+  },
+  {
+    question: "An infusion pump free-flow protection feature is designed to prevent:",
+    options: ["Battery charging", "Uncontrolled fluid delivery", "Airway obstruction", "Lead artifact"],
+    answer: 1
+  },
+  {
+    question: "Which analyzer is commonly used to test a ventilator?",
+    options: ["Infusion device analyzer", "Defibrillator analyzer", "Gas flow analyzer", "ECG simulator only"],
+    answer: 2
+  },
+  {
+    question: "A pulse oximeter may read inaccurately during:",
+    options: ["Good perfusion", "Excessive motion", "Normal sinus rhythm", "Proper sensor placement"],
+    answer: 1
+  },
+  {
+    question: "What does the symbol Ω represent in electronics?",
+    options: ["Voltage", "Resistance", "Current", "Power"],
+    answer: 1
+  },
+  {
+    question: "Which device is most associated with pacing and defibrillation functions in emergencies?",
+    options: ["Electrosurgical unit", "Crash cart defibrillator", "Suction machine", "Ultrasound system"],
+    answer: 1
+  },
+  {
+    question: "A failure of an SpO2 sensor cable would most directly affect:",
+    options: ["ECG waveform", "Oxygen saturation reading", "NIBP cuff inflation", "Capnography value"],
+    answer: 1
+  },
+  {
+    question: "What is the typical unit used when setting an infusion pump flow rate?",
+    options: ["Joules", "mL/hr", "mmHg", "L/min for oxygen"],
+    answer: 1
+  },
+  {
+    question: "Which device commonly uses paddles or adhesive pads for therapy delivery?",
+    options: ["Ventilator", "Defibrillator", "Infusion pump", "Patient warmer"],
+    answer: 1
+  },
+  {
+    question: "Which test confirms a blood pressure monitor is reading accurately?",
+    options: ["Ground resistance test", "Calibration against a known standard", "Battery discharge test", "Screen brightness check"],
+    answer: 1
+  },
+  {
+    question: "What is the main role of a biomedical equipment technician during troubleshooting?",
+    options: ["Diagnose and correct equipment faults", "Prescribe medication", "Interpret radiology studies", "Perform surgery"],
+    answer: 0
+  },
+  {
+    question: "A ventilator high-pressure alarm most likely indicates:",
+    options: ["Disconnected power cord", "Occlusion or increased airway resistance", "Low room temperature", "Incorrect ECG lead placement"],
+    answer: 1
+  },
+  {
+    question: "Which accessory is commonly replaced routinely on suction equipment due to contamination risk?",
+    options: ["Display screen", "Collection canister and tubing", "Power transformer", "Internal fuse"],
+    answer: 1
+  },
+  {
+    question: "What does an ECG simulator help verify?",
+    options: ["Oxygen delivery flow", "Monitor response to cardiac waveforms", "Infusion pump occlusion pressure", "Defibrillator pad adhesion"],
+    answer: 1
+  },
+  {
+    question: "Which hospital equipment is specifically designed to remove secretions from the airway?",
+    options: ["Pulse oximeter", "Suction unit", "Infusion warmer", "Telemetry server"],
+    answer: 1
+  },
+  {
+    question: "In basic electricity, current is measured in:",
+    options: ["Ohms", "Volts", "Amps", "Watts per minute"],
+    answer: 2
+  },
+  {
+    question: "Which problem would most likely cause artifact on an ECG monitor?",
+    options: ["Proper skin prep", "Loose lead connection", "Correct filter setting", "Stable patient position"],
+    answer: 1
+  },
+  {
+    question: "A defibrillator energy test is commonly verified using a:",
+    options: ["Leak tester", "Defibrillator analyzer", "Scale", "Thermometer"],
+    answer: 1
+  }
+];
+
+const cbetQuestions = [...baseCbetQuestions, ...extraCbetQuestions];
+
 // --- SOUND EFFECTS ---
 
 // --- EQUIPMENT TAB COMPONENT ---
@@ -290,7 +422,7 @@ function EquipmentTab({
                   cursor: "pointer"
                 }}
               >
-                Restart Practice
+                {cbetMode === "full" ? "Restart Full Exam" : "Restart Practice"}
               </button>
             </div>
           </div>
@@ -640,6 +772,15 @@ function shuffleQuestion(question) {
 function shuffleQuestionSet(questionSet) {
   if (!Array.isArray(questionSet)) return [];
   return shuffleArray(questionSet).map((question) => shuffleQuestion(question));
+}
+
+
+function buildCBET75(questionSet) {
+  let pool = [];
+  while (pool.length < 75) {
+    pool = [...pool, ...shuffleQuestionSet(questionSet)];
+  }
+  return pool.slice(0, 75);
 }
 
 function formatDuration(totalSeconds) {
@@ -3748,6 +3889,7 @@ export default function App() {
   });
   const ownerExamNames = [
     "CBET Practice",
+    "CBET Full Exam",
     "CBET Harder Practice",
     "RN Practice",
     "TEAS Practice",
@@ -3820,6 +3962,8 @@ export default function App() {
   const [cbetAnswers, setCbetAnswers] = useState({});
   const [cbetShowResult, setCbetShowResult] = useState(false);
   const [showMissedReview, setShowMissedReview] = useState(false);
+  const [cbetMode, setCbetMode] = useState("practice");
+  const [cbetQuestionTarget, setCbetQuestionTarget] = useState(() => Math.min(75, cbetQuestions.length));
   const [harderCbetUnlocked, setHarderCbetUnlocked] = useState(
     () => localStorage.getItem("harderCbetUnlocked") === "true"
   );
@@ -4242,25 +4386,55 @@ export default function App() {
     setShowMissedReview(false);
   };
   const saveCbetProgress = () => {
+    if (cbetMode !== "practice") return;
     const progress = {
       shuffledCbetQuestions,
       cbetIndex,
       cbetScore,
       cbetAnswers,
       cbetShowResult,
-      showMissedReview
+      showMissedReview,
+      cbetMode,
+      cbetQuestionTarget
     };
     localStorage.setItem("cbetProgress", JSON.stringify(progress));
   };
   const restartCbetExam = () => {
-    const reshuffled = shuffleQuestionSet(cbetQuestions);
+    const questionCount = cbetMode === "full" ? Math.min(75, cbetQuestions.length) : cbetQuestions.length;
+    const reshuffled = shuffleQuestionSet(cbetQuestions).slice(0, questionCount);
     localStorage.removeItem("cbetProgress");
     setShuffledCbetQuestions(reshuffled);
+    setCbetQuestionTarget(questionCount);
     setCbetIndex(0);
     setCbetScore(0);
     setCbetAnswers({});
     setCbetShowResult(false);
     setShowMissedReview(false);
+    trackExamStart(cbetMode === "full" ? "CBET Full Exam" : "CBET Practice");
+  };
+  const startCbetPracticeMode = () => {
+    localStorage.removeItem("cbetProgress");
+    setCbetMode("practice");
+    setCbetQuestionTarget(cbetQuestions.length);
+    setShuffledCbetQuestions(shuffleQuestionSet(cbetQuestions));
+    setCbetIndex(0);
+    setCbetScore(0);
+    setCbetAnswers({});
+    setCbetShowResult(false);
+    setShowMissedReview(false);
+    trackExamStart("CBET Practice");
+  };
+  const startCbetFullExam = () => {
+    const examQuestions = buildCBET75(cbetQuestions);
+    setCbetMode("full");
+    setCbetQuestionTarget(75);
+    setShuffledCbetQuestions(examQuestions);
+    setCbetIndex(0);
+    setCbetScore(0);
+    setCbetAnswers({});
+    setCbetShowResult(false);
+    setShowMissedReview(false);
+    trackExamStart("CBET Full Exam");
   };
   const saveHarderCbetProgress = () => {
     const progress = {
@@ -5355,19 +5529,26 @@ return (
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveTab("CBET")}
+                  onClick={() => {
+                    startCbetFullExam();
+                    setActiveTab("CBET");
+                  }}
                   style={{
-                    padding: "11px 18px",
+                    padding: isSmallScreen ? "13px 20px" : "15px 26px",
                     borderRadius: 999,
-                    border: "1px solid rgba(255,255,255,0.45)",
-                    background: "rgba(255,255,255,0.10)",
+                    border: "1px solid rgba(255,255,255,0.28)",
+                    background: "linear-gradient(90deg, #ef4444 0%, #f97316 100%)",
                     color: "white",
-                    fontWeight: 800,
+                    fontWeight: 900,
+                    fontSize: isSmallScreen ? 18 : 20,
+                    letterSpacing: 0.2,
                     cursor: "pointer",
-                    width: isSmallScreen ? "100%" : "auto"
+                    width: isSmallScreen ? "100%" : "auto",
+                    boxShadow: "0 10px 24px rgba(239,68,68,0.28)",
+                    transform: "scale(1.02)"
                   }}
                 >
-                  Jump to CBET Questions
+                  🔥 Jump to 75-Question CBET Exam
                 </button>
               </div>
             </div>
@@ -6655,14 +6836,66 @@ return (
             {!cbetShowResult && !showMissedReview ? (
               <>
                 <div style={{ textAlign: "center", marginBottom: 20 }}>
-                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>CBET Practice</h2>
+                  <h2 style={{ color: "#12355b", marginBottom: 8 }}>
+                    {cbetMode === "full" ? `CBET Full Practice Test (${cbetQuestionTarget} Questions)` : "CBET Practice"}
+                  </h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
-                    Questions are shuffled each restart. Select one answer. The correct
-                    answer will highlight after you answer.
+                    {cbetMode === "full"
+                      ? "Exam-style mode pulls a timed mixed set from your CBET pool so you can simulate a longer test session."
+                      : "Questions are shuffled each restart. Select one answer. The correct answer will highlight after you answer."}
                   </p>
                   <p style={{ color: "#1d6fa5", margin: "8px 0 0 0", fontWeight: 700 }}>
-                    Finish CBET Practice with a score of 70% or higher to unlock CBET Harder Questions.
+                    {cbetMode === "full"
+                      ? "Use this to simulate a deeper CBET study session and save your score to the leaderboard when you finish."
+                      : "Finish CBET Practice with a score of 70% or higher to unlock CBET Harder Questions."}
                   </p>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 20
+                  }}
+                >
+                  <button
+                    onClick={startCbetPracticeMode}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background:
+                        cbetMode === "practice"
+                          ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                          : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+                      color: cbetMode === "practice" ? "white" : "#12355b",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                      boxShadow: cbetMode === "full" ? "0 8px 20px rgba(239,68,68,0.28)" : "0 4px 10px rgba(0,0,0,0.08)",
+                      transform: cbetMode === "full" ? "scale(1.04)" : "scale(1)"
+                    }}
+                  >
+                    Practice Mode
+                  </button>
+                  <button
+                    onClick={startCbetFullExam}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background:
+                        cbetMode === "full"
+                          ? "linear-gradient(90deg, #ef4444, #f97316)"
+                          : "linear-gradient(135deg, #ecfeff, #f0fdfa)",
+                      color: cbetMode === "full" ? "white" : "#0f766e",
+                      fontWeight: cbetMode === "full" ? 800 : 700,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    🔥 Full CBET Exam (75 Questions)
+                  </button>
                 </div>
                 <div
                   style={{
@@ -6692,21 +6925,35 @@ return (
                     marginBottom: 20
                   }}
                 >
-                  <button
-                    onClick={saveCbetProgress}
-                    style={{
-                      padding: "10px 18px",
-                      borderRadius: 999,
-                      border: "none",
-                      background: "linear-gradient(135deg, #16a34a, #22c55e)",
-                      color: "white",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-                    }}
-                  >
-                    Save Progress
-                  </button>
+                  {cbetMode === "practice" ? (
+                    <button
+                      onClick={saveCbetProgress}
+                      style={{
+                        padding: "10px 18px",
+                        borderRadius: 999,
+                        border: "none",
+                        background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                        color: "white",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      Save Progress
+                    </button>
+                  ) : (
+                    <div
+                      style={{
+                        padding: "10px 16px",
+                        borderRadius: 999,
+                        background: "#ecfeff",
+                        color: "#0f766e",
+                        fontWeight: 700
+                      }}
+                    >
+                      Timed full exam mode
+                    </div>
+                  )}
                   <button
                     onClick={restartCbetExam}
                     style={{
@@ -6720,7 +6967,7 @@ return (
                       boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
                     }}
                   >
-                    Restart Practice
+                    {cbetMode === "full" ? "Restart Full Exam" : "Restart Practice"}
                   </button>
                 </div>
                 <div
@@ -6798,7 +7045,7 @@ return (
                       onClick={() => {
                         if (cbetAnswers[cbetIndex] === undefined) return;
                         if (cbetIndex + 1 === shuffledCbetQuestions.length) {
-                          trackExamCompletion("CBET Practice", cbetScore, shuffledCbetQuestions.length);
+                          trackExamCompletion(cbetMode === "full" ? "CBET Full Exam" : "CBET Practice", cbetScore, shuffledCbetQuestions.length);
                           setCbetShowResult(true);
                         } else {
                           setCbetIndex((prev) => prev + 1);
@@ -6820,7 +7067,9 @@ return (
                       }}
                     >
                       {cbetIndex + 1 === shuffledCbetQuestions.length
-                        ? "Finish Practice"
+                        ? cbetMode === "full"
+                          ? "Finish Full Exam"
+                          : "Finish Practice"
                         : "Next Question"}
                     </button>
                   </div>
@@ -6828,7 +7077,9 @@ return (
               </>
             ) : (
               <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b" }}>CBET Practice Complete</h2>
+                <h2 style={{ color: "#12355b" }}>
+                  {cbetMode === "full" ? "CBET Full Exam Complete" : "CBET Practice Complete"}
+                </h2>
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {cbetScore} / {shuffledCbetQuestions.length}
                 </p>
@@ -6958,7 +7209,7 @@ return (
       {showMissedReview && (
         <div style={{ marginTop: 24 }}>
           <h2 style={{ color: "#12355b", textAlign: "center" }}>
-            Missed Questions Review
+            {cbetMode === "full" ? "CBET Full Exam Missed Questions Review" : "Missed Questions Review"}
           </h2>
           {missedQuestions.length === 0 ? (
             <p style={{ textAlign: "center", color: "#1e293b" }}>
