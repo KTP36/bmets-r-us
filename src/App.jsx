@@ -3102,13 +3102,13 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       objectPosition: "center"
     },
     parts: [
-      { name: "Right Lobe", x: 280, y: 210, description: "Larger lobe; performs most liver functions" },
-      { name: "Left Lobe", x: 468, y: 190, description: "Smaller lobe; works with right lobe for detoxification" },
-      { name: "Portal Triad (Hilum)", x: 392, y: 304, description: "Convergence area containing portal vein, hepatic artery, and bile duct" },
-      { name: "Bile Duct", x: 456, y: 352, description: "Main downward duct carrying bile toward the gallbladder and intestine" },
-      { name: "Gallbladder", x: 480, y: 380, description: "Stores bile until needed to digest fats" },
-      { name: "Falciform Ligament", x: 350, y: 140, description: "Tissue that attaches liver to abdominal wall" },
-      { name: "Inferior Border", x: 430, y: 360, description: "Lower edge of the liver visible on this anterior view" }
+      { name: "Right Lobe", x: 240, y: 235, description: "Larger lobe; performs most liver functions" },
+      { name: "Left Lobe", x: 470, y: 230, description: "Smaller lobe; works with right lobe for detoxification" },
+      { name: "Portal Triad (Hilum)", x: 390, y: 260, description: "Convergence area containing portal vein, hepatic artery, and bile duct" },
+      { name: "Bile Duct", x: 440, y: 325, description: "Main downward duct carrying bile toward the gallbladder and intestine" },
+      { name: "Gallbladder", x: 465, y: 365, description: "Stores bile until needed to digest fats" },
+      { name: "Falciform Ligament", x: 365, y: 180, description: "Tissue that attaches liver to abdominal wall" },
+      { name: "Inferior Border", x: 385, y: 395, description: "Lower edge of the liver visible on this anterior view" }
     ]
   },
   Kidneys: {
