@@ -3021,18 +3021,18 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       objectPosition: "center"
     },
     parts: [
-      { name: "Frontal Lobe", x: 280, y: 120, description: "Controls decision-making, personality, movement, and speech" },
-      { name: "Parietal Lobe", x: 220, y: 80, description: "Processes sensations like touch, temperature, and pain" },
+      { name: "Frontal Lobe", x: 285, y: 115, description: "Controls decision-making, personality, movement, and speech" },
+      { name: "Parietal Lobe", x: 220, y: 70, description: "Processes sensations like touch, temperature, and pain" },
       { name: "Occipital Lobe", x: 120, y: 120, description: "Processes visual information and color perception" },
-      { name: "Temporal Lobe", x: 185, y: 220, description: "Supports hearing, language comprehension, and memory formation" },
-      { name: "Cerebellum", x: 106, y: 230, description: "Coordinates balance, posture, and smooth voluntary movement" },
-      { name: "Brainstem", x: 165, y: 265, description: "Controls vital automatic functions like breathing and heart rate" },
-      { name: "Corpus Callosum", x: 210, y: 120, description: "Major fiber tract connecting the left and right cerebral hemispheres" },
-      { name: "Thalamus", x: 190, y: 150, description: "Primary relay center that routes sensory and motor signals to the cortex" },
-      { name: "Hypothalamus", x: 205, y: 202, description: "Regulates temperature, hunger, endocrine control, and autonomic balance" },
-      { name: "Pituitary Gland", x: 221, y: 236, description: "Master endocrine gland that secretes hormones controlling other glands" },
-      { name: "Pons", x: 166, y: 271, description: "Brainstem region involved in breathing control and cranial nerve pathways" },
-      { name: "Medulla", x: 148, y: 323, description: "Lower brainstem center for respiration, heart rate, and blood pressure control" }
+      { name: "Temporal Lobe", x: 200, y: 225, description: "Supports hearing, language comprehension, and memory formation" },
+      { name: "Cerebellum", x: 105, y: 245, description: "Coordinates balance, posture, and smooth voluntary movement" },
+      { name: "Brainstem", x: 145, y: 245, description: "Controls vital automatic functions like breathing and heart rate" },
+      { name: "Corpus Callosum", x: 215, y: 135, description: "Major fiber tract connecting the left and right cerebral hemispheres" },
+      { name: "Thalamus", x: 195, y: 165, description: "Primary relay center that routes sensory and motor signals to the cortex" },
+      { name: "Hypothalamus", x: 205, y: 210, description: "Regulates temperature, hunger, endocrine control, and autonomic balance" },
+      { name: "Pituitary Gland", x: 230, y: 245, description: "Master endocrine gland that secretes hormones controlling other glands" },
+      { name: "Pons", x: 165, y: 285, description: "Brainstem region involved in breathing control and cranial nerve pathways" },
+      { name: "Medulla", x: 150, y: 325, description: "Lower brainstem center for respiration, heart rate, and blood pressure control" }
     ]
   },
   Lungs: {
