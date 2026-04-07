@@ -3532,7 +3532,7 @@ const bones = {
       { name: "Femur", x: 400, y: 80, description: "Thigh bone; the upper bone of the knee joint" },
       { name: "Patella", x: 400, y: 290, description: "Kneecap; protects the knee joint and improves quadriceps leverage" },
       { name: "Tibia", x: 370, y: 700, description: "Shin bone; main weight-bearing bone of the lower leg" },
-      { name: "Fibula", x: 530, y: 720, description: "Smaller lower leg bone; runs lateral to the tibia" },
+      { name: "Fibula", x: 470, y: 720, description: "Smaller lower leg bone; runs lateral to the tibia" },
       { name: "Medial Condyle", x: 225, y: 480, description: "Inner rounded projection at the base of the femur forming part of the joint surface" },
       { name: "Lateral Condyle", x: 548, y: 480, description: "Outer rounded projection at the base of the femur forming part of the joint surface" },
       { name: "Medial Meniscus", x: 225, y: 522, description: "C-shaped fibrocartilage on the inner knee that absorbs shock and stabilizes the joint" },
