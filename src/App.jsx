@@ -3702,31 +3702,250 @@ const bones = {
 };
 
 const muscleQuizQuestions = [
-  { question: "Which muscle flexes the elbow?", options: ["Deltoid", "Biceps Brachii", "Quadriceps", "Pectoralis Major"], answer: 1 },
-  { question: "Which muscle is located on the chest?", options: ["Rectus Abdominis", "Pectoralis Major", "External Oblique", "Tibialis Anterior"], answer: 1 },
-  { question: "Which muscle is responsible for shoulder abduction?", options: ["Deltoid", "Biceps Brachii", "Rectus Abdominis", "Quadriceps"], answer: 0 },
-  { question: "Which muscle forms the 'six-pack'?", options: ["Serratus Anterior", "Rectus Abdominis", "External Oblique", "Deltoid"], answer: 1 },
-  { question: "Which muscle group is on the front of the thigh?", options: ["Hamstrings", "Quadriceps", "Calf muscles", "Gluteals"], answer: 1 },
-  { question: "Which muscle is located on the shin?", options: ["Tibialis Anterior", "Quadriceps", "Biceps Brachii", "Deltoid"], answer: 0 },
-  { question: "Which muscle appears as saw-toothed slips along the ribs?", options: ["Rectus Abdominis", "Serratus Anterior", "Pectoralis Major", "Frontalis"], answer: 1 },
-  { question: "Which muscle rotates and flexes the trunk from the side of the abdomen?", options: ["Quadriceps", "External Oblique", "Biceps Brachii", "Frontalis"], answer: 1 },
-  { question: "Which muscle is located on the forehead?", options: ["Masseter", "Frontalis", "Temporalis", "Deltoid"], answer: 1 },
-  { question: "Which muscle is found on the front of the upper arm?", options: ["Triceps", "Biceps Brachii", "Deltoid", "Pectoralis Major"], answer: 1 },
-  { question: "Which muscle group extends the knee?", options: ["Hamstrings", "Quadriceps", "External Oblique", "Rectus Abdominis"], answer: 1 },
-  { question: "Which muscle dorsiflexes the foot?", options: ["Quadriceps", "Tibialis Anterior", "Pectoralis Major", "Biceps Brachii"], answer: 1 },
-  { question: "Which muscle covers the rounded contour of the shoulder?", options: ["Deltoid", "Frontalis", "Rectus Abdominis", "External Oblique"], answer: 0 },
-  { question: "Which muscle runs vertically down the middle of the abdomen?", options: ["External Oblique", "Serratus Anterior", "Rectus Abdominis", "Pectoralis Major"], answer: 2 },
-  { question: "Which muscle helps move and stabilize the scapula against the rib cage?", options: ["Serratus Anterior", "Quadriceps", "Tibialis Anterior", "Frontalis"], answer: 0 },
-  { question: "Which muscle lies lateral to the rectus abdominis?", options: ["External Oblique", "Biceps Brachii", "Deltoid", "Quadriceps"], answer: 0 },
-  { question: "Which major chest muscle helps flex and adduct the arm?", options: ["Pectoralis Major", "Deltoid", "Frontalis", "Tibialis Anterior"], answer: 0 },
-  { question: "Which label would belong on the forehead in your muscles game?", options: ["Frontalis", "Serratus Anterior", "Quadriceps", "External Oblique"], answer: 0 },
-  { question: "Which label would belong on the shoulder in your muscles game?", options: ["Biceps Brachii", "Deltoid", "Rectus Abdominis", "Tibialis Anterior"], answer: 1 },
-  { question: "Which label would belong on the chest in your muscles game?", options: ["Pectoralis Major", "Quadriceps", "Frontalis", "External Oblique"], answer: 0 },
-  { question: "Which label would belong on the upper arm in your muscles game?", options: ["Rectus Abdominis", "Biceps Brachii", "Deltoid", "Quadriceps"], answer: 1 },
-  { question: "Which label would belong on the side of the ribs in your muscles game?", options: ["Serratus Anterior", "Frontalis", "Tibialis Anterior", "Quadriceps"], answer: 0 },
-  { question: "Which label would belong on the abdominal wall in your muscles game?", options: ["External Oblique", "Rectus Abdominis", "Both of these", "Neither of these"], answer: 2 },
-  { question: "Which label would belong on the front thigh in your muscles game?", options: ["Quadriceps", "Biceps Brachii", "Frontalis", "Pectoralis Major"], answer: 0 },
-  { question: "Which label would belong on the front lower leg in your muscles game?", options: ["Tibialis Anterior", "Serratus Anterior", "External Oblique", "Deltoid"], answer: 0 }
+  {
+    question: "Which muscle flexes the elbow on the front of the upper arm?",
+    options: ["Deltoid", "Biceps Brachii", "Quadriceps", "Pectoralis Major"],
+    answer: 1,
+    explanation: "The biceps brachii is the major anterior upper-arm muscle that helps flex the elbow."
+  },
+  {
+    question: "Which major muscle covers most of the chest?",
+    options: ["Rectus Abdominis", "Pectoralis Major", "External Oblique", "Tibialis Anterior"],
+    answer: 1,
+    explanation: "The pectoralis major is the large fan-shaped chest muscle."
+  },
+  {
+    question: "Which muscle creates the rounded contour of the shoulder?",
+    options: ["Deltoid", "Frontalis", "Rectus Abdominis", "External Oblique"],
+    answer: 0,
+    explanation: "The deltoid wraps over the shoulder and gives it its rounded shape."
+  },
+  {
+    question: "Which abdominal muscle runs vertically down the midline and forms the 'six-pack'?",
+    options: ["Serratus Anterior", "Rectus Abdominis", "External Oblique", "Deltoid"],
+    answer: 1,
+    explanation: "The rectus abdominis is the straight central abdominal muscle."
+  },
+  {
+    question: "Which muscle group is located on the front of the thigh?",
+    options: ["Hamstrings", "Quadriceps", "Calf muscles", "Gluteals"],
+    answer: 1,
+    explanation: "The quadriceps are the major extensor muscles on the anterior thigh."
+  },
+  {
+    question: "Which muscle lies on the front of the lower leg and helps dorsiflex the foot?",
+    options: ["Tibialis Anterior", "Quadriceps", "Biceps Brachii", "Deltoid"],
+    answer: 0,
+    explanation: "The tibialis anterior is the main anterior shin muscle and dorsiflexes the foot."
+  },
+  {
+    question: "Which muscle appears as saw-toothed slips along the lateral ribs?",
+    options: ["Rectus Abdominis", "Serratus Anterior", "Pectoralis Major", "Frontalis"],
+    answer: 1,
+    explanation: "The serratus anterior has a classic serrated appearance along the ribs."
+  },
+  {
+    question: "Which muscle lies on the side of the abdomen and helps rotate the trunk?",
+    options: ["Quadriceps", "External Oblique", "Biceps Brachii", "Frontalis"],
+    answer: 1,
+    explanation: "The external oblique is a lateral abdominal muscle involved in trunk rotation and side bending."
+  },
+  {
+    question: "Which muscle is found on the forehead?",
+    options: ["Masseter", "Frontalis", "Temporalis", "Deltoid"],
+    answer: 1,
+    explanation: "The frontalis is the superficial forehead muscle that raises the eyebrows."
+  },
+  {
+    question: "Which muscle is on the front of the upper arm?",
+    options: ["Triceps", "Biceps Brachii", "Deltoid", "Pectoralis Major"],
+    answer: 1,
+    explanation: "The biceps brachii lies on the anterior side of the upper arm."
+  },
+  {
+    question: "Which muscle group primarily extends the knee?",
+    options: ["Hamstrings", "Quadriceps", "External Oblique", "Rectus Abdominis"],
+    answer: 1,
+    explanation: "The quadriceps are the primary knee extensors."
+  },
+  {
+    question: "Which muscle helps flex and adduct the arm from the chest?",
+    options: ["Pectoralis Major", "Deltoid", "Frontalis", "Tibialis Anterior"],
+    answer: 0,
+    explanation: "The pectoralis major helps move the humerus across the body and forward."
+  },
+  {
+    question: "Which label would belong on the forehead in your muscles game?",
+    options: ["Frontalis", "Serratus Anterior", "Quadriceps", "External Oblique"],
+    answer: 0,
+    explanation: "The forehead label belongs to the frontalis."
+  },
+  {
+    question: "Which label would belong on the shoulder in your muscles game?",
+    options: ["Biceps Brachii", "Deltoid", "Rectus Abdominis", "Tibialis Anterior"],
+    answer: 1,
+    explanation: "The rounded shoulder region is labeled as the deltoid."
+  },
+  {
+    question: "Which label would belong on the chest in your muscles game?",
+    options: ["Pectoralis Major", "Quadriceps", "Frontalis", "External Oblique"],
+    answer: 0,
+    explanation: "The major chest muscle is the pectoralis major."
+  },
+  {
+    question: "Which label would belong on the upper arm in your muscles game?",
+    options: ["Rectus Abdominis", "Biceps Brachii", "Deltoid", "Quadriceps"],
+    answer: 1,
+    explanation: "On an anterior muscle view, the front of the upper arm is the biceps brachii."
+  },
+  {
+    question: "Which label would belong on the side of the ribs in your muscles game?",
+    options: ["Serratus Anterior", "Frontalis", "Quadriceps", "Tibialis Anterior"],
+    answer: 0,
+    explanation: "The serratus anterior lies along the lateral ribs."
+  },
+  {
+    question: "Which label would belong on the center of the abdomen in your muscles game?",
+    options: ["External Oblique", "Rectus Abdominis", "Deltoid", "Biceps Brachii"],
+    answer: 1,
+    explanation: "The central vertical abdominal muscle is the rectus abdominis."
+  },
+  {
+    question: "Which label would belong on the side of the abdomen in your muscles game?",
+    options: ["External Oblique", "Pectoralis Major", "Quadriceps", "Frontalis"],
+    answer: 0,
+    explanation: "The side abdominal wall is labeled as the external oblique."
+  },
+  {
+    question: "Which label would belong on the front lower leg in your muscles game?",
+    options: ["Tibialis Anterior", "Serratus Anterior", "External Oblique", "Deltoid"],
+    answer: 0,
+    explanation: "The anterior shin muscle is the tibialis anterior."
+  }
+];
+
+
+const muscleConceptQuestions = [
+  {
+    question: "Which type of muscle is under voluntary control?",
+    options: ["Smooth muscle", "Cardiac muscle", "Skeletal muscle", "Visceral muscle"],
+    answer: 2,
+    explanation: "Skeletal muscle is the voluntary muscle type you consciously control for movement."
+  },
+  {
+    question: "Which muscle type is found in the walls of organs like the stomach and intestines?",
+    options: ["Skeletal", "Cardiac", "Smooth", "Striated"],
+    answer: 2,
+    explanation: "Smooth muscle lines many hollow organs and helps move substances through them."
+  },
+  {
+    question: "What is the functional unit of muscle contraction?",
+    options: ["Sarcomere", "Myofibril", "Fascicle", "Neuron"],
+    answer: 0,
+    explanation: "The sarcomere is the smallest repeating contractile unit inside muscle tissue."
+  },
+  {
+    question: "Which two proteins slide past each other during contraction?",
+    options: ["Collagen and elastin", "Actin and myosin", "Keratin and collagen", "Calcium and sodium"],
+    answer: 1,
+    explanation: "Actin and myosin interact within the sarcomere to shorten the muscle."
+  },
+  {
+    question: "What surrounds the entire muscle?",
+    options: ["Endomysium", "Perimysium", "Epimysium", "Sarcolemma"],
+    answer: 2,
+    explanation: "Epimysium is the outer connective tissue layer that wraps the whole muscle."
+  },
+  {
+    question: "What surrounds a bundle of muscle fibers called a fascicle?",
+    options: ["Epimysium", "Perimysium", "Endomysium", "Tendon"],
+    answer: 1,
+    explanation: "Perimysium surrounds fascicles, which are bundles of muscle fibers."
+  },
+  {
+    question: "What surrounds an individual muscle fiber?",
+    options: ["Perimysium", "Endomysium", "Epimysium", "Fascia"],
+    answer: 1,
+    explanation: "Endomysium is the delicate connective tissue around each single muscle fiber."
+  },
+  {
+    question: "What is a fascicle?",
+    options: ["A single muscle cell", "A bundle of muscle fibers", "A tendon", "A nerve ending"],
+    answer: 1,
+    explanation: "A fascicle is a grouped bundle of muscle fibers within a muscle."
+  },
+  {
+    question: "What structure connects muscle to bone?",
+    options: ["Ligament", "Tendon", "Cartilage", "Bursa"],
+    answer: 1,
+    explanation: "Tendons attach muscles to bones and transmit the force of contraction."
+  },
+  {
+    question: "What is the neuromuscular junction?",
+    options: ["A joint between bones", "The connection between nerve and muscle", "The attachment between tendon and bone", "A membrane around a fascicle"],
+    answer: 1,
+    explanation: "The neuromuscular junction is where a motor neuron communicates with a muscle fiber."
+  },
+  {
+    question: "What is a motor unit?",
+    options: ["A single muscle fiber", "One tendon and one bone", "A neuron and the muscle fibers it controls", "A fascicle and its artery"],
+    answer: 2,
+    explanation: "A motor unit includes one motor neuron and all the muscle fibers that neuron activates."
+  },
+  {
+    question: "Which muscle type is striated and involuntary?",
+    options: ["Skeletal", "Smooth", "Cardiac", "Visceral"],
+    answer: 2,
+    explanation: "Cardiac muscle is striated like skeletal muscle but contracts involuntarily."
+  },
+  {
+    question: "What happens during muscle contraction?",
+    options: ["The muscle fibers lengthen", "Actin and myosin slide past each other", "Bones become shorter", "The sarcolemma disappears"],
+    answer: 1,
+    explanation: "Contraction occurs when actin and myosin slide, causing the sarcomere to shorten."
+  },
+  {
+    question: "What is the sarcolemma?",
+    options: ["A tendon covering", "The muscle cell membrane", "The connective tissue around the whole muscle", "A nerve branch"],
+    answer: 1,
+    explanation: "The sarcolemma is the membrane that surrounds a muscle fiber."
+  },
+  {
+    question: "Which ion is critical for triggering muscle contraction?",
+    options: ["Sodium", "Potassium", "Calcium", "Iron"],
+    answer: 2,
+    explanation: "Calcium allows the contractile proteins to interact and begin contraction."
+  },
+  {
+    question: "In muscle anatomy, what is the origin?",
+    options: ["The more fixed attachment", "The more movable attachment", "The muscle's nerve supply", "The center of the fascicle"],
+    answer: 0,
+    explanation: "The origin is usually the more stable attachment site of a muscle."
+  },
+  {
+    question: "In muscle anatomy, what is the insertion?",
+    options: ["The fixed attachment", "The movable attachment", "The muscle covering", "The tendon sheath"],
+    answer: 1,
+    explanation: "The insertion is usually the attachment that moves when the muscle contracts."
+  },
+  {
+    question: "What is a myofibril?",
+    options: ["A whole muscle organ", "A contractile thread inside a muscle fiber", "A bundle of fascicles", "A synapse on the muscle"],
+    answer: 1,
+    explanation: "Myofibrils are the rod-like contractile structures inside each muscle fiber."
+  },
+  {
+    question: "Which structure shortens during contraction?",
+    options: ["Sarcomere", "Ligament", "Bone", "Tendon sheath"],
+    answer: 0,
+    explanation: "Sarcomeres shorten as actin and myosin slide during contraction."
+  },
+  {
+    question: "Which muscle type is found only in the heart?",
+    options: ["Smooth", "Skeletal", "Cardiac", "Striated voluntary"],
+    answer: 2,
+    explanation: "Cardiac muscle is unique to the heart and supports rhythmic pumping."
+  }
 ];
 
 function MuscleQuiz({ onComplete }) {
@@ -3737,6 +3956,7 @@ function MuscleQuiz({ onComplete }) {
 
   const question = muscleQuizQuestions[current];
   const total = muscleQuizQuestions.length;
+  const isAnswered = selected !== null;
 
   const restartQuiz = () => {
     setCurrent(0);
@@ -3801,7 +4021,7 @@ function MuscleQuiz({ onComplete }) {
         <div style={{ textAlign: "center", marginBottom: 20 }}>
           <h2 style={{ color: "#12355b", marginBottom: 8 }}>Muscle Quiz</h2>
           <p style={{ color: "#4f6275", margin: 0 }}>
-            Test your knowledge of the main muscles used in your anterior muscle practice game.
+            Test your knowledge of the major muscles used in your anterior muscle practice game.
           </p>
         </div>
 
@@ -3836,6 +4056,17 @@ function MuscleQuiz({ onComplete }) {
           >
             Score: {score}
           </div>
+          <div
+            style={{
+              padding: "10px 16px",
+              borderRadius: 999,
+              background: "#f8fafc",
+              color: "#475569",
+              fontWeight: 700
+            }}
+          >
+            Muscles
+          </div>
         </div>
 
         <div style={{ color: "#12355b", marginBottom: 18 }}>
@@ -3844,12 +4075,12 @@ function MuscleQuiz({ onComplete }) {
 
         {question.options.map((opt, i) => {
           const isCorrectOption = i === question.answer;
-          const isSelectedWrong = selected !== null && i === selected && selected !== question.answer;
+          const isSelectedWrong = isAnswered && i === selected && selected !== question.answer;
           return (
             <button
               key={i}
               onClick={() => {
-                if (selected !== null) return;
+                if (isAnswered) return;
                 setSelected(i);
                 if (i === question.answer) {
                   setScore((prev) => prev + 1);
@@ -3862,13 +4093,13 @@ function MuscleQuiz({ onComplete }) {
                 marginBottom: 12,
                 borderRadius: 12,
                 border:
-                  isCorrectOption && selected !== null
+                  isCorrectOption && isAnswered
                     ? "2px solid green"
                     : isSelectedWrong
                     ? "2px solid red"
                     : "1px solid #cbd5e1",
                 background:
-                  isCorrectOption && selected !== null
+                  isCorrectOption && isAnswered
                     ? "#d9f7d9"
                     : isSelectedWrong
                     ? "#fee2e2"
@@ -3876,7 +4107,7 @@ function MuscleQuiz({ onComplete }) {
                 color: "#1e293b",
                 fontSize: 16,
                 fontWeight: 600,
-                cursor: selected !== null ? "default" : "pointer",
+                cursor: isAnswered ? "default" : "pointer",
                 boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
               }}
             >
@@ -3885,12 +4116,31 @@ function MuscleQuiz({ onComplete }) {
           );
         })}
 
+        {isAnswered && (
+          <div
+            style={{
+              marginTop: 8,
+              padding: "12px 14px",
+              borderRadius: 12,
+              background: "#eff6ff",
+              color: "#1d4ed8",
+              border: "1px solid #bfdbfe",
+              fontWeight: 600
+            }}
+          >
+            Explanation: {question.explanation}
+          </div>
+        )}
+
         <div style={{ textAlign: "center", marginTop: 20 }}>
           <button
             onClick={() => {
-              if (selected === null) return;
+              if (!isAnswered) return;
+              const isCorrect = selected === question.answer;
+              const nextScore = isCorrect ? score + 1 : score;
               if (current + 1 === total) {
-                onComplete && onComplete(score, total);
+                onComplete && onComplete(nextScore, total);
+                setScore(nextScore);
                 setShowResults(true);
               } else {
                 setCurrent((prev) => prev + 1);
@@ -3904,8 +4154,229 @@ function MuscleQuiz({ onComplete }) {
               background: "linear-gradient(135deg, #12355b, #1d6fa5)",
               color: "white",
               fontWeight: 700,
-              cursor: selected === null ? "not-allowed" : "pointer",
-              opacity: selected === null ? 0.6 : 1
+              cursor: !isAnswered ? "not-allowed" : "pointer",
+              opacity: !isAnswered ? 0.6 : 1
+            }}
+          >
+            {current + 1 === total ? "Finish Quiz" : "Next Question"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+function MuscleConceptQuiz({ onComplete }) {
+  const [current, setCurrent] = React.useState(0);
+  const [selected, setSelected] = React.useState(null);
+  const [score, setScore] = React.useState(0);
+  const [showResults, setShowResults] = React.useState(false);
+
+  const question = muscleConceptQuestions[current];
+  const total = muscleConceptQuestions.length;
+  const isAnswered = selected !== null;
+
+  const restartQuiz = () => {
+    setCurrent(0);
+    setSelected(null);
+    setScore(0);
+    setShowResults(false);
+  };
+
+  if (showResults) {
+    const percent = Math.round((score / total) * 100);
+    return (
+      <div style={{ padding: 20 }}>
+        <div
+          style={{
+            background: "rgba(255,255,255,0.92)",
+            borderRadius: 24,
+            padding: 28,
+            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+            maxWidth: 900,
+            margin: "0 auto",
+            textAlign: "center"
+          }}
+        >
+          <h2 style={{ color: "#12355b", marginTop: 0 }}>Muscle Concepts Quiz Complete</h2>
+          <p style={{ fontSize: 20, color: "#1e293b" }}>
+            Your score: {score} / {total}
+          </p>
+          <p style={{ color: "#4f6275", marginBottom: 20 }}>
+            Accuracy: {percent}%
+          </p>
+          <button
+            onClick={restartQuiz}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+              color: "white",
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Restart Muscle Concepts Quiz
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ padding: 20 }}>
+      <div
+        style={{
+          background: "rgba(255,255,255,0.9)",
+          borderRadius: 24,
+          padding: 28,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          maxWidth: 900,
+          margin: "0 auto"
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <h2 style={{ color: "#12355b", marginBottom: 8 }}>Muscle Structure & Function Quiz</h2>
+          <p style={{ color: "#4f6275", margin: 0 }}>
+            Test your knowledge of muscle tissue types, layers, contraction, and structure-function concepts.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 10,
+            flexWrap: "wrap",
+            marginBottom: 20
+          }}
+        >
+          <div
+            style={{
+              padding: "10px 16px",
+              borderRadius: 999,
+              background: "#eff6ff",
+              color: "#12355b",
+              fontWeight: 700
+            }}
+          >
+            Question {current + 1} / {total}
+          </div>
+          <div
+            style={{
+              padding: "10px 16px",
+              borderRadius: 999,
+              background: "#ecfeff",
+              color: "#0f766e",
+              fontWeight: 700
+            }}
+          >
+            Score: {score}
+          </div>
+          <div
+            style={{
+              padding: "10px 16px",
+              borderRadius: 999,
+              background: "#f8fafc",
+              color: "#475569",
+              fontWeight: 700
+            }}
+          >
+            Muscles
+          </div>
+        </div>
+
+        <div style={{ color: "#12355b", marginBottom: 18 }}>
+          <div style={{ fontSize: 24, fontWeight: 700 }}>{question.question}</div>
+        </div>
+
+        {question.options.map((opt, i) => {
+          const isCorrectOption = i === question.answer;
+          const isSelectedWrong = isAnswered && i === selected && selected !== question.answer;
+          return (
+            <button
+              key={i}
+              onClick={() => {
+                if (isAnswered) return;
+                setSelected(i);
+                if (i === question.answer) {
+                  setScore((prev) => prev + 1);
+                }
+              }}
+              style={{
+                width: "100%",
+                textAlign: "left",
+                padding: "14px 16px",
+                marginBottom: 12,
+                borderRadius: 12,
+                border:
+                  isCorrectOption && isAnswered
+                    ? "2px solid green"
+                    : isSelectedWrong
+                    ? "2px solid red"
+                    : "1px solid #cbd5e1",
+                background:
+                  isCorrectOption && isAnswered
+                    ? "#d9f7d9"
+                    : isSelectedWrong
+                    ? "#fee2e2"
+                    : "#f8fafc",
+                color: "#1e293b",
+                fontSize: 16,
+                fontWeight: 600,
+                cursor: isAnswered ? "default" : "pointer",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+              }}
+            >
+              {String.fromCharCode(65 + i)}. {opt}
+            </button>
+          );
+        })}
+
+        {isAnswered && (
+          <div
+            style={{
+              marginTop: 8,
+              padding: "12px 14px",
+              borderRadius: 12,
+              background: "#eff6ff",
+              color: "#1d4ed8",
+              border: "1px solid #bfdbfe",
+              fontWeight: 600
+            }}
+          >
+            Explanation: {question.explanation}
+          </div>
+        )}
+
+        <div style={{ textAlign: "center", marginTop: 20 }}>
+          <button
+            onClick={() => {
+              if (!isAnswered) return;
+              const isCorrect = selected === question.answer;
+              const nextScore = isCorrect ? score + 1 : score;
+              if (current + 1 === total) {
+                onComplete && onComplete(nextScore, total);
+                setScore(nextScore);
+                setShowResults(true);
+              } else {
+                setCurrent((prev) => prev + 1);
+                setSelected(null);
+              }
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+              color: "white",
+              fontWeight: 700,
+              cursor: !isAnswered ? "not-allowed" : "pointer",
+              opacity: !isAnswered ? 0.6 : 1
             }}
           >
             {current + 1 === total ? "Finish Quiz" : "Next Question"}
@@ -6198,6 +6669,39 @@ return (
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    margin: "0 0 12px 0"
+                  }}
+                >
+                  <div
+                    onClick={() => { trackExamStart("Muscle Concepts Quiz"); setActiveTab("MuscleConceptQuiz"); }}
+                    style={{
+                      background: "linear-gradient(90deg, #dbeafe 0%, #bbf7d0 100%)",
+                      color: "#12355b",
+                      fontWeight: 900,
+                      fontSize: 22,
+                      borderRadius: 18,
+                      padding: "10px 34px",
+                      border: "2px solid #38bdf8",
+                      boxShadow: "0 4px 18px rgba(56,189,248,0.13)",
+                      cursor: "pointer",
+                      transition: "transform 0.15s ease, box-shadow 0.15s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "scale(1.03)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "scale(1)";
+                    }}
+                  >
+                    Click here to Test Muscle Structure & Function
+                  </div>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                     margin: "8px 0 12px 0"
                   }}
                 >
@@ -6863,6 +7367,7 @@ return (
         {activeTab === "AnatomyQuiz" && <AnatomyQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Anatomy Quiz", finalScore, totalQuestions)} />}
         {activeTab === "BonesQuiz" && <BonesQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Bones Quiz", finalScore, totalQuestions)} />}
         {activeTab === "MuscleQuiz" && <MuscleQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Muscle Quiz", finalScore, totalQuestions)} />}
+        {activeTab === "MuscleConceptQuiz" && <MuscleConceptQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Muscle Concepts Quiz", finalScore, totalQuestions)} />}
                {activeTab === "CBET" && (
           <div
             style={{
