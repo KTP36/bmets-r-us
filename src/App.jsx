@@ -3196,6 +3196,47 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       { name: "Ciliary Body", x: 110, y: 270, description: "Produces aqueous fluid and adjusts lens shape" }
     ]
   },
+  "Skin Layers": {
+    image: "/skin-layers.jpg",
+    boardWidth: 760,
+    boardHeight: 700,
+    functionTitle: "Protects the body and supports temperature control",
+    functionSummary:
+      "The skin forms a protective barrier, helps regulate temperature, supports sensation, limits water loss, and contains structures like hair follicles, sweat glands, and fat for insulation and support.",
+    studyHighlights: [
+      "Separates epidermis, dermis, and hypodermis for easy visual layer recognition",
+      "Includes common support structures often taught with skin cross-sections",
+      "Helps learners connect barrier function, sensation, and thermoregulation"
+    ],
+    dropWidth: 118,
+    dropHeight: 34,
+    mobileDropScale: 0.34,
+    mobileLabelOffsetX: -150,
+    mobileLabelOffsetY: 0,
+    mobileImageScale: 1.85,
+    mobileImageTranslateX: -68,
+    mobileImageTranslateY: 0,
+    imageStyle: {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain",
+      objectPosition: "center"
+    },
+    parts: [
+      { name: "Epidermis", x: 520, y: 184, description: "Thin outer protective layer of the skin" },
+      { name: "Dermis", x: 505, y: 255, description: "Middle connective tissue layer containing vessels, nerves, and glands" },
+      { name: "Hypodermis", x: 500, y: 455, description: "Deeper subcutaneous layer rich in fat and connective tissue" },
+      { name: "Hair Shaft", x: 300, y: 110, description: "Visible portion of hair extending above the skin surface" },
+      { name: "Hair Follicle", x: 290, y: 315, description: "Tubular sheath in the skin that surrounds the hair root" },
+      { name: "Sebaceous Gland", x: 345, y: 260, description: "Oil-producing gland that empties into the hair follicle" },
+      { name: "Sweat Gland", x: 310, y: 430, description: "Coiled gland involved in sweat production and cooling" },
+      { name: "Sweat Duct", x: 315, y: 250, description: "Tube carrying sweat from the gland to the skin surface" },
+      { name: "Arrector Pili Muscle", x: 395, y: 305, description: "Small muscle that raises the hair and causes goosebumps" },
+      { name: "Blood Vessels", x: 450, y: 500, description: "Vascular network supplying deeper skin tissues" },
+      { name: "Nerve Ending", x: 600, y: 350, description: "Sensory structure that helps detect pain, temperature, and touch" },
+      { name: "Adipose Tissue", x: 300, y: 540, description: "Fat tissue in the hypodermis that cushions and insulates" }
+    ]
+  },
   Ear: {
     image: "/ear.jpg",
     boardWidth: 700,
