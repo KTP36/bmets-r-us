@@ -3182,18 +3182,18 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       objectPosition: "center"
     },
     parts: [
-      { name: "Cornea", x: 28, y: 355, description: "Clear front layer that protects the eye and focuses light" },
-      { name: "Iris", x: 73, y: 406, description: "Colored muscle that controls pupil size and light entry" },
-      { name: "Lens", x: 121, y: 355, description: "Clear structure that focuses light precisely on retina" },
-      { name: "Pupil", x: 58, y: 354, description: "Opening in iris that regulates light entering the eye" },
-      { name: "Aqueous Humor", x: 32, y: 296, description: "Clear fluid in front of lens; maintains eye pressure" },
-      { name: "Vitreous Humor", x: 370, y: 355, description: "Clear gel filling most of eye; maintains shape" },
-      { name: "Retina", x: 548, y: 227, description: "Light-sensitive tissue that captures visual images" },
+      { name: "Cornea", x: 32, y: 355, description: "Clear front layer that protects the eye and focuses light" },
+      { name: "Iris", x: 78, y: 405, description: "Colored muscle that controls pupil size and light entry" },
+      { name: "Lens", x: 125, y: 355, description: "Clear structure that focuses light precisely on retina" },
+      { name: "Pupil", x: 62, y: 355, description: "Opening in iris that regulates light entering the eye" },
+      { name: "Aqueous Humor", x: 55, y: 330, description: "Clear fluid in front of lens; maintains eye pressure" },
+      { name: "Vitreous Humor", x: 360, y: 355, description: "Clear gel filling most of eye; maintains shape" },
+      { name: "Retina", x: 530, y: 240, description: "Light-sensitive tissue that captures visual images" },
       { name: "Optic Nerve", x: 675, y: 465, description: "Transmits visual signals from retina to brain" },
-      { name: "Sclera", x: 578, y: 165, description: "White outer layer; provides shape and protection" },
-      { name: "Choroid", x: 556, y: 184, description: "Blood vessel layer that supplies nutrients to retina" },
-      { name: "Macula", x: 556, y: 505, description: "Central area of retina for sharp, detailed vision" },
-      { name: "Ciliary Body", x: 108, y: 240, description: "Produces aqueous fluid and adjusts lens shape" }
+      { name: "Sclera", x: 600, y: 150, description: "White outer layer; provides shape and protection" },
+      { name: "Choroid", x: 565, y: 175, description: "Blood vessel layer that supplies nutrients to retina" },
+      { name: "Macula", x: 540, y: 440, description: "Central area of retina for sharp, detailed vision" },
+      { name: "Ciliary Body", x: 110, y: 270, description: "Produces aqueous fluid and adjusts lens shape" }
     ]
   },
   Ear: {
