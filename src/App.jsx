@@ -422,7 +422,7 @@ function EquipmentTab({
                   cursor: "pointer"
                 }}
               >
-                {cbetMode === "full" ? "Restart Full Exam" : "Restart Practice"}
+                Restart Practice
               </button>
             </div>
           </div>
@@ -1976,6 +1976,446 @@ const equipmentQuestions = [
     studyTip: "Uses high-frequency sound waves to generate real-time diagnostic images."
   },
 ];
+const cableQuestions = [
+  {
+    image: "/cables/arterial_line_catheter.jpg",
+    category: "Clinical Lines & Cables",
+    question: "Identify this line or setup.",
+    options: ["Arterial line setup", "PICC line", "SpO2 sensor cable", "ECG trunk cable"],
+    answer: 0,
+    studyTip: "An arterial line setup is used for continuous blood pressure monitoring and often includes pressure tubing, a transducer, and a flush setup."
+  },
+  {
+    image: "/cables/ecg_trunk_cable.jpg",
+    category: "Clinical Lines & Cables",
+    question: "Identify this cable.",
+    options: ["Temperature probe", "ECG trunk cable", "NIBP hose", "SpO2 sensor cable"],
+    answer: 1,
+    studyTip: "ECG trunk cables branch into multiple lead wires that connect patient electrodes to the monitor."
+  },
+  {
+    image: "/cables/spo2_sensor.jpg",
+    category: "Clinical Lines & Cables",
+    question: "Identify this cable or sensor.",
+    options: ["PICC line", "SpO2 sensor cable", "Arterial line setup", "USB-A connector"],
+    answer: 1,
+    studyTip: "SpO2 sensors are used to measure oxygen saturation and commonly connect to a monitor with a cable attached to a finger sensor."
+  },
+  {
+    image: "/cables/picc_line.jpg",
+    category: "Clinical Lines & Cables",
+    question: "Identify this line.",
+    options: ["PICC line", "Arterial line setup", "ECG trunk cable", "Temperature probe"],
+    answer: 0,
+    studyTip: "A PICC line is a long central venous catheter inserted through a peripheral vein and may have one or more external lumens."
+  },
+  {
+    image: "/cables/hdmi_connector.jpg",
+    category: "Common Tech Connectors",
+    question: "Identify this connector.",
+    options: ["DisplayPort", "HDMI", "USB-A", "VGA"],
+    answer: 1,
+    studyTip: "HDMI is a flat digital audio/video connector commonly used with monitors, TVs, and laptops."
+  },
+  {
+    image: "/cables/vga_connector.jpg",
+    category: "Common Tech Connectors",
+    question: "Identify this connector.",
+    options: ["VGA", "HDMI", "BNC", "USB-C"],
+    answer: 0,
+    studyTip: "VGA is an older analog video connector with 15 pins and screw locks."
+  },
+  {
+    image: "/cables/bnc_connector.jpg",
+    category: "Common Tech Connectors",
+    question: "Identify this connector.",
+    options: ["BNC", "DVI", "VGA", "DisplayPort"],
+    answer: 0,
+    studyTip: "BNC is a round coaxial connector with a twist-lock mechanism often seen in video and test equipment."
+  },
+  {
+    image: "/cables/usb_a_connector.jpg",
+    category: "Common Tech Connectors",
+    question: "Identify this connector.",
+    options: ["USB-A", "USB-C", "HDMI", "Ethernet"],
+    answer: 0,
+    studyTip: "USB-A is the classic rectangular USB connector used on many computers and accessories."
+  },
+  {
+    image: "/cables/displayport_connector.jpg",
+    category: "Common Tech Connectors",
+    question: "Identify this connector.",
+    options: ["DisplayPort", "HDMI", "VGA", "DVI"],
+    answer: 0,
+    studyTip: "DisplayPort is a digital display connector that often looks similar to HDMI but typically has one beveled corner."
+  },
+  {
+    image: "/cables/dvi_connector.jpg",
+    category: "Common Tech Connectors",
+    question: "Identify this connector.",
+    options: ["DVI", "HDMI", "DisplayPort", "BNC"],
+    answer: 0,
+    studyTip: "DVI is a larger rectangular video connector with a broad pin array and side screws."
+  }
+];
+
+
+
+
+function getCableImageCandidates(imagePath) {
+  const fallback = typeof imagePath === "string" ? imagePath : "";
+  const filename = fallback.split("/").pop() || "";
+  const unique = new Set(
+    [
+      fallback,
+      filename ? `/cables/${filename}` : "",
+      filename ? `/cables/cable_quiz_images/${filename}` : "",
+      filename ? `/cable_quiz_images/${filename}` : "",
+      filename ? `/images/cables/${filename}` : ""
+    ].filter(Boolean)
+  );
+  return Array.from(unique);
+}
+
+function SmartQuizImage({ src, alt }) {
+  const candidates = React.useMemo(() => getCableImageCandidates(src), [src]);
+  const [candidateIndex, setCandidateIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setCandidateIndex(0);
+  }, [src]);
+
+  const activeSrc = candidates[candidateIndex] || src;
+
+  return (
+    <div style={{ marginBottom: 18 }}>
+      <img
+        src={activeSrc}
+        alt={alt}
+        onError={() => {
+          if (candidateIndex < candidates.length - 1) {
+            setCandidateIndex((prev) => prev + 1);
+          }
+        }}
+        style={{
+          width: "100%",
+          maxWidth: 560,
+          maxHeight: 320,
+          objectFit: "contain",
+          display: "block",
+          margin: "0 auto",
+          background: "#ffffff",
+          border: "1px solid #dbe4f0",
+          borderRadius: 18,
+          padding: 14,
+          boxShadow: "0 10px 24px rgba(15, 23, 42, 0.05)"
+        }}
+      />
+      <div style={{ textAlign: "center", color: "#64748b", fontSize: 12, marginTop: 8 }}>
+        Image path: {activeSrc}
+      </div>
+    </div>
+  );
+}
+
+
+function CableQuizTab({ trackExamCompletion, shareQuizResult }) {
+  const [filter, setFilter] = React.useState("all");
+  const [questions, setQuestions] = React.useState(() => shuffleQuestionSet(cableQuestions));
+  const [index, setIndex] = React.useState(0);
+  const [score, setScore] = React.useState(0);
+  const [answers, setAnswers] = React.useState({});
+  const [showResults, setShowResults] = React.useState(false);
+  const [showMissedReview, setShowMissedReview] = React.useState(false);
+
+  const buildQuestionSet = React.useCallback((nextFilter) => {
+    if (nextFilter === "clinical") {
+      return shuffleQuestionSet(cableQuestions.filter((q) => q.category === "Clinical Lines & Cables"));
+    }
+    if (nextFilter === "tech") {
+      return shuffleQuestionSet(cableQuestions.filter((q) => q.category === "Common Tech Connectors"));
+    }
+    return shuffleQuestionSet(cableQuestions);
+  }, []);
+
+  const resetQuiz = React.useCallback((nextFilter = filter) => {
+    setQuestions(buildQuestionSet(nextFilter));
+    setIndex(0);
+    setScore(0);
+    setAnswers({});
+    setShowResults(false);
+    setShowMissedReview(false);
+  }, [buildQuestionSet, filter]);
+
+  const current = questions[index];
+  const selected = answers[index];
+  const isAnswered = selected !== undefined;
+
+  const missedQuestions = questions.filter((q, questionIndex) => {
+    const selectedAnswer = answers[questionIndex];
+    return selectedAnswer !== undefined && selectedAnswer !== q.answer;
+  });
+
+  const handleFilterChange = (nextFilter) => {
+    setFilter(nextFilter);
+    resetQuiz(nextFilter);
+  };
+
+  const pillStyle = (active) => ({
+    padding: "10px 18px",
+    borderRadius: 999,
+    border: "none",
+    background: active ? "linear-gradient(135deg, #12355b, #1d6fa5)" : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+    color: active ? "white" : "#12355b",
+    fontWeight: 700,
+    cursor: "pointer",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+  });
+
+  return (
+    <div
+      style={{
+        background: "rgba(255,255,255,0.9)",
+        borderRadius: 24,
+        padding: 28,
+        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+        maxWidth: 980,
+        margin: "0 auto"
+      }}
+    >
+      <div style={{ textAlign: "center", marginBottom: 20 }}>
+        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Cable & Connector ID Quiz</h2>
+        <p style={{ color: "#4f6275", margin: 0 }}>
+          Practice recognizing clinical lines, monitor cables, and common display or computer connectors.
+        </p>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginBottom: 22 }}>
+        <button onClick={() => handleFilterChange("all")} style={pillStyle(filter === "all")}>All</button>
+        <button onClick={() => handleFilterChange("clinical")} style={pillStyle(filter === "clinical")}>Clinical Lines & Cables</button>
+        <button onClick={() => handleFilterChange("tech")} style={pillStyle(filter === "tech")}>Tech Connectors</button>
+      </div>
+
+      {!showResults && !showMissedReview && current && (
+        <>
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+            <div style={{ padding: "10px 16px", borderRadius: 999, background: "#eff6ff", color: "#12355b", fontWeight: 700 }}>
+              Question {index + 1} / {questions.length}
+            </div>
+            <div style={{ padding: "10px 16px", borderRadius: 999, background: "#eff6ff", color: "#12355b", fontWeight: 700 }}>
+              Score: {score}
+            </div>
+            <div style={{ padding: "10px 16px", borderRadius: 999, background: "#eefbf4", color: "#166534", fontWeight: 700 }}>
+              {current.category}
+            </div>
+          </div>
+
+          <SmartQuizImage
+            src={current.image}
+            alt={current.options[current.answer]}
+          />
+
+          <div style={{ color: "#12355b", marginBottom: 14, textAlign: "center" }}>
+            <div style={{ fontSize: 22, fontWeight: 700 }}>{current.question}</div>
+          </div>
+
+          {current.options.map((opt, i) => {
+            const isCorrectOption = i === current.answer;
+            const isSelectedWrong = isAnswered && i === selected && selected !== current.answer;
+            return (
+              <button
+                key={i}
+                onClick={() => {
+                  if (isAnswered) return;
+                  setAnswers((prev) => ({ ...prev, [index]: i }));
+                  if (i === current.answer) {
+                    setScore((prev) => prev + 1);
+                    correctSound.currentTime = 0;
+                    correctSound.play();
+                  } else {
+                    wrongSound.currentTime = 0;
+                    wrongSound.play();
+                  }
+                }}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  padding: "14px 16px",
+                  marginBottom: 12,
+                  borderRadius: 12,
+                  border: isCorrectOption && isAnswered ? "2px solid green" : isSelectedWrong ? "2px solid red" : "1px solid #cbd5e1",
+                  background: isCorrectOption && isAnswered ? "#d9f7d9" : isSelectedWrong ? "#fee2e2" : "#f8fafc",
+                  color: "#1e293b",
+                  fontSize: 16,
+                  fontWeight: 600,
+                  cursor: isAnswered ? "default" : "pointer",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                }}
+              >
+                {String.fromCharCode(65 + i)}. {opt}
+              </button>
+            );
+          })}
+
+          {typeof current.studyTip === "string" && isAnswered && (
+            <div
+              style={{
+                marginTop: 8,
+                padding: "12px 14px",
+                borderRadius: 12,
+                background: "#eff6ff",
+                color: "#1d4ed8",
+                border: "1px solid #bfdbfe",
+                fontWeight: 600
+              }}
+            >
+              Study tip: {current.studyTip}
+            </div>
+          )}
+
+          <div style={{ textAlign: "center", marginTop: 20 }}>
+            <button
+              onClick={() => {
+                if (answers[index] === undefined) return;
+                if (index + 1 === questions.length) {
+                  const finalScore = score;
+                  trackExamCompletion && trackExamCompletion("Cable ID Quiz", finalScore, questions.length);
+                  setShowResults(true);
+                } else {
+                  setIndex((prev) => prev + 1);
+                }
+              }}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 700,
+                cursor: answers[index] === undefined ? "not-allowed" : "pointer",
+                opacity: answers[index] === undefined ? 0.6 : 1,
+                boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+              }}
+            >
+              {index + 1 === questions.length ? "Finish Quiz" : "Next Question"}
+            </button>
+          </div>
+        </>
+      )}
+
+      {showResults && (
+        <div style={{ textAlign: "center" }}>
+          <h2 style={{ color: "#12355b" }}>Cable & Connector Quiz Complete</h2>
+          <p style={{ fontSize: 20, color: "#1e293b" }}>
+            Your score: {score} / {questions.length}
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
+            <button
+              onClick={() => setShowMissedReview(true)}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Study Misses
+            </button>
+            <button
+              onClick={() => shareQuizResult && shareQuizResult("Cable ID Quiz", score, questions.length)}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Share Quiz
+            </button>
+            <button
+              onClick={() => resetQuiz()}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Restart Quiz
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showMissedReview && (
+        <div style={{ marginTop: 24 }}>
+          <h2 style={{ color: "#12355b", textAlign: "center" }}>Cable & Connector Missed Review</h2>
+          {missedQuestions.length === 0 ? (
+            <p style={{ textAlign: "center", color: "#1e293b" }}>You did not miss any questions.</p>
+          ) : (
+            <div style={{ display: "grid", gap: 16 }}>
+              {missedQuestions.map((q, idx) => {
+                const selectedIndex = answers[questions.indexOf(q)];
+                return (
+                  <div key={idx} style={{ border: "1px solid #dbe4f0", borderRadius: 16, padding: 16, background: "#fff" }}>
+                    <div style={{ marginBottom: 10, color: "#12355b", fontWeight: 700 }}>{q.category}</div>
+                    <div style={{ marginBottom: 12 }}>
+                      <img
+                        src={q.image}
+                        alt={q.options[q.answer]}
+                        style={{
+                          width: "100%",
+                          maxWidth: 420,
+                          maxHeight: 260,
+                          objectFit: "contain",
+                          display: "block",
+                          background: "#ffffff",
+                          border: "1px solid #dbe4f0",
+                          borderRadius: 16,
+                          padding: 12
+                        }}
+                      />
+                    </div>
+                    <div style={{ fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>{q.question}</div>
+                    <div style={{ marginBottom: 4 }}>Correct: {q.options[q.answer]}</div>
+                    <div style={{ marginBottom: 6 }}>Your answer: {q.options[selectedIndex]}</div>
+                    {q.studyTip && <div style={{ color: "#1d4ed8", fontWeight: 600 }}>Tip: {q.studyTip}</div>}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <div style={{ textAlign: "center", marginTop: 20 }}>
+            <button
+              onClick={() => setShowMissedReview(false)}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 700,
+                cursor: "pointer"
+              }}
+            >
+              Back to Results
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const rnQuestions = [
   {
     question: "Which patient should the nurse see first?",
@@ -4409,6 +4849,7 @@ export default function App() {
     "Medical Terminology Practice",
     "Medical Prefix and Suffix Practice",
     "Medical Equipment ID Practice",
+    "Cable ID Quiz",
     "EKG Waveform Quiz"
   ];
   const [contactStatus, setContactStatus] = useState("idle");
@@ -5909,6 +6350,17 @@ return (
           style={navButtonStyle(activeTab === "Equipment", hoveredNavTab === "Equipment")}
         >
           Medical Equipment ID
+        </button>
+        <button
+          onClick={() => {
+            trackExamStart("Cable ID Quiz");
+            setActiveTab("Cables");
+          }}
+          onMouseEnter={() => setHoveredNavTab("Cables")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "Cables", hoveredNavTab === "Cables")}
+        >
+          Cable ID Quiz
         </button>
         <button
           onClick={() => setActiveTab("Contact")}
@@ -7513,7 +7965,7 @@ return (
                       boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
                     }}
                   >
-                    {cbetMode === "full" ? "Restart Full Exam" : "Restart Practice"}
+                    Restart Practice
                   </button>
                 </div>
                 <div
@@ -8154,6 +8606,12 @@ return (
           cbetStatCardStyle={cbetStatCardStyle}
           equipmentConceptQuestions={equipmentConceptQuestions}
         />}
+        {activeTab === "Cables" && (
+          <CableQuizTab
+            trackExamCompletion={trackExamCompletion}
+            shareQuizResult={shareQuizResult}
+          />
+        )}
         {activeTab === "RN" && (
           <div
             style={{
