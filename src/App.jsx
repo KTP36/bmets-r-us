@@ -4828,6 +4828,301 @@ function MuscleConceptQuiz({ onComplete }) {
 }
 
 
+
+const medTermBuilderQuestions = [
+  { prefix: "brady", root: "cardia", meaning: "slow heart rate" },
+  { prefix: "tachy", root: "pnea", meaning: "fast breathing" },
+  { prefix: "hypo", root: "glycemia", meaning: "low blood sugar" },
+  { prefix: "hyper", root: "tension", meaning: "high blood pressure" },
+  { prefix: "hemi", root: "plegia", meaning: "paralysis on one side" },
+  { prefix: "poly", root: "uria", meaning: "excessive urination" },
+  { prefix: "oligo", root: "uria", meaning: "low urine output" },
+  { prefix: "nephro", root: "logy", meaning: "study of kidneys" },
+  { prefix: "hepato", root: "megaly", meaning: "enlarged liver" },
+  { prefix: "derma", root: "itis", meaning: "skin inflammation" },
+  { prefix: "leuko", root: "cytosis", meaning: "high white blood cell count" },
+  { prefix: "hemo", root: "lysis", meaning: "breakdown of blood cells" },
+  { prefix: "cardio", root: "logy", meaning: "study of the heart" },
+  { prefix: "gastro", root: "itis", meaning: "stomach inflammation" },
+  { prefix: "osteo", root: "porosis", meaning: "bone weakening" },
+  { prefix: "arthro", root: "plasty", meaning: "joint repair" },
+  { prefix: "neuro", root: "pathy", meaning: "nerve disease" },
+  { prefix: "myo", root: "cardial", meaning: "related to heart muscle" },
+  { prefix: "dermato", root: "logy", meaning: "study of the skin" },
+  { prefix: "pulmo", root: "nary", meaning: "related to the lungs" },
+  { prefix: "thoraco", root: "centesis", meaning: "chest fluid removal" },
+  { prefix: "reno", root: "vascular", meaning: "related to kidney blood vessels" },
+  { prefix: "cyto", root: "logy", meaning: "study of cells" },
+  { prefix: "patho", root: "logy", meaning: "study of disease" },
+  { prefix: "electro", root: "cardiogram", meaning: "recording of heart activity" },
+  { prefix: "encephalo", root: "pathy", meaning: "brain disorder" },
+  { prefix: "necro", root: "sis", meaning: "tissue death" },
+  { prefix: "angi", root: "oplasty", meaning: "blood vessel repair" },
+  { prefix: "hemat", root: "oma", meaning: "localized blood collection" },
+  { prefix: "broncho", root: "scopy", meaning: "visual exam of the airways" },
+  { prefix: "laparo", root: "scopy", meaning: "visual exam of the abdomen" },
+  { prefix: "colono", root: "scopy", meaning: "visual exam of the colon" },
+  { prefix: "tracheo", root: "stomy", meaning: "surgical airway opening" },
+  { prefix: "rhino", root: "plasty", meaning: "nose repair" },
+  { prefix: "otitis", root: "media", meaning: "middle ear infection" },
+  { prefix: "gluco", root: "meter", meaning: "device that measures blood sugar" },
+  { prefix: "phlebo", root: "tomy", meaning: "incision into a vein" },
+  { prefix: "uro", root: "logy", meaning: "study of the urinary system" },
+  { prefix: "psycho", root: "logy", meaning: "study of the mind" },
+  { prefix: "derm", root: "abrasion", meaning: "scraping of the skin" },
+  { prefix: "vaso", root: "dilation", meaning: "widening of blood vessels" },
+  { prefix: "vaso", root: "constriction", meaning: "narrowing of blood vessels" },
+  { prefix: "hyper", root: "glycemia", meaning: "high blood sugar" },
+  { prefix: "hypo", root: "tension", meaning: "low blood pressure" },
+  { prefix: "tachy", root: "cardia", meaning: "fast heart rate" },
+  { prefix: "brady", root: "pnea", meaning: "slow breathing" },
+  { prefix: "multi", root: "cellular", meaning: "many cells" },
+  { prefix: "mono", root: "cyte", meaning: "single cell" },
+  { prefix: "peri", root: "cardium", meaning: "around the heart" },
+  { prefix: "hepato", root: "cyte", meaning: "liver cell" }
+];
+
+function buildMedTermBuilderRound(question, fullSet) {
+  const otherRoots = Array.from(new Set(fullSet.map((item) => item.root).filter((root) => root !== question.root)));
+  const distractors = shuffleArray(otherRoots).slice(0, 3);
+  return shuffleArray([question.root, ...distractors]);
+}
+
+function MedTermBuilderGame({ onStart, onComplete }) {
+  const [questions, setQuestions] = React.useState(() => shuffleArray(medTermBuilderQuestions));
+  const [index, setIndex] = React.useState(0);
+  const [score, setScore] = React.useState(0);
+  const [selected, setSelected] = React.useState(null);
+  const [showResults, setShowResults] = React.useState(false);
+  const startedRef = React.useRef(false);
+  const completedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    if (!startedRef.current) {
+      startedRef.current = true;
+      if (typeof onStart === "function") onStart();
+    }
+  }, [onStart]);
+
+  React.useEffect(() => {
+    if (showResults && !completedRef.current) {
+      completedRef.current = true;
+      if (typeof onComplete === "function") {
+        onComplete("Medical Terminology Builder", score, questions.length);
+      }
+    }
+  }, [showResults, score, questions.length, onComplete]);
+
+  const current = questions[index];
+  const choices = React.useMemo(() => {
+    if (!current) return [];
+    return buildMedTermBuilderRound(current, questions);
+  }, [current, questions]);
+
+  const restart = () => {
+    const reshuffled = shuffleArray(medTermBuilderQuestions);
+    setQuestions(reshuffled);
+    setIndex(0);
+    setScore(0);
+    setSelected(null);
+    setShowResults(false);
+    completedRef.current = false;
+  };
+
+  if (!current && !showResults) {
+    return null;
+  }
+
+  if (showResults) {
+    const pct = questions.length ? Math.round((score / questions.length) * 100) : 0;
+    return (
+      <div style={{ textAlign: "center" }}>
+        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Terminology Builder Complete</h2>
+        <p style={{ fontSize: 20, color: "#1e293b", marginBottom: 10 }}>
+          Your score: {score} / {questions.length}
+        </p>
+        <div style={{ color: "#4f6275", fontWeight: 600, marginBottom: 24 }}>
+          Accuracy: {pct}%
+        </div>
+        <button
+          onClick={restart}
+          style={{
+            padding: "12px 24px",
+            borderRadius: 999,
+            border: "none",
+            background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+            color: "white",
+            fontWeight: 700,
+            cursor: "pointer"
+          }}
+        >
+          Restart Builder
+        </button>
+      </div>
+    );
+  }
+
+  const selectedIsCorrect = selected === current.root;
+
+  return (
+    <div>
+      <div style={{ textAlign: "center", marginBottom: 20 }}>
+        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Terminology Builder</h2>
+        <p style={{ color: "#4f6275", margin: 0 }}>
+          Match the prefix or word beginning to the correct ending and build the medical term.
+        </p>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 10,
+          flexWrap: "wrap",
+          marginBottom: 20
+        }}
+      >
+        <div style={{
+          background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+          borderRadius: 14,
+          padding: "10px 16px",
+          fontWeight: 700,
+          color: "#12355b",
+          border: "1px solid #d8e4f2"
+        }}>
+          Question {index + 1} / {questions.length}
+        </div>
+        <div style={{
+          background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+          borderRadius: 14,
+          padding: "10px 16px",
+          fontWeight: 700,
+          color: "#12355b",
+          border: "1px solid #d8e4f2"
+        }}>
+          Score: {score}
+        </div>
+        <div style={{
+          background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+          borderRadius: 14,
+          padding: "10px 16px",
+          fontWeight: 700,
+          color: "#12355b",
+          border: "1px solid #d8e4f2"
+        }}>
+          Build the term
+        </div>
+      </div>
+      <div
+        style={{
+          background: "linear-gradient(135deg, #eef4ff, #ffffff)",
+          borderRadius: 18,
+          padding: 24,
+          border: "1px solid #d8e4f2",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.04)"
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 22 }}>
+          <div style={{ color: "#4f6275", fontWeight: 700, marginBottom: 10 }}>Choose the correct ending</div>
+          <div style={{ fontSize: 32, fontWeight: 900, color: "#12355b" }}>
+            {current.prefix}<span style={{ color: "#63c1d7" }}> + ?</span>
+          </div>
+        </div>
+        {choices.map((choice, i) => {
+          const isCorrectOption = choice === current.root;
+          const isSelectedWrong = selected === choice && choice !== current.root;
+          return (
+            <button
+              key={`${choice}-${i}`}
+              onClick={() => {
+                if (selected !== null) return;
+                setSelected(choice);
+                if (choice === current.root) {
+                  setScore((prev) => prev + 1);
+                }
+              }}
+              style={{
+                width: "100%",
+                textAlign: "left",
+                padding: "14px 16px",
+                marginBottom: 12,
+                borderRadius: 12,
+                border:
+                  selected !== null && isCorrectOption
+                    ? "2px solid green"
+                    : isSelectedWrong
+                    ? "2px solid red"
+                    : "1px solid #cbd5e1",
+                background:
+                  selected !== null && isCorrectOption
+                    ? "#d9f7d9"
+                    : isSelectedWrong
+                    ? "#fee2e2"
+                    : "#f8fafc",
+                color: "#1e293b",
+                fontSize: 16,
+                fontWeight: 700,
+                cursor: selected !== null ? "default" : "pointer",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+              }}
+            >
+              {String.fromCharCode(65 + i)}. {choice}
+            </button>
+          );
+        })}
+
+        {selected !== null && (
+          <div
+            style={{
+              marginTop: 12,
+              padding: "14px 16px",
+              borderRadius: 12,
+              background: selectedIsCorrect ? "#eff6ff" : "#fff7ed",
+              border: selectedIsCorrect ? "1px solid #bfdbfe" : "1px solid #fdba74",
+              color: selectedIsCorrect ? "#1d4ed8" : "#9a3412",
+              fontWeight: 600,
+              lineHeight: 1.5
+            }}
+          >
+            <div>
+              <strong>{current.prefix + current.root}</strong> = {current.meaning}
+            </div>
+            <div style={{ marginTop: 8, fontWeight: 500 }}>
+              Breaking terms into parts helps you decode unfamiliar healthcare vocabulary faster.
+            </div>
+          </div>
+        )}
+
+        <div style={{ textAlign: "center", marginTop: 20 }}>
+          <button
+            onClick={() => {
+              if (selected === null) return;
+              if (index + 1 === questions.length) {
+                setShowResults(true);
+              } else {
+                setIndex((prev) => prev + 1);
+                setSelected(null);
+              }
+            }}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+              color: "white",
+              fontWeight: 700,
+              cursor: selected === null ? "not-allowed" : "pointer",
+              opacity: selected === null ? 0.6 : 1,
+              boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+            }}
+          >
+            {index + 1 === questions.length ? "Finish Builder" : "Next Question"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState("Home");
   const ownerAnalyticsEnabled = import.meta.env.VITE_OWNER_ANALYTICS_TAB === "true";
@@ -4848,6 +5143,7 @@ export default function App() {
     "CRES Practice",
     "Medical Terminology Practice",
     "Medical Prefix and Suffix Practice",
+    "Medical Terminology Builder",
     "Medical Equipment ID Practice",
     "Cable ID Quiz",
     "EKG Waveform Quiz"
@@ -9566,6 +9862,26 @@ return (
               >
                 Prefixes and Suffixes
               </button>
+              <button
+                onClick={() => {
+                  trackExamStart("Medical Terminology Builder");
+                  setTerminologySubTab("builder");
+                }}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: 999,
+                  border: "none",
+                  background:
+                    terminologySubTab === "builder"
+                      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                      : "#e2e8f0",
+                  color: terminologySubTab === "builder" ? "white" : "#12355b",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Term Builder
+              </button>
             </div>
             {terminologySubTab === "terms" ? (
               <>
@@ -9899,7 +10215,7 @@ return (
                   </div>
                 )}
               </>
-            ) : (
+            ) : terminologySubTab === "wordParts" ? (
               <>
                 {!wordPartShowResult && !showWordPartMissedReview ? (
                   <>
@@ -10230,6 +10546,11 @@ return (
                   </div>
                 )}
               </>
+            ) : (
+              <MedTermBuilderGame
+                onStart={() => trackExamStart("Medical Terminology Builder")}
+                onComplete={trackExamCompletion}
+              />
             )}
           </div>
         )}
