@@ -4829,6 +4829,7 @@ function MuscleConceptQuiz({ onComplete }) {
 
 
 
+
 const medTermBuilderQuestions = [
   { prefix: "brady", root: "cardia", meaning: "slow heart rate" },
   { prefix: "tachy", root: "pnea", meaning: "fast breathing" },
@@ -4882,9 +4883,45 @@ const medTermBuilderQuestions = [
   { prefix: "hepato", root: "cyte", meaning: "liver cell" }
 ];
 
+function getMedTermRootFamily(root) {
+  if (/logy$/.test(root)) return "study";
+  if (/itis$/.test(root)) return "inflammation";
+  if (/(plasty|oplasty)$/.test(root)) return "repair";
+  if (/scopy$/.test(root)) return "scope";
+  if (/(tomy|stomy)$/.test(root)) return "incision";
+  if (/(cardia|pnea|glycemia|tension)$/.test(root)) return "conditions";
+  if (/(cyte|cytosis|lysis)$/.test(root)) return "cells";
+  if (/(megaly|porosis|pathy|sis|oma)$/.test(root)) return "pathology";
+  if (/(meter|cardiogram)$/.test(root)) return "diagnostics";
+  if (/(nary|vascular|media|cardial|cellular|cardium)$/.test(root)) return "descriptive";
+  return "general";
+}
+
 function buildMedTermBuilderRound(question, fullSet) {
-  const otherRoots = Array.from(new Set(fullSet.map((item) => item.root).filter((root) => root !== question.root)));
-  const distractors = shuffleArray(otherRoots).slice(0, 3);
+  const family = getMedTermRootFamily(question.root);
+  const sameFamily = fullSet
+    .map((item) => item.root)
+    .filter((root) => root !== question.root && getMedTermRootFamily(root) === family);
+
+  const similarLength = fullSet
+    .map((item) => item.root)
+    .filter(
+      (root) =>
+        root !== question.root &&
+        Math.abs(root.length - question.root.length) <= 3 &&
+        !sameFamily.includes(root)
+    );
+
+  const fallback = fullSet
+    .map((item) => item.root)
+    .filter((root) => root !== question.root && !sameFamily.includes(root) && !similarLength.includes(root));
+
+  const distractors = [
+    ...shuffleArray(Array.from(new Set(sameFamily))),
+    ...shuffleArray(Array.from(new Set(similarLength))),
+    ...shuffleArray(Array.from(new Set(fallback)))
+  ].slice(0, 3);
+
   return shuffleArray([question.root, ...distractors]);
 }
 
@@ -4893,6 +4930,8 @@ function MedTermBuilderGame({ onStart, onComplete }) {
   const [index, setIndex] = React.useState(0);
   const [score, setScore] = React.useState(0);
   const [selected, setSelected] = React.useState(null);
+  const [draggedChoice, setDraggedChoice] = React.useState(null);
+  const [dropActive, setDropActive] = React.useState(false);
   const [showResults, setShowResults] = React.useState(false);
   const startedRef = React.useRef(false);
   const completedRef = React.useRef(false);
@@ -4919,12 +4958,22 @@ function MedTermBuilderGame({ onStart, onComplete }) {
     return buildMedTermBuilderRound(current, questions);
   }, [current, questions]);
 
+  const submitChoice = React.useCallback((choice) => {
+    if (selected !== null || !current) return;
+    setSelected(choice);
+    if (choice === current.root) {
+      setScore((prev) => prev + 1);
+    }
+  }, [current, selected]);
+
   const restart = () => {
     const reshuffled = shuffleArray(medTermBuilderQuestions);
     setQuestions(reshuffled);
     setIndex(0);
     setScore(0);
     setSelected(null);
+    setDraggedChoice(null);
+    setDropActive(false);
     setShowResults(false);
     completedRef.current = false;
   };
@@ -4963,13 +5012,14 @@ function MedTermBuilderGame({ onStart, onComplete }) {
   }
 
   const selectedIsCorrect = selected === current.root;
+  const builtTerm = current.prefix + current.root;
 
   return (
     <div>
       <div style={{ textAlign: "center", marginBottom: 20 }}>
         <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Terminology Builder</h2>
         <p style={{ color: "#4f6275", margin: 0 }}>
-          Match the prefix or word beginning to the correct ending and build the medical term.
+          Drag the correct ending into the target area to build the medical term.
         </p>
       </div>
       <div
@@ -5009,7 +5059,7 @@ function MedTermBuilderGame({ onStart, onComplete }) {
           color: "#12355b",
           border: "1px solid #d8e4f2"
         }}>
-          Build the term
+          Drag or tap to answer
         </div>
       </div>
       <div
@@ -5022,53 +5072,141 @@ function MedTermBuilderGame({ onStart, onComplete }) {
         }}
       >
         <div style={{ textAlign: "center", marginBottom: 22 }}>
-          <div style={{ color: "#4f6275", fontWeight: 700, marginBottom: 10 }}>Choose the correct ending</div>
+          <div style={{ color: "#4f6275", fontWeight: 700, marginBottom: 10 }}>
+            Build the term that means: {current.meaning}
+          </div>
           <div style={{ fontSize: 32, fontWeight: 900, color: "#12355b" }}>
             {current.prefix}<span style={{ color: "#63c1d7" }}> + ?</span>
           </div>
         </div>
-        {choices.map((choice, i) => {
-          const isCorrectOption = choice === current.root;
-          const isSelectedWrong = selected === choice && choice !== current.root;
-          return (
-            <button
-              key={`${choice}-${i}`}
-              onClick={() => {
-                if (selected !== null) return;
-                setSelected(choice);
-                if (choice === current.root) {
-                  setScore((prev) => prev + 1);
-                }
-              }}
-              style={{
-                width: "100%",
-                textAlign: "left",
-                padding: "14px 16px",
-                marginBottom: 12,
-                borderRadius: 12,
-                border:
-                  selected !== null && isCorrectOption
-                    ? "2px solid green"
-                    : isSelectedWrong
-                    ? "2px solid red"
-                    : "1px solid #cbd5e1",
-                background:
-                  selected !== null && isCorrectOption
-                    ? "#d9f7d9"
-                    : isSelectedWrong
-                    ? "#fee2e2"
-                    : "#f8fafc",
-                color: "#1e293b",
-                fontSize: 16,
-                fontWeight: 700,
-                cursor: selected !== null ? "default" : "pointer",
-                boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
-              }}
-            >
-              {String.fromCharCode(65 + i)}. {choice}
-            </button>
-          );
-        })}
+
+        <div
+          onDragOver={(e) => {
+            if (selected !== null) return;
+            e.preventDefault();
+            setDropActive(true);
+          }}
+          onDragLeave={() => setDropActive(false)}
+          onDrop={(e) => {
+            if (selected !== null) return;
+            e.preventDefault();
+            setDropActive(false);
+            const droppedChoice = e.dataTransfer.getData("text/plain") || draggedChoice;
+            if (droppedChoice) submitChoice(droppedChoice);
+            setDraggedChoice(null);
+          }}
+          onClick={() => {
+            if (selected === null && draggedChoice) {
+              submitChoice(draggedChoice);
+              setDraggedChoice(null);
+            }
+          }}
+          style={{
+            marginBottom: 20,
+            borderRadius: 16,
+            border:
+              selected !== null
+                ? selectedIsCorrect
+                  ? "2px solid #22c55e"
+                  : "2px solid #ef4444"
+                : dropActive
+                ? "2px dashed #1d6fa5"
+                : "2px dashed #93c5fd",
+            background:
+              selected !== null
+                ? selectedIsCorrect
+                  ? "#dcfce7"
+                  : "#fee2e2"
+                : dropActive
+                ? "#eff6ff"
+                : "#f8fbff",
+            minHeight: 108,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 18,
+            transition: "all 0.15s ease"
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <div style={{ color: "#4f6275", fontWeight: 700, marginBottom: 8 }}>
+              {selected === null ? "Drop the ending here" : "Completed term"}
+            </div>
+            <div style={{ fontSize: 30, fontWeight: 900, color: "#12355b" }}>
+              {current.prefix}
+              <span style={{ color: selected !== null ? "#12355b" : "#94a3b8" }}>
+                {selected !== null ? selected : "_____"}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: "grid", gap: 12 }}>
+          {choices.map((choice, i) => {
+            const isCorrectOption = choice === current.root;
+            const isSelectedWrong = selected === choice && choice !== current.root;
+            const isPickedForDrop = draggedChoice === choice && selected === null;
+            return (
+              <button
+                key={`${choice}-${i}`}
+                type="button"
+                draggable={selected === null}
+                onDragStart={(e) => {
+                  if (selected !== null) return;
+                  setDraggedChoice(choice);
+                  e.dataTransfer.setData("text/plain", choice);
+                  e.dataTransfer.effectAllowed = "move";
+                }}
+                onDragEnd={() => {
+                  setDropActive(false);
+                }}
+                onClick={() => {
+                  if (selected !== null) return;
+                  if (draggedChoice === choice) {
+                    submitChoice(choice);
+                    setDraggedChoice(null);
+                  } else {
+                    setDraggedChoice(choice);
+                  }
+                }}
+                style={{
+                  width: "100%",
+                  textAlign: "left",
+                  padding: "14px 16px",
+                  marginBottom: 0,
+                  borderRadius: 12,
+                  border:
+                    selected !== null
+                      ? isCorrectOption
+                        ? "2px solid green"
+                        : isSelectedWrong
+                        ? "2px solid red"
+                        : "1px solid #cbd5e1"
+                      : isPickedForDrop
+                      ? "2px solid #1d6fa5"
+                      : "1px solid #cbd5e1",
+                  background:
+                    selected !== null
+                      ? isCorrectOption
+                        ? "#d9f7d9"
+                        : isSelectedWrong
+                        ? "#fee2e2"
+                        : "#f8fafc"
+                      : isPickedForDrop
+                      ? "#e0f2fe"
+                      : "#f8fafc",
+                  color: "#1e293b",
+                  fontSize: 16,
+                  fontWeight: 700,
+                  cursor: selected !== null ? "default" : "grab",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                }}
+              >
+                {String.fromCharCode(65 + i)}. {choice}
+              </button>
+            );
+          })}
+        </div>
 
         {selected !== null && (
           <div
@@ -5084,11 +5222,13 @@ function MedTermBuilderGame({ onStart, onComplete }) {
             }}
           >
             <div>
-              <strong>{current.prefix + current.root}</strong> = {current.meaning}
+              <strong>{builtTerm}</strong> = {current.meaning}
             </div>
-            <div style={{ marginTop: 8, fontWeight: 500 }}>
-              Breaking terms into parts helps you decode unfamiliar healthcare vocabulary faster.
-            </div>
+            {!selectedIsCorrect && (
+              <div style={{ marginTop: 8, fontWeight: 500 }}>
+                Explanation: <strong>{current.root}</strong> is the correct ending for this term. Breaking terms into parts makes unfamiliar vocabulary much easier to decode.
+              </div>
+            )}
           </div>
         )}
 
@@ -5101,6 +5241,8 @@ function MedTermBuilderGame({ onStart, onComplete }) {
               } else {
                 setIndex((prev) => prev + 1);
                 setSelected(null);
+                setDraggedChoice(null);
+                setDropActive(false);
               }
             }}
             style={{
@@ -5122,6 +5264,7 @@ function MedTermBuilderGame({ onStart, onComplete }) {
     </div>
   );
 }
+
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("Home");
