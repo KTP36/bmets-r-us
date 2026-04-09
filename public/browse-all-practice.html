@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,7 +7,7 @@
   <title>Browse All Practice | MedSkillBuilder</title>
   <meta
     name="description"
-    content="Browse all MedSkillBuilder practice tests, anatomy tools, CBET prep, RN practice questions, TEAS resources, CRES prep, and medical terminology study pages."
+    content="Browse all MedSkillBuilder practice tests, anatomy tools, CBET prep, RN practice questions, TEAS resources, and medical terminology study pages."
   />
   <link rel="canonical" href="https://medskillbuilder.com/browse-all-practice.html" />
 
@@ -45,7 +46,13 @@
     }
 
     h2 {
+      margin-bottom: 8px;
+    }
+
+    .section p {
+      margin-top: 0;
       margin-bottom: 16px;
+      color: #475569;
     }
 
     .link-grid {
@@ -62,11 +69,17 @@
       font-weight: 700;
       color: white;
       text-align: center;
+      transition: 0.2s;
     }
 
     .practice-link:hover {
-      opacity: 0.9;
+      opacity: 0.92;
       transform: translateY(-1px);
+    }
+
+    .featured {
+      border: 2px solid rgba(255,255,255,0.4);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     .cbet { background: linear-gradient(90deg, #0f2f57, #153f73); }
@@ -97,98 +110,94 @@
       font-weight: 700;
     }
   </style>
+
 </head>
 
 <body>
   <div class="container">
 
-    <a class="top-link" href="/">← Back to Home</a>
+```
+<a class="top-link" href="/">← Back to Home</a>
 
-    <h1>All Practice Tests & Study Tools</h1>
-    <p class="subtext">
-      Explore all available quizzes and interactive tools on MedSkillBuilder.
-    </p>
+<h1>All Practice Tests & Study Tools</h1>
+<p class="subtext">
+  Explore all quizzes and interactive tools on MedSkillBuilder.
+</p>
 
-    <!-- CBET -->
-    <div class="section">
-      <h2>CBET Prep</h2>
-      <div class="link-grid">
-        <a class="practice-link cbet" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
-        <a class="practice-link cbet" href="/cbet-practice-questions.html">CBET Practice Questions Guide</a>
-        <a class="practice-link cbet" href="/how-to-pass-cbet-exam.html">How to Pass CBET Exam</a>
-        <a class="practice-link cbet" href="/bmet-certification-practice-questions.html">BMET Certification Practice Questions</a>
-        <a class="practice-link cbet" href="/cbet-practice-test-75.html">CBET Full Practice Test (75 Questions)</a>
-      </div>
-    </div>
+<!-- FEATURED -->
+<div class="section">
+  <h2>Start Here</h2>
+  <p>These are the best places to begin practicing.</p>
+  <div class="link-grid">
+    <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
+    <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+    <a class="practice-link nursing featured" href="/rn-practice-questions.html">RN Practice Questions</a>
+    <a class="practice-link cbet featured" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
+  </div>
+</div>
 
-    <!-- ANATOMY -->
-    <div class="section">
-      <h2>Anatomy Learning</h2>
-      <div class="link-grid">
-        <a class="practice-link anatomy" href="/">Anatomy Labeling Practice</a>
-        <a class="practice-link anatomy" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/skeleton-anatomy-quiz.html">Skeleton Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/brain-anatomy-quiz.html">Brain Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/hand-anatomy-quiz.html">Hand Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/skull-anatomy-quiz.html">Skull Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/foot-anatomy-quiz.html">Foot Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/digestive-system-anatomy-quiz.html">Digestive System Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
-        <a class="practice-link anatomy" href="/brain-anatomy-guide.html">Brain Anatomy Guide</a>
-        <a class="practice-link anatomy" href="/how-to-read-ekg.html">How to Read an EKG</a>
-        <a class="practice-link anatomy" href="/ekg-practice-quiz.html">EKG Practice Quiz</a>
-        <a class="practice-link anatomy" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-        <a class="practice-link anatomy" href="/anatomy-practice-test.html">Anatomy Practice Test (50 Questions)</a>
-        <a class="practice-link anatomy" href="/muscle-anatomy-quiz.html">Muscle Anatomy Quiz</a>
+<!-- ANATOMY -->
+<div class="section">
+  <h2>Anatomy Learning</h2>
+  <p>Practice anatomy and labeling across multiple body systems.</p>
+  <div class="link-grid">
+    <a class="practice-link anatomy" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+    <a class="practice-link anatomy" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a>
+    <a class="practice-link anatomy" href="/brain-anatomy-quiz.html">Brain Anatomy Quiz</a>
+    <a class="practice-link anatomy" href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz</a>
+    <a class="practice-link anatomy" href="/skeleton-anatomy-quiz.html">Skeleton Anatomy Quiz</a>
+    <a class="practice-link anatomy" href="/hand-anatomy-quiz.html">Hand Anatomy Quiz</a>
+    <a class="practice-link anatomy" href="/foot-anatomy-quiz.html">Foot Anatomy Quiz</a>
+    <a class="practice-link anatomy" href="/muscle-anatomy-quiz.html">Muscle Anatomy Quiz</a>
+  </div>
+</div>
 
-        <!-- ✅ NEW PAGE ADDED -->
-        <a class="practice-link anatomy" href="/digestive-system-anatomy-guide.html">
-          Digestive System Anatomy Guide
-        </a>
+<!-- MED TERMS -->
+<div class="section">
+  <h2>Medical Terminology</h2>
+  <p>Learn prefixes, suffixes, and build real medical terms.</p>
+  <div class="link-grid">
+    <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
+    <a class="practice-link terms" href="/medical-prefix-suffix-practice.html">Prefix & Suffix Practice</a>
+    <a class="practice-link terms" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
+  </div>
+</div>
 
-      </div>
-    </div>
+<!-- NURSING -->
+<div class="section">
+  <h2>Nursing & TEAS</h2>
+  <p>Prepare for nursing school and TEAS exams.</p>
+  <div class="link-grid">
+    <a class="practice-link nursing" href="/rn-practice-questions.html">RN Practice Questions</a>
+    <a class="practice-link nursing" href="/teas-practice-questions.html">TEAS Practice Questions</a>
+    <a class="practice-link nursing" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
+  </div>
+</div>
 
-    <!-- NURSING -->
-    <div class="section">
-      <h2>Nursing & TEAS</h2>
-      <div class="link-grid">
-        <a class="practice-link nursing" href="/rn-practice-questions.html">RN Practice Questions</a>
-        <a class="practice-link nursing" href="/how-to-pass-rn-nclex-exam.html">How to Pass RN NCLEX Exam</a>
-        <a class="practice-link nursing" href="/teas-practice-questions.html">TEAS Practice Questions</a>
-        <a class="practice-link nursing" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
-        <a class="practice-link nursing" href="/how-to-pass-teas-exam.html">How to Pass TEAS Exam</a>
-      </div>
-    </div>
+<!-- CBET -->
+<div class="section">
+  <h2>CBET & Equipment</h2>
+  <p>Biomedical equipment and certification practice.</p>
+  <div class="link-grid">
+    <a class="practice-link cbet" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
+    <a class="practice-link biomed" href="/medical-equipment-identification-practice.html">Medical Equipment ID</a>
+    <a class="practice-link biomed" href="/cres-practice-questions.html">CRES Practice Questions</a>
+  </div>
+</div>
 
-    <!-- BIOMED -->
-    <div class="section">
-      <h2>Biomedical & Equipment</h2>
-      <div class="link-grid">
-        <a class="practice-link biomed" href="/medical-equipment-identification-practice.html">Medical Equipment ID Practice</a>
-        <a class="practice-link biomed" href="/cres-practice-questions.html">CRES Practice Questions</a>
-        <a class="practice-link biomed" href="/how-to-pass-cres-exam.html">How to Pass CRES Exam</a>
-        <a class="practice-link biomed" href="/cbet-practice-test-75.html">CBET Full Practice Test (75 Questions)</a> 
-      </div>
-    </div>
+<!-- EXTRA -->
+<div class="section">
+  <h2>Extra Learning Tools</h2>
+  <div class="link-grid">
+    <a class="practice-link anatomy" href="/ekg-practice-quiz.html">EKG Practice Quiz</a>
+    <a class="practice-link anatomy" href="/how-to-read-ekg.html">How to Read an EKG</a>
+  </div>
+</div>
 
-    <!-- TERMS -->
-    <div class="section">
-      <h2>Medical Terminology</h2>
-      <div class="link-grid">
-        <a class="practice-link terms" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
-        <a class="practice-link terms" href="/medical-prefix-suffix-practice.html">Medical Prefix & Suffix Practice</a>
-        <a class="practice-link terms" href="/top-100-medical-terms.html">Top 100 Medical Terms</a>
-        <a class="practice-link terms" href="/medical-prefix-suffix-guide.html">Prefix & Suffix Guide</a>
-        <a class="practice-link terms" href="/medical-terminology-guide.html">Medical Terminology Guide</a>
-        <a class="practice-link terms" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
-      </div>
-    </div>
-
-    <div class="footer-cta">
-      <a href="/">Start Practicing on MedSkillBuilder</a>
-    </div>
+<div class="footer-cta">
+  <a href="/">Start Practicing on MedSkillBuilder</a>
+</div>
+```
 
   </div>
 </body>
