@@ -1976,6 +1976,7 @@ const equipmentQuestions = [
     studyTip: "Uses high-frequency sound waves to generate real-time diagnostic images."
   },
 ];
+
 const cableQuestions = [
   {
     image: "/cables/arterial_line_catheter.jpg",
@@ -1989,9 +1990,17 @@ const cableQuestions = [
     image: "/cables/ecg_trunk_cable.jpg",
     category: "Clinical Lines & Cables",
     question: "Identify this cable.",
-    options: ["Temperature probe", "ECG trunk cable", "NIBP hose", "SpO2 sensor cable"],
+    options: ["Temperature trunk cable", "ECG trunk cable", "NIBP hose", "SpO2 trunk cable"],
     answer: 1,
-    studyTip: "ECG trunk cables branch into multiple lead wires that connect patient electrodes to the monitor."
+    studyTip: "ECG trunk cables connect the monitor to the patient lead wires."
+  },
+  {
+    image: "/cables/ekg_lead_wires.jpg",
+    category: "Clinical Lines & Cables",
+    question: "Identify this accessory.",
+    options: ["ECG lead wires", "PICC line", "EtCO2 sample line", "Temperature probe"],
+    answer: 0,
+    studyTip: "ECG lead wires snap to the trunk cable and connect to adhesive electrodes placed on the patient."
   },
   {
     image: "/cables/spo2_sensor.jpg",
@@ -2000,6 +2009,22 @@ const cableQuestions = [
     options: ["PICC line", "SpO2 sensor cable", "Arterial line setup", "USB-A connector"],
     answer: 1,
     studyTip: "SpO2 sensors are used to measure oxygen saturation and commonly connect to a monitor with a cable attached to a finger sensor."
+  },
+  {
+    image: "/cables/spo2_trunk_cable.jpg",
+    category: "Clinical Lines & Cables",
+    question: "Identify this cable.",
+    options: ["SpO2 trunk cable", "ECG lead wires", "Temperature trunk cable", "NIBP hose"],
+    answer: 0,
+    studyTip: "A SpO2 trunk cable connects the monitor to the reusable or disposable pulse oximetry sensor."
+  },
+  {
+    image: "/cables/temp_trunk_cable.jpg",
+    category: "Clinical Lines & Cables",
+    question: "Identify this cable.",
+    options: ["Temperature trunk cable", "Arterial line setup", "PICC line", "BNC connector"],
+    answer: 0,
+    studyTip: "Temperature trunk cables connect patient temperature probes to the monitor or module."
   },
   {
     image: "/cables/picc_line.jpg",
@@ -2059,8 +2084,178 @@ const cableQuestions = [
   }
 ];
 
-
-
+const clinicalCableConceptQuestions = [
+  {
+    question: "A waveform with systolic and diastolic pressures is displayed continuously. Which monitoring line is being used?",
+    options: ["NIBP cuff", "Arterial line setup", "SpO2 probe", "ECG lead wires"],
+    answer: 1,
+    studyTip: "An arterial line provides invasive beat-to-beat blood pressure monitoring and often allows arterial blood sampling."
+  },
+  {
+    question: "Which cable connects multiple ECG lead wires to the patient monitor?",
+    options: ["SpO2 trunk cable", "ECG trunk cable", "Temperature trunk cable", "BNC connector"],
+    answer: 1,
+    studyTip: "The ECG trunk cable is the main monitor-side cable that the patient lead wires plug into."
+  },
+  {
+    question: "Which component directly attaches to the patient’s chest to detect electrical cardiac activity?",
+    options: ["ECG trunk cable", "ECG lead wires", "Arterial line setup", "SpO2 trunk cable"],
+    answer: 1,
+    studyTip: "ECG lead wires connect to adhesive electrodes placed on the patient’s skin."
+  },
+  {
+    question: "Which device measures oxygen saturation using light absorption through tissue?",
+    options: ["ECG lead wires", "SpO2 sensor", "Temperature probe", "NIBP hose"],
+    answer: 1,
+    studyTip: "Pulse oximetry uses a sensor that clips to a finger or other site to estimate oxygen saturation."
+  },
+  {
+    question: "What is the purpose of a temperature probe in clinical monitoring?",
+    options: ["Measure oxygen saturation", "Measure body temperature", "Monitor blood pressure", "Detect cardiac rhythm"],
+    answer: 1,
+    studyTip: "Temperature probes are used for continuous or spot temperature monitoring depending on the clinical setup."
+  },
+  {
+    question: "What is the key difference between ECG lead wires and an ECG trunk cable?",
+    options: [
+      "Lead wires connect to patient electrodes; the trunk cable connects the lead set to the monitor",
+      "The trunk cable connects to the patient and lead wires connect to the monitor only",
+      "They are identical and interchangeable",
+      "Lead wires are used only for oxygen monitoring"
+    ],
+    answer: 0,
+    studyTip: "Think of the trunk cable as the main cable and the lead wires as the branching patient-side cables."
+  },
+  {
+    question: "A patient has intermittent blood pressure readings every 5 minutes. Which device is being used?",
+    options: ["Arterial line setup", "NIBP cuff and hose", "Central line", "SpO2 sensor"],
+    answer: 1,
+    studyTip: "Non-invasive blood pressure uses a cuff and hose for periodic measurements rather than continuous pressure tracing."
+  },
+  {
+    question: "Continuous beat-to-beat blood pressure monitoring requires which setup?",
+    options: ["NIBP cuff", "Arterial line with transducer", "SpO2 sensor", "ECG trunk cable"],
+    answer: 1,
+    studyTip: "An arterial line setup includes pressure tubing and a transducer for invasive pressure monitoring."
+  },
+  {
+    question: "Which connector type is commonly required between some pressure transducer cables and the monitor input?",
+    options: ["USB-A", "BNC connector", "HDMI", "DisplayPort"],
+    answer: 1,
+    studyTip: "BNC connectors are common in monitoring and test equipment because they lock in place with a twist mechanism."
+  },
+  {
+    question: "What distinguishes a SpO2 trunk cable from a SpO2 sensor?",
+    options: [
+      "The trunk cable connects the monitor to the sensor",
+      "The sensor connects the monitor to the wall outlet",
+      "They are the same thing",
+      "The trunk cable directly clips to the patient"
+    ],
+    answer: 0,
+    studyTip: "The sensor is the patient-contact piece; the trunk cable links that sensor back to the monitor."
+  },
+  {
+    question: "A patient’s SpO2 suddenly reads low, but the patient appears stable. What is a common first cause to consider?",
+    options: ["True hypoxia", "Loose or poorly positioned sensor", "Arterial bleed", "Central line occlusion"],
+    answer: 1,
+    studyTip: "Motion, poor probe placement, and poor perfusion commonly cause false low pulse oximetry readings."
+  },
+  {
+    question: "An arterial line waveform appears dampened. What is a likely cause?",
+    options: ["Loose ECG lead wires", "Air bubbles or a kink in the pressure tubing", "Low room temperature", "SpO2 probe misalignment"],
+    answer: 1,
+    studyTip: "Air bubbles, clots, loose connections, or kinked tubing can all dampen the pressure waveform."
+  },
+  {
+    question: "Which line is most commonly used for continuous blood pressure monitoring in ICU or OR patients?",
+    options: ["Peripheral IV", "Arterial line setup", "PICC line", "Temperature probe"],
+    answer: 1,
+    studyTip: "Arterial lines are common when close hemodynamic monitoring is needed."
+  },
+  {
+    question: "Which item would you check first if ECG rhythm is not displaying on the monitor?",
+    options: ["SpO2 sensor", "ECG lead wires and electrode connections", "NIBP hose", "Temperature trunk cable"],
+    answer: 1,
+    studyTip: "Poor electrode contact or disconnected lead wires are among the most common ECG signal problems."
+  },
+  {
+    question: "A patient monitor shows no useful waveform, but the cable appears plugged in. What should be checked first?",
+    options: ["Replace the monitor", "Check patient-side connections and setup", "Call biomedical engineering immediately", "Restart the hospital network"],
+    answer: 1,
+    studyTip: "Always start with the simplest and most likely issue: patient-side placement and cable connections."
+  },
+  {
+    question: "Which monitoring method is considered invasive?",
+    options: ["SpO2 monitoring", "ECG monitoring", "Arterial line monitoring", "NIBP cuff monitoring"],
+    answer: 2,
+    studyTip: "An arterial line sits in an artery and directly measures arterial pressure through a transducer system."
+  },
+  {
+    question: "What type of line is a PICC line?",
+    options: ["Peripheral IV for short-term access only", "Central venous access inserted through a peripheral vein", "An arterial monitoring line", "A sampling line for EtCO2"],
+    answer: 1,
+    studyTip: "PICC stands for peripherally inserted central catheter."
+  },
+  {
+    question: "Which cable transmits electrical cardiac signals from the patient lead set back toward the monitor?",
+    options: ["SpO2 trunk cable", "ECG trunk cable", "BNC connector only", "Temperature probe"],
+    answer: 1,
+    studyTip: "The ECG trunk cable carries the signal from the lead wire set to the monitor."
+  },
+  {
+    question: "Which parameter is measured using an arterial line?",
+    options: ["Oxygen saturation", "Blood pressure", "Body temperature", "Urine output"],
+    answer: 1,
+    studyTip: "Arterial lines provide invasive blood pressure measurement and an arterial waveform."
+  },
+  {
+    question: "Which device is used for non-invasive blood pressure monitoring?",
+    options: ["Arterial line setup", "NIBP cuff and hose", "Central line", "SpO2 trunk cable"],
+    answer: 1,
+    studyTip: "NIBP monitoring uses cuff inflation and deflation to estimate blood pressure intermittently."
+  },
+  {
+    question: "Why is an arterial line generally more accurate for continuous blood pressure than an NIBP cuff?",
+    options: [
+      "It uses Wi-Fi instead of tubing",
+      "It directly transduces arterial pressure continuously",
+      "It is easier to place",
+      "It requires less calibration"
+    ],
+    answer: 1,
+    studyTip: "The arterial line directly converts arterial pressure into an electrical signal through the transducer system."
+  },
+  {
+    question: "A monitor shows erratic ECG signals and artifact. What is the most common cause?",
+    options: ["Monitor software failure", "Loose or dry ECG electrodes / lead connections", "Low oxygen saturation", "A bad NIBP hose"],
+    answer: 1,
+    studyTip: "Artifact often comes from poor skin prep, loose leads, dried electrodes, or patient movement."
+  },
+  {
+    question: "Which monitoring device is commonly affected by patient movement or poor peripheral perfusion?",
+    options: ["Arterial line setup", "SpO2 sensor", "PICC line", "Central line dressing"],
+    answer: 1,
+    studyTip: "Pulse oximetry accuracy drops with motion and low peripheral perfusion."
+  },
+  {
+    question: "What is the role of a pressure transducer in arterial monitoring?",
+    options: [
+      "Measure oxygen concentration",
+      "Convert fluid pressure into an electrical signal for the monitor",
+      "Control IV infusion rate",
+      "Display the ECG waveform"
+    ],
+    answer: 1,
+    studyTip: "The transducer is what allows the monitor to interpret arterial pressure as a waveform and numeric value."
+  },
+  {
+    question: "Which line provides reliable venous access for longer-term medications, infusions, or blood draws in many patients?",
+    options: ["Peripheral IV only", "PICC line", "Arterial line", "Temperature probe"],
+    answer: 1,
+    studyTip: "A PICC line is often chosen when extended central venous access is needed."
+  }
+];
 
 function getCableImageCandidates(imagePath) {
   const fallback = typeof imagePath === "string" ? imagePath : "";
@@ -2118,17 +2313,24 @@ function SmartQuizImage({ src, alt }) {
   );
 }
 
-
 function CableQuizTab({ trackExamCompletion, shareQuizResult }) {
-  const [filter, setFilter] = React.useState("all");
-  const [questions, setQuestions] = React.useState(() => shuffleQuestionSet(cableQuestions));
-  const [index, setIndex] = React.useState(0);
-  const [score, setScore] = React.useState(0);
-  const [answers, setAnswers] = React.useState({});
-  const [showResults, setShowResults] = React.useState(false);
-  const [showMissedReview, setShowMissedReview] = React.useState(false);
+  const [mode, setMode] = React.useState("visual");
+  const [visualFilter, setVisualFilter] = React.useState("all");
+  const [visualQuestions, setVisualQuestions] = React.useState(() => shuffleQuestionSet(cableQuestions));
+  const [visualIndex, setVisualIndex] = React.useState(0);
+  const [visualScore, setVisualScore] = React.useState(0);
+  const [visualAnswers, setVisualAnswers] = React.useState({});
+  const [visualShowResults, setVisualShowResults] = React.useState(false);
+  const [visualShowMissedReview, setVisualShowMissedReview] = React.useState(false);
 
-  const buildQuestionSet = React.useCallback((nextFilter) => {
+  const [conceptQuestions, setConceptQuestions] = React.useState(() => shuffleQuestionSet(clinicalCableConceptQuestions));
+  const [conceptIndex, setConceptIndex] = React.useState(0);
+  const [conceptScore, setConceptScore] = React.useState(0);
+  const [conceptAnswers, setConceptAnswers] = React.useState({});
+  const [conceptShowResults, setConceptShowResults] = React.useState(false);
+  const [conceptShowMissedReview, setConceptShowMissedReview] = React.useState(false);
+
+  const buildVisualQuestionSet = React.useCallback((nextFilter) => {
     if (nextFilter === "clinical") {
       return shuffleQuestionSet(cableQuestions.filter((q) => q.category === "Clinical Lines & Cables"));
     }
@@ -2138,27 +2340,27 @@ function CableQuizTab({ trackExamCompletion, shareQuizResult }) {
     return shuffleQuestionSet(cableQuestions);
   }, []);
 
-  const resetQuiz = React.useCallback((nextFilter = filter) => {
-    setQuestions(buildQuestionSet(nextFilter));
-    setIndex(0);
-    setScore(0);
-    setAnswers({});
-    setShowResults(false);
-    setShowMissedReview(false);
-  }, [buildQuestionSet, filter]);
+  const resetVisualQuiz = React.useCallback((nextFilter = visualFilter) => {
+    setVisualQuestions(buildVisualQuestionSet(nextFilter));
+    setVisualIndex(0);
+    setVisualScore(0);
+    setVisualAnswers({});
+    setVisualShowResults(false);
+    setVisualShowMissedReview(false);
+  }, [buildVisualQuestionSet, visualFilter]);
 
-  const current = questions[index];
-  const selected = answers[index];
-  const isAnswered = selected !== undefined;
+  const resetConceptQuiz = React.useCallback(() => {
+    setConceptQuestions(shuffleQuestionSet(clinicalCableConceptQuestions));
+    setConceptIndex(0);
+    setConceptScore(0);
+    setConceptAnswers({});
+    setConceptShowResults(false);
+    setConceptShowMissedReview(false);
+  }, []);
 
-  const missedQuestions = questions.filter((q, questionIndex) => {
-    const selectedAnswer = answers[questionIndex];
-    return selectedAnswer !== undefined && selectedAnswer !== q.answer;
-  });
-
-  const handleFilterChange = (nextFilter) => {
-    setFilter(nextFilter);
-    resetQuiz(nextFilter);
+  const handleVisualFilterChange = (nextFilter) => {
+    setVisualFilter(nextFilter);
+    resetVisualQuiz(nextFilter);
   };
 
   const pillStyle = (active) => ({
@@ -2172,6 +2374,443 @@ function CableQuizTab({ trackExamCompletion, shareQuizResult }) {
     boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
   });
 
+  const badgeStyle = {
+    padding: "10px 16px",
+    borderRadius: 999,
+    background: "#eff6ff",
+    color: "#12355b",
+    fontWeight: 700
+  };
+
+  const renderVisualMode = () => {
+    const current = visualQuestions[visualIndex];
+    const selected = visualAnswers[visualIndex];
+    const isAnswered = selected !== undefined;
+    const missedQuestions = visualQuestions.filter((q, questionIndex) => {
+      const selectedAnswer = visualAnswers[questionIndex];
+      return selectedAnswer !== undefined && selectedAnswer !== q.answer;
+    });
+
+    return (
+      <>
+        <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginBottom: 22 }}>
+          <button onClick={() => handleVisualFilterChange("all")} style={pillStyle(visualFilter === "all")}>All Visual ID</button>
+          <button onClick={() => handleVisualFilterChange("clinical")} style={pillStyle(visualFilter === "clinical")}>Clinical Lines & Cables</button>
+          <button onClick={() => handleVisualFilterChange("tech")} style={pillStyle(visualFilter === "tech")}>Tech Connectors</button>
+        </div>
+
+        {!visualShowResults && !visualShowMissedReview && current && (
+          <>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+              <div style={badgeStyle}>Question {visualIndex + 1} / {visualQuestions.length}</div>
+              <div style={badgeStyle}>Score: {visualScore}</div>
+              <div style={{ ...badgeStyle, background: "#eefbf4", color: "#166534" }}>{current.category}</div>
+            </div>
+
+            <SmartQuizImage src={current.image} alt={current.options[current.answer]} />
+
+            <div style={{ color: "#12355b", marginBottom: 14, textAlign: "center" }}>
+              <div style={{ fontSize: 22, fontWeight: 700 }}>{current.question}</div>
+            </div>
+
+            {current.options.map((opt, i) => {
+              const isCorrectOption = i === current.answer;
+              const isSelectedWrong = isAnswered && i === selected && selected !== current.answer;
+              return (
+                <button
+                  key={i}
+                  onClick={() => {
+                    if (isAnswered) return;
+                    setVisualAnswers((prev) => ({ ...prev, [visualIndex]: i }));
+                    if (i === current.answer) {
+                      setVisualScore((prev) => prev + 1);
+                      correctSound.currentTime = 0;
+                      correctSound.play();
+                    } else {
+                      wrongSound.currentTime = 0;
+                      wrongSound.play();
+                    }
+                  }}
+                  style={{
+                    width: "100%",
+                    textAlign: "left",
+                    padding: "14px 16px",
+                    marginBottom: 12,
+                    borderRadius: 12,
+                    border: isCorrectOption && isAnswered ? "2px solid green" : isSelectedWrong ? "2px solid red" : "1px solid #cbd5e1",
+                    background: isCorrectOption && isAnswered ? "#d9f7d9" : isSelectedWrong ? "#fee2e2" : "#f8fafc",
+                    color: "#1e293b",
+                    fontSize: 16,
+                    fontWeight: 600,
+                    cursor: isAnswered ? "default" : "pointer",
+                    boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                  }}
+                >
+                  {String.fromCharCode(65 + i)}. {opt}
+                </button>
+              );
+            })}
+
+            {typeof current.studyTip === "string" && isAnswered && (
+              <div
+                style={{
+                  marginTop: 8,
+                  padding: "12px 14px",
+                  borderRadius: 12,
+                  background: "#eff6ff",
+                  color: "#1d4ed8",
+                  border: "1px solid #bfdbfe",
+                  fontWeight: 600
+                }}
+              >
+                Study tip: {current.studyTip}
+              </div>
+            )}
+
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <button
+                onClick={() => {
+                  if (visualAnswers[visualIndex] === undefined) return;
+                  if (visualIndex + 1 === visualQuestions.length) {
+                    trackExamCompletion && trackExamCompletion("Cable ID Quiz", visualScore, visualQuestions.length);
+                    setVisualShowResults(true);
+                  } else {
+                    setVisualIndex((prev) => prev + 1);
+                  }
+                }}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: visualAnswers[visualIndex] === undefined ? "not-allowed" : "pointer",
+                  opacity: visualAnswers[visualIndex] === undefined ? 0.6 : 1,
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                }}
+              >
+                {visualIndex + 1 === visualQuestions.length ? "Finish Quiz" : "Next Question"}
+              </button>
+            </div>
+          </>
+        )}
+
+        {visualShowResults && (
+          <div style={{ textAlign: "center" }}>
+            <h2 style={{ color: "#12355b" }}>Cable & Connector Visual Quiz Complete</h2>
+            <p style={{ fontSize: 20, color: "#1e293b" }}>
+              Your score: {visualScore} / {visualQuestions.length}
+            </p>
+            <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
+              <button
+                onClick={() => setVisualShowMissedReview(true)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Study Misses
+              </button>
+              <button
+                onClick={() => shareQuizResult && shareQuizResult("Cable ID Quiz", visualScore, visualQuestions.length)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Share Quiz
+              </button>
+              <button
+                onClick={() => resetVisualQuiz()}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Restart Quiz
+              </button>
+            </div>
+          </div>
+        )}
+
+        {visualShowMissedReview && (
+          <div style={{ marginTop: 24 }}>
+            <h2 style={{ color: "#12355b", textAlign: "center" }}>Cable & Connector Missed Review</h2>
+            {missedQuestions.length === 0 ? (
+              <p style={{ textAlign: "center", color: "#1e293b" }}>You did not miss any questions.</p>
+            ) : (
+              <div style={{ display: "grid", gap: 16 }}>
+                {missedQuestions.map((q, idx) => {
+                  const selectedIndex = visualAnswers[visualQuestions.indexOf(q)];
+                  return (
+                    <div key={idx} style={{ border: "1px solid #dbe4f0", borderRadius: 16, padding: 16, background: "#fff" }}>
+                      <div style={{ marginBottom: 10, color: "#12355b", fontWeight: 700 }}>{q.category}</div>
+                      <div style={{ marginBottom: 12 }}>
+                        <img
+                          src={q.image}
+                          alt={q.options[q.answer]}
+                          style={{
+                            width: "100%",
+                            maxWidth: 420,
+                            maxHeight: 260,
+                            objectFit: "contain",
+                            display: "block",
+                            background: "#ffffff",
+                            border: "1px solid #dbe4f0",
+                            borderRadius: 16,
+                            padding: 12
+                          }}
+                        />
+                      </div>
+                      <div style={{ fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>{q.question}</div>
+                      <div style={{ marginBottom: 4 }}>Correct: {q.options[q.answer]}</div>
+                      <div style={{ marginBottom: 6 }}>Your answer: {q.options[selectedIndex]}</div>
+                      {q.studyTip && <div style={{ color: "#1d4ed8", fontWeight: 600 }}>Tip: {q.studyTip}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <button
+                onClick={() => setVisualShowMissedReview(false)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Back to Results
+              </button>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  };
+
+  const renderConceptMode = () => {
+    const current = conceptQuestions[conceptIndex];
+    const selected = conceptAnswers[conceptIndex];
+    const isAnswered = selected !== undefined;
+    const missedQuestions = clinicalCableConceptQuestions.filter((q, questionIndex) => {
+      const selectedAnswer = conceptAnswers[questionIndex];
+      return selectedAnswer !== undefined && selectedAnswer !== q.answer;
+    });
+
+    return (
+      <>
+        {!conceptShowResults && !conceptShowMissedReview && current && (
+          <>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+              <div style={badgeStyle}>Question {conceptIndex + 1} / {conceptQuestions.length}</div>
+              <div style={badgeStyle}>Score: {conceptScore}</div>
+              <div style={{ ...badgeStyle, background: "#f3e8ff", color: "#6b21a8" }}>Clinical Lines Quiz</div>
+            </div>
+
+            <div style={{ color: "#12355b", marginBottom: 18 }}>
+              <div style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>{current.question}</div>
+            </div>
+
+            {current.options.map((opt, i) => {
+              const isCorrectOption = i === current.answer;
+              const isSelectedWrong = isAnswered && i === selected && selected !== current.answer;
+              return (
+                <button
+                  key={i}
+                  onClick={() => {
+                    if (isAnswered) return;
+                    setConceptAnswers((prev) => ({ ...prev, [conceptIndex]: i }));
+                    if (i === current.answer) {
+                      setConceptScore((prev) => prev + 1);
+                      correctSound.currentTime = 0;
+                      correctSound.play();
+                    } else {
+                      wrongSound.currentTime = 0;
+                      wrongSound.play();
+                    }
+                  }}
+                  style={{
+                    width: "100%",
+                    textAlign: "left",
+                    padding: "14px 16px",
+                    marginBottom: 12,
+                    borderRadius: 12,
+                    border: isCorrectOption && isAnswered ? "2px solid green" : isSelectedWrong ? "2px solid red" : "1px solid #cbd5e1",
+                    background: isCorrectOption && isAnswered ? "#d9f7d9" : isSelectedWrong ? "#fee2e2" : "#f8fafc",
+                    color: "#1e293b",
+                    fontSize: 16,
+                    fontWeight: 600,
+                    cursor: isAnswered ? "default" : "pointer",
+                    boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
+                  }}
+                >
+                  {String.fromCharCode(65 + i)}. {opt}
+                </button>
+              );
+            })}
+
+            {typeof current.studyTip === "string" && isAnswered && (
+              <div
+                style={{
+                  marginTop: 8,
+                  padding: "12px 14px",
+                  borderRadius: 12,
+                  background: "#eff6ff",
+                  color: "#1d4ed8",
+                  border: "1px solid #bfdbfe",
+                  fontWeight: 600
+                }}
+              >
+                Study tip: {current.studyTip}
+              </div>
+            )}
+
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <button
+                onClick={() => {
+                  if (conceptAnswers[conceptIndex] === undefined) return;
+                  if (conceptIndex + 1 === conceptQuestions.length) {
+                    trackExamCompletion && trackExamCompletion("Clinical Lines Quiz", conceptScore, conceptQuestions.length);
+                    setConceptShowResults(true);
+                  } else {
+                    setConceptIndex((prev) => prev + 1);
+                  }
+                }}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: conceptAnswers[conceptIndex] === undefined ? "not-allowed" : "pointer",
+                  opacity: conceptAnswers[conceptIndex] === undefined ? 0.6 : 1,
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                }}
+              >
+                {conceptIndex + 1 === conceptQuestions.length ? "Finish Quiz" : "Next Question"}
+              </button>
+            </div>
+          </>
+        )}
+
+        {conceptShowResults && (
+          <div style={{ textAlign: "center" }}>
+            <h2 style={{ color: "#12355b" }}>Clinical Lines Quiz Complete</h2>
+            <p style={{ fontSize: 20, color: "#1e293b" }}>
+              Your score: {conceptScore} / {conceptQuestions.length}
+            </p>
+            <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
+              <button
+                onClick={() => setConceptShowMissedReview(true)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Study Misses
+              </button>
+              <button
+                onClick={() => shareQuizResult && shareQuizResult("Clinical Lines Quiz", conceptScore, conceptQuestions.length)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Share Quiz
+              </button>
+              <button
+                onClick={() => resetConceptQuiz()}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #dc2626, #ef4444)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Restart Quiz
+              </button>
+            </div>
+          </div>
+        )}
+
+        {conceptShowMissedReview && (
+          <div style={{ marginTop: 24 }}>
+            <h2 style={{ color: "#12355b", textAlign: "center" }}>Clinical Lines Missed Review</h2>
+            {missedQuestions.length === 0 ? (
+              <p style={{ textAlign: "center", color: "#1e293b" }}>You did not miss any questions.</p>
+            ) : (
+              <div style={{ display: "grid", gap: 16 }}>
+                {missedQuestions.map((q, idx) => {
+                  const selectedIndex = conceptAnswers[clinicalCableConceptQuestions.indexOf(q)];
+                  return (
+                    <div key={idx} style={{ border: "1px solid #dbe4f0", borderRadius: 16, padding: 16, background: "#fff" }}>
+                      <div style={{ marginBottom: 10, color: "#12355b", fontWeight: 700 }}>Clinical Lines & Cables</div>
+                      <div style={{ fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>{q.question}</div>
+                      <div style={{ marginBottom: 4 }}>Correct: {q.options[q.answer]}</div>
+                      <div style={{ marginBottom: 6 }}>Your answer: {q.options[selectedIndex]}</div>
+                      {q.studyTip && <div style={{ color: "#1d4ed8", fontWeight: 600 }}>Tip: {q.studyTip}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            <div style={{ textAlign: "center", marginTop: 20 }}>
+              <button
+                onClick={() => setConceptShowMissedReview(false)}
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer"
+                }}
+              >
+                Back to Results
+              </button>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  };
+
   return (
     <div
       style={{
@@ -2184,237 +2823,22 @@ function CableQuizTab({ trackExamCompletion, shareQuizResult }) {
       }}
     >
       <div style={{ textAlign: "center", marginBottom: 20 }}>
-        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Cable & Connector ID Quiz</h2>
+        <h2 style={{ color: "#12355b", marginBottom: 8 }}>Cable & Connector Practice</h2>
         <p style={{ color: "#4f6275", margin: 0 }}>
-          Practice recognizing clinical lines, monitor cables, and common display or computer connectors.
+          Use visual identification to recognize lines and cables, then switch to the clinical quiz to test what they do.
         </p>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginBottom: 22 }}>
-        <button onClick={() => handleFilterChange("all")} style={pillStyle(filter === "all")}>All</button>
-        <button onClick={() => handleFilterChange("clinical")} style={pillStyle(filter === "clinical")}>Clinical Lines & Cables</button>
-        <button onClick={() => handleFilterChange("tech")} style={pillStyle(filter === "tech")}>Tech Connectors</button>
+        <button onClick={() => setMode("visual")} style={pillStyle(mode === "visual")}>Visual ID Quiz</button>
+        <button onClick={() => setMode("clinical")} style={pillStyle(mode === "clinical")}>Clinical Lines Quiz</button>
       </div>
 
-      {!showResults && !showMissedReview && current && (
-        <>
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
-            <div style={{ padding: "10px 16px", borderRadius: 999, background: "#eff6ff", color: "#12355b", fontWeight: 700 }}>
-              Question {index + 1} / {questions.length}
-            </div>
-            <div style={{ padding: "10px 16px", borderRadius: 999, background: "#eff6ff", color: "#12355b", fontWeight: 700 }}>
-              Score: {score}
-            </div>
-            <div style={{ padding: "10px 16px", borderRadius: 999, background: "#eefbf4", color: "#166534", fontWeight: 700 }}>
-              {current.category}
-            </div>
-          </div>
-
-          <SmartQuizImage
-            src={current.image}
-            alt={current.options[current.answer]}
-          />
-
-          <div style={{ color: "#12355b", marginBottom: 14, textAlign: "center" }}>
-            <div style={{ fontSize: 22, fontWeight: 700 }}>{current.question}</div>
-          </div>
-
-          {current.options.map((opt, i) => {
-            const isCorrectOption = i === current.answer;
-            const isSelectedWrong = isAnswered && i === selected && selected !== current.answer;
-            return (
-              <button
-                key={i}
-                onClick={() => {
-                  if (isAnswered) return;
-                  setAnswers((prev) => ({ ...prev, [index]: i }));
-                  if (i === current.answer) {
-                    setScore((prev) => prev + 1);
-                    correctSound.currentTime = 0;
-                    correctSound.play();
-                  } else {
-                    wrongSound.currentTime = 0;
-                    wrongSound.play();
-                  }
-                }}
-                style={{
-                  width: "100%",
-                  textAlign: "left",
-                  padding: "14px 16px",
-                  marginBottom: 12,
-                  borderRadius: 12,
-                  border: isCorrectOption && isAnswered ? "2px solid green" : isSelectedWrong ? "2px solid red" : "1px solid #cbd5e1",
-                  background: isCorrectOption && isAnswered ? "#d9f7d9" : isSelectedWrong ? "#fee2e2" : "#f8fafc",
-                  color: "#1e293b",
-                  fontSize: 16,
-                  fontWeight: 600,
-                  cursor: isAnswered ? "default" : "pointer",
-                  boxShadow: "0 2px 6px rgba(0,0,0,0.03)"
-                }}
-              >
-                {String.fromCharCode(65 + i)}. {opt}
-              </button>
-            );
-          })}
-
-          {typeof current.studyTip === "string" && isAnswered && (
-            <div
-              style={{
-                marginTop: 8,
-                padding: "12px 14px",
-                borderRadius: 12,
-                background: "#eff6ff",
-                color: "#1d4ed8",
-                border: "1px solid #bfdbfe",
-                fontWeight: 600
-              }}
-            >
-              Study tip: {current.studyTip}
-            </div>
-          )}
-
-          <div style={{ textAlign: "center", marginTop: 20 }}>
-            <button
-              onClick={() => {
-                if (answers[index] === undefined) return;
-                if (index + 1 === questions.length) {
-                  const finalScore = score;
-                  trackExamCompletion && trackExamCompletion("Cable ID Quiz", finalScore, questions.length);
-                  setShowResults(true);
-                } else {
-                  setIndex((prev) => prev + 1);
-                }
-              }}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 999,
-                border: "none",
-                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                color: "white",
-                fontWeight: 700,
-                cursor: answers[index] === undefined ? "not-allowed" : "pointer",
-                opacity: answers[index] === undefined ? 0.6 : 1,
-                boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
-              }}
-            >
-              {index + 1 === questions.length ? "Finish Quiz" : "Next Question"}
-            </button>
-          </div>
-        </>
-      )}
-
-      {showResults && (
-        <div style={{ textAlign: "center" }}>
-          <h2 style={{ color: "#12355b" }}>Cable & Connector Quiz Complete</h2>
-          <p style={{ fontSize: 20, color: "#1e293b" }}>
-            Your score: {score} / {questions.length}
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginTop: 20 }}>
-            <button
-              onClick={() => setShowMissedReview(true)}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 999,
-                border: "none",
-                background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
-                color: "white",
-                fontWeight: 700,
-                cursor: "pointer"
-              }}
-            >
-              Study Misses
-            </button>
-            <button
-              onClick={() => shareQuizResult && shareQuizResult("Cable ID Quiz", score, questions.length)}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 999,
-                border: "none",
-                background: "linear-gradient(135deg, #0f766e, #14b8a6)",
-                color: "white",
-                fontWeight: 700,
-                cursor: "pointer"
-              }}
-            >
-              Share Quiz
-            </button>
-            <button
-              onClick={() => resetQuiz()}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 999,
-                border: "none",
-                background: "linear-gradient(135deg, #dc2626, #ef4444)",
-                color: "white",
-                fontWeight: 700,
-                cursor: "pointer"
-              }}
-            >
-              Restart Quiz
-            </button>
-          </div>
-        </div>
-      )}
-
-      {showMissedReview && (
-        <div style={{ marginTop: 24 }}>
-          <h2 style={{ color: "#12355b", textAlign: "center" }}>Cable & Connector Missed Review</h2>
-          {missedQuestions.length === 0 ? (
-            <p style={{ textAlign: "center", color: "#1e293b" }}>You did not miss any questions.</p>
-          ) : (
-            <div style={{ display: "grid", gap: 16 }}>
-              {missedQuestions.map((q, idx) => {
-                const selectedIndex = answers[questions.indexOf(q)];
-                return (
-                  <div key={idx} style={{ border: "1px solid #dbe4f0", borderRadius: 16, padding: 16, background: "#fff" }}>
-                    <div style={{ marginBottom: 10, color: "#12355b", fontWeight: 700 }}>{q.category}</div>
-                    <div style={{ marginBottom: 12 }}>
-                      <img
-                        src={q.image}
-                        alt={q.options[q.answer]}
-                        style={{
-                          width: "100%",
-                          maxWidth: 420,
-                          maxHeight: 260,
-                          objectFit: "contain",
-                          display: "block",
-                          background: "#ffffff",
-                          border: "1px solid #dbe4f0",
-                          borderRadius: 16,
-                          padding: 12
-                        }}
-                      />
-                    </div>
-                    <div style={{ fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>{q.question}</div>
-                    <div style={{ marginBottom: 4 }}>Correct: {q.options[q.answer]}</div>
-                    <div style={{ marginBottom: 6 }}>Your answer: {q.options[selectedIndex]}</div>
-                    {q.studyTip && <div style={{ color: "#1d4ed8", fontWeight: 600 }}>Tip: {q.studyTip}</div>}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          <div style={{ textAlign: "center", marginTop: 20 }}>
-            <button
-              onClick={() => setShowMissedReview(false)}
-              style={{
-                padding: "12px 24px",
-                borderRadius: 999,
-                border: "none",
-                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-                color: "white",
-                fontWeight: 700,
-                cursor: "pointer"
-              }}
-            >
-              Back to Results
-            </button>
-          </div>
-        </div>
-      )}
+      {mode === "visual" ? renderVisualMode() : renderConceptMode()}
     </div>
   );
 }
+
 
 const rnQuestions = [
   {
