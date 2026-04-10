@@ -1207,7 +1207,7 @@ function EkgBasics() {
             <div
               key={lesson.title}
               style={{
-                background: "#ffffff",
+                background: "#f8fafc",
                 border: "1px solid #dbe4f0",
                 borderRadius: 18,
                 padding: 18,
@@ -6219,18 +6219,24 @@ export default function App() {
     border: "1px solid #d8e4f2",
     boxShadow: "0 8px 22px rgba(0,0,0,0.05)"
   };
-  const homeActionLinkStyle = (background) => ({
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "10px 16px",
-    borderRadius: 999,
-    background,
-    color: "white",
-    textDecoration: "none",
-    fontWeight: 700,
-    boxShadow: "0 10px 22px rgba(0,0,0,0.14)"
-  });
+  const homeActionLinkStyle = (accent = "#12355b") => {
+    const isGradient = typeof accent === "string" && accent.includes("gradient");
+    return {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "12px 16px",
+      borderRadius: 999,
+      background: isGradient ? accent : "#ffffff",
+      color: isGradient ? "white" : "#12355b",
+      textDecoration: "none",
+      fontWeight: 700,
+      border: isGradient ? "none" : `1px solid ${accent}33`,
+      boxShadow: isGradient
+        ? "0 10px 22px rgba(0,0,0,0.14)"
+        : "0 10px 24px rgba(15,23,42,0.08)"
+    };
+  };
   const getInteractiveHomeCardStyle = (cardId) => {
     const isActive = hoveredHomeCard === cardId;
     return {
@@ -7234,24 +7240,32 @@ return (
                   Start here
                 </h4>
 
-                <div style={{ display: "grid", gap: 10 }}>
-                  <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#f59e42")}>
-                    Free CBET Practice Test
-                  </a>
-                  <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
-                    Anatomy Labeling Practice
-                  </a>
-                  <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>
-                    RN Practice Questions
-                  </a>
-                  <a href="/medical-terminology-practice.html" style={homeActionLinkStyle("#7c3aed")}>
-                    Medical Terminology Practice
-                  </a>
-                  <a href="/browse-all-practice.html" style={homeActionLinkStyle("#12355b")}>
-                    Browse All Practice →
-                  </a>
-                </div>
-              </div>
+                    <div style={{ display: "grid", gap: 10 }}>
+                    <a href="/medical-terminology-builder.html" style={homeActionLinkStyle("#7c3aed")}>
+                      Medical Terminology Builder
+                    </a>
+
+                    <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
+                      Anatomy Labeling Practice
+                    </a>
+
+                    <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>
+                      RN Practice Questions
+                    </a>
+
+                    <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#f59e42")}>
+                      Free CBET Practice Test
+                    </a>
+
+                    <a href="/medical-prefix-suffix-practice.html" style={homeActionLinkStyle("#6d28d9")}>
+                      Prefix & Suffix Practice
+                    </a>
+
+                    <a href="/browse-all-practice.html" style={homeActionLinkStyle("#12355b")}>
+                      Browse All Practice →
+                    </a>
+                  </div>
+                  </div>
 
                 <div
                   style={{
