@@ -6,6 +6,7 @@ import BonesQuiz from "./BonesQuiz";
 import HeartQuiz from "./HeartQuiz";
 import DigestiveSystemQuiz from "./DigestiveSystemQuiz";
 import { cbetQuestions as baseCbetQuestions } from "./questionData";
+import { cbetElectronicsQuestions } from "./cbetElectronicsQuestions";
 
 
 const extraCbetQuestions = [
@@ -137,6 +138,11 @@ const extraCbetQuestions = [
 ];
 
 const cbetQuestions = [...baseCbetQuestions, ...extraCbetQuestions];
+
+const cbetQuestionPools = {
+  mixed: cbetQuestions,
+  electronics: cbetElectronicsQuestions
+};
 
 // --- SOUND EFFECTS ---
 
@@ -5703,6 +5709,7 @@ export default function App() {
   });
   const ownerExamNames = [
     "CBET Practice",
+    "CBET Electronics Practice",
     "CBET Full Exam",
     "CBET Harder Practice",
     "RN Practice",
@@ -5779,6 +5786,7 @@ export default function App() {
   const [cbetShowResult, setCbetShowResult] = useState(false);
   const [showMissedReview, setShowMissedReview] = useState(false);
   const [cbetMode, setCbetMode] = useState("practice");
+  const [cbetCategory, setCbetCategory] = useState("mixed");
   const [cbetQuestionTarget, setCbetQuestionTarget] = useState(() => Math.min(75, cbetQuestions.length));
   const [harderCbetUnlocked, setHarderCbetUnlocked] = useState(
     () => localStorage.getItem("harderCbetUnlocked") === "true"
@@ -5791,6 +5799,11 @@ export default function App() {
   const [harderCbetAnswers, setHarderCbetAnswers] = useState({});
   const [harderCbetShowResult, setHarderCbetShowResult] = useState(false);
   const [showHarderCbetMissedReview, setShowHarderCbetMissedReview] = useState(false);
+
+  const getActiveCbetQuestionSet = (mode = cbetMode, category = cbetCategory) => {
+    if (mode === "full") return cbetQuestions;
+    return cbetQuestionPools[category] || cbetQuestions;
+  };
   // --- RN PRACTICE STATE ---
   const [shuffledRnQuestions, setShuffledRnQuestions] = useState(() =>
     shuffleQuestionSet(rnQuestions)
@@ -5880,6 +5893,9 @@ export default function App() {
       setCbetAnswers(savedCbet.cbetAnswers || {});
       setCbetShowResult(savedCbet.cbetShowResult || false);
       setShowMissedReview(savedCbet.showMissedReview || false);
+      setCbetMode(savedCbet.cbetMode || "practice");
+      setCbetCategory(savedCbet.cbetCategory || "mixed");
+      setCbetQuestionTarget(savedCbet.cbetQuestionTarget || cbetQuestions.length);
     }
   }, []);
   useEffect(() => {
@@ -6192,7 +6208,10 @@ export default function App() {
       : topLeaderboardEntries;
 
   const resetCbetExam = () => {
-    const reshuffled = shuffleQuestionSet(cbetQuestions);
+    const activePool = getActiveCbetQuestionSet();
+    const reshuffled =
+      cbetMode === "full" ? buildCBET75(cbetQuestions) : shuffleQuestionSet(activePool);
+
     localStorage.removeItem("cbetProgress");
     setShuffledCbetQuestions(reshuffled);
     setCbetIndex(0);
@@ -6200,6 +6219,7 @@ export default function App() {
     setCbetAnswers({});
     setCbetShowResult(false);
     setShowMissedReview(false);
+    setCbetQuestionTarget(cbetMode === "full" ? 75 : activePool.length);
   };
   const saveCbetProgress = () => {
     if (cbetMode !== "practice") return;
@@ -6211,13 +6231,19 @@ export default function App() {
       cbetShowResult,
       showMissedReview,
       cbetMode,
+      cbetCategory,
       cbetQuestionTarget
     };
     localStorage.setItem("cbetProgress", JSON.stringify(progress));
   };
   const restartCbetExam = () => {
-    const questionCount = cbetMode === "full" ? Math.min(75, cbetQuestions.length) : cbetQuestions.length;
-    const reshuffled = shuffleQuestionSet(cbetQuestions).slice(0, questionCount);
+    const activePool = getActiveCbetQuestionSet();
+    const questionCount = cbetMode === "full" ? 75 : activePool.length;
+    const reshuffled =
+      cbetMode === "full"
+        ? buildCBET75(cbetQuestions)
+        : shuffleQuestionSet(activePool).slice(0, questionCount);
+
     localStorage.removeItem("cbetProgress");
     setShuffledCbetQuestions(reshuffled);
     setCbetQuestionTarget(questionCount);
@@ -6226,19 +6252,35 @@ export default function App() {
     setCbetAnswers({});
     setCbetShowResult(false);
     setShowMissedReview(false);
-    trackExamStart(cbetMode === "full" ? "CBET Full Exam" : "CBET Practice");
+
+    trackExamStart(
+      cbetMode === "full"
+        ? "CBET Full Exam"
+        : cbetCategory === "electronics"
+        ? "CBET Electronics Practice"
+        : "CBET Practice"
+    );
   };
-  const startCbetPracticeMode = () => {
+  const startCbetPracticeMode = (nextCategory = cbetCategory) => {
     localStorage.removeItem("cbetProgress");
+
+    const practicePool = getActiveCbetQuestionSet("practice", nextCategory);
+
     setCbetMode("practice");
-    setCbetQuestionTarget(cbetQuestions.length);
-    setShuffledCbetQuestions(shuffleQuestionSet(cbetQuestions));
+    setCbetCategory(nextCategory);
+    setCbetQuestionTarget(practicePool.length);
+    setShuffledCbetQuestions(shuffleQuestionSet(practicePool));
     setCbetIndex(0);
     setCbetScore(0);
     setCbetAnswers({});
     setCbetShowResult(false);
     setShowMissedReview(false);
-    trackExamStart("CBET Practice");
+
+    trackExamStart(
+      nextCategory === "electronics"
+        ? "CBET Electronics Practice"
+        : "CBET Practice"
+    );
   };
   const startCbetFullExam = () => {
     const examQuestions = buildCBET75(cbetQuestions);
@@ -8712,7 +8754,11 @@ return (
               <>
                 <div style={{ textAlign: "center", marginBottom: 20 }}>
                   <h2 style={{ color: "#12355b", marginBottom: 8 }}>
-                    {cbetMode === "full" ? `CBET Full Practice Test (${cbetQuestionTarget} Questions)` : "CBET Practice"}
+                    {cbetMode === "full"
+                      ? `CBET Full Practice Test (${cbetQuestionTarget} Questions)`
+                      : cbetCategory === "electronics"
+                      ? `CBET Electronics Practice (${cbetQuestionTarget} Questions)`
+                      : "CBET Practice"}
                   </h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
                     {cbetMode === "full"
@@ -8772,6 +8818,54 @@ return (
                     🔥 Full CBET Exam (75 Questions)
                   </button>
                 </div>
+                {cbetMode === "practice" && (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: 12,
+                      flexWrap: "wrap",
+                      marginBottom: 20
+                    }}
+                  >
+                    <button
+                      onClick={() => startCbetPracticeMode("mixed")}
+                      style={{
+                        padding: "10px 18px",
+                        borderRadius: 999,
+                        border: "none",
+                        background:
+                          cbetCategory === "mixed"
+                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                            : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+                        color: cbetCategory === "mixed" ? "white" : "#12355b",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      Mixed
+                    </button>
+                    <button
+                      onClick={() => startCbetPracticeMode("electronics")}
+                      style={{
+                        padding: "10px 18px",
+                        borderRadius: 999,
+                        border: "none",
+                        background:
+                          cbetCategory === "electronics"
+                            ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+                            : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+                        color: cbetCategory === "electronics" ? "white" : "#12355b",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                      }}
+                    >
+                      Electronics
+                    </button>
+                  </div>
+                )}
                 <div
                   style={{
                     display: "flex",
@@ -8920,7 +9014,15 @@ return (
                       onClick={() => {
                         if (cbetAnswers[cbetIndex] === undefined) return;
                         if (cbetIndex + 1 === shuffledCbetQuestions.length) {
-                          trackExamCompletion(cbetMode === "full" ? "CBET Full Exam" : "CBET Practice", cbetScore, shuffledCbetQuestions.length);
+                          trackExamCompletion(
+                            cbetMode === "full"
+                              ? "CBET Full Exam"
+                              : cbetCategory === "electronics"
+                              ? "CBET Electronics Practice"
+                              : "CBET Practice",
+                            cbetScore,
+                            shuffledCbetQuestions.length
+                          );
                           setCbetShowResult(true);
                         } else {
                           setCbetIndex((prev) => prev + 1);
@@ -8953,7 +9055,11 @@ return (
             ) : (
               <div style={{ textAlign: "center" }}>
                 <h2 style={{ color: "#12355b" }}>
-                  {cbetMode === "full" ? "CBET Full Exam Complete" : "CBET Practice Complete"}
+                  {cbetMode === "full"
+                    ? "CBET Full Exam Complete"
+                    : cbetCategory === "electronics"
+                    ? "CBET Electronics Practice Complete"
+                    : "CBET Practice Complete"}
                 </h2>
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {cbetScore} / {shuffledCbetQuestions.length}
@@ -9031,7 +9137,11 @@ return (
                 <button
                   onClick={() =>
                     shareQuizResult(
-                      "CBET Practice",
+                      cbetMode === "full"
+                        ? "CBET Full Exam"
+                        : cbetCategory === "electronics"
+                        ? "CBET Electronics Practice"
+                        : "CBET Practice",
                       cbetScore,
                       shuffledCbetQuestions.length
                     )}
