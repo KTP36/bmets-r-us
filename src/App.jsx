@@ -264,9 +264,9 @@ function EquipmentTab({
             margin: "0 auto"
           }}>
             <div style={{ textAlign: "center", marginBottom: 20 }}>
-              <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment ID</h2>
+              <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment Identification Practice</h2>
               <p style={{ color: "#4f6275", margin: 0 }}>
-                Identify each device from the image, then switch to Concepts Quiz to test function and safety knowledge.
+                Identify each device from the image, then switch to Equipment Concepts Practice to build function and safety knowledge.
               </p>
             </div>
             <div style={{
@@ -512,9 +512,9 @@ function EquipmentTab({
           margin: "0 auto"
         }}>
           <div style={{ textAlign: "center", marginBottom: 20 }}>
-            <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment Concepts Quiz</h2>
+            <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment Concepts Practice</h2>
             <p style={{ color: "#4f6275", margin: 0 }}>
-              Test function, troubleshooting, and safety concepts after practicing image identification.
+              Build confidence with function, troubleshooting, and safety concepts after image identification practice.
             </p>
           </div>
           <div style={{
@@ -601,7 +601,7 @@ function EquipmentTab({
                 if (conceptAnswers[conceptIndex] === undefined) return;
                 if (conceptIndex + 1 === equipmentOnlyConceptQuestions.length) {
                   trackExamCompletion &&
-                    trackExamCompletion("Equipment Concepts Quiz", conceptScore, equipmentOnlyConceptQuestions.length);
+                    trackExamCompletion("Equipment Concepts Practice", conceptScore, equipmentOnlyConceptQuestions.length);
                   setConceptShowResult(true);
                 } else {
                   setConceptIndex((prev) => prev + 1);
@@ -663,7 +663,7 @@ function EquipmentTab({
               <button
               onClick={() =>
                 shareQuizResult &&
-                shareQuizResult("Equipment Concepts Quiz", conceptScore, equipmentOnlyConceptQuestions.length)
+                shareQuizResult("Equipment Concepts Practice", conceptScore, equipmentOnlyConceptQuestions.length)
               }
               style={{
                 padding: "12px 24px",
@@ -1202,9 +1202,9 @@ function EkgBasics() {
         }}
       >
         <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h2 style={{ color: "#12355b", marginBottom: 8 }}>EKG Basics</h2>
+          <h2 style={{ color: "#12355b", marginBottom: 8 }}>EKG Basics & Practice</h2>
           <p style={{ color: "#4f6275", margin: 0 }}>
-            Learn the look of common rhythms first, then switch to quiz mode and test yourself.
+            Learn the look of common rhythms first, then switch to practice mode and test yourself.
           </p>
         </div>
 
@@ -1297,7 +1297,7 @@ function EkgQuiz({ onComplete }) {
           boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
         }}
       >
-        EKG Basics
+        EKG Basics & Practice
       </button>
       <button
         onClick={() => setMode("quiz")}
@@ -1315,7 +1315,7 @@ function EkgQuiz({ onComplete }) {
           boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
         }}
       >
-        EKG Quiz
+        EKG Rhythm Practice
       </button>
     </div>
   );
@@ -1359,7 +1359,7 @@ function EkgQuiz({ onComplete }) {
               cursor: "pointer"
             }}
           >
-            Restart EKG Quiz
+            Restart EKG Rhythm Practice
           </button>
         </div>
       </div>
@@ -5710,7 +5710,7 @@ export default function App() {
   const ownerExamNames = [
     "CBET Practice",
     "CBET Electronics Practice",
-    "CBET Full Exam",
+    "CBET 75-Question Practice Exam",
     "CBET Harder Practice",
     "RN Practice",
     "TEAS Practice",
@@ -5718,7 +5718,7 @@ export default function App() {
     "Medical Terminology Practice",
     "Medical Prefix and Suffix Practice",
     "Medical Terminology Builder",
-    "Medical Equipment ID Practice",
+    "Medical Equipment Identification Practice Practice",
     "Cable ID Quiz",
     "EKG Waveform Quiz"
   ];
@@ -6255,7 +6255,7 @@ export default function App() {
 
     trackExamStart(
       cbetMode === "full"
-        ? "CBET Full Exam"
+        ? "CBET 75-Question Practice Exam"
         : cbetCategory === "electronics"
         ? "CBET Electronics Practice"
         : "CBET Practice"
@@ -6292,7 +6292,7 @@ export default function App() {
     setCbetAnswers({});
     setCbetShowResult(false);
     setShowMissedReview(false);
-    trackExamStart("CBET Full Exam");
+    trackExamStart("CBET 75-Question Practice Exam");
   };
   const saveHarderCbetProgress = () => {
     const progress = {
@@ -7143,7 +7143,7 @@ return (
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "EKGQuiz", hoveredNavTab === "EKGQuiz")}
         >
-          EKG Quiz
+          EKG Rhythm Practice
         </button>
 
 
@@ -7260,7 +7260,7 @@ return (
           onMouseLeave={() => setHoveredNavTab("")}
           style={navButtonStyle(activeTab === "Equipment", hoveredNavTab === "Equipment")}
         >
-          Medical Equipment ID
+          Medical Equipment Identification Practice
         </button>
         <button
           onClick={() => {
@@ -7359,7 +7359,7 @@ return (
                   maxWidth: 620
                 }}
               >
-                Pass Your Medical Exams Faster with Interactive Practice
+                Master Medical Exams Faster with Interactive Practice
               </h2>
               <p
                 style={{
@@ -7423,9 +7423,20 @@ return (
                     transform: "scale(1.02)"
                   }}
                 >
-                  🔥 Jump to 75-Question CBET Exam
+                  🔥 Start 75-Question CBET Practice Exam
                 </button>
               </div>
+              <p
+                style={{
+                  marginTop: -4,
+                  marginBottom: 0,
+                  fontSize: 14,
+                  color: "rgba(255,255,255,0.88)",
+                  maxWidth: 520
+                }}
+              >
+                Practice questions designed to simulate the CBET exam format.
+              </p>
             </div>
             <div
               style={{
@@ -7861,7 +7872,7 @@ return (
                   { label: "Prefix & Suffix", value: `${wordPartScore} / ${shuffledWordPartQuestions.length}`, hint: "Word part builder" },
                   { label: "Heart Quiz", value: `${heartFourChamberQuestions.length} questions`, hint: "Separate quiz tab" },
                   { label: "Digestive Quiz", value: "Available", hint: "Separate quiz tab" },
-                  { label: "EKG Quiz", value: `${ekgQuestions.length} questions`, hint: "Waveform rhythm recognition" }
+                  { label: "EKG Rhythm Practice", value: `${ekgQuestions.length} questions`, hint: "Waveform rhythm recognition" }
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -8755,20 +8766,23 @@ return (
                 <div style={{ textAlign: "center", marginBottom: 20 }}>
                   <h2 style={{ color: "#12355b", marginBottom: 8 }}>
                     {cbetMode === "full"
-                      ? `CBET Full Practice Test (${cbetQuestionTarget} Questions)`
+                      ? `CBET 75-Question Practice Exam (${cbetQuestionTarget} Questions)`
                       : cbetCategory === "electronics"
                       ? `CBET Electronics Practice (${cbetQuestionTarget} Questions)`
-                      : "CBET Practice"}
+                      : "CBET Practice Mode"}
                   </h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
                     {cbetMode === "full"
-                      ? "Exam-style mode pulls a timed mixed set from your CBET pool so you can simulate a longer test session."
-                      : "Questions are shuffled each restart. Select one answer. The correct answer will highlight after you answer."}
+                      ? "Practice questions designed to simulate the CBET exam format in a longer 75-question study session."
+                      : "Questions are shuffled each restart. Select one answer and build confidence as you work through practice mode."}
                   </p>
                   <p style={{ color: "#1d6fa5", margin: "8px 0 0 0", fontWeight: 700 }}>
                     {cbetMode === "full"
-                      ? "Use this to simulate a deeper CBET study session and save your score to the leaderboard when you finish."
-                      : "Finish CBET Practice with a score of 70% or higher to unlock CBET Harder Questions."}
+                      ? "Use this mode to build stamina, simulate a longer practice session, and save your score when you finish."
+                      : "Finish CBET Practice Mode with a score of 70% or higher to unlock CBET Harder Questions."}
+                  </p>
+                  <p style={{ color: "#64748b", margin: "8px 0 0 0", fontSize: 12 }}>
+                    MedSkillBuilder is an independent study tool and is not affiliated with or endorsed by any certification organization.
                   </p>
                 </div>
                 <div
@@ -8815,7 +8829,7 @@ return (
                       boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
                     }}
                   >
-                    🔥 Full CBET Exam (75 Questions)
+                    Start 75-Question CBET Practice Exam
                   </button>
                 </div>
                 {cbetMode === "practice" && (
@@ -9016,7 +9030,7 @@ return (
                         if (cbetIndex + 1 === shuffledCbetQuestions.length) {
                           trackExamCompletion(
                             cbetMode === "full"
-                              ? "CBET Full Exam"
+                              ? "CBET 75-Question Practice Exam"
                               : cbetCategory === "electronics"
                               ? "CBET Electronics Practice"
                               : "CBET Practice",
@@ -9056,10 +9070,10 @@ return (
               <div style={{ textAlign: "center" }}>
                 <h2 style={{ color: "#12355b" }}>
                   {cbetMode === "full"
-                    ? "CBET Full Exam Complete"
+                    ? "CBET 75-Question Practice Exam Complete"
                     : cbetCategory === "electronics"
                     ? "CBET Electronics Practice Complete"
-                    : "CBET Practice Complete"}
+                    : "CBET Practice Mode Complete"}
                 </h2>
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
                   Your score: {cbetScore} / {shuffledCbetQuestions.length}
@@ -9138,7 +9152,7 @@ return (
                   onClick={() =>
                     shareQuizResult(
                       cbetMode === "full"
-                        ? "CBET Full Exam"
+                        ? "CBET 75-Question Practice Exam"
                         : cbetCategory === "electronics"
                         ? "CBET Electronics Practice"
                         : "CBET Practice",
@@ -9194,7 +9208,7 @@ return (
       {showMissedReview && (
         <div style={{ marginTop: 24 }}>
           <h2 style={{ color: "#12355b", textAlign: "center" }}>
-            {cbetMode === "full" ? "CBET Full Exam Missed Questions Review" : "Missed Questions Review"}
+            {cbetMode === "full" ? "CBET 75-Question Practice Exam Missed Questions Review" : "Missed Questions Review"}
           </h2>
           {missedQuestions.length === 0 ? (
             <p style={{ textAlign: "center", color: "#1e293b" }}>
