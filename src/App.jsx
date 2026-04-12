@@ -7738,6 +7738,14 @@ return (
                       Prefix & Suffix Practice
                     </a>
 
+                    <a href="/cres-practice-questions.html" style={homeActionLinkStyle("#1e40af")}>
+                      CRES Practice Questions
+                    </a>
+
+                    <a href="/how-to-pass-rn-nclex-exam.html" style={homeActionLinkStyle("#be185d")}>
+                      How to Pass RN NCLEX Exam
+                    </a>
+
                     <a href="/browse-all-practice.html" style={homeActionLinkStyle("#12355b")}>
                       Browse All Practice →
                     </a>
