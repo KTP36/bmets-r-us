@@ -5,6 +5,7 @@ import AnatomyQuiz from "./AnatomyQuiz";
 import BonesQuiz from "./BonesQuiz";
 import HeartQuiz from "./HeartQuiz";
 import DigestiveSystemQuiz from "./DigestiveSystemQuiz";
+import LabValuesQuiz from "./LabValuesQuiz";
 import { cbetQuestions as baseCbetQuestions } from "./questionData";
 import { cbetElectronicsQuestions } from "./cbetElectronicsQuestions";
 
@@ -5720,7 +5721,8 @@ export default function App() {
     "Medical Terminology Builder",
     "Medical Equipment Identification Practice Practice",
     "Cable ID Quiz",
-    "EKG Waveform Quiz"
+    "EKG Waveform Quiz",
+    "Lab Values Quiz"
   ];
   const [contactStatus, setContactStatus] = useState("idle");
   const [contactError, setContactError] = useState("");
@@ -7253,6 +7255,17 @@ return (
         </button>
         <button
           onClick={() => {
+            trackExamStart("Lab Values Quiz");
+            setActiveTab("LabValuesQuiz");
+          }}
+          onMouseEnter={() => setHoveredNavTab("LabValuesQuiz")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "LabValuesQuiz", hoveredNavTab === "LabValuesQuiz")}
+        >
+          Lab Values Quiz
+        </button>
+        <button
+          onClick={() => {
             trackExamStart("Equipment Practice");
             setActiveTab("Equipment");
           }}
@@ -7972,6 +7985,15 @@ return (
         )}
         {activeTab === "EKGQuiz" && (
           <EkgQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("EKG Waveform Quiz", finalScore, totalQuestions)} />
+        )}
+        {activeTab === "LabValuesQuiz" && (
+          <div style={{ padding: 20 }}>
+            <LabValuesQuiz
+              onComplete={(finalScore, totalQuestions) =>
+                trackExamCompletion("Lab Values Quiz", finalScore, totalQuestions)
+              }
+            />
+          </div>
         )}
         {(activeTab === "Anatomy" || activeTab === "Bones") && (
           <div
