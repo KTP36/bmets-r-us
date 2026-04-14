@@ -7065,6 +7065,105 @@ return (
           Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, and Medical Terminology
         </p>
       </div>
+
+      {/* MOST POPULAR RIGHT NOW */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: "16px 18px",
+          borderRadius: 20,
+          background: "rgba(255,255,255,0.78)",
+          border: "1px solid #d8e4f2",
+          boxShadow: "0 10px 24px rgba(18,53,91,0.08)"
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            color: "#12355b",
+            fontWeight: 800,
+            letterSpacing: 1,
+            fontSize: 15,
+            marginBottom: 8
+          }}
+        >
+          MOST POPULAR RIGHT NOW
+        </div>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#4f6275",
+            fontSize: 16,
+            margin: "0 0 14px 0"
+          }}
+        >
+          Start with the practice sets people are clicking first.
+        </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 12,
+            flexWrap: "wrap"
+          }}
+        >
+          <button
+            onClick={() => {
+              trackExamStart("CBET Practice");
+              setActiveTab("CBET");
+            }}
+            style={{
+              padding: "12px 18px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #ff6a00, #ff4d4d)",
+              color: "white",
+              fontWeight: 800,
+              cursor: "pointer",
+              boxShadow: "0 6px 14px rgba(255,106,0,0.25)"
+            }}
+          >
+            CBET Practice
+          </button>
+          <button
+            onClick={() => {
+              trackExamStart("ABG Quiz");
+              setActiveTab("ABGQuiz");
+            }}
+            style={{
+              padding: "12px 18px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+              color: "white",
+              fontWeight: 800,
+              cursor: "pointer",
+              boxShadow: "0 6px 14px rgba(20,184,166,0.25)"
+            }}
+          >
+            ABG Quiz
+          </button>
+          <button
+            onClick={() => {
+              trackExamStart("EKG Waveform Quiz");
+              setActiveTab("EKGQuiz");
+            }}
+            style={{
+              padding: "12px 18px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+              color: "white",
+              fontWeight: 800,
+              cursor: "pointer",
+              boxShadow: "0 6px 14px rgba(18,53,91,0.22)"
+            }}
+          >
+            EKG Rhythm Practice
+          </button>
+        </div>
+      </div>
+
       <div style={{ marginBottom: 16 }}>
         {renderAdSlot(topAdSlot)}
       </div>
@@ -7611,6 +7710,235 @@ return (
               </div>
             </div>
           </div>
+          <div
+            style={{
+              display: "grid",
+              gap: isSmallScreen ? 18 : 24,
+              marginBottom: isSmallScreen ? 20 : 28
+            }}
+          >
+            <div
+              style={{
+                background: "linear-gradient(180deg, #ffffff, #f8fbff)",
+                borderRadius: isSmallScreen ? 20 : 24,
+                padding: isSmallScreen ? 18 : 24,
+                border: "1px solid rgba(216,228,242,0.95)",
+                boxShadow: "0 12px 28px rgba(18,53,91,0.06)"
+              }}
+            >
+              <div
+                style={{
+                  color: "#12355b",
+                  fontWeight: 900,
+                  fontSize: isSmallScreen ? 22 : 26,
+                  marginBottom: 6
+                }}
+              >
+                Test Yourself
+              </div>
+              <p
+                style={{
+                  color: "#4f6275",
+                  marginTop: 0,
+                  marginBottom: 18,
+                  fontSize: 15,
+                  lineHeight: 1.5
+                }}
+              >
+                Challenge yourself with fast exam-style reps and go straight into the topics people hesitate on most.
+              </p>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: isSmallScreen ? "1fr" : "repeat(4, minmax(0, 1fr))",
+                  gap: 12
+                }}
+              >
+                {[
+                  {
+                    key: "cbet-quick",
+                    title: "CBET 75-Question Exam",
+                    description: "Full pressure test with score tracking.",
+                    onClick: () => {
+                      startCbetFullExam();
+                      setActiveTab("CBET");
+                    },
+                    accent: "linear-gradient(135deg, #f97316, #ef4444)"
+                  },
+                  {
+                    key: "abg-quick",
+                    title: "ABG Practice",
+                    description: "Acid-base questions with fast reps.",
+                    onClick: () => setActiveTab("ABGQuiz"),
+                    accent: "linear-gradient(135deg, #0f766e, #14b8a6)"
+                  },
+                  {
+                    key: "lab-quick",
+                    title: "Lab Values Quiz",
+                    description: "Critical labs and normal ranges.",
+                    onClick: () => setActiveTab("LabValuesQuiz"),
+                    accent: "linear-gradient(135deg, #1d4ed8, #3b82f6)"
+                  },
+                  {
+                    key: "ekg-quick",
+                    title: "EKG Quiz",
+                    description: "Read strips and identify rhythms.",
+                    onClick: () => setActiveTab("EKGQuiz"),
+                    accent: "linear-gradient(135deg, #7c3aed, #8b5cf6)"
+                  }
+                ].map((item) => (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={item.onClick}
+                    style={{
+                      textAlign: "left",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: 18,
+                      padding: "16px 16px 15px",
+                      background: "#f8fafc",
+                      cursor: "pointer",
+                      boxShadow: "0 8px 18px rgba(15,23,42,0.04)"
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 44,
+                        height: 6,
+                        borderRadius: 999,
+                        background: item.accent,
+                        marginBottom: 12
+                      }}
+                    />
+                    <div style={{ color: "#12355b", fontWeight: 800, fontSize: 16, marginBottom: 6 }}>
+                      {item.title}
+                    </div>
+                    <div style={{ color: "#64748b", fontSize: 14, lineHeight: 1.45 }}>
+                      {item.description}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div
+              style={{
+                background: "linear-gradient(180deg, #ffffff, #f8fbff)",
+                borderRadius: isSmallScreen ? 20 : 24,
+                padding: isSmallScreen ? 18 : 24,
+                border: "1px solid rgba(216,228,242,0.95)",
+                boxShadow: "0 12px 28px rgba(18,53,91,0.06)"
+              }}
+            >
+              <div
+                style={{
+                  color: "#12355b",
+                  fontWeight: 900,
+                  fontSize: isSmallScreen ? 22 : 26,
+                  marginBottom: 6
+                }}
+              >
+                Interactive Games
+              </div>
+              <p
+                style={{
+                  color: "#4f6275",
+                  marginTop: 0,
+                  marginBottom: 18,
+                  fontSize: 15,
+                  lineHeight: 1.5
+                }}
+              >
+                Learn visually with drag-and-drop anatomy and focused practice sets that make repetition easier to stick with.
+              </p>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: isSmallScreen ? "1fr" : "repeat(4, minmax(0, 1fr))",
+                  gap: 12
+                }}
+              >
+                {[
+                  {
+                    key: "anatomy-game",
+                    title: "Anatomy Labeling",
+                    description: "Heart, brain, lungs, eye, ear, and more.",
+                    onClick: () => {
+                      setActiveTab("Anatomy");
+                      setMode("organs");
+                      setSelectedSet(null);
+                    },
+                    accent: "linear-gradient(135deg, #12355b, #1d6fa5)"
+                  },
+                  {
+                    key: "bones-game",
+                    title: "Bone Practice",
+                    description: "Skeleton, hand, foot, skull, spine, and more.",
+                    onClick: () => {
+                      setActiveTab("Bones");
+                      setMode("bones");
+                      setSelectedSet(null);
+                    },
+                    accent: "linear-gradient(135deg, #0f766e, #14b8a6)"
+                  },
+                  {
+                    key: "heart-game",
+                    title: "Heart Quiz",
+                    description: "Reinforce chambers, flow, and valves.",
+                    onClick: () => {
+                      trackExamStart("Heart Quiz");
+                      setActiveTab("HeartQuiz");
+                      setSelectedSet(null);
+                    },
+                    accent: "linear-gradient(135deg, #dc2626, #ef4444)"
+                  },
+                  {
+                    key: "digestive-game",
+                    title: "Digestive Practice",
+                    description: "Hands-on structure review and quiz reps.",
+                    onClick: () => {
+                      trackExamStart("Digestive Quiz");
+                      setActiveTab("DigestiveQuiz");
+                      setSelectedSet(null);
+                    },
+                    accent: "linear-gradient(135deg, #7c3aed, #8b5cf6)"
+                  }
+                ].map((item) => (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={item.onClick}
+                    style={{
+                      textAlign: "left",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: 18,
+                      padding: "16px 16px 15px",
+                      background: "#f8fafc",
+                      cursor: "pointer",
+                      boxShadow: "0 8px 18px rgba(15,23,42,0.04)"
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 44,
+                        height: 6,
+                        borderRadius: 999,
+                        background: item.accent,
+                        marginBottom: 12
+                      }}
+                    />
+                    <div style={{ color: "#12355b", fontWeight: 800, fontSize: 16, marginBottom: 6 }}>
+                      {item.title}
+                    </div>
+                    <div style={{ color: "#64748b", fontSize: 14, lineHeight: 1.45 }}>
+                      {item.description}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div
             style={{
               display: "grid",
