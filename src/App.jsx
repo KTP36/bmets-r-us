@@ -6,6 +6,7 @@ import BonesQuiz from "./BonesQuiz";
 import HeartQuiz from "./HeartQuiz";
 import DigestiveSystemQuiz from "./DigestiveSystemQuiz";
 import LabValuesQuiz from "./LabValuesQuiz";
+import ABGQuiz from "./ABGQuiz";
 import { cbetQuestions as baseCbetQuestions } from "./questionData";
 import { cbetElectronicsQuestions } from "./cbetElectronicsQuestions";
 
@@ -5722,7 +5723,8 @@ export default function App() {
     "Medical Equipment Identification Practice Practice",
     "Cable ID Quiz",
     "EKG Waveform Quiz",
-    "Lab Values Quiz"
+    "Lab Values Quiz",
+    "ABG Quiz"
   ];
   const [contactStatus, setContactStatus] = useState("idle");
   const [contactError, setContactError] = useState("");
@@ -7266,6 +7268,17 @@ return (
         </button>
         <button
           onClick={() => {
+            trackExamStart("ABG Quiz");
+            setActiveTab("ABGQuiz");
+          }}
+          onMouseEnter={() => setHoveredNavTab("ABGQuiz")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "ABGQuiz", hoveredNavTab === "ABGQuiz")}
+        >
+          ABG Quiz
+        </button>
+        <button
+          onClick={() => {
             trackExamStart("Equipment Practice");
             setActiveTab("Equipment");
           }}
@@ -7360,61 +7373,70 @@ return (
                   marginBottom: 16
                 }}
               >
-                STUDY SMARTER
+                TEST YOURSELF UNDER PRESSURE
               </div>
               <h2
                 style={{
                   color: "white",
-                  fontSize: isSmallScreen ? 28 : 34,
-                  lineHeight: 1.12,
+                  fontSize: isSmallScreen ? 28 : 36,
+                  lineHeight: 1.08,
                   marginTop: 0,
                   marginBottom: 12,
-                  maxWidth: 620
+                  maxWidth: 680
                 }}
               >
-                Master Medical Exams Faster with Interactive Practice
+                Practice the questions that make people hesitate in real clinical settings
               </h2>
               <p
                 style={{
                   fontSize: isSmallScreen ? 16 : 18,
                   color: "rgba(255,255,255,0.92)",
-                  maxWidth: 700,
+                  maxWidth: 720,
                   margin: 0
                 }}
               >
-                Practice CBET, RN, and anatomy the right way — with real questions, instant feedback, and interactive learning.
+                Build confidence with interactive anatomy, exam-style reps, and quick feedback for CBET, RN, TEAS, medical terminology, and more.
               </p>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 10,
+                  flexWrap: "wrap",
+                  marginTop: 18,
+                  marginBottom: 22
+                }}
+              >
+                {[
+                  "Real practice reps",
+                  "Instant feedback",
+                  "Built for early learners"
+                ].map((item) => (
+                  <div
+                    key={item}
+                    style={{
+                      padding: "8px 12px",
+                      borderRadius: 999,
+                      background: "rgba(255,255,255,0.14)",
+                      border: "1px solid rgba(255,255,255,0.18)",
+                      color: "white",
+                      fontSize: 13,
+                      fontWeight: 700
+                    }}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
               <div
                 style={{
                   display: "flex",
                   gap: 12,
                   flexWrap: "wrap",
-                  marginTop: 20,
+                  marginTop: 0,
                   marginBottom: 20,
                   flexDirection: isSmallScreen ? "column" : "row"
                 }}
               >
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveTab("Anatomy");
-                    setMode("organs");
-                    setSelectedSet(null);
-                  }}
-                  style={{
-                    padding: "11px 18px",
-                    borderRadius: 999,
-                    border: "none",
-                    background: "#ffffff",
-                    color: "#12355b",
-                    fontWeight: 800,
-                    cursor: "pointer",
-                    boxShadow: "0 12px 28px rgba(10,22,40,0.18)",
-                    width: isSmallScreen ? "100%" : "auto"
-                  }}
-                >
-                  Open Anatomy Practice
-                </button>
                 <button
                   type="button"
                   onClick={() => {
@@ -7438,17 +7460,66 @@ return (
                 >
                   🔥 Start 75-Question CBET Practice Exam
                 </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab("ABGQuiz");
+                  }}
+                  style={{
+                    padding: "11px 18px",
+                    borderRadius: 999,
+                    border: "none",
+                    background: "#ffffff",
+                    color: "#12355b",
+                    fontWeight: 800,
+                    cursor: "pointer",
+                    boxShadow: "0 12px 28px rgba(10,22,40,0.18)",
+                    width: isSmallScreen ? "100%" : "auto"
+                  }}
+                >
+                  Open ABG Practice
+                </button>
               </div>
+              <button
+                type="button"
+                onClick={() => window.open("/browse-all-practice.html", "_blank")}
+                style={{
+                  padding: 0,
+                  background: "transparent",
+                  border: "none",
+                  color: "rgba(255,255,255,0.96)",
+                  fontWeight: 800,
+                  fontSize: 15,
+                  cursor: "pointer",
+                  textAlign: "left",
+                  marginTop: -2,
+                  marginBottom: 10
+                }}
+              >
+                Not studying for CBET? Browse all practice →
+              </button>
               <p
                 style={{
-                  marginTop: -4,
-                  marginBottom: 0,
+                  marginTop: 0,
+                  marginBottom: 8,
                   fontSize: 14,
                   color: "rgba(255,255,255,0.88)",
-                  maxWidth: 520
+                  maxWidth: 620
                 }}
               >
                 Practice questions designed to simulate the CBET exam format.
+              </p>
+              <p
+                style={{
+                  marginTop: 0,
+                  marginBottom: 0,
+                  fontSize: 15,
+                  color: "rgba(255,255,255,0.96)",
+                  fontWeight: 700,
+                  maxWidth: 680
+                }}
+              >
+                If you hesitated, you’re not ready yet. New questions added daily. Come back and test yourself again.
               </p>
             </div>
             <div
@@ -7470,48 +7541,74 @@ return (
                   marginBottom: 10
                 }}
               >
-                Best flow
+                Start smart
               </div>
-              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 14 }}>
-                Best way to start
+              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 10 }}>
+                Don’t just browse. Pick a lane.
               </h3>
-              {[
-                ["1", "Start with anatomy or bones", "Warm up visually before taking quiz-style review."],
-                ["2", "Switch into practice questions", "Use CBET, RN, TEAS, or terminology to test recall."],
-                ["3", "Revisit misses and dashboard", "Tighten weak spots and watch your progress improve."]
-              ].map(([stepNumber, title, description]) => (
-                <div
-                  key={stepNumber}
+              <p style={{ color: "#5b6f82", fontSize: 14, marginTop: 0, marginBottom: 14 }}>
+                Start with the format that matches what you need today, then come back for another rep tomorrow.
+              </p>
+              <div style={{ display: "grid", gap: 10 }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    startCbetFullExam();
+                    setActiveTab("CBET");
+                  }}
                   style={{
-                    display: "flex",
-                    gap: 12,
-                    alignItems: "flex-start",
-                    padding: "12px 0",
-                    borderTop: stepNumber === "1" ? "none" : "1px solid #eef2f7"
+                    ...homeActionLinkStyle("linear-gradient(135deg, #f97316, #ef4444)"),
+                    width: "100%",
+                    textAlign: "left",
+                    border: "none",
+                    cursor: "pointer"
                   }}
                 >
-                  <div
-                    style={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: 999,
-                      background: "linear-gradient(135deg, #facc15, #f59e0b)",
-                      color: "#12355b",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontWeight: 800,
-                      flexShrink: 0
-                    }}
-                  >
-                    {stepNumber}
-                  </div>
-                  <div>
-                    <div style={{ color: "#12355b", fontWeight: 700 }}>{title}</div>
-                    <div style={{ color: "#5b6f82", fontSize: 14, marginTop: 4 }}>{description}</div>
-                  </div>
-                </div>
-              ))}
+                  Start 75-Question CBET Exam
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("ABGQuiz")}
+                  style={{
+                    ...homeActionLinkStyle("linear-gradient(135deg, #0f766e, #14b8a6)"),
+                    width: "100%",
+                    textAlign: "left",
+                    border: "none",
+                    cursor: "pointer"
+                  }}
+                >
+                  Jump into ABG Practice
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveTab("Anatomy");
+                    setMode("organs");
+                    setSelectedSet(null);
+                  }}
+                  style={{
+                    ...homeActionLinkStyle("linear-gradient(135deg, #12355b, #1d6fa5)"),
+                    width: "100%",
+                    textAlign: "left",
+                    border: "none",
+                    cursor: "pointer"
+                  }}
+                >
+                  Warm up with Anatomy
+                </button>
+              </div>
+              <div
+                style={{
+                  marginTop: 16,
+                  paddingTop: 14,
+                  borderTop: "1px solid #eef2f7",
+                  color: "#5b6f82",
+                  fontSize: 14,
+                  lineHeight: 1.5
+                }}
+              >
+                Best flow: hit one focused practice set, review what you missed, then come back when new questions drop.
+              </div>
             </div>
           </div>
           <div
@@ -7991,6 +8088,15 @@ return (
             <LabValuesQuiz
               onComplete={(finalScore, totalQuestions) =>
                 trackExamCompletion("Lab Values Quiz", finalScore, totalQuestions)
+              }
+            />
+          </div>
+        )}
+        {activeTab === "ABGQuiz" && (
+          <div style={{ padding: 20 }}>
+            <ABGQuiz
+              onComplete={(finalScore, totalQuestions) =>
+                trackExamCompletion("ABG Quiz", finalScore, totalQuestions)
               }
             />
           </div>
