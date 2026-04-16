@@ -4,15 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>How to Read an EKG | Beginner Guide</title>
+  <title>How to Read an EKG Step by Step | Beginner ECG Guide</title>
 
-  <meta name="description" content="Learn how to read an EKG step-by-step. Understand heart rhythms, waveforms, and basic interpretation for study and exam preparation." />
+  <meta
+    name="description"
+    content="Learn how to read an EKG step by step. Beginner-friendly ECG guide covering heart rate, rhythm, P waves, QRS complexes, T waves, and common EKG patterns for study and exam preparation."
+  />
 
   <link rel="canonical" href="https://medskillbuilder.com/how-to-read-ekg.html" />
 
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       margin: 0;
       background: #f8fafc;
       color: #0f172a;
@@ -20,25 +23,120 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 940px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 40px 20px 60px;
     }
 
     .hero {
-      background: linear-gradient(135deg, #dc2626, #ef4444);
+      background: linear-gradient(135deg, #12355b, #1d6fa5);
       color: white;
-      padding: 30px;
+      padding: 34px 28px;
       border-radius: 20px;
-      margin-bottom: 25px;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.05rem;
+      max-width: 760px;
     }
 
     .card {
       background: white;
-      padding: 25px;
+      padding: 26px;
       border-radius: 16px;
       margin-bottom: 20px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #12355b;
+      line-height: 1.2;
+    }
+
+    .card h3 {
+      color: #12355b;
+      margin-bottom: 8px;
+    }
+
+    .card ul,
+    .card ol {
+      padding-left: 22px;
+    }
+
+    .card li {
+      margin-bottom: 10px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow-x: auto;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #dbe4ee;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.95rem;
+    }
+
+    .comparison-table th {
+      background: #eef6ff;
+      color: #12355b;
+      font-weight: bold;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button-link {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+      background: #2563eb;
+    }
+
+    .button-link.secondary {
+      background: #1d6fa5;
+    }
+
+    .button-link.third {
+      background: #0f766e;
+    }
+
+    .link {
+      display: block;
+      margin-top: 10px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .note-box {
+      background: #eef6ff;
+      border: 1px solid #d7e6f5;
+      border-radius: 16px;
+      padding: 20px;
     }
 
     .cta {
@@ -56,12 +154,14 @@
       font-weight: bold;
     }
 
-    .link {
-      display: block;
-      margin-top: 10px;
-      color: #2563eb;
-      font-weight: bold;
-      text-decoration: none;
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .comparison-table {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -70,63 +170,177 @@
   <div class="container">
 
     <div class="hero">
-      <h1>How to Read an EKG (Beginner Guide)</h1>
-      <p>Learn the basics of EKG interpretation including rhythm recognition, waveforms, and key patterns.</p>
+      <h1>How to Read an EKG Step by Step</h1>
+      <p>
+        Learn the basics of EKG interpretation using a simple step-by-step method. This beginner-friendly guide covers heart rate, rhythm, waveforms, and common rhythm patterns for study and exam preparation.
+      </p>
     </div>
 
     <div class="card">
       <h2>Important Note</h2>
       <p>
-        This guide is for <strong>educational purposes only</strong>. It is designed to help students and learners understand
-        EKG basics. It does <strong>not provide medical certification or professional training</strong>.
+        This guide is for <strong>educational purposes only</strong>. It is designed to help students and learners understand EKG basics and pattern recognition. It does <strong>not</strong> provide medical certification, clinical training, diagnosis, treatment advice, or professional credentialing.
       </p>
     </div>
 
     <div class="card">
       <h2>What is an EKG?</h2>
       <p>
-        An electrocardiogram (EKG) records the electrical activity of the heart.
-        It helps identify heart rhythms and detect abnormalities.
+        An electrocardiogram, commonly called an EKG or ECG, records the electrical activity of the heart. It helps show how the heart is beating, whether the rhythm is regular or irregular, and whether certain patterns appear normal or abnormal.
+      </p>
+      <p>
+        For beginners, the key is not to memorize everything at once. The best approach is to follow the same process every time you look at a rhythm strip.
       </p>
     </div>
 
     <div class="card">
       <h2>Basic EKG Components</h2>
       <ul>
-        <li><strong>P Wave:</strong> Atrial contraction</li>
-        <li><strong>QRS Complex:</strong> Ventricular contraction</li>
-        <li><strong>T Wave:</strong> Ventricular recovery</li>
+        <li><strong>P Wave:</strong> Represents atrial depolarization, or atrial electrical activity before contraction.</li>
+        <li><strong>QRS Complex:</strong> Represents ventricular depolarization, which leads to ventricular contraction.</li>
+        <li><strong>T Wave:</strong> Represents ventricular repolarization, or recovery.</li>
+        <li><strong>PR Interval:</strong> Helps show conduction time from the atria to the ventricles.</li>
+        <li><strong>QRS Width:</strong> Helps you decide whether conduction is narrow and likely supraventricular or wide and more likely ventricular.</li>
       </ul>
     </div>
 
     <div class="card">
-      <h2>Simple Step-by-Step Approach</h2>
-      <ol>
-        <li>Check the heart rate (slow, normal, or fast)</li>
-        <li>Look for P waves</li>
-        <li>Assess rhythm regularity</li>
-        <li>Evaluate QRS width</li>
-        <li>Match pattern to known rhythms</li>
-      </ol>
+      <h2>Simple Step by Step Approach</h2>
+
+      <h3>1. Check the heart rate</h3>
+      <p>
+        Start by deciding whether the rate is slow, normal, or fast. This quickly narrows the possibilities and helps separate bradycardia, normal sinus rhythm, and tachycardia patterns.
+      </p>
+
+      <h3>2. Assess rhythm regularity</h3>
+      <p>
+        Look at the spacing between beats. If the spacing is even, the rhythm is regular. If the spacing changes, the rhythm is irregular.
+      </p>
+
+      <h3>3. Look for P waves</h3>
+      <p>
+        Check whether a P wave appears before each QRS complex. Clear P waves often suggest the rhythm is following the normal sinus pathway.
+      </p>
+
+      <h3>4. Evaluate the QRS complex</h3>
+      <p>
+        Decide whether the QRS is narrow or wide. Narrow complexes are often associated with rhythms coming from above the ventricles, while wide complexes raise concern for ventricular-origin rhythms.
+      </p>
+
+      <h3>5. Match the overall pattern</h3>
+      <p>
+        Once you have checked the rate, regularity, P waves, and QRS width, compare the overall picture to common rhythms you already know.
+      </p>
     </div>
 
     <div class="card">
-      <h2>Common Rhythms</h2>
+      <h2>Quick EKG Rhythm Comparison</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Rhythm</th>
+            <th>Regular or Irregular</th>
+            <th>P Waves</th>
+            <th>QRS</th>
+            <th>Key Clue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Normal Sinus Rhythm</td>
+            <td>Regular</td>
+            <td>Present before each QRS</td>
+            <td>Usually narrow</td>
+            <td>Normal baseline rhythm</td>
+          </tr>
+          <tr>
+            <td>Atrial Fibrillation</td>
+            <td>Irregularly irregular</td>
+            <td>No clear organized P waves</td>
+            <td>Usually narrow</td>
+            <td>Chaotic atrial activity</td>
+          </tr>
+          <tr>
+            <td>Sinus Tachycardia</td>
+            <td>Regular</td>
+            <td>Present</td>
+            <td>Usually narrow</td>
+            <td>Fast but still sinus</td>
+          </tr>
+          <tr>
+            <td>Sinus Bradycardia</td>
+            <td>Regular</td>
+            <td>Present</td>
+            <td>Usually narrow</td>
+            <td>Slow but still sinus</td>
+          </tr>
+          <tr>
+            <td>SVT</td>
+            <td>Usually regular</td>
+            <td>Often hard to see</td>
+            <td>Usually narrow</td>
+            <td>Very fast narrow-complex rhythm</td>
+          </tr>
+          <tr>
+            <td>Ventricular Tachycardia</td>
+            <td>Usually regular</td>
+            <td>Usually absent or unrelated</td>
+            <td>Wide</td>
+            <td>Fast wide-complex rhythm</td>
+          </tr>
+          <tr>
+            <td>Asystole</td>
+            <td>No rhythm</td>
+            <td>None</td>
+            <td>No meaningful complexes</td>
+            <td>Absence of organized activity</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Common Rhythms Beginners Should Know</h2>
       <ul>
-        <li>Normal Sinus Rhythm</li>
-        <li>Atrial Fibrillation</li>
-        <li>Ventricular Tachycardia</li>
-        <li>Asystole</li>
+        <li><strong>Normal Sinus Rhythm:</strong> Regular rhythm with a P wave before each QRS.</li>
+        <li><strong>Atrial Fibrillation:</strong> Irregular rhythm with no organized P waves.</li>
+        <li><strong>Sinus Tachycardia:</strong> Normal pattern with a fast rate.</li>
+        <li><strong>Sinus Bradycardia:</strong> Normal pattern with a slow rate.</li>
+        <li><strong>SVT:</strong> Fast narrow-complex rhythm that often starts suddenly.</li>
+        <li><strong>Ventricular Tachycardia:</strong> Fast wide-complex rhythm that is important to recognize quickly.</li>
+        <li><strong>Ventricular Fibrillation:</strong> Chaotic electrical activity with no organized pattern.</li>
+        <li><strong>Asystole:</strong> No meaningful organized electrical activity.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>How to Study EKGs More Effectively</h2>
+      <ul>
+        <li>Learn <strong>normal sinus rhythm</strong> first so you have a baseline.</li>
+        <li>Group rhythms into categories like slow, fast, regular, irregular, narrow, and wide.</li>
+        <li>Use a consistent process every time instead of guessing.</li>
+        <li>Focus on pattern recognition rather than memorizing isolated facts.</li>
+        <li>Practice repeatedly with rhythm questions and comparison exercises.</li>
       </ul>
     </div>
 
     <div class="card">
       <h2>Practice EKG Interpretation</h2>
+      <p>
+        Reading about EKGs helps, but practice is what builds confidence. Use these related study tools to reinforce rhythm recognition and step-by-step interpretation.
+      </p>
 
-      <p>Use interactive tools to reinforce your learning:</p>
+      <div class="link-row">
+        <a class="button-link" href="/ekg-practice-quiz.html">Start EKG Practice Quiz</a>
+        <a class="button-link secondary" href="/ekg-rhythm-cheat-sheet.html">View EKG Rhythm Cheat Sheet</a>
+        <a class="button-link third" href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </div>
 
-      <a class="link" href="/">Try Interactive Anatomy & EKG Practice</a>
-      <a class="link" href="/browse-all-practice.html">Browse All Practice</a>
+    <div class="note-box">
+      <p style="margin:0;">
+        <strong>Educational Use Only:</strong> This page is intended for learning and study support. It is not a substitute for clinical judgment, medical advice, diagnosis, or treatment decisions.
+      </p>
     </div>
 
     <div class="cta">
