@@ -3,12 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Browse All Practice | MedSkillBuilder</title>
+  <title>Browse All Practice Tests, Quizzes & Study Tools | MedSkillBuilder</title>
   <meta
     name="description"
-    content="Browse all MedSkillBuilder practice tests, anatomy tools, CBET prep, RN practice questions, TEAS resources, and medical terminology study pages."
+    content="Browse all MedSkillBuilder practice tests, anatomy tools, CBET prep, RN practice questions, EKG resources, lab value guides, and medical terminology study pages."
+  />
+  <meta
+    name="keywords"
+    content="browse all practice tests, medical study tools, anatomy quizzes, CBET prep, RN practice questions, TEAS practice, EKG study guide, medical terminology practice"
   />
   <link rel="canonical" href="https://medskillbuilder.com/browse-all-practice.html" />
+
+  <meta property="og:title" content="Browse All Practice Tests, Quizzes & Study Tools | MedSkillBuilder" />
+  <meta
+    property="og:description"
+    content="Explore all MedSkillBuilder quizzes, study tools, anatomy practice, medical terminology review, CBET prep, nursing questions, and clinical basics resources."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/browse-all-practice.html" />
 
   <style>
     body {
@@ -16,22 +28,38 @@
       font-family: Arial, sans-serif;
       background: #f8fafc;
       color: #0f172a;
+      line-height: 1.6;
     }
+
     .container {
       max-width: 960px;
       margin: 0 auto;
       padding: 40px 20px 60px;
     }
+
     h1 {
       font-size: 2.4rem;
       text-align: center;
       margin-bottom: 12px;
     }
+
     .subtext {
       text-align: center;
       color: #475569;
       margin-bottom: 40px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
     }
+
+    .intro-box {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+
     .section {
       background: #ffffff;
       border-radius: 20px;
@@ -39,17 +67,25 @@
       margin-bottom: 30px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.05);
     }
-    h2 { margin-bottom: 8px; }
-    .section p {
+
+    h2 {
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .section p,
+    .intro-box p {
       margin-top: 0;
       margin-bottom: 16px;
       color: #475569;
     }
+
     .link-grid {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .practice-link {
       display: block;
       padding: 16px;
@@ -60,14 +96,17 @@
       text-align: center;
       transition: 0.2s;
     }
+
     .practice-link:hover {
       opacity: 0.92;
       transform: translateY(-1px);
     }
+
     .featured {
       border: 2px solid rgba(255,255,255,0.4);
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
+
     .cbet { background: linear-gradient(90deg, #0f2f57, #153f73); }
     .anatomy { background: linear-gradient(90deg, #0f766e, #0f9a8a); }
     .nursing { background: linear-gradient(90deg, #be123c, #e11d48); }
@@ -81,17 +120,27 @@
       color: #2563eb;
       font-weight: 700;
     }
+
     .footer-cta {
       text-align: center;
       margin-top: 30px;
     }
+
     .footer-cta a {
+      display: inline-block;
       padding: 14px 22px;
       border-radius: 12px;
       background: #2563eb;
       color: white;
       text-decoration: none;
       font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.92rem;
+      margin-top: 36px;
     }
   </style>
 </head>
@@ -101,15 +150,24 @@
 
     <a class="top-link" href="/">← Back to Home</a>
 
-    <h1>All Practice Tests & Study Tools</h1>
+    <h1>All Practice Tests, Quizzes & Study Tools</h1>
     <p class="subtext">
-      Explore all quizzes and interactive tools on MedSkillBuilder.
+      Explore all quizzes and interactive tools on MedSkillBuilder, including anatomy practice, medical terminology review, CBET prep, nursing questions, EKG study tools, and clinical basics resources.
     </p>
+
+    <div class="intro-box">
+      <p>
+        MedSkillBuilder brings together interactive study tools designed to help healthcare learners build stronger fundamentals. Whether you are studying anatomy, reviewing medical terminology, preparing for nursing exams, practicing EKG rhythms, or working through CBET concepts, this page gives you one place to explore the full library.
+      </p>
+      <p>
+        Use the sections below to jump into the area you want to practice most and keep building your confidence through active review.
+      </p>
+    </div>
 
     <!-- FEATURED -->
     <div class="section">
       <h2>Start Here</h2>
-      <p>These are the best places to begin practicing.</p>
+      <p>These are some of the best places to begin if you are new to MedSkillBuilder and want a strong mix of terminology, anatomy, nursing, and exam prep.</p>
       <div class="link-grid">
         <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
         <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
@@ -121,6 +179,7 @@
     <!-- CBET ELECTRONICS -->
     <div class="section">
       <h2>CBET Electronics Guides</h2>
+      <p>Learn core electronics concepts tested on the CBET exam, including power conversion, circuit components, and electrical principles used in biomedical equipment.</p>
       <div class="link-grid">
         <a class="practice-link cbet" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
         <a class="practice-link cbet" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
@@ -133,6 +192,7 @@
     <!-- ANATOMY -->
     <div class="section">
       <h2>Anatomy Learning</h2>
+      <p>Practice identifying important anatomical structures with interactive quizzes and labeling tools designed for students, early healthcare learners, and exam review.</p>
       <div class="link-grid">
         <a class="practice-link anatomy" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
         <a class="practice-link anatomy" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a>
@@ -148,6 +208,7 @@
     <!-- MED TERMS -->
     <div class="section">
       <h2>Medical Terminology</h2>
+      <p>Build your understanding of medical language through prefixes, suffixes, word-building, and terminology practice that supports nursing, TEAS, anatomy, and general healthcare learning.</p>
       <div class="link-grid">
         <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
         <a class="practice-link terms" href="/medical-prefix-suffix-practice.html">Prefix & Suffix Practice</a>
@@ -158,6 +219,7 @@
     <!-- NURSING -->
     <div class="section">
       <h2>Nursing & TEAS</h2>
+      <p>Prepare for nursing exams and TEAS review with practice questions designed to strengthen critical thinking, exam confidence, and foundational healthcare knowledge.</p>
       <div class="link-grid">
         <a class="practice-link nursing" href="/rn-practice-questions.html">RN Practice Questions</a>
         <a class="practice-link nursing" href="/teas-practice-questions.html">TEAS Practice Questions</a>
@@ -168,6 +230,7 @@
     <!-- CBET -->
     <div class="section">
       <h2>CBET & Equipment</h2>
+      <p>Study biomedical equipment concepts, certification-style questions, and equipment identification tools to support CBET and CRES preparation.</p>
       <div class="link-grid">
         <a class="practice-link cbet" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
         <a class="practice-link biomed" href="/medical-equipment-identification-practice.html">Medical Equipment Identification Practice</a>
@@ -175,10 +238,10 @@
       </div>
     </div>
 
-    <!-- ✅ NEW CLINICAL BASICS (ADDED HERE) -->
+    <!-- CLINICAL BASICS -->
     <div class="section">
       <h2>Clinical Basics</h2>
-      <p>Core lab values, EKG basics, and essential clinical knowledge for healthcare students.</p>
+      <p>Review essential clinical concepts including EKG interpretation, rhythm recognition, normal lab values, and foundational patient care knowledge for healthcare learners.</p>
       <div class="link-grid">
         <a class="practice-link nursing featured" href="/normal-lab-values-cheat-sheet.html">
           Normal Lab Values Cheat Sheet
@@ -198,6 +261,10 @@
     <div class="footer-cta">
       <a href="/">Start Practicing on MedSkillBuilder</a>
     </div>
+
+    <footer>
+      <p>MedSkillBuilder helps students and early healthcare learners practice medical terminology, anatomy, nursing concepts, EKG basics, and CBET-related topics in one place.</p>
+    </footer>
 
   </div>
 </body>
