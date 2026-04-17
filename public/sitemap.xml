@@ -272,4 +272,16 @@
   <priority>0.8</priority>
 </url>
 
+<url>
+  <loc>https://medskillbuilder.com/abg-practice-quiz.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://medskillbuilder.com/abg-normal-values.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
 </urlset>    
