@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Vital Signs Practice Quiz (35 Questions) | MedSkillBuilder</title>
+  <meta name="description" content="Test your knowledge with this free vital signs practice quiz. Includes 35 multiple-choice questions on normal ranges, abnormal findings, pediatric trends, oxygen saturation, and patient assessment." />
+  <link rel="canonical" href="https://medskillbuilder.com/vital-signs-practice-quiz.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    h1, h2 {
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      border-bottom: 4px solid #0ea5e9;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #0ea5e9;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    .intro-box,
+    .score-box,
+    .question-box,
+    .review-box,
+    .keep-practicing {
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      margin-bottom: 22px;
+    }
+
+    .intro-box {
+      margin-top: 20px;
+    }
+
+    .progress {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 12px;
+    }
+
+    .question {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      line-height: 1.45;
+      color: #0f172a;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #e0f2fe;
+      border-color: #0ea5e9;
+    }
+
+    .option-btn.correct {
+      border: 2px solid #16a34a;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .option-btn.wrong {
+      border: 2px solid #dc2626;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .feedback {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .feedback.correct {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .feedback.wrong {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .explanation {
+      margin-top: 10px;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .nav-btn,
+    .link-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #0f172a;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .nav-btn:hover,
+    .link-btn:hover {
+      background: #1e293b;
+    }
+
+    .nav-btn.secondary,
+    .link-btn.secondary {
+      background: #e0f2fe;
+      color: #0f172a;
+      border: 1px solid #bae6fd;
+    }
+
+    .nav-btn.secondary:hover,
+    .link-btn.secondary:hover {
+      background: #bae6fd;
+    }
+
+    .score-big {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .score-sub {
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .review-item {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .review-item:first-child {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .review-status {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .review-status.correct {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .review-status.wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .resource-link {
+      display: block;
+      text-decoration: none;
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .resource-link:hover {
+      background: #e0f2fe;
+      border-color: #0ea5e9;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .question {
+        font-size: 1.08rem;
+      }
+
+      .container {
+        padding: 24px 14px 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Vital Signs Practice Quiz</h1>
+    <p>
+      Test your understanding of normal vital signs, abnormal findings, oxygen saturation, pediatric trends, and patient assessment with 35 multiple-choice questions.
+    </p>
+
+    <div class="intro-box" id="introBox">
+      <h2>Before You Start</h2>
+      <p>
+        This quiz is designed for nursing students, TEAS learners, and early healthcare students who want more practice with vital signs. Read each question carefully and choose the best answer.
+      </p>
+      <div class="btn-row">
+        <button class="nav-btn" id="startBtn">Start Quiz</button>
+        <a class="link-btn secondary" href="/normal-vital-signs-chart.html">Review Vital Signs Chart</a>
+      </div>
+    </div>
+
+    <div class="question-box" id="quizBox" style="display:none;">
+      <div class="progress" id="progressText"></div>
+      <div class="question" id="questionText"></div>
+      <div id="optionsWrap"></div>
+      <div id="feedbackWrap"></div>
+      <div class="btn-row">
+        <button class="nav-btn" id="nextBtn" style="display:none;">Next Question</button>
+      </div>
+    </div>
+
+    <div class="score-box" id="scoreBox" style="display:none;">
+      <div class="score-big" id="scoreBig"></div>
+      <div class="score-sub" id="scoreSub"></div>
+      <p id="scoreMessage"></p>
+      <div class="btn-row">
+        <button class="nav-btn" id="restartBtn">Retake Quiz</button>
+        <a class="link-btn secondary" href="/normal-vital-signs-chart.html">Review Vital Signs Chart</a>
+      </div>
+    </div>
+
+    <div class="review-box" id="reviewBox" style="display:none;">
+      <h2>Question Review</h2>
+      <div id="reviewList"></div>
+    </div>
+
+    <div class="keep-practicing">
+      <h2>Keep Practicing</h2>
+      <p>
+        Want to strengthen your healthcare fundamentals even more? Review the chart page and keep practicing with other MedSkillBuilder study tools.
+      </p>
+      <div class="link-grid">
+        <a class="resource-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a class="resource-link" href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a class="resource-link" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
+        <a class="resource-link" href="/how-to-read-ekg.html">How to Read an EKG</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which of the following is the normal adult heart rate range?",
+        options: ["40-60 bpm", "60-100 bpm", "80-120 bpm", "100-140 bpm"],
+        answer: 1,
+        explanation: "A normal adult heart rate is generally 60-100 beats per minute."
+      },
+      {
+        question: "Which adult respiratory rate is considered normal?",
+        options: ["8-10 breaths/min", "10-12 breaths/min", "12-20 breaths/min", "22-30 breaths/min"],
+        answer: 2,
+        explanation: "A normal adult respiratory rate is typically 12-20 breaths per minute."
+      },
+      {
+        question: "Which oxygen saturation range is generally considered normal in adults?",
+        options: ["85-89%", "90-94%", "95-100%", "100-105%"],
+        answer: 2,
+        explanation: "A normal oxygen saturation is usually 95-100% in a healthy adult."
+      },
+      {
+        question: "An adult patient has a heart rate of 112 bpm. This is best described as:",
+        options: ["Bradycardia", "Normal sinus rate", "Tachycardia", "Hypotension"],
+        answer: 2,
+        explanation: "A heart rate above 100 bpm in adults is tachycardia."
+      },
+      {
+        question: "An adult patient has a heart rate of 52 bpm. This is best described as:",
+        options: ["Tachycardia", "Bradycardia", "Hypertension", "Tachypnea"],
+        answer: 1,
+        explanation: "A heart rate below 60 bpm in adults is bradycardia."
+      },
+      {
+        question: "Which vital sign often changes early when a patient begins to decline?",
+        options: ["Hair color", "Respiratory rate", "Height", "Pupil color"],
+        answer: 1,
+        explanation: "Respiratory rate is often one of the earliest indicators of deterioration."
+      },
+      {
+        question: "A temperature above 100.4°F is generally considered:",
+        options: ["Hypothermia", "Normal", "Fever", "Bradycardia"],
+        answer: 2,
+        explanation: "A temperature above 100.4°F usually indicates fever."
+      },
+      {
+        question: "Which adult blood pressure is generally considered low?",
+        options: ["120/80 mmHg", "138/88 mmHg", "88/56 mmHg", "130/84 mmHg"],
+        answer: 2,
+        explanation: "Blood pressure below about 90/60 mmHg is often considered hypotension."
+      },
+      {
+        question: "A patient with fast breathing above the normal range is experiencing:",
+        options: ["Bradypnea", "Tachypnea", "Bradycardia", "Normothermia"],
+        answer: 1,
+        explanation: "Tachypnea means an abnormally fast respiratory rate."
+      },
+      {
+        question: "A patient with unusually slow breathing is experiencing:",
+        options: ["Bradypnea", "Tachycardia", "Fever", "Hypertension"],
+        answer: 0,
+        explanation: "Bradypnea means an abnormally slow respiratory rate."
+      },
+      {
+        question: "Why is oxygen saturation important?",
+        options: [
+          "It shows how much blood is in the body",
+          "It reflects how well oxygen is being carried in the blood",
+          "It measures kidney function",
+          "It measures hearing ability"
+        ],
+        answer: 1,
+        explanation: "SpO2 helps show whether oxygen is being carried effectively in the blood."
+      },
+      {
+        question: "Which of the following can raise heart rate?",
+        options: ["Pain", "Fever", "Dehydration", "All of the above"],
+        answer: 3,
+        explanation: "Pain, fever, and dehydration can all increase heart rate."
+      },
+      {
+        question: "Which statement about pediatric vital signs is true?",
+        options: [
+          "Children usually have lower heart rates than adults",
+          "Children usually have the same respiratory rates as adults",
+          "Younger children often have higher heart and respiratory rates than adults",
+          "Pediatric and adult vital signs are interpreted exactly the same way"
+        ],
+        answer: 2,
+        explanation: "Younger children generally have faster heart rates and respiratory rates than adults."
+      },
+      {
+        question: "Which age group tends to have the highest normal heart rate?",
+        options: ["Adolescents", "Infants", "Adults", "Older athletes"],
+        answer: 1,
+        explanation: "Infants usually have the highest normal heart rates."
+      },
+      {
+        question: "A pulse oximeter reading may appear low because of:",
+        options: ["Poor sensor placement", "Motion", "Poor perfusion", "All of the above"],
+        answer: 3,
+        explanation: "Low readings can result from poor placement, motion, or poor perfusion."
+      },
+      {
+        question: "Which is the best interpretation of a single mildly abnormal vital sign?",
+        options: [
+          "It always proves a life-threatening emergency",
+          "It should be considered along with symptoms, trends, and the overall patient picture",
+          "It should always be ignored",
+          "It only matters if the patient is a child"
+        ],
+        answer: 1,
+        explanation: "Vital signs should not be interpreted in isolation. Context and trends matter."
+      },
+      {
+        question: "Which adult blood pressure is generally within a normal range?",
+        options: ["120/80 mmHg", "78/42 mmHg", "190/100 mmHg", "82/50 mmHg"],
+        answer: 0,
+        explanation: "120/80 mmHg is commonly used as a normal adult blood pressure reference."
+      },
+      {
+        question: "What does hypotension describe?",
+        options: ["Low blood pressure", "High respiratory rate", "Low temperature", "High oxygen saturation"],
+        answer: 0,
+        explanation: "Hypotension means low blood pressure."
+      },
+      {
+        question: "What does hypertension describe?",
+        options: ["Low heart rate", "High blood pressure", "Low oxygen saturation", "High temperature only"],
+        answer: 1,
+        explanation: "Hypertension means elevated blood pressure."
+      },
+      {
+        question: "A respiratory rate of 28 breaths per minute in an adult is:",
+        options: ["Normal", "Bradypnea", "Tachypnea", "Bradycardia"],
+        answer: 2,
+        explanation: "A respiratory rate above 20 in adults is generally tachypnea."
+      },
+      {
+        question: "Which patient would most likely have a normal heart rate above 100 bpm?",
+        options: ["A healthy resting adult", "A calm sleeping adult", "An infant", "An adult athlete at rest"],
+        answer: 2,
+        explanation: "Infants often have a normal resting heart rate above 100 bpm."
+      },
+      {
+        question: "A patient has a temperature of 96.5°F. This is best described as:",
+        options: ["Slightly below the usual normal range", "A fever", "Severe hypertension", "Normal tachycardia"],
+        answer: 0,
+        explanation: "A temperature of 96.5°F is below the common normal range of about 97-99°F."
+      },
+      {
+        question: "Which statement about pain is true?",
+        options: [
+          "Pain cannot affect vital signs",
+          "Pain may increase heart rate and blood pressure",
+          "Pain always lowers respiratory rate",
+          "Pain only matters in surgical patients"
+        ],
+        answer: 1,
+        explanation: "Pain can increase heart rate, blood pressure, and sometimes respiratory rate."
+      },
+      {
+        question: "What is the best reason to trend vital signs over time?",
+        options: [
+          "Because one value never matters",
+          "Because trends can show improvement or deterioration more clearly than a single reading",
+          "Because only the last reading matters",
+          "Because trends replace assessment"
+        ],
+        answer: 1,
+        explanation: "Trending vital signs helps reveal patterns and changes that may not be obvious from one reading alone."
+      },
+      {
+        question: "An adult patient with a blood pressure of 86/54 mmHg and dizziness should raise concern for:",
+        options: ["Hypotension and possible poor perfusion", "Normal circulation", "Tachycardia only", "Fever only"],
+        answer: 0,
+        explanation: "Low blood pressure with symptoms like dizziness may suggest poor perfusion."
+      },
+      {
+        question: "Which is a likely cause of tachycardia?",
+        options: ["Fever", "Bleeding", "Anxiety", "All of the above"],
+        answer: 3,
+        explanation: "Fever, bleeding, and anxiety can all cause tachycardia."
+      },
+      {
+        question: "Which is the best definition of perfusion?",
+        options: [
+          "The movement of oxygen from the air into the lungs only",
+          "The delivery of blood to tissues and organs",
+          "The movement of food through the stomach",
+          "The process of measuring body temperature"
+        ],
+        answer: 1,
+        explanation: "Perfusion refers to blood flow being delivered to tissues and organs."
+      },
+      {
+        question: "A school-age child is expected to have which general heart rate range?",
+        options: ["30-50 bpm", "70-120 bpm", "130-180 bpm", "40-60 bpm"],
+        answer: 1,
+        explanation: "A school-age child often has a normal heart rate around 70-120 bpm."
+      },
+      {
+        question: "A patient with low SpO2 should be assessed for:",
+        options: ["Respiratory problems", "Poor sensor placement", "Airway issues", "All of the above"],
+        answer: 3,
+        explanation: "Low oxygen saturation may reflect real respiratory issues or equipment/sensor problems."
+      },
+      {
+        question: "Which adult respiratory rate would be considered bradypnea?",
+        options: ["8 breaths/min", "14 breaths/min", "18 breaths/min", "20 breaths/min"],
+        answer: 0,
+        explanation: "A respiratory rate of 8 is below the normal adult range and is bradypnea."
+      },
+      {
+        question: "What is the best study strategy for learning vital signs?",
+        options: [
+          "Memorize numbers only and ignore context",
+          "Focus on normal ranges, patterns, and causes of abnormal findings",
+          "Study pediatric values only",
+          "Ignore respiratory rate because it changes too much"
+        ],
+        answer: 1,
+        explanation: "Learning normal ranges, patterns, and clinical meaning is stronger than memorizing isolated numbers."
+      },
+      {
+        question: "Which vital sign is measured with a pulse oximeter?",
+        options: ["Blood pressure", "Temperature", "Oxygen saturation", "Pain score"],
+        answer: 2,
+        explanation: "A pulse oximeter measures oxygen saturation."
+      },
+      {
+        question: "Which of the following best explains why pediatric blood pressure is harder to summarize in one simple range?",
+        options: [
+          "It changes significantly with age and size",
+          "Blood pressure is not used in children",
+          "Children do not have blood pressure",
+          "It only matters in adults"
+        ],
+        answer: 0,
+        explanation: "Pediatric blood pressure varies more by age and size than adult blood pressure."
+      },
+      {
+        question: "A teenager usually has vital signs that are closer to:",
+        options: ["Infants", "Adults", "Toddlers only", "None of the above"],
+        answer: 1,
+        explanation: "Adolescents often have vital signs that are closer to adult ranges."
+      },
+      {
+        question: "A patient has a normal oxygen saturation but is breathing much faster than usual. The best conclusion is:",
+        options: [
+          "The patient must be completely stable",
+          "The respiratory rate still matters and may indicate a problem",
+          "Respiratory rate can be ignored if SpO2 is normal",
+          "The pulse oximeter replaces all other assessment"
+        ],
+        answer: 1,
+        explanation: "A normal SpO2 does not cancel out a concerning respiratory rate. Respiratory rate still matters."
+      },
+      {
+        question: "Which statement best reflects good clinical thinking about vital signs?",
+        options: [
+          "Only one vital sign matters at a time",
+          "Vital signs should be interpreted with symptoms, age, and trends",
+          "Pediatric and adult values are interchangeable",
+          "Temperature is the only vital sign that matters"
+        ],
+        answer: 1,
+        explanation: "Good assessment means using vital signs together with symptoms, age, and overall trends."
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+    let userAnswers = [];
+
+    const introBox = document.getElementById("introBox");
+    const quizBox = document.getElementById("quizBox");
+    const scoreBox = document.getElementById("scoreBox");
+    const reviewBox = document.getElementById("reviewBox");
+    const startBtn = document.getElementById("startBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const progressText = document.getElementById("progressText");
+    const questionText = document.getElementById("questionText");
+    const optionsWrap = document.getElementById("optionsWrap");
+    const feedbackWrap = document.getElementById("feedbackWrap");
+    const scoreBig = document.getElementById("scoreBig");
+    const scoreSub = document.getElementById("scoreSub");
+    const scoreMessage = document.getElementById("scoreMessage");
+    const reviewList = document.getElementById("reviewList");
+
+    function startQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+      userAnswers = [];
+      introBox.style.display = "none";
+      scoreBox.style.display = "none";
+      reviewBox.style.display = "none";
+      quizBox.style.display = "block";
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      nextBtn.style.display = "none";
+      feedbackWrap.innerHTML = "";
+
+      const q = questions[currentQuestion];
+      progressText.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+      questionText.textContent = q.question;
+      optionsWrap.innerHTML = "";
+
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerHTML = `<strong>${String.fromCharCode(65 + index)}.</strong> ${option}`;
+        btn.addEventListener("click", () => selectAnswer(index));
+        optionsWrap.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (answered) return;
+      answered = true;
+
+      const q = questions[currentQuestion];
+      const buttons = optionsWrap.querySelectorAll(".option-btn");
+      const isCorrect = selectedIndex === q.answer;
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.answer) {
+          btn.classList.add("correct");
+        }
+        if (idx === selectedIndex && idx !== q.answer) {
+          btn.classList.add("wrong");
+        }
+      });
+
+      if (isCorrect) {
+        score++;
+      }
+
+      userAnswers.push({
+        question: q.question,
+        selected: selectedIndex,
+        correct: q.answer,
+        options: q.options,
+        explanation: q.explanation,
+        isCorrect: isCorrect
+      });
+
+      const feedback = document.createElement("div");
+      feedback.className = `feedback ${isCorrect ? "correct" : "wrong"}`;
+      feedback.innerHTML = isCorrect
+        ? `Correct!<div class="explanation">${q.explanation}</div>`
+        : `Not quite. The correct answer is <strong>${String.fromCharCode(65 + q.answer)}. ${q.options[q.answer]}</strong>.<div class="explanation">${q.explanation}</div>`;
+
+      feedbackWrap.innerHTML = "";
+      feedbackWrap.appendChild(feedback);
+      nextBtn.style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      quizBox.style.display = "none";
+      scoreBox.style.display = "block";
+      reviewBox.style.display = "block";
+
+      const percent = Math.round((score / questions.length) * 100);
+      scoreBig.textContent = `${score} / ${questions.length}`;
+      scoreSub.textContent = `You scored ${percent}%`;
+
+      if (percent >= 90) {
+        scoreMessage.textContent = "Excellent work. You have a very strong grasp of vital signs and patient assessment basics.";
+      } else if (percent >= 80) {
+        scoreMessage.textContent = "Great job. You understand this topic well, with just a few areas to review.";
+      } else if (percent >= 70) {
+        scoreMessage.textContent = "Good work. You have a solid foundation, but reviewing missed concepts will help strengthen your confidence.";
+      } else if (percent >= 60) {
+        scoreMessage.textContent = "You are building a foundation, but more review will help. Go back through the chart page and try again.";
+      } else {
+        scoreMessage.textContent = "Keep practicing. Review the chart page, focus on normal ranges and abnormal findings, and retake the quiz.";
+      }
+
+      reviewList.innerHTML = "";
+      userAnswers.forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.className = "review-item";
+
+        div.innerHTML = `
+          <div class="review-status ${item.isCorrect ? "correct" : "wrong"}">
+            ${item.isCorrect ? "Correct" : "Needs Review"}
+          </div>
+          <p><strong>Question ${idx + 1}:</strong> ${item.question}</p>
+          <p><strong>Your answer:</strong> ${String.fromCharCode(65 + item.selected)}. ${item.options[item.selected]}</p>
+          <p><strong>Correct answer:</strong> ${String.fromCharCode(65 + item.correct)}. ${item.options[item.correct]}</p>
+          <p><strong>Explanation:</strong> ${item.explanation}</p>
+        `;
+
+        reviewList.appendChild(div);
+      });
+    }
+
+    startBtn.addEventListener("click", startQuiz);
+    nextBtn.addEventListener("click", nextQuestion);
+    restartBtn.addEventListener("click", startQuiz);
+  </script>
+</body>
+</html>
