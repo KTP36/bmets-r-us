@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>ABG Practice Quiz (30 Questions) | MedSkillBuilder</title>
+  <meta name="description" content="Test your knowledge with this free ABG practice quiz. Includes 30 multiple-choice questions on normal ABG values, respiratory vs metabolic disorders, pH, PaCO2, HCO3, PaO2, and basic interpretation." />
+  <link rel="canonical" href="https://medskillbuilder.com/abg-practice-quiz.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    h1, h2 {
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      border-bottom: 4px solid #0ea5e9;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #0ea5e9;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    .intro-box,
+    .score-box,
+    .question-box,
+    .review-box,
+    .keep-practicing {
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      margin-bottom: 22px;
+    }
+
+    .intro-box {
+      margin-top: 20px;
+    }
+
+    .progress {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 12px;
+    }
+
+    .question {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      line-height: 1.45;
+      color: #0f172a;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #e0f2fe;
+      border-color: #0ea5e9;
+    }
+
+    .option-btn.correct {
+      border: 2px solid #16a34a;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .option-btn.wrong {
+      border: 2px solid #dc2626;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .feedback {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .feedback.correct {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .feedback.wrong {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .explanation {
+      margin-top: 10px;
+      font-weight: 500;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .nav-btn,
+    .link-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #0f172a;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .nav-btn:hover,
+    .link-btn:hover {
+      background: #1e293b;
+    }
+
+    .nav-btn.secondary,
+    .link-btn.secondary {
+      background: #e0f2fe;
+      color: #0f172a;
+      border: 1px solid #bae6fd;
+    }
+
+    .nav-btn.secondary:hover,
+    .link-btn.secondary:hover {
+      background: #bae6fd;
+    }
+
+    .score-big {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .score-sub {
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .review-item {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .review-item:first-child {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .review-status {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .review-status.correct {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .review-status.wrong {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .resource-link {
+      display: block;
+      text-decoration: none;
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .resource-link:hover {
+      background: #e0f2fe;
+      border-color: #0ea5e9;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .question {
+        font-size: 1.08rem;
+      }
+
+      .container {
+        padding: 24px 14px 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ABG Practice Quiz</h1>
+    <p>
+      Test your understanding of normal ABG values, acid-base balance, respiratory vs metabolic disorders, oxygenation, and basic interpretation with 30 multiple-choice questions.
+    </p>
+
+    <div class="intro-box" id="introBox">
+      <h2>Before You Start</h2>
+      <p>
+        This quiz is designed for nursing students, TEAS learners, and early healthcare students who want stronger ABG fundamentals. Focus on normal ranges first, then pay attention to whether the problem is respiratory or metabolic.
+      </p>
+      <div class="btn-row">
+        <button class="nav-btn" id="startBtn">Start Quiz</button>
+        <a class="link-btn secondary" href="/abg-normal-values.html">Review ABG Normal Values</a>
+      </div>
+    </div>
+
+    <div class="question-box" id="quizBox" style="display:none;">
+      <div class="progress" id="progressText"></div>
+      <div class="question" id="questionText"></div>
+      <div id="optionsWrap"></div>
+      <div id="feedbackWrap"></div>
+      <div class="btn-row">
+        <button class="nav-btn" id="nextBtn" style="display:none;">Next Question</button>
+      </div>
+    </div>
+
+    <div class="score-box" id="scoreBox" style="display:none;">
+      <div class="score-big" id="scoreBig"></div>
+      <div class="score-sub" id="scoreSub"></div>
+      <p id="scoreMessage"></p>
+      <div class="btn-row">
+        <button class="nav-btn" id="restartBtn">Retake Quiz</button>
+        <a class="link-btn secondary" href="/abg-normal-values.html">Review ABG Normal Values</a>
+      </div>
+    </div>
+
+    <div class="review-box" id="reviewBox" style="display:none;">
+      <h2>Question Review</h2>
+      <div id="reviewList"></div>
+    </div>
+
+    <div class="keep-practicing">
+      <h2>Keep Practicing</h2>
+      <p>
+        Want to strengthen your clinical basics even more? Review the ABG guide and keep practicing with related MedSkillBuilder study tools.
+      </p>
+      <div class="link-grid">
+        <a class="resource-link" href="/abg-normal-values.html">ABG Normal Values</a>
+        <a class="resource-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a class="resource-link" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a>
+        <a class="resource-link" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which pH range is considered normal on an ABG?",
+        options: ["7.20-7.30", "7.35-7.45", "7.50-7.60", "7.60-7.70"],
+        answer: 1,
+        explanation: "A normal arterial pH range is 7.35-7.45."
+      },
+      {
+        question: "Which PaCO2 range is considered normal on an ABG?",
+        options: ["20-30 mm Hg", "25-35 mm Hg", "35-45 mm Hg", "45-55 mm Hg"],
+        answer: 2,
+        explanation: "A normal PaCO2 range is 35-45 mm Hg."
+      },
+      {
+        question: "Which HCO3 range is considered normal on an ABG?",
+        options: ["10-16 mEq/L", "18-20 mEq/L", "22-26 mEq/L", "28-34 mEq/L"],
+        answer: 2,
+        explanation: "A normal bicarbonate range is 22-26 mEq/L."
+      },
+      {
+        question: "Which PaO2 range is generally considered normal on an ABG?",
+        options: ["40-60 mm Hg", "60-70 mm Hg", "75-100 mm Hg", "105-125 mm Hg"],
+        answer: 2,
+        explanation: "A commonly used normal PaO2 range is about 75-100 mm Hg."
+      },
+      {
+        question: "Which ABG value reflects the respiratory component?",
+        options: ["pH", "PaCO2", "HCO3", "PaO2"],
+        answer: 1,
+        explanation: "PaCO2 is the main respiratory value in ABG interpretation."
+      },
+      {
+        question: "Which ABG value reflects the metabolic component?",
+        options: ["HCO3", "PaO2", "SaO2", "pH only"],
+        answer: 0,
+        explanation: "HCO3 reflects the metabolic component of acid-base balance."
+      },
+      {
+        question: "A pH below 7.35 indicates:",
+        options: ["Alkalosis", "Acidosis", "Normal balance", "Hyperoxygenation"],
+        answer: 1,
+        explanation: "A pH below 7.35 indicates acidosis."
+      },
+      {
+        question: "A pH above 7.45 indicates:",
+        options: ["Acidosis", "Normal balance", "Alkalosis", "Hypoxia"],
+        answer: 2,
+        explanation: "A pH above 7.45 indicates alkalosis."
+      },
+      {
+        question: "A high PaCO2 most directly points toward:",
+        options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic alkalosis", "Normal oxygenation"],
+        answer: 0,
+        explanation: "When PaCO2 is high, carbon dioxide is being retained, which points toward respiratory acidosis."
+      },
+      {
+        question: "A low PaCO2 most directly points toward:",
+        options: ["Respiratory alkalosis", "Respiratory acidosis", "Metabolic acidosis", "Hypoxemia only"],
+        answer: 0,
+        explanation: "A low PaCO2 means too much carbon dioxide is being blown off, which points toward respiratory alkalosis."
+      },
+      {
+        question: "A low HCO3 most directly points toward:",
+        options: ["Respiratory alkalosis", "Metabolic acidosis", "Respiratory acidosis", "Normal compensation only"],
+        answer: 1,
+        explanation: "A low HCO3 points toward metabolic acidosis."
+      },
+      {
+        question: "A high HCO3 most directly points toward:",
+        options: ["Metabolic alkalosis", "Respiratory alkalosis", "Respiratory acidosis", "Low oxygen saturation"],
+        answer: 0,
+        explanation: "A high HCO3 points toward metabolic alkalosis."
+      },
+      {
+        question: "What is the best first step when interpreting an ABG?",
+        options: ["Check PaO2", "Check pH", "Check HCO3", "Check SaO2"],
+        answer: 1,
+        explanation: "The pH is usually checked first because it tells you whether the patient is acidotic or alkalotic."
+      },
+      {
+        question: "ABG: pH 7.30, PaCO2 50, HCO3 24. What is the best interpretation?",
+        options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic acidosis", "Metabolic alkalosis"],
+        answer: 0,
+        explanation: "The pH is low and PaCO2 is high, which points to respiratory acidosis."
+      },
+      {
+        question: "ABG: pH 7.50, PaCO2 30, HCO3 24. What is the best interpretation?",
+        options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic acidosis", "Metabolic alkalosis"],
+        answer: 1,
+        explanation: "The pH is high and PaCO2 is low, which points to respiratory alkalosis."
+      },
+      {
+        question: "ABG: pH 7.28, PaCO2 40, HCO3 18. What is the best interpretation?",
+        options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic acidosis", "Metabolic alkalosis"],
+        answer: 2,
+        explanation: "The pH is low and HCO3 is low, which points to metabolic acidosis."
+      },
+      {
+        question: "ABG: pH 7.48, PaCO2 40, HCO3 30. What is the best interpretation?",
+        options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic acidosis", "Metabolic alkalosis"],
+        answer: 3,
+        explanation: "The pH is high and HCO3 is high, which points to metabolic alkalosis."
+      },
+      {
+        question: "Which value is most useful for assessing oxygenation on an ABG?",
+        options: ["HCO3", "PaO2", "PaCO2", "Base excess only"],
+        answer: 1,
+        explanation: "PaO2 is the main ABG value used to assess oxygenation."
+      },
+      {
+        question: "A low PaO2 suggests:",
+        options: ["Reduced oxygenation", "Metabolic alkalosis", "Normal ventilation", "High bicarbonate"],
+        answer: 0,
+        explanation: "A low PaO2 suggests reduced oxygenation."
+      },
+      {
+        question: "Which statement is true about PaO2?",
+        options: [
+          "It tells you whether the primary disorder is metabolic or respiratory",
+          "It helps assess oxygenation, not the main acid-base category",
+          "It replaces pH in ABG interpretation",
+          "It is the same as HCO3"
+        ],
+        answer: 1,
+        explanation: "PaO2 helps assess oxygenation, but it is not the main value used to classify respiratory vs metabolic acid-base disorders."
+      },
+      {
+        question: "ABG: pH 7.36, PaCO2 44, HCO3 24. This ABG is best described as:",
+        options: ["Normal", "Respiratory acidosis", "Metabolic acidosis", "Respiratory alkalosis"],
+        answer: 0,
+        explanation: "These values all fall within normal limits."
+      },
+      {
+        question: "Which statement best helps students remember ABG interpretation?",
+        options: [
+          "PaCO2 is respiratory and HCO3 is metabolic",
+          "PaCO2 is metabolic and HCO3 is respiratory",
+          "PaO2 determines acidosis",
+          "pH does not matter"
+        ],
+        answer: 0,
+        explanation: "A strong beginner rule is: PaCO2 is respiratory and HCO3 is metabolic."
+      },
+      {
+        question: "A patient is hyperventilating and blowing off too much CO2. Which ABG problem is most likely?",
+        options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic acidosis", "Metabolic alkalosis"],
+        answer: 1,
+        explanation: "Blowing off too much CO2 lowers PaCO2 and points toward respiratory alkalosis."
+      },
+      {
+        question: "A patient is retaining carbon dioxide. Which ABG problem is most likely?",
+        options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic alkalosis", "Normal compensation"],
+        answer: 0,
+        explanation: "Retaining CO2 raises PaCO2 and points toward respiratory acidosis."
+      },
+      {
+        question: "Which ABG values would most strongly suggest metabolic acidosis?",
+        options: [
+          "Low pH and low HCO3",
+          "High pH and high HCO3",
+          "Low pH and high PaCO2",
+          "High pH and low PaCO2"
+        ],
+        answer: 0,
+        explanation: "Low pH with low HCO3 points toward metabolic acidosis."
+      },
+      {
+        question: "Which ABG values would most strongly suggest metabolic alkalosis?",
+        options: [
+          "Low pH and low HCO3",
+          "High pH and high HCO3",
+          "Low pH and high PaCO2",
+          "High pH and low PaCO2"
+        ],
+        answer: 1,
+        explanation: "High pH with high HCO3 points toward metabolic alkalosis."
+      },
+      {
+        question: "Which ABG values would most strongly suggest respiratory acidosis?",
+        options: [
+          "Low pH and high PaCO2",
+          "High pH and low PaCO2",
+          "Low pH and low HCO3",
+          "High pH and high HCO3"
+        ],
+        answer: 0,
+        explanation: "Low pH with high PaCO2 points toward respiratory acidosis."
+      },
+      {
+        question: "Which ABG values would most strongly suggest respiratory alkalosis?",
+        options: [
+          "Low pH and high PaCO2",
+          "High pH and low PaCO2",
+          "Low pH and low HCO3",
+          "High pH and high HCO3"
+        ],
+        answer: 1,
+        explanation: "High pH with low PaCO2 points toward respiratory alkalosis."
+      },
+      {
+        question: "Why is it important to learn normal ABG ranges before doing full interpretation questions?",
+        options: [
+          "Because you cannot identify abnormal patterns without knowing normal values",
+          "Because normal values replace patient assessment",
+          "Because PaO2 is the only value that matters",
+          "Because compensation is never tested"
+        ],
+        answer: 0,
+        explanation: "Students need the normal ranges first so they can recognize when a value is moving out of range."
+      },
+      {
+        question: "Which statement best reflects good ABG thinking for beginners?",
+        options: [
+          "Start with pH, then check PaCO2 and HCO3",
+          "Start with PaO2 and ignore pH",
+          "Check HCO3 first and skip PaCO2",
+          "Only memorize the names, not the ranges"
+        ],
+        answer: 0,
+        explanation: "A strong beginner approach is to start with pH, then compare PaCO2 and HCO3 to see which side matches the disorder."
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+    let userAnswers = [];
+
+    const introBox = document.getElementById("introBox");
+    const quizBox = document.getElementById("quizBox");
+    const scoreBox = document.getElementById("scoreBox");
+    const reviewBox = document.getElementById("reviewBox");
+    const startBtn = document.getElementById("startBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const progressText = document.getElementById("progressText");
+    const questionText = document.getElementById("questionText");
+    const optionsWrap = document.getElementById("optionsWrap");
+    const feedbackWrap = document.getElementById("feedbackWrap");
+    const scoreBig = document.getElementById("scoreBig");
+    const scoreSub = document.getElementById("scoreSub");
+    const scoreMessage = document.getElementById("scoreMessage");
+    const reviewList = document.getElementById("reviewList");
+
+    function startQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+      userAnswers = [];
+      introBox.style.display = "none";
+      scoreBox.style.display = "none";
+      reviewBox.style.display = "none";
+      quizBox.style.display = "block";
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      nextBtn.style.display = "none";
+      feedbackWrap.innerHTML = "";
+
+      const q = questions[currentQuestion];
+      progressText.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+      questionText.textContent = q.question;
+      optionsWrap.innerHTML = "";
+
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerHTML = `<strong>${String.fromCharCode(65 + index)}.</strong> ${option}`;
+        btn.addEventListener("click", () => selectAnswer(index));
+        optionsWrap.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (answered) return;
+      answered = true;
+
+      const q = questions[currentQuestion];
+      const buttons = optionsWrap.querySelectorAll(".option-btn");
+      const isCorrect = selectedIndex === q.answer;
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.answer) {
+          btn.classList.add("correct");
+        }
+        if (idx === selectedIndex && idx !== q.answer) {
+          btn.classList.add("wrong");
+        }
+      });
+
+      if (isCorrect) {
+        score++;
+      }
+
+      userAnswers.push({
+        question: q.question,
+        selected: selectedIndex,
+        correct: q.answer,
+        options: q.options,
+        explanation: q.explanation,
+        isCorrect: isCorrect
+      });
+
+      const feedback = document.createElement("div");
+      feedback.className = `feedback ${isCorrect ? "correct" : "wrong"}`;
+      feedback.innerHTML = isCorrect
+        ? `Correct!<div class="explanation">${q.explanation}</div>`
+        : `Not quite. The correct answer is <strong>${String.fromCharCode(65 + q.answer)}. ${q.options[q.answer]}</strong>.<div class="explanation">${q.explanation}</div>`;
+
+      feedbackWrap.innerHTML = "";
+      feedbackWrap.appendChild(feedback);
+      nextBtn.style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      quizBox.style.display = "none";
+      scoreBox.style.display = "block";
+      reviewBox.style.display = "block";
+
+      const percent = Math.round((score / questions.length) * 100);
+      scoreBig.textContent = `${score} / ${questions.length}`;
+      scoreSub.textContent = `You scored ${percent}%`;
+
+      if (percent >= 90) {
+        scoreMessage.textContent = "Excellent work. You have a very strong grasp of ABG basics and interpretation patterns.";
+      } else if (percent >= 80) {
+        scoreMessage.textContent = "Great job. You understand this topic well, with just a few areas to review.";
+      } else if (percent >= 70) {
+        scoreMessage.textContent = "Good work. You have a solid foundation, but reviewing missed concepts will make ABGs feel easier.";
+      } else if (percent >= 60) {
+        scoreMessage.textContent = "You are building a foundation, but more review will help. Go back through the ABG guide and try again.";
+      } else {
+        scoreMessage.textContent = "Keep practicing. Review the ABG normal values page, focus on normal ranges first, and then retake the quiz.";
+      }
+
+      reviewList.innerHTML = "";
+      userAnswers.forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.className = "review-item";
+
+        div.innerHTML = `
+          <div class="review-status ${item.isCorrect ? "correct" : "wrong"}">
+            ${item.isCorrect ? "Correct" : "Needs Review"}
+          </div>
+          <p><strong>Question ${idx + 1}:</strong> ${item.question}</p>
+          <p><strong>Your answer:</strong> ${String.fromCharCode(65 + item.selected)}. ${item.options[item.selected]}</p>
+          <p><strong>Correct answer:</strong> ${String.fromCharCode(65 + item.correct)}. ${item.options[item.correct]}</p>
+          <p><strong>Explanation:</strong> ${item.explanation}</p>
+        `;
+
+        reviewList.appendChild(div);
+      });
+    }
+
+    startBtn.addEventListener("click", startQuiz);
+    nextBtn.addEventListener("click", nextQuestion);
+    restartBtn.addEventListener("click", startQuiz);
+  </script>
+</body>
+</html>
