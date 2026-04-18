@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Electrolytes Practice Quiz (25 Questions) | MedSkillBuilder</title>
+
+<meta name="description" content="Test your knowledge of electrolyte lab values with this 25-question quiz. Covers sodium, potassium, calcium, magnesium, chloride, and basic interpretation for nursing and healthcare students.">
+
+<link rel="canonical" href="https://medskillbuilder.com/electrolytes-practice-quiz.html">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 24px 20px 50px;
+}
+
+h1 {
+  margin-top: 0;
+  border-bottom: 4px solid #0ea5e9;
+  padding-bottom: 10px;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background: #dc2626;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.quiz-card, .score-card {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #dbe4ee;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #0369a1;
+}
+
+.progress-bar-wrap {
+  height: 16px;
+  background: #cbd5e1;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+}
+
+.question {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.option {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.correct { background: #d1fae5; }
+.wrong { background: #fee2e2; }
+
+button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+}
+
+.secondary-button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  text-decoration: none;
+  color: #0f172a;
+  border: 1px solid #bae6fd;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a class="back-button" href="/browse-all-practice.html">← Back to Browse All</a>
+
+<h1>Electrolytes Practice Quiz</h1>
+
+<div class="quiz-card" id="quizCard">
+
+<div class="top-row">
+  <div id="progressText">Question 1</div>
+  <div id="scoreText">Score: 0</div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div id="quiz"></div>
+
+<button id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+
+</div>
+
+<div class="score-card" id="scoreCard" style="display:none;">
+  <h2 id="finalScore"></h2>
+  <p id="finalMessage"></p>
+
+  <button onclick="restartQuiz()">Retake Quiz</button>
+  <a class="secondary-button" href="/browse-all-practice.html">Browse All Practice Tools</a>
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+{question:"Normal sodium range?",options:["120–130","135–145","150–160","160–170"],answer:1},
+{question:"Normal potassium?",options:["2–3","3.5–5","5.5–6.5","6.5–7.5"],answer:1},
+{question:"Hyperkalemia means:",options:["Low K","High K","Low Na","High Ca"],answer:1},
+{question:"Normal calcium?",options:["6–7","7–8","8.5–10.5","11–12"],answer:2},
+{question:"Low sodium is called:",options:["Hypernatremia","Hyponatremia","Hypokalemia","Hypercalcemia"],answer:1},
+{question:"Normal magnesium?",options:["1.5–2.5","2.5–3.5","3.5–4.5","4.5–5.5"],answer:0},
+{question:"Which affects heart rhythm most?",options:["Potassium","Sodium","Chloride","Glucose"],answer:0},
+{question:"Hypernatremia means:",options:["Low sodium","High sodium","Low potassium","High calcium"],answer:1},
+{question:"Normal chloride?",options:["80–90","96–106","110–120","120–130"],answer:1},
+{question:"Hypokalemia means:",options:["High K","Low K","High Na","Low Ca"],answer:1},
+{question:"High calcium is:",options:["Hypocalcemia","Hypercalcemia","Hyponatremia","Hyperkalemia"],answer:1},
+{question:"Low calcium is:",options:["Hypercalcemia","Hypocalcemia","Hyponatremia","Hypokalemia"],answer:1},
+{question:"Which helps muscle contraction?",options:["Calcium","Sodium","Chloride","BUN"],answer:0},
+{question:"Which is major extracellular ion?",options:["Sodium","Potassium","Magnesium","Calcium"],answer:0},
+{question:"Potassium is mainly:",options:["Intracellular","Extracellular","Hormonal","Protein"],answer:0},
+{question:"Magnesium helps:",options:["Neuromuscular function","Digestion","Vision","Smell"],answer:0},
+{question:"Chloride helps:",options:["Acid-base balance","Vision","Bone growth","Hormones"],answer:0},
+{question:"Which imbalance causes arrhythmias?",options:["Potassium","Glucose","BUN","Creatinine"],answer:0},
+{question:"Normal sodium unit?",options:["mg/dL","mEq/L","mmHg","%"],answer:1},
+{question:"Normal potassium unit?",options:["mg","mEq/L","L","%"],answer:1},
+{question:"Which is electrolyte?",options:["Sodium","Protein","WBC","Hemoglobin"],answer:0},
+{question:"Low magnesium is:",options:["Hypermagnesemia","Hypomagnesemia","Hypernatremia","Hypocalcemia"],answer:1},
+{question:"Electrolytes mainly regulate:",options:["Fluid balance","Hair growth","Vision","Taste"],answer:0},
+{question:"Which is NOT electrolyte?",options:["Sodium","Potassium","Glucose","Calcium"],answer:2},
+{question:"High potassium danger?",options:["Arrhythmia","Hair loss","Weight gain","Fever"],answer:0}
+];
+
+let current=0,score=0,answered=false;
+
+function loadQuestion(){
+answered=false;
+document.getElementById("nextBtn").disabled=true;
+
+let q=questions[current];
+document.getElementById("progressText").innerText=`Question ${current+1} of ${questions.length}`;
+document.getElementById("scoreText").innerText=`Score: ${score}`;
+document.getElementById("progressBar").style.width=`${(current+1)/questions.length*100}%`;
+
+let html=`<div class="question">${q.question}</div>`;
+q.options.forEach((opt,i)=>{
+html+=`<div class="option" onclick="select(${i})">${opt}</div>`;
+});
+
+document.getElementById("quiz").innerHTML=html;
+}
+
+function select(i){
+if(answered) return;
+answered=true;
+
+let q=questions[current];
+let options=document.querySelectorAll(".option");
+
+options.forEach((el,index)=>{
+if(index===q.answer) el.classList.add("correct");
+if(index===i && i!==q.answer) el.classList.add("wrong");
+});
+
+if(i===q.answer) score++;
+
+document.getElementById("scoreText").innerText=`Score: ${score}`;
+document.getElementById("nextBtn").disabled=false;
+}
+
+function nextQuestion(){
+current++;
+if(current>=questions.length){showResults();return;}
+loadQuestion();
+}
+
+function showResults(){
+document.getElementById("quizCard").style.display="none";
+document.getElementById("scoreCard").style.display="block";
+
+let percent=Math.round(score/questions.length*100);
+document.getElementById("finalScore").innerText=`${score}/${questions.length} (${percent}%)`;
+
+document.getElementById("finalMessage").innerText=
+percent>80?"Strong understanding":
+percent>60?"Good foundation":
+"Keep practicing";
+}
+
+function restartQuiz(){
+current=0;score=0;
+document.getElementById("quizCard").style.display="block";
+document.getElementById("scoreCard").style.display="none";
+loadQuestion();
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
