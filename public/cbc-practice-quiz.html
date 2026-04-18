@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CBC Practice Quiz (25 Questions) | MedSkillBuilder</title>
+
+<meta name="description" content="Test your knowledge with this CBC practice quiz. Includes 25 multiple-choice questions on white blood cells, hemoglobin, hematocrit, platelets, red blood cells, and common CBC interpretation basics for nursing and healthcare students.">
+
+<link rel="canonical" href="https://medskillbuilder.com/cbc-practice-quiz.html">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 24px 20px 50px;
+}
+
+h1 {
+  margin-top: 0;
+  border-bottom: 4px solid #0ea5e9;
+  padding-bottom: 10px;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background: #dc2626;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.quiz-card,
+.score-card {
+  background: white;
+  border: 1px solid #dbe4ee;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #0369a1;
+}
+
+.progress-bar-wrap {
+  width: 100%;
+  height: 16px;
+  background: #cbd5e1;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  border: 1px solid #94a3b8;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+  transition: width 0.25s ease;
+}
+
+.question {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.option {
+  display: block;
+  background: white;
+  padding: 14px 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #cbd5e1;
+  transition: 0.2s ease;
+}
+
+.option:hover {
+  background: #f8fbff;
+  border-color: #94a3b8;
+}
+
+.correct {
+  background: #d1fae5;
+  border-color: #16a34a;
+}
+
+.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.feedback {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.feedback.correct {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.feedback.wrong {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.explanation {
+  margin-top: 8px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.button-row {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.95;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.secondary-button {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #e0f2fe;
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #bae6fd;
+}
+
+.score-big {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.review-item {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.review-item:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a class="back-button" href="/browse-all-practice.html">
+  ← Back to Browse All
+</a>
+
+<h1>CBC Practice Quiz</h1>
+
+<div class="quiz-card" id="quizCard">
+  <div class="top-row">
+    <div id="progressText">Question 1 of 25</div>
+    <div id="scoreText">Score: 0</div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="button-row">
+    <button id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+  </div>
+</div>
+
+<div class="score-card" id="scoreCard" style="display:none;">
+  <div class="score-big" id="finalScore"></div>
+  <p id="finalMessage"></p>
+
+  <div class="button-row">
+    <button onclick="restartQuiz()">Retake Quiz</button>
+    <a class="secondary-button" href="/browse-all-practice.html">Browse All Practice Tools</a>
+  </div>
+
+  <div id="reviewList" style="margin-top:20px;"></div>
+</div>
+
+</div>
+
+<script>
+const questions = [
+{
+question: "What does CBC stand for?",
+options: ["Comprehensive Blood Count", "Complete Blood Count", "Common Blood Chemistry", "Cardiac Blood Count"],
+answer: 1,
+explanation: "CBC stands for Complete Blood Count."
+},
+{
+question: "Which CBC component is commonly used to help assess infection or inflammation?",
+options: ["Platelets", "White blood cells", "Hemoglobin", "Hematocrit"],
+answer: 1,
+explanation: "White blood cells are commonly used to help assess infection or inflammation."
+},
+{
+question: "What is the normal adult WBC range?",
+options: ["1,000–3,000 cells/mcL", "4,000–11,000 cells/mcL", "12,000–20,000 cells/mcL", "20,000–30,000 cells/mcL"],
+answer: 1,
+explanation: "A common normal WBC range is 4,000–11,000 cells/mcL."
+},
+{
+question: "What is the main role of hemoglobin?",
+options: ["Blood clotting", "Carrying oxygen", "Fighting infection", "Balancing electrolytes"],
+answer: 1,
+explanation: "Hemoglobin helps carry oxygen in red blood cells."
+},
+{
+question: "A low hemoglobin level may suggest:",
+options: ["Anemia", "Leukocytosis", "Thrombocytosis", "Hypernatremia"],
+answer: 0,
+explanation: "Low hemoglobin is often associated with anemia."
+},
+{
+question: "Which CBC component represents the percentage of blood made up of red blood cells?",
+options: ["Platelets", "WBC", "Hematocrit", "Neutrophils"],
+answer: 2,
+explanation: "Hematocrit represents the percentage of blood volume made up of red blood cells."
+},
+{
+question: "What is a common normal platelet range?",
+options: ["50,000–100,000/mcL", "100,000–150,000/mcL", "150,000–450,000/mcL", "500,000–700,000/mcL"],
+answer: 2,
+explanation: "A common normal platelet range is 150,000–450,000/mcL."
+},
+{
+question: "What is the main function of platelets?",
+options: ["Oxygen transport", "Blood clotting", "Acid-base balance", "Hormone production"],
+answer: 1,
+explanation: "Platelets are important for blood clotting."
+},
+{
+question: "Leukocytosis means:",
+options: ["Low white blood cell count", "High platelet count", "High white blood cell count", "Low red blood cell count"],
+answer: 2,
+explanation: "Leukocytosis means an elevated white blood cell count."
+},
+{
+question: "Thrombocytopenia means:",
+options: ["Low platelet count", "High platelet count", "Low hemoglobin", "High WBC"],
+answer: 0,
+explanation: "Thrombocytopenia means a low platelet count."
+},
+{
+question: "Which of the following is most closely related to anemia?",
+options: ["Low hemoglobin", "High platelets", "High sodium", "Low chloride"],
+answer: 0,
+explanation: "Low hemoglobin is one of the most common findings associated with anemia."
+},
+{
+question: "Which CBC value is most directly related to oxygen-carrying capacity?",
+options: ["WBC", "Hemoglobin", "Platelets", "Sodium"],
+answer: 1,
+explanation: "Hemoglobin is directly related to oxygen-carrying capacity."
+},
+{
+question: "Which CBC abnormality may increase concern for bleeding risk?",
+options: ["High hemoglobin", "Low platelets", "High WBC", "High hematocrit"],
+answer: 1,
+explanation: "Low platelets can increase concern for bleeding risk."
+},
+{
+question: "What is the best description of WBCs?",
+options: ["Cells that help with infection and inflammation responses", "Cells that help blood clot", "Proteins that carry oxygen", "Electrolytes in plasma"],
+answer: 0,
+explanation: "White blood cells are part of the body's immune and inflammatory response."
+},
+{
+question: "A platelet count of 90,000/mcL is best described as:",
+options: ["Normal", "Elevated", "Low", "Critical hyperkalemia"],
+answer: 2,
+explanation: "A platelet count of 90,000/mcL is below the common normal range."
+},
+{
+question: "A WBC count of 14,000 cells/mcL is best described as:",
+options: ["Low", "Normal", "Elevated", "Severely anemic"],
+answer: 2,
+explanation: "A WBC count above 11,000 cells/mcL is commonly considered elevated."
+},
+{
+question: "A hemoglobin of 9 g/dL is best described as:",
+options: ["High", "Normal", "Low", "A platelet disorder"],
+answer: 2,
+explanation: "A hemoglobin of 9 g/dL is generally low and may suggest anemia."
+},
+{
+question: "What does hematocrit help reflect?",
+options: ["The amount of sodium in the blood", "The percentage of blood made up of red blood cells", "The number of platelets in circulation", "The blood glucose level"],
+answer: 1,
+explanation: "Hematocrit reflects the proportion of blood volume made up of red blood cells."
+},
+{
+question: "A hematocrit of 25% would generally be considered:",
+options: ["High", "Normal", "Low", "A sign of thrombocytosis"],
+answer: 2,
+explanation: "A hematocrit of 25% is generally low."
+},
+{
+question: "Which CBC value is most commonly discussed with infection?",
+options: ["WBC", "Hematocrit", "Calcium", "Creatinine"],
+answer: 0,
+explanation: "WBC is commonly discussed when evaluating infection."
+},
+{
+question: "Which CBC finding may support concern for anemia?",
+options: ["High platelets", "Low hemoglobin and low hematocrit", "High sodium", "Low magnesium"],
+answer: 1,
+explanation: "Low hemoglobin and low hematocrit commonly support concern for anemia."
+},
+{
+question: "What is the best interpretation of a platelet count of 300,000/mcL?",
+options: ["Low", "Normal", "Elevated", "Dangerously low"],
+answer: 1,
+explanation: "A platelet count of 300,000/mcL is within the normal range."
+},
+{
+question: "Which term means an elevated white blood cell count?",
+options: ["Anemia", "Thrombocytopenia", "Leukocytosis", "Hematocrit"],
+answer: 2,
+explanation: "Leukocytosis means high white blood cell count."
+},
+{
+question: "Which CBC component is least related to clotting?",
+options: ["Platelets", "Hemoglobin", "WBC", "Platelets and fibrin"],
+answer: 1,
+explanation: "Hemoglobin is primarily related to oxygen transport, not clotting."
+},
+{
+question: "Why is learning CBC values important for healthcare students?",
+options: ["It helps connect lab data to infection, anemia, and clotting basics", "It replaces patient assessment", "It only matters in chemistry class", "It eliminates the need to understand vital signs"],
+answer: 0,
+explanation: "Learning CBC values helps students connect lab results to common clinical concepts like infection, anemia, and clotting."
+}
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+let userAnswers = [];
+
+function loadQuestion() {
+  answered = false;
+  document.getElementById("nextBtn").disabled = true;
+
+  const q = questions[current];
+  document.getElementById("progressText").textContent = `Question ${current + 1} of ${questions.length}`;
+  document.getElementById("scoreText").textContent = `Score: ${score}`;
+  document.getElementById("progressBar").style.width = `${((current + 1) / questions.length) * 100}%`;
+
+  let html = `<div class="question">${q.question}</div>`;
+
+  q.options.forEach((opt, i) => {
+    html += `<div class="option" onclick="selectAnswer(${i})"><strong>${String.fromCharCode(65 + i)}.</strong> ${opt}</div>`;
+  });
+
+  html += `<div id="feedbackWrap"></div>`;
+  document.getElementById("quiz").innerHTML = html;
+}
+
+function selectAnswer(i) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[current];
+  const options = document.querySelectorAll(".option");
+  const isCorrect = i === q.answer;
+
+  options.forEach((el, index) => {
+    el.style.pointerEvents = "none";
+    if (index === q.answer) el.classList.add("correct");
+    if (index === i && i !== q.answer) el.classList.add("wrong");
+  });
+
+  if (isCorrect) score++;
+
+  userAnswers.push({
+    question: q.question,
+    selected: i,
+    correct: q.answer,
+    options: q.options,
+    explanation: q.explanation,
+    isCorrect
+  });
+
+  document.getElementById("scoreText").textContent = `Score: ${score}`;
+
+  const feedbackWrap = document.getElementById("feedbackWrap");
+  feedbackWrap.innerHTML = `
+    <div class="feedback ${isCorrect ? "correct" : "wrong"}">
+      ${isCorrect ? "Correct!" : `Not quite. Correct answer: ${String.fromCharCode(65 + q.answer)}. ${q.options[q.answer]}`}
+      <div class="explanation">${q.explanation}</div>
+    </div>
+  `;
+
+  document.getElementById("nextBtn").disabled = false;
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) {
+    showResults();
+    return;
+  }
+  loadQuestion();
+}
+
+function showResults() {
+  document.getElementById("quizCard").style.display = "none";
+  document.getElementById("scoreCard").style.display = "block";
+
+  const percent = Math.round((score / questions.length) * 100);
+  document.getElementById("finalScore").textContent = `${score} / ${questions.length} (${percent}%)`;
+
+  let message = "";
+  if (percent >= 90) {
+    message = "Excellent job. You have a strong grasp of CBC basics.";
+  } else if (percent >= 80) {
+    message = "Great work. You understand this material well.";
+  } else if (percent >= 70) {
+    message = "Good job. Review the missed items and you’ll be even stronger.";
+  } else if (percent >= 60) {
+    message = "You’re building a foundation. Review the material and try again.";
+  } else {
+    message = "Keep going. Review CBC basics and retake the quiz.";
+  }
+
+  document.getElementById("finalMessage").textContent = message;
+
+  const reviewList = document.getElementById("reviewList");
+  reviewList.innerHTML = "<h2>Question Review</h2>";
+
+  userAnswers.forEach((item, idx) => {
+    reviewList.innerHTML += `
+      <div class="review-item">
+        <p><strong>Question ${idx + 1}:</strong> ${item.question}</p>
+        <p><strong>Your answer:</strong> ${String.fromCharCode(65 + item.selected)}. ${item.options[item.selected]}</p>
+        <p><strong>Correct answer:</strong> ${String.fromCharCode(65 + item.correct)}. ${item.options[item.correct]}</p>
+        <p><strong>Explanation:</strong> ${item.explanation}</p>
+      </div>
+    `;
+  });
+}
+
+function restartQuiz() {
+  current = 0;
+  score = 0;
+  answered = false;
+  userAnswers = [];
+  document.getElementById("quizCard").style.display = "block";
+  document.getElementById("scoreCard").style.display = "none";
+  loadQuestion();
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
