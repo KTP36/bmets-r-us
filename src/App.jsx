@@ -5698,9 +5698,83 @@ function MedTermBuilderGame({ onStart, onComplete }) {
 }
 
 
+const DEEP_LINK_TABS = new Set([
+  "ABGQuiz",
+  "Anatomy",
+  "AnatomyQuiz",
+  "Bones",
+  "BonesQuiz",
+  "CBET",
+  "CRES",
+  "Cables",
+  "Contact",
+  "Dashboard",
+  "DigestiveQuiz",
+  "EKGQuiz",
+  "Equipment",
+  "HarderCBET",
+  "HeartQuiz",
+  "Home",
+  "LabValuesQuiz",
+  "Leaderboard",
+  "MuscleConceptQuiz",
+  "MuscleQuiz",
+  "OwnerAnalytics",
+  "Privacy",
+  "RN",
+  "Support",
+  "TEAS",
+  "Terminology"
+]);
+
+function getDeepLinkedTab() {
+  if (typeof window === "undefined") return "Home";
+
+  const url = new URL(window.location.href);
+  const queryTab = url.searchParams.get("tab");
+  const hashTab = url.hash ? url.hash.replace(/^#/, "") : "";
+  const requestedTab = queryTab || hashTab;
+
+  if (requestedTab && DEEP_LINK_TABS.has(requestedTab)) {
+    return requestedTab;
+  }
+
+  return "Home";
+}
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState(() => getDeepLinkedTab());
   const ownerAnalyticsEnabled = import.meta.env.VITE_OWNER_ANALYTICS_TAB === "true";
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setActiveTab(getDeepLinkedTab());
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const url = new URL(window.location.href);
+
+    if (activeTab === "Home") {
+      url.searchParams.delete("tab");
+      url.hash = "";
+    } else {
+      url.searchParams.set("tab", activeTab);
+      url.hash = "";
+    }
+
+    const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    if (nextUrl !== currentUrl) {
+      window.history.replaceState({}, "", nextUrl);
+    }
+  }, [activeTab]);
   const [ownerExamStats, setOwnerExamStats] = useState(() => {
     if (typeof window === "undefined") return {};
     try {
