@@ -212,6 +212,12 @@
   </url>
 
   <url>
+   <loc>https://medskillbuilder.com/basic-electronics-cbet.html</loc>
+   <changefreq>weekly</changefreq>
+   <priority>0.8</priority>
+  </url>
+
+  <url>
    <loc>https://medskillbuilder.com/what-does-a-rectifier-do.html</loc>
    <lastmod>2026-04-11</lastmod>
    <changefreq>monthly</changefreq>
