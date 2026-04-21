@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Power Supply Basics for CBET | How Medical Equipment Uses Power</title>
+
+  <meta name="description" content="Learn power supply basics for the CBET exam. Understand AC to DC conversion, rectifiers, capacitors, and how power supplies work in medical equipment." />
+
+  <meta name="keywords" content="power supply basics CBET, AC to DC conversion, rectifier capacitor CBET, biomedical equipment power supply, CBET electronics study guide, how power supplies work medical devices" />
+
+  <link rel="canonical" href="https://medskillbuilder.com/power-supply-basics-cbet.html" />
+
+  <style>
+    body { font-family: Arial; margin: 0; background: #f8fafc; color: #0f172a; line-height: 1.7; }
+    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+
+    h1 { font-size: 2.2rem; margin-bottom: 10px; border-bottom: 4px solid #153f73; padding-bottom: 10px; }
+    h2 { margin-top: 32px; color: #153f73; }
+
+    .section {
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 14px;
+      padding: 22px;
+      margin-top: 28px;
+    }
+
+    .highlight {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .example {
+      background: #ecfdf5;
+      border-left: 4px solid #16a34a;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border-left: 4px solid #ea580c;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #153f73;
+      color: white;
+    }
+
+    a {
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Power Supply Basics for CBET</h1>
+
+    <p>
+      Power supplies are one of the most important components in biomedical equipment. Almost every device depends on converting incoming electrical power into a stable form that circuits can use.
+    </p>
+
+    <p>
+      Understanding how power supplies work helps you answer CBET questions and troubleshoot real equipment issues more effectively.
+    </p>
+
+    <div class="highlight">
+      If you need a foundation first, review 
+      <a href="/voltage-current-resistance-cbet.html">voltage, current, and resistance</a> before diving deeper.
+    </div>
+
+    <div class="section">
+      <h2>What Does a Power Supply Do?</h2>
+
+      <p>
+        A power supply takes incoming electrical energy and converts it into a usable and stable form for electronic circuits.
+      </p>
+
+      <p>
+        Most medical equipment receives AC power from the wall but requires DC power internally. The power supply is responsible for making that conversion.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Basic Power Supply Process</h2>
+
+      <p>
+        A typical power supply follows a sequence of steps:
+      </p>
+
+      <ul>
+        <li>AC input from the wall</li>
+        <li>Rectification (AC to DC conversion)</li>
+        <li>Filtering (smoothing the signal)</li>
+        <li>Voltage regulation</li>
+      </ul>
+
+      <table>
+        <tr>
+          <th>Step</th>
+          <th>Function</th>
+        </tr>
+        <tr>
+          <td>AC Input</td>
+          <td>Power enters the device from an outlet</td>
+        </tr>
+        <tr>
+          <td>Rectifier</td>
+          <td>Converts AC into DC</td>
+        </tr>
+        <tr>
+          <td>Filter</td>
+          <td>Smooths out voltage fluctuations</td>
+        </tr>
+        <tr>
+          <td>Regulator</td>
+          <td>Maintains a stable output voltage</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Rectification (AC to DC Conversion)</h2>
+
+      <p>
+        Rectifiers use diodes to convert alternating current into direct current.
+      </p>
+
+      <p>
+        This is a critical step because most circuits require DC power to function correctly.
+      </p>
+
+      <p>
+        Learn more about this process here:
+        <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Filtering and Smoothing</h2>
+
+      <p>
+        After rectification, the DC signal is not perfectly smooth. It contains ripple, which can affect circuit performance.
+      </p>
+
+      <p>
+        Capacitors are used to smooth out these fluctuations and create a more stable signal.
+      </p>
+
+      <p>
+        Learn more:
+        <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Voltage Regulation</h2>
+
+      <p>
+        Voltage regulators ensure that the output voltage remains constant, even if input voltage or load conditions change.
+      </p>
+
+      <p>
+        Stable voltage is critical for sensitive medical equipment.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Why This Matters in Real Equipment</h2>
+
+      <div class="example">
+        <p>
+          If a power supply fails, a device may:
+        </p>
+
+        <ul>
+          <li>Not power on</li>
+          <li>Operate inconsistently</li>
+          <li>Produce inaccurate readings</li>
+        </ul>
+
+        <p>
+          Understanding each stage helps identify where the failure may be occurring.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Common CBET Concepts</h2>
+
+      <ul>
+        <li>AC vs DC conversion</li>
+        <li>Role of diodes in rectifiers</li>
+        <li>Capacitor smoothing</li>
+        <li>Voltage stability</li>
+      </ul>
+
+      <div class="warning">
+        Many questions test whether you understand the process, not just the definitions.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Knowledge Check</h2>
+
+      <p>
+        What component is primarily responsible for converting AC to DC in a power supply?
+      </p>
+
+      <p>
+        The answer is a rectifier.
+      </p>
+
+      <p>
+        Practice more:
+        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Continue Learning</h2>
+
+      <p>
+        Build your understanding with:
+      </p>
+
+      <p>
+        <a href="/basic-electronics-cbet.html">Basic Electronics</a><br>
+        <a href="/voltage-current-resistance-cbet.html">Voltage, Current, Resistance</a><br>
+        <a href="/what-is-a-diode.html">What is a Diode</a><br>
+        <a href="/what-does-a-capacitor-do.html">Capacitors</a><br>
+        <a href="/what-does-a-rectifier-do.html">Rectifiers</a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
