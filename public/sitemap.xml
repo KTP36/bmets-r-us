@@ -319,6 +319,12 @@
 </url>
 
 <url>
+  <loc>https://medskillbuilder.com/how-kidneys-work.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
   <loc>https://medskillbuilder.com/lab-values-practice-quiz.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.8</priority>
