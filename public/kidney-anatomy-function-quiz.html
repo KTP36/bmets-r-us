@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kidney Anatomy and Function Quiz (30 Questions for Nursing & NCLEX) | MedSkillBuilder</title>
+  <meta
+    name="description"
+    content="Take this 30-question kidney anatomy and function quiz for nursing and NCLEX study. Review nephrons, filtration, reabsorption, fluid balance, and renal function with instant feedback."
+  />
+  <link rel="canonical" href="https://medskillbuilder.com/kidney-anatomy-function-quiz.html" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #12355b, #1d6fa5);
+      color: white;
+      padding: 34px 28px;
+      border-radius: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 28px rgba(18, 53, 91, 0.15);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.05rem;
+      max-width: 760px;
+    }
+
+    .quiz-shell {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      margin-bottom: 24px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .stat-pill {
+      background: #eff6ff;
+      color: #12355b;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .question {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #12355b;
+      margin-bottom: 22px;
+      line-height: 1.35;
+    }
+
+    .option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: #ffffff;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 14px;
+      cursor: pointer;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+      transition: 0.2s ease;
+    }
+
+    .option:hover {
+      background: #f8fafc;
+    }
+
+    .correct {
+      background: #d1fae5 !important;
+      border: 2px solid #16a34a !important;
+    }
+
+    .wrong {
+      background: #fee2e2 !important;
+      border: 2px solid #dc2626 !important;
+    }
+
+    .feedback {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      font-weight: 600;
+      display: none;
+    }
+
+    .next-wrap {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .next-btn, .restart-btn, .browse-btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #12355b, #1d6fa5);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      margin: 8px;
+    }
+
+    .next-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .result-box {
+      display: none;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .result-box h2 {
+      color: #12355b;
+      margin-top: 0;
+    }
+
+    .result-box p {
+      font-size: 1.1rem;
+      color: #334155;
+    }
+
+    .study-links {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      margin-top: 24px;
+    }
+
+    .study-links h2 {
+      margin-top: 0;
+      color: #12355b;
+    }
+
+    .study-links a {
+      display: block;
+      margin-bottom: 10px;
+      color: #1d6fa5;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .study-links a:hover {
+      color: #12355b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>Kidney Anatomy and Function Quiz</h1>
+      <p>
+        Test your understanding of renal anatomy, nephron structure, filtration, reabsorption,
+        urine formation, and fluid balance with 30 questions designed for nursing and NCLEX study.
+      </p>
+    </div>
+
+    <div class="quiz-shell" id="quiz-shell">
+      <div class="stats">
+        <div class="stat-pill" id="question-count">Question 1 / 30</div>
+        <div class="stat-pill" id="score-count">Score: 0</div>
+      </div>
+
+      <div class="question" id="question"></div>
+      <div id="options"></div>
+      <div class="feedback" id="feedback"></div>
+
+      <div class="next-wrap">
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+      </div>
+    </div>
+
+    <div class="result-box" id="result-box">
+      <h2>Quiz Complete</h2>
+      <p id="final-score"></p>
+      <button class="restart-btn" onclick="restartQuiz()">Restart Quiz</button>
+      <a class="browse-btn" href="/browse-all-practice.html">Browse All Practice Tools</a>
+    </div>
+
+    <div class="study-links">
+      <h2>Keep Studying</h2>
+      <a href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+      <a href="/rn-practice-questions.html">RN Practice Questions</a>
+      <a href="/how-to-pass-rn-nclex-exam.html">How to Pass the RN NCLEX Exam</a>
+      <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+    </div>
+  </div>
+
+  <script>
+    const kidneyQuiz = [
+      { question: "What is the functional unit of the kidney?", options: ["Neuron", "Nephron", "Glomerulus", "Alveoli"], answer: 1 },
+      { question: "Where does filtration of blood occur in the nephron?", options: ["Loop of Henle", "Collecting duct", "Glomerulus", "Distal tubule"], answer: 2 },
+      { question: "Which structure surrounds the glomerulus?", options: ["Bowman's capsule", "Renal pelvis", "Ureter", "Cortex"], answer: 0 },
+      { question: "Which part of the kidney contains most of the nephrons?", options: ["Medulla", "Pelvis", "Cortex", "Ureter"], answer: 2 },
+      { question: "What is the main function of the kidneys?", options: ["Pump blood", "Filter waste and regulate fluids", "Produce hormones only", "Control breathing"], answer: 1 },
+      { question: "Which structure concentrates urine?", options: ["Glomerulus", "Loop of Henle", "Bowman's capsule", "Afferent arteriole"], answer: 1 },
+      { question: "Blood enters the glomerulus through which vessel?", options: ["Efferent arteriole", "Renal vein", "Afferent arteriole", "Ureter"], answer: 2 },
+      { question: "What happens in the proximal tubule?", options: ["Filtration", "Reabsorption of nutrients and water", "Urine storage", "Blood pumping"], answer: 1 },
+      { question: "Which electrolyte is most closely regulated by the kidneys?", options: ["Calcium only", "Potassium", "Iron", "Magnesium only"], answer: 1 },
+      { question: "What is the role of the distal tubule?", options: ["Initial filtration", "Fine-tuning of electrolyte balance", "Urine storage", "Blood transport"], answer: 1 },
+      { question: "Urine flows from the kidney to the bladder through what structure?", options: ["Urethra", "Ureter", "Renal artery", "Nephron"], answer: 1 },
+      { question: "Which hormone increases water reabsorption in the kidneys?", options: ["Insulin", "ADH", "Thyroxine", "Glucagon"], answer: 1 },
+      { question: "What is the purpose of the collecting duct?", options: ["Filtration", "Final concentration of urine", "Blood oxygenation", "Hormone production only"], answer: 1 },
+      { question: "What happens if the kidneys fail to regulate fluid balance?", options: ["Dehydration only", "Fluid overload or dehydration", "Improved circulation", "No change"], answer: 1 },
+      { question: "Which part of the nephron is responsible for most water reabsorption?", options: ["Proximal tubule", "Distal tubule", "Collecting duct", "Glomerulus"], answer: 0 },
+      { question: "What waste product is primarily excreted by the kidneys?", options: ["Glucose", "Urea", "Oxygen", "Protein"], answer: 1 },
+      { question: "Which structure carries filtered blood away from the glomerulus?", options: ["Afferent arteriole", "Efferent arteriole", "Renal vein", "Ureter"], answer: 1 },
+      { question: "What condition can occur if potassium levels rise too high?", options: ["Muscle growth", "Cardiac arrhythmias", "Improved breathing", "Bone strengthening"], answer: 1 },
+      { question: "Which part of the kidney is deeper, cortex or medulla?", options: ["Cortex", "Medulla", "Both equal", "Neither"], answer: 1 },
+      { question: "What is reabsorption?", options: ["Removing blood", "Taking useful substances back into the bloodstream", "Storing urine", "Producing hormones"], answer: 1 },
+      { question: "Which system do the kidneys help regulate?", options: ["Respiratory only", "Cardiovascular and fluid balance", "Digestive only", "Muscular only"], answer: 1 },
+      { question: "What happens to blood pressure when kidneys retain fluid?", options: ["Decreases", "Increases", "No change", "Stops"], answer: 1 },
+      { question: "Which structure stores urine before elimination?", options: ["Kidney", "Bladder", "Ureter", "Nephron"], answer: 1 },
+      { question: "Which symptom may indicate fluid overload?", options: ["Dry skin", "Swelling (edema)", "Weight loss", "Low heart rate"], answer: 1 },
+      { question: "What is the main role of the renal artery?", options: ["Carry urine", "Supply blood to the kidney", "Remove waste", "Store blood"], answer: 1 },
+      { question: "Which process removes waste from the blood in the kidneys?", options: ["Digestion", "Filtration", "Respiration", "Circulation"], answer: 1 },
+      { question: "What is the main function of ADH?", options: ["Increase urine output", "Decrease water reabsorption", "Increase water reabsorption", "Stop filtration"], answer: 2 },
+      { question: "Which condition may result from kidney failure?", options: ["Improved hydration", "Electrolyte imbalance", "Increased oxygen", "Better digestion"], answer: 1 },
+      { question: "Why are kidneys critical for homeostasis?", options: ["They produce energy", "They regulate fluids, electrolytes, and waste", "They pump blood", "They control movement"], answer: 1 },
+      { question: "What is the final product formed by the kidneys?", options: ["Blood", "Urine", "Plasma", "Hormones"], answer: 1 }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function loadQuestion() {
+      const q = kidneyQuiz[currentQuestion];
+      document.getElementById("question-count").textContent = `Question ${currentQuestion + 1} / ${kidneyQuiz.length}`;
+      document.getElementById("score-count").textContent = `Score: ${score}`;
+      document.getElementById("question").textContent = q.question;
+      document.getElementById("feedback").style.display = "none";
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("nextBtn").disabled = true;
+      answered = false;
+
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+        btn.onclick = () => selectAnswer(index, btn);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(selectedIndex, selectedButton) {
+      if (answered) return;
+      answered = true;
+
+      const q = kidneyQuiz[currentQuestion];
+      const buttons = document.querySelectorAll(".option");
+
+      buttons.forEach((btn, index) => {
+        if (index === q.answer) {
+          btn.classList.add("correct");
+        }
+        if (index === selectedIndex && selectedIndex !== q.answer) {
+          btn.classList.add("wrong");
+        }
+        btn.disabled = true;
+      });
+
+      if (selectedIndex === q.answer) {
+        score++;
+        document.getElementById("score-count").textContent = `Score: ${score}`;
+        document.getElementById("feedback").textContent = "Correct.";
+      } else {
+        document.getElementById("feedback").textContent = `Correct answer: ${String.fromCharCode(65 + q.answer)}. ${q.options[q.answer]}`;
+      }
+
+      document.getElementById("feedback").style.display = "block";
+      document.getElementById("nextBtn").disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion >= kidneyQuiz.length) {
+        document.getElementById("quiz-shell").style.display = "none";
+        document.getElementById("result-box").style.display = "block";
+        document.getElementById("final-score").textContent = `You scored ${score} out of ${kidneyQuiz.length}.`;
+        return;
+      }
+      loadQuestion();
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+      document.getElementById("quiz-shell").style.display = "block";
+      document.getElementById("result-box").style.display = "none";
+      loadQuestion();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
