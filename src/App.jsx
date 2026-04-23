@@ -12239,8 +12239,9 @@ return (
 
             <form onSubmit={submitSavedScore} style={{ display: "grid", gap: 12 }}>
               <input
-                type="text"
-                placeholder="Choose a username"
+                 type="text"
+                 name="username"
+                 placeholder="Choose a username"
                 value={saveScoreForm.username}
                 onChange={(event) =>
                   setSaveScoreForm((prev) => ({ ...prev, username: event.target.value }))
@@ -12255,6 +12256,7 @@ return (
               />
               <input
                 type="email"
+                name="email"
                 placeholder="Your email address"
                 value={saveScoreForm.email}
                 onChange={(event) =>
