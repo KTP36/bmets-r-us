@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Ohm’s Law Quiz | 25 Questions | MedSkillBuilder</title>
+
+  <meta name="description" content="Take a 25-question Ohm’s Law quiz covering voltage, current, resistance, circuit behavior, and basic troubleshooting." />
+
+  <link rel="canonical" href="https://medskillbuilder.com/ohms-law-quiz.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .intro, .question, .result-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result-box {
+      display: none;
+      border-left: 6px solid #2563eb;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .safety {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Ohm’s Law Quiz</h1>
+
+<div class="intro">
+  <p>
+    Test your understanding of Ohm’s Law, voltage, current, resistance, and how circuit behavior changes when one value changes.
+  </p>
+  <p>
+    Choose the best answer for each question, then submit your quiz to see your score.
+  </p>
+</div>
+
+<form id="quizForm">
+
+  <div class="question">
+    <p>1. What is the basic Ohm’s Law formula?</p>
+    <label><input type="radio" name="q1" value="a"> V = I × R</label>
+    <label><input type="radio" name="q1" value="b"> R = V × I</label>
+    <label><input type="radio" name="q1" value="c"> I = V × R</label>
+  </div>
+
+  <div class="question">
+    <p>2. In Ohm’s Law, what does V stand for?</p>
+    <label><input type="radio" name="q2" value="a"> Voltage</label>
+    <label><input type="radio" name="q2" value="b"> Volume</label>
+    <label><input type="radio" name="q2" value="c"> Velocity</label>
+  </div>
+
+  <div class="question">
+    <p>3. In Ohm’s Law, what does I stand for?</p>
+    <label><input type="radio" name="q3" value="a"> Insulation</label>
+    <label><input type="radio" name="q3" value="b"> Current</label>
+    <label><input type="radio" name="q3" value="c"> Impedance only</label>
+  </div>
+
+  <div class="question">
+    <p>4. In Ohm’s Law, what does R stand for?</p>
+    <label><input type="radio" name="q4" value="a"> Resistance</label>
+    <label><input type="radio" name="q4" value="b"> Relay</label>
+    <label><input type="radio" name="q4" value="c"> Rectifier</label>
+  </div>
+
+  <div class="question">
+    <p>5. If voltage increases and resistance stays the same, current will usually:</p>
+    <label><input type="radio" name="q5" value="a"> Increase</label>
+    <label><input type="radio" name="q5" value="b"> Decrease</label>
+    <label><input type="radio" name="q5" value="c"> Stay zero every time</label>
+  </div>
+
+  <div class="question">
+    <p>6. If resistance increases and voltage stays the same, current will usually:</p>
+    <label><input type="radio" name="q6" value="a"> Increase</label>
+    <label><input type="radio" name="q6" value="b"> Decrease</label>
+    <label><input type="radio" name="q6" value="c"> Become voltage</label>
+  </div>
+
+  <div class="question">
+    <p>7. If resistance decreases and voltage stays the same, current will usually:</p>
+    <label><input type="radio" name="q7" value="a"> Increase</label>
+    <label><input type="radio" name="q7" value="b"> Decrease</label>
+    <label><input type="radio" name="q7" value="c"> Disappear</label>
+  </div>
+
+  <div class="question">
+    <p>8. Which value represents electrical pressure?</p>
+    <label><input type="radio" name="q8" value="a"> Voltage</label>
+    <label><input type="radio" name="q8" value="b"> Resistance</label>
+    <label><input type="radio" name="q8" value="c"> Continuity</label>
+  </div>
+
+  <div class="question">
+    <p>9. Which value represents opposition to current flow?</p>
+    <label><input type="radio" name="q9" value="a"> Voltage</label>
+    <label><input type="radio" name="q9" value="b"> Resistance</label>
+    <label><input type="radio" name="q9" value="c"> Frequency</label>
+  </div>
+
+  <div class="question">
+    <p>10. Which value represents the flow of electrical charge?</p>
+    <label><input type="radio" name="q10" value="a"> Current</label>
+    <label><input type="radio" name="q10" value="b"> Resistance</label>
+    <label><input type="radio" name="q10" value="c"> Capacitance only</label>
+  </div>
+
+  <div class="question">
+    <p>11. If V = 12 volts and R = 6 ohms, what is current?</p>
+    <label><input type="radio" name="q11" value="a"> 2 amps</label>
+    <label><input type="radio" name="q11" value="b"> 18 amps</label>
+    <label><input type="radio" name="q11" value="c"> 72 amps</label>
+  </div>
+
+  <div class="question">
+    <p>12. If V = 24 volts and R = 8 ohms, what is current?</p>
+    <label><input type="radio" name="q12" value="a"> 3 amps</label>
+    <label><input type="radio" name="q12" value="b"> 16 amps</label>
+    <label><input type="radio" name="q12" value="c"> 32 amps</label>
+  </div>
+
+  <div class="question">
+    <p>13. If I = 2 amps and R = 10 ohms, what is voltage?</p>
+    <label><input type="radio" name="q13" value="a"> 5 volts</label>
+    <label><input type="radio" name="q13" value="b"> 12 volts</label>
+    <label><input type="radio" name="q13" value="c"> 20 volts</label>
+  </div>
+
+  <div class="question">
+    <p>14. If V = 100 volts and I = 10 amps, what is resistance?</p>
+    <label><input type="radio" name="q14" value="a"> 10 ohms</label>
+    <label><input type="radio" name="q14" value="b"> 90 ohms</label>
+    <label><input type="radio" name="q14" value="c"> 1000 ohms</label>
+  </div>
+
+  <div class="question">
+    <p>15. If a device has correct voltage but low current, what may be happening?</p>
+    <label><input type="radio" name="q15" value="a"> Resistance may be too high</label>
+    <label><input type="radio" name="q15" value="b"> Resistance is definitely zero</label>
+    <label><input type="radio" name="q15" value="c"> Voltage no longer matters</label>
+  </div>
+
+  <div class="question">
+    <p>16. If resistance is too low, what can happen to current?</p>
+    <label><input type="radio" name="q16" value="a"> Current may become too high</label>
+    <label><input type="radio" name="q16" value="b"> Current always becomes zero</label>
+    <label><input type="radio" name="q16" value="c"> Current turns into resistance</label>
+  </div>
+
+  <div class="question">
+    <p>17. Why does Ohm’s Law help with troubleshooting?</p>
+    <label><input type="radio" name="q17" value="a"> It helps explain how voltage, current, and resistance affect each other</label>
+    <label><input type="radio" name="q17" value="b"> It replaces all safety procedures</label>
+    <label><input type="radio" name="q17" value="c"> It only applies to anatomy</label>
+  </div>
+
+  <div class="question">
+    <p>18. Which statement is correct?</p>
+    <label><input type="radio" name="q18" value="a"> Higher resistance makes current flow harder</label>
+    <label><input type="radio" name="q18" value="b"> Higher resistance always increases current</label>
+    <label><input type="radio" name="q18" value="c"> Resistance has no effect on current</label>
+  </div>
+
+  <div class="question">
+    <p>19. Which statement is correct?</p>
+    <label><input type="radio" name="q19" value="a"> Higher voltage can push more current if resistance stays the same</label>
+    <label><input type="radio" name="q19" value="b"> Higher voltage always lowers current</label>
+    <label><input type="radio" name="q19" value="c"> Voltage and current are the same thing</label>
+  </div>
+
+  <div class="question">
+    <p>20. If resistance doubles and voltage stays the same, current will generally:</p>
+    <label><input type="radio" name="q20" value="a"> Decrease</label>
+    <label><input type="radio" name="q20" value="b"> Increase</label>
+    <label><input type="radio" name="q20" value="c"> Become voltage</label>
+  </div>
+
+  <div class="question">
+    <p>21. If voltage doubles and resistance stays the same, current will generally:</p>
+    <label><input type="radio" name="q21" value="a"> Increase</label>
+    <label><input type="radio" name="q21" value="b"> Decrease</label>
+    <label><input type="radio" name="q21" value="c"> Stay impossible to calculate</label>
+  </div>
+
+  <div class="question">
+    <p>22. Which formula solves for current?</p>
+    <label><input type="radio" name="q22" value="a"> I = V ÷ R</label>
+    <label><input type="radio" name="q22" value="b"> I = V × R</label>
+    <label><input type="radio" name="q22" value="c"> I = R ÷ V</label>
+  </div>
+
+  <div class="question">
+    <p>23. Which formula solves for resistance?</p>
+    <label><input type="radio" name="q23" value="a"> R = V ÷ I</label>
+    <label><input type="radio" name="q23" value="b"> R = V × I</label>
+    <label><input type="radio" name="q23" value="c"> R = I ÷ V</label>
+  </div>
+
+  <div class="question">
+    <p>24. Which formula solves for voltage?</p>
+    <label><input type="radio" name="q24" value="a"> V = I × R</label>
+    <label><input type="radio" name="q24" value="b"> V = I ÷ R</label>
+    <label><input type="radio" name="q24" value="c"> V = R ÷ I</label>
+  </div>
+
+  <div class="question">
+    <p>25. What is the best way to understand Ohm’s Law?</p>
+    <label><input type="radio" name="q25" value="a"> Memorize letters only</label>
+    <label><input type="radio" name="q25" value="b"> Understand how voltage, current, and resistance affect each other</label>
+    <label><input type="radio" name="q25" value="c"> Ignore resistance</label>
+  </div>
+
+  <button type="button" onclick="gradeQuiz()">Submit Quiz</button>
+
+</form>
+
+<div id="resultBox" class="result-box">
+  <h2>Your Result</h2>
+  <p id="scoreText"></p>
+  <p id="feedbackText"></p>
+
+  <a class="home-link" href="/what-is-ohms-law.html">Review What Is Ohm’s Law?</a><br>
+  <a class="home-link" href="/voltage-current-resistance-cbet.html">Review Voltage vs Current vs Resistance</a><br>
+  <a class="home-link" href="/multimeter-quiz.html">Try the Multimeter Quiz</a><br>
+  <a class="home-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+</div>
+
+<hr>
+
+<p class="safety">
+  For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
+</p>
+
+<script>
+  function gradeQuiz() {
+    const answers = {
+      q1: "a",
+      q2: "a",
+      q3: "b",
+      q4: "a",
+      q5: "a",
+      q6: "b",
+      q7: "a",
+      q8: "a",
+      q9: "b",
+      q10: "a",
+      q11: "a",
+      q12: "a",
+      q13: "c",
+      q14: "a",
+      q15: "a",
+      q16: "a",
+      q17: "a",
+      q18: "a",
+      q19: "a",
+      q20: "a",
+      q21: "a",
+      q22: "a",
+      q23: "a",
+      q24: "a",
+      q25: "b"
+    };
+
+    let score = 0;
+    const total = Object.keys(answers).length;
+
+    for (let key in answers) {
+      const selected = document.querySelector('input[name="' + key + '"]:checked');
+      if (selected && selected.value === answers[key]) {
+        score++;
+      }
+    }
+
+    const percent = Math.round((score / total) * 100);
+
+    document.getElementById("scoreText").innerText =
+      "You scored " + score + " out of " + total + " (" + percent + "%).";
+
+    let feedback = "";
+
+    if (percent >= 90) {
+      feedback = "Excellent work. You understand the relationship between voltage, current, and resistance.";
+    } else if (percent >= 75) {
+      feedback = "Good job. Review the calculation questions and the behavior questions to strengthen your understanding.";
+    } else if (percent >= 60) {
+      feedback = "You are getting there. Review Ohm’s Law and practice how changes in voltage or resistance affect current.";
+    } else {
+      feedback = "Keep practicing. Start with the basics: voltage pushes, current flows, and resistance opposes.";
+    }
+
+    document.getElementById("feedbackText").innerText = feedback;
+    document.getElementById("resultBox").style.display = "block";
+    document.getElementById("resultBox").scrollIntoView({ behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>
