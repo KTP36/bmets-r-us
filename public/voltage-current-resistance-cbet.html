@@ -114,6 +114,30 @@
       border-radius: 8px;
     }
 
+    .cta-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .cta-button {
+      background: #2563eb;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+    .cta-button:hover {
+      background: #1d4ed8;
+    }
+
     .table-wrap {
       overflow-x: auto;
       margin: 20px 0 28px;
@@ -172,6 +196,12 @@
       border-color: #2563eb;
     }
 
+    .safety {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 24px;
+    }
+
     @media (max-width: 640px) {
       h1 {
         font-size: 1.85rem;
@@ -200,11 +230,15 @@
     <h1>Voltage vs Current vs Resistance</h1>
 
     <p class="intro">
-      Voltage, current, and resistance are the foundation of CBET electronics. If you understand how these three concepts interact, you can solve a large portion of basic electronics questions and better understand how circuits behave in biomedical equipment.
+      Most people misunderstand this.
     </p>
 
     <p class="intro">
-      Many learners struggle with this topic because it is often taught as simple memorization. The goal here is to help you actually understand what each term means, how they connect, and why they matter in troubleshooting and CBET exam prep.
+      Voltage, current, and resistance do not compete — they work together. Once you understand how they interact, circuits stop feeling random and start making sense.
+    </p>
+
+    <p class="intro">
+      This is one of the most important concepts in electronics and CBET exam prep because it explains why devices work, fail, or behave unexpectedly.
     </p>
 
     <div class="highlight">
@@ -214,7 +248,7 @@
     <div class="section">
       <h2>What Is Voltage?</h2>
       <p>
-        Voltage is the electrical force or pressure that pushes electrons through a circuit. A common way to think about voltage is to compare it to pressure in a water pipe. The higher the pressure, the more force there is to move the water. In a circuit, the higher the voltage, the more push there is to move electrical charge.
+        Voltage is the electrical force or pressure that pushes electrons through a circuit. A common way to think about voltage is to compare it to pressure in a water pipe.
       </p>
       <p>
         Voltage does not mean electrons are automatically flowing at a high rate. It simply means there is more potential to push current through the circuit if the path allows it.
@@ -224,20 +258,20 @@
     <div class="section">
       <h2>What Is Current?</h2>
       <p>
-        Current is the flow of electrons through a circuit. If voltage is the push, current is the actual movement that results from that push. Current tells you how much electrical charge is moving through the system.
+        Current is the flow of electrons through a circuit. If voltage is the push, current is the actual movement that results from that push.
       </p>
       <p>
-        In practical terms, current matters because circuits and components are designed to handle certain amounts of electrical flow. Too little current may prevent a device from operating correctly. Too much current can damage parts or cause abnormal behavior.
+        Too little current may prevent a device from operating correctly. Too much current can damage components or cause abnormal behavior.
       </p>
     </div>
 
     <div class="section">
       <h2>What Is Resistance?</h2>
       <p>
-        Resistance is the opposition to the flow of current. It limits how easily electrons can move through a circuit. A higher resistance means the circuit makes it harder for current to flow.
+        Resistance is the opposition to current flow. It limits how easily electrons can move through a circuit.
       </p>
       <p>
-        In the water analogy, resistance is like narrowing the pipe. The smaller or tighter the pipe becomes, the harder it is for water to move through. In electronics, more resistance means less current can pass when voltage stays the same.
+        In the water analogy, resistance is like narrowing the pipe. More resistance means less current can pass when voltage stays the same.
       </p>
     </div>
 
@@ -262,7 +296,7 @@
             <td>Current</td>
             <td>Flow of electrons</td>
             <td>Water moving through the pipe</td>
-            <td>Shows how much electrical charge is actually moving</td>
+            <td>Shows how much electrical charge is moving</td>
           </tr>
           <tr>
             <td>Resistance</td>
@@ -281,7 +315,7 @@
     <div class="section">
       <h2>How They Work Together</h2>
       <p>
-        Voltage, current, and resistance are directly connected through <a href="/what-is-ohms-law.html">Ohm’s Law</a>. This relationship is one of the most important ideas in CBET electronics because it explains how a circuit responds when one of these variables changes.
+        Voltage, current, and resistance are directly connected through <a href="/what-is-ohms-law.html">Ohm’s Law</a>.
       </p>
 
       <ul>
@@ -291,7 +325,8 @@
       </ul>
 
       <p>
-        That relationship is a core concept in exam questions and real troubleshooting. Once you understand it, many electronics questions become easier to reason through instead of just guess.
+        If you want to practice how these relationships show up when testing real components, review:
+        <a href="/how-to-use-a-multimeter.html">how to use a multimeter</a>.
       </p>
     </div>
 
@@ -300,8 +335,9 @@
       <p>
         Many learners mix up voltage and current because both are part of the same system. The key difference is that voltage is the force, while current is the movement caused by that force.
       </p>
+
       <p>
-        Another common mistake is assuming that increasing resistance increases current. That is incorrect. Resistance limits current flow. So when resistance goes up and voltage stays the same, current goes down.
+        Another common mistake is assuming that increasing resistance increases current. That is incorrect. Resistance limits current flow.
       </p>
 
       <div class="warning-box">
@@ -325,6 +361,11 @@
 
         <p>
           Understanding this relationship helps a technician make better sense of device behavior instead of seeing each failure as random.
+        </p>
+
+        <p>
+          This is also why capacitor failures matter. If resistance or current behavior changes in a circuit, a component like a capacitor may be part of the problem. Learn more here:
+          <a href="/how-to-test-a-capacitor.html">how to test a capacitor</a>.
         </p>
       </div>
     </div>
@@ -350,8 +391,9 @@
     <div class="section">
       <h2>Why This Matters for the CBET Exam</h2>
       <p>
-        CBET electronics questions often test whether you understand how circuits behave, not just whether you can repeat a definition. If you understand the difference between voltage, current, and resistance, you can answer many beginner and intermediate electronics questions with more confidence.
+        CBET electronics questions often test whether you understand how circuits behave, not just whether you can repeat a definition.
       </p>
+
       <p>
         This also helps with later topics like <a href="/ac-vs-dc-current.html">AC vs DC current</a>, diodes, capacitors, rectifiers, and power supply behavior because those concepts build on the same foundation.
       </p>
@@ -364,7 +406,7 @@
       </p>
 
       <p>
-        The answer is that current decreases.
+        The answer is that <strong>current decreases</strong>.
       </p>
 
       <p>
@@ -384,10 +426,24 @@
         <li>Work through simple examples.</li>
         <li>Practice questions until the pattern becomes familiar.</li>
       </ul>
+    </div>
 
-      <p>
-        That approach is much stronger than memorizing one sentence for each term and hoping it sticks.
-      </p>
+    <div class="section">
+      <h2>🚀 Test Your Understanding</h2>
+
+      <div class="cta-box">
+        <p>
+          Most people get these wrong — test yourself and see how well you understand voltage, current, and resistance.
+        </p>
+
+        <a class="cta-button" href="/multimeter-quiz.html">
+          Take the 2-Minute Electronics Quiz
+        </a>
+
+        <p style="margin-top: 14px; color:#475569;">
+          Quick questions. Instant feedback.
+        </p>
+      </div>
     </div>
 
     <div class="section">
@@ -401,11 +457,18 @@
         <a class="practice-link" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
         <a class="practice-link" href="/what-is-ohms-law.html">What Is Ohm’s Law?</a>
         <a class="practice-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
-        <a class="practice-link" href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a class="practice-link" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a class="practice-link" href="/multimeter-quiz.html">Multimeter Quiz</a>
         <a class="practice-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a class="practice-link" href="/how-to-test-a-capacitor.html">How to Test a Capacitor</a>
+        <a class="practice-link" href="/capacitor-quiz.html">Capacitor Quiz</a>
         <a class="practice-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
       </div>
     </div>
+
+    <p class="safety">
+      For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
+    </p>
 
   </div>
 </body>
