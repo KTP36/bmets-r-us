@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Capacitor Quiz | 25 Questions | MedSkillBuilder</title>
+
+  <meta name="description" content="Take a 25-question capacitor quiz covering capacitor function, testing, failure symptoms, multimeter readings, and safety basics." />
+
+  <link rel="canonical" href="https://medskillbuilder.com/capacitor-quiz.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .intro, .question, .result-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result-box {
+      display: none;
+      border-left: 6px solid #2563eb;
+    }
+
+    .safety {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 24px;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Capacitor Quiz</h1>
+
+<div class="intro">
+  <p>
+    Test your understanding of capacitors, how they work, how they fail, and how they can be checked with a multimeter.
+  </p>
+  <p>
+    Choose the best answer for each question, then submit your quiz to see your score.
+  </p>
+</div>
+
+<form id="quizForm">
+
+  <div class="question">
+    <p>1. What is the main function of a capacitor?</p>
+    <label><input type="radio" name="q1" value="a"> Store and release electrical energy</label>
+    <label><input type="radio" name="q1" value="b"> Convert AC to DC</label>
+    <label><input type="radio" name="q1" value="c"> Permanently block all current</label>
+  </div>
+
+  <div class="question">
+    <p>2. A capacitor stores energy in:</p>
+    <label><input type="radio" name="q2" value="a"> A magnetic field only</label>
+    <label><input type="radio" name="q2" value="b"> An electric field</label>
+    <label><input type="radio" name="q2" value="c"> A fuse</label>
+  </div>
+
+  <div class="question">
+    <p>3. What separates the two conductive plates inside a capacitor?</p>
+    <label><input type="radio" name="q3" value="a"> A diode</label>
+    <label><input type="radio" name="q3" value="b"> A dielectric</label>
+    <label><input type="radio" name="q3" value="c"> A transformer</label>
+  </div>
+
+  <div class="question">
+    <p>4. In a power supply, capacitors often help:</p>
+    <label><input type="radio" name="q4" value="a"> Smooth voltage ripple</label>
+    <label><input type="radio" name="q4" value="b"> Remove all resistance</label>
+    <label><input type="radio" name="q4" value="c"> Replace the rectifier</label>
+  </div>
+
+  <div class="question">
+    <p>5. Before testing a capacitor, you should always make sure it is:</p>
+    <label><input type="radio" name="q5" value="a"> Powered on</label>
+    <label><input type="radio" name="q5" value="b"> Powered off and properly discharged</label>
+    <label><input type="radio" name="q5" value="c"> Connected to wall power</label>
+  </div>
+
+  <div class="question">
+    <p>6. Why can capacitors be hazardous even after power is removed?</p>
+    <label><input type="radio" name="q6" value="a"> They can hold a charge</label>
+    <label><input type="radio" name="q6" value="b"> They turn into batteries permanently</label>
+    <label><input type="radio" name="q6" value="c"> They remove all voltage from the circuit</label>
+  </div>
+
+  <div class="question">
+    <p>7. When checking a capacitor with resistance mode, a reading that starts low and rises usually means:</p>
+    <label><input type="radio" name="q7" value="a"> The capacitor is charging</label>
+    <label><input type="radio" name="q7" value="b"> The capacitor is definitely shorted</label>
+    <label><input type="radio" name="q7" value="c"> The meter is measuring temperature</label>
+  </div>
+
+  <div class="question">
+    <p>8. If resistance stays near zero while testing a capacitor, it may indicate:</p>
+    <label><input type="radio" name="q8" value="a"> A shorted capacitor</label>
+    <label><input type="radio" name="q8" value="b"> A normal charge cycle every time</label>
+    <label><input type="radio" name="q8" value="c"> A perfect open circuit</label>
+  </div>
+
+  <div class="question">
+    <p>9. If a capacitor stays open or OL during a basic check, it may indicate:</p>
+    <label><input type="radio" name="q9" value="a"> It may not be charging properly</label>
+    <label><input type="radio" name="q9" value="b"> It is definitely brand new</label>
+    <label><input type="radio"
