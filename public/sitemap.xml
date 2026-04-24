@@ -225,6 +225,12 @@
   </url>
 
   <url>
+   <loc>https://medskillbuilder.com/how-to-test-a-capacitor.html</loc>
+   <changefreq>weekly</changefreq>
+   <priority>0.80</priority>
+  </url>
+
+  <url>
    <loc>https://medskillbuilder.com/power-supply-basics-cbet.html</loc>
    <lastmod>2026-04-21</lastmod>
    <changefreq>weekly</changefreq>
