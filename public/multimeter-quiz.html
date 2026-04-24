@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Multimeter Quiz | 25 Beginner Questions | MedSkillBuilder</title>
+
+  <meta name="description" content="Take a 25-question multimeter quiz covering voltage, resistance, continuity, safety, and basic troubleshooting." />
+
+  <link rel="canonical" href="https://medskillbuilder.com/multimeter-quiz.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    h1, h2 {
+      color: #0f172a;
+    }
+
+    .intro, .question, .result-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result-box {
+      display: none;
+      border-left: 6px solid #2563eb;
+    }
+
+    .safety {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 24px;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Multimeter Quiz</h1>
+
+  <div class="intro">
+    <p>
+      Test your understanding of basic multimeter use, including voltage, resistance,
+      continuity, safety, and beginner troubleshooting.
+    </p>
+    <p>
+      Choose the best answer for each question, then submit your quiz to see your score.
+    </p>
+  </div>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. What does a multimeter measure?</p>
+      <label><input type="radio" name="q1" value="a"> Only voltage</label>
+      <label><input type="radio" name="q1" value="b"> Electrical values such as voltage, resistance, and continuity</label>
+      <label><input type="radio" name="q1" value="c"> Only temperature</label>
+    </div>
+
+    <div class="question">
+      <p>2. What does voltage represent?</p>
+      <label><input type="radio" name="q2" value="a"> Electrical pressure</label>
+      <label><input type="radio" name="q2" value="b"> Wire length</label>
+      <label><input type="radio" name="q2" value="c"> Physical weight</label>
+    </div>
+
+    <div class="question">
+      <p>3. What unit is used for resistance?</p>
+      <label><input type="radio" name="q3" value="a"> Volts</label>
+      <label><input type="radio" name="q3" value="b"> Amps</label>
+      <label><input type="radio" name="q3" value="c"> Ohms</label>
+    </div>
+
+    <div class="question">
+      <p>4. Where should the black meter lead usually be plugged in?</p>
+      <label><input type="radio" name="q4" value="a"> COM</label>
+      <label><input type="radio" name="q4" value="b"> V/Ω only</label>
+      <label><input type="radio" name="q4" value="c"> The amp port every time</label>
+    </div>
+
+    <div class="question">
+      <p>5. Before measuring resistance, the circuit should be:</p>
+      <label><input type="radio" name="q5" value="a"> Powered off</label>
+      <label><input type="radio" name="q5" value="b"> Powered on</label>
+      <label><input type="radio" name="q5" value="c"> Connected to a wall outlet</label>
+    </div>
+
+    <div class="question">
+      <p>6. Why should you not measure resistance on a live circuit?</p>
+      <label><input type="radio" name="q6" value="a"> It can damage the meter or create unsafe conditions</label>
+      <label><input type="radio" name="q6" value="b"> Resistance only works on AC</label>
+      <label><input type="radio" name="q6" value="c"> The meter will always show zero</label>
+    </div>
+
+    <div class="question">
+      <p>7. What does continuity usually tell you?</p>
+      <label><input type="radio" name="q7" value="a"> Whether a path is complete</label>
+      <label><input type="radio" name="q7" value="b"> The exact voltage of a battery</label>
+      <label><input type="radio" name="q7" value="c"> The age of a component</label>
+    </div>
+
+    <div class="question">
+      <p>8. A continuity beep usually means:</p>
+      <label><input type="radio" name="q8" value="a"> The path is open</label>
+      <label><input type="radio" name="q8" value="b"> There is a complete path</label>
+      <label><input type="radio" name="q8" value="c"> The circuit has high voltage</label>
+    </div>
+
+    <div class="question">
+      <p>9. No continuity beep usually means:</p>
+      <label><input type="radio" name="q9" value="a"> The path may be open or broken</label>
+      <label><input type="radio" name="q9" value="b"> The wire is always good</label>
+      <label><input type="radio" name="q9" value="c"> Voltage is too high</label>
+    </div>
+
+    <div class="question">
+      <p>10. Voltage is usually measured:</p>
+      <label><input type="radio" name="q10" value="a"> Across a component or source</label>
+      <label><input type="radio" name="q10" value="b"> Only with the probes touching each other</label>
+      <label><input type="radio" name="q10" value="c"> Only after removing the meter leads</label>
+    </div>
+
+    <div class="question">
+      <p>11. DC voltage is commonly found in:</p>
+      <label><input type="radio" name="q11" value="a"> Batteries</label>
+      <label><input type="radio" name="q11" value="b"> Only wall outlets</label>
+      <label><input type="radio" name="q11" value="c"> Only transformers</label>
+    </div>
+
+    <div class="question">
+      <p>12. AC voltage is commonly found in:</p>
+      <label><input type="radio" name="q12" value="a"> Wall outlets</label>
+      <label><input type="radio" name="q12" value="b"> AA batteries only</label>
+      <label><input type="radio" name="q12" value="c"> Resistors only</label>
+    </div>
+
+    <div class="question">
+      <p>13. If resistance is very high, current will usually:</p>
+      <label><input type="radio" name="q13" value="a"> Increase</label>
+      <label><input type="radio" name="q13" value="b"> Decrease</label>
+      <label><input type="radio" name="q13" value="c"> Stay exactly the same no matter what</label>
+    </div>
+
+    <div class="question">
+      <p>14. If resistance reads near zero when it should not, this may indicate:</p>
+      <label><input type="radio" name="q14" value="a"> A possible short</label>
+      <label><input type="radio" name="q14" value="b"> A perfect open circuit</label>
+      <label><input type="radio" name="q14" value="c"> A dead battery only</label>
+    </div>
+
+    <div class="question">
+      <p>15. If a meter displays OL while checking resistance, it often means:</p>
+      <label><input type="radio" name="q15" value="a"> Open loop or out of range</label>
+      <label><input type="radio" name="q15" value="b"> Overloaded voltage is always present</label>
+      <label><input type="radio" name="q15" value="c"> The probes are working perfectly on a closed circuit</label>
+    </div>
+
+    <div class="question">
+      <p>16. When checking a capacitor with resistance mode, a reading that starts low and climbs can mean:</p>
+      <label><input type="radio" name="q16" value="a"> The capacitor is charging</label>
+      <label><input type="radio" name="q16" value="b"> The meter is broken every time</label>
+      <label><input type="radio" name="q16" value="c"> The circuit is definitely live</label>
+    </div>
+
+    <div class="question">
+      <p>17. If a capacitor reads near zero resistance and stays there, it may be:</p>
+      <label><input type="radio" name="q17" value="a"> Shorted</label>
+      <label><input type="radio" name="q17" value="b"> Fully normal in every case</label>
+      <label><input type="radio" name="q17" value="c"> Measuring AC voltage</label>
+    </div>
+
+    <div class="question">
+      <p>18. Before checking a capacitor, you should make sure it is:</p>
+      <label><input type="radio" name="q18" value="a"> Powered and energized</label>
+      <label><input type="radio" name="q18" value="b"> Powered off and properly discharged</label>
+      <label><input type="radio" name="q18" value="c"> Connected directly to AC power</label>
+    </div>
+
+    <div class="question">
+      <p>19. What is one common beginner mistake with meter leads?</p>
+      <label><input type="radio" name="q19" value="a"> Leaving the black lead in COM</label>
+      <label><input type="radio" name="q19" value="b"> Using the wrong port for the measurement</label>
+      <label><input type="radio" name="q19" value="c"> Reading the display</label>
+    </div>
+
+    <div class="question">
+      <p>20. If you are unsure which setting to use, the safest first step is to:</p>
+      <label><input type="radio" name="q20" value="a"> Guess and test live power immediately</label>
+      <label><input type="radio" name="q20" value="b"> Stop and confirm the correct meter setting and safety steps</label>
+      <label><input type="radio" name="q20" value="c"> Put both probes in the amp port</label>
+    </div>
+
+    <div class="question">
+      <p>21. A good basic troubleshooting order for a device that will not power on is:</p>
+      <label><input type="radio" name="q21" value="a"> Check power, check connections, then check components</label>
+      <label><input type="radio" name="q21" value="b"> Replace every part first</label>
+      <label><input type="radio" name="q21" value="c"> Ignore voltage and only check the case</label>
+    </div>
+
+    <div class="question">
+      <p>22. A 1.5V AA battery should read approximately:</p>
+      <label><input type="radio" name="q22" value="a"> 1.5 volts DC</label>
+      <label><input type="radio" name="q22" value="b"> 120 volts AC</label>
+      <label><input type="radio" name="q22" value="c"> 0 ohms always</label>
+    </div>
+
+    <div class="question">
+      <p>23. Resistance measures how much a component:</p>
+      <label><input type="radio" name="q23" value="a"> Opposes current flow</label>
+      <label><input type="radio" name="q23" value="b"> Creates light</label>
+      <label><input type="radio" name="q23" value="c"> Stores patient data</label>
+    </div>
+
+    <div class="question">
+      <p>24. Why is continuity useful for checking wires?</p>
+      <label><input type="radio" name="q24" value="a"> It can quickly show whether the wire path is complete</label>
+      <label><input type="radio" name="q24" value="b"> It measures exact battery capacity</label>
+      <label><input type="radio" name="q24" value="c"> It automatically repairs the wire</label>
+    </div>
+
+    <div class="question">
+      <p>25. What is the best description of a multimeter for beginners?</p>
+      <label><input type="radio" name="q25" value="a"> A tool for checking electrical conditions in circuits</label>
+      <label><input type="radio" name="q25" value="b"> A tool only used for anatomy</label>
+      <label><input type="radio" name="q25" value="c"> A tool that replaces proper training</label>
+    </div>
+
+    <button type="button" onclick="gradeQuiz()">Submit Quiz</button>
+
+  </form>
+
+  <div id="resultBox" class="result-box">
+    <h2>Your Result</h2>
+    <p id="scoreText"></p>
+    <p id="feedbackText"></p>
+    <a class="home-link" href="/how-to-use-a-multimeter.html">Review the Multimeter Guide</a><br>
+    <a class="home-link" href="/">Back to MedSkillBuilder</a>
+  </div>
+
+  <hr>
+
+  <p class="safety">
+    For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
+  </p>
+
+  <script>
+    function gradeQuiz() {
+      const answers = {
+        q1: "b",
+        q2: "a",
+        q3: "c",
+        q4: "a",
+        q5: "a",
+        q6: "a",
+        q7: "a",
+        q8: "b",
+        q9: "a",
+        q10: "a",
+        q11: "a",
+        q12: "a",
+        q13: "b",
+        q14: "a",
+        q15: "a",
+        q16: "a",
+        q17: "a",
+        q18: "b",
+        q19: "b",
+        q20: "b",
+        q21: "a",
+        q22: "a",
+        q23: "a",
+        q24: "a",
+        q25: "a"
+      };
+
+      let score = 0;
+      let total = Object.keys(answers).length;
+
+      for (let key in answers) {
+        const selected = document.querySelector('input[name="' + key + '"]:checked');
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      const percent = Math.round((score / total) * 100);
+
+      document.getElementById("scoreText").innerText =
+        "You scored " + score + " out of " + total + " (" + percent + "%).";
+
+      let feedback = "";
+
+      if (percent >= 90) {
+        feedback = "Excellent work. You have a strong beginner understanding of multimeter basics.";
+      } else if (percent >= 75) {
+        feedback = "Good job. Review the safety and troubleshooting questions to tighten up your understanding.";
+      } else if (percent >= 60) {
+        feedback = "Not bad. Go back through the multimeter guide and retake the quiz.";
+      } else {
+        feedback = "Keep practicing. Start with voltage, resistance, continuity, and safety basics.";
+      }
+
+      document.getElementById("feedbackText").innerText = feedback;
+      document.getElementById("resultBox").style.display = "block";
+      document.getElementById("resultBox").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>

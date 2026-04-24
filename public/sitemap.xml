@@ -219,6 +219,12 @@
   </url>
 
   <url>
+   <loc>https://medskillbuilder.com/multimeter-quiz.html</loc>
+   <changefreq>weekly</changefreq>
+   <priority>0.80</priority>
+  </url>
+
+  <url>
    <loc>https://medskillbuilder.com/power-supply-basics-cbet.html</loc>
    <lastmod>2026-04-21</lastmod>
    <changefreq>weekly</changefreq>
@@ -316,6 +322,12 @@
   <loc>https://medskillbuilder.com/kidney-anatomy-function-quiz.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://medskillbuilder.com/how-to-use-a-multimeter.html</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.85</priority>
 </url>
 
 <url>
