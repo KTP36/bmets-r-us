@@ -1,156 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Capacitor Quiz | 25 Questions | MedSkillBuilder</title>
+<title>Capacitor Quiz (25 Questions) | MedSkillBuilder</title>
 
-  <meta name="description" content="Take a 25-question capacitor quiz covering capacitor function, testing, failure symptoms, multimeter readings, and safety basics." />
+<meta name="description" content="Test your knowledge of capacitors, troubleshooting, and multimeter testing with this 25-question quiz.">
 
-  <link rel="canonical" href="https://medskillbuilder.com/capacitor-quiz.html" />
+<style>
+body {
+  font-family: Arial;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background:#f8fafc;
+}
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      line-height: 1.6;
-      background: #f8fafc;
-      color: #0f172a;
-    }
+.question {
+  background:white;
+  padding:16px;
+  border-radius:12px;
+  margin-bottom:16px;
+  border:1px solid #e2e8f0;
+}
 
-    .intro, .question, .result-box {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    }
+button {
+  background:#2563eb;
+  color:white;
+  padding:12px 20px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    .question p {
-      font-weight: bold;
-      margin-top: 0;
-    }
-
-    label {
-      display: block;
-      margin: 8px 0;
-      cursor: pointer;
-    }
-
-    button {
-      background: #2563eb;
-      color: white;
-      border: none;
-      padding: 14px 22px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background: #1d4ed8;
-    }
-
-    .result-box {
-      display: none;
-      border-left: 6px solid #2563eb;
-    }
-
-    .safety {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 24px;
-    }
-
-    .home-link {
-      display: inline-block;
-      margin-top: 12px;
-      color: #2563eb;
-      font-weight: bold;
-      text-decoration: none;
-    }
-  </style>
+.result {
+  display:none;
+  background:#e0f2fe;
+  padding:20px;
+  border-radius:12px;
+  margin-top:20px;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Capacitor Quiz</h1>
+<h1>Capacitor Quiz (25 Questions)</h1>
 
-<div class="intro">
-  <p>
-    Test your understanding of capacitors, how they work, how they fail, and how they can be checked with a multimeter.
-  </p>
-  <p>
-    Choose the best answer for each question, then submit your quiz to see your score.
-  </p>
-</div>
+<p>Test your understanding of capacitors, troubleshooting, and multimeter behavior.</p>
 
-<form id="quizForm">
+<form id="quiz">
 
-  <div class="question">
-    <p>1. What is the main function of a capacitor?</p>
-    <label><input type="radio" name="q1" value="a"> Store and release electrical energy</label>
-    <label><input type="radio" name="q1" value="b"> Convert AC to DC</label>
-    <label><input type="radio" name="q1" value="c"> Permanently block all current</label>
-  </div>
+<!-- QUESTIONS -->
+<div id="questions"></div>
 
-  <div class="question">
-    <p>2. A capacitor stores energy in:</p>
-    <label><input type="radio" name="q2" value="a"> A magnetic field only</label>
-    <label><input type="radio" name="q2" value="b"> An electric field</label>
-    <label><input type="radio" name="q2" value="c"> A fuse</label>
-  </div>
+<button type="button" onclick="gradeQuiz()">Submit Quiz</button>
 
-  <div class="question">
-    <p>3. What separates the two conductive plates inside a capacitor?</p>
-    <label><input type="radio" name="q3" value="a"> A diode</label>
-    <label><input type="radio" name="q3" value="b"> A dielectric</label>
-    <label><input type="radio" name="q3" value="c"> A transformer</label>
-  </div>
+</form>
 
-  <div class="question">
-    <p>4. In a power supply, capacitors often help:</p>
-    <label><input type="radio" name="q4" value="a"> Smooth voltage ripple</label>
-    <label><input type="radio" name="q4" value="b"> Remove all resistance</label>
-    <label><input type="radio" name="q4" value="c"> Replace the rectifier</label>
-  </div>
+<div class="result" id="result"></div>
 
-  <div class="question">
-    <p>5. Before testing a capacitor, you should always make sure it is:</p>
-    <label><input type="radio" name="q5" value="a"> Powered on</label>
-    <label><input type="radio" name="q5" value="b"> Powered off and properly discharged</label>
-    <label><input type="radio" name="q5" value="c"> Connected to wall power</label>
-  </div>
+<script>
+const questions = [
+["What does a capacitor store?","Electrical energy","Heat","Resistance","a"],
+["Capacitors store energy in what field?","Magnetic","Electric","Thermal","b"],
+["What separates capacitor plates?","Wire","Dielectric","Air only","b"],
+["Capacitors in power supplies help?","Increase voltage","Smooth voltage","Stop current","b"],
+["Before testing a capacitor?","Turn power on","Discharge it","Increase voltage","b"],
+["Why dangerous after power off?","Hold charge","Create voltage","Explode always","a"],
+["Resistance rising reading means?","Charging","Shorted","Broken meter","a"],
+["Constant zero reading means?","Good","Shorted","Open","b"],
+["OL reading may indicate?","Charging","Open","Short","b"],
+["Meter applies small?","Current","Voltage","Heat","b"],
+["Capacitors oppose change in?","Voltage","Current","Resistance","a"],
+["Defibrillators use capacitors to?","Store energy","Filter air","Measure voltage","a"],
+["Capacitors block?","DC steady state","AC always","All signals","a"],
+["Symbol for capacitance?","F","V","Ω","a"],
+["Capacitor unit?","Farad","Volt","Amp","a"],
+["Bad capacitor symptom?","Stable voltage","No power","Perfect circuit","b"],
+["Testing in circuit can cause?","Accurate results","False readings","No effect","b"],
+["Continuity test good for capacitors?","Always","Not ideal","Only method","b"],
+["Shorted capacitor shows?","Low resistance","High resistance","OL","a"],
+["Charging curve shows?","Increasing resistance","Flat line","Drop to zero","a"],
+["Multimeter mode used?","Voltage","Resistance","Current only","b"],
+["Capacitor releases energy when?","Charging","Discharging","Idle","b"],
+["Capacitors used for filtering?","Yes","No","Rarely","a"],
+["Electrolytic capacitors are?","Polarized","Non-polarized","Resistors","a"],
+["First troubleshooting step?","Replace everything","Check basics","Ignore issue","b"]
+];
 
-  <div class="question">
-    <p>6. Why can capacitors be hazardous even after power is removed?</p>
-    <label><input type="radio" name="q6" value="a"> They can hold a charge</label>
-    <label><input type="radio" name="q6" value="b"> They turn into batteries permanently</label>
-    <label><input type="radio" name="q6" value="c"> They remove all voltage from the circuit</label>
-  </div>
+const container = document.getElementById("questions");
 
-  <div class="question">
-    <p>7. When checking a capacitor with resistance mode, a reading that starts low and rises usually means:</p>
-    <label><input type="radio" name="q7" value="a"> The capacitor is charging</label>
-    <label><input type="radio" name="q7" value="b"> The capacitor is definitely shorted</label>
-    <label><input type="radio" name="q7" value="c"> The meter is measuring temperature</label>
-  </div>
+questions.forEach((q,i)=>{
+  let html = `<div class="question"><p>${i+1}. ${q[0]}</p>`;
+  ["a","b","c"].forEach((opt,idx)=>{
+    html += `<label><input type="radio" name="q${i}" value="${opt}"> ${q[idx+1]}</label><br>`;
+  });
+  html += "</div>";
+  container.innerHTML += html;
+});
 
-  <div class="question">
-    <p>8. If resistance stays near zero while testing a capacitor, it may indicate:</p>
-    <label><input type="radio" name="q8" value="a"> A shorted capacitor</label>
-    <label><input type="radio" name="q8" value="b"> A normal charge cycle every time</label>
-    <label><input type="radio" name="q8" value="c"> A perfect open circuit</label>
-  </div>
+function gradeQuiz(){
+  let score = 0;
+  questions.forEach((q,i)=>{
+    let ans = document.querySelector(`input[name="q${i}"]:checked`);
+    if(ans && ans.value === q[4]) score++;
+  });
 
-  <div class="question">
-    <p>9. If a capacitor stays open or OL during a basic check, it may indicate:</p>
-    <label><input type="radio" name="q9" value="a"> It may not be charging properly</label>
-    <label><input type="radio" name="q9" value="b"> It is definitely brand new</label>
-    <label><input type="radio"
+  const result = document.getElementById("result");
+  result.style.display = "block";
+  result.innerHTML = `
+    <h2>Your Score: ${score} / ${questions.length}</h2>
+    <p>${score >= 20 ? "Strong understanding." : score >= 12 ? "Good, but review key concepts." : "Review capacitor basics."}</p>
+
+    <hr>
+
+    <p><strong>Keep learning:</strong></p>
+    <ul>
+      <li><a href="/how-to-test-a-capacitor.html">How to Test a Capacitor</a></li>
+      <li><a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a></li>
+      <li><a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a></li>
+      <li><a href="/browse-all-practice.html">Browse All Practice</a></li>
+    </ul>
+  `;
+}
+</script>
+
+</body>
+</html>
