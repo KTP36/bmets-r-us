@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Series vs Parallel Circuits | Can You Tell the Difference? | MedSkillBuilder</title>
+
+  <meta name="description" content="Learn the difference between series and parallel circuits with simple explanations, real-world examples, and what to notice first. Understand current, voltage, resistance, and circuit behavior for CBET and electronics basics.">
+
+  <link rel="canonical" href="https://medskillbuilder.com/series-vs-parallel-circuits.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 950px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.7;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    h1 {
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    h2 {
+      color: #153f73;
+      margin-top: 34px;
+    }
+
+    h3 {
+      color: #0f2f57;
+      margin-top: 24px;
+    }
+
+    a {
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    .box {
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 14px;
+      padding: 20px;
+      margin: 22px 0;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .notice {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 18px 0;
+    }
+
+    .success {
+      background: #ecfdf5;
+      border-left: 5px solid #16a34a;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 18px 0;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border-left: 5px solid #ea580c;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      background: #ffffff;
+    }
+
+    th {
+      background: #153f73;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      vertical-align: top;
+    }
+
+    .cta {
+      text-align: center;
+      margin: 34px 0;
+    }
+
+    .cta a {
+      background: #2563eb;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .small {
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Series vs Parallel Circuits: Can You Tell the Difference?</h1>
+
+<p>
+Series and parallel circuits are two of the most important circuit patterns to understand.
+</p>
+
+<p>
+Most people try to memorize the definitions.
+</p>
+
+<p>
+But the better question is this:
+</p>
+
+<div class="notice">
+  <strong>What should you notice first?</strong>
+</div>
+
+<p>
+If you can recognize what changes first, series and parallel circuits become much easier to understand.
+</p>
+
+<p>
+This matters for electronics, CBET exam prep, biomedical equipment basics, and general circuit learning.
+</p>
+
+<hr>
+
+<div class="box">
+<h2>The Simple Difference</h2>
+
+<p>
+A <strong>series circuit</strong> has one path for current.
+</p>
+
+<p>
+A <strong>parallel circuit</strong> has more than one path for current.
+</p>
+
+<div class="success">
+  <strong>Fast memory trick:</strong>
+  <br>
+  Series = one path.
+  <br>
+  Parallel = multiple paths.
+</div>
+
+<p>
+That one difference changes how current, voltage, resistance, and failure behavior work.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>What Is a Series Circuit?</h2>
+
+<p>
+In a series circuit, components are connected one after another.
+</p>
+
+<p>
+Current has only one path to follow.
+</p>
+
+<p>
+Because there is only one path, the same current flows through each component.
+</p>
+
+<h3>Key signs of a series circuit</h3>
+
+<ul>
+  <li>There is only one path for current</li>
+  <li>The same current flows through all components</li>
+  <li>If one component opens, the whole circuit stops</li>
+  <li>Total resistance increases as more components are added</li>
+</ul>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>If one part fails and everything stops, think series.</p>
+</div>
+
+<p>
+This is the part people remember best.
+</p>
+
+<p>
+One break affects the whole circuit because current has no alternate path.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>What Is a Parallel Circuit?</h2>
+
+<p>
+In a parallel circuit, components are connected across multiple paths or branches.
+</p>
+
+<p>
+Current can split and flow through more than one branch.
+</p>
+
+<p>
+Because there are multiple paths, one branch can fail while another branch may still work.
+</p>
+
+<h3>Key signs of a parallel circuit</h3>
+
+<ul>
+  <li>There is more than one path for current</li>
+  <li>Voltage is the same across each branch</li>
+  <li>Current can split between branches</li>
+  <li>If one branch opens, other branches may still work</li>
+  <li>Total resistance decreases as more branches are added</li>
+</ul>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>If one part fails but other parts still work, think parallel.</p>
+</div>
+
+<p>
+This is why parallel circuits are used when parts need to operate independently.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Series vs Parallel Comparison</h2>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Series Circuit</th>
+    <th>Parallel Circuit</th>
+  </tr>
+  <tr>
+    <td>Current path</td>
+    <td>One path</td>
+    <td>Multiple paths</td>
+  </tr>
+  <tr>
+    <td>Current behavior</td>
+    <td>Same current through all components</td>
+    <td>Current splits between branches</td>
+  </tr>
+  <tr>
+    <td>Voltage behavior</td>
+    <td>Voltage divides across components</td>
+    <td>Voltage is the same across each branch</td>
+  </tr>
+  <tr>
+    <td>If one part fails</td>
+    <td>Whole circuit may stop</td>
+    <td>Other branches may still work</td>
+  </tr>
+  <tr>
+    <td>Resistance behavior</td>
+    <td>Adding resistance increases total resistance</td>
+    <td>Adding branches lowers total resistance</td>
+  </tr>
+</table>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Current in Series Circuits</h2>
+
+<p>
+In a series circuit, current is the same everywhere.
+</p>
+
+<p>
+That means the current through the first component is the same current through the second component.
+</p>
+
+<p>
+There is only one path, so the current cannot split.
+</p>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>One path means same current.</p>
+</div>
+
+<p>
+If the circuit path opens anywhere, current stops everywhere.
+</p>
+
+<p>
+This connects directly to <a href="/what-is-ohms-law.html">Ohm’s Law</a> because total resistance affects total current.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Current in Parallel Circuits</h2>
+
+<p>
+In a parallel circuit, current can split.
+</p>
+
+<p>
+Each branch can carry part of the total current.
+</p>
+
+<p>
+The total current is the sum of the branch currents.
+</p>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>Multiple paths means current can divide.</p>
+</div>
+
+<p>
+If one branch has lower resistance, more current can flow through that branch.
+</p>
+
+<p>
+This is why understanding <a href="/voltage-current-resistance-cbet.html">voltage, current, and resistance</a> matters before learning deeper circuit behavior.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Voltage in Series Circuits</h2>
+
+<p>
+In a series circuit, voltage is divided across the components.
+</p>
+
+<p>
+The supply voltage is shared by the components in the path.
+</p>
+
+<p>
+The amount of voltage across each component depends on resistance.
+</p>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>Series circuits share voltage across components.</p>
+</div>
+
+<p>
+This is one reason series circuits can confuse beginners.
+</p>
+
+<p>
+Current stays the same, but voltage drops across each component.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Voltage in Parallel Circuits</h2>
+
+<p>
+In a parallel circuit, each branch is connected across the same supply voltage.
+</p>
+
+<p>
+That means each branch receives the same voltage.
+</p>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>Parallel branches get the same voltage.</p>
+</div>
+
+<p>
+This is why parallel circuits are useful when multiple components need the same voltage source.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Resistance in Series Circuits</h2>
+
+<p>
+In series, total resistance is added together.
+</p>
+
+<p>
+If you add more resistors in series, the total resistance increases.
+</p>
+
+<p>
+Higher total resistance reduces current if voltage stays the same.
+</p>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>More series resistance means less current.</p>
+</div>
+
+<p>
+Review this idea here:
+<a href="/how-to-test-a-resistor.html">How to Test a Resistor</a>.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Resistance in Parallel Circuits</h2>
+
+<p>
+In parallel, adding more branches gives current more paths to travel.
+</p>
+
+<p>
+That means total resistance decreases when more parallel branches are added.
+</p>
+
+<p>
+This feels backwards to many learners at first.
+</p>
+
+<div class="warning">
+  <strong>Common mistake:</strong>
+  <p>Adding another resistor in parallel does not increase total resistance. It lowers total resistance because current has another path.</p>
+</div>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>More paths means lower total resistance.</p>
+</div>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Real-World Example: Lights</h2>
+
+<p>
+Think about a string of lights.
+</p>
+
+<p>
+If the lights are wired in series and one bulb fails, the entire string may go out.
+</p>
+
+<p>
+If the lights are wired in parallel, one bulb can fail while the others stay on.
+</p>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>Everything stops together = series. Some parts keep working = parallel.</p>
+</div>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Why This Matters for Biomedical Equipment</h2>
+
+<p>
+Biomedical equipment uses many circuit designs.
+</p>
+
+<p>
+You do not need to become an electrical engineer to start understanding the basics.
+</p>
+
+<p>
+But you do need to recognize circuit behavior.
+</p>
+
+<p>
+Series and parallel circuits help explain why parts of a circuit may behave together or independently.
+</p>
+
+<p>
+That recognition supports stronger understanding of power supplies, sensors, switches, and basic electronics.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Common Mistakes Learners Make</h2>
+
+<ul>
+  <li>Thinking current splits in a series circuit</li>
+  <li>Thinking voltage is always divided in parallel</li>
+  <li>Forgetting that series has one path</li>
+  <li>Forgetting that parallel has multiple paths</li>
+  <li>Assuming adding resistors always increases resistance</li>
+  <li>Confusing branch current with total current</li>
+</ul>
+
+<div class="notice">
+  <strong>What to notice first:</strong>
+  <p>Before answering, ask: one path or multiple paths?</p>
+</div>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Quick Knowledge Check</h2>
+
+<p>
+If one component fails and the whole circuit stops, what type of circuit is it?
+</p>
+
+<p>
+<strong>Answer:</strong> Series.
+</p>
+
+<p>
+Why?
+</p>
+
+<p>
+Because there is only one path for current.
+</p>
+
+<hr>
+
+<p>
+If one branch fails but other branches still work, what type of circuit is it?
+</p>
+
+<p>
+<strong>Answer:</strong> Parallel.
+</p>
+
+<p>
+Why?
+</p>
+
+<p>
+Because current has more than one path.
+</p>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>How to Remember It Fast</h2>
+
+<div class="success">
+  <strong>Series:</strong> One path, same current, one break can stop everything.
+</div>
+
+<div class="success">
+  <strong>Parallel:</strong> Multiple paths, same voltage across branches, one branch can fail while others still work.
+</div>
+</div>
+
+<hr>
+
+<div class="box">
+<h2>Practice the Concept</h2>
+
+<p>
+Reading the concept is helpful.
+</p>
+
+<p>
+Testing yourself is what makes it stick.
+</p>
+
+<div class="cta">
+  <a href="/voltage-current-resistance-quiz.html">Take the Voltage, Current, and Resistance Quiz</a>
+</div>
+
+<p>
+For more practice, review:
+</p>
+
+<ul>
+  <li><a href="/what-is-ohms-law.html">What Is Ohm’s Law?</a></li>
+  <li><a href="/ohms-law-quiz.html">Ohm’s Law Quiz</a></li>
+  <li><a href="/voltage-current-resistance-cbet.html">Voltage vs Current vs Resistance</a></li>
+  <li><a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a></li>
+  <li><a href="/how-to-test-a-resistor.html">How to Test a Resistor</a></li>
+  <li><a href="/browse-all-practice.html">Browse All Practice Tools</a></li>
+</ul>
+</div>
+
+<hr>
+
+<p class="small">
+For learning purposes only. This page is designed to build basic electronics understanding for students, early healthcare learners, and exam preparation.
+</p>
+
+</body>
+</html>
