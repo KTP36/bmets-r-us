@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Voltage Current Resistance Quiz | MedSkillBuilder</title>
+
+  <meta name="description" content="Test your understanding of voltage, current, and resistance with practical questions that build recognition, not just memorization.">
+
+  <link rel="canonical" href="https://medskillbuilder.com/voltage-current-resistance-quiz.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .intro, .question, .result-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result-box {
+      display: none;
+      border-left: 6px solid #2563eb;
+    }
+
+    .notice-box {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 12px 0;
+    }
+
+    .notice-box strong {
+      color: #153f73;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .safety {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Voltage, Current, and Resistance Quiz</h1>
+
+<div class="intro">
+  <p>
+    This quiz is designed to help you recognize how voltage, current, and resistance work together.
+  </p>
+  <p>
+    Some questions are definition based, but many are built around real circuit behavior. The goal is not just to memorize terms, but to notice what changes first.
+  </p>
+</div>
+
+<form id="quizForm">
+
+  <div class="question">
+    <p>1. Which value represents electrical pressure or push?</p>
+    <label><input type="radio" name="q1" value="a"> Voltage</label>
+    <label><input type="radio" name="q1" value="b"> Current</label>
+    <label><input type="radio" name="q1" value="c"> Resistance</label>
+  </div>
+
+  <div class="question">
+    <p>2. Which value represents the actual flow of electrical charge?</p>
+    <label><input type="radio" name="q2" value="a"> Voltage</label>
+    <label><input type="radio" name="q2" value="b"> Current</label>
+    <label><input type="radio" name="q2" value="c"> Resistance</label>
+  </div>
+
+  <div class="question">
+    <p>3. Which value represents opposition to current flow?</p>
+    <label><input type="radio" name="q3" value="a"> Voltage</label>
+    <label><input type="radio" name="q3" value="b"> Current</label>
+    <label><input type="radio" name="q3" value="c"> Resistance</label>
+  </div>
+
+  <div class="question">
+    <p>4. A circuit has the same resistance, but voltage increases. What happens to current?</p>
+    <label><input type="radio" name="q4" value="a"> Current increases</label>
+    <label><input type="radio" name="q4" value="b"> Current decreases</label>
+    <label><input type="radio" name="q4" value="c"> Current disappears</label>
+  </div>
+
+  <div class="question">
+    <p>5. A circuit has the same voltage, but resistance increases. What happens to current?</p>
+    <label><input type="radio" name="q5" value="a"> Current increases</label>
+    <label><input type="radio" name="q5" value="b"> Current decreases</label>
+    <label><input type="radio" name="q5" value="c"> Current becomes voltage</label>
+  </div>
+
+  <div class="question">
+    <p>6. A circuit has the same voltage, but resistance decreases. What happens to current?</p>
+    <label><input type="radio" name="q6" value="a"> Current increases</label>
+    <label><input type="radio" name="q6" value="b"> Current decreases</label>
+    <label><input type="radio" name="q6" value="c"> Current stops completely</label>
+  </div>
+
+  <div class="question">
+    <p>7. A circuit suddenly draws more current than expected. Which change could explain that?</p>
+    <label><input type="radio" name="q7" value="a"> Resistance decreased</label>
+    <label><input type="radio" name="q7" value="b"> Resistance increased</label>
+    <label><input type="radio" name="q7" value="c"> Voltage became resistance</label>
+  </div>
+
+  <div class="question">
+    <p>8. A device has correct voltage, but the current is lower than expected. What should you suspect?</p>
+    <label><input type="radio" name="q8" value="a"> Resistance may be too high</label>
+    <label><input type="radio" name="q8" value="b"> Voltage is definitely zero</label>
+    <label><input type="radio" name="q8" value="c"> Current is not related to resistance</label>
+  </div>
+
+  <div class="question">
+    <p>9. If resistance becomes very low, what is the possible risk?</p>
+    <label><input type="radio" name="q9" value="a"> Current may become too high</label>
+    <label><input type="radio" name="q9" value="b"> Current must become zero</label>
+    <label><input type="radio" name="q9" value="c"> Voltage always disappears</label>
+  </div>
+
+  <div class="question">
+    <p>10. Which statement is correct?</p>
+    <label><input type="radio" name="q10" value="a"> Voltage pushes, current flows, resistance opposes</label>
+    <label><input type="radio" name="q10" value="b"> Current pushes, resistance flows, voltage opposes</label>
+    <label><input type="radio" name="q10" value="c"> Resistance creates all voltage</label>
+  </div>
+
+  <div class="question">
+    <p>11. If voltage stays the same and resistance doubles, current will generally:</p>
+    <label><input type="radio" name="q11" value="a"> Decrease</label>
+    <label><input type="radio" name="q11" value="b"> Increase</label>
+    <label><input type="radio" name="q11" value="c"> Stay unrelated</label>
+  </div>
+
+  <div class="question">
+    <p>12. If voltage doubles and resistance stays the same, current will generally:</p>
+    <label><input type="radio" name="q12" value="a"> Increase</label>
+    <label><input type="radio" name="q12" value="b"> Decrease</label>
+    <label><input type="radio" name="q12" value="c"> Become resistance</label>
+  </div>
+
+  <div class="question">
+    <p>13. Which situation would usually allow more current to flow?</p>
+    <label><input type="radio" name="q13" value="a"> Higher voltage and lower resistance</label>
+    <label><input type="radio" name="q13" value="b"> Lower voltage and higher resistance</label>
+    <label><input type="radio" name="q13" value="c"> Higher resistance only</label>
+  </div>
+
+  <div class="question">
+    <p>14. Which situation would usually reduce current?</p>
+    <label><input type="radio" name="q14" value="a"> Resistance increases</label>
+    <label><input type="radio" name="q14" value="b"> Resistance decreases</label>
+    <label><input type="radio" name="q14" value="c"> Voltage increases</label>
+  </div>
+
+  <div class="question">
+    <p>15. If a learner says “higher resistance means higher current,” what is wrong with that statement?</p>
+    <label><input type="radio" name="q15" value="a"> Higher resistance limits current</label>
+    <label><input type="radio" name="q15" value="b"> Higher resistance always creates more current</label>
+    <label><input type="radio" name="q15" value="c"> Resistance has no effect</label>
+  </div>
+
+  <div class="question">
+    <p>16. Which term should you think of when the question mentions “opposition” or “blocking flow”?</p>
+    <label><input type="radio" name="q16" value="a"> Resistance</label>
+    <label><input type="radio" name="q16" value="b"> Voltage</label>
+    <label><input type="radio" name="q16" value="c"> Current</label>
+  </div>
+
+  <div class="question">
+    <p>17. Which term should you think of when the question mentions “push” or “pressure”?</p>
+    <label><input type="radio" name="q17" value="a"> Voltage</label>
+    <label><input type="radio" name="q17" value="b"> Resistance</label>
+    <label><input type="radio" name="q17" value="c"> Current</label>
+  </div>
+
+  <div class="question">
+    <p>18. Which term should you think of when the question mentions “flow”?</p>
+    <label><input type="radio" name="q18" value="a"> Current</label>
+    <label><input type="radio" name="q18" value="b"> Voltage</label>
+    <label><input type="radio" name="q18" value="c"> Resistance</label>
+  </div>
+
+  <div class="question">
+    <p>19. If current is too high, which condition could be part of the cause?</p>
+    <label><input type="radio" name="q19" value="a"> Resistance is too low</label>
+    <label><input type="radio" name="q19" value="b"> Resistance is too high</label>
+    <label><input type="radio" name="q19" value="c"> Current has no cause</label>
+  </div>
+
+  <div class="question">
+    <p>20. What is the best way to understand these three values together?</p>
+    <label><input type="radio" name="q20" value="a"> Voltage pushes, resistance limits, current is the result</label>
+    <label><input type="radio" name="q20" value="b"> Resistance pushes, voltage flows, current blocks</label>
+    <label><input type="radio" name="q20" value="c"> They are unrelated</label>
+  </div>
+
+  <button type="button" onclick="gradeQuiz()">Submit Quiz</button>
+
+</form>
+
+<div id="resultBox" class="result-box">
+  <h2>Your Result</h2>
+  <p id="scoreText"></p>
+  <p id="feedbackText"></p>
+
+  <h2>What to Notice First</h2>
+  <p>
+    These cues help you recognize the signal in the question before jumping to an answer.
+  </p>
+
+  <div class="notice-box">
+    <strong>Question 4:</strong> The first cue is that voltage increased while resistance stayed the same. More voltage means more push, so current increases.
+  </div>
+
+  <div class="notice-box">
+    <strong>Question 5:</strong> The first cue is that resistance increased. Higher resistance makes current flow harder, so current decreases.
+  </div>
+
+  <div class="notice-box">
+    <strong>Question 6:</strong> The first cue is that resistance decreased. Lower resistance allows more current to flow.
+  </div>
+
+  <div class="notice-box">
+    <strong>Question 8:</strong> The first cue is that voltage is correct but current is low. That points toward resistance being too high.
+  </div>
+
+  <div class="notice-box">
+    <strong>Question 9:</strong> The first cue is very low resistance. If there is less opposition, current can become too high.
+  </div>
+
+  <div class="notice-box">
+    <strong>Question 11:</strong> The first cue is that resistance doubled while voltage stayed the same. More resistance means less current.
+  </div>
+
+  <div class="notice-box">
+    <strong>Question 12:</strong> The first cue is that voltage doubled while resistance stayed the same. More voltage means more current.
+  </div>
+
+  <div class="notice-box">
+    <strong>Question 20:</strong> The first cue is the relationship between all three values. Voltage pushes, resistance limits, and current is the result.
+  </div>
+
+  <a class="home-link" href="/voltage-current-resistance-cbet.html">Review Voltage vs Current vs Resistance</a><br>
+  <a class="home-link" href="/what-is-ohms-law.html">Review What Is Ohm’s Law?</a><br>
+  <a class="home-link" href="/ohms-law-quiz.html">Try the Ohm’s Law Quiz</a><br>
+  <a class="home-link" href="/how-to-use-a-multimeter.html">Review How to Use a Multimeter</a><br>
+  <a class="home-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+</div>
+
+<hr>
+
+<p class="safety">
+  For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
+</p>
+
+<script>
+  function gradeQuiz() {
+    const answers = {
+      q1: "a",
+      q2: "b",
+      q3: "c",
+      q4: "a",
+      q5: "b",
+      q6: "a",
+      q7: "a",
+      q8: "a",
+      q9: "a",
+      q10: "a",
+      q11: "a",
+      q12: "a",
+      q13: "a",
+      q14: "a",
+      q15: "a",
+      q16: "a",
+      q17: "a",
+      q18: "a",
+      q19: "a",
+      q20: "a"
+    };
+
+    let score = 0;
+    const total = Object.keys(answers).length;
+
+    for (let key in answers) {
+      const selected = document.querySelector('input[name="' + key + '"]:checked');
+      if (selected && selected.value === answers[key]) {
+        score++;
+      }
+    }
+
+    const percent = Math.round((score / total) * 100);
+
+    document.getElementById("scoreText").innerText =
+      "You scored " + score + " out of " + total + " (" + percent + "%).";
+
+    let feedback = "";
+
+    if (percent >= 90) {
+      feedback = "Excellent work. You are recognizing how voltage, current, and resistance affect each other.";
+    } else if (percent >= 75) {
+      feedback = "Good job. Review the behavior questions to strengthen your recognition of what changes first.";
+    } else if (percent >= 60) {
+      feedback = "You are getting there. Focus on the pattern: voltage pushes, resistance limits, current changes.";
+    } else {
+      feedback = "Keep practicing. Start with the basic cues: pressure means voltage, flow means current, and opposition means resistance.";
+    }
+
+    document.getElementById("feedbackText").innerText = feedback;
+    document.getElementById("resultBox").style.display = "block";
+    document.getElementById("resultBox").scrollIntoView({ behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>
