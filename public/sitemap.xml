@@ -265,6 +265,19 @@
   </url>
 
   <url>
+   <lastmid> 2026-04-25</lastmod>
+   <loc>https://medskillbuilder.com/series-parallel-quiz.html</loc>
+   <changefreq>weekly</changefreq>
+   <priority>0.80</priority>
+  </url>
+
+  <url>
+   <lastmod>2026-04-25</lastmod>
+   <loc>https://medskillbuilder.com/schematic-symbols-quiz.html</loc>
+   <changefreq>weekly</changefreq>
+   <priority>0.80</priority>
+
+  <url>
    <loc>https://medskillbuilder.com/voltage-current-resistance-cbet.html</loc>
    <lastmod>2026-04-21</lastmod>
    <changefreq>weekly</changefreq>
