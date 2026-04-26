@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Series vs Parallel Quiz (15 Questions) | MedSkillBuilder</title>
+
+<meta name="description" content="Test your understanding of series vs parallel circuits with 15 quick recognition questions. Learn what to notice first.">
+
+<link rel="canonical" href="https://medskillbuilder.com/series-parallel-quiz.html" />
+
+<style>
+body {
+  font-family: Arial;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+.question {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+button {
+  background:#2563eb;
+  color:white;
+  padding:12px 20px;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.result {
+  display:none;
+  background:#eff6ff;
+  padding:18px;
+  border-radius:12px;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Series vs Parallel Quiz (15 Questions)</h1>
+
+<p>Most people memorize this. Let’s see if you can recognize it.</p>
+
+<form id="quiz">
+
+<!-- QUESTIONS -->
+
+<div class="question">
+<p>1. If one component fails and everything stops working, what type of circuit is it?</p>
+<label><input type="radio" name="q1" value="a"> Series</label><br>
+<label><input type="radio" name="q1" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>2. If one branch fails but the rest continue to work?</p>
+<label><input type="radio" name="q2" value="a"> Series</label><br>
+<label><input type="radio" name="q2" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>3. A circuit has multiple paths for current. What is it?</p>
+<label><input type="radio" name="q3" value="a"> Series</label><br>
+<label><input type="radio" name="q3" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>4. Current is the same through every component. What type?</p>
+<label><input type="radio" name="q4" value="a"> Series</label><br>
+<label><input type="radio" name="q4" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>5. Voltage is the same across each branch. What type?</p>
+<label><input type="radio" name="q5" value="a"> Series</label><br>
+<label><input type="radio" name="q5" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>6. If you add more resistors and total resistance increases?</p>
+<label><input type="radio" name="q6" value="a"> Series</label><br>
+<label><input type="radio" name="q6" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>7. If you add more branches and total resistance decreases?</p>
+<label><input type="radio" name="q7" value="a"> Series</label><br>
+<label><input type="radio" name="q7" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>8. One continuous loop with no branches?</p>
+<label><input type="radio" name="q8" value="a"> Series</label><br>
+<label><input type="radio" name="q8" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>9. Multiple independent branches?</p>
+<label><input type="radio" name="q9" value="a"> Series</label><br>
+<label><input type="radio" name="q9" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>10. Voltage splits across components?</p>
+<label><input type="radio" name="q10" value="a"> Series</label><br>
+<label><input type="radio" name="q10" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>11. Current splits between paths?</p>
+<label><input type="radio" name="q11" value="a"> Series</label><br>
+<label><input type="radio" name="q11" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>12. If one device turns off and everything else shuts down?</p>
+<label><input type="radio" name="q12" value="a"> Series</label><br>
+<label><input type="radio" name="q12" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>13. If one device turns off but others stay on?</p>
+<label><input type="radio" name="q13" value="a"> Series</label><br>
+<label><input type="radio" name="q13" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>14. Same voltage supplied to each branch?</p>
+<label><input type="radio" name="q14" value="a"> Series</label><br>
+<label><input type="radio" name="q14" value="b"> Parallel</label>
+</div>
+
+<div class="question">
+<p>15. Only one path for current flow?</p>
+<label><input type="radio" name="q15" value="a"> Series</label><br>
+<label><input type="radio" name="q15" value="b"> Parallel</label>
+</div>
+
+<button type="button" onclick="grade()">Submit</button>
+
+</form>
+
+<div id="result" class="result">
+<h2>Your Score</h2>
+<p id="score"></p>
+
+<h3>What to Notice First</h3>
+
+<p>Series → one path, same current, everything affected together</p>
+<p>Parallel → multiple paths, same voltage, parts work independently</p>
+
+<p><a href="/series-vs-parallel-circuits.html">Review the full guide</a></p>
+</div>
+
+<script>
+function grade() {
+  const answers = {
+    q1:"a", q2:"b", q3:"b", q4:"a", q5:"b",
+    q6:"a", q7:"b", q8:"a", q9:"b", q10:"a",
+    q11:"b", q12:"a", q13:"b", q14:"b", q15:"a"
+  };
+
+  let score = 0;
+
+  for (let q in answers) {
+    const selected = document.querySelector('input[name="'+q+'"]:checked');
+    if (selected && selected.value === answers[q]) {
+      score++;
+    }
+  }
+
+  document.getElementById("score").innerText =
+    "You got " + score + " out of 15";
+
+  document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>
