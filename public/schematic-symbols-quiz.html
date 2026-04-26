@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Schematic Symbols Quiz | MedSkillBuilder</title>
+
+  <meta name="description" content="Test your ability to recognize common schematic symbols including resistors, capacitors, switches, diodes, LEDs, fuses, ground, and batteries.">
+
+  <link rel="canonical" href="https://medskillbuilder.com/schematic-symbols-quiz.html" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .intro,
+    .question,
+    .result-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .symbol {
+      font-family: "Courier New", monospace;
+      font-size: 24px;
+      font-weight: bold;
+      background: #f1f5f9;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 14px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .question p {
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .result-box {
+      display: none;
+      border-left: 6px solid #2563eb;
+    }
+
+    .notice-box {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 12px 0;
+    }
+
+    .notice-box strong {
+      color: #153f73;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .safety {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Schematic Symbols Quiz</h1>
+
+<div class="intro">
+  <p>
+    Reading schematics starts with recognizing symbols.
+  </p>
+
+  <p>
+    This quiz uses simple text-based schematic symbols so you can practice identifying common components without needing images.
+  </p>
+
+  <p>
+    The goal is not just to memorize symbols. The goal is to notice the shape, pattern, or clue that tells you what the component is.
+  </p>
+</div>
+
+<form id="quizForm">
+
+  <div class="question">
+    <p>1. What component does this symbol usually represent?</p>
+    <div class="symbol">—/\/\/\—</div>
+    <label><input type="radio" name="q1" value="a"> Resistor</label>
+    <label><input type="radio" name="q1" value="b"> Capacitor</label>
+    <label><input type="radio" name="q1" value="c"> Battery</label>
+  </div>
+
+  <div class="question">
+    <p>2. What component does this symbol usually represent?</p>
+    <div class="symbol">—| |—</div>
+    <label><input type="radio" name="q2" value="a"> Switch</label>
+    <label><input type="radio" name="q2" value="b"> Capacitor</label>
+    <label><input type="radio" name="q2" value="c"> Fuse</label>
+  </div>
+
+  <div class="question">
+    <p>3. What does this symbol most likely represent?</p>
+    <div class="symbol">—|>|—</div>
+    <label><input type="radio" name="q3" value="a"> Diode</label>
+    <label><input type="radio" name="q3" value="b"> Ground</label>
+    <label><input type="radio" name="q3" value="c"> Resistor</label>
+  </div>
+
+  <div class="question">
+    <p>4. What does this symbol most likely represent?</p>
+    <div class="symbol">—o/ o—</div>
+    <label><input type="radio" name="q4" value="a"> Open switch</label>
+    <label><input type="radio" name="q4" value="b"> Closed switch</label>
+    <label><input type="radio" name="q4" value="c"> Capacitor</label>
+  </div>
+
+  <div class="question">
+    <p>5. What does this symbol most likely represent?</p>
+    <div class="symbol">—o—o—</div>
+    <label><input type="radio" name="q5" value="a"> Open switch</label>
+    <label><input type="radio" name="q5" value="b"> Closed switch</label>
+    <label><input type="radio" name="q5" value="c"> Diode</label>
+  </div>
+
+  <div class="question">
+    <p>6. What does this symbol usually represent?</p>
+    <div class="symbol">
+      ⏚
+    </div>
+    <label><input type="radio" name="q6" value="a"> Ground</label>
+    <label><input type="radio" name="q6" value="b"> Fuse</label>
+    <label><input type="radio" name="q6" value="c"> LED</label>
+  </div>
+
+  <div class="question">
+    <p>7. What does this symbol most likely represent?</p>
+    <div class="symbol">—| |—| |—</div>
+    <label><input type="radio" name="q7" value="a"> Battery</label>
+    <label><input type="radio" name="q7" value="b"> Resistor</label>
+    <label><input type="radio" name="q7" value="c"> Ground</label>
+  </div>
+
+  <div class="question">
+    <p>8. What does this symbol most likely represent?</p>
+    <div class="symbol">—[ FUSE ]—</div>
+    <label><input type="radio" name="q8" value="a"> Fuse</label>
+    <label><input type="radio" name="q8" value="b"> Capacitor</label>
+    <label><input type="radio" name="q8" value="c"> Switch</label>
+  </div>
+
+  <div class="question">
+    <p>9. What component does this symbol usually represent?</p>
+    <div class="symbol">—|>|— ⇗ ⇗</div>
+    <label><input type="radio" name="q9" value="a"> LED</label>
+    <label><input type="radio" name="q9" value="b"> Resistor</label>
+    <label><input type="radio" name="q9" value="c"> Capacitor</label>
+  </div>
+
+  <div class="question">
+    <p>10. What does this schematic clue usually mean?</p>
+    <div class="symbol">●</div>
+    <label><input type="radio" name="q10" value="a"> Connected junction</label>
+    <label><input type="radio" name="q10" value="b"> Open switch</label>
+    <label><input type="radio" name="q10" value="c"> Fuse blown</label>
+  </div>
+
+  <div class="question">
+    <p>11. What does this usually mean in a schematic?</p>
+    <div class="symbol">Lines cross with no dot</div>
+    <label><input type="radio" name="q11" value="a"> The wires are usually not connected</label>
+    <label><input type="radio" name="q11" value="b"> The wires are always connected</label>
+    <label><input type="radio" name="q11" value="c"> It means ground</label>
+  </div>
+
+  <div class="question">
+    <p>12. Which component limits current flow?</p>
+    <div class="symbol">—/\/\/\—</div>
+    <label><input type="radio" name="q12" value="a"> Resistor</label>
+    <label><input type="radio" name="q12" value="b"> Capacitor</label>
+    <label><input type="radio" name="q12" value="c"> Battery</label>
+  </div>
+
+  <div class="question">
+    <p>13. Which component stores and releases electrical energy?</p>
+    <div class="symbol">—| |—</div>
+    <label><input type="radio" name="q13" value="a"> Capacitor</label>
+    <label><input type="radio" name="q13" value="b"> Fuse</label>
+    <label><input type="radio" name="q13" value="c"> Switch</label>
+  </div>
+
+  <div class="question">
+    <p>14. Which component allows current to flow mainly in one direction?</p>
+    <div class="symbol">—|>|—</div>
+    <label><input type="radio" name="q14" value="a"> Diode</label>
+    <label><input type="radio" name="q14" value="b"> Resistor</label>
+    <label><input type="radio" name="q14" value="c"> Ground</label>
+  </div>
+
+  <div class="question">
+    <p>15. What should you notice first when identifying this symbol?</p>
+    <div class="symbol">—/\/\/\—</div>
+    <label><input type="radio" name="q15" value="a"> The zig-zag pattern</label>
+    <label><input type="radio" name="q15" value="b"> The two parallel plates</label>
+    <label><input type="radio" name="q15" value="c"> The arrow shape</label>
+  </div>
+
+  <button type="button" onclick="gradeQuiz()">Submit Quiz</button>
+
+</form>
+
+<div id="resultBox" class="result-box">
+  <h2>Your Result</h2>
+  <p id="scoreText"></p>
+  <p id="feedbackText"></p>
+
+  <h2>What to Notice First</h2>
+  <p>
+    These cues help you recognize schematic symbols quickly instead of guessing.
+  </p>
+
+  <div class="notice-box">
+    <strong>Resistor:</strong> Look for the zig-zag pattern. That is the key visual cue.
+  </div>
+
+  <div class="notice-box">
+    <strong>Capacitor:</strong> Look for two parallel plates. That is the clue that energy is being stored.
+  </div>
+
+  <div class="notice-box">
+    <strong>Diode:</strong> Look for the arrow or triangle-like direction clue pointing toward a line.
+  </div>
+
+  <div class="notice-box">
+    <strong>Switch:</strong> Look for a break or gap in the path. Open means the circuit is interrupted.
+  </div>
+
+  <div class="notice-box">
+    <strong>Ground:</strong> Look for the ground symbol or reference point. It shows the circuit reference.
+  </div>
+
+  <div class="notice-box">
+    <strong>Junction:</strong> A dot usually means the wires connect. Crossing lines without a dot usually means they do not connect.
+  </div>
+
+  <a class="home-link" href="/series-vs-parallel-circuits.html">Review Series vs Parallel Circuits</a><br>
+  <a class="home-link" href="/what-is-ohms-law.html">Review What Is Ohm’s Law?</a><br>
+  <a class="home-link" href="/what-does-a-capacitor-do.html">Review What Does a Capacitor Do?</a><br>
+  <a class="home-link" href="/what-does-a-rectifier-do.html">Review What Does a Rectifier Do?</a><br>
+  <a class="home-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+</div>
+
+<hr>
+
+<p class="safety">
+  For learning purposes only. Always follow proper safety procedures and facility guidelines when working with electrical or medical equipment.
+</p>
+
+<script>
+  function gradeQuiz() {
+    const answers = {
+      q1: "a",
+      q2: "b",
+      q3: "a",
+      q4: "a",
+      q5: "b",
+      q6: "a",
+      q7: "a",
+      q8: "a",
+      q9: "a",
+      q10: "a",
+      q11: "a",
+      q12: "a",
+      q13: "a",
+      q14: "a",
+      q15: "a"
+    };
+
+    let score = 0;
+    const total = Object.keys(answers).length;
+
+    for (let key in answers) {
+      const selected = document.querySelector('input[name="' + key + '"]:checked');
+      if (selected && selected.value === answers[key]) {
+        score++;
+      }
+    }
+
+    const percent = Math.round((score / total) * 100);
+
+    document.getElementById("scoreText").innerText =
+      "You scored " + score + " out of " + total + " (" + percent + "%).";
+
+    let feedback = "";
+
+    if (percent >= 90) {
+      feedback = "Excellent work. You are recognizing schematic symbols quickly.";
+    } else if (percent >= 75) {
+      feedback = "Good job. Review the symbols you missed and focus on the first visual cue.";
+    } else if (percent >= 60) {
+      feedback = "You are getting there. Start with the basic symbols: resistor, capacitor, switch, diode, and ground.";
+    } else {
+      feedback = "Keep practicing. Focus on the shape first. Zig-zag means resistor, two plates means capacitor, and a break usually means switch.";
+    }
+
+    document.getElementById("feedbackText").innerText = feedback;
+    document.getElementById("resultBox").style.display = "block";
+    document.getElementById("resultBox").scrollIntoView({ behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>
