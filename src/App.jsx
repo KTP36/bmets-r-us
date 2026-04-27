@@ -8179,120 +8179,334 @@ return (
           </div>
           <div
             style={{
-              marginTop: 24,
-              background: "linear-gradient(135deg, #f8fbff, #ffffff)",
-              borderRadius: isSmallScreen ? 20 : 24,
-              padding: isSmallScreen ? 18 : 22,
-              border: "1px solid #d8e4f2",
-              boxShadow: "0 8px 22px rgba(0,0,0,0.05)"
+              marginTop: 30,
+              position: "relative",
+              overflow: "hidden",
+              background:
+                "linear-gradient(135deg, #071f3d 0%, #12355b 42%, #1d6fa5 100%)",
+              borderRadius: isSmallScreen ? 22 : 32,
+              padding: isSmallScreen ? 18 : 30,
+              border: "1px solid rgba(255,255,255,0.30)",
+              boxShadow: "0 22px 55px rgba(15,23,42,0.22)"
             }}
           >
-            <div style={{ textAlign: "center", marginBottom: 18 }}>
-              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
-                Guides and TikTok
-              </h3>
-              <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 0 }}>
-                Open article guides when needed and keep your latest lesson easy to reach.
-              </p>
-            </div>
             <div
               style={{
-                display: "flex",
-                gap: 16,
-                flexWrap: "wrap",
-                alignItems: "stretch",
-                justifyContent: "center"
+                position: "absolute",
+                right: -90,
+                top: -90,
+                width: 240,
+                height: 240,
+                borderRadius: "50%",
+                background: "rgba(236,72,153,0.24)",
+                pointerEvents: "none"
               }}
-            >
+            />
+            <div
+              style={{
+                position: "absolute",
+                left: -110,
+                bottom: -110,
+                width: 260,
+                height: 260,
+                borderRadius: "50%",
+                background: "rgba(250,204,21,0.18)",
+                pointerEvents: "none"
+              }}
+            />
+            <div style={{ position: "relative" }}>
               <div
                 style={{
-                  ...homeInfoCardStyle,
-                  flex: isSmallScreen ? "1 1 100%" : "1.15 1 380px",
-                  maxWidth: isSmallScreen ? "none" : 560,
-                  textAlign: "left"
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: 18,
+                  flexWrap: "wrap",
+                  marginBottom: 22
+                }}
+              >
+                <div style={{ maxWidth: 760 }}>
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      padding: "7px 14px",
+                      borderRadius: 999,
+                      background: "rgba(255,255,255,0.16)",
+                      color: "#dbeafe",
+                      fontWeight: 900,
+                      fontSize: 12,
+                      letterSpacing: 0.8,
+                      textTransform: "uppercase",
+                      marginBottom: 12,
+                      border: "1px solid rgba(255,255,255,0.22)"
+                    }}
+                  >
+                    Quick Start Learning Hub
+                  </div>
+                  <h3
+                    style={{
+                      color: "white",
+                      marginTop: 0,
+                      marginBottom: 8,
+                      fontSize: isSmallScreen ? 28 : 40,
+                      lineHeight: 1.05,
+                      fontWeight: 900,
+                      letterSpacing: -0.8
+                    }}
+                  >
+                    Pick a topic. Practice right away.
+                  </h3>
+                  <p
+                    style={{
+                      color: "#dbeafe",
+                      marginTop: 0,
+                      marginBottom: 0,
+                      fontSize: isSmallScreen ? 16 : 19,
+                      lineHeight: 1.45
+                    }}
+                  >
+                    Your highest-value practice links are now grouped like a real launch pad instead of a plain list.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: isSmallScreen ? "1fr 1fr" : "repeat(3, 1fr)",
+                    gap: 10,
+                    minWidth: isSmallScreen ? "100%" : 320
+                  }}
+                >
+                  {[
+                    ["25+", "Practice tools"],
+                    ["Fast", "Start anytime"],
+                    ["Free", "No signup"]
+                  ].map(([number, label]) => (
+                    <div
+                      key={label}
+                      style={{
+                        background: "rgba(255,255,255,0.14)",
+                        border: "1px solid rgba(255,255,255,0.22)",
+                        borderRadius: 18,
+                        padding: "12px 14px",
+                        textAlign: "center",
+                        backdropFilter: "blur(6px)"
+                      }}
+                    >
+                      <div style={{ color: "white", fontSize: 22, fontWeight: 900 }}>{number}</div>
+                      <div style={{ color: "#dbeafe", fontSize: 12, fontWeight: 800 }}>{label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: isSmallScreen ? "1fr" : "minmax(0, 1.35fr) minmax(300px, 0.75fr)",
+                  gap: 18,
+                  alignItems: "stretch"
                 }}
               >
                 <div
                   style={{
-                    color: "#14532d",
-                    fontWeight: 800,
-                    fontSize: 12,
-                    letterSpacing: 0.6,
-                    textTransform: "uppercase",
-                    marginBottom: 10
-                  }}
-                >
-                  Study guides
-                </div>
-
-                <h4 style={{ color: "#12355b", marginTop: 0, marginBottom: 14, fontSize: 18 }}>
-                  Start here
-                </h4>
-
-                    <div style={{ display: "grid", gap: 10 }}>
-                    <a href="/medical-terminology-builder.html" style={homeActionLinkStyle("#7c3aed")}>
-                      Medical Terminology Builder
-                    </a>
-
-                    <a href="/anatomy-labeling-practice.html" style={homeActionLinkStyle("#0f766e")}>
-                      Anatomy Labeling Practice
-                    </a>
-
-                    <a href="/rn-practice-questions.html" style={homeActionLinkStyle("#be123c")}>
-                      RN Practice Questions
-                    </a>
-
-                    <a href="/free-cbet-practice-test.html" style={homeActionLinkStyle("#f59e42")}>
-                      Free CBET Practice Test
-                    </a>
-
-                    <a href="/medical-prefix-suffix-practice.html" style={homeActionLinkStyle("#6d28d9")}>
-                      Prefix & Suffix Practice
-                    </a>
-
-                    <a href="/cres-practice-questions.html" style={homeActionLinkStyle("#1e40af")}>
-                      CRES Practice Questions
-                    </a>
-
-                    <a href="/how-to-pass-rn-nclex-exam.html" style={homeActionLinkStyle("#be185d")}>
-                      How to Pass RN NCLEX Exam
-                    </a>
-
-                    <a href="/browse-all-practice.html" style={homeActionLinkStyle("#12355b")}>
-                      Browse All Practice →
-                    </a>
-                  </div>
-                  </div>
-
-                <div
-                  style={{
-                    ...homeInfoCardStyle,
-                    flex: isSmallScreen ? "1 1 100%" : "0.9 1 320px",
-                    maxWidth: isSmallScreen ? "none" : 440,
-                    textAlign: "left",
-                    background: "linear-gradient(180deg, #fff7fb, #ffffff)",
-                    border: "1px solid #f4c7d7"
+                    background: "rgba(255,255,255,0.97)",
+                    borderRadius: isSmallScreen ? 20 : 26,
+                    padding: isSmallScreen ? 18 : 24,
+                    border: "1px solid rgba(191,219,254,0.95)",
+                    boxShadow: "0 18px 40px rgba(15,23,42,0.18)"
                   }}
                 >
                   <div
                     style={{
-                      color: "#be185d",
-                      fontWeight: 800,
-                      fontSize: 12,
-                      letterSpacing: 0.6,
-                      textTransform: "uppercase",
-                      marginBottom: 10
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: 12,
+                      flexWrap: "wrap",
+                      marginBottom: 16
                     }}
                   >
-                    Newest on TikTok
+                    <div>
+                      <div
+                        style={{
+                          color: "#1d4ed8",
+                          fontWeight: 900,
+                          fontSize: 12,
+                          letterSpacing: 0.9,
+                          textTransform: "uppercase",
+                          marginBottom: 7
+                        }}
+                      >
+                        Study Guides + Practice
+                      </div>
+                      <h4
+                        style={{
+                          color: "#0f2f57",
+                          marginTop: 0,
+                          marginBottom: 0,
+                          fontSize: isSmallScreen ? 22 : 28,
+                          lineHeight: 1.12
+                        }}
+                      >
+                        Start with the strongest practice paths
+                      </h4>
+                    </div>
+                    <a
+                      href="/browse-all-practice.html"
+                      style={{
+                        ...homeActionLinkStyle("linear-gradient(135deg, #0f172a, #334155)"),
+                        padding: "11px 18px",
+                        whiteSpace: "nowrap"
+                      }}
+                    >
+                      Browse All →
+                    </a>
                   </div>
 
-                  <div style={{ display: "grid", gap: 10 }}>
+                  <a
+                    href="/medical-terminology-builder.html"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 16,
+                      padding: isSmallScreen ? 18 : 22,
+                      borderRadius: 22,
+                      textDecoration: "none",
+                      background: "linear-gradient(135deg, #2563eb, #7c3aed)",
+                      color: "white",
+                      boxShadow: "0 16px 34px rgba(37,99,235,0.34)",
+                      marginBottom: 14
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                      <div style={{ fontSize: 34 }}>🧠</div>
+                      <div>
+                        <div style={{ fontSize: isSmallScreen ? 19 : 23, fontWeight: 900, lineHeight: 1.1 }}>
+                          Medical Terminology Builder
+                        </div>
+                        <div style={{ color: "#e0e7ff", fontWeight: 700, marginTop: 4 }}>
+                          Best first stop for beginners
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ fontSize: 26, fontWeight: 900 }}>→</div>
+                  </a>
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: isSmallScreen ? "1fr" : "repeat(2, minmax(0, 1fr))",
+                      gap: 12
+                    }}
+                  >
+                    {[
+                      ["🫀", "Anatomy Labeling Practice", "/anatomy-labeling-practice.html", "Label body parts visually", "#0f766e"],
+                      ["🩺", "RN Practice Questions", "/rn-practice-questions.html", "Nursing-style review", "#be123c"],
+                      ["⚡", "Free CBET Practice Test", "/free-cbet-practice-test.html", "BMET exam prep", "#f59e0b"],
+                      ["✚", "Prefix & Suffix Practice", "/medical-prefix-suffix-practice.html", "Build word parts", "#6d28d9"],
+                      ["🛠️", "CRES Practice Questions", "/cres-practice-questions.html", "Imaging equipment review", "#1e40af"],
+                      ["📘", "How to Pass RN NCLEX Exam", "/how-to-pass-rn-nclex-exam.html", "Study strategy guide", "#be185d"]
+                    ].map(([icon, title, href, description, color]) => (
+                      <a
+                        key={title}
+                        href={href}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 12,
+                          padding: "14px 15px",
+                          borderRadius: 18,
+                          background: "#ffffff",
+                          color: "#12355b",
+                          textDecoration: "none",
+                          border: `1px solid ${color}33`,
+                          boxShadow: "0 10px 22px rgba(15,23,42,0.08)"
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: 42,
+                            height: 42,
+                            borderRadius: 14,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: `${color}14`,
+                            fontSize: 22,
+                            flex: "0 0 auto"
+                          }}
+                        >
+                          {icon}
+                        </div>
+                        <div>
+                          <div style={{ fontWeight: 900, lineHeight: 1.15 }}>{title}</div>
+                          <div style={{ color: "#64748b", fontSize: 13, fontWeight: 700, marginTop: 3 }}>
+                            {description}
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    background: "linear-gradient(180deg, #fff7fb, #ffffff)",
+                    borderRadius: isSmallScreen ? 20 : 26,
+                    padding: isSmallScreen ? 18 : 24,
+                    border: "1px solid #f9a8d4",
+                    boxShadow: "0 18px 40px rgba(190,24,93,0.16)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between"
+                  }}
+                >
+                  <div>
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        padding: "7px 12px",
+                        borderRadius: 999,
+                        background: "#fce7f3",
+                        color: "#be185d",
+                        fontWeight: 900,
+                        fontSize: 12,
+                        letterSpacing: 0.8,
+                        textTransform: "uppercase",
+                        marginBottom: 12
+                      }}
+                    >
+                      Newest on TikTok
+                    </div>
+                    <h4
+                      style={{
+                        color: "#0f2f57",
+                        marginTop: 0,
+                        marginBottom: 10,
+                        fontSize: isSmallScreen ? 22 : 28,
+                        lineHeight: 1.1
+                      }}
+                    >
+                      Learn it fast. Then test yourself.
+                    </h4>
+                    <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 18, lineHeight: 1.55 }}>
+                      Watch quick breakdowns, then jump straight into interactive practice to lock it in.
+                    </p>
+                  </div>
+
+                  <div style={{ display: "grid", gap: 12 }}>
                     <a
                       href={tiktokLatestVideoUrl}
                       target="_blank"
                       rel="noreferrer"
-                      style={homeActionLinkStyle("linear-gradient(135deg, #111827, #1f2937)")}
+                      style={{
+                        ...homeActionLinkStyle("linear-gradient(135deg, #111827, #1f2937)"),
+                        padding: "14px 18px"
+                      }}
                     >
                       {hasTikTokLatestVideo ? "Watch Latest TikTok" : "Open TikTok Profile"}
                     </a>
@@ -8301,30 +8515,33 @@ return (
                       href={tiktokProfileUrl}
                       target="_blank"
                       rel="noreferrer"
-                      style={homeActionLinkStyle("linear-gradient(135deg, #ec4899, #f43f5e)")}
+                      style={{
+                        ...homeActionLinkStyle("linear-gradient(135deg, #ec4899, #f43f5e)"),
+                        padding: "14px 18px"
+                      }}
                     >
                       Follow on TikTok
                     </a>
-                  </div>
 
-                  {!hasTikTokLatestVideo && (
-                    <div
-                      style={{
-                        marginTop: 12,
-                        padding: "10px 12px",
-                        borderRadius: 14,
-                        background: "#fee2e2",
-                        color: "#7f1d1d",
-                        fontWeight: 600
-                      }}
-                    >
-                      Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video.
-                    </div>
-                  )}
+                    {!hasTikTokLatestVideo && (
+                      <div
+                        style={{
+                          padding: "10px 12px",
+                          borderRadius: 14,
+                          background: "#fee2e2",
+                          color: "#7f1d1d",
+                          fontWeight: 700
+                        }}
+                      >
+                        Add VITE_TIKTOK_LATEST_VIDEO_URL to feature your newest video.
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
           )}
         {activeTab === "Dashboard" && (
           <div
