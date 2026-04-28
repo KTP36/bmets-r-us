@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MedSkillBuilder Apparel | First Release Coming Soon</title>
+
+  <meta name="description" content="MedSkillBuilder apparel is coming soon. Athletic performance tees for clinical engineers, healthcare learners, biomedical professionals, and problem solvers." />
+
+  <link rel="canonical" href="https://medskillbuilder.com/apparel.html" />
+
+  <style>
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --dark: #0f172a;
+      --white: #ffffff;
+      --muted: #64748b;
+      --green: #22c55e;
+      --border: #dbeafe;
+      --light: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.22), transparent 35%),
+        linear-gradient(180deg, #071827 0%, #0f172a 58%, #f8fafc 58%, #ffffff 100%);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+
+    .brand img {
+      width: 56px;
+    }
+
+    .brand strong {
+      font-size: 24px;
+      display: block;
+    }
+
+    .brand span {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: center;
+      color: white;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.45);
+      color: #86efac;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #dbeafe;
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+
+    .price {
+      font-size: 42px;
+      font-weight: 900;
+      margin: 18px 0 6px;
+      color: white;
+    }
+
+    .price span {
+      display: block;
+      font-size: 16px;
+      color: #cbd5e1;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      box-shadow: 0 16px 30px rgba(34,197,94,0.25);
+    }
+
+    .btn.secondary {
+      color: #082f57;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+    }
+
+    .shirt-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.22);
+    }
+
+    .shirt-card img {
+      width: 100%;
+      border-radius: 22px;
+      display: block;
+      background: white;
+    }
+
+    .drop-box {
+      background: linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      border-radius: 28px;
+      padding: 34px;
+      margin-bottom: 24px;
+      box-shadow: 0 18px 42px rgba(8,47,87,0.24);
+    }
+
+    .drop-box h2,
+    .drop-box p {
+      color: white;
+    }
+
+    .footer {
+      text-align: center;
+      color: #64748b;
+      padding: 30px 0 0;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <a class="brand" href="/">
+      <img src="/logo.png" alt="MedSkillBuilder Logo" />
+      <div>
+        <strong>MedSkillBuilder</strong>
+        <span>Learn the concept. Build the skill. Solve the problem.</span>
+      </div>
+    </a>
+
+    <section class="hero">
+      <div>
+        <div class="badge">First Release Coming Soon</div>
+
+        <h1>MedSkillBuilder Performance Tee</h1>
+
+        <p>
+          Athletic-style apparel built for clinical engineers, biomedical professionals,
+          healthcare learners, and problem solvers who believe in starting with the concept.
+        </p>
+
+        <div class="price">
+          $27.99
+          <span>Intro preorder price</span>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScQrOcW-nSx9id5zXP3XjNdhtKLa6SeXAp51JRNkM2dDvzu_w/viewform" target="_blank">
+            Join Preorder List →
+          </a>
+          <a class="btn secondary" href="/">
+            Back to MedSkillBuilder
+          </a>
+        </div>
+      </div>
+
+      <div class="shirt-card">
+        <img src="/images/all-shirts.png" alt="MedSkillBuilder Shirt Collection" />
+      </div>
+    </section>
+
+    <section class="drop-box">
+      <h2>Want first access?</h2>
+      <p>
+        Join the preorder list and help shape the first MedSkillBuilder apparel drop.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLScQrOcW-nSx9id5zXP3XjNdhtKLa6SeXAp51JRNkM2dDvzu_w/viewform" target="_blank">
+          Join Preorder List →
+        </a>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>© 2026 MedSkillBuilder.</p>
+    </div>
+
+  </div>
+</body>
+</html>

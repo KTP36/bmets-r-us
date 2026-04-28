@@ -7314,6 +7314,26 @@ return (
         >
           Home
         </button>
+        <a
+          href="/apparel.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseEnter={() => setHoveredNavTab("Apparel")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={{
+            ...navButtonStyle(false, hoveredNavTab === "Apparel"),
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textDecoration: "none",
+            background: hoveredNavTab === "Apparel"
+              ? "linear-gradient(135deg, #111827, #1d6fa5)"
+              : "linear-gradient(135deg, #0f172a, #12355b)",
+            color: "white"
+          }}
+        >
+          Apparel (Pre-Order)
+        </a>
         {activeTab === "Home" && (
           <>
         <button
