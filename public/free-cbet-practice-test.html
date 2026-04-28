@@ -1,216 +1,831 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free CBET Practice Test | Biomedical Equipment Exam Prep</title>
-    <meta name="description" content="Free CBET practice test with interactive biomedical equipment questions. Prepare for the CBET exam with real-style practice.">
-    <meta name="keywords" content="free CBET practice test, CBET practice exam, biomedical equipment technician exam, CBET test prep, CBET mock test">
-    <meta name="og:title" content="Free CBET Practice Test | MedSkillBuilder">
-    <meta name="og:description" content="Practice for the CBET exam with a free interactive test, instant scoring, and targeted review.">
-    <meta name="og:type" content="website">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Is this CBET practice test free?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. MedSkillBuilder provides a free CBET practice test experience online so learners can review biomedical equipment concepts and exam-style questions."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What topics are covered on the CBET practice test?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The CBET practice test covers common biomedical equipment domains such as electrical safety, monitoring systems, therapeutic devices, ventilators, troubleshooting, and quality control concepts."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can I review missed CBET questions after the test?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. MedSkillBuilder includes missed-question review tools so you can revisit weak areas and practice again with more focus."
-                }
-            }
-        ]
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Free CBET Practice Test | Biomedical Equipment Exam Prep</title>
+
+  <meta name="description" content="Take a free CBET practice test with interactive biomedical equipment questions, instant scoring, missed-question review, electronics review, troubleshooting practice, and exam-style CBET prep." />
+
+  <meta name="keywords" content="free CBET practice test, CBET practice exam, biomedical equipment technician exam, CBET test prep, BMET practice questions, biomedical equipment practice test, CBET electronics practice" />
+
+  <link rel="canonical" href="https://medskillbuilder.com/free-cbet-practice-test.html" />
+
+  <meta property="og:title" content="Free CBET Practice Test | MedSkillBuilder" />
+  <meta property="og:description" content="Practice CBET-style biomedical equipment questions with instant feedback and missed-question review." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/free-cbet-practice-test.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this CBET practice test free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. MedSkillBuilder provides a free CBET practice test experience online so learners can review biomedical equipment concepts and exam-style questions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What topics are covered on the CBET practice test?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CBET practice test covers biomedical equipment concepts including electronics, electrical safety, patient monitoring, troubleshooting, preventive maintenance, ventilators, infusion pumps, defibrillators, and quality control."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the CBET practice test include missed-question review?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. MedSkillBuilder includes missed-question review so learners can focus on weak areas and improve over time."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --sky: #eaf6ff;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --purple: #7c3aed;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
     }
-    </script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-        .branding { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 0; text-align: center; }
-        .branding img { width: 50px; height: auto; }
-        .branding-text h1 { font-size: 28px; color: #12355b; margin: 0; font-weight: 700; }
-        .branding-text p { font-size: 14px; color: #4f6275; margin: 0; }
-        header { background: linear-gradient(135deg, #12355b, #1d6fa5); color: white; padding: 40px 0; text-align: center; }
-        header h2 { font-size: 42px; margin-bottom: 8px; margin-top: 0; }
-        header p { font-size: 18px; opacity: 0.92; }
-        main { padding: 40px 0; }
-        section { margin-bottom: 40px; }
-        h2 { color: #12355b; font-size: 28px; margin-bottom: 16px; margin-top: 24px; }
-        h3 { color: #1d6fa5; font-size: 20px; margin-bottom: 12px; margin-top: 16px; }
-        p { margin-bottom: 12px; }
-        ul { margin-left: 20px; margin-bottom: 16px; }
-        li { margin-bottom: 8px; }
-        .cta-button { display: inline-block; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; margin: 20px 0; transition: transform 0.2s; }
-        .cta-button:hover { transform: scale(1.05); }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin: 20px 0; }
-        .feature-card { background: #f8fafc; padding: 20px; border-radius: 10px; border-left: 4px solid #1d6fa5; }
-        .feature-card h4 { color: #12355b; margin-bottom: 8px; }
-        .callout { background: #eef4ff; border-left: 4px solid #1d6fa5; padding: 16px; margin: 20px 0; border-radius: 4px; }
-        .resource-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
-        .resource-links a { text-decoration: none; color: #12355b; background: #e8f1fb; border-radius: 999px; padding: 10px 14px; font-weight: 600; }
-        footer { background: linear-gradient(135deg, #12355b, #1d6fa5); color: white; padding: 40px 0; text-align: center; margin-top: 60px; }
-    </style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(29, 111, 165, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 58px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(8, 47, 87, 0.98), rgba(18, 84, 138, 0.97)),
+        linear-gradient(135deg, #12355b, #1d6fa5);
+      color: white;
+      border-radius: 34px;
+      padding: 58px 38px;
+      box-shadow: 0 28px 70px rgba(8, 47, 87, 0.30);
+      margin-bottom: 24px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -95px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 70px;
+      bottom: -130px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.18);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 870px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: clamp(18px, 2.2vw, 23px);
+      color: #e0f2fe;
+      max-width: 790px;
+      margin-bottom: 22px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      align-items: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.32);
+    }
+
+    .cta.secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 22px;
+    }
+
+    .stat span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin: 20px 0 26px;
+    }
+
+    main {
+      padding-bottom: 35px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(236, 253, 245, 0.86), rgba(255, 255, 255, 0.96));
+      border-color: rgba(22, 163, 74, 0.35);
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--blue);
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: #e0f2fe;
+      margin-bottom: 12px;
+      font-size: 23px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 6px solid #2563eb;
+      border-radius: 18px;
+      padding: 17px 18px;
+      color: #1e3a8a;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    ul {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
+    }
+
+    .quiz-preview {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .question {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .question strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .explain {
+      margin-top: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
+    }
+
+    .path {
+      counter-reset: step;
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .step {
+      position: relative;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 20px 20px 70px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 20px;
+      top: 22px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
+      color: white;
+      font-weight: 900;
+    }
+
+    .resource-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .resource-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #e8f1fb;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 900;
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8, 47, 87, 0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
+    }
+
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer h2 {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .stats,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-        <!-- SEO Content Start -->
-        <div class="container" style="margin-top: 32px; margin-bottom: 32px;">
-            <h1>Free CBET Practice Test</h1>
-            <p>
-                Prepare for the Certified Biomedical Equipment Technician (CBET) exam with free practice questions designed to simulate real exam scenarios. Whether you're studying electronics, medical equipment, or safety standards, this CBET practice test helps reinforce your knowledge and identify areas for improvement.
-            </p>
-            <h2>What is the CBET Exam?</h2>
-            <p>
-                The CBET (Certified Biomedical Equipment Technician) exam is a certification for professionals working with medical devices and healthcare technology. It tests knowledge in anatomy and physiology, electronics, troubleshooting, and safety standards used in clinical environments.
-            </p>
-            <h2>How to Pass the CBET Exam</h2>
-            <p>
-                To pass the CBET exam, you need a strong understanding of biomedical equipment, electrical principles, and patient safety. Consistent practice with real-style questions is one of the most effective ways to prepare. Use this interactive test to build confidence and improve your test-taking skills.
-            </p>
-            <h2>Why Use Practice Questions?</h2>
-            <p>
-                Practice questions help reinforce learning, improve recall, and simulate the actual exam experience. By testing yourself regularly, you can identify weak areas and focus your study efforts where they matter most.
-            </p>
-            <p>
-                Looking for more practice? 
-                <a href="/medical-equipment-identification-practice.html">Medical Equipment Identification</a> or 
-                <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>.
-            </p>
+
+  <div class="topbar">
+    <div class="container">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Interactive medical and biomedical learning</span>
         </div>
-        <!-- SEO Content End -->
-        <div class="branding container">
-        <img src="/logo.png" alt="MedSkillBuilder Logo" style="width: 60px;">
-        <div class="branding-text">
-            <h1>MedSkillBuilder</h1>
-            <p>Interactive Medical Training Platform</p>
+      </a>
+    </div>
+  </div>
+
+  <header class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">CBET Practice Test</div>
+
+        <h1>Free CBET Practice Test for Biomedical Equipment Prep</h1>
+
+        <p>
+          Practice biomedical equipment questions with instant feedback, missed-question review, and focused study tools for electronics,
+          patient monitoring, troubleshooting, safety, and clinical technology concepts.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/?tab=cbet">Start Interactive CBET Practice →</a>
+          <a class="cta secondary" href="/most-missed-cbet-electronics-questions.html">Review Most Missed Electronics Questions</a>
         </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">Free<span>No signup required</span></div>
+      <div class="stat">Instant<span>Score feedback</span></div>
+      <div class="stat">Focused<span>Missed review</span></div>
+      <div class="stat">Practical<span>BMET-style topics</span></div>
     </div>
 
-    <header>
-        <div class="container">
-            <h2>Free CBET Practice Test</h2>
-            <p>Exam-Style Biomedical Equipment Technician Prep With Instant Feedback</p>
-        </div>
-    </header>
-
-    <div class="container" style="margin-top: 16px;">
-        <div style="background: #fff7ed; border: 1px solid #fed7aa; color: #7c2d12; padding: 12px 14px; border-radius: 10px; font-size: 14px; line-height: 1.5;">
-            MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, Cash App, Google, or any certification provider.
-        </div>
+    <div class="notice">
+      MedSkillBuilder is an independent educational platform. It is not affiliated with or endorsed by AAMI, ATI, Cash App, Google, or any certification provider.
     </div>
+  </header>
 
-    <main>
-        <div class="container">
-            <section>
-                <h2>Take a Free CBET Practice Test Online</h2>
-                <p>If you are preparing for the Certified Biomedical Equipment Technician exam, a free CBET practice test is one of the fastest ways to find weak areas and build exam confidence. MedSkillBuilder gives you an interactive test experience with score tracking, missed-question review, and realistic biomedical equipment topics.</p>
+  <main>
+    <div class="container">
 
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>Instant Scoring</h4>
-                        <p>See your results right away and understand how close you are to exam readiness.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Missed-Question Review</h4>
-                        <p>Focus your study time by reviewing the questions you missed instead of repeating everything.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Exam-Style Format</h4>
-                        <p>Practice with a question flow that feels closer to real certification testing conditions.</p>
-                    </div>
-                </div>
+      <section class="section highlight">
+        <h2>Take a Free CBET Practice Test Online</h2>
 
-                <a href="/" class="cta-button">Start the Free CBET Practice Test</a>
-            </section>
+        <p class="lead">
+          If you are preparing for the Certified Biomedical Equipment Technician exam, practice questions are one of the fastest ways
+          to find weak areas and build confidence. This page is built to move you from passive reading into active practice.
+        </p>
 
-            <section>
-                <h2>What This CBET Practice Test Helps You Study</h2>
-                <p>The CBET exam covers a broad range of biomedical equipment knowledge. A strong practice test should not just ask random questions; it should help you build pattern recognition across the major exam domains.</p>
-                <ul>
-                    <li>Electrical safety and device fundamentals</li>
-                    <li>Patient monitoring systems</li>
-                    <li>Therapeutic and diagnostic equipment</li>
-                    <li>Ventilator and respiratory device concepts</li>
-                    <li>Quality control and preventive maintenance</li>
-                    <li>Troubleshooting and service decision-making</li>
-                </ul>
+        <div class="grid-3">
+          <div class="card strong">
+            <div class="icon">⚡</div>
+            <h3>Instant Scoring</h3>
+            <p>Answer questions and see your score so you know where you stand.</p>
+          </div>
 
-                <div class="callout">
-                    <strong>Study tip:</strong> Use a free CBET practice test to identify weak topics first, then shift into repeated review of missed questions until your score becomes consistent.
-                </div>
-            </section>
+          <div class="card strong">
+            <div class="icon">🎯</div>
+            <h3>Missed-Question Review</h3>
+            <p>Focus your study time on what you missed instead of repeating everything.</p>
+          </div>
 
-            <section>
-                <h2>Why a Practice Test Works Better Than Passive Reading Alone</h2>
-                <ul>
-                    <li><strong>It exposes weak spots fast</strong> so you stop guessing about what to study.</li>
-                    <li><strong>It builds recall under pressure</strong> instead of relying on passive familiarity.</li>
-                    <li><strong>It helps with pacing</strong> by making you answer and review in a structured sequence.</li>
-                    <li><strong>It encourages repeated review</strong> which is usually where real score gains happen.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>How to Use This Free CBET Practice Test Effectively</h2>
-                <h3>1. Take a first pass honestly</h3>
-                <p>Answer questions without looking anything up. The goal is to get a real baseline.</p>
-
-                <h3>2. Review every missed question</h3>
-                <p>Do not just note the score. Missed-question review is where most learning happens.</p>
-
-                <h3>3. Retake weak areas</h3>
-                <p>Repeat the test experience until your score improves consistently, not just once.</p>
-
-                <h3>4. Combine with your study guide</h3>
-                <p>Use practice testing together with focused review on devices, safety, and troubleshooting principles.</p>
-            </section>
-
-            <section>
-                <h2>More CBET Prep Resources</h2>
-                <p>If you want to go beyond one test session, pair this page with the rest of your CBET prep content.</p>
-                <div class="resource-links">
-                    <a href="/cbet-practice-questions.html">CBET Practice Questions</a>
-                    <a href="/how-to-pass-cbet-exam.html">How to Pass the CBET Exam</a>
-                    <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-                </div>
-            </section>
-
-            <section>
-                <h2>Ready to Practice?</h2>
-                <p>Use MedSkillBuilder to take a free CBET practice test, review missed questions, and build confidence before test day.</p>
-                <a href="/" class="cta-button">Open MedSkillBuilder</a>
-            </section>
+          <div class="card strong">
+            <div class="icon">🛠️</div>
+            <h3>Biomedical Focus</h3>
+            <p>Practice concepts connected to equipment safety, monitoring, troubleshooting, and electronics.</p>
+          </div>
         </div>
-    </main>
 
-    <footer>
-        <div class="container">
-            <div style="margin-bottom: 20px;">
-                <h3 style="margin-bottom: 8px; font-size: 20px; color: white;">MedSkillBuilder</h3>
-                <p style="margin: 0; opacity: 0.9;">CBET, anatomy, and medical exam prep resources in one place</p>
-            </div>
-            <hr style="opacity: 0.3; margin: 20px 0;">
-            <p style="margin: 8px 0; font-size: 14px;">&copy; 2026 MedSkillBuilder. All rights reserved.</p>
-            <p style="margin: 8px 0; font-size: 13px; opacity: 0.8;"><a href="/" style="color: #58b4d8; text-decoration: none;">Home</a> | <a href="/cbet-practice-questions.html" style="color: #58b4d8; text-decoration: none;">CBET Practice Questions</a> | <a href="/how-to-pass-cbet-exam.html" style="color: #58b4d8; text-decoration: none;">CBET Study Guide</a></p>
+        <a href="/?tab=cbet" class="cta primary">Start the Free CBET Practice Test →</a>
+      </section>
+
+      <section class="section">
+        <h2>What This CBET Practice Test Helps You Study</h2>
+
+        <p>
+          CBET prep should connect definitions to real equipment behavior. The goal is not just memorizing terms.
+          The goal is recognizing what is happening inside a circuit, a medical device, or a troubleshooting situation.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Electrical Safety</h3>
+            <p>Grounding, leakage current, equipment safety testing, and risk reduction.</p>
+          </div>
+
+          <div class="card">
+            <h3>Patient Monitoring</h3>
+            <p>ECG, SpO₂, NIBP, patient monitors, cables, sensors, alarms, and signal problems.</p>
+          </div>
+
+          <div class="card">
+            <h3>Therapeutic Equipment</h3>
+            <p>Infusion pumps, defibrillators, ventilators, suction, electrosurgery, and function-based questions.</p>
+          </div>
+
+          <div class="card">
+            <h3>Electronics Basics</h3>
+            <p>Voltage, current, resistance, Ohm’s law, capacitors, rectifiers, switches, fuses, and circuits.</p>
+          </div>
+
+          <div class="card">
+            <h3>Troubleshooting</h3>
+            <p>What to check first, how to narrow the fault, and how to think through equipment symptoms logically.</p>
+          </div>
+
+          <div class="card">
+            <h3>Preventive Maintenance</h3>
+            <p>Inspection, testing, documentation, performance verification, and quality control basics.</p>
+          </div>
         </div>
-    </footer>
+
+        <div class="callout">
+          Study tip: Take the test first, review what you missed, then study the exact topic that caused the mistake.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Quick Sample CBET Questions</h2>
+
+        <p>
+          These examples show the kind of thinking you should practice. The full interactive practice section gives you the better test-style flow.
+        </p>
+
+        <div class="quiz-preview">
+
+          <div class="question">
+            <strong>1. Which measurement is commonly used to verify electrical safety leakage current?</strong>
+            <p>A. Volts &nbsp; B. Microamps &nbsp; C. Watts &nbsp; D. Hertz</p>
+            <div class="answer">Answer: B. Microamps</div>
+            <div class="explain">Leakage current is very small, so it is commonly measured in microamps during electrical safety testing.</div>
+          </div>
+
+          <div class="question">
+            <strong>2. A patient monitor repeatedly loses ECG signal. What should be checked first?</strong>
+            <p>A. Printer paper &nbsp; B. Battery charger fan &nbsp; C. Electrode placement and lead wires &nbsp; D. Nurse call system</p>
+            <div class="answer">Answer: C. Electrode placement and lead wires</div>
+            <div class="explain">Always start with the most likely and simplest cause first: electrodes, skin prep, lead wires, and cable connection.</div>
+          </div>
+
+          <div class="question">
+            <strong>3. Which component stores energy before shock delivery in a defibrillator?</strong>
+            <p>A. Speaker &nbsp; B. Capacitor &nbsp; C. Fuse &nbsp; D. Relay coil only</p>
+            <div class="answer">Answer: B. Capacitor</div>
+            <div class="explain">A capacitor stores electrical energy and releases it during defibrillator shock delivery.</div>
+          </div>
+
+          <div class="question">
+            <strong>4. If resistance increases and voltage stays the same, what happens to current?</strong>
+            <p>A. Current increases &nbsp; B. Current decreases &nbsp; C. Current stays the same &nbsp; D. Voltage becomes zero</p>
+            <div class="answer">Answer: B. Current decreases</div>
+            <div class="explain">By Ohm’s law, current equals voltage divided by resistance. Higher resistance means less current flow.</div>
+          </div>
+
+          <div class="question">
+            <strong>5. Which analyzer is commonly used to test a ventilator?</strong>
+            <p>A. Defibrillator analyzer &nbsp; B. Gas flow analyzer &nbsp; C. ECG simulator only &nbsp; D. Infusion pump analyzer</p>
+            <div class="answer">Answer: B. Gas flow analyzer</div>
+            <div class="explain">Ventilator testing involves flow, pressure, volume, oxygen concentration, and respiratory parameters.</div>
+          </div>
+
+        </div>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/?tab=cbet">Open Interactive CBET Practice →</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Why Practice Questions Work Better Than Passive Reading Alone</h2>
+
+        <p>
+          Reading is important, but practice is where you find out what you actually understand.
+          CBET-style questions force you to apply concepts instead of only recognizing vocabulary.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Practice exposes weak areas fast</h3>
+            <p>You stop guessing what to study because missed questions show exactly where your gaps are.</p>
+          </div>
+
+          <div class="card">
+            <h3>Practice builds recall under pressure</h3>
+            <p>Answering questions helps train the brain to retrieve information, not just recognize it while reading.</p>
+          </div>
+
+          <div class="card">
+            <h3>Practice improves troubleshooting logic</h3>
+            <p>Biomedical equipment questions often ask what to check first, what is most likely, or what action is safest.</p>
+          </div>
+
+          <div class="card">
+            <h3>Practice creates confidence</h3>
+            <p>Repeated exposure makes unfamiliar equipment concepts feel more manageable.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>How to Use This Free CBET Practice Test Effectively</h2>
+
+        <div class="path">
+          <div class="step">
+            <h3>Take a baseline attempt</h3>
+            <p>Answer honestly without looking anything up. You need a real starting point.</p>
+          </div>
+
+          <div class="step">
+            <h3>Review every missed question</h3>
+            <p>The score matters, but the missed-question review is where most learning happens.</p>
+          </div>
+
+          <div class="step">
+            <h3>Study the pattern behind the miss</h3>
+            <p>Do not just memorize the answer. Ask why that answer was correct.</p>
+          </div>
+
+          <div class="step">
+            <h3>Retake weak areas</h3>
+            <p>Repeat practice until your score improves consistently, not just once.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Common CBET Areas Learners Should Not Ignore</h2>
+
+        <ul>
+          <li><strong>Electrical safety:</strong> leakage current, grounding, inspection, and safety testing.</li>
+          <li><strong>Basic electronics:</strong> voltage, current, resistance, Ohm’s law, capacitors, rectifiers, and fuses.</li>
+          <li><strong>Monitoring systems:</strong> ECG, SpO₂, NIBP, sensors, cables, alarms, and signal quality.</li>
+          <li><strong>Therapeutic devices:</strong> defibrillators, infusion pumps, ventilators, suction, and electrosurgical units.</li>
+          <li><strong>Troubleshooting:</strong> symptom recognition, likely cause, first check, and safe service decisions.</li>
+          <li><strong>PM and documentation:</strong> preventive maintenance, verification, calibration, and quality control.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>More CBET Prep Resources</h2>
+
+        <p>
+          Pair this practice test with focused guides and question sets to build stronger retention.
+        </p>
+
+        <div class="resource-links">
+          <a href="/cbet-practice-questions.html">CBET Practice Questions</a>
+          <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
+          <a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics Questions</a>
+          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+          <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+          <a href="/how-to-pass-cbet-exam.html">How to Pass the CBET Exam</a>
+          <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <h2>Ready to practice for real?</h2>
+
+        <p>
+          Jump directly into the interactive CBET practice area. This button does not send learners back to the homepage.
+          It opens the CBET practice tab directly.
+        </p>
+
+        <div class="cta-row">
+          <a href="/?tab=cbet" class="cta primary">Start CBET Practice Now →</a>
+          <a href="/browse-all-practice.html" class="cta secondary">Browse All Practice Tools</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <h2>MedSkillBuilder</h2>
+      <p>CBET, anatomy, electronics, and early healthcare learning tools in one place.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/cbet-practice-questions.html">CBET Practice Questions</a> |
+        <a href="/how-to-pass-cbet-exam.html">CBET Study Guide</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>

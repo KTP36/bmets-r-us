@@ -5727,19 +5727,74 @@ const DEEP_LINK_TABS = new Set([
   "Terminology"
 ]);
 
+const DEEP_LINK_TAB_ALIASES = {
+  abg: "ABGQuiz",
+  abgquiz: "ABGQuiz",
+  anatomy: "Anatomy",
+  anatomyquiz: "AnatomyQuiz",
+  bones: "Bones",
+  bonesquiz: "BonesQuiz",
+  bonequiz: "BonesQuiz",
+  cbet: "CBET",
+  cbetpractice: "CBET",
+  freecbetpracticetest: "CBET",
+  freecbettest: "CBET",
+  cres: "CRES",
+  cables: "Cables",
+  cableid: "Cables",
+  cableidquiz: "Cables",
+  contact: "Contact",
+  dashboard: "Dashboard",
+  digestivequiz: "DigestiveQuiz",
+  ekg: "EKGQuiz",
+  ekgquiz: "EKGQuiz",
+  ekgrhythm: "EKGQuiz",
+  ekgrhythmpractice: "EKGQuiz",
+  equipment: "Equipment",
+  equipmentpractice: "Equipment",
+  hardercbet: "HarderCBET",
+  heartquiz: "HeartQuiz",
+  home: "Home",
+  labvalues: "LabValuesQuiz",
+  labvaluesquiz: "LabValuesQuiz",
+  leaderboard: "Leaderboard",
+  muscleconceptquiz: "MuscleConceptQuiz",
+  musclequiz: "MuscleQuiz",
+  owneranalytics: "OwnerAnalytics",
+  privacy: "Privacy",
+  rn: "RN",
+  rnpractice: "RN",
+  support: "Support",
+  teas: "TEAS",
+  teaspractice: "TEAS",
+  terminology: "Terminology",
+  medicalterminology: "Terminology",
+  medicalterminologybuilder: "Terminology"
+};
+
+function normalizeDeepLinkedTab(value) {
+  if (!value) return "";
+
+  const requested = decodeURIComponent(value).trim().replace(/^#/, "");
+  if (DEEP_LINK_TABS.has(requested)) return requested;
+
+  const compactKey = requested.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return DEEP_LINK_TAB_ALIASES[compactKey] || "";
+}
+
 function getDeepLinkedTab() {
   if (typeof window === "undefined") return "Home";
 
   const url = new URL(window.location.href);
-  const queryTab = url.searchParams.get("tab");
+  const queryTab =
+    url.searchParams.get("tab") ||
+    url.searchParams.get("section") ||
+    url.searchParams.get("practice");
   const hashTab = url.hash ? url.hash.replace(/^#/, "") : "";
-  const requestedTab = queryTab || hashTab;
 
-  if (requestedTab && DEEP_LINK_TABS.has(requestedTab)) {
-    return requestedTab;
-  }
+  const requestedTab = normalizeDeepLinkedTab(queryTab) || normalizeDeepLinkedTab(hashTab);
 
-  return "Home";
+  return requestedTab || "Home";
 }
 
 export default function App() {
