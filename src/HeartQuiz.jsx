@@ -76,7 +76,7 @@ function HeartQuiz({ questions = [], onComplete }) {
       >
         <h2 style={{ color: "#12355b", marginTop: 0 }}>Heart Quiz Complete</h2>
 
-        <div style={{ margin: "16px 0", fontSize: 20, color: "#1e293b" }}>
+        <div style={{ margin: "16px 0", fontSize: 20 }}>
           Score: {score} / {questions.length}
         </div>
 
@@ -84,15 +84,34 @@ function HeartQuiz({ questions = [], onComplete }) {
           Time: {formatDuration(completionTime)}
         </div>
 
+        {/* 🔥 KEEP USERS ON SITE */}
         <button
-          onClick={handleRestart}
+          onClick={() => window.location.href = "/anatomy-labeling-practice.html"}
           style={{
             padding: "12px 24px",
             borderRadius: 999,
-            background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-            color: "#ffffff",
+            background: "#2563eb",
+            color: "#fff",
             border: "none",
             fontWeight: 700,
+            cursor: "pointer",
+            marginBottom: 12
+          }}
+        >
+          Try Another Quiz
+        </button>
+
+        <br />
+
+        <button
+          onClick={handleRestart}
+          style={{
+            padding: "10px 20px",
+            borderRadius: 999,
+            background: "#e2e8f0",
+            color: "#0f172a",
+            border: "none",
+            fontWeight: 600,
             cursor: "pointer"
           }}
         >
@@ -114,11 +133,11 @@ function HeartQuiz({ questions = [], onComplete }) {
         color: "#0f172a"
       }}
     >
-      <div style={{ marginBottom: 16, color: "#0f172a" }}>
+      <div style={{ marginBottom: 16 }}>
         <strong>Question {index + 1} / {questions.length}</strong>
       </div>
 
-      <div style={{ fontSize: 20, marginBottom: 20, color: "#0f172a", fontWeight: 600 }}>
+      <div style={{ fontSize: 20, marginBottom: 20, fontWeight: 600 }}>
         {current.question}
       </div>
 
@@ -160,14 +179,27 @@ function HeartQuiz({ questions = [], onComplete }) {
       </div>
 
       {selected !== null && (
-        <div style={{ margin: "16px 0", color: "#0f172a" }}>
+        <div style={{ margin: "16px 0" }}>
           {selected === current.answer ? (
-            <span style={{ color: "#166534", fontWeight: 700 }}>Correct!</span>
+            <div>
+              <span style={{ color: "#166534", fontWeight: 700 }}>Correct!</span>
+
+              {/* 🔥 DIFFERENTIATOR */}
+              <div style={{ marginTop: 8, fontSize: 14, color: "#334155" }}>
+                What to notice first: Think about blood flow direction through the heart.
+              </div>
+            </div>
           ) : (
-            <span style={{ color: "#991b1b", fontWeight: 700 }}>
-              Incorrect. The correct answer is:{" "}
-              <strong>{current.options[current.answer]}</strong>
-            </span>
+            <div>
+              <span style={{ color: "#991b1b", fontWeight: 700 }}>
+                Incorrect. The correct answer is:{" "}
+                <strong>{current.options[current.answer]}</strong>
+              </span>
+
+              <div style={{ marginTop: 8, fontSize: 14, color: "#334155" }}>
+                What to notice first: Focus on how blood moves between chambers.
+              </div>
+            </div>
           )}
         </div>
       )}
