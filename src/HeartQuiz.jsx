@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 function HeartQuiz({ questions = [], onComplete }) {
@@ -10,7 +9,11 @@ function HeartQuiz({ questions = [], onComplete }) {
   const [completionTime, setCompletionTime] = useState(0);
 
   if (!questions.length) {
-    return <div style={{ padding: 24, textAlign: "center" }}>No heart quiz questions available yet.</div>;
+    return (
+      <div style={{ padding: 24, textAlign: "center", color: "#0f172a" }}>
+        No heart quiz questions available yet.
+      </div>
+    );
   }
 
   const current = questions[index];
@@ -64,26 +67,30 @@ function HeartQuiz({ questions = [], onComplete }) {
           maxWidth: 500,
           margin: "0 auto",
           textAlign: "center",
-          background: "rgba(255,255,255,0.92)",
+          background: "rgba(255,255,255,0.96)",
           borderRadius: 24,
           padding: 28,
-          boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          color: "#0f172a"
         }}
       >
         <h2 style={{ color: "#12355b", marginTop: 0 }}>Heart Quiz Complete</h2>
+
         <div style={{ margin: "16px 0", fontSize: 20, color: "#1e293b" }}>
           Score: {score} / {questions.length}
         </div>
+
         <div style={{ marginBottom: 20, color: "#4f6275", fontWeight: 600 }}>
           Time: {formatDuration(completionTime)}
         </div>
+
         <button
           onClick={handleRestart}
           style={{
             padding: "12px 24px",
             borderRadius: 999,
             background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-            color: "#fff",
+            color: "#ffffff",
             border: "none",
             fontWeight: 700,
             cursor: "pointer"
@@ -101,53 +108,65 @@ function HeartQuiz({ questions = [], onComplete }) {
         maxWidth: 500,
         margin: "0 auto",
         padding: 24,
-        background: "#fff",
+        background: "#ffffff",
         borderRadius: 12,
-        boxShadow: "0 2px 12px #0001"
+        boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        color: "#0f172a"
       }}
     >
-      <div style={{ marginBottom: 16 }}>
+      <div style={{ marginBottom: 16, color: "#0f172a" }}>
         <strong>Question {index + 1} / {questions.length}</strong>
       </div>
 
-      <div style={{ fontSize: 20, marginBottom: 20 }}>{current.question}</div>
+      <div style={{ fontSize: 20, marginBottom: 20, color: "#0f172a", fontWeight: 600 }}>
+        {current.question}
+      </div>
 
       <div>
-        {current.options.map((opt, i) => (
-          <button
-            key={i}
-            onClick={() => handleOptionClick(i)}
-            disabled={selected !== null}
-            style={{
-              display: "block",
-              width: "100%",
-              margin: "8px 0",
-              padding: "10px 16px",
-              borderRadius: 8,
-              border: "1px solid #ccc",
-              background:
-                selected === null
-                  ? "#f9f9f9"
-                  : i === current.answer
-                  ? "#c8f7c5"
-                  : selected === i
-                  ? "#f7c5c5"
-                  : "#f9f9f9",
-              cursor: selected === null ? "pointer" : "default"
-            }}
-          >
-            {opt}
-          </button>
-        ))}
+        {current.options.map((opt, i) => {
+          const isCorrect = i === current.answer;
+          const isSelected = selected === i;
+
+          return (
+            <button
+              key={i}
+              onClick={() => handleOptionClick(i)}
+              disabled={selected !== null}
+              style={{
+                display: "block",
+                width: "100%",
+                margin: "8px 0",
+                padding: "12px 16px",
+                borderRadius: 8,
+                border: "1px solid #cbd5e1",
+                background:
+                  selected === null
+                    ? "#f8fafc"
+                    : isCorrect
+                    ? "#dcfce7"
+                    : isSelected
+                    ? "#fee2e2"
+                    : "#f8fafc",
+                color: "#0f172a",
+                fontWeight: 600,
+                cursor: selected === null ? "pointer" : "default",
+                textAlign: "left"
+              }}
+            >
+              {opt}
+            </button>
+          );
+        })}
       </div>
 
       {selected !== null && (
-        <div style={{ margin: "16px 0" }}>
+        <div style={{ margin: "16px 0", color: "#0f172a" }}>
           {selected === current.answer ? (
-            <span style={{ color: "#219150" }}>Correct!</span>
+            <span style={{ color: "#166534", fontWeight: 700 }}>Correct!</span>
           ) : (
-            <span style={{ color: "#b22222" }}>
-              Incorrect. The correct answer is: <strong>{current.options[current.answer]}</strong>
+            <span style={{ color: "#991b1b", fontWeight: 700 }}>
+              Incorrect. The correct answer is:{" "}
+              <strong>{current.options[current.answer]}</strong>
             </span>
           )}
         </div>
@@ -158,11 +177,12 @@ function HeartQuiz({ questions = [], onComplete }) {
           onClick={handleNext}
           disabled={selected === null}
           style={{
-            padding: "8px 20px",
+            padding: "10px 22px",
             borderRadius: 8,
-            background: "#1976d2",
-            color: "#fff",
+            background: selected !== null ? "#1976d2" : "#94a3b8",
+            color: "#ffffff",
             border: "none",
+            fontWeight: 700,
             cursor: selected !== null ? "pointer" : "not-allowed"
           }}
         >
@@ -170,7 +190,7 @@ function HeartQuiz({ questions = [], onComplete }) {
         </button>
       </div>
 
-      <div style={{ marginTop: 24, color: "#555" }}>
+      <div style={{ marginTop: 24, color: "#334155", fontWeight: 600 }}>
         Score: {score}
       </div>
     </div>
