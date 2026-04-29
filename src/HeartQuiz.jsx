@@ -39,7 +39,10 @@ function HeartQuiz({ questions = [], onComplete }) {
       setSelected(null);
     } else {
       const finalScore = score;
-      const elapsedSeconds = Math.max(1, Math.floor((Date.now() - startTime) / 1000));
+      const elapsedSeconds = Math.max(
+        1,
+        Math.floor((Date.now() - startTime) / 1000)
+      );
 
       setCompletionTime(elapsedSeconds);
 
@@ -60,11 +63,18 @@ function HeartQuiz({ questions = [], onComplete }) {
     setStartTime(Date.now());
   };
 
+  const noticeText =
+    current.hint || "Focus on how blood flows through the heart.";
+
+  const explanationText =
+    current.explanation ||
+    "Understanding blood flow helps connect heart anatomy to function. Start by asking where blood is coming from, where it is going next, and whether it is oxygen-rich or oxygen-poor.";
+
   if (showResult) {
     return (
       <div
         style={{
-          maxWidth: 500,
+          maxWidth: 520,
           margin: "0 auto",
           textAlign: "center",
           background: "rgba(255,255,255,0.96)",
@@ -74,7 +84,9 @@ function HeartQuiz({ questions = [], onComplete }) {
           color: "#0f172a"
         }}
       >
-        <h2 style={{ color: "#12355b", marginTop: 0 }}>Heart Quiz Complete</h2>
+        <h2 style={{ color: "#12355b", marginTop: 0 }}>
+          Heart Quiz Complete
+        </h2>
 
         <div style={{ margin: "16px 0", fontSize: 20 }}>
           Score: {score} / {questions.length}
@@ -84,9 +96,8 @@ function HeartQuiz({ questions = [], onComplete }) {
           Time: {formatDuration(completionTime)}
         </div>
 
-        {/* 🔥 KEEP USERS ON SITE */}
         <button
-          onClick={() => window.location.href = "/anatomy-labeling-practice.html"}
+          onClick={() => (window.location.href = "/anatomy-labeling-practice.html")}
           style={{
             padding: "12px 24px",
             borderRadius: 999,
@@ -124,20 +135,28 @@ function HeartQuiz({ questions = [], onComplete }) {
   return (
     <div
       style={{
-        maxWidth: 500,
+        maxWidth: 520,
         margin: "0 auto",
         padding: 24,
         background: "#ffffff",
-        borderRadius: 12,
+        borderRadius: 16,
         boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
         color: "#0f172a"
       }}
     >
-      <div style={{ marginBottom: 16 }}>
-        <strong>Question {index + 1} / {questions.length}</strong>
+      <div style={{ marginBottom: 16, color: "#334155", fontWeight: 700 }}>
+        Question {index + 1} / {questions.length}
       </div>
 
-      <div style={{ fontSize: 20, marginBottom: 20, fontWeight: 600 }}>
+      <div
+        style={{
+          fontSize: 20,
+          marginBottom: 20,
+          fontWeight: 700,
+          color: "#0f172a",
+          lineHeight: 1.4
+        }}
+      >
         {current.question}
       </div>
 
@@ -156,7 +175,7 @@ function HeartQuiz({ questions = [], onComplete }) {
                 width: "100%",
                 margin: "8px 0",
                 padding: "12px 16px",
-                borderRadius: 8,
+                borderRadius: 10,
                 border: "1px solid #cbd5e1",
                 background:
                   selected === null
@@ -179,30 +198,37 @@ function HeartQuiz({ questions = [], onComplete }) {
       </div>
 
       {selected !== null && (
-        <div style={{ margin: "16px 0" }}>
+        <div
+          style={{
+            margin: "18px 0",
+            padding: 16,
+            borderRadius: 14,
+            background: selected === current.answer ? "#ecfdf5" : "#fff7ed",
+            border:
+              selected === current.answer
+                ? "1px solid #bbf7d0"
+                : "1px solid #fed7aa",
+            color: "#0f172a"
+          }}
+        >
           {selected === current.answer ? (
-            <div>
-              <span style={{ color: "#166534", fontWeight: 700 }}>Correct!</span>
-
-              {/* 🔥 SMART HINT SYSTEM */}
-              <div style={{ marginTop: 8, fontSize: 14, color: "#334155" }}>
-                What to notice first:{" "}
-                {current.hint || "Focus on how blood flows through the heart."}
-              </div>
+            <div style={{ color: "#166534", fontWeight: 800 }}>
+              Correct!
             </div>
           ) : (
-            <div>
-              <span style={{ color: "#991b1b", fontWeight: 700 }}>
-                Incorrect. The correct answer is:{" "}
-                <strong>{current.options[current.answer]}</strong>
-              </span>
-
-              <div style={{ marginTop: 8, fontSize: 14, color: "#334155" }}>
-                What to notice first:{" "}
-                {current.hint || "Focus on how blood flows through the heart."}
-              </div>
+            <div style={{ color: "#991b1b", fontWeight: 800 }}>
+              Incorrect. The correct answer is:{" "}
+              <strong>{current.options[current.answer]}</strong>
             </div>
           )}
+
+          <div style={{ marginTop: 12, fontSize: 14, color: "#334155" }}>
+            <strong>What to notice first:</strong> {noticeText}
+          </div>
+
+          <div style={{ marginTop: 10, fontSize: 14, color: "#475569" }}>
+            <strong>Why it matters:</strong> {explanationText}
+          </div>
         </div>
       )}
 
@@ -212,7 +238,7 @@ function HeartQuiz({ questions = [], onComplete }) {
           disabled={selected === null}
           style={{
             padding: "10px 22px",
-            borderRadius: 8,
+            borderRadius: 999,
             background: selected !== null ? "#1976d2" : "#94a3b8",
             color: "#ffffff",
             border: "none",
