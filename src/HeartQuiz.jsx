@@ -184,9 +184,10 @@ function HeartQuiz({ questions = [], onComplete }) {
             <div>
               <span style={{ color: "#166534", fontWeight: 700 }}>Correct!</span>
 
-              {/* 🔥 DIFFERENTIATOR */}
+              {/* 🔥 SMART HINT SYSTEM */}
               <div style={{ marginTop: 8, fontSize: 14, color: "#334155" }}>
-                What to notice first: Think about blood flow direction through the heart.
+                What to notice first:{" "}
+                {current.hint || "Focus on how blood flows through the heart."}
               </div>
             </div>
           ) : (
@@ -197,7 +198,8 @@ function HeartQuiz({ questions = [], onComplete }) {
               </span>
 
               <div style={{ marginTop: 8, fontSize: 14, color: "#334155" }}>
-                What to notice first: Focus on how blood moves between chambers.
+                What to notice first:{" "}
+                {current.hint || "Focus on how blood flows through the heart."}
               </div>
             </div>
           )}
