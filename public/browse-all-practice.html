@@ -6,18 +6,18 @@
   <title>Browse All Practice Tests, Quizzes & Study Tools | MedSkillBuilder</title>
   <meta
     name="description"
-    content="Browse all MedSkillBuilder practice tests, anatomy tools, CBET prep, RN practice questions, EKG resources, lab value guides, ABG practice, kidney function guides, electronics guides, and medical terminology study pages."
+    content="Browse all MedSkillBuilder practice tests, anatomy tools, CBET prep, RN practice questions, EKG resources, lab value guides, ABG practice, kidney function guides, electronics guides, medical equipment identification practice, and medical terminology study pages."
   />
   <meta
     name="keywords"
-    content="browse all practice tests, medical study tools, anatomy quizzes, CBET prep, RN practice questions, TEAS practice, EKG study guide, ABG practice, kidney function guide, rectifier guide, medical terminology practice"
+    content="browse all practice tests, medical study tools, anatomy quizzes, CBET prep, RN practice questions, TEAS practice, EKG study guide, ABG practice, kidney function guide, rectifier guide, medical equipment identification practice, medical terminology practice"
   />
   <link rel="canonical" href="https://medskillbuilder.com/browse-all-practice.html" />
 
   <meta property="og:title" content="Browse All Practice Tests, Quizzes & Study Tools | MedSkillBuilder" />
   <meta
     property="og:description"
-    content="Explore all MedSkillBuilder quizzes, study tools, anatomy practice, medical terminology review, CBET prep, nursing questions, ABG practice, kidney guides, electronics guides, and clinical basics resources."
+    content="Explore all MedSkillBuilder quizzes, study tools, anatomy practice, medical terminology review, CBET prep, nursing questions, ABG practice, kidney guides, electronics guides, equipment identification practice, and clinical basics resources."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://medskillbuilder.com/browse-all-practice.html" />
@@ -46,10 +46,66 @@
     .subtext {
       text-align: center;
       color: #475569;
-      margin-bottom: 40px;
+      margin-bottom: 26px;
       max-width: 760px;
       margin-left: auto;
       margin-right: auto;
+    }
+
+    .hero-cta {
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 22px;
+      padding: 24px;
+      margin: 0 auto 34px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      text-align: center;
+    }
+
+    .hero-cta h2 {
+      margin-top: 0;
+      color: #12355b;
+    }
+
+    .hero-cta p {
+      color: #475569;
+      max-width: 760px;
+      margin: 0 auto 18px;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+      display: inline-block;
+      padding: 15px 24px;
+      border-radius: 12px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      min-width: 220px;
+      text-align: center;
+      transition: 0.2s ease;
+    }
+
+    .cta-primary {
+      background: linear-gradient(90deg, #16a34a, #22c55e);
+    }
+
+    .cta-secondary {
+      background: linear-gradient(90deg, #1d4ed8, #2948b8);
+    }
+
+    .cta-primary:hover,
+    .cta-secondary:hover {
+      transform: translateY(-1px);
+      opacity: 0.94;
     }
 
     .intro-box {
@@ -142,6 +198,22 @@
       font-size: 0.92rem;
       margin-top: 36px;
     }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 28px 16px 50px;
+      }
+
+      .cta-primary,
+      .cta-secondary {
+        width: 100%;
+        min-width: 0;
+      }
+    }
   </style>
 </head>
 
@@ -152,8 +224,19 @@
 
     <h1>All Practice Tests, Quizzes & Study Tools</h1>
     <p class="subtext">
-      Explore all quizzes and interactive tools on MedSkillBuilder, including anatomy practice, medical terminology review, CBET prep, nursing questions, EKG study tools, ABG review, kidney function guides, electronics guides, and clinical basics resources.
+      Explore all quizzes and interactive tools on MedSkillBuilder, including anatomy practice, medical terminology review, CBET prep, nursing questions, EKG study tools, ABG review, kidney function guides, electronics guides, medical equipment identification, and clinical basics resources.
     </p>
+
+    <div class="hero-cta">
+      <h2>Start Practicing Faster</h2>
+      <p>
+        Jump straight into high-value practice tools. These are strong starting points for learners who want interactive review instead of only reading.
+      </p>
+      <div class="cta-row">
+        <a class="cta-primary" href="/medical-equipment-identification-practice.html">Start Equipment ID Practice</a>
+        <a class="cta-secondary" href="/cbet-practice-questions.html">Start CBET Practice</a>
+      </div>
+    </div>
 
     <div class="intro-box">
       <p>
@@ -167,8 +250,9 @@
     <!-- FEATURED -->
     <div class="section">
       <h2>Start Here</h2>
-      <p>These are some of the best places to begin if you are new to MedSkillBuilder and want a strong mix of terminology, anatomy, nursing, and exam prep.</p>
+      <p>These are some of the best places to begin if you are new to MedSkillBuilder and want a strong mix of terminology, anatomy, nursing, equipment identification, and exam prep.</p>
       <div class="link-grid">
+        <a class="practice-link biomed featured" href="/medical-equipment-identification-practice.html">Medical Equipment Identification Practice</a>
         <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
         <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
         <a class="practice-link anatomy featured" href="/how-kidneys-work.html">How the Kidneys Work</a>
@@ -339,7 +423,7 @@
     </div>
 
     <footer>
-      <p>MedSkillBuilder helps students and early healthcare learners practice medical terminology, anatomy, nursing concepts, EKG basics, ABG interpretation, kidney function, and CBET-related topics in one place.</p>
+      <p>MedSkillBuilder helps students and early healthcare learners practice medical terminology, anatomy, nursing concepts, EKG basics, ABG interpretation, kidney function, equipment identification, and CBET-related topics in one place.</p>
     </footer>
 
   </div>
