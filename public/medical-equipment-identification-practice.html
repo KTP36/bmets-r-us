@@ -171,6 +171,14 @@
       font-weight: 700;
     }
 
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
     .cta-button {
       display: inline-block;
       background: linear-gradient(135deg, #16a34a, #22c55e);
@@ -179,7 +187,7 @@
       border-radius: 10px;
       text-decoration: none;
       font-weight: 700;
-      margin: 14px 0;
+      margin: 0;
       transition: transform 0.2s;
     }
 
@@ -196,7 +204,7 @@
       border-radius: 10px;
       text-decoration: none;
       font-weight: 700;
-      margin: 14px 8px 14px 0;
+      margin: 0;
     }
 
     .feature-grid,
@@ -322,6 +330,18 @@
       .branding {
         flex-direction: column;
       }
+
+      .button-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-button,
+      .secondary-button {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -339,8 +359,11 @@
     <div class="container">
       <h2>Medical Equipment Identification Practice</h2>
       <p>Train visual device recognition for biomedical, CBET, and clinical learning.</p>
-      <a href="/" class="cta-button">Start Equipment ID Practice</a>
-      <a href="/browse-all-practice.html" class="secondary-button">Browse All Practice</a>
+
+      <div class="button-row">
+        <a href="/?tab=Equipment" class="cta-button">Start Equipment ID Practice</a>
+        <a href="/browse-all-practice.html" class="secondary-button">Browse All Practice</a>
+      </div>
     </div>
   </header>
 
@@ -389,7 +412,9 @@
           Look at the device’s purpose. Does it monitor, deliver therapy, move fluid, support breathing, shock the heart, provide suction, or measure a signal?
         </div>
 
-        <a href="/" class="cta-button">Start Equipment ID Practice</a>
+        <div class="button-row">
+          <a href="/?tab=Equipment" class="cta-button">Start Equipment ID Practice</a>
+        </div>
       </section>
 
       <section>
@@ -665,8 +690,10 @@
           Use MedSkillBuilder to practice equipment ID, review missed items, and build a stronger foundation for biomedical exam performance and clinical confidence.
         </p>
 
-        <a href="/" class="cta-button">Open MedSkillBuilder</a>
-        <a href="/browse-all-practice.html" class="secondary-button">Browse All Practice Tools</a>
+        <div class="button-row">
+          <a href="/?tab=Equipment" class="cta-button">Open MedSkillBuilder</a>
+          <a href="/browse-all-practice.html" class="secondary-button">Browse All Practice Tools</a>
+        </div>
       </section>
 
     </div>
