@@ -2,69 +2,269 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>EKG Practice Quiz (Free ECG Rhythm Test) | MedSkillBuilder</title>
-  <meta name="description" content="Test your EKG knowledge with a free interactive quiz. Learn ECG rhythms, waveform interpretation, and cardiac patterns with instant feedback." />
+
+  <title>EKG Practice Quiz | Free ECG Rhythm Test & Beginner Guide</title>
+
+  <meta
+    name="description"
+    content="Take a free EKG practice quiz and learn ECG rhythm interpretation step-by-step. Practice normal sinus rhythm, atrial fibrillation, atrial flutter, V-Tach, V-Fib, asystole, PVCs, and more with beginner-friendly explanations."
+  />
+
+  <link rel="canonical" href="https://medskillbuilder.com/ekg-practice-quiz.html" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    :root {
+      --red: #dc2626;
+      --red-dark: #b91c1c;
+      --blue: #2563eb;
+      --slate: #1e293b;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --soft-red: #fef2f2;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-yellow: #fffbeb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #f8fafc;
-      color: #1e293b;
+      background: var(--bg);
+      color: var(--slate);
+      line-height: 1.7;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 980px;
       margin: auto;
-      padding: 20px;
+      padding: 22px;
     }
 
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
+    .top-link {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    h2 {
-      margin-top: 30px;
-      font-size: 24px;
+    .hero {
+      background: linear-gradient(135deg, #991b1b, #dc2626);
+      color: white;
+      padding: 34px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
     }
 
-    p {
-      line-height: 1.6;
-      margin-bottom: 16px;
+    .hero h1 {
+      font-size: 40px;
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 780px;
+      margin-bottom: 18px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
     }
 
     .cta {
       display: inline-block;
-      margin-top: 20px;
       padding: 14px 22px;
-      background: #dc2626;
-      color: white;
-      border-radius: 10px;
+      background: white;
+      color: #991b1b;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 17px;
     }
 
-    .cta:hover {
-      background: #b91c1c;
+    .cta.secondary {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.35);
     }
 
     .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      background: var(--card);
+      padding: 24px;
+      border-radius: 18px;
+      margin-top: 22px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
     }
 
-    ul {
-      padding-left: 20px;
+    .card h2 {
+      margin-top: 0;
+      font-size: 27px;
+      line-height: 1.25;
+    }
+
+    .card h3 {
+      margin-top: 24px;
+      font-size: 21px;
+      color: #0f172a;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .mini-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .notice {
+      background: var(--soft-blue);
+      border-left: 5px solid var(--blue);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    .warning {
+      background: var(--soft-yellow);
+      border-left: 5px solid #f59e0b;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    .critical {
+      background: var(--soft-red);
+      border-left: 5px solid var(--red);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    .success {
+      background: var(--soft-green);
+      border-left: 5px solid #10b981;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    ul, ol {
+      padding-left: 22px;
     }
 
     li {
-      margin-bottom: 8px;
+      margin-bottom: 9px;
+    }
+
+    .rhythm-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 12px;
+      font-size: 15px;
+    }
+
+    .rhythm-table th,
+    .rhythm-table td {
+      border: 1px solid var(--border);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .rhythm-table th {
+      background: #fee2e2;
+      color: #7f1d1d;
+    }
+
+    .rhythm-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .practice-link {
+      display: block;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .practice-link:hover {
+      border-color: var(--blue);
+      background: #eff6ff;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 24px;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .card {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -72,102 +272,645 @@
 <body>
   <div class="container">
 
-    <a href="/" style="text-decoration:none;">← Back to Home</a>
+    <a class="top-link" href="/">← Back to MedSkillBuilder Home</a>
 
-    <h1>EKG Practice Quiz (Free ECG Rhythm Test)</h1>
+    <section class="hero">
+      <h1>EKG Practice Quiz: Free ECG Rhythm Test for Beginners</h1>
 
-    <p>
-      Learn how to read EKG rhythms the right way with interactive practice. This free EKG quiz helps you recognize common cardiac patterns, understand waveform structure, and build real confidence for exams and clinical settings.
+      <p>
+        Practice reading EKG rhythms with a beginner-friendly quiz built to help you recognize patterns, understand waveforms, and build confidence with ECG interpretation.
+      </p>
+
+      <p>
+        Instead of only memorizing rhythm names, MedSkillBuilder teaches you what to notice first: rate, rhythm, P waves, QRS width, and whether the tracing is organized or chaotic.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta" href="/?tab=ekg">Start EKG Practice Now</a>
+        <a class="cta secondary" href="/how-to-read-an-ekg.html">Read the EKG Guide</a>
+      </div>
+
+      <div class="hero-badges">
+        <span class="badge">Free EKG Practice</span>
+        <span class="badge">Beginner Friendly</span>
+        <span class="badge">Rhythm Recognition</span>
+        <span class="badge">NCLEX / CBET / Clinical Prep</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>What This EKG Practice Quiz Helps You Learn</h2>
+
+      <p>
+        EKG interpretation can feel overwhelming at first because every rhythm strip looks like a series of lines, spikes, and waves. The goal of this practice page is to make EKG reading easier by breaking each rhythm into simple visual clues.
+      </p>
+
+      <p>
+        This quiz is designed for early healthcare learners, nursing students, CBET candidates, clinical staff, biomedical equipment technicians, and anyone who wants a clearer way to understand ECG rhythms.
+      </p>
+
+      <div class="grid">
+        <div class="mini-card">
+          <h3>Rhythm Recognition</h3>
+          <p>Learn how to quickly identify common rhythms by looking for repeatable patterns.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Waveform Basics</h3>
+          <p>Understand P waves, QRS complexes, T waves, and how they relate to cardiac electrical activity.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Clinical Thinking</h3>
+          <p>Practice what to notice first before jumping to the rhythm name.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Exam Prep</h3>
+          <p>Build confidence for nursing exams, healthcare training, and CBET-related cardiac monitoring questions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How to Read an EKG Rhythm Strip Step by Step</h2>
+
+      <p>
+        A simple method prevents guessing. When you look at an EKG rhythm strip, do not start by asking, “What is the name of this rhythm?” Start by asking what the strip is showing you.
+      </p>
+
+      <ol>
+        <li><strong>Check the rate.</strong> Is the rhythm slow, normal, or fast?</li>
+        <li><strong>Check regularity.</strong> Are the R waves evenly spaced or irregular?</li>
+        <li><strong>Look for P waves.</strong> Are P waves present before each QRS complex?</li>
+        <li><strong>Check the QRS complex.</strong> Is the QRS narrow or wide?</li>
+        <li><strong>Look at the overall pattern.</strong> Is it organized, irregular, sawtooth, wide and fast, or chaotic?</li>
+        <li><strong>Match the clues.</strong> Use the clues to narrow the rhythm instead of guessing.</li>
+      </ol>
+
+      <div class="notice">
+        <strong>Beginner tip:</strong> The rhythm name comes last. First, collect the clues.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>What to Notice First on an EKG</h2>
+
+      <p>
+        This is the most important skill for beginners. If you learn what to notice first, EKG interpretation becomes much less intimidating.
+      </p>
+
+      <table class="rhythm-table">
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Why It Matters</th>
+            <th>What It Can Suggest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Is the rhythm regular?</td>
+            <td>Regular spacing often points toward organized rhythms.</td>
+            <td>Normal sinus rhythm, sinus tachycardia, sinus bradycardia, atrial flutter with fixed conduction.</td>
+          </tr>
+          <tr>
+            <td>Is the rhythm irregular?</td>
+            <td>Irregular rhythm can quickly narrow your choices.</td>
+            <td>Atrial fibrillation, premature beats, variable block rhythms.</td>
+          </tr>
+          <tr>
+            <td>Are P waves visible?</td>
+            <td>P waves help show atrial activity.</td>
+            <td>Sinus rhythms usually have clear P waves. Afib often does not.</td>
+          </tr>
+          <tr>
+            <td>Is the QRS narrow or wide?</td>
+            <td>QRS width helps separate supraventricular rhythms from ventricular rhythms.</td>
+            <td>Wide QRS may suggest ventricular rhythms or conduction delay.</td>
+          </tr>
+          <tr>
+            <td>Is the tracing chaotic?</td>
+            <td>Chaotic rhythms are urgent patterns to recognize.</td>
+            <td>Ventricular fibrillation or artifact depending on context.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>EKG Waveform Basics</h2>
+
+      <p>
+        Before you can confidently identify rhythms, you need to understand the basic parts of the EKG waveform. Each part represents electrical activity moving through the heart.
+      </p>
+
+      <h3>P Wave</h3>
+      <p>
+        The P wave represents atrial depolarization. In simple terms, it shows electrical activity moving through the atria before the ventricles contract.
+      </p>
+
+      <div class="success">
+        <strong>What to notice first:</strong> Is there a P wave before every QRS complex?
+      </div>
+
+      <h3>QRS Complex</h3>
+      <p>
+        The QRS complex represents ventricular depolarization. This is usually the most obvious spike on an EKG strip. A narrow QRS often means the impulse is traveling normally through the ventricular conduction system. A wide QRS can suggest a ventricular rhythm or abnormal conduction.
+      </p>
+
+      <div class="success">
+        <strong>What to notice first:</strong> Is the QRS narrow and organized, or wide and abnormal?
+      </div>
+
+      <h3>T Wave</h3>
+      <p>
+        The T wave represents ventricular repolarization. This is the recovery phase after the ventricles depolarize.
+      </p>
+
+      <div class="success">
+        <strong>What to notice first:</strong> Is the T wave present and following the QRS in a consistent way?
+      </div>
+
+      <h3>Baseline</h3>
+      <p>
+        The baseline is the flat area between waveform activity. A baseline that looks chaotic, wavy, or sawtooth can be an important rhythm clue.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Common EKG Rhythms Covered in This Practice Quiz</h2>
+
+      <p>
+        The quiz focuses on rhythm recognition patterns that beginners commonly need to know. These rhythms are also useful for nursing students, healthcare training, patient monitoring, and biomedical equipment education.
+      </p>
+
+      <h3>Normal Sinus Rhythm</h3>
+      <p>
+        Normal sinus rhythm is the basic rhythm every learner should understand first. It is the reference point for comparing abnormal rhythms.
+      </p>
+
+      <ul>
+        <li>Rate is usually 60 to 100 beats per minute.</li>
+        <li>Rhythm is regular.</li>
+        <li>P wave appears before each QRS complex.</li>
+        <li>QRS complexes are usually narrow.</li>
+        <li>The overall pattern looks organized and predictable.</li>
+      </ul>
+
+      <div class="notice">
+        <strong>What to notice first:</strong> Look for a clean, regular rhythm with a P wave before every QRS.
+      </div>
+
+      <h3>Sinus Bradycardia</h3>
+      <p>
+        Sinus bradycardia looks like normal sinus rhythm, but slower. The rhythm is still organized, but the rate is below the normal adult range.
+      </p>
+
+      <ul>
+        <li>Rate is usually less than 60 beats per minute.</li>
+        <li>Rhythm is regular.</li>
+        <li>P waves are usually present before each QRS complex.</li>
+        <li>The strip looks organized but slow.</li>
+      </ul>
+
+      <div class="notice">
+        <strong>What to notice first:</strong> The rhythm looks normal, but the spacing is wider because the rate is slow.
+      </div>
+
+      <h3>Sinus Tachycardia</h3>
+      <p>
+        Sinus tachycardia also looks like normal sinus rhythm, but faster. The key is that the rhythm remains organized and sinus-based.
+      </p>
+
+      <ul>
+        <li>Rate is usually greater than 100 beats per minute.</li>
+        <li>Rhythm is regular.</li>
+        <li>P waves usually appear before QRS complexes.</li>
+        <li>QRS complexes are typically narrow.</li>
+      </ul>
+
+      <div class="notice">
+        <strong>What to notice first:</strong> The pattern looks organized, but everything is closer together because the rate is fast.
+      </div>
+
+      <h3>Atrial Fibrillation</h3>
+      <p>
+        Atrial fibrillation is one of the most important rhythms for beginners to recognize. It is commonly described as irregularly irregular.
+      </p>
+
+      <ul>
+        <li>Rhythm is irregularly irregular.</li>
+        <li>P waves are usually absent.</li>
+        <li>The baseline may appear wavy or chaotic.</li>
+        <li>QRS complexes may be narrow unless another conduction problem exists.</li>
+      </ul>
+
+      <div class="critical">
+        <strong>What to notice first:</strong> The R-R intervals are uneven and there are no consistent P waves.
+      </div>
+
+      <h3>Atrial Flutter</h3>
+      <p>
+        Atrial flutter often has a sawtooth appearance. The rhythm may be regular or variable depending on conduction.
+      </p>
+
+      <ul>
+        <li>Flutter waves can create a sawtooth baseline.</li>
+        <li>The rhythm may be regular with fixed conduction.</li>
+        <li>P waves are replaced by flutter waves.</li>
+        <li>QRS complexes may be narrow.</li>
+      </ul>
+
+      <div class="notice">
+        <strong>What to notice first:</strong> Look for repeating sawtooth flutter waves between QRS complexes.
+      </div>
+
+      <h3>Premature Ventricular Contractions</h3>
+      <p>
+        Premature ventricular contractions, or PVCs, are early beats that originate in the ventricles. They often appear as wide, unusual-looking beats that interrupt the normal rhythm.
+      </p>
+
+      <ul>
+        <li>Early beat occurs before the next expected beat.</li>
+        <li>QRS is usually wide and abnormal-looking.</li>
+        <li>P wave may not be associated with the PVC.</li>
+        <li>There may be a pause after the PVC.</li>
+      </ul>
+
+      <div class="warning">
+        <strong>What to notice first:</strong> Look for a single wide beat that appears early and looks different from the others.
+      </div>
+
+      <h3>Ventricular Tachycardia</h3>
+      <p>
+        Ventricular tachycardia, often called V-Tach, is a fast rhythm that originates from the ventricles. It is important to recognize because it can be unstable and dangerous.
+      </p>
+
+      <ul>
+        <li>Rate is usually fast.</li>
+        <li>QRS complexes are wide.</li>
+        <li>Rhythm may be regular.</li>
+        <li>P waves may not be visible.</li>
+        <li>The strip often looks like a rapid wide-complex rhythm.</li>
+      </ul>
+
+      <div class="critical">
+        <strong>What to notice first:</strong> Fast rate plus wide QRS complexes should immediately make you think about ventricular rhythms.
+      </div>
+
+      <h3>Ventricular Fibrillation</h3>
+      <p>
+        Ventricular fibrillation, or V-Fib, is a chaotic rhythm with no organized ventricular contraction. On a strip, it does not show normal QRS complexes.
+      </p>
+
+      <ul>
+        <li>No organized rhythm.</li>
+        <li>No clear P waves.</li>
+        <li>No clear QRS complexes.</li>
+        <li>Chaotic waveform appearance.</li>
+      </ul>
+
+      <div class="critical">
+        <strong>What to notice first:</strong> The tracing is chaotic with no organized QRS complexes.
+      </div>
+
+      <h3>Asystole</h3>
+      <p>
+        Asystole is commonly known as a flatline. It shows no meaningful electrical activity on the rhythm strip.
+      </p>
+
+      <ul>
+        <li>Flat or nearly flat tracing.</li>
+        <li>No organized rhythm.</li>
+        <li>No P waves.</li>
+        <li>No QRS complexes.</li>
+      </ul>
+
+      <div class="critical">
+        <strong>What to notice first:</strong> There is no organized electrical activity.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Rhythm Comparison Chart</h2>
+
+      <table class="rhythm-table">
+        <thead>
+          <tr>
+            <th>Rhythm</th>
+            <th>Key Pattern</th>
+            <th>Beginner Clue</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Normal Sinus Rhythm</td>
+            <td>Regular, P before every QRS, rate 60–100</td>
+            <td>Clean and organized</td>
+          </tr>
+
+          <tr>
+            <td>Sinus Bradycardia</td>
+            <td>Regular sinus rhythm below 60 bpm</td>
+            <td>Normal-looking but slow</td>
+          </tr>
+
+          <tr>
+            <td>Sinus Tachycardia</td>
+            <td>Regular sinus rhythm above 100 bpm</td>
+            <td>Normal-looking but fast</td>
+          </tr>
+
+          <tr>
+            <td>Atrial Fibrillation</td>
+            <td>Irregularly irregular, no consistent P waves</td>
+            <td>Uneven spacing</td>
+          </tr>
+
+          <tr>
+            <td>Atrial Flutter</td>
+            <td>Sawtooth flutter waves</td>
+            <td>Repeating sawtooth baseline</td>
+          </tr>
+
+          <tr>
+            <td>PVC</td>
+            <td>Early wide beat</td>
+            <td>One beat looks early and different</td>
+          </tr>
+
+          <tr>
+            <td>Ventricular Tachycardia</td>
+            <td>Fast wide-complex rhythm</td>
+            <td>Wide and rapid</td>
+          </tr>
+
+          <tr>
+            <td>Ventricular Fibrillation</td>
+            <td>Chaotic, no organized QRS</td>
+            <td>Completely disorganized tracing</td>
+          </tr>
+
+          <tr>
+            <td>Asystole</td>
+            <td>No meaningful electrical activity</td>
+            <td>Flatline pattern</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Common Mistakes Beginners Make When Reading EKGs</h2>
+
+      <p>
+        Most beginners do not struggle because they are not smart enough. They struggle because they try to memorize too many rhythm names before they understand the visual clues.
+      </p>
+
+      <h3>Mistake 1: Naming the Rhythm Too Early</h3>
+      <p>
+        If you try to name the rhythm before checking rate, regularity, P waves, and QRS width, you are guessing. Slow down and collect evidence first.
+      </p>
+
+      <h3>Mistake 2: Ignoring Regularity</h3>
+      <p>
+        Regularity is one of the fastest ways to narrow your options. A rhythm that is perfectly regular is very different from a rhythm that is irregularly irregular.
+      </p>
+
+      <h3>Mistake 3: Missing P Waves</h3>
+      <p>
+        P waves tell you a lot about atrial activity. If you do not look for them, you may confuse sinus rhythms with atrial rhythms.
+      </p>
+
+      <h3>Mistake 4: Confusing Afib and Aflutter</h3>
+      <p>
+        Atrial fibrillation is usually irregularly irregular with no consistent P waves. Atrial flutter often has a repeating sawtooth pattern. That visual difference matters.
+      </p>
+
+      <h3>Mistake 5: Not Checking QRS Width</h3>
+      <p>
+        A wide QRS complex can be a major clue. Fast and wide should make you think carefully about ventricular tachycardia or other wide-complex rhythms.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Beginner EKG Practice Checklist</h2>
+
+      <p>
+        Use this checklist every time you practice. The goal is to build a repeatable habit.
+      </p>
+
+      <ol>
+        <li>Look at the whole strip before focusing on one beat.</li>
+        <li>Ask whether the rhythm is regular or irregular.</li>
+        <li>Find the R waves and compare spacing.</li>
+        <li>Look for P waves before QRS complexes.</li>
+        <li>Decide if the QRS complexes are narrow or wide.</li>
+        <li>Look at the baseline for sawtooth or chaotic activity.</li>
+        <li>Use the pattern to narrow the rhythm.</li>
+        <li>Only then choose the rhythm name.</li>
+      </ol>
+
+      <div class="success">
+        <strong>Practice goal:</strong> Do not just ask, “What rhythm is this?” Ask, “What clues prove it?”
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How This EKG Quiz Builds Real Recognition</h2>
+
+      <p>
+        Passive reading can help you understand the words, but EKG interpretation is a recognition skill. You get better by seeing rhythms repeatedly and making decisions.
+      </p>
+
+      <p>
+        This is why interactive practice matters. A quiz forces your brain to compare patterns, choose an answer, and learn from feedback. That active recall helps the information stick better than simply reading a list of rhythms.
+      </p>
+
+      <p>
+        MedSkillBuilder is built around this idea: make difficult healthcare concepts practical, visual, and memorable.
+      </p>
+
+      <a class="cta" style="background:#dc2626;color:white;" href="/?tab=ekg">Take the Free EKG Quiz</a>
+    </section>
+
+    <section class="card">
+      <h2>Who Should Use This EKG Practice Quiz?</h2>
+
+      <ul>
+        <li><strong>Nursing students:</strong> Practice rhythm recognition for class, clinicals, and NCLEX preparation.</li>
+        <li><strong>CBET candidates:</strong> Review cardiac monitoring concepts that connect biomedical equipment with patient care.</li>
+        <li><strong>New healthcare workers:</strong> Build confidence with common rhythms seen in clinical environments.</li>
+        <li><strong>Students learning anatomy and physiology:</strong> Connect heart electrical activity with cardiac function.</li>
+        <li><strong>Biomedical equipment learners:</strong> Understand the clinical meaning behind the waveforms displayed by patient monitors.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>EKG Practice Questions: Example Learning Style</h2>
+
+      <p>
+        The best EKG questions do more than ask for a name. They train you to notice the clue.
+      </p>
+
+      <h3>Example 1</h3>
+      <p>
+        A rhythm strip shows an irregularly irregular rhythm with no consistent P waves. What should you suspect?
+      </p>
+      <p>
+        <strong>Answer:</strong> Atrial fibrillation.
+      </p>
+      <p>
+        <strong>What to notice first:</strong> The uneven spacing and missing consistent P waves are the key clues.
+      </p>
+
+      <h3>Example 2</h3>
+      <p>
+        A rhythm strip shows a rapid rhythm with wide QRS complexes. What rhythm should be considered?
+      </p>
+      <p>
+        <strong>Answer:</strong> Ventricular tachycardia.
+      </p>
+      <p>
+        <strong>What to notice first:</strong> Fast plus wide is the pattern that should stand out.
+      </p>
+
+      <h3>Example 3</h3>
+      <p>
+        A rhythm strip shows repeating sawtooth waves between QRS complexes. What rhythm does this suggest?
+      </p>
+      <p>
+        <strong>Answer:</strong> Atrial flutter.
+      </p>
+      <p>
+        <strong>What to notice first:</strong> The sawtooth baseline is the major visual clue.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>EKG Terms Beginners Should Know</h2>
+
+      <div class="grid">
+        <div class="mini-card">
+          <h3>Rate</h3>
+          <p>How fast the heart is beating.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Rhythm</h3>
+          <p>Whether beats occur in a regular or irregular pattern.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>P Wave</h3>
+          <p>Atrial electrical activity before ventricular contraction.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>QRS Complex</h3>
+          <p>Ventricular electrical activity and usually the largest spike on the strip.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>T Wave</h3>
+          <p>Ventricular recovery after depolarization.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Artifact</h3>
+          <p>Distortion or interference that can make a tracing look abnormal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>FAQ: EKG Practice and Rhythm Interpretation</h2>
+
+      <h3>What is the best way to start learning EKG interpretation?</h3>
+      <p>
+        Start with normal sinus rhythm. Learn what normal looks like first. Then compare abnormal rhythms against that normal pattern.
+      </p>
+
+      <h3>What should I look for first on an EKG?</h3>
+      <p>
+        Start with regularity. Ask whether the rhythm is regular or irregular. Then look for P waves, QRS width, and the overall rhythm pattern.
+      </p>
+
+      <h3>What is the difference between EKG and ECG?</h3>
+      <p>
+        EKG and ECG are commonly used to refer to the same test: an electrocardiogram. Both terms describe a recording of the heart’s electrical activity.
+      </p>
+
+      <h3>Is atrial fibrillation regular or irregular?</h3>
+      <p>
+        Atrial fibrillation is typically irregularly irregular. That uneven spacing is one of the most important clues.
+      </p>
+
+      <h3>What does a wide QRS mean?</h3>
+      <p>
+        A wide QRS can suggest that ventricular conduction is abnormal or that the rhythm may originate from the ventricles.
+      </p>
+
+      <h3>What does asystole look like?</h3>
+      <p>
+        Asystole usually appears as a flatline or nearly flat tracing with no organized electrical activity.
+      </p>
+
+      <h3>How do I get better at identifying rhythms?</h3>
+      <p>
+        Practice repeatedly. Focus on the clues, not just the names. Over time, your brain starts recognizing patterns faster.
+      </p>
+
+      <h3>Is this quiz good for nursing students?</h3>
+      <p>
+        Yes. This quiz is designed to help nursing students build rhythm recognition skills for class, clinical learning, and exam preparation.
+      </p>
+
+      <h3>Is this useful for CBET exam prep?</h3>
+      <p>
+        Yes. CBET candidates benefit from understanding cardiac monitoring basics, patient monitor waveforms, and the meaning behind common ECG rhythms.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Related MedSkillBuilder Practice</h2>
+
+      <p>
+        Keep building your cardiac, anatomy, and clinical knowledge with related practice tools.
+      </p>
+
+      <div class="link-grid">
+        <a class="practice-link" href="/how-to-read-an-ekg.html">How to Read an EKG</a>
+        <a class="practice-link" href="/ekg-rhythm-cheat-sheet.html">EKG Rhythm Cheat Sheet</a>
+        <a class="practice-link" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a>
+        <a class="practice-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a class="practice-link" href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a class="practice-link" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
+        <a class="practice-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
+        <a class="practice-link" href="/medical-equipment-identification-practice.html">Medical Equipment Identification</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Start Practicing EKG Rhythms</h2>
+
+      <p>
+        The best way to improve is to practice. Start with the quiz, review the explanations, and come back until the rhythm patterns begin to feel familiar.
+      </p>
+
+      <p>
+        Focus on what you notice first. That habit will help you move from guessing to understanding.
+      </p>
+
+      <a class="cta" style="background:#dc2626;color:white;" href="/?tab=ekg">Start the Free EKG Practice Quiz</a>
+    </section>
+
+    <p class="footer-note">
+      MedSkillBuilder helps early healthcare learners build confidence through interactive practice, visual learning, and beginner-friendly explanations.
     </p>
-
-    <a class="cta" href="/">Start EKG Practice</a>
-
-    <div class="card">
-      <h2>What You Will Learn</h2>
-      <ul>
-        <li>Normal sinus rhythm identification</li>
-        <li>Atrial fibrillation vs atrial flutter</li>
-        <li>Ventricular tachycardia and fibrillation</li>
-        <li>Sinus bradycardia and tachycardia</li>
-        <li>Basic waveform interpretation (P, QRS, T)</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Why Practice EKG Interpretation?</h2>
-      <p>
-        Reading EKGs is a skill built through repetition. Passive reading is not enough. Interactive quizzes force recognition and improve recall, which is critical for exams like CBET, nursing boards, and clinical readiness.
-      </p>
-      <p>
-        MedSkillBuilder gives you immediate feedback so you can learn faster and understand mistakes in real time.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>Common EKG Rhythms Covered</h2>
-      <ul>
-        <li>Normal Sinus Rhythm</li>
-        <li>Atrial Fibrillation</li>
-        <li>Atrial Flutter</li>
-        <li>Ventricular Tachycardia (V-Tach)</li>
-        <li>Ventricular Fibrillation (V-Fib)</li>
-        <li>Asystole</li>
-        <li>Premature Ventricular Contractions (PVCs)</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Who This Is For</h2>
-      <ul>
-        <li>Nursing students (NCLEX prep)</li>
-        <li>CBET certification candidates</li>
-        <li>Healthcare professionals</li>
-        <li>Anyone learning cardiac monitoring</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Related Practice</h2>
-      <ul>
-        <li><a href="/how-to-read-an-ekg.html">How to Read an EKG</a></li>
-        <li><a href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a></li>
-        <li><a href="/cbet-practice-test-75.html">CBET Practice Test (75 Questions)</a></li>
-      </ul>
-    </div>
-
-<div class="card">
-  <h2>How to Read an EKG (Quick Guide)</h2>
-  <p>
-    Learning EKG interpretation starts with recognizing key waveform components:
-  </p>
-  <ul>
-    <li><strong>P wave:</strong> Atrial depolarization</li>
-    <li><strong>QRS complex:</strong> Ventricular depolarization</li>
-    <li><strong>T wave:</strong> Ventricular repolarization</li>
-  </ul>
-  <p>
-    Start by checking rate, rhythm, and waveform consistency. Then compare patterns to known rhythms like sinus rhythm, atrial fibrillation, or ventricular tachycardia.
-  </p>
-</div>
-
-<div class="card">
-  <h2>EKG Practice Tips</h2>
-  <ul>
-    <li>Practice daily — repetition builds recognition</li>
-    <li>Start with normal sinus rhythm first</li>
-    <li>Focus on rhythm patterns before memorizing names</li>
-    <li>Use quizzes to test recall, not just reading</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h2>More Practice</h2>
-  <ul>
-    <li><a href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a></li>
-    <li><a href="/medical-terminology-practice.html">Medical Terminology Practice</a></li>
-    <li><a href="/cbet-practice-test-75.html">CBET Practice Test</a></li>
-  </ul>
-</div>
 
   </div>
 </body>
