@@ -529,6 +529,168 @@
       font-weight: 750;
     }
 
+
+    .elite-quiz-header {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+    }
+
+    .elite-quiz-header h2 {
+      color: white;
+      margin: 0 0 8px;
+    }
+
+    .elite-quiz-header p {
+      color: #dbeafe;
+      margin-bottom: 0;
+    }
+
+    .quiz-score-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .quiz-score-card {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 14px;
+      color: white;
+    }
+
+    .quiz-score-card strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .quiz-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .quiz-btn {
+      border: none;
+      cursor: pointer;
+      font-weight: 900;
+      border-radius: 14px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.20);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .quiz-btn.secondary {
+      background: #0f172a;
+      box-shadow: none;
+    }
+
+    .quiz-card {
+      background: #f8fafc;
+      border: 1px solid #dbeafe;
+      border-radius: 22px;
+      padding: 20px;
+      scroll-margin-top: 20px;
+    }
+
+    .quiz-card h3 {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .quiz-card.answered.correct {
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+
+    .quiz-card.answered.incorrect {
+      border-color: #fed7aa;
+      background: #fff7ed;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quiz-options label {
+      display: block;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px 13px;
+      color: #334155;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .quiz-options label:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+      transform: translateY(-1px);
+    }
+
+    .quiz-options input {
+      margin-right: 8px;
+      transform: scale(1.08);
+    }
+
+    .quiz-feedback {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .result-pill {
+      display: inline-block;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-weight: 950;
+      margin-bottom: 10px;
+    }
+
+    .result-pill.correct {
+      background: #dcfce7;
+      color: #14532d;
+      border: 1px solid #86efac;
+    }
+
+    .result-pill.incorrect {
+      background: #ffedd5;
+      color: #7c2d12;
+      border: 1px solid #fed7aa;
+    }
+
+    .teaching-block {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    .teaching-block strong {
+      color: var(--blue-dark);
+    }
+
     @media (max-width: 900px) {
       .page {
         padding: 16px;
@@ -1017,309 +1179,315 @@
       </div>
     </section>
 
-    <section class="section">
-      <h2>Elite Ultrasound Quiz: Planes, Probes, Notches, TGC and Image Quality</h2>
+    <section class="section" id="elite-quiz">
+      <div class="elite-quiz-header">
+        <h2>Elite Ultrasound Quiz: Planes, Probes, Notches, TGC and Image Quality</h2>
+        <p>
+          This is a true thinking quiz. Pick an answer first, then check your answer.
+          Teaching appears only after you answer so the quiz does not give itself away.
+        </p>
 
-      <p>
-        These questions are intentionally harder than the image reveals above. The goal is not just to memorize answers.
-        The goal is to think like someone scanning: orientation, probe choice, image quality, and what adjustment makes sense.
-      </p>
+        <div class="quiz-score-box">
+          <div class="quiz-score-card">
+            <strong id="scoreText">0 / 12</strong>
+            Questions correct
+          </div>
+          <div class="quiz-score-card">
+            <strong id="answeredText">0 / 12</strong>
+            Questions answered
+          </div>
+          <div class="quiz-score-card">
+            <strong id="levelText">Not started</strong>
+            Current level
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="quiz-btn" type="button" onclick="gradeAllQuiz()">Grade Entire Quiz</button>
+          <button class="quiz-btn secondary" type="button" onclick="resetQuiz()">Reset Quiz</button>
+        </div>
+      </div>
 
       <div class="quiz-wrap">
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q1" data-answer="B">
           <h3>Question 1: IJ Short Axis</h3>
-          <p>
-            You are scanning the internal jugular vein and carotid artery in short axis. The vessels appear mostly round on the screen.
-            Which imaging plane are you most likely using?
-          </p>
+          <p>You are scanning the internal jugular vein and carotid artery in short axis. The vessels appear mostly round on the screen. Which imaging plane are you most likely using?</p>
 
-          <ul class="quiz-options">
-            <li>A. Sagittal / longitudinal</li>
-            <li>B. Transverse / short axis</li>
-            <li>C. Coronal only</li>
-            <li>D. Apical cardiac view</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q1" value="A"> A. Sagittal / longitudinal</label>
+            <label><input type="radio" name="q1" value="B"> B. Transverse / short axis</label>
+            <label><input type="radio" name="q1" value="C"> C. Coronal only</label>
+            <label><input type="radio" name="q1" value="D"> D. Apical cardiac view</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> B. Transverse / short axis</div>
-              <div class="answer-row"><strong>Teaching:</strong> Short axis cuts across the vessel, so the IJ and carotid usually look round or oval.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Round vessels usually mean transverse or short-axis view.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q1')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q1">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> B. Transverse / short axis</p>
+              <p><strong>Teaching:</strong> Short axis cuts across the vessel, so the IJ and carotid usually look round or oval.</p>
+              <p><strong>What to notice first:</strong> Round vessels usually mean transverse or short-axis view.</p>
+              <p><strong>Why A is wrong:</strong> Longitudinal views follow the vessel length, so the vessel appears tube-like instead of round.</p>
             </div>
-            <div class="wrong-note">
-              Why A is wrong: longitudinal views follow the vessel length, so the vessel appears more tube-like instead of round.
-            </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q2" data-answer="A">
           <h3>Question 2: Probe Notch Orientation</h3>
-          <p>
-            You are scanning the IJ in transverse view. The probe notch is pointed toward the patient’s right.
-            Which side of the screen usually represents the patient’s right side?
-          </p>
+          <p>You are scanning the IJ in transverse view. The probe notch is pointed toward the patient’s right. Which side of the screen usually represents the patient’s right side?</p>
 
-          <ul class="quiz-options">
-            <li>A. Left side of the screen</li>
-            <li>B. Right side of the screen</li>
-            <li>C. Bottom of the screen</li>
-            <li>D. It has no relationship to the image</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q2" value="A"> A. Left side of the screen</label>
+            <label><input type="radio" name="q2" value="B"> B. Right side of the screen</label>
+            <label><input type="radio" name="q2" value="C"> C. Bottom of the screen</label>
+            <label><input type="radio" name="q2" value="D"> D. It has no relationship to the image</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. Left side of the screen</div>
-              <div class="answer-row"><strong>Teaching:</strong> The notch corresponds to the screen indicator. If the notch points to patient right, patient right appears on the indicator side.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Always check the notch before deciding left vs right.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q2')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q2">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. Left side of the screen</p>
+              <p><strong>Teaching:</strong> The notch corresponds to the screen indicator. If the notch points to patient right, patient right appears on the indicator side.</p>
+              <p><strong>What to notice first:</strong> Always check the notch before deciding left vs right.</p>
+              <p><strong>Why D is wrong:</strong> The notch is specifically there to give the image orientation.</p>
             </div>
-            <div class="wrong-note">
-              Why D is wrong: the notch is specifically there to give the image orientation.
-            </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q3" data-answer="B">
           <h3>Question 3: Long Axis Vessel View</h3>
-          <p>
-            You rotate the probe 90 degrees and now the vessel appears as a long dark tube instead of a circle.
-            What view are you most likely seeing?
-          </p>
+          <p>You rotate the probe 90 degrees and now the vessel appears as a long dark tube instead of a circle. What view are you most likely seeing?</p>
 
-          <ul class="quiz-options">
-            <li>A. Transverse / short axis</li>
-            <li>B. Longitudinal / long axis</li>
-            <li>C. CW Doppler only</li>
-            <li>D. M-mode only</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q3" value="A"> A. Transverse / short axis</label>
+            <label><input type="radio" name="q3" value="B"> B. Longitudinal / long axis</label>
+            <label><input type="radio" name="q3" value="C"> C. CW Doppler only</label>
+            <label><input type="radio" name="q3" value="D"> D. M-mode only</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> B. Longitudinal / long axis</div>
-              <div class="answer-row"><strong>Teaching:</strong> Long axis follows the length of the structure, so a vessel looks like a long tube.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Tube-like structure = long axis. Round structure = short axis.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q3')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q3">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> B. Longitudinal / long axis</p>
+              <p><strong>Teaching:</strong> Long axis follows the length of the structure, so a vessel looks like a long tube.</p>
+              <p><strong>What to notice first:</strong> Tube-like structure means long axis. Round structure means short axis.</p>
             </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q4" data-answer="C">
           <h3>Question 4: CW Doppler</h3>
-          <p>
-            A small pencil-style probe on an echo machine produces sound and velocity information but no 2D picture.
-            What probe is this?
-          </p>
+          <p>A small pencil-style probe on an echo machine produces sound and velocity information but no 2D picture. What probe is this?</p>
 
-          <ul class="quiz-options">
-            <li>A. Linear probe</li>
-            <li>B. Curvilinear probe</li>
-            <li>C. Continuous Wave Doppler probe</li>
-            <li>D. Endocavity probe</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q4" value="A"> A. Linear probe</label>
+            <label><input type="radio" name="q4" value="B"> B. Curvilinear probe</label>
+            <label><input type="radio" name="q4" value="C"> C. Continuous Wave Doppler probe</label>
+            <label><input type="radio" name="q4" value="D"> D. Endocavity probe</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> C. Continuous Wave Doppler probe</div>
-              <div class="answer-row"><strong>Teaching:</strong> CW Doppler measures blood flow velocity using sound and Doppler signal. It does not produce a 2D anatomy image.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Flow only, no image = CW Doppler.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q4')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q4">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> C. Continuous Wave Doppler probe</p>
+              <p><strong>Teaching:</strong> CW Doppler measures blood flow velocity using sound and Doppler signal. It does not produce a 2D anatomy image.</p>
+              <p><strong>What to notice first:</strong> Flow only, no image means CW Doppler.</p>
             </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q5" data-answer="A">
           <h3>Question 5: Choosing the Right Probe</h3>
-          <p>
-            You need high-resolution imaging of the thyroid gland. Which probe is the best starting choice?
-          </p>
+          <p>You need high-resolution imaging of the thyroid gland. Which probe is the best starting choice?</p>
 
-          <ul class="quiz-options">
-            <li>A. Linear probe</li>
-            <li>B. Curvilinear probe</li>
-            <li>C. CW Doppler pencil probe</li>
-            <li>D. Phased array probe</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q5" value="A"> A. Linear probe</label>
+            <label><input type="radio" name="q5" value="B"> B. Curvilinear probe</label>
+            <label><input type="radio" name="q5" value="C"> C. CW Doppler pencil probe</label>
+            <label><input type="radio" name="q5" value="D"> D. Phased array probe</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. Linear probe</div>
-              <div class="answer-row"><strong>Teaching:</strong> The thyroid is superficial. A high-frequency linear probe gives better detail for shallow structures.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Superficial anatomy usually means linear probe.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q5')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q5">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. Linear probe</p>
+              <p><strong>Teaching:</strong> The thyroid is superficial. A high-frequency linear probe gives better detail for shallow structures.</p>
+              <p><strong>What to notice first:</strong> Superficial anatomy usually means linear probe.</p>
+              <p><strong>Why B is wrong:</strong> Curvilinear probes are better for deeper abdomen, not shallow high-detail neck structures.</p>
             </div>
-            <div class="wrong-note">
-              Why B is wrong: curvilinear probes are better for deeper abdomen, not shallow high-detail neck structures.
-            </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q6" data-answer="A">
           <h3>Question 6: RUQ FAST View</h3>
-          <p>
-            You are trying to evaluate the liver and right kidney area for possible free fluid. Which probe is commonly used?
-          </p>
+          <p>You are trying to evaluate the liver and right kidney area for possible free fluid. Which probe is commonly used?</p>
 
-          <ul class="quiz-options">
-            <li>A. Curvilinear probe</li>
-            <li>B. Endocavity probe</li>
-            <li>C. CW Doppler pencil probe</li>
-            <li>D. Linear vascular probe only</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q6" value="A"> A. Curvilinear probe</label>
+            <label><input type="radio" name="q6" value="B"> B. Endocavity probe</label>
+            <label><input type="radio" name="q6" value="C"> C. CW Doppler pencil probe</label>
+            <label><input type="radio" name="q6" value="D"> D. Linear vascular probe only</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. Curvilinear probe</div>
-              <div class="answer-row"><strong>Teaching:</strong> RUQ FAST views often require deeper penetration to see abdominal anatomy.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Deep abdomen usually means curvilinear.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q6')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q6">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. Curvilinear probe</p>
+              <p><strong>Teaching:</strong> RUQ FAST views often require deeper penetration to see abdominal anatomy.</p>
+              <p><strong>What to notice first:</strong> Deep abdomen usually means curvilinear.</p>
             </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q7" data-answer="A">
           <h3>Question 7: TGC Sliders</h3>
-          <p>
-            The top of the ultrasound image is bright, but the deeper part of the image is too dark.
-            Which control is most directly designed to adjust brightness at different depths?
-          </p>
+          <p>The top of the ultrasound image is bright, but the deeper part of the image is too dark. Which control is most directly designed to adjust brightness at different depths?</p>
 
-          <ul class="quiz-options">
-            <li>A. TGC sliders</li>
-            <li>B. Probe notch</li>
-            <li>C. Sterile cover only</li>
-            <li>D. ECG lead placement</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q7" value="A"> A. TGC sliders</label>
+            <label><input type="radio" name="q7" value="B"> B. Probe notch</label>
+            <label><input type="radio" name="q7" value="C"> C. Sterile cover only</label>
+            <label><input type="radio" name="q7" value="D"> D. ECG lead placement</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. TGC sliders</div>
-              <div class="answer-row"><strong>Teaching:</strong> Time gain compensation changes brightness by depth, helping balance near field and far field brightness.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Uneven brightness from top to bottom often points to TGC adjustment.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q7')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q7">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. TGC sliders</p>
+              <p><strong>Teaching:</strong> Time gain compensation changes brightness by depth, helping balance near field and far field brightness.</p>
+              <p><strong>What to notice first:</strong> Uneven brightness from top to bottom often points to TGC adjustment.</p>
             </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q8" data-answer="A">
           <h3>Question 8: Focal Zone</h3>
-          <p>
-            You are imaging a target structure in the middle of the screen. Where should the focal zone usually be placed?
-          </p>
+          <p>You are imaging a target structure in the middle of the screen. Where should the focal zone usually be placed?</p>
 
-          <ul class="quiz-options">
-            <li>A. At or just below the structure of interest</li>
-            <li>B. Always at the very top of the screen</li>
-            <li>C. Always at the bottom of the screen</li>
-            <li>D. It does not affect detail</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q8" value="A"> A. At or just below the structure of interest</label>
+            <label><input type="radio" name="q8" value="B"> B. Always at the very top of the screen</label>
+            <label><input type="radio" name="q8" value="C"> C. Always at the bottom of the screen</label>
+            <label><input type="radio" name="q8" value="D"> D. It does not affect detail</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. At or just below the structure of interest</div>
-              <div class="answer-row"><strong>Teaching:</strong> The focal zone improves detail around a chosen depth, so place it near the anatomy you care about.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> If the target is blurry, check focus placement.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q8')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q8">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. At or just below the structure of interest</p>
+              <p><strong>Teaching:</strong> The focal zone improves detail around a chosen depth, so place it near the anatomy you care about.</p>
+              <p><strong>What to notice first:</strong> If the target is blurry, check focus placement.</p>
             </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q9" data-answer="A">
           <h3>Question 9: Poor Coupling</h3>
-          <p>
-            The image is weak and patchy because there is air between the probe and skin.
-            What is the best first correction?
-          </p>
+          <p>The image is weak and patchy because there is air between the probe and skin. What is the best first correction?</p>
 
-          <ul class="quiz-options">
-            <li>A. Add gel and improve probe contact</li>
-            <li>B. Switch immediately to CW Doppler</li>
-            <li>C. Turn the screen brightness down</li>
-            <li>D. Ignore it because air improves ultrasound transmission</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q9" value="A"> A. Add gel and improve probe contact</label>
+            <label><input type="radio" name="q9" value="B"> B. Switch immediately to CW Doppler</label>
+            <label><input type="radio" name="q9" value="C"> C. Turn the screen brightness down</label>
+            <label><input type="radio" name="q9" value="D"> D. Ignore it because air improves ultrasound transmission</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. Add gel and improve probe contact</div>
-              <div class="answer-row"><strong>Teaching:</strong> Air blocks ultrasound transmission. Gel removes air and improves coupling.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Dropout or patchy image can be a coupling problem.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q9')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q9">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. Add gel and improve probe contact</p>
+              <p><strong>Teaching:</strong> Air blocks ultrasound transmission. Gel removes air and improves coupling.</p>
+              <p><strong>What to notice first:</strong> Dropout or patchy image can be a coupling problem.</p>
+              <p><strong>Why D is wrong:</strong> Air is the enemy of ultrasound transmission at the probe-skin interface.</p>
             </div>
-            <div class="wrong-note">
-              Why D is wrong: air is the enemy of ultrasound transmission at the probe-skin interface.
-            </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q10" data-answer="A">
           <h3>Question 10: Near Field vs Far Field</h3>
-          <p>
-            The thyroid and IJ are usually located close to the probe. Which image region are they typically in?
-          </p>
+          <p>The thyroid and IJ are usually located close to the probe. Which image region are they typically in?</p>
 
-          <ul class="quiz-options">
-            <li>A. Near field</li>
-            <li>B. Far field only</li>
-            <li>C. Outside the ultrasound beam</li>
-            <li>D. Doppler audio only</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q10" value="A"> A. Near field</label>
+            <label><input type="radio" name="q10" value="B"> B. Far field only</label>
+            <label><input type="radio" name="q10" value="C"> C. Outside the ultrasound beam</label>
+            <label><input type="radio" name="q10" value="D"> D. Doppler audio only</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. Near field</div>
-              <div class="answer-row"><strong>Teaching:</strong> The near field is the shallow region closest to the probe. Superficial structures appear there.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Shallow anatomy sits near the top of the image.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q10')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q10">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. Near field</p>
+              <p><strong>Teaching:</strong> The near field is the shallow region closest to the probe. Superficial structures appear there.</p>
+              <p><strong>What to notice first:</strong> Shallow anatomy sits near the top of the image.</p>
             </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q11" data-answer="A">
           <h3>Question 11: Endocavity Probe</h3>
-          <p>
-            A long internal probe is used to get closer to pelvic anatomy and improve detail.
-            What probe type is this?
-          </p>
+          <p>A long internal probe is used to get closer to pelvic anatomy and improve detail. What probe type is this?</p>
 
-          <ul class="quiz-options">
-            <li>A. Endocavity probe</li>
-            <li>B. Curvilinear abdominal probe</li>
-            <li>C. CW Doppler pencil probe</li>
-            <li>D. Linear vascular probe</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q11" value="A"> A. Endocavity probe</label>
+            <label><input type="radio" name="q11" value="B"> B. Curvilinear abdominal probe</label>
+            <label><input type="radio" name="q11" value="C"> C. CW Doppler pencil probe</label>
+            <label><input type="radio" name="q11" value="D"> D. Linear vascular probe</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. Endocavity probe</div>
-              <div class="answer-row"><strong>Teaching:</strong> Endocavity probes are used internally, placing the transducer closer to the anatomy for better resolution.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> Long internal probe shape usually points to endocavity use.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q11')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q11">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. Endocavity probe</p>
+              <p><strong>Teaching:</strong> Endocavity probes are used internally, placing the transducer closer to the anatomy for better resolution.</p>
+              <p><strong>What to notice first:</strong> Long internal probe shape usually points to endocavity use.</p>
             </div>
-          </details>
+          </div>
         </div>
 
-        <div class="quiz-card">
+        <div class="quiz-card" data-question="q12" data-answer="A">
           <h3>Question 12: Too Much Pressure</h3>
-          <p>
-            While scanning the IJ, you press too hard and the vein disappears. What likely happened?
-          </p>
+          <p>While scanning the IJ, you press too hard and the vein disappears. What likely happened?</p>
 
-          <ul class="quiz-options">
-            <li>A. The vein compressed</li>
-            <li>B. The artery became a vein</li>
-            <li>C. The probe switched to Doppler automatically</li>
-            <li>D. The notch stopped working</li>
-          </ul>
+          <div class="quiz-options">
+            <label><input type="radio" name="q12" value="A"> A. The vein compressed</label>
+            <label><input type="radio" name="q12" value="B"> B. The artery became a vein</label>
+            <label><input type="radio" name="q12" value="C"> C. The probe switched to Doppler automatically</label>
+            <label><input type="radio" name="q12" value="D"> D. The notch stopped working</label>
+          </div>
 
-          <details>
-            <summary>Reveal Answer and Teaching</summary>
-            <div class="answer-grid">
-              <div class="answer-row"><strong>Correct Answer:</strong> A. The vein compressed</div>
-              <div class="answer-row"><strong>Teaching:</strong> Veins are more compressible than arteries. Too much pressure can collapse the vein and make it hard to see.</div>
-              <div class="answer-row"><strong>What to notice first:</strong> If a vessel disappears with pressure, think vein compression.</div>
+          <button class="quiz-btn" type="button" onclick="checkQuestion('q12')">Check Question</button>
+
+          <div class="quiz-feedback" id="feedback-q12">
+            <span class="result-pill"></span>
+            <div class="teaching-block">
+              <p><strong>Correct Answer:</strong> A. The vein compressed</p>
+              <p><strong>Teaching:</strong> Veins are more compressible than arteries. Too much pressure can collapse the vein and make it hard to see.</p>
+              <p><strong>What to notice first:</strong> If a vessel disappears with pressure, think vein compression.</p>
             </div>
-          </details>
+          </div>
         </div>
 
       </div>
@@ -1561,5 +1729,107 @@
     </footer>
 
   </main>
+
+  <script>
+    function getQuizCards() {
+      return Array.from(document.querySelectorAll(".quiz-card[data-question]"));
+    }
+
+    function checkQuestion(questionId) {
+      const card = document.querySelector('.quiz-card[data-question="' + questionId + '"]');
+      if (!card) return;
+
+      const correctAnswer = card.getAttribute("data-answer");
+      const selected = card.querySelector('input[name="' + questionId + '"]:checked');
+      const feedback = document.getElementById("feedback-" + questionId);
+      const pill = feedback ? feedback.querySelector(".result-pill") : null;
+
+      if (!selected) {
+        alert("Pick an answer first, then check it.");
+        return;
+      }
+
+      const isCorrect = selected.value === correctAnswer;
+
+      card.classList.add("answered");
+      card.classList.toggle("correct", isCorrect);
+      card.classList.toggle("incorrect", !isCorrect);
+
+      if (feedback) feedback.classList.add("show");
+
+      if (pill) {
+        pill.classList.toggle("correct", isCorrect);
+        pill.classList.toggle("incorrect", !isCorrect);
+        pill.textContent = isCorrect ? "Correct" : "Not quite — review the teaching";
+      }
+
+      updateQuizScore();
+    }
+
+    function updateQuizScore() {
+      const cards = getQuizCards();
+      let answered = 0;
+      let correct = 0;
+
+      cards.forEach(card => {
+        const qid = card.getAttribute("data-question");
+        const selected = card.querySelector('input[name="' + qid + '"]:checked');
+        if (selected) {
+          answered += 1;
+          if (selected.value === card.getAttribute("data-answer")) correct += 1;
+        }
+      });
+
+      const scoreText = document.getElementById("scoreText");
+      const answeredText = document.getElementById("answeredText");
+      const levelText = document.getElementById("levelText");
+
+      if (scoreText) scoreText.textContent = correct + " / " + cards.length;
+      if (answeredText) answeredText.textContent = answered + " / " + cards.length;
+
+      if (levelText) {
+        if (answered === 0) {
+          levelText.textContent = "Not started";
+        } else if (correct >= 10) {
+          levelText.textContent = "Advanced";
+        } else if (correct >= 7) {
+          levelText.textContent = "Strong";
+        } else if (correct >= 4) {
+          levelText.textContent = "Building";
+        } else {
+          levelText.textContent = "Keep practicing";
+        }
+      }
+    }
+
+    function gradeAllQuiz() {
+      getQuizCards().forEach(card => {
+        const qid = card.getAttribute("data-question");
+        const selected = card.querySelector('input[name="' + qid + '"]:checked');
+        if (selected) checkQuestion(qid);
+      });
+      updateQuizScore();
+    }
+
+    function resetQuiz() {
+      getQuizCards().forEach(card => {
+        card.classList.remove("answered", "correct", "incorrect");
+        card.querySelectorAll("input[type='radio']").forEach(input => {
+          input.checked = false;
+        });
+        const feedback = card.querySelector(".quiz-feedback");
+        const pill = card.querySelector(".result-pill");
+        if (feedback) feedback.classList.remove("show");
+        if (pill) {
+          pill.textContent = "";
+          pill.classList.remove("correct", "incorrect");
+        }
+      });
+      updateQuizScore();
+      const quiz = document.getElementById("elite-quiz");
+      if (quiz) quiz.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  </script>
+
 </body>
 </html>
