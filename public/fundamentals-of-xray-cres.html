@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Fundamentals of X-Ray for CRES Exam | X-Ray Systems, Safety & Troubleshooting</title>
+
+  <meta
+    name="description"
+    content="Master X-ray fundamentals for the CRES exam with an elite imaging systems guide. Learn X-ray tube operation, kVp, mA, mAs, generators, detectors, grids, collimation, filtration, scatter, ALARA, troubleshooting, and advanced practice questions."
+  />
+
+  <link rel="canonical" href="https://medskillbuilder.com/fundamentals-of-xray-cres.html" />
+
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #f8fafc;
+      --card: #ffffff;
+      --line: #e2e8f0;
+      --blue: #2563eb;
+      --blue-dark: #1e3a8a;
+      --green-soft: #ecfdf5;
+      --amber-soft: #fffbeb;
+      --red-soft: #fef2f2;
+      --purple-soft: #f5f3ff;
+      --cyan-soft: #ecfeff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.10), transparent 34%),
+        linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 58, 138, 0.96)),
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.45), transparent 35%);
+      color: white;
+      padding: 52px 30px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.24);
+    }
+
+    .badge {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -0.04em;
+      max-width: 980px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 900px;
+      margin: 0 0 22px;
+      color: #dbeafe;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-weight: 900;
+      padding: 13px 18px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.24);
+    }
+
+    .cta.secondary {
+      background: rgba(15, 23, 42, 0.28);
+      border: 1px solid rgba(255,255,255,0.32);
+      box-shadow: none;
+    }
+
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+      max-width: 980px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      color: #dbeafe;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin: 22px 0;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      font-size: clamp(25px, 3vw, 36px);
+      color: var(--ink);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .section h3 { color: var(--blue-dark); margin-bottom: 8px; }
+    .section p { color: var(--muted); }
+    .lead { font-size: 18px; color: #334155; font-weight: 650; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .card strong {
+      display: block;
+      color: var(--blue-dark);
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+
+    .callout {
+      background: #eff6ff;
+      border-left: 7px solid var(--blue);
+      border-radius: 16px;
+      padding: 15px 16px;
+      margin: 16px 0;
+      color: #1e3a8a;
+      font-weight: 850;
+    }
+
+    .warning {
+      background: var(--amber-soft);
+      border: 1px solid #fde68a;
+      border-radius: 18px;
+      padding: 16px;
+      color: #78350f;
+      font-weight: 750;
+      margin-top: 18px;
+    }
+
+    .danger {
+      background: var(--red-soft);
+      border: 1px solid #fecaca;
+      border-radius: 18px;
+      padding: 16px;
+      color: #7f1d1d;
+      font-weight: 750;
+      margin-top: 18px;
+    }
+
+    .scenario {
+      background: var(--cyan-soft);
+      border: 1px solid #a5f3fc;
+      border-left: 7px solid #0891b2;
+      border-radius: 18px;
+      padding: 16px;
+      color: #164e63;
+      font-weight: 750;
+      margin: 18px 0;
+    }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .mini-table th {
+      background: #eff6ff;
+      color: #1e3a8a;
+      font-weight: 900;
+    }
+
+    .mini-table tr:last-child td { border-bottom: none; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .flow-step {
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+      padding: 14px;
+      text-align: center;
+      font-weight: 850;
+      color: #1e3a8a;
+    }
+
+    details {
+      margin-top: 14px;
+      background: var(--green-soft);
+      border: 1px solid #bbf7d0;
+      border-radius: 18px;
+      padding: 15px 16px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 950;
+      color: #14532d;
+      font-size: 17px;
+    }
+
+    .quiz-wrap { display: grid; gap: 18px; margin-top: 18px; }
+
+    .quiz-card {
+      background: #f8fafc;
+      border: 1px solid #dbeafe;
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .quiz-card h3 {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 22px;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quiz-options label {
+      display: block;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px 13px;
+      color: #334155;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .answer-row {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 10px 12px;
+      color: #334155;
+      margin-top: 8px;
+    }
+
+    .answer-row strong { color: var(--blue-dark); }
+
+    .final-cta {
+      background: linear-gradient(135deg, #111827, #1e3a8a);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      margin-top: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .final-cta h2 { color: white; margin-top: 0; }
+    .final-cta p { color: #dbeafe; }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .practice-link {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 17px;
+      font-weight: 900;
+    }
+
+    .practice-link span {
+      display: block;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #475569;
+      padding: 34px 10px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .page { padding: 16px; }
+      .stats-strip { grid-template-columns: 1fr; }
+      .hero { padding: 36px 22px; }
+      .mini-table { font-size: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="badge">CRES Imaging Systems Study Guide</div>
+      <h1>Fundamentals of X-Ray for the CRES Exam</h1>
+      <p>
+        Learn X-ray systems the way a biomedical imaging specialist needs to understand them:
+        tube operation, generator function, exposure factors, detectors, grids, image quality,
+        radiation safety, and practical troubleshooting patterns.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta" href="#cres-quiz">Start Practice Questions</a>
+        <a class="cta secondary" href="/cres-practice-questions.html">CRES Practice</a>
+        <a class="cta secondary" href="/browse-all-practice.html">Browse All Practice</a>
+      </div>
+
+      <div class="stats-strip">
+        <div class="stat"><strong>Tube</strong><span>cathode, anode, rotor, stator</span></div>
+        <div class="stat"><strong>Exposure</strong><span>kVp, mA, mAs, AEC</span></div>
+        <div class="stat"><strong>Image</strong><span>contrast, noise, scatter</span></div>
+        <div class="stat"><strong>Service</strong><span>symptoms, causes, checks</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Why X-Ray Fundamentals Matter for CRES</h2>
+      <p class="lead">
+        CRES questions are not only asking if you can define terms. They test whether you can connect a system problem,
+        an exposure setting, or an image symptom to the correct cause.
+      </p>
+      <p>
+        A strong CRES learner understands the full imaging chain. You should know how power becomes high voltage,
+        how high voltage creates X-rays, how the beam interacts with the patient, how scatter affects the detector,
+        and how digital processing can improve or hide image quality problems.
+      </p>
+      <div class="callout">
+        What to notice first: CRES X-ray questions usually ask cause and effect. What changed? What symptom appeared?
+        What subsystem is most likely involved?
+      </div>
+      <div class="grid">
+        <div class="card"><strong>System understanding</strong>Know how the tube, generator, detector, collimator, grid, console, and AEC work together.</div>
+        <div class="card"><strong>Exposure reasoning</strong>Understand what kVp, mA, time, mAs, SID, and AEC actually change.</div>
+        <div class="card"><strong>Image quality thinking</strong>Connect contrast, noise, density, resolution, scatter, artifacts, and detector calibration to root causes.</div>
+        <div class="card"><strong>Service mindset</strong>Separate technique problems from tube, generator, grid, detector, processing, and positioning problems.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>The Complete X-Ray Imaging Chain</h2>
+      <p>
+        Think of an X-ray room as a chain. A problem anywhere in the chain can show up as a bad image,
+        failed exposure, alarm, inconsistent output, or safety issue.
+      </p>
+
+      <div class="flow">
+        <div class="flow-step">Power Input</div>
+        <div class="flow-step">Generator</div>
+        <div class="flow-step">X-Ray Tube</div>
+        <div class="flow-step">Beam Control</div>
+        <div class="flow-step">Patient</div>
+        <div class="flow-step">Grid / Detector</div>
+        <div class="flow-step">Processing</div>
+        <div class="flow-step">Displayed Image</div>
+      </div>
+
+      <table class="mini-table">
+        <thead><tr><th>Chain Point</th><th>What It Does</th><th>What Can Go Wrong</th></tr></thead>
+        <tbody>
+          <tr><td>Power input</td><td>Supplies system power.</td><td>Line voltage issues, power supply faults, breaker or facility power problems.</td></tr>
+          <tr><td>Generator</td><td>Controls kVp, mA, timing, rectification, and exposure output.</td><td>Inconsistent exposure, no exposure, kVp/mA errors, AEC timing problems.</td></tr>
+          <tr><td>Tube</td><td>Produces X-rays from electron-target interaction.</td><td>Rotor failure, filament failure, arcing, tube overload, worn focal track.</td></tr>
+          <tr><td>Beam control</td><td>Uses filtration and collimation to shape and clean the beam.</td><td>Excess dose, poor contrast, light field/radiation field mismatch.</td></tr>
+          <tr><td>Patient interaction</td><td>Attenuates the beam based on tissue density and thickness.</td><td>Scatter, underpenetration, motion, positioning errors.</td></tr>
+          <tr><td>Grid and detector</td><td>Reduces scatter and captures the remnant beam.</td><td>Grid cutoff, detector artifacts, calibration issues, dead pixels.</td></tr>
+          <tr><td>Processing</td><td>Converts detector signal into a diagnostic image.</td><td>Window/level, processing artifacts, incorrect exam algorithm.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>X-Ray Tube Components and Service Thinking</h2>
+      <p>
+        The X-ray tube is a high-vacuum device designed to accelerate electrons and manage heat.
+        Understanding tube parts helps you troubleshoot prep failures, tube overload warnings, arcing, and image sharpness problems.
+      </p>
+
+      <div class="grid">
+        <div class="card"><strong>Cathode</strong>The negative side. Contains the filament and focusing cup. Supplies electrons.</div>
+        <div class="card"><strong>Filament</strong>Heated coil that releases electrons by thermionic emission. Related to mA control.</div>
+        <div class="card"><strong>Focusing cup</strong>Shapes the electron cloud and helps aim electrons toward the focal spot.</div>
+        <div class="card"><strong>Anode</strong>The positive side. Receives electrons. The target material is often tungsten.</div>
+        <div class="card"><strong>Rotating anode</strong>Spreads heat across a focal track, allowing higher technique than a stationary target.</div>
+        <div class="card"><strong>Rotor and stator</strong>Induction motor system. If rotor prep fails, exposure may be inhibited.</div>
+        <div class="card"><strong>Glass or metal envelope</strong>Maintains vacuum and insulation. Tube arcing may indicate insulation or vacuum issues.</div>
+        <div class="card"><strong>Oil housing</strong>Provides electrical insulation and heat dissipation.</div>
+      </div>
+
+      <div class="scenario">
+        Real scenario: The system goes into prep, but exposure is inhibited and you hear abnormal rotor noise.
+        Think rotor/stator/anode rotation issue before assuming a detector problem.
+      </div>
+
+      <div class="callout">
+        What to notice first: cathode supplies electrons, anode receives electrons, focal spot produces X-rays, and the rotating anode protects the target from heat damage.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How X-Rays Are Produced</h2>
+      <p>
+        X-rays are produced when high-speed electrons from the cathode strike the anode target.
+        Most of the energy becomes heat. Only a small portion becomes X-ray photons.
+      </p>
+
+      <table class="mini-table">
+        <thead><tr><th>Type</th><th>Meaning</th><th>CRES Relevance</th></tr></thead>
+        <tbody>
+          <tr><td>Bremsstrahlung</td><td>Electron slows down or changes direction near the nucleus and releases X-ray energy.</td><td>Main source of diagnostic X-rays. Produces a continuous spectrum.</td></tr>
+          <tr><td>Characteristic radiation</td><td>Electron knocks out an inner shell electron and an outer electron fills the vacancy.</td><td>Photon energy depends on target material.</td></tr>
+          <tr><td>Heat production</td><td>Most electron energy becomes heat in the anode.</td><td>Tube loading, cooling charts, heat units, and anode rotation matter.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        Exam trap: do not overfocus on photon production and forget heat. In service, heat management is one of the biggest limits of X-ray tube operation.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>kVp, mA, mAs, Time and AEC</h2>
+      <p>
+        Exposure factor questions are high yield. The easiest way to avoid mistakes is to separate
+        beam quality from beam quantity.
+      </p>
+
+      <table class="mini-table">
+        <thead><tr><th>Control</th><th>Primary Effect</th><th>What to Notice First</th></tr></thead>
+        <tbody>
+          <tr><td>kVp</td><td>Beam energy and penetration. Higher kVp usually lowers subject contrast.</td><td>If penetration is the issue, think kVp.</td></tr>
+          <tr><td>mA</td><td>Tube current. Controls electron flow rate from cathode to anode.</td><td>If photon rate changes, think mA.</td></tr>
+          <tr><td>Time</td><td>Duration of exposure.</td><td>If motion blur is an issue, think exposure time.</td></tr>
+          <tr><td>mAs</td><td>Total photon quantity. mA multiplied by time.</td><td>If noise is the issue, think photon quantity.</td></tr>
+          <tr><td>AEC</td><td>Terminates exposure when enough radiation reaches the detector cells.</td><td>If exposure is inconsistent with AEC, check chamber selection, positioning, calibration, and backup timer.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="scenario">
+        Real scenario: An image is noisy but anatomy is penetrated adequately. Increasing kVp may not be the best first thought.
+        Think photon quantity and mAs.
+      </div>
+
+      <div class="danger">
+        Common mistake: kVp is not the same as mAs. kVp changes penetration. mAs changes total quantity.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Generator and High Voltage Concepts</h2>
+      <p>
+        The generator controls the electrical conditions for X-ray production. From a CRES perspective,
+        generator problems can look like inconsistent output, exposure failure, incorrect technique, or AEC problems.
+      </p>
+
+      <div class="grid">
+        <div class="card"><strong>High-voltage circuit</strong>Creates the potential difference that accelerates electrons from cathode to anode.</div>
+        <div class="card"><strong>Filament circuit</strong>Heats the filament to control electron availability and tube current.</div>
+        <div class="card"><strong>Rectification</strong>Converts AC into a useful high-voltage waveform for X-ray production.</div>
+        <div class="card"><strong>High-frequency generator</strong>Produces more consistent output than older single-phase systems.</div>
+        <div class="card"><strong>Exposure timer</strong>Controls exposure duration and total mAs.</div>
+        <div class="card"><strong>AEC interface</strong>Uses detector chamber signal to terminate exposure automatically.</div>
+      </div>
+
+      <div class="callout">
+        What to notice first: generator issues often affect consistency, timing, kVp accuracy, mA accuracy, and exposure termination.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Image Receptors, Digital Detectors and Processing</h2>
+      <p>
+        Modern digital radiography can make image interpretation tricky because processing may compensate for exposure problems.
+        A poor image may be caused by technique, detector calibration, processing selection, grid alignment, or hardware failure.
+      </p>
+
+      <div class="grid">
+        <div class="card"><strong>Remnant beam</strong>The radiation that exits the patient and reaches the detector.</div>
+        <div class="card"><strong>Detector response</strong>The detector converts X-ray exposure into an electrical signal.</div>
+        <div class="card"><strong>Flat-field correction</strong>Calibration process used to correct detector nonuniformity.</div>
+        <div class="card"><strong>Image lag</strong>Residual signal from a previous exposure that can create ghosting.</div>
+        <div class="card"><strong>Dead pixels</strong>Failed detector elements that may appear as fixed artifacts.</div>
+        <div class="card"><strong>Processing algorithm</strong>Wrong exam processing can make an adequate exposure look poor.</div>
+      </div>
+
+      <div class="scenario">
+        Real scenario: Repeating lines appear in the same location on multiple images. That pattern is less likely to be patient anatomy and more likely detector, grid, or processing related.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Image Quality: How to Think Through Problems</h2>
+
+      <table class="mini-table">
+        <thead><tr><th>Problem</th><th>Common Cause</th><th>First Thinking Step</th></tr></thead>
+        <tbody>
+          <tr><td>Image too noisy</td><td>Low mAs, large patient, detector issue</td><td>Was photon quantity too low?</td></tr>
+          <tr><td>Low contrast</td><td>High kVp, scatter, poor collimation, grid issue</td><td>Is scatter washing out the image?</td></tr>
+          <tr><td>Motion blur</td><td>Exposure time too long, patient motion, equipment motion</td><td>Could time be reduced?</td></tr>
+          <tr><td>Poor sharpness</td><td>Large focal spot, motion, geometric unsharpness, detector resolution</td><td>Is this motion, focal spot, or geometry?</td></tr>
+          <tr><td>Uneven brightness</td><td>Grid cutoff, detector calibration, heel effect, positioning</td><td>Is the pattern directional or fixed?</td></tr>
+          <tr><td>Repeated artifact</td><td>Detector, grid, processing, plate issue</td><td>Does it appear across patients and exposures?</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        What to notice first: do not troubleshoot X-ray images randomly. Identify the symptom pattern first.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Scatter, Collimation, Filtration and Grids</h2>
+
+      <p>
+        Scatter management is one of the biggest image quality and radiation safety topics.
+        Scatter reduces contrast and increases unwanted exposure.
+      </p>
+
+      <div class="grid">
+        <div class="card"><strong>Scatter</strong>Radiation that changes direction after interacting with matter. It reduces contrast.</div>
+        <div class="card"><strong>Collimation</strong>Limits the field size. Smaller field usually means less scatter and lower dose.</div>
+        <div class="card"><strong>Filtration</strong>Removes low-energy photons that would add skin dose without improving the image.</div>
+        <div class="card"><strong>Grid</strong>Absorbs scatter before it reaches the detector. Improves contrast but can require more exposure.</div>
+        <div class="card"><strong>Grid ratio</strong>Higher grid ratios remove more scatter but require more accurate positioning.</div>
+        <div class="card"><strong>Grid cutoff</strong>Occurs when the grid absorbs primary beam due to misalignment, incorrect SID, or off-centering.</div>
+      </div>
+
+      <div class="danger">
+        CRES trap: if an image is light on one side or uneven after using a grid, do not only think exposure.
+        Think grid alignment, SID, centering, and cutoff.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Geometry, Focal Spot and Sharpness</h2>
+      <p>
+        Image sharpness is affected by focal spot size, object-to-image distance, source-to-image distance,
+        patient motion, and detector resolution.
+      </p>
+
+      <table class="mini-table">
+        <thead><tr><th>Factor</th><th>Effect</th><th>What to Remember</th></tr></thead>
+        <tbody>
+          <tr><td>Small focal spot</td><td>Improves detail but limits heat loading.</td><td>Better detail, less tube loading capacity.</td></tr>
+          <tr><td>Large focal spot</td><td>Handles more heat but reduces fine detail.</td><td>Useful for higher technique but less sharp.</td></tr>
+          <tr><td>Motion</td><td>Blurs anatomy.</td><td>Shorter exposure time helps reduce motion blur.</td></tr>
+          <tr><td>OID</td><td>Object-to-image distance increases magnification and blur.</td><td>Keep anatomy close to detector when possible.</td></tr>
+          <tr><td>SID</td><td>Source-to-image distance affects magnification and intensity.</td><td>Changing distance affects exposure due to inverse square law.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Radiation Safety: ALARA, Distance, Time and Shielding</h2>
+      <p>
+        Radiation safety questions may be direct, but they can also appear in troubleshooting and workflow scenarios.
+      </p>
+
+      <div class="grid">
+        <div class="card"><strong>Time</strong>Reduce the amount of time near radiation exposure.</div>
+        <div class="card"><strong>Distance</strong>Increase distance from the radiation source. Distance is powerful protection.</div>
+        <div class="card"><strong>Shielding</strong>Use proper barriers, lead shielding, and room shielding.</div>
+        <div class="card"><strong>Collimation</strong>Smaller field size reduces unnecessary exposure and scatter.</div>
+        <div class="card"><strong>Filtration</strong>Removes low-energy photons that increase patient dose without helping the image.</div>
+        <div class="card"><strong>ALARA</strong>As Low As Reasonably Achievable: minimize exposure while maintaining clinical usefulness.</div>
+      </div>
+
+      <div class="callout">
+        Exam tip: doubling distance reduces intensity to one-fourth. Tripling distance reduces intensity to one-ninth.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Advanced CRES Troubleshooting Patterns</h2>
+      <p>
+        These are the types of reasoning patterns that make this page different from a basic X-ray overview.
+        Focus on symptoms, not just definitions.
+      </p>
+
+      <table class="mini-table">
+        <thead><tr><th>Scenario</th><th>Most Likely Area to Consider</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>No exposure after prep</td><td>Exposure switch, interlock, rotor prep, generator, tube safety circuit</td><td>The system may block exposure if prep or safety conditions are not satisfied.</td></tr>
+          <tr><td>Rotor sound abnormal</td><td>Rotor/stator/anode rotation issue</td><td>Rotating anode must reach speed before exposure.</td></tr>
+          <tr><td>Tube overload warning</td><td>Tube heat capacity, technique, cooling, duty cycle</td><td>Heat management protects the anode and tube housing.</td></tr>
+          <tr><td>All images suddenly noisy</td><td>Technique/AEC/detector calibration/system output</td><td>Repeated pattern suggests system or calibration issue.</td></tr>
+          <tr><td>Only one exam type looks poor</td><td>Processing algorithm or exam protocol</td><td>If other exams look fine, processing selection may be involved.</td></tr>
+          <tr><td>One side of image is lighter</td><td>Grid cutoff, centering, SID, detector correction</td><td>Uneven image patterns often point to alignment or calibration.</td></tr>
+          <tr><td>Washed-out image in large patient</td><td>Scatter, field size, grid, kVp selection</td><td>Scatter increases with patient thickness and field size.</td></tr>
+          <tr><td>Repeated vertical line artifact</td><td>Detector column, calibration, processing</td><td>Fixed artifacts across images are usually not patient-related.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>High-Yield CRES Memory Rules</h2>
+      <div class="grid">
+        <div class="card"><strong>kVp = penetration</strong>Higher kVp means higher beam energy and more penetration.</div>
+        <div class="card"><strong>mAs = quantity</strong>More mAs means more photons and usually less quantum noise.</div>
+        <div class="card"><strong>Scatter hurts contrast</strong>Collimation and grids reduce scatter.</div>
+        <div class="card"><strong>Heat is the tube enemy</strong>Most electron energy becomes heat, so anode rotation and cooling matter.</div>
+        <div class="card"><strong>Distance protects</strong>Increasing distance dramatically reduces exposure.</div>
+        <div class="card"><strong>Bad image does not always mean bad tube</strong>Technique, detector, processing, grid, calibration, and positioning all matter.</div>
+        <div class="card"><strong>Grid improves contrast</strong>But wrong grid use can cause cutoff.</div>
+        <div class="card"><strong>AEC is not magic</strong>Positioning, chamber selection, calibration, and backup time matter.</div>
+      </div>
+    </section>
+
+    <section class="section" id="cres-quiz">
+      <h2>CRES X-Ray Fundamentals Quiz</h2>
+      <p>
+        Answer first, then reveal the teaching. These questions are intentionally more scenario-based than a basic review.
+      </p>
+
+      <div class="quiz-wrap">
+        <div class="quiz-card"><h3>Question 1</h3><p>A portable chest image is noisy, but penetration appears acceptable. What factor should you think about first?</p><div class="quiz-options"><label>A. Photon quantity / mAs</label><label>B. Probe notch</label><label>C. Lead apron size</label><label>D. ECG gain</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Photon quantity / mAs</div><div class="answer-row"><strong>Teaching:</strong> Noise often means not enough photons reached the detector. If penetration is acceptable, think mAs before kVp.</div></details></div>
+        <div class="quiz-card"><h3>Question 2</h3><p>An image appears washed out with poor contrast in a large patient. What is a likely contributor?</p><div class="quiz-options"><label>A. Scatter radiation</label><label>B. Too much image label text</label><label>C. Filament color</label><label>D. Incorrect patient name only</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Scatter radiation</div><div class="answer-row"><strong>Teaching:</strong> Large patient thickness and large field size increase scatter, which reduces contrast.</div></details></div>
+        <div class="quiz-card"><h3>Question 3</h3><p>If the radiation field is larger than necessary, what happens?</p><div class="quiz-options"><label>A. More tissue is exposed and scatter may increase</label><label>B. Less tissue is exposed automatically</label><label>C. The grid disappears</label><label>D. kVp becomes zero</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. More tissue is exposed and scatter may increase</div><div class="answer-row"><strong>Teaching:</strong> Collimation improves safety and image quality by limiting field size.</div></details></div>
+        <div class="quiz-card"><h3>Question 4</h3><p>A system gives a tube overload warning after several high technique exposures. What is the main concern?</p><div class="quiz-options"><label>A. Tube heat capacity</label><label>B. Screen brightness</label><label>C. Keyboard failure only</label><label>D. Patient bracelet</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Tube heat capacity</div><div class="answer-row"><strong>Teaching:</strong> Most electron energy becomes heat. Tube loading and cooling protect the anode and housing.</div></details></div>
+        <div class="quiz-card"><h3>Question 5</h3><p>The system enters prep but does not allow exposure and the rotor sounds abnormal. What subsystem should be considered?</p><div class="quiz-options"><label>A. Rotor / stator / anode rotation</label><label>B. PACS password only</label><label>C. Wall clock</label><label>D. Room temperature display</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Rotor / stator / anode rotation</div><div class="answer-row"><strong>Teaching:</strong> A rotating anode system may inhibit exposure if the anode does not reach proper speed.</div></details></div>
+        <div class="quiz-card"><h3>Question 6</h3><p>Increasing kVp primarily changes what?</p><div class="quiz-options"><label>A. Beam penetration</label><label>B. Patient ID format</label><label>C. Detector Wi-Fi</label><label>D. Lead marker orientation</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Beam penetration</div><div class="answer-row"><strong>Teaching:</strong> kVp controls beam energy and penetration.</div></details></div>
+        <div class="quiz-card"><h3>Question 7</h3><p>Increasing mAs primarily changes what?</p><div class="quiz-options"><label>A. Total photon quantity</label><label>B. Beam direction only</label><label>C. Grid alignment only</label><label>D. Room shielding thickness</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Total photon quantity</div><div class="answer-row"><strong>Teaching:</strong> mAs equals mA times exposure time. It controls total X-ray quantity.</div></details></div>
+        <div class="quiz-card"><h3>Question 8</h3><p>If distance from a radiation source doubles, intensity becomes what?</p><div class="quiz-options"><label>A. One-fourth</label><label>B. Half</label><label>C. Double</label><label>D. Unchanged</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. One-fourth</div><div class="answer-row"><strong>Teaching:</strong> This is inverse square law. Doubling distance reduces intensity to 1/4.</div></details></div>
+        <div class="quiz-card"><h3>Question 9</h3><p>Repeated vertical artifacts appear in the same location across multiple patients. What should you suspect?</p><div class="quiz-options"><label>A. Detector or processing artifact</label><label>B. Patient anatomy every time</label><label>C. Patient breathing only</label><label>D. The lead apron label</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Detector or processing artifact</div><div class="answer-row"><strong>Teaching:</strong> Fixed artifacts across different patients are often detector, calibration, grid, or processing related.</div></details></div>
+        <div class="quiz-card"><h3>Question 10</h3><p>What does filtration primarily remove?</p><div class="quiz-options"><label>A. Low-energy photons that add dose without improving the image</label><label>B. All useful photons</label><label>C. Detector pixels</label><label>D. The anode target</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Low-energy photons that add dose without improving the image</div><div class="answer-row"><strong>Teaching:</strong> Filtration hardens the beam by removing low-energy photons that would mostly be absorbed by the patient.</div></details></div>
+        <div class="quiz-card"><h3>Question 11</h3><p>A grid improves contrast mainly by doing what?</p><div class="quiz-options"><label>A. Absorbing scatter radiation</label><label>B. Increasing patient motion</label><label>C. Producing electrons</label><label>D. Heating the filament</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Absorbing scatter radiation</div><div class="answer-row"><strong>Teaching:</strong> Grids reduce scatter before it reaches the detector, improving contrast.</div></details></div>
+        <div class="quiz-card"><h3>Question 12</h3><p>Grid cutoff is most associated with what?</p><div class="quiz-options"><label>A. Misalignment, wrong SID, or off-centering</label><label>B. Too much ultrasound gel</label><label>C. ECG lead noise</label><label>D. Pulse ox failure</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Misalignment, wrong SID, or off-centering</div><div class="answer-row"><strong>Teaching:</strong> Grid cutoff occurs when primary radiation is absorbed due to grid positioning errors.</div></details></div>
+        <div class="quiz-card"><h3>Question 13</h3><p>What tube component releases electrons when heated?</p><div class="quiz-options"><label>A. Filament</label><label>B. Bucky tray</label><label>C. Detector handle</label><label>D. Lead marker</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. Filament</div><div class="answer-row"><strong>Teaching:</strong> The cathode filament releases electrons by thermionic emission.</div></details></div>
+        <div class="quiz-card"><h3>Question 14</h3><p>What is the main benefit of a rotating anode?</p><div class="quiz-options"><label>A. It spreads heat over a larger focal track</label><label>B. It removes all radiation</label><label>C. It replaces shielding</label><label>D. It identifies the patient</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. It spreads heat over a larger focal track</div><div class="answer-row"><strong>Teaching:</strong> Rotating the anode distributes heat and allows higher tube loading.</div></details></div>
+        <div class="quiz-card"><h3>Question 15</h3><p>ALARA stands for what?</p><div class="quiz-options"><label>A. As Low As Reasonably Achievable</label><label>B. Automatic Line Amplitude Radiation Adjustment</label><label>C. Anode Load and Rotor Analysis</label><label>D. Assisted Low Angle Radiographic Alignment</label></div><details><summary>Reveal Answer and Teaching</summary><div class="answer-row"><strong>Answer:</strong> A. As Low As Reasonably Achievable</div><div class="answer-row"><strong>Teaching:</strong> ALARA is a radiation safety principle focused on minimizing dose while still achieving clinical usefulness.</div></details></div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Keep Studying CRES and Imaging Systems</h2>
+      <p>
+        X-ray fundamentals connect directly to electronics, troubleshooting, radiation safety, clinical workflow,
+        and imaging equipment service. Keep building the foundation with related MedSkillBuilder tools.
+      </p>
+      <div class="link-grid">
+        <a class="practice-link" href="/cres-practice-questions.html">CRES Practice Questions<span>Practice imaging and radiology equipment concepts.</span></a>
+        <a class="practice-link" href="/cbet-practice-questions.html">CBET Practice Questions<span>Review biomedical equipment and electronics foundations.</span></a>
+        <a class="practice-link" href="/what-is-ohms-law.html">Ohm’s Law Guide<span>Review electrical relationships used in troubleshooting.</span></a>
+        <a class="practice-link" href="/how-to-use-a-multimeter.html">Multimeter Guide<span>Build practical troubleshooting confidence.</span></a>
+        <a class="practice-link" href="/medical-equipment-identification-practice.html">Medical Equipment Identification<span>Practice recognizing real clinical equipment.</span></a>
+        <a class="practice-link" href="/browse-all-practice.html">Browse All Practice<span>See all MedSkillBuilder study tools.</span></a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>MedSkillBuilder.com — Interactive healthcare, biomedical equipment, CRES, CBET, and clinical learning tools.</p>
+    </footer>
+
+  </main>
+</body>
+</html>
