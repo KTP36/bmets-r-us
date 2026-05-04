@@ -7142,6 +7142,65 @@ export default function App() {
       />
     );
   };
+
+  const scrollToPracticeContent = () => {
+    if (typeof window === "undefined") return;
+
+    const doScroll = () => {
+      const target =
+        document.getElementById("practice-area") ||
+        document.getElementById("practice-content-anchor");
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    };
+
+    window.setTimeout(() => {
+      window.requestAnimationFrame(doScroll);
+    }, 350);
+  };
+
+  const jumpToPracticeCategory = (tabName, options = {}) => {
+    const { examName, setup } = options;
+
+    if (examName) {
+      trackExamStart(examName);
+    }
+
+    if (typeof setup === "function") {
+      setup();
+    }
+
+    setActiveTab(tabName);
+    scrollToPracticeContent();
+  };
+
+  const categoryHomeButtonStyle = (startColor, endColor) => ({
+    width: "100%",
+    minHeight: 92,
+    padding: "16px 14px",
+    borderRadius: 18,
+    border: "none",
+    background: `linear-gradient(135deg, ${startColor}, ${endColor})`,
+    color: "white",
+    fontWeight: 900,
+    fontSize: 16,
+    cursor: "pointer",
+    boxShadow: "0 8px 18px rgba(15, 23, 42, 0.14)",
+    textAlign: "center"
+  });
+
+  const categoryHomeButtonSubtextStyle = {
+    display: "block",
+    marginTop: 6,
+    fontSize: 12,
+    fontWeight: 700,
+    opacity: 0.9
+  };
 return (
   <div
     style={{
@@ -7196,8 +7255,152 @@ return (
           MedSkillBuilder
         </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
-          Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, and Medical Terminology
+          Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, CRES, ultrasound, and Medical Terminology
         </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 12,
+            flexWrap: "wrap",
+            marginTop: 18
+          }}
+        >
+          <a
+            href="/browse-all-practice.html"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "14px 22px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #ffffff, #dbeafe)",
+              color: "#12355b",
+              textDecoration: "none",
+              fontWeight: 900,
+              boxShadow: "0 8px 20px rgba(15, 23, 42, 0.18)",
+              border: "1px solid rgba(255,255,255,0.7)"
+            }}
+          >
+            🚀 Explore All Practice & Study Tools
+          </a>
+          <button
+            onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
+            style={{
+              padding: "14px 22px",
+              borderRadius: 999,
+              border: "1px solid rgba(255,255,255,0.45)",
+              background: "rgba(15,23,42,0.22)",
+              color: "white",
+              fontWeight: 900,
+              cursor: "pointer"
+            }}
+          >
+            Start CBET Practice
+          </button>
+        </div>
+      </div>
+
+      {/* START PRACTICING BY CATEGORY */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: "22px 18px",
+          borderRadius: 20,
+          background: "rgba(255,255,255,0.88)",
+          border: "1px solid #d8e4f2",
+          boxShadow: "0 10px 24px rgba(18,53,91,0.08)"
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            color: "#12355b",
+            fontWeight: 900,
+            letterSpacing: 1,
+            fontSize: 16,
+            marginBottom: 8
+          }}
+        >
+          START PRACTICING BY CATEGORY
+        </div>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#4f6275",
+            fontSize: 16,
+            margin: "0 auto 18px auto",
+            maxWidth: 720
+          }}
+        >
+          Pick a path and jump straight into the practice area that matches what you are studying.
+        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))",
+            gap: 12,
+            maxWidth: 1050,
+            margin: "0 auto"
+          }}
+        >
+          <button
+            onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
+            style={categoryHomeButtonStyle("#ff6a00", "#ff4d4d")}
+          >
+            🔧 CBET Prep
+            <span style={categoryHomeButtonSubtextStyle}>Biomedical equipment</span>
+          </button>
+          <button
+            onClick={() => jumpToPracticeCategory("CRES", { examName: "CRES Practice" })}
+            style={categoryHomeButtonStyle("#1e3a8a", "#2563eb")}
+          >
+            🩻 CRES / Imaging
+            <span style={categoryHomeButtonSubtextStyle}>X-ray and imaging systems</span>
+          </button>
+          <button
+            onClick={() => jumpToPracticeCategory("RN", { examName: "RN Practice" })}
+            style={categoryHomeButtonStyle("#0f766e", "#14b8a6")}
+          >
+            🩺 RN / NCLEX
+            <span style={categoryHomeButtonSubtextStyle}>Clinical thinking</span>
+          </button>
+          <button
+            onClick={() =>
+              jumpToPracticeCategory("Anatomy", {
+                setup: () => {
+                  setMode("organs");
+                  setSelectedSet(null);
+                }
+              })
+            }
+            style={categoryHomeButtonStyle("#7c3aed", "#a855f7")}
+          >
+            🧠 Anatomy
+            <span style={categoryHomeButtonSubtextStyle}>Labeling and recognition</span>
+          </button>
+          <button
+            onClick={() => jumpToPracticeCategory("Equipment", { examName: "Equipment Practice" })}
+            style={categoryHomeButtonStyle("#0f172a", "#334155")}
+          >
+            🏥 Equipment ID
+            <span style={categoryHomeButtonSubtextStyle}>Devices and functions</span>
+          </button>
+          <a
+            href="/browse-all-practice.html"
+            style={{
+              ...categoryHomeButtonStyle("#12355b", "#1d6fa5"),
+              textDecoration: "none",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            📚 View All Practice
+            <span style={categoryHomeButtonSubtextStyle}>Complete study hub</span>
+          </a>
+        </div>
       </div>
 
       {/* MOST POPULAR RIGHT NOW */}
@@ -7243,8 +7446,7 @@ return (
         >
           <button
             onClick={() => {
-              trackExamStart("CBET Practice");
-              setActiveTab("CBET");
+              jumpToPracticeCategory("CBET", { examName: "CBET Practice" });
             }}
             style={{
               padding: "12px 18px",
@@ -7261,8 +7463,7 @@ return (
           </button>
           <button
             onClick={() => {
-              trackExamStart("ABG Quiz");
-              setActiveTab("ABGQuiz");
+              jumpToPracticeCategory("ABGQuiz", { examName: "ABG Quiz" });
             }}
             style={{
               padding: "12px 18px",
@@ -7279,8 +7480,7 @@ return (
           </button>
           <button
             onClick={() => {
-              trackExamStart("EKG Waveform Quiz");
-              setActiveTab("EKGQuiz");
+              jumpToPracticeCategory("EKGQuiz", { examName: "EKG Waveform Quiz" });
             }}
             style={{
               padding: "12px 18px",
@@ -7319,6 +7519,24 @@ return (
         >
           Home
         </button>
+        <a
+          href="/browse-all-practice.html"
+          onMouseEnter={() => setHoveredNavTab("AllPractice")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={{
+            ...navButtonStyle(false, hoveredNavTab === "AllPractice"),
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textDecoration: "none",
+            background: hoveredNavTab === "AllPractice"
+              ? "linear-gradient(135deg, #12355b, #1d6fa5)"
+              : "linear-gradient(135deg, #dbeafe, #eff6ff)",
+            color: hoveredNavTab === "AllPractice" ? "white" : "#12355b"
+          }}
+        >
+          All Practice
+        </a>
         <a
           href="/apparel.html"
           target="_blank"
@@ -7694,7 +7912,7 @@ return (
                   type="button"
                   onClick={() => {
                     startCbetFullExam();
-                    setActiveTab("CBET");
+                    jumpToPracticeCategory("CBET");
                   }}
                   style={{
                     padding: isSmallScreen ? "13px 20px" : "15px 26px",
@@ -7807,7 +8025,7 @@ return (
                   type="button"
                   onClick={() => {
                     startCbetFullExam();
-                    setActiveTab("CBET");
+                    jumpToPracticeCategory("CBET");
                   }}
                   style={{
                     ...homeActionLinkStyle("linear-gradient(135deg, #f97316, #ef4444)"),
@@ -7821,7 +8039,7 @@ return (
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveTab("ABGQuiz")}
+                  onClick={() => jumpToPracticeCategory("ABGQuiz", { examName: "ABG Quiz" })}
                   style={{
                     ...homeActionLinkStyle("linear-gradient(135deg, #0f766e, #14b8a6)"),
                     width: "100%",
@@ -7923,21 +8141,21 @@ return (
                     key: "abg-quick",
                     title: "ABG Practice",
                     description: "Acid-base questions with fast reps.",
-                    onClick: () => setActiveTab("ABGQuiz"),
+                    onClick: () => jumpToPracticeCategory("ABGQuiz", { examName: "ABG Quiz" }),
                     accent: "linear-gradient(135deg, #0f766e, #14b8a6)"
                   },
                   {
                     key: "lab-quick",
                     title: "Lab Values Quiz",
                     description: "Critical labs and normal ranges.",
-                    onClick: () => setActiveTab("LabValuesQuiz"),
+                    onClick: () => jumpToPracticeCategory("LabValuesQuiz", { examName: "Lab Values Quiz" }),
                     accent: "linear-gradient(135deg, #1d4ed8, #3b82f6)"
                   },
                   {
                     key: "ekg-quick",
                     title: "EKG Quiz",
                     description: "Read strips and identify rhythms.",
-                    onClick: () => setActiveTab("EKGQuiz"),
+                    onClick: () => jumpToPracticeCategory("EKGQuiz", { examName: "EKG Waveform Quiz" }),
                     accent: "linear-gradient(135deg, #7c3aed, #8b5cf6)"
                   }
                 ].map((item) => (
@@ -8623,6 +8841,13 @@ return (
           </div>
         </div>
           )}
+        <div
+          id="practice-area"
+          style={{
+            scrollMarginTop: isSmallScreen ? 18 : 24
+          }}
+        />
+
         {activeTab === "Dashboard" && (
           <div
             style={{
