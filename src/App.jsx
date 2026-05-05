@@ -12854,8 +12854,12 @@ return (
           </div>
         </div>
       )}
+
+      <div style={{ textAlign: "center", marginTop: 40, padding: "20px 0", color: "#64748b", fontSize: 14 }}>
+        © 2026 MedSkillBuilder LLC. All rights reserved.
       </div>
+
+     </div>
     </div>
   );
 }
-
