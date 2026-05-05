@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Basic Electronics Explained for Beginners | CBET Start Here</title>
+
+  <meta
+    name="description"
+    content="Learn basic electronics for beginners with simple explanations of voltage, current, resistance, Ohm’s Law, circuits, resistors, capacitors, diodes, multimeters, and CBET electronics practice."
+  />
+
+  <meta
+    name="keywords"
+    content="basic electronics explained, electronics for beginners, CBET electronics, biomedical equipment electronics, Ohm's Law, voltage current resistance, series parallel circuits, resistor capacitor diode, multimeter basics"
+  />
+
+  <link rel="canonical" href="https://medskillbuilder.com/basic-electronics-explained-for-beginners.html" />
+
+  <meta property="og:title" content="Basic Electronics Explained for Beginners | CBET Start Here" />
+  <meta
+    property="og:description"
+    content="A simple beginner-friendly guide to electronics for CBET, biomedical equipment, and healthcare technology learners."
+  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://medskillbuilder.com/basic-electronics-explained-for-beginners.html" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 34px 18px 60px;
+    }
+
+    .top-link {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: #2563eb;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f2f57, #153f73);
+      color: white;
+      border-radius: 26px;
+      padding: 34px 26px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 2.45rem;
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+
+    .hero p {
+      max-width: 820px;
+      font-size: 1.08rem;
+      margin: 0 0 18px;
+      color: #e0f2fe;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      text-align: center;
+      color: white;
+      background: #22c55e;
+      min-width: 210px;
+      transition: 0.2s ease;
+    }
+
+    .cta.secondary {
+      background: #2563eb;
+    }
+
+    .cta.dark {
+      background: #0f172a;
+    }
+
+    .cta:hover {
+      opacity: 0.94;
+      transform: translateY(-1px);
+    }
+
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 26px;
+      margin-bottom: 26px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      border: 1px solid #e2e8f0;
+    }
+
+    h2 {
+      font-size: 1.65rem;
+      margin: 0 0 12px;
+      color: #12355b;
+      line-height: 1.25;
+    }
+
+    h3 {
+      font-size: 1.22rem;
+      margin: 20px 0 8px;
+      color: #0f172a;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+
+    .note {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 16px;
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 16px;
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .mini {
+      background: #f8fafc;
+      border: 1px solid #dbe4ee;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .mini h3 {
+      margin-top: 0;
+      color: #12355b;
+    }
+
+    .formula {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 18px;
+      border-radius: 16px;
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin: 18px 0;
+    }
+
+    .link-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .study-link {
+      display: block;
+      padding: 15px;
+      border-radius: 14px;
+      text-decoration: none;
+      background: linear-gradient(90deg, #0f2f57, #153f73);
+      color: white;
+      font-weight: 800;
+      text-align: center;
+      transition: 0.2s ease;
+    }
+
+    .study-link:hover {
+      opacity: 0.94;
+      transform: translateY(-1px);
+    }
+
+    .study-link.green {
+      background: linear-gradient(90deg, #15803d, #22c55e);
+    }
+
+    .study-link.blue {
+      background: linear-gradient(90deg, #1d4ed8, #2948b8);
+    }
+
+    .study-link.purple {
+      background: linear-gradient(90deg, #6d28d9, #8b5cf6);
+    }
+
+    .quick-check {
+      background: #f8fafc;
+      border: 1px solid #dbe4ee;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .quick-check strong {
+      color: #0f2f57;
+    }
+
+    details {
+      background: white;
+      border: 1px solid #dbe4ee;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-top: 10px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    ul {
+      margin-top: 8px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .footer-cta {
+      text-align: center;
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      border: 1px solid #e2e8f0;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.92rem;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 720px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .grid,
+      .link-list {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <a class="top-link" href="/browse-all-practice.html">← Back to Browse All</a>
+
+    <section class="hero">
+      <h1>Basic Electronics Explained for Beginners</h1>
+      <p>
+        If electronics feels confusing, start here. This beginner guide explains voltage, current, resistance,
+        Ohm’s Law, circuits, components, and multimeter basics in plain language.
+      </p>
+      <p>
+        This page is especially helpful for CBET learners, biomedical equipment students, and anyone who wants to understand
+        the electronics behind medical equipment without getting lost in complicated math.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta" href="/cbet-electronics-practice-questions.html">Start Electronics Practice</a>
+        <a class="cta secondary" href="/what-is-ohms-law.html">Learn Ohm’s Law</a>
+        <a class="cta dark" href="/how-to-use-a-multimeter.html">Use a Multimeter</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Start With the Big Idea</h2>
+      <p>
+        Electronics is the study of how electricity moves through a circuit and how components control that movement.
+        Once you understand a few basic ideas, the rest starts to make more sense.
+      </p>
+
+      <div class="note">
+        <strong>Simple way to think about it:</strong><br />
+        Voltage pushes electricity, current is the flow, and resistance slows or limits the flow.
+      </div>
+
+      <p>
+        In medical equipment, these ideas show up everywhere. Power supplies convert electricity into usable voltage.
+        Circuit boards control signals. Sensors measure changes. Fuses protect equipment. Multimeters help technicians
+        test what is happening inside a device.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>The Three Core Concepts</h2>
+
+      <div class="grid">
+        <div class="mini">
+          <h3>Voltage</h3>
+          <p>
+            Voltage is electrical pressure. It is the push that moves electricity through a circuit.
+          </p>
+          <p>
+            Voltage is measured in volts, shown as <strong>V</strong>.
+          </p>
+          <a class="study-link blue" href="/voltage-current-resistance-cbet.html">Review Voltage</a>
+        </div>
+
+        <div class="mini">
+          <h3>Current</h3>
+          <p>
+            Current is the flow of electric charge. If voltage is the push, current is what moves.
+          </p>
+          <p>
+            Current is measured in amps, shown as <strong>A</strong>.
+          </p>
+          <a class="study-link blue" href="/voltage-current-resistance-cbet.html">Review Current</a>
+        </div>
+
+        <div class="mini">
+          <h3>Resistance</h3>
+          <p>
+            Resistance opposes current flow. More resistance means less current can flow.
+          </p>
+          <p>
+            Resistance is measured in ohms, shown as <strong>Ω</strong>.
+          </p>
+          <a class="study-link blue" href="/how-to-test-a-resistor.html">Test a Resistor</a>
+        </div>
+
+        <div class="mini">
+          <h3>Power</h3>
+          <p>
+            Power is how much electrical energy is being used or delivered by a circuit.
+          </p>
+          <p>
+            Power is measured in watts, shown as <strong>W</strong>.
+          </p>
+          <a class="study-link blue" href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Ohm’s Law: The Formula That Connects Everything</h2>
+      <p>
+        Ohm’s Law explains the relationship between voltage, current, and resistance.
+      </p>
+
+      <div class="formula">V = I × R</div>
+
+      <p>
+        That means voltage equals current multiplied by resistance.
+      </p>
+
+      <ul>
+        <li><strong>V</strong> = voltage in volts</li>
+        <li><strong>I</strong> = current in amps</li>
+        <li><strong>R</strong> = resistance in ohms</li>
+      </ul>
+
+      <div class="note">
+        If voltage goes up and resistance stays the same, current goes up.
+        If resistance goes up and voltage stays the same, current goes down.
+      </div>
+
+      <div class="quick-check">
+        <strong>Quick example:</strong>
+        <p>
+          If a circuit has 12 volts and 6 ohms of resistance, current is 2 amps.
+        </p>
+        <p>
+          12 ÷ 6 = 2
+        </p>
+      </div>
+
+      <a class="study-link green" href="/ohms-law-quiz.html">Try the Ohm’s Law Quiz</a>
+    </section>
+
+    <section class="card">
+      <h2>How Circuits Work</h2>
+      <p>
+        A circuit is a complete path that allows electricity to flow. If the path is broken, current cannot flow.
+      </p>
+
+      <h3>Series Circuit</h3>
+      <p>
+        In a series circuit, components are connected one after another. Current has only one path.
+        If one part opens or fails, the entire circuit can stop working.
+      </p>
+
+      <h3>Parallel Circuit</h3>
+      <p>
+        In a parallel circuit, components have separate paths. If one branch fails, another branch may still work.
+      </p>
+
+      <div class="warning">
+        <strong>Common beginner mistake:</strong><br />
+        Students often think all circuits behave the same way. Series and parallel circuits behave differently,
+        especially when components fail.
+      </div>
+
+      <div class="link-list">
+        <a class="study-link" href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a>
+        <a class="study-link" href="/series-parallel-quiz.html">Series vs Parallel Quiz</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Common Electronic Components</h2>
+      <p>
+        Components are the individual parts that make circuits work. You do not need to memorize every part at once.
+        Start by recognizing the most common ones.
+      </p>
+
+      <div class="grid">
+        <div class="mini">
+          <h3>Resistor</h3>
+          <p>
+            A resistor limits or controls current flow. It protects components and helps set circuit values.
+          </p>
+          <a class="study-link" href="/how-to-test-a-resistor.html">How to Test a Resistor</a>
+        </div>
+
+        <div class="mini">
+          <h3>Capacitor</h3>
+          <p>
+            A capacitor stores and releases electrical energy. It is often used for filtering, timing, and smoothing voltage.
+          </p>
+          <a class="study-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        </div>
+
+        <div class="mini">
+          <h3>Diode</h3>
+          <p>
+            A diode allows current to flow mostly in one direction. Diodes are important in rectifiers and protection circuits.
+          </p>
+          <a class="study-link" href="/what-is-a-diode.html">What Is a Diode?</a>
+        </div>
+
+        <div class="mini">
+          <h3>Rectifier</h3>
+          <p>
+            A rectifier converts AC into DC. This matters because many electronic circuits need DC power to operate.
+          </p>
+          <a class="study-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>AC vs DC Current</h2>
+      <p>
+        Electricity can be AC or DC.
+      </p>
+
+      <h3>AC Current</h3>
+      <p>
+        AC stands for alternating current. It changes direction repeatedly. Wall outlets supply AC power.
+      </p>
+
+      <h3>DC Current</h3>
+      <p>
+        DC stands for direct current. It flows in one direction. Batteries and many circuit boards use DC power.
+      </p>
+
+      <p>
+        Medical equipment often receives AC power from the wall, then uses an internal power supply to convert it into DC voltages
+        that the device can use.
+      </p>
+
+      <div class="link-list">
+        <a class="study-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a class="study-link" href="/power-supply-basics-cbet.html">Power Supply Basics for CBET</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Why This Matters for Biomedical Equipment</h2>
+      <p>
+        Biomedical equipment depends on electronics. Even if you are not designing circuits, you still need to understand
+        basic electronics to troubleshoot safely and think clearly.
+      </p>
+
+      <p>
+        For example:
+      </p>
+
+      <ul>
+        <li>An IV pump may have power supply issues, battery issues, charging problems, or board-level faults.</li>
+        <li>A monitor may have display, input, power, or signal issues.</li>
+        <li>An ultrasound system depends on probes, signal processing, power supplies, and image display circuits.</li>
+        <li>An X-ray system uses higher-level electrical concepts, including power, exposure factors, and safety systems.</li>
+      </ul>
+
+      <div class="note">
+        The goal is not to become perfect overnight. The goal is to recognize what you are looking at and understand what to check first.
+      </div>
+
+      <div class="link-list">
+        <a class="study-link green" href="/medical-equipment-identification-practice.html">Equipment ID Practice</a>
+        <a class="study-link purple" href="/common-medical-equipment-mistakes.html">Common Equipment Mistakes</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Using a Multimeter</h2>
+      <p>
+        A multimeter is one of the most important tools for electronics troubleshooting.
+      </p>
+
+      <p>
+        A beginner should know how to measure:
+      </p>
+
+      <ul>
+        <li><strong>Voltage</strong> to see if power is present</li>
+        <li><strong>Resistance</strong> to check components or wiring</li>
+        <li><strong>Continuity</strong> to see if a path is complete</li>
+      </ul>
+
+      <div class="warning">
+        <strong>Safety reminder:</strong><br />
+        Always know what you are measuring before placing meter leads on a circuit.
+        Use the correct setting and follow proper safety procedures.
+      </div>
+
+      <div class="link-list">
+        <a class="study-link" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a class="study-link" href="/multimeter-quiz.html">Multimeter Quiz</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Common Beginner Mistakes</h2>
+
+      <h3>1. Trying to memorize formulas without understanding the meaning</h3>
+      <p>
+        The formula matters, but the concept matters more. Know what voltage, current, and resistance are doing.
+      </p>
+
+      <h3>2. Mixing up voltage and current</h3>
+      <p>
+        Voltage is the push. Current is the flow. They are related, but they are not the same thing.
+      </p>
+
+      <h3>3. Forgetting that resistance limits current</h3>
+      <p>
+        Higher resistance usually means less current if voltage stays the same.
+      </p>
+
+      <h3>4. Treating series and parallel circuits the same</h3>
+      <p>
+        Components behave differently depending on how they are connected.
+      </p>
+
+      <h3>5. Using a multimeter without checking the setting first</h3>
+      <p>
+        The meter setting matters. Measuring voltage, resistance, and current are different tasks.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Beginner Electronics Practice Questions</h2>
+      <p>
+        Try these quick checks before moving into the full practice quizzes.
+      </p>
+
+      <div class="quick-check">
+        <strong>1. What does voltage do?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>Voltage provides the electrical push that moves current through a circuit.</p>
+        </details>
+      </div>
+
+      <div class="quick-check">
+        <strong>2. What does resistance do?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>Resistance opposes or limits current flow.</p>
+        </details>
+      </div>
+
+      <div class="quick-check">
+        <strong>3. If voltage increases and resistance stays the same, what happens to current?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>Current increases.</p>
+        </details>
+      </div>
+
+      <div class="quick-check">
+        <strong>4. What type of current comes from a typical wall outlet?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>AC current.</p>
+        </details>
+      </div>
+
+      <div class="quick-check">
+        <strong>5. What does a rectifier do?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>A rectifier converts AC into DC.</p>
+        </details>
+      </div>
+
+      <div class="quick-check">
+        <strong>6. What tool is commonly used to measure voltage, resistance, and continuity?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>A multimeter.</p>
+        </details>
+      </div>
+
+      <div class="quick-check">
+        <strong>7. In a series circuit, how many paths does current have?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>One path.</p>
+        </details>
+      </div>
+
+      <div class="quick-check">
+        <strong>8. What component stores and releases electrical energy?</strong>
+        <details>
+          <summary>Show answer</summary>
+          <p>A capacitor.</p>
+        </details>
+      </div>
+
+      <div class="link-list">
+        <a class="study-link green" href="/cbet-electronics-practice-questions.html">Full Electronics Practice</a>
+        <a class="study-link green" href="/most-missed-cbet-electronics-questions.html">Most Missed Questions</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Best Study Path</h2>
+      <p>
+        If you are new, use this order:
+      </p>
+
+      <ol>
+        <li>Read this page first.</li>
+        <li>Review voltage, current, and resistance.</li>
+        <li>Learn Ohm’s Law.</li>
+        <li>Practice series and parallel circuits.</li>
+        <li>Learn common components like resistors, capacitors, and diodes.</li>
+        <li>Practice with quizzes until the ideas feel familiar.</li>
+      </ol>
+
+      <div class="link-list">
+        <a class="study-link" href="/voltage-current-resistance-cbet.html">Voltage, Current, Resistance</a>
+        <a class="study-link" href="/what-is-ohms-law.html">Ohm’s Law Guide</a>
+        <a class="study-link" href="/series-vs-parallel-circuits.html">Series vs Parallel</a>
+        <a class="study-link" href="/schematic-symbols-quiz.html">Schematic Symbols Quiz</a>
+      </div>
+    </section>
+
+    <section class="footer-cta">
+      <h2>Ready to Practice?</h2>
+      <p>
+        Start with beginner electronics practice, then move into CBET-style questions and equipment identification.
+      </p>
+
+      <div class="cta-row" style="justify-content:center;">
+        <a class="cta" href="/cbet-electronics-practice-questions.html">Start Electronics Practice</a>
+        <a class="cta secondary" href="/cbet-practice-questions.html">CBET Practice Questions</a>
+        <a class="cta dark" href="/browse-all-practice.html">Browse All Tools</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        MedSkillBuilder helps healthcare learners practice basic electronics, CBET concepts, medical equipment identification,
+        anatomy, terminology, EKG, ABG interpretation, and clinical fundamentals.
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>
