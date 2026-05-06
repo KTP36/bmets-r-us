@@ -454,4 +454,18 @@
   <priority>0.8</priority>
 </url>
 
+<url>
+  <loc>https://medskillbuilder.com/what-is-hyperkalemia.html</loc>
+  <lastmod>2026-05-06</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://medskillbuilder.com/what-is-hypokalemia.html</loc>
+  <lastmod>2026-05-06</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
 </urlset>    
