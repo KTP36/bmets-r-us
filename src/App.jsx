@@ -4416,6 +4416,28 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Uses stomach acid, bile, and pancreatic enzymes to break down food",
       "Absorbs nutrients in the small intestine and water in the large intestine"
     ],
+    clinicalConnections: [
+      "Digestive anatomy helps learners connect food breakdown, nutrient absorption, bowel patterns, hydration, and abdominal assessment.",
+      "The digestive system works closely with the liver, gallbladder, and pancreas because bile and enzymes help break down nutrients.",
+      "Problems in digestion can show up as pain, nausea, vomiting, diarrhea, constipation, bleeding, dehydration, malnutrition, or abnormal lab values."
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: where are most nutrients absorbed?",
+        hint: "Think about the long coiled organ after the stomach.",
+        explanation: "Most nutrient absorption happens in the small intestine. The stomach starts breakdown, but the small intestine is the main absorption site for many nutrients."
+      },
+      {
+        prompt: "Before checking help: why does bile matter in digestion?",
+        hint: "Think about fat digestion and the liver-gallbladder connection.",
+        explanation: "Bile helps break down fats so they can be digested and absorbed. The liver produces bile, and the gallbladder stores and releases it when needed."
+      },
+      {
+        prompt: "Before checking help: what does peristalsis do?",
+        hint: "Think about how food keeps moving through the digestive tract.",
+        explanation: "Peristalsis is the wave-like muscle movement that pushes food through the digestive tract from one section to the next."
+      }
+    ],
     dropWidth: 110,
     dropHeight: 38,
     mobileDropScale: 0.36,
