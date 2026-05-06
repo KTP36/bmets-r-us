@@ -5886,6 +5886,7 @@ export default function App() {
   const examStartTimesRef = useRef({});
   const anatomyStartRef = useRef({ name: "", startedAt: 0 });
   const anatomyCompletionSavedRef = useRef("");
+  const anatomyGameRef = useRef(null);
   const placementMessageTimeoutRef = useRef(null);
   const cashAppSupportUrl = import.meta.env.VITE_CASH_APP_URL || "https://cash.app/$KevinPugh23";
   const cashAppQrImage = import.meta.env.VITE_CASH_APP_QR_IMAGE || "";
@@ -6213,6 +6214,13 @@ export default function App() {
     setShowZoneAnswers(false);
     anatomyStartRef.current = { name: item, startedAt: Date.now() };
     anatomyCompletionSavedRef.current = "";
+
+    window.setTimeout(() => {
+      anatomyGameRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }, 80);
   };
 
   const openSaveScorePrompt = (activityName, scoreValue, totalValue, timeSeconds = 0) => {
@@ -7163,6 +7171,14 @@ export default function App() {
       window.requestAnimationFrame(doScroll);
     }, 350);
   };
+
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (activeTab === "Home") return;
+
+    scrollToPracticeContent();
+  }, [activeTab]);
 
   const jumpToPracticeCategory = (tabName, options = {}) => {
     const { examName, setup } = options;
@@ -9281,6 +9297,7 @@ return (
             </div>
             {selectedSet && currentSet && (
               <>
+               <div ref={anatomyGameRef} style={{ scrollMarginTop: 24 }} />
                {anatomyStudyCard}
                <div style={{ textAlign: "center", marginBottom: 12 }}>
   <button
