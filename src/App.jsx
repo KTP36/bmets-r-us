@@ -3963,6 +3963,23 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Removes carbon dioxide during exhalation",
       "Supports normal pH balance in the body"
     ],
+    clinicalConnections: [
+      "Low oxygen levels can affect brain function, heart rhythm, and overall tissue perfusion.",
+      "Carbon dioxide buildup connects directly to respiratory distress, ABG interpretation, and acid-base balance.",
+      "Lung anatomy helps learners understand asthma, pneumonia, COPD, ventilators, pulse oximetry, and breath sounds."
+    ],
+    quickChecks: [
+      {
+        prompt: "What is the main job of the lungs during gas exchange?",
+        hint: "Think about what enters the blood and what leaves the blood.",
+        explanation: "The lungs move oxygen into the blood and remove carbon dioxide from the blood. This supports tissue oxygenation and helps maintain normal acid-base balance."
+      },
+      {
+        prompt: "Why does carbon dioxide buildup matter clinically?",
+        hint: "Think about breathing, ABGs, and body pH.",
+        explanation: "Carbon dioxide affects blood pH. If ventilation is poor and CO2 builds up, the patient can develop respiratory acidosis, which is why lung function connects strongly to ABG interpretation."
+      }
+    ],
     dropWidth: 100,
     dropHeight: 40,
     mobileDropScale: 0.42,
