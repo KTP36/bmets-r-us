@@ -4207,6 +4207,33 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Includes common support structures often taught with skin cross-sections",
       "Helps learners connect barrier function, sensation, and thermoregulation"
     ],
+    clinicalConnections: [
+      "Skin anatomy connects directly to wound care, burns, pressure injuries, infection control, injections, temperature checks, and basic patient assessment.",
+      "The epidermis matters because it is the first protective barrier against germs, fluid loss, chemicals, and physical injury.",
+      "The dermis and hypodermis matter clinically because they contain blood vessels, nerves, glands, connective tissue, and fat that support healing, sensation, cooling, cushioning, and insulation."
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: which skin layer is the thin outer protective barrier?",
+        hint: "Think about the surface layer you see first when looking at skin.",
+        explanation: "The epidermis is the thin outer layer of the skin. It protects the body from germs, fluid loss, chemicals, and physical injury."
+      },
+      {
+        prompt: "Before checking help: which layer contains many blood vessels, nerves, glands, and hair follicles?",
+        hint: "This is the middle layer under the epidermis.",
+        explanation: "The dermis is the middle connective tissue layer. It contains blood vessels, nerves, sweat glands, sebaceous glands, and hair follicles, which makes it important for sensation, sweating, oil production, and healing."
+      },
+      {
+        prompt: "Before checking help: why does the hypodermis matter clinically?",
+        hint: "Think about fat, cushioning, insulation, and some injections.",
+        explanation: "The hypodermis is the deeper subcutaneous layer. It contains fat and connective tissue that help cushion the body, conserve heat, store energy, and support subcutaneous medication delivery."
+      },
+      {
+        prompt: "Before checking help: which skin structure helps cool the body?",
+        hint: "Look for the coiled gland and its duct leading to the surface.",
+        explanation: "Sweat glands produce sweat and sweat ducts carry it to the skin surface. As sweat evaporates, it helps cool the body and supports temperature regulation."
+      }
+    ],
     dropWidth: 118,
     dropHeight: 34,
     mobileDropScale: 0.34,
