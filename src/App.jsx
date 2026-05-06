@@ -4056,6 +4056,28 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Regulates sodium, potassium, and water balance",
       "Supports blood pressure and endocrine signaling"
     ],
+    clinicalConnections: [
+      "Kidney function connects directly to electrolytes, fluid balance, blood pressure, urine output, and lab values.",
+      "Changes in potassium, creatinine, BUN, or urine output can signal that the kidneys are under stress.",
+      "Kidneys help maintain acid-base balance, which connects renal anatomy to ABGs and clinical decision-making."
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: what is one major job of the kidneys?",
+        hint: "Think about what the kidneys remove from the blood and what they turn it into.",
+        explanation: "The kidneys filter blood, remove waste products, and help form urine. They also regulate water, sodium, potassium, acid-base balance, and blood pressure support."
+      },
+      {
+        prompt: "Before checking help: why do kidneys matter for potassium levels?",
+        hint: "Think about electrolyte balance and what happens when the body cannot clear extra potassium well.",
+        explanation: "The kidneys help regulate potassium. If kidney function decreases, potassium can rise, which matters clinically because abnormal potassium levels can affect heart rhythm."
+      },
+      {
+        prompt: "Before checking help: why does urine output matter clinically?",
+        hint: "Think of urine output as a visible clue about kidney perfusion and filtering activity.",
+        explanation: "Urine output helps show whether the kidneys are receiving enough blood flow and producing urine. Low urine output can be an early warning sign of dehydration, shock, or kidney injury."
+      }
+    ],
     dropWidth: 88,
     dropHeight: 34,
     mobileDropScale: 0.38,
