@@ -4248,6 +4248,33 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Middle ear bones amplify vibration",
       "Inner ear structures convert vibration to nerve signals and support balance"
     ],
+    clinicalConnections: [
+      "Ear anatomy connects directly to hearing checks, dizziness, balance problems, ear infections, pressure changes, and basic neurologic assessment.",
+      "The tympanic membrane and middle ear bones matter because sound must be converted from air vibration into mechanical vibration before the inner ear can process it.",
+      "The cochlea and auditory nerve are clinically important because they convert vibration into nerve signals and carry sound information toward the brain."
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: which ear structure collects sound and funnels it toward the ear canal?",
+        hint: "Think about the visible outside part of the ear.",
+        explanation: "The auricle, also called the pinna, is the visible outer ear structure. It helps collect sound waves and guide them into the external auditory canal."
+      },
+      {
+        prompt: "Before checking help: which three tiny bones amplify sound vibrations in the middle ear?",
+        hint: "Look for the hammer, anvil, and stirrup bones.",
+        explanation: "The malleus, incus, and stapes are the three ossicles of the middle ear. They amplify vibration from the tympanic membrane and pass it toward the inner ear."
+      },
+      {
+        prompt: "Before checking help: which inner ear structure converts sound vibration into nerve signals?",
+        hint: "Think about the spiral-shaped structure connected to the auditory nerve.",
+        explanation: "The cochlea converts mechanical sound vibrations into electrical nerve signals. Those signals travel through the auditory nerve to the brain for hearing interpretation."
+      },
+      {
+        prompt: "Before checking help: why are the semicircular canals important?",
+        hint: "They are not mainly for hearing. Think head movement and balance.",
+        explanation: "The semicircular canals help detect head movement and support balance. This is why inner ear problems can cause dizziness or vertigo."
+      }
+    ],
     dropWidth: 90,
     dropHeight: 34,
     mobileDropScale: 0.36,
