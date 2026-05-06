@@ -4014,11 +4014,33 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
     boardHeight: 600,
     functionTitle: "Filters blood and processes nutrients",
     functionSummary:
-      "The liver detoxifies blood, stores energy, produces bile, and helps regulate metabolism so the body can use nutrients efficiently.",
+      "The liver detoxifies blood, processes nutrients from digestion, produces bile, stores energy, and helps regulate metabolism so the body can use nutrients safely and efficiently.",
     studyHighlights: [
       "Breaks down toxins, drugs, and waste products",
-      "Produces bile to help digest fats",
+      "Produces bile to help digest and absorb fats",
       "Stores glycogen, vitamins, and important nutrients"
+    ],
+    clinicalConnections: [
+      "Liver function connects directly to medication safety, because many drugs are processed or broken down by the liver.",
+      "Bile production helps with fat digestion, so liver and gallbladder anatomy connect closely to the digestive system.",
+      "Abnormal liver function can show up through jaundice, swelling, bleeding risk, confusion, abdominal pain, or abnormal lab values."
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: what is one major job of the liver?",
+        hint: "Think about toxins, medications, nutrients, and bile.",
+        explanation: "The liver filters and processes blood, breaks down toxins and medications, stores nutrients, and produces bile to help digest fats."
+      },
+      {
+        prompt: "Before checking help: why does bile matter for digestion?",
+        hint: "Think about the nutrient group that needs help being broken down and absorbed.",
+        explanation: "Bile helps break down fats so they can be digested and absorbed more effectively in the intestine."
+      },
+      {
+        prompt: "Before checking help: why is the liver important when giving medications?",
+        hint: "Think about what happens to many medications after they enter the bloodstream.",
+        explanation: "Many medications are metabolized by the liver. If liver function is reduced, some medications can build up or require extra caution."
+      }
     ],
     dropWidth: 80,
     dropHeight: 32,
