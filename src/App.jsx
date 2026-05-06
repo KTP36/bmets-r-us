@@ -9510,7 +9510,7 @@ return (
             style={{
               background: "rgba(255,255,255,0.82)",
               borderRadius: 22,
-              padding: 20,
+              padding: isSmallScreen ? 10 : 20,
               boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
             }}
           >
@@ -9520,10 +9520,10 @@ return (
                   style={{
                     background:
                       "linear-gradient(135deg, rgba(18,53,91,0.98) 0%, rgba(29,111,165,0.95) 48%, rgba(15,118,110,0.96) 100%)",
-                    borderRadius: 28,
-                    padding: "28px 30px",
-                    marginBottom: 22,
-                    boxShadow: "0 18px 45px rgba(15, 23, 42, 0.22)",
+                    borderRadius: isSmallScreen ? 20 : 28,
+                    padding: isSmallScreen ? "18px 14px" : "28px 30px",
+                    marginBottom: isSmallScreen ? 16 : 22,
+                    boxShadow: isSmallScreen ? "0 10px 24px rgba(15, 23, 42, 0.18)" : "0 18px 45px rgba(15, 23, 42, 0.22)",
                     color: "white",
                     position: "relative",
                     overflow: "hidden",
@@ -9533,10 +9533,10 @@ return (
                   <div
                     style={{
                       position: "absolute",
-                      right: -40,
-                      top: -50,
-                      width: 190,
-                      height: 190,
+                      right: isSmallScreen ? -70 : -40,
+                      top: isSmallScreen ? -80 : -50,
+                      width: isSmallScreen ? 130 : 190,
+                      height: isSmallScreen ? 130 : 190,
                       borderRadius: "50%",
                       background: "rgba(255,255,255,0.12)"
                     }}
@@ -9544,10 +9544,10 @@ return (
                   <div
                     style={{
                       position: "absolute",
-                      left: -60,
-                      bottom: -70,
-                      width: 220,
-                      height: 220,
+                      left: isSmallScreen ? -95 : -60,
+                      bottom: isSmallScreen ? -105 : -70,
+                      width: isSmallScreen ? 150 : 220,
+                      height: isSmallScreen ? 150 : 220,
                       borderRadius: "50%",
                       background: "rgba(251,191,36,0.16)"
                     }}
@@ -9558,14 +9558,15 @@ return (
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: 8,
-                        padding: "8px 14px",
+                        gap: isSmallScreen ? 6 : 8,
+                        padding: isSmallScreen ? "7px 10px" : "8px 14px",
                         borderRadius: 999,
                         background: "rgba(255,255,255,0.16)",
                         border: "1px solid rgba(255,255,255,0.28)",
                         fontWeight: 800,
-                        marginBottom: 14,
-                        letterSpacing: 0.2
+                        marginBottom: isSmallScreen ? 10 : 14,
+                        letterSpacing: 0.2,
+                        fontSize: isSmallScreen ? 13 : 16
                       }}
                     >
                       🧠 Interactive Anatomy Study Hub
@@ -9574,28 +9575,28 @@ return (
                     <div
                       style={{
                         display: "grid",
-                        gridTemplateColumns: "minmax(0, 1.4fr) minmax(260px, 0.8fr)",
-                        gap: 22,
+                        gridTemplateColumns: isSmallScreen ? "1fr" : "minmax(0, 1.4fr) minmax(260px, 0.8fr)",
+                        gap: isSmallScreen ? 14 : 22,
                         alignItems: "stretch"
                       }}
                     >
                       <div>
                         <h2
                           style={{
-                            fontSize: "clamp(30px, 5vw, 48px)",
-                            lineHeight: 1.05,
-                            margin: "0 0 12px 0",
+                            fontSize: isSmallScreen ? 25 : "clamp(30px, 5vw, 48px)",
+                            lineHeight: isSmallScreen ? 1.12 : 1.05,
+                            margin: isSmallScreen ? "0 0 10px 0" : "0 0 12px 0",
                             fontWeight: 950,
-                            letterSpacing: "-0.03em"
+                            letterSpacing: isSmallScreen ? "-0.02em" : "-0.03em"
                           }}
                         >
                           Learn anatomy by recognizing, thinking, and checking your reasoning.
                         </h2>
                         <p
                           style={{
-                            fontSize: 18,
-                            lineHeight: 1.7,
-                            margin: "0 0 18px 0",
+                            fontSize: isSmallScreen ? 15 : 18,
+                            lineHeight: isSmallScreen ? 1.55 : 1.7,
+                            margin: isSmallScreen ? "0 0 14px 0" : "0 0 18px 0",
                             color: "rgba(255,255,255,0.9)",
                             maxWidth: 760
                           }}
@@ -9606,9 +9607,9 @@ return (
                         <div
                           style={{
                             display: "flex",
-                            gap: 12,
+                            gap: isSmallScreen ? 8 : 12,
                             flexWrap: "wrap",
-                            marginTop: 18
+                            marginTop: isSmallScreen ? 12 : 18
                           }}
                         >
                           {[
@@ -9620,12 +9621,12 @@ return (
                             <div
                               key={item}
                               style={{
-                                padding: "9px 13px",
+                                padding: isSmallScreen ? "7px 10px" : "9px 13px",
                                 borderRadius: 999,
                                 background: "rgba(255,255,255,0.15)",
                                 border: "1px solid rgba(255,255,255,0.22)",
                                 fontWeight: 800,
-                                fontSize: 14
+                                fontSize: isSmallScreen ? 12 : 14
                               }}
                             >
                               {item}
@@ -9638,12 +9639,12 @@ return (
                         style={{
                           background: "rgba(255,255,255,0.13)",
                           border: "1px solid rgba(255,255,255,0.25)",
-                          borderRadius: 22,
-                          padding: 18,
+                          borderRadius: isSmallScreen ? 16 : 22,
+                          padding: isSmallScreen ? 14 : 18,
                           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)"
                         }}
                       >
-                        <h3 style={{ margin: "0 0 12px 0", fontSize: 21, fontWeight: 900 }}>
+                        <h3 style={{ margin: "0 0 12px 0", fontSize: isSmallScreen ? 17 : 21, fontWeight: 900 }}>
                           Best way to use this section
                         </h3>
                         <div style={{ display: "grid", gap: 12 }}>
@@ -9657,27 +9658,28 @@ return (
                               key={number}
                               style={{
                                 display: "grid",
-                                gridTemplateColumns: "34px 1fr",
-                                gap: 10,
+                                gridTemplateColumns: isSmallScreen ? "28px 1fr" : "34px 1fr",
+                                gap: isSmallScreen ? 8 : 10,
                                 alignItems: "start"
                               }}
                             >
                               <div
                                 style={{
-                                  width: 34,
-                                  height: 34,
+                                  width: isSmallScreen ? 28 : 34,
+                                  height: isSmallScreen ? 28 : 34,
                                   borderRadius: "50%",
                                   background: "rgba(251,191,36,0.95)",
                                   color: "#12355b",
                                   display: "flex",
                                   alignItems: "center",
                                   justifyContent: "center",
-                                  fontWeight: 950
+                                  fontWeight: 950,
+                                  fontSize: isSmallScreen ? 13 : 16
                                 }}
                               >
                                 {number}
                               </div>
-                              <div style={{ color: "rgba(255,255,255,0.92)", lineHeight: 1.45, fontWeight: 700 }}>
+                              <div style={{ color: "rgba(255,255,255,0.92)", lineHeight: isSmallScreen ? 1.35 : 1.45, fontWeight: 700, fontSize: isSmallScreen ? 13 : 16 }}>
                                 {copy}
                               </div>
                             </div>
