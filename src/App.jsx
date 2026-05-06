@@ -4337,6 +4337,29 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Large central veins drain the head, arms, trunk, and legs",
       "Deep leg veins are clinically important for DVT risk"
     ],
+    clinicalConnections: [
+      "Veins return blood to the heart so it can be sent to the lungs for oxygen pickup",
+      "Venous return helps maintain circulation, preload, and overall cardiac output",
+      "Large veins such as the superior vena cava and inferior vena cava are major return pathways to the right atrium",
+      "Deep leg veins matter clinically because clots can form there and become serious if they travel"
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: what is the main job of the venous system?",
+        hint: "Think about blood returning after oxygen has been delivered to tissues.",
+        explanation: "The venous system returns oxygen-poor blood from the body back to the right side of the heart so it can move to the lungs for oxygen."
+      },
+      {
+        prompt: "Before checking help: why are veins usually lower pressure than arteries?",
+        hint: "Think about whether blood is leaving the heart or returning back toward it.",
+        explanation: "Veins carry blood back toward the heart after it has passed through smaller vessels, so the pressure is lower than the high-pressure arterial side."
+      },
+      {
+        prompt: "Before checking help: why do deep leg veins matter clinically?",
+        hint: "Think about clot risk and what could happen if a clot travels.",
+        explanation: "Deep leg veins are important because clots can form there. A clot that travels can become dangerous, especially if it reaches the lungs."
+      }
+    ],
     dropWidth: 80,
     dropHeight: 32,
     mobileDropScale: 0.38,
