@@ -3900,6 +3900,28 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Controls movement, speech, and sensation",
       "Regulates breathing, heart rate, and other vital functions"
     ],
+    clinicalConnections: [
+      "Changes in speech, movement, vision, sensation, or level of consciousness can point to problems involving specific brain regions.",
+      "The brainstem is clinically important because it helps control breathing, heart rate, and blood pressure.",
+      "Brain anatomy connects directly to stroke recognition, neuro checks, pupils, movement, sensation, and mental status assessment."
+    ],
+    quickChecks: [
+      {
+        prompt: "Which part of the brain is strongly connected to balance and coordinated movement?",
+        hint: "Think about the structure that helps smooth out movement and posture.",
+        explanation: "The cerebellum helps coordinate balance, posture, and smooth voluntary movement."
+      },
+      {
+        prompt: "Which brain region helps control vital automatic functions like breathing and heart rate?",
+        hint: "Look for the structure that connects the brain to the spinal cord and supports automatic survival functions.",
+        explanation: "The brainstem helps control vital automatic functions, including breathing, heart rate, and blood pressure."
+      },
+      {
+        prompt: "Why can a stroke cause weakness, speech changes, or vision changes?",
+        hint: "Think about different brain areas controlling different body functions.",
+        explanation: "Different brain regions control movement, speech, sensation, and vision. When blood flow to one area is interrupted, the function controlled by that area can be affected."
+      }
+    ],
     dropWidth: 100,
     dropHeight: 40,
     mobileDropScale: 0.42,
