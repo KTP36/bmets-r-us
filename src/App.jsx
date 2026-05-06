@@ -4401,6 +4401,29 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Focuses on major surface muscles students commonly see on anatomy exams",
       "Pairs well with biology, anatomy, nursing, and sports medicine review"
     ],
+    clinicalConnections: [
+      "Muscles create movement by pulling on bones through tendons, which helps learners connect anatomy labels to real body motion.",
+      "Major surface muscles are useful landmarks during physical assessment, injections, mobility checks, injury review, and rehabilitation basics.",
+      "Muscle weakness, pain, cramping, or limited range of motion can point to injury, nerve issues, electrolyte imbalance, poor perfusion, or deconditioning.",
+      "Understanding anterior muscles helps students connect posture, gait, lifting mechanics, breathing assistance, and patient transfer safety."
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: what is the main job of skeletal muscles?",
+        hint: "Think about movement and how muscles attach to bones.",
+        explanation: "Skeletal muscles contract and pull on bones to create movement, support posture, and help stabilize joints."
+      },
+      {
+        prompt: "Before checking help: which anterior upper-arm muscle helps bend the elbow?",
+        hint: "Look at the front of the upper arm and think about elbow flexion.",
+        explanation: "The biceps brachii is on the front of the upper arm and helps flex the elbow."
+      },
+      {
+        prompt: "Before checking help: why do muscles matter during patient care and assessment?",
+        hint: "Think strength, mobility, range of motion, transfers, and injury signs.",
+        explanation: "Muscles matter clinically because weakness, pain, spasms, or limited movement can affect mobility, safety, rehabilitation, and daily function."
+      }
+    ],
     dropWidth: 132,
     dropHeight: 36,
     mobileDropScale: 0.34,
