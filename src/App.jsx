@@ -4144,6 +4144,28 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Converts light into signals in the retina",
       "Sends visual information to the brain through the optic nerve"
     ],
+    clinicalConnections: [
+      "Eye anatomy connects directly to vision checks, pupil assessment, eye pressure, trauma, and neurologic screening.",
+      "The retina and optic nerve matter clinically because they turn light into nerve signals and carry those signals toward the brain.",
+      "Changes in pupils, sharp vision, peripheral vision, or sudden visual symptoms can be important clues during patient assessment."
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: which eye structure changes size to control how much light enters?",
+        hint: "Think about the dark opening in the center and the colored muscle around it.",
+        explanation: "The pupil is the opening that lets light enter the eye. The iris controls pupil size, making it larger or smaller depending on light and neurologic response."
+      },
+      {
+        prompt: "Before checking help: which structure changes incoming light into nerve signals?",
+        hint: "Look toward the back inner lining of the eye where light-sensitive tissue is located.",
+        explanation: "The retina is the light-sensitive tissue that converts incoming light into nerve signals. Those signals then travel through the optic nerve toward the brain."
+      },
+      {
+        prompt: "Before checking help: why does the optic nerve matter for vision?",
+        hint: "Think about the pathway that carries visual information from the eye toward the brain.",
+        explanation: "The optic nerve carries visual signals from the retina to the brain. Without that signal pathway, the brain cannot interpret what the eye has captured."
+      }
+    ],
     dropWidth: 80,
     dropHeight: 32,
     mobileDropScale: 0.35,
