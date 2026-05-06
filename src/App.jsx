@@ -3842,6 +3842,28 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
         "Supplies tissues with oxygen and nutrients",
         "Helps remove carbon dioxide and metabolic waste"
       ],
+      clinicalConnections: [
+        "Blood pressure, pulse, oxygenation, and perfusion are all connected to how effectively the heart pumps.",
+        "EKG rhythm changes can affect cardiac output, which can change blood pressure, mental status, and oxygen delivery.",
+        "Heart anatomy connects directly to valves, chambers, circulation, shock, and basic rhythm interpretation."
+      ],
+      quickChecks: [
+        {
+          prompt: "Which lower chamber sends oxygen-rich blood out to the body?",
+          hint: "Focus on the side of the heart that sends blood into the aorta.",
+          explanation: "The left ventricle pumps oxygen-rich blood into the aorta so it can travel to the body."
+        },
+        {
+          prompt: "Which chamber receives oxygen-poor blood returning from the body?",
+          hint: "Think about the chamber that receives blood from the vena cava before it moves to the right ventricle.",
+          explanation: "The right atrium receives oxygen-poor blood returning from the body before it moves into the right ventricle."
+        },
+        {
+          prompt: "Why are heart valves important for blood flow?",
+          hint: "Think about direction. Blood should move forward, not backward.",
+          explanation: "Heart valves help keep blood moving in one direction by preventing backflow between chambers and vessels."
+        }
+      ],
     dropWidth: 100,
     dropHeight: 40,
     mobileDropScale: 0.42,
@@ -4159,6 +4181,29 @@ const musclesAnteriorImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAA
       "Distributes oxygen-rich blood from the heart",
       "Supports tissue perfusion from head to toe",
       "Helps maintain blood pressure and circulation pathways"
+    ],
+    clinicalConnections: [
+      "Perfusion depends on arteries carrying oxygen-rich blood to tissues",
+      "Pulse points are places where arterial flow can be felt close to the skin",
+      "Blood pressure reflects force inside the arterial system",
+      "Blocked or narrowed arteries can reduce oxygen delivery to organs or limbs"
+    ],
+    quickChecks: [
+      {
+        prompt: "Before checking help: what is the main job of an artery?",
+        hint: "Think direction of blood flow away from the heart.",
+        explanation: "Arteries carry blood away from the heart so oxygen and nutrients can reach body tissues."
+      },
+      {
+        prompt: "Before checking help: why does the arterial system matter for blood pressure?",
+        hint: "Think about pressure inside vessels during circulation.",
+        explanation: "Blood pressure is the force of blood pushing against artery walls, so arterial health and vessel tone matter."
+      },
+      {
+        prompt: "Before checking help: why would reduced arterial flow matter clinically?",
+        hint: "Think oxygen delivery and tissue perfusion.",
+        explanation: "Reduced arterial flow can lower tissue perfusion, which means cells may receive less oxygen and nutrients."
+      }
     ],
     dropWidth: 80,
     dropHeight: 32,
@@ -5802,6 +5847,302 @@ function getDeepLinkedTab() {
   return requestedTab || "Home";
 }
 
+
+function AnatomyLearningCard({
+  currentSet,
+  selectedSet,
+  isSmallScreen,
+  revealedAnatomyHelp,
+  setRevealedAnatomyHelp
+}) {
+  return currentSet && currentSet.functionTitle ? (
+      <div
+        style={{
+          marginBottom: 18,
+          padding: isSmallScreen ? 18 : 22,
+          borderRadius: 22,
+          background:
+            "linear-gradient(135deg, rgba(18,53,91,0.96), rgba(29,111,165,0.92), rgba(88,180,216,0.88))",
+          color: "white",
+          boxShadow: "0 14px 34px rgba(18,53,91,0.22)",
+          overflow: "hidden",
+          position: "relative"
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 35%), radial-gradient(circle at bottom left, rgba(255,255,255,0.14), transparent 30%)",
+            pointerEvents: "none"
+          }}
+        />
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            gap: 16,
+            flexWrap: "wrap",
+            alignItems: "flex-start",
+            justifyContent: "space-between"
+          }}
+        >
+          <div style={{ flex: "1 1 320px", minWidth: 0 }}>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 12px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.16)",
+                fontSize: 12,
+                fontWeight: 800,
+                letterSpacing: 0.6,
+                textTransform: "uppercase"
+              }}
+            >
+              Study Snapshot
+            </div>
+            <h3
+              style={{
+                margin: "14px 0 8px",
+                fontSize: isSmallScreen ? 24 : 28,
+                lineHeight: 1.15
+              }}
+            >
+              {selectedSet}
+            </h3>
+            <p
+              style={{
+                margin: 0,
+                fontSize: 15,
+                lineHeight: 1.7,
+                color: "rgba(255,255,255,0.94)",
+                maxWidth: 700
+              }}
+            >
+              {currentSet.functionSummary}
+            </p>
+          </div>
+          <div
+            style={{
+              flex: "0 1 250px",
+              minWidth: isSmallScreen ? "100%" : 220,
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              borderRadius: 18,
+              padding: 16,
+              backdropFilter: "blur(4px)"
+            }}
+          >
+            <div
+              style={{
+                fontSize: 13,
+                fontWeight: 800,
+                letterSpacing: 0.5,
+                textTransform: "uppercase",
+                color: "#dbeafe",
+                marginBottom: 10
+              }}
+            >
+              Why It Matters
+            </div>
+            <div style={{ display: "grid", gap: 10 }}>
+              {currentSet.studyHighlights.map((highlight) => (
+                <div
+                  key={highlight}
+                  style={{
+                    padding: "10px 12px",
+                    borderRadius: 14,
+                    background: "rgba(255,255,255,0.1)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    fontSize: 14,
+                    lineHeight: 1.4,
+                    color: "white"
+                  }}
+                >
+                  {highlight}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {(currentSet.clinicalConnections?.length > 0 || currentSet.quickChecks?.length > 0) && (
+          <div
+            style={{
+              position: "relative",
+              marginTop: 18,
+              display: "grid",
+              gridTemplateColumns: isSmallScreen ? "1fr" : "1fr 1fr",
+              gap: 14
+            }}
+          >
+            {currentSet.clinicalConnections?.length > 0 && (
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: 18,
+                  padding: 16
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 800,
+                    letterSpacing: 0.5,
+                    textTransform: "uppercase",
+                    color: "#dbeafe",
+                    marginBottom: 10
+                  }}
+                >
+                  Clinical Connection
+                </div>
+                <div style={{ display: "grid", gap: 10 }}>
+                  {currentSet.clinicalConnections.map((connection) => (
+                    <div
+                      key={connection}
+                      style={{
+                        padding: "10px 12px",
+                        borderRadius: 14,
+                        background: "rgba(255,255,255,0.1)",
+                        border: "1px solid rgba(255,255,255,0.14)",
+                        fontSize: 14,
+                        lineHeight: 1.45,
+                        color: "white"
+                      }}
+                    >
+                      {connection}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {currentSet.quickChecks?.length > 0 && (
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.12)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: 18,
+                  padding: 16
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 800,
+                    letterSpacing: 0.5,
+                    textTransform: "uppercase",
+                    color: "#dbeafe",
+                    marginBottom: 10
+                  }}
+                >
+                  Quick Check
+                </div>
+                <div style={{ display: "grid", gap: 12 }}>
+                  {currentSet.quickChecks.map((check, index) => {
+                    const helpKey = `${selectedSet}-${index}`;
+                    const helpState = revealedAnatomyHelp[helpKey];
+
+                    return (
+                      <div
+                        key={check.prompt}
+                        style={{
+                          padding: "12px",
+                          borderRadius: 14,
+                          background: "rgba(255,255,255,0.1)",
+                          border: "1px solid rgba(255,255,255,0.14)"
+                        }}
+                      >
+                        <div style={{ fontSize: 14, lineHeight: 1.45, fontWeight: 700 }}>
+                          {check.prompt}
+                        </div>
+                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setRevealedAnatomyHelp((prev) => ({
+                                ...prev,
+                                [helpKey]: prev[helpKey] === "hint" ? "" : "hint"
+                              }))
+                            }
+                            style={{
+                              border: "1px solid rgba(255,255,255,0.28)",
+                              background: helpState === "hint" ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.12)",
+                              color: "white",
+                              borderRadius: 999,
+                              padding: "8px 12px",
+                              fontWeight: 800,
+                              cursor: "pointer"
+                            }}
+                          >
+                            Need a Hint?
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setRevealedAnatomyHelp((prev) => ({
+                                ...prev,
+                                [helpKey]: prev[helpKey] === "explanation" ? "" : "explanation"
+                              }))
+                            }
+                            style={{
+                              border: "1px solid rgba(255,255,255,0.28)",
+                              background: helpState === "explanation" ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.12)",
+                              color: "white",
+                              borderRadius: 999,
+                              padding: "8px 12px",
+                              fontWeight: 800,
+                              cursor: "pointer"
+                            }}
+                          >
+                            Show Explanation
+                          </button>
+                        </div>
+                        {helpState === "hint" && (
+                          <div
+                            style={{
+                              marginTop: 10,
+                              padding: "10px 12px",
+                              borderRadius: 12,
+                              background: "rgba(255,255,255,0.12)",
+                              fontSize: 14,
+                              lineHeight: 1.45
+                            }}
+                          >
+                            Hint: {check.hint}
+                          </div>
+                        )}
+                        {helpState === "explanation" && (
+                          <div
+                            style={{
+                              marginTop: 10,
+                              padding: "10px 12px",
+                              borderRadius: 12,
+                              background: "rgba(255,255,255,0.16)",
+                              fontSize: 14,
+                              lineHeight: 1.45
+                            }}
+                          >
+                            {check.explanation}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    ) : null;
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState(() => getDeepLinkedTab());
   const ownerAnalyticsEnabled = import.meta.env.VITE_OWNER_ANALYTICS_TAB === "true";
@@ -5913,6 +6254,7 @@ export default function App() {
   const [hoveredPartName, setHoveredPartName] = useState("");
   const [placementMessage, setPlacementMessage] = useState({ text: "", tone: "idle" });
   const [showZoneAnswers, setShowZoneAnswers] = useState(false);
+  const [revealedAnatomyHelp, setRevealedAnatomyHelp] = useState({});
   const isSmallScreen = window.innerWidth < 768;
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
   // --- CBET STATE ---
@@ -6212,6 +6554,7 @@ export default function App() {
     setSelectedLabel("");
     setPlacementMessage({ text: "", tone: "idle" });
     setShowZoneAnswers(false);
+    setRevealedAnatomyHelp({});
     anatomyStartRef.current = { name: item, startedAt: Date.now() };
     anatomyCompletionSavedRef.current = "";
 
@@ -6868,122 +7211,16 @@ export default function App() {
     }
   };
   const anatomyStudyCard =
-    mode === "organs" && currentSet && currentSet.functionTitle ? (
-      <div
-        style={{
-          marginBottom: 18,
-          padding: isSmallScreen ? 18 : 22,
-          borderRadius: 22,
-          background:
-            "linear-gradient(135deg, rgba(18,53,91,0.96), rgba(29,111,165,0.92), rgba(88,180,216,0.88))",
-          color: "white",
-          boxShadow: "0 14px 34px rgba(18,53,91,0.22)",
-          overflow: "hidden",
-          position: "relative"
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 35%), radial-gradient(circle at bottom left, rgba(255,255,255,0.14), transparent 30%)",
-            pointerEvents: "none"
-          }}
-        />
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            gap: 16,
-            flexWrap: "wrap",
-            alignItems: "flex-start",
-            justifyContent: "space-between"
-          }}
-        >
-          <div style={{ flex: "1 1 320px", minWidth: 0 }}>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "6px 12px",
-                borderRadius: 999,
-                background: "rgba(255,255,255,0.16)",
-                fontSize: 12,
-                fontWeight: 800,
-                letterSpacing: 0.6,
-                textTransform: "uppercase"
-              }}
-            >
-              Study Snapshot
-            </div>
-            <h3
-              style={{
-                margin: "14px 0 8px",
-                fontSize: isSmallScreen ? 24 : 28,
-                lineHeight: 1.15
-              }}
-            >
-              {selectedSet}
-            </h3>
-            <p
-              style={{
-                margin: 0,
-                fontSize: 15,
-                lineHeight: 1.7,
-                color: "rgba(255,255,255,0.94)",
-                maxWidth: 700
-              }}
-            >
-              {currentSet.functionSummary}
-            </p>
-          </div>
-          <div
-            style={{
-              flex: "0 1 250px",
-              minWidth: isSmallScreen ? "100%" : 220,
-              background: "rgba(255,255,255,0.12)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              borderRadius: 18,
-              padding: 16,
-              backdropFilter: "blur(4px)"
-            }}
-          >
-            <div
-              style={{
-                fontSize: 13,
-                fontWeight: 800,
-                letterSpacing: 0.5,
-                textTransform: "uppercase",
-                color: "#dbeafe",
-                marginBottom: 10
-              }}
-            >
-              Why It Matters
-            </div>
-            <div style={{ display: "grid", gap: 10 }}>
-              {currentSet.studyHighlights.map((highlight) => (
-                <div
-                  key={highlight}
-                  style={{
-                    padding: "10px 12px",
-                    borderRadius: 14,
-                    background: "rgba(255,255,255,0.1)",
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    fontSize: 14,
-                    lineHeight: 1.4,
-                    color: "white"
-                  }}
-                >
-                  {highlight}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+    mode === "organs" ? (
+      <AnatomyLearningCard
+        currentSet={currentSet}
+        selectedSet={selectedSet}
+        isSmallScreen={isSmallScreen}
+        revealedAnatomyHelp={revealedAnatomyHelp}
+        setRevealedAnatomyHelp={setRevealedAnatomyHelp}
+      />
     ) : null;
+
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     setContactError("");
