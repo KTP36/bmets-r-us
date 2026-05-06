@@ -9518,6 +9518,178 @@ return (
               <>
                 <div
                   style={{
+                    background:
+                      "linear-gradient(135deg, rgba(18,53,91,0.98) 0%, rgba(29,111,165,0.95) 48%, rgba(15,118,110,0.96) 100%)",
+                    borderRadius: 28,
+                    padding: "28px 30px",
+                    marginBottom: 22,
+                    boxShadow: "0 18px 45px rgba(15, 23, 42, 0.22)",
+                    color: "white",
+                    position: "relative",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.25)"
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: -40,
+                      top: -50,
+                      width: 190,
+                      height: 190,
+                      borderRadius: "50%",
+                      background: "rgba(255,255,255,0.12)"
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: -60,
+                      bottom: -70,
+                      width: 220,
+                      height: 220,
+                      borderRadius: "50%",
+                      background: "rgba(251,191,36,0.16)"
+                    }}
+                  />
+
+                  <div style={{ position: "relative", zIndex: 1 }}>
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 8,
+                        padding: "8px 14px",
+                        borderRadius: 999,
+                        background: "rgba(255,255,255,0.16)",
+                        border: "1px solid rgba(255,255,255,0.28)",
+                        fontWeight: 800,
+                        marginBottom: 14,
+                        letterSpacing: 0.2
+                      }}
+                    >
+                      🧠 Interactive Anatomy Study Hub
+                    </div>
+
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "minmax(0, 1.4fr) minmax(260px, 0.8fr)",
+                        gap: 22,
+                        alignItems: "stretch"
+                      }}
+                    >
+                      <div>
+                        <h2
+                          style={{
+                            fontSize: "clamp(30px, 5vw, 48px)",
+                            lineHeight: 1.05,
+                            margin: "0 0 12px 0",
+                            fontWeight: 950,
+                            letterSpacing: "-0.03em"
+                          }}
+                        >
+                          Learn anatomy by recognizing, thinking, and checking your reasoning.
+                        </h2>
+                        <p
+                          style={{
+                            fontSize: 18,
+                            lineHeight: 1.7,
+                            margin: "0 0 18px 0",
+                            color: "rgba(255,255,255,0.9)",
+                            maxWidth: 760
+                          }}
+                        >
+                          Pick a body system below, study the snapshot, then use the hidden hints and explanations only when you need help. The goal is not to memorize a label once. The goal is to understand what the structure does, why it matters clinically, and how it connects to real healthcare situations.
+                        </p>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: 12,
+                            flexWrap: "wrap",
+                            marginTop: 18
+                          }}
+                        >
+                          {[
+                            "Hidden hints",
+                            "Clinical connections",
+                            "Quick checks",
+                            "No answer leakage"
+                          ].map((item) => (
+                            <div
+                              key={item}
+                              style={{
+                                padding: "9px 13px",
+                                borderRadius: 999,
+                                background: "rgba(255,255,255,0.15)",
+                                border: "1px solid rgba(255,255,255,0.22)",
+                                fontWeight: 800,
+                                fontSize: 14
+                              }}
+                            >
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div
+                        style={{
+                          background: "rgba(255,255,255,0.13)",
+                          border: "1px solid rgba(255,255,255,0.25)",
+                          borderRadius: 22,
+                          padding: 18,
+                          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18)"
+                        }}
+                      >
+                        <h3 style={{ margin: "0 0 12px 0", fontSize: 21, fontWeight: 900 }}>
+                          Best way to use this section
+                        </h3>
+                        <div style={{ display: "grid", gap: 12 }}>
+                          {[
+                            ["1", "Choose one system and study the basic job first."],
+                            ["2", "Try the quick check before opening the hint."],
+                            ["3", "Use the explanation to connect anatomy to patient care."],
+                            ["4", "Repeat with another system until the patterns make sense."]
+                          ].map(([number, copy]) => (
+                            <div
+                              key={number}
+                              style={{
+                                display: "grid",
+                                gridTemplateColumns: "34px 1fr",
+                                gap: 10,
+                                alignItems: "start"
+                              }}
+                            >
+                              <div
+                                style={{
+                                  width: 34,
+                                  height: 34,
+                                  borderRadius: "50%",
+                                  background: "rgba(251,191,36,0.95)",
+                                  color: "#12355b",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  fontWeight: 950
+                                }}
+                              >
+                                {number}
+                              </div>
+                              <div style={{ color: "rgba(255,255,255,0.92)", lineHeight: 1.45, fontWeight: 700 }}>
+                                {copy}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style={{
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
