@@ -1,105 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Anatomy Labeling Practice Tool | MedSkillBuilder</title>
-    <meta name="description" content="Master human anatomy with our interactive labeling tool. Practice labeling heart, brain, lungs, liver, skeleton, and more with instant feedback.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  <title>Anatomy Labeling Practice | Free Interactive Anatomy Study Tool</title>
 
-        header { background: linear-gradient(135deg, #12355b, #1d6fa5); color: white; padding: 40px 0; text-align: center; }
-        h2 { margin-bottom: 16px; }
+  <meta name="description" content="Practice human anatomy labeling for free with interactive anatomy study tools. Review the heart, brain, lungs, liver, skeleton, muscles, eye, ear, skin layers, digestive system, arteries, veins, and more." />
 
-        .cta-button {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            margin: 20px 0;
-        }
+  <meta name="keywords" content="anatomy labeling practice, anatomy practice, free anatomy quiz, human anatomy labeling, anatomy study tool, nursing anatomy practice, medical anatomy practice, body systems practice, healthcare anatomy quiz" />
 
-        .anatomy-btn { background: linear-gradient(135deg, #16a34a, #22c55e); }
-        .cbet-btn { background: linear-gradient(90deg, #ef4444, #f97316); }
+  <link rel="canonical" href="https://medskillbuilder.com/anatomy-labeling-practice.html" />
 
-        section { margin: 40px 0; }
-    </style>
+  <meta property="og:title" content="Anatomy Labeling Practice | MedSkillBuilder" />
+  <meta property="og:description" content="Practice human anatomy labeling for free with interactive body system tools, quizzes, hints, and explanations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/anatomy-labeling-practice.html" />
+
+  <style>
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #f8fafc;
+      --border: #dbeafe;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(29, 111, 165, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 18px 0;
+    }
+
+    .brand {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 24px;
+    }
+
+    header {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.22), transparent 32%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      border-radius: 0 0 34px 34px;
+      padding: 58px 0;
+      box-shadow: 0 24px 60px rgba(8, 47, 87, 0.25);
+    }
+
+    .hero-inner {
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 830px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(236, 253, 245, 0.86), rgba(255, 255, 255, 0.98));
+      border-color: rgba(22, 163, 74, 0.35);
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 21px;
+      margin: 16px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .anatomy-btn {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .cbet-btn {
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      box-shadow: 0 16px 28px rgba(239, 68, 68, 0.22);
+    }
+
+    .secondary-btn {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--blue);
+    }
+
+    ul {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
+    }
+
+    .callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 6px solid #2563eb;
+      color: #1e3a8a;
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .study-link {
+      display: block;
+      text-decoration: none;
+      background: #e8f1fb;
+      border: 1px solid #bfdbfe;
+      color: var(--navy);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+    }
+
+    .study-link:hover {
+      background: #dbeafe;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
+      }
+
+      .section {
+        padding: 24px 20px;
+      }
+
+      .grid-3,
+      .grid-2,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <div class="topbar">
     <div class="container">
-        <h1>Anatomy Labeling Practice</h1>
-        <p>Master Human Anatomy Systems Interactively</p>
+      <a class="brand" href="/">MedSkillBuilder</a>
     </div>
-</header>
+  </div>
 
-<main class="container">
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Free Anatomy Practice</div>
 
-<section>
-    <h2>Interactive Anatomy Labeling Practice Tool</h2>
+        <h1>Anatomy Labeling Practice</h1>
 
-    <p>
-        Learn and master human anatomy through our interactive labeling platform.
-        Perfect for medical students, healthcare professionals, and CBET exam prep.
-    </p>
+        <p>
+          Practice human anatomy with interactive labeling, quizzes, hints, explanations, and body system review tools built for healthcare learners.
+        </p>
 
-    <!-- ✅ FIXED CTA (NOW GOES DIRECTLY INTO REACT) -->
-    <a href="/?tab=Anatomy" class="cta-button anatomy-btn">
-        Start Anatomy Practice Now
-    </a>
+        <p>
+          Review the heart, brain, lungs, liver, digestive system, kidneys, muscles, arteries, veins, eye, ear, skin layers, skeleton, and more.
+        </p>
 
-    <!-- CBET CTA (KEEP AS IS) -->
-    <p style="margin-top:10px; font-weight:600;">
-        Preparing for CBET? Test your real knowledge with a full exam simulation.
-    </p>
+        <div class="cta-row">
+          <a href="/?tab=Anatomy" class="cta-button anatomy-btn">
+            Start Anatomy Practice Now →
+          </a>
 
-    <a href="/cbet-practice-test-75.html" class="cta-button cbet-btn">
-        🔥 Take the 75-Question CBET Practice Test
-    </a>
+          <a href="/browse-all-practice.html" class="cta-button secondary-btn">
+            Browse All Practice Tools
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-</section>
+  <main class="container">
 
-<section>
-    <h2>Why Anatomy Labeling Works</h2>
+    <section class="section highlight">
+      <h2>Interactive Anatomy Labeling Practice Tool</h2>
 
-    <ul>
-        <li>Improves spatial memory</li>
-        <li>Reinforces structure + function</li>
-        <li>Faster recall during exams</li>
-    </ul>
-</section>
+      <p class="lead">
+        Anatomy is easier to learn when you can see the structure, connect it to its function, and practice recalling it yourself. MedSkillBuilder gives learners a free way to practice body systems through interactive anatomy tools instead of only reading from a textbook.
+      </p>
 
-<section>
-    <h2>Who This Helps</h2>
+      <p>
+        This anatomy labeling practice page is designed for students, healthcare learners, nursing learners, medical terminology students, CBET learners, and anyone who needs stronger body system recognition.
+      </p>
 
-    <ul>
-        <li>Medical students</li>
-        <li>Nursing students</li>
-        <li>CBET candidates</li>
-        <li>Allied health professionals</li>
-    </ul>
-</section>
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>Label Body Systems</h3>
+          <p>
+            Practice recognizing major structures across different anatomy systems.
+          </p>
+        </div>
 
-<!-- 🔥 IMPROVED INTERNAL FLOW -->
-<section>
-    <h2>Continue Your Study</h2>
+        <div class="card strong">
+          <h3>Use Hints When Needed</h3>
+          <p>
+            Hints and explanations help learners without giving everything away too early.
+          </p>
+        </div>
 
-    <ul>
-        <li><a href="/?tab=HeartQuiz">Heart Anatomy Quiz</a></li>
-        <li><a href="/?tab=BonesQuiz">Skeleton Anatomy Quiz</a></li>
-        <li><a href="/cbet-practice-test-75.html">CBET Practice Test (75 Questions)</a></li>
-        <li><a href="/medical-equipment-identification-practice.html">Medical Equipment Practice</a></li>
-    </ul>
-</section>
+        <div class="card strong">
+          <h3>Build Exam Recall</h3>
+          <p>
+            Repeated practice helps improve memory, confidence, and structure recognition.
+          </p>
+        </div>
+      </div>
 
-</main>
+      <a href="/?tab=Anatomy" class="cta-button anatomy-btn">
+        Open the Interactive Anatomy Practice Section →
+      </a>
+    </section>
+
+    <section class="section">
+      <h2>What Can You Practice?</h2>
+
+      <p>
+        The anatomy practice section includes multiple body systems and learning activities. Learners can move between labeling practice, quizzes, and guided study cards depending on what they need to review.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Heart and Blood Flow</h3>
+          <p>
+            Practice heart chambers, valves, circulation, vessels, and basic cardiac anatomy connections.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Brain and Nervous System</h3>
+          <p>
+            Review major brain structures, nervous system concepts, and clinical connections.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Lungs and Respiratory System</h3>
+          <p>
+            Study lungs, oxygen movement, breathing concepts, and respiratory anatomy.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Digestive and Liver Anatomy</h3>
+          <p>
+            Connect organs, digestion, bile, absorption, and abdominal anatomy.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Kidneys and Fluid Balance</h3>
+          <p>
+            Learn kidney function, urine production, fluid balance, and basic lab connections.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Muscles, Bones, Eye, Ear, and Skin</h3>
+          <p>
+            Practice additional body structures that matter in healthcare assessment and anatomy review.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        Study tip: Do not just memorize labels. Say the structure name, then explain what it does in one simple sentence.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Why Anatomy Labeling Works</h2>
+
+      <p>
+        Anatomy labeling helps learners build visual memory. Instead of only seeing a term in a list, learners connect the name of a structure to where it sits in the body and what it does.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Improves Spatial Memory</h3>
+          <p>
+            Labeling helps you remember where structures are located in relation to each other.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Connects Structure and Function</h3>
+          <p>
+            Anatomy becomes more useful when you understand what each structure does.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Builds Faster Recall</h3>
+          <p>
+            Practice helps learners recognize anatomy more quickly during quizzes, exams, and clinical review.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Who This Anatomy Practice Helps</h2>
+
+      <p>
+        This page is useful for anyone who needs beginner-friendly anatomy practice or quick body system review.
+      </p>
+
+      <ul>
+        <li><strong>Nursing students:</strong> review body systems, organs, function, and clinical vocabulary.</li>
+        <li><strong>Medical students and pre-health learners:</strong> reinforce basic structure recognition and recall.</li>
+        <li><strong>Allied health students:</strong> practice anatomy foundations used in patient care and exams.</li>
+        <li><strong>CBET and biomed learners:</strong> understand body systems connected to medical equipment, monitoring, imaging, and patient safety.</li>
+        <li><strong>Teachers and instructors:</strong> share free practice tools with students who need extra review.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Anatomy Practice for CBET and Biomed Learners</h2>
+
+      <p>
+        Biomedical equipment technicians and clinical engineering learners do not need to diagnose patients, but they do need to understand the clinical purpose of the equipment they support. Anatomy helps explain why devices matter.
+      </p>
+
+      <p>
+        For example, patient monitors connect to cardiac signals, ventilators support respiratory function, ultrasound systems image body structures, and infusion pumps deliver medication into the body. Understanding anatomy makes equipment purpose easier to understand.
+      </p>
+
+      <div class="cta-row">
+        <a href="/biomed-career-guide.html" class="cta-button secondary-btn">
+          Read the Biomed Career Guide
+        </a>
+
+        <a href="/free-cbet-practice-test.html" class="cta-button cbet-btn">
+          Start Free CBET Practice
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Continue Your Study</h2>
+
+      <p>
+        After anatomy labeling practice, continue with related quizzes, medical terminology, CBET prep, and equipment practice.
+      </p>
+
+      <div class="link-grid">
+        <a class="study-link" href="/?tab=Anatomy">Interactive Anatomy Practice</a>
+        <a class="study-link" href="/?tab=HeartQuiz">Heart Anatomy Quiz</a>
+        <a class="study-link" href="/?tab=BonesQuiz">Skeleton Anatomy Quiz</a>
+        <a class="study-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
+        <a class="study-link" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
+        <a class="study-link" href="/medical-equipment-identification-practice.html">Medical Equipment Practice</a>
+        <a class="study-link" href="/biomed-career-guide.html">Biomed Career Guide</a>
+        <a class="study-link" href="/browse-all-practice.html">Browse All Practice Pages</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Important Learning Note</h2>
+
+      <p>
+        MedSkillBuilder is an educational practice resource. It is not a replacement for school instruction, instructor guidance, clinical training, official certification materials, licensed medical guidance, or professional judgment.
+      </p>
+
+      <div class="notice">
+        Use this anatomy practice as a study support tool, and always follow your program, instructor, employer, and official exam requirements.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for anatomy, medical terminology, CBET prep, biomed learning, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/about.html">About</a> |
+        <a href="/browse-all-practice.html">Browse All</a> |
+        <a href="/biomed-career-guide.html">Biomed Career Guide</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
