@@ -1,178 +1,767 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Terminology Practice | Free Study Tool | MedSkillBuilder</title>
-    <meta name="description" content="Practice medical terminology online for free. Learn prefixes, suffixes, root words, and full medical terms with interactive review and instant feedback.">
-    <meta name="keywords" content="medical terminology practice, medical terms quiz, prefixes and suffixes practice, medical vocabulary study tool">
-    <meta name="og:title" content="Medical Terminology Practice | MedSkillBuilder">
-    <meta name="og:description" content="Free medical terminology practice with interactive study and instant feedback.">
-    <meta name="og:type" content="website">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What is medical terminology practice?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Medical terminology practice helps learners improve recognition and recall of prefixes, suffixes, root words, and full clinical terms used in healthcare and exam preparation."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Why is medical terminology important?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Medical terminology is essential for understanding charting, anatomy, devices, procedures, and communication across healthcare settings."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can I use this for exam preparation?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Medical terminology practice supports nursing, TEAS, allied health, and CBET-related study by improving vocabulary accuracy and confidence."
-                }
-            }
-        ]
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Medical Terminology Practice | Free Prefix, Suffix & Root Word Study Tool</title>
+
+  <meta name="description" content="Practice medical terminology online for free. Learn prefixes, suffixes, root words, body system terms, abbreviations, and full medical terms with interactive review and instant feedback." />
+
+  <meta name="keywords" content="medical terminology practice, medical terms quiz, medical prefixes and suffixes, root words practice, medical vocabulary study tool, nursing terminology, healthcare vocabulary, medical terminology for beginners" />
+
+  <link rel="canonical" href="https://medskillbuilder.com/medical-terminology-practice.html" />
+
+  <meta property="og:title" content="Medical Terminology Practice | MedSkillBuilder" />
+  <meta property="og:description" content="Free medical terminology practice with prefixes, suffixes, root words, body system terms, and interactive study tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/medical-terminology-practice.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is medical terminology practice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Medical terminology practice helps learners improve recognition and recall of prefixes, suffixes, root words, abbreviations, and full clinical terms used in healthcare."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is medical terminology important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Medical terminology is important because it helps learners understand anatomy, charting, procedures, symptoms, devices, body systems, and communication across healthcare settings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use medical terminology practice for exam preparation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Medical terminology practice supports nursing, TEAS, allied health, medical assistant, anatomy, and CBET-related study by improving vocabulary accuracy and confidence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should beginners study first in medical terminology?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beginners should start with common prefixes, suffixes, and root words. Once those word parts make sense, full medical terms become easier to decode."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #f8fafc;
+      --border: #dbeafe;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
     }
-    </script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-        .branding { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 20px 0; text-align: center; }
-        .branding img { width: 50px; height: auto; }
-        .branding-text h1 { font-size: 28px; color: #12355b; margin: 0; font-weight: 700; }
-        .branding-text p { font-size: 14px; color: #4f6275; margin: 0; }
-        header { background: linear-gradient(135deg, #12355b, #1d6fa5); color: white; padding: 40px 0; text-align: center; }
-        header h2 { font-size: 40px; margin-bottom: 8px; margin-top: 0; }
-        header p { font-size: 18px; opacity: 0.92; }
-        main { padding: 40px 0; }
-        section { margin-bottom: 40px; }
-        h2 { color: #12355b; font-size: 28px; margin-bottom: 16px; margin-top: 24px; }
-        h3 { color: #1d6fa5; font-size: 20px; margin-bottom: 12px; margin-top: 16px; }
-        p { margin-bottom: 12px; }
-        ul { margin-left: 20px; margin-bottom: 16px; }
-        li { margin-bottom: 8px; }
-        .cta-button { display: inline-block; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; margin: 20px 0; transition: transform 0.2s; }
-        .cta-button:hover { transform: scale(1.05); }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin: 20px 0; }
-        .feature-card { background: #f8fafc; padding: 20px; border-radius: 10px; border-left: 4px solid #1d6fa5; }
-        .feature-card h4 { color: #12355b; margin-bottom: 8px; }
-        .callout { background: #eef4ff; border-left: 4px solid #1d6fa5; padding: 16px; margin: 20px 0; border-radius: 4px; }
-        .link-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
-        .link-pills a { text-decoration: none; color: #12355b; background: #e8f1fb; border-radius: 999px; padding: 10px 14px; font-weight: 600; }
-        footer { background: linear-gradient(135deg, #12355b, #1d6fa5); color: white; padding: 40px 0; text-align: center; margin-top: 60px; }
-    </style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(29, 111, 165, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 58px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    header {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.22), transparent 32%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      border-radius: 0 0 34px 34px;
+      padding: 58px 0;
+      box-shadow: 0 24px 60px rgba(8, 47, 87, 0.25);
+    }
+
+    .hero-inner {
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 830px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(236, 253, 245, 0.86), rgba(255, 255, 255, 0.98));
+      border-color: rgba(22, 163, 74, 0.35);
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 21px;
+      margin: 16px 0 8px;
+    }
+
+    h4 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .secondary-btn {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .cbet-btn {
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      box-shadow: 0 16px 28px rgba(239, 68, 68, 0.22);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--blue);
+    }
+
+    ul {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
+    }
+
+    .callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 6px solid #2563eb;
+      color: #1e3a8a;
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin: 20px 0;
+    }
+
+    .term-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 0 0 1px var(--border);
+      background: white;
+    }
+
+    .term-table th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .term-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .term-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .study-link {
+      display: block;
+      text-decoration: none;
+      background: #e8f1fb;
+      border: 1px solid #bfdbfe;
+      color: var(--navy);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+    }
+
+    .study-link:hover {
+      background: #dbeafe;
+    }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
+      }
+
+      .section {
+        padding: 24px 20px;
+      }
+
+      .grid-3,
+      .grid-2,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .term-table,
+      .term-table thead,
+      .term-table tbody,
+      .term-table th,
+      .term-table td,
+      .term-table tr {
+        display: block;
+      }
+
+      .term-table thead {
+        display: none;
+      }
+
+      .term-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .term-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .term-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--navy);
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="branding container">
-        <img src="/logo.png" alt="MedSkillBuilder Logo" style="width: 60px;">
-        <div class="branding-text">
-            <h1>MedSkillBuilder</h1>
-            <p>Interactive Medical Training Platform</p>
+
+  <div class="topbar">
+    <div class="container">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Interactive medical terminology and healthcare learning</span>
         </div>
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Free Medical Terminology Practice</div>
+
+        <h1>Medical Terminology Practice</h1>
+
+        <p>
+          Learn medical prefixes, suffixes, root words, abbreviations, and full healthcare terms with free interactive practice.
+        </p>
+
+        <p>
+          Build the vocabulary foundation needed for anatomy, nursing, allied health, medical assistant training, patient care, CBET prep, and healthcare communication.
+        </p>
+
+        <div class="cta-row">
+          <a href="/?tab=Terminology" class="cta-button primary-btn">
+            Start Medical Terminology Practice →
+          </a>
+
+          <a href="/medical-prefix-suffix-practice.html" class="cta-button secondary-btn">
+            Practice Prefixes and Suffixes
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="notice">
+      MedSkillBuilder is an independent educational platform. It is not affiliated with or endorsed by AAMI, ATI, Cash App, Google, or any certification provider.
     </div>
 
-    <header>
-        <div class="container">
-            <h2>Medical Terminology Practice</h2>
-            <p>Build Clinical Vocabulary With Interactive Review and Repetition</p>
-        </div>
-    </header>
+    <section class="section highlight">
+      <h2>Practice Medical Terminology for Free</h2>
 
-    <div class="container" style="margin-top: 16px;">
-        <div style="background: #fff7ed; border: 1px solid #fed7aa; color: #7c2d12; padding: 12px 14px; border-radius: 10px; font-size: 14px; line-height: 1.5;">
-            MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, Cash App, Google, or any certification provider.
+      <p class="lead">
+        Medical terminology becomes easier when you understand how healthcare words are built. Instead of memorizing hundreds of terms one by one, you can break them into smaller parts: prefixes, roots, suffixes, and combining forms.
+      </p>
+
+      <p>
+        MedSkillBuilder gives learners a free way to review common medical terms and build confidence with clinical vocabulary. This page is designed for beginners, healthcare students, nursing learners, allied health students, anatomy students, and anyone who wants stronger medical word recognition.
+      </p>
+
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>Prefixes</h3>
+          <p>
+            Learn word beginnings like hypo-, hyper-, brady-, tachy-, peri-, endo-, and intra-.
+          </p>
         </div>
+
+        <div class="card strong">
+          <h3>Suffixes</h3>
+          <p>
+            Practice endings like -itis, -ectomy, -ology, -emia, -scope, -gram, and -pathy.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Root Words</h3>
+          <p>
+            Build recognition of roots connected to the heart, lungs, blood, bones, kidneys, nerves, and skin.
+          </p>
+        </div>
+      </div>
+
+      <a href="/?tab=Terminology" class="cta-button primary-btn">
+        Open the Interactive Terminology Practice →
+      </a>
+    </section>
+
+    <section class="section">
+      <h2>Why Medical Terminology Matters</h2>
+
+      <p>
+        Medical terminology is the language of healthcare. It appears in charting, patient reports, anatomy lessons, procedures, equipment names, lab values, imaging reports, and exam questions.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Understand Clinical Language</h3>
+          <p>
+            Strong vocabulary makes healthcare words less intimidating and easier to decode.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Improve Anatomy Learning</h3>
+          <p>
+            Many anatomy terms use roots that describe location, structure, function, or body system.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Support Exam Prep</h3>
+          <p>
+            Terminology practice helps with nursing, TEAS, allied health, medical assistant, and CBET-related study.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        Study tip: When you see a long medical word, do not panic. Break it apart. Look for the prefix, root, and suffix first.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Common Medical Prefixes, Suffixes, and Root Words</h2>
+
+      <p>
+        These examples show how word parts help you decode medical vocabulary. The interactive practice section helps you repeat and remember them.
+      </p>
+
+      <table class="term-table">
+        <thead>
+          <tr>
+            <th>Word Part</th>
+            <th>Meaning</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Word Part"><strong>cardio-</strong></td>
+            <td data-label="Meaning">heart</td>
+            <td data-label="Example">cardiology, cardiomyopathy, cardiovascular</td>
+          </tr>
+
+          <tr>
+            <td data-label="Word Part"><strong>pulmon- / pneumo-</strong></td>
+            <td data-label="Meaning">lung or air</td>
+            <td data-label="Example">pulmonary, pneumonia, pneumothorax</td>
+          </tr>
+
+          <tr>
+            <td data-label="Word Part"><strong>nephr- / ren-</strong></td>
+            <td data-label="Meaning">kidney</td>
+            <td data-label="Example">nephrology, renal, nephritis</td>
+          </tr>
+
+          <tr>
+            <td data-label="Word Part"><strong>hemo- / hemat-</strong></td>
+            <td data-label="Meaning">blood</td>
+            <td data-label="Example">hemoglobin, hematology, hemorrhage</td>
+          </tr>
+
+          <tr>
+            <td data-label="Word Part"><strong>hypo-</strong></td>
+            <td data-label="Meaning">low or below normal</td>
+            <td data-label="Example">hypotension, hypoglycemia, hypoxia</td>
+          </tr>
+
+          <tr>
+            <td data-label="Word Part"><strong>hyper-</strong></td>
+            <td data-label="Meaning">high or above normal</td>
+            <td data-label="Example">hypertension, hyperglycemia, hyperthermia</td>
+          </tr>
+
+          <tr>
+            <td data-label="Word Part"><strong>-itis</strong></td>
+            <td data-label="Meaning">inflammation</td>
+            <td data-label="Example">bronchitis, gastritis, dermatitis</td>
+          </tr>
+
+          <tr>
+            <td data-label="Word Part"><strong>-ectomy</strong></td>
+            <td data-label="Meaning">surgical removal</td>
+            <td data-label="Example">appendectomy, tonsillectomy, cholecystectomy</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>How to Study Medical Terms Effectively</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>1. Learn word parts before full terms</h3>
+          <p>
+            Prefixes, suffixes, and roots are the building blocks. Once you know them, longer words become easier to understand.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>2. Review missed terms immediately</h3>
+          <p>
+            Mistakes are useful. When you miss a term, stop and ask which part confused you.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>3. Connect terms to body systems</h3>
+          <p>
+            Cardio connects to the heart. Pulmonary connects to the lungs. Renal connects to the kidneys. Make every word part visual.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>4. Practice in short repeated sessions</h3>
+          <p>
+            Ten minutes of repeated practice often works better than one long study session with no review.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Medical Terminology for Anatomy, Nursing, and Biomed</h2>
+
+      <p>
+        Medical terminology connects directly to anatomy and patient care. It also helps biomedical equipment learners understand the clinical purpose behind the devices they support.
+      </p>
+
+      <p>
+        For example, cardiac terms connect to ECG monitors and defibrillators. Pulmonary terms connect to ventilators and oxygen equipment. Renal terms connect to lab values and kidney function. Understanding terminology makes healthcare learning more connected.
+      </p>
+
+      <div class="cta-row">
+        <a href="/anatomy-labeling-practice.html" class="cta-button secondary-btn">
+          Continue With Anatomy Practice
+        </a>
+
+        <a href="/biomed-career-guide.html" class="cta-button cbet-btn">
+          Read the Biomed Career Guide
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Who This Medical Terminology Practice Helps</h2>
+
+      <ul>
+        <li><strong>Nursing students:</strong> build vocabulary for body systems, charting, procedures, and patient care.</li>
+        <li><strong>Medical assistant students:</strong> review common clinical words used in offices and healthcare settings.</li>
+        <li><strong>TEAS and allied health learners:</strong> strengthen word recognition before exams.</li>
+        <li><strong>Anatomy students:</strong> connect body structures with common roots and meanings.</li>
+        <li><strong>CBET and biomed learners:</strong> understand clinical terms connected to medical equipment and patient monitoring.</li>
+        <li><strong>Teachers and instructors:</strong> share free terminology practice with students who need extra review.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Related Study Resources</h2>
+
+      <p>
+        Continue your study with anatomy practice, prefix/suffix review, CBET prep, and equipment identification.
+      </p>
+
+      <div class="link-grid">
+        <a class="study-link" href="/?tab=Terminology">Interactive Medical Terminology Practice</a>
+        <a class="study-link" href="/medical-prefix-suffix-practice.html">Medical Prefix and Suffix Practice</a>
+        <a class="study-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+        <a class="study-link" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
+        <a class="study-link" href="/medical-equipment-identification-practice.html">Medical Equipment ID Practice</a>
+        <a class="study-link" href="/biomed-career-guide.html">Biomed Career Guide</a>
+        <a class="study-link" href="/how-to-pass-cbet-exam.html">How to Pass the CBET Exam</a>
+        <a class="study-link" href="/browse-all-practice.html">Browse All Practice Pages</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Ready to Improve Your Medical Vocabulary?</h2>
+
+      <p>
+        Use MedSkillBuilder to practice medical terminology, review weak areas, and build stronger confidence with healthcare language.
+      </p>
+
+      <div class="cta-row">
+        <a href="/?tab=Terminology" class="cta-button primary-btn">
+          Start Medical Terminology Practice →
+        </a>
+
+        <a href="/browse-all-practice.html" class="cta-button secondary-btn">
+          Browse All Free Practice Tools
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for medical terminology, anatomy, CBET prep, biomed learning, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/about.html">About</a> |
+        <a href="/anatomy-labeling-practice.html">Anatomy Practice</a> |
+        <a href="/biomed-career-guide.html">Biomed Career Guide</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
     </div>
+  </footer>
 
-    <main>
-        <div class="container">
-            <section>
-                <h2>Practice Medical Terminology for Free</h2>
-                <p>Medical terminology practice helps you understand how healthcare language is built. MedSkillBuilder lets you review prefixes, suffixes, roots, and full terms with interactive practice so you can improve speed, accuracy, and confidence.</p>
-
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>Vocabulary Building</h4>
-                        <p>Train recognition of common clinical word parts and full healthcare terms.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Instant Feedback</h4>
-                        <p>See mistakes right away so you can reinforce the correct meaning quickly.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Exam Support</h4>
-                        <p>Strengthen medical vocabulary for TEAS, nursing, allied health, and general clinical prep.</p>
-                    </div>
-                </div>
-
-                <a href="/" class="cta-button">Start Medical Terminology Practice</a>
-            </section>
-
-            <section>
-                <h2>What You Build With Terminology Practice</h2>
-                <ul>
-                    <li>Recognition of prefixes and suffixes</li>
-                    <li>Understanding of common root words</li>
-                    <li>Faster decoding of unfamiliar clinical terms</li>
-                    <li>Improved comprehension across anatomy, devices, and patient care language</li>
-                </ul>
-
-                <div class="callout">
-                    <strong>Why it matters:</strong> Strong medical vocabulary improves exam performance and makes healthcare language feel more logical instead of memorized.
-                </div>
-            </section>
-
-            <section>
-                <h2>How to Study Medical Terms Effectively</h2>
-                <h3>1. Learn word parts before full terms</h3>
-                <p>When you understand prefixes, suffixes, and roots, complex terms become easier to decode.</p>
-
-                <h3>2. Review misses immediately</h3>
-                <p>Fixing mistakes in the moment helps strengthen long-term recall.</p>
-
-                <h3>3. Practice in short repeated sessions</h3>
-                <p>Frequent exposure usually works better than one long study session.</p>
-
-                <h3>4. Connect terms to body systems</h3>
-                <p>Vocabulary becomes easier to remember when tied to anatomy and clinical context.</p>
-            </section>
-
-            <section>
-                <h2>Related Study Resources</h2>
-                <div class="link-pills">
-                    <a href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
-                    <a href="/medical-equipment-identification-practice.html">Medical Equipment ID Practice</a>
-                    <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-                    <a href="/how-to-pass-cbet-exam.html">How to Pass the CBET Exam</a>
-                </div>
-            </section>
-
-            <section>
-                <h2>Ready to Improve Medical Vocabulary?</h2>
-                <p>Use MedSkillBuilder to practice medical terminology, review weak areas, and build stronger confidence with clinical language.</p>
-                <a href="/" class="cta-button">Open MedSkillBuilder</a>
-            </section>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div style="margin-bottom: 20px;">
-                <h3 style="margin-bottom: 8px; font-size: 20px; color: white;">MedSkillBuilder</h3>
-                <p style="margin: 0; opacity: 0.9;">Interactive study tools for medical exam prep and anatomy learning</p>
-            </div>
-            <hr style="opacity: 0.3; margin: 20px 0;">
-            <p style="margin: 8px 0; font-size: 14px;">&copy; 2026 MedSkillBuilder. All rights reserved.</p>
-            <p style="margin: 8px 0; font-size: 13px; opacity: 0.8;"><a href="/" style="color: #58b4d8; text-decoration: none;">Home</a> | <a href="/medical-terminology-practice.html" style="color: #58b4d8; text-decoration: none;">Medical Terminology Practice</a> | <a href="/anatomy-labeling-practice.html" style="color: #58b4d8; text-decoration: none;">Anatomy Practice</a></p>
-        </div>
-    </footer>
 </body>
 </html>
