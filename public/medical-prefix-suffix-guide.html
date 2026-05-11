@@ -4,520 +4,959 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Medical Prefix and Suffix Guide | Learn Medical Terms</title>
+  <title>Medical Prefix and Suffix Guide | Complete Medical Terminology Study Tool</title>
 
-  <meta
-    name="description"
-    content="Master medical prefixes and suffixes with this beginner-friendly guide. Learn common meanings, examples, word breakdowns, study tips, and practice tools for nursing, TEAS, anatomy, and healthcare learning."
-  />
+  <meta name="description" content="Learn medical prefixes, suffixes, root words, and word breakdowns with a complete beginner-friendly medical terminology guide for nursing, TEAS, anatomy, allied health, and healthcare students." />
 
-  <meta
-    name="keywords"
-    content="medical prefixes, medical suffixes, medical terminology guide, prefix suffix list, nursing terminology, TEAS medical terms, anatomy terminology, healthcare vocabulary"
-  />
+  <meta name="keywords" content="medical prefixes, medical suffixes, medical terminology guide, medical prefix suffix list, medical root words, nursing terminology, TEAS medical terms, anatomy terminology, healthcare vocabulary, medical words for beginners" />
 
   <link rel="canonical" href="https://medskillbuilder.com/medical-prefix-suffix-guide.html" />
 
   <meta property="og:title" content="Medical Prefix and Suffix Guide | MedSkillBuilder" />
-  <meta
-    property="og:description"
-    content="Learn how to break down medical words using prefixes, suffixes, root words, and simple examples."
-  />
+  <meta property="og:description" content="Learn medical prefixes, suffixes, root words, word breakdowns, examples, practice questions, and study strategies for healthcare learners." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://medskillbuilder.com/medical-prefix-suffix-guide.html" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a medical prefix?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A medical prefix is a word part placed at the beginning of a medical term. It often describes amount, speed, direction, location, number, time, or condition."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a medical suffix?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A medical suffix is a word part placed at the end of a medical term. It often describes a condition, disease process, procedure, test, specialty, or record."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should beginners learn first in medical terminology?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beginners should start with common prefixes, suffixes, and root words. Learning word parts makes it easier to decode longer medical terms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are prefixes and suffixes important in healthcare?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prefixes and suffixes help learners understand anatomy, vital signs, disease processes, procedures, charting, medical equipment, and healthcare communication."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
-    body {
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --purple: #6d28d9;
+      --purple2: #8b5cf6;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --soft: #f8fafc;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 246, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #faf7ff 0%, #f8fbff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
     }
 
     .container {
-      max-width: 980px;
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 34px 20px 60px;
     }
 
-    .top-link {
-      display: inline-block;
-      margin-bottom: 22px;
+    .topbar {
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 700;
+      width: fit-content;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+    .brand img {
+      width: 58px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    header {
       color: white;
-      padding: 34px 28px;
-      border-radius: 24px;
-      margin-bottom: 28px;
-      box-shadow: 0 10px 28px rgba(109, 40, 217, 0.16);
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.20), transparent 34%),
+        linear-gradient(135deg, var(--purple), var(--purple2));
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(109, 40, 217, 0.24);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: 2.35rem;
-      line-height: 1.15;
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
     }
 
-    .hero p {
-      margin: 0 0 14px;
-      max-width: 820px;
-      font-size: 1.06rem;
+    header::after {
+      content: "";
+      position: absolute;
+      left: -120px;
+      bottom: -150px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 940px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    header p {
       color: #f3e8ff;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 860px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--purple);
+      text-align: center;
+      font-weight: 900;
+      font-size: 22px;
+    }
+
+    .stat span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(245, 243, 255, 0.92), rgba(255, 255, 255, 0.98));
+      border-color: rgba(139, 92, 246, 0.35);
+    }
+
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 35%),
+        linear-gradient(135deg, var(--purple), var(--navy));
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .section.dark h2,
+    .section.dark h3,
+    .section.dark p,
+    .section.dark li {
+      color: white;
+    }
+
+    h2 {
+      color: var(--purple);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
+    }
+
+    h4 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
     }
 
     .cta-row {
       display: flex;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 14px;
       margin-top: 22px;
+      align-items: center;
     }
 
     .cta {
-      display: inline-block;
-      padding: 14px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
       color: white;
-      background: #22c55e;
-      min-width: 210px;
-      text-align: center;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.13);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
     }
 
     .cta.secondary {
-      background: #2563eb;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
     }
 
-    .cta.dark {
-      background: #0f172a;
+    .cta.purple {
+      background: linear-gradient(135deg, var(--purple), var(--purple2));
+      box-shadow: 0 16px 28px rgba(109, 40, 217, 0.22);
     }
 
-    .section {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 26px;
-      margin-bottom: 24px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 22px 0;
     }
 
-    h2 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      color: #6d28d9;
-      line-height: 1.25;
-      font-size: 1.6rem;
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
     }
 
-    h3 {
-      margin-top: 22px;
-      margin-bottom: 8px;
-      color: #12355b;
-      font-size: 1.15rem;
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
     }
 
-    p {
-      margin-top: 0;
-      margin-bottom: 14px;
-    }
-
-    a {
-      color: #2563eb;
-      font-weight: 700;
+    .card.strong {
+      border-left: 6px solid var(--purple2);
     }
 
     .note-box {
-      background: #f3e8ff;
-      border-left: 5px solid #7c3aed;
-      padding: 16px;
-      margin: 18px 0;
-      border-radius: 12px;
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      border-left: 6px solid var(--purple);
+      color: #4c1d95;
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
     }
 
     .success-box {
       background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      padding: 16px;
-      margin: 18px 0;
-      border-radius: 12px;
+      border: 1px solid #bbf7d0;
+      border-left: 6px solid var(--green);
+      color: #065f46;
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
     }
 
     .warning-box {
       background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 16px;
-      margin: 18px 0;
-      border-radius: 12px;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      margin-top: 14px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border: 1px solid #dbe4ee;
-    }
-
-    th, td {
-      border: 1px solid #dbe4ee;
-      padding: 12px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      background: #f3e8ff;
-      color: #4c1d95;
+      border: 1px solid #fed7aa;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
       font-weight: 800;
     }
 
-    ul, ol {
-      padding-left: 22px;
-      margin-top: 0;
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
     }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
+    }
+
+    .term-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 0 0 1px var(--border);
+      background: white;
+    }
+
+    .term-table th {
+      background: var(--purple);
+      color: white;
+      text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .term-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .term-table tr:last-child td {
+      border-bottom: none;
     }
 
     .word-breakdown {
-      background: #f8fafc;
-      border: 1px solid #dbe4ee;
-      border-radius: 16px;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
       padding: 18px;
       margin: 14px 0;
     }
 
     .word-breakdown strong {
-      color: #6d28d9;
+      color: var(--purple);
+      font-size: 18px;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .explain {
+      margin-top: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
     }
 
     .link-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
       margin-top: 18px;
     }
 
     .practice-link {
       display: block;
       text-decoration: none;
-      background: #f8fafc;
-      color: #0f172a;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
-      padding: 15px 16px;
-      font-weight: 800;
-      transition: 0.2s ease;
+      background: #f5f3ff;
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+      transition: 0.18s ease;
     }
 
     .practice-link:hover {
-      background: #f3e8ff;
-      border-color: #8b5cf6;
+      background: #ede9fe;
       transform: translateY(-1px);
     }
 
-    .footer-cta {
-      text-align: center;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 28px;
-      margin-top: 28px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
-    }
-
-    .footer-cta a {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 14px 22px;
-      border-radius: 12px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      font-weight: 800;
-    }
-
     footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
       text-align: center;
-      color: #64748b;
-      font-size: 0.92rem;
-      margin-top: 34px;
+      margin-top: 42px;
     }
 
-    @media (max-width: 700px) {
-      .hero h1 {
-        font-size: 1.9rem;
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
+      }
+
+      .stats,
+      .grid-2,
+      .grid-3,
+      .link-grid {
+        grid-template-columns: 1fr;
       }
 
       .section {
-        padding: 20px;
+        padding: 24px 20px;
       }
 
       .cta {
         width: 100%;
-        min-width: 0;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .term-table,
+      .term-table thead,
+      .term-table tbody,
+      .term-table th,
+      .term-table td,
+      .term-table tr {
+        display: block;
+      }
+
+      .term-table thead {
+        display: none;
+      }
+
+      .term-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .term-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .term-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--purple);
+        font-weight: 900;
+        margin-bottom: 4px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <a class="top-link" href="/browse-all-practice.html">← Browse All Practice</a>
+  <div class="topbar">
+    <div class="container">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Medical terminology, anatomy, and healthcare study tools</span>
+        </div>
+      </a>
+    </div>
+  </div>
 
-    <section class="hero">
-      <h1>Medical Prefix & Suffix Guide</h1>
-      <p>
-        Medical words can look intimidating at first, but most of them are built from smaller parts.
-        Once you learn common prefixes, suffixes, and root words, medical terminology becomes much easier to understand.
-      </p>
-      <p>
-        This guide is built for nursing students, TEAS learners, anatomy students, medical assisting students,
-        and anyone getting started with healthcare language.
-      </p>
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Medical Terminology Study Guide</div>
 
-      <div class="cta-row">
-        <a class="cta" href="/medical-prefix-suffix-practice.html">Start Prefix & Suffix Practice</a>
-        <a class="cta secondary" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
-        <a class="cta dark" href="/medical-terminology-builder.html">Use Terminology Builder</a>
+        <h1>Medical Prefix and Suffix Guide</h1>
+
+        <p>
+          Medical words can look intimidating, but most are built from smaller word parts. Once you understand prefixes, suffixes, and roots, medical terminology becomes much easier to decode.
+        </p>
+
+        <p>
+          This guide is built for nursing students, TEAS learners, medical assistants, anatomy students, allied health learners, and anyone starting healthcare vocabulary.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/medical-prefix-suffix-practice.html">Start Prefix and Suffix Practice →</a>
+          <a class="cta secondary" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
+          <a class="cta purple" href="/anatomy-labeling-practice.html">Continue With Anatomy</a>
+        </div>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <section class="section">
+  <main class="container">
+
+    <div class="stats">
+      <div class="stat">Prefix<span>Beginning of the word</span></div>
+      <div class="stat">Root<span>Main meaning</span></div>
+      <div class="stat">Suffix<span>Ending of the word</span></div>
+      <div class="stat">Practice<span>Break words apart</span></div>
+    </div>
+
+    <section class="section highlight">
       <h2>Why Prefixes and Suffixes Matter</h2>
-      <p>
-        Medical terminology is not random. Many terms are made from word parts that each carry meaning.
-        If you can recognize those parts, you can often figure out a medical word even if you have never seen it before.
+
+      <p class="lead">
+        Medical terminology is not random. Many healthcare words are made from word parts that each carry meaning. When you can recognize those parts, you can often figure out a medical word even if you have never seen it before.
       </p>
 
       <p>
-        A prefix usually appears at the beginning of a word and changes the meaning. A suffix usually appears at the end
-        of a word and often tells you a condition, procedure, disease process, or specialty.
+        A prefix usually appears at the beginning of a word and changes the meaning. A suffix usually appears at the end of a word and often tells you a condition, procedure, disease process, test, record, or specialty. The root word carries the main meaning.
       </p>
 
       <div class="note-box">
-        <strong>Simple idea:</strong>
-        <p>
-          Do not try to memorize every medical word by itself. Learn the word parts first, then practice breaking full terms down.
-        </p>
+        Simple idea: Do not try to memorize every medical word by itself. Learn the word parts first, then practice breaking full terms down.
+      </div>
+
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>Prefixes change meaning</h3>
+          <p>Hyper- means high. Hypo- means low. Tachy- means fast. Brady- means slow.</p>
+        </div>
+
+        <div class="card strong">
+          <h3>Roots give the subject</h3>
+          <p>Cardi relates to the heart. Nephr relates to the kidney. Pulmon relates to the lungs.</p>
+        </div>
+
+        <div class="card strong">
+          <h3>Suffixes show what is happening</h3>
+          <p>-itis means inflammation. -ectomy means removal. -ology means study of.</p>
+        </div>
       </div>
     </section>
 
     <section class="section">
       <h2>The Basic Parts of a Medical Word</h2>
 
-      <div class="table-wrap">
-        <table>
+      <p>
+        Most medical terms are easier when you stop looking at the whole word and start looking at the parts. Not every word breaks perfectly, but this method helps with many common terms.
+      </p>
+
+      <table class="term-table">
+        <thead>
           <tr>
             <th>Word Part</th>
             <th>What It Does</th>
             <th>Example</th>
+            <th>Plain English Meaning</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
-            <td>Prefix</td>
-            <td>Comes before the root word and changes meaning.</td>
-            <td><strong>Hyper-</strong>tension = high pressure</td>
+            <td data-label="Word Part"><strong>Prefix</strong></td>
+            <td data-label="What It Does">Comes before the root and changes meaning.</td>
+            <td data-label="Example">Hyper-tension</td>
+            <td data-label="Plain English Meaning">High pressure</td>
           </tr>
+
           <tr>
-            <td>Root Word</td>
-            <td>The main meaning of the word.</td>
-            <td><strong>Cardi</strong> = heart</td>
+            <td data-label="Word Part"><strong>Root Word</strong></td>
+            <td data-label="What It Does">Carries the main meaning of the word.</td>
+            <td data-label="Example">Cardi-ology</td>
+            <td data-label="Plain English Meaning">Study of the heart</td>
           </tr>
+
           <tr>
-            <td>Suffix</td>
-            <td>Comes at the end and often describes a condition, procedure, or specialty.</td>
-            <td>Arthr<strong>-itis</strong> = joint inflammation</td>
+            <td data-label="Word Part"><strong>Suffix</strong></td>
+            <td data-label="What It Does">Comes at the end and often describes a condition or procedure.</td>
+            <td data-label="Example">Arthr-itis</td>
+            <td data-label="Plain English Meaning">Joint inflammation</td>
           </tr>
-        </table>
-      </div>
+
+          <tr>
+            <td data-label="Word Part"><strong>Combining Vowel</strong></td>
+            <td data-label="What It Does">Often uses the letter “o” to connect parts.</td>
+            <td data-label="Example">Cardi-o-logy</td>
+            <td data-label="Plain English Meaning">Study of the heart</td>
+          </tr>
+        </tbody>
+      </table>
 
       <div class="success-box">
-        <strong>Study strategy:</strong>
-        <p>
-          Start with common prefixes and suffixes first. Then add root words after you understand how word parts fit together.
-        </p>
+        Study strategy: Start with common prefixes and suffixes first. Then add root words after you understand how word parts fit together.
       </div>
     </section>
 
     <section class="section">
       <h2>Common Medical Prefixes</h2>
+
       <p>
-        Prefixes usually appear at the beginning of a term. They often describe number, location, speed, direction, amount, or condition.
+        Prefixes usually appear at the beginning of a term. They often describe number, location, speed, direction, amount, time, or condition.
       </p>
 
-      <div class="table-wrap">
-        <table>
+      <table class="term-table">
+        <thead>
           <tr>
             <th>Prefix</th>
             <th>Meaning</th>
             <th>Example</th>
             <th>Simple Breakdown</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
-            <td>Hyper-</td>
-            <td>High, above normal</td>
-            <td>Hypertension</td>
-            <td>High blood pressure</td>
+            <td data-label="Prefix"><strong>Hyper-</strong></td>
+            <td data-label="Meaning">High, above normal</td>
+            <td data-label="Example">Hypertension</td>
+            <td data-label="Simple Breakdown">High blood pressure</td>
           </tr>
           <tr>
-            <td>Hypo-</td>
-            <td>Low, below normal</td>
-            <td>Hypoglycemia</td>
-            <td>Low blood sugar</td>
+            <td data-label="Prefix"><strong>Hypo-</strong></td>
+            <td data-label="Meaning">Low, below normal</td>
+            <td data-label="Example">Hypoglycemia</td>
+            <td data-label="Simple Breakdown">Low blood sugar</td>
           </tr>
           <tr>
-            <td>Tachy-</td>
-            <td>Fast</td>
-            <td>Tachycardia</td>
-            <td>Fast heart rate</td>
+            <td data-label="Prefix"><strong>Tachy-</strong></td>
+            <td data-label="Meaning">Fast</td>
+            <td data-label="Example">Tachycardia</td>
+            <td data-label="Simple Breakdown">Fast heart rate</td>
           </tr>
           <tr>
-            <td>Brady-</td>
-            <td>Slow</td>
-            <td>Bradycardia</td>
-            <td>Slow heart rate</td>
+            <td data-label="Prefix"><strong>Brady-</strong></td>
+            <td data-label="Meaning">Slow</td>
+            <td data-label="Example">Bradycardia</td>
+            <td data-label="Simple Breakdown">Slow heart rate</td>
           </tr>
           <tr>
-            <td>Pre-</td>
-            <td>Before</td>
-            <td>Prenatal</td>
-            <td>Before birth</td>
+            <td data-label="Prefix"><strong>Pre-</strong></td>
+            <td data-label="Meaning">Before</td>
+            <td data-label="Example">Prenatal</td>
+            <td data-label="Simple Breakdown">Before birth</td>
           </tr>
           <tr>
-            <td>Post-</td>
-            <td>After</td>
-            <td>Postoperative</td>
-            <td>After surgery</td>
+            <td data-label="Prefix"><strong>Post-</strong></td>
+            <td data-label="Meaning">After</td>
+            <td data-label="Example">Postoperative</td>
+            <td data-label="Simple Breakdown">After surgery</td>
           </tr>
           <tr>
-            <td>Sub-</td>
-            <td>Under, below</td>
-            <td>Subcutaneous</td>
-            <td>Under the skin</td>
+            <td data-label="Prefix"><strong>Sub-</strong></td>
+            <td data-label="Meaning">Under, below</td>
+            <td data-label="Example">Subcutaneous</td>
+            <td data-label="Simple Breakdown">Under the skin</td>
           </tr>
           <tr>
-            <td>Intra-</td>
-            <td>Within</td>
-            <td>Intravenous</td>
-            <td>Within a vein</td>
+            <td data-label="Prefix"><strong>Intra-</strong></td>
+            <td data-label="Meaning">Within</td>
+            <td data-label="Example">Intravenous</td>
+            <td data-label="Simple Breakdown">Within a vein</td>
           </tr>
           <tr>
-            <td>Peri-</td>
-            <td>Around</td>
-            <td>Pericardium</td>
-            <td>Around the heart</td>
+            <td data-label="Prefix"><strong>Peri-</strong></td>
+            <td data-label="Meaning">Around</td>
+            <td data-label="Example">Pericardium</td>
+            <td data-label="Simple Breakdown">Around the heart</td>
           </tr>
           <tr>
-            <td>Poly-</td>
-            <td>Many, much</td>
-            <td>Polyuria</td>
-            <td>Excessive urination</td>
+            <td data-label="Prefix"><strong>Poly-</strong></td>
+            <td data-label="Meaning">Many, much</td>
+            <td data-label="Example">Polyuria</td>
+            <td data-label="Simple Breakdown">Excessive urination</td>
           </tr>
-        </table>
-      </div>
+          <tr>
+            <td data-label="Prefix"><strong>Endo-</strong></td>
+            <td data-label="Meaning">Inside, within</td>
+            <td data-label="Example">Endoscopy</td>
+            <td data-label="Simple Breakdown">Looking inside the body</td>
+          </tr>
+          <tr>
+            <td data-label="Prefix"><strong>Inter-</strong></td>
+            <td data-label="Meaning">Between</td>
+            <td data-label="Example">Intercostal</td>
+            <td data-label="Simple Breakdown">Between the ribs</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section class="section">
       <h2>Common Medical Suffixes</h2>
+
       <p>
-        Suffixes usually appear at the end of a term. They often tell you what is happening to the body or what type of procedure is being described.
+        Suffixes usually appear at the end of a term. They often tell you what is happening to the body or what type of procedure, test, condition, or specialty is being described.
       </p>
 
-      <div class="table-wrap">
-        <table>
+      <table class="term-table">
+        <thead>
           <tr>
             <th>Suffix</th>
             <th>Meaning</th>
             <th>Example</th>
             <th>Simple Breakdown</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
-            <td>-itis</td>
-            <td>Inflammation</td>
-            <td>Arthritis</td>
-            <td>Joint inflammation</td>
+            <td data-label="Suffix"><strong>-itis</strong></td>
+            <td data-label="Meaning">Inflammation</td>
+            <td data-label="Example">Arthritis</td>
+            <td data-label="Simple Breakdown">Joint inflammation</td>
           </tr>
           <tr>
-            <td>-ectomy</td>
-            <td>Surgical removal</td>
-            <td>Appendectomy</td>
-            <td>Removal of the appendix</td>
+            <td data-label="Suffix"><strong>-ectomy</strong></td>
+            <td data-label="Meaning">Surgical removal</td>
+            <td data-label="Example">Appendectomy</td>
+            <td data-label="Simple Breakdown">Removal of the appendix</td>
           </tr>
           <tr>
-            <td>-ology</td>
-            <td>Study of</td>
-            <td>Cardiology</td>
-            <td>Study of the heart</td>
+            <td data-label="Suffix"><strong>-ology</strong></td>
+            <td data-label="Meaning">Study of</td>
+            <td data-label="Example">Cardiology</td>
+            <td data-label="Simple Breakdown">Study of the heart</td>
           </tr>
           <tr>
-            <td>-algia</td>
-            <td>Pain</td>
-            <td>Neuralgia</td>
-            <td>Nerve pain</td>
+            <td data-label="Suffix"><strong>-algia</strong></td>
+            <td data-label="Meaning">Pain</td>
+            <td data-label="Example">Neuralgia</td>
+            <td data-label="Simple Breakdown">Nerve pain</td>
           </tr>
           <tr>
-            <td>-emia</td>
-            <td>Blood condition</td>
-            <td>Anemia</td>
-            <td>Blood condition involving low red blood cells or hemoglobin</td>
+            <td data-label="Suffix"><strong>-emia</strong></td>
+            <td data-label="Meaning">Blood condition</td>
+            <td data-label="Example">Anemia</td>
+            <td data-label="Simple Breakdown">Blood condition involving low red blood cells or hemoglobin</td>
           </tr>
           <tr>
-            <td>-megaly</td>
-            <td>Enlargement</td>
-            <td>Cardiomegaly</td>
-            <td>Enlarged heart</td>
+            <td data-label="Suffix"><strong>-megaly</strong></td>
+            <td data-label="Meaning">Enlargement</td>
+            <td data-label="Example">Cardiomegaly</td>
+            <td data-label="Simple Breakdown">Enlarged heart</td>
           </tr>
           <tr>
-            <td>-osis</td>
-            <td>Abnormal condition</td>
-            <td>Cyanosis</td>
-            <td>Abnormal bluish discoloration</td>
+            <td data-label="Suffix"><strong>-osis</strong></td>
+            <td data-label="Meaning">Abnormal condition</td>
+            <td data-label="Example">Cyanosis</td>
+            <td data-label="Simple Breakdown">Abnormal bluish discoloration</td>
           </tr>
           <tr>
-            <td>-scopy</td>
-            <td>Visual examination</td>
-            <td>Endoscopy</td>
-            <td>Looking inside the body with a scope</td>
+            <td data-label="Suffix"><strong>-scopy</strong></td>
+            <td data-label="Meaning">Visual examination</td>
+            <td data-label="Example">Endoscopy</td>
+            <td data-label="Simple Breakdown">Looking inside the body with a scope</td>
           </tr>
           <tr>
-            <td>-graphy</td>
-            <td>Process of recording or imaging</td>
-            <td>Radiography</td>
-            <td>Imaging process</td>
+            <td data-label="Suffix"><strong>-graphy</strong></td>
+            <td data-label="Meaning">Process of recording or imaging</td>
+            <td data-label="Example">Radiography</td>
+            <td data-label="Simple Breakdown">Imaging process</td>
           </tr>
           <tr>
-            <td>-gram</td>
-            <td>Record or image</td>
-            <td>Electrocardiogram</td>
-            <td>Recorded tracing of heart electrical activity</td>
+            <td data-label="Suffix"><strong>-gram</strong></td>
+            <td data-label="Meaning">Record or image</td>
+            <td data-label="Example">Electrocardiogram</td>
+            <td data-label="Simple Breakdown">Recorded tracing of heart electrical activity</td>
           </tr>
-        </table>
-      </div>
+          <tr>
+            <td data-label="Suffix"><strong>-pathy</strong></td>
+            <td data-label="Meaning">Disease or disorder</td>
+            <td data-label="Example">Neuropathy</td>
+            <td data-label="Simple Breakdown">Nerve disorder</td>
+          </tr>
+          <tr>
+            <td data-label="Suffix"><strong>-plasty</strong></td>
+            <td data-label="Meaning">Surgical repair</td>
+            <td data-label="Example">Angioplasty</td>
+            <td data-label="Simple Breakdown">Surgical repair or opening of a vessel</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Common Root Words for Healthcare Learners</h2>
+
+      <p>
+        Root words carry the main meaning. Learning roots helps you connect terminology with anatomy, body systems, procedures, and patient care.
+      </p>
+
+      <table class="term-table">
+        <thead>
+          <tr>
+            <th>Root</th>
+            <th>Meaning</th>
+            <th>Example</th>
+            <th>Connection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Root"><strong>cardi / cardio</strong></td>
+            <td data-label="Meaning">Heart</td>
+            <td data-label="Example">Cardiology</td>
+            <td data-label="Connection">Heart anatomy, ECG, cardiac monitoring</td>
+          </tr>
+          <tr>
+            <td data-label="Root"><strong>pulmon / pneumo</strong></td>
+            <td data-label="Meaning">Lung or air</td>
+            <td data-label="Example">Pulmonary, pneumonia</td>
+            <td data-label="Connection">Respiratory system, oxygen, ventilation</td>
+          </tr>
+          <tr>
+            <td data-label="Root"><strong>nephr / ren</strong></td>
+            <td data-label="Meaning">Kidney</td>
+            <td data-label="Example">Nephrology, renal</td>
+            <td data-label="Connection">Kidney function, fluid balance, lab values</td>
+          </tr>
+          <tr>
+            <td data-label="Root"><strong>hepat</strong></td>
+            <td data-label="Meaning">Liver</td>
+            <td data-label="Example">Hepatitis</td>
+            <td data-label="Connection">Liver anatomy and metabolism</td>
+          </tr>
+          <tr>
+            <td data-label="Root"><strong>derm / dermat</strong></td>
+            <td data-label="Meaning">Skin</td>
+            <td data-label="Example">Dermatitis</td>
+            <td data-label="Connection">Skin layers and assessment</td>
+          </tr>
+          <tr>
+            <td data-label="Root"><strong>neur / neuro</strong></td>
+            <td data-label="Meaning">Nerve or nervous system</td>
+            <td data-label="Example">Neurology</td>
+            <td data-label="Connection">Brain, nerves, sensation, movement</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section class="section">
       <h2>How to Break Down Medical Terms</h2>
+
       <p>
-        When you see a medical term, slow down and look for familiar parts. Do not panic when the word looks long.
-        Most long medical words can be broken into smaller pieces.
+        When you see a medical term, slow down and look for familiar parts. Do not panic when the word looks long. Most long medical words can be broken into smaller pieces.
       </p>
 
       <ol>
-        <li>Look for the suffix first.</li>
-        <li>Look for the prefix next.</li>
-        <li>Find the root word.</li>
+        <li>Look for the suffix first because it often tells you what type of condition, test, or procedure the word is describing.</li>
+        <li>Look for the prefix next because it may tell you amount, speed, direction, timing, or location.</li>
+        <li>Find the root word because it usually tells you the body part or main subject.</li>
         <li>Put the meaning together in plain English.</li>
       </ol>
 
@@ -540,23 +979,41 @@
         <strong>Hyperglycemia</strong>
         <p>Hyper = high. Glyc = sugar. Emia = blood condition. Hyperglycemia means high blood sugar.</p>
       </div>
+
+      <div class="word-breakdown">
+        <strong>Electrocardiogram</strong>
+        <p>Electro = electrical. Cardio = heart. Gram = record. Electrocardiogram means a record of the heart's electrical activity.</p>
+      </div>
     </section>
 
     <section class="section">
       <h2>Medical Terms That Connect to Vital Signs</h2>
+
       <p>
-        Many common medical prefixes and suffixes show up when learning vital signs and patient assessment.
+        Many common medical prefixes and suffixes show up when learning vital signs, patient assessment, and clinical documentation.
       </p>
 
-      <ul>
-        <li><strong>Tachycardia:</strong> fast heart rate.</li>
-        <li><strong>Bradycardia:</strong> slow heart rate.</li>
-        <li><strong>Hypertension:</strong> high blood pressure.</li>
-        <li><strong>Hypotension:</strong> low blood pressure.</li>
-        <li><strong>Tachypnea:</strong> fast breathing.</li>
-        <li><strong>Bradypnea:</strong> slow breathing.</li>
-        <li><strong>Hypoxia:</strong> low oxygen at the tissue level.</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Heart rate terms</h3>
+          <ul>
+            <li><strong>Tachycardia:</strong> fast heart rate.</li>
+            <li><strong>Bradycardia:</strong> slow heart rate.</li>
+            <li><strong>Electrocardiogram:</strong> record of heart electrical activity.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Blood pressure and breathing terms</h3>
+          <ul>
+            <li><strong>Hypertension:</strong> high blood pressure.</li>
+            <li><strong>Hypotension:</strong> low blood pressure.</li>
+            <li><strong>Tachypnea:</strong> fast breathing.</li>
+            <li><strong>Bradypnea:</strong> slow breathing.</li>
+            <li><strong>Hypoxia:</strong> low oxygen at the tissue level.</li>
+          </ul>
+        </div>
+      </div>
 
       <p>
         Review these clinical connections in the <a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>.
@@ -565,41 +1022,75 @@
 
     <section class="section">
       <h2>Medical Terms That Connect to Anatomy</h2>
-      <p>
-        Anatomy terms become easier when you recognize roots and suffixes. For example, <strong>cardio</strong> refers to the heart,
-        <strong>neuro</strong> refers to nerves, and <strong>pulmo</strong> refers to the lungs.
-      </p>
-
-      <ul>
-        <li><strong>Cardiology:</strong> study of the heart.</li>
-        <li><strong>Neurology:</strong> study of the nervous system.</li>
-        <li><strong>Pulmonary:</strong> related to the lungs.</li>
-        <li><strong>Renal:</strong> related to the kidneys.</li>
-        <li><strong>Hepatic:</strong> related to the liver.</li>
-      </ul>
 
       <p>
-        Strengthen your anatomy recognition with <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-        and <a href="/how-kidneys-work.html">How the Kidneys Work</a>.
+        Anatomy terms become easier when you recognize roots and suffixes. For example, cardio refers to the heart, neuro refers to nerves, and pulmon refers to the lungs.
       </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Heart</h3>
+          <p>
+            Cardiology, cardiomegaly, electrocardiogram, cardiovascular.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Lungs</h3>
+          <p>
+            Pulmonary, pneumonia, pneumothorax, pulmonology.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Kidneys</h3>
+          <p>
+            Renal, nephrology, nephritis, nephropathy.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta purple" href="/anatomy-labeling-practice.html">Practice Anatomy Labeling</a>
+        <a class="cta secondary" href="/how-kidneys-work.html">Review Kidney Function</a>
+      </div>
     </section>
 
     <section class="section">
       <h2>Common Mistakes Students Make</h2>
 
-      <ul>
-        <li>Trying to memorize full words without learning word parts.</li>
-        <li>Confusing <strong>hyper-</strong> and <strong>hypo-</strong>.</li>
-        <li>Forgetting that <strong>tachy-</strong> means fast and <strong>brady-</strong> means slow.</li>
-        <li>Assuming every medical word breaks down perfectly in the same way.</li>
-        <li>Skipping practice and only reading lists.</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Memorizing full words only</h3>
+          <p>
+            Full terms matter, but word parts make the language easier to decode.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Confusing hyper and hypo</h3>
+          <p>
+            Hyper means high. Hypo means low. This is one of the most important pairs to master early.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Forgetting tachy and brady</h3>
+          <p>
+            Tachy means fast. Brady means slow. These show up often with heart rate and breathing.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Only reading lists</h3>
+          <p>
+            Reading helps, but practice is what makes terminology stick.
+          </p>
+        </div>
+      </div>
 
       <div class="warning-box">
-        <strong>Important:</strong>
-        <p>
-          Reading a list helps, but practice is what makes medical terminology stick.
-        </p>
+        Important: Some medical words have unusual history or do not break down perfectly. Word parts are a tool, not a guarantee for every term.
       </div>
     </section>
 
@@ -608,70 +1099,153 @@
 
       <div class="word-breakdown">
         <strong>1. What does hyper- mean?</strong>
-        <p>Answer: High or above normal.</p>
+        <div class="answer">Answer: High or above normal.</div>
+        <div class="explain">Example: hypertension means high blood pressure.</div>
       </div>
 
       <div class="word-breakdown">
         <strong>2. What does hypo- mean?</strong>
-        <p>Answer: Low or below normal.</p>
+        <div class="answer">Answer: Low or below normal.</div>
+        <div class="explain">Example: hypoglycemia means low blood sugar.</div>
       </div>
 
       <div class="word-breakdown">
         <strong>3. What does -itis mean?</strong>
-        <p>Answer: Inflammation.</p>
+        <div class="answer">Answer: Inflammation.</div>
+        <div class="explain">Example: arthritis means joint inflammation.</div>
       </div>
 
       <div class="word-breakdown">
         <strong>4. What does bradycardia mean?</strong>
-        <p>Answer: Slow heart rate.</p>
+        <div class="answer">Answer: Slow heart rate.</div>
+        <div class="explain">Brady means slow and cardia relates to the heart.</div>
       </div>
 
       <div class="word-breakdown">
         <strong>5. What does appendectomy mean?</strong>
-        <p>Answer: Surgical removal of the appendix.</p>
+        <div class="answer">Answer: Surgical removal of the appendix.</div>
+        <div class="explain">The suffix -ectomy means surgical removal.</div>
       </div>
 
-      <p>
-        For more practice, use the interactive <a href="/medical-prefix-suffix-practice.html">Medical Prefix & Suffix Practice</a>.
-      </p>
+      <div class="word-breakdown">
+        <strong>6. What does cardiology mean?</strong>
+        <div class="answer">Answer: Study of the heart.</div>
+        <div class="explain">Cardio means heart and -ology means study of.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/medical-prefix-suffix-practice.html">Start Interactive Prefix and Suffix Practice →</a>
+        <a class="cta secondary" href="/medical-terminology-practice.html">Open Medical Terminology Practice</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How to Study Medical Prefixes and Suffixes</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Study in small groups</h3>
+          <p>
+            Learn 5 to 10 word parts at a time instead of trying to memorize a huge list in one sitting.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Say the meaning out loud</h3>
+          <p>
+            When you see hypo, say “low.” When you see tachy, say “fast.”
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Connect terms to anatomy</h3>
+          <p>
+            Cardio connects to the heart. Pulmonary connects to the lungs. Renal connects to the kidneys.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Practice missed words again</h3>
+          <p>
+            Missed words are your study map. Review them quickly before moving on.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section class="section">
       <h2>Related Healthcare Learning</h2>
 
       <p>
-        Medical prefixes and suffixes connect closely with anatomy, vital signs, physiology, and clinical communication.
-        Strengthen your understanding with these related healthcare study tools.
+        Medical prefixes and suffixes connect closely with anatomy, vital signs, physiology, clinical communication, and healthcare vocabulary.
       </p>
 
       <div class="link-grid">
-        <a class="practice-link" href="/medical-prefix-suffix-practice.html">Medical Prefix & Suffix Practice</a>
+        <a class="practice-link" href="/medical-prefix-suffix-practice.html">Medical Prefix and Suffix Practice</a>
         <a class="practice-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
         <a class="practice-link" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
+        <a class="practice-link" href="/top-100-medical-terms.html">Top 100 Medical Terms</a>
         <a class="practice-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
         <a class="practice-link" href="/how-kidneys-work.html">How the Kidneys Work</a>
         <a class="practice-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
         <a class="practice-link" href="/abg-normal-values.html">ABG Normal Values Guide</a>
         <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+        <a class="practice-link" href="/about.html">About MedSkillBuilder</a>
       </div>
     </section>
 
-    <section class="footer-cta">
+    <section class="section dark">
       <h2>Ready to Practice Medical Terminology?</h2>
+
       <p>
-        Start with prefix and suffix practice, then move into full medical terminology review and anatomy learning.
+        Start with prefixes and suffixes, then move into full medical terminology review, anatomy practice, and body system learning.
       </p>
-      <a href="/medical-prefix-suffix-practice.html">Start Prefix & Suffix Practice</a>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/medical-prefix-suffix-practice.html">Start Prefix and Suffix Practice →</a>
+        <a class="cta secondary" href="/medical-terminology-practice.html">Practice Medical Terminology</a>
+      </div>
     </section>
 
-    <footer>
-      <p>
-        MedSkillBuilder helps students and early healthcare learners practice medical terminology, anatomy, vital signs,
-        ABG interpretation, kidney function, equipment identification, and healthcare fundamentals.
-      </p>
-      <p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
-    </footer>
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
 
-  </div>
+      <h3>What is a medical prefix?</h3>
+      <p>
+        A medical prefix is a word part that comes at the beginning of a medical term. It often describes speed, amount, location, direction, time, or condition.
+      </p>
+
+      <h3>What is a medical suffix?</h3>
+      <p>
+        A medical suffix is a word part that comes at the end of a term. It often describes a condition, disease process, test, procedure, record, or specialty.
+      </p>
+
+      <h3>Should I learn prefixes or suffixes first?</h3>
+      <p>
+        Beginners usually benefit from learning common prefixes and suffixes first, then adding root words and full terms.
+      </p>
+
+      <h3>Why is medical terminology important?</h3>
+      <p>
+        Medical terminology helps learners understand anatomy, vital signs, charting, patient care language, procedures, lab values, and healthcare communication.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for medical terminology, anatomy, vital signs, ABG review, CBET prep, equipment identification, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/medical-terminology-practice.html">Medical Terminology</a> |
+        <a href="/anatomy-labeling-practice.html">Anatomy Practice</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
