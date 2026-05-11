@@ -2,492 +2,1223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Basic Electronics for CBET Exam | Simple Beginner Guide</title>
-  <meta name="description" content="Learn basic electronics for the CBET exam with simple explanations of voltage, current, resistance, AC vs DC, Ohm’s Law, diodes, capacitors, and rectifiers. Built for beginners and CBET prep." />
-  <meta name="keywords" content="basic electronics for CBET, CBET electronics, CBET exam electronics, voltage current resistance, Ohm's Law CBET, diode CBET, capacitor CBET, rectifier CBET, AC vs DC CBET, biomedical electronics basics" />
+  <title>Basic Electronics for CBET | Complete Beginner Study Guide</title>
+
+  <meta name="description" content="Learn basic electronics for the CBET exam with a complete beginner guide to voltage, current, resistance, Ohm's Law, AC vs DC, power supplies, diodes, capacitors, rectifiers, fuses, series and parallel circuits, and biomedical equipment troubleshooting." />
+
+  <meta name="keywords" content="basic electronics for CBET, CBET electronics, CBET exam electronics, voltage current resistance, Ohm's Law CBET, diode CBET, capacitor CBET, rectifier CBET, AC vs DC CBET, biomedical electronics basics, BMET electronics, clinical engineering electronics" />
+
   <link rel="canonical" href="https://medskillbuilder.com/basic-electronics-cbet.html" />
 
-  <meta property="og:title" content="Basic Electronics for CBET Exam | Simple Beginner Guide" />
-  <meta property="og:description" content="Learn the core electronics concepts tested on the CBET exam including voltage, current, resistance, AC vs DC, Ohm’s Law, capacitors, diodes, and rectifiers." />
+  <meta property="og:title" content="Basic Electronics for CBET | Complete Beginner Study Guide" />
+  <meta property="og:description" content="Learn the electronics concepts tested in CBET prep including voltage, current, resistance, Ohm's Law, AC/DC, diodes, capacitors, rectifiers, power supplies, and troubleshooting." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://medskillbuilder.com/basic-electronics-cbet.html" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is basic electronics important for the CBET exam?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Basic electronics is important for CBET preparation because biomedical equipment uses power supplies, circuits, sensors, batteries, fuses, capacitors, diodes, rectifiers, and electrical safety principles."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What electronics topics should I study for CBET?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CBET learners should review voltage, current, resistance, Ohm's Law, AC vs DC, power, series and parallel circuits, fuses, batteries, capacitors, diodes, rectifiers, grounding, leakage current, and basic troubleshooting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need advanced math for CBET electronics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Advanced math is usually not the main focus for beginners. It is more important to understand what voltage, current, resistance, and common components do and how they affect equipment behavior."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does electronics connect to biomedical equipment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Medical devices rely on stable power, controlled current flow, signal processing, batteries, sensors, fuses, and power conversion. Understanding basic electronics helps biomedical equipment technicians troubleshoot equipment safely."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --purple: #7c3aed;
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #f8fafc;
+      --border: #dbeafe;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
       margin: 0;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(29, 111, 165, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
     }
 
     .container {
-      max-width: 1000px;
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 32px 20px 60px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
+    .topbar {
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 700;
+      width: fit-content;
     }
 
-    h1, h2, h3 {
-      color: #0f172a;
-      line-height: 1.25;
+    .brand img {
+      width: 58px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    header {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.22), transparent 32%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(8, 47, 87, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      right: 90px;
+      bottom: -160px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.16);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: 2.3rem;
-      margin-bottom: 12px;
-      border-bottom: 4px solid #153f73;
-      padding-bottom: 10px;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
     }
 
-    h2 {
-      margin-top: 0;
-      margin-bottom: 14px;
-      font-size: 1.6rem;
-      color: #153f73;
+    header p {
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 850px;
+      margin-bottom: 18px;
     }
 
-    h3 {
-      margin-top: 24px;
-      margin-bottom: 10px;
-      font-size: 1.15rem;
-      color: #0f2f57;
+    main {
+      padding: 34px 0 48px;
     }
 
-    p {
-      margin: 0 0 16px;
-      font-size: 1rem;
-    }
-
-    .intro {
-      font-size: 1.05rem;
-      max-width: 880px;
-    }
-
-    .section {
-      margin-top: 36px;
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 14px;
-      border: 1px solid #dbe4ee;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    }
-
-    .note-box {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    .warning-box {
-      background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    .success-box {
-      background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
       margin: 20px 0 28px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
+    .stat {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 22px;
     }
 
-    th, td {
-      border: 1px solid #dbe4ee;
-      padding: 14px 12px;
-      text-align: left;
-      vertical-align: top;
+    .stat span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
     }
 
-    th {
-      background: #153f73;
-      color: #ffffff;
-      font-weight: 700;
+    .section {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
     }
 
-    ul, ol {
-      padding-left: 22px;
-      margin-top: 0;
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(236, 253, 245, 0.86), rgba(255, 255, 255, 0.98));
+      border-color: rgba(22, 163, 74, 0.35);
+    }
+
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 35%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .section.dark h2,
+    .section.dark h3,
+    .section.dark p,
+    .section.dark li {
+      color: white;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
+    }
+
+    h4 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.12);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .cta-secondary {
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      box-shadow: 0 16px 28px rgba(239, 68, 68, 0.22);
+    }
+
+    .cta-tertiary {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--blue);
+    }
+
+    .callout {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 6px solid #2563eb;
+      color: #1e3a8a;
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .warning {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin: 20px 0;
+    }
+
+    .formula {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 18px 0;
+      font-weight: 900;
+      text-align: center;
+      font-size: 22px;
+    }
+
+    .path {
+      counter-reset: step;
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .step {
+      position: relative;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px 20px 20px 70px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 20px;
+      top: 22px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--navy);
+      color: white;
+      font-weight: 900;
+    }
+
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
     }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
+    }
+
+    .topic-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 0 0 1px var(--border);
+      background: white;
+    }
+
+    .topic-table th {
+      background: var(--navy);
+      color: white;
+      text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .topic-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .topic-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sample-question {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .explain {
+      margin-top: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
     }
 
     .link-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
       margin-top: 18px;
     }
 
-    .practice-link {
+    .study-link {
       display: block;
       text-decoration: none;
-      background: #ffffff;
-      color: #0f172a;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      background: #e8f1fb;
+      border: 1px solid #bfdbfe;
+      color: var(--navy);
+      border-radius: 16px;
       padding: 14px 16px;
-      font-weight: 700;
-      transition: 0.2s ease;
+      font-weight: 900;
     }
 
-    .practice-link:hover {
-      background: #eff6ff;
-      border-color: #2563eb;
+    .study-link:hover {
+      background: #dbeafe;
     }
 
-    .concept-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 18px;
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
+      text-align: center;
+      margin-top: 42px;
     }
 
-    .concept-box {
-      background: #f8fafc;
-      border: 1px solid #dbe4ee;
-      border-radius: 12px;
-      padding: 16px;
-    }
-
-    .concept-box h3 {
-      margin-top: 0;
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
       margin-bottom: 8px;
     }
 
-    .faq-item {
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
-      border-radius: 10px;
-      padding: 18px;
-      margin-bottom: 14px;
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
     }
 
-    .faq-item h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 1.85rem;
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
       }
 
-      h2 {
-        font-size: 1.35rem;
-      }
-
-      th, td {
-        padding: 12px 10px;
+      .stats,
+      .grid-2,
+      .grid-3,
+      .link-grid {
+        grid-template-columns: 1fr;
       }
 
       .section {
-        padding: 18px;
+        padding: 24px 20px;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .topic-table,
+      .topic-table thead,
+      .topic-table tbody,
+      .topic-table th,
+      .topic-table td,
+      .topic-table tr {
+        display: block;
+      }
+
+      .topic-table thead {
+        display: none;
+      }
+
+      .topic-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .topic-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .topic-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--navy);
+        font-weight: 900;
+        margin-bottom: 4px;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
 
-    <h1>Basic Electronics for CBET Exam</h1>
-
-    <p class="intro">
-      Electronics can feel intimidating when you first start studying for the CBET exam, but the core ideas are more manageable when they are explained simply. This guide breaks down basic electronics for CBET review in a way that is practical, beginner friendly, and focused on the concepts that help you understand biomedical equipment.
-    </p>
-
-    <p class="intro">
-      If you are preparing for the CBET exam, learning voltage, current, resistance, AC vs DC, Ohm’s Law, diodes, capacitors, and rectifiers gives you a stronger foundation for troubleshooting and understanding how medical devices work.
-    </p>
-
-    <div class="note-box">
-      <strong>Quick tip:</strong> You do not need to become an electrical engineer to improve your CBET electronics knowledge. Focus on understanding what each concept does, how it behaves, and why it matters in real equipment.
-    </div>
-
-    <div class="section">
-      <h2>What Is Basic Electronics in CBET Prep?</h2>
-      <p>
-        Basic electronics for CBET means understanding the electrical building blocks that appear in biomedical equipment, power supplies, test equipment, and troubleshooting scenarios. These concepts help explain how energy moves through a circuit, how components respond, and how systems convert, store, or control electricity.
-      </p>
-      <p>
-        This matters because CBET questions often test whether you understand how components behave, not just whether you can memorize a definition. That is why it helps to study the practical meaning of each concept instead of treating electronics as pure theory.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Core Electronics Concepts You Should Know</h2>
-
-      <div class="concept-grid">
-        <div class="concept-box">
-          <h3>Voltage</h3>
-          <p>
-            Voltage is the electrical potential that pushes electrons through a circuit. It is often described as electrical pressure.
-          </p>
+  <div class="topbar">
+    <div class="container">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET, biomed, electronics, and healthcare study tools</span>
         </div>
-
-        <div class="concept-box">
-          <h3>Current</h3>
-          <p>
-            Current is the flow of electrons through a circuit. It tells you how much electrical flow is moving.
-          </p>
-        </div>
-
-        <div class="concept-box">
-          <h3>Resistance</h3>
-          <p>
-            Resistance opposes the flow of current. More resistance means less current can pass for a given voltage.
-          </p>
-        </div>
-
-        <div class="concept-box">
-          <h3>Power</h3>
-          <p>
-            Power describes how much electrical energy is being used or delivered. It is often measured in watts.
-          </p>
-        </div>
-      </div>
-
-      <div class="success-box">
-        <strong>Easy memory reminder:</strong> Voltage pushes, current flows, resistance opposes, and power is the work being done.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Why Voltage, Current, and Resistance Matter</h2>
-      <p>
-        These three ideas are the backbone of basic circuit understanding. If you understand how they relate to each other, many other CBET electronics topics become easier. For example, if resistance increases in a circuit while voltage stays the same, current decreases. If voltage increases with the same resistance, current increases.
-      </p>
-      <p>
-        This relationship shows up constantly in troubleshooting. A biomedical technician may need to understand whether a circuit is underpowered, overloaded, open, shorted, or behaving abnormally because of component failure.
-      </p>
-      <p>
-        To go deeper into this relationship, review <a href="/what-is-ohms-law.html">Ohm’s Law</a>, which ties voltage, current, and resistance together in a simple formula.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>AC vs DC Current</h2>
-      <p>
-        Another key topic for CBET electronics is understanding the difference between alternating current and direct current.
-      </p>
-
-      <div class="table-wrap">
-        <table>
-          <tr>
-            <th>Type</th>
-            <th>What It Means</th>
-            <th>Why It Matters</th>
-          </tr>
-          <tr>
-            <td>AC</td>
-            <td>Alternating current changes direction periodically.</td>
-            <td>Wall power and many facility power sources use AC.</td>
-          </tr>
-          <tr>
-            <td>DC</td>
-            <td>Direct current flows in one direction.</td>
-            <td>Many electronic circuits and devices rely on DC power.</td>
-          </tr>
-        </table>
-      </div>
-
-      <p>
-        In biomedical equipment, devices often receive AC power from the wall and then convert it into DC inside the device so the internal electronics can operate properly. If you want a deeper explanation, review <a href="/ac-vs-dc-current.html">AC vs DC Current</a>.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Ohm’s Law</h2>
-      <p>
-        Ohm’s Law is one of the most important electronics ideas for CBET prep because it explains the relationship between voltage, current, and resistance. Even if the exam does not focus heavily on math, you still need to understand what happens when one part of that relationship changes.
-      </p>
-      <p>
-        In practical terms, Ohm’s Law helps you understand why a circuit might pull too much current, why a resistor changes circuit behavior, or why a measurement does not look right during troubleshooting.
-      </p>
-      <p>
-        Review the full explanation here: <a href="/what-is-ohms-law.html">What Is Ohm’s Law?</a>
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Key Electronic Components for CBET</h2>
-
-      <h3>Diode</h3>
-      <p>
-        A diode allows current to flow mainly in one direction. This makes it useful for controlling current direction and for converting AC to DC in power supply circuits. Learn more here: <a href="/what-is-a-diode.html">What Is a Diode?</a>
-      </p>
-
-      <h3>Capacitor</h3>
-      <p>
-        A capacitor stores electrical energy and releases it when needed. Capacitors are commonly involved in filtering, smoothing, timing, and energy storage. Learn more here: <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
-      </p>
-
-      <h3>Rectifier</h3>
-      <p>
-        A rectifier converts AC into DC, which is critical in many equipment power supplies. Since medical devices often need DC internally, rectifiers are a high value concept for CBET understanding. Learn more here: <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>How These Concepts Show Up in Biomedical Equipment</h2>
-      <p>
-        CBET prep becomes easier when you connect electronics to real equipment instead of seeing each term as isolated. Biomedical devices rely on stable power, controlled current flow, filtering, signal handling, and safe operation. That means concepts like resistance, rectification, capacitance, and current direction are not just abstract ideas. They help explain why equipment powers on, fails, alarms, or behaves unpredictably.
-      </p>
-      <p>
-        For example, if a power supply is not converting AC to DC properly, the device may not run correctly. If a capacitor fails, signal smoothing or timing behavior may be affected. If a diode fails, current may no longer move as intended. These are the kinds of practical links that make electronics easier to remember.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Simple CBET Electronics Study Strategy</h2>
-      <ol>
-        <li>Start with voltage, current, and resistance.</li>
-        <li>Learn how Ohm’s Law connects them.</li>
-        <li>Understand the difference between AC and DC.</li>
-        <li>Study what a diode, capacitor, and rectifier actually do.</li>
-        <li>Connect each concept to real equipment behavior.</li>
-        <li>Practice questions until the terms feel practical instead of abstract.</li>
-      </ol>
-
-      <div class="warning-box">
-        <strong>Important:</strong> Do not try to memorize electronics as a giant list of definitions. Focus on function, behavior, and real-world meaning. That approach tends to stick better and helps more on the CBET exam.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Basic Electronics Practice Questions for CBET</h2>
-
-      <h3>1. What does voltage describe in a circuit?</h3>
-      <p>
-        Voltage describes the electrical potential that pushes current through a circuit.
-      </p>
-
-      <h3>2. What does resistance do?</h3>
-      <p>
-        Resistance opposes the flow of current.
-      </p>
-
-      <h3>3. Why is DC important inside many electronic devices?</h3>
-      <p>
-        Many internal circuits require current that flows in one direction to operate correctly.
-      </p>
-
-      <h3>4. What component mainly allows current to flow in one direction?</h3>
-      <p>
-        A diode.
-      </p>
-
-      <h3>5. What does a rectifier do?</h3>
-      <p>
-        A rectifier converts AC into DC.
-      </p>
-
-      <h3>6. What does a capacitor do?</h3>
-      <p>
-        A capacitor stores and releases electrical energy.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Build Your CBET Electronics Foundation</h2>
-      <p>
-        If you are just getting started, this page should act as your electronics overview. From here, move into the linked topic pages so each concept becomes clearer one step at a time.
-      </p>
-
-      <div class="link-grid">
-        <a class="practice-link" href="/what-is-ohms-law.html">What Is Ohm’s Law?</a>
-        <a class="practice-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
-        <a class="practice-link" href="/what-is-a-diode.html">What Is a Diode?</a>
-        <a class="practice-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
-        <a class="practice-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
-        <a class="practice-link" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Why This Topic Matters for CBET Success</h2>
-      <p>
-        Electronics is one of the areas that can slow people down in CBET prep because the terminology feels technical. But once the basics click, many of the harder concepts become easier to organize. You do not need to know everything at once. You need a strong foundation and repeated practice with the core ideas.
-      </p>
-      <p>
-        That is why this type of guide matters. It gives you a starting point that connects multiple electronics topics together instead of leaving them scattered across separate pages.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Frequently Asked Questions</h2>
-
-      <div class="faq-item">
-        <h3>Is electronics important for the CBET exam?</h3>
-        <p>
-          Yes. Basic electronics is an important part of CBET preparation because biomedical equipment relies on electrical circuits, power supplies, and component behavior.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Do I need to be good at math for CBET electronics?</h3>
-        <p>
-          You do not need advanced math to improve your foundation. It helps most to understand what voltage, current, resistance, AC, DC, diodes, capacitors, and rectifiers actually do.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>What is the best electronics topic to study first for CBET?</h3>
-        <p>
-          A good place to start is voltage, current, resistance, and Ohm’s Law. After that, move into AC vs DC and common components like diodes, capacitors, and rectifiers.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Why do medical devices need DC power internally?</h3>
-        <p>
-          Many internal circuits in electronic equipment are designed to operate with current flowing in one direction, which is why AC from the wall is often converted into DC inside the device.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Keep Studying</h2>
-      <p>
-        Use these related CBET and biomedical pages to continue building your knowledge and confidence.
-      </p>
-
-      <div class="link-grid">
-        <a class="practice-link" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
-        <a class="practice-link" href="/cres-practice-questions.html">CRES Practice Questions</a>
-        <a class="practice-link" href="/medical-equipment-identification-practice.html">Medical Equipment Identification Practice</a>
-        <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Pages</a>
-      </div>
+      </a>
     </div>
   </div>
+
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">CBET Electronics Study Guide</div>
+
+        <h1>Basic Electronics for CBET</h1>
+
+        <p>
+          Learn the electronics concepts that matter for CBET prep: voltage, current, resistance, Ohm's Law, AC vs DC, power supplies, fuses, diodes, capacitors, rectifiers, series circuits, parallel circuits, and troubleshooting.
+        </p>
+
+        <p>
+          This guide is built for beginners, BMET learners, biomedical equipment technicians, and healthcare technology students who need electronics explained in plain language.
+        </p>
+
+        <div class="cta-row">
+          <a href="/free-cbet-practice-test.html" class="cta-button cta-primary">Start Free CBET Practice →</a>
+          <a href="/cbet-electronics-practice-questions.html" class="cta-button cta-secondary">Practice CBET Electronics Questions</a>
+          <a href="/how-to-pass-cbet-exam.html" class="cta-button cta-tertiary">CBET Study Guide</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="stats">
+      <div class="stat">Voltage<span>Electrical pressure</span></div>
+      <div class="stat">Current<span>Electrical flow</span></div>
+      <div class="stat">Resistance<span>Opposes flow</span></div>
+      <div class="stat">Power<span>Work being done</span></div>
+    </div>
+
+    <div class="warning">
+      MedSkillBuilder is an independent educational resource. It is not affiliated with or endorsed by AAMI, any certification provider, hospital system, device manufacturer, or employer. Use this page as supplemental study support and verify official CBET requirements with the appropriate certification organization.
+    </div>
+
+    <section class="section highlight">
+      <h2>Basic Electronics for CBET Prep</h2>
+
+      <p class="lead">
+        Electronics can feel intimidating at first, but the CBET exam does not require you to become an electrical engineer. You need to understand how the basic ideas behave in real biomedical equipment.
+      </p>
+
+      <p>
+        If a device will not power on, a fuse opens, a battery will not hold charge, a sensor signal is weak, a circuit draws too much current, or a power supply does not produce the correct DC output, basic electronics helps you think through the problem.
+      </p>
+
+      <div class="callout">
+        Simple rule: voltage pushes, current flows, resistance opposes, and power describes how much electrical work is being done.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Core Electronics Concepts You Should Know</h2>
+
+      <div class="grid-2">
+        <div class="card strong">
+          <h3>Voltage</h3>
+          <p>
+            Voltage is electrical potential. It is often described as the pressure that pushes current through a circuit. Voltage is measured in volts.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Current</h3>
+          <p>
+            Current is the flow of electrical charge through a circuit. Current is measured in amps. Small currents may be measured in milliamps or microamps.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Resistance</h3>
+          <p>
+            Resistance opposes current flow. It is measured in ohms. More resistance usually means less current if the voltage stays the same.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Power</h3>
+          <p>
+            Power describes how much electrical energy is being used or delivered. It is measured in watts and connects voltage and current.
+          </p>
+        </div>
+      </div>
+
+      <div class="formula">
+        V = I × R &nbsp; | &nbsp; I = V ÷ R &nbsp; | &nbsp; P = V × I
+      </div>
+
+      <p>
+        These formulas are less scary when you understand the meaning. If voltage goes up and resistance stays the same, current goes up. If resistance goes up and voltage stays the same, current goes down.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Why Ohm's Law Matters for CBET</h2>
+
+      <p>
+        Ohm's Law connects voltage, current, and resistance. For CBET prep, the most important part is not just calculating numbers. The important part is understanding what changes when voltage, current, or resistance changes.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>If voltage increases</h3>
+          <p>
+            Current usually increases if resistance stays the same.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>If resistance increases</h3>
+          <p>
+            Current usually decreases if voltage stays the same.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>If resistance drops too low</h3>
+          <p>
+            Current may rise too high, which can lead to heat, damage, or a protective fuse opening.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="/what-is-ohms-law.html" class="cta-button cta-tertiary">Review Ohm's Law Guide</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>AC vs DC Current</h2>
+
+      <p>
+        Many medical devices plug into wall power, but the internal electronics often need DC power. That means the device may use a power supply to convert AC into DC.
+      </p>
+
+      <table class="topic-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+            <th>CBET Connection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Type"><strong>AC</strong></td>
+            <td data-label="Meaning">Alternating current changes direction periodically.</td>
+            <td data-label="CBET Connection">Wall outlets and facility power are commonly AC.</td>
+          </tr>
+
+          <tr>
+            <td data-label="Type"><strong>DC</strong></td>
+            <td data-label="Meaning">Direct current flows in one direction.</td>
+            <td data-label="CBET Connection">Batteries and internal electronic circuits commonly use DC.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        A common equipment idea is: AC enters the power supply, then the device converts and regulates power so sensitive electronics can operate safely.
+      </p>
+
+      <div class="cta-row">
+        <a href="/ac-vs-dc-current.html" class="cta-button cta-tertiary">Review AC vs DC Current</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Power Supplies: Where Many Electronics Concepts Come Together</h2>
+
+      <p>
+        A power supply is one of the best ways to understand CBET electronics because it brings multiple concepts together. Medical devices often need stable internal power for boards, sensors, displays, charging circuits, and alarms.
+      </p>
+
+      <div class="path">
+        <div class="step">
+          <h3>AC input</h3>
+          <p>
+            The device receives AC from the wall outlet or facility power source.
+          </p>
+        </div>
+
+        <div class="step">
+          <h3>Protection</h3>
+          <p>
+            Fuses, grounding, surge protection, and other safety features help protect the circuit and user.
+          </p>
+        </div>
+
+        <div class="step">
+          <h3>Rectification</h3>
+          <p>
+            Diodes or rectifier circuits help convert AC into DC.
+          </p>
+        </div>
+
+        <div class="step">
+          <h3>Filtering and regulation</h3>
+          <p>
+            Capacitors and regulators help smooth and stabilize the DC voltage used by internal electronics.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        This is why diodes, capacitors, rectifiers, fuses, and AC/DC concepts all matter. They are not separate random facts. They work together inside real equipment.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Key Electronic Components for CBET</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Diode</h3>
+          <p>
+            A diode allows current to flow mainly in one direction. Diodes are often used in rectifier circuits and protection circuits.
+          </p>
+          <a class="study-link" href="/what-is-a-diode.html">What Is a Diode?</a>
+        </div>
+
+        <div class="card">
+          <h3>Rectifier</h3>
+          <p>
+            A rectifier converts AC into DC. This is important because many internal circuits need DC even when the device plugs into AC wall power.
+          </p>
+          <a class="study-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        </div>
+
+        <div class="card">
+          <h3>Capacitor</h3>
+          <p>
+            A capacitor stores and releases electrical energy. Capacitors are used for filtering, smoothing, timing, and energy storage.
+          </p>
+          <a class="study-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        </div>
+
+        <div class="card">
+          <h3>Fuse</h3>
+          <p>
+            A fuse is a protective device that opens the circuit when current becomes too high. It helps reduce damage and fire risk.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Battery</h3>
+          <p>
+            Batteries provide DC power and backup operation. Biomedical equipment may use batteries for transport, alarms, memory, or emergency readiness.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Switch</h3>
+          <p>
+            A switch opens or closes a circuit. A failed switch can prevent power, signal flow, or user input from working properly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Series and Parallel Circuits</h2>
+
+      <p>
+        CBET learners should understand the basic difference between series and parallel circuits because it helps explain current paths, resistance changes, and what happens when a component fails.
+      </p>
+
+      <table class="topic-table">
+        <thead>
+          <tr>
+            <th>Circuit Type</th>
+            <th>Basic Idea</th>
+            <th>Failure Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Circuit Type"><strong>Series</strong></td>
+            <td data-label="Basic Idea">Components are arranged in one path.</td>
+            <td data-label="Failure Behavior">If the path opens, current flow stops through the whole path.</td>
+          </tr>
+
+          <tr>
+            <td data-label="Circuit Type"><strong>Parallel</strong></td>
+            <td data-label="Basic Idea">Components have multiple paths.</td>
+            <td data-label="Failure Behavior">One branch can fail while other branches may still operate.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        A simple way to remember it: series has one path, parallel has multiple paths.
+      </p>
+
+      <div class="cta-row">
+        <a href="/series-vs-parallel-circuits.html" class="cta-button cta-tertiary">Review Series vs Parallel Circuits</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Electrical Safety Concepts Connected to Electronics</h2>
+
+      <p>
+        Electronics knowledge is not only about components. It also supports safety. Biomedical equipment technicians need to understand grounding, leakage current, power cords, damaged insulation, and why small currents can matter in patient care environments.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Grounding</h3>
+          <p>
+            Grounding provides a safer path for fault current and helps reduce shock hazard.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Leakage Current</h3>
+          <p>
+            Leakage current is unintended current that may flow through insulation or paths it should not use.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Inspection</h3>
+          <p>
+            Damaged cords, cracked cases, loose connectors, and failed accessories can create safety risks.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        For CBET-style questions, always think about the safest first action. Electrical safety questions often reward risk reduction and proper verification.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How These Concepts Show Up in Biomedical Equipment</h2>
+
+      <p>
+        CBET electronics becomes easier when you connect each concept to equipment behavior. These are examples of how electronics can show up in real biomedical troubleshooting.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Device will not power on</h3>
+          <p>
+            Think power cord, outlet, fuse, battery, switch, power supply, internal connection, and main board power.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Battery will not hold charge</h3>
+          <p>
+            Think battery age, charger circuit, contacts, calibration, power supply, and battery management system.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Signal is noisy or unstable</h3>
+          <p>
+            Think cables, shielding, grounding, sensor contact, filtering, interference, and connection quality.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Fuse keeps opening</h3>
+          <p>
+            Think excessive current, short circuit, wrong fuse rating, damaged component, or power supply fault.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Simple CBET Electronics Study Strategy</h2>
+
+      <p>
+        Do not study electronics as a giant list of definitions. Study it as a chain of behavior: what pushes current, what limits current, what stores energy, what converts power, and what protects the circuit.
+      </p>
+
+      <div class="path">
+        <div class="step">
+          <h3>Start with voltage, current, resistance, and power</h3>
+          <p>
+            Learn the basic meaning before worrying about harder circuits.
+          </p>
+        </div>
+
+        <div class="step">
+          <h3>Learn Ohm's Law relationships</h3>
+          <p>
+            Practice what happens when voltage or resistance changes.
+          </p>
+        </div>
+
+        <div class="step">
+          <h3>Understand AC vs DC</h3>
+          <p>
+            Know why devices may receive AC but use DC internally.
+          </p>
+        </div>
+
+        <div class="step">
+          <h3>Study power supply components</h3>
+          <p>
+            Connect fuses, diodes, rectifiers, capacitors, batteries, and regulators to equipment function.
+          </p>
+        </div>
+
+        <div class="step">
+          <h3>Practice questions repeatedly</h3>
+          <p>
+            Use missed questions to find weak concepts and review them the same day.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Basic Electronics Practice Questions for CBET</h2>
+
+      <div class="sample-question">
+        <p><strong>1. What does voltage describe in a circuit?</strong></p>
+        <p>A. Opposition to current<br />B. Electrical potential that pushes current<br />C. Stored chemical energy only<br />D. The number of fuses</p>
+        <div class="answer">Answer: B. Electrical potential that pushes current</div>
+        <div class="explain">Voltage is often described as electrical pressure because it helps push current through a circuit.</div>
+      </div>
+
+      <div class="sample-question">
+        <p><strong>2. If resistance increases while voltage stays the same, what happens to current?</strong></p>
+        <p>A. Current increases<br />B. Current decreases<br />C. Current becomes voltage<br />D. Current is always zero</p>
+        <div class="answer">Answer: B. Current decreases</div>
+        <div class="explain">By Ohm's Law, current equals voltage divided by resistance. Higher resistance means less current when voltage stays the same.</div>
+      </div>
+
+      <div class="sample-question">
+        <p><strong>3. Which component allows current to flow mainly in one direction?</strong></p>
+        <p>A. Diode<br />B. Fuse<br />C. Battery<br />D. Resistor only</p>
+        <div class="answer">Answer: A. Diode</div>
+        <div class="explain">A diode is commonly used to control current direction and is important in rectifier circuits.</div>
+      </div>
+
+      <div class="sample-question">
+        <p><strong>4. What does a rectifier do?</strong></p>
+        <p>A. Converts DC to sound<br />B. Converts AC to DC<br />C. Measures temperature<br />D. Stores oxygen</p>
+        <div class="answer">Answer: B. Converts AC to DC</div>
+        <div class="explain">Rectifiers are important because many devices plug into AC power but need DC internally.</div>
+      </div>
+
+      <div class="sample-question">
+        <p><strong>5. What is the purpose of a fuse?</strong></p>
+        <p>A. Increase screen brightness<br />B. Store ECG data<br />C. Open the circuit during excessive current<br />D. Convert AC to DC</p>
+        <div class="answer">Answer: C. Open the circuit during excessive current</div>
+        <div class="explain">A fuse is a protective component that helps prevent excessive current from damaging equipment or creating safety hazards.</div>
+      </div>
+
+      <div class="cta-row">
+        <a href="/cbet-electronics-practice-questions.html" class="cta-button cta-primary">Practice More CBET Electronics Questions</a>
+        <a href="/free-cbet-practice-test.html" class="cta-button cta-tertiary">Take the Free CBET Practice Test</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Common Mistakes When Studying Electronics</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Only memorizing definitions</h3>
+          <p>
+            Definitions help, but CBET questions often test behavior. Ask what the component does in a real device.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Ignoring power supplies</h3>
+          <p>
+            Power supply concepts connect AC/DC, rectifiers, capacitors, fuses, and voltage regulation.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Skipping Ohm's Law</h3>
+          <p>
+            You do not need to love math, but you should understand how voltage, current, and resistance relate.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Not connecting to equipment</h3>
+          <p>
+            Always ask how the concept shows up in monitors, pumps, defibrillators, ventilators, and test equipment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Related CBET Electronics Guides</h2>
+
+      <p>
+        Continue building your electronics foundation with these focused guides and practice pages.
+      </p>
+
+      <div class="link-grid">
+        <a class="study-link" href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+        <a class="study-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a class="study-link" href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a>
+        <a class="study-link" href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a class="study-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a class="study-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        <a class="study-link" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a class="study-link" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How MedSkillBuilder Helps With CBET Electronics</h2>
+
+      <p>
+        MedSkillBuilder is built to help learners practice, not just read. Use this electronics guide as the foundation, then move into CBET questions, equipment identification, multimeter practice, and the complete CBET study path.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>CBET Practice</h3>
+          <p>
+            Practice exam-style questions and review missed areas.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Equipment ID</h3>
+          <p>
+            Build recognition of devices and connect equipment to function.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Career Support</h3>
+          <p>
+            Learn about biomed roles, imaging paths, salaries, education, and CBET prep.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="/free-cbet-practice-test.html" class="cta-button cta-primary">Start Free CBET Practice →</a>
+        <a href="/biomed-career-guide.html" class="cta-button cta-tertiary">Read the Biomed Career Guide</a>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <h2>Best Next Step</h2>
+
+      <p>
+        After reading this page, do not stop at passive review. Practice electronics questions, review what you miss, and connect each concept to real biomedical equipment behavior.
+      </p>
+
+      <div class="cta-row">
+        <a href="/cbet-electronics-practice-questions.html" class="cta-button cta-primary">Practice Electronics Questions →</a>
+        <a href="/how-to-pass-cbet-exam.html" class="cta-button cta-secondary">Open the CBET Study Guide</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>Is electronics important for the CBET exam?</h3>
+      <p>
+        Yes. Basic electronics helps explain power supplies, sensors, safety testing, current flow, component behavior, and equipment troubleshooting.
+      </p>
+
+      <h3>What electronics topic should I study first?</h3>
+      <p>
+        Start with voltage, current, resistance, and Ohm's Law. Then move into AC vs DC, fuses, diodes, capacitors, rectifiers, batteries, and series/parallel circuits.
+      </p>
+
+      <h3>Do I need advanced electrical engineering knowledge?</h3>
+      <p>
+        No. For beginner CBET preparation, focus on practical understanding, component behavior, safety, and troubleshooting logic.
+      </p>
+
+      <h3>Why do medical devices convert AC to DC?</h3>
+      <p>
+        Many devices plug into AC wall power, but internal electronic circuits commonly require stable DC power. Rectifiers, capacitors, and regulators help make that possible.
+      </p>
+
+      <h3>How should I practice CBET electronics?</h3>
+      <p>
+        Review one concept at a time, answer practice questions, study missed questions immediately, and connect each topic to real equipment examples.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for CBET prep, biomed learning, basic electronics, anatomy, medical terminology, and equipment recognition.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/about.html">About</a> |
+        <a href="/free-cbet-practice-test.html">Free CBET Practice Test</a> |
+        <a href="/how-to-pass-cbet-exam.html">CBET Study Guide</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
