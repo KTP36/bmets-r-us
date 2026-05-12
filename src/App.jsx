@@ -270,6 +270,9 @@ function EquipmentTab({
               <p style={{ color: "#4f6275", margin: 0 }}>
                 Identify each device from the image, then switch to Equipment Concepts Practice to build function and safety knowledge.
               </p>
+              <p style={{ color: "#0f766e", margin: "8px 0 0", fontWeight: 700 }}>
+                Quick practice takes 2 to 5 minutes. Finish to see your score and missed questions.
+              </p>
             </div>
             <div style={{
               display: "flex",
@@ -432,6 +435,21 @@ function EquipmentTab({
               >
                 Restart Practice
               </button>
+              <a
+                href="/browse-all-practice.html"
+                style={{
+                  padding: "12px 24px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                  color: "white",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  textDecoration: "none"
+                }}
+              >
+                Browse All Tools
+              </a>
             </div>
           </div>
         </div>
@@ -517,6 +535,9 @@ function EquipmentTab({
             <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Equipment Concepts Practice</h2>
             <p style={{ color: "#4f6275", margin: 0 }}>
               Build confidence with function, troubleshooting, and safety concepts after image identification practice.
+            </p>
+            <p style={{ color: "#0f766e", margin: "8px 0 0", fontWeight: 700 }}>
+              Keep going. Your score and missed questions appear at the end.
             </p>
           </div>
           <div style={{
@@ -1363,6 +1384,22 @@ function EkgQuiz({ onComplete }) {
           >
             Restart EKG Rhythm Practice
           </button>
+          <a
+            href="/browse-all-practice.html"
+            style={{
+              display: "inline-flex",
+              marginLeft: 10,
+              marginTop: 10,
+              padding: "12px 24px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+              color: "white",
+              fontWeight: 700,
+              textDecoration: "none"
+            }}
+          >
+            Browse All Tools
+          </a>
         </div>
       </div>
     );
@@ -1383,6 +1420,9 @@ function EkgQuiz({ onComplete }) {
           <h2 style={{ color: "#12355b", marginBottom: 8 }}>EKG Waveform Quiz</h2>
           <p style={{ color: "#4f6275", margin: 0 }}>
             Learn to recognize common rhythms by pattern. Read the strip, choose the rhythm, and review the explanation.
+          </p>
+          <p style={{ color: "#0f766e", margin: "8px 0 0", fontWeight: 700 }}>
+            Quick practice takes 2 to 5 minutes. Finish to see your score.
           </p>
         </div>
 
@@ -6422,7 +6462,7 @@ export default function App() {
     "Medical Terminology Practice",
     "Medical Prefix and Suffix Practice",
     "Medical Terminology Builder",
-    "Medical Equipment Identification Practice Practice",
+    "Equipment Practice",
     "Cable ID Quiz",
     "EKG Waveform Quiz",
     "Lab Values Quiz",
@@ -7584,24 +7624,7 @@ export default function App() {
     shuffledCbetQuestions.length > 0 && cbetScore / shuffledCbetQuestions.length >= 0.7;
   const renderAdSlot = (slotId) => {
     if (!adsenseClient || !slotId) {
-      return (
-        <div
-          style={{
-            width: "100%",
-            maxWidth: 980,
-            margin: "0 auto",
-            borderRadius: 14,
-            border: "1px solid #d8e4f2",
-            background: "rgba(255,255,255,0.75)",
-            color: "#64748b",
-            textAlign: "center",
-            padding: "10px 12px",
-            fontSize: 12
-          }}
-        >
-          
-        </div>
-      );
+      return null;
     }
     return (
       <ins
@@ -7661,17 +7684,27 @@ export default function App() {
 
   const categoryHomeButtonStyle = (startColor, endColor) => ({
     width: "100%",
+    minWidth: 0,
+    maxWidth: "100%",
     minHeight: 92,
     padding: "16px 14px",
+    boxSizing: "border-box",
     borderRadius: 18,
     border: "none",
     background: `linear-gradient(135deg, ${startColor}, ${endColor})`,
     color: "white",
     fontWeight: 900,
     fontSize: 16,
+    lineHeight: 1.25,
     cursor: "pointer",
     boxShadow: "0 8px 18px rgba(15, 23, 42, 0.14)",
-    textAlign: "center"
+    textAlign: "center",
+    textDecoration: "none",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden"
   });
 
   const categoryHomeButtonSubtextStyle = {
@@ -7735,7 +7768,7 @@ return (
           MedSkillBuilder
         </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
-          Interactive anatomy, bone labeling, and practice modules for CBET, RN, TEAS, CRES, ultrasound, and Medical Terminology
+          Free healthcare study tools for CBET prep, biomed careers, anatomy, medical terminology, equipment ID, EKG, ABG, RN, TEAS, and CRES practice
         </p>
         <div
           style={{
@@ -7777,6 +7810,97 @@ return (
             }}
           >
             Start CBET Practice
+          </button>
+        </div>
+      </div>
+
+      {/* START HERE: HIGH-CONVERSION PATHS */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: "24px 18px",
+          borderRadius: 22,
+          background: "rgba(255,255,255,0.92)",
+          border: "1px solid #d8e4f2",
+          boxShadow: "0 14px 30px rgba(18,53,91,0.10)"
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            color: "#12355b",
+            fontWeight: 950,
+            letterSpacing: 1,
+            fontSize: 18,
+            marginBottom: 8
+          }}
+        >
+          START HERE
+        </div>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#4f6275",
+            fontSize: 16,
+            margin: "0 auto 18px auto",
+            maxWidth: 760
+          }}
+        >
+          New to MedSkillBuilder? Pick one of the fastest paths below. Quick practice takes 2 to 5 minutes. Finish to see your score and missed questions.
+        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: 20,
+            width: "100%",
+            maxWidth: 1100,
+            margin: "0 auto",
+            alignItems: "stretch"
+          }}
+        >
+          <a
+            href="/biomed-career-guide.html"
+            style={{
+              ...categoryHomeButtonStyle("#0f172a", "#334155"),
+              minHeight: 116,
+              textDecoration: "none",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            🏥 Biomed Career Guide
+            <span style={categoryHomeButtonSubtextStyle}>Roles, salaries, education, CBET</span>
+          </a>
+          <button
+            onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
+            style={{ ...categoryHomeButtonStyle("#ff6a00", "#ff4d4d"), minHeight: 116 }}
+          >
+            🔧 Free CBET Practice
+            <span style={categoryHomeButtonSubtextStyle}>Exam-style questions and feedback</span>
+          </button>
+          <button
+            onClick={() => jumpToPracticeCategory("Terminology", { examName: "Medical Terminology Practice" })}
+            style={{ ...categoryHomeButtonStyle("#16a34a", "#22c55e"), minHeight: 116 }}
+          >
+            🧾 Medical Terminology
+            <span style={categoryHomeButtonSubtextStyle}>Prefixes, suffixes, and word parts</span>
+          </button>
+          <button
+            onClick={() =>
+              jumpToPracticeCategory("Anatomy", {
+                setup: () => {
+                  setMode("organs");
+                  setSelectedSet(null);
+                }
+              })
+            }
+            style={{ ...categoryHomeButtonStyle("#7c3aed", "#a855f7"), minHeight: 116 }}
+          >
+            🧠 Anatomy Labeling
+            <span style={categoryHomeButtonSubtextStyle}>Visual practice and recognition</span>
           </button>
         </div>
       </div>
