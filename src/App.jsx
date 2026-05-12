@@ -7599,7 +7599,7 @@ export default function App() {
             fontSize: 12
           }}
         >
-          Ad space reserved
+          
         </div>
       );
     }
