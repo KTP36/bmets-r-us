@@ -7549,6 +7549,18 @@ export default function App() {
     }
     // Optionally, fallback to prompt if needed
   };
+  const trackSiteEvent = (eventName, params = {}) => {
+    if (typeof window === "undefined" || typeof window.gtag !== "function") {
+      return;
+    }
+
+    window.gtag("event", eventName, {
+      ...params,
+      page_path: window.location?.pathname || "/",
+      active_tab: activeTab
+    });
+  };
+
   const trackExamCompletion = (examName, scoreValue, totalValue) => {
   const startedAt = examStartTimesRef.current[examName];
   const timeSeconds = startedAt ? Math.max(1, Math.round((Date.now() - startedAt) / 1000)) : 0;
@@ -7576,7 +7588,8 @@ export default function App() {
     exam_name: examName,
     score: scoreValue,
     total_questions: totalValue,
-    completion_rate: totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0
+    completion_rate: totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0,
+    time_seconds: timeSeconds
   });
 
   openSaveScorePrompt(examName, scoreValue, totalValue, timeSeconds);
@@ -7600,7 +7613,8 @@ export default function App() {
       return;
     }
     window.gtag("event", "exam_started", {
-      exam_name: examName
+      exam_name: examName,
+      active_tab: activeTab
     });
   };
   React.useEffect(() => {
@@ -7668,7 +7682,13 @@ export default function App() {
   }, [activeTab]);
 
   const jumpToPracticeCategory = (tabName, options = {}) => {
-    const { examName, setup } = options;
+    const { examName, setup, source = "homepage_category" } = options;
+
+    trackSiteEvent("practice_path_click", {
+      target_tab: tabName,
+      source,
+      exam_name: examName || tabName
+    });
 
     if (examName) {
       trackExamStart(examName);
@@ -7861,6 +7881,12 @@ return (
         >
           <a
             href="/biomed-career-guide.html"
+            onClick={() =>
+              trackSiteEvent("start_here_biomed_click", {
+                target_url: "/biomed-career-guide.html",
+                source: "start_here_biomed"
+              })
+            }
             style={{
               ...categoryHomeButtonStyle("#0f172a", "#334155"),
               minHeight: 116,
@@ -7875,14 +7901,24 @@ return (
             <span style={categoryHomeButtonSubtextStyle}>Roles, salaries, education, CBET</span>
           </a>
           <button
-            onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
+            onClick={() =>
+              jumpToPracticeCategory("CBET", {
+                examName: "CBET Practice",
+                source: "start_here_cbet"
+              })
+            }
             style={{ ...categoryHomeButtonStyle("#ff6a00", "#ff4d4d"), minHeight: 116 }}
           >
             🔧 Free CBET Practice
             <span style={categoryHomeButtonSubtextStyle}>Exam-style questions and feedback</span>
           </button>
           <button
-            onClick={() => jumpToPracticeCategory("Terminology", { examName: "Medical Terminology Practice" })}
+            onClick={() =>
+              jumpToPracticeCategory("Terminology", {
+                examName: "Medical Terminology Practice",
+                source: "start_here_terminology"
+              })
+            }
             style={{ ...categoryHomeButtonStyle("#16a34a", "#22c55e"), minHeight: 116 }}
           >
             🧾 Medical Terminology
@@ -7891,6 +7927,7 @@ return (
           <button
             onClick={() =>
               jumpToPracticeCategory("Anatomy", {
+                source: "start_here_anatomy",
                 setup: () => {
                   setMode("organs");
                   setSelectedSet(null);
