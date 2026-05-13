@@ -1115,6 +1115,12 @@ function buildCBET75(questionSet) {
   return pool.slice(0, 75);
 }
 
+const TEAS_PRACTICE_COUNT = 25;
+
+function buildTeasPractice(count = TEAS_PRACTICE_COUNT) {
+  return shuffleQuestionSet(teasQuestions).slice(0, count);
+}
+
 function formatDuration(totalSeconds) {
   const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
   const minutes = Math.floor(safeSeconds / 60);
@@ -7013,7 +7019,7 @@ export default function App() {
   const [rnShowResult, setRnShowResult] = useState(false);
   const [showRnMissedReview, setShowRnMissedReview] = useState(false);
   const [shuffledTeasQuestions, setShuffledTeasQuestions] = useState(() =>
-    shuffleQuestionSet(teasQuestions)
+    buildTeasPractice()
   );
   const [teasIndex, setTeasIndex] = useState(0);
   const [teasScore, setTeasScore] = useState(0);
@@ -7112,13 +7118,25 @@ export default function App() {
   }, []);
   useEffect(() => {
     const savedTeas = JSON.parse(localStorage.getItem("teasProgress"));
+
     if (savedTeas) {
-      setShuffledTeasQuestions(savedTeas.shuffledTeasQuestions || shuffleQuestionSet(teasQuestions));
-      setTeasIndex(savedTeas.teasIndex || 0);
-      setTeasScore(savedTeas.teasScore || 0);
-      setTeasAnswers(savedTeas.teasAnswers || {});
-      setTeasShowResult(savedTeas.teasShowResult || false);
-      setShowTeasMissedReview(savedTeas.showTeasMissedReview || false);
+      const savedQuestionSet = Array.isArray(savedTeas.shuffledTeasQuestions)
+        ? savedTeas.shuffledTeasQuestions
+        : [];
+
+      const shouldUseSavedSet =
+        savedQuestionSet.length > 0 && savedQuestionSet.length <= TEAS_PRACTICE_COUNT;
+
+      setShuffledTeasQuestions(shouldUseSavedSet ? savedQuestionSet : buildTeasPractice());
+      setTeasIndex(shouldUseSavedSet ? savedTeas.teasIndex || 0 : 0);
+      setTeasScore(shouldUseSavedSet ? savedTeas.teasScore || 0 : 0);
+      setTeasAnswers(shouldUseSavedSet ? savedTeas.teasAnswers || {} : {});
+      setTeasShowResult(shouldUseSavedSet ? savedTeas.teasShowResult || false : false);
+      setShowTeasMissedReview(shouldUseSavedSet ? savedTeas.showTeasMissedReview || false : false);
+
+      if (!shouldUseSavedSet) {
+        localStorage.removeItem("teasProgress");
+      }
     }
   }, []);
   useEffect(() => {
@@ -7822,7 +7840,7 @@ export default function App() {
     localStorage.setItem("teasProgress", JSON.stringify(progress));
   };
   const resetTeasExam = () => {
-    const reshuffled = shuffleQuestionSet(teasQuestions);
+    const reshuffled = buildTeasPractice();
     localStorage.removeItem("teasProgress");
     setShuffledTeasQuestions(reshuffled);
     setTeasIndex(0);
@@ -12709,7 +12727,12 @@ return (
                       onClick={() => {
                         if (teasAnswers[teasIndex] === undefined) return;
                         if (teasIndex + 1 === shuffledTeasQuestions.length) {
-                          trackExamCompletion("TEAS Practice", teasScore, shuffledTeasQuestions.length);
+                          const finalTeasScore =
+                            teasScore +
+                            (teasAnswers[teasIndex] === shuffledTeasQuestions[teasIndex].answer ? 1 : 0);
+
+                          trackExamCompletion("TEAS Practice", finalTeasScore, shuffledTeasQuestions.length);
+                          setTeasScore(finalTeasScore);
                           setTeasShowResult(true);
                         } else {
                           setTeasIndex((prev) => prev + 1);
@@ -12738,11 +12761,97 @@ return (
                 </div>
               </>
             ) : (
-              <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b" }}>TEAS Practice Complete</h2>
-                <p style={{ fontSize: 20, color: "#1e293b" }}>
-                  Your score: {teasScore} / {shuffledTeasQuestions.length}
+              <div
+                style={{
+                  textAlign: "center",
+                  maxWidth: 820,
+                  margin: "0 auto",
+                  background: "rgba(255,255,255,0.96)",
+                  borderRadius: 24,
+                  padding: 28,
+                  border: "1px solid #dbeafe",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+                }}
+              >
+                <div
+                  style={{
+                    display: "inline-flex",
+                    padding: "8px 14px",
+                    borderRadius: 999,
+                    background: "#f5f3ff",
+                    color: "#6d28d9",
+                    fontWeight: 900,
+                    marginBottom: 14
+                  }}
+                >
+                  Student Practice Complete
+                </div>
+
+                <h2 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
+                  TEAS Practice Complete
+                </h2>
+
+                <p style={{ color: "#475569", marginTop: 0, marginBottom: 20 }}>
+                  Great job. Review your score, study missed questions, or keep practicing with another healthcare study tool.
                 </p>
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+                    gap: 12,
+                    marginBottom: 24
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: 16,
+                      borderRadius: 18,
+                      background: "#eff6ff",
+                      border: "1px solid #bfdbfe",
+                      color: "#12355b",
+                      fontWeight: 900
+                    }}
+                  >
+                    <div style={{ fontSize: 28 }}>
+                      {teasScore} / {shuffledTeasQuestions.length}
+                    </div>
+                    <div style={{ fontSize: 13, color: "#475569" }}>Score</div>
+                  </div>
+
+                  <div
+                    style={{
+                      padding: 16,
+                      borderRadius: 18,
+                      background: "#ecfdf5",
+                      border: "1px solid #bbf7d0",
+                      color: "#0f766e",
+                      fontWeight: 900
+                    }}
+                  >
+                    <div style={{ fontSize: 28 }}>
+                      {shuffledTeasQuestions.length > 0
+                        ? Math.round((teasScore / shuffledTeasQuestions.length) * 100)
+                        : 0}%
+                    </div>
+                    <div style={{ fontSize: 13, color: "#475569" }}>Accuracy</div>
+                  </div>
+
+                  <div
+                    style={{
+                      padding: 16,
+                      borderRadius: 18,
+                      background: "#fff7ed",
+                      border: "1px solid #fed7aa",
+                      color: "#9a3412",
+                      fontWeight: 900
+                    }}
+                  >
+                    <div style={{ fontSize: 28 }}>{teasMissedQuestions.length}</div>
+                    <div style={{ fontSize: 13, color: "#475569" }}>Missed</div>
+                  </div>
+                </div>
+
                 <div
                   style={{
                     display: "flex",
@@ -12760,12 +12869,13 @@ return (
                       border: "none",
                       background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: "pointer"
                     }}
                   >
-                    Study Misses (Optional)
+                    Study Misses
                   </button>
+
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -12786,13 +12896,14 @@ return (
                       border: "none",
                       background: "linear-gradient(135deg, #2563eb, #3b82f6)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: teasMissedQuestions.length === 0 ? "not-allowed" : "pointer",
                       opacity: teasMissedQuestions.length === 0 ? 0.55 : 1
                     }}
                   >
                     Retake Missed Only
                   </button>
+
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -12807,12 +12918,13 @@ return (
                       border: "none",
                       background: "linear-gradient(135deg, #0f766e, #14b8a6)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: "pointer"
                     }}
                   >
-                    Share Quiz
+                    Share Result
                   </button>
+
                   <button
                     onClick={restartTeasExam}
                     style={{
@@ -12821,12 +12933,82 @@ return (
                       border: "none",
                       background: "linear-gradient(135deg, #dc2626, #ef4444)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: "pointer"
                     }}
                   >
-                    Restart Practice
+                    Restart TEAS Practice
                   </button>
+
+                  <button
+                    onClick={() => setActiveTab("RN")}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #0891b2, #06b6d4)",
+                      color: "white",
+                      fontWeight: 900,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 14px rgba(8,145,178,0.18)"
+                    }}
+                  >
+                    Try RN Practice
+                  </button>
+
+                  <a
+                    href="/?tab=LabValues"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 900,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 14px rgba(15,118,110,0.18)"
+                    }}
+                  >
+                    Try Lab Values
+                  </a>
+
+                  <a
+                    href="/?tab=Terminology"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 900,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 14px rgba(124,58,237,0.18)"
+                    }}
+                  >
+                    Medical Terminology
+                  </a>
+
+                  <a
+                    href="/browse-all-practice.html"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 900,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 14px rgba(18,53,91,0.18)"
+                    }}
+                  >
+                    Browse All Tools
+                  </a>
                 </div>
               </div>
             )}
