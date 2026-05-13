@@ -180,7 +180,15 @@ function EquipmentTab({
 
   const equipmentOnlyConceptQuestions = React.useMemo(() => {
     const exclude = /(liver|retina|optic nerve|largest artery|pulse points|portal vein|blood directly to the liver|ultrasound imaging of the liver)/i;
-    return equipmentConceptQuestions.filter((q) => !exclude.test(`${q.question} ${q.studyTip || ""}`));
+
+    // Equipment concept questions are written with many correct answers at index 0.
+    // Shuffle each question's answer choices here so the correct answer does not
+    // keep appearing in the same slot during the Concepts Quiz.
+    const filteredQuestions = equipmentConceptQuestions.filter(
+      (q) => !exclude.test(`${q.question} ${q.studyTip || ""}`)
+    );
+
+    return shuffleQuestionSet(filteredQuestions);
   }, [equipmentConceptQuestions]);
 
   const conceptMissedQuestions = equipmentOnlyConceptQuestions.filter((q, index) => {
@@ -802,21 +810,111 @@ function EquipmentTab({
   }
 
   if (conceptShowResult) {
+    const conceptAccuracy =
+      equipmentOnlyConceptQuestions.length > 0
+        ? Math.round((conceptScore / equipmentOnlyConceptQuestions.length) * 100)
+        : 0;
+    const conceptMissedCount = conceptMissedQuestions.length;
+
     return (
       <div>
         {modeToggle}
-        <div style={{ textAlign: "center" }}>
-          <h2 style={{ color: "#12355b" }}>Medical Equipment Concepts Complete</h2>
-          <p style={{ fontSize: 20, color: "#1e293b" }}>
-            Your score: {conceptScore} / {equipmentOnlyConceptQuestions.length}
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: 760,
+            margin: "0 auto",
+            background: "rgba(255,255,255,0.96)",
+            borderRadius: 24,
+            padding: 28,
+            border: "1px solid #dbeafe",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+          }}
+        >
+          <div
+            style={{
+              display: "inline-flex",
+              padding: "8px 14px",
+              borderRadius: 999,
+              background: "#ecfeff",
+              color: "#0f766e",
+              fontWeight: 900,
+              marginBottom: 14
+            }}
+          >
+            Equipment Concepts Complete
+          </div>
+
+          <h2 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
+            Medical Equipment Concepts Complete
+          </h2>
+
+          <p style={{ color: "#475569", marginTop: 0, marginBottom: 20 }}>
+            Great job. Review your score, study missed concepts, or keep building your CBET and biomed knowledge.
           </p>
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 12,
-            flexWrap: "wrap",
-            marginTop: 20
-          }}>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+              gap: 12,
+              marginBottom: 24
+            }}
+          >
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 18,
+                background: "#eff6ff",
+                border: "1px solid #bfdbfe",
+                color: "#12355b",
+                fontWeight: 900
+              }}
+            >
+              <div style={{ fontSize: 28 }}>
+                {conceptScore} / {equipmentOnlyConceptQuestions.length}
+              </div>
+              <div style={{ fontSize: 13, color: "#475569" }}>Score</div>
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 18,
+                background: "#ecfdf5",
+                border: "1px solid #bbf7d0",
+                color: "#0f766e",
+                fontWeight: 900
+              }}
+            >
+              <div style={{ fontSize: 28 }}>{conceptAccuracy}%</div>
+              <div style={{ fontSize: 13, color: "#475569" }}>Accuracy</div>
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 18,
+                background: "#fff7ed",
+                border: "1px solid #fed7aa",
+                color: "#9a3412",
+                fontWeight: 900
+              }}
+            >
+              <div style={{ fontSize: 28 }}>{conceptMissedCount}</div>
+              <div style={{ fontSize: 13, color: "#475569" }}>Missed</div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 12,
+              flexWrap: "wrap",
+              marginTop: 20
+            }}
+          >
             <button
               onClick={() => setShowConceptMissedReview(true)}
               style={{
@@ -825,13 +923,14 @@ function EquipmentTab({
                 border: "none",
                 background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
                 color: "white",
-                fontWeight: 700,
+                fontWeight: 900,
                 cursor: "pointer"
               }}
             >
-              Study Misses (Optional)
+              Study Misses
             </button>
-              <button
+
+            <button
               onClick={() =>
                 shareQuizResult &&
                 shareQuizResult("Equipment Concepts Practice", conceptScore, equipmentOnlyConceptQuestions.length)
@@ -842,12 +941,13 @@ function EquipmentTab({
                 border: "none",
                 background: "linear-gradient(135deg, #0f766e, #14b8a6)",
                 color: "white",
-                fontWeight: 700,
+                fontWeight: 900,
                 cursor: "pointer"
               }}
             >
-              Share Quiz
+              Share Result
             </button>
+
             <button
               onClick={restartConceptQuiz}
               style={{
@@ -856,12 +956,67 @@ function EquipmentTab({
                 border: "none",
                 background: "linear-gradient(135deg, #dc2626, #ef4444)",
                 color: "white",
-                fontWeight: 700,
+                fontWeight: 900,
                 cursor: "pointer"
               }}
             >
               Restart Practice
             </button>
+
+            <button
+              onClick={() => {
+                restartEquipmentQuiz();
+                setEquipmentMode("identify");
+              }}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #0891b2, #06b6d4)",
+                color: "white",
+                fontWeight: 900,
+                cursor: "pointer",
+                boxShadow: "0 4px 14px rgba(8,145,178,0.18)"
+              }}
+            >
+              Try Equipment ID
+            </button>
+
+            <a
+              href="/?tab=CBET"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "12px 24px",
+                borderRadius: 999,
+                background: "linear-gradient(135deg, #ef4444, #f97316)",
+                color: "white",
+                fontWeight: 900,
+                textDecoration: "none",
+                boxShadow: "0 4px 14px rgba(239,68,68,0.18)"
+              }}
+            >
+              CBET Practice
+            </a>
+
+            <a
+              href="/browse-all-practice.html"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "12px 24px",
+                borderRadius: 999,
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 900,
+                textDecoration: "none",
+                boxShadow: "0 4px 14px rgba(18,53,91,0.18)"
+              }}
+            >
+              Browse All Tools
+            </a>
           </div>
         </div>
       </div>
