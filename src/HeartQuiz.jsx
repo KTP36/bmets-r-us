@@ -1,12 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-function HeartQuiz({ questions = [], onComplete }) {
+function HeartQuiz({ questions = [], onComplete, onStart }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [completionTime, setCompletionTime] = useState(0);
+  const hasStartedRef = useRef(false);
+
+  const formatDuration = (totalSeconds) => {
+    const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+    const minutes = Math.floor(safeSeconds / 60);
+    const seconds = safeSeconds % 60;
+    return `${minutes}:${String(seconds).padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
+    if (showResult || !questions.length) return;
+
+    const intervalId = window.setInterval(() => {
+      setElapsedSeconds(
+        Math.max(0, Math.floor((Date.now() - startTime) / 1000))
+      );
+    }, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [showResult, questions.length, startTime]);
 
   if (!questions.length) {
     return (
@@ -18,49 +39,64 @@ function HeartQuiz({ questions = [], onComplete }) {
 
   const current = questions[index];
 
-  const formatDuration = (totalSeconds) => {
-    const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
-    const minutes = Math.floor(safeSeconds / 60);
-    const seconds = safeSeconds % 60;
-    return `${minutes}:${String(seconds).padStart(2, "0")}`;
-  };
-
   const handleOptionClick = (i) => {
     if (selected !== null) return;
+
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
+      const now = Date.now();
+      setStartTime(now);
+      setElapsedSeconds(0);
+
+      if (onStart) {
+        onStart("Heart Quiz");
+      }
+    }
+
     setSelected(i);
-    if (i === current.answer) setScore((prev) => prev + 1);
+
+    if (i === current.answer) {
+      setScore((prev) => prev + 1);
+    }
   };
 
   const handleNext = () => {
     if (selected === null) return;
 
+    const currentQuestionWasCorrect = selected === current.answer;
+
     if (index < questions.length - 1) {
       setIndex((prev) => prev + 1);
       setSelected(null);
     } else {
-      const finalScore = score;
-      const elapsedSeconds = Math.max(
+      const finalScore = score + (currentQuestionWasCorrect ? 1 : 0);
+      const elapsed = Math.max(
         1,
         Math.floor((Date.now() - startTime) / 1000)
       );
 
-      setCompletionTime(elapsedSeconds);
+      setCompletionTime(elapsed);
 
       if (onComplete) {
-        onComplete(finalScore, questions.length, elapsedSeconds, "Heart Quiz");
+        onComplete(finalScore, questions.length, elapsed, "Heart Quiz");
       }
 
+      setScore(finalScore);
       setShowResult(true);
     }
   };
 
   const handleRestart = () => {
+    const now = Date.now();
+
     setIndex(0);
     setSelected(null);
     setScore(0);
     setShowResult(false);
+    setElapsedSeconds(0);
     setCompletionTime(0);
-    setStartTime(Date.now());
+    setStartTime(now);
+    hasStartedRef.current = false;
   };
 
   const noticeText =
@@ -74,7 +110,7 @@ function HeartQuiz({ questions = [], onComplete }) {
     return (
       <div
         style={{
-          maxWidth: 520,
+          maxWidth: 560,
           margin: "0 auto",
           textAlign: "center",
           background: "rgba(255,255,255,0.96)",
@@ -92,42 +128,66 @@ function HeartQuiz({ questions = [], onComplete }) {
           Score: {score} / {questions.length}
         </div>
 
-        <div style={{ marginBottom: 20, color: "#4f6275", fontWeight: 600 }}>
+        <div style={{ marginBottom: 20, color: "#4f6275", fontWeight: 700 }}>
           Time: {formatDuration(completionTime)}
         </div>
 
-        <button
-          onClick={() => (window.location.href = "/anatomy-labeling-practice.html")}
+        <div
           style={{
-            padding: "12px 24px",
-            borderRadius: 999,
-            background: "#2563eb",
-            color: "#fff",
-            border: "none",
-            fontWeight: 700,
-            cursor: "pointer",
-            marginBottom: 12
+            display: "flex",
+            justifyContent: "center",
+            gap: 12,
+            flexWrap: "wrap",
+            marginTop: 20
           }}
         >
-          Try Another Quiz
-        </button>
+          <button
+            onClick={() => (window.location.href = "/anatomy-labeling-practice.html")}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              background: "#2563eb",
+              color: "#fff",
+              border: "none",
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Try Another Quiz
+          </button>
 
-        <br />
+          <a
+            href="/browse-all-practice.html"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "12px 24px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+              color: "white",
+              fontWeight: 700,
+              textDecoration: "none"
+            }}
+          >
+            Browse All Tools
+          </a>
 
-        <button
-          onClick={handleRestart}
-          style={{
-            padding: "10px 20px",
-            borderRadius: 999,
-            background: "#e2e8f0",
-            color: "#0f172a",
-            border: "none",
-            fontWeight: 600,
-            cursor: "pointer"
-          }}
-        >
-          Restart
-        </button>
+          <button
+            onClick={handleRestart}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              background: "#e2e8f0",
+              color: "#0f172a",
+              border: "none",
+              fontWeight: 700,
+              cursor: "pointer"
+            }}
+          >
+            Restart
+          </button>
+        </div>
       </div>
     );
   }
@@ -135,7 +195,7 @@ function HeartQuiz({ questions = [], onComplete }) {
   return (
     <div
       style={{
-        maxWidth: 520,
+        maxWidth: 560,
         margin: "0 auto",
         padding: 24,
         background: "#ffffff",
@@ -144,8 +204,66 @@ function HeartQuiz({ questions = [], onComplete }) {
         color: "#0f172a"
       }}
     >
-      <div style={{ marginBottom: 16, color: "#334155", fontWeight: 700 }}>
-        Question {index + 1} / {questions.length}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 10,
+          flexWrap: "wrap",
+          marginBottom: 16
+        }}
+      >
+        <div
+          style={{
+            padding: "10px 14px",
+            borderRadius: 999,
+            background: "#eff6ff",
+            color: "#12355b",
+            fontWeight: 800
+          }}
+        >
+          Question {index + 1} / {questions.length}
+        </div>
+
+        <div
+          style={{
+            padding: "10px 14px",
+            borderRadius: 999,
+            background: "#ecfeff",
+            color: "#0f766e",
+            fontWeight: 800
+          }}
+        >
+          Time: {formatDuration(elapsedSeconds)}
+        </div>
+
+        <div
+          style={{
+            padding: "10px 14px",
+            borderRadius: 999,
+            background: "#f8fafc",
+            color: "#334155",
+            fontWeight: 800,
+            border: "1px solid #e2e8f0"
+          }}
+        >
+          Score: {score}
+        </div>
+      </div>
+
+      <div
+        style={{
+          marginBottom: 18,
+          padding: "12px 14px",
+          borderRadius: 14,
+          background: "#ecfdf5",
+          border: "1px solid #bbf7d0",
+          color: "#0f766e",
+          fontWeight: 800,
+          fontSize: 14
+        }}
+      >
+        Quick practice takes 2 to 5 minutes. Finish to see your score and time.
       </div>
 
       <div
@@ -248,10 +366,6 @@ function HeartQuiz({ questions = [], onComplete }) {
         >
           {index === questions.length - 1 ? "Finish" : "Next"}
         </button>
-      </div>
-
-      <div style={{ marginTop: 24, color: "#334155", fontWeight: 600 }}>
-        Score: {score}
       </div>
     </div>
   );
