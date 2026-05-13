@@ -1501,53 +1501,194 @@ function EkgQuiz({ onComplete }) {
   }
 
   if (showResults) {
+    const ekgAccuracy =
+      questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
+    const ekgMissedCount = Math.max(0, questions.length - score);
+
     return (
       <div style={{ padding: 20 }}>
         {modeToggle}
-        <div style={{
-          background: "rgba(255,255,255,0.92)",
-          borderRadius: 24,
-          padding: 28,
-          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-          maxWidth: 900,
-          margin: "0 auto",
-          textAlign: "center"
-        }}>
-          <h2 style={{ color: "#12355b", marginTop: 0 }}>EKG Waveform Quiz Complete</h2>
-          <p style={{ fontSize: 20, color: "#1e293b" }}>
-            Your score: {score} / {questions.length}
-          </p>
-          <p style={{ color: "#4f6275" }}>Practice recognizing common rhythms and keep reinforcing the pattern.</p>
-          <button
-            onClick={restartQuiz}
-            style={{
-              padding: "12px 24px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-              color: "white",
-              fontWeight: 700,
-              cursor: "pointer"
-            }}
-          >
-            Restart EKG Rhythm Practice
-          </button>
-          <a
-            href="/browse-all-practice.html"
+        <div
+          style={{
+            background: "rgba(255,255,255,0.96)",
+            borderRadius: 24,
+            padding: 28,
+            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+            border: "1px solid #dbeafe",
+            maxWidth: 900,
+            margin: "0 auto",
+            textAlign: "center"
+          }}
+        >
+          <div
             style={{
               display: "inline-flex",
-              marginLeft: 10,
-              marginTop: 10,
-              padding: "12px 24px",
+              padding: "8px 14px",
               borderRadius: 999,
-              background: "linear-gradient(135deg, #0f766e, #14b8a6)",
-              color: "white",
-              fontWeight: 700,
-              textDecoration: "none"
+              background: "#fff5f7",
+              color: "#b91c1c",
+              fontWeight: 900,
+              marginBottom: 14
             }}
           >
-            Browse All Tools
-          </a>
+            Rhythm Practice Complete
+          </div>
+
+          <h2 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
+            EKG Waveform Quiz Complete
+          </h2>
+
+          <p style={{ color: "#4f6275", marginTop: 0, marginBottom: 20 }}>
+            Great job. Review your score, reinforce rhythm recognition, or keep practicing with another healthcare study tool.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+              gap: 12,
+              marginBottom: 24
+            }}
+          >
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 18,
+                background: "#eff6ff",
+                border: "1px solid #bfdbfe",
+                color: "#12355b",
+                fontWeight: 900
+              }}
+            >
+              <div style={{ fontSize: 28 }}>
+                {score} / {questions.length}
+              </div>
+              <div style={{ fontSize: 13, color: "#475569" }}>Score</div>
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 18,
+                background: "#ecfdf5",
+                border: "1px solid #bbf7d0",
+                color: "#0f766e",
+                fontWeight: 900
+              }}
+            >
+              <div style={{ fontSize: 28 }}>{ekgAccuracy}%</div>
+              <div style={{ fontSize: 13, color: "#475569" }}>Accuracy</div>
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 18,
+                background: "#fff7ed",
+                border: "1px solid #fed7aa",
+                color: "#9a3412",
+                fontWeight: 900
+              }}
+            >
+              <div style={{ fontSize: 28 }}>{ekgMissedCount}</div>
+              <div style={{ fontSize: 13, color: "#475569" }}>Missed</div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 12,
+              flexWrap: "wrap",
+              marginTop: 20
+            }}
+          >
+            <button
+              onClick={restartQuiz}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 900,
+                cursor: "pointer"
+              }}
+            >
+              Restart EKG Practice
+            </button>
+
+            <button
+              onClick={() => setMode("basics")}
+              style={{
+                padding: "12px 24px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #b91c1c, #ef4444)",
+                color: "white",
+                fontWeight: 900,
+                cursor: "pointer",
+                boxShadow: "0 4px 14px rgba(185,28,28,0.18)"
+              }}
+            >
+              Review EKG Basics
+            </button>
+
+            <a
+              href="/?tab=LabValues"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "12px 24px",
+                borderRadius: 999,
+                background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                color: "white",
+                fontWeight: 900,
+                textDecoration: "none",
+                boxShadow: "0 4px 14px rgba(15,118,110,0.18)"
+              }}
+            >
+              Try Lab Values
+            </a>
+
+            <a
+              href="/?tab=Terminology"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "12px 24px",
+                borderRadius: 999,
+                background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                color: "white",
+                fontWeight: 900,
+                textDecoration: "none",
+                boxShadow: "0 4px 14px rgba(124,58,237,0.18)"
+              }}
+            >
+              Medical Terminology
+            </a>
+
+            <a
+              href="/browse-all-practice.html"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "12px 24px",
+                borderRadius: 999,
+                background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                color: "white",
+                fontWeight: 900,
+                textDecoration: "none",
+                boxShadow: "0 4px 14px rgba(18,53,91,0.18)"
+              }}
+            >
+              Browse All Tools
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -1672,7 +1813,9 @@ function EkgQuiz({ onComplete }) {
             onClick={() => {
               if (!isAnswered) return;
               if (index + 1 === questions.length) {
-                onComplete && onComplete(score + (selected === currentQuestion.answer ? 0 : 0), questions.length);
+                const finalScore = score + (selected === currentQuestion.answer ? 1 : 0);
+                onComplete && onComplete(finalScore, questions.length);
+                setScore(finalScore);
                 setShowResults(true);
               } else {
                 setIndex((prev) => prev + 1);
