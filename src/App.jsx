@@ -342,7 +342,13 @@ function EquipmentTab({
                   if (equipmentAnswers[equipmentIndex] === undefined) return;
                   if (equipmentIndex + 1 === shuffledEquipmentQuestions.length) {
                     trackExamCompletion &&
-                      trackExamCompletion("Equipment Practice", equipmentScore, shuffledEquipmentQuestions.length);
+                      trackExamCompletion(
+                        shuffledEquipmentQuestions.length === 5
+                          ? "Equipment Quick Practice"
+                          : "Equipment Practice",
+                        equipmentScore,
+                        shuffledEquipmentQuestions.length
+                      );
                     setEquipmentShowResult(true);
                     saveEquipmentProgress && saveEquipmentProgress();
                   } else {
@@ -6453,16 +6459,21 @@ export default function App() {
   });
   const ownerExamNames = [
     "CBET Practice",
+    "CBET Quick Practice",
     "CBET Electronics Practice",
+    "CBET Electronics Quick Practice",
     "CBET 75-Question Practice Exam",
     "CBET Harder Practice",
     "RN Practice",
     "TEAS Practice",
     "CRES Practice",
     "Medical Terminology Practice",
+    "Medical Terminology Quick Practice",
     "Medical Prefix and Suffix Practice",
     "Medical Terminology Builder",
     "Equipment Practice",
+    "Equipment Quick Practice",
+    "Anatomy Quick Practice",
     "Cable ID Quiz",
     "EKG Waveform Quiz",
     "Lab Values Quiz",
@@ -7617,11 +7628,97 @@ export default function App() {
       active_tab: activeTab
     });
   };
+
+  const startQuickPractice = (practiceType) => {
+    const quickQuestionCount = 5;
+
+    const trackQuickStart = (examName, targetTab) => {
+      trackSiteEvent("quick_practice_start", {
+        exam_name: examName,
+        target_tab: targetTab,
+        question_count: quickQuestionCount,
+        source: "homepage_quick_practice"
+      });
+      trackExamStart(examName);
+    };
+
+    if (practiceType === "cbet") {
+      const quickQuestions = shuffleQuestionSet(getActiveCbetQuestionSet("practice", "mixed")).slice(0, quickQuestionCount);
+
+      localStorage.removeItem("cbetProgress");
+      setCbetMode("practice");
+      setCbetCategory("mixed");
+      setCbetQuestionTarget(quickQuestionCount);
+      setShuffledCbetQuestions(quickQuestions);
+      setCbetIndex(0);
+      setCbetScore(0);
+      setCbetAnswers({});
+      setCbetShowResult(false);
+      setShowMissedReview(false);
+
+      trackQuickStart("CBET Quick Practice", "CBET");
+      setActiveTab("CBET");
+      scrollToPracticeContent();
+      return;
+    }
+
+    if (practiceType === "terminology") {
+      const quickQuestions = shuffleQuestionSet(terminologyQuestions).slice(0, quickQuestionCount);
+
+      localStorage.removeItem("terminologyProgress");
+      setTerminologySubTab("terms");
+      setShuffledTerminologyQuestions(quickQuestions);
+      setTerminologyIndex(0);
+      setTerminologyScore(0);
+      setTerminologyAnswers({});
+      setTerminologyShowResult(false);
+      setShowTerminologyMissedReview(false);
+
+      trackQuickStart("Medical Terminology Quick Practice", "Terminology");
+      setActiveTab("Terminology");
+      scrollToPracticeContent();
+      return;
+    }
+
+    if (practiceType === "equipment") {
+      const quickQuestions = shuffleQuestionSet(equipmentQuestions).slice(0, quickQuestionCount);
+
+      localStorage.removeItem("equipmentProgress");
+      setShuffledEquipmentQuestions(quickQuestions);
+      setEquipmentIndex(0);
+      setEquipmentScore(0);
+      setEquipmentAnswers({});
+      setEquipmentShowResult(false);
+      setShowEquipmentMissedReview(false);
+
+      trackQuickStart("Equipment Quick Practice", "Equipment");
+      setActiveTab("Equipment");
+      scrollToPracticeContent();
+      return;
+    }
+
+    if (practiceType === "anatomy") {
+      setMode("organs");
+      setSelectedSet("Heart");
+      setPlaced({});
+      setScore(0);
+      setFeedback({});
+      setSelectedLabel("");
+      trackQuickStart("Anatomy Quick Practice", "Anatomy");
+      setActiveTab("Anatomy");
+      scrollToPracticeContent();
+    }
+  };
   React.useEffect(() => {
-    if (activeTab === "Equipment" && !equipmentShowResult && !examStartTimesRef.current["Equipment Practice"]) {
+    if (
+      activeTab === "Equipment" &&
+      !equipmentShowResult &&
+      shuffledEquipmentQuestions.length !== 5 &&
+      !examStartTimesRef.current["Equipment Practice"]
+    ) {
       trackExamStart("Equipment Practice");
     }
-  }, [activeTab, equipmentShowResult]);
+  }, [activeTab, equipmentShowResult, shuffledEquipmentQuestions.length]);
 
   React.useEffect(() => {
     if (!selectedSet || !currentSet) return;
@@ -7938,6 +8035,82 @@ return (
           >
             🧠 Anatomy Labeling
             <span style={categoryHomeButtonSubtextStyle}>Visual practice and recognition</span>
+          </button>
+        </div>
+      </div>
+
+      {/* QUICK PRACTICE: 5-QUESTION FAST START */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: "24px 18px",
+          borderRadius: 22,
+          background: "linear-gradient(135deg, rgba(236,253,245,0.95), rgba(255,255,255,0.95))",
+          border: "1px solid #bbf7d0",
+          boxShadow: "0 14px 30px rgba(22,163,74,0.10)"
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            color: "#14532d",
+            fontWeight: 950,
+            letterSpacing: 1,
+            fontSize: 18,
+            marginBottom: 8
+          }}
+        >
+          QUICK PRACTICE
+        </div>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#334155",
+            fontSize: 16,
+            margin: "0 auto 18px auto",
+            maxWidth: 760
+          }}
+        >
+          Short on time? Start with 5 questions. Finish fast, see your score, review missed questions, and build momentum.
+        </p>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: 16,
+            width: "100%",
+            maxWidth: 1100,
+            margin: "0 auto",
+            alignItems: "stretch"
+          }}
+        >
+          <button
+            onClick={() => startQuickPractice("cbet")}
+            style={{ ...categoryHomeButtonStyle("#0f766e", "#14b8a6"), minHeight: 104 }}
+          >
+            🔧 CBET Quick Practice
+            <span style={categoryHomeButtonSubtextStyle}>5 questions • instant score</span>
+          </button>
+          <button
+            onClick={() => startQuickPractice("terminology")}
+            style={{ ...categoryHomeButtonStyle("#16a34a", "#22c55e"), minHeight: 104 }}
+          >
+            🧾 Terminology Quick Practice
+            <span style={categoryHomeButtonSubtextStyle}>5 terms • fast review</span>
+          </button>
+          <button
+            onClick={() => startQuickPractice("equipment")}
+            style={{ ...categoryHomeButtonStyle("#ff6a00", "#ff4d4d"), minHeight: 104 }}
+          >
+            🏥 Equipment ID Quick Practice
+            <span style={categoryHomeButtonSubtextStyle}>5 images • quick recognition</span>
+          </button>
+          <button
+            onClick={() => startQuickPractice("anatomy")}
+            style={{ ...categoryHomeButtonStyle("#7c3aed", "#a855f7"), minHeight: 104 }}
+          >
+            🫀 Anatomy Quick Practice
+            <span style={categoryHomeButtonSubtextStyle}>Start with heart labeling</span>
           </button>
         </div>
       </div>
@@ -10645,6 +10818,8 @@ return (
                       ? `CBET 75-Question Practice Exam (${cbetQuestionTarget} Questions)`
                       : cbetCategory === "electronics"
                       ? `CBET Electronics Practice (${cbetQuestionTarget} Questions)`
+                      : shuffledCbetQuestions.length === 5
+                      ? "CBET Quick Practice (5 Questions)"
                       : "CBET Practice Mode"}
                   </h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
@@ -10655,6 +10830,8 @@ return (
                   <p style={{ color: "#1d6fa5", margin: "8px 0 0 0", fontWeight: 700 }}>
                     {cbetMode === "full"
                       ? "Use this mode to build stamina, simulate a longer practice session, and save your score when you finish."
+                      : shuffledCbetQuestions.length === 5
+                      ? "Quick mode is built for fast wins. Finish all 5 questions to see your score and missed-question review."
                       : "Finish CBET Practice Mode with a score of 70% or higher to unlock CBET Harder Questions."}
                   </p>
                   <p style={{ color: "#64748b", margin: "8px 0 0 0", fontSize: 12 }}>
@@ -10670,6 +10847,24 @@ return (
                     marginBottom: 20
                   }}
                 >
+                  <button
+                    onClick={() => startQuickPractice("cbet")}
+                    style={{
+                      padding: "10px 18px",
+                      borderRadius: 999,
+                      border: "none",
+                      background:
+                        cbetMode === "practice" && shuffledCbetQuestions.length === 5
+                          ? "linear-gradient(135deg, #16a34a, #22c55e)"
+                          : "linear-gradient(135deg, #ecfdf5, #dcfce7)",
+                      color: cbetMode === "practice" && shuffledCbetQuestions.length === 5 ? "white" : "#166534",
+                      fontWeight: 800,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    Quick 5 Questions
+                  </button>
                   <button
                     onClick={startCbetPracticeMode}
                     style={{
@@ -10907,8 +11102,12 @@ return (
                           trackExamCompletion(
                             cbetMode === "full"
                               ? "CBET 75-Question Practice Exam"
+                              : cbetCategory === "electronics" && shuffledCbetQuestions.length === 5
+                              ? "CBET Electronics Quick Practice"
                               : cbetCategory === "electronics"
                               ? "CBET Electronics Practice"
+                              : shuffledCbetQuestions.length === 5
+                              ? "CBET Quick Practice"
                               : "CBET Practice",
                             cbetScore,
                             shuffledCbetQuestions.length
@@ -10947,8 +11146,12 @@ return (
                 <h2 style={{ color: "#12355b" }}>
                   {cbetMode === "full"
                     ? "CBET 75-Question Practice Exam Complete"
+                    : cbetCategory === "electronics" && shuffledCbetQuestions.length === 5
+                    ? "CBET Electronics Quick Practice Complete"
                     : cbetCategory === "electronics"
                     ? "CBET Electronics Practice Complete"
+                    : shuffledCbetQuestions.length === 5
+                    ? "CBET Quick Practice Complete"
                     : "CBET Practice Mode Complete"}
                 </h2>
                 <p style={{ fontSize: 20, color: "#1e293b" }}>
@@ -12469,10 +12672,19 @@ return (
                 {!terminologyShowResult && !showTerminologyMissedReview ? (
                   <>
                     <div style={{ textAlign: "center", marginBottom: 20 }}>
-                      <h2 style={{ color: "#12355b", marginBottom: 8 }}>Medical Terminology Practice</h2>
+                      <h2 style={{ color: "#12355b", marginBottom: 8 }}>
+                        {shuffledTerminologyQuestions.length === 5
+                          ? "Medical Terminology Quick Practice"
+                          : "Medical Terminology Practice"}
+                      </h2>
                       <p style={{ color: "#4f6275", margin: 0 }}>
                         Hard terminology drill. Each question shows a medical term, and you select the
                         best definition from multiple choices.
+                      </p>
+                      <p style={{ color: "#0f766e", margin: "8px 0 0", fontWeight: 700 }}>
+                        {shuffledTerminologyQuestions.length === 5
+                          ? "Quick mode takes 1 to 2 minutes. Finish all 5 questions to see your score."
+                          : "Finish the practice to see your score, missed questions, and study review."}
                       </p>
                     </div>
                     <div
@@ -12503,6 +12715,21 @@ return (
                         marginBottom: 20
                       }}
                     >
+                      <button
+                        onClick={() => startQuickPractice("terminology")}
+                        style={{
+                          padding: "10px 18px",
+                          borderRadius: 999,
+                          border: "none",
+                          background: "linear-gradient(135deg, #16a34a, #22c55e)",
+                          color: "white",
+                          fontWeight: 800,
+                          cursor: "pointer",
+                          boxShadow: "0 4px 10px rgba(0,0,0,0.08)"
+                        }}
+                      >
+                        Quick 5 Questions
+                      </button>
                       <button
                         onClick={saveTerminologyProgress}
                         style={{
@@ -12637,7 +12864,9 @@ return (
                             if (terminologyAnswers[terminologyIndex] === undefined) return;
                             if (terminologyIndex + 1 === shuffledTerminologyQuestions.length) {
                               trackExamCompletion(
-                                "Medical Terminology Practice",
+                                shuffledTerminologyQuestions.length === 5
+                                  ? "Medical Terminology Quick Practice"
+                                  : "Medical Terminology Practice",
                                 terminologyScore,
                                 shuffledTerminologyQuestions.length
                               );
@@ -12670,7 +12899,11 @@ return (
                   </>
                 ) : (
                   <div style={{ textAlign: "center" }}>
-                    <h2 style={{ color: "#12355b" }}>Medical Terminology Practice Complete</h2>
+                    <h2 style={{ color: "#12355b" }}>
+                      {shuffledTerminologyQuestions.length === 5
+                        ? "Medical Terminology Quick Practice Complete"
+                        : "Medical Terminology Practice Complete"}
+                    </h2>
                     <p style={{ fontSize: 20, color: "#1e293b" }}>
                       Your score: {terminologyScore} / {shuffledTerminologyQuestions.length}
                     </p>
@@ -12758,6 +12991,19 @@ return (
                       >
                         Restart Practice
                       </button>
+                      <a
+                        href="/browse-all-practice.html"
+                        style={{
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                          color: "white",
+                          fontWeight: 700,
+                          textDecoration: "none"
+                        }}
+                      >
+                        Browse All Tools
+                      </a>
                     </div>
                   </div>
                 )}
