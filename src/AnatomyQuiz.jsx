@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { anatomyQuestions } from "./AnatomyQuizData";
 
 export default function AnatomyQuiz({ onComplete }) {
@@ -11,6 +10,9 @@ export default function AnatomyQuiz({ onComplete }) {
   const [showResult, setShowResult] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
   const [completionTime, setCompletionTime] = useState(0);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+  const hasStartedRef = useRef(false);
 
   const formatDuration = (totalSeconds) => {
     const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
@@ -18,6 +20,18 @@ export default function AnatomyQuiz({ onComplete }) {
     const seconds = safeSeconds % 60;
     return `${minutes}:${String(seconds).padStart(2, "0")}`;
   };
+
+  useEffect(() => {
+    if (showResult || !anatomyQuestions.length) return;
+
+    const intervalId = window.setInterval(() => {
+      setElapsedSeconds(
+        Math.max(0, Math.floor((Date.now() - startTime) / 1000))
+      );
+    }, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [showResult, startTime]);
 
   if (!anatomyQuestions || anatomyQuestions.length === 0) {
     return <div style={{ padding: 20 }}>No anatomy questions found.</div>;
@@ -27,6 +41,14 @@ export default function AnatomyQuiz({ onComplete }) {
 
   const handleAnswer = (index) => {
     if (selected !== null) return;
+
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
+      const now = Date.now();
+      setStartTime(now);
+      setElapsedSeconds(0);
+    }
+
     setSelected(index);
 
     if (index === currentQuestion.answer) {
@@ -37,28 +59,42 @@ export default function AnatomyQuiz({ onComplete }) {
   const nextQuestion = () => {
     if (selected === null) return;
 
+    const currentQuestionWasCorrect = selected === currentQuestion.answer;
+
     if (currentIndex + 1 < anatomyQuestions.length) {
       setSelected(null);
       setCurrentIndex((prev) => prev + 1);
     } else {
-      const elapsed = Math.max(1, Math.floor((Date.now() - startTime) / 1000));
+      const finalScore = score + (currentQuestionWasCorrect ? 1 : 0);
+
+      const elapsed = Math.max(
+        1,
+        Math.floor((Date.now() - startTime) / 1000)
+      );
+
       setCompletionTime(elapsed);
 
       if (onComplete) {
-        onComplete(score, anatomyQuestions.length, elapsed, "Anatomy Quiz");
+        onComplete(finalScore, anatomyQuestions.length, elapsed, "Anatomy Quiz");
       }
 
+      setScore(finalScore);
       setShowResult(true);
     }
   };
 
   const restartQuiz = () => {
+    const now = Date.now();
+
     setCurrentIndex(0);
     setSelected(null);
     setScore(0);
     setShowResult(false);
     setCompletionTime(0);
-    setStartTime(Date.now());
+    setElapsedSeconds(0);
+    setStartTime(now);
+
+    hasStartedRef.current = false;
   };
 
   if (showResult) {
@@ -77,7 +113,7 @@ export default function AnatomyQuiz({ onComplete }) {
         <h2 style={{ color: "#12355b", marginTop: 0 }}>Anatomy Quiz Complete</h2>
         <h1 style={{ color: "#12355b" }}>{score} / {anatomyQuestions.length}</h1>
 
-        <div style={{ marginBottom: 20, fontWeight: 700, color: "#334155" }}>
+        <div style={{ marginBottom: 20, fontWeight: 700, color: "#334155", fontSize: 18 }}>
           Time: {formatDuration(completionTime)}
         </div>
 
@@ -112,7 +148,7 @@ export default function AnatomyQuiz({ onComplete }) {
         alignItems: "center",
         minHeight: isMobile ? "100vh" : undefined,
         background: "none",
-        padding: isMobile ? "0 4vw" : "0",
+        padding: isMobile ? "0 4vw" : "0"
       }}
     >
       <div
@@ -123,7 +159,7 @@ export default function AnatomyQuiz({ onComplete }) {
           margin: "0 auto",
           padding: isMobile ? "18px 0 32px 0" : "30px 20px 50px 20px",
           textAlign: "center",
-          background: "none",
+          background: "none"
         }}
       >
         <div
@@ -143,11 +179,22 @@ export default function AnatomyQuiz({ onComplete }) {
             color: "#12355b",
             fontWeight: 700,
             fontSize: 16,
-            boxSizing: "border-box",
+            boxSizing: "border-box"
           }}
         >
           <div>Question {currentIndex + 1} of {anatomyQuestions.length}</div>
           <div>Score: {score}</div>
+          <div
+            style={{
+              background: "#eff6ff",
+              padding: "8px 14px",
+              borderRadius: 999,
+              fontWeight: 800,
+              color: "#1d4ed8"
+            }}
+          >
+            Time: {formatDuration(elapsedSeconds)}
+          </div>
         </div>
 
         <h2 style={{ color: "#12355b", marginBottom: 8 }}>Anatomy Quiz</h2>
@@ -166,7 +213,7 @@ export default function AnatomyQuiz({ onComplete }) {
             maxWidth: 700,
             boxSizing: "border-box",
             marginLeft: "auto",
-            marginRight: "auto",
+            marginRight: "auto"
           }}
         >
           {currentQuestion.options.map((option, i) => (
@@ -222,7 +269,7 @@ export default function AnatomyQuiz({ onComplete }) {
                 transition: "all 0.18s cubic-bezier(.4,2,.6,1)",
                 wordWrap: "break-word",
                 overflowWrap: "break-word",
-                whiteSpace: "pre-line",
+                whiteSpace: "pre-line"
               }}
             >
               {option}
@@ -258,10 +305,11 @@ export default function AnatomyQuiz({ onComplete }) {
                 boxShadow: "0 4px 18px rgba(56,189,248,0.13)",
                 cursor: "pointer",
                 marginTop: 10,
-                transition: "transform 0.13s cubic-bezier(.4,2,.6,1), box-shadow 0.13s cubic-bezier(.4,2,.6,1)",
+                transition:
+                  "transform 0.13s cubic-bezier(.4,2,.6,1), box-shadow 0.13s cubic-bezier(.4,2,.6,1)",
                 width: isMobile ? "100%" : undefined,
                 maxWidth: isMobile ? "100%" : undefined,
-                wordWrap: "break-word",
+                wordWrap: "break-word"
               }}
               onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
               onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
