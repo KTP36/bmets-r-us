@@ -38,6 +38,7 @@ export default function AnatomyQuiz({ onComplete }) {
   }
 
   const currentQuestion = anatomyQuestions[currentIndex];
+  const resultPercent = Math.round((score / anatomyQuestions.length) * 100);
 
   const handleAnswer = (index) => {
     if (selected !== null) return;
@@ -102,37 +103,168 @@ export default function AnatomyQuiz({ onComplete }) {
       <div
         style={{
           textAlign: "center",
-          padding: 40,
-          maxWidth: 700,
+          padding: isMobile ? 24 : 40,
+          maxWidth: 760,
           margin: "0 auto",
-          background: "rgba(255,255,255,0.92)",
+          background: "rgba(255,255,255,0.94)",
           borderRadius: 24,
-          boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          border: "1px solid #dbeafe"
         }}
       >
-        <h2 style={{ color: "#12355b", marginTop: 0 }}>Anatomy Quiz Complete</h2>
-        <h1 style={{ color: "#12355b" }}>{score} / {anatomyQuestions.length}</h1>
-
-        <div style={{ marginBottom: 20, fontWeight: 700, color: "#334155", fontSize: 18 }}>
-          Time: {formatDuration(completionTime)}
-        </div>
-
-        <button
-          onClick={restartQuiz}
+        <div
           style={{
-            padding: "12px 28px",
+            display: "inline-flex",
+            padding: "8px 14px",
             borderRadius: 999,
-            border: "none",
-            background: "linear-gradient(90deg, #38bdf8 0%, #fbbf24 100%)",
-            color: "#12355b",
+            background: "#ecfdf5",
+            color: "#0f766e",
             fontWeight: 900,
-            fontSize: 18,
-            cursor: "pointer",
-            boxShadow: "0 4px 18px rgba(56,189,248,0.13)"
+            marginBottom: 14
           }}
         >
-          Restart Quiz
-        </button>
+          Practice Complete
+        </div>
+
+        <h2 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
+          Anatomy Quiz Complete
+        </h2>
+
+        <p style={{ color: "#475569", marginTop: 0, marginBottom: 20 }}>
+          Great job. Review your score, try again, or keep practicing with another free tool.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+            gap: 12,
+            marginBottom: 24
+          }}
+        >
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 18,
+              background: "#eff6ff",
+              border: "1px solid #bfdbfe",
+              color: "#12355b",
+              fontWeight: 900
+            }}
+          >
+            <div style={{ fontSize: 28 }}>{score} / {anatomyQuestions.length}</div>
+            <div style={{ fontSize: 13, color: "#475569" }}>Score</div>
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 18,
+              background: "#ecfdf5",
+              border: "1px solid #bbf7d0",
+              color: "#0f766e",
+              fontWeight: 900
+            }}
+          >
+            <div style={{ fontSize: 28 }}>{resultPercent}%</div>
+            <div style={{ fontSize: 13, color: "#475569" }}>Accuracy</div>
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 18,
+              background: "#fff7ed",
+              border: "1px solid #fed7aa",
+              color: "#9a3412",
+              fontWeight: 900
+            }}
+          >
+            <div style={{ fontSize: 28 }}>{formatDuration(completionTime)}</div>
+            <div style={{ fontSize: 13, color: "#475569" }}>Time</div>
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 12,
+            flexWrap: "wrap",
+            marginTop: 14
+          }}
+        >
+          <button
+            onClick={restartQuiz}
+            style={{
+              padding: "12px 24px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(90deg, #38bdf8 0%, #fbbf24 100%)",
+              color: "#12355b",
+              fontWeight: 900,
+              fontSize: 16,
+              cursor: "pointer",
+              boxShadow: "0 4px 18px rgba(56,189,248,0.13)"
+            }}
+          >
+            Try Quick Practice Again
+          </button>
+
+          <a
+            href="/?tab=HeartQuiz"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "12px 24px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #ef4444, #f97316)",
+              color: "white",
+              fontWeight: 900,
+              textDecoration: "none",
+              boxShadow: "0 4px 14px rgba(239,68,68,0.18)"
+            }}
+          >
+            Try Heart Quiz
+          </a>
+
+          <a
+            href="/?tab=Terminology"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "12px 24px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+              color: "white",
+              fontWeight: 900,
+              textDecoration: "none",
+              boxShadow: "0 4px 14px rgba(124,58,237,0.18)"
+            }}
+          >
+            Medical Terminology
+          </a>
+
+          <a
+            href="/browse-all-practice.html"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "12px 24px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+              color: "white",
+              fontWeight: 900,
+              textDecoration: "none",
+              boxShadow: "0 4px 14px rgba(18,53,91,0.18)"
+            }}
+          >
+            Browse All Tools
+          </a>
+        </div>
       </div>
     );
   }
@@ -198,6 +330,9 @@ export default function AnatomyQuiz({ onComplete }) {
         </div>
 
         <h2 style={{ color: "#12355b", marginBottom: 8 }}>Anatomy Quiz</h2>
+        <p style={{ color: "#0f766e", marginTop: 0, fontWeight: 800 }}>
+          Finish to unlock your score, time, and next practice options.
+        </p>
         <h3 style={{ color: "#12355b", marginTop: 0 }}>{currentQuestion.question}</h3>
 
         <div
