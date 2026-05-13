@@ -12901,15 +12901,101 @@ return (
                     </div>
                   </>
                 ) : (
-                  <div style={{ textAlign: "center" }}>
-                    <h2 style={{ color: "#12355b" }}>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      maxWidth: 760,
+                      margin: "0 auto",
+                      background: "rgba(255,255,255,0.96)",
+                      borderRadius: 24,
+                      padding: 28,
+                      border: "1px solid #dbeafe",
+                      boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        padding: "8px 14px",
+                        borderRadius: 999,
+                        background: "#f5f3ff",
+                        color: "#6d28d9",
+                        fontWeight: 900,
+                        marginBottom: 14
+                      }}
+                    >
+                      Practice Complete
+                    </div>
+
+                    <h2 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
                       {shuffledTerminologyQuestions.length === 5
                         ? "Medical Terminology Quick Practice Complete"
                         : "Medical Terminology Practice Complete"}
                     </h2>
-                    <p style={{ fontSize: 20, color: "#1e293b" }}>
-                      Your score: {terminologyScore} / {shuffledTerminologyQuestions.length}
+
+                    <p style={{ color: "#475569", marginTop: 0, marginBottom: 20 }}>
+                      Great job. Review your score, study missed questions, or keep practicing with another free tool.
                     </p>
+
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+                        gap: 12,
+                        marginBottom: 24
+                      }}
+                    >
+                      <div
+                        style={{
+                          padding: 16,
+                          borderRadius: 18,
+                          background: "#eff6ff",
+                          border: "1px solid #bfdbfe",
+                          color: "#12355b",
+                          fontWeight: 900
+                        }}
+                      >
+                        <div style={{ fontSize: 28 }}>
+                          {terminologyScore} / {shuffledTerminologyQuestions.length}
+                        </div>
+                        <div style={{ fontSize: 13, color: "#475569" }}>Score</div>
+                      </div>
+
+                      <div
+                        style={{
+                          padding: 16,
+                          borderRadius: 18,
+                          background: "#ecfdf5",
+                          border: "1px solid #bbf7d0",
+                          color: "#0f766e",
+                          fontWeight: 900
+                        }}
+                      >
+                        <div style={{ fontSize: 28 }}>
+                          {shuffledTerminologyQuestions.length > 0
+                            ? Math.round((terminologyScore / shuffledTerminologyQuestions.length) * 100)
+                            : 0}%
+                        </div>
+                        <div style={{ fontSize: 13, color: "#475569" }}>Accuracy</div>
+                      </div>
+
+                      <div
+                        style={{
+                          padding: 16,
+                          borderRadius: 18,
+                          background: "#fff7ed",
+                          border: "1px solid #fed7aa",
+                          color: "#9a3412",
+                          fontWeight: 900
+                        }}
+                      >
+                        <div style={{ fontSize: 28 }}>
+                          {terminologyMissedQuestions.length}
+                        </div>
+                        <div style={{ fontSize: 13, color: "#475569" }}>Missed</div>
+                      </div>
+                    </div>
+
                     <div
                       style={{
                         display: "flex",
@@ -12927,12 +13013,13 @@ return (
                           border: "none",
                           background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
                           color: "white",
-                          fontWeight: 700,
+                          fontWeight: 900,
                           cursor: "pointer"
                         }}
                       >
-                        Study Misses (Optional)
+                        Study Misses
                       </button>
+
                       <button
                         onClick={() =>
                           startRetakeMissedQuestions({
@@ -12953,17 +13040,20 @@ return (
                           border: "none",
                           background: "linear-gradient(135deg, #2563eb, #3b82f6)",
                           color: "white",
-                          fontWeight: 700,
+                          fontWeight: 900,
                           cursor: terminologyMissedQuestions.length === 0 ? "not-allowed" : "pointer",
                           opacity: terminologyMissedQuestions.length === 0 ? 0.55 : 1
                         }}
                       >
                         Retake Missed Only
                       </button>
+
                       <button
                         onClick={() =>
                           shareQuizResult(
-                            "Medical Terminology Practice",
+                            shuffledTerminologyQuestions.length === 5
+                              ? "Medical Terminology Quick Practice"
+                              : "Medical Terminology Practice",
                             terminologyScore,
                             shuffledTerminologyQuestions.length
                           )
@@ -12974,12 +13064,13 @@ return (
                           border: "none",
                           background: "linear-gradient(135deg, #0f766e, #14b8a6)",
                           color: "white",
-                          fontWeight: 700,
+                          fontWeight: 900,
                           cursor: "pointer"
                         }}
                       >
-                        Share Quiz
+                        Share Result
                       </button>
+
                       <button
                         onClick={restartTerminologyQuiz}
                         style={{
@@ -12988,21 +13079,62 @@ return (
                           border: "none",
                           background: "linear-gradient(135deg, #dc2626, #ef4444)",
                           color: "white",
-                          fontWeight: 700,
+                          fontWeight: 900,
                           cursor: "pointer"
                         }}
                       >
-                        Restart Practice
+                        Try Again
                       </button>
+
+                      <a
+                        href="/?tab=Anatomy"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          background: "linear-gradient(90deg, #38bdf8 0%, #fbbf24 100%)",
+                          color: "#12355b",
+                          fontWeight: 900,
+                          textDecoration: "none",
+                          boxShadow: "0 4px 14px rgba(56,189,248,0.18)"
+                        }}
+                      >
+                        Anatomy Practice
+                      </a>
+
+                      <a
+                        href="/?tab=CBET"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          padding: "12px 24px",
+                          borderRadius: 999,
+                          background: "linear-gradient(135deg, #ef4444, #f97316)",
+                          color: "white",
+                          fontWeight: 900,
+                          textDecoration: "none",
+                          boxShadow: "0 4px 14px rgba(239,68,68,0.18)"
+                        }}
+                      >
+                        CBET Practice
+                      </a>
+
                       <a
                         href="/browse-all-practice.html"
                         style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
                           padding: "12px 24px",
                           borderRadius: 999,
                           background: "linear-gradient(135deg, #12355b, #1d6fa5)",
                           color: "white",
-                          fontWeight: 700,
-                          textDecoration: "none"
+                          fontWeight: 900,
+                          textDecoration: "none",
+                          boxShadow: "0 4px 14px rgba(18,53,91,0.18)"
                         }}
                       >
                         Browse All Tools
