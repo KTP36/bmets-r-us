@@ -6917,9 +6917,12 @@ export default function App() {
 
       setSaveScoreStatus("success");
       setSaveScoreMessage("Score saved. Your username can appear on the leaderboard. Your email stays private.");
+
+      // Close the save-score modal and keep the user on the quiz results screen.
+      // This lets them see the result-screen options like Try Again, Heart Quiz,
+      // Medical Terminology, and Browse All Tools after saving their score.
       setTimeout(() => {
         closeSaveScorePrompt();
-        setActiveTab("Leaderboard");
       }, 900);
     } catch (error) {
       setSaveScoreStatus("error");
