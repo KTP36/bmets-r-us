@@ -2,20 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Basic Electronics for CBET | Complete Beginner Study Guide</title>
 
-  <meta name="description" content="Learn basic electronics for the CBET exam with a complete beginner guide to voltage, current, resistance, Ohm's Law, AC vs DC, power supplies, diodes, capacitors, rectifiers, fuses, series and parallel circuits, and biomedical equipment troubleshooting." />
+  <meta
+    name="description"
+    content="Learn basic electronics for the CBET exam with a complete beginner guide to voltage, current, resistance, Ohm's Law, AC vs DC, power supplies, diodes, capacitors, rectifiers, fuses, series and parallel circuits, multimeters, and biomedical equipment troubleshooting."
+  />
 
-  <meta name="keywords" content="basic electronics for CBET, CBET electronics, CBET exam electronics, voltage current resistance, Ohm's Law CBET, diode CBET, capacitor CBET, rectifier CBET, AC vs DC CBET, biomedical electronics basics, BMET electronics, clinical engineering electronics" />
+  <meta
+    name="keywords"
+    content="basic electronics for CBET, CBET electronics, CBET exam electronics, voltage current resistance, Ohm's Law CBET, diode CBET, capacitor CBET, rectifier CBET, AC vs DC CBET, biomedical electronics basics, BMET electronics, clinical engineering electronics, multimeter CBET, power supply CBET"
+  />
+
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/basic-electronics-cbet.html" />
 
   <meta property="og:title" content="Basic Electronics for CBET | Complete Beginner Study Guide" />
-  <meta property="og:description" content="Learn the electronics concepts tested in CBET prep including voltage, current, resistance, Ohm's Law, AC/DC, diodes, capacitors, rectifiers, power supplies, and troubleshooting." />
+
+  <meta
+    property="og:description"
+    content="Learn the electronics concepts tested in CBET prep including voltage, current, resistance, Ohm's Law, AC/DC, diodes, capacitors, rectifiers, power supplies, multimeters, and troubleshooting."
+  />
+
   <meta property="og:type" content="website" />
+
   <meta property="og:url" content="https://medskillbuilder.com/basic-electronics-cbet.html" />
+
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Basic Electronics for CBET",
+    "description": "A complete beginner CBET electronics study guide covering voltage, current, resistance, Ohm's Law, AC vs DC, power supplies, diodes, capacitors, rectifiers, fuses, series and parallel circuits, multimeters, electrical safety, and biomedical equipment troubleshooting.",
+    "url": "https://medskillbuilder.com/basic-electronics-cbet.html",
+    "learningResourceType": "CBET electronics guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, BMET students, biomedical equipment technicians, clinical engineering learners, and healthcare technology students"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
 
   <script type="application/ld+json">
   {
@@ -35,7 +74,7 @@
         "name": "What electronics topics should I study for CBET?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "CBET learners should review voltage, current, resistance, Ohm's Law, AC vs DC, power, series and parallel circuits, fuses, batteries, capacitors, diodes, rectifiers, grounding, leakage current, and basic troubleshooting."
+          "text": "CBET learners should review voltage, current, resistance, Ohm's Law, AC vs DC, power, series and parallel circuits, fuses, batteries, capacitors, diodes, rectifiers, grounding, leakage current, multimeter use, and basic troubleshooting."
         }
       },
       {
@@ -53,6 +92,14 @@
           "@type": "Answer",
           "text": "Medical devices rely on stable power, controlled current flow, signal processing, batteries, sensors, fuses, and power conversion. Understanding basic electronics helps biomedical equipment technicians troubleshoot equipment safely."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best way to study CBET electronics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with voltage, current, resistance, and Ohm's Law. Then study AC vs DC, series and parallel circuits, common components, power supplies, multimeter use, and practice questions."
+        }
       }
     ]
   }
@@ -61,7 +108,9 @@
   <style>
     :root {
       --navy: #082f57;
+      --navy2: #12355b;
       --blue: #1d6fa5;
+      --bright-blue: #2563eb;
       --green: #16a34a;
       --green2: #22c55e;
       --orange: #f97316;
@@ -73,6 +122,7 @@
       --border: #dbeafe;
       --white: #ffffff;
       --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
     }
 
     * {
@@ -106,6 +156,17 @@
 
     .topbar {
       padding: 18px 0;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(219, 234, 254, 0.8);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .brand {
@@ -133,6 +194,26 @@
       color: var(--muted);
       font-size: 13px;
       margin-top: 2px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
     }
 
     header {
@@ -172,7 +253,7 @@
     .hero-inner {
       position: relative;
       z-index: 2;
-      max-width: 920px;
+      max-width: 960px;
     }
 
     .eyebrow {
@@ -198,7 +279,7 @@
     header p {
       color: #e0f2fe;
       font-size: clamp(18px, 2.2vw, 23px);
-      max-width: 850px;
+      max-width: 880px;
       margin-bottom: 18px;
     }
 
@@ -206,14 +287,40 @@
       padding: 34px 0 48px;
     }
 
-    .stats {
+    .stats,
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .link-grid,
+    .topic-map {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
       gap: 14px;
       margin: 20px 0 28px;
     }
 
-    .stat {
+    .stats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .link-grid,
+    .topic-map {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat,
+    .map-card {
       background: rgba(255, 255, 255, 0.94);
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -223,14 +330,22 @@
       text-align: center;
       font-weight: 900;
       font-size: 22px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease;
     }
 
-    .stat span {
+    .stat span,
+    .map-card span {
       display: block;
       font-size: 13px;
       color: var(--muted);
       margin-top: 4px;
       font-weight: 800;
+    }
+
+    .map-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
     }
 
     .section {
@@ -336,20 +451,6 @@
       box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin: 22px 0;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 22px 0;
-    }
-
     .card {
       background: #f8fbff;
       border: 1px solid var(--border);
@@ -361,15 +462,22 @@
       border-left: 6px solid var(--blue);
     }
 
+    .callout,
+    .warning,
+    .formula,
+    .success,
+    .danger {
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
     .callout {
       background: #eff6ff;
       border: 1px solid #bfdbfe;
       border-left: 6px solid #2563eb;
       color: #1e3a8a;
-      border-radius: 18px;
-      padding: 17px 18px;
-      margin: 20px 0;
-      font-weight: 900;
     }
 
     .warning {
@@ -377,22 +485,39 @@
       border: 1px solid #fed7aa;
       border-left: 6px solid var(--orange);
       color: #7c2d12;
-      padding: 14px 16px;
-      border-radius: 16px;
-      font-size: 14px;
-      margin: 20px 0;
     }
 
-    .formula {
+    .success {
       background: #ecfdf5;
       border: 1px solid #bbf7d0;
+      border-left: 6px solid var(--green);
       color: #065f46;
-      border-radius: 18px;
-      padding: 18px;
-      margin: 18px 0;
-      font-weight: 900;
+    }
+
+    .danger {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-left: 6px solid var(--red);
+      color: #7f1d1d;
+    }
+
+    .formula,
+    .diagram {
+      background: #0f172a;
+      border: 1px solid #0f172a;
+      color: white;
       text-align: center;
-      font-size: 22px;
+      font-size: clamp(22px, 4vw, 38px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
     }
 
     .path {
@@ -495,13 +620,6 @@
       font-size: 15px;
     }
 
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
     .study-link {
       display: block;
       text-decoration: none;
@@ -511,10 +629,12 @@
       border-radius: 16px;
       padding: 14px 16px;
       font-weight: 900;
+      transition: transform 0.18s ease, background 0.18s ease;
     }
 
     .study-link:hover {
       background: #dbeafe;
+      transform: translateY(-2px);
     }
 
     footer {
@@ -546,7 +666,9 @@
       .stats,
       .grid-2,
       .grid-3,
-      .link-grid {
+      .grid-4,
+      .link-grid,
+      .topic-map {
         grid-template-columns: 1fr;
       }
 
@@ -598,7 +720,7 @@
 <body>
 
   <div class="topbar">
-    <div class="container">
+    <div class="container topbar-inner">
       <a class="brand" href="/">
         <img src="/logo.png" alt="MedSkillBuilder Logo" />
         <div>
@@ -606,6 +728,12 @@
           <span>CBET, biomed, electronics, and healthcare study tools</span>
         </div>
       </a>
+
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/cbet-electronics-practice-questions.html">Electronics Practice</a>
+        <a href="/free-cbet-practice-test.html">Free CBET Test</a>
+      </nav>
     </div>
   </div>
 
@@ -617,7 +745,7 @@
         <h1>Basic Electronics for CBET</h1>
 
         <p>
-          Learn the electronics concepts that matter for CBET prep: voltage, current, resistance, Ohm's Law, AC vs DC, power supplies, fuses, diodes, capacitors, rectifiers, series circuits, parallel circuits, and troubleshooting.
+          Learn the electronics concepts that matter for CBET prep: voltage, current, resistance, Ohm's Law, AC vs DC, power supplies, fuses, diodes, capacitors, rectifiers, series circuits, parallel circuits, multimeters, and troubleshooting.
         </p>
 
         <p>
@@ -663,6 +791,46 @@
     </section>
 
     <section class="section">
+      <h2>Start Here: CBET Electronics Map</h2>
+
+      <p>
+        Use this page as the CBET-focused electronics hub. Each card connects to a deeper guide or quiz.
+      </p>
+
+      <div class="topic-map">
+        <a class="map-card" href="/voltage-current-resistance-cbet.html">
+          Voltage, Current, Resistance
+          <span>Learn push, flow, and opposition.</span>
+        </a>
+
+        <a class="map-card" href="/what-is-ohms-law.html">
+          Ohm's Law
+          <span>Connect V, I, and R.</span>
+        </a>
+
+        <a class="map-card" href="/ac-vs-dc-current.html">
+          AC vs DC
+          <span>Wall power versus internal circuits.</span>
+        </a>
+
+        <a class="map-card" href="/series-vs-parallel-circuits.html">
+          Series vs Parallel
+          <span>One path versus multiple paths.</span>
+        </a>
+
+        <a class="map-card" href="/how-to-use-a-multimeter.html">
+          Multimeter Basics
+          <span>Voltage, resistance, and continuity checks.</span>
+        </a>
+
+        <a class="map-card" href="/power-supply-basics-cbet.html">
+          Power Supplies
+          <span>AC input to stable DC output.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Core Electronics Concepts You Should Know</h2>
 
       <div class="grid-2">
@@ -671,6 +839,7 @@
           <p>
             Voltage is electrical potential. It is often described as the pressure that pushes current through a circuit. Voltage is measured in volts.
           </p>
+          <a class="study-link" href="/voltage-current-resistance-cbet.html">Review Voltage Current Resistance</a>
         </div>
 
         <div class="card strong">
@@ -678,6 +847,7 @@
           <p>
             Current is the flow of electrical charge through a circuit. Current is measured in amps. Small currents may be measured in milliamps or microamps.
           </p>
+          <a class="study-link" href="/voltage-current-resistance-quiz.html">Take Voltage Current Resistance Quiz</a>
         </div>
 
         <div class="card strong">
@@ -685,6 +855,7 @@
           <p>
             Resistance opposes current flow. It is measured in ohms. More resistance usually means less current if the voltage stays the same.
           </p>
+          <a class="study-link" href="/what-is-ohms-law.html">Review Ohm's Law</a>
         </div>
 
         <div class="card strong">
@@ -692,6 +863,7 @@
           <p>
             Power describes how much electrical energy is being used or delivered. It is measured in watts and connects voltage and current.
           </p>
+          <a class="study-link" href="/power-supply-basics-cbet.html">Power Supply Basics</a>
         </div>
       </div>
 
@@ -736,6 +908,7 @@
 
       <div class="cta-row">
         <a href="/what-is-ohms-law.html" class="cta-button cta-tertiary">Review Ohm's Law Guide</a>
+        <a href="/ohms-law-quiz.html" class="cta-button cta-primary">Take Ohm's Law Quiz</a>
       </div>
     </section>
 
@@ -785,6 +958,10 @@
         A power supply is one of the best ways to understand CBET electronics because it brings multiple concepts together. Medical devices often need stable internal power for boards, sensors, displays, charging circuits, and alarms.
       </p>
 
+      <div class="diagram">
+        <span>AC input</span> → <span>Protection</span> → <span>Rectifier</span> → <span>Filter</span> → <span>Regulated DC</span>
+      </div>
+
       <div class="path">
         <div class="step">
           <h3>AC input</h3>
@@ -817,6 +994,10 @@
 
       <div class="callout">
         This is why diodes, capacitors, rectifiers, fuses, and AC/DC concepts all matter. They are not separate random facts. They work together inside real equipment.
+      </div>
+
+      <div class="cta-row">
+        <a href="/power-supply-basics-cbet.html" class="cta-button cta-primary">Review Power Supply Basics</a>
       </div>
     </section>
 
@@ -907,6 +1088,47 @@
 
       <div class="cta-row">
         <a href="/series-vs-parallel-circuits.html" class="cta-button cta-tertiary">Review Series vs Parallel Circuits</a>
+        <a href="/series-parallel-quiz.html" class="cta-button cta-primary">Take Series vs Parallel Quiz</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Using a Multimeter for CBET Electronics</h2>
+
+      <p>
+        A multimeter helps you connect theory to troubleshooting. You can use it to check if voltage is present, whether a path is complete, or whether resistance is within an expected range.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Voltage</h3>
+          <p>
+            Used to check whether power is present and whether the value is AC or DC.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Resistance</h3>
+          <p>
+            Used with power off to check opposition, opens, shorts, or component behavior.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Continuity</h3>
+          <p>
+            Used with power off to see whether a path is complete.
+          </p>
+        </div>
+      </div>
+
+      <div class="danger">
+        Safety reminder: resistance and continuity checks should be done with power off and stored energy safely discharged.
+      </div>
+
+      <div class="cta-row">
+        <a href="/how-to-use-a-multimeter.html" class="cta-button cta-tertiary">Review Multimeter Guide</a>
+        <a href="/multimeter-quiz.html" class="cta-button cta-primary">Take Multimeter Quiz</a>
       </div>
     </section>
 
@@ -1066,6 +1288,20 @@
         <div class="explain">A fuse is a protective component that helps prevent excessive current from damaging equipment or creating safety hazards.</div>
       </div>
 
+      <div class="sample-question">
+        <p><strong>6. In a parallel circuit, what usually happens if one branch opens?</strong></p>
+        <p>A. Every branch always fails<br />B. Other branches may still operate<br />C. Voltage disappears everywhere automatically<br />D. The circuit becomes a battery</p>
+        <div class="answer">Answer: B. Other branches may still operate</div>
+        <div class="explain">Parallel circuits have multiple paths. One branch can open while other branches remain complete.</div>
+      </div>
+
+      <div class="sample-question">
+        <p><strong>7. What meter function checks whether a path is complete?</strong></p>
+        <p>A. Continuity<br />B. Temperature only<br />C. Display brightness<br />D. Storage mode</p>
+        <div class="answer">Answer: A. Continuity</div>
+        <div class="explain">Continuity checks whether a low-resistance path exists between two test points.</div>
+      </div>
+
       <div class="cta-row">
         <a href="/cbet-electronics-practice-questions.html" class="cta-button cta-primary">Practice More CBET Electronics Questions</a>
         <a href="/free-cbet-practice-test.html" class="cta-button cta-tertiary">Take the Free CBET Practice Test</a>
@@ -1114,14 +1350,22 @@
       </p>
 
       <div class="link-grid">
+        <a class="study-link" href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained for Beginners</a>
+        <a class="study-link" href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+        <a class="study-link" href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
         <a class="study-link" href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+        <a class="study-link" href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
         <a class="study-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
         <a class="study-link" href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a>
+        <a class="study-link" href="/series-parallel-quiz.html">Series vs Parallel Quiz</a>
         <a class="study-link" href="/what-is-a-diode.html">What Is a Diode?</a>
         <a class="study-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
         <a class="study-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        <a class="study-link" href="/power-supply-basics-cbet.html">Power Supply Basics</a>
         <a class="study-link" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a class="study-link" href="/multimeter-quiz.html">Multimeter Quiz</a>
         <a class="study-link" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
+        <a class="study-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
       </div>
     </section>
 
@@ -1184,7 +1428,7 @@
 
       <h3>What electronics topic should I study first?</h3>
       <p>
-        Start with voltage, current, resistance, and Ohm's Law. Then move into AC vs DC, fuses, diodes, capacitors, rectifiers, batteries, and series/parallel circuits.
+        Start with voltage, current, resistance, and Ohm's Law. Then move into AC vs DC, fuses, diodes, capacitors, rectifiers, batteries, multimeters, and series/parallel circuits.
       </p>
 
       <h3>Do I need advanced electrical engineering knowledge?</h3>
