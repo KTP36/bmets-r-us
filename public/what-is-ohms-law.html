@@ -1,185 +1,773 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>What Is Ohm’s Law? (Simple Explanation + Examples) | MedSkillBuilder</title>
-
-  <meta name="description" content="Learn Ohm’s Law with simple explanations, real-world examples, and how it applies to troubleshooting circuits and CBET exam prep.">
-
+  <title>What Is Ohm's Law? | CBET Electronics Simple Explanation</title>
+  <meta name="description" content="Learn Ohm's Law with simple CBET electronics explanations, examples, practice questions, and medical equipment troubleshooting connections. Understand voltage, current, resistance, and V = I × R." />
+  <meta name="keywords" content="what is Ohm's Law, Ohm's Law CBET, V=IR, voltage current resistance, CBET electronics, biomedical electronics, Ohm's Law examples, Ohm's Law quiz, circuit troubleshooting" />
+  <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://medskillbuilder.com/what-is-ohms-law.html" />
+
+  <meta property="og:title" content="What Is Ohm's Law? | CBET Electronics Simple Explanation" />
+  <meta property="og:description" content="Understand Ohm's Law, voltage, current, resistance, and how V = I × R applies to CBET electronics and medical equipment troubleshooting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/what-is-ohms-law.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "What Is Ohm's Law?",
+    "description": "A CBET electronics guide explaining Ohm's Law, voltage, current, resistance, V = I × R, simple calculations, troubleshooting clues, and medical equipment examples.",
+    "url": "https://medskillbuilder.com/what-is-ohms-law.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Ohm's Law?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ohm's Law explains the relationship between voltage, current, and resistance. The formula is V = I × R."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does V = I × R mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "V means voltage, I means current, and R means resistance. Voltage equals current multiplied by resistance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to current if resistance increases?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If voltage stays the same and resistance increases, current decreases."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does Ohm's Law matter for CBET prep?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ohm's Law matters for CBET prep because it explains how voltage, current, and resistance affect circuit behavior, troubleshooting, power supplies, and medical equipment electronics."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-purple: #f5f3ff;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img { width: 56px; height: auto; }
+    .brand strong { display: block; color: var(--navy); font-size: 24px; line-height: 1.1; }
+    .brand span { display: block; color: var(--muted); font-size: 13px; }
+
+    .mini-nav { display: flex; flex-wrap: wrap; gap: 10px; }
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(40px, 5.6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 880px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; position: relative; z-index: 2; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover { transform: translateY(-2px); opacity: 0.96; }
+    .cta.primary { background: linear-gradient(135deg, var(--green2), var(--green)); color: white; box-shadow: 0 16px 28px rgba(22,163,74,0.28); }
+    .cta.secondary { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); color: white; }
+
+    .quick-grid, .toc, .grid-3, .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat, .toc a, .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover, .path-card:hover { transform: translateY(-2px); border-color: var(--bright-blue); background: #f8fbff; }
+    .quick-stat span, .path-card span { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; font-weight: 700; }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight { background: linear-gradient(180deg, #eff6ff, #ffffff); border-color: #bfdbfe; }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 { color: var(--blue); font-size: 22px; margin: 22px 0 8px; }
+    p { font-size: 17px; color: #1f2937; margin-bottom: 13px; }
+    a { color: var(--bright-blue); font-weight: 900; }
+    ul { margin: 14px 0 0 22px; }
+    li { margin-bottom: 9px; color: #1f2937; font-size: 16px; }
+
+    .quick-answer, .notice-first, .warning-box, .success-box, .example-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .quick-answer { background: #ecfdf5; border: 1px solid #bbf7d0; color: #065f46; }
+    .notice-first { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e3a8a; }
+    .warning-box { background: var(--orange-bg); border: 1px solid var(--orange-border); color: var(--orange-text); }
+    .success-box { background: var(--soft-green); border: 1px solid #bbf7d0; color: #065f46; }
+    .example-box { background: var(--soft-purple); border: 1px solid #ddd6fe; color: #4c1d95; }
+
+    .mini-card { background: #f8fbff; border: 1px solid var(--border); border-radius: 20px; padding: 20px; }
+    .mini-card h3 { margin-top: 0; color: var(--navy); }
+
+    .formula {
+      background: #0f172a;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(26px, 5vw, 48px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .formula-small { font-size: clamp(20px, 3vw, 30px); margin-top: 10px; color: rgba(255,255,255,0.82); }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th, .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th { background: #eff6ff; color: var(--navy); font-weight: 900; }
+    .compare-table td { background: #ffffff; }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer { margin-top: 12px; background: #ecfdf5; border: 1px solid #bbf7d0; color: #065f46; border-radius: 14px; padding: 11px 13px; font-weight: 900; }
+    .why { margin-top: 10px; background: #ffffff; border: 1px solid #dbe4ee; color: #334155; border-radius: 14px; padding: 11px 13px; }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2, .final-cta p { color: white; }
+    .safety { font-size: 12px; color: #64748b; margin: 24px 0; text-align: center; }
+
+    footer { background: #082f57; color: white; padding: 36px 0; text-align: center; margin-top: 42px; }
+    footer p { color: rgba(255,255,255,0.86); font-size: 14px; }
+    footer a { color: #7dd3fc; text-decoration: none; font-weight: 900; }
+
+    @media (max-width: 850px) {
+      .hero { padding: 42px 24px; border-radius: 26px; }
+      .card { padding: 24px 20px; }
+      .cta { width: 100%; }
+      .question-card strong { padding-right: 0; }
+      .question-card::after { position: static; display: inline-flex; margin-bottom: 10px; }
+      .compare-table, .compare-table tbody, .compare-table tr, .compare-table td, .compare-table th { display: block; width: 100%; }
+    }
+  </style>
 </head>
 
-<body style="font-family: Arial; max-width: 900px; margin: auto; padding: 20px; line-height: 1.7; background:#f8fafc; color:#0f172a;">
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-<h1>What Is Ohm’s Law?</h1>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/ohms-law-quiz.html">Take the Quiz</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
 
-<p>
-Most people misunderstand this.
-</p>
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Foundation</div>
+      <h1>What Is Ohm's Law?</h1>
+      <p>
+        Ohm's Law explains how circuits actually behave. It connects voltage, current, and resistance so troubleshooting stops feeling random and starts making sense.
+      </p>
+      <p>
+        This is one of the highest-value beginner electronics concepts for CBET prep, biomedical equipment troubleshooting, and understanding power supply behavior.
+      </p>
 
-<p>
-Ohm’s Law explains how circuits actually behave. It connects voltage, current, and resistance—and once you understand it, troubleshooting stops feeling random and starts making sense.
-</p>
+      <div class="cta-row">
+        <a class="cta primary" href="/ohms-law-quiz.html">Take the Ohm's Law Quiz</a>
+        <a class="cta secondary" href="/voltage-current-resistance-cbet.html">Review Voltage Current Resistance</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+      </div>
+    </section>
 
-<hr>
+    <div class="quick-grid">
+      <div class="quick-stat">V<span>Voltage push</span></div>
+      <div class="quick-stat">I<span>Current flow</span></div>
+      <div class="quick-stat">R<span>Resistance opposition</span></div>
+    </div>
 
-<h2>🔧 The Formula</h2>
+    <section class="card highlight">
+      <h2>Quick Answer</h2>
 
-<p style="font-size: 24px; font-weight: bold;">
-V = I × R
-</p>
+      <div class="quick-answer">
+        Ohm's Law explains the relationship between voltage, current, and resistance.
+      </div>
 
-<ul>
-  <li><strong>V (Voltage)</strong> → electrical pressure</li>
-  <li><strong>I (Current)</strong> → flow of electrons</li>
-  <li><strong>R (Resistance)</strong> → opposition to flow</li>
-</ul>
+      <div class="formula">
+        V = I × R
+        <div class="formula-small">Voltage = Current × Resistance</div>
+      </div>
 
-<hr>
+      <ul>
+        <li><strong>V</strong> means voltage, or electrical pressure.</li>
+        <li><strong>I</strong> means current, or electrical flow.</li>
+        <li><strong>R</strong> means resistance, or opposition to flow.</li>
+      </ul>
 
-<h2>🧠 What This Actually Means</h2>
+      <div class="notice-first">
+        <strong>What to notice first:</strong>
+        If voltage goes up while resistance stays the same, current goes up. If resistance goes up while voltage stays the same, current goes down.
+      </div>
+    </section>
 
-<p>
-Ohm’s Law shows how these three values affect each other:
-</p>
+    <section class="card">
+      <h2>Jump to an Ohm's Law Topic</h2>
+      <div class="toc">
+        <a href="#formula">The Formula</a>
+        <a href="#meaning">What It Means</a>
+        <a href="#examples">Simple Examples</a>
+        <a href="#medical-equipment">Medical Equipment</a>
+        <a href="#mistakes">Common Mistakes</a>
+        <a href="#questions">CBET Questions</a>
+      </div>
+    </section>
 
-<ul>
-  <li>If voltage increases → current increases</li>
-  <li>If resistance increases → current decreases</li>
-  <li>If resistance decreases → current increases</li>
-</ul>
+    <section id="formula" class="card">
+      <h2>The Formula</h2>
 
-<p>
-This is the foundation of how circuits respond when something changes.
-</p>
+      <p>
+        The main Ohm's Law formula is:
+      </p>
 
-<p>
-If you need a deeper breakdown of each term, review:
-<a href="/voltage-current-resistance-cbet.html">voltage vs current vs resistance</a>.
-</p>
+      <div class="formula">V = I × R</div>
 
-<p>
-To see how this applies in real testing, review:
-<a href="/how-to-use-a-multimeter.html">how to use a multimeter</a>.
-</p>
+      <p>
+        But you can rearrange the formula depending on what you need to find.
+      </p>
 
-<hr>
+      <table class="compare-table">
+        <tr>
+          <th>To Find</th>
+          <th>Formula</th>
+          <th>Meaning</th>
+        </tr>
+        <tr>
+          <td><strong>Voltage</strong></td>
+          <td>V = I × R</td>
+          <td>Voltage equals current multiplied by resistance.</td>
+        </tr>
+        <tr>
+          <td><strong>Current</strong></td>
+          <td>I = V ÷ R</td>
+          <td>Current equals voltage divided by resistance.</td>
+        </tr>
+        <tr>
+          <td><strong>Resistance</strong></td>
+          <td>R = V ÷ I</td>
+          <td>Resistance equals voltage divided by current.</td>
+        </tr>
+      </table>
+    </section>
 
-<h2>🔍 Real-World Example</h2>
+    <section id="meaning" class="card">
+      <h2>What This Actually Means</h2>
 
-<p>
-A device is not working correctly:
-</p>
+      <p>
+        Ohm's Law shows how these three values affect each other:
+      </p>
 
-<ul>
-  <li>Voltage is correct</li>
-  <li>But current is low</li>
-</ul>
+      <ul>
+        <li>If voltage increases and resistance stays the same, current increases.</li>
+        <li>If resistance increases and voltage stays the same, current decreases.</li>
+        <li>If resistance decreases and voltage stays the same, current increases.</li>
+      </ul>
 
-<p>
-This tells you resistance is likely too high somewhere in the circuit.
-</p>
+      <p>
+        This is the foundation of how circuits respond when something changes.
+      </p>
 
-<p>
-Instead of guessing, Ohm’s Law gives you direction.
-</p>
+      <p>
+        If you need a deeper breakdown of each term, review:
+        <a href="/voltage-current-resistance-cbet.html">Voltage vs Current vs Resistance</a>.
+      </p>
 
-<p>
-This is also why component issues matter. A failing part like a capacitor can change resistance and disrupt current flow:
-<a href="/how-to-test-a-capacitor.html">learn how to test a capacitor</a>.
-</p>
+      <p>
+        To see how this applies in real testing, review:
+        <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>.
+      </p>
 
-<hr>
+      <div class="success-box">
+        <strong>Simple pattern:</strong> Voltage pushes, resistance limits, current changes.
+      </div>
+    </section>
 
-<h2>📊 Simple Calculation Example</h2>
+    <section id="examples" class="card">
+      <h2>Simple Calculation Examples</h2>
 
-<p>
-If:
-</p>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Find Current</h3>
+          <p>If voltage is 100V and resistance is 10Ω:</p>
+          <p><strong>I = V ÷ R</strong></p>
+          <p><strong>I = 100 ÷ 10 = 10 amps</strong></p>
+        </div>
 
-<ul>
-  <li>Voltage = 100V</li>
-  <li>Resistance = 10Ω</li>
-</ul>
+        <div class="mini-card">
+          <h3>Find Voltage</h3>
+          <p>If current is 2A and resistance is 6Ω:</p>
+          <p><strong>V = I × R</strong></p>
+          <p><strong>V = 2 × 6 = 12 volts</strong></p>
+        </div>
 
-<p>
-Then:
-</p>
+        <div class="mini-card">
+          <h3>Find Resistance</h3>
+          <p>If voltage is 24V and current is 3A:</p>
+          <p><strong>R = V ÷ I</strong></p>
+          <p><strong>R = 24 ÷ 3 = 8 ohms</strong></p>
+        </div>
+      </div>
 
-<p><strong>Current = 10 Amps</strong></p>
+      <div class="notice-first">
+        <strong>Tip:</strong> The math matters, but the behavior matters more. Always ask what changed first.
+      </div>
+    </section>
 
-<hr>
+    <section id="medical-equipment" class="card">
+      <h2>Why This Matters in Medical Equipment</h2>
 
-<h2>⚠️ Common Mistakes</h2>
+      <p>
+        Ohm's Law helps technicians understand why a device is underperforming, why current is too high, why components overheat,
+        why readings are unstable, and why a circuit may fail under load.
+      </p>
 
-<ul>
-  <li>Thinking voltage alone determines current</li>
-  <li>Forgetting resistance controls flow</li>
-  <li>Memorizing the formula without understanding behavior</li>
-</ul>
+      <div class="example-box">
+        <strong>Real-world example:</strong>
+        <p>
+          A device has correct voltage, but current is lower than expected. That points toward resistance being too high somewhere in the circuit.
+          Instead of guessing, Ohm's Law gives you direction.
+        </p>
+      </div>
 
-<div style="background:#fff7ed; border-left:5px solid #ea580c; padding:16px; border-radius:8px;">
-<strong>Common mistake:</strong> Higher resistance does NOT increase current—it makes current flow harder.
-</div>
+      <ul>
+        <li>Power supplies depend on predictable voltage and current delivery.</li>
+        <li>Fuses may blow if current becomes too high.</li>
+        <li>Connections, components, and circuit paths can create unwanted resistance.</li>
+        <li>Stable device operation depends on stable electrical behavior.</li>
+      </ul>
 
-<hr>
+      <p>
+        This applies to monitors, power supplies, imaging systems, infusion pumps, charging circuits, and more.
+      </p>
+    </section>
 
-<h2>🔧 Why This Matters in Medical Equipment</h2>
+    <section id="mistakes" class="card">
+      <h2>Common Mistakes</h2>
 
-<p>
-Ohm’s Law helps technicians understand:
-</p>
+      <ul>
+        <li>Thinking voltage alone determines current.</li>
+        <li>Forgetting that resistance controls flow.</li>
+        <li>Memorizing the formula without understanding behavior.</li>
+        <li>Assuming higher resistance creates higher current.</li>
+        <li>Skipping units when doing calculations.</li>
+      </ul>
 
-<ul>
-  <li>Why a device is underperforming</li>
-  <li>Why components overheat</li>
-  <li>Why readings are unstable</li>
-</ul>
+      <div class="warning-box">
+        <strong>Common mistake:</strong> Higher resistance does not increase current. It makes current flow harder.
+      </div>
+    </section>
 
-<p>
-This applies to monitors, power supplies, imaging systems, and more.
-</p>
+    <section id="questions" class="card">
+      <h2>CBET-Style Quick Questions</h2>
 
-<hr>
+      <div class="question-card">
+        <strong>1. What formula represents Ohm's Law?</strong>
+        <p>A. V = I × R &nbsp; B. R = I + V &nbsp; C. I = R × W &nbsp; D. V = pressure only</p>
+        <div class="answer">Answer: A. V = I × R</div>
+        <div class="why">Ohm's Law connects voltage, current, and resistance.</div>
+      </div>
 
-<h2>🚀 Test Your Understanding</h2>
+      <div class="question-card">
+        <strong>2. If voltage increases and resistance stays the same, what happens to current?</strong>
+        <p>A. Current increases &nbsp; B. Current decreases &nbsp; C. Current disappears &nbsp; D. Current is unrelated</p>
+        <div class="answer">Answer: A. Current increases</div>
+        <div class="why">More voltage means more electrical push when resistance stays the same.</div>
+      </div>
 
-<p>
-Most people get these wrong — test yourself and see where you stand.
-</p>
+      <div class="question-card">
+        <strong>3. If resistance increases and voltage stays the same, what happens to current?</strong>
+        <p>A. Current increases &nbsp; B. Current decreases &nbsp; C. Current becomes voltage &nbsp; D. Current creates resistance</p>
+        <div class="answer">Answer: B. Current decreases</div>
+        <div class="why">Higher resistance limits current flow.</div>
+      </div>
 
-<div style="text-align:center; margin: 30px 0;">
-  <a href="/ohms-law-quiz.html" 
-     style="background:#2563eb; color:white; padding:16px 26px; border-radius:10px; text-decoration:none; font-weight:700; font-size:16px;">
-     Take the 2-Minute Ohm’s Law Quiz
-  </a>
-</div>
+      <div class="question-card">
+        <strong>4. A circuit has 12V and 6Ω. What is the current?</strong>
+        <p>A. 2A &nbsp; B. 6A &nbsp; C. 18A &nbsp; D. 72A</p>
+        <div class="answer">Answer: A. 2A</div>
+        <div class="why">Use I = V ÷ R. 12 ÷ 6 = 2 amps.</div>
+      </div>
 
-<p style="text-align:center; color:#475569;">
-Quick questions. Instant feedback.
-</p>
+      <div class="question-card">
+        <strong>5. What is the best way to remember the relationship?</strong>
+        <p>A. Voltage pushes, resistance limits, current changes &nbsp; B. Resistance pushes, voltage flows, current blocks &nbsp; C. Current has no relationship to resistance &nbsp; D. Voltage is unrelated</p>
+        <div class="answer">Answer: A. Voltage pushes, resistance limits, current changes</div>
+        <div class="why">That phrase captures the behavior behind many beginner electronics questions.</div>
+      </div>
 
-<hr>
+      <div class="cta-row">
+        <a class="cta primary" href="/ohms-law-quiz.html">Take the Full Ohm's Law Quiz</a>
+      </div>
+    </section>
 
-<h2>🔗 Keep Learning</h2>
+    <section class="card">
+      <h2>Best Study Path After This Page</h2>
+      <p>
+        Ohm's Law sits right after voltage, current, and resistance. After this, move into AC/DC, components, and power supplies.
+      </p>
 
-<ul>
-  <li><a href="/voltage-current-resistance-cbet.html">Voltage vs Current vs Resistance</a></li>
-  <li><a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a></li>
-  <li><a href="/multimeter-quiz.html">Multimeter Quiz</a></li>
-  <li><a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a></li>
-  <li><a href="/how-to-test-a-capacitor.html">How to Test a Capacitor</a></li>
-  <li><a href="/capacitor-quiz.html">Capacitor Quiz</a></li>
-  <li><a href="/browse-all-practice.html">Browse All Practice Tools</a></li>
-</ul>
+      <div class="path-grid">
+        <a class="path-card" href="/voltage-current-resistance-cbet.html">
+          1. Voltage Current Resistance
+          <span>Review the three values before doing more calculations.</span>
+        </a>
+        <a class="path-card" href="/ohms-law-quiz.html">
+          2. Ohm's Law Quiz
+          <span>Test whether you understand the relationship.</span>
+        </a>
+        <a class="path-card" href="/ac-vs-dc-current.html">
+          3. AC vs DC Current
+          <span>Understand wall power and internal circuit power.</span>
+        </a>
+        <a class="path-card" href="/power-supply-basics-cbet.html">
+          4. Power Supply Basics
+          <span>Follow the power path from AC input to DC output.</span>
+        </a>
+      </div>
+    </section>
 
-<hr>
+    <section class="card">
+      <h2>Frequently Asked Questions</h2>
 
-<p style="font-size: 12px; color: #64748b;">
-For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
-</p>
+      <h3>What is Ohm's Law?</h3>
+      <p>
+        Ohm's Law explains the relationship between voltage, current, and resistance. The main formula is V = I × R.
+      </p>
 
+      <h3>What does V = I × R mean?</h3>
+      <p>
+        V means voltage, I means current, and R means resistance. Voltage equals current multiplied by resistance.
+      </p>
+
+      <h3>What happens to current if resistance increases?</h3>
+      <p>
+        If voltage stays the same and resistance increases, current decreases.
+      </p>
+
+      <h3>Why does Ohm's Law matter for CBET prep?</h3>
+      <p>
+        It helps explain circuit behavior, troubleshooting clues, power supply behavior, and why medical equipment can fail or act unstable.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Related Electronics Guides</h2>
+      <p>
+        Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+      </p>
+
+      <div class="related-links">
+        <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+        <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+        <a href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+        <a href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
+        <a href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
+        <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+        <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Ready to test yourself?</h2>
+      <p>
+        Take the Ohm's Law quiz first, then move into CBET electronics practice questions.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/ohms-law-quiz.html">Take the Ohm's Law Quiz</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice</a>
+      </div>
+    </section>
+
+    <p class="safety">
+      For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
+    </p>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
