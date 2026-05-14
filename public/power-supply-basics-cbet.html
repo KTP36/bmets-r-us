@@ -2,262 +2,1032 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Power Supply Basics for CBET | How Medical Equipment Uses Power</title>
+  <title>Power Supply Basics for CBET | AC to DC Medical Equipment Guide</title>
 
-  <meta name="description" content="Learn power supply basics for the CBET exam. Understand AC to DC conversion, rectifiers, capacitors, and how power supplies work in medical equipment." />
-
-  <meta name="keywords" content="power supply basics CBET, AC to DC conversion, rectifier capacitor CBET, biomedical equipment power supply, CBET electronics study guide, how power supplies work medical devices" />
+  <meta name="description" content="Learn power supply basics for CBET exam prep. Understand AC input, transformers, rectifiers, capacitors, filtering, voltage regulation, DC output, troubleshooting clues, and how medical equipment uses power supplies." />
+  <meta name="keywords" content="power supply basics CBET, AC to DC conversion, rectifier capacitor CBET, biomedical equipment power supply, CBET electronics study guide, medical device power supply, voltage regulation, capacitor smoothing, rectifier troubleshooting" />
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/power-supply-basics-cbet.html" />
 
+  <meta property="og:title" content="Power Supply Basics for CBET | Medical Equipment Electronics Guide" />
+  <meta property="og:description" content="Learn how power supplies convert AC wall power into stable DC for medical equipment. Review rectifiers, capacitors, filters, regulators, and CBET-style troubleshooting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/power-supply-basics-cbet.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Power Supply Basics for CBET",
+    "description": "A CBET electronics guide explaining medical equipment power supplies, AC to DC conversion, rectifiers, capacitors, filtering, voltage regulation, troubleshooting, and DC output.",
+    "url": "https://medskillbuilder.com/power-supply-basics-cbet.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does a power supply do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A power supply converts incoming electrical power into a usable and stable form for electronic circuits. In many medical devices, it converts AC wall power into DC voltage used by internal circuits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What component converts AC to DC in a power supply?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A rectifier converts AC to DC. Rectifiers commonly use diodes to control current direction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a capacitor do in a power supply?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A capacitor helps smooth voltage ripple after rectification and can help create a steadier DC output."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are power supplies important in medical equipment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Medical equipment depends on stable power for circuit boards, displays, sensors, processors, charging systems, and safe operation. Power supply problems can cause no power, unstable operation, or intermittent failures."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
-    body { font-family: Arial; margin: 0; background: #f8fafc; color: #0f172a; line-height: 1.7; }
-    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-purple: #f5f3ff;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
 
-    h1 { font-size: 2.2rem; margin-bottom: 10px; border-bottom: 4px solid #153f73; padding-bottom: 10px; }
-    h2 { margin-top: 32px; color: #153f73; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    .section {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
       background: #ffffff;
       border: 1px solid #dbe4ee;
-      border-radius: 14px;
-      padding: 22px;
-      margin-top: 28px;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
     }
 
-    .highlight {
-      background: #eff6ff;
-      border-left: 4px solid #2563eb;
-      padding: 16px;
-      border-radius: 8px;
-      margin-top: 20px;
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
     }
 
-    .example {
-      background: #ecfdf5;
-      border-left: 4px solid #16a34a;
-      padding: 16px;
-      border-radius: 8px;
-      margin-top: 20px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
     }
 
-    .warning {
-      background: #fff7ed;
-      border-left: 4px solid #ea580c;
-      padding: 16px;
-      border-radius: 8px;
-      margin-top: 20px;
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+    h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
-    th, td {
-      border: 1px solid #dbe4ee;
-      padding: 12px;
-      text-align: left;
+    .hero p {
+      max-width: 850px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
     }
 
-    th {
-      background: #153f73;
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
       color: white;
     }
 
-    a {
-      color: #2563eb;
-      font-weight: bold;
+    .notice {
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .quick-grid,
+    .toc,
+    .grid-2,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .toc a,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
       text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    main {
+      padding-bottom: 36px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 22px;
+      margin: 22px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
+    ul {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .quick-answer,
+    .notice-first,
+    .troubleshooting-box,
+    .concept-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .quick-answer {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .notice-first {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .troubleshooting-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+    }
+
+    .concept-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+    }
+
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .diagram {
+      background: #0f172a;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
+    }
+
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-    <h1>Power Supply Basics for CBET</h1>
-
-    <p>
-      Power supplies are one of the most important components in biomedical equipment. Almost every device depends on converting incoming electrical power into a stable form that circuits can use.
-    </p>
-
-    <p>
-      Understanding how power supplies work helps you answer CBET questions and troubleshoot real equipment issues more effectively.
-    </p>
-
-    <div class="highlight">
-      If you need a foundation first, review 
-      <a href="/voltage-current-resistance-cbet.html">voltage, current, and resistance</a> before diving deeper.
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/basic-electronics-explained-for-beginners.html">Beginner Electronics</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
     </div>
 
-    <div class="section">
-      <h2>What Does a Power Supply Do?</h2>
-
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Guide</div>
+      <h1>Power Supply Basics for CBET</h1>
       <p>
-        A power supply takes incoming electrical energy and converts it into a usable and stable form for electronic circuits.
+        A power supply converts incoming electrical energy into stable, usable power for electronic circuits.
+        This guide explains AC input, rectifiers, capacitors, filtering, voltage regulation, DC output, and why power supplies matter in medical equipment.
       </p>
 
-      <p>
-        Most medical equipment receives AC power from the wall but requires DC power internally. The power supply is responsible for making that conversion.
-      </p>
+      <div class="cta-row">
+        <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start Electronics Practice →</a>
+        <a class="cta secondary" href="/what-does-a-rectifier-do.html">Rectifier Guide</a>
+        <a class="cta secondary" href="/what-does-a-capacitor-do.html">Capacitor Guide</a>
+      </div>
+    </section>
+
+    <div class="quick-grid">
+      <div class="quick-stat">AC Input<span>Wall power enters</span></div>
+      <div class="quick-stat">AC → DC<span>Rectifier stage</span></div>
+      <div class="quick-stat">Stable DC<span>Regulated output</span></div>
     </div>
 
-    <div class="section">
-      <h2>Basic Power Supply Process</h2>
-
-      <p>
-        A typical power supply follows a sequence of steps:
-      </p>
-
-      <ul>
-        <li>AC input from the wall</li>
-        <li>Rectification (AC to DC conversion)</li>
-        <li>Filtering (smoothing the signal)</li>
-        <li>Voltage regulation</li>
-      </ul>
-
-      <table>
-        <tr>
-          <th>Step</th>
-          <th>Function</th>
-        </tr>
-        <tr>
-          <td>AC Input</td>
-          <td>Power enters the device from an outlet</td>
-        </tr>
-        <tr>
-          <td>Rectifier</td>
-          <td>Converts AC into DC</td>
-        </tr>
-        <tr>
-          <td>Filter</td>
-          <td>Smooths out voltage fluctuations</td>
-        </tr>
-        <tr>
-          <td>Regulator</td>
-          <td>Maintains a stable output voltage</td>
-        </tr>
-      </table>
+    <div class="notice">
+      MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, or any certification provider.
     </div>
+  </div>
 
-    <div class="section">
-      <h2>Rectification (AC to DC Conversion)</h2>
+  <main>
+    <div class="container">
 
-      <p>
-        Rectifiers use diodes to convert alternating current into direct current.
-      </p>
+      <section class="card highlight">
+        <h2>Quick Answer</h2>
+        <div class="quick-answer">
+          A power supply converts incoming electrical power into stable power that electronic circuits can use.
+        </div>
 
-      <p>
-        This is a critical step because most circuits require DC power to function correctly.
-      </p>
-
-      <p>
-        Learn more about this process here:
-        <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Filtering and Smoothing</h2>
-
-      <p>
-        After rectification, the DC signal is not perfectly smooth. It contains ripple, which can affect circuit performance.
-      </p>
-
-      <p>
-        Capacitors are used to smooth out these fluctuations and create a more stable signal.
-      </p>
-
-      <p>
-        Learn more:
-        <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Voltage Regulation</h2>
-
-      <p>
-        Voltage regulators ensure that the output voltage remains constant, even if input voltage or load conditions change.
-      </p>
-
-      <p>
-        Stable voltage is critical for sensitive medical equipment.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Why This Matters in Real Equipment</h2>
-
-      <div class="example">
         <p>
-          If a power supply fails, a device may:
+          Most medical equipment receives AC power from a wall outlet but uses DC power internally.
+          The power supply is responsible for converting, smoothing, regulating, and delivering the correct voltage to the device.
+        </p>
+
+        <div class="diagram">
+          <span>AC input</span> → <span>Rectifier</span> → <span>Capacitor filter</span> → <span>Regulator</span> → <span>DC output</span>
+        </div>
+
+        <div class="notice-first">
+          <strong>What to notice first:</strong>
+          If a device plugs into the wall but internal boards need DC, the power supply is the bridge between those two worlds.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Jump to a Power Supply Topic</h2>
+        <div class="toc">
+          <a href="#what-it-does">What It Does</a>
+          <a href="#power-path">Power Supply Path</a>
+          <a href="#rectification">Rectification</a>
+          <a href="#filtering">Filtering</a>
+          <a href="#regulation">Voltage Regulation</a>
+          <a href="#questions">CBET Questions</a>
+        </div>
+      </section>
+
+      <section id="what-it-does" class="card">
+        <h2>What Does a Power Supply Do?</h2>
+
+        <p>
+          A power supply takes incoming electrical energy and converts it into a usable and stable form for electronic circuits.
+          In many medical devices, this means taking AC power from the wall and creating lower-voltage DC power for internal boards, sensors, displays, processors, charging systems, and control circuits.
         </p>
 
         <ul>
-          <li>Not power on</li>
-          <li>Operate inconsistently</li>
-          <li>Produce inaccurate readings</li>
+          <li>Receives incoming power</li>
+          <li>Converts AC into DC</li>
+          <li>Smooths ripple and electrical fluctuation</li>
+          <li>Regulates voltage to a stable level</li>
+          <li>Supplies the correct voltage to internal circuits</li>
+        </ul>
+
+        <div class="concept-box">
+          <strong>CBET memory hook:</strong> Power supplies convert, smooth, regulate, and deliver power.
+        </div>
+      </section>
+
+      <section id="power-path" class="card">
+        <h2>Basic Power Supply Process</h2>
+
+        <p>
+          A typical power supply follows a sequence of steps. Understanding this sequence helps you answer CBET questions and think through real equipment failures.
+        </p>
+
+        <table class="compare-table">
+          <tr>
+            <th>Step</th>
+            <th>Function</th>
+            <th>CBET Clue</th>
+          </tr>
+          <tr>
+            <td><strong>AC Input</strong></td>
+            <td>Power enters the device from a wall outlet.</td>
+            <td>Wall power usually means AC.</td>
+          </tr>
+          <tr>
+            <td><strong>Rectifier</strong></td>
+            <td>Converts AC into DC.</td>
+            <td>AC-to-DC conversion.</td>
+          </tr>
+          <tr>
+            <td><strong>Filter Capacitor</strong></td>
+            <td>Smooths ripple after rectification.</td>
+            <td>Ripple smoothing and energy storage.</td>
+          </tr>
+          <tr>
+            <td><strong>Voltage Regulator</strong></td>
+            <td>Maintains stable output voltage.</td>
+            <td>Stable DC output.</td>
+          </tr>
+          <tr>
+            <td><strong>DC Output</strong></td>
+            <td>Supplies usable power to internal circuits.</td>
+            <td>Boards, sensors, displays, processors.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="rectification" class="card">
+        <h2>Rectification: AC to DC Conversion</h2>
+
+        <p>
+          Rectifiers use diodes to convert alternating current into direct current.
+          This is a critical step because most electronic circuits require DC power to function correctly.
+        </p>
+
+        <div class="diagram">
+          <span>AC input</span> → <span>Diodes</span> → <span>Rectified DC</span>
+        </div>
+
+        <p>
+          Learn more about this process here:
+          <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        </p>
+
+        <div class="notice-first">
+          <strong>CBET clue:</strong> If the question asks what converts AC to DC, the answer is usually rectifier.
+        </div>
+      </section>
+
+      <section id="filtering" class="card">
+        <h2>Filtering and Smoothing</h2>
+
+        <p>
+          After rectification, the DC signal is not perfectly smooth. It can contain ripple, which can affect circuit performance.
+          Capacitors are used to smooth out these fluctuations and create a more stable signal.
+        </p>
+
+        <div class="diagram">
+          <span>Pulsing DC</span> → <span>Capacitor smoothing</span> → <span>Steadier DC</span>
+        </div>
+
+        <p>
+          Learn more:
+          <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        </p>
+
+        <div class="notice-first">
+          <strong>CBET clue:</strong> Rectifier converts. Capacitor smooths. Regulator stabilizes.
+        </div>
+      </section>
+
+      <section id="regulation" class="card">
+        <h2>Voltage Regulation</h2>
+
+        <p>
+          Voltage regulators help keep the output voltage stable even if input voltage or load conditions change.
+          Stable voltage is critical for sensitive medical equipment.
+        </p>
+
+        <ul>
+          <li>Helps maintain a consistent DC output</li>
+          <li>Protects internal circuits from unstable voltage</li>
+          <li>Supports predictable equipment operation</li>
+          <li>Helps reduce problems caused by power fluctuation</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Why This Matters in Real Equipment</h2>
+
+        <p>
+          Power supply problems can look different depending on where the failure occurs. A device may fail to turn on, power cycle,
+          operate intermittently, show unstable readings, fail to charge, or produce abnormal output.
+        </p>
+
+        <div class="troubleshooting-box">
+          <strong>Common clue:</strong>
+          If AC input is present but DC output is missing or unstable, think through the power supply stages.
+        </div>
+
+        <ul>
+          <li><strong>No power:</strong> check input power, fuse, switch, power supply, and output rails.</li>
+          <li><strong>Unstable operation:</strong> consider ripple, filtering, weak capacitors, or regulation issues.</li>
+          <li><strong>Charging issues:</strong> consider supply output, charging circuit, battery, and connections.</li>
+          <li><strong>Blown fuses:</strong> consider shorts, overloads, failed components, or downstream faults.</li>
         </ul>
 
         <p>
-          Understanding each stage helps identify where the failure may be occurring.
+          For CBET prep, the goal is not to diagnose every board-level failure. The goal is to understand the power path well enough to recognize the concept being tested.
         </p>
-      </div>
+      </section>
+
+      <section class="card">
+        <h2>Power Supply Stage Comparison</h2>
+
+        <table class="compare-table">
+          <tr>
+            <th>Part or Stage</th>
+            <th>Main Job</th>
+            <th>Memory Hook</th>
+          </tr>
+          <tr>
+            <td><strong>Transformer or Input Stage</strong></td>
+            <td>Changes or prepares incoming AC power depending on design.</td>
+            <td>Input preparation.</td>
+          </tr>
+          <tr>
+            <td><strong>Diode</strong></td>
+            <td>Allows current to flow mainly in one direction.</td>
+            <td>One-way current path.</td>
+          </tr>
+          <tr>
+            <td><strong>Rectifier</strong></td>
+            <td>Converts AC into DC.</td>
+            <td>AC-to-DC conversion.</td>
+          </tr>
+          <tr>
+            <td><strong>Capacitor</strong></td>
+            <td>Stores charge and smooths ripple.</td>
+            <td>Smoothing and energy storage.</td>
+          </tr>
+          <tr>
+            <td><strong>Voltage Regulator</strong></td>
+            <td>Maintains a stable output voltage.</td>
+            <td>Stable output.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="questions" class="card">
+        <h2>Common CBET-Style Questions</h2>
+
+        <div class="question-card">
+          <strong>1. What is the main purpose of a power supply?</strong>
+          <p>A. Convert and deliver usable power to circuits &nbsp; B. Measure oxygen saturation &nbsp; C. Replace patient electrodes &nbsp; D. Store patient records</p>
+          <div class="answer">Answer: A. Convert and deliver usable power to circuits</div>
+          <div class="why">A power supply converts incoming power into a usable form for internal electronics.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>2. What component converts AC to DC?</strong>
+          <p>A. Rectifier &nbsp; B. Display cover &nbsp; C. Bed rail &nbsp; D. Probe cable</p>
+          <div class="answer">Answer: A. Rectifier</div>
+          <div class="why">A rectifier performs AC-to-DC conversion.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>3. What component often smooths ripple after rectification?</strong>
+          <p>A. Capacitor &nbsp; B. Speaker &nbsp; C. Fuse label &nbsp; D. Keyboard</p>
+          <div class="answer">Answer: A. Capacitor</div>
+          <div class="why">Capacitors can smooth the pulsing DC output after rectification.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>4. What does a voltage regulator help maintain?</strong>
+          <p>A. Stable output voltage &nbsp; B. Patient temperature only &nbsp; C. Probe shape &nbsp; D. Room lighting</p>
+          <div class="answer">Answer: A. Stable output voltage</div>
+          <div class="why">Voltage regulation helps maintain a consistent output voltage.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>5. A medical device receives AC input but the internal boards need DC. What system handles this conversion?</strong>
+          <p>A. Power supply &nbsp; B. Caster wheel &nbsp; C. Alarm silence button &nbsp; D. Carrying handle</p>
+          <div class="answer">Answer: A. Power supply</div>
+          <div class="why">The power supply converts incoming power into usable internal power for the device.</div>
+        </div>
+
+        <div class="cta-row">
+          <a href="/cbet-electronics-practice-questions.html" class="cta primary">Practice More CBET Electronics →</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Key Takeaways</h2>
+
+        <ul>
+          <li>Power supplies convert incoming power into usable power for circuits.</li>
+          <li>Medical devices often receive AC from the wall but use DC internally.</li>
+          <li>Rectifiers convert AC into DC.</li>
+          <li>Capacitors help smooth ripple after rectification.</li>
+          <li>Regulators help maintain stable output voltage.</li>
+          <li>Power supply problems can cause no power, intermittent operation, unstable output, or charging problems.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Best Study Path for This Topic</h2>
+        <p>
+          Power supplies connect the entire beginner electronics cluster together. Study the path in order.
+        </p>
+
+        <div class="path-grid">
+          <a class="path-card" href="/ac-vs-dc-current.html">
+            1. AC vs DC Current
+            <span>Understand wall power compared with internal circuit power.</span>
+          </a>
+          <a class="path-card" href="/what-is-a-diode.html">
+            2. What Is a Diode?
+            <span>Learn the one-way current behavior used in rectifiers.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-rectifier-do.html">
+            3. What Does a Rectifier Do?
+            <span>Learn how AC becomes DC.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-capacitor-do.html">
+            4. What Does a Capacitor Do?
+            <span>Learn how ripple is smoothed after rectification.</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What does a power supply do?</h3>
+        <p>
+          A power supply converts incoming electrical power into stable power that internal circuits can use.
+        </p>
+
+        <h3>Why does medical equipment convert AC to DC?</h3>
+        <p>
+          Medical equipment often plugs into AC wall power, but internal circuit boards, sensors, processors, displays, and control circuits usually require DC voltage.
+        </p>
+
+        <h3>What does the rectifier do in a power supply?</h3>
+        <p>
+          A rectifier converts AC into DC.
+        </p>
+
+        <h3>What does the capacitor do in a power supply?</h3>
+        <p>
+          A capacitor can help smooth voltage ripple after rectification.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Related Electronics Guides</h2>
+        <p>
+          Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+        </p>
+
+        <div class="related-links">
+          <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+          <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+          <a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics</a>
+          <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+          <a href="/what-is-a-diode.html">What Is a Diode?</a>
+          <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+          <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+          <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+          <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+          <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <h2>Ready to keep practicing?</h2>
+        <p>
+          Use the CBET electronics practice tools to build recognition, confidence, and troubleshooting judgment.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice →</a>
+          <a class="cta secondary" href="/free-cbet-practice-test.html">Open Free CBET Practice Test</a>
+        </div>
+      </section>
+
     </div>
+  </main>
 
-    <div class="section">
-      <h2>Common CBET Concepts</h2>
-
-      <ul>
-        <li>AC vs DC conversion</li>
-        <li>Role of diodes in rectifiers</li>
-        <li>Capacitor smoothing</li>
-        <li>Voltage stability</li>
-      </ul>
-
-      <div class="warning">
-        Many questions test whether you understand the process, not just the definitions.
-      </div>
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
     </div>
-
-    <div class="section">
-      <h2>Quick Knowledge Check</h2>
-
-      <p>
-        What component is primarily responsible for converting AC to DC in a power supply?
-      </p>
-
-      <p>
-        The answer is a rectifier.
-      </p>
-
-      <p>
-        Practice more:
-        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Continue Learning</h2>
-
-      <p>
-        Build your understanding with:
-      </p>
-
-      <p>
-        <a href="/basic-electronics-cbet.html">Basic Electronics</a><br>
-        <a href="/voltage-current-resistance-cbet.html">Voltage, Current, Resistance</a><br>
-        <a href="/what-is-a-diode.html">What is a Diode</a><br>
-        <a href="/what-does-a-capacitor-do.html">Capacitors</a><br>
-        <a href="/what-does-a-rectifier-do.html">Rectifiers</a>
-      </p>
-    </div>
-
-  </div>
+  </footer>
 </body>
 </html>
