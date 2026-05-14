@@ -1121,6 +1121,12 @@ function buildTeasPractice(count = TEAS_PRACTICE_COUNT) {
   return shuffleQuestionSet(teasQuestions).slice(0, count);
 }
 
+const RN_PRACTICE_COUNT = 25;
+
+function buildRnPractice(questionSet, count = RN_PRACTICE_COUNT) {
+  return shuffleQuestionSet(questionSet).slice(0, count);
+}
+
 function formatDuration(totalSeconds) {
   const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
   const minutes = Math.floor(safeSeconds / 60);
@@ -7011,7 +7017,7 @@ export default function App() {
   };
   // --- RN PRACTICE STATE ---
   const [shuffledRnQuestions, setShuffledRnQuestions] = useState(() =>
-    shuffleQuestionSet(rnQuestions)
+    buildRnPractice(rnQuestions)
   );
   const [rnIndex, setRnIndex] = useState(0);
   const [rnScore, setRnScore] = useState(0);
@@ -7809,7 +7815,7 @@ export default function App() {
     localStorage.setItem("rnProgress", JSON.stringify(progress));
   };
   const resetRnExam = () => {
-    const reshuffled = shuffleQuestionSet(rnQuestions);
+    const reshuffled = buildRnPractice(rnQuestions);
     localStorage.removeItem("rnProgress");
     setShuffledRnQuestions(reshuffled);
     setRnIndex(0);
@@ -7819,14 +7825,7 @@ export default function App() {
     setShowRnMissedReview(false);
   };
   const restartRnExam = () => {
-    const reshuffled = shuffleQuestionSet(rnQuestions);
-    localStorage.removeItem("rnProgress");
-    setShuffledRnQuestions(reshuffled);
-    setRnIndex(0);
-    setRnScore(0);
-    setRnAnswers({});
-    setRnShowResult(false);
-    setShowRnMissedReview(false);
+    resetRnExam();
   };
   const saveTeasProgress = () => {
     const progress = {
@@ -7854,13 +7853,25 @@ export default function App() {
   };
   useEffect(() => {
     const savedRn = JSON.parse(localStorage.getItem("rnProgress"));
+
     if (savedRn) {
-      setShuffledRnQuestions(savedRn.shuffledRnQuestions || shuffleQuestionSet(rnQuestions));
-      setRnIndex(savedRn.rnIndex || 0);
-      setRnScore(savedRn.rnScore || 0);
-      setRnAnswers(savedRn.rnAnswers || {});
-      setRnShowResult(savedRn.rnShowResult || false);
-      setShowRnMissedReview(savedRn.showRnMissedReview || false);
+      const savedQuestionSet = Array.isArray(savedRn.shuffledRnQuestions)
+        ? savedRn.shuffledRnQuestions
+        : [];
+
+      const shouldUseSavedSet =
+        savedQuestionSet.length > 0 && savedQuestionSet.length <= RN_PRACTICE_COUNT;
+
+      setShuffledRnQuestions(shouldUseSavedSet ? savedQuestionSet : buildRnPractice(rnQuestions));
+      setRnIndex(shouldUseSavedSet ? savedRn.rnIndex || 0 : 0);
+      setRnScore(shouldUseSavedSet ? savedRn.rnScore || 0 : 0);
+      setRnAnswers(shouldUseSavedSet ? savedRn.rnAnswers || {} : {});
+      setRnShowResult(shouldUseSavedSet ? savedRn.rnShowResult || false : false);
+      setShowRnMissedReview(shouldUseSavedSet ? savedRn.showRnMissedReview || false : false);
+
+      if (!shouldUseSavedSet) {
+        localStorage.removeItem("rnProgress");
+      }
     }
   }, []);
   const navButtonStyle = (isActive, isHovered) => ({
@@ -12410,7 +12421,12 @@ return (
                       onClick={() => {
                         if (rnAnswers[rnIndex] === undefined) return;
                         if (rnIndex + 1 === shuffledRnQuestions.length) {
-                          trackExamCompletion("RN Practice", rnScore, shuffledRnQuestions.length);
+                          const finalRnScore =
+                            rnScore +
+                            (rnAnswers[rnIndex] === shuffledRnQuestions[rnIndex].answer ? 1 : 0);
+
+                          trackExamCompletion("RN Practice", finalRnScore, shuffledRnQuestions.length);
+                          setRnScore(finalRnScore);
                           setRnShowResult(true);
                         } else {
                           setRnIndex((prev) => prev + 1);
@@ -12439,11 +12455,97 @@ return (
                 </div>
               </>
             ) : (
-              <div style={{ textAlign: "center" }}>
-                <h2 style={{ color: "#12355b" }}>RN Practice Complete</h2>
-                <p style={{ fontSize: 20, color: "#1e293b" }}>
-                  Your score: {rnScore} / {shuffledRnQuestions.length}
+              <div
+                style={{
+                  textAlign: "center",
+                  maxWidth: 820,
+                  margin: "0 auto",
+                  background: "rgba(255,255,255,0.96)",
+                  borderRadius: 24,
+                  padding: 28,
+                  border: "1px solid #dbeafe",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.08)"
+                }}
+              >
+                <div
+                  style={{
+                    display: "inline-flex",
+                    padding: "8px 14px",
+                    borderRadius: 999,
+                    background: "#ecfeff",
+                    color: "#0f766e",
+                    fontWeight: 900,
+                    marginBottom: 14
+                  }}
+                >
+                  Nursing Practice Complete
+                </div>
+
+                <h2 style={{ color: "#12355b", marginTop: 0, marginBottom: 8 }}>
+                  RN Practice Complete
+                </h2>
+
+                <p style={{ color: "#475569", marginTop: 0, marginBottom: 20 }}>
+                  Great job. Review your score, study missed questions, or keep practicing with another healthcare study tool.
                 </p>
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+                    gap: 12,
+                    marginBottom: 24
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: 16,
+                      borderRadius: 18,
+                      background: "#eff6ff",
+                      border: "1px solid #bfdbfe",
+                      color: "#12355b",
+                      fontWeight: 900
+                    }}
+                  >
+                    <div style={{ fontSize: 28 }}>
+                      {rnScore} / {shuffledRnQuestions.length}
+                    </div>
+                    <div style={{ fontSize: 13, color: "#475569" }}>Score</div>
+                  </div>
+
+                  <div
+                    style={{
+                      padding: 16,
+                      borderRadius: 18,
+                      background: "#ecfdf5",
+                      border: "1px solid #bbf7d0",
+                      color: "#0f766e",
+                      fontWeight: 900
+                    }}
+                  >
+                    <div style={{ fontSize: 28 }}>
+                      {shuffledRnQuestions.length > 0
+                        ? Math.round((rnScore / shuffledRnQuestions.length) * 100)
+                        : 0}%
+                    </div>
+                    <div style={{ fontSize: 13, color: "#475569" }}>Accuracy</div>
+                  </div>
+
+                  <div
+                    style={{
+                      padding: 16,
+                      borderRadius: 18,
+                      background: "#fff7ed",
+                      border: "1px solid #fed7aa",
+                      color: "#9a3412",
+                      fontWeight: 900
+                    }}
+                  >
+                    <div style={{ fontSize: 28 }}>{rnMissedQuestions.length}</div>
+                    <div style={{ fontSize: 13, color: "#475569" }}>Missed</div>
+                  </div>
+                </div>
+
                 <div
                   style={{
                     display: "flex",
@@ -12461,12 +12563,13 @@ return (
                       border: "none",
                       background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: "pointer"
                     }}
                   >
-                    Study Misses (Optional)
+                    Study Misses
                   </button>
+
                   <button
                     onClick={() =>
                       startRetakeMissedQuestions({
@@ -12487,13 +12590,14 @@ return (
                       border: "none",
                       background: "linear-gradient(135deg, #2563eb, #3b82f6)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: rnMissedQuestions.length === 0 ? "not-allowed" : "pointer",
                       opacity: rnMissedQuestions.length === 0 ? 0.55 : 1
                     }}
                   >
                     Retake Missed Only
                   </button>
+
                   <button
                     onClick={() =>
                       shareQuizResult(
@@ -12508,33 +12612,97 @@ return (
                       border: "none",
                       background: "linear-gradient(135deg, #0f766e, #14b8a6)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: "pointer"
                     }}
                   >
-                    Share Quiz
+                    Share Result
                   </button>
+
                   <button
-                    onClick={() => {
-                      setShuffledRnQuestions(shuffleQuestionSet(rnQuestions));
-                      setRnIndex(0);
-                      setRnScore(0);
-                      setRnAnswers({});
-                      setRnShowResult(false);
-                      setShowRnMissedReview(false);
-                    }}
+                    onClick={restartRnExam}
                     style={{
                       padding: "12px 24px",
                       borderRadius: 999,
                       border: "none",
                       background: "linear-gradient(135deg, #dc2626, #ef4444)",
                       color: "white",
-                      fontWeight: 700,
+                      fontWeight: 900,
                       cursor: "pointer"
                     }}
                   >
-                    Restart Practice
+                    Restart RN Practice
                   </button>
+
+                  <button
+                    onClick={() => setActiveTab("TEAS")}
+                    style={{
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      border: "none",
+                      background: "linear-gradient(135deg, #6d28d9, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 900,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 14px rgba(109,40,217,0.18)"
+                    }}
+                  >
+                    Try TEAS Practice
+                  </button>
+
+                  <a
+                    href="/?tab=LabValues"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      background: "linear-gradient(135deg, #0f766e, #14b8a6)",
+                      color: "white",
+                      fontWeight: 900,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 14px rgba(15,118,110,0.18)"
+                    }}
+                  >
+                    Try Lab Values
+                  </a>
+
+                  <a
+                    href="/?tab=Terminology"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      background: "linear-gradient(135deg, #7c3aed, #8b5cf6)",
+                      color: "white",
+                      fontWeight: 900,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 14px rgba(124,58,237,0.18)"
+                    }}
+                  >
+                    Medical Terminology
+                  </a>
+
+                  <a
+                    href="/browse-all-practice.html"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "12px 24px",
+                      borderRadius: 999,
+                      background: "linear-gradient(135deg, #12355b, #1d6fa5)",
+                      color: "white",
+                      fontWeight: 900,
+                      textDecoration: "none",
+                      boxShadow: "0 4px 14px rgba(18,53,91,0.18)"
+                    }}
+                  >
+                    Browse All Tools
+                  </a>
                 </div>
               </div>
             )}
