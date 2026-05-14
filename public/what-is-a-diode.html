@@ -1,53 +1,1037 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>What Is a Diode? | CBET Electronics Guide</title>
-  <meta name="description" content="Learn what a diode does, how it controls current flow, and why it matters for CBET exam prep.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>What Is a Diode? | CBET Electronics and Medical Equipment Guide</title>
+
+  <meta name="description" content="Learn what a diode does, how it allows current to flow in one direction, what forward bias and reverse bias mean, and why diodes matter for CBET electronics, rectifiers, power supplies, protection circuits, and medical equipment." />
+  <meta name="keywords" content="what is a diode, diode CBET, diode electronics guide, forward bias reverse bias, diode medical equipment, rectifier diode, power supply diode, biomedical electronics, CBET electronics practice" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://medskillbuilder.com/what-is-a-diode.html" />
+
+  <meta property="og:title" content="What Is a Diode? | CBET Electronics Guide" />
+  <meta property="og:description" content="Learn how diodes control current direction, support rectifiers, protect circuits, and show up in CBET electronics questions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/what-is-a-diode.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "What Is a Diode?",
+    "description": "A CBET electronics guide explaining diodes, one-way current flow, forward bias, reverse bias, rectifiers, power supplies, protection circuits, and medical equipment troubleshooting concepts.",
+    "url": "https://medskillbuilder.com/what-is-a-diode.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a diode?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A diode is an electronic component that allows current to flow mainly in one direction while blocking current in the opposite direction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are diodes important in power supplies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Diodes are important in power supplies because they are used in rectifiers to help convert AC power into DC power."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is forward bias?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Forward bias means the diode is connected in a direction that allows current to flow."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is reverse bias?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Reverse bias means the diode is connected in a direction that blocks current flow under normal conditions."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-purple: #f5f3ff;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 840px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+
+    .notice {
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .quick-grid,
+    .toc,
+    .grid-2,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .toc a,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    main {
+      padding-bottom: 36px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 22px;
+      margin: 22px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
+    ul {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .quick-answer,
+    .notice-first,
+    .troubleshooting-box,
+    .concept-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .quick-answer {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .notice-first {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .troubleshooting-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+    }
+
+    .concept-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+    }
+
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .diagram {
+      background: #0f172a;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
+    }
+
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; max-width: 800px; margin: auto; padding: 20px;">
 
-<h1>What Is a Diode?</h1>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-<p>
-A diode is an electronic component that allows current to flow in one direction while blocking it in the opposite direction. It is a fundamental building block in many electronic circuits.
-</p>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/basic-electronics-explained-for-beginners.html">Beginner Electronics</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
 
-<h2>Why Diodes Matter in Medical Equipment</h2>
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Guide</div>
+      <h1>What Is a Diode?</h1>
+      <p>
+        A diode is an electronic component that allows current to flow mainly in one direction while blocking current in the opposite direction.
+        This guide explains forward bias, reverse bias, rectifiers, protection circuits, and why diodes matter in CBET electronics and medical equipment.
+      </p>
 
-<p>
-Diodes are used in power supplies, signal processing, and protection circuits. They are essential in devices that require controlled current flow and stable operation.
-</p>
+      <div class="cta-row">
+        <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start Electronics Practice →</a>
+        <a class="cta secondary" href="/what-does-a-rectifier-do.html">Rectifier Guide</a>
+        <a class="cta secondary" href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+      </div>
+    </section>
 
-<h2>How a Diode Works</h2>
+    <div class="quick-grid">
+      <div class="quick-stat">One-Way Flow<span>Main job</span></div>
+      <div class="quick-stat">Rectifiers<span>Common use</span></div>
+      <div class="quick-stat">Protection<span>Circuit safety</span></div>
+    </div>
 
-<p>
-A diode conducts electricity when it is forward-biased and blocks current when it is reverse-biased. This allows it to act as a one-way valve for electrical current.
-</p>
+    <div class="notice">
+      MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, or any certification provider.
+    </div>
+  </div>
 
-<h2>Real-World Example</h2>
+  <main>
+    <div class="container">
 
-<p>
-In a power supply, diodes are used in rectifiers to convert AC power into DC power for medical devices.
-</p>
+      <section class="card highlight">
+        <h2>Quick Answer</h2>
+        <div class="quick-answer">
+          A diode allows current to flow mainly in one direction and blocks it in the opposite direction.
+        </div>
 
-<h2>Key Takeaways</h2>
+        <p>
+          A diode acts like a one-way valve for electrical current. This one-way behavior makes diodes important in rectifiers,
+          power supplies, signal circuits, and protection circuits.
+        </p>
 
-<ul>
-  <li>Allows current to flow in one direction</li>
-  <li>Blocks current in the opposite direction</li>
-  <li>Used in rectifiers and protection circuits</li>
-</ul>
+        <div class="diagram">
+          <span>Forward direction</span> → <span>Current flows</span> &nbsp;&nbsp; | &nbsp;&nbsp; <span>Reverse direction</span> → <span>Current blocked</span>
+        </div>
 
-<h2>Practice CBET Electronics Questions</h2>
+        <div class="notice-first">
+          <strong>What to notice first:</strong>
+          If a CBET question asks what component controls current direction, the answer is often diode.
+        </div>
+      </section>
 
-<p>
-<a href="/cbet-practice-questions.html">Start CBET Practice Questions</a>
-</p>
+      <section class="card">
+        <h2>Jump to a Diode Topic</h2>
+        <div class="toc">
+          <a href="#why-diodes-matter">Why Diodes Matter</a>
+          <a href="#how-it-works">How a Diode Works</a>
+          <a href="#forward-reverse">Forward vs Reverse Bias</a>
+          <a href="#rectifiers">Diodes in Rectifiers</a>
+          <a href="#medical-equipment">Medical Equipment</a>
+          <a href="#questions">CBET Questions</a>
+        </div>
+      </section>
 
-<p>
-<a href="/browse-all-practice.html">Browse all practice tools</a>
-</p>
+      <section id="why-diodes-matter" class="card">
+        <h2>Why Diodes Matter</h2>
 
+        <p>
+          Diodes matter because many circuits need current to move in a controlled direction. Without that control, a circuit may not convert power correctly,
+          protect sensitive components, or handle signals the way it should.
+        </p>
+
+        <ul>
+          <li>They allow current to flow mainly in one direction.</li>
+          <li>They are used in rectifiers to convert AC into DC.</li>
+          <li>They can help protect circuits from reverse polarity.</li>
+          <li>They support signal and switching behavior in many electronic circuits.</li>
+        </ul>
+
+        <div class="notice-first">
+          <strong>CBET clue:</strong> If the question mentions one-way current flow, rectification, or reverse polarity protection, think diode.
+        </div>
+      </section>
+
+      <section id="how-it-works" class="card">
+        <h2>How a Diode Works</h2>
+
+        <p>
+          A diode has two terminals: an anode and a cathode. In basic terms, current can flow through the diode when it is connected in the correct direction.
+          When it is connected in the opposite direction, it blocks current under normal conditions.
+        </p>
+
+        <div class="grid-2">
+          <div class="mini-card">
+            <h3>Anode</h3>
+            <p>The side where conventional current enters when the diode is forward-biased.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Cathode</h3>
+            <p>The side where conventional current leaves when the diode is forward-biased.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Forward Bias</h3>
+            <p>The diode is connected in a direction that allows current to flow.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Reverse Bias</h3>
+            <p>The diode is connected in a direction that blocks current flow under normal conditions.</p>
+          </div>
+        </div>
+
+        <div class="quick-answer">
+          Simple way to remember it: diode = one-way current path.
+        </div>
+      </section>
+
+      <section id="forward-reverse" class="card">
+        <h2>Forward Bias vs Reverse Bias</h2>
+
+        <table class="compare-table">
+          <tr>
+            <th>Diode Condition</th>
+            <th>What Happens</th>
+            <th>Memory Hook</th>
+          </tr>
+          <tr>
+            <td><strong>Forward Bias</strong></td>
+            <td>The diode conducts current when voltage is applied in the correct direction.</td>
+            <td>Forward means flow.</td>
+          </tr>
+          <tr>
+            <td><strong>Reverse Bias</strong></td>
+            <td>The diode blocks current under normal conditions.</td>
+            <td>Reverse means restrict.</td>
+          </tr>
+          <tr>
+            <td><strong>Failed Shorted</strong></td>
+            <td>The diode may conduct in both directions when it should not.</td>
+            <td>Too much flow.</td>
+          </tr>
+          <tr>
+            <td><strong>Failed Open</strong></td>
+            <td>The diode may not conduct when it should.</td>
+            <td>No flow.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="rectifiers" class="card">
+        <h2>Diodes in Rectifiers</h2>
+
+        <p>
+          One of the most important uses of diodes is rectification. A rectifier uses diodes to convert AC into DC.
+          This matters because wall power is AC, while many internal electronic circuits require DC.
+        </p>
+
+        <div class="diagram">
+          <span>AC input</span> → <span>Diodes / Rectifier</span> → <span>DC output</span>
+        </div>
+
+        <p>
+          A bridge rectifier commonly uses four diodes. This is a high-value CBET electronics concept because it connects diodes,
+          AC vs DC current, power supplies, and medical equipment troubleshooting.
+        </p>
+
+        <div class="path-grid">
+          <a class="path-card" href="/what-does-a-rectifier-do.html">
+            Rectifier Guide
+            <span>Learn how diodes convert AC into DC.</span>
+          </a>
+          <a class="path-card" href="/ac-vs-dc-current.html">
+            AC vs DC Current
+            <span>Understand why conversion is needed.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-capacitor-do.html">
+            Capacitor Guide
+            <span>Learn what smooths the output after rectification.</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="medical-equipment" class="card">
+        <h2>Why Diodes Matter in Medical Equipment</h2>
+
+        <p>
+          Diodes are used in medical equipment power supplies, signal circuits, and protection circuits. They are essential in devices
+          that require controlled current flow and stable operation.
+        </p>
+
+        <ul>
+          <li><strong>Power supplies:</strong> diodes help convert AC into DC.</li>
+          <li><strong>Protection circuits:</strong> diodes can help protect against reverse polarity or voltage spikes.</li>
+          <li><strong>Signal processing:</strong> diodes can help shape or control signal flow.</li>
+          <li><strong>Charging circuits:</strong> diodes may help control current direction during charging behavior.</li>
+        </ul>
+
+        <div class="concept-box">
+          <strong>Biomedical equipment connection:</strong> If a device needs DC power internally, diodes may be part of the rectifier stage that helps create that DC power.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Diode vs Rectifier vs Capacitor</h2>
+
+        <table class="compare-table">
+          <tr>
+            <th>Component</th>
+            <th>Main Job</th>
+            <th>CBET Memory Hook</th>
+          </tr>
+          <tr>
+            <td><strong>Diode</strong></td>
+            <td>Allows current to flow mainly in one direction.</td>
+            <td>One-way current path.</td>
+          </tr>
+          <tr>
+            <td><strong>Rectifier</strong></td>
+            <td>Uses diodes to convert AC into DC.</td>
+            <td>AC-to-DC conversion.</td>
+          </tr>
+          <tr>
+            <td><strong>Capacitor</strong></td>
+            <td>Stores and releases electrical energy.</td>
+            <td>Energy storage and smoothing.</td>
+          </tr>
+          <tr>
+            <td><strong>Resistor</strong></td>
+            <td>Opposes current flow.</td>
+            <td>Limits current.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Basic Troubleshooting Insight</h2>
+
+        <p>
+          A diode can fail open or shorted. If it fails open, it may block current when it should conduct. If it fails shorted,
+          it may allow current in both directions when it should not.
+        </p>
+
+        <div class="troubleshooting-box">
+          <strong>Common clue:</strong>
+          A failed diode may affect current direction control, rectifier behavior, reverse polarity protection, or power supply output.
+        </div>
+
+        <p>
+          For beginner test equipment practice, review <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>.
+        </p>
+      </section>
+
+      <section id="questions" class="card">
+        <h2>Common CBET-Style Questions</h2>
+
+        <div class="question-card">
+          <strong>1. What is the main function of a diode?</strong>
+          <p>A. Store energy &nbsp; B. Allow current to flow mainly in one direction &nbsp; C. Measure pressure &nbsp; D. Increase oxygen flow</p>
+          <div class="answer">Answer: B. Allow current to flow mainly in one direction</div>
+          <div class="why">A diode is used as a one-way path for electrical current.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>2. What does forward bias usually allow?</strong>
+          <p>A. Current flow &nbsp; B. Complete current blockage &nbsp; C. No circuit action &nbsp; D. Stored patient data</p>
+          <div class="answer">Answer: A. Current flow</div>
+          <div class="why">Forward bias means the diode is connected in a direction that allows current to flow.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>3. What does reverse bias usually do?</strong>
+          <p>A. Allows normal current flow &nbsp; B. Blocks current under normal conditions &nbsp; C. Stores energy &nbsp; D. Smooths ripple directly</p>
+          <div class="answer">Answer: B. Blocks current under normal conditions</div>
+          <div class="why">Reverse bias means the diode is connected in the blocking direction.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>4. What circuit uses diodes to convert AC into DC?</strong>
+          <p>A. Rectifier &nbsp; B. Oxygen blender &nbsp; C. Thermometer probe &nbsp; D. Display bezel</p>
+          <div class="answer">Answer: A. Rectifier</div>
+          <div class="why">Rectifiers use diodes to convert AC power into DC power.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>5. A bridge rectifier commonly uses how many diodes?</strong>
+          <p>A. One &nbsp; B. Two &nbsp; C. Four &nbsp; D. Eighty</p>
+          <div class="answer">Answer: C. Four</div>
+          <div class="why">A common bridge rectifier arrangement uses four diodes.</div>
+        </div>
+
+        <div class="cta-row">
+          <a href="/cbet-electronics-practice-questions.html" class="cta primary">Practice More CBET Electronics →</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Key Takeaways</h2>
+
+        <ul>
+          <li>A diode allows current to flow mainly in one direction.</li>
+          <li>Forward bias allows current flow.</li>
+          <li>Reverse bias blocks current under normal conditions.</li>
+          <li>Diodes are used in rectifiers to convert AC into DC.</li>
+          <li>A bridge rectifier commonly uses four diodes.</li>
+          <li>Diodes can help with protection circuits and current direction control.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Best Study Path for This Topic</h2>
+        <p>
+          Diodes make more sense when you connect them to AC/DC conversion and power supply behavior.
+        </p>
+
+        <div class="path-grid">
+          <a class="path-card" href="/basic-electronics-explained-for-beginners.html">
+            1. Basic Electronics Explained
+            <span>Start with voltage, current, resistance, circuits, and components.</span>
+          </a>
+          <a class="path-card" href="/ac-vs-dc-current.html">
+            2. AC vs DC Current
+            <span>Understand why current direction matters.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-rectifier-do.html">
+            3. What Does a Rectifier Do?
+            <span>See how diodes are used to convert AC into DC.</span>
+          </a>
+          <a class="path-card" href="/cbet-electronics-practice-questions.html">
+            4. CBET Electronics Practice
+            <span>Use practice questions to build recognition.</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is a diode?</h3>
+        <p>
+          A diode is an electronic component that allows current to flow mainly in one direction while blocking current in the opposite direction.
+        </p>
+
+        <h3>What does forward bias mean?</h3>
+        <p>
+          Forward bias means the diode is connected in a direction that allows current to flow.
+        </p>
+
+        <h3>What does reverse bias mean?</h3>
+        <p>
+          Reverse bias means the diode is connected in a direction that blocks current under normal conditions.
+        </p>
+
+        <h3>Why are diodes important for rectifiers?</h3>
+        <p>
+          Rectifiers use diodes to control current direction and convert AC into DC.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Related Electronics Guides</h2>
+        <p>
+          Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+        </p>
+
+        <div class="related-links">
+          <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+          <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+          <a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics</a>
+          <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+          <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+          <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+          <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+          <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+          <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+          <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <h2>Ready to keep practicing?</h2>
+        <p>
+          Use the CBET electronics practice tools to build recognition, confidence, and troubleshooting judgment.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice →</a>
+          <a class="cta secondary" href="/free-cbet-practice-test.html">Open Free CBET Practice Test</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
