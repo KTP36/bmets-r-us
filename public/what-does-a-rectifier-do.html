@@ -4,17 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>What Does a Rectifier Do? | Complete CBET Electronics Guide</title>
+  <title>What Does a Rectifier Do? | AC to DC Explained for CBET</title>
 
-  <meta name="description" content="Learn what a rectifier does, how it converts AC to DC, the main types of rectifiers, and why rectifiers matter for CBET exam prep, troubleshooting, and medical equipment." />
-  <meta name="keywords" content="what does a rectifier do, rectifier CBET, AC to DC, bridge rectifier, full wave rectifier, half wave rectifier, biomedical electronics, CBET electronics guide" />
+  <meta name="description" content="Learn what a rectifier does, how it converts AC to DC, how diodes and bridge rectifiers work, and why rectifiers matter for CBET electronics, power supplies, troubleshooting, and medical equipment." />
+  <meta name="keywords" content="what does a rectifier do, rectifier CBET, AC to DC, bridge rectifier, full wave rectifier, half wave rectifier, biomedical electronics, CBET electronics guide, medical equipment power supply, rectifier troubleshooting" />
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/what-does-a-rectifier-do.html" />
 
-  <meta property="og:title" content="What Does a Rectifier Do? | Complete CBET Electronics Guide" />
-  <meta property="og:description" content="Learn how a rectifier converts AC to DC, why it matters in medical equipment, and how this concept appears on the CBET exam." />
+  <meta property="og:title" content="What Does a Rectifier Do? | AC to DC Explained for CBET" />
+  <meta property="og:description" content="Learn how a rectifier converts AC to DC, why it matters in medical equipment power supplies, and how this concept appears on CBET electronics questions." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://medskillbuilder.com/what-does-a-rectifier-do.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "What Does a Rectifier Do?",
+    "description": "A beginner-friendly CBET electronics guide explaining rectifiers, AC to DC conversion, diodes, bridge rectifiers, power supplies, ripple, filtering, and troubleshooting concepts.",
+    "url": "https://medskillbuilder.com/what-does-a-rectifier-do.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
 
   <script type="application/ld+json">
   {
@@ -34,7 +58,7 @@
         "name": "Why are rectifiers important in medical equipment?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Most medical equipment uses internal electronic circuits that require DC power. A rectifier helps convert incoming AC power from the wall into usable DC power for those circuits."
+          "text": "Most medical equipment uses internal electronic circuits that require DC power. A rectifier helps convert incoming AC wall power into usable DC power for those circuits."
         }
       },
       {
@@ -42,7 +66,15 @@
         "name": "What type of rectifier uses four diodes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A bridge rectifier commonly uses four diodes arranged in a bridge circuit to convert both halves of an AC waveform into DC."
+          "text": "A bridge rectifier commonly uses four diodes arranged in a bridge circuit to convert both halves of an AC waveform into pulsating DC."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What comes after a rectifier in a power supply?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After rectification, capacitors and regulators are often used to smooth and stabilize the DC output."
         }
       }
     ]
@@ -51,8 +83,10 @@
 
   <style>
     :root {
-      --navy: #082f57;
+      --navy: #12355b;
+      --navy-dark: #0b2440;
       --blue: #1d6fa5;
+      --bright-blue: #2563eb;
       --green: #16a34a;
       --green2: #22c55e;
       --ink: #0f172a;
@@ -63,7 +97,12 @@
       --orange-bg: #fff7ed;
       --orange-border: #fed7aa;
       --orange-text: #7c2d12;
-      --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-purple: #f5f3ff;
+      --purple: #7c3aed;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
     }
 
     * {
@@ -80,14 +119,24 @@
       font-family: Arial, Helvetica, sans-serif;
       background:
         radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
         linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
       color: var(--ink);
       line-height: 1.7;
     }
 
     .container {
-      width: min(1080px, calc(100% - 36px));
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
     }
 
     .brand {
@@ -95,7 +144,6 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      padding: 18px 0;
       width: fit-content;
     }
 
@@ -117,6 +165,26 @@
       font-size: 13px;
     }
 
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
     .hero {
       background:
         radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
@@ -126,6 +194,19 @@
       border-radius: 32px;
       margin: 8px 0 24px;
       box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
     }
 
     .eyebrow {
@@ -140,6 +221,8 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
@@ -147,13 +230,17 @@
       line-height: 0.98;
       letter-spacing: -0.05em;
       margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero p {
-      max-width: 760px;
+      max-width: 810px;
       color: #e0f2fe;
       font-size: clamp(18px, 2.2vw, 22px);
       margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
     }
 
     .cta-row {
@@ -161,6 +248,8 @@
       flex-wrap: wrap;
       gap: 14px;
       margin-top: 24px;
+      position: relative;
+      z-index: 2;
     }
 
     .cta {
@@ -172,11 +261,12 @@
       border-radius: 999px;
       text-decoration: none;
       font-weight: 900;
-      transition: transform 0.18s ease;
+      transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
     .cta:hover {
       transform: translateY(-2px);
+      opacity: 0.96;
     }
 
     .cta.primary {
@@ -201,14 +291,19 @@
       margin-bottom: 24px;
     }
 
-    .quick-grid {
+    .quick-grid,
+    .toc,
+    .grid-2,
+    .path-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
       margin: 22px 0 26px;
     }
 
-    .quick-stat {
+    .quick-stat,
+    .toc a,
+    .path-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -217,9 +312,19 @@
       color: var(--navy);
       font-weight: 900;
       text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
-    .quick-stat span {
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
       display: block;
       color: var(--muted);
       font-size: 13px;
@@ -265,6 +370,11 @@
       margin-bottom: 13px;
     }
 
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
     ul {
       margin: 14px 0 0 22px;
     }
@@ -277,7 +387,8 @@
 
     .quick-answer,
     .notice-first,
-    .troubleshooting-box {
+    .troubleshooting-box,
+    .concept-box {
       padding: 16px;
       border-radius: 16px;
       margin: 18px 0;
@@ -302,11 +413,10 @@
       color: #7c2d12;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 18px;
+    .concept-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
     }
 
     .mini-card {
@@ -321,12 +431,60 @@
       color: var(--navy);
     }
 
+    .diagram {
+      background: #0f172a;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
     .question-card {
       background: #f8fbff;
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 20px;
       margin-top: 16px;
+      position: relative;
     }
 
     .question-card strong {
@@ -334,6 +492,21 @@
       color: var(--navy);
       font-size: 18px;
       margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
     }
 
     .answer {
@@ -346,9 +519,18 @@
       font-weight: 900;
     }
 
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
     .related-links {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 10px;
       margin-top: 16px;
     }
@@ -356,11 +538,12 @@
     .related-links a {
       text-decoration: none;
       color: var(--navy);
-      background: #e8f1fb;
+      background: #ffffff;
       border: 1px solid #bfdbfe;
-      border-radius: 999px;
-      padding: 10px 14px;
+      border-radius: 16px;
+      padding: 13px 14px;
       font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
     }
 
     .final-cta {
@@ -404,16 +587,30 @@
         border-radius: 26px;
       }
 
-      .quick-grid,
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
       .card {
         padding: 24px 20px;
       }
 
       .cta {
+        width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
         width: 100%;
       }
     }
@@ -422,25 +619,34 @@
 
 <body>
   <div class="container">
-    <a class="brand" href="/">
-      <img src="/logo.png" alt="MedSkillBuilder Logo" />
-      <div>
-        <strong>MedSkillBuilder</strong>
-        <span>CBET electronics and biomedical learning</span>
-      </div>
-    </a>
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
+
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/basic-electronics-explained-for-beginners.html">Beginner Electronics</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
 
     <section class="hero">
       <div class="eyebrow">CBET Electronics Guide</div>
       <h1>What Does a Rectifier Do?</h1>
       <p>
-        A rectifier converts AC into DC. This guide explains what that means, why it matters in power supplies,
-        and how to recognize rectifier-related questions on the CBET exam.
+        A rectifier converts AC into DC. This guide explains what that means, how diodes make it happen,
+        why rectifiers matter inside power supplies, and how to recognize rectifier-related questions on the CBET exam.
       </p>
 
       <div class="cta-row">
-        <a class="cta primary" href="/cbet-practice-questions.html">Start CBET Practice Questions →</a>
-        <a class="cta secondary" href="/most-missed-cbet-electronics-questions.html">Most Missed Electronics Questions</a>
+        <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start Electronics Practice →</a>
+        <a class="cta secondary" href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+        <a class="cta secondary" href="/most-missed-cbet-electronics-questions.html">Most Missed Electronics</a>
       </div>
     </section>
 
@@ -451,7 +657,7 @@
     </div>
 
     <div class="notice">
-      MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, Cash App, Google, or any certification provider.
+      MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, or any certification provider.
     </div>
   </div>
 
@@ -469,6 +675,10 @@
           A rectifier is the part of the power supply that helps make that conversion possible.
         </p>
 
+        <div class="diagram">
+          <span>AC input</span> → <span>Rectifier</span> → <span>Pulsing DC</span> → <span>Filter</span> → <span>Steadier DC</span>
+        </div>
+
         <div class="notice-first">
           <strong>What to notice first:</strong>
           If a device needs DC power and only AC is available, a rectifier is likely involved.
@@ -476,6 +686,18 @@
       </section>
 
       <section class="card">
+        <h2>Jump to a Rectifier Topic</h2>
+        <div class="toc">
+          <a href="#why-rectifiers-matter">Why Rectifiers Matter</a>
+          <a href="#how-it-works">How a Rectifier Works</a>
+          <a href="#types">Types of Rectifiers</a>
+          <a href="#medical-equipment">Medical Equipment</a>
+          <a href="#troubleshooting">Troubleshooting</a>
+          <a href="#questions">CBET Questions</a>
+        </div>
+      </section>
+
+      <section id="why-rectifiers-matter" class="card">
         <h2>Why Rectifiers Matter</h2>
         <p>
           AC power constantly changes direction. DC power flows in one direction. Most circuit boards, sensors,
@@ -495,23 +717,27 @@
         </div>
       </section>
 
-      <section class="card">
+      <section id="how-it-works" class="card">
         <h2>How a Rectifier Works</h2>
         <p>
           A rectifier works by using diodes. A diode allows current to flow in one direction and blocks current in the opposite direction.
         </p>
 
         <p>
-          When AC enters the rectifier, the diode arrangement blocks or redirects parts of the waveform so the output flows in one direction.
-          That one-direction output is DC.
+          When AC enters the rectifier, the diode arrangement blocks or redirects parts of the waveform so the output flows mostly in one direction.
+          That one-direction output is called rectified DC. It is often still pulsing, so additional filtering and regulation may be needed.
         </p>
 
         <div class="quick-answer">
           Simple way to remember it: a rectifier acts like a one-way gate for current.
         </div>
+
+        <div class="concept-box">
+          <strong>Important distinction:</strong> A rectifier converts AC to DC, but a capacitor often smooths the DC, and a regulator helps stabilize the voltage.
+        </div>
       </section>
 
-      <section class="card">
+      <section id="types" class="card">
         <h2>Types of Rectifiers</h2>
 
         <div class="grid-2">
@@ -532,7 +758,7 @@
           <div class="mini-card">
             <h3>Bridge Rectifier</h3>
             <p>
-              A common full-wave rectifier design that uses four diodes in a bridge arrangement. This is common in power supplies.
+              A common full-wave rectifier design that uses four diodes in a bridge arrangement. This is a common CBET study point.
             </p>
           </div>
 
@@ -551,6 +777,38 @@
       </section>
 
       <section class="card">
+        <h2>Rectifier vs Capacitor vs Regulator</h2>
+
+        <table class="compare-table">
+          <tr>
+            <th>Part</th>
+            <th>Main Job</th>
+            <th>CBET Memory Hook</th>
+          </tr>
+          <tr>
+            <td><strong>Rectifier</strong></td>
+            <td>Converts AC to DC.</td>
+            <td>AC to DC conversion.</td>
+          </tr>
+          <tr>
+            <td><strong>Capacitor</strong></td>
+            <td>Stores charge and helps smooth voltage ripple.</td>
+            <td>Smoothing and energy storage.</td>
+          </tr>
+          <tr>
+            <td><strong>Voltage Regulator</strong></td>
+            <td>Helps maintain a steady output voltage.</td>
+            <td>Stabilizes voltage.</td>
+          </tr>
+          <tr>
+            <td><strong>Transformer</strong></td>
+            <td>Changes AC voltage level before rectification in many power supplies.</td>
+            <td>Steps AC voltage up or down.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="medical-equipment" class="card">
         <h2>Rectifiers in Medical Equipment</h2>
         <p>
           Rectifiers are used in the power supplies of many medical devices because those devices need DC power internally.
@@ -565,9 +823,14 @@
           <li>Ventilators and respiratory devices</li>
           <li>Internal control boards and display circuits</li>
         </ul>
+
+        <div class="notice-first">
+          <strong>Biomedical equipment connection:</strong>
+          If wall power enters a device and the internal boards need lower-voltage DC, the power supply must convert, smooth, and regulate that energy.
+        </div>
       </section>
 
-      <section class="card">
+      <section id="troubleshooting" class="card">
         <h2>Troubleshooting Insight</h2>
         <p>
           Rectifier knowledge matters because it helps you think through power supply problems. If AC power enters the device but stable DC is missing,
@@ -591,55 +854,72 @@
         </p>
       </section>
 
-      <section class="card">
-        <h2>Rectifier vs Capacitor vs Regulator</h2>
-
-        <div class="grid-2">
-          <div class="mini-card">
-            <h3>Rectifier</h3>
-            <p>Converts AC to DC.</p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Capacitor</h3>
-            <p>Stores charge and helps smooth voltage ripple.</p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Voltage Regulator</h3>
-            <p>Helps maintain a steady output voltage.</p>
-          </div>
-
-          <div class="mini-card">
-            <h3>Transformer</h3>
-            <p>Changes AC voltage level before rectification in many power supplies.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
+      <section id="questions" class="card">
         <h2>Common CBET-Style Questions</h2>
 
         <div class="question-card">
           <strong>1. What component converts AC to DC?</strong>
           <p>A. Transformer &nbsp; B. Rectifier &nbsp; C. Capacitor &nbsp; D. Resistor</p>
           <div class="answer">Answer: B. Rectifier</div>
+          <div class="why">The rectifier performs the AC-to-DC conversion step in many power supplies.</div>
         </div>
 
         <div class="question-card">
           <strong>2. What component allows current to flow in one direction?</strong>
           <p>A. Diode &nbsp; B. Fuse &nbsp; C. Inductor &nbsp; D. Switch</p>
           <div class="answer">Answer: A. Diode</div>
+          <div class="why">A diode is the one-way component that makes rectification possible.</div>
         </div>
 
         <div class="question-card">
           <strong>3. Which rectifier commonly uses four diodes?</strong>
           <p>A. Half-wave rectifier &nbsp; B. Bridge rectifier &nbsp; C. Resistor divider &nbsp; D. Oscillator</p>
           <div class="answer">Answer: B. Bridge rectifier</div>
+          <div class="why">A bridge rectifier commonly uses four diodes to perform full-wave rectification.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>4. After rectification, what component often helps smooth the output?</strong>
+          <p>A. Capacitor &nbsp; B. Speaker &nbsp; C. Switch only &nbsp; D. Probe connector</p>
+          <div class="answer">Answer: A. Capacitor</div>
+          <div class="why">Capacitors can help smooth the pulsing DC output after the rectifier stage.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>5. What is the best description of a rectifier in a medical equipment power supply?</strong>
+          <p>A. It converts AC into DC for internal circuits &nbsp; B. It measures oxygen saturation &nbsp; C. It controls patient temperature only &nbsp; D. It stores patient data</p>
+          <div class="answer">Answer: A. It converts AC into DC for internal circuits</div>
+          <div class="why">Most medical equipment has internal circuits that need DC power, so rectification is a key power supply function.</div>
         </div>
 
         <div class="cta-row">
-          <a href="/cbet-practice-questions.html" class="cta primary">Practice More CBET Questions →</a>
+          <a href="/cbet-electronics-practice-questions.html" class="cta primary">Practice More CBET Electronics →</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Best Study Path for This Topic</h2>
+        <p>
+          Rectifiers make the most sense when you study them as part of the full power supply path.
+        </p>
+
+        <div class="path-grid">
+          <a class="path-card" href="/ac-vs-dc-current.html">
+            1. AC vs DC Current
+            <span>Understand the difference between wall power and internal circuit power.</span>
+          </a>
+          <a class="path-card" href="/what-is-a-diode.html">
+            2. What Is a Diode?
+            <span>Learn the one-way current behavior that makes rectification possible.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-capacitor-do.html">
+            3. What Does a Capacitor Do?
+            <span>Learn how energy storage and smoothing connect to power supplies.</span>
+          </a>
+          <a class="path-card" href="/cbet-electronics-practice-questions.html">
+            4. CBET Electronics Practice
+            <span>Use practice questions to turn the concept into recognition.</span>
+          </a>
         </div>
       </section>
 
@@ -649,9 +929,35 @@
           <li>A rectifier converts AC into DC</li>
           <li>Rectifiers use diodes to control current direction</li>
           <li>Bridge rectifiers commonly use four diodes</li>
+          <li>Rectification often creates pulsing DC that may need smoothing</li>
+          <li>Capacitors help smooth output, and regulators help stabilize voltage</li>
           <li>Rectifiers are important parts of medical equipment power supplies</li>
-          <li>CBET questions often test the simple function: AC to DC conversion</li>
+          <li>CBET questions often test the simple function: AC-to-DC conversion</li>
         </ul>
+      </section>
+
+      <section class="card">
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What does a rectifier do?</h3>
+        <p>
+          A rectifier converts alternating current, or AC, into direct current, or DC. This allows electronic circuits to receive power that flows in one direction.
+        </p>
+
+        <h3>Why are rectifiers important in medical equipment?</h3>
+        <p>
+          Most medical equipment uses internal electronic circuits that require DC power. A rectifier helps convert incoming AC wall power into usable DC power for those circuits.
+        </p>
+
+        <h3>What type of rectifier uses four diodes?</h3>
+        <p>
+          A bridge rectifier commonly uses four diodes arranged in a bridge circuit to convert both halves of an AC waveform into DC.
+        </p>
+
+        <h3>Is a rectifier the same as a capacitor?</h3>
+        <p>
+          No. A rectifier converts AC to DC. A capacitor stores charge and can help smooth the rectified DC output.
+        </p>
       </section>
 
       <section class="card">
@@ -661,14 +967,16 @@
         </p>
 
         <div class="related-links">
-          <a href="/cbet-practice-questions.html">CBET Practice Questions</a>
+          <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
           <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
           <a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics</a>
-          <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+          <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
           <a href="/what-is-a-diode.html">What Is a Diode?</a>
-          <a href="/what-is-ohms-law.html">What Is Ohm’s Law?</a>
+          <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+          <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
           <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
-          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+          <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
           <a href="/browse-all-practice.html">Browse All Practice Tools</a>
         </div>
       </section>
@@ -676,11 +984,11 @@
       <section class="final-cta">
         <h2>Ready to keep practicing?</h2>
         <p>
-          Use the CBET practice tools to build recognition, confidence, and troubleshooting judgment.
+          Use the CBET electronics practice tools to build recognition, confidence, and troubleshooting judgment.
         </p>
 
         <div class="cta-row">
-          <a class="cta primary" href="/cbet-practice-questions.html">Start CBET Practice Questions →</a>
+          <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice →</a>
           <a class="cta secondary" href="/free-cbet-practice-test.html">Open Free CBET Practice Test</a>
         </div>
       </section>
@@ -693,7 +1001,7 @@
       <p>
         <a href="/">Home</a> |
         <a href="/browse-all-practice.html">Browse All Practice</a> |
-        <a href="/apparel.html">Apparel</a>
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
       </p>
       <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
     </div>
