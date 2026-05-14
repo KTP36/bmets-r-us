@@ -1,623 +1,1098 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Series vs Parallel Circuits | CBET Electronics Beginner Guide</title>
 
-  <title>Series vs Parallel Circuits | Can You Tell the Difference? | MedSkillBuilder</title>
-
-  <meta name="description" content="Learn the difference between series and parallel circuits with simple explanations, real-world examples, and what to notice first. Understand current, voltage, resistance, and circuit behavior for CBET and electronics basics.">
+  <meta name="description" content="Learn series vs parallel circuits for CBET electronics and biomedical equipment basics. Understand one path vs multiple paths, current, voltage, resistance, failure behavior, and what to notice first." />
+  <meta name="keywords" content="series vs parallel circuits, CBET electronics, series circuit, parallel circuit, voltage current resistance, circuit behavior, biomedical electronics, basic electronics, Ohm's Law, circuit quiz" />
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/series-vs-parallel-circuits.html" />
 
+  <meta property="og:title" content="Series vs Parallel Circuits | CBET Electronics Beginner Guide" />
+  <meta property="og:description" content="Learn the difference between series and parallel circuits with simple explanations, what to notice first, and CBET-style practice questions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/series-vs-parallel-circuits.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Series vs Parallel Circuits",
+    "description": "A beginner CBET electronics guide explaining series circuits, parallel circuits, current paths, voltage behavior, resistance behavior, failure behavior, and biomedical equipment connections.",
+    "url": "https://medskillbuilder.com/series-vs-parallel-circuits.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a series circuit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A series circuit has one path for current. The same current flows through each component, and one open component can stop the whole circuit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a parallel circuit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A parallel circuit has multiple current paths or branches. Voltage is the same across each branch, and one branch can fail while others may still work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I notice first when comparing series and parallel circuits?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "First ask whether current has one path or multiple paths. One path points to series. Multiple paths point to parallel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when one part fails in a series circuit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because a series circuit has only one current path, one open component can stop the entire circuit."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-purple: #f5f3ff;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 950px;
-      margin: auto;
-      padding: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
       line-height: 1.7;
-      background: #f8fafc;
-      color: #0f172a;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
-      color: #0f172a;
-      line-height: 1.25;
+      font-size: clamp(40px, 5.6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
-    h2 {
-      color: #153f73;
-      margin-top: 34px;
+    .hero p {
+      max-width: 900px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
     }
 
-    h3 {
-      color: #0f2f57;
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
       margin-top: 24px;
-    }
-
-    a {
-      color: #2563eb;
-      font-weight: 700;
-    }
-
-    .box {
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
-      border-radius: 14px;
-      padding: 20px;
-      margin: 22px 0;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    }
-
-    .notice {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
-      padding: 16px;
-      border-radius: 10px;
-      margin: 18px 0;
-    }
-
-    .success {
-      background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      padding: 16px;
-      border-radius: 10px;
-      margin: 18px 0;
-    }
-
-    .warning {
-      background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 16px;
-      border-radius: 10px;
-      margin: 18px 0;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 18px 0;
-      background: #ffffff;
-    }
-
-    th {
-      background: #153f73;
-      color: white;
-      padding: 12px;
-      text-align: left;
-    }
-
-    td {
-      border: 1px solid #dbe4ee;
-      padding: 12px;
-      vertical-align: top;
+      position: relative;
+      z-index: 2;
     }
 
     .cta {
-      text-align: center;
-      margin: 34px 0;
-    }
-
-    .cta a {
-      background: #2563eb;
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
       padding: 14px 24px;
-      border-radius: 10px;
+      border-radius: 999px;
       text-decoration: none;
-      font-weight: 700;
-      display: inline-block;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
-    .small {
+    .cta:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+
+    .quick-grid,
+    .toc,
+    .grid-2,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .toc a,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 22px;
+      margin: 22px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .quick-answer,
+    .notice-first,
+    .warning-box,
+    .success-box,
+    .example-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .quick-answer {
+      background: var(--soft-green);
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .notice-first {
+      background: var(--soft-blue);
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .warning-box {
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
+    }
+
+    .success-box {
+      background: var(--soft-green);
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .example-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+    }
+
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .diagram {
+      background: #0f172a;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
+    }
+
+    .safety {
       font-size: 12px;
       color: #64748b;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
-
-<h1>Series vs Parallel Circuits: Can You Tell the Difference?</h1>
-
-<p>
-Series and parallel circuits are two of the most important circuit patterns to understand.
-</p>
-
-<p>
-Most people try to memorize the definitions.
-</p>
-
-<p>
-But the better question is this:
-</p>
-
-<div class="notice">
-  <strong>What should you notice first?</strong>
-</div>
-
-<p>
-If you can recognize what changes first, series and parallel circuits become much easier to understand.
-</p>
-
-<p>
-This matters for electronics, CBET exam prep, biomedical equipment basics, and general circuit learning.
-</p>
-
-<hr>
-
-<div class="box">
-<h2>The Simple Difference</h2>
-
-<p>
-A <strong>series circuit</strong> has one path for current.
-</p>
-
-<p>
-A <strong>parallel circuit</strong> has more than one path for current.
-</p>
-
-<div class="success">
-  <strong>Fast memory trick:</strong>
-  <br>
-  Series = one path.
-  <br>
-  Parallel = multiple paths.
-</div>
-
-<p>
-That one difference changes how current, voltage, resistance, and failure behavior work.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>What Is a Series Circuit?</h2>
-
-<p>
-In a series circuit, components are connected one after another.
-</p>
-
-<p>
-Current has only one path to follow.
-</p>
-
-<p>
-Because there is only one path, the same current flows through each component.
-</p>
-
-<h3>Key signs of a series circuit</h3>
-
-<ul>
-  <li>There is only one path for current</li>
-  <li>The same current flows through all components</li>
-  <li>If one component opens, the whole circuit stops</li>
-  <li>Total resistance increases as more components are added</li>
-</ul>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>If one part fails and everything stops, think series.</p>
-</div>
-
-<p>
-This is the part people remember best.
-</p>
-
-<p>
-One break affects the whole circuit because current has no alternate path.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>What Is a Parallel Circuit?</h2>
-
-<p>
-In a parallel circuit, components are connected across multiple paths or branches.
-</p>
-
-<p>
-Current can split and flow through more than one branch.
-</p>
-
-<p>
-Because there are multiple paths, one branch can fail while another branch may still work.
-</p>
-
-<h3>Key signs of a parallel circuit</h3>
-
-<ul>
-  <li>There is more than one path for current</li>
-  <li>Voltage is the same across each branch</li>
-  <li>Current can split between branches</li>
-  <li>If one branch opens, other branches may still work</li>
-  <li>Total resistance decreases as more branches are added</li>
-</ul>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>If one part fails but other parts still work, think parallel.</p>
-</div>
-
-<p>
-This is why parallel circuits are used when parts need to operate independently.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Series vs Parallel Comparison</h2>
-
-<table>
-  <tr>
-    <th>Feature</th>
-    <th>Series Circuit</th>
-    <th>Parallel Circuit</th>
-  </tr>
-  <tr>
-    <td>Current path</td>
-    <td>One path</td>
-    <td>Multiple paths</td>
-  </tr>
-  <tr>
-    <td>Current behavior</td>
-    <td>Same current through all components</td>
-    <td>Current splits between branches</td>
-  </tr>
-  <tr>
-    <td>Voltage behavior</td>
-    <td>Voltage divides across components</td>
-    <td>Voltage is the same across each branch</td>
-  </tr>
-  <tr>
-    <td>If one part fails</td>
-    <td>Whole circuit may stop</td>
-    <td>Other branches may still work</td>
-  </tr>
-  <tr>
-    <td>Resistance behavior</td>
-    <td>Adding resistance increases total resistance</td>
-    <td>Adding branches lowers total resistance</td>
-  </tr>
-</table>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Current in Series Circuits</h2>
-
-<p>
-In a series circuit, current is the same everywhere.
-</p>
-
-<p>
-That means the current through the first component is the same current through the second component.
-</p>
-
-<p>
-There is only one path, so the current cannot split.
-</p>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>One path means same current.</p>
-</div>
-
-<p>
-If the circuit path opens anywhere, current stops everywhere.
-</p>
-
-<p>
-This connects directly to <a href="/what-is-ohms-law.html">Ohm’s Law</a> because total resistance affects total current.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Current in Parallel Circuits</h2>
-
-<p>
-In a parallel circuit, current can split.
-</p>
-
-<p>
-Each branch can carry part of the total current.
-</p>
-
-<p>
-The total current is the sum of the branch currents.
-</p>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>Multiple paths means current can divide.</p>
-</div>
-
-<p>
-If one branch has lower resistance, more current can flow through that branch.
-</p>
-
-<p>
-This is why understanding <a href="/voltage-current-resistance-cbet.html">voltage, current, and resistance</a> matters before learning deeper circuit behavior.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Voltage in Series Circuits</h2>
-
-<p>
-In a series circuit, voltage is divided across the components.
-</p>
-
-<p>
-The supply voltage is shared by the components in the path.
-</p>
-
-<p>
-The amount of voltage across each component depends on resistance.
-</p>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>Series circuits share voltage across components.</p>
-</div>
-
-<p>
-This is one reason series circuits can confuse beginners.
-</p>
-
-<p>
-Current stays the same, but voltage drops across each component.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Voltage in Parallel Circuits</h2>
-
-<p>
-In a parallel circuit, each branch is connected across the same supply voltage.
-</p>
-
-<p>
-That means each branch receives the same voltage.
-</p>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>Parallel branches get the same voltage.</p>
-</div>
-
-<p>
-This is why parallel circuits are useful when multiple components need the same voltage source.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Resistance in Series Circuits</h2>
-
-<p>
-In series, total resistance is added together.
-</p>
-
-<p>
-If you add more resistors in series, the total resistance increases.
-</p>
-
-<p>
-Higher total resistance reduces current if voltage stays the same.
-</p>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>More series resistance means less current.</p>
-</div>
-
-<p>
-Review this idea here:
-<a href="/how-to-test-a-resistor.html">How to Test a Resistor</a>.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Resistance in Parallel Circuits</h2>
-
-<p>
-In parallel, adding more branches gives current more paths to travel.
-</p>
-
-<p>
-That means total resistance decreases when more parallel branches are added.
-</p>
-
-<p>
-This feels backwards to many learners at first.
-</p>
-
-<div class="warning">
-  <strong>Common mistake:</strong>
-  <p>Adding another resistor in parallel does not increase total resistance. It lowers total resistance because current has another path.</p>
-</div>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>More paths means lower total resistance.</p>
-</div>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Real-World Example: Lights</h2>
-
-<p>
-Think about a string of lights.
-</p>
-
-<p>
-If the lights are wired in series and one bulb fails, the entire string may go out.
-</p>
-
-<p>
-If the lights are wired in parallel, one bulb can fail while the others stay on.
-</p>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>Everything stops together = series. Some parts keep working = parallel.</p>
-</div>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Why This Matters for Biomedical Equipment</h2>
-
-<p>
-Biomedical equipment uses many circuit designs.
-</p>
-
-<p>
-You do not need to become an electrical engineer to start understanding the basics.
-</p>
-
-<p>
-But you do need to recognize circuit behavior.
-</p>
-
-<p>
-Series and parallel circuits help explain why parts of a circuit may behave together or independently.
-</p>
-
-<p>
-That recognition supports stronger understanding of power supplies, sensors, switches, and basic electronics.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Common Mistakes Learners Make</h2>
-
-<ul>
-  <li>Thinking current splits in a series circuit</li>
-  <li>Thinking voltage is always divided in parallel</li>
-  <li>Forgetting that series has one path</li>
-  <li>Forgetting that parallel has multiple paths</li>
-  <li>Assuming adding resistors always increases resistance</li>
-  <li>Confusing branch current with total current</li>
-</ul>
-
-<div class="notice">
-  <strong>What to notice first:</strong>
-  <p>Before answering, ask: one path or multiple paths?</p>
-</div>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Quick Knowledge Check</h2>
-
-<p>
-If one component fails and the whole circuit stops, what type of circuit is it?
-</p>
-
-<p>
-<strong>Answer:</strong> Series.
-</p>
-
-<p>
-Why?
-</p>
-
-<p>
-Because there is only one path for current.
-</p>
-
-<hr>
-
-<p>
-If one branch fails but other branches still work, what type of circuit is it?
-</p>
-
-<p>
-<strong>Answer:</strong> Parallel.
-</p>
-
-<p>
-Why?
-</p>
-
-<p>
-Because current has more than one path.
-</p>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>How to Remember It Fast</h2>
-
-<div class="success">
-  <strong>Series:</strong> One path, same current, one break can stop everything.
-</div>
-
-<div class="success">
-  <strong>Parallel:</strong> Multiple paths, same voltage across branches, one branch can fail while others still work.
-</div>
-</div>
-
-<hr>
-
-<div class="box">
-<h2>Practice the Concept</h2>
-
-<p>
-Reading the concept is helpful.
-</p>
-
-<p>
-Testing yourself is what makes it stick.
-</p>
-
-<div class="cta">
-  <a href="/voltage-current-resistance-quiz.html">Take the Voltage, Current, and Resistance Quiz</a>
-</div>
-
-<p>
-For more practice, review:
-</p>
-
-<ul>
-  <li><a href="/what-is-ohms-law.html">What Is Ohm’s Law?</a></li>
-  <li><a href="/ohms-law-quiz.html">Ohm’s Law Quiz</a></li>
-  <li><a href="/voltage-current-resistance-cbet.html">Voltage vs Current vs Resistance</a></li>
-  <li><a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a></li>
-  <li><a href="/how-to-test-a-resistor.html">How to Test a Resistor</a></li>
-  <li><a href="/browse-all-practice.html">Browse All Practice Tools</a></li>
-</ul>
-</div>
-
-<hr>
-
-<p class="small">
-For learning purposes only. This page is designed to build basic electronics understanding for students, early healthcare learners, and exam preparation.
-</p>
-
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
+
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Foundation</div>
+      <h1>Series vs Parallel Circuits</h1>
+      <p>
+        Series and parallel circuits are two of the most important circuit patterns to recognize. The key is not memorizing long definitions.
+        The key is noticing whether current has one path or multiple paths.
+      </p>
+      <p>
+        This guide explains current, voltage, resistance, failure behavior, and what to notice first for CBET electronics and biomedical equipment basics.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take Electronics Quiz</a>
+        <a class="cta secondary" href="/what-is-ohms-law.html">Review Ohm's Law</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+      </div>
+    </section>
+
+    <div class="quick-grid">
+      <div class="quick-stat">Series<span>One current path</span></div>
+      <div class="quick-stat">Parallel<span>Multiple paths</span></div>
+      <div class="quick-stat">Failure clue<span>What keeps working?</span></div>
+    </div>
+
+    <section class="card highlight">
+      <h2>Quick Answer</h2>
+
+      <div class="quick-answer">
+        Series means one path. Parallel means multiple paths.
+      </div>
+
+      <div class="diagram">
+        <span>Series</span> → <span>One path</span> &nbsp;&nbsp; | &nbsp;&nbsp; <span>Parallel</span> → <span>Multiple paths</span>
+      </div>
+
+      <p>
+        In a series circuit, current has only one path to follow. In a parallel circuit, current has more than one path or branch.
+      </p>
+
+      <div class="notice-first">
+        <strong>What to notice first:</strong>
+        If one part fails and everything stops, think series. If one branch fails but other branches still work, think parallel.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Jump to a Topic</h2>
+      <div class="toc">
+        <a href="#series">Series Circuit</a>
+        <a href="#parallel">Parallel Circuit</a>
+        <a href="#comparison">Comparison Table</a>
+        <a href="#current">Current Behavior</a>
+        <a href="#voltage">Voltage Behavior</a>
+        <a href="#questions">CBET Questions</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>The Simple Difference</h2>
+
+      <p>
+        A <strong>series circuit</strong> has one path for current.
+      </p>
+
+      <p>
+        A <strong>parallel circuit</strong> has more than one path for current.
+      </p>
+
+      <div class="success-box">
+        <strong>Fast memory trick:</strong><br />
+        Series = one path.<br />
+        Parallel = multiple paths.
+      </div>
+
+      <p>
+        That one difference changes how current, voltage, resistance, and failure behavior work.
+      </p>
+    </section>
+
+    <section id="series" class="card">
+      <h2>What Is a Series Circuit?</h2>
+
+      <p>
+        In a series circuit, components are connected one after another. Current has only one path to follow.
+        Because there is only one path, the same current flows through each component.
+      </p>
+
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Key Signs</h3>
+          <ul>
+            <li>One path for current</li>
+            <li>Same current through all components</li>
+            <li>One open component can stop the whole circuit</li>
+            <li>Total resistance increases as more components are added</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3>Failure Clue</h3>
+          <p>
+            If one part opens and the whole circuit stops, the circuit behavior points toward series.
+          </p>
+        </div>
+      </div>
+
+      <div class="notice-first">
+        <strong>What to notice first:</strong>
+        One path means same current.
+      </div>
+    </section>
+
+    <section id="parallel" class="card">
+      <h2>What Is a Parallel Circuit?</h2>
+
+      <p>
+        In a parallel circuit, components are connected across multiple paths or branches. Current can split and flow through more than one branch.
+      </p>
+
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Key Signs</h3>
+          <ul>
+            <li>More than one path for current</li>
+            <li>Voltage is the same across each branch</li>
+            <li>Current can split between branches</li>
+            <li>One open branch may not stop the other branches</li>
+            <li>Total resistance decreases as more branches are added</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3>Failure Clue</h3>
+          <p>
+            If one branch fails but other branches still work, the circuit behavior points toward parallel.
+          </p>
+        </div>
+      </div>
+
+      <div class="notice-first">
+        <strong>What to notice first:</strong>
+        Multiple paths means current can divide.
+      </div>
+    </section>
+
+    <section id="comparison" class="card">
+      <h2>Series vs Parallel Comparison</h2>
+
+      <table class="compare-table">
+        <tr>
+          <th>Feature</th>
+          <th>Series Circuit</th>
+          <th>Parallel Circuit</th>
+        </tr>
+        <tr>
+          <td><strong>Current path</strong></td>
+          <td>One path</td>
+          <td>Multiple paths</td>
+        </tr>
+        <tr>
+          <td><strong>Current behavior</strong></td>
+          <td>Same current through all components</td>
+          <td>Current splits between branches</td>
+        </tr>
+        <tr>
+          <td><strong>Voltage behavior</strong></td>
+          <td>Voltage divides across components</td>
+          <td>Voltage is the same across each branch</td>
+        </tr>
+        <tr>
+          <td><strong>If one part fails</strong></td>
+          <td>Whole circuit may stop</td>
+          <td>Other branches may still work</td>
+        </tr>
+        <tr>
+          <td><strong>Resistance behavior</strong></td>
+          <td>Adding resistance increases total resistance</td>
+          <td>Adding branches lowers total resistance</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="current" class="card">
+      <h2>Current Behavior</h2>
+
+      <h3>Current in Series Circuits</h3>
+      <p>
+        In a series circuit, current is the same everywhere because there is only one path. The current through the first component is the same current through the second component.
+      </p>
+
+      <div class="notice-first">
+        <strong>Series current clue:</strong>
+        One path means same current.
+      </div>
+
+      <h3>Current in Parallel Circuits</h3>
+      <p>
+        In a parallel circuit, current can split. Each branch can carry part of the total current, and the total current is the sum of branch currents.
+      </p>
+
+      <div class="notice-first">
+        <strong>Parallel current clue:</strong>
+        Multiple paths means current can divide.
+      </div>
+    </section>
+
+    <section id="voltage" class="card">
+      <h2>Voltage Behavior</h2>
+
+      <h3>Voltage in Series Circuits</h3>
+      <p>
+        In a series circuit, voltage is divided across the components. The supply voltage is shared by components in the one path.
+      </p>
+
+      <div class="notice-first">
+        <strong>Series voltage clue:</strong>
+        Series circuits share voltage across components.
+      </div>
+
+      <h3>Voltage in Parallel Circuits</h3>
+      <p>
+        In a parallel circuit, each branch is connected across the same supply voltage. That means each branch receives the same voltage.
+      </p>
+
+      <div class="notice-first">
+        <strong>Parallel voltage clue:</strong>
+        Parallel branches get the same voltage.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Resistance Behavior</h2>
+
+      <h3>Resistance in Series Circuits</h3>
+      <p>
+        In series, total resistance is added together. If more resistors are added in series, total resistance increases.
+      </p>
+
+      <div class="notice-first">
+        <strong>Series resistance clue:</strong>
+        More series resistance means less current if voltage stays the same.
+      </div>
+
+      <h3>Resistance in Parallel Circuits</h3>
+      <p>
+        In parallel, adding more branches gives current more paths to travel. That means total resistance decreases when more parallel branches are added.
+      </p>
+
+      <div class="warning-box">
+        <strong>Common mistake:</strong>
+        Adding another resistor in parallel does not increase total resistance. It lowers total resistance because current has another path.
+      </div>
+
+      <p>
+        This connects directly to <a href="/what-is-ohms-law.html">Ohm's Law</a> and <a href="/voltage-current-resistance-cbet.html">voltage, current, and resistance</a>.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Real-World Example: Lights</h2>
+
+      <p>
+        Think about a string of lights. If the lights are wired in series and one bulb fails, the entire string may go out.
+        If the lights are wired in parallel, one bulb can fail while the others stay on.
+      </p>
+
+      <div class="notice-first">
+        <strong>What to notice first:</strong>
+        Everything stops together = series. Some parts keep working = parallel.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Why This Matters for Biomedical Equipment</h2>
+
+      <p>
+        Biomedical equipment uses many circuit designs. You do not need to become an electrical engineer to start understanding the basics,
+        but you do need to recognize circuit behavior.
+      </p>
+
+      <p>
+        Series and parallel circuit recognition helps explain why some parts of a circuit behave together while other parts can operate independently.
+        That recognition supports stronger understanding of power supplies, sensors, switches, fuses, loads, and basic electronics troubleshooting.
+      </p>
+
+      <div class="grid-2">
+        <div class="mini-card">
+          <h3>Series-style thinking</h3>
+          <p>
+            One open path can stop current everywhere. This is useful when thinking about fuses, switches, and open circuits.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Parallel-style thinking</h3>
+          <p>
+            One branch may fail while other branches continue working. This is useful when thinking about branch loads and independent paths.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Common Mistakes Learners Make</h2>
+
+      <ul>
+        <li>Thinking current splits in a series circuit.</li>
+        <li>Thinking voltage is always divided in parallel.</li>
+        <li>Forgetting that series has one path.</li>
+        <li>Forgetting that parallel has multiple paths.</li>
+        <li>Assuming adding resistors always increases total resistance.</li>
+        <li>Confusing branch current with total current.</li>
+      </ul>
+
+      <div class="notice-first">
+        <strong>What to notice first:</strong>
+        Before answering, ask: one path or multiple paths?
+      </div>
+    </section>
+
+    <section id="questions" class="card">
+      <h2>CBET-Style Quick Questions</h2>
+
+      <div class="question-card">
+        <strong>1. Which circuit has one path for current?</strong>
+        <p>A. Series &nbsp; B. Parallel &nbsp; C. Open branch only &nbsp; D. Ground label</p>
+        <div class="answer">Answer: A. Series</div>
+        <div class="why">A series circuit has one current path.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>2. Which circuit has multiple paths for current?</strong>
+        <p>A. Series &nbsp; B. Parallel &nbsp; C. Single open path &nbsp; D. Fuse label only</p>
+        <div class="answer">Answer: B. Parallel</div>
+        <div class="why">A parallel circuit has multiple current paths or branches.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. If one part fails and the whole circuit stops, what should you think first?</strong>
+        <p>A. Series &nbsp; B. Parallel &nbsp; C. Branch still working &nbsp; D. Voltage is unrelated</p>
+        <div class="answer">Answer: A. Series</div>
+        <div class="why">Series circuits have one path, so one open can stop the whole circuit.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. In a parallel circuit, voltage across each branch is usually:</strong>
+        <p>A. The same &nbsp; B. Always zero &nbsp; C. Unrelated to the source &nbsp; D. Always doubled</p>
+        <div class="answer">Answer: A. The same</div>
+        <div class="why">Parallel branches are connected across the same supply voltage.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. What happens to total resistance when more branches are added in parallel?</strong>
+        <p>A. It decreases &nbsp; B. It always increases &nbsp; C. It becomes voltage &nbsp; D. It becomes current</p>
+        <div class="answer">Answer: A. It decreases</div>
+        <div class="why">Adding parallel branches gives current more paths, lowering total resistance.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Voltage Current Resistance Quiz</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Best Study Path After This Page</h2>
+      <p>
+        Series and parallel circuits make more sense when the foundation concepts are strong.
+      </p>
+
+      <div class="path-grid">
+        <a class="path-card" href="/voltage-current-resistance-cbet.html">
+          1. Voltage Current Resistance
+          <span>Understand push, flow, and opposition.</span>
+        </a>
+        <a class="path-card" href="/what-is-ohms-law.html">
+          2. Ohm's Law
+          <span>Connect voltage, current, and resistance.</span>
+        </a>
+        <a class="path-card" href="/how-to-use-a-multimeter.html">
+          3. Multimeter Guide
+          <span>Learn practical circuit checks.</span>
+        </a>
+        <a class="path-card" href="/power-supply-basics-cbet.html">
+          4. Power Supply Basics
+          <span>Apply circuit behavior to real equipment.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is a series circuit?</h3>
+      <p>
+        A series circuit has one path for current. The same current flows through all components.
+      </p>
+
+      <h3>What is a parallel circuit?</h3>
+      <p>
+        A parallel circuit has multiple paths for current. Voltage is the same across each branch.
+      </p>
+
+      <h3>What should I notice first?</h3>
+      <p>
+        First ask whether there is one path or multiple paths. One path points to series. Multiple paths point to parallel.
+      </p>
+
+      <h3>What happens if one part fails in series?</h3>
+      <p>
+        Because a series circuit has one current path, one open component can stop the entire circuit.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Related Electronics Guides</h2>
+      <p>
+        Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+      </p>
+
+      <div class="related-links">
+        <a href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+        <a href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
+        <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+        <a href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
+        <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a href="/multimeter-quiz.html">Multimeter Quiz</a>
+        <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+        <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+        <a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics</a>
+        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Ready to practice?</h2>
+      <p>
+        Start with voltage, current, and resistance practice, then move into mixed CBET electronics questions.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Electronics Quiz</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice</a>
+      </div>
+    </section>
+
+    <p class="safety">
+      For learning purposes only. This page is designed to build basic electronics understanding for students, healthcare learners, and exam preparation.
+    </p>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
