@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Basic Electronics Explained for Beginners | CBET Start Here</title>
@@ -17,15 +18,20 @@
   />
 
   <meta name="robots" content="index, follow" />
+
   <link rel="canonical" href="https://medskillbuilder.com/basic-electronics-explained-for-beginners.html" />
 
   <meta property="og:title" content="Basic Electronics Explained for Beginners | CBET Start Here" />
+
   <meta
     property="og:description"
-    content="A beginner-friendly guide to electronics for CBET, biomedical equipment, and healthcare technology learners. Learn voltage, current, resistance, Ohm's Law, AC vs DC, components, and multimeter basics."
+    content="A beginner-friendly electronics guide for CBET, biomedical equipment, and healthcare technology learners. Learn voltage, current, resistance, Ohm's Law, AC vs DC, components, circuits, power supplies, and multimeter basics."
   />
+
   <meta property="og:type" content="article" />
+
   <meta property="og:url" content="https://medskillbuilder.com/basic-electronics-explained-for-beginners.html" />
+
   <meta property="og:site_name" content="MedSkillBuilder" />
 
   <script type="application/ld+json">
@@ -86,6 +92,14 @@
           "@type": "Answer",
           "text": "A multimeter is one of the most important beginner tools because it can help measure voltage, resistance, and continuity."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best study order for beginner electronics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A good order is voltage current resistance, Ohm's Law, AC vs DC, series and parallel circuits, common components, multimeter use, power supply basics, then practice questions."
+        }
       }
     ]
   }
@@ -98,6 +112,7 @@
       --blue: #2563eb;
       --cyan: #0891b2;
       --green: #16a34a;
+      --green2: #22c55e;
       --teal: #0f766e;
       --orange: #f97316;
       --purple: #7c3aed;
@@ -109,12 +124,15 @@
       --soft-green: #ecfdf5;
       --soft-orange: #fff7ed;
       --soft-purple: #f5f3ff;
+      --white: #ffffff;
       --shadow: 0 18px 46px rgba(15, 23, 42, 0.10);
       --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -122,20 +140,18 @@
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background:
         radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34%),
         radial-gradient(circle at top right, rgba(20, 184, 166, 0.10), transparent 34%),
-        var(--page);
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
       color: #0f172a;
       line-height: 1.7;
     }
 
     .container {
-      max-width: 1120px;
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 24px 20px 60px;
     }
 
     .top-bar {
@@ -144,10 +160,41 @@
       justify-content: space-between;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 22px;
+      padding: 18px 0;
     }
 
-    .top-link,
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .mini-nav a {
       display: inline-flex;
       align-items: center;
@@ -162,19 +209,15 @@
       font-size: 0.94rem;
     }
 
-    .mini-nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
     .hero {
-      background: linear-gradient(135deg, var(--navy-dark) 0%, #153f73 55%, #0891b2 100%);
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, var(--navy-dark) 0%, #153f73 55%, #0891b2 100%);
       color: white;
-      border-radius: 30px;
-      padding: 38px;
+      border-radius: 32px;
+      padding: 52px 36px;
       box-shadow: var(--shadow);
-      margin-bottom: 28px;
+      margin: 8px 0 28px;
       position: relative;
       overflow: hidden;
     }
@@ -182,10 +225,10 @@
     .hero::after {
       content: "";
       position: absolute;
-      right: -90px;
-      top: -90px;
-      width: 260px;
-      height: 260px;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
       border-radius: 999px;
       background: rgba(255,255,255,0.12);
     }
@@ -205,18 +248,18 @@
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.45rem);
-      line-height: 1.08;
-      margin: 0 0 14px;
-      letter-spacing: -0.04em;
-      max-width: 930px;
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 0.98;
+      margin: 0 0 18px;
+      letter-spacing: -0.05em;
+      max-width: 980px;
       position: relative;
       z-index: 2;
     }
 
     .hero p {
-      max-width: 900px;
-      font-size: 1.08rem;
+      max-width: 920px;
+      font-size: clamp(18px, 2.2vw, 22px);
       margin: 0 0 16px;
       color: rgba(255,255,255,0.94);
       position: relative;
@@ -236,14 +279,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 13px 20px;
+      min-height: 54px;
+      padding: 14px 24px;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 900;
       color: white;
       background: linear-gradient(135deg, #16a34a, #22c55e);
       border: 1px solid rgba(255,255,255,0.25);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      box-shadow: 0 14px 28px rgba(22,163,74,0.24);
       transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
@@ -255,6 +299,7 @@
     .cta.secondary {
       background: rgba(255,255,255,0.14);
       color: white;
+      box-shadow: none;
     }
 
     .cta.dark {
@@ -262,13 +307,17 @@
       color: white;
     }
 
-    .hero-stats {
+    .hero-stats,
+    .quick-grid,
+    .grid,
+    .link-list,
+    .path-grid,
+    .toc,
+    .concept-map {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 12px;
-      margin-top: 24px;
-      position: relative;
-      z-index: 2;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
     }
 
     .hero-stat {
@@ -276,6 +325,8 @@
       border: 1px solid rgba(255,255,255,0.24);
       border-radius: 18px;
       padding: 14px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-stat strong {
@@ -291,33 +342,83 @@
       font-size: 0.92rem;
     }
 
+    .quick-stat,
+    .mini,
+    .study-link,
+    .path-card,
+    .toc a,
+    .concept-step {
+      display: block;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      text-decoration: none;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: var(--soft-shadow);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .quick-stat {
+      text-align: center;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .quick-stat span,
+    .path-card span,
+    .concept-step span {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.94rem;
+      margin-top: 6px;
+    }
+
+    .study-link:hover,
+    .path-card:hover,
+    .toc a:hover,
+    .concept-step:hover {
+      transform: translateY(-2px);
+      background: #f8fbff;
+      border-color: var(--blue);
+    }
+
     .card {
       background: white;
-      border-radius: 24px;
-      padding: 28px;
+      border-radius: 28px;
+      padding: 30px;
       margin-bottom: 26px;
       box-shadow: var(--soft-shadow);
       border: 1px solid var(--border);
     }
 
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
+    }
+
     h2 {
-      font-size: clamp(1.45rem, 2.5vw, 2.05rem);
+      font-size: clamp(30px, 4vw, 42px);
       margin: 0 0 14px;
       color: var(--navy);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
     }
 
     h3 {
-      font-size: 1.2rem;
-      margin: 20px 0 8px;
+      font-size: 1.24rem;
+      margin: 22px 0 8px;
       color: #0f2f57;
       line-height: 1.25;
     }
 
     p {
+      font-size: 17px;
       margin-top: 0;
       margin-bottom: 14px;
+      color: #1f2937;
     }
 
     a {
@@ -328,68 +429,41 @@
     .note,
     .warning,
     .success,
-    .concept {
+    .concept,
+    .quick-answer {
       padding: 16px 18px;
       border-radius: 16px;
       margin: 18px 0;
+      font-weight: 700;
     }
 
     .note {
       background: var(--soft-blue);
-      border-left: 5px solid var(--blue);
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
     }
 
     .warning {
       background: var(--soft-orange);
-      border-left: 5px solid var(--orange);
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
     }
 
-    .success {
+    .success,
+    .quick-answer {
       background: var(--soft-green);
-      border-left: 5px solid var(--green);
+      border: 1px solid #bbf7d0;
+      color: #065f46;
     }
 
     .concept {
       background: var(--soft-purple);
-      border-left: 5px solid var(--purple);
-    }
-
-    .grid,
-    .link-list,
-    .path-grid,
-    .toc {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .mini,
-    .study-link,
-    .path-card,
-    .toc a {
-      display: block;
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 16px;
-      padding: 16px;
-      text-decoration: none;
-      color: #0f172a;
-      font-weight: 800;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
     }
 
     .mini {
       background: #f8fafc;
-    }
-
-    .study-link:hover,
-    .path-card:hover,
-    .toc a:hover {
-      transform: translateY(-2px);
-      background: #f8fbff;
-      border-color: var(--blue);
     }
 
     .mini h3 {
@@ -397,25 +471,30 @@
       color: var(--navy);
     }
 
-    .path-card span {
-      display: block;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.94rem;
-      margin-top: 6px;
-    }
-
-    .formula {
+    .formula,
+    .diagram {
       background: #0f172a;
       color: white;
       text-align: center;
       padding: 20px;
-      border-radius: 18px;
-      font-size: 1.85rem;
+      border-radius: 20px;
+      font-size: clamp(24px, 4vw, 42px);
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.02em;
       margin: 18px 0;
       box-shadow: var(--soft-shadow);
+    }
+
+    .diagram {
+      font-size: clamp(18px, 3vw, 28px);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
     }
 
     .quick-check {
@@ -452,6 +531,8 @@
 
     li {
       margin-bottom: 8px;
+      color: #1f2937;
+      font-size: 16px;
     }
 
     .compare-table {
@@ -480,39 +561,113 @@
       background: #ffffff;
     }
 
-    .footer-cta {
-      text-align: center;
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: var(--soft-shadow);
+    .question-card {
+      background: #f8fbff;
       border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
+    .footer-cta,
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--cyan));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .footer-cta h2,
+    .footer-cta p,
+    .final-cta h2,
+    .final-cta p {
+      color: white;
     }
 
     footer {
       text-align: center;
       color: #64748b;
       font-size: 0.92rem;
-      margin-top: 32px;
+      margin: 32px 0;
     }
 
-    @media (max-width: 720px) {
+    footer p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
       .container {
-        padding: 18px 14px 46px;
+        width: min(100% - 28px, 1120px);
       }
 
       .hero {
-        padding: 26px 18px;
-        border-radius: 22px;
+        padding: 42px 24px;
+        border-radius: 26px;
       }
 
       .card {
-        padding: 20px 16px;
-        border-radius: 18px;
+        padding: 24px 20px;
       }
 
       .cta {
         width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
       }
 
       .compare-table,
@@ -531,9 +686,16 @@
   <div class="container">
 
     <div class="top-bar">
-      <a class="top-link" href="/browse-all-practice.html">← Back to Browse All</a>
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
+
       <nav class="mini-nav" aria-label="Quick links">
-        <a href="/basic-electronics-cbet.html">CBET Electronics</a>
+        <a href="/browse-all-practice.html">Browse All</a>
         <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
         <a href="/how-to-use-a-multimeter.html">Multimeter</a>
       </nav>
@@ -541,11 +703,14 @@
 
     <section class="hero">
       <div class="eyebrow">⚡ Beginner Electronics Start Here</div>
+
       <h1>Basic Electronics Explained for Beginners</h1>
+
       <p>
         If electronics feels confusing, start here. This beginner guide explains voltage, current, resistance,
         Ohm's Law, circuits, AC vs DC, components, power supplies, and multimeter basics in plain language.
       </p>
+
       <p>
         This page is especially helpful for CBET learners, biomedical equipment students, and anyone who wants to understand
         the electronics behind medical equipment without getting lost in complicated math.
@@ -558,22 +723,43 @@
       </div>
 
       <div class="hero-stats">
-        <div class="hero-stat"><strong>Beginner</strong><span>No electronics background needed</span></div>
-        <div class="hero-stat"><strong>CBET</strong><span>Useful for biomed learners</span></div>
-        <div class="hero-stat"><strong>Free</strong><span>Study and practice anytime</span></div>
+        <div class="hero-stat">
+          <strong>Beginner</strong>
+          <span>No electronics background needed</span>
+        </div>
+
+        <div class="hero-stat">
+          <strong>CBET</strong>
+          <span>Useful for biomed learners</span>
+        </div>
+
+        <div class="hero-stat">
+          <strong>Free</strong>
+          <span>Study and practice anytime</span>
+        </div>
       </div>
     </section>
 
-    <section class="card">
+    <div class="quick-grid">
+      <div class="quick-stat">Voltage<span>Electrical push</span></div>
+      <div class="quick-stat">Current<span>Electrical flow</span></div>
+      <div class="quick-stat">Resistance<span>Opposition to flow</span></div>
+    </div>
+
+    <section class="card highlight">
       <h2>Start With the Big Idea</h2>
-      <p>
+
+      <div class="quick-answer">
         Electronics is the study of how electricity moves through a circuit and how components control that movement.
-        Once you understand a few basic ideas, the rest starts to make more sense.
+      </div>
+
+      <p>
+        Once you understand a few basic ideas, the rest starts to make more sense. Voltage pushes. Current flows.
+        Resistance limits. Components control. Circuits provide the path. A multimeter helps you see what is happening.
       </p>
 
-      <div class="note">
-        <strong>Simple way to think about it:</strong><br />
-        Voltage pushes electricity, current is the flow, and resistance slows or limits the flow.
+      <div class="diagram">
+        <span>Power source</span> → <span>Circuit path</span> → <span>Component</span> → <span>Load</span>
       </div>
 
       <p>
@@ -585,70 +771,138 @@
 
     <section class="card">
       <h2>Jump to a Beginner Electronics Topic</h2>
+
       <div class="toc">
         <a href="#core-concepts">Voltage, Current, Resistance</a>
         <a href="#ohms-law">Ohm's Law</a>
         <a href="#circuits">Series and Parallel Circuits</a>
         <a href="#components">Components</a>
         <a href="#ac-dc">AC vs DC</a>
+        <a href="#power-supplies">Power Supplies</a>
         <a href="#multimeter">Using a Multimeter</a>
         <a href="#practice">Practice Questions</a>
         <a href="#study-path">Best Study Path</a>
       </div>
     </section>
 
+    <section class="card">
+      <h2>The Beginner Electronics Map</h2>
+
+      <p>
+        Use this page as the hub. Each concept below connects to a deeper MedSkillBuilder guide or quiz.
+      </p>
+
+      <div class="concept-map">
+        <a class="concept-step" href="/voltage-current-resistance-cbet.html">
+          1. Voltage, Current, Resistance
+          <span>Learn push, flow, and opposition.</span>
+        </a>
+
+        <a class="concept-step" href="/what-is-ohms-law.html">
+          2. Ohm's Law
+          <span>Learn how the three values work together.</span>
+        </a>
+
+        <a class="concept-step" href="/ac-vs-dc-current.html">
+          3. AC vs DC
+          <span>Understand wall power and internal circuit power.</span>
+        </a>
+
+        <a class="concept-step" href="/series-vs-parallel-circuits.html">
+          4. Series vs Parallel
+          <span>Recognize one path vs multiple paths.</span>
+        </a>
+
+        <a class="concept-step" href="/how-to-use-a-multimeter.html">
+          5. Multimeter Use
+          <span>Learn practical voltage, resistance, and continuity checks.</span>
+        </a>
+
+        <a class="concept-step" href="/power-supply-basics-cbet.html">
+          6. Power Supplies
+          <span>Follow AC input to stable DC output.</span>
+        </a>
+      </div>
+    </section>
+
     <section id="core-concepts" class="card">
       <h2>The Three Core Concepts</h2>
+
+      <p>
+        Almost every beginner electronics question starts with voltage, current, and resistance.
+      </p>
 
       <div class="grid">
         <div class="mini">
           <h3>Voltage</h3>
+
           <p>
             Voltage is electrical pressure. It is the push that moves electricity through a circuit.
           </p>
+
           <p>
             Voltage is measured in volts, shown as <strong>V</strong>.
           </p>
+
           <a class="study-link" href="/voltage-current-resistance-cbet.html">Review Voltage</a>
         </div>
 
         <div class="mini">
           <h3>Current</h3>
+
           <p>
             Current is the flow of electric charge. If voltage is the push, current is what moves.
           </p>
+
           <p>
             Current is measured in amps, shown as <strong>A</strong>.
           </p>
+
           <a class="study-link" href="/voltage-current-resistance-cbet.html">Review Current</a>
         </div>
 
         <div class="mini">
           <h3>Resistance</h3>
+
           <p>
             Resistance opposes current flow. More resistance means less current can flow when voltage stays the same.
           </p>
+
           <p>
             Resistance is measured in ohms, shown as <strong>Ω</strong>.
           </p>
-          <a class="study-link" href="/how-to-test-a-resistor.html">Test a Resistor</a>
+
+          <a class="study-link" href="/voltage-current-resistance-cbet.html">Review Resistance</a>
         </div>
 
         <div class="mini">
           <h3>Power</h3>
+
           <p>
             Power is how much electrical energy is being used or delivered by a circuit.
           </p>
+
           <p>
             Power is measured in watts, shown as <strong>W</strong>.
           </p>
+
           <a class="study-link" href="/power-supply-basics-cbet.html">Power Supply Basics</a>
         </div>
+      </div>
+
+      <div class="note">
+        <strong>Simple way to think about it:</strong><br />
+        Voltage pushes electricity, current is the flow, and resistance slows or limits the flow.
+      </div>
+
+      <div class="cta-row">
+        <a class="cta" href="/voltage-current-resistance-quiz.html">Take Voltage Current Resistance Quiz</a>
       </div>
     </section>
 
     <section id="ohms-law" class="card">
       <h2>Ohm's Law: The Formula That Connects Everything</h2>
+
       <p>
         Ohm's Law explains the relationship between voltage, current, and resistance.
       </p>
@@ -680,11 +934,15 @@
         </p>
       </div>
 
-      <a class="study-link" href="/ohms-law-quiz.html">Try the Ohm's Law Quiz</a>
+      <div class="link-list">
+        <a class="study-link" href="/what-is-ohms-law.html">Read the Ohm's Law Guide</a>
+        <a class="study-link" href="/ohms-law-quiz.html">Try the Ohm's Law Quiz</a>
+      </div>
     </section>
 
     <section id="circuits" class="card">
       <h2>How Circuits Work</h2>
+
       <p>
         A circuit is a complete path that allows electricity to flow. If the path is broken, current cannot flow.
       </p>
@@ -721,6 +979,7 @@
 
     <section id="components" class="card">
       <h2>Common Electronic Components</h2>
+
       <p>
         Components are the individual parts that make circuits work. You do not need to memorize every part at once.
         Start by recognizing the most common ones.
@@ -732,7 +991,7 @@
           <p>
             A resistor limits or controls current flow. It protects components and helps set circuit values.
           </p>
-          <a class="study-link" href="/how-to-test-a-resistor.html">How to Test a Resistor</a>
+          <a class="study-link" href="/voltage-current-resistance-cbet.html">Review Resistance</a>
         </div>
 
         <div class="mini">
@@ -773,16 +1032,19 @@
 
     <section id="ac-dc" class="card">
       <h2>AC vs DC Current</h2>
+
       <p>
         Electricity can be AC or DC.
       </p>
 
       <h3>AC Current</h3>
+
       <p>
         AC stands for alternating current. It changes direction repeatedly. Wall outlets supply AC power.
       </p>
 
       <h3>DC Current</h3>
+
       <p>
         DC stands for direct current. It flows in one direction. Batteries and many circuit boards use DC power.
       </p>
@@ -793,17 +1055,43 @@
       </p>
 
       <div class="success">
-        <strong>What to notice first:</strong> Wall power is commonly AC. Circuit boards often need DC. That is why rectifiers and power supplies matter.
+        <strong>What to notice first:</strong>
+        Wall power is commonly AC. Circuit boards often need DC. That is why rectifiers and power supplies matter.
       </div>
 
       <div class="link-list">
         <a class="study-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a class="study-link" href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a class="study-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+      </div>
+    </section>
+
+    <section id="power-supplies" class="card">
+      <h2>Power Supply Basics</h2>
+
+      <p>
+        A power supply takes incoming electrical power and converts it into a usable form for the device.
+        In many medical devices, that means AC wall power is changed into stable DC voltage for internal circuits.
+      </p>
+
+      <div class="diagram">
+        <span>AC input</span> → <span>Rectifier</span> → <span>Capacitor smoothing</span> → <span>Regulator</span> → <span>DC output</span>
+      </div>
+
+      <p>
+        This is why AC/DC, diodes, rectifiers, capacitors, and multimeter testing all connect together.
+      </p>
+
+      <div class="link-list">
         <a class="study-link" href="/power-supply-basics-cbet.html">Power Supply Basics for CBET</a>
+        <a class="study-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a class="study-link" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
       </div>
     </section>
 
     <section class="card">
       <h2>Why This Matters for Biomedical Equipment</h2>
+
       <p>
         Biomedical equipment depends on electronics. Even if you are not designing circuits, you still need to understand
         basic electronics to troubleshoot safely and think clearly.
@@ -828,6 +1116,7 @@
 
     <section id="multimeter" class="card">
       <h2>Using a Multimeter</h2>
+
       <p>
         A multimeter is one of the most important tools for electronics troubleshooting.
       </p>
@@ -881,10 +1170,16 @@
       <p>
         The meter setting matters. Measuring voltage, resistance, and current are different tasks.
       </p>
+
+      <h3>6. Forgetting AC and DC are different</h3>
+      <p>
+        Wall power is commonly AC. Batteries and internal circuit boards commonly use DC.
+      </p>
     </section>
 
     <section id="practice" class="card">
       <h2>Beginner Electronics Practice Questions</h2>
+
       <p>
         Try these quick checks before moving into the full practice quizzes.
       </p>
@@ -953,6 +1248,20 @@
         </details>
       </div>
 
+      <div class="question-card">
+        <strong>9. If one branch fails but other branches keep working, what type of circuit is likely being described?</strong>
+        <p>A. Series &nbsp; B. Parallel &nbsp; C. Open-only circuit &nbsp; D. No circuit</p>
+        <div class="answer">Answer: B. Parallel</div>
+        <div class="why">Parallel circuits have multiple branches, so one branch may fail while others keep working.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>10. What component is commonly used in a rectifier to help current move in one direction?</strong>
+        <p>A. Diode &nbsp; B. Resistor only &nbsp; C. Display screen &nbsp; D. Speaker</p>
+        <div class="answer">Answer: A. Diode</div>
+        <div class="why">Diodes allow current to flow mainly in one direction and are used in rectifier circuits.</div>
+      </div>
+
       <div class="link-list">
         <a class="study-link" href="/cbet-electronics-practice-questions.html">Full Electronics Practice</a>
         <a class="study-link" href="/most-missed-cbet-electronics-questions.html">Most Missed Questions</a>
@@ -961,6 +1270,7 @@
 
     <section id="study-path" class="card">
       <h2>Best Study Path</h2>
+
       <p>
         If you are new, use this order:
       </p>
@@ -969,6 +1279,7 @@
         <li>Read this page first.</li>
         <li>Review voltage, current, and resistance.</li>
         <li>Learn Ohm's Law.</li>
+        <li>Practice AC vs DC.</li>
         <li>Practice series and parallel circuits.</li>
         <li>Learn common components like resistors, capacitors, and diodes.</li>
         <li>Practice with quizzes until the ideas feel familiar.</li>
@@ -979,18 +1290,68 @@
           1. Voltage, Current, Resistance
           <span>Understand the three terms that most beginner circuit questions are built on.</span>
         </a>
+
         <a class="path-card" href="/what-is-ohms-law.html">
           2. Ohm's Law Guide
           <span>Learn how voltage, current, and resistance work together.</span>
         </a>
+
+        <a class="path-card" href="/ohms-law-quiz.html">
+          3. Ohm's Law Quiz
+          <span>Practice the formula and behavior rules.</span>
+        </a>
+
+        <a class="path-card" href="/ac-vs-dc-current.html">
+          4. AC vs DC Current
+          <span>Understand wall power compared with internal circuit power.</span>
+        </a>
+
         <a class="path-card" href="/series-vs-parallel-circuits.html">
-          3. Series vs Parallel
+          5. Series vs Parallel
           <span>Learn how circuit paths change behavior and failure symptoms.</span>
         </a>
+
+        <a class="path-card" href="/series-parallel-quiz.html">
+          6. Series vs Parallel Quiz
+          <span>Practice recognizing one path vs multiple paths.</span>
+        </a>
+
+        <a class="path-card" href="/how-to-use-a-multimeter.html">
+          7. Multimeter Guide
+          <span>Learn the tool that helps you test electronics safely.</span>
+        </a>
+
         <a class="path-card" href="/cbet-electronics-practice-questions.html">
-          4. CBET Electronics Practice
+          8. CBET Electronics Practice
           <span>Use practice questions to turn the concepts into recognition.</span>
         </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Related Electronics Guides</h2>
+
+      <p>
+        Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+      </p>
+
+      <div class="link-list">
+        <a class="study-link" href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+        <a class="study-link" href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+        <a class="study-link" href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
+        <a class="study-link" href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+        <a class="study-link" href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
+        <a class="study-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a class="study-link" href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a>
+        <a class="study-link" href="/series-parallel-quiz.html">Series vs Parallel Quiz</a>
+        <a class="study-link" href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a class="study-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        <a class="study-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a class="study-link" href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+        <a class="study-link" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a class="study-link" href="/multimeter-quiz.html">Multimeter Quiz</a>
+        <a class="study-link" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+        <a class="study-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
       </div>
     </section>
 
@@ -1020,6 +1381,7 @@
 
     <section class="footer-cta">
       <h2>Ready to Practice?</h2>
+
       <p>
         Start with beginner electronics practice, then move into CBET-style questions and equipment identification.
       </p>
