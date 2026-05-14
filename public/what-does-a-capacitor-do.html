@@ -1,196 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>What Does a Capacitor Do? | CBET Electronics Guide</title>
+  <title>What Does a Capacitor Do? | CBET Electronics and Medical Equipment Guide</title>
 
-  <meta name="description" content="Learn what a capacitor does, how capacitors store and release energy, how they smooth voltage, and why they matter in CBET electronics and medical equipment.">
+  <meta name="description" content="Learn what a capacitor does, how capacitors store and release energy, smooth voltage ripple, filter noise, support timing circuits, and why capacitors matter in CBET electronics, power supplies, defibrillators, and medical equipment troubleshooting." />
+  <meta name="keywords" content="what does a capacitor do, capacitor CBET, capacitor medical equipment, capacitor power supply, capacitor stores energy, smoothing capacitor, voltage ripple, biomedical electronics, CBET electronics guide, capacitor troubleshooting" />
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/what-does-a-capacitor-do.html" />
+
+  <meta property="og:title" content="What Does a Capacitor Do? | CBET Electronics Guide" />
+  <meta property="og:description" content="Learn how capacitors store and release energy, smooth DC voltage, filter noise, and support medical equipment power supplies and CBET electronics troubleshooting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/what-does-a-capacitor-do.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "What Does a Capacitor Do?",
+    "description": "A CBET electronics guide explaining capacitors, energy storage, charge and discharge behavior, voltage smoothing, ripple filtering, medical equipment power supplies, defibrillators, and troubleshooting clues.",
+    "url": "https://medskillbuilder.com/what-does-a-capacitor-do.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does a capacitor do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A capacitor stores and releases electrical energy. It can help smooth voltage, filter noise, support timing circuits, and provide short bursts of energy when needed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are capacitors important in power supplies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After a rectifier converts AC into DC, the DC output may still have ripple. Capacitors help smooth that ripple so circuits receive steadier DC voltage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are capacitors important in medical equipment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Capacitors are used in medical equipment power supplies, timing circuits, filtering circuits, imaging systems, monitors, and defibrillators. In defibrillators, capacitors store energy that can be released rapidly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can a capacitor fail?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A capacitor may fail open, shorted, weak, leaking, swollen, or unable to hold charge properly."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --light: #f8fafc;
+      --border: #dbeafe;
+      --card: #ffffff;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-purple: #f5f3ff;
+      --purple: #7c3aed;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 840px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+
+    .notice {
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .quick-grid,
+    .toc,
+    .grid-2,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .toc a,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    main {
+      padding-bottom: 36px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 22px;
+      margin: 22px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
+    ul {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .quick-answer,
+    .notice-first,
+    .troubleshooting-box,
+    .concept-box,
+    .safety-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .quick-answer {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .notice-first {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .troubleshooting-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+    }
+
+    .concept-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+    }
+
+    .safety-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #7f1d1d;
+    }
+
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .diagram {
+      background: #0f172a;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
+    }
+
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
-<body style="font-family: Arial; max-width: 900px; margin: auto; padding: 20px; line-height: 1.7; background:#f8fafc; color:#0f172a;">
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-<h1>What Does a Capacitor Do?</h1>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/basic-electronics-explained-for-beginners.html">Beginner Electronics</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
 
-<p>
-A capacitor is an electronic component that <strong>stores and releases electrical energy</strong>. In simple terms, it acts like a temporary storage device inside a circuit.
-</p>
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Guide</div>
+      <h1>What Does a Capacitor Do?</h1>
+      <p>
+        A capacitor stores and releases electrical energy. This guide explains charging, discharging, smoothing voltage,
+        filtering noise, timing circuits, power supplies, and why capacitors matter in CBET electronics and medical equipment.
+      </p>
 
-<p>
-Capacitors are commonly used to smooth voltage, filter signals, reduce electrical noise, and provide short bursts of energy when needed.
-</p>
+      <div class="cta-row">
+        <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start Electronics Practice →</a>
+        <a class="cta secondary" href="/what-does-a-rectifier-do.html">Rectifier Guide</a>
+        <a class="cta secondary" href="/how-to-use-a-multimeter.html">Multimeter Guide</a>
+      </div>
+    </section>
 
-<hr>
+    <div class="quick-grid">
+      <div class="quick-stat">Stores Energy<span>Main job</span></div>
+      <div class="quick-stat">Smooths Ripple<span>Power supplies</span></div>
+      <div class="quick-stat">Can Hold Charge<span>Safety concern</span></div>
+    </div>
 
-<h2>Simple Explanation</h2>
+    <div class="notice">
+      MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, or any certification provider.
+    </div>
+  </div>
 
-<p>
-Think of a capacitor like a small electrical storage tank.
-</p>
+  <main>
+    <div class="container">
 
-<ul>
-  <li>When voltage is applied, the capacitor charges.</li>
-  <li>When the circuit needs energy, the capacitor can discharge.</li>
-  <li>This charge and discharge behavior helps stabilize circuits.</li>
-</ul>
+      <section class="card highlight">
+        <h2>Quick Answer</h2>
+        <div class="quick-answer">
+          A capacitor stores and releases electrical energy.
+        </div>
 
-<hr>
+        <p>
+          In simple terms, a capacitor acts like a temporary electrical storage tank. It can charge when voltage is applied
+          and discharge when the circuit needs energy.
+        </p>
 
-<h2>How a Capacitor Works</h2>
+        <div class="diagram">
+          <span>Voltage applied</span> → <span>Capacitor charges</span> → <span>Energy stored</span> → <span>Capacitor discharges</span>
+        </div>
 
-<p>
-A capacitor contains two conductive plates separated by an insulating material called a dielectric.
-</p>
+        <div class="notice-first">
+          <strong>What to notice first:</strong>
+          If a question asks what component stores electrical energy or smooths DC ripple, the answer is often capacitor.
+        </div>
+      </section>
 
-<p>
-When voltage is applied across the plates, electrical energy is stored in an electric field. When the circuit allows it, that stored energy is released back into the circuit.
-</p>
+      <section class="card">
+        <h2>Jump to a Capacitor Topic</h2>
+        <div class="toc">
+          <a href="#simple-explanation">Simple Explanation</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#power-supplies">Power Supplies</a>
+          <a href="#medical-equipment">Medical Equipment</a>
+          <a href="#failures">Failure Clues</a>
+          <a href="#questions">CBET Questions</a>
+        </div>
+      </section>
 
-<hr>
+      <section id="simple-explanation" class="card">
+        <h2>Simple Explanation</h2>
+        <p>
+          Think of a capacitor like a small electrical storage tank.
+        </p>
 
-<h2>Why Capacitors Matter in Power Supplies</h2>
+        <ul>
+          <li>When voltage is applied, the capacitor charges.</li>
+          <li>When the circuit needs energy, the capacitor can discharge.</li>
+          <li>This charge and discharge behavior helps stabilize circuits.</li>
+        </ul>
 
-<p>
-One of the most important uses of capacitors is in power supplies.
-</p>
+        <div class="concept-box">
+          <strong>Beginner memory hook:</strong> A capacitor does not create energy. It temporarily stores energy and releases it back into the circuit.
+        </div>
+      </section>
 
-<p>
-After AC voltage is converted into DC by a rectifier, the DC signal may still have ripple. A capacitor helps smooth that ripple so the circuit receives a more stable DC voltage.
-</p>
+      <section id="how-it-works" class="card">
+        <h2>How a Capacitor Works</h2>
 
-<p>
-That is why capacitors and rectifiers are often learned together.
-</p>
+        <p>
+          A capacitor contains two conductive plates separated by an insulating material called a dielectric.
+        </p>
 
-<p>
-Review this related guide:
-<a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
-</p>
+        <p>
+          When voltage is applied across the plates, electrical energy is stored in an electric field. When the circuit allows it,
+          that stored energy is released back into the circuit.
+        </p>
 
-<hr>
+        <div class="quick-answer">
+          Simple way to remember it: capacitors charge, store, and discharge.
+        </div>
 
-<h2>Why Capacitors Matter in Medical Equipment</h2>
+        <div class="grid-2">
+          <div class="mini-card">
+            <h3>Charge</h3>
+            <p>Voltage is applied and the capacitor stores energy in an electric field.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Discharge</h3>
+            <p>The stored energy is released back into the circuit when a path is available.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Filter</h3>
+            <p>Capacitors can reduce ripple and electrical noise in circuits.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Timing</h3>
+            <p>Charging and discharging behavior can be used in timing circuits.</p>
+          </div>
+        </div>
+      </section>
 
-<p>
-Capacitors are used in many types of medical equipment, including monitors, power supplies, imaging systems, and defibrillators.
-</p>
+      <section id="power-supplies" class="card">
+        <h2>Why Capacitors Matter in Power Supplies</h2>
 
-<p>
-In a defibrillator, capacitors store electrical energy and release it rapidly when a shock is delivered. In other devices, capacitors may help stabilize power, filter noise, or support timing circuits.
-</p>
+        <p>
+          One of the most important uses of capacitors is in power supplies. After AC voltage is converted into DC by a
+          rectifier, the DC signal may still have ripple. A capacitor helps smooth that ripple so the circuit receives a more stable DC voltage.
+        </p>
 
-<hr>
+        <div class="diagram">
+          <span>AC input</span> → <span>Rectifier</span> → <span>Pulsing DC</span> → <span>Capacitor smoothing</span> → <span>Steadier DC</span>
+        </div>
 
-<h2>Real-World Example</h2>
+        <p>
+          That is why capacitors and rectifiers are often learned together.
+          Review the related guide: <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        </p>
 
-<p>
-If a device has unstable power, intermittent operation, or a power supply issue, a capacitor may be part of the problem.
-</p>
+        <div class="notice-first">
+          <strong>CBET clue:</strong> Rectifier converts AC to DC. Capacitor helps smooth the ripple after rectification.
+        </div>
+      </section>
 
-<p>
-A failed capacitor may be shorted, open, leaking, swollen, or unable to hold charge properly.
-</p>
+      <section id="medical-equipment" class="card">
+        <h2>Why Capacitors Matter in Medical Equipment</h2>
 
-<hr>
+        <p>
+          Capacitors are used in many types of medical equipment, including monitors, power supplies, imaging systems, and defibrillators.
+        </p>
 
-<h2>How a Capacitor May Fail</h2>
+        <ul>
+          <li><strong>Power supplies:</strong> smoothing and filtering voltage.</li>
+          <li><strong>Monitors:</strong> helping stabilize electronic circuits and filter noise.</li>
+          <li><strong>Imaging systems:</strong> supporting power and signal-related circuits.</li>
+          <li><strong>Defibrillators:</strong> storing electrical energy and releasing it rapidly when a shock is delivered.</li>
+          <li><strong>Timing circuits:</strong> using charge and discharge behavior to support timing functions.</li>
+        </ul>
 
-<ul>
-  <li><strong>Shorted capacitor:</strong> may show very low resistance and can disrupt the circuit.</li>
-  <li><strong>Open capacitor:</strong> may not charge or store energy properly.</li>
-  <li><strong>Weak capacitor:</strong> may still work partially but fail under load.</li>
-  <li><strong>Physical damage:</strong> swelling, leaking, or bulging can indicate failure.</li>
-</ul>
+        <div class="safety-box">
+          <strong>Safety reminder:</strong> Capacitors can hold charge after power is removed. Always follow proper safety procedures and discharge requirements before testing or servicing equipment.
+        </div>
+      </section>
 
-<hr>
+      <section id="failures" class="card">
+        <h2>How a Capacitor May Fail</h2>
 
-<h2>Basic Multimeter Clue</h2>
+        <p>
+          If a device has unstable power, intermittent operation, ripple problems, timing issues, or a power supply problem,
+          a capacitor may be part of the issue.
+        </p>
 
-<p>
-When checking a capacitor with resistance mode, the reading may start low and then rise as the capacitor charges.
-</p>
+        <table class="compare-table">
+          <tr>
+            <th>Failure Type</th>
+            <th>What It Means</th>
+            <th>Possible Clue</th>
+          </tr>
+          <tr>
+            <td><strong>Shorted capacitor</strong></td>
+            <td>The capacitor acts like an unintended low-resistance path.</td>
+            <td>Blown fuse, low resistance reading, circuit disruption.</td>
+          </tr>
+          <tr>
+            <td><strong>Open capacitor</strong></td>
+            <td>The capacitor does not charge or function properly.</td>
+            <td>No smoothing, timing issues, circuit not behaving as expected.</td>
+          </tr>
+          <tr>
+            <td><strong>Weak capacitor</strong></td>
+            <td>The capacitor partially works but fails under load or stress.</td>
+            <td>Intermittent problems, ripple, unstable output.</td>
+          </tr>
+          <tr>
+            <td><strong>Physical damage</strong></td>
+            <td>The capacitor may be swollen, bulging, leaking, or damaged.</td>
+            <td>Visible defect during inspection.</td>
+          </tr>
+        </table>
 
-<p>
-If the reading stays near zero, the capacitor may be shorted. If it stays open, it may not be charging properly.
-</p>
+        <div class="troubleshooting-box">
+          <strong>Common clue:</strong>
+          Unstable DC output after the rectifier stage may point toward filtering, capacitor, or regulator issues.
+        </div>
+      </section>
 
-<p>
-For more beginner meter practice, review:
-<a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
-</p>
+      <section class="card">
+        <h2>Basic Multimeter Clue</h2>
 
-<hr>
+        <p>
+          When checking a capacitor with resistance mode, the reading may start low and then rise as the capacitor charges.
+          If the reading stays near zero, the capacitor may be shorted. If it stays open, it may not be charging properly.
+        </p>
 
-<h2>Common Beginner Mistakes</h2>
+        <p>
+          For beginner meter practice, review:
+          <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>.
+        </p>
 
-<ul>
-  <li>Thinking capacitors create energy instead of storing it</li>
-  <li>Forgetting that capacitors can hold a charge after power is removed</li>
-  <li>Confusing a capacitor with a resistor</li>
-  <li>Testing components without confirming the circuit is safe</li>
-  <li>Ignoring physical signs like bulging or leaking</li>
-</ul>
+        <div class="safety-box">
+          <strong>Important:</strong> Do not test or handle capacitors without understanding the circuit and safety risk. Capacitors may remain charged after power is removed.
+        </div>
+      </section>
 
-<hr>
+      <section class="card">
+        <h2>Capacitor vs Rectifier vs Resistor</h2>
 
-<h2>CBET-Style Questions to Know</h2>
+        <table class="compare-table">
+          <tr>
+            <th>Component</th>
+            <th>Main Job</th>
+            <th>CBET Memory Hook</th>
+          </tr>
+          <tr>
+            <td><strong>Capacitor</strong></td>
+            <td>Stores and releases electrical energy.</td>
+            <td>Energy storage and smoothing.</td>
+          </tr>
+          <tr>
+            <td><strong>Rectifier</strong></td>
+            <td>Converts AC into DC.</td>
+            <td>AC-to-DC conversion.</td>
+          </tr>
+          <tr>
+            <td><strong>Resistor</strong></td>
+            <td>Opposes current flow.</td>
+            <td>Limits current.</td>
+          </tr>
+          <tr>
+            <td><strong>Diode</strong></td>
+            <td>Allows current to flow mostly in one direction.</td>
+            <td>One-way current path.</td>
+          </tr>
+        </table>
+      </section>
 
-<ul>
-  <li>Which component stores electrical energy?</li>
-  <li>Which component helps smooth ripple in a DC power supply?</li>
-  <li>What happens when a capacitor charges?</li>
-  <li>Why are capacitors important in defibrillators?</li>
-</ul>
+      <section id="questions" class="card">
+        <h2>Common CBET-Style Questions</h2>
 
-<p>
-The answer in each case points back to the capacitor’s main job: <strong>storing and releasing electrical energy</strong>.
-</p>
+        <div class="question-card">
+          <strong>1. Which component stores and releases electrical energy?</strong>
+          <p>A. Resistor &nbsp; B. Capacitor &nbsp; C. Fuse &nbsp; D. Switch</p>
+          <div class="answer">Answer: B. Capacitor</div>
+          <div class="why">A capacitor's main function is to store and release electrical energy.</div>
+        </div>
 
-<hr>
+        <div class="question-card">
+          <strong>2. Which component helps smooth ripple after rectification?</strong>
+          <p>A. Capacitor &nbsp; B. Speaker &nbsp; C. Sensor cable &nbsp; D. Switch cover</p>
+          <div class="answer">Answer: A. Capacitor</div>
+          <div class="why">Capacitors can smooth the pulsing DC output after a rectifier stage.</div>
+        </div>
 
-<h2>Key Takeaways</h2>
+        <div class="question-card">
+          <strong>3. What component converts AC to DC before the capacitor smooths the output?</strong>
+          <p>A. Rectifier &nbsp; B. Transducer &nbsp; C. Probe lens &nbsp; D. Ground lug only</p>
+          <div class="answer">Answer: A. Rectifier</div>
+          <div class="why">The rectifier performs AC-to-DC conversion. The capacitor often helps smooth the output after that.</div>
+        </div>
 
-<ul>
-  <li>A capacitor stores energy in an electric field.</li>
-  <li>Capacitors charge and discharge in a circuit.</li>
-  <li>They help smooth voltage and filter noise.</li>
-  <li>They are important in medical equipment power supplies and defibrillators.</li>
-  <li>A capacitor can fail open, shorted, weak, or physically damaged.</li>
-</ul>
+        <div class="question-card">
+          <strong>4. Why are capacitors important in defibrillators?</strong>
+          <p>A. They store energy for shock delivery &nbsp; B. They measure blood pressure &nbsp; C. They control oxygen flow &nbsp; D. They replace electrodes</p>
+          <div class="answer">Answer: A. They store energy for shock delivery</div>
+          <div class="why">Defibrillators use capacitors to store energy that can be released rapidly during shock delivery.</div>
+        </div>
 
-<hr>
+        <div class="question-card">
+          <strong>5. What visual clue may suggest capacitor failure?</strong>
+          <p>A. Bulging or leaking case &nbsp; B. Clean display screen &nbsp; C. New power cord &nbsp; D. Normal label</p>
+          <div class="answer">Answer: A. Bulging or leaking case</div>
+          <div class="why">Bulging, leaking, or swelling may indicate a damaged capacitor.</div>
+        </div>
 
-<h2>Practice Electronics Concepts</h2>
+        <div class="cta-row">
+          <a href="/cbet-electronics-practice-questions.html" class="cta primary">Practice More CBET Electronics →</a>
+        </div>
+      </section>
 
-<p>
-Reading the concept is helpful, but practice is what makes it stick.
-</p>
+      <section class="card">
+        <h2>Key Takeaways</h2>
 
-<p>
-<a href="/cbet-practice-questions.html" style="background:#2563eb; color:white; padding:14px 22px; border-radius:10px; text-decoration:none; font-weight:600; display:inline-block;">
-  Start CBET Practice Questions
-</a>
-</p>
+        <ul>
+          <li>A capacitor stores energy in an electric field.</li>
+          <li>Capacitors charge and discharge in a circuit.</li>
+          <li>They help smooth voltage and filter noise.</li>
+          <li>They are important in medical equipment power supplies and defibrillators.</li>
+          <li>A capacitor can fail open, shorted, weak, or physically damaged.</li>
+          <li>Capacitors can hold charge after power is removed, so safety matters.</li>
+        </ul>
+      </section>
 
-<p>
-You can also try:
-</p>
+      <section class="card">
+        <h2>Best Study Path for This Topic</h2>
+        <p>
+          Capacitors make more sense when you connect them to the full power supply and electronics path.
+        </p>
 
-<ul>
-  <li><a href="/multimeter-quiz.html">Multimeter Quiz</a></li>
-  <li><a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a></li>
-  <li><a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a></li>
-  <li><a href="/browse-all-practice.html">Browse all practice tools</a></li>
-</ul>
+        <div class="path-grid">
+          <a class="path-card" href="/basic-electronics-explained-for-beginners.html">
+            1. Basic Electronics Explained
+            <span>Start with voltage, current, resistance, circuits, and components.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-rectifier-do.html">
+            2. What Does a Rectifier Do?
+            <span>Learn how AC becomes DC before capacitor smoothing.</span>
+          </a>
+          <a class="path-card" href="/how-to-use-a-multimeter.html">
+            3. How to Use a Multimeter
+            <span>Build safe beginner testing habits.</span>
+          </a>
+          <a class="path-card" href="/cbet-electronics-practice-questions.html">
+            4. CBET Electronics Practice
+            <span>Use practice questions to turn the concept into recognition.</span>
+          </a>
+        </div>
+      </section>
 
-<hr>
+      <section class="card">
+        <h2>Frequently Asked Questions</h2>
 
-<p style="font-size: 12px; color: #64748b; margin-top: 20px;">
-  For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
-</p>
+        <h3>What does a capacitor do?</h3>
+        <p>
+          A capacitor stores and releases electrical energy. It can help smooth voltage, filter noise, support timing circuits, and provide short bursts of energy when needed.
+        </p>
 
+        <h3>Why are capacitors important in power supplies?</h3>
+        <p>
+          After a rectifier converts AC into DC, the DC output may still have ripple. Capacitors help smooth that ripple so circuits receive steadier DC voltage.
+        </p>
+
+        <h3>Why are capacitors important in defibrillators?</h3>
+        <p>
+          In a defibrillator, capacitors can store electrical energy and release it rapidly when a shock is delivered.
+        </p>
+
+        <h3>Can capacitors be dangerous after power is removed?</h3>
+        <p>
+          Yes. Capacitors can hold charge after power is removed. Always follow safety procedures before testing or servicing equipment.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Related Electronics Guides</h2>
+        <p>
+          Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+        </p>
+
+        <div class="related-links">
+          <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+          <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+          <a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics</a>
+          <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+          <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+          <a href="/what-is-a-diode.html">What Is a Diode?</a>
+          <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+          <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+          <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+          <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <h2>Ready to keep practicing?</h2>
+        <p>
+          Use the CBET electronics practice tools to build recognition, confidence, and troubleshooting judgment.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice →</a>
+          <a class="cta secondary" href="/free-cbet-practice-test.html">Open Free CBET Practice Test</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
