@@ -108,9 +108,9 @@
 
   <url>
     <loc>https://medskillbuilder.com/browse-all-practice.html</loc>
-    <lastmod>2026-04-03</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
 
   <url>
@@ -121,10 +121,10 @@
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/ultrasound-practice.html</loc>
-   <lastmod>2026-05-01</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.8</priority>
+    <loc>https://medskillbuilder.com/ultrasound-practice.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
@@ -142,359 +142,357 @@
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/lungs-anatomy-guide.html</loc>
-   <lastmod>2026-04-03</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
+    <loc>https://medskillbuilder.com/lungs-anatomy-guide.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/brain-anatomy-guide.html</loc>
-   <lastmod>2026-04-03</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
-  </url>
-  
-  <url>
-   <loc>https://medskillbuilder.com/medical-terminology-guide.html</loc>
-   <lastmod>2026-04-03</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
+    <loc>https://medskillbuilder.com/brain-anatomy-guide.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/medical-prefix-suffix-guide.html</loc>
-   <lastmod>2026-05-11</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
+    <loc>https://medskillbuilder.com/medical-terminology-guide.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/top-100-medical-terms.html</loc>
-   <lastmod>2026-05-11</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>1.0</priority>
+    <loc>https://medskillbuilder.com/medical-prefix-suffix-guide.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/how-to-read-ekg.html</loc>
-   <lastmod>2026-04-16</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>1.0</priority>
+    <loc>https://medskillbuilder.com/top-100-medical-terms.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/cbet-practice-test-75.html</loc>
-   <lastmod>2026-04-03</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
-  </url>
-  
-  <url>
-   <loc>https://medskillbuilder.com/anatomy-practice-test.html</loc>
-   <lastmod>2026-04-03</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
+    <loc>https://medskillbuilder.com/how-to-read-ekg.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/muscle-anatomy-quiz.html</loc>
-   <lastmod>2026-04-07</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
+    <loc>https://medskillbuilder.com/cbet-practice-test-75.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/ekg-practice-quiz.html</loc>
-   <lastmod>2026-04-07</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
-  </url>        
-
-  <url>
-   <loc>https://medskillbuilder.com/medical-terminology-builder.html</loc>
-   <lastmod>2026-04-09</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.9</priority>
+    <loc>https://medskillbuilder.com/anatomy-practice-test.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/basic-electronics-cbet.html</loc>
-   <lastmod>2026-05-11</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.8</priority>
+    <loc>https://medskillbuilder.com/muscle-anatomy-quiz.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/multimeter-quiz.html</loc>
-   <lastmod>2026-05-11</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/ekg-practice-quiz.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/how-to-test-a-capacitor.html</loc>
-   <changefreq>weekly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/medical-terminology-builder.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/capacitor-quiz.html</loc>
-   <changefreq>weekly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/basic-electronics-cbet.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/power-supply-basics-cbet.html</loc>
-   <lastmod>2026-04-21</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.7</priority>
-  </url>
-  
-  <url>
-   <loc>https://medskillbuilder.com/cbet-electronics-practice-questions.html</loc>
-   <lastmod>2026-04-20</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.7</priority>
+    <loc>https://medskillbuilder.com/multimeter-quiz.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/common-medical-equipment-mistakes.html</loc>
-   <lastmod>2026-04-25</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.85</priority>
+    <loc>https://medskillbuilder.com/how-to-test-a-capacitor.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/biomed-career-guide.html</loc>
-   <lastmod>2026-05-09</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/capacitor-quiz.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/basic-electronics-explained-for-beginners.html</loc>
-   <lastmod>2026-05-04</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.8</priority>
+    <loc>https://medskillbuilder.com/power-supply-basics-cbet.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <url>
-  <lastmod>2026-04-25</lastmod>
-   <loc>https://medskillbuilder.com/series-vs-parallel-circuits.html</loc>
-   <changefreq>weekly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/cbet-electronics-practice-questions.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
 
   <url>
-   <lastmod>2026-04-25</lastmod>
-   <loc>https://medskillbuilder.com/series-parallel-quiz.html</loc>
-   <changefreq>weekly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/common-medical-equipment-mistakes.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <url>
-   <lastmod>2026-04-25</lastmod>
-   <loc>https://medskillbuilder.com/schematic-symbols-quiz.html</loc>
-   <changefreq>weekly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/biomed-career-guide.html</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
   </url>
 
   <url>
-   <lastmod>2026-04-25</lastmod>
-   <loc>https://medskillbuilder.com/how-to-read-schematics-symbols.html</loc>
-   <changefreq>weekly</changefreq>
-   <priority>0.80</priority>
+    <loc>https://medskillbuilder.com/basic-electronics-explained-for-beginners.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/voltage-current-resistance-cbet.html</loc>
-   <lastmod>2026-04-21</lastmod>
-   <changefreq>weekly</changefreq>
-   <priority>0.7</priority>
+    <loc>https://medskillbuilder.com/series-vs-parallel-circuits.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/what-does-a-rectifier-do.html</loc>
-   <lastmod>2026-04-11</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>0.8</priority>
+    <loc>https://medskillbuilder.com/series-parallel-quiz.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
   </url>
 
   <url>
-   <loc>https://medskillbuilder.com/what-does-a-capacitor-do.html</loc>
-   <lastmod>2026-04-11</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>0.8</priority>
+    <loc>https://medskillbuilder.com/schematic-symbols-quiz.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
   </url>
 
-<url>
-  <loc>https://medskillbuilder.com/what-is-a-diode.html</loc>
-  <lastmod>2026-04-11</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/how-to-read-schematics-symbols.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/how-to-test-a-resistor.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/voltage-current-resistance-cbet.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/what-is-ohms-law.html</loc>
-  <lastmod>2026-04-11</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/what-does-a-rectifier-do.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/voltage-current-resistance-quiz.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/what-does-a-capacitor-do.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/ohms-law-quiz.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/what-is-a-diode.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/ac-vs-dc-current.html</loc>
-  <lastmod>2026-04-11</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/how-to-test-a-resistor.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/fundamentals-of-xray-cres.html</loc>
-  <lastmod>2026-05-03</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.85</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/what-is-ohms-law.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/xray-positioning-guide-cres.html</loc>
-  <lastmod>2026-05-04</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.85</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/voltage-current-resistance-quiz.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/mas-vs-kvp-xray-cres.html</loc>
-  <lastmod>2026-05-04</lastmod>
-  <priority>0.85</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/ohms-law-quiz.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/most-missed-cbet-electronics-questions.html</loc>
-  <lastmod>2026-04-27</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.9</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/ac-vs-dc-current.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/normal-lab-values-cheat-sheet.html</loc>
-  <lastmod>2026-04-13</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.9</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/fundamentals-of-xray-cres.html</loc>
+    <lastmod>2026-05-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/ekg-rhythm-cheat-sheet.html</loc>
-  <lastmod>2026-04-13</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.9</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/xray-positioning-guide-cres.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/normal-vital-signs-chart.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/mas-vs-kvp-xray-cres.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/vital-signs-practice-quiz.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/most-missed-cbet-electronics-questions.html</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/normal-vital-signs-chart.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/normal-lab-values-cheat-sheet.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/abg-practice-quiz.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/ekg-rhythm-cheat-sheet.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/abg-normal-values.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/normal-vital-signs-chart.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/kidney-anatomy-function-quiz.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/vital-signs-practice-quiz.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/how-to-use-a-multimeter.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.85</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/abg-practice-quiz.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/how-kidneys-work.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/abg-normal-values.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/lab-values-practice-quiz.html</loc>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/kidney-anatomy-function-quiz.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/what-is-hyperkalemia.html</loc>
-  <lastmod>2026-05-06</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/how-to-use-a-multimeter.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/what-is-hypokalemia.html</loc>
-  <lastmod>2026-05-06</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/how-kidneys-work.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/what-is-hyponatremia.html</loc>
-  <lastmod>2026-05-06</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/lab-values-practice-quiz.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/what-is-hypernatremia.html</loc>
-  <lastmod>2026-05-06</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/what-is-hyperkalemia.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
 
-<url>
-  <loc>https://medskillbuilder.com/about.html</loc>
-  <lastmod>2026-05-06</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.75</priority>
-</url>
+  <url>
+    <loc>https://medskillbuilder.com/what-is-hypokalemia.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-</urlset>    
+  <url>
+    <loc>https://medskillbuilder.com/what-is-hyponatremia.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://medskillbuilder.com/what-is-hypernatremia.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://medskillbuilder.com/about.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+</urlset>
