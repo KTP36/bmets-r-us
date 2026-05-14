@@ -1,59 +1,973 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AC vs DC Current | CBET Electronics Guide</title>
-  <meta name="description" content="Learn the difference between AC and DC current and why it matters in medical equipment and CBET exam prep.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AC vs DC Current | CBET Electronics and Medical Equipment Guide</title>
+
+  <meta name="description" content="Learn the difference between AC and DC current, why wall outlets use AC, why electronic circuits need DC, and how rectifiers, capacitors, and power supplies convert AC into usable DC for medical equipment and CBET electronics." />
+  <meta name="keywords" content="AC vs DC current, AC current, DC current, CBET electronics, medical equipment power supply, alternating current, direct current, AC to DC conversion, rectifier, capacitor, biomedical electronics" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://medskillbuilder.com/ac-vs-dc-current.html" />
+
+  <meta property="og:title" content="AC vs DC Current | CBET Electronics Guide" />
+  <meta property="og:description" content="Learn how AC and DC current differ, why medical equipment uses DC internally, and how rectifiers and power supplies convert wall power for electronic circuits." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/ac-vs-dc-current.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "AC vs DC Current",
+    "description": "A CBET electronics guide explaining alternating current, direct current, AC-to-DC conversion, rectifiers, capacitors, power supplies, and medical equipment electronics.",
+    "url": "https://medskillbuilder.com/ac-vs-dc-current.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is AC current?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AC, or alternating current, changes direction periodically. Wall outlets commonly supply AC power."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is DC current?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DC, or direct current, flows in one direction. Batteries and many electronic circuits use DC power."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do medical devices convert AC to DC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Medical devices often receive AC power from the wall, but their internal circuits usually need DC power. Power supplies convert AC into usable DC."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What component converts AC to DC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A rectifier converts AC to DC. Capacitors and regulators may then smooth and stabilize the DC output."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-purple: #f5f3ff;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 850px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+
+    .notice {
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .quick-grid,
+    .toc,
+    .grid-2,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .toc a,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    main {
+      padding-bottom: 36px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 22px;
+      margin: 22px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
+    ul {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .quick-answer,
+    .notice-first,
+    .concept-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .quick-answer {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .notice-first {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .concept-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+    }
+
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .diagram {
+      background: #0f172a;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .diagram span {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      margin: 5px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
+    }
+
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; max-width: 800px; margin: auto; padding: 20px;">
 
-<h1>AC vs DC Current</h1>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-<p>
-Electrical current comes in two main forms: alternating current (AC) and direct current (DC).
-</p>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/basic-electronics-explained-for-beginners.html">Beginner Electronics</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
 
-<h2>What Is AC?</h2>
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Guide</div>
+      <h1>AC vs DC Current</h1>
+      <p>
+        Electrical current comes in two main forms: alternating current and direct current. This guide explains how AC and DC are different,
+        why wall outlets use AC, why many internal circuits use DC, and how medical equipment converts power safely.
+      </p>
 
-<p>
-Alternating current (AC) changes direction periodically. It is the type of electricity supplied by wall outlets.
-</p>
+      <div class="cta-row">
+        <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start Electronics Practice →</a>
+        <a class="cta secondary" href="/what-does-a-rectifier-do.html">Rectifier Guide</a>
+        <a class="cta secondary" href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+      </div>
+    </section>
 
-<h2>What Is DC?</h2>
+    <div class="quick-grid">
+      <div class="quick-stat">AC<span>Changes direction</span></div>
+      <div class="quick-stat">DC<span>Flows one direction</span></div>
+      <div class="quick-stat">Rectifier<span>Converts AC to DC</span></div>
+    </div>
 
-<p>
-Direct current (DC) flows in one direction. Batteries and many electronic devices use DC power.
-</p>
+    <div class="notice">
+      MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, or any certification provider.
+    </div>
+  </div>
 
-<h2>Why This Matters in Medical Equipment</h2>
+  <main>
+    <div class="container">
 
-<p>
-Most medical devices require DC power, so AC from wall outlets must be converted using rectifiers and power supplies.
-</p>
+      <section class="card highlight">
+        <h2>Quick Answer</h2>
+        <div class="quick-answer">
+          AC changes direction. DC flows in one direction.
+        </div>
 
-<h2>Real-World Example</h2>
+        <p>
+          Alternating current, or AC, is commonly supplied by wall outlets. Direct current, or DC, is used by batteries and many internal electronic circuits.
+          Medical equipment may plug into AC power but often converts that power into DC for internal boards, sensors, displays, processors, and control circuits.
+        </p>
 
-<p>
-A patient monitor plugs into AC power but uses internal circuits that operate on DC.
-</p>
+        <div class="diagram">
+          <span>Wall outlet AC</span> → <span>Power supply</span> → <span>Rectifier</span> → <span>Internal DC</span>
+        </div>
 
-<h2>Key Takeaways</h2>
+        <div class="notice-first">
+          <strong>What to notice first:</strong>
+          If the question says wall power, think AC. If it says battery or internal circuit board power, think DC.
+        </div>
+      </section>
 
-<ul>
-  <li>AC changes direction</li>
-  <li>DC flows in one direction</li>
-  <li>Medical devices rely on DC power internally</li>
-</ul>
+      <section class="card">
+        <h2>Jump to an AC/DC Topic</h2>
+        <div class="toc">
+          <a href="#what-is-ac">What Is AC?</a>
+          <a href="#what-is-dc">What Is DC?</a>
+          <a href="#comparison">AC vs DC Comparison</a>
+          <a href="#medical-equipment">Medical Equipment</a>
+          <a href="#power-supply-path">Power Supply Path</a>
+          <a href="#questions">CBET Questions</a>
+        </div>
+      </section>
 
-<h2>Practice CBET Electronics Questions</h2>
+      <section id="what-is-ac" class="card">
+        <h2>What Is AC?</h2>
 
-<p>
-<a href="/cbet-practice-questions.html">Start CBET Practice Questions</a>
-</p>
+        <p>
+          AC stands for alternating current. Alternating current changes direction periodically. It rises and falls in a repeating pattern.
+          This type of electricity is commonly supplied by wall outlets.
+        </p>
 
-<p>
-<a href="/browse-all-practice.html">Browse all practice tools</a>
-</p>
+        <ul>
+          <li>AC changes direction repeatedly.</li>
+          <li>Wall outlets commonly provide AC power.</li>
+          <li>AC can be transformed to different voltage levels.</li>
+          <li>Medical equipment often receives AC at the power input.</li>
+        </ul>
 
+        <div class="concept-box">
+          <strong>Memory hook:</strong> AC alternates. The direction changes back and forth.
+        </div>
+      </section>
+
+      <section id="what-is-dc" class="card">
+        <h2>What Is DC?</h2>
+
+        <p>
+          DC stands for direct current. Direct current flows in one direction. Batteries and many electronic circuits use DC power.
+        </p>
+
+        <ul>
+          <li>DC flows in one direction.</li>
+          <li>Batteries provide DC power.</li>
+          <li>Circuit boards often require DC voltage.</li>
+          <li>Power supplies often convert AC into DC.</li>
+        </ul>
+
+        <div class="concept-box">
+          <strong>Memory hook:</strong> DC is direct. The flow stays in one direction.
+        </div>
+      </section>
+
+      <section id="comparison" class="card">
+        <h2>AC vs DC Comparison</h2>
+
+        <table class="compare-table">
+          <tr>
+            <th>Feature</th>
+            <th>AC Current</th>
+            <th>DC Current</th>
+          </tr>
+          <tr>
+            <td><strong>Direction</strong></td>
+            <td>Changes direction periodically.</td>
+            <td>Flows in one direction.</td>
+          </tr>
+          <tr>
+            <td><strong>Common source</strong></td>
+            <td>Wall outlets.</td>
+            <td>Batteries and internal electronics.</td>
+          </tr>
+          <tr>
+            <td><strong>Medical equipment role</strong></td>
+            <td>Often enters the device from wall power.</td>
+            <td>Often powers internal boards and circuits.</td>
+          </tr>
+          <tr>
+            <td><strong>CBET memory hook</strong></td>
+            <td>AC alternates.</td>
+            <td>DC is direct.</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="medical-equipment" class="card">
+        <h2>Why This Matters in Medical Equipment</h2>
+
+        <p>
+          Most medical devices require DC power internally, so AC from wall outlets must be converted using rectifiers and power supplies.
+          A patient monitor, infusion pump, ventilator, defibrillator, or imaging device may plug into AC power, but the internal electronics often run on DC.
+        </p>
+
+        <ul>
+          <li><strong>Wall input:</strong> AC power enters the device.</li>
+          <li><strong>Power supply:</strong> converts and prepares power for internal use.</li>
+          <li><strong>Rectifier:</strong> converts AC into DC.</li>
+          <li><strong>Capacitor:</strong> helps smooth ripple after rectification.</li>
+          <li><strong>Regulator:</strong> helps maintain a steady DC voltage.</li>
+        </ul>
+
+        <div class="notice-first">
+          <strong>Biomedical equipment clue:</strong>
+          A device can plug into AC but still rely on DC internally.
+        </div>
+      </section>
+
+      <section id="power-supply-path" class="card">
+        <h2>The AC-to-DC Power Supply Path</h2>
+
+        <p>
+          AC and DC are easiest to understand when you follow the power path. Wall power enters the device as AC. The device then uses a power supply
+          to convert that energy into the DC voltages needed by the internal electronics.
+        </p>
+
+        <div class="diagram">
+          <span>AC input</span> → <span>Transformer or input stage</span> → <span>Rectifier</span> → <span>Capacitor smoothing</span> → <span>Voltage regulation</span> → <span>DC output</span>
+        </div>
+
+        <p>
+          This is why AC/DC, diodes, rectifiers, capacitors, and power supplies are connected topics. If you understand this path, many CBET electronics questions become easier.
+        </p>
+
+        <div class="path-grid">
+          <a class="path-card" href="/what-is-a-diode.html">
+            What Is a Diode?
+            <span>Learn the one-way current behavior used in rectifiers.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-rectifier-do.html">
+            What Does a Rectifier Do?
+            <span>Learn how AC becomes DC.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-capacitor-do.html">
+            What Does a Capacitor Do?
+            <span>Learn how ripple is smoothed after rectification.</span>
+          </a>
+          <a class="path-card" href="/power-supply-basics-cbet.html">
+            Power Supply Basics
+            <span>Connect the whole power path together.</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="questions" class="card">
+        <h2>Common CBET-Style Questions</h2>
+
+        <div class="question-card">
+          <strong>1. Which type of current changes direction periodically?</strong>
+          <p>A. DC &nbsp; B. AC &nbsp; C. Static current &nbsp; D. Ground only</p>
+          <div class="answer">Answer: B. AC</div>
+          <div class="why">AC stands for alternating current, which changes direction periodically.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>2. Which type of current flows in one direction?</strong>
+          <p>A. AC &nbsp; B. DC &nbsp; C. Ripple only &nbsp; D. Alternating voltage only</p>
+          <div class="answer">Answer: B. DC</div>
+          <div class="why">DC stands for direct current, which flows in one direction.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>3. What component converts AC to DC?</strong>
+          <p>A. Rectifier &nbsp; B. Speaker &nbsp; C. Plastic cover &nbsp; D. Display label</p>
+          <div class="answer">Answer: A. Rectifier</div>
+          <div class="why">A rectifier converts AC into DC.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>4. What component often smooths ripple after rectification?</strong>
+          <p>A. Capacitor &nbsp; B. Patient cable &nbsp; C. Keyboard &nbsp; D. Fuse label</p>
+          <div class="answer">Answer: A. Capacitor</div>
+          <div class="why">Capacitors can help smooth the pulsing DC output after the rectifier stage.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>5. A patient monitor plugs into wall power but uses internal circuit boards. What is likely true?</strong>
+          <p>A. It may convert AC input into DC internally &nbsp; B. It cannot use a power supply &nbsp; C. It uses oxygen pressure as power &nbsp; D. It has no electronics</p>
+          <div class="answer">Answer: A. It may convert AC input into DC internally</div>
+          <div class="why">Many devices plug into AC power but convert that power into DC for internal electronics.</div>
+        </div>
+
+        <div class="cta-row">
+          <a href="/cbet-electronics-practice-questions.html" class="cta primary">Practice More CBET Electronics →</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Key Takeaways</h2>
+
+        <ul>
+          <li>AC stands for alternating current.</li>
+          <li>AC changes direction periodically.</li>
+          <li>DC stands for direct current.</li>
+          <li>DC flows in one direction.</li>
+          <li>Wall outlets commonly provide AC power.</li>
+          <li>Batteries and many circuit boards use DC power.</li>
+          <li>Medical equipment often converts AC input into DC internally.</li>
+          <li>Rectifiers convert AC to DC, and capacitors can help smooth the output.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Best Study Path for This Topic</h2>
+        <p>
+          AC vs DC is the bridge between beginner electronics and power supply troubleshooting.
+        </p>
+
+        <div class="path-grid">
+          <a class="path-card" href="/basic-electronics-explained-for-beginners.html">
+            1. Basic Electronics Explained
+            <span>Start with voltage, current, resistance, and circuits.</span>
+          </a>
+          <a class="path-card" href="/what-is-a-diode.html">
+            2. What Is a Diode?
+            <span>Learn the one-way component used in rectifiers.</span>
+          </a>
+          <a class="path-card" href="/what-does-a-rectifier-do.html">
+            3. What Does a Rectifier Do?
+            <span>Learn how AC becomes DC.</span>
+          </a>
+          <a class="path-card" href="/cbet-electronics-practice-questions.html">
+            4. CBET Electronics Practice
+            <span>Use practice questions to build recognition.</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is AC current?</h3>
+        <p>
+          AC, or alternating current, changes direction periodically. Wall outlets commonly supply AC power.
+        </p>
+
+        <h3>What is DC current?</h3>
+        <p>
+          DC, or direct current, flows in one direction. Batteries and many electronic circuits use DC power.
+        </p>
+
+        <h3>Why do medical devices convert AC to DC?</h3>
+        <p>
+          Medical devices often receive AC power from the wall, but internal circuits usually need DC power. Power supplies convert AC into usable DC.
+        </p>
+
+        <h3>What component converts AC to DC?</h3>
+        <p>
+          A rectifier converts AC to DC. Capacitors and regulators may then smooth and stabilize the DC output.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Related Electronics Guides</h2>
+        <p>
+          Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+        </p>
+
+        <div class="related-links">
+          <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+          <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+          <a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics</a>
+          <a href="/what-is-a-diode.html">What Is a Diode?</a>
+          <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+          <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+          <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+          <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+          <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+          <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <h2>Ready to keep practicing?</h2>
+        <p>
+          Use the CBET electronics practice tools to build recognition, confidence, and troubleshooting judgment.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice →</a>
+          <a class="cta secondary" href="/free-cbet-practice-test.html">Open Free CBET Practice Test</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
