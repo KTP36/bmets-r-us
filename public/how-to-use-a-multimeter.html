@@ -1,161 +1,1058 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>How to Use a Multimeter (Beginner Guide) | MedSkillBuilder</title>
+  <title>How to Use a Multimeter | Beginner CBET Electronics Guide</title>
 
-  <meta name="description" content="Learn how to use a multimeter step-by-step. Measure voltage, resistance, and continuity with simple explanations and real-world examples.">
+  <meta name="description" content="Learn how to use a multimeter step-by-step for CBET electronics and biomedical equipment troubleshooting. Measure voltage, resistance, continuity, AC, DC, and understand common mistakes and safety basics." />
+  <meta name="keywords" content="how to use a multimeter, multimeter beginner guide, CBET electronics, biomedical equipment troubleshooting, measure voltage, measure resistance, continuity test, AC voltage, DC voltage, multimeter quiz" />
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/how-to-use-a-multimeter.html" />
 
+  <meta property="og:title" content="How to Use a Multimeter | Beginner CBET Electronics Guide" />
+  <meta property="og:description" content="Learn how to measure voltage, resistance, and continuity with a multimeter. Beginner-friendly guide for CBET electronics and biomedical equipment troubleshooting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/how-to-use-a-multimeter.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "How to Use a Multimeter",
+    "description": "A beginner-friendly CBET electronics guide explaining how to use a multimeter to measure voltage, resistance, continuity, AC, DC, and common troubleshooting clues.",
+    "url": "https://medskillbuilder.com/how-to-use-a-multimeter.html",
+    "learningResourceType": "Beginner guide",
+    "educationalLevel": "Beginner",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does a multimeter measure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A multimeter can measure voltage, resistance, continuity, and often current depending on the meter and setup."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does the black multimeter lead go?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The black lead normally goes into the COM port."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you measure resistance on a live circuit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Resistance should be measured with the circuit powered off and properly discharged."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a continuity beep mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A continuity beep usually means there is a complete low-resistance path between the two probe points."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --red-bg: #fef2f2;
+      --red-border: #fecaca;
+      --red-text: #7f1d1d;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-purple: #f5f3ff;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(40px, 5.6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 900px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+
+    .quick-grid,
+    .toc,
+    .grid-3,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .toc a,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--blue);
+      font-size: 22px;
+      margin: 22px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .quick-answer,
+    .notice-first,
+    .warning-box,
+    .danger-box,
+    .success-box,
+    .example-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .quick-answer {
+      background: var(--soft-green);
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .notice-first {
+      background: var(--soft-blue);
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .warning-box {
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
+    }
+
+    .danger-box {
+      background: var(--red-bg);
+      border: 1px solid var(--red-border);
+      color: var(--red-text);
+    }
+
+    .success-box {
+      background: var(--soft-green);
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .example-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+    }
+
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
+    }
+
+    .safety {
+      font-size: 12px;
+      color: #64748b;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
-<body style="font-family: Arial; max-width: 900px; margin: auto; padding: 20px; line-height: 1.7; background:#f8fafc; color:#0f172a;">
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-<h1>How to Use a Multimeter (Beginner Guide)</h1>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/multimeter-quiz.html">Take Quiz</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
 
-<p>
-A multimeter is one of the most important tools in electronics and biomedical equipment. It allows you to measure <strong>voltage, resistance, and continuity</strong> — the foundation of understanding how circuits work.
-</p>
+    <section class="hero">
+      <div class="eyebrow">Beginner Troubleshooting Guide</div>
+      <h1>How to Use a Multimeter</h1>
+      <p>
+        A multimeter is one of the most important tools in electronics and biomedical equipment. It helps you measure voltage,
+        resistance, and continuity so you can understand what is happening in a circuit.
+      </p>
+      <p>
+        This beginner guide shows what to measure, where to place the probes, what the reading means, and the mistakes to avoid.
+      </p>
 
-<p>
-If you’re just starting out, this guide will walk you through everything step-by-step in the simplest way possible.
-</p>
+      <div class="cta-row">
+        <a class="cta primary" href="/multimeter-quiz.html">Start the Multimeter Quiz</a>
+        <a class="cta secondary" href="/voltage-current-resistance-cbet.html">Review Voltage Current Resistance</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+      </div>
+    </section>
 
-<hr>
+    <div class="quick-grid">
+      <div class="quick-stat">Voltage<span>Is power present?</span></div>
+      <div class="quick-stat">Resistance<span>Is a component resisting?</span></div>
+      <div class="quick-stat">Continuity<span>Is the path complete?</span></div>
+    </div>
 
-<h2>🔌 What is a Multimeter?</h2>
+    <section class="card highlight">
+      <h2>Quick Answer</h2>
 
-<p>
-A multimeter is a device used to test electrical values. Think of it as a “health check” tool for circuits.
-</p>
+      <div class="quick-answer">
+        A multimeter is used to measure electrical values such as voltage, resistance, and continuity.
+      </div>
 
-<ul>
-  <li><strong>Voltage (V)</strong> → electrical pressure</li>
-  <li><strong>Resistance (Ω)</strong> → how much something resists current</li>
-  <li><strong>Continuity</strong> → whether a path is complete</li>
-</ul>
+      <p>
+        Think of a multimeter as a health check tool for circuits. It helps answer simple troubleshooting questions:
+      </p>
 
-<hr>
+      <ul>
+        <li>Is power present?</li>
+        <li>Is the circuit path complete?</li>
+        <li>Is a component open, shorted, or out of range?</li>
+        <li>Is voltage AC or DC?</li>
+      </ul>
 
-<h2>🧰 Parts of a Multimeter</h2>
+      <div class="danger-box">
+        <strong>Safety first:</strong> Always know what you are measuring before touching the probes to a circuit. Resistance and continuity checks should be done with power off and capacitors discharged.
+      </div>
+    </section>
 
-<ul>
-  <li><strong>Display</strong> → shows your reading</li>
-  <li><strong>Dial</strong> → selects what you are measuring</li>
-  <li><strong>Black lead</strong> → always goes in COM</li>
-  <li><strong>Red lead</strong> → goes in V/Ω port</li>
-</ul>
+    <section class="card">
+      <h2>Jump to a Multimeter Topic</h2>
+      <div class="toc">
+        <a href="#what-is">What Is a Multimeter?</a>
+        <a href="#parts">Parts of a Multimeter</a>
+        <a href="#voltage">Measure Voltage</a>
+        <a href="#resistance">Measure Resistance</a>
+        <a href="#continuity">Continuity Check</a>
+        <a href="#questions">CBET Questions</a>
+      </div>
+    </section>
 
-<p><strong>Important:</strong> The black lead always stays in COM.</p>
+    <section id="what-is" class="card">
+      <h2>What Is a Multimeter?</h2>
 
-<hr>
+      <p>
+        A multimeter is a device used to test electrical values. It is one of the first tools beginners should learn because it connects directly to voltage,
+        current, resistance, continuity, power supplies, batteries, wires, fuses, and component checks.
+      </p>
 
-<h2>⚡ How to Measure Voltage</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Voltage</h3>
+          <p>Measures electrical pressure or potential. This helps confirm whether power is present.</p>
+        </div>
 
-<ol>
-  <li>Turn the dial to <strong>V</strong></li>
-  <li>Select AC (~) or DC (⎓)</li>
-  <li>Place probes across the component (parallel)</li>
-  <li>Read the value</li>
-</ol>
+        <div class="mini-card">
+          <h3>Resistance</h3>
+          <p>Measures opposition to current flow. This can help check components, wires, and circuit paths.</p>
+        </div>
 
-<p><strong>Example:</strong> AA battery ≈ 1.5V</p>
+        <div class="mini-card">
+          <h3>Continuity</h3>
+          <p>Checks whether a path is complete. A beep usually means the path is connected.</p>
+        </div>
+      </div>
 
-<hr>
+      <p>
+        To understand the terms behind meter readings, review <a href="/voltage-current-resistance-cbet.html">Voltage vs Current vs Resistance</a>.
+      </p>
+    </section>
 
-<h2>🧱 How to Measure Resistance (Ohms)</h2>
+    <section id="parts" class="card">
+      <h2>Parts of a Multimeter</h2>
 
-<ol>
-  <li>Turn dial to <strong>Ω</strong></li>
-  <li><strong>Power OFF the circuit</strong></li>
-  <li>Place probes across component</li>
-  <li>Read value</li>
-</ol>
+      <table class="compare-table">
+        <tr>
+          <th>Part</th>
+          <th>What It Does</th>
+          <th>Beginner Note</th>
+        </tr>
+        <tr>
+          <td><strong>Display</strong></td>
+          <td>Shows the measurement reading.</td>
+          <td>Always check the unit shown, such as V, Ω, or continuity.</td>
+        </tr>
+        <tr>
+          <td><strong>Dial</strong></td>
+          <td>Selects what you are measuring.</td>
+          <td>Wrong dial setting is one of the most common mistakes.</td>
+        </tr>
+        <tr>
+          <td><strong>Black lead</strong></td>
+          <td>Reference lead.</td>
+          <td>Normally goes in the COM port.</td>
+        </tr>
+        <tr>
+          <td><strong>Red lead</strong></td>
+          <td>Measurement lead.</td>
+          <td>Usually goes in the V/Ω port for voltage, resistance, and continuity.</td>
+        </tr>
+      </table>
 
-<p><strong>Never measure resistance on a live circuit.</strong></p>
+      <div class="notice-first">
+        <strong>What to notice first:</strong> The black lead usually stays in COM. The red lead location depends on what you are measuring.
+      </div>
+    </section>
 
-<hr>
+    <section id="voltage" class="card">
+      <h2>How to Measure Voltage</h2>
 
-<h2>🔔 Continuity Check</h2>
+      <p>
+        Voltage testing helps answer one of the most important troubleshooting questions: is power present?
+      </p>
 
-<ol>
-  <li>Turn dial to 🔔</li>
-  <li>Touch probes together (listen for beep)</li>
-  <li>Test wire/component</li>
-</ol>
+      <ol>
+        <li>Turn the dial to voltage, shown as <strong>V</strong>.</li>
+        <li>Select AC voltage or DC voltage if your meter requires it.</li>
+        <li>Place the probes across the two points being measured.</li>
+        <li>Read the value on the display.</li>
+      </ol>
 
-<p><strong>Beep = good | No beep = break</strong></p>
+      <div class="example-box">
+        <strong>Example:</strong> A AA battery should read around 1.5V DC when it is healthy.
+      </div>
 
-<hr>
+      <div class="notice-first">
+        <strong>Probe placement:</strong> Voltage is measured across a component or source, also called parallel measurement.
+      </div>
+    </section>
 
-<h2>⚠️ Common Mistakes</h2>
+    <section class="card">
+      <h2>AC Voltage vs DC Voltage</h2>
 
-<ul>
-  <li>Testing resistance on live circuits</li>
-  <li>Wrong dial setting</li>
-  <li>Wrong probe ports</li>
-  <li>Measuring voltage in series</li>
-</ul>
+      <table class="compare-table">
+        <tr>
+          <th>Setting</th>
+          <th>Used For</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td><strong>AC Voltage</strong></td>
+          <td>Alternating current power.</td>
+          <td>Wall outlet power.</td>
+        </tr>
+        <tr>
+          <td><strong>DC Voltage</strong></td>
+          <td>Direct current power.</td>
+          <td>Batteries and internal electronics.</td>
+        </tr>
+      </table>
 
-<hr>
+      <p>
+        Review <a href="/ac-vs-dc-current.html">AC vs DC Current</a> if you are not sure which setting to choose.
+      </p>
+    </section>
 
-<h2>🧠 Real-World Thinking</h2>
+    <section id="resistance" class="card">
+      <h2>How to Measure Resistance</h2>
 
-<p>
-If a device isn’t working:
-</p>
+      <p>
+        Resistance testing helps you understand whether a component or path is resisting current as expected.
+      </p>
 
-<ul>
-  <li>Check voltage → is power present?</li>
-  <li>Check continuity → are connections intact?</li>
-  <li>Check resistance → is a component failing?</li>
-</ul>
+      <ol>
+        <li>Turn the dial to <strong>Ω</strong>.</li>
+        <li>Turn power off to the circuit.</li>
+        <li>Properly discharge capacitors if present.</li>
+        <li>Place probes across the component.</li>
+        <li>Read the resistance value.</li>
+      </ol>
 
-<p>This is how real troubleshooting works.</p>
+      <div class="danger-box">
+        <strong>Never measure resistance on a live circuit.</strong> The meter sends a small test signal during resistance measurement. External voltage can damage the meter, damage the circuit, or create unsafe conditions.
+      </div>
 
-<hr>
+      <p>
+        Review <a href="/what-is-ohms-law.html">Ohm's Law</a> to understand how resistance affects current.
+      </p>
+    </section>
 
-<h2>🚀 Test Your Knowledge</h2>
+    <section id="continuity" class="card">
+      <h2>Continuity Check</h2>
 
-<p>
-Reading is one thing — applying it is what actually builds skill.
-</p>
+      <p>
+        Continuity mode checks whether a low-resistance path exists between two points. Many meters beep when continuity is present.
+      </p>
 
-<p>
-Try a quick quiz and see how well you understand these concepts:
-</p>
+      <ol>
+        <li>Turn the dial to the continuity symbol or beep setting.</li>
+        <li>Touch the probes together first to confirm the meter beeps.</li>
+        <li>Test the wire, fuse, switch, connector, or path.</li>
+        <li>Listen for the beep or watch the display.</li>
+      </ol>
 
-<div style="text-align:center; margin: 30px 0;">
-  <a href="https://medskillbuilder.com/multimeter-quiz.html"
-     style="background:#2563eb; color:white; padding:14px 22px; border-radius:10px; text-decoration:none; font-weight:600; display:inline-block;">
-     Start a Multimeter Quiz
-  </a>
-</div>
+      <div class="quick-answer">
+        <strong>Beep usually means:</strong> the path is complete.
+      </div>
 
-<p style="text-align:center; color:#475569;">
-  Takes less than 2 minutes. Instant feedback.
-</p>
+      <div class="warning-box">
+        <strong>No beep may mean:</strong> the path is open, broken, switched off, or higher resistance than the continuity threshold.
+      </div>
+    </section>
 
-<hr>
+    <section class="card">
+      <h2>Common Mistakes</h2>
 
-<h2>📌 Final Thoughts</h2>
+      <ul>
+        <li>Testing resistance on a live circuit.</li>
+        <li>Using the wrong dial setting.</li>
+        <li>Using the wrong probe port.</li>
+        <li>Forgetting to choose AC or DC voltage.</li>
+        <li>Measuring voltage as if it were continuity.</li>
+        <li>Assuming a continuity beep proves every part is good.</li>
+        <li>Ignoring capacitor stored charge after power is removed.</li>
+      </ul>
 
-<p>
-Once you understand voltage, resistance, and continuity, circuits become much easier to troubleshoot.
-</p>
+      <div class="danger-box">
+        <strong>High-value safety reminder:</strong> A circuit can still be dangerous after power is removed if capacitors remain charged.
+      </div>
+    </section>
 
-<p>
-MedSkillBuilder helps you turn that understanding into real skill through quick practice and repetition.
-</p>
+    <section class="card">
+      <h2>Real-World Troubleshooting Thinking</h2>
 
-<hr>
+      <p>
+        If a device is not working, a multimeter helps you stop guessing and start isolating the problem.
+      </p>
 
-<p style="font-size: 12px; color: #64748b; margin-top: 20px;">
-  For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
-</p>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Check voltage</h3>
+          <p>Is power present at the outlet, power supply, battery, or board input?</p>
+        </div>
 
+        <div class="mini-card">
+          <h3>Check continuity</h3>
+          <p>Are cables, fuses, switches, connectors, and paths intact?</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Check resistance</h3>
+          <p>Does a component or path look open, shorted, or out of expected range?</p>
+        </div>
+      </div>
+
+      <div class="notice-first">
+        <strong>Field mindset:</strong> Start with the simplest question first. Is power present? Then ask if the path is complete and whether the load makes sense.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Multimeter Use in Biomedical Equipment</h2>
+
+      <p>
+        Biomedical equipment technicians use multimeters to support safe, practical troubleshooting. The goal is not to randomly probe a device.
+        The goal is to understand the circuit, choose the correct setting, and test safely.
+      </p>
+
+      <ul>
+        <li>Checking battery voltage</li>
+        <li>Verifying power supply output</li>
+        <li>Checking fuses</li>
+        <li>Testing cable continuity</li>
+        <li>Looking for opens or shorts</li>
+        <li>Confirming whether voltage is AC or DC</li>
+      </ul>
+
+      <p>
+        Power supply troubleshooting connects directly to this guide. Review <a href="/power-supply-basics-cbet.html">Power Supply Basics for CBET</a>.
+      </p>
+    </section>
+
+    <section id="questions" class="card">
+      <h2>CBET-Style Quick Questions</h2>
+
+      <div class="question-card">
+        <strong>1. Which port does the black lead usually go into?</strong>
+        <p>A. COM &nbsp; B. V/Ω only &nbsp; C. Current port always &nbsp; D. Display</p>
+        <div class="answer">Answer: A. COM</div>
+        <div class="why">The black lead normally goes into the COM port.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>2. What setting is used to measure resistance?</strong>
+        <p>A. Ω &nbsp; B. V only &nbsp; C. Hz only &nbsp; D. Temperature only</p>
+        <div class="answer">Answer: A. Ω</div>
+        <div class="why">Resistance is measured in ohms, shown with the Ω symbol.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. Should resistance be measured on a live circuit?</strong>
+        <p>A. Yes, always &nbsp; B. No, power should be off &nbsp; C. Only if the screen is bright &nbsp; D. Only on batteries</p>
+        <div class="answer">Answer: B. No, power should be off</div>
+        <div class="why">Resistance checks should be done with power off and stored energy safely discharged.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. What does continuity mode help check?</strong>
+        <p>A. Whether a path is complete &nbsp; B. Patient age &nbsp; C. Oxygen saturation &nbsp; D. The color of a wire only</p>
+        <div class="answer">Answer: A. Whether a path is complete</div>
+        <div class="why">Continuity checks for a complete low-resistance path.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. What should you check before measuring wall outlet power?</strong>
+        <p>A. AC voltage setting and proper safety precautions &nbsp; B. Resistance mode &nbsp; C. Continuity beep only &nbsp; D. Capacitance only</p>
+        <div class="answer">Answer: A. AC voltage setting and proper safety precautions</div>
+        <div class="why">Wall outlets use AC voltage and require appropriate safety precautions.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/multimeter-quiz.html">Take the Multimeter Quiz</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Best Study Path After This Page</h2>
+      <p>
+        Multimeter use becomes easier when the basic electronics concepts are clear.
+      </p>
+
+      <div class="path-grid">
+        <a class="path-card" href="/voltage-current-resistance-cbet.html">
+          1. Voltage Current Resistance
+          <span>Understand what the meter is measuring.</span>
+        </a>
+        <a class="path-card" href="/what-is-ohms-law.html">
+          2. Ohm's Law
+          <span>Understand how resistance affects current.</span>
+        </a>
+        <a class="path-card" href="/power-supply-basics-cbet.html">
+          3. Power Supply Basics
+          <span>Apply meter thinking to real equipment power paths.</span>
+        </a>
+        <a class="path-card" href="/multimeter-quiz.html">
+          4. Multimeter Quiz
+          <span>Test your understanding with quick practice.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What does a multimeter measure?</h3>
+      <p>
+        A multimeter can measure voltage, resistance, continuity, and often current depending on the meter and setup.
+      </p>
+
+      <h3>Where does the black lead go?</h3>
+      <p>
+        The black lead normally goes in the COM port.
+      </p>
+
+      <h3>Can I measure resistance on a live circuit?</h3>
+      <p>
+        No. Resistance should be measured with power off and stored energy safely discharged.
+      </p>
+
+      <h3>What does a continuity beep mean?</h3>
+      <p>
+        A continuity beep usually means a complete low-resistance path exists between the two test points.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Related Electronics Guides</h2>
+      <p>
+        Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+      </p>
+
+      <div class="related-links">
+        <a href="/multimeter-quiz.html">Multimeter Quiz</a>
+        <a href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+        <a href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
+        <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+        <a href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
+        <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Ready to test your knowledge?</h2>
+      <p>
+        Take the multimeter quiz, then continue into CBET electronics practice questions.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/multimeter-quiz.html">Start the Multimeter Quiz</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice</a>
+      </div>
+    </section>
+
+    <p class="safety">
+      For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
+    </p>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
