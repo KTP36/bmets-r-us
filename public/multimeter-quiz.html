@@ -4,292 +4,877 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Multimeter Quiz | 25 Beginner Questions | MedSkillBuilder</title>
+  <title>Multimeter Quiz | 25 CBET Electronics Practice Questions</title>
 
-  <meta name="description" content="Take a 25-question multimeter quiz covering voltage, resistance, continuity, safety, and basic troubleshooting." />
+  <meta name="description" content="Take a 25-question multimeter quiz for CBET electronics and beginner troubleshooting. Practice voltage, resistance, continuity, safety, meter leads, AC/DC settings, and common testing mistakes." />
+  <meta name="keywords" content="multimeter quiz, CBET electronics quiz, how to use a multimeter quiz, voltage resistance continuity quiz, biomedical equipment troubleshooting quiz, multimeter safety, beginner electronics quiz" />
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/multimeter-quiz.html" />
 
+  <meta property="og:title" content="Multimeter Quiz | 25 CBET Electronics Practice Questions" />
+  <meta property="og:description" content="Practice multimeter basics with 25 beginner-friendly CBET electronics questions covering voltage, resistance, continuity, safety, and troubleshooting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/multimeter-quiz.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Multimeter Quiz",
+    "description": "A 25-question beginner multimeter quiz for CBET learners covering voltage, resistance, continuity, safety, troubleshooting, meter leads, and AC/DC settings.",
+    "url": "https://medskillbuilder.com/multimeter-quiz.html",
+    "learningResourceType": "Quiz",
+    "educationalLevel": "Beginner",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does this multimeter quiz cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This quiz covers voltage, resistance, continuity, safety, meter leads, AC/DC settings, and beginner troubleshooting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many questions are in this multimeter quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This multimeter quiz has 25 questions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you measure resistance on a live circuit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Resistance should be measured with power off and stored energy safely discharged."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does continuity check?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Continuity checks whether a low-resistance path is complete between two test points."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      line-height: 1.6;
-      background: #f8fafc;
-      color: #0f172a;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
+      line-height: 1.7;
     }
 
-    h1, h2 {
-      color: #0f172a;
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
-    .intro, .question, .result-box {
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img { width: 56px; height: auto; }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 18px;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: clamp(40px, 5.6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 880px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover { transform: translateY(-2px); opacity: 0.96; }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+
+    .quick-grid,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    .card,
+    .intro,
+    .question,
+    .result-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      margin-bottom: 22px;
+      box-shadow: var(--soft-shadow);
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
+    }
+
+    .notice-box,
+    .concept-box,
+    .warning-box {
+      padding: 16px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
+    }
+
+    .notice-box {
+      background: var(--soft-blue);
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+    }
+
+    .concept-box {
+      background: var(--soft-green);
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .warning-box {
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
     }
 
     .question p {
-      font-weight: bold;
+      font-weight: 900;
+      color: var(--navy);
       margin-top: 0;
     }
 
     label {
       display: block;
-      margin: 8px 0;
+      margin: 9px 0;
       cursor: pointer;
+      background: #f8fbff;
+      border: 1px solid #dbe4ee;
+      border-radius: 14px;
+      padding: 12px 13px;
+      color: #1f2937;
+      font-weight: 700;
+      transition: border-color 0.18s ease, background 0.18s ease;
     }
 
+    label:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+    }
+
+    input[type="radio"] { margin-right: 8px; }
+
     button {
-      background: #2563eb;
+      background: linear-gradient(135deg, var(--green2), var(--green));
       color: white;
       border: none;
-      padding: 14px 22px;
-      border-radius: 10px;
+      padding: 15px 24px;
+      border-radius: 999px;
       font-size: 16px;
-      font-weight: bold;
+      font-weight: 900;
       cursor: pointer;
       margin-top: 10px;
+      box-shadow: 0 14px 28px rgba(22,163,74,0.24);
     }
 
     button:hover {
-      background: #1d4ed8;
+      opacity: 0.96;
+      transform: translateY(-1px);
     }
 
     .result-box {
       display: none;
-      border-left: 6px solid #2563eb;
+      border-left: 8px solid var(--bright-blue);
+    }
+
+    .result-score {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 14px 0;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .home-link {
+      display: inline-flex;
+      margin: 7px 6px 0 0;
+      color: var(--navy);
+      font-weight: 900;
+      text-decoration: none;
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 10px 14px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .related-links a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
     }
 
     .safety {
       font-size: 12px;
       color: #64748b;
-      margin-top: 24px;
+      margin: 24px 0;
+      text-align: center;
     }
 
-    .home-link {
-      display: inline-block;
-      margin-top: 20px;
-      color: #2563eb;
-      font-weight: bold;
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
       text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
+      }
+
+      .card,
+      .intro,
+      .question,
+      .result-box {
+        padding: 22px 18px;
+      }
+
+      .cta,
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-  <h1>Multimeter Quiz</h1>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/how-to-use-a-multimeter.html">Review Guide</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
+    </div>
 
-  <div class="intro">
-    <p>
-      Test your understanding of basic multimeter use, including voltage, resistance,
-      continuity, safety, and beginner troubleshooting.
-    </p>
-    <p>
-      Choose the best answer for each question, then submit your quiz to see your score.
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Quiz</div>
+      <h1>Multimeter Quiz</h1>
+      <p>
+        Test your understanding of basic multimeter use, including voltage, resistance, continuity, safety, meter leads, AC/DC settings, and beginner troubleshooting.
+      </p>
+      <p>
+        This 25-question quiz helps beginners build the practical recognition needed for electronics and biomedical equipment troubleshooting.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="#quizForm">Start the 25-Question Quiz</a>
+        <a class="cta secondary" href="/how-to-use-a-multimeter.html">Review Multimeter Guide</a>
+        <a class="cta secondary" href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+      </div>
+    </section>
+
+    <div class="quick-grid">
+      <div class="quick-stat">25<span>Practice questions</span></div>
+      <div class="quick-stat">Safety<span>Correct settings matter</span></div>
+      <div class="quick-stat">Troubleshooting<span>Stop guessing</span></div>
+    </div>
+
+    <section class="card">
+      <h2>Before You Start</h2>
+      <p>
+        A multimeter is one of the most important beginner tools because it helps answer practical troubleshooting questions.
+      </p>
+
+      <div class="concept-box">
+        <strong>Simple pattern:</strong> Check voltage to see if power is present, continuity to see if the path is complete, and resistance to evaluate opposition to current flow.
+      </div>
+
+      <div class="warning-box">
+        <strong>Safety reminder:</strong> Resistance and continuity checks should be done with power off and stored energy safely discharged.
+      </div>
+    </section>
+
+    <div class="intro">
+      <p>
+        Choose the best answer for each question, then submit your quiz to see your score and review cues.
+      </p>
+      <p>
+        This quiz keeps all 25 questions from your original version and adds stronger styling, SEO, and study links.
+      </p>
+    </div>
+
+    <form id="quizForm">
+
+      <div class="question">
+        <p>1. What does a multimeter measure?</p>
+        <label><input type="radio" name="q1" value="a"> Only voltage</label>
+        <label><input type="radio" name="q1" value="b"> Electrical values such as voltage, resistance, and continuity</label>
+        <label><input type="radio" name="q1" value="c"> Only temperature</label>
+      </div>
+
+      <div class="question">
+        <p>2. What does voltage represent?</p>
+        <label><input type="radio" name="q2" value="a"> Electrical pressure</label>
+        <label><input type="radio" name="q2" value="b"> Wire length</label>
+        <label><input type="radio" name="q2" value="c"> Physical weight</label>
+      </div>
+
+      <div class="question">
+        <p>3. What unit is used for resistance?</p>
+        <label><input type="radio" name="q3" value="a"> Volts</label>
+        <label><input type="radio" name="q3" value="b"> Amps</label>
+        <label><input type="radio" name="q3" value="c"> Ohms</label>
+      </div>
+
+      <div class="question">
+        <p>4. Where should the black meter lead usually be plugged in?</p>
+        <label><input type="radio" name="q4" value="a"> COM</label>
+        <label><input type="radio" name="q4" value="b"> V/Ω only</label>
+        <label><input type="radio" name="q4" value="c"> The amp port every time</label>
+      </div>
+
+      <div class="question">
+        <p>5. Before measuring resistance, the circuit should be:</p>
+        <label><input type="radio" name="q5" value="a"> Powered off</label>
+        <label><input type="radio" name="q5" value="b"> Powered on</label>
+        <label><input type="radio" name="q5" value="c"> Connected to a wall outlet</label>
+      </div>
+
+      <div class="question">
+        <p>6. Why should you not measure resistance on a live circuit?</p>
+        <label><input type="radio" name="q6" value="a"> It can damage the meter or create unsafe conditions</label>
+        <label><input type="radio" name="q6" value="b"> Resistance only works on AC</label>
+        <label><input type="radio" name="q6" value="c"> The meter will always show zero</label>
+      </div>
+
+      <div class="question">
+        <p>7. What does continuity usually tell you?</p>
+        <label><input type="radio" name="q7" value="a"> Whether a path is complete</label>
+        <label><input type="radio" name="q7" value="b"> The exact voltage of a battery</label>
+        <label><input type="radio" name="q7" value="c"> The age of a component</label>
+      </div>
+
+      <div class="question">
+        <p>8. A continuity beep usually means:</p>
+        <label><input type="radio" name="q8" value="a"> The path is open</label>
+        <label><input type="radio" name="q8" value="b"> There is a complete path</label>
+        <label><input type="radio" name="q8" value="c"> The circuit has high voltage</label>
+      </div>
+
+      <div class="question">
+        <p>9. No continuity beep usually means:</p>
+        <label><input type="radio" name="q9" value="a"> The path may be open or broken</label>
+        <label><input type="radio" name="q9" value="b"> The wire is always good</label>
+        <label><input type="radio" name="q9" value="c"> Voltage is too high</label>
+      </div>
+
+      <div class="question">
+        <p>10. Voltage is usually measured:</p>
+        <label><input type="radio" name="q10" value="a"> Across a component or source</label>
+        <label><input type="radio" name="q10" value="b"> Only with the probes touching each other</label>
+        <label><input type="radio" name="q10" value="c"> Only after removing the meter leads</label>
+      </div>
+
+      <div class="question">
+        <p>11. DC voltage is commonly found in:</p>
+        <label><input type="radio" name="q11" value="a"> Batteries</label>
+        <label><input type="radio" name="q11" value="b"> Only wall outlets</label>
+        <label><input type="radio" name="q11" value="c"> Only transformers</label>
+      </div>
+
+      <div class="question">
+        <p>12. AC voltage is commonly found in:</p>
+        <label><input type="radio" name="q12" value="a"> Wall outlets</label>
+        <label><input type="radio" name="q12" value="b"> AA batteries only</label>
+        <label><input type="radio" name="q12" value="c"> Resistors only</label>
+      </div>
+
+      <div class="question">
+        <p>13. If resistance is very high, current will usually:</p>
+        <label><input type="radio" name="q13" value="a"> Increase</label>
+        <label><input type="radio" name="q13" value="b"> Decrease</label>
+        <label><input type="radio" name="q13" value="c"> Stay exactly the same no matter what</label>
+      </div>
+
+      <div class="question">
+        <p>14. If resistance reads near zero when it should not, this may indicate:</p>
+        <label><input type="radio" name="q14" value="a"> A possible short</label>
+        <label><input type="radio" name="q14" value="b"> A perfect open circuit</label>
+        <label><input type="radio" name="q14" value="c"> A dead battery only</label>
+      </div>
+
+      <div class="question">
+        <p>15. If a meter displays OL while checking resistance, it often means:</p>
+        <label><input type="radio" name="q15" value="a"> Open loop or out of range</label>
+        <label><input type="radio" name="q15" value="b"> Overloaded voltage is always present</label>
+        <label><input type="radio" name="q15" value="c"> The probes are working perfectly on a closed circuit</label>
+      </div>
+
+      <div class="question">
+        <p>16. When checking a capacitor with resistance mode, a reading that starts low and climbs can mean:</p>
+        <label><input type="radio" name="q16" value="a"> The capacitor is charging</label>
+        <label><input type="radio" name="q16" value="b"> The meter is broken every time</label>
+        <label><input type="radio" name="q16" value="c"> The circuit is definitely live</label>
+      </div>
+
+      <div class="question">
+        <p>17. If a capacitor reads near zero resistance and stays there, it may be:</p>
+        <label><input type="radio" name="q17" value="a"> Shorted</label>
+        <label><input type="radio" name="q17" value="b"> Fully normal in every case</label>
+        <label><input type="radio" name="q17" value="c"> Measuring AC voltage</label>
+      </div>
+
+      <div class="question">
+        <p>18. Before checking a capacitor, you should make sure it is:</p>
+        <label><input type="radio" name="q18" value="a"> Powered and energized</label>
+        <label><input type="radio" name="q18" value="b"> Powered off and properly discharged</label>
+        <label><input type="radio" name="q18" value="c"> Connected directly to AC power</label>
+      </div>
+
+      <div class="question">
+        <p>19. What is one common beginner mistake with meter leads?</p>
+        <label><input type="radio" name="q19" value="a"> Leaving the black lead in COM</label>
+        <label><input type="radio" name="q19" value="b"> Using the wrong port for the measurement</label>
+        <label><input type="radio" name="q19" value="c"> Reading the display</label>
+      </div>
+
+      <div class="question">
+        <p>20. If you are unsure which setting to use, the safest first step is to:</p>
+        <label><input type="radio" name="q20" value="a"> Guess and test live power immediately</label>
+        <label><input type="radio" name="q20" value="b"> Stop and confirm the correct meter setting and safety steps</label>
+        <label><input type="radio" name="q20" value="c"> Put both probes in the amp port</label>
+      </div>
+
+      <div class="question">
+        <p>21. A good basic troubleshooting order for a device that will not power on is:</p>
+        <label><input type="radio" name="q21" value="a"> Check power, check connections, then check components</label>
+        <label><input type="radio" name="q21" value="b"> Replace every part first</label>
+        <label><input type="radio" name="q21" value="c"> Ignore voltage and only check the case</label>
+      </div>
+
+      <div class="question">
+        <p>22. A 1.5V AA battery should read approximately:</p>
+        <label><input type="radio" name="q22" value="a"> 1.5 volts DC</label>
+        <label><input type="radio" name="q22" value="b"> 120 volts AC</label>
+        <label><input type="radio" name="q22" value="c"> 0 ohms always</label>
+      </div>
+
+      <div class="question">
+        <p>23. Resistance measures how much a component:</p>
+        <label><input type="radio" name="q23" value="a"> Opposes current flow</label>
+        <label><input type="radio" name="q23" value="b"> Creates light</label>
+        <label><input type="radio" name="q23" value="c"> Stores patient data</label>
+      </div>
+
+      <div class="question">
+        <p>24. Why is continuity useful for checking wires?</p>
+        <label><input type="radio" name="q24" value="a"> It can quickly show whether the wire path is complete</label>
+        <label><input type="radio" name="q24" value="b"> It measures exact battery capacity</label>
+        <label><input type="radio" name="q24" value="c"> It automatically repairs the wire</label>
+      </div>
+
+      <div class="question">
+        <p>25. What is the best description of a multimeter for beginners?</p>
+        <label><input type="radio" name="q25" value="a"> A tool for checking electrical conditions in circuits</label>
+        <label><input type="radio" name="q25" value="b"> A tool only used for anatomy</label>
+        <label><input type="radio" name="q25" value="c"> A tool that replaces proper training</label>
+      </div>
+
+      <button type="button" onclick="gradeQuiz()">Submit Quiz</button>
+    </form>
+
+    <div id="resultBox" class="result-box">
+      <h2>Your Result</h2>
+      <div class="result-score">
+        <p id="scoreText"></p>
+        <p id="feedbackText"></p>
+      </div>
+
+      <h2>What to Notice First</h2>
+      <p>
+        These cues help you connect the quiz questions to real multimeter troubleshooting.
+      </p>
+
+      <div class="notice-box">
+        <strong>Questions 4 and 19:</strong> Meter lead placement matters. Black usually goes in COM, and the red lead must match the measurement type.
+      </div>
+
+      <div class="notice-box">
+        <strong>Questions 5 and 6:</strong> Resistance checks are different from voltage checks. Resistance should be checked with power off.
+      </div>
+
+      <div class="notice-box">
+        <strong>Questions 7 through 9:</strong> Continuity helps determine whether a path is complete or open.
+      </div>
+
+      <div class="notice-box">
+        <strong>Questions 11 and 12:</strong> Batteries are DC sources. Wall outlets are AC sources.
+      </div>
+
+      <div class="notice-box">
+        <strong>Questions 16 through 18:</strong> Capacitors can store energy. They must be handled carefully and safely discharged before testing.
+      </div>
+
+      <div class="notice-box">
+        <strong>Question 20:</strong> The safest move is not guessing. Stop and confirm the correct setting and safety steps.
+      </div>
+
+      <a class="home-link" href="/how-to-use-a-multimeter.html">Review the Multimeter Guide</a>
+      <a class="home-link" href="/voltage-current-resistance-cbet.html">Review Voltage Current Resistance</a>
+      <a class="home-link" href="/what-is-ohms-law.html">Review Ohm's Law</a>
+      <a class="home-link" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+      <a class="home-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+    </div>
+
+    <section class="card">
+      <h2>Best Study Path After This Quiz</h2>
+      <p>
+        This quiz pairs directly with the multimeter guide. After this, keep building the electronics troubleshooting path.
+      </p>
+
+      <div class="path-grid">
+        <a class="path-card" href="/how-to-use-a-multimeter.html">
+          1. How to Use a Multimeter
+          <span>Review voltage, resistance, continuity, and safety.</span>
+        </a>
+        <a class="path-card" href="/voltage-current-resistance-cbet.html">
+          2. Voltage Current Resistance
+          <span>Understand what the meter is measuring.</span>
+        </a>
+        <a class="path-card" href="/power-supply-basics-cbet.html">
+          3. Power Supply Basics
+          <span>Apply meter thinking to real equipment power paths.</span>
+        </a>
+        <a class="path-card" href="/cbet-electronics-practice-questions.html">
+          4. CBET Electronics Practice
+          <span>Practice mixed electronics concepts.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Related Electronics Guides</h2>
+      <p>
+        Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+      </p>
+
+      <div class="related-links">
+        <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a href="/voltage-current-resistance-cbet.html">Voltage Current Resistance</a>
+        <a href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
+        <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+        <a href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
+        <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Ready for mixed electronics practice?</h2>
+      <p>
+        After multimeter basics, move into broader CBET electronics questions covering power supplies, AC/DC, components, and troubleshooting.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice →</a>
+        <a class="cta secondary" href="/free-cbet-practice-test.html">Open Free CBET Practice Test</a>
+      </div>
+    </section>
+
+    <p class="safety">
+      For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
     </p>
   </div>
 
-  <form id="quizForm">
-
-    <div class="question">
-      <p>1. What does a multimeter measure?</p>
-      <label><input type="radio" name="q1" value="a"> Only voltage</label>
-      <label><input type="radio" name="q1" value="b"> Electrical values such as voltage, resistance, and continuity</label>
-      <label><input type="radio" name="q1" value="c"> Only temperature</label>
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
     </div>
-
-    <div class="question">
-      <p>2. What does voltage represent?</p>
-      <label><input type="radio" name="q2" value="a"> Electrical pressure</label>
-      <label><input type="radio" name="q2" value="b"> Wire length</label>
-      <label><input type="radio" name="q2" value="c"> Physical weight</label>
-    </div>
-
-    <div class="question">
-      <p>3. What unit is used for resistance?</p>
-      <label><input type="radio" name="q3" value="a"> Volts</label>
-      <label><input type="radio" name="q3" value="b"> Amps</label>
-      <label><input type="radio" name="q3" value="c"> Ohms</label>
-    </div>
-
-    <div class="question">
-      <p>4. Where should the black meter lead usually be plugged in?</p>
-      <label><input type="radio" name="q4" value="a"> COM</label>
-      <label><input type="radio" name="q4" value="b"> V/Ω only</label>
-      <label><input type="radio" name="q4" value="c"> The amp port every time</label>
-    </div>
-
-    <div class="question">
-      <p>5. Before measuring resistance, the circuit should be:</p>
-      <label><input type="radio" name="q5" value="a"> Powered off</label>
-      <label><input type="radio" name="q5" value="b"> Powered on</label>
-      <label><input type="radio" name="q5" value="c"> Connected to a wall outlet</label>
-    </div>
-
-    <div class="question">
-      <p>6. Why should you not measure resistance on a live circuit?</p>
-      <label><input type="radio" name="q6" value="a"> It can damage the meter or create unsafe conditions</label>
-      <label><input type="radio" name="q6" value="b"> Resistance only works on AC</label>
-      <label><input type="radio" name="q6" value="c"> The meter will always show zero</label>
-    </div>
-
-    <div class="question">
-      <p>7. What does continuity usually tell you?</p>
-      <label><input type="radio" name="q7" value="a"> Whether a path is complete</label>
-      <label><input type="radio" name="q7" value="b"> The exact voltage of a battery</label>
-      <label><input type="radio" name="q7" value="c"> The age of a component</label>
-    </div>
-
-    <div class="question">
-      <p>8. A continuity beep usually means:</p>
-      <label><input type="radio" name="q8" value="a"> The path is open</label>
-      <label><input type="radio" name="q8" value="b"> There is a complete path</label>
-      <label><input type="radio" name="q8" value="c"> The circuit has high voltage</label>
-    </div>
-
-    <div class="question">
-      <p>9. No continuity beep usually means:</p>
-      <label><input type="radio" name="q9" value="a"> The path may be open or broken</label>
-      <label><input type="radio" name="q9" value="b"> The wire is always good</label>
-      <label><input type="radio" name="q9" value="c"> Voltage is too high</label>
-    </div>
-
-    <div class="question">
-      <p>10. Voltage is usually measured:</p>
-      <label><input type="radio" name="q10" value="a"> Across a component or source</label>
-      <label><input type="radio" name="q10" value="b"> Only with the probes touching each other</label>
-      <label><input type="radio" name="q10" value="c"> Only after removing the meter leads</label>
-    </div>
-
-    <div class="question">
-      <p>11. DC voltage is commonly found in:</p>
-      <label><input type="radio" name="q11" value="a"> Batteries</label>
-      <label><input type="radio" name="q11" value="b"> Only wall outlets</label>
-      <label><input type="radio" name="q11" value="c"> Only transformers</label>
-    </div>
-
-    <div class="question">
-      <p>12. AC voltage is commonly found in:</p>
-      <label><input type="radio" name="q12" value="a"> Wall outlets</label>
-      <label><input type="radio" name="q12" value="b"> AA batteries only</label>
-      <label><input type="radio" name="q12" value="c"> Resistors only</label>
-    </div>
-
-    <div class="question">
-      <p>13. If resistance is very high, current will usually:</p>
-      <label><input type="radio" name="q13" value="a"> Increase</label>
-      <label><input type="radio" name="q13" value="b"> Decrease</label>
-      <label><input type="radio" name="q13" value="c"> Stay exactly the same no matter what</label>
-    </div>
-
-    <div class="question">
-      <p>14. If resistance reads near zero when it should not, this may indicate:</p>
-      <label><input type="radio" name="q14" value="a"> A possible short</label>
-      <label><input type="radio" name="q14" value="b"> A perfect open circuit</label>
-      <label><input type="radio" name="q14" value="c"> A dead battery only</label>
-    </div>
-
-    <div class="question">
-      <p>15. If a meter displays OL while checking resistance, it often means:</p>
-      <label><input type="radio" name="q15" value="a"> Open loop or out of range</label>
-      <label><input type="radio" name="q15" value="b"> Overloaded voltage is always present</label>
-      <label><input type="radio" name="q15" value="c"> The probes are working perfectly on a closed circuit</label>
-    </div>
-
-    <div class="question">
-      <p>16. When checking a capacitor with resistance mode, a reading that starts low and climbs can mean:</p>
-      <label><input type="radio" name="q16" value="a"> The capacitor is charging</label>
-      <label><input type="radio" name="q16" value="b"> The meter is broken every time</label>
-      <label><input type="radio" name="q16" value="c"> The circuit is definitely live</label>
-    </div>
-
-    <div class="question">
-      <p>17. If a capacitor reads near zero resistance and stays there, it may be:</p>
-      <label><input type="radio" name="q17" value="a"> Shorted</label>
-      <label><input type="radio" name="q17" value="b"> Fully normal in every case</label>
-      <label><input type="radio" name="q17" value="c"> Measuring AC voltage</label>
-    </div>
-
-    <div class="question">
-      <p>18. Before checking a capacitor, you should make sure it is:</p>
-      <label><input type="radio" name="q18" value="a"> Powered and energized</label>
-      <label><input type="radio" name="q18" value="b"> Powered off and properly discharged</label>
-      <label><input type="radio" name="q18" value="c"> Connected directly to AC power</label>
-    </div>
-
-    <div class="question">
-      <p>19. What is one common beginner mistake with meter leads?</p>
-      <label><input type="radio" name="q19" value="a"> Leaving the black lead in COM</label>
-      <label><input type="radio" name="q19" value="b"> Using the wrong port for the measurement</label>
-      <label><input type="radio" name="q19" value="c"> Reading the display</label>
-    </div>
-
-    <div class="question">
-      <p>20. If you are unsure which setting to use, the safest first step is to:</p>
-      <label><input type="radio" name="q20" value="a"> Guess and test live power immediately</label>
-      <label><input type="radio" name="q20" value="b"> Stop and confirm the correct meter setting and safety steps</label>
-      <label><input type="radio" name="q20" value="c"> Put both probes in the amp port</label>
-    </div>
-
-    <div class="question">
-      <p>21. A good basic troubleshooting order for a device that will not power on is:</p>
-      <label><input type="radio" name="q21" value="a"> Check power, check connections, then check components</label>
-      <label><input type="radio" name="q21" value="b"> Replace every part first</label>
-      <label><input type="radio" name="q21" value="c"> Ignore voltage and only check the case</label>
-    </div>
-
-    <div class="question">
-      <p>22. A 1.5V AA battery should read approximately:</p>
-      <label><input type="radio" name="q22" value="a"> 1.5 volts DC</label>
-      <label><input type="radio" name="q22" value="b"> 120 volts AC</label>
-      <label><input type="radio" name="q22" value="c"> 0 ohms always</label>
-    </div>
-
-    <div class="question">
-      <p>23. Resistance measures how much a component:</p>
-      <label><input type="radio" name="q23" value="a"> Opposes current flow</label>
-      <label><input type="radio" name="q23" value="b"> Creates light</label>
-      <label><input type="radio" name="q23" value="c"> Stores patient data</label>
-    </div>
-
-    <div class="question">
-      <p>24. Why is continuity useful for checking wires?</p>
-      <label><input type="radio" name="q24" value="a"> It can quickly show whether the wire path is complete</label>
-      <label><input type="radio" name="q24" value="b"> It measures exact battery capacity</label>
-      <label><input type="radio" name="q24" value="c"> It automatically repairs the wire</label>
-    </div>
-
-    <div class="question">
-      <p>25. What is the best description of a multimeter for beginners?</p>
-      <label><input type="radio" name="q25" value="a"> A tool for checking electrical conditions in circuits</label>
-      <label><input type="radio" name="q25" value="b"> A tool only used for anatomy</label>
-      <label><input type="radio" name="q25" value="c"> A tool that replaces proper training</label>
-    </div>
-
-    <button type="button" onclick="gradeQuiz()">Submit Quiz</button>
-
-  </form>
-
-  <div id="resultBox" class="result-box">
-    <h2>Your Result</h2>
-    <p id="scoreText"></p>
-    <p id="feedbackText"></p>
-    <a class="home-link" href="/how-to-use-a-multimeter.html">Review the Multimeter Guide</a><br>
-    <a class="home-link" href="/">Back to MedSkillBuilder</a>
-  </div>
-
-  <hr>
-
-  <p class="safety">
-    For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
-  </p>
+  </footer>
 
   <script>
     function gradeQuiz() {
@@ -353,6 +938,5 @@
       document.getElementById("resultBox").scrollIntoView({ behavior: "smooth" });
     }
   </script>
-
 </body>
 </html>
