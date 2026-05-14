@@ -4,16 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TEAS Practice Questions | Free ATI TEAS Prep | MedSkillBuilder</title>
+<title>TEAS Practice Questions | Free 25-Question ATI TEAS Prep Sets</title>
 
-<meta name="description" content="Practice free TEAS-style questions for reading, math, science, and English. Build recognition, review missed questions, and improve nursing entrance exam readiness with MedSkillBuilder." />
+<meta name="description" content="Practice free TEAS-style questions for reading, math, science, and English. Use 25-question practice sets, section strategies, missed-question review, and study plans to build nursing entrance exam readiness." />
+<meta name="keywords" content="TEAS practice questions, free TEAS practice, ATI TEAS prep, TEAS reading practice, TEAS math practice, TEAS science practice, TEAS English practice, nursing entrance exam practice, TEAS study guide" />
+<meta name="robots" content="index, follow" />
 
 <link rel="canonical" href="https://medskillbuilder.com/teas-practice-questions.html" />
 
 <meta property="og:title" content="TEAS Practice Questions | Free ATI TEAS Prep | MedSkillBuilder">
-<meta property="og:description" content="Free TEAS-style practice questions with section-based review, instant feedback, and study strategies for nursing entrance exam prep.">
+<meta property="og:description" content="Free TEAS-style practice questions with 25-question sets, section-based review, instant feedback, missed-question review, and study strategies for nursing entrance exam prep.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://medskillbuilder.com/teas-practice-questions.html">
+<meta property="og:site_name" content="MedSkillBuilder">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "TEAS Practice Questions",
+  "description": "Free TEAS-style practice questions and study guidance for reading, math, science, and English language usage.",
+  "url": "https://medskillbuilder.com/teas-practice-questions.html",
+  "learningResourceType": "Practice questions",
+  "educationalLevel": "Nursing entrance exam preparation",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "TEAS exam learners, nursing students, allied health learners"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "MedSkillBuilder",
+    "url": "https://medskillbuilder.com"
+  },
+  "isAccessibleForFree": true
+}
+</script>
 
 <script type="application/ld+json">
 {
@@ -38,6 +63,14 @@
     },
     {
       "@type": "Question",
+      "name": "How many questions should I practice at one time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Short 25-question practice sets are a good starting point because they are long enough to reveal weak areas but short enough to finish and review."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Can MedSkillBuilder help with TEAS prep?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -49,76 +82,246 @@
 </script>
 
 <style>
+:root {
+  --navy: #12355b;
+  --navy-dark: #0b2440;
+  --blue: #2563eb;
+  --cyan: #0891b2;
+  --green: #16a34a;
+  --teal: #0f766e;
+  --orange: #f97316;
+  --purple: #7c3aed;
+  --slate: #334155;
+  --muted: #64748b;
+  --border: #dbe4ee;
+  --page: #f8fafc;
+  --soft-blue: #eff6ff;
+  --soft-green: #ecfdf5;
+  --soft-orange: #fff7ed;
+  --soft-purple: #f5f3ff;
+  --shadow: 0 18px 46px rgba(15, 23, 42, 0.1);
+  --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #f8fafc;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34%),
+    radial-gradient(circle at top right, rgba(22, 163, 74, 0.10), transparent 34%),
+    var(--page);
   color: #0f172a;
   line-height: 1.7;
 }
 
 .container {
-  max-width: 950px;
+  max-width: 1120px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 24px 20px 60px;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.back-link,
+.mini-nav a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--navy);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 15px;
+  font-weight: 900;
+  box-shadow: var(--soft-shadow);
+  font-size: 0.94rem;
+}
+
+.mini-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .hero {
-  background: linear-gradient(135deg, #12355b, #1d6fa5);
+  background: linear-gradient(135deg, var(--navy-dark) 0%, #1d6fa5 58%, #16a34a 100%);
   color: white;
   padding: 38px;
-  border-radius: 18px;
-  margin-bottom: 26px;
+  border-radius: 30px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -90px;
+  top: -90px;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 900;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
-  font-size: 2.3rem;
-  margin-bottom: 12px;
-  line-height: 1.2;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  margin-bottom: 14px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  max-width: 900px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero p {
-  font-size: 1.1rem;
-  max-width: 760px;
+  font-size: 1.08rem;
+  max-width: 860px;
+  color: rgba(255,255,255,0.94);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 13px 20px;
+  text-decoration: none;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+}
+
+.cta-btn.primary {
+  background: white;
+  color: var(--navy-dark);
+}
+
+.cta-btn.secondary {
+  background: rgba(255,255,255,0.14);
+  color: white;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-stat {
+  background: rgba(255,255,255,0.13);
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.hero-stat strong {
+  display: block;
+  color: white;
+  font-size: 1.45rem;
+  line-height: 1.15;
+}
+
+.hero-stat span {
+  color: rgba(255,255,255,0.88);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.notice,
+.warning,
+.success,
+.strategy-box {
+  padding: 16px 18px;
+  border-radius: 16px;
+  margin: 18px 0;
 }
 
 .notice {
-  background: #eff6ff;
-  border-left: 5px solid #2563eb;
-  padding: 15px 16px;
-  border-radius: 10px;
-  margin: 18px 0;
+  background: var(--soft-blue);
+  border-left: 5px solid var(--blue);
 }
 
 .warning {
-  background: #fff7ed;
-  border-left: 5px solid #f97316;
-  padding: 15px 16px;
-  border-radius: 10px;
-  margin: 18px 0;
+  background: var(--soft-orange);
+  border-left: 5px solid var(--orange);
+}
+
+.success {
+  background: var(--soft-green);
+  border-left: 5px solid var(--green);
+}
+
+.strategy-box {
+  background: var(--soft-purple);
+  border-left: 5px solid var(--purple);
 }
 
 .card {
   background: #ffffff;
-  padding: 26px;
-  border-radius: 16px;
-  margin-bottom: 22px;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  padding: 28px;
+  border-radius: 22px;
+  margin-bottom: 26px;
+  border: 1px solid var(--border);
+  box-shadow: var(--soft-shadow);
 }
 
 h2 {
-  color: #12355b;
-  font-size: 1.65rem;
+  color: var(--navy);
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   margin-bottom: 14px;
 }
 
 h3 {
-  color: #1d6fa5;
+  color: #0f2f57;
   font-size: 1.15rem;
   margin-top: 18px;
   margin-bottom: 8px;
@@ -142,18 +345,54 @@ a {
   font-weight: bold;
 }
 
-.grid {
+.grid,
+.path-grid,
+.question-grid,
+.pills,
+.toc {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  gap: 14px;
   margin-top: 16px;
 }
 
-.mini-card {
-  background: #f8fafc;
-  border-left: 4px solid #1d6fa5;
+.mini-card,
+.path-card,
+.practice-card,
+.toc a,
+.pills a {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
   padding: 16px;
-  border-radius: 12px;
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.mini-card {
+  border-left: 5px solid #1d6fa5;
+}
+
+.path-card:hover,
+.practice-card:hover,
+.toc a:hover,
+.pills a:hover {
+  transform: translateY(-2px);
+  background: #f8fbff;
+  border-color: var(--blue);
+}
+
+.mini-card p,
+.path-card span,
+.practice-card span {
+  display: block;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.94rem;
+  margin-top: 6px;
 }
 
 .table-wrap {
@@ -164,54 +403,119 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 14px;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 th, td {
   border: 1px solid #dbe4ee;
-  padding: 11px;
+  padding: 12px;
   text-align: left;
   vertical-align: top;
 }
 
 th {
   background: #eef4ff;
-  color: #12355b;
+  color: var(--navy);
+  font-weight: 900;
 }
 
-.cta {
-  text-align: center;
-  margin: 28px 0;
+td {
+  background: #ffffff;
 }
 
-.cta a {
-  display: inline-block;
-  background: linear-gradient(135deg, #16a34a, #22c55e);
-  color: white;
-  padding: 15px 24px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
+.question-card {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+  position: relative;
 }
 
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.pills a {
-  background: #e8f1fb;
-  color: #12355b;
-  padding: 10px 14px;
+.question-card::after {
+  content: "TEAS";
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--navy);
+  color: #ffffff;
   border-radius: 999px;
-  text-decoration: none;
-  font-weight: bold;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.question-card h3 {
+  padding-right: 58px;
+  margin-top: 0;
+}
+
+.options {
+  margin: 10px 0 12px;
+  padding-left: 22px;
+}
+
+.answer {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.why {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: var(--slate);
 }
 
 .small {
   font-size: 12px;
   color: #64748b;
+  text-align: center;
+}
+
+footer {
+  margin-top: 32px;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.94rem;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 18px 14px 46px;
+  }
+
+  .hero {
+    padding: 26px 18px;
+    border-radius: 22px;
+  }
+
+  .card {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .cta-btn {
+    width: 100%;
+  }
+
+  .question-card h3 {
+    padding-right: 0;
+  }
+
+  .question-card::after {
+    position: static;
+    display: inline-flex;
+    margin-bottom: 10px;
+  }
 }
 </style>
 </head>
@@ -220,25 +524,47 @@ th {
 
 <div class="container">
 
-  <div class="hero">
+  <div class="top-bar">
+    <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
+    <nav class="mini-nav" aria-label="Quick links">
+      <a href="/?tab=TEAS">Start TEAS Practice</a>
+      <a href="/how-to-pass-teas-exam.html">How to Pass TEAS</a>
+      <a href="/lab-values-practice-quiz.html">Lab Values</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">🩺 TEAS Nursing Entrance Prep</div>
     <h1>TEAS Practice Questions</h1>
     <p>
-      Free TEAS-style practice for reading, math, science, and English. Build confidence by learning how to recognize what each question is really asking.
+      Free TEAS-style practice for reading, math, science, and English. Build confidence by learning how to recognize what each question is really asking before you choose an answer.
     </p>
-  </div>
+    <p>
+      MedSkillBuilder now serves TEAS practice in focused 25-question sets so learners can finish a session, review mistakes, and keep practicing without getting overwhelmed.
+    </p>
+
+    <div class="cta-row">
+      <a class="cta-btn primary" href="/?tab=TEAS">Start 25-Question TEAS Practice</a>
+      <a class="cta-btn secondary" href="#practice-questions">Try Sample Questions</a>
+      <a class="cta-btn secondary" href="#study-plan">View Study Plan</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>25</strong><span>Question practice sets</span></div>
+      <div class="hero-stat"><strong>4</strong><span>TEAS subject areas</span></div>
+      <div class="hero-stat"><strong>Free</strong><span>No login required</span></div>
+    </div>
+  </header>
 
   <div class="warning">
-    MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by ATI or any testing provider.
+    <strong>Important:</strong> MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by ATI or any testing provider.
   </div>
 
-  <div class="card">
+  <section class="card">
     <h2>Practice TEAS Questions the Right Way</h2>
 
     <p>
       TEAS practice questions are one of the best ways to prepare for a nursing entrance exam because they force you to apply information instead of only reading it.
-    </p>
-
-    <p>
       But practice alone is not enough. The real improvement happens when you review your missed questions, find patterns, and learn what to notice first.
     </p>
 
@@ -270,20 +596,25 @@ th {
         <p>Grammar, punctuation, sentence structure, and vocabulary in context.</p>
       </div>
     </div>
+  </section>
 
-    <div class="cta">
-      <a href="/?tab=TEAS">Start TEAS Practice</a>
+  <section class="card">
+    <h2>Jump to a TEAS Study Area</h2>
+    <div class="toc">
+      <a href="#why-practice-matters">Why Practice Matters</a>
+      <a href="#section-strategy">Section Strategy</a>
+      <a href="#practice-questions">Sample Questions</a>
+      <a href="#study-plan">Weekly Study Plan</a>
+      <a href="#related-resources">Related Resources</a>
+      <a href="#faq">FAQ</a>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section id="why-practice-matters" class="card">
     <h2>Why TEAS Practice Questions Matter</h2>
 
     <p>
       Many students study by reading notes repeatedly. That can help with familiarity, but it does not always prepare you to answer questions under pressure.
-    </p>
-
-    <p>
       Practice questions show whether you can recognize the concept, apply the correct method, and avoid traps in the answer choices.
     </p>
 
@@ -295,31 +626,12 @@ th {
       <li>They help reduce test-day hesitation</li>
     </ul>
 
-    <div class="notice">
-      <strong>What to notice first:</strong>
-      <p>
-        Do not just ask, “Did I get it right?” Ask, “Why did I miss it?”
-      </p>
+    <div class="success">
+      <strong>Best practice loop:</strong> Answer questions, review misses, identify the reason, review the topic, then try a new 25-question set.
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>How to Use This Page</h2>
-
-    <ol>
-      <li>Start with a short practice set.</li>
-      <li>Review your missed questions immediately.</li>
-      <li>Write down the reason you missed each one.</li>
-      <li>Practice the same topic again later.</li>
-      <li>Repeat until the mistake stops showing up.</li>
-    </ol>
-
-    <p>
-      This method is stronger than simply taking more questions because it turns mistakes into direction.
-    </p>
-  </div>
-
-  <div class="card">
+  <section id="section-strategy" class="card">
     <h2>TEAS Section Strategy</h2>
 
     <div class="table-wrap">
@@ -330,30 +642,101 @@ th {
           <th>What to Notice First</th>
         </tr>
         <tr>
-          <td>Reading</td>
-          <td>Main idea, details, inference, and author purpose</td>
+          <td><strong>Reading</strong></td>
+          <td>Main idea, details, inference, author purpose, and passage support</td>
           <td>Look at exactly what the question asks before rereading.</td>
         </tr>
         <tr>
-          <td>Math</td>
+          <td><strong>Math</strong></td>
           <td>Calculations, ratios, percentages, conversions, and setup</td>
           <td>Identify what you are solving for before calculating.</td>
         </tr>
         <tr>
-          <td>Science</td>
-          <td>Anatomy, physiology, life science, and reasoning</td>
+          <td><strong>Science</strong></td>
+          <td>Anatomy, physiology, life science, chemistry basics, and reasoning</td>
           <td>Identify the body system, process, or relationship first.</td>
         </tr>
         <tr>
-          <td>English</td>
+          <td><strong>English</strong></td>
           <td>Grammar, punctuation, sentence structure, and vocabulary</td>
           <td>Find the grammar rule or sentence issue being tested.</td>
         </tr>
       </table>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section id="practice-questions" class="card">
+    <h2>Sample TEAS Practice Questions with Explanations</h2>
+    <p>
+      Use these sample questions to practice the way you should think. The full interactive TEAS practice area gives you randomized 25-question sets.
+    </p>
+
+    <div class="question-card">
+      <h3>1. Reading: Which sentence best states the main idea of a passage?</h3>
+      <ul class="options">
+        <li>A. The sentence with the most difficult vocabulary</li>
+        <li>B. The sentence that summarizes the central point</li>
+        <li>C. The last sentence every time</li>
+        <li>D. The sentence with the longest quote</li>
+      </ul>
+      <div class="answer">Answer: B. The sentence that summarizes the central point</div>
+      <div class="why">Main idea questions ask what the passage is mostly about, not just one detail.</div>
+    </div>
+
+    <div class="question-card">
+      <h3>2. Math: A medication order is 2 tablets every 6 hours. How many tablets are needed in 24 hours?</h3>
+      <ul class="options">
+        <li>A. 4</li>
+        <li>B. 6</li>
+        <li>C. 8</li>
+        <li>D. 12</li>
+      </ul>
+      <div class="answer">Answer: C. 8</div>
+      <div class="why">There are four 6-hour periods in 24 hours. 2 tablets × 4 doses = 8 tablets.</div>
+    </div>
+
+    <div class="question-card">
+      <h3>3. Science: Which organ system is primarily responsible for gas exchange?</h3>
+      <ul class="options">
+        <li>A. Digestive system</li>
+        <li>B. Respiratory system</li>
+        <li>C. Muscular system</li>
+        <li>D. Skeletal system</li>
+      </ul>
+      <div class="answer">Answer: B. Respiratory system</div>
+      <div class="why">The respiratory system exchanges oxygen and carbon dioxide, mainly through the lungs and alveoli.</div>
+    </div>
+
+    <div class="question-card">
+      <h3>4. English: Which sentence is complete?</h3>
+      <ul class="options">
+        <li>A. Because the student studied.</li>
+        <li>B. Running quickly down the hall.</li>
+        <li>C. The student reviewed the notes before class.</li>
+        <li>D. When the exam started.</li>
+      </ul>
+      <div class="answer">Answer: C. The student reviewed the notes before class.</div>
+      <div class="why">A complete sentence has a subject, a verb, and a complete thought.</div>
+    </div>
+
+    <div class="question-card">
+      <h3>5. Science: What is the main function of red blood cells?</h3>
+      <ul class="options">
+        <li>A. Fight infection</li>
+        <li>B. Carry oxygen</li>
+        <li>C. Produce bile</li>
+        <li>D. Filter urine</li>
+      </ul>
+      <div class="answer">Answer: B. Carry oxygen</div>
+      <div class="why">Red blood cells contain hemoglobin, which helps transport oxygen through the body.</div>
+    </div>
+
+    <div class="cta-row">
+      <a class="cta-btn primary" style="background: linear-gradient(135deg, #12355b, #1d6fa5); color: white;" href="/?tab=TEAS">Open Full TEAS Practice</a>
+    </div>
+  </section>
+
+  <section class="card">
     <h2>Reading Practice Strategy</h2>
 
     <p>
@@ -369,13 +752,11 @@ th {
 
     <div class="notice">
       <strong>What to notice first:</strong>
-      <p>
-        If the passage does not support it, do not choose it.
-      </p>
+      <p>If the passage does not support it, do not choose it.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="card">
     <h2>Math Practice Strategy</h2>
 
     <p>
@@ -392,13 +773,11 @@ th {
 
     <div class="notice">
       <strong>What to notice first:</strong>
-      <p>
-        The setup matters more than speed. Fast math with the wrong setup still gives the wrong answer.
-      </p>
+      <p>The setup matters more than speed. Fast math with the wrong setup still gives the wrong answer.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="card">
     <h2>Science Practice Strategy</h2>
 
     <p>
@@ -422,13 +801,11 @@ th {
 
     <div class="notice">
       <strong>What to notice first:</strong>
-      <p>
-        In science questions, find the body system or process first. That gives the question direction.
-      </p>
+      <p>In science questions, find the body system or process first. That gives the question direction.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="card">
     <h2>English Practice Strategy</h2>
 
     <p>
@@ -445,13 +822,11 @@ th {
 
     <div class="notice">
       <strong>What to notice first:</strong>
-      <p>
-        Ask yourself what rule is being tested before choosing an answer.
-      </p>
+      <p>Ask yourself what rule is being tested before choosing an answer.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="card">
     <h2>Common TEAS Practice Mistakes</h2>
 
     <ul>
@@ -462,15 +837,13 @@ th {
       <li><strong>Memorizing without applying:</strong> Recognition matters more than recall alone.</li>
     </ul>
 
-    <div class="notice">
-      <strong>What to notice first:</strong>
-      <p>
-        Repeated mistakes are not failures. They are clues.
-      </p>
+    <div class="strategy-box">
+      <strong>Repeated mistakes are not failures.</strong>
+      <p>They are clues. The questions you miss most often tell you exactly what to review next.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section id="study-plan" class="card">
     <h2>Simple Weekly TEAS Practice Plan</h2>
 
     <ol>
@@ -478,20 +851,18 @@ th {
       <li><strong>Day 2:</strong> Math practice and review</li>
       <li><strong>Day 3:</strong> Science practice and terminology review</li>
       <li><strong>Day 4:</strong> English practice and grammar review</li>
-      <li><strong>Day 5:</strong> Mixed practice set</li>
-      <li><strong>Day 6:</strong> Review missed questions</li>
+      <li><strong>Day 5:</strong> Mixed 25-question practice set</li>
+      <li><strong>Day 6:</strong> Review missed questions and weak topics</li>
       <li><strong>Day 7:</strong> Light review or rest</li>
     </ol>
 
     <div class="notice">
       <strong>What to notice first:</strong>
-      <p>
-        A balanced plan keeps one weak section from quietly holding your score down.
-      </p>
+      <p>A balanced plan keeps one weak section from quietly holding your score down.</p>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="card">
     <h2>How to Know You Are Improving</h2>
 
     <p>
@@ -505,9 +876,9 @@ th {
       <li>You manage time better</li>
       <li>Your weak sections become more consistent</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="card">
+  <section id="related-resources" class="card">
     <h2>Related TEAS and Healthcare Study Resources</h2>
 
     <p>
@@ -524,32 +895,53 @@ th {
       <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
       <a href="/normal-vital-signs-chart.html">Normal Vital Signs</a>
       <a href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+      <a href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+      <a href="/how-to-read-ekg.html">How to Read an EKG</a>
       <a href="/browse-all-practice.html">Browse All Practice Tools</a>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section id="faq" class="card">
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>What subjects are covered in TEAS practice questions?</h3>
+    <p>TEAS practice questions cover reading, mathematics, science, and English and language usage.</p>
+
+    <h3>How should I study TEAS practice questions?</h3>
+    <p>Use short practice sets, review every missed question, track repeated mistakes, and focus on weak sections first.</p>
+
+    <h3>How many questions should I practice at one time?</h3>
+    <p>Short 25-question sets are a strong starting point because they are long enough to reveal weak areas but short enough to finish and review carefully.</p>
+
+    <h3>Can MedSkillBuilder help with TEAS prep?</h3>
+    <p>MedSkillBuilder provides free TEAS-style practice and related study tools to help learners build confidence and improve recognition of common question patterns.</p>
+  </section>
+
+  <section class="card">
     <h2>Ready to Practice?</h2>
 
     <p>
-      The best way to improve is to practice, review, and repeat. Start with a short set and build consistency.
+      The best way to improve is to practice, review, and repeat. Start with a focused 25-question set and build consistency.
     </p>
 
     <div class="notice">
       <strong>What to notice first:</strong>
-      <p>
-        You do not need to master everything at once. Start with the questions you miss most often.
-      </p>
+      <p>You do not need to master everything at once. Start with the questions you miss most often.</p>
     </div>
 
-    <div class="cta">
-      <a href="/?tab=TEAS">Open TEAS Practice</a>
+    <div class="cta-row">
+      <a class="cta-btn primary" style="background: linear-gradient(135deg, #16a34a, #22c55e); color: white;" href="/?tab=TEAS">Open TEAS Practice</a>
+      <a class="cta-btn secondary" style="background: #eff6ff; color: #12355b; border-color: #bfdbfe;" href="/browse-all-practice.html">Browse All Tools</a>
     </div>
-  </div>
+  </section>
 
   <p class="small">
     For learning purposes only. MedSkillBuilder is an independent educational resource and is not affiliated with or endorsed by ATI.
   </p>
+
+  <footer>
+    <p>© 2026 MedSkillBuilder. Free study tools for healthcare, nursing, biomed, and early clinical learners.</p>
+  </footer>
 
 </div>
 
