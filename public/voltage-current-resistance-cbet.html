@@ -2,221 +2,605 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Voltage vs Current vs Resistance | CBET Electronics Explained</title>
-  <meta name="description" content="Learn the difference between voltage, current, and resistance for the CBET exam with simple explanations, comparisons, examples, and practice concepts. Understand how basic circuits actually behave." />
-  <meta name="keywords" content="voltage vs current vs resistance, CBET electronics, CBET exam electronics, Ohm's Law, voltage current resistance explained, basic electronics for CBET, biomedical electronics basics" />
+
+  <meta name="description" content="Learn the difference between voltage, current, and resistance for CBET electronics. Understand how voltage pushes, current flows, resistance limits, and how Ohm's Law explains real circuit behavior in medical equipment." />
+  <meta name="keywords" content="voltage vs current vs resistance, CBET electronics, CBET exam electronics, Ohm's Law, voltage current resistance explained, basic electronics for CBET, biomedical electronics basics, current flow resistance voltage" />
+  <meta name="robots" content="index, follow" />
+
   <link rel="canonical" href="https://medskillbuilder.com/voltage-current-resistance-cbet.html" />
 
   <meta property="og:title" content="Voltage vs Current vs Resistance | CBET Electronics Explained" />
-  <meta property="og:description" content="Understand voltage, current, and resistance for the CBET exam with simple explanations, examples, and practice concepts." />
+  <meta property="og:description" content="Understand voltage, current, and resistance for the CBET exam with simple explanations, examples, Ohm's Law, and real circuit behavior." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://medskillbuilder.com/voltage-current-resistance-cbet.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Voltage vs Current vs Resistance",
+    "description": "A CBET electronics guide explaining voltage, current, resistance, Ohm's Law, circuit behavior, troubleshooting clues, and biomedical equipment examples.",
+    "url": "https://medskillbuilder.com/voltage-current-resistance-cbet.html",
+    "learningResourceType": "Electronics guide",
+    "educationalLevel": "Beginner",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is voltage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Voltage is electrical pressure or potential. It provides the push that can move current through a circuit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is current?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Current is the flow of electrical charge through a circuit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is resistance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Resistance is opposition to current flow. Higher resistance reduces current when voltage stays the same."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do voltage, current, and resistance work together?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Voltage pushes, current flows, and resistance opposes. Ohm's Law connects them with V = I × R."
+        }
+      }
+    ]
+  }
+  </script>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #1d6fa5;
+      --bright-blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --orange-bg: #fff7ed;
+      --orange-border: #fed7aa;
+      --orange-text: #7c2d12;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-purple: #f5f3ff;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(29,111,165,0.18), transparent 34%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 34%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 45%, #ffffff 100%);
+      color: var(--ink);
       line-height: 1.7;
     }
 
     .container {
-      max-width: 960px;
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 32px 20px 60px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 700;
+      width: fit-content;
     }
 
-    h1, h2, h3 {
-      color: #0f172a;
-      line-height: 1.25;
+    .brand img {
+      width: 56px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, #082f57, #1d6fa5);
+      color: white;
+      padding: 52px 36px;
+      border-radius: 32px;
+      margin: 8px 0 24px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #dbeafe;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      border-bottom: 4px solid #153f73;
-      padding-bottom: 10px;
+      font-size: clamp(40px, 5.6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      max-width: 880px;
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      color: white;
+      box-shadow: 0 16px 28px rgba(22,163,74,0.28);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+    }
+
+    .quick-grid,
+    .toc,
+    .grid-3,
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 22px 0 26px;
+    }
+
+    .quick-stat,
+    .toc a,
+    .path-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--bright-blue);
+      background: #f8fbff;
+    }
+
+    .quick-stat span,
+    .path-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, #eff6ff, #ffffff);
+      border-color: #bfdbfe;
     }
 
     h2 {
-      margin-top: 0;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
       margin-bottom: 14px;
-      font-size: 1.6rem;
-      color: #153f73;
     }
 
     h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.15rem;
-      color: #0f2f57;
+      color: var(--blue);
+      font-size: 22px;
+      margin: 22px 0 8px;
     }
 
     p {
-      margin: 0 0 16px;
-      font-size: 1rem;
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
     }
 
-    .intro {
-      font-size: 1.05rem;
-      max-width: 900px;
+    a {
+      color: var(--bright-blue);
+      font-weight: 900;
     }
 
-    .section {
-      margin-top: 36px;
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 14px;
-      border: 1px solid #dbe4ee;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    ul {
+      margin: 14px 0 0 22px;
     }
 
-    .highlight {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
+    li {
+      margin-bottom: 9px;
+      color: #1f2937;
+      font-size: 16px;
+    }
+
+    .quick-answer,
+    .notice-first,
+    .warning-box,
+    .success-box,
+    .example-box {
       padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 700;
     }
 
-    .example {
+    .quick-answer {
       background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+    }
+
+    .notice-first {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
     }
 
     .warning-box {
-      background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+      background: var(--orange-bg);
+      border: 1px solid var(--orange-border);
+      color: var(--orange-text);
     }
 
     .success-box {
-      background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+      background: var(--soft-green);
+      border: 1px solid #bbf7d0;
+      color: #065f46;
     }
 
-    .cta-box {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 14px;
-      padding: 24px;
-      text-align: center;
-      margin-top: 20px;
+    .example-box {
+      background: var(--soft-purple);
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
     }
 
-    .cta-button {
-      background: #2563eb;
+    .mini-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .mini-card h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .formula {
+      background: #0f172a;
       color: white;
-      padding: 14px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      display: inline-block;
-      margin-top: 12px;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 18px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: clamp(24px, 4vw, 40px);
+      letter-spacing: 0.02em;
+      box-shadow: var(--soft-shadow);
     }
 
-    .cta-button:hover {
-      background: #1d4ed8;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      margin: 20px 0 28px;
-    }
-
-    table {
+    .compare-table {
       width: 100%;
       border-collapse: collapse;
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow: hidden;
     }
 
-    th, td {
+    .compare-table th,
+    .compare-table td {
       border: 1px solid #dbe4ee;
-      padding: 14px 12px;
+      padding: 12px;
       text-align: left;
       vertical-align: top;
     }
 
-    th {
-      background: #153f73;
+    .compare-table th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .compare-table td {
+      background: #ffffff;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .question-card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 8px;
+      padding-right: 58px;
+    }
+
+    .question-card::after {
+      content: "CBET";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
       color: #ffffff;
-      font-weight: 700;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
     }
 
-    ul {
-      padding-left: 22px;
-      margin-top: 0;
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
     }
 
-    li {
-      margin-bottom: 10px;
+    .why {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #dbe4ee;
+      color: #334155;
+      border-radius: 14px;
+      padding: 11px 13px;
     }
 
-    .link-grid {
+    .related-links {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+      gap: 10px;
+      margin-top: 16px;
     }
 
-    .practice-link {
-      display: block;
+    .related-links a {
       text-decoration: none;
+      color: var(--navy);
       background: #ffffff;
-      color: #0f172a;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 14px 16px;
-      font-weight: 700;
-      transition: 0.2s ease;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
     }
 
-    .practice-link:hover {
-      background: #eff6ff;
-      border-color: #2563eb;
+    .final-cta {
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 30px;
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(8,47,87,0.25);
+      margin: 28px 0;
+    }
+
+    .final-cta h2,
+    .final-cta p {
+      color: white;
     }
 
     .safety {
       font-size: 12px;
       color: #64748b;
-      margin-top: 24px;
+      margin: 24px 0;
+      text-align: center;
     }
 
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 1.85rem;
+    footer {
+      background: #082f57;
+      color: white;
+      padding: 36px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 42px 24px;
+        border-radius: 26px;
       }
 
-      h2 {
-        font-size: 1.35rem;
+      .card {
+        padding: 24px 20px;
       }
 
-      th, td {
-        padding: 12px 10px;
+      .cta {
+        width: 100%;
       }
 
-      .section {
-        padding: 18px;
+      .question-card strong {
+        padding-right: 0;
+      }
+
+      .question-card::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 10px;
+      }
+
+      .compare-table,
+      .compare-table tbody,
+      .compare-table tr,
+      .compare-table td,
+      .compare-table th {
+        display: block;
+        width: 100%;
       }
     }
   </style>
@@ -224,48 +608,119 @@
 
 <body>
   <div class="container">
+    <div class="top-bar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>CBET electronics and biomedical learning</span>
+        </div>
+      </a>
 
-    <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
-
-    <h1>Voltage vs Current vs Resistance</h1>
-
-    <p class="intro">
-      Most people misunderstand this.
-    </p>
-
-    <p class="intro">
-      Voltage, current, and resistance do not compete — they work together. Once you understand how they interact, circuits stop feeling random and start making sense.
-    </p>
-
-    <p class="intro">
-      This is one of the most important concepts in electronics and CBET exam prep because it explains why devices work, fail, or behave unexpectedly.
-    </p>
-
-    <div class="highlight">
-      Start with the full <a href="/basic-electronics-cbet.html">Basic Electronics for CBET guide</a> if you want a broader overview before diving into this topic.
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/voltage-current-resistance-quiz.html">Take the Quiz</a>
+        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+      </nav>
     </div>
 
-    <div class="section">
+    <section class="hero">
+      <div class="eyebrow">CBET Electronics Foundation</div>
+      <h1>Voltage vs Current vs Resistance</h1>
+      <p>
+        Voltage, current, and resistance do not compete. They work together. Once you understand how they interact,
+        circuits stop feeling random and start making sense.
+      </p>
+      <p>
+        This is one of the most important concepts in electronics and CBET exam prep because it explains why devices work,
+        fail, or behave unexpectedly.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the 20-Question Quiz</a>
+        <a class="cta secondary" href="/what-is-ohms-law.html">Review Ohm's Law</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+      </div>
+    </section>
+
+    <div class="quick-grid">
+      <div class="quick-stat">Voltage<span>Electrical push</span></div>
+      <div class="quick-stat">Current<span>Electrical flow</span></div>
+      <div class="quick-stat">Resistance<span>Opposition to flow</span></div>
+    </div>
+
+    <section class="card highlight">
+      <h2>Quick Answer</h2>
+      <div class="quick-answer">
+        Voltage pushes, current flows, and resistance opposes.
+      </div>
+
+      <p>
+        Voltage is the electrical pressure that can move current. Current is the actual flow of electrical charge.
+        Resistance is what limits or opposes that flow.
+      </p>
+
+      <div class="formula">V = I × R</div>
+
+      <div class="notice-first">
+        <strong>What to notice first:</strong>
+        If voltage increases while resistance stays the same, current increases. If resistance increases while voltage stays the same, current decreases.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Jump to a Topic</h2>
+      <div class="toc">
+        <a href="#voltage">What Is Voltage?</a>
+        <a href="#current">What Is Current?</a>
+        <a href="#resistance">What Is Resistance?</a>
+        <a href="#comparison">Comparison Table</a>
+        <a href="#ohms-law">How They Work Together</a>
+        <a href="#questions">CBET Questions</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Most People Misunderstand This</h2>
+      <p>
+        A lot of learners memorize voltage, current, and resistance as separate words. That is not enough.
+        CBET-style electronics questions often test the relationship between them.
+      </p>
+
+      <div class="warning-box">
+        <strong>Common mistake:</strong> Higher resistance does not mean higher current. Higher resistance makes current flow harder.
+      </div>
+    </section>
+
+    <section id="voltage" class="card">
       <h2>What Is Voltage?</h2>
       <p>
         Voltage is the electrical force or pressure that pushes electrons through a circuit. A common way to think about voltage is to compare it to pressure in a water pipe.
       </p>
       <p>
-        Voltage does not mean electrons are automatically flowing at a high rate. It simply means there is more potential to push current through the circuit if the path allows it.
+        Voltage does not mean electrons are automatically flowing at a high rate. It simply means there is potential to push current through the circuit if the path allows it.
       </p>
-    </div>
 
-    <div class="section">
+      <div class="example-box">
+        <strong>Memory hook:</strong> Voltage is the push.
+      </div>
+    </section>
+
+    <section id="current" class="card">
       <h2>What Is Current?</h2>
       <p>
-        Current is the flow of electrons through a circuit. If voltage is the push, current is the actual movement that results from that push.
+        Current is the flow of electrical charge through a circuit. If voltage is the push, current is the actual movement that results from that push.
       </p>
       <p>
         Too little current may prevent a device from operating correctly. Too much current can damage components or cause abnormal behavior.
       </p>
-    </div>
 
-    <div class="section">
+      <div class="example-box">
+        <strong>Memory hook:</strong> Current is the flow.
+      </div>
+    </section>
+
+    <section id="resistance" class="card">
       <h2>What Is Resistance?</h2>
       <p>
         Resistance is the opposition to current flow. It limits how easily electrons can move through a circuit.
@@ -273,49 +728,51 @@
       <p>
         In the water analogy, resistance is like narrowing the pipe. More resistance means less current can pass when voltage stays the same.
       </p>
-    </div>
 
-    <div class="section">
+      <div class="example-box">
+        <strong>Memory hook:</strong> Resistance is opposition.
+      </div>
+    </section>
+
+    <section id="comparison" class="card">
       <h2>Voltage vs Current vs Resistance Comparison</h2>
 
-      <div class="table-wrap">
-        <table>
-          <tr>
-            <th>Concept</th>
-            <th>What It Means</th>
-            <th>Simple Analogy</th>
-            <th>Why It Matters</th>
-          </tr>
-          <tr>
-            <td>Voltage</td>
-            <td>Electrical pressure or potential</td>
-            <td>Water pressure in a pipe</td>
-            <td>Provides the push that drives current</td>
-          </tr>
-          <tr>
-            <td>Current</td>
-            <td>Flow of electrons</td>
-            <td>Water moving through the pipe</td>
-            <td>Shows how much electrical charge is moving</td>
-          </tr>
-          <tr>
-            <td>Resistance</td>
-            <td>Opposition to electron flow</td>
-            <td>A narrow pipe that slows water</td>
-            <td>Limits current flow and affects circuit behavior</td>
-          </tr>
-        </table>
-      </div>
+      <table class="compare-table">
+        <tr>
+          <th>Concept</th>
+          <th>What It Means</th>
+          <th>Simple Analogy</th>
+          <th>CBET Memory Hook</th>
+        </tr>
+        <tr>
+          <td><strong>Voltage</strong></td>
+          <td>Electrical pressure or potential</td>
+          <td>Water pressure in a pipe</td>
+          <td>Voltage pushes</td>
+        </tr>
+        <tr>
+          <td><strong>Current</strong></td>
+          <td>Flow of electrical charge</td>
+          <td>Water moving through the pipe</td>
+          <td>Current flows</td>
+        </tr>
+        <tr>
+          <td><strong>Resistance</strong></td>
+          <td>Opposition to current flow</td>
+          <td>A narrow pipe that slows water</td>
+          <td>Resistance limits</td>
+        </tr>
+      </table>
 
       <div class="success-box">
-        <strong>Easy memory reminder:</strong> Voltage pushes, current flows, and resistance opposes.
+        <strong>Easy reminder:</strong> Voltage pushes, current flows, and resistance opposes.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section id="ohms-law" class="card">
       <h2>How They Work Together</h2>
       <p>
-        Voltage, current, and resistance are directly connected through <a href="/what-is-ohms-law.html">Ohm’s Law</a>.
+        Voltage, current, and resistance are directly connected through <a href="/what-is-ohms-law.html">Ohm's Law</a>.
       </p>
 
       <ul>
@@ -326,150 +783,213 @@
 
       <p>
         If you want to practice how these relationships show up when testing real components, review:
-        <a href="/how-to-use-a-multimeter.html">how to use a multimeter</a>.
+        <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>.
       </p>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Why This Concept Confuses People</h2>
-      <p>
-        Many learners mix up voltage and current because both are part of the same system. The key difference is that voltage is the force, while current is the movement caused by that force.
-      </p>
+    <section class="card">
+      <h2>Why This Matters in Biomedical Equipment</h2>
 
       <p>
-        Another common mistake is assuming that increasing resistance increases current. That is incorrect. Resistance limits current flow.
+        Biomedical equipment depends on predictable circuit behavior. When voltage, current, or resistance changes,
+        a device may power on normally, fail to power on, behave intermittently, or show unstable readings.
       </p>
 
-      <div class="warning-box">
-        <strong>Common mistake:</strong> Higher resistance does not mean higher current. It means the circuit is making current flow harder.
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Correct voltage, low current</h3>
+          <p>Resistance may be too high, a path may be restricted, or a component may not be allowing enough flow.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Very low resistance</h3>
+          <p>Current can become too high, which may stress components, blow fuses, or create abnormal operation.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Unstable operation</h3>
+          <p>Power, resistance, connections, or component condition may be changing under load.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
+      <div class="notice-first">
+        <strong>Field mindset:</strong> Do not just ask whether voltage is present. Ask whether the circuit can deliver the right current under the right conditions.
+      </div>
+    </section>
+
+    <section class="card">
       <h2>Real-World Example</h2>
 
-      <div class="example">
-        <p>
-          Think about a piece of biomedical equipment with a circuit that is not performing correctly.
-        </p>
+      <p>
+        Imagine a patient monitor circuit where a failing component causes resistance to increase.
+      </p>
 
-        <ul>
-          <li>If resistance in part of the circuit increases, current drops.</li>
-          <li>This may lead to weak signals, unstable operation, or underperformance.</li>
-          <li>If resistance is too low, current may rise and place extra stress on components.</li>
-        </ul>
+      <p>
+        As resistance increases, current falls. If the circuit depends on a stable current level to process signals properly,
+        the result could be weak readings, inconsistent behavior, or poor performance.
+      </p>
 
-        <p>
-          Understanding this relationship helps a technician make better sense of device behavior instead of seeing each failure as random.
-        </p>
+      <p>
+        This is why voltage, current, and resistance are not just test concepts. They help explain what is happening inside real equipment.
+      </p>
+    </section>
 
-        <p>
-          This is also why capacitor failures matter. If resistance or current behavior changes in a circuit, a component like a capacitor may be part of the problem. Learn more here:
-          <a href="/how-to-test-a-capacitor.html">how to test a capacitor</a>.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Another Practical Example</h2>
-
-      <div class="example">
-        <p>
-          Imagine a patient monitor circuit where a failing component causes resistance to increase.
-        </p>
-
-        <p>
-          As resistance increases, current falls. If the circuit depends on a stable current level to process signals properly, the result could be weak readings, inconsistent behavior, or poor performance.
-        </p>
-
-        <p>
-          This is why voltage, current, and resistance are not just test concepts. They help explain what is happening inside real equipment.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
+    <section class="card">
       <h2>Why This Matters for the CBET Exam</h2>
+
       <p>
         CBET electronics questions often test whether you understand how circuits behave, not just whether you can repeat a definition.
       </p>
 
       <p>
-        This also helps with later topics like <a href="/ac-vs-dc-current.html">AC vs DC current</a>, diodes, capacitors, rectifiers, and power supply behavior because those concepts build on the same foundation.
+        This also helps with later topics like <a href="/ac-vs-dc-current.html">AC vs DC current</a>,
+        <a href="/what-is-a-diode.html">diodes</a>, <a href="/what-does-a-capacitor-do.html">capacitors</a>,
+        <a href="/what-does-a-rectifier-do.html">rectifiers</a>, and <a href="/power-supply-basics-cbet.html">power supply behavior</a>.
       </p>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Quick Knowledge Check</h2>
+    <section id="questions" class="card">
+      <h2>CBET-Style Quick Questions</h2>
+
+      <div class="question-card">
+        <strong>1. Which value represents electrical pressure or push?</strong>
+        <p>A. Voltage &nbsp; B. Current &nbsp; C. Resistance &nbsp; D. Ripple</p>
+        <div class="answer">Answer: A. Voltage</div>
+        <div class="why">Voltage is the electrical push that can drive current through a circuit.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>2. Which value represents the flow of electrical charge?</strong>
+        <p>A. Voltage &nbsp; B. Current &nbsp; C. Resistance &nbsp; D. Insulation</p>
+        <div class="answer">Answer: B. Current</div>
+        <div class="why">Current is the movement or flow of electrical charge.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. Which value represents opposition to current flow?</strong>
+        <p>A. Voltage &nbsp; B. Current &nbsp; C. Resistance &nbsp; D. Frequency</p>
+        <div class="answer">Answer: C. Resistance</div>
+        <div class="why">Resistance limits or opposes current flow.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. If voltage stays the same and resistance increases, what happens to current?</strong>
+        <p>A. Current increases &nbsp; B. Current decreases &nbsp; C. Current becomes voltage &nbsp; D. Current is unrelated</p>
+        <div class="answer">Answer: B. Current decreases</div>
+        <div class="why">Higher resistance reduces current when voltage stays the same.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. What is the best way to remember all three?</strong>
+        <p>A. Voltage pushes, current flows, resistance limits &nbsp; B. Resistance pushes, current blocks, voltage flows &nbsp; C. Current creates all resistance &nbsp; D. They are unrelated</p>
+        <div class="answer">Answer: A. Voltage pushes, current flows, resistance limits</div>
+        <div class="why">That phrase captures the basic relationship behind many beginner circuit questions.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Full 20-Question Quiz</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Best Study Path After This Page</h2>
       <p>
-        If voltage stays the same and resistance increases, what happens to current?
+        This is the foundation. After voltage, current, and resistance make sense, move into Ohm's Law, AC/DC, components, and power supplies.
       </p>
 
-      <p>
-        The answer is that <strong>current decreases</strong>.
-      </p>
-
-      <p>
-        If you want more questions like this, try the <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>How to Study This Topic Better</h2>
-      <p>
-        A good way to study voltage, current, and resistance is to stop treating them like isolated definitions. Instead, keep asking how they affect one another.
-      </p>
-
-      <ul>
-        <li>Review the meaning of each term.</li>
-        <li>Use Ohm’s Law to see how they connect.</li>
-        <li>Work through simple examples.</li>
-        <li>Practice questions until the pattern becomes familiar.</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>🚀 Test Your Understanding</h2>
-
-      <div class="cta-box">
-        <p>
-          Most people get these wrong — test yourself and see how well you understand voltage, current, and resistance.
-        </p>
-
-        <a class="cta-button" href="/multimeter-quiz.html">
-          Take the 2-Minute Electronics Quiz
+      <div class="path-grid">
+        <a class="path-card" href="/voltage-current-resistance-quiz.html">
+          1. Voltage Current Resistance Quiz
+          <span>Test whether you can recognize the relationship.</span>
         </a>
-
-        <p style="margin-top: 14px; color:#475569;">
-          Quick questions. Instant feedback.
-        </p>
+        <a class="path-card" href="/what-is-ohms-law.html">
+          2. What Is Ohm's Law?
+          <span>Connect voltage, current, and resistance with V = I × R.</span>
+        </a>
+        <a class="path-card" href="/ac-vs-dc-current.html">
+          3. AC vs DC Current
+          <span>Understand wall power and internal circuit power.</span>
+        </a>
+        <a class="path-card" href="/power-supply-basics-cbet.html">
+          4. Power Supply Basics
+          <span>Follow the power path from AC input to DC output.</span>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Continue Learning</h2>
+    <section class="card">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is voltage?</h3>
       <p>
-        Strengthen your understanding with these related CBET electronics pages:
+        Voltage is electrical pressure or potential. It provides the push that can move current through a circuit.
       </p>
 
-      <div class="link-grid">
-        <a class="practice-link" href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
-        <a class="practice-link" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
-        <a class="practice-link" href="/what-is-ohms-law.html">What Is Ohm’s Law?</a>
-        <a class="practice-link" href="/ac-vs-dc-current.html">AC vs DC Current</a>
-        <a class="practice-link" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
-        <a class="practice-link" href="/multimeter-quiz.html">Multimeter Quiz</a>
-        <a class="practice-link" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
-        <a class="practice-link" href="/how-to-test-a-capacitor.html">How to Test a Capacitor</a>
-        <a class="practice-link" href="/capacitor-quiz.html">Capacitor Quiz</a>
-        <a class="practice-link" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+      <h3>What is current?</h3>
+      <p>
+        Current is the flow of electrical charge through a circuit.
+      </p>
+
+      <h3>What is resistance?</h3>
+      <p>
+        Resistance is opposition to current flow. Higher resistance reduces current when voltage stays the same.
+      </p>
+
+      <h3>How do voltage, current, and resistance work together?</h3>
+      <p>
+        Voltage pushes, current flows, and resistance opposes. Ohm's Law connects them with V = I × R.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Related Electronics Guides</h2>
+      <p>
+        Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
+      </p>
+
+      <div class="related-links">
+        <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+        <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+        <a href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
+        <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+        <a href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
+        <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        <a href="/what-is-a-diode.html">What Is a Diode?</a>
+        <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+        <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+        <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+        <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
       </div>
-    </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Ready to keep practicing?</h2>
+      <p>
+        Test yourself first, then move into CBET electronics practice questions.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Voltage Current Resistance Quiz</a>
+        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice</a>
+      </div>
+    </section>
 
     <p class="safety">
       For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
     </p>
-
   </div>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All Practice</a> |
+        <a href="/cbet-practice-questions.html">CBET Questions</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
