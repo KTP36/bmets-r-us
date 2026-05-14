@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>CBET Electronics Practice Questions | 25 Questions with Explanations</title>
-  <meta name="description" content="Practice 25 CBET electronics questions with answers and explanations. Review voltage, current, resistance, Ohm's Law, AC vs DC, diodes, capacitors, rectifiers, power supplies, and troubleshooting concepts for the CBET exam." />
+  <title>CBET Electronics Practice Questions | Free 25-Question CBET Electronics Review</title>
+  <meta name="description" content="Practice 25 free CBET electronics questions with explanations. Review voltage, current, resistance, Ohm's Law, AC vs DC, diodes, capacitors, rectifiers, power supplies, and troubleshooting concepts for biomedical equipment and CBET exam prep." />
   <meta name="keywords" content="CBET electronics practice questions, CBET electronics quiz, CBET exam electronics, Ohm's Law practice, AC vs DC CBET, rectifier CBET, capacitor CBET, diode CBET, biomedical electronics practice questions" />
   <link rel="canonical" href="https://medskillbuilder.com/cbet-electronics-practice-questions.html" />
 
@@ -13,47 +13,202 @@
   <meta property="og:description" content="Strengthen your CBET electronics foundation with 25 practice questions covering voltage, current, resistance, AC vs DC, diodes, capacitors, rectifiers, and troubleshooting basics." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://medskillbuilder.com/cbet-electronics-practice-questions.html" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "CBET Electronics Practice Questions",
+    "description": "A free CBET electronics practice page with 25 questions and explanations covering voltage, current, resistance, Ohm's Law, AC vs DC, diodes, capacitors, rectifiers, power supplies, and troubleshooting.",
+    "url": "https://medskillbuilder.com/cbet-electronics-practice-questions.html",
+    "learningResourceType": "Practice questions",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Biomedical equipment technician learners and CBET exam candidates"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are these official CBET exam questions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. These are independent study questions designed to help learners build confidence with CBET-style electronics concepts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What electronics topics should I know for CBET study?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with voltage, current, resistance, Ohm's Law, AC vs DC, diodes, capacitors, rectifiers, power supplies, and troubleshooting logic."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How should I use these CBET electronics practice questions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Answer each question before reading the explanation. If you miss a topic, review the linked guide and then repeat the practice questions."
+        }
+      }
+    ]
+  }
+  </script>
+
 
   <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #2563eb;
+      --green: #0f766e;
+      --orange: #ea580c;
+      --purple: #7c3aed;
+      --slate: #334155;
+      --muted: #64748b;
+      --border: #dbe4ee;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-orange: #fff7ed;
+      --soft-purple: #f5f3ff;
+      --page: #f8fafc;
+      --shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+      --soft-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      background: #f8fafc;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 35%),
+        radial-gradient(circle at top right, rgba(20, 184, 166, 0.10), transparent 35%),
+        var(--page);
       color: #0f172a;
       line-height: 1.7;
     }
 
+    a { color: #1d4ed8; }
+
     .container {
-      max-width: 980px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 32px 20px 60px;
+      padding: 24px 20px 60px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
     }
 
     .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 700;
+      color: var(--navy);
+      font-weight: 900;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      box-shadow: var(--soft-shadow);
+      margin-bottom: 0;
     }
 
-    h1, h2, h3 {
-      color: #0f172a;
-      line-height: 1.25;
+    .mini-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
+
+    .mini-nav a {
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 800;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 0.92rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark), #1d6fa5 60%, #2bb7d4);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -90px;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 { line-height: 1.25; }
 
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      border-bottom: 4px solid #153f73;
-      padding-bottom: 10px;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      margin: 0 0 14px;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      max-width: 920px;
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
     h2 {
       margin-top: 0;
       margin-bottom: 14px;
-      font-size: 1.6rem;
-      color: #153f73;
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      color: var(--navy);
+      letter-spacing: -0.02em;
     }
 
     h3 {
@@ -68,50 +223,138 @@
       font-size: 1rem;
     }
 
+    .hero p {
+      max-width: 880px;
+      margin: 0 0 16px;
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.94);
+      position: relative;
+      z-index: 2;
+    }
+
     .intro {
       font-size: 1.05rem;
       max-width: 900px;
     }
 
-    .section {
-      margin-top: 36px;
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,0.28);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .cta.primary {
       background: #ffffff;
-      padding: 24px;
-      border-radius: 14px;
-      border: 1px solid #dbe4ee;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      color: var(--navy-dark);
+    }
+
+    .cta.secondary {
+      background: rgba(255,255,255,0.14);
+      color: #ffffff;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.45rem;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .hero-stat span {
+      color: rgba(255,255,255,0.88);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 28px;
+      background: #ffffff;
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .note-box, .warning-box, .success-box, .concept-box {
+      padding: 16px 18px;
+      margin: 18px 0;
+      border-radius: 16px;
     }
 
     .note-box {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+      background: var(--soft-blue);
+      border-left: 5px solid var(--blue);
     }
 
     .warning-box {
-      background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+      background: var(--soft-orange);
+      border-left: 5px solid var(--orange);
     }
 
     .success-box {
-      background: #ecfdf5;
+      background: var(--soft-green);
       border-left: 5px solid #16a34a;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+    }
+
+    .concept-box {
+      background: var(--soft-purple);
+      border-left: 5px solid var(--purple);
     }
 
     .question-card {
       background: #f8fafc;
-      border: 1px solid #dbe4ee;
-      border-radius: 12px;
-      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
       margin-bottom: 18px;
+      position: relative;
+    }
+
+    .question-card h3 { padding-right: 48px; }
+
+    .question-card::after {
+      content: "Practice";
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--navy);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
     }
 
     .options {
@@ -119,79 +362,153 @@
       padding-left: 22px;
     }
 
-    .options li {
-      margin-bottom: 6px;
-    }
+    .options li { margin-bottom: 6px; }
 
     .answer {
-      font-weight: 700;
+      font-weight: 900;
       color: #166534;
       margin-bottom: 8px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 10px 12px;
     }
 
-    .link-grid {
+    .link-grid, .path-grid, .study-grid, .toc {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
       margin-top: 18px;
     }
 
-    .practice-link {
+    .practice-link, .path-card, .study-card, .toc a {
       display: block;
       text-decoration: none;
       background: #ffffff;
       color: #0f172a;
       border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 14px 16px;
-      font-weight: 700;
-      transition: 0.2s ease;
+      border-radius: 16px;
+      padding: 16px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
-    .practice-link:hover {
-      background: #eff6ff;
-      border-color: #2563eb;
+    .practice-link:hover, .path-card:hover, .study-card:hover, .toc a:hover {
+      transform: translateY(-2px);
+      background: #f8fbff;
+      border-color: var(--blue);
     }
 
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 1.85rem;
-      }
+    .path-card span, .study-card span {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-top: 6px;
+    }
 
-      h2 {
-        font-size: 1.35rem;
-      }
+    .formula-card {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--soft-shadow);
+      margin: 18px 0;
+    }
 
-      .section {
-        padding: 18px;
-      }
+    .formula-card .formula {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
+
+    .formula-card p {
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 0;
+    }
+
+    footer {
+      margin-top: 32px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 680px) {
+      .container { padding: 18px 14px 46px; }
+      .hero { padding: 24px 18px; border-radius: 22px; }
+      .section { padding: 20px 16px; border-radius: 18px; }
+      .mini-nav { justify-content: flex-start; }
+      .cta { width: 100%; }
+      .question-card h3 { padding-right: 0; }
+      .question-card::after { position: static; display: inline-flex; margin-bottom: 10px; }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
-
-    <h1>CBET Electronics Practice Questions</h1>
-
-    <p class="intro">
-      These CBET electronics practice questions are designed to help you strengthen your understanding of the core electronics concepts that often show up in CBET study. This page covers voltage, current, resistance, Ohm’s Law, AC vs DC current, diodes, capacitors, rectifiers, power supply basics, and simple troubleshooting ideas.
-    </p>
-
-    <p class="intro">
-      If electronics feels like one of the harder parts of CBET prep, you are not alone. Many learners do better when they move from simple explanations into practice questions with clear reasoning. Before starting, it helps to review the <a href="/basic-electronics-cbet.html">Basic Electronics for CBET guide</a> so the questions make more sense.
-    </p>
-
-    <div class="note-box">
-      <strong>Quick tip:</strong> Do not just memorize the answers. Focus on why the answer is correct and how the concept applies to real circuits, power supplies, and biomedical equipment behavior.
+    <div class="top-bar">
+      <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/?tab=CBET">Start CBET Practice</a>
+        <a href="/basic-electronics-cbet.html">Electronics Guide</a>
+        <a href="/what-is-ohms-law.html">Ohm's Law</a>
+      </nav>
     </div>
 
-    <div class="note-box">
-      <strong>What to notice first:</strong>
+    <header class="hero">
+      <div class="eyebrow">⚡ CBET Electronics Practice</div>
+      <h1>CBET Electronics Practice Questions</h1>
       <p>
-        Most CBET electronics questions are not testing memorization only. They are testing whether you understand how circuits behave. Voltage pushes current, resistance limits current, and components control how the circuit responds.
+        These CBET electronics practice questions help you strengthen the core electronics concepts that often show up in CBET study.
+        You will review voltage, current, resistance, Ohm's Law, AC vs DC, diodes, capacitors, rectifiers, power supply basics,
+        and simple troubleshooting ideas.
       </p>
+      <p>
+        The goal is not just to memorize answers. The goal is to understand how circuits behave so you can recognize the same ideas
+        when they appear in equipment, power supplies, alarms, and troubleshooting scenarios.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="#questions">Start the 25 Questions</a>
+        <a class="cta secondary" href="/?tab=CBET">Try Interactive CBET Practice</a>
+        <a class="cta secondary" href="/basic-electronics-cbet.html">Review Electronics First</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>25</strong><span>Practice questions</span></div>
+        <div class="hero-stat"><strong>8</strong><span>Core electronics topics</span></div>
+        <div class="hero-stat"><strong>Free</strong><span>No login required</span></div>
+      </div>
+    </header>
+
+    <div class="section">
+      <h2>How to Use This Page</h2>
+      <p class="intro">
+        Answer each question before reading the explanation. If you miss a question, identify the concept being tested, then review the linked guide.
+      </p>
+      <div class="study-grid">
+        <div class="study-card">1. Identify the concept<span>Voltage, current, resistance, AC/DC, component behavior, or troubleshooting.</span></div>
+        <div class="study-card">2. Read the explanation<span>Focus on the reasoning, not just the answer letter.</span></div>
+        <div class="study-card">3. Connect it to equipment<span>Think power supply, failed component, alarm, signal path, or unstable output.</span></div>
+      </div>
+      <div class="note-box">
+        <strong>Quick tip:</strong> Most CBET electronics questions are testing cause and effect. Voltage pushes, resistance limits, current flows, and components shape what the circuit does.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Jump to a Practice Section</h2>
+      <div class="toc">
+        <a href="#voltage-current-resistance">Voltage, Current, Resistance</a>
+        <a href="#ac-vs-dc-questions">AC vs DC</a>
+        <a href="#diodes-capacitors-and-rectifiers-questions">Diodes, Capacitors, Rectifiers</a>
+        <a href="#power-supply-and-troubleshooting-questions">Power Supply and Troubleshooting</a>
+        <a href="#mixed-cbet-electronics-review-questions">Mixed Review</a>
+      </div>
     </div>
 
     <div class="section">
@@ -203,6 +520,11 @@
         That is why these concepts matter beyond the test. Understanding voltage, current, resistance, and common components helps connect study material to real equipment logic. If you need a refresher first, review <a href="/what-is-ohms-law.html">Ohm’s Law</a>, <a href="/ac-vs-dc-current.html">AC vs DC current</a>, and the pages on <a href="/what-is-a-diode.html">diodes</a>, <a href="/what-does-a-capacitor-do.html">capacitors</a>, and <a href="/what-does-a-rectifier-do.html">rectifiers</a>.
       </p>
 
+      <div class="formula-card">
+        <div class="formula">V = I × R</div>
+        <p>Voltage equals current times resistance. If voltage rises and resistance stays the same, current rises. If resistance rises and voltage stays the same, current falls.</p>
+      </div>
+
       <div class="note-box">
         <strong>What to notice first:</strong>
         <p>
@@ -211,8 +533,8 @@
       </div>
     </div>
 
-    <div class="section">
-      <h2>Voltage, Current, and Resistance Questions</h2>
+    <div id="questions" class="section">
+      <h2 id="voltage-current-resistance">Voltage, Current, and Resistance Questions</h2>
 
       <div class="question-card">
         <h3>1. What does voltage represent in a circuit?</h3>
@@ -297,7 +619,7 @@
     </div>
 
     <div class="section">
-      <h2>AC vs DC Questions</h2>
+      <h2 id="ac-vs-dc-questions">AC vs DC Questions</h2>
 
       <div class="question-card">
         <h3>7. Which type of current flows in one direction?</h3>
@@ -356,7 +678,7 @@
     </div>
 
     <div class="section">
-      <h2>Diodes, Capacitors, and Rectifiers Questions</h2>
+      <h2 id="diodes-capacitors-and-rectifiers-questions">Diodes, Capacitors, and Rectifiers Questions</h2>
 
       <div class="question-card">
         <h3>11. What is the main function of a diode?</h3>
@@ -441,7 +763,7 @@
     </div>
 
     <div class="section">
-      <h2>Power Supply and Troubleshooting Questions</h2>
+      <h2 id="power-supply-and-troubleshooting-questions">Power Supply and Troubleshooting Questions</h2>
 
       <div class="question-card">
         <h3>17. Why are power supply concepts important in biomedical equipment?</h3>
@@ -558,7 +880,7 @@
     </div>
 
     <div class="section">
-      <h2>Mixed CBET Electronics Review Questions</h2>
+      <h2 id="mixed-cbet-electronics-review-questions">Mixed CBET Electronics Review Questions</h2>
 
       <div class="question-card">
         <h3>22. Which topic should a beginner usually study first?</h3>
@@ -676,6 +998,42 @@
         <strong>Strong study path:</strong> Start with the guide, review the individual topic pages, then come back here and repeat the questions until your confidence improves.
       </div>
     </div>
+
+    <div class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>Are these official CBET exam questions?</h3>
+      <p>
+        No. These are independent study questions designed to help reinforce electronics concepts that are useful for CBET preparation and biomedical equipment troubleshooting.
+      </p>
+
+      <h3>What should I study if I miss several questions?</h3>
+      <p>
+        If you miss voltage, current, or resistance questions, review <a href="/what-is-ohms-law.html">Ohm's Law</a>. If you miss AC-to-DC conversion questions, review
+        <a href="/ac-vs-dc-current.html">AC vs DC current</a> and <a href="/what-does-a-rectifier-do.html">rectifiers</a>. If you miss component questions, review
+        <a href="/what-is-a-diode.html">diodes</a> and <a href="/what-does-a-capacitor-do.html">capacitors</a>.
+      </p>
+
+      <h3>What is the best way to get better at CBET electronics?</h3>
+      <p>
+        Learn the concept, answer practice questions, review missed answers, and connect the concept to equipment behavior. Electronics becomes easier when you stop treating each term as isolated and start seeing how the circuit behaves as a system.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Ready to Keep Practicing?</h2>
+      <p>
+        When you are ready for more, use the interactive CBET practice section so you can answer questions, see your score, review missed questions, and keep building confidence.
+      </p>
+      <div class="cta-row">
+        <a class="cta primary" style="background: linear-gradient(135deg, #12355b, #1d6fa5); color: #fff;" href="/?tab=CBET">Start Interactive CBET Practice</a>
+        <a class="cta secondary" style="background: #eff6ff; color: #12355b; border-color: #bfdbfe;" href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026 MedSkillBuilder. Free study tools for healthcare, biomed, and early clinical learners.</p>
+    </footer>
   </div>
 </body>
 </html>
