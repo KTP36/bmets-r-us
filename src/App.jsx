@@ -8511,6 +8511,145 @@ return (
         </div>
       </div>
 
+      {/* CBET ELECTRONICS STUDY TOOLS */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: "24px 18px",
+          borderRadius: 22,
+          background: "linear-gradient(135deg, rgba(239,246,255,0.96), rgba(236,253,245,0.94))",
+          border: "1px solid #bfdbfe",
+          boxShadow: "0 14px 30px rgba(37,99,235,0.10)"
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            color: "#12355b",
+            fontWeight: 950,
+            letterSpacing: 1,
+            fontSize: 18,
+            marginBottom: 8
+          }}
+        >
+          CBET ELECTRONICS STUDY TOOLS
+        </div>
+
+        <p
+          style={{
+            textAlign: "center",
+            color: "#334155",
+            fontSize: 16,
+            margin: "0 auto 18px auto",
+            maxWidth: 820
+          }}
+        >
+          Start with beginner electronics, then practice Ohm&apos;s Law, AC/DC, multimeters, series and parallel circuits, and power supply basics.
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(225px, 1fr))",
+            gap: 16,
+            width: "100%",
+            maxWidth: 1120,
+            margin: "0 auto",
+            alignItems: "stretch"
+          }}
+        >
+          <a
+            href="/basic-electronics-cbet.html"
+            onClick={() =>
+              trackSiteEvent("homepage_electronics_basic_cbet_click", {
+                target_url: "/basic-electronics-cbet.html",
+                source: "homepage_electronics_study_tools"
+              })
+            }
+            style={{
+              ...categoryHomeButtonStyle("#12355b", "#1d6fa5"),
+              minHeight: 112,
+              textDecoration: "none"
+            }}
+          >
+            ⚡ Basic Electronics for CBET
+            <span style={categoryHomeButtonSubtextStyle}>Start the CBET-focused path</span>
+          </a>
+
+          <a
+            href="/basic-electronics-explained-for-beginners.html"
+            onClick={() =>
+              trackSiteEvent("homepage_electronics_beginner_click", {
+                target_url: "/basic-electronics-explained-for-beginners.html",
+                source: "homepage_electronics_study_tools"
+              })
+            }
+            style={{
+              ...categoryHomeButtonStyle("#0f766e", "#14b8a6"),
+              minHeight: 112,
+              textDecoration: "none"
+            }}
+          >
+            🔌 Beginner Electronics
+            <span style={categoryHomeButtonSubtextStyle}>Voltage, current, resistance</span>
+          </a>
+
+          <a
+            href="/power-supply-basics-cbet.html"
+            onClick={() =>
+              trackSiteEvent("homepage_electronics_power_supply_click", {
+                target_url: "/power-supply-basics-cbet.html",
+                source: "homepage_electronics_study_tools"
+              })
+            }
+            style={{
+              ...categoryHomeButtonStyle("#7c2d12", "#f97316"),
+              minHeight: 112,
+              textDecoration: "none"
+            }}
+          >
+            🔋 Power Supply Basics
+            <span style={categoryHomeButtonSubtextStyle}>AC input to DC output</span>
+          </a>
+
+          <a
+            href="/how-to-use-a-multimeter.html"
+            onClick={() =>
+              trackSiteEvent("homepage_electronics_multimeter_click", {
+                target_url: "/how-to-use-a-multimeter.html",
+                source: "homepage_electronics_study_tools"
+              })
+            }
+            style={{
+              ...categoryHomeButtonStyle("#4c1d95", "#7c3aed"),
+              minHeight: 112,
+              textDecoration: "none"
+            }}
+          >
+            🧰 How to Use a Multimeter
+            <span style={categoryHomeButtonSubtextStyle}>Voltage, resistance, continuity</span>
+          </a>
+
+          <a
+            href="/cbet-electronics-practice-questions.html"
+            onClick={() =>
+              trackSiteEvent("homepage_electronics_practice_page_click", {
+                target_url: "/cbet-electronics-practice-questions.html",
+                source: "homepage_electronics_study_tools"
+              })
+            }
+            style={{
+              ...categoryHomeButtonStyle("#dc2626", "#ff6a00"),
+              minHeight: 112,
+              textDecoration: "none"
+            }}
+          >
+            🧠 CBET Electronics Practice
+            <span style={categoryHomeButtonSubtextStyle}>Mixed questions and review</span>
+          </a>
+        </div>
+      </div>
+
       {/* QUICK PRACTICE: 5-QUESTION FAST START */}
       <div
         style={{
