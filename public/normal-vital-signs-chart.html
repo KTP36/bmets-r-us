@@ -2,423 +2,596 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Normal Vital Signs Chart (Adults & Pediatrics) | MedSkillBuilder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description" content="Learn normal vital signs for adults and pediatrics. Review heart rate, blood pressure, respiratory rate, temperature, oxygen saturation, abnormal values, and what to notice first in patient assessment." />
+  <title>Normal Vital Signs Chart | Adults, Pediatrics, Ranges & Practice</title>
+
+  <meta
+    name="description"
+    content="Learn normal vital signs for adults and pediatrics with charts, abnormal values, clinical meaning, practice questions, and what to notice first for heart rate, respiratory rate, blood pressure, temperature, oxygen saturation, and pain."
+  />
+
+  <meta
+    name="keywords"
+    content="normal vital signs chart, adult vital signs, pediatric vital signs, heart rate normal range, respiratory rate normal range, blood pressure normal range, oxygen saturation normal range, vital signs practice, nursing vital signs, TEAS vital signs, healthcare fundamentals"
+  />
+
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/normal-vital-signs-chart.html" />
 
+  <meta property="og:title" content="Normal Vital Signs Chart | Adults & Pediatrics" />
+
+  <meta
+    property="og:description"
+    content="Review normal adult and pediatric vital signs, abnormal values, clinical patterns, practice questions, and related healthcare study tools."
+  />
+
+  <meta property="og:type" content="article" />
+
+  <meta property="og:url" content="https://medskillbuilder.com/normal-vital-signs-chart.html" />
+
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Normal Vital Signs Chart",
+    "description": "A beginner-friendly vital signs guide covering normal adult vital signs, pediatric vital signs, heart rate, respiratory rate, blood pressure, temperature, oxygen saturation, pain assessment, abnormal values, clinical meaning, and practice questions.",
+    "url": "https://medskillbuilder.com/normal-vital-signs-chart.html",
+    "learningResourceType": "Study guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Nursing students, TEAS learners, medical assistant students, EMT students, allied health students, and early healthcare learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are normal adult vital signs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common normal adult vital signs include heart rate 60 to 100 beats per minute, respiratory rate 12 to 20 breaths per minute, blood pressure around 90/60 to 120/80 mmHg, temperature about 97 to 99 degrees Fahrenheit, and oxygen saturation 95 to 100 percent."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are pediatric vital signs different from adult vital signs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Younger children usually have faster heart rates and respiratory rates than adults. Pediatric vital signs should be interpreted by age group."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is respiratory rate important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Respiratory rate can change early when a patient is declining, which makes it an important clue in patient assessment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does low oxygen saturation mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Low oxygen saturation may suggest impaired oxygenation, poor gas exchange, airway problems, poor perfusion, or incorrect pulse oximeter reading."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should you notice first when reviewing vital signs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Look for patterns and trends. A single abnormal value is a clue, but a pattern of abnormal vital signs is more important."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
+    :root {
+      --navy: #082f57;
+      --blue: #0ea5e9;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f8fafc;
-      color: #0f172a;
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #f0f9ff 0%, #f8fbff 48%, #ffffff 100%);
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 32px 20px 60px;
+    a { color: inherit; }
+
+    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+
+    .topbar {
+      padding: 18px 0;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(219, 234, 254, 0.85);
     }
 
-    h1, h2, h3 {
-      color: #0f172a;
-      line-height: 1.25;
-    }
+    .topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      border-bottom: 4px solid #0ea5e9;
-      padding-bottom: 10px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; width: fit-content; }
+    .brand img { width: 58px; height: auto; }
+    .brand strong { display: block; color: var(--navy); font-size: 25px; line-height: 1.1; }
+    .brand span { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
 
-    h2 {
-      margin-top: 0;
-      margin-bottom: 14px;
-      font-size: 1.6rem;
-      color: #0ea5e9;
-    }
-
-    h3 {
-      margin-top: 24px;
-      margin-bottom: 10px;
-      font-size: 1.15rem;
-    }
-
-    p {
-      margin: 0 0 16px;
-      font-size: 1rem;
-    }
-
-    a {
-      color: #2563eb;
-      font-weight: 700;
-    }
-
-    .intro {
-      font-size: 1.05rem;
-      max-width: 850px;
-    }
-
-    .section {
-      margin-top: 36px;
+    .mini-nav { display: flex; flex-wrap: wrap; gap: 10px; }
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
       background: #ffffff;
-      padding: 24px;
-      border-radius: 14px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
     }
 
-    .table-wrap {
-      overflow-x: auto;
+    header {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(8, 47, 87, 0.24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    .hero-inner { position: relative; z-index: 2; max-width: 960px; }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 { font-size: clamp(42px, 6vw, 72px); line-height: 0.98; letter-spacing: -0.055em; margin-bottom: 18px; }
+    header p { color: #e0f2fe; font-size: clamp(18px, 2.2vw, 23px); max-width: 900px; margin-bottom: 18px; }
+
+    main { padding: 34px 0 48px; }
+
+    .stats, .grid-2, .grid-3, .link-grid, .toc, .path-grid {
+      display: grid;
+      gap: 14px;
       margin: 20px 0 28px;
     }
 
-    table {
+    .stats { grid-template-columns: repeat(5, 1fr); }
+    .grid-2, .link-grid, .path-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-3, .toc { grid-template-columns: repeat(3, 1fr); }
+
+    .stat, .toc a, .path-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 21px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a, .path-card { font-size: 16px; text-align: left; }
+    .toc a:hover, .path-card:hover { transform: translateY(-2px); border-color: var(--blue); background: #f8fbff; }
+    .stat span, .path-card span { display: block; font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 800; }
+
+    .section {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background: linear-gradient(180deg, rgba(224, 242, 254, 0.92), rgba(255, 255, 255, 0.98));
+      border-color: rgba(14, 165, 233, 0.35);
+    }
+
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 35%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .section.dark h2, .section.dark h3, .section.dark p, .section.dark li { color: white; }
+
+    h2 { color: var(--blue); font-size: clamp(30px, 4vw, 44px); line-height: 1.12; letter-spacing: -0.035em; margin-bottom: 14px; }
+    h3 { color: var(--navy); font-size: 22px; margin: 20px 0 8px; }
+    p { font-size: 17px; color: #1f2937; margin-bottom: 13px; }
+    .lead { font-size: 19px; color: #334155; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; align-items: center; }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.13);
+    }
+    .cta:hover { transform: translateY(-2px); }
+    .cta.primary { background: linear-gradient(135deg, var(--green2), var(--green)); box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30); }
+    .cta.secondary { background: linear-gradient(135deg, var(--navy), var(--blue)); box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22); }
+    .cta.orange { background: linear-gradient(135deg, var(--orange), var(--red)); box-shadow: 0 16px 28px rgba(249, 115, 22, 0.22); }
+
+    .card { background: #f8fbff; border: 1px solid var(--border); border-radius: 22px; padding: 20px; }
+    .card.strong { border-left: 6px solid var(--blue); }
+
+    .note-box, .success-box, .warning-box {
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .note-box { background: #e0f2fe; border: 1px solid #bae6fd; border-left: 6px solid var(--blue); color: #075985; }
+    .success-box { background: #ecfdf5; border: 1px solid #bbf7d0; border-left: 6px solid var(--green); color: #065f46; }
+    .warning-box { background: #fff7ed; border: 1px solid #fed7aa; border-left: 6px solid var(--orange); color: #7c2d12; font-weight: 800; }
+
+    ul, ol { margin: 14px 0 0 22px; }
+    li { margin-bottom: 9px; font-size: 16px; color: #1f2937; }
+
+    .table-wrap { overflow-x: auto; margin: 20px 0 28px; }
+    .value-table {
       width: 100%;
       border-collapse: collapse;
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border);
     }
+    .value-table th { background: var(--blue); color: white; text-align: left; padding: 14px; font-size: 14px; }
+    .value-table td { border-bottom: 1px solid var(--border); padding: 14px; vertical-align: top; font-size: 15px; color: #1f2937; }
+    .value-table tr:last-child td { border-bottom: none; }
 
-    th, td {
-      border: 1px solid #dbe4ee;
-      padding: 14px 12px;
-      text-align: left;
-      vertical-align: top;
-    }
+    .question-card { background: #f8fbff; border: 1px solid var(--border); border-radius: 20px; padding: 18px; margin: 14px 0; }
+    .question-card strong { color: var(--navy); font-size: 18px; }
 
-    th {
-      background: #0ea5e9;
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .note-box {
-      background: #e0f2fe;
-      border-left: 5px solid #0284c7;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    .warning-box {
-      background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    .success-box {
-      background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-
-    ul {
-      padding-left: 22px;
-      margin-top: 0;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
+    .answer { margin-top: 12px; background: #ecfdf5; border: 1px solid #bbf7d0; color: #065f46; border-radius: 14px; padding: 11px 13px; font-weight: 900; }
+    .explain { margin-top: 10px; background: #fff7ed; border: 1px solid #fed7aa; color: #7c2d12; border-radius: 14px; padding: 11px 13px; font-size: 15px; }
 
     .practice-link {
       display: block;
       text-decoration: none;
-      background: #ffffff;
-      color: #0f172a;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 14px 16px;
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .practice-link:hover {
       background: #e0f2fe;
-      border-color: #0ea5e9;
+      border: 1px solid #bae6fd;
+      color: #075985;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+      transition: 0.18s ease;
     }
+    .practice-link:hover { background: #bae6fd; transform: translateY(-1px); }
 
-    .faq-item {
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
-      border-radius: 10px;
-      padding: 18px;
-      margin-bottom: 14px;
-    }
+    footer { background: var(--navy); color: white; padding: 34px 0; text-align: center; margin-top: 42px; }
+    footer p { color: rgba(255, 255, 255, 0.86); font-size: 14px; margin-bottom: 8px; }
+    footer a { color: #7dd3fc; text-decoration: none; font-weight: 900; }
 
-    .faq-item h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    .small {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 24px;
-    }
-
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      h2 {
-        font-size: 1.35rem;
-      }
-
-      th, td {
-        padding: 12px 10px;
-      }
-
-      .section {
-        padding: 18px;
-      }
+    @media (max-width: 850px) {
+      header { padding: 42px 0; border-radius: 0 0 26px 26px; }
+      .stats, .grid-2, .grid-3, .link-grid, .toc, .path-grid { grid-template-columns: 1fr; }
+      .section { padding: 24px 20px; }
+      .cta { width: 100%; }
+      .brand strong { font-size: 21px; }
+      .value-table, .value-table thead, .value-table tbody, .value-table th, .value-table td, .value-table tr { display: block; }
+      .value-table thead { display: none; }
+      .value-table tr { border-bottom: 1px solid var(--border); }
+      .value-table td { border-bottom: none; padding: 12px 14px; }
+      .value-table td::before { content: attr(data-label); display: block; color: var(--blue); font-weight: 900; margin-bottom: 4px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <h1>Normal Vital Signs Chart (Adults & Pediatrics)</h1>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Vital signs, nursing, TEAS, ABG, and healthcare study tools</span>
+        </div>
+      </a>
 
-    <p class="intro">
-      Normal vital signs are one of the first things healthcare students learn because they help show whether a patient is stable or may be developing a problem. This guide reviews normal adult vital signs, pediatric ranges, abnormal findings, and what to notice first when interpreting patient assessment data.
-    </p>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/vital-signs-practice-quiz.html">Vital Signs Quiz</a>
+        <a href="/abg-normal-values.html">ABG Guide</a>
+      </nav>
+    </div>
+  </div>
 
-    <p class="intro">
-      This page is useful for nursing students, TEAS prep, medical assistants, EMT students, and early healthcare learners reviewing heart rate, respiratory rate, blood pressure, temperature, oxygen saturation, and pain assessment.
-    </p>
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Normal Vital Signs Study Guide</div>
 
-    <p class="intro">
-      If you want to practice after reviewing the chart, use the <a href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a> to reinforce normal ranges, abnormal findings, and clinical meaning.
-    </p>
+        <h1>Normal Vital Signs Chart</h1>
 
-    <div class="note-box">
-      <strong>What to notice first:</strong>
-      <p>
-        Vital signs are not just numbers to memorize. Look for patterns. Changes in heart rate, respiratory rate, blood pressure, oxygen saturation, and temperature often give early clues that a patient is improving, compensating, or declining.
-      </p>
+        <p>
+          Learn normal vital signs for adults and pediatrics, what abnormal values can mean, and how to recognize patterns in heart rate, respiratory rate, blood pressure, temperature, oxygen saturation, and pain assessment.
+        </p>
+
+        <p>
+          Built for nursing students, TEAS learners, medical assistants, EMT students, allied health programs, and early healthcare learners.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/vital-signs-practice-quiz.html">Start Vital Signs Practice →</a>
+          <a class="cta secondary" href="/abg-normal-values.html">Review ABG Normal Values</a>
+          <a class="cta orange" href="/teas-practice-questions.html">TEAS Practice Questions</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="stats">
+      <div class="stat">Heart Rate<span>Pulse</span></div>
+      <div class="stat">Respirations<span>Breathing</span></div>
+      <div class="stat">Blood Pressure<span>Perfusion</span></div>
+      <div class="stat">SpO2<span>Oxygenation</span></div>
+      <div class="stat">Temperature<span>Fever clues</span></div>
     </div>
 
-    <div class="section">
-      <h2>Normal Vital Signs Chart</h2>
-      <p>
-        Use this quick reference chart to review common normal ranges for adults and general pediatric patients. Pediatric vital signs vary by age, so infants and toddlers often have higher heart rates and respiratory rates than adults.
-      </p>
-
-      <div class="table-wrap">
-        <table>
-          <tr>
-            <th>Vital Sign</th>
-            <th>Normal Adult Range</th>
-            <th>General Pediatric Range</th>
-            <th>Why It Matters</th>
-          </tr>
-          <tr>
-            <td>Heart Rate</td>
-            <td>60–100 bpm</td>
-            <td>70–120 bpm</td>
-            <td>Shows how fast the heart is beating and may reflect stress, pain, fever, dehydration, bleeding, shock, or cardiac issues.</td>
-          </tr>
-          <tr>
-            <td>Respiratory Rate</td>
-            <td>12–20 breaths/min</td>
-            <td>20–30 breaths/min</td>
-            <td>Helps assess breathing, oxygenation, respiratory effort, and early signs of decline.</td>
-          </tr>
-          <tr>
-            <td>Blood Pressure</td>
-            <td>About 90/60 to 120/80 mmHg</td>
-            <td>Varies by age and size</td>
-            <td>Reflects circulation and perfusion. Low or high readings can signal important changes.</td>
-          </tr>
-          <tr>
-            <td>Temperature</td>
-            <td>97–99&deg;F (36.1–37.2&deg;C)</td>
-            <td>Similar to adults</td>
-            <td>May indicate infection, inflammation, environmental exposure, or metabolic changes.</td>
-          </tr>
-          <tr>
-            <td>Oxygen Saturation (SpO2)</td>
-            <td>95–100%</td>
-            <td>95–100%</td>
-            <td>Shows how well oxygen is being carried in the blood.</td>
-          </tr>
-          <tr>
-            <td>Pain Score</td>
-            <td>0–10 scale</td>
-            <td>Often age-based scales</td>
-            <td>Pain can affect heart rate, blood pressure, respiratory rate, and overall patient status.</td>
-          </tr>
-        </table>
-      </div>
+    <section class="section highlight">
+      <h2>Quick Answer</h2>
 
       <div class="success-box">
-        <strong>Easy memory reminder:</strong>
-        <p>
-          Learn adult ranges first. Then remember that younger pediatric patients usually have faster heart rates and respiratory rates.
-        </p>
+        Common normal adult vital signs include heart rate 60 to 100 bpm, respiratory rate 12 to 20 breaths/min, blood pressure about 90/60 to 120/80 mmHg, temperature about 97 to 99°F, and oxygen saturation 95 to 100%.
       </div>
-    </div>
 
-    <div class="section">
-      <h2>What to Notice First With Vital Signs</h2>
-
-      <p>
-        The biggest mistake beginners make is memorizing ranges without understanding what the numbers mean. Normal ranges matter, but the patient pattern matters more.
+      <p class="lead">
+        Vital signs are not just numbers to memorize. They help show whether a patient is stable, compensating, improving, or declining. The most important skill is learning to notice patterns and trends.
       </p>
 
-      <ul>
-        <li><strong>Fast heart rate:</strong> Think pain, fever, dehydration, anxiety, bleeding, shock, or compensation.</li>
-        <li><strong>Fast respiratory rate:</strong> Think respiratory distress, fever, pain, anxiety, or metabolic changes.</li>
-        <li><strong>Low blood pressure:</strong> Think dehydration, bleeding, poor perfusion, sepsis, or shock.</li>
-        <li><strong>Low oxygen saturation:</strong> Think impaired oxygenation, poor gas exchange, sensor placement, or poor perfusion.</li>
-        <li><strong>Fever:</strong> Think infection, inflammation, or illness response.</li>
-      </ul>
-
       <div class="note-box">
-        <strong>What to notice first:</strong>
-        <p>
-          A single abnormal number is a clue. A pattern of abnormal vital signs is much more important.
-        </p>
+        <strong>What to notice first:</strong><br />
+        A single abnormal number is a clue. A pattern of abnormal vital signs is much more important.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Age Matters in Pediatrics</h2>
+    <section class="section">
+      <h2>Jump to a Vital Signs Topic</h2>
+
+      <div class="toc">
+        <a href="#adult-chart">Adult Vital Signs Chart</a>
+        <a href="#pediatric-chart">Pediatric Vital Signs</a>
+        <a href="#meaning">What Each Value Means</a>
+        <a href="#clinical-patterns">Clinical Patterns</a>
+        <a href="#abnormal">Common Abnormal Values</a>
+        <a href="#exam-thinking">Exam Thinking</a>
+        <a href="#practice">Practice Questions</a>
+        <a href="#study-path">Best Study Path</a>
+        <a href="#related">Related Learning</a>
+      </div>
+    </section>
+
+    <section id="adult-chart" class="section">
+      <h2>Normal Adult Vital Signs Chart</h2>
 
       <p>
-        Pediatric vital signs are not interpreted the same way as adult vital signs. Children often have faster heart rates and respiratory rates, especially when they are younger. That means a value that looks high for an adult may be normal for a child.
+        Use this chart as a beginner-friendly reference for common adult vital sign ranges. Always follow your program, instructor, textbook, facility, and clinical standards.
       </p>
 
       <div class="table-wrap">
-        <table>
-          <tr>
-            <th>Age Group</th>
-            <th>Typical Heart Rate</th>
-            <th>Typical Respiratory Rate</th>
-            <th>What to Notice</th>
-          </tr>
-          <tr>
-            <td>Infant</td>
-            <td>100–160 bpm</td>
-            <td>30–60 breaths/min</td>
-            <td>Higher rates are expected compared with adults.</td>
-          </tr>
-          <tr>
-            <td>Toddler</td>
-            <td>90–150 bpm</td>
-            <td>24–40 breaths/min</td>
-            <td>Still faster than adult values.</td>
-          </tr>
-          <tr>
-            <td>Preschool Child</td>
-            <td>80–140 bpm</td>
-            <td>22–34 breaths/min</td>
-            <td>Heart rate and respiratory rate begin trending downward.</td>
-          </tr>
-          <tr>
-            <td>School-Age Child</td>
-            <td>70–120 bpm</td>
-            <td>18–30 breaths/min</td>
-            <td>Closer to adult values but still age-dependent.</td>
-          </tr>
-          <tr>
-            <td>Adolescent</td>
-            <td>60–100 bpm</td>
-            <td>12–20 breaths/min</td>
-            <td>Often similar to adult ranges.</td>
-          </tr>
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Vital Sign</th>
+              <th>Common Adult Range</th>
+              <th>What It Tells You</th>
+              <th>What to Notice First</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Vital Sign"><strong>Heart Rate</strong></td>
+              <td data-label="Common Adult Range">60 to 100 bpm</td>
+              <td data-label="What It Tells You">How fast the heart is beating.</td>
+              <td data-label="What to Notice First">Fast rate can reflect pain, fever, dehydration, bleeding, anxiety, or shock.</td>
+            </tr>
+            <tr>
+              <td data-label="Vital Sign"><strong>Respiratory Rate</strong></td>
+              <td data-label="Common Adult Range">12 to 20 breaths/min</td>
+              <td data-label="What It Tells You">How often the patient is breathing.</td>
+              <td data-label="What to Notice First">Fast breathing can be an early sign of distress or compensation.</td>
+            </tr>
+            <tr>
+              <td data-label="Vital Sign"><strong>Blood Pressure</strong></td>
+              <td data-label="Common Adult Range">About 90/60 to 120/80 mmHg</td>
+              <td data-label="What It Tells You">Circulation and perfusion pressure.</td>
+              <td data-label="What to Notice First">Low pressure can suggest poor perfusion, dehydration, bleeding, sepsis, or shock.</td>
+            </tr>
+            <tr>
+              <td data-label="Vital Sign"><strong>Temperature</strong></td>
+              <td data-label="Common Adult Range">About 97 to 99°F</td>
+              <td data-label="What It Tells You">Body temperature regulation.</td>
+              <td data-label="What to Notice First">Fever may suggest infection, inflammation, or illness response.</td>
+            </tr>
+            <tr>
+              <td data-label="Vital Sign"><strong>Oxygen Saturation</strong></td>
+              <td data-label="Common Adult Range">95 to 100%</td>
+              <td data-label="What It Tells You">How well oxygen is being carried in the blood.</td>
+              <td data-label="What to Notice First">Low SpO2 can suggest oxygenation problems or poor sensor reading.</td>
+            </tr>
+            <tr>
+              <td data-label="Vital Sign"><strong>Pain Score</strong></td>
+              <td data-label="Common Adult Range">0 to 10 scale</td>
+              <td data-label="What It Tells You">Patient-reported pain level.</td>
+              <td data-label="What to Notice First">Pain can affect heart rate, blood pressure, respiratory rate, and stress response.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-box">
+        Reference ranges can vary by age, condition, medication, setting, and source. Use these as beginner study ranges, not a replacement for clinical policy.
+      </div>
+    </section>
+
+    <section id="pediatric-chart" class="section">
+      <h2>Pediatric Vital Signs by Age</h2>
+
+      <p>
+        Pediatric vital signs are not interpreted the same way as adult vital signs. The younger the child, the higher the normal heart rate and respiratory rate tend to be.
+      </p>
+
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Age Group</th>
+              <th>Typical Heart Rate</th>
+              <th>Typical Respiratory Rate</th>
+              <th>What to Notice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="Age Group"><strong>Infant</strong></td><td data-label="Typical Heart Rate">100 to 160 bpm</td><td data-label="Typical Respiratory Rate">30 to 60 breaths/min</td><td data-label="What to Notice">Higher rates are expected compared with adults.</td></tr>
+            <tr><td data-label="Age Group"><strong>Toddler</strong></td><td data-label="Typical Heart Rate">90 to 150 bpm</td><td data-label="Typical Respiratory Rate">24 to 40 breaths/min</td><td data-label="What to Notice">Still faster than adult values.</td></tr>
+            <tr><td data-label="Age Group"><strong>Preschool Child</strong></td><td data-label="Typical Heart Rate">80 to 140 bpm</td><td data-label="Typical Respiratory Rate">22 to 34 breaths/min</td><td data-label="What to Notice">Heart and respiratory rates begin trending downward.</td></tr>
+            <tr><td data-label="Age Group"><strong>School-Age Child</strong></td><td data-label="Typical Heart Rate">70 to 120 bpm</td><td data-label="Typical Respiratory Rate">18 to 30 breaths/min</td><td data-label="What to Notice">Closer to adult values but still age-dependent.</td></tr>
+            <tr><td data-label="Age Group"><strong>Adolescent</strong></td><td data-label="Typical Heart Rate">60 to 100 bpm</td><td data-label="Typical Respiratory Rate">12 to 20 breaths/min</td><td data-label="What to Notice">Often similar to adult ranges.</td></tr>
+          </tbody>
         </table>
       </div>
 
       <div class="note-box">
-        <strong>What to notice first:</strong>
-        <p>
-          The younger the child, the higher the normal heart rate and respiratory rate tend to be.
-        </p>
+        The younger the child, the higher the normal heart rate and respiratory rate tend to be.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section id="meaning" class="section">
       <h2>What Each Vital Sign Means</h2>
 
-      <h3>Heart Rate</h3>
+      <div class="grid-2">
+        <div class="card strong"><h3>Heart Rate</h3><p>Heart rate tells how many times the heart beats per minute. A higher heart rate may occur with pain, fever, anxiety, dehydration, bleeding, exercise, or shock.</p></div>
+        <div class="card strong"><h3>Respiratory Rate</h3><p>Respiratory rate can change early when a patient is declining. Fast breathing may suggest distress, fever, pain, anxiety, or metabolic changes.</p></div>
+        <div class="card strong"><h3>Blood Pressure</h3><p>Blood pressure reflects circulation and perfusion. Low blood pressure may reduce organ perfusion. High blood pressure may increase strain on the heart and vessels.</p></div>
+        <div class="card strong"><h3>Oxygen Saturation</h3><p>Oxygen saturation shows how much hemoglobin is carrying oxygen. Low SpO2 may suggest impaired oxygenation, poor gas exchange, poor perfusion, or sensor issues.</p></div>
+        <div class="card strong"><h3>Temperature</h3><p>Temperature helps identify fever, infection, inflammation, cold exposure, or severe illness response.</p></div>
+        <div class="card strong"><h3>Pain</h3><p>Pain is subjective, but it can affect heart rate, blood pressure, respiratory rate, stress response, and patient presentation.</p></div>
+      </div>
+    </section>
+
+    <section id="clinical-patterns" class="section">
+      <h2>Vital Signs Clinical Patterns</h2>
+
       <p>
-        Heart rate tells you how many times the heart beats per minute. A higher heart rate may occur with fever, pain, anxiety, dehydration, blood loss, exercise, or shock. A low heart rate may be normal in some athletes, but it can also suggest medication effects or conduction problems.
+        Vital signs are strongest when you read them together. One abnormal value gives you a clue. Multiple abnormal values can point to a pattern.
       </p>
 
-      <h3>Respiratory Rate</h3>
-      <p>
-        Respiratory rate is one of the most important vital signs because it can change early when a patient is declining. Fast breathing may indicate fever, pain, respiratory distress, anxiety, or metabolic problems. Slow breathing may occur with sedation, overdose, or neurologic issues.
-      </p>
-
-      <div class="note-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Do not overlook respiratory rate. It is often one of the earliest signs that something is changing.
-        </p>
+      <div class="grid-2">
+        <div class="card"><h3>Possible dehydration or bleeding</h3><p>Rising heart rate, low blood pressure, dizziness, weakness, or poor perfusion can suggest volume loss or shock risk.</p></div>
+        <div class="card"><h3>Possible respiratory distress</h3><p>Fast respiratory rate, low SpO2, increased work of breathing, or abnormal appearance can suggest oxygenation or ventilation problems.</p></div>
+        <div class="card"><h3>Possible infection response</h3><p>Fever with tachycardia and faster respirations may reflect infection, inflammation, or increased metabolic demand.</p></div>
+        <div class="card"><h3>Possible medication or neurologic concern</h3><p>Slow respirations or unusually low heart rate may relate to medications, sedation, overdose, or neurologic changes.</p></div>
       </div>
 
-      <h3>Blood Pressure</h3>
-      <p>
-        Blood pressure measures the force of blood pushing against artery walls. Low blood pressure may reduce perfusion to organs and tissues. High blood pressure may increase strain on the heart and blood vessels over time.
-      </p>
+      <div class="note-box">
+        Look for the vital sign that does not fit the patient situation. That is often the exam clue.
+      </div>
+    </section>
 
-      <h3>Temperature</h3>
-      <p>
-        Temperature helps identify fever, infection, inflammation, or abnormal metabolic activity. Elevated temperature may point to illness or inflammation, while low temperature may occur with cold exposure, shock, or severe illness.
-      </p>
+    <section id="abnormal" class="section">
+      <h2>Common Abnormal Vital Signs</h2>
 
-      <h3>Oxygen Saturation</h3>
-      <p>
-        Oxygen saturation shows how much hemoglobin is carrying oxygen. A low reading may suggest respiratory compromise, poor gas exchange, airway problems, or equipment issues such as poor sensor placement.
-      </p>
+      <ul>
+        <li><strong>Tachycardia:</strong> adult heart rate above 100 bpm. Common causes include pain, fever, dehydration, anxiety, bleeding, and shock.</li>
+        <li><strong>Bradycardia:</strong> adult heart rate below 60 bpm. This may be normal in trained athletes, but can also occur with medications or conduction problems.</li>
+        <li><strong>Tachypnea:</strong> respiratory rate above normal. This can signal distress, fever, anxiety, pain, or metabolic acidosis.</li>
+        <li><strong>Bradypnea:</strong> respiratory rate below normal. This may occur with sedation, narcotic overdose, or neurologic impairment.</li>
+        <li><strong>Fever:</strong> elevated temperature that may suggest infection, inflammation, or illness response.</li>
+        <li><strong>Hypotension:</strong> low blood pressure that may lead to dizziness, weakness, poor perfusion, or shock.</li>
+        <li><strong>Hypertension:</strong> elevated blood pressure that may increase cardiovascular risk and require follow-up.</li>
+        <li><strong>Low SpO2:</strong> oxygen saturation below expected levels that may suggest hypoxemia, respiratory disease, airway problems, poor sensor placement, or poor perfusion.</li>
+      </ul>
 
-      <p>
-        For more recognition-based equipment checks, review <a href="/common-medical-equipment-mistakes.html">Common Medical Equipment Mistakes</a>.
-      </p>
-    </div>
+      <div class="warning-box">
+        One abnormal vital sign does not always tell the whole story. Trends over time, symptoms, baseline values, and the full patient picture matter.
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>How Vital Signs Help in Real Clinical Assessment</h2>
-      <p>
-        Vital signs are more than numbers to memorize. They often provide the first clue that a patient is improving, declining, compensating, or becoming unstable. A rising heart rate, falling blood pressure, low oxygen saturation, or fast respiratory rate can point to bleeding, infection, dehydration, respiratory distress, pain, or shock.
-      </p>
-
-      <p>
-        Healthcare learners should combine vital signs with symptoms, appearance, age, baseline condition, and overall patient presentation. Looking at patterns matters more than reacting to a single isolated number.
-      </p>
-
-      <p>
-        After reviewing the ranges, use the <a href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a> to apply the chart and build confidence with common scenarios.
-      </p>
-    </div>
-
-    <div class="section">
+    <section id="exam-thinking" class="section">
       <h2>How to Think About Vital Signs on Exams</h2>
 
       <p>
-        On exams like the TEAS, nursing tests, or healthcare fundamentals quizzes, vital signs are often used to test recognition rather than memorization.
+        On TEAS, nursing, medical assisting, EMT, and healthcare fundamentals questions, vital signs often test recognition and priority.
       </p>
 
       <ul>
@@ -429,168 +602,128 @@
         <li>Low blood pressure with dizziness or weakness may suggest poor perfusion.</li>
       </ul>
 
-      <div class="note-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Look for the vital sign that does not match the patient situation. That is usually the clue to the correct answer.
-        </p>
-      </div>
-
-      <p>
-        For more TEAS-style practice, use the <a href="/teas-practice-questions.html">TEAS Practice Questions</a> and <a href="/free-teas-practice-test.html">Free TEAS Practice Test</a>.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Common Abnormal Vital Signs</h2>
-      <p>
-        Recognizing abnormal vital signs early can help learners understand when a patient may need closer monitoring, additional assessment, or escalation.
-      </p>
-
-      <ul>
-        <li><strong>Tachycardia:</strong> Heart rate above 100 bpm in adults. Common causes include pain, fever, dehydration, anxiety, bleeding, and shock.</li>
-        <li><strong>Bradycardia:</strong> Heart rate below 60 bpm in adults. This may be normal in trained athletes, but it can also occur with medications or heart conduction problems.</li>
-        <li><strong>Tachypnea:</strong> Respiratory rate above normal. This can signal respiratory distress, fever, anxiety, pain, or metabolic acidosis.</li>
-        <li><strong>Bradypnea:</strong> Respiratory rate below normal. This may occur with sedation, narcotic overdose, or neurologic impairment.</li>
-        <li><strong>Fever:</strong> A temperature above 100.4&deg;F generally suggests infection or inflammation.</li>
-        <li><strong>Hypotension:</strong> Low blood pressure may lead to dizziness, weakness, poor perfusion, or shock.</li>
-        <li><strong>Hypertension:</strong> Elevated blood pressure can increase cardiovascular risk and may require follow-up or treatment.</li>
-        <li><strong>Low SpO2:</strong> Oxygen saturation below expected levels may suggest hypoxemia, respiratory disease, airway problems, poor sensor placement, or poor perfusion.</li>
-      </ul>
-
-      <div class="warning-box">
-        <strong>Important:</strong>
-        <p>
-          One abnormal vital sign does not always tell the whole story. Trends over time, symptoms, baseline values, and the full patient picture matter.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Vital Signs and TEAS / Nursing Study</h2>
-
-      <p>
-        Vital signs appear often in nursing, TEAS, medical assisting, EMT, and healthcare fundamentals because they connect directly to patient assessment.
-      </p>
-
-      <p>
-        For TEAS prep, vital signs reinforce science concepts like circulation, oxygenation, body temperature regulation, respiratory function, and homeostasis.
-      </p>
-
-      <p>
-        For nursing students, vital signs help build clinical judgment. The goal is not just to know the normal range. The goal is to recognize when a value does not fit the patient situation.
-      </p>
-
-      <div class="note-box">
-        <strong>What to notice first:</strong>
-        <p>
-          In exam questions, look for the vital sign trend or abnormal value that changes the priority.
-        </p>
-      </div>
-
-      <p>
-        Continue studying with <a href="/rn-practice-questions.html">RN Practice Questions</a>, <a href="/teas-practice-questions.html">TEAS Practice Questions</a>, and <a href="/free-teas-practice-test.html">Free TEAS Practice Test</a>.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Study Tips for Remembering Vital Signs</h2>
-      <ul>
-        <li>Memorize normal adult ranges first before moving into pediatric ranges.</li>
-        <li>Focus on patterns instead of isolated numbers.</li>
-        <li>Practice matching abnormal values to likely causes.</li>
-        <li>Review pediatric values by age group instead of trying to learn all child ranges at once.</li>
-        <li>Use practice questions and quizzes to reinforce recall.</li>
-        <li>Learn what abnormal values mean, not just whether they are high or low.</li>
-      </ul>
-
       <div class="success-box">
-        <strong>Study strategy:</strong>
-        <p>
-          Do not only memorize “normal.” Also practice recognizing what high, low, fast, slow, rising, or falling values could mean.
-        </p>
+        Exam tip: Do not just ask “is the number normal?” Ask, “what does this number mean in this patient situation?”
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Frequently Asked Questions</h2>
+    <section id="practice" class="section">
+      <h2>Practice Questions</h2>
 
-      <div class="faq-item">
-        <h3>What are normal adult vital signs?</h3>
-        <p>
-          Normal adult vital signs typically include a heart rate of 60–100 bpm, respiratory rate of 12–20 breaths per minute, blood pressure around 90/60 to 120/80 mmHg, temperature around 97–99&deg;F, and oxygen saturation of 95–100%.
-        </p>
+      <div class="question-card"><strong>1. What is a common normal adult heart rate range?</strong><div class="answer">Answer: 60 to 100 bpm</div><div class="explain">Heart rate above or below this range may be normal for some people, but 60 to 100 bpm is the common beginner range.</div></div>
+      <div class="question-card"><strong>2. What is a common normal adult respiratory rate range?</strong><div class="answer">Answer: 12 to 20 breaths per minute</div><div class="explain">Respiratory rate is important because it may change early when a patient is declining.</div></div>
+      <div class="question-card"><strong>3. Which vital sign helps evaluate oxygenation?</strong><div class="answer">Answer: Oxygen saturation, or SpO2</div><div class="explain">SpO2 helps show how well oxygen is being carried in the blood.</div></div>
+      <div class="question-card"><strong>4. Why are pediatric heart rates often higher than adult heart rates?</strong><div class="answer">Answer: Younger children normally have faster heart rates.</div><div class="explain">Pediatric vital signs should be interpreted by age group.</div></div>
+      <div class="question-card"><strong>5. A patient has fast respirations and low oxygen saturation. What should you notice?</strong><div class="answer">Answer: Possible respiratory distress or oxygenation problem.</div><div class="explain">Vital signs should be interpreted together with symptoms, appearance, and patient context.</div></div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/vital-signs-practice-quiz.html">Take the Vital Signs Practice Quiz →</a>
+        <a class="cta secondary" href="/abg-normal-values.html">Review ABG Normal Values</a>
       </div>
+    </section>
 
-      <div class="faq-item">
-        <h3>What is a normal pediatric heart rate?</h3>
-        <p>
-          A normal pediatric heart rate depends on age. Infants usually have faster heart rates than older children and adolescents.
-        </p>
+    <section id="study-path" class="section">
+      <h2>Best Study Path</h2>
+
+      <p>
+        Use this order if you are building healthcare fundamentals.
+      </p>
+
+      <div class="path-grid">
+        <a class="path-card" href="/normal-vital-signs-chart.html">1. Normal Vital Signs Chart<span>Start with adult and pediatric ranges.</span></a>
+        <a class="path-card" href="/vital-signs-practice-quiz.html">2. Vital Signs Practice Quiz<span>Practice recognizing normal and abnormal values.</span></a>
+        <a class="path-card" href="/abg-normal-values.html">3. ABG Normal Values<span>Connect respirations, oxygenation, and acid-base basics.</span></a>
+        <a class="path-card" href="/lab-values-practice-quiz.html">4. Lab Values Practice<span>Review related clinical values and interpretation skills.</span></a>
+        <a class="path-card" href="/lungs-anatomy-guide.html">5. Lungs Anatomy Guide<span>Connect breathing, SpO2, oxygenation, and respiratory anatomy.</span></a>
+        <a class="path-card" href="/teas-practice-questions.html">6. TEAS Practice Questions<span>Apply vital signs to healthcare fundamentals review.</span></a>
       </div>
+    </section>
 
-      <div class="faq-item">
-        <h3>Why is respiratory rate so important?</h3>
-        <p>
-          Respiratory rate can change early when a patient is getting worse. It may rise before other vital signs show a problem, which makes it especially important in patient assessment.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>What blood pressure is considered low?</h3>
-        <p>
-          In adults, blood pressure below about 90/60 mmHg is often considered low, but the significance depends on symptoms, baseline values, and the overall patient condition.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>What does low oxygen saturation mean?</h3>
-        <p>
-          Low oxygen saturation may suggest that the body is not getting enough oxygen. It can be caused by respiratory issues, poor gas exchange, airway problems, poor perfusion, or an incorrect pulse oximeter reading.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
+    <section id="related" class="section">
       <h2>Related Clinical Learning</h2>
 
       <p>
-        Vital signs connect directly to other core healthcare concepts like lab values, cardiac rhythms, respiratory status, and acid-base balance. Strengthen your understanding by reviewing these related topics.
-      </p>
-
-      <div class="link-grid">
-        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
-        <a class="practice-link" href="/abg-normal-values.html">ABG Normal Values Guide</a>
-        <a class="practice-link" href="/how-to-read-an-ekg.html">How to Read an EKG</a>
-        <a class="practice-link" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
-        <a class="practice-link" href="/how-kidneys-work.html">How the Kidneys Work</a>
-        <a class="practice-link" href="/electrolytes-practice-quiz.html">Electrolytes Practice Quiz</a>
-        <a class="practice-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Keep Practicing</h2>
-      <p>
-        Learning normal vital signs is easier when you combine charts, explanations, and quizzes. Use the resources below to keep building confidence.
+        Vital signs connect directly to ABGs, lab values, respiratory status, EKG basics, kidney function, and healthcare fundamentals.
       </p>
 
       <div class="link-grid">
         <a class="practice-link" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a>
-        <a class="practice-link" href="/rn-practice-questions.html">RN Practice Questions</a>
-        <a class="practice-link" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
-        <a class="practice-link" href="/teas-practice-questions.html">TEAS Practice Questions</a>
         <a class="practice-link" href="/abg-normal-values.html">ABG Normal Values Guide</a>
-        <a class="practice-link" href="/how-to-read-an-ekg.html">How to Read an EKG</a>
-        <a class="practice-link" href="/common-medical-equipment-mistakes.html">Common Medical Equipment Mistakes</a>
+        <a class="practice-link" href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a class="practice-link" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+        <a class="practice-link" href="/how-to-read-ekg.html">How to Read an EKG</a>
+        <a class="practice-link" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
+        <a class="practice-link" href="/how-kidneys-work.html">How the Kidneys Work</a>
+        <a class="practice-link" href="/electrolytes-practice-quiz.html">Electrolytes Practice Quiz</a>
+        <a class="practice-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
+        <a class="practice-link" href="/rn-practice-questions.html">RN Practice Questions</a>
         <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
       </div>
-    </div>
+    </section>
 
-    <p class="small">
+    <section class="section dark">
+      <h2>Ready to Practice Vital Signs?</h2>
+
+      <p>
+        Reading ranges helps, but practice is what makes normal and abnormal values easier to recognize.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/vital-signs-practice-quiz.html">Start Vital Signs Practice →</a>
+        <a class="cta secondary" href="/browse-all-practice.html">Browse All Tools</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What are normal adult vital signs?</h3>
+      <p>
+        Common normal adult vital signs include heart rate 60 to 100 bpm, respiratory rate 12 to 20 breaths per minute, blood pressure around 90/60 to 120/80 mmHg, temperature around 97 to 99°F, and oxygen saturation 95 to 100%.
+      </p>
+
+      <h3>What is a normal pediatric heart rate?</h3>
+      <p>
+        Pediatric heart rate depends on age. Infants and younger children usually have faster heart rates than adults.
+      </p>
+
+      <h3>Why is respiratory rate important?</h3>
+      <p>
+        Respiratory rate can change early when a patient is getting worse, which makes it important in patient assessment.
+      </p>
+
+      <h3>What does low oxygen saturation mean?</h3>
+      <p>
+        Low oxygen saturation may suggest impaired oxygenation, poor gas exchange, airway problems, poor perfusion, or an incorrect pulse oximeter reading.
+      </p>
+
+      <h3>What should I notice first with vital signs?</h3>
+      <p>
+        Look for patterns, trends, and values that do not fit the patient situation. A pattern of abnormal vital signs matters more than one isolated number.
+      </p>
+    </section>
+
+    <p style="font-size:12px; color:#64748b; margin-top:24px;">
       For learning purposes only. Always follow your program, instructor, facility, and clinical guidelines.
     </p>
 
-  </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for vital signs, ABG review, lab values, nursing fundamentals, TEAS prep, anatomy, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/vital-signs-practice-quiz.html">Vital Signs Practice</a> |
+        <a href="/abg-normal-values.html">ABG Values</a> |
+        <a href="/lab-values-practice-quiz.html">Lab Values</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
