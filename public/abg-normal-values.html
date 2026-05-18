@@ -2,13 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>ABG Normal Values (pH, PaCO2, HCO3, PaO2) Explained | MedSkillBuilder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description" content="Learn ABG normal values with a simple chart and step-by-step method. Review pH, PaCO2, HCO3, PaO2, respiratory acidosis, respiratory alkalosis, metabolic acidosis, metabolic alkalosis, and what to notice first." />
+  <title>ABG Normal Values Explained | pH, PaCO2, HCO3, PaO2 & ABG Practice</title>
+
+  <meta
+    name="description"
+    content="Learn ABG normal values with a simple chart, step-by-step ABG interpretation method, examples, respiratory acidosis, respiratory alkalosis, metabolic acidosis, metabolic alkalosis, PaO2 oxygenation, and ABG practice links."
+  />
+
+  <meta
+    name="keywords"
+    content="ABG normal values, arterial blood gas normal values, pH PaCO2 HCO3 PaO2, ABG interpretation, respiratory acidosis, respiratory alkalosis, metabolic acidosis, metabolic alkalosis, nursing ABG practice, TEAS ABG review, healthcare fundamentals"
+  />
+
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/abg-normal-values.html" />
+
+  <meta property="og:title" content="ABG Normal Values Explained | MedSkillBuilder" />
+
+  <meta
+    property="og:description"
+    content="Learn pH, PaCO2, HCO3, PaO2, SaO2, acid-base patterns, and a simple step-by-step method for interpreting ABGs."
+  />
+
+  <meta property="og:type" content="article" />
+
+  <meta property="og:url" content="https://medskillbuilder.com/abg-normal-values.html" />
+
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "ABG Normal Values Explained",
+    "description": "A beginner-friendly ABG guide explaining normal ABG values, pH, PaCO2, HCO3, PaO2, SaO2, acid-base interpretation, respiratory acidosis, respiratory alkalosis, metabolic acidosis, metabolic alkalosis, and ABG practice.",
+    "url": "https://medskillbuilder.com/abg-normal-values.html",
+    "learningResourceType": "Study guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Nursing students, TEAS learners, allied health students, respiratory learners, healthcare fundamentals learners, and clinical students"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
 
   <script type="application/ld+json">
   {
@@ -46,73 +92,422 @@
           "@type": "Answer",
           "text": "Check the pH first to decide whether the patient is acidotic or alkalotic, then compare PaCO2 and HCO3 to identify whether the cause is respiratory or metabolic."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Does PaO2 determine acid-base balance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. PaO2 helps evaluate oxygenation. Acid-base interpretation mainly uses pH, PaCO2, and HCO3."
+        }
       }
     ]
   }
   </script>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --navy: #082f57;
+      --blue: #0ea5e9;
+      --blue2: #2563eb;
+      --cyan: #06b6d4;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --purple: #7c3aed;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --soft: #f8fafc;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
       margin: 0;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 32px 20px 60px;
-    }
-
-    h1, h2, h3 {
-      color: #0f172a;
-      line-height: 1.25;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      border-bottom: 4px solid #0ea5e9;
-      padding-bottom: 10px;
-    }
-
-    h2 {
-      margin-top: 0;
-      margin-bottom: 14px;
-      font-size: 1.6rem;
-      color: #0ea5e9;
-    }
-
-    h3 {
-      margin-top: 24px;
-      margin-bottom: 10px;
-      font-size: 1.15rem;
-    }
-
-    p {
-      margin: 0 0 16px;
-      font-size: 1rem;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #f0f9ff 0%, #f8fbff 48%, #ffffff 100%);
     }
 
     a {
-      color: #2563eb;
-      font-weight: 700;
+      color: inherit;
     }
 
-    .intro {
-      font-size: 1.05rem;
-      max-width: 860px;
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 18px 0;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(219,234,254,0.85);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 58px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    header {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(8, 47, 87, 0.24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      left: -120px;
+      bottom: -150px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      color: #e0f2fe;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .stats,
+    .grid-2,
+    .grid-3,
+    .link-grid,
+    .toc,
+    .path-grid {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .grid-2,
+    .link-grid,
+    .path-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3,
+    .toc {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat,
+    .toc a,
+    .path-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 21px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a,
+    .path-card {
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue);
+      background: #f8fbff;
+    }
+
+    .stat span,
+    .path-card span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
     }
 
     .section {
-      margin-top: 36px;
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 14px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(224, 242, 254, 0.92), rgba(255, 255, 255, 0.98));
+      border-color: rgba(14, 165, 233, 0.35);
+    }
+
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 35%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .section.dark h2,
+    .section.dark h3,
+    .section.dark p,
+    .section.dark li {
+      color: white;
+    }
+
+    h2 {
+      color: var(--blue);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.13);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .cta.secondary {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .cta.orange {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      box-shadow: 0 16px 28px rgba(249, 115, 22, 0.22);
+    }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--blue);
+    }
+
+    .note-box,
+    .success-box,
+    .warning-box,
+    .danger-box {
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .note-box {
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      border-left: 6px solid var(--blue);
+      color: #075985;
+    }
+
+    .success-box {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      border-left: 6px solid var(--green);
+      color: #065f46;
+    }
+
+    .warning-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      font-weight: 800;
+    }
+
+    .danger-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-left: 6px solid var(--red);
+      color: #7f1d1d;
+      font-weight: 800;
+    }
+
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
+    }
+
+    li {
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
     }
 
     .table-wrap {
@@ -120,233 +515,350 @@
       margin: 20px 0 28px;
     }
 
-    table {
+    .value-table {
       width: 100%;
       border-collapse: collapse;
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border);
     }
 
-    th, td {
-      border: 1px solid #dbe4ee;
-      padding: 14px 12px;
+    .value-table th {
+      background: var(--blue);
+      color: white;
       text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .value-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
       vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
     }
 
-    th {
-      background: #0ea5e9;
-      color: #ffffff;
-      font-weight: 700;
+    .value-table tr:last-child td {
+      border-bottom: none;
     }
 
-    .note-box {
-      background: #e0f2fe;
-      border-left: 5px solid #0284c7;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+    .example-box,
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
     }
 
-    .warning-box {
-      background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+    .example-box strong,
+    .question-card strong {
+      color: var(--navy);
+      font-size: 18px;
     }
 
-    .success-box {
+    .answer {
+      margin-top: 12px;
       background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      padding: 16px;
-      margin: 20px 0;
-      border-radius: 8px;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
     }
 
-    ul, ol {
-      padding-left: 22px;
-      margin-top: 0;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+    .explain {
+      margin-top: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
     }
 
     .practice-link {
       display: block;
       text-decoration: none;
-      background: #ffffff;
-      color: #0f172a;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      color: #075985;
+      border-radius: 16px;
       padding: 14px 16px;
-      font-weight: 700;
-      transition: 0.2s ease;
+      font-weight: 900;
+      transition: 0.18s ease;
     }
 
     .practice-link:hover {
-      background: #e0f2fe;
-      border-color: #0ea5e9;
+      background: #bae6fd;
+      transform: translateY(-1px);
     }
 
-    .faq-item {
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
-      border-radius: 10px;
-      padding: 18px;
-      margin-bottom: 14px;
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
+      text-align: center;
+      margin-top: 42px;
     }
 
-    .faq-item h3 {
-      margin-top: 0;
+    footer p {
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
       margin-bottom: 8px;
     }
 
-    .small {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 24px;
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
     }
 
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 1.8rem;
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
       }
 
-      h2 {
-        font-size: 1.35rem;
-      }
-
-      th, td {
-        padding: 12px 10px;
+      .stats,
+      .grid-2,
+      .grid-3,
+      .link-grid,
+      .toc,
+      .path-grid {
+        grid-template-columns: 1fr;
       }
 
       .section {
-        padding: 18px;
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .value-table,
+      .value-table thead,
+      .value-table tbody,
+      .value-table th,
+      .value-table td,
+      .value-table tr {
+        display: block;
+      }
+
+      .value-table thead {
+        display: none;
+      }
+
+      .value-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .value-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .value-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--blue);
+        font-weight: 900;
+        margin-bottom: 4px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <h1>ABG Normal Values (pH, PaCO2, HCO3, PaO2) Explained</h1>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>ABG, lab values, nursing, TEAS, and healthcare study tools</span>
+        </div>
+      </a>
 
-    <p class="intro">
-      Arterial blood gases, often called ABGs, help healthcare learners understand acid-base balance, ventilation, and oxygenation. If you are studying nursing, TEAS, respiratory concepts, clinical fundamentals, or preparing for exams, learning normal ABG values is one of the most important first steps.
-    </p>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/abg-practice-quiz.html">ABG Quiz</a>
+        <a href="/normal-vital-signs-chart.html">Vital Signs</a>
+      </nav>
+    </div>
+  </div>
 
-    <p class="intro">
-      This guide breaks down normal ABG ranges, explains what each value means, and gives you a simple step-by-step method to interpret ABGs without making the topic harder than it needs to be.
-    </p>
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">ABG Normal Values Guide</div>
 
-    <p class="intro">
-      After reviewing the chart and examples, use the <a href="/abg-practice-quiz.html">ABG Practice Quiz</a> to reinforce what you learn.
-    </p>
+        <h1>ABG Normal Values Explained</h1>
 
-    <div class="note-box">
-      <strong>What to notice first:</strong>
-      <p>
-        Start with pH. Then decide whether PaCO2 or HCO3 matches the pH problem. PaCO2 is respiratory. HCO3 is metabolic.
-      </p>
+        <p>
+          Learn ABG normal values, what pH, PaCO2, HCO3, PaO2, and SaO2 mean, and how to recognize respiratory and metabolic acid-base patterns without making the topic harder than it needs to be.
+        </p>
+
+        <p>
+          Built for nursing students, TEAS learners, respiratory review, healthcare fundamentals, and anyone learning arterial blood gas interpretation.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/abg-practice-quiz.html">Start ABG Practice Quiz →</a>
+          <a class="cta secondary" href="/normal-vital-signs-chart.html">Review Vital Signs</a>
+          <a class="cta orange" href="/lab-values-practice-quiz.html">Practice Lab Values</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="stats">
+      <div class="stat">pH<span>Acid or base</span></div>
+      <div class="stat">PaCO2<span>Respiratory</span></div>
+      <div class="stat">HCO3<span>Metabolic</span></div>
+      <div class="stat">PaO2<span>Oxygenation</span></div>
+      <div class="stat">SaO2<span>Saturation</span></div>
     </div>
 
-    <div class="section">
+    <section class="section highlight">
+      <h2>Quick Answer</h2>
+
+      <div class="success-box">
+        Common normal ABG values are pH 7.35 to 7.45, PaCO2 35 to 45 mm Hg, HCO3 22 to 26 mEq/L, PaO2 75 to 100 mm Hg, and SaO2 95 to 100%.
+      </div>
+
+      <p class="lead">
+        Start with pH to decide whether the blood is acidotic or alkalotic. Then compare PaCO2 and HCO3 to decide whether the main problem is respiratory or metabolic. PaO2 and SaO2 help you evaluate oxygenation.
+      </p>
+
+      <div class="note-box">
+        <strong>What to notice first:</strong><br />
+        pH tells acid or base. PaCO2 is respiratory. HCO3 is metabolic. PaO2 and SaO2 are oxygenation clues.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Jump to an ABG Topic</h2>
+
+      <div class="toc">
+        <a href="#normal-values">ABG Normal Values</a>
+        <a href="#meaning">What Each Value Means</a>
+        <a href="#steps">Step-by-Step Method</a>
+        <a href="#patterns">ABG Patterns</a>
+        <a href="#examples">Examples</a>
+        <a href="#oxygenation">Oxygenation</a>
+        <a href="#mistakes">Common Mistakes</a>
+        <a href="#practice">Practice Questions</a>
+        <a href="#study-path">Best Study Path</a>
+      </div>
+    </section>
+
+    <section id="normal-values" class="section">
       <h2>ABG Normal Values Chart</h2>
+
       <p>
-        Use this quick reference chart to memorize the most common ABG normal values. These are the values students are expected to recognize for basic interpretation, nursing exams, respiratory review, and healthcare study.
+        Use this quick reference chart to memorize the most common ABG normal values. These are the values healthcare learners are usually expected to recognize first.
       </p>
 
       <div class="table-wrap">
-        <table>
-          <tr>
-            <th>ABG Value</th>
-            <th>Normal Range</th>
-            <th>What It Tells You</th>
-            <th>What to Notice First</th>
-          </tr>
-          <tr>
-            <td>pH</td>
-            <td>7.35–7.45</td>
-            <td>Shows whether the blood is acidic or alkalotic.</td>
-            <td>Low pH = acidosis. High pH = alkalosis.</td>
-          </tr>
-          <tr>
-            <td>PaCO2</td>
-            <td>35–45 mm Hg</td>
-            <td>Reflects the respiratory component and CO2 ventilation.</td>
-            <td>High CO2 = acidic. Low CO2 = alkalotic.</td>
-          </tr>
-          <tr>
-            <td>HCO3</td>
-            <td>22–26 mEq/L</td>
-            <td>Reflects the metabolic component and bicarbonate buffer system.</td>
-            <td>Low HCO3 = metabolic acidosis. High HCO3 = metabolic alkalosis.</td>
-          </tr>
-          <tr>
-            <td>PaO2</td>
-            <td>75–100 mm Hg</td>
-            <td>Shows oxygenation status in arterial blood.</td>
-            <td>Low PaO2 suggests poor oxygenation.</td>
-          </tr>
-          <tr>
-            <td>SaO2</td>
-            <td>95–100%</td>
-            <td>Shows arterial oxygen saturation.</td>
-            <td>Compare with SpO2 and patient condition.</td>
-          </tr>
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>ABG Value</th>
+              <th>Normal Range</th>
+              <th>What It Tells You</th>
+              <th>What to Notice First</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="ABG Value"><strong>pH</strong></td>
+              <td data-label="Normal Range">7.35 to 7.45</td>
+              <td data-label="What It Tells You">Shows whether the blood is acidic or alkalotic.</td>
+              <td data-label="What to Notice First">Low pH = acidosis. High pH = alkalosis.</td>
+            </tr>
+            <tr>
+              <td data-label="ABG Value"><strong>PaCO2</strong></td>
+              <td data-label="Normal Range">35 to 45 mm Hg</td>
+              <td data-label="What It Tells You">Reflects the respiratory component and CO2 ventilation.</td>
+              <td data-label="What to Notice First">High CO2 = acidic. Low CO2 = alkalotic.</td>
+            </tr>
+            <tr>
+              <td data-label="ABG Value"><strong>HCO3</strong></td>
+              <td data-label="Normal Range">22 to 26 mEq/L</td>
+              <td data-label="What It Tells You">Reflects the metabolic component and bicarbonate buffer system.</td>
+              <td data-label="What to Notice First">Low HCO3 = metabolic acidosis. High HCO3 = metabolic alkalosis.</td>
+            </tr>
+            <tr>
+              <td data-label="ABG Value"><strong>PaO2</strong></td>
+              <td data-label="Normal Range">75 to 100 mm Hg</td>
+              <td data-label="What It Tells You">Shows oxygenation status in arterial blood.</td>
+              <td data-label="What to Notice First">Low PaO2 suggests poor oxygenation.</td>
+            </tr>
+            <tr>
+              <td data-label="ABG Value"><strong>SaO2</strong></td>
+              <td data-label="Normal Range">95 to 100%</td>
+              <td data-label="What It Tells You">Shows arterial oxygen saturation.</td>
+              <td data-label="What to Notice First">Compare with SpO2 and patient condition.</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
-      <div class="success-box">
-        <strong>Easy memory reminder:</strong>
-        <p>
-          pH tells acid or base. PaCO2 is respiratory. HCO3 is metabolic. PaO2 tells oxygenation.
-        </p>
+      <div class="warning-box">
+        Always follow your program, instructor, textbook, facility, and clinical standards. Reference ranges can vary slightly by source.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section id="meaning" class="section">
       <h2>What Each ABG Value Means</h2>
 
-      <h3>pH</h3>
-      <p>
-        The pH tells you whether the blood is acidic or alkalotic. A pH below 7.35 suggests acidosis. A pH above 7.45 suggests alkalosis. This is the first value most students should check because it tells you the direction of the problem.
-      </p>
+      <div class="grid-2">
+        <div class="card strong">
+          <h3>pH</h3>
+          <p>
+            pH tells whether the blood is acidic or alkalotic. A pH below 7.35 suggests acidosis. A pH above 7.45 suggests alkalosis.
+          </p>
+        </div>
 
-      <h3>PaCO2</h3>
-      <p>
-        PaCO2 reflects the respiratory component of acid-base balance. Carbon dioxide acts like an acid in the body. If PaCO2 is high, the patient is retaining carbon dioxide and this points toward respiratory acidosis. If PaCO2 is low, the patient is blowing off too much carbon dioxide and this points toward respiratory alkalosis.
-      </p>
+        <div class="card strong">
+          <h3>PaCO2</h3>
+          <p>
+            PaCO2 reflects the respiratory side. CO2 acts like an acid. High PaCO2 points toward respiratory acidosis. Low PaCO2 points toward respiratory alkalosis.
+          </p>
+        </div>
 
-      <h3>HCO3</h3>
-      <p>
-        HCO3, or bicarbonate, reflects the metabolic component. If HCO3 is low, the patient may have metabolic acidosis. If HCO3 is high, the patient may have metabolic alkalosis.
-      </p>
+        <div class="card strong">
+          <h3>HCO3</h3>
+          <p>
+            HCO3, or bicarbonate, reflects the metabolic side. Low HCO3 points toward metabolic acidosis. High HCO3 points toward metabolic alkalosis.
+          </p>
+        </div>
 
-      <h3>PaO2</h3>
-      <p>
-        PaO2 tells you about oxygenation. A low PaO2 suggests poor oxygenation and may raise concern for respiratory compromise or impaired gas exchange. PaO2 is important, but it is not the main value used to decide whether the problem is respiratory acidosis, respiratory alkalosis, metabolic acidosis, or metabolic alkalosis.
-      </p>
-
-      <div class="warning-box">
-        <strong>Common mistake:</strong>
-        <p>
-          Do not use PaO2 to decide the acid-base disorder. PaO2 tells oxygenation. pH, PaCO2, and HCO3 tell the acid-base pattern.
-        </p>
+        <div class="card strong">
+          <h3>PaO2 and SaO2</h3>
+          <p>
+            PaO2 and SaO2 help evaluate oxygenation. They are important, but they are not the main values used to name the acid-base disorder.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
+      <div class="danger-box">
+        Common mistake: Do not use PaO2 to decide the acid-base disorder. PaO2 tells oxygenation. pH, PaCO2, and HCO3 tell the acid-base pattern.
+      </div>
+    </section>
+
+    <section id="steps" class="section">
       <h2>How to Interpret ABGs Step by Step</h2>
 
       <p>
@@ -354,168 +866,138 @@
       </p>
 
       <ol>
-        <li><strong>Check the pH.</strong> Is the patient acidotic or alkalotic?</li>
+        <li><strong>Check the pH.</strong> Is the patient acidotic, alkalotic, or within normal range?</li>
         <li><strong>Check PaCO2.</strong> Is the respiratory value abnormal?</li>
         <li><strong>Check HCO3.</strong> Is the metabolic value abnormal?</li>
-        <li><strong>Match the abnormal value to the pH.</strong> Does PaCO2 or HCO3 explain the pH?</li>
-        <li><strong>Check PaO2.</strong> Is oxygenation normal or low?</li>
+        <li><strong>Match the abnormal value to the pH.</strong> Does PaCO2 or HCO3 explain the pH direction?</li>
+        <li><strong>Check PaO2 and SaO2.</strong> Is oxygenation normal or low?</li>
       </ol>
 
       <div class="note-box">
-        <strong>What to notice first:</strong>
-        <p>
-          The value that matches the pH problem usually identifies the primary cause.
-        </p>
+        The value that matches the pH direction usually identifies the primary cause.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>ABG Acidosis and Alkalosis Made Simple</h2>
-
-      <h3>Respiratory Acidosis</h3>
-      <p>
-        Respiratory acidosis happens when pH is low and PaCO2 is high. This usually means the patient is not ventilating carbon dioxide effectively.
-      </p>
-
-      <h3>Respiratory Alkalosis</h3>
-      <p>
-        Respiratory alkalosis happens when pH is high and PaCO2 is low. This usually means the patient is blowing off too much carbon dioxide, often from hyperventilation.
-      </p>
-
-      <h3>Metabolic Acidosis</h3>
-      <p>
-        Metabolic acidosis happens when pH is low and HCO3 is low. This means the metabolic side is driving the acidosis.
-      </p>
-
-      <h3>Metabolic Alkalosis</h3>
-      <p>
-        Metabolic alkalosis happens when pH is high and HCO3 is high. This means the metabolic side is driving the alkalosis.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Common ABG Patterns</h2>
+    <section id="patterns" class="section">
+      <h2>ABG Acidosis and Alkalosis Patterns</h2>
 
       <div class="table-wrap">
-        <table>
-          <tr>
-            <th>Condition</th>
-            <th>pH</th>
-            <th>PaCO2</th>
-            <th>HCO3</th>
-            <th>What to Notice First</th>
-          </tr>
-          <tr>
-            <td>Respiratory Acidosis</td>
-            <td>Low</td>
-            <td>High</td>
-            <td>Normal or compensating</td>
-            <td>Low pH matches high CO2.</td>
-          </tr>
-          <tr>
-            <td>Respiratory Alkalosis</td>
-            <td>High</td>
-            <td>Low</td>
-            <td>Normal or compensating</td>
-            <td>High pH matches low CO2.</td>
-          </tr>
-          <tr>
-            <td>Metabolic Acidosis</td>
-            <td>Low</td>
-            <td>Normal or compensating</td>
-            <td>Low</td>
-            <td>Low pH matches low HCO3.</td>
-          </tr>
-          <tr>
-            <td>Metabolic Alkalosis</td>
-            <td>High</td>
-            <td>Normal or compensating</td>
-            <td>High</td>
-            <td>High pH matches high HCO3.</td>
-          </tr>
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>pH</th>
+              <th>PaCO2</th>
+              <th>HCO3</th>
+              <th>What to Notice First</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Condition"><strong>Respiratory Acidosis</strong></td>
+              <td data-label="pH">Low</td>
+              <td data-label="PaCO2">High</td>
+              <td data-label="HCO3">Normal or compensating</td>
+              <td data-label="What to Notice First">Low pH matches high CO2.</td>
+            </tr>
+            <tr>
+              <td data-label="Condition"><strong>Respiratory Alkalosis</strong></td>
+              <td data-label="pH">High</td>
+              <td data-label="PaCO2">Low</td>
+              <td data-label="HCO3">Normal or compensating</td>
+              <td data-label="What to Notice First">High pH matches low CO2.</td>
+            </tr>
+            <tr>
+              <td data-label="Condition"><strong>Metabolic Acidosis</strong></td>
+              <td data-label="pH">Low</td>
+              <td data-label="PaCO2">Normal or compensating</td>
+              <td data-label="HCO3">Low</td>
+              <td data-label="What to Notice First">Low pH matches low HCO3.</td>
+            </tr>
+            <tr>
+              <td data-label="Condition"><strong>Metabolic Alkalosis</strong></td>
+              <td data-label="pH">High</td>
+              <td data-label="PaCO2">Normal or compensating</td>
+              <td data-label="HCO3">High</td>
+              <td data-label="What to Notice First">High pH matches high HCO3.</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
-      <p>
-        When students first learn ABGs, it helps to ask one simple question: is the pH moving with the respiratory value or the metabolic value?
-      </p>
-    </div>
+      <div class="success-box">
+        Simple memory: Respiratory follows PaCO2. Metabolic follows HCO3.
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>ABG Example Interpretation</h2>
+    <section id="examples" class="section">
+      <h2>ABG Example Interpretations</h2>
 
-      <h3>Example 1</h3>
-      <p><strong>ABG:</strong> pH 7.30, PaCO2 50, HCO3 24</p>
-      <p>
-        The pH is low, so the patient is acidotic. PaCO2 is high, which matches acidosis. HCO3 is normal. This points to <strong>respiratory acidosis</strong>.
-      </p>
-
-      <h3>Example 2</h3>
-      <p><strong>ABG:</strong> pH 7.50, PaCO2 30, HCO3 24</p>
-      <p>
-        The pH is high, so the patient is alkalotic. PaCO2 is low, which matches alkalosis. HCO3 is normal. This points to <strong>respiratory alkalosis</strong>.
-      </p>
-
-      <h3>Example 3</h3>
-      <p><strong>ABG:</strong> pH 7.28, PaCO2 40, HCO3 18</p>
-      <p>
-        The pH is low, so the patient is acidotic. PaCO2 is normal. HCO3 is low, which matches acidosis. This points to <strong>metabolic acidosis</strong>.
-      </p>
-
-      <h3>Example 4</h3>
-      <p><strong>ABG:</strong> pH 7.48, PaCO2 40, HCO3 30</p>
-      <p>
-        The pH is high, so the patient is alkalotic. PaCO2 is normal. HCO3 is high, which matches alkalosis. This points to <strong>metabolic alkalosis</strong>.
-      </p>
-
-      <div class="note-box">
-        <strong>What to notice first:</strong>
+      <div class="example-box">
+        <strong>Example 1: pH 7.30, PaCO2 50, HCO3 24</strong>
         <p>
-          In each example, the pH gives the direction. Then either PaCO2 or HCO3 explains why.
+          The pH is low, so the patient is acidotic. PaCO2 is high, which matches acidosis. HCO3 is normal. This points to respiratory acidosis.
         </p>
       </div>
-    </div>
 
-    <div class="section">
+      <div class="example-box">
+        <strong>Example 2: pH 7.50, PaCO2 30, HCO3 24</strong>
+        <p>
+          The pH is high, so the patient is alkalotic. PaCO2 is low, which matches alkalosis. HCO3 is normal. This points to respiratory alkalosis.
+        </p>
+      </div>
+
+      <div class="example-box">
+        <strong>Example 3: pH 7.28, PaCO2 40, HCO3 18</strong>
+        <p>
+          The pH is low, so the patient is acidotic. PaCO2 is normal. HCO3 is low, which matches acidosis. This points to metabolic acidosis.
+        </p>
+      </div>
+
+      <div class="example-box">
+        <strong>Example 4: pH 7.48, PaCO2 40, HCO3 30</strong>
+        <p>
+          The pH is high, so the patient is alkalotic. PaCO2 is normal. HCO3 is high, which matches alkalosis. This points to metabolic alkalosis.
+        </p>
+      </div>
+    </section>
+
+    <section id="oxygenation" class="section">
       <h2>ABGs, Vital Signs, and Oxygenation</h2>
 
       <p>
         ABGs connect closely with vital signs because they help explain ventilation and oxygenation. A patient with low oxygen saturation, fast respiratory rate, or signs of respiratory distress may have abnormal ABG values.
       </p>
 
-      <p>
-        This is why ABGs should not be studied alone. They connect to respiratory rate, oxygen saturation, lung function, and patient appearance.
-      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Ventilation</h3>
+          <p>
+            PaCO2 helps show whether the patient is ventilating carbon dioxide effectively.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Oxygenation</h3>
+          <p>
+            PaO2 and SaO2 help show whether oxygen levels are adequate.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Assessment</h3>
+          <p>
+            Respiratory rate, SpO2, work of breathing, and patient appearance help give context to ABG values.
+          </p>
+        </div>
+      </div>
 
       <p>
         Review related assessment basics in the <a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>.
       </p>
+    </section>
 
-      <div class="note-box">
-        <strong>What to notice first:</strong>
-        <p>
-          If oxygenation is the concern, look at PaO2 and SaO2. If acid-base balance is the concern, look at pH, PaCO2, and HCO3.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Why ABG Interpretation Matters</h2>
-
-      <p>
-        Understanding ABGs is not just about passing an exam. In clinical settings, ABGs help identify serious problems such as respiratory failure, poor ventilation, metabolic imbalance, and low oxygenation.
-      </p>
-
-      <p>
-        For example, a patient with respiratory acidosis may need airway support or ventilation adjustments, while a patient with metabolic acidosis may need fluids, medications, or closer monitoring.
-      </p>
-
-      <p>
-        The goal is to recognize the pattern quickly and understand what the numbers are telling you.
-      </p>
-    </div>
-
-    <div class="section">
+    <section id="mistakes" class="section">
       <h2>Common ABG Mistakes Students Make</h2>
 
       <ul>
@@ -528,118 +1010,172 @@
       </ul>
 
       <div class="warning-box">
-        <strong>Important:</strong>
-        <p>
-          Most ABG mistakes happen because students skip the first step. Always start with pH.
-        </p>
+        Most ABG mistakes happen because students skip the first step. Always start with pH.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Study Tips for ABG Interpretation</h2>
+    <section id="practice" class="section">
+      <h2>Practice Questions</h2>
 
-      <ul>
-        <li>Memorize the normal values before trying advanced interpretation.</li>
-        <li>Always check pH first.</li>
-        <li>Remember that PaCO2 is respiratory.</li>
-        <li>Remember that HCO3 is metabolic.</li>
-        <li>Do not confuse oxygenation with acid-base balance.</li>
-        <li>Practice with multiple ABG examples until the pattern becomes easier to spot.</li>
-      </ul>
-    </div>
+      <div class="question-card">
+        <strong>1. What is the normal pH range?</strong>
+        <div class="answer">Answer: 7.35 to 7.45</div>
+        <div class="explain">pH below 7.35 suggests acidosis. pH above 7.45 suggests alkalosis.</div>
+      </div>
 
-    <div class="section">
-      <h2>Test Yourself</h2>
+      <div class="question-card">
+        <strong>2. Which ABG value is respiratory?</strong>
+        <div class="answer">Answer: PaCO2</div>
+        <div class="explain">PaCO2 reflects carbon dioxide ventilation and is the main respiratory value.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. Which ABG value is metabolic?</strong>
+        <div class="answer">Answer: HCO3</div>
+        <div class="explain">HCO3 is bicarbonate and reflects the metabolic side of acid-base balance.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. pH is low and PaCO2 is high. What pattern is this?</strong>
+        <div class="answer">Answer: Respiratory acidosis</div>
+        <div class="explain">Low pH means acidosis. High PaCO2 matches the acidotic direction.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. pH is high and HCO3 is high. What pattern is this?</strong>
+        <div class="answer">Answer: Metabolic alkalosis</div>
+        <div class="explain">High pH means alkalosis. High HCO3 matches the alkalotic direction.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/abg-practice-quiz.html">Take the ABG Practice Quiz →</a>
+        <a class="cta secondary" href="/lab-values-practice-quiz.html">Practice Lab Values</a>
+      </div>
+    </section>
+
+    <section id="study-path" class="section">
+      <h2>Best Study Path</h2>
 
       <p>
-        Reviewing ABG values is important, but practice is what makes it stick. Working through real questions helps you recognize patterns faster and build confidence for exams and clinical situations.
+        Use this order if ABGs feel confusing.
       </p>
 
-      <p>
-        Start practicing now by taking the <a href="/abg-practice-quiz.html">ABG Practice Quiz</a>.
-      </p>
+      <div class="path-grid">
+        <a class="path-card" href="/abg-normal-values.html">
+          1. ABG Normal Values
+          <span>Memorize pH, PaCO2, HCO3, PaO2, and SaO2 first.</span>
+        </a>
 
-      <div class="link-grid">
-        <a class="practice-link" href="/abg-practice-quiz.html">Take the ABG Practice Quiz</a>
+        <a class="path-card" href="/abg-practice-quiz.html">
+          2. ABG Practice Quiz
+          <span>Practice recognizing respiratory and metabolic patterns.</span>
+        </a>
+
+        <a class="path-card" href="/normal-vital-signs-chart.html">
+          3. Normal Vital Signs Chart
+          <span>Connect respiratory rate, oxygen saturation, and assessment clues.</span>
+        </a>
+
+        <a class="path-card" href="/lab-values-practice-quiz.html">
+          4. Lab Values Practice
+          <span>Review related clinical values and interpretation skills.</span>
+        </a>
+
+        <a class="path-card" href="/lungs-anatomy-guide.html">
+          5. Lungs Anatomy Guide
+          <span>Connect ventilation, oxygenation, and respiratory anatomy.</span>
+        </a>
+
+        <a class="path-card" href="/browse-all-practice.html">
+          6. Browse All Practice
+          <span>Find more healthcare fundamentals and study tools.</span>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Frequently Asked Questions</h2>
-
-      <div class="faq-item">
-        <h3>What are normal ABG values?</h3>
-        <p>
-          The most commonly memorized normal ABG values are pH 7.35–7.45, PaCO2 35–45 mm Hg, HCO3 22–26 mEq/L, PaO2 75–100 mm Hg, and SaO2 95–100%.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Which ABG value is respiratory?</h3>
-        <p>
-          PaCO2 is the main respiratory value in ABG interpretation.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Which ABG value is metabolic?</h3>
-        <p>
-          HCO3 is the main metabolic value in ABG interpretation.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>What does a low pH mean on an ABG?</h3>
-        <p>
-          A low pH means the patient is acidotic.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>What does a low PaO2 mean?</h3>
-        <p>
-          A low PaO2 suggests reduced oxygenation and may indicate a respiratory or gas exchange problem.
-        </p>
-      </div>
-    </div>
- <!-- 🔥 NEW SECTION INSERTED HERE -->
-    <div class="section">
+    <section class="section">
       <h2>Related Clinical Learning</h2>
 
       <p>
-        ABG interpretation connects closely with other core healthcare concepts. Strengthen your understanding by reviewing these related topics.
-      </p>
-
-      <div class="link-grid">
-        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
-        <a class="practice-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
-        <a class="practice-link" href="/how-to-read-an-ekg.html">How to Read an EKG</a>
-        <a class="practice-link" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
-      </div>
-    </div>
-    <div class="section">
-      <h2>Keep Practicing</h2>
-
-      <p>
-        If you are building your healthcare fundamentals, keep reviewing related topics and practice tools to strengthen your understanding.
+        ABG interpretation connects closely with vital signs, oxygenation, respiratory anatomy, EKG basics, and lab value review.
       </p>
 
       <div class="link-grid">
         <a class="practice-link" href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
         <a class="practice-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
         <a class="practice-link" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a>
         <a class="practice-link" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
-        <a class="practice-link" href="/how-to-read-an-ekg.html">How to Read an EKG</a>
+        <a class="practice-link" href="/how-to-read-ekg.html">How to Read an EKG</a>
+        <a class="practice-link" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
         <a class="practice-link" href="/teas-practice-questions.html">TEAS Practice Questions</a>
         <a class="practice-link" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
         <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
       </div>
-    </div>
+    </section>
 
-    <p class="small">
+    <section class="section dark">
+      <h2>Ready to Practice ABGs?</h2>
+
+      <p>
+        Reading normal values helps, but practice is what makes ABG patterns easier to recognize.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/abg-practice-quiz.html">Start ABG Practice Quiz →</a>
+        <a class="cta secondary" href="/normal-vital-signs-chart.html">Review Vital Signs</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What are normal ABG values?</h3>
+      <p>
+        Common normal ABG values are pH 7.35 to 7.45, PaCO2 35 to 45 mm Hg, HCO3 22 to 26 mEq/L, PaO2 75 to 100 mm Hg, and SaO2 95 to 100%.
+      </p>
+
+      <h3>Which ABG value is respiratory?</h3>
+      <p>
+        PaCO2 is the main respiratory value because it reflects carbon dioxide ventilation.
+      </p>
+
+      <h3>Which ABG value is metabolic?</h3>
+      <p>
+        HCO3, or bicarbonate, is the main metabolic value in basic ABG interpretation.
+      </p>
+
+      <h3>What should I check first when interpreting ABGs?</h3>
+      <p>
+        Check pH first. Decide whether the patient is acidotic or alkalotic, then compare PaCO2 and HCO3.
+      </p>
+
+      <h3>Does PaO2 determine acid-base balance?</h3>
+      <p>
+        No. PaO2 helps evaluate oxygenation. Acid-base interpretation mainly uses pH, PaCO2, and HCO3.
+      </p>
+    </section>
+
+    <p style="font-size:12px; color:#64748b; margin-top:24px;">
       For learning purposes only. Always follow your program, instructor, facility, and clinical guidelines.
     </p>
 
-  </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for ABG review, lab values, vital signs, nursing fundamentals, TEAS prep, anatomy, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/abg-practice-quiz.html">ABG Practice</a> |
+        <a href="/normal-vital-signs-chart.html">Vital Signs</a> |
+        <a href="/lab-values-practice-quiz.html">Lab Values</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
