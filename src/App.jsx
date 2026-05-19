@@ -14841,57 +14841,102 @@ return (
           >
             <h2 style={{ color: "#12355b", marginTop: 0 }}>Privacy Policy</h2>
             <p>
-              Effective date: March 21, 2026
+              <strong>Effective date:</strong> March 21, 2026
             </p>
+
             <h3 style={{ color: "#12355b" }}>What We Collect</h3>
             <p>
-              We use Google Analytics to collect limited usage information such as pages visited,
-              approximate location (region/city), device and browser details, interaction events, and
-              ad-related consent choices where required. We do not intentionally collect sensitive
-              personal health information through analytics or advertising tools.
+              MedSkillBuilder uses Google Analytics to collect limited usage information such as pages
+              visited, approximate location such as region or city, device and browser details,
+              interaction events, and advertising consent choices where required.
             </p>
+            <p>
+              We do not intentionally collect sensitive personal health information through analytics
+              or advertising tools. MedSkillBuilder is an educational website and is not intended to
+              collect medical records, diagnoses, treatment information, or personal health data.
+            </p>
+
             <h3 style={{ color: "#12355b" }}>How We Use Data</h3>
             <p>
               We use analytics data to understand how learners use MedSkillBuilder, improve site
-              performance, enhance training content and user experience, and support limited website
-              monetization through advertising.
+              performance, enhance training content, improve user experience, identify popular study
+              tools, and support limited website monetization through advertising.
             </p>
+
             <h3 style={{ color: "#12355b" }}>Cookies and Tracking</h3>
             <p>
               Google Analytics and Google AdSense may use cookies or similar technologies to
               distinguish visitors, measure site activity, support advertising, and help determine
-              whether ads are personalized or non-personalized based on visitor consent and applicable
-              regional requirements.
+              whether ads are personalized or non-personalized based on visitor consent, browser
+              settings, location, and applicable regional requirements.
             </p>
+
             <h3 style={{ color: "#12355b" }}>Your Choices</h3>
             <p>
-              You can block or delete cookies in your browser settings. You can also opt out of Google
-              Analytics using the official browser add-on: https://tools.google.com/dlpage/gaoptout
-              . Where required by law, visitors may also be shown a consent message to manage cookie
-              and advertising preferences.
+              You can block or delete cookies through your browser settings. You can also opt out of
+              Google Analytics by using the official Google Analytics browser add-on:{" "}
+              <a
+                href="https://tools.google.com/dlpage/gaoptout"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#2563eb", fontWeight: 700 }}
+              >
+                https://tools.google.com/dlpage/gaoptout
+              </a>
+              .
             </p>
+            <p>
+              Where required by law, visitors may also be shown a consent message to manage cookie and
+              advertising preferences.
+            </p>
+
             <h3 style={{ color: "#12355b" }}>Third-Party Services</h3>
             <p>
-              Google Analytics and Google AdSense are provided by Google. Learn more about how Google
-              uses data here: https://policies.google.com/technologies/partner-sites
+              Google Analytics and Google AdSense are provided by Google. You can learn more about how
+              Google uses information from sites and apps that use Google services here:{" "}
+              <a
+                href="https://policies.google.com/technologies/partner-sites"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#2563eb", fontWeight: 700 }}
+              >
+                https://policies.google.com/technologies/partner-sites
+              </a>
+              .
             </p>
+
             <h3 style={{ color: "#12355b" }}>Advertising Disclosure</h3>
             <p>
               MedSkillBuilder may display advertisements to support the site. Ads may be personalized
               or non-personalized depending on consent choices, browser settings, location, and Google
               advertising policies.
             </p>
+
+            <h3 style={{ color: "#12355b" }}>Educational Use Only</h3>
+            <p>
+              MedSkillBuilder provides educational study tools and practice resources. Content on this
+              website is for learning purposes only and is not medical advice, clinical direction,
+              diagnosis, or treatment guidance.
+            </p>
+
             <h3 style={{ color: "#12355b" }}>Non-Affiliation and Trademarks</h3>
             <p>
               MedSkillBuilder is an independent educational platform. References to third-party
-              products, organizations, certifications, and trademarks (including CBET, TEAS, AAMI,
-              ATI, Cash App, and Google) are used for descriptive educational purposes only and do not
-              imply endorsement, sponsorship, or affiliation.
+              products, organizations, certifications, exams, and trademarks, including CBET, TEAS,
+              AAMI, ATI, Cash App, Google, and other names, are used for descriptive educational
+              purposes only and do not imply endorsement, sponsorship, or affiliation.
             </p>
+
             <h3 style={{ color: "#12355b" }}>Updates to This Policy</h3>
             <p>
-              We may update this policy from time to time. Changes will be posted on this page with an
-              updated effective date.
+              We may update this Privacy Policy from time to time. Changes will be posted on this page
+              with an updated effective date.
+            </p>
+
+            <h3 style={{ color: "#12355b" }}>Contact</h3>
+            <p>
+              If you have questions about this Privacy Policy or MedSkillBuilder, please use the
+              Contact tab available on MedSkillBuilder.com.
             </p>
           </div>
         )}
