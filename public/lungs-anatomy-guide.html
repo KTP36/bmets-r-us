@@ -2,349 +2,867 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Lungs Anatomy Guide | MedSkillBuilder</title>
+  <title>Lungs Anatomy Guide | Trachea, Bronchi, Alveoli, Gas Exchange & Practice</title>
 
   <meta
     name="description"
-    content="Learn lungs anatomy with a simple guide covering the trachea, carina, bronchi, lung lobes, alveoli, gas exchange, oxygenation, and respiratory assessment. Great for anatomy review, nursing students, TEAS prep, and healthcare exam study."
+    content="Learn lungs anatomy with a simple guide covering the trachea, carina, bronchi, right and left lung lobes, alveoli, gas exchange, oxygenation, respiratory assessment, ABG connection, vital signs, and practice questions."
   />
 
   <meta
     name="keywords"
-    content="lungs anatomy, lung anatomy guide, trachea, carina, bronchi, alveoli, gas exchange, left lung, right lung, respiratory anatomy, nursing anatomy, TEAS anatomy, MedSkillBuilder"
+    content="lungs anatomy, lung anatomy guide, respiratory anatomy, trachea, carina, bronchi, alveoli, gas exchange, oxygenation, left lung, right lung, lung lobes, nursing anatomy, TEAS anatomy, respiratory assessment, lungs anatomy quiz"
   />
+
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/lungs-anatomy-guide.html" />
 
+  <meta property="og:title" content="Lungs Anatomy Guide | MedSkillBuilder" />
+
+  <meta
+    property="og:description"
+    content="Learn the trachea, carina, bronchi, lung lobes, alveoli, gas exchange, oxygenation, vital signs, ABG connection, and lungs anatomy practice questions."
+  />
+
+  <meta property="og:type" content="article" />
+
+  <meta property="og:url" content="https://medskillbuilder.com/lungs-anatomy-guide.html" />
+
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Lungs Anatomy Guide",
+    "description": "A beginner-friendly lungs anatomy guide covering the trachea, carina, bronchi, right and left lung lobes, alveoli, gas exchange, oxygenation, vital signs, ABG connection, respiratory assessment, and practice questions.",
+    "url": "https://medskillbuilder.com/lungs-anatomy-guide.html",
+    "learningResourceType": "Study guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Anatomy students, nursing students, TEAS learners, allied health students, respiratory learners, and healthcare beginners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the main function of the lungs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The main function of the lungs is to bring oxygen into the body and remove carbon dioxide through gas exchange."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does gas exchange happen in the lungs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gas exchange happens in the alveoli, which are tiny air sacs surrounded by capillaries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the carina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The carina is the point where the trachea splits into the right and left main bronchi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many lobes does the right lung have?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The right lung usually has three lobes: upper, middle, and lower."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many lobes does the left lung have?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The left lung usually has two lobes because the heart takes up space on the left side of the chest."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
-    body {
+    :root {
+      --navy: #082f57;
+      --teal: #0f766e;
+      --teal2: #14b8a6;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #ccfbf1;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.10), transparent 30%),
+        linear-gradient(180deg, #f0fdfa 0%, #f8fbff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
     }
 
     .container {
-      max-width: 960px;
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 40px 20px 60px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
+    .topbar {
+      padding: 18px 0;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(204, 251, 241, 0.90);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 700;
+      width: fit-content;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #0f766e, #14b8a6);
-      color: white;
-      padding: 34px 28px;
-      border-radius: 24px;
-      margin-bottom: 28px;
-      box-shadow: 0 10px 28px rgba(15, 118, 110, 0.16);
+    .brand img {
+      width: 58px;
+      height: auto;
     }
 
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 2.3rem;
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
     }
 
-    .hero p {
-      margin: 0;
-      font-size: 1.05rem;
-      max-width: 780px;
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
     }
 
-    .card {
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
       background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    header {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.20), transparent 34%),
+        linear-gradient(135deg, var(--teal), var(--navy));
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(15, 118, 110, 0.24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      left: -120px;
+      bottom: -150px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      color: #ccfbf1;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .stats,
+    .grid-2,
+    .grid-3,
+    .link-grid,
+    .toc,
+    .path-grid {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .grid-2,
+    .link-grid,
+    .path-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3,
+    .toc {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat,
+    .toc a,
+    .path-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 21px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a,
+    .path-card {
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--teal2);
+      background: #f0fdfa;
+    }
+
+    .stat span,
+    .path-card span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
       margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(204, 251, 241, 0.72), rgba(255, 255, 255, 0.98));
+      border-color: rgba(20, 184, 166, 0.35);
+    }
+
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 35%),
+        linear-gradient(135deg, var(--teal), var(--navy));
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .section.dark h2,
+    .section.dark h3,
+    .section.dark p,
+    .section.dark li {
+      color: white;
     }
 
     h2 {
-      margin-top: 0;
-      color: #12355b;
+      color: var(--teal);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
     }
 
     h3 {
-      color: #0f766e;
-      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
     }
 
-    .structure-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 18px;
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
     }
 
-    .structure-box {
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.13);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .cta.secondary {
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .cta.orange {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      box-shadow: 0 16px 28px rgba(249, 115, 22, 0.22);
+    }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--teal2);
+    }
+
+    .note-box,
+    .success-box,
+    .warning-box {
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .note-box {
       background: #ecfeff;
       border: 1px solid #a5f3fc;
-      border-radius: 16px;
-      padding: 16px;
-    }
-
-    .structure-box h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-      color: #0f766e;
-      font-size: 1.05rem;
-    }
-
-    .quiz-list {
-      padding-left: 22px;
-    }
-
-    .quiz-list li {
-      margin-bottom: 22px;
-    }
-
-    .answers {
-      margin-top: 8px;
-      margin-bottom: 10px;
-      padding-left: 18px;
-    }
-
-    .answer-line {
-      color: #0f766e;
-      font-weight: 700;
-      margin-top: 8px;
-    }
-
-    .highlight-box {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 18px;
-      margin-bottom: 18px;
-    }
-
-    .warning-box {
-      background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 18px;
-      margin-bottom: 18px;
+      border-left: 6px solid var(--teal);
+      color: #115e59;
     }
 
     .success-box {
       background: #ecfdf5;
-      border-left: 5px solid #16a34a;
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 18px;
-      margin-bottom: 18px;
+      border: 1px solid #bbf7d0;
+      border-left: 6px solid var(--green);
+      color: #065f46;
     }
 
-    .related-links {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
+    .warning-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      font-weight: 800;
     }
 
-    .related-links a {
-      display: block;
-      padding: 14px 18px;
-      border-radius: 12px;
-      background: #f1f5f9;
-      text-decoration: none;
-      color: #0f172a;
-      font-weight: 700;
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
     }
 
-    .related-links a:hover {
-      background: #e2e8f0;
+    li {
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
     }
 
-    .cta-box {
-      background: #eff6ff;
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 28px;
+    }
+
+    .value-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
       border-radius: 18px;
-      padding: 26px;
-      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border);
     }
 
-    .cta-box a {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 14px 22px;
-      border-radius: 12px;
-      background: #2563eb;
-      color: #ffffff;
+    .value-table th {
+      background: var(--teal);
+      color: white;
+      text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .value-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .value-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .question-card strong {
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .explain {
+      margin-top: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
+    }
+
+    .practice-link {
+      display: block;
       text-decoration: none;
-      font-weight: 700;
+      background: #ecfeff;
+      border: 1px solid #a5f3fc;
+      color: #115e59;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+      transition: 0.18s ease;
     }
 
-    @media (max-width: 640px) {
-      .hero h1 {
-        font-size: 1.9rem;
+    .practice-link:hover {
+      background: #ccfbf1;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #5eead4;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
       }
 
-      .card,
-      .cta-box,
-      .hero {
-        padding: 22px 18px;
+      .stats,
+      .grid-2,
+      .grid-3,
+      .link-grid,
+      .toc,
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .value-table,
+      .value-table thead,
+      .value-table tbody,
+      .value-table th,
+      .value-table td,
+      .value-table tr {
+        display: block;
+      }
+
+      .value-table thead {
+        display: none;
+      }
+
+      .value-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .value-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .value-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--teal);
+        font-weight: 900;
+        margin-bottom: 4px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
 
-    <div class="hero">
-      <h1>Lungs Anatomy Guide</h1>
-      <p>
-        Learn the major structures of the lungs and airways with this simple anatomy guide.
-        Review the trachea, carina, bronchi, lobes of the lungs, alveoli, gas exchange,
-        oxygenation, and breathing basics for class, anatomy quizzes, TEAS review, nursing study,
-        and healthcare exam prep.
-      </p>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Lungs anatomy, ABG, vital signs, TEAS, nursing, and healthcare study tools</span>
+        </div>
+      </a>
+
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/lungs-anatomy-quiz.html">Lungs Quiz</a>
+        <a href="/abg-normal-values.html">ABG Guide</a>
+      </nav>
     </div>
+  </div>
 
-    <div class="highlight-box">
-      <strong>What to notice first:</strong>
-      <p>
-        The lungs are not just structures to memorize. Their main job is to move oxygen into the body
-        and remove carbon dioxide. That connection between anatomy and function is what matters most
-        on exams and in real patient care.
-      </p>
-    </div>
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Respiratory Anatomy Study Guide</div>
 
-    <div class="card">
-      <h2>What Do the Lungs Do?</h2>
-      <p>
-        The lungs are the main organs of the respiratory system. Their job is to bring oxygen
-        into the body and remove carbon dioxide. Air travels through the upper airway, down the
-        trachea, through the bronchi, and into the lungs where gas exchange takes place.
-      </p>
-      <p>
-        Learning lungs anatomy helps students understand breathing, airway structure, oxygen delivery,
-        and respiratory function. It is especially useful for anatomy students, nursing students,
-        TEAS review, and general healthcare exam preparation.
-      </p>
-      <p>
-        The lungs work closely with the heart and blood vessels. Oxygen enters the bloodstream through
-        the lungs, and carbon dioxide leaves the bloodstream through the lungs. This is why respiratory
-        problems can affect the entire body quickly.
-      </p>
-      <p>
-        If you want to practice identifying these structures after reviewing this guide, you can also
-        try the <a href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz</a> for a more active way to study.
-      </p>
+        <h1>Lungs Anatomy Guide</h1>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
         <p>
-          If oxygen is not getting in or carbon dioxide is not getting out, think respiratory problem.
+          Learn the major structures of the lungs and airways, including the trachea, carina, bronchi, right and left lung lobes, alveoli, gas exchange, oxygenation, and respiratory assessment clues.
         </p>
+
+        <p>
+          Built for anatomy students, nursing students, TEAS learners, respiratory review, allied health students, and healthcare beginners.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/lungs-anatomy-quiz.html">Start Lungs Anatomy Quiz →</a>
+          <a class="cta secondary" href="/abg-normal-values.html">Review ABG Normal Values</a>
+          <a class="cta orange" href="/normal-vital-signs-chart.html">Review Vital Signs</a>
+        </div>
       </div>
     </div>
+  </header>
 
-    <div class="card">
+  <main class="container">
+
+    <div class="stats">
+      <div class="stat">Trachea<span>Main airway</span></div>
+      <div class="stat">Carina<span>Split point</span></div>
+      <div class="stat">Bronchi<span>Air to lungs</span></div>
+      <div class="stat">Alveoli<span>Gas exchange</span></div>
+      <div class="stat">SpO2<span>Oxygenation</span></div>
+    </div>
+
+    <section class="section highlight">
+      <h2>Quick Answer</h2>
+
+      <div class="success-box">
+        The lungs bring oxygen into the body and remove carbon dioxide. Air moves through the trachea, splits at the carina into the bronchi, travels deeper into the lungs, and reaches the alveoli where gas exchange happens.
+      </div>
+
+      <p class="lead">
+        The most important idea is to connect anatomy with function. The airway moves air. The alveoli exchange gases. The blood carries oxygen. Vital signs and ABGs help show whether that system is working.
+      </p>
+
+      <div class="note-box">
+        <strong>What to notice first:</strong><br />
+        Lung anatomy is not just memorizing structures. It explains oxygenation, breathing problems, respiratory rate changes, SpO2 changes, and ABG patterns.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Jump to a Topic</h2>
+
+      <div class="toc">
+        <a href="#air-pathway">Air Pathway</a>
+        <a href="#structures">Main Structures</a>
+        <a href="#gas-exchange">Gas Exchange</a>
+        <a href="#lobes">Right vs Left Lung</a>
+        <a href="#clinical">Clinical Connections</a>
+        <a href="#assessment">Respiratory Assessment</a>
+        <a href="#exam">Exam Study</a>
+        <a href="#practice">Practice Questions</a>
+        <a href="#study-path">Best Study Path</a>
+      </div>
+    </section>
+
+    <section id="air-pathway" class="section">
       <h2>How Air Moves Through the Respiratory Tract</h2>
+
       <p>
-        A simple way to understand lungs anatomy is to follow the path of air. Air enters through the nose
-        or mouth, moves through the throat, passes down the trachea, reaches the carina, and then splits
-        into the right and left main bronchi. From there, air continues into smaller branching airways inside
-        the lungs until it reaches tiny air sacs called alveoli, where oxygen and carbon dioxide are exchanged.
-      </p>
-      <p>
-        This step-by-step pathway helps connect anatomy to function. When students understand where air travels,
-        it becomes easier to understand respiratory assessment, breathing problems, and why airway anatomy matters
-        in clinical care.
+        A simple way to understand lungs anatomy is to follow the path of air. Air enters through the nose or mouth, moves through the throat, passes down the trachea, reaches the carina, and then splits into the right and left main bronchi.
       </p>
 
-      <ul>
-        <li><strong>Nose or mouth:</strong> Air enters the body.</li>
-        <li><strong>Trachea:</strong> Air moves down the main airway.</li>
-        <li><strong>Carina:</strong> The airway splits into the right and left main bronchi.</li>
-        <li><strong>Bronchi:</strong> Air moves into each lung.</li>
-        <li><strong>Smaller airways:</strong> Air travels deeper into the lungs.</li>
-        <li><strong>Alveoli:</strong> Gas exchange takes place.</li>
-      </ul>
+      <p>
+        From there, air travels through smaller branching airways until it reaches tiny air sacs called alveoli. This is where oxygen moves into the blood and carbon dioxide moves out of the blood.
+      </p>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          If airflow is blocked anywhere along this pathway, oxygen delivery can be affected.
-          This is why airway problems can become serious quickly.
-        </p>
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Structure</th>
+              <th>What Happens</th>
+              <th>What to Notice First</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Step"><strong>1</strong></td>
+              <td data-label="Structure">Nose or mouth</td>
+              <td data-label="What Happens">Air enters the body.</td>
+              <td data-label="What to Notice First">This is the start of airflow.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>2</strong></td>
+              <td data-label="Structure">Trachea</td>
+              <td data-label="What Happens">Air moves down the main airway.</td>
+              <td data-label="What to Notice First">The trachea is the main airway tube.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>3</strong></td>
+              <td data-label="Structure">Carina</td>
+              <td data-label="What Happens">The trachea splits.</td>
+              <td data-label="What to Notice First">The carina is the split point.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>4</strong></td>
+              <td data-label="Structure">Bronchi</td>
+              <td data-label="What Happens">Air moves into each lung.</td>
+              <td data-label="What to Notice First">Right and left bronchi carry air into the lungs.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>5</strong></td>
+              <td data-label="Structure">Alveoli</td>
+              <td data-label="What Happens">Gas exchange occurs.</td>
+              <td data-label="What to Notice First">Oxygen enters blood and carbon dioxide leaves blood.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="card">
+      <div class="note-box">
+        If airflow is blocked anywhere along this pathway, oxygen delivery can be affected.
+      </div>
+    </section>
+
+    <section id="structures" class="section">
       <h2>Main Lung Structures</h2>
 
-      <div class="structure-grid">
-        <div class="structure-box">
+      <div class="grid-2">
+        <div class="card strong">
           <h3>Trachea</h3>
-          <p>The trachea is the main airway tube that carries air from the throat toward the lungs.</p>
+          <p>
+            The trachea is the main airway tube that carries air from the throat toward the lungs.
+          </p>
         </div>
 
-        <div class="structure-box">
+        <div class="card strong">
           <h3>Carina</h3>
-          <p>The carina is the point where the trachea splits into the right and left main bronchi.</p>
+          <p>
+            The carina is the point where the trachea splits into the right and left main bronchi.
+          </p>
         </div>
 
-        <div class="structure-box">
+        <div class="card strong">
           <h3>Right Main Bronchus</h3>
-          <p>The right main bronchus carries air from the trachea into the right lung.</p>
+          <p>
+            The right main bronchus carries air from the trachea into the right lung.
+          </p>
         </div>
 
-        <div class="structure-box">
+        <div class="card strong">
           <h3>Left Main Bronchus</h3>
-          <p>The left main bronchus carries air from the trachea into the left lung.</p>
+          <p>
+            The left main bronchus carries air from the trachea into the left lung.
+          </p>
         </div>
 
-        <div class="structure-box">
-          <h3>Right Lung</h3>
-          <p>The right lung is larger and typically has three lobes: upper, middle, and lower.</p>
-        </div>
-
-        <div class="structure-box">
-          <h3>Left Lung</h3>
-          <p>The left lung is slightly smaller to make room for the heart and usually has two lobes.</p>
-        </div>
-
-        <div class="structure-box">
+        <div class="card strong">
           <h3>Alveoli</h3>
-          <p>Alveoli are tiny air sacs where oxygen enters the blood and carbon dioxide leaves the blood.</p>
+          <p>
+            Alveoli are tiny air sacs where oxygen enters the blood and carbon dioxide leaves the blood.
+          </p>
         </div>
 
-        <div class="structure-box">
+        <div class="card strong">
           <h3>Pleura</h3>
-          <p>The pleura is a thin lining around the lungs that helps reduce friction during breathing.</p>
+          <p>
+            The pleura is a thin lining around the lungs that helps reduce friction during breathing.
+          </p>
         </div>
       </div>
+    </section>
 
-      <div class="highlight-box">
-        <strong>Quick study tip:</strong> Remember that the right lung is usually larger and has three lobes,
-        while the left lung is smaller and has two lobes because the heart takes up space on the left side.
-      </div>
-    </div>
-
-    <div class="card">
+    <section id="gas-exchange" class="section">
       <h2>Gas Exchange in the Alveoli</h2>
+
       <p>
-        Gas exchange happens in the alveoli. Alveoli are tiny air sacs surrounded by small blood vessels called
-        capillaries. Oxygen moves from the alveoli into the blood, and carbon dioxide moves from the blood into
-        the alveoli so it can be breathed out.
-      </p>
-      <p>
-        This is one of the most important lung concepts for healthcare learners. The airway brings air into the
-        lungs, but the alveoli are where oxygen actually crosses into the bloodstream.
+        Gas exchange happens in the alveoli. Alveoli are tiny air sacs surrounded by small blood vessels called capillaries. Oxygen moves from the alveoli into the blood, and carbon dioxide moves from the blood into the alveoli so it can be breathed out.
       </p>
 
       <ul>
@@ -353,65 +871,90 @@
         <li><strong>Breathing out:</strong> removes carbon dioxide from the body.</li>
       </ul>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Alveoli are the key gas exchange site. If gas exchange is impaired, oxygen levels may drop and carbon dioxide may build up.
-        </p>
+      <div class="warning-box">
+        If gas exchange is impaired, oxygen levels may drop and carbon dioxide may build up. This connects lung anatomy directly to SpO2, respiratory rate, and ABG interpretation.
       </div>
-    </div>
+    </section>
 
-    <div class="card">
+    <section id="lobes" class="section">
       <h2>Right Lung vs Left Lung</h2>
+
       <p>
-        The right and left lungs are similar, but they are not exactly the same. The right lung is typically larger
-        and has three lobes. The left lung is smaller because the heart sits slightly toward the left side of the chest.
+        The right and left lungs are similar, but they are not exactly the same. The right lung is typically larger and has three lobes. The left lung is smaller because the heart sits slightly toward the left side of the chest.
       </p>
 
-      <ul>
-        <li><strong>Right lung:</strong> upper lobe, middle lobe, lower lobe.</li>
-        <li><strong>Left lung:</strong> upper lobe and lower lobe.</li>
-        <li><strong>Left side:</strong> has space for the heart.</li>
-      </ul>
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Side</th>
+              <th>Lobes</th>
+              <th>Memory Tip</th>
+              <th>Why It Matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Side"><strong>Right Lung</strong></td>
+              <td data-label="Lobes">Upper, middle, and lower lobes</td>
+              <td data-label="Memory Tip">Right lung = 3 lobes</td>
+              <td data-label="Why It Matters">Often tested in anatomy recognition questions.</td>
+            </tr>
+            <tr>
+              <td data-label="Side"><strong>Left Lung</strong></td>
+              <td data-label="Lobes">Upper and lower lobes</td>
+              <td data-label="Memory Tip">Left lung = 2 lobes</td>
+              <td data-label="Why It Matters">Smaller because the heart takes up space on the left side.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <div class="success-box">
-        <strong>Memory tip:</strong>
-        <p>
-          Right lung = 3 lobes. Left lung = 2 lobes.
-        </p>
+        Memory tip: Right lung = 3 lobes. Left lung = 2 lobes.
       </div>
-    </div>
+    </section>
 
-    <div class="card">
+    <section id="clinical" class="section">
       <h2>Why Lung Anatomy Matters</h2>
+
       <p>
-        Understanding lungs anatomy supports learning about breathing, oxygenation, airway function,
-        and common respiratory conditions. It also helps students connect anatomy with clinical topics
-        like wheezing, shortness of breath, pneumonia, collapsed lung, and airway obstruction.
-      </p>
-      <p>
-        For healthcare learners, lungs anatomy is more than a memorization topic. It supports patient assessment,
-        oxygen delivery concepts, respiratory monitoring, and interpretation of symptoms involving the chest and airway.
-        This is one reason lung anatomy shows up so often in anatomy classes, nursing study, and entrance exam review.
-      </p>
-      <p>
-        Lung anatomy also connects closely to vital signs and ABGs. A patient with breathing difficulty may have a high
-        respiratory rate, low oxygen saturation, abnormal breath sounds, or abnormal arterial blood gas values.
+        Lung anatomy supports learning about breathing, oxygenation, airway function, and common respiratory conditions. It also helps students connect anatomy with clinical topics like wheezing, shortness of breath, pneumonia, collapsed lung, and airway obstruction.
       </p>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Always connect lung anatomy to oxygenation. Anatomy tells you the structure, but oxygenation tells you how well the system is working.
-        </p>
+      <p>
+        Lung anatomy also connects closely to vital signs and ABGs. A patient with breathing difficulty may have a high respiratory rate, low oxygen saturation, abnormal breath sounds, or abnormal arterial blood gas values.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Vital signs</h3>
+          <p>
+            Respiratory rate and SpO2 can change when oxygenation or ventilation is affected.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>ABGs</h3>
+          <p>
+            PaCO2, PaO2, and pH help connect breathing problems with acid-base balance and oxygenation.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Assessment</h3>
+          <p>
+            Breath sounds, work of breathing, skin color, and patient appearance help provide context.
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
+    <section id="assessment" class="section">
       <h2>Clinical Connections: What Lung Problems Can Look Like</h2>
+
       <p>
-        Lung problems often show up through changes in breathing, oxygen levels, breath sounds, or patient appearance.
-        These are the types of clues that commonly appear in nursing, TEAS, and healthcare fundamentals questions.
+        Lung problems often show up through changes in breathing, oxygen levels, breath sounds, or patient appearance. These are the types of clues that commonly appear in nursing, TEAS, and healthcare fundamentals questions.
       </p>
 
       <ul>
@@ -422,182 +965,232 @@
         <li><strong>Shortness of breath:</strong> may indicate respiratory distress or poor gas exchange.</li>
       </ul>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Respiratory problems often show up as changes in respiratory rate and oxygen saturation.
-        </p>
+      <div class="note-box">
+        Respiratory problems often show up as changes in respiratory rate and oxygen saturation.
       </div>
 
-      <p>
-        Review related assessment basics in the <a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
-        and <a href="/abg-normal-values.html">ABG Normal Values Guide</a>.
-      </p>
-    </div>
+      <div class="cta-row">
+        <a class="cta secondary" href="/normal-vital-signs-chart.html">Review Normal Vital Signs</a>
+        <a class="cta orange" href="/abg-normal-values.html">Review ABG Normal Values</a>
+      </div>
+    </section>
 
-    <div class="card">
+    <section id="exam" class="section">
       <h2>Lungs Anatomy and Exam Study</h2>
+
       <p>
-        On anatomy quizzes, TEAS questions, and nursing exams, lung anatomy questions often test recognition. You may be asked
-        to identify the trachea, bronchi, carina, right lung, left lung, or alveoli. You may also be asked to connect a structure
-        to its function.
+        On anatomy quizzes, TEAS questions, and nursing exams, lung anatomy questions often test recognition. You may be asked to identify the trachea, bronchi, carina, right lung, left lung, or alveoli. You may also be asked to connect a structure to its function.
       </p>
 
-      <ul>
-        <li><strong>Trachea:</strong> main airway.</li>
-        <li><strong>Carina:</strong> split point of the trachea.</li>
-        <li><strong>Bronchi:</strong> carry air into the lungs.</li>
-        <li><strong>Alveoli:</strong> gas exchange.</li>
-        <li><strong>Right lung:</strong> three lobes.</li>
-        <li><strong>Left lung:</strong> two lobes.</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Common structure questions</h3>
+          <ul>
+            <li>Trachea = main airway</li>
+            <li>Carina = split point</li>
+            <li>Bronchi = carry air into lungs</li>
+            <li>Alveoli = gas exchange</li>
+          </ul>
+        </div>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Most exam questions test whether you can recognize the structure and connect it to the correct function.
-        </p>
+        <div class="card">
+          <h3>Common function questions</h3>
+          <ul>
+            <li>Lungs bring oxygen in</li>
+            <li>Lungs remove carbon dioxide</li>
+            <li>Alveoli exchange gases</li>
+            <li>Lung issues can affect SpO2 and ABGs</li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div class="card">
+      <div class="success-box">
+        Exam tip: Most lung anatomy questions test whether you can connect structure to function.
+      </div>
+    </section>
+
+    <section id="practice" class="section">
       <h2>Lungs Anatomy Practice Questions</h2>
 
-      <ol class="quiz-list">
-        <li>
-          What is the main function of the lungs?
-          <ul class="answers">
-            <li>A. Pump blood</li>
-            <li>B. Exchange oxygen and carbon dioxide</li>
-            <li>C. Digest food</li>
-            <li>D. Filter waste</li>
-          </ul>
-          <div class="answer-line">Answer: B. Exchange oxygen and carbon dioxide — The lungs bring in oxygen and remove carbon dioxide.</div>
-        </li>
-
-        <li>
-          Which structure carries air from the throat toward the bronchi?
-          <ul class="answers">
-            <li>A. Carina</li>
-            <li>B. Trachea</li>
-            <li>C. Esophagus</li>
-            <li>D. Aorta</li>
-          </ul>
-          <div class="answer-line">Answer: B. Trachea — The trachea is the main airway leading to the lungs.</div>
-        </li>
-
-        <li>
-          What is the carina?
-          <ul class="answers">
-            <li>A. The lining of the lungs</li>
-            <li>B. The top of the throat</li>
-            <li>C. The point where the trachea splits</li>
-            <li>D. A chamber of the heart</li>
-          </ul>
-          <div class="answer-line">Answer: C. The point where the trachea splits — The carina divides the airway into the main bronchi.</div>
-        </li>
-
-        <li>
-          Which bronchus carries air into the right lung?
-          <ul class="answers">
-            <li>A. Left main bronchus</li>
-            <li>B. Right main bronchus</li>
-            <li>C. Trachea</li>
-            <li>D. Carina</li>
-          </ul>
-          <div class="answer-line">Answer: B. Right main bronchus — It directs air into the right lung.</div>
-        </li>
-
-        <li>
-          Which lung is slightly smaller?
-          <ul class="answers">
-            <li>A. Right lung</li>
-            <li>B. Left lung</li>
-            <li>C. Both are equal size</li>
-            <li>D. Neither lung</li>
-          </ul>
-          <div class="answer-line">Answer: B. Left lung — The left lung is smaller to make room for the heart.</div>
-        </li>
-
-        <li>
-          Which lung usually has three lobes?
-          <ul class="answers">
-            <li>A. Left lung</li>
-            <li>B. Right lung</li>
-            <li>C. Both lungs</li>
-            <li>D. Neither lung</li>
-          </ul>
-          <div class="answer-line">Answer: B. Right lung — The right lung is typically divided into three lobes.</div>
-        </li>
-
-        <li>
-          Where does gas exchange occur?
-          <ul class="answers">
-            <li>A. Trachea</li>
-            <li>B. Carina</li>
-            <li>C. Alveoli</li>
-            <li>D. Esophagus</li>
-          </ul>
-          <div class="answer-line">Answer: C. Alveoli — Alveoli are the tiny air sacs where oxygen and carbon dioxide exchange occurs.</div>
-        </li>
-
-        <li>
-          Which structure splits into the right and left main bronchi?
-          <ul class="answers">
-            <li>A. Trachea at the carina</li>
-            <li>B. Left lung</li>
-            <li>C. Alveoli</li>
-            <li>D. Diaphragm</li>
-          </ul>
-          <div class="answer-line">Answer: A. Trachea at the carina — The carina is the split point into the main bronchi.</div>
-        </li>
-      </ol>
-    </div>
-
-    <div class="card">
-      <h2>Test Yourself Further</h2>
-      <p>
-        Reading a guide is a great start, but practice helps the information stick. After reviewing the trachea,
-        carina, bronchi, alveoli, gas exchange, and lung lobes, the best next step is active recall.
-      </p>
-      <p>
-        Try the <a href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz</a> to reinforce the structures covered in this guide
-        and build confidence with anatomy identification.
-      </p>
-
-      <div class="related-links">
-        <a href="/lungs-anatomy-quiz.html">Take the Lungs Anatomy Quiz</a>
-        <a href="/anatomy-labeling-practice.html">Try Interactive Anatomy Labeling Practice</a>
-        <a href="/normal-vital-signs-chart.html">Review Normal Vital Signs</a>
-        <a href="/abg-normal-values.html">Review ABG Normal Values</a>
-        <a href="/browse-all-practice.html">Browse All Practice Pages</a>
+      <div class="question-card">
+        <strong>1. What is the main function of the lungs?</strong>
+        <div class="answer">Answer: Exchange oxygen and carbon dioxide.</div>
+        <div class="explain">The lungs bring in oxygen and remove carbon dioxide.</div>
       </div>
-    </div>
 
-    <div class="card">
+      <div class="question-card">
+        <strong>2. Which structure carries air from the throat toward the bronchi?</strong>
+        <div class="answer">Answer: Trachea.</div>
+        <div class="explain">The trachea is the main airway leading to the lungs.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. What is the carina?</strong>
+        <div class="answer">Answer: The point where the trachea splits.</div>
+        <div class="explain">The carina divides the airway into the right and left main bronchi.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. Which structure carries air into the right lung?</strong>
+        <div class="answer">Answer: Right main bronchus.</div>
+        <div class="explain">The right main bronchus directs air into the right lung.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. Which lung is slightly smaller?</strong>
+        <div class="answer">Answer: Left lung.</div>
+        <div class="explain">The left lung is smaller because the heart takes up space on the left side.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>6. Which lung usually has three lobes?</strong>
+        <div class="answer">Answer: Right lung.</div>
+        <div class="explain">The right lung is typically divided into upper, middle, and lower lobes.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>7. Where does gas exchange occur?</strong>
+        <div class="answer">Answer: Alveoli.</div>
+        <div class="explain">Alveoli are tiny air sacs where oxygen and carbon dioxide exchange occurs.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>8. What vital sign often changes during respiratory distress?</strong>
+        <div class="answer">Answer: Respiratory rate.</div>
+        <div class="explain">Respiratory rate can rise when a patient is compensating or having difficulty breathing.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/lungs-anatomy-quiz.html">Take the Lungs Anatomy Quiz →</a>
+        <a class="cta secondary" href="/anatomy-labeling-practice.html">Try Anatomy Labeling Practice</a>
+      </div>
+    </section>
+
+    <section id="study-path" class="section">
+      <h2>Best Study Path</h2>
+
+      <p>
+        Use this order if you want to connect lung anatomy with real healthcare fundamentals.
+      </p>
+
+      <div class="path-grid">
+        <a class="path-card" href="/lungs-anatomy-guide.html">
+          1. Lungs Anatomy Guide
+          <span>Start with trachea, bronchi, lobes, alveoli, and gas exchange.</span>
+        </a>
+
+        <a class="path-card" href="/lungs-anatomy-quiz.html">
+          2. Lungs Anatomy Quiz
+          <span>Practice recognizing structures and functions.</span>
+        </a>
+
+        <a class="path-card" href="/normal-vital-signs-chart.html">
+          3. Normal Vital Signs Chart
+          <span>Connect breathing to respiratory rate and SpO2.</span>
+        </a>
+
+        <a class="path-card" href="/abg-normal-values.html">
+          4. ABG Normal Values
+          <span>Connect ventilation, oxygenation, PaCO2, PaO2, and pH.</span>
+        </a>
+
+        <a class="path-card" href="/anatomy-labeling-practice.html">
+          5. Anatomy Labeling Practice
+          <span>Build visual recognition across body systems.</span>
+        </a>
+
+        <a class="path-card" href="/teas-practice-questions.html">
+          6. TEAS Practice Questions
+          <span>Apply respiratory anatomy to exam-style questions.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Related Study Tools</h2>
+
       <p>
         Keep building your anatomy and clinical foundation with related review pages and practice tools.
       </p>
 
-      <div class="related-links">
-        <a href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz</a>
-        <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-        <a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
-        <a href="/abg-normal-values.html">ABG Normal Values Guide</a>
-        <a href="/how-kidneys-work.html">How the Kidneys Work</a>
-        <a href="/teas-practice-questions.html">TEAS Practice Questions</a>
-        <a href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
-        <a href="/how-to-read-ekg.html">How to Read an EKG</a>
-        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
+      <div class="link-grid">
+        <a class="practice-link" href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz</a>
+        <a class="practice-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+        <a class="practice-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a class="practice-link" href="/abg-normal-values.html">ABG Normal Values Guide</a>
+        <a class="practice-link" href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a class="practice-link" href="/how-kidneys-work.html">How the Kidneys Work</a>
+        <a class="practice-link" href="/what-is-hypernatremia.html">What Is Hypernatremia?</a>
+        <a class="practice-link" href="/teas-practice-questions.html">TEAS Practice Questions</a>
+        <a class="practice-link" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
+        <a class="practice-link" href="/how-to-read-ekg.html">How to Read an EKG</a>
+        <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
       </div>
-    </div>
+    </section>
 
-    <div class="cta-box">
-      <h2>Want Interactive Practice?</h2>
-      <p>Use MedSkillBuilder to practice anatomy with interactive games, quizzes, and review tools.</p>
-      <a href="/lungs-anatomy-quiz.html">Start Lungs Anatomy Practice</a>
+    <section class="section dark">
+      <h2>Ready to Practice Lungs Anatomy?</h2>
+
+      <p>
+        Reading helps, but practice builds recognition. Start with the lungs anatomy quiz, then connect what you learn to vital signs and ABG review.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/lungs-anatomy-quiz.html">Start Lungs Anatomy Practice →</a>
+        <a class="cta secondary" href="/browse-all-practice.html">Browse All Tools</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is the main function of the lungs?</h3>
+      <p>
+        The main function of the lungs is to bring oxygen into the body and remove carbon dioxide through gas exchange.
+      </p>
+
+      <h3>Where does gas exchange happen?</h3>
+      <p>
+        Gas exchange happens in the alveoli, which are tiny air sacs surrounded by capillaries.
+      </p>
+
+      <h3>What is the carina?</h3>
+      <p>
+        The carina is the point where the trachea splits into the right and left main bronchi.
+      </p>
+
+      <h3>How many lobes does the right lung have?</h3>
+      <p>
+        The right lung usually has three lobes: upper, middle, and lower.
+      </p>
+
+      <h3>How many lobes does the left lung have?</h3>
+      <p>
+        The left lung usually has two lobes because the heart takes up space on the left side of the chest.
+      </p>
+    </section>
+
+    <p style="font-size:12px; color:#64748b; margin-top:24px;">
+      For learning purposes only. Always follow your program, instructor, facility, and clinical guidelines.
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for anatomy, respiratory review, vital signs, ABG practice, nursing fundamentals, TEAS prep, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/lungs-anatomy-quiz.html">Lungs Quiz</a> |
+        <a href="/normal-vital-signs-chart.html">Vital Signs</a> |
+        <a href="/abg-normal-values.html">ABG Values</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
     </div>
-  </div>
+  </footer>
+
 </body>
 </html>
