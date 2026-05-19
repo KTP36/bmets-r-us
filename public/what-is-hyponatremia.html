@@ -2,113 +2,577 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>What Is Hyponatremia? | Low Sodium Explained Simply</title>
+  <title>What Is Hyponatremia? | Low Sodium, Symptoms, Fluid Balance & Practice</title>
 
   <meta
     name="description"
-    content="Learn what hyponatremia means, normal sodium levels, symptoms, causes, fluid balance, neurologic changes, and why sodium matters in healthcare."
+    content="Learn what hyponatremia means with a simple low sodium guide covering normal sodium levels, symptoms, causes, fluid balance, neurologic changes, kidney function, lab values, vital signs, and practice questions."
   />
 
   <meta
     name="keywords"
-    content="what is hyponatremia, low sodium, sodium imbalance, hyponatremia symptoms, nursing sodium levels, fluid balance, electrolyte imbalance, TEAS study"
+    content="what is hyponatremia, low sodium, sodium imbalance, hyponatremia symptoms, fluid balance, electrolyte imbalance, sodium normal range, nursing sodium levels, TEAS electrolytes, NCLEX electrolytes, kidney function sodium"
   />
+
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/what-is-hyponatremia.html" />
 
+  <meta property="og:title" content="What Is Hyponatremia? | MedSkillBuilder" />
+
+  <meta
+    property="og:description"
+    content="Learn what hyponatremia means, why low sodium matters, fluid balance basics, neurologic symptoms, kidney function, and sodium interpretation in healthcare."
+  />
+
+  <meta property="og:type" content="article" />
+
+  <meta property="og:url" content="https://medskillbuilder.com/what-is-hyponatremia.html" />
+
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "What Is Hyponatremia?",
+    "description": "A beginner-friendly hyponatremia guide explaining low sodium, normal sodium range, fluid balance, neurologic symptoms, kidney function, lab values, vital signs, and practice questions.",
+    "url": "https://medskillbuilder.com/what-is-hyponatremia.html",
+    "learningResourceType": "Study guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Nursing students, TEAS learners, NCLEX learners, allied health students, lab value learners, and healthcare beginners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is hyponatremia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hyponatremia means the sodium level in the blood is lower than normal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a common normal sodium range?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A common normal sodium range is 135 to 145 mEq/L."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What commonly causes hyponatremia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hyponatremia can be associated with excess fluid intake, heart failure, kidney problems, vomiting, diarrhea, diuretics, or changes in water and sodium balance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why can hyponatremia be dangerous?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Severe hyponatremia can affect brain function, neurologic stability, mental status, and patient safety."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are the kidneys related to sodium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The kidneys help regulate sodium and water balance, which makes kidney function important when studying sodium abnormalities."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --navy: #082f57;
+      --teal: #0f766e;
+      --teal2: #14b8a6;
+      --mint: #ccfbf1;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #dc2626;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #99f6e4;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
       margin: 0;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.10), transparent 30%),
+        linear-gradient(180deg, #f0fdfa 0%, #f8fbff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
     }
 
     .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #0f766e, #14b8a6);
+    .topbar {
+      padding: 18px 0;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(153, 246, 228, 0.90);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .brand img {
+      width: 58px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    header {
       color: white;
-      padding: 40px;
-      border-radius: 22px;
-      margin-bottom: 30px;
+      background:
+        radial-gradient(circle at right, rgba(204, 251, 241, 0.16), transparent 34%),
+        linear-gradient(135deg, var(--teal), var(--navy));
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(15, 118, 110, 0.24);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero h1 {
-      margin-top: 0;
-      font-size: 2.5rem;
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
     }
 
-    .section {
-      background: white;
-      padding: 28px;
-      border-radius: 18px;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    header::after {
+      content: "";
+      position: absolute;
+      left: -120px;
+      bottom: -150px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.09);
     }
 
-    h2 {
-      margin-top: 0;
-      color: #0f766e;
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
     }
 
-    h3 {
-      color: #12355b;
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
     }
 
-    th,
-    td {
-      border-bottom: 1px solid #e2e8f0;
-      padding: 12px;
+    header p {
+      color: #ccfbf1;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .stats,
+    .grid-2,
+    .grid-3,
+    .link-grid,
+    .toc,
+    .path-grid {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .grid-2,
+    .link-grid,
+    .path-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3,
+    .toc {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat,
+    .toc a,
+    .path-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 21px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a,
+    .path-card {
+      font-size: 16px;
       text-align: left;
     }
 
-    th {
-      background: #ccfbf1;
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--teal2);
+      background: #ecfeff;
     }
 
-    ul {
-      padding-left: 22px;
+    .stat span,
+    .path-card span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(204, 251, 241, 0.76), rgba(255, 255, 255, 0.98));
+      border-color: rgba(20, 184, 166, 0.35);
+    }
+
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(204, 251, 241, 0.16), transparent 35%),
+        linear-gradient(135deg, var(--teal), var(--navy));
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .section.dark h2,
+    .section.dark h3,
+    .section.dark p,
+    .section.dark li {
+      color: white;
+    }
+
+    h2 {
+      color: var(--teal);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.13);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .cta.secondary {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .cta.teal {
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      box-shadow: 0 16px 28px rgba(20, 184, 166, 0.24);
+    }
+
+    .card {
+      background: #f0fdfa;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--teal2);
+    }
+
+    .note-box,
+    .success-box,
+    .warning-box,
+    .danger-box {
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .note-box {
+      background: #ecfeff;
+      border: 1px solid #99f6e4;
+      border-left: 6px solid var(--teal2);
+      color: #134e4a;
+    }
+
+    .success-box {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      border-left: 6px solid var(--green);
+      color: #065f46;
+    }
+
+    .warning-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      font-weight: 800;
+    }
+
+    .danger-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-left: 6px solid var(--red);
+      color: #7f1d1d;
+      font-weight: 800;
+    }
+
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
     }
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
     }
 
-    .highlight {
-      background: #ecfeff;
-      border-left: 5px solid #14b8a6;
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 28px;
+    }
+
+    .value-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border);
+    }
+
+    .value-table th {
+      background: var(--teal);
+      color: white;
+      text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .value-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .value-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .question-card {
+      background: #f0fdfa;
+      border: 1px solid var(--border);
+      border-radius: 20px;
       padding: 18px;
-      border-radius: 10px;
-      margin-top: 18px;
+      margin: 14px 0;
     }
 
-    .warning {
+    .question-card strong {
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .explain {
+      margin-top: 10px;
       background: #fff7ed;
-      border-left: 5px solid #ea580c;
-      padding: 18px;
-      border-radius: 10px;
-      margin-top: 18px;
-    }
-
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
-      margin-top: 20px;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
     }
 
     .practice-link {
@@ -116,304 +580,642 @@
       text-decoration: none;
       background: #ecfeff;
       border: 1px solid #99f6e4;
-      padding: 16px;
-      border-radius: 12px;
-      font-weight: bold;
       color: #134e4a;
-      transition: 0.2s;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+      transition: 0.18s ease;
     }
 
     .practice-link:hover {
       background: #ccfbf1;
-      transform: translateY(-2px);
-    }
-
-    .featured {
-      background: #ccfbf1;
-      border: 2px solid #14b8a6;
-    }
-
-    .cta {
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .cta a {
-      display: inline-block;
-      background: #0f766e;
-      color: white;
-      text-decoration: none;
-      padding: 16px 28px;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 1.05rem;
+      transform: translateY(-1px);
     }
 
     footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
       text-align: center;
-      color: #64748b;
-      margin-top: 50px;
-      padding-bottom: 30px;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #5eead4;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
+      }
+
+      .stats,
+      .grid-2,
+      .grid-3,
+      .link-grid,
+      .toc,
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .value-table,
+      .value-table thead,
+      .value-table tbody,
+      .value-table th,
+      .value-table td,
+      .value-table tr {
+        display: block;
+      }
+
+      .value-table thead {
+        display: none;
+      }
+
+      .value-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .value-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .value-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--teal);
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Electrolytes, lab values, kidneys, nursing, TEAS, and healthcare study tools</span>
+        </div>
+      </a>
 
-  <div class="hero">
-    <h1>What Is Hyponatremia?</h1>
-
-    <p>
-      Hyponatremia means low sodium levels in the blood. Sodium is one of the body's most important electrolytes because it helps regulate fluid balance, nerve function, and muscle activity.
-    </p>
-
-    <p>
-      Low sodium can affect mental status, neurologic function, hydration balance, and overall patient stability.
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>What Does Hyponatremia Mean?</h2>
-
-    <p>
-      The word can be broken into parts:
-    </p>
-
-    <ul>
-      <li><strong>Hypo-</strong> = low</li>
-      <li><strong>Natr-</strong> = sodium</li>
-      <li><strong>-emia</strong> = blood condition</li>
-    </ul>
-
-    <p>
-      Hyponatremia literally means <strong>low sodium in the blood</strong>.
-    </p>
-
-    <div class="highlight">
-      <strong>Normal sodium range:</strong> 135–145 mEq/L
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/electrolytes-practice-quiz.html">Electrolytes Quiz</a>
+        <a href="/how-kidneys-work.html">Kidney Guide</a>
+      </nav>
     </div>
   </div>
 
-  <div class="section">
-    <h2>Why Sodium Matters</h2>
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Electrolyte Study Guide</div>
 
-    <p>
-      Sodium is the major extracellular electrolyte and plays a huge role in:
-    </p>
+        <h1>What Is Hyponatremia?</h1>
 
-    <ul>
-      <li>Fluid balance</li>
-      <li>Blood pressure regulation</li>
-      <li>Nerve signaling</li>
-      <li>Muscle function</li>
-      <li>Neurologic stability</li>
-    </ul>
+        <p>
+          Hyponatremia means low sodium levels in the blood. Sodium is one of the body’s most important electrolytes because it helps regulate fluid balance, nerve signaling, muscle function, blood pressure, and neurologic stability.
+        </p>
 
-    <p>
-      Because sodium affects water movement and brain function, severe hyponatremia can become dangerous.
-    </p>
-  </div>
+        <p>
+          Built for nursing students, TEAS learners, NCLEX review, lab value study, allied health students, and healthcare beginners.
+        </p>
 
-  <div class="section">
-    <h2>Common Causes of Hyponatremia</h2>
-
-    <table>
-      <tr>
-        <th>Cause</th>
-        <th>Explanation</th>
-      </tr>
-
-      <tr>
-        <td>Excess fluid intake</td>
-        <td>Too much water can dilute sodium levels.</td>
-      </tr>
-
-      <tr>
-        <td>Heart failure</td>
-        <td>Fluid balance changes may lower sodium concentration.</td>
-      </tr>
-
-      <tr>
-        <td>Kidney problems</td>
-        <td>The kidneys help regulate sodium and water balance.</td>
-      </tr>
-
-      <tr>
-        <td>Vomiting or diarrhea</td>
-        <td>Loss of fluids and electrolytes.</td>
-      </tr>
-
-      <tr>
-        <td>Diuretics</td>
-        <td>Some medications increase sodium loss.</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2>Symptoms of Hyponatremia</h2>
-
-    <ul>
-      <li>Headache</li>
-      <li>Confusion</li>
-      <li>Fatigue</li>
-      <li>Nausea</li>
-      <li>Muscle cramps</li>
-      <li>Weakness</li>
-      <li>Mental status changes</li>
-      <li>Seizures in severe cases</li>
-    </ul>
-
-    <div class="warning">
-      Severe hyponatremia can affect brain function and neurologic stability.
+        <div class="cta-row">
+          <a class="cta primary" href="/electrolytes-practice-quiz.html">Start Electrolytes Practice →</a>
+          <a class="cta secondary" href="/how-kidneys-work.html">Review Kidney Function</a>
+          <a class="cta teal" href="/normal-lab-values-cheat-sheet.html">Review Lab Values</a>
+        </div>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <div class="section">
-    <h2>Hyponatremia and Fluid Balance</h2>
+  <main class="container">
 
-    <p>
-      Sodium and water balance are closely connected. When sodium levels drop, water shifts can affect cells throughout the body, especially brain cells.
-    </p>
-
-    <p>
-      This is why sodium imbalances are often associated with neurologic symptoms and mental status changes.
-    </p>
-
-    <div class="highlight">
-      Students should connect sodium levels with hydration status, neurologic findings, and fluid balance concepts.
+    <div class="stats">
+      <div class="stat">Hypo<span>Low</span></div>
+      <div class="stat">Natr<span>Sodium</span></div>
+      <div class="stat">135–145<span>Common normal</span></div>
+      <div class="stat">Water shift<span>Key idea</span></div>
+      <div class="stat">Neuro<span>Safety concern</span></div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2>Hyponatremia vs Hypernatremia</h2>
+    <section class="section highlight">
+      <h2>Quick Answer</h2>
 
-    <table>
-      <tr>
-        <th>Condition</th>
-        <th>Meaning</th>
-      </tr>
+      <div class="success-box">
+        Hyponatremia means low sodium in the blood. A common normal sodium range is 135 to 145 mEq/L. Hyponatremia can affect fluid balance, neurologic function, mental status, and patient stability.
+      </div>
 
-      <tr>
-        <td>Hyponatremia</td>
-        <td>Low sodium</td>
-      </tr>
+      <p class="lead">
+        The key idea is water and sodium balance. Sodium helps regulate where water moves in the body. When sodium is too low, water shifts can affect cells, especially brain cells, which is why neurologic symptoms matter.
+      </p>
 
-      <tr>
-        <td>Hypernatremia</td>
-        <td>High sodium</td>
-      </tr>
-    </table>
+      <div class="note-box">
+        <strong>What to notice first:</strong><br />
+        Hyponatremia usually makes you think low sodium, fluid balance, mental status changes, neurologic symptoms, kidney function, and medication or fluid-related causes.
+      </div>
+    </section>
 
-    <p>
-      Students commonly confuse these terms at first. Remember:
+    <section class="section">
+      <h2>Jump to a Hyponatremia Topic</h2>
+
+      <div class="toc">
+        <a href="#meaning">Meaning</a>
+        <a href="#sodium">Why Sodium Matters</a>
+        <a href="#causes">Common Causes</a>
+        <a href="#symptoms">Symptoms</a>
+        <a href="#fluid">Fluid Balance</a>
+        <a href="#kidneys">Kidney Connection</a>
+        <a href="#compare">Hypo vs Hyper</a>
+        <a href="#practice">Practice Questions</a>
+        <a href="#study-path">Best Study Path</a>
+      </div>
+    </section>
+
+    <section id="meaning" class="section">
+      <h2>What Does Hyponatremia Mean?</h2>
+
+      <p>
+        Hyponatremia can be broken into word parts. This helps students connect electrolyte terms to medical terminology.
+      </p>
+
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>Hypo-</h3>
+          <p>
+            Means low or below normal.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Natr-</h3>
+          <p>
+            Refers to sodium.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>-emia</h3>
+          <p>
+            Means blood condition.
+          </p>
+        </div>
+      </div>
+
+      <div class="success-box">
+        Hyponatremia literally means low sodium blood condition.
+      </div>
+
+      <p>
+        Review more word breakdowns in <a href="/medical-prefix-suffix-guide.html">Medical Prefixes and Suffixes Guide</a> and <a href="/medical-terminology-guide.html">Medical Terminology Guide</a>.
+      </p>
+    </section>
+
+    <section id="sodium" class="section">
+      <h2>Why Sodium Matters</h2>
+
+      <p>
+        Sodium is the major extracellular electrolyte. It plays a major role in fluid balance, nerve signaling, muscle function, blood pressure regulation, and neurologic stability.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Sodium helps regulate</h3>
+          <ul>
+            <li>Fluid balance</li>
+            <li>Blood pressure</li>
+            <li>Nerve signaling</li>
+            <li>Muscle function</li>
+            <li>Neurologic stability</li>
+            <li>Water movement between body spaces</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Study connection</h3>
+          <ul>
+            <li>Kidney function</li>
+            <li>Intake and output</li>
+            <li>Vital signs</li>
+            <li>Lab values</li>
+            <li>Mental status</li>
+            <li>Fluid balance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-box">
+        Sodium should be studied with water balance. Sodium and water problems often show up together.
+      </div>
+    </section>
+
+    <section id="causes" class="section">
+      <h2>Common Causes of Hyponatremia</h2>
+
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Cause</th>
+              <th>Simple Explanation</th>
+              <th>What to Notice First</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Cause"><strong>Excess fluid intake</strong></td>
+              <td data-label="Simple Explanation">Too much water can dilute sodium levels.</td>
+              <td data-label="What to Notice First">Dilution is a common concept.</td>
+            </tr>
+            <tr>
+              <td data-label="Cause"><strong>Heart failure</strong></td>
+              <td data-label="Simple Explanation">Fluid balance changes may lower sodium concentration.</td>
+              <td data-label="What to Notice First">Think fluid overload and dilution.</td>
+            </tr>
+            <tr>
+              <td data-label="Cause"><strong>Kidney problems</strong></td>
+              <td data-label="Simple Explanation">The kidneys help regulate sodium and water balance.</td>
+              <td data-label="What to Notice First">Connect sodium to kidney function.</td>
+            </tr>
+            <tr>
+              <td data-label="Cause"><strong>Vomiting or diarrhea</strong></td>
+              <td data-label="Simple Explanation">Fluid and electrolyte losses can disrupt sodium balance.</td>
+              <td data-label="What to Notice First">Look for ongoing losses.</td>
+            </tr>
+            <tr>
+              <td data-label="Cause"><strong>Diuretics</strong></td>
+              <td data-label="Simple Explanation">Some medications can increase sodium loss or change fluid balance.</td>
+              <td data-label="What to Notice First">Medication history matters.</td>
+            </tr>
+            <tr>
+              <td data-label="Cause"><strong>Hormone or water regulation changes</strong></td>
+              <td data-label="Simple Explanation">Water retention can dilute sodium concentration.</td>
+              <td data-label="What to Notice First">Think sodium concentration, not just total sodium.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="symptoms" class="section">
+      <h2>Symptoms of Hyponatremia</h2>
+
+      <p>
+        Symptoms can vary depending on how low the sodium level is, how quickly it changed, and the patient’s overall condition.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Common clues</h3>
+          <ul>
+            <li>Headache</li>
+            <li>Confusion</li>
+            <li>Fatigue</li>
+            <li>Nausea</li>
+            <li>Muscle cramps</li>
+            <li>Weakness</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Higher concern clues</h3>
+          <ul>
+            <li>Mental status changes</li>
+            <li>Neurologic changes</li>
+            <li>Seizures in severe cases</li>
+            <li>Decreased alertness</li>
+            <li>Patient instability</li>
+            <li>Rapid symptom progression</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="danger-box">
+        Severe hyponatremia can affect brain function and neurologic stability.
+      </div>
+    </section>
+
+    <section id="fluid" class="section">
+      <h2>Hyponatremia and Fluid Balance</h2>
+
+      <p>
+        Sodium and water balance are closely connected. When sodium levels drop, water shifts can affect cells throughout the body, especially brain cells.
+      </p>
+
+      <p>
+        This is why sodium imbalances are often associated with neurologic symptoms and mental status changes.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Fluid balance clues</h3>
+          <ul>
+            <li>Intake and output changes</li>
+            <li>Fluid overload</li>
+            <li>Vomiting or diarrhea</li>
+            <li>Diuretic use</li>
+            <li>Weight changes</li>
+            <li>Blood pressure changes</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Assessment connections</h3>
+          <ul>
+            <li>Vital signs</li>
+            <li>Neurologic status</li>
+            <li>Kidney function</li>
+            <li>Lab values</li>
+            <li>Medication review</li>
+            <li>Hydration status</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta secondary" href="/normal-vital-signs-chart.html">Review Vital Signs</a>
+        <a class="cta teal" href="/lab-values-practice-quiz.html">Practice Lab Values</a>
+      </div>
+    </section>
+
+    <section id="kidneys" class="section">
+      <h2>Hyponatremia and Kidney Function</h2>
+
+      <p>
+        The kidneys help regulate sodium and water balance. That makes kidney function important when studying hyponatremia.
+      </p>
+
+      <p>
+        Kidney function connects sodium problems to urine output, fluid balance, lab values, blood pressure, and patient assessment.
+      </p>
+
+      <div class="note-box">
+        Study sodium problems with kidney function, fluid balance, and lab values. Do not study sodium as an isolated number.
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/how-kidneys-work.html">Review How the Kidneys Work →</a>
+        <a class="cta secondary" href="/kidney-anatomy-function-quiz.html">Take Kidney Quiz</a>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <h2>Hyponatremia vs Hypernatremia</h2>
+
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Condition</th>
+              <th>Meaning</th>
+              <th>Simple Memory</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Condition"><strong>Hyponatremia</strong></td>
+              <td data-label="Meaning">Low sodium</td>
+              <td data-label="Simple Memory">Hypo = low</td>
+            </tr>
+            <tr>
+              <td data-label="Condition"><strong>Hypernatremia</strong></td>
+              <td data-label="Meaning">High sodium</td>
+              <td data-label="Simple Memory">Hyper = high</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Study the pair together: <a href="/what-is-hypernatremia.html">What Is Hypernatremia?</a>
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Why Nurses Monitor Sodium</h2>
+
+      <p>
+        Sodium is monitored closely because changes can affect fluid status, neurologic condition, blood pressure, mental status, and overall patient safety.
+      </p>
+
+      <ul>
+        <li>Review sodium with other electrolytes.</li>
+        <li>Compare sodium with hydration and fluid balance.</li>
+        <li>Look at urine output and kidney function.</li>
+        <li>Watch for neurologic changes.</li>
+        <li>Connect sodium to vital signs and lab values.</li>
+      </ul>
+
+      <div class="success-box">
+        Exam tip: When sodium is abnormal, always think fluid balance and neuro status.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Common Beginner Mistakes</h2>
+
+      <ul>
+        <li>Confusing hyponatremia with hypernatremia.</li>
+        <li>Memorizing the word without understanding water balance.</li>
+        <li>Forgetting the neurologic safety concern.</li>
+        <li>Ignoring medication causes such as diuretics.</li>
+        <li>Studying sodium without connecting it to kidneys, hydration, and vital signs.</li>
+      </ul>
+    </section>
+
+    <section id="practice" class="section">
+      <h2>Hyponatremia Practice Questions</h2>
+
+      <div class="question-card">
+        <strong>1. What does hyponatremia mean?</strong>
+        <div class="answer">Answer: Low sodium in the blood.</div>
+        <div class="explain">Hypo means low, natr refers to sodium, and emia refers to a blood condition.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>2. What is a common normal sodium range?</strong>
+        <div class="answer">Answer: 135 to 145 mEq/L.</div>
+        <div class="explain">Sodium values below this range may be considered low depending on the source and clinical context.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. Too much water can cause sodium to become what?</strong>
+        <div class="answer">Answer: Diluted.</div>
+        <div class="explain">Excess water can dilute sodium concentration in the blood.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. What body system is a major safety concern with severe sodium changes?</strong>
+        <div class="answer">Answer: Neurologic system.</div>
+        <div class="explain">Severe sodium changes can affect brain function, mental status, and neurologic stability.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. Which organs help regulate sodium and water balance?</strong>
+        <div class="answer">Answer: Kidneys.</div>
+        <div class="explain">The kidneys help control sodium and water balance, which is why kidney function matters in electrolyte review.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>6. What is the opposite of hyponatremia?</strong>
+        <div class="answer">Answer: Hypernatremia.</div>
+        <div class="explain">Hyponatremia is low sodium. Hypernatremia is high sodium.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/electrolytes-practice-quiz.html">Start Electrolytes Practice →</a>
+        <a class="cta secondary" href="/lab-values-practice-quiz.html">Practice Lab Values</a>
+      </div>
+    </section>
+
+    <section id="study-path" class="section">
+      <h2>Best Study Path</h2>
+
+      <p>
+        Use this order to connect sodium, fluid balance, kidneys, and lab values.
+      </p>
+
+      <div class="path-grid">
+        <a class="path-card" href="/what-is-hyponatremia.html">
+          1. Hyponatremia Guide
+          <span>Start with low sodium, symptoms, fluid balance, and neuro clues.</span>
+        </a>
+
+        <a class="path-card" href="/what-is-hypernatremia.html">
+          2. Hypernatremia Guide
+          <span>Compare low sodium with high sodium.</span>
+        </a>
+
+        <a class="path-card" href="/electrolytes-practice-quiz.html">
+          3. Electrolytes Practice Quiz
+          <span>Practice sodium, potassium, calcium, and related lab concepts.</span>
+        </a>
+
+        <a class="path-card" href="/how-kidneys-work.html">
+          4. How the Kidneys Work
+          <span>Connect sodium and water balance to kidney function.</span>
+        </a>
+
+        <a class="path-card" href="/normal-lab-values-cheat-sheet.html">
+          5. Normal Lab Values Cheat Sheet
+          <span>Review sodium and other common lab ranges.</span>
+        </a>
+
+        <a class="path-card" href="/normal-vital-signs-chart.html">
+          6. Normal Vital Signs
+          <span>Connect fluid balance to heart rate, blood pressure, and patient status.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Related Learning Tools</h2>
+
+      <div class="link-grid">
+        <a class="practice-link" href="/electrolytes-practice-quiz.html">Electrolytes Practice Quiz</a>
+        <a class="practice-link" href="/what-is-hypernatremia.html">What Is Hypernatremia?</a>
+        <a class="practice-link" href="/how-kidneys-work.html">How the Kidneys Work</a>
+        <a class="practice-link" href="/kidney-anatomy-function-quiz.html">Kidney Anatomy and Function Quiz</a>
+        <a class="practice-link" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a class="practice-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a class="practice-link" href="/abg-normal-values.html">ABG Normal Values Guide</a>
+        <a class="practice-link" href="/medical-prefix-suffix-guide.html">Medical Prefixes and Suffixes Guide</a>
+        <a class="practice-link" href="/medical-terminology-guide.html">Medical Terminology Guide</a>
+        <a class="practice-link" href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <h2>Ready to Practice Electrolytes?</h2>
+
+      <p>
+        Reading helps, but practice builds recognition. Start with electrolyte questions, then connect sodium problems to kidneys, lab values, vital signs, and patient assessment.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/electrolytes-practice-quiz.html">Start Electrolytes Practice →</a>
+        <a class="cta secondary" href="/browse-all-practice.html">Browse All Tools</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What is hyponatremia?</h3>
+      <p>
+        Hyponatremia means the sodium level in the blood is lower than normal.
+      </p>
+
+      <h3>What is the normal sodium range?</h3>
+      <p>
+        A common normal sodium range is 135 to 145 mEq/L.
+      </p>
+
+      <h3>What causes low sodium?</h3>
+      <p>
+        Hyponatremia can be associated with excess fluid intake, heart failure, kidney problems, vomiting, diarrhea, diuretics, or changes in water and sodium balance.
+      </p>
+
+      <h3>Why can hyponatremia be dangerous?</h3>
+      <p>
+        Severe hyponatremia can affect brain function, neurologic stability, mental status, and patient safety.
+      </p>
+
+      <h3>How are the kidneys related to sodium?</h3>
+      <p>
+        The kidneys help regulate sodium and water balance, which makes kidney function important when studying sodium abnormalities.
+      </p>
+    </section>
+
+    <p style="font-size:12px; color:#64748b; margin-top:24px;">
+      For learning purposes only. Always follow your program, instructor, facility, and clinical guidelines.
     </p>
 
-    <ul>
-      <li><strong>Hypo-</strong> means low</li>
-      <li><strong>Hyper-</strong> means high</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Why Nurses Monitor Sodium</h2>
-
-    <p>
-      Sodium is monitored closely because changes can affect:
-    </p>
-
-    <ul>
-      <li>Fluid status</li>
-      <li>Neurologic condition</li>
-      <li>Blood pressure</li>
-      <li>Mental status</li>
-      <li>Overall patient safety</li>
-    </ul>
-
-    <p>
-      Sodium values are often reviewed alongside vital signs, lab values, kidney function, and fluid intake/output.
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>Related Learning Tools</h2>
-
-    <div class="link-grid">
-
-      <a class="practice-link featured" href="/electrolytes-practice-quiz.html">
-        Electrolytes Practice Quiz
-      </a>
-
-      <a class="practice-link" href="/lab-values-practice-quiz.html">
-        Lab Values Practice Quiz
-      </a>
-
-      <a class="practice-link" href="/normal-lab-values-cheat-sheet.html">
-        Normal Lab Values Cheat Sheet
-      </a>
-
-      <a class="practice-link" href="/normal-vital-signs-chart.html">
-        Normal Vital Signs Chart
-      </a>
-
-      <a class="practice-link" href="/how-kidneys-work.html">
-        How the Kidneys Work
-      </a>
-
-      <a class="practice-link" href="/abg-normal-values.html">
-        ABG Normal Values Guide
-      </a>
-
-      <a class="practice-link" href="/medical-terminology-practice.html">
-        Medical Terminology Practice
-      </a>
-
-      <a class="practice-link" href="/browse-all-practice.html">
-        Browse All Practice Tools
-      </a>
-
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Frequently Asked Questions</h2>
-
-    <h3>Is hyponatremia dangerous?</h3>
-    <p>
-      Severe hyponatremia can become dangerous because it may affect brain function and neurologic stability.
-    </p>
-
-    <h3>What is the normal sodium range?</h3>
-    <p>
-      A common normal sodium range is 135–145 mEq/L.
-    </p>
-
-    <h3>Can dehydration affect sodium levels?</h3>
-    <p>
-      Yes. Fluid balance changes can affect sodium concentration in the blood.
-    </p>
-
-    <h3>Why is sodium important?</h3>
-    <p>
-      Sodium helps regulate fluid balance, nerve signaling, muscle function, and blood pressure.
-    </p>
-  </div>
-
-  <div class="cta">
-    <a href="/browse-all-practice.html">
-      Explore More Medical Study Guides
-    </a>
-  </div>
+  </main>
 
   <footer>
-    <p>
-      © 2026 MedSkillBuilder LLC. All rights reserved.
-    </p>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for electrolytes, lab values, kidney function, ABG review, vital signs, nursing fundamentals, TEAS prep, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/electrolytes-practice-quiz.html">Electrolytes Quiz</a> |
+        <a href="/how-kidneys-work.html">Kidney Guide</a> |
+        <a href="/lab-values-practice-quiz.html">Lab Values</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
   </footer>
-
-</div>
 
 </body>
 </html>
