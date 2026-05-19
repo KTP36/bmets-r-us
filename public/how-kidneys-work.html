@@ -2,31 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>How the Kidneys Work | Simple Explanation for Nursing & NCLEX</title>
+  <title>How the Kidneys Work | Filtration, Nephrons, Electrolytes & Practice</title>
 
   <meta
     name="description"
-    content="Learn how the kidneys work in a simple way. Understand filtration, reabsorption, urine formation, fluid balance, electrolytes, renal function, and what to notice first for nursing, TEAS, NCLEX, and healthcare study."
+    content="Learn how the kidneys work with a simple guide covering nephron function, filtration, reabsorption, secretion, urine formation, fluid balance, electrolytes, blood pressure, acid-base balance, lab values, and practice questions."
   />
 
   <meta
     name="keywords"
-    content="how kidneys work, kidney function explained, renal system basics, nephron function, filtration reabsorption secretion, nursing kidney review, NCLEX kidney questions, TEAS kidney function"
+    content="how kidneys work, kidney function explained, nephron function, renal system basics, filtration reabsorption secretion, urine formation, fluid balance, electrolytes, potassium, sodium, BUN creatinine, GFR, nursing kidney review, TEAS kidney function, NCLEX kidney questions"
   />
+
+  <meta name="robots" content="index, follow" />
 
   <link rel="canonical" href="https://medskillbuilder.com/how-kidneys-work.html" />
 
-  <meta property="og:title" content="How the Kidneys Work | Simple Explanation for Nursing & NCLEX" />
+  <meta property="og:title" content="How the Kidneys Work | MedSkillBuilder" />
 
   <meta
     property="og:description"
-    content="A simple guide to kidney function, nephron basics, urine formation, fluid balance, electrolytes, and renal concepts for nursing students and healthcare learners."
+    content="Learn kidney function, nephrons, filtration, reabsorption, urine formation, fluid balance, electrolytes, blood pressure, acid-base balance, and renal practice questions."
   />
 
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
+
   <meta property="og:url" content="https://medskillbuilder.com/how-kidneys-work.html" />
+
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "How the Kidneys Work",
+    "description": "A beginner-friendly kidney function guide covering nephrons, filtration, reabsorption, secretion, urine formation, fluid balance, electrolytes, blood pressure, acid-base balance, renal lab values, and practice questions.",
+    "url": "https://medskillbuilder.com/how-kidneys-work.html",
+    "learningResourceType": "Study guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Nursing students, TEAS learners, NCLEX learners, allied health students, anatomy students, and healthcare beginners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
 
   <script type="application/ld+json">
   {
@@ -38,7 +66,7 @@
         "name": "What do the kidneys do?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The kidneys filter waste from the blood, regulate fluid balance, help control electrolytes, support blood pressure, maintain acid-base balance, and produce urine."
+          "text": "The kidneys filter waste from the blood, regulate fluid balance, help control electrolytes, support blood pressure, maintain acid-base balance, clear some medications, and produce urine."
         }
       },
       {
@@ -51,18 +79,26 @@
       },
       {
         "@type": "Question",
-        "name": "Why are the kidneys important for nursing students to understand?",
+        "name": "Why is urine output important?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Kidney function is closely related to fluid balance, blood pressure, lab values, electrolytes, urine output, acid-base balance, and many high-yield nursing and NCLEX topics."
+          "text": "Urine output is an important clue about kidney function, hydration, perfusion, and fluid balance."
         }
       },
       {
         "@type": "Question",
-        "name": "What should students notice first when studying kidney function?",
+        "name": "How are the kidneys related to electrolytes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Students should first notice what the kidneys are controlling: fluid, electrolytes, waste removal, blood pressure, or acid-base balance."
+          "text": "The kidneys help regulate electrolytes such as potassium and sodium. Kidney dysfunction can lead to dangerous electrolyte imbalances."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are kidneys related to ABGs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The kidneys help control bicarbonate, which is the metabolic component of acid-base balance. That is why kidney function connects to ABG interpretation."
         }
       }
     ]
@@ -70,266 +106,715 @@
   </script>
 
   <style>
-    body {
+    :root {
+      --navy: #082f57;
+      --blue: #2563eb;
+      --sky: #0ea5e9;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --purple: #7c3aed;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #eff6ff 0%, #f8fbff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
     }
 
     .container {
-      max-width: 960px;
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 40px 20px 60px;
     }
 
-    .top-link {
-      display: inline-block;
-      margin-bottom: 22px;
+    .topbar {
+      padding: 18px 0;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(219, 234, 254, 0.90);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 700;
+      width: fit-content;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #12355b, #1d6fa5);
+    .brand img {
+      width: 58px;
+      height: auto;
+    }
+
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    header {
       color: white;
-      padding: 34px 28px;
-      border-radius: 22px;
-      margin-bottom: 28px;
-      box-shadow: 0 10px 28px rgba(18, 53, 91, 0.15);
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(8, 47, 87, 0.24);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: 2.3rem;
-      line-height: 1.2;
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
     }
 
-    .hero p {
-      margin: 0;
-      font-size: 1.05rem;
-      max-width: 780px;
+    header::after {
+      content: "";
+      position: absolute;
+      left: -120px;
+      bottom: -150px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      color: #dbeafe;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .stats,
+    .grid-2,
+    .grid-3,
+    .link-grid,
+    .toc,
+    .path-grid {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .grid-2,
+    .link-grid,
+    .path-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3,
+    .toc {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat,
+    .toc a,
+    .path-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 21px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a,
+    .path-card {
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--sky);
+      background: #eff6ff;
+    }
+
+    .stat span,
+    .path-card span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
     }
 
     .section {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 26px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
       margin-bottom: 24px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--shadow);
     }
 
-    .section h2 {
-      margin-top: 0;
-      color: #12355b;
-      line-height: 1.2;
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(219, 234, 254, 0.92), rgba(255, 255, 255, 0.98));
+      border-color: rgba(37, 99, 235, 0.35);
     }
 
-    .section h3 {
-      color: #1d6fa5;
-      margin-bottom: 10px;
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34, 197, 94, 0.18), transparent 35%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
-    .section p {
-      margin-top: 0;
+    .section.dark h2,
+    .section.dark h3,
+    .section.dark p,
+    .section.dark li {
+      color: white;
+    }
+
+    h2 {
+      color: var(--blue);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
       margin-bottom: 14px;
     }
 
-    .section ul,
-    .section ol {
-      padding-left: 22px;
+    h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
     }
 
-    .section li {
-      margin-bottom: 10px;
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
     }
 
-    .highlight-box {
-      background: #eef6ff;
-      border-left: 4px solid #1d6fa5;
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 18px;
-      margin-bottom: 18px;
+    .lead {
+      font-size: 19px;
+      color: #334155;
     }
 
-    .warning-box {
-      background: #fff7ed;
-      border-left: 4px solid #ea580c;
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 18px;
-      margin-bottom: 18px;
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.13);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .cta.secondary {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .cta.orange {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      box-shadow: 0 16px 28px rgba(249, 115, 22, 0.22);
+    }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--sky);
+    }
+
+    .note-box,
+    .success-box,
+    .warning-box,
+    .danger-box {
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .note-box {
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      border-left: 6px solid var(--sky);
+      color: #075985;
     }
 
     .success-box {
       background: #ecfdf5;
-      border-left: 4px solid #16a34a;
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 18px;
-      margin-bottom: 18px;
+      border: 1px solid #bbf7d0;
+      border-left: 6px solid var(--green);
+      color: #065f46;
     }
 
-    .cta-box {
-      background: #e0f2fe;
-      border-radius: 18px;
-      padding: 26px;
-      text-align: center;
+    .warning-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      font-weight: 800;
     }
 
-    .cta-box a,
-    .button-link {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 14px 22px;
-      border-radius: 12px;
-      background: #2563eb;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
+    .danger-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-left: 6px solid var(--red);
+      color: #7f1d1d;
+      font-weight: 800;
     }
 
-    .related-links {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
     }
 
-    .related-links a {
-      display: block;
-      padding: 14px 18px;
-      border-radius: 12px;
-      background: #f1f5f9;
-      text-decoration: none;
-      color: #0f172a;
-      font-weight: 700;
-    }
-
-    .related-links a:hover {
-      background: #e2e8f0;
+    li {
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
     }
 
     .table-wrap {
       overflow-x: auto;
+      margin: 20px 0 28px;
     }
 
-    table {
+    .value-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 12px;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border);
     }
 
-    th, td {
-      border: 1px solid #dbe4ee;
-      padding: 10px 12px;
+    .value-table th {
+      background: var(--blue);
+      color: white;
       text-align: left;
-      vertical-align: top;
+      padding: 14px;
+      font-size: 14px;
     }
 
-    th {
-      background: #eef6ff;
-      color: #12355b;
+    .value-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .value-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .question-card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .question-card strong {
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .explain {
+      margin-top: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
+    }
+
+    .practice-link {
+      display: block;
+      text-decoration: none;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      color: #075985;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+      transition: 0.18s ease;
+    }
+
+    .practice-link:hover {
+      background: #bae6fd;
+      transform: translateY(-1px);
     }
 
     footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
       text-align: center;
-      color: #64748b;
-      font-size: 0.92rem;
-      margin-top: 32px;
+      margin-top: 42px;
     }
 
-    @media (max-width: 700px) {
-      .hero h1 {
-        font-size: 1.9rem;
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
+      }
+
+      .stats,
+      .grid-2,
+      .grid-3,
+      .link-grid,
+      .toc,
+      .path-grid {
+        grid-template-columns: 1fr;
       }
 
       .section {
-        padding: 20px;
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .value-table,
+      .value-table thead,
+      .value-table tbody,
+      .value-table th,
+      .value-table td,
+      .value-table tr {
+        display: block;
+      }
+
+      .value-table thead {
+        display: none;
+      }
+
+      .value-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .value-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .value-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--blue);
+        font-weight: 900;
+        margin-bottom: 4px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <a class="top-link" href="/browse-all-practice.html">← Browse All Practice</a>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Kidney function, electrolytes, ABG, lab values, nursing, and TEAS study tools</span>
+        </div>
+      </a>
 
-    <div class="hero">
-      <h1>How the Kidneys Work</h1>
-      <p>
-        Learn kidney function in a simple, practical way. This guide explains filtration, reabsorption, urine formation, fluid balance, electrolytes, acid-base balance, and why the kidneys matter so much in nursing, TEAS, and NCLEX study.
-      </p>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/kidney-anatomy-function-quiz.html">Kidney Quiz</a>
+        <a href="/lab-values-practice-quiz.html">Lab Values</a>
+      </nav>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Renal System Study Guide</div>
+
+        <h1>How the Kidneys Work</h1>
+
+        <p>
+          Learn kidney function in a simple, practical way. This guide explains the nephron, filtration, reabsorption, secretion, urine formation, fluid balance, electrolytes, blood pressure, acid-base balance, and renal lab clues.
+        </p>
+
+        <p>
+          Built for nursing students, TEAS learners, NCLEX review, anatomy students, allied health students, and healthcare beginners.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/kidney-anatomy-function-quiz.html">Start Kidney Practice Quiz →</a>
+          <a class="cta secondary" href="/lab-values-practice-quiz.html">Practice Lab Values</a>
+          <a class="cta orange" href="/abg-normal-values.html">Review ABG Values</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="stats">
+      <div class="stat">Filter<span>Waste removal</span></div>
+      <div class="stat">Balance<span>Fluid control</span></div>
+      <div class="stat">Electrolytes<span>K+ and Na+</span></div>
+      <div class="stat">Bicarb<span>Acid-base</span></div>
+      <div class="stat">Urine<span>Output clue</span></div>
     </div>
 
-    <div class="highlight-box">
-      <strong>What to notice first:</strong>
-      <p>
-        The kidneys are not just “making urine.” They are constantly deciding what the body keeps and what the body gets rid of. That decision affects fluid balance, electrolytes, blood pressure, waste removal, and acid-base balance.
-      </p>
-    </div>
+    <section class="section highlight">
+      <h2>Quick Answer</h2>
 
-    <div class="section">
+      <div class="success-box">
+        The kidneys filter blood, remove waste, balance fluid, regulate electrolytes, help control blood pressure, support acid-base balance, clear some medications, and produce urine.
+      </div>
+
+      <p class="lead">
+        The kidneys are not just “making urine.” They are constantly deciding what the body keeps and what the body gets rid of. That decision affects fluid balance, electrolytes, blood pressure, waste removal, medication safety, and acid-base balance.
+      </p>
+
+      <div class="note-box">
+        <strong>What to notice first:</strong><br />
+        In kidney questions, ask what the kidneys are failing to control: fluid, electrolytes, waste, blood pressure, or acid-base balance.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Jump to a Kidney Topic</h2>
+
+      <div class="toc">
+        <a href="#big-functions">Main Kidney Jobs</a>
+        <a href="#nephron">The Nephron</a>
+        <a href="#three-steps">Filtration Steps</a>
+        <a href="#urine">Urine Formation</a>
+        <a href="#fluid">Fluid Balance</a>
+        <a href="#electrolytes">Electrolytes</a>
+        <a href="#acid-base">Acid-Base Balance</a>
+        <a href="#labs">Kidney Lab Clues</a>
+        <a href="#practice">Practice Questions</a>
+      </div>
+    </section>
+
+    <section id="big-functions" class="section">
       <h2>What Do the Kidneys Actually Do?</h2>
 
       <p>
-        The kidneys are two bean-shaped organs that constantly filter the blood. Their job is not just to make urine. They also help control fluid balance, electrolytes, blood pressure, waste removal, and acid-base balance.
+        The kidneys are two bean-shaped organs that constantly filter the blood. Their job is not just to make urine. They also help control fluid balance, electrolytes, blood pressure, waste removal, medication clearance, and acid-base balance.
       </p>
 
-      <p>
-        In simple terms, the kidneys decide what the body should keep and what the body should get rid of. They keep useful substances like water and needed electrolytes when appropriate, and they remove waste products and excess fluid through urine.
-      </p>
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>Filter waste</h3>
+          <p>
+            The kidneys remove waste products from the blood so they can leave the body in urine.
+          </p>
+        </div>
 
-      <p>
-        This is why kidney function is connected to so many healthcare topics. When the kidneys are not working well, the problem may show up in urine output, lab values, swelling, blood pressure, potassium levels, or acid-base balance.
-      </p>
+        <div class="card strong">
+          <h3>Balance fluid</h3>
+          <p>
+            The kidneys help decide how much water the body keeps or removes.
+          </p>
+        </div>
 
-      <div class="highlight-box">
-        <strong>Simple way to remember it:</strong>
-        <p>
-          The kidneys filter, balance, and protect.
-        </p>
+        <div class="card strong">
+          <h3>Control electrolytes</h3>
+          <p>
+            The kidneys help regulate potassium, sodium, bicarbonate, calcium, phosphorus, and other electrolytes.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Support blood pressure</h3>
+          <p>
+            Kidney function is closely connected to fluid volume and blood pressure control.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Help acid-base balance</h3>
+          <p>
+            The kidneys help control bicarbonate, which is the metabolic side of acid-base balance.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Produce urine</h3>
+          <p>
+            Urine output gives clues about kidney function, perfusion, hydration, and fluid balance.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h2>Why the Kidneys Matter in Nursing</h2>
-
-      <p>
-        Kidney function shows up everywhere in nursing because the kidneys help regulate several things that affect patient safety.
-      </p>
-
-      <p>
-        If the kidneys are not working well, you may see changes in:
-      </p>
-
-      <ul>
-        <li>Urine output</li>
-        <li>Fluid balance</li>
-        <li>Potassium and sodium levels</li>
-        <li>Blood pressure</li>
-        <li>Edema</li>
-        <li>Acid-base balance</li>
-        <li>BUN and creatinine</li>
-        <li>Medication clearance</li>
-      </ul>
-
-      <p>
-        That is why kidney function is important for NCLEX prep, TEAS science review, lab interpretation, medication safety, and real patient care.
-      </p>
-
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          When kidney function is tested on exams, the question often focuses on what the kidneys are failing to control: fluid, electrolytes, waste, blood pressure, or acid-base balance.
-        </p>
+      <div class="success-box">
+        Simple memory: The kidneys filter, balance, and protect.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section id="nephron" class="section">
       <h2>The Nephron: The Functional Unit of the Kidney</h2>
 
       <p>
@@ -337,11 +822,11 @@
       </p>
 
       <p>
-        You do not need to memorize every detail at first. Start by understanding the basic flow: blood is filtered, useful substances are reabsorbed, waste remains, and urine is formed.
+        Start by understanding the basic flow: blood is filtered, useful substances are reabsorbed, extra substances can be secreted, and urine is formed.
       </p>
 
       <div class="table-wrap">
-        <table>
+        <table class="value-table">
           <thead>
             <tr>
               <th>Part</th>
@@ -351,82 +836,76 @@
           </thead>
           <tbody>
             <tr>
-              <td>Glomerulus</td>
-              <td>Filters blood</td>
-              <td>This is where filtration begins.</td>
+              <td data-label="Part"><strong>Glomerulus</strong></td>
+              <td data-label="Main Role">Filters blood</td>
+              <td data-label="What to Notice First">This is where filtration begins.</td>
             </tr>
             <tr>
-              <td>Bowman’s capsule</td>
-              <td>Collects filtered fluid</td>
-              <td>Filtered fluid enters the nephron here.</td>
+              <td data-label="Part"><strong>Bowman’s capsule</strong></td>
+              <td data-label="Main Role">Collects filtered fluid</td>
+              <td data-label="What to Notice First">Filtered fluid enters the nephron here.</td>
             </tr>
             <tr>
-              <td>Proximal tubule</td>
-              <td>Reabsorbs a large amount of water and useful substances</td>
-              <td>The body takes back what it still needs.</td>
+              <td data-label="Part"><strong>Proximal tubule</strong></td>
+              <td data-label="Main Role">Reabsorbs a large amount of water and useful substances</td>
+              <td data-label="What to Notice First">The body takes back what it still needs.</td>
             </tr>
             <tr>
-              <td>Loop of Henle</td>
-              <td>Helps concentrate urine</td>
-              <td>Important for water balance and urine concentration.</td>
+              <td data-label="Part"><strong>Loop of Henle</strong></td>
+              <td data-label="Main Role">Helps concentrate urine</td>
+              <td data-label="What to Notice First">Important for water balance and urine concentration.</td>
             </tr>
             <tr>
-              <td>Distal tubule</td>
-              <td>Fine-tunes electrolyte balance</td>
-              <td>Helps adjust sodium, potassium, and other electrolytes.</td>
+              <td data-label="Part"><strong>Distal tubule</strong></td>
+              <td data-label="Main Role">Fine-tunes electrolyte balance</td>
+              <td data-label="What to Notice First">Helps adjust sodium, potassium, and other electrolytes.</td>
             </tr>
             <tr>
-              <td>Collecting duct</td>
-              <td>Final concentration of urine</td>
-              <td>Final adjustment before urine leaves the nephron.</td>
+              <td data-label="Part"><strong>Collecting duct</strong></td>
+              <td data-label="Main Role">Final concentration of urine</td>
+              <td data-label="What to Notice First">Final adjustment before urine leaves the nephron.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Filtration happens first, but reabsorption is what makes kidney function powerful. The kidneys do not simply dump everything into urine. They take back what the body still needs.
-        </p>
+      <div class="note-box">
+        Filtration happens first, but reabsorption is what makes kidney function powerful. The kidneys do not simply dump everything into urine. They take back what the body still needs.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section id="three-steps" class="section">
       <h2>The 3 Big Steps to Understand Kidney Function</h2>
 
-      <h3>1. Filtration</h3>
-      <p>
-        Filtration happens first in the glomerulus. Blood enters the kidney, and small substances are pushed out of the bloodstream into the nephron. This filtered fluid may contain water, electrolytes, glucose, urea, and other small particles.
-      </p>
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>1. Filtration</h3>
+          <p>
+            Filtration happens in the glomerulus. Small substances are pushed out of the bloodstream into the nephron.
+          </p>
+        </div>
 
-      <p>
-        Big things like most blood cells and large proteins should stay in the bloodstream, not pass into the urine.
-      </p>
+        <div class="card strong">
+          <h3>2. Reabsorption</h3>
+          <p>
+            The kidneys take back what the body still needs, such as water, glucose, sodium, and bicarbonate.
+          </p>
+        </div>
 
-      <h3>2. Reabsorption</h3>
-      <p>
-        After filtration, the kidneys take back what the body still needs. This is called reabsorption. Water, glucose, sodium, bicarbonate, and other important substances can move back into the bloodstream.
-      </p>
-
-      <p>
-        This is one of the most important kidney concepts. The kidneys do not simply remove everything. They carefully reclaim useful substances.
-      </p>
-
-      <h3>3. Excretion</h3>
-      <p>
-        What the body does not need stays in the nephron and leaves as urine. This includes waste products and excess fluid.
-      </p>
-
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          If something goes wrong, ask where the process failed: filtration, reabsorption, secretion, or fluid balance.
-        </p>
+        <div class="card strong">
+          <h3>3. Excretion</h3>
+          <p>
+            Waste and excess fluid stay behind and leave the body as urine.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
+      <div class="warning-box">
+        Kidney questions become easier when you ask where the problem is: filtration, reabsorption, secretion, excretion, or fluid balance.
+      </div>
+    </section>
+
+    <section id="urine" class="section">
       <h2>How Urine Is Formed</h2>
 
       <ol>
@@ -439,70 +918,98 @@
         <li>Urine travels through the ureters to the bladder.</li>
       </ol>
 
-      <div class="highlight-box">
-        <strong>Easy memory tip:</strong>
-        <p>
-          Filtration first, then reabsorption, then waste leaves as urine.
-        </p>
+      <div class="success-box">
+        Easy memory tip: Filtration first, then reabsorption, then waste leaves as urine.
       </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section id="fluid" class="section">
       <h2>How the Kidneys Help Control Fluid Balance</h2>
 
       <p>
         The kidneys constantly decide how much water the body should keep or remove. If the body holds on to too much fluid, swelling and elevated blood pressure can happen. If the body loses too much fluid, dehydration can happen.
       </p>
 
-      <p>
-        This is why kidney function is tightly connected to:
-      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Fluid overload clues</h3>
+          <ul>
+            <li>Edema</li>
+            <li>Weight gain</li>
+            <li>Shortness of breath</li>
+            <li>High blood pressure</li>
+            <li>Decreased urine output</li>
+          </ul>
+        </div>
 
-      <ul>
-        <li>Edema</li>
-        <li>Blood pressure</li>
-        <li>Urine output</li>
-        <li>Daily weights</li>
-        <li>Intake and output tracking</li>
-        <li>Fluid overload</li>
-        <li>Dehydration</li>
-      </ul>
-
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          If the question mentions swelling, weight gain, decreased urine output, or high blood pressure, think about fluid balance and kidney function.
-        </p>
+        <div class="card">
+          <h3>Dehydration or low volume clues</h3>
+          <ul>
+            <li>Low blood pressure</li>
+            <li>Dizziness</li>
+            <li>Dry mucous membranes</li>
+            <li>Concentrated urine</li>
+            <li>Low urine output</li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
+      <div class="note-box">
+        If the question mentions swelling, weight gain, decreased urine output, or high blood pressure, think fluid balance and kidney function.
+      </div>
+    </section>
+
+    <section id="electrolytes" class="section">
       <h2>How the Kidneys Affect Electrolytes</h2>
 
       <p>
         The kidneys help regulate electrolytes like potassium and sodium. When kidney function gets worse, dangerous electrolyte abnormalities can happen.
       </p>
 
-      <ul>
-        <li><strong>Potassium:</strong> can build up and increase the risk of dangerous heart rhythm problems.</li>
-        <li><strong>Sodium:</strong> can become too high or too low depending on fluid shifts and kidney function.</li>
-        <li><strong>Bicarbonate:</strong> helps with acid-base balance.</li>
-        <li><strong>Calcium and phosphorus:</strong> can also be affected by kidney disease.</li>
-      </ul>
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Electrolyte</th>
+              <th>Kidney Connection</th>
+              <th>Why It Matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Electrolyte"><strong>Potassium</strong></td>
+              <td data-label="Kidney Connection">The kidneys help remove excess potassium.</td>
+              <td data-label="Why It Matters">High potassium can increase risk for dangerous heart rhythm problems.</td>
+            </tr>
+            <tr>
+              <td data-label="Electrolyte"><strong>Sodium</strong></td>
+              <td data-label="Kidney Connection">The kidneys help regulate sodium and water balance.</td>
+              <td data-label="Why It Matters">Sodium changes often connect to fluid shifts and hydration status.</td>
+            </tr>
+            <tr>
+              <td data-label="Electrolyte"><strong>Bicarbonate</strong></td>
+              <td data-label="Kidney Connection">The kidneys help control bicarbonate.</td>
+              <td data-label="Why It Matters">Bicarbonate connects kidney function to metabolic acid-base balance.</td>
+            </tr>
+            <tr>
+              <td data-label="Electrolyte"><strong>Calcium and phosphorus</strong></td>
+              <td data-label="Kidney Connection">Kidney disease can affect mineral balance.</td>
+              <td data-label="Why It Matters">These values may be important in chronic kidney disease review.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="danger-box">
+        Important exam clue: kidney disease plus potassium should get your attention because high potassium can affect the heart.
+      </div>
 
       <p>
-        This is why renal function matters so much in lab review and patient monitoring.
+        For related electrolyte review, study <a href="/what-is-hypernatremia.html">What Is Hypernatremia?</a> and the <a href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>.
       </p>
+    </section>
 
-      <div class="warning-box">
-        <strong>Important:</strong>
-        <p>
-          High potassium is a major kidney-related safety concern because it can affect the heart. If an exam question mentions kidney disease and potassium, pay close attention.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
+    <section id="acid-base" class="section">
       <h2>Kidneys and Acid-Base Balance</h2>
 
       <p>
@@ -513,96 +1020,73 @@
         This is why kidney function connects closely to ABG interpretation. The lungs are linked to carbon dioxide, while the kidneys are linked to bicarbonate.
       </p>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          In ABG questions, PaCO2 is respiratory and HCO3 is metabolic. The kidneys help control the metabolic side.
-        </p>
+      <div class="note-box">
+        In ABG questions, PaCO2 is respiratory and HCO3 is metabolic. The kidneys help control the metabolic side.
       </div>
 
-      <p>
-        Review this connection in the <a href="/abg-normal-values.html">ABG Normal Values Guide</a>.
-      </p>
-    </div>
+      <div class="cta-row">
+        <a class="cta secondary" href="/abg-normal-values.html">Review ABG Normal Values</a>
+        <a class="cta orange" href="/abg-practice-quiz.html">Take ABG Practice Quiz</a>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>Kidneys and Blood Pressure</h2>
-
-      <p>
-        The kidneys help regulate blood pressure by controlling fluid volume and hormone pathways. If the body keeps too much fluid, blood pressure may rise. If the body loses too much fluid, blood pressure may fall.
-      </p>
+    <section id="labs" class="section">
+      <h2>Kidney Lab Clues Students Should Know</h2>
 
       <p>
-        Kidney problems and blood pressure problems are closely connected. Poor kidney function can contribute to high blood pressure, and long-term high blood pressure can damage the kidneys.
+        Kidney function often shows up through labs, urine output, fluid status, and patient assessment clues.
       </p>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Blood pressure and kidney function affect each other. If one is abnormal, look for clues about the other.
-        </p>
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Clue</th>
+              <th>What It Can Suggest</th>
+              <th>Study Connection</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Clue"><strong>Creatinine</strong></td>
+              <td data-label="What It Can Suggest">A common lab used to assess kidney function.</td>
+              <td data-label="Study Connection">Rising creatinine can suggest declining kidney function.</td>
+            </tr>
+            <tr>
+              <td data-label="Clue"><strong>BUN</strong></td>
+              <td data-label="What It Can Suggest">A renal-related lab that may change with kidney function and hydration.</td>
+              <td data-label="Study Connection">Review with lab values and fluid status.</td>
+            </tr>
+            <tr>
+              <td data-label="Clue"><strong>GFR</strong></td>
+              <td data-label="What It Can Suggest">Estimated measure of kidney filtering function.</td>
+              <td data-label="Study Connection">Lower GFR can suggest reduced kidney filtration.</td>
+            </tr>
+            <tr>
+              <td data-label="Clue"><strong>Urine output</strong></td>
+              <td data-label="What It Can Suggest">A key sign of kidney function, perfusion, and fluid balance.</td>
+              <td data-label="Study Connection">Low urine output is a major assessment clue.</td>
+            </tr>
+            <tr>
+              <td data-label="Clue"><strong>Potassium</strong></td>
+              <td data-label="What It Can Suggest">May rise when kidney function is impaired.</td>
+              <td data-label="Study Connection">High potassium can affect cardiac rhythm.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <p>
-        Review related patient assessment basics in the <a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Key Kidney Terms Students Should Know</h2>
-
-      <ul>
-        <li><strong>Nephron:</strong> functional unit of the kidney.</li>
-        <li><strong>Glomerulus:</strong> site of filtration.</li>
-        <li><strong>Reabsorption:</strong> taking useful substances back into the blood.</li>
-        <li><strong>Secretion:</strong> moving certain substances into the tubule for removal.</li>
-        <li><strong>Excretion:</strong> removal of waste from the body.</li>
-        <li><strong>Urine output:</strong> a key sign of kidney function and fluid balance.</li>
-        <li><strong>Creatinine:</strong> common lab used to assess kidney function.</li>
-        <li><strong>BUN:</strong> another lab used in renal assessment.</li>
-        <li><strong>GFR:</strong> estimated measure of kidney filtering function.</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Common Clinical Connections</h2>
-
-      <p>
-        Kidney concepts are easier to remember when you connect them to real patient care. If the kidneys are not filtering and balancing correctly, you may see:
-      </p>
-
-      <ul>
-        <li>Low urine output</li>
-        <li>Fluid overload</li>
-        <li>Swelling</li>
-        <li>Rising creatinine</li>
-        <li>Elevated BUN</li>
-        <li>Electrolyte imbalances</li>
-        <li>Changes in blood pressure</li>
-        <li>Acid-base imbalance</li>
-      </ul>
-
-      <p>
-        These are exactly the kinds of patterns nursing students, TEAS learners, and NCLEX-style questions often test.
-      </p>
-
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Look for the pattern. Low urine output plus rising creatinine plus fluid overload points toward kidney function problems.
-        </p>
+      <div class="cta-row">
+        <a class="cta primary" href="/lab-values-practice-quiz.html">Practice Lab Values →</a>
+        <a class="cta secondary" href="/normal-lab-values-cheat-sheet.html">Review Lab Values Cheat Sheet</a>
       </div>
-    </div>
+    </section>
 
-    <div class="section">
+    <section class="section">
       <h2>How to Think About Kidney Function on Exams</h2>
 
       <p>
-        On exams like the NCLEX, TEAS, or nursing fundamentals tests, kidney questions usually test recognition rather than memorization.
-      </p>
-
-      <p>
-        Instead of asking yourself only “What is the kidney?” ask what problem the question is pointing toward.
+        On exams like NCLEX, TEAS, nursing fundamentals, and allied health tests, kidney questions usually test recognition rather than memorization.
       </p>
 
       <ul>
@@ -613,16 +1097,13 @@
         <li>Abnormal bicarbonate may connect kidney function to acid-base balance.</li>
       </ul>
 
-      <div class="highlight-box">
-        <strong>What to notice first:</strong>
-        <p>
-          Look for what the kidneys are failing to control: fluid, electrolytes, waste, blood pressure, or acid-base balance.
-        </p>
+      <div class="success-box">
+        Exam tip: Do not just ask “what is the kidney?” Ask “what is the kidney failing to control in this question?”
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Common Mistakes Students Make With Kidney Function</h2>
+    <section class="section">
+      <h2>Common Mistakes Students Make</h2>
 
       <ul>
         <li>Thinking the kidneys only make urine.</li>
@@ -633,57 +1114,131 @@
         <li>Forgetting the kidney connection to acid-base balance.</li>
         <li>Trying to memorize nephron parts without understanding the sequence.</li>
       </ul>
+    </section>
 
-      <div class="warning-box">
-        <strong>Important:</strong>
-        <p>
-          Kidney questions often become easier when you slow down and identify the function being tested.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>How to Study Kidney Function Better</h2>
-
-      <ul>
-        <li>Learn filtration, reabsorption, secretion, and excretion in order.</li>
-        <li>Connect anatomy to function instead of memorizing isolated terms.</li>
-        <li>Review renal-related lab values like BUN, creatinine, potassium, and GFR.</li>
-        <li>Practice questions that mix anatomy, function, and clinical meaning.</li>
-        <li>Use repetition until the sequence becomes automatic.</li>
-        <li>Connect kidney function to vital signs, ABGs, and lab values.</li>
-      </ul>
-
-      <div class="success-box">
-        <strong>Study strategy:</strong>
-        <p>
-          Do not study the kidneys as an isolated organ. Study them as part of fluid balance, lab values, vital signs, and acid-base control.
-        </p>
-      </div>
-    </div>
-
-    <div class="section">
+    <section id="practice" class="section">
       <h2>Practice Kidney Questions</h2>
 
+      <div class="question-card">
+        <strong>1. What is the functional unit of the kidney?</strong>
+        <div class="answer">Answer: Nephron.</div>
+        <div class="explain">The nephron filters blood and helps form urine.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>2. Where does filtration begin?</strong>
+        <div class="answer">Answer: Glomerulus.</div>
+        <div class="explain">The glomerulus is where filtration begins in the nephron.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. What does reabsorption mean?</strong>
+        <div class="answer">Answer: Taking useful substances back into the blood.</div>
+        <div class="explain">The kidneys reabsorb water, glucose, sodium, bicarbonate, and other needed substances.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. Which electrolyte is a major safety concern with poor kidney function?</strong>
+        <div class="answer">Answer: Potassium.</div>
+        <div class="explain">High potassium can increase the risk of dangerous heart rhythm problems.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. Which ABG value connects most closely to the metabolic kidney side?</strong>
+        <div class="answer">Answer: HCO3, or bicarbonate.</div>
+        <div class="explain">The kidneys help control bicarbonate, which is the metabolic component of acid-base balance.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>6. What does low urine output suggest?</strong>
+        <div class="answer">Answer: Possible kidney function, hydration, perfusion, or fluid balance problem.</div>
+        <div class="explain">Urine output is a key assessment clue and should be interpreted with the patient’s full condition.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/kidney-anatomy-function-quiz.html">Start Kidney Anatomy and Function Quiz →</a>
+        <a class="cta secondary" href="/lab-values-practice-quiz.html">Practice Lab Values</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Best Study Path</h2>
+
       <p>
-        Reading the explanation helps, but active practice is what builds confidence. Use the quiz below to reinforce kidney anatomy, nephron basics, fluid balance, and renal function.
+        Use this order if kidney function feels confusing.
       </p>
 
-      <div class="cta-box">
-        <h2 style="margin-top:0;">Ready to Practice?</h2>
-        <p>
-          Test yourself with kidney anatomy and function questions designed for nursing, TEAS, and NCLEX-style study.
-        </p>
-        <a href="/kidney-anatomy-function-quiz.html">Start the Kidney Anatomy and Function Quiz</a>
-      </div>
-    </div>
+      <div class="path-grid">
+        <a class="path-card" href="/how-kidneys-work.html">
+          1. How the Kidneys Work
+          <span>Start with nephron basics, filtration, reabsorption, and fluid balance.</span>
+        </a>
 
-    <div class="section">
+        <a class="path-card" href="/kidney-anatomy-function-quiz.html">
+          2. Kidney Anatomy and Function Quiz
+          <span>Practice kidney structure and function recognition.</span>
+        </a>
+
+        <a class="path-card" href="/lab-values-practice-quiz.html">
+          3. Lab Values Practice Quiz
+          <span>Connect kidney function to BUN, creatinine, GFR, potassium, and sodium.</span>
+        </a>
+
+        <a class="path-card" href="/what-is-hypernatremia.html">
+          4. Hypernatremia Guide
+          <span>Connect sodium problems to water balance and kidney function.</span>
+        </a>
+
+        <a class="path-card" href="/abg-normal-values.html">
+          5. ABG Normal Values
+          <span>Connect the kidneys to bicarbonate and metabolic acid-base balance.</span>
+        </a>
+
+        <a class="path-card" href="/normal-vital-signs-chart.html">
+          6. Normal Vital Signs
+          <span>Connect fluid balance to blood pressure, assessment, and patient status.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Related Study Tools</h2>
+
+      <div class="link-grid">
+        <a class="practice-link" href="/kidney-anatomy-function-quiz.html">Kidney Anatomy and Function Quiz</a>
+        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a class="practice-link" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+        <a class="practice-link" href="/what-is-hypernatremia.html">What Is Hypernatremia?</a>
+        <a class="practice-link" href="/electrolytes-practice-quiz.html">Electrolytes Practice Quiz</a>
+        <a class="practice-link" href="/abg-normal-values.html">ABG Normal Values Guide</a>
+        <a class="practice-link" href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+        <a class="practice-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a class="practice-link" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
+        <a class="practice-link" href="/teas-practice-questions.html">TEAS Practice Questions</a>
+        <a class="practice-link" href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <h2>Ready to Practice Kidney Function?</h2>
+
+      <p>
+        Reading helps, but practice builds recognition. Start with kidney function questions, then connect what you learn to electrolytes, lab values, ABGs, and vital signs.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/kidney-anatomy-function-quiz.html">Start Kidney Practice →</a>
+        <a class="cta secondary" href="/browse-all-practice.html">Browse All Tools</a>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Frequently Asked Questions</h2>
 
       <h3>What do the kidneys do?</h3>
       <p>
-        The kidneys filter blood, remove waste, balance fluids, regulate electrolytes, help control blood pressure, support acid-base balance, and produce urine.
+        The kidneys filter blood, remove waste, balance fluids, regulate electrolytes, help control blood pressure, support acid-base balance, clear some medications, and produce urine.
       </p>
 
       <h3>What is the nephron?</h3>
@@ -705,33 +1260,28 @@
       <p>
         The kidneys help control bicarbonate, which is the metabolic component of acid-base balance. That is why kidney function connects to ABG interpretation.
       </p>
-    </div>
+    </section>
 
-    <div class="section">
-      <h2>Related Study Tools</h2>
+    <p style="font-size:12px; color:#64748b; margin-top:24px;">
+      For learning purposes only. Always follow your program, instructor, facility, and clinical guidelines.
+    </p>
 
-      <div class="related-links">
-        <a href="/kidney-anatomy-function-quiz.html">Kidney Anatomy and Function Quiz</a>
-        <a href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
-        <a href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
-        <a href="/abg-normal-values.html">ABG Normal Values Guide</a>
-        <a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
-        <a href="/teas-practice-questions.html">TEAS Practice Questions</a>
-        <a href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
-        <a href="/rn-practice-questions.html">RN Practice Questions</a>
-        <a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-        <a href="/medical-terminology-practice.html">Medical Terminology Practice</a>
-        <a href="/ekg-practice-quiz.html">EKG Practice Quiz</a>
-        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
-      </div>
-    </div>
+  </main>
 
-    <footer>
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for kidney function, lab values, electrolytes, ABG review, vital signs, nursing fundamentals, TEAS prep, and early healthcare learners.</p>
       <p>
-        MedSkillBuilder helps students and early healthcare learners build confidence through anatomy, nursing, lab, and clinical practice tools.
+        <a href="/">Home</a> |
+        <a href="/kidney-anatomy-function-quiz.html">Kidney Quiz</a> |
+        <a href="/lab-values-practice-quiz.html">Lab Values</a> |
+        <a href="/abg-normal-values.html">ABG Values</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
       </p>
-    </footer>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
 
-  </div>
 </body>
 </html>
