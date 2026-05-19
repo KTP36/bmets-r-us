@@ -2,25 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digestive System Anatomy Guide | MedSkillBuilder</title>
+
+  <title>Digestive System Anatomy Guide | Organs, Functions, Digestion & Practice</title>
+
   <meta
     name="description"
-    content="Learn digestive system anatomy with a simple guide to the mouth, esophagus, liver, gallbladder, stomach, pancreas, large intestine, small intestine, rectum, and anus."
+    content="Learn digestive system anatomy with a simple guide covering the mouth, esophagus, stomach, liver, gallbladder, pancreas, small intestine, large intestine, rectum, anus, digestion, nutrient absorption, elimination, and practice questions."
   />
+
   <meta
     name="keywords"
-    content="digestive system anatomy, digestive organs, stomach, liver, gallbladder, pancreas, small intestine, large intestine, rectum, anus, anatomy guide, MedSkillBuilder"
+    content="digestive system anatomy, digestive organs, anatomy guide, mouth, esophagus, stomach, liver, gallbladder, pancreas, small intestine, large intestine, rectum, anus, nutrient absorption, digestion, TEAS anatomy, nursing anatomy, digestive system quiz"
   />
+
+  <meta name="robots" content="index, follow" />
+
   <link rel="canonical" href="https://medskillbuilder.com/digestive-system-anatomy-guide.html" />
 
   <meta property="og:title" content="Digestive System Anatomy Guide | MedSkillBuilder" />
+
   <meta
     property="og:description"
-    content="Study the digestive system with a simple anatomy guide covering major organs and their functions."
+    content="Study the digestive system with a simple anatomy guide covering major organs, functions, digestion, absorption, elimination, and practice questions."
   />
-  <meta property="og:type" content="website" />
+
+  <meta property="og:type" content="article" />
+
   <meta property="og:url" content="https://medskillbuilder.com/digestive-system-anatomy-guide.html" />
+
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Digestive System Anatomy Guide",
+    "description": "A beginner-friendly digestive system anatomy guide covering the mouth, esophagus, stomach, liver, gallbladder, pancreas, small intestine, large intestine, rectum, anus, digestion, nutrient absorption, elimination, and practice questions.",
+    "url": "https://medskillbuilder.com/digestive-system-anatomy-guide.html",
+    "learningResourceType": "Study guide",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Anatomy students, nursing students, TEAS learners, allied health students, and healthcare beginners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
 
   <script type="application/ld+json">
   {
@@ -45,10 +79,26 @@
       },
       {
         "@type": "Question",
-        "name": "Why is digestive system anatomy important to learn?",
+        "name": "Where does digestion begin?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Digestive system anatomy helps students understand how food is processed, where nutrients are absorbed, and how waste moves through the body."
+          "text": "Digestion begins in the mouth with chewing and saliva."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does most nutrient absorption happen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most nutrient absorption happens in the small intestine."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the large intestine do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The large intestine absorbs water and helps form stool."
         }
       }
     ]
@@ -56,359 +106,1143 @@
   </script>
 
   <style>
-    body {
+    :root {
+      --navy: #082f57;
+      --orange: #ea580c;
+      --orange2: #fb923c;
+      --amber: #ffedd5;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --red: #dc2626;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #fed7aa;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(251, 146, 60, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.10), transparent 30%),
+        linear-gradient(180deg, #fff7ed 0%, #f8fbff 48%, #ffffff 100%);
+    }
+
+    a {
+      color: inherit;
     }
 
     .container {
-      max-width: 960px;
+      width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 40px 20px 60px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
+    .topbar {
+      padding: 18px 0;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(254, 215, 170, 0.90);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: #2563eb;
-      font-weight: 700;
+      width: fit-content;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #ea580c, #fb923c);
-      color: white;
-      padding: 34px 28px;
-      border-radius: 24px;
-      margin-bottom: 28px;
-      box-shadow: 0 10px 28px rgba(234, 88, 12, 0.16);
+    .brand img {
+      width: 58px;
+      height: auto;
     }
 
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: 2.3rem;
+    .brand strong {
+      display: block;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1.1;
     }
 
-    .hero p {
-      margin: 0;
-      font-size: 1.05rem;
-      max-width: 760px;
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
     }
 
-    .card {
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
       background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    header {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(255, 237, 213, 0.16), transparent 34%),
+        linear-gradient(135deg, var(--orange), var(--navy));
+      border-radius: 0 0 34px 34px;
+      padding: 60px 0;
+      box-shadow: 0 24px 60px rgba(234, 88, 12, 0.24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -120px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      left: -120px;
+      bottom: -150px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 18px;
+    }
+
+    header p {
+      color: #ffedd5;
+      font-size: clamp(18px, 2.2vw, 23px);
+      max-width: 900px;
+      margin-bottom: 18px;
+    }
+
+    main {
+      padding: 34px 0 48px;
+    }
+
+    .stats,
+    .grid-2,
+    .grid-3,
+    .link-grid,
+    .toc,
+    .path-grid {
+      display: grid;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .grid-2,
+    .link-grid,
+    .path-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3,
+    .toc {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat,
+    .toc a,
+    .path-card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: var(--navy);
+      text-align: center;
+      font-weight: 900;
+      font-size: 21px;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .toc a,
+    .path-card {
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .toc a:hover,
+    .path-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--orange2);
+      background: #fff7ed;
+    }
+
+    .stat span,
+    .path-card span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 800;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
       margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .section.highlight {
+      background:
+        linear-gradient(180deg, rgba(255, 237, 213, 0.86), rgba(255, 255, 255, 0.98));
+      border-color: rgba(249, 115, 22, 0.35);
+    }
+
+    .section.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(255, 237, 213, 0.16), transparent 35%),
+        linear-gradient(135deg, var(--orange), var(--navy));
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .section.dark h2,
+    .section.dark h3,
+    .section.dark p,
+    .section.dark li {
+      color: white;
     }
 
     h2 {
-      margin-top: 0;
-      color: #12355b;
+      color: var(--orange);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
     }
 
-    .organ-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 18px;
+    h3 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 20px 0 8px;
     }
 
-    .organ-box {
+    p {
+      font-size: 17px;
+      color: #1f2937;
+      margin-bottom: 13px;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.13);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.primary {
+      background: linear-gradient(135deg, var(--green2), var(--green));
+      box-shadow: 0 16px 28px rgba(22, 163, 74, 0.30);
+    }
+
+    .cta.secondary {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22);
+    }
+
+    .cta.orange {
+      background: linear-gradient(135deg, var(--orange), var(--orange2));
+      box-shadow: 0 16px 28px rgba(249, 115, 22, 0.22);
+    }
+
+    .card {
+      background: #fffaf5;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card.strong {
+      border-left: 6px solid var(--orange2);
+    }
+
+    .note-box,
+    .success-box,
+    .warning-box {
+      border-radius: 18px;
+      padding: 17px 18px;
+      margin: 20px 0;
+      font-weight: 900;
+    }
+
+    .note-box {
       background: #fff7ed;
       border: 1px solid #fed7aa;
-      border-radius: 16px;
-      padding: 16px;
+      border-left: 6px solid var(--orange2);
+      color: #7c2d12;
     }
 
-    .organ-box h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-      color: #9a3412;
-      font-size: 1.05rem;
+    .success-box {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      border-left: 6px solid var(--green);
+      color: #065f46;
     }
 
-    .quiz-list {
-      padding-left: 22px;
+    .warning-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      font-weight: 800;
     }
 
-    .quiz-list li {
-      margin-bottom: 22px;
+    ul,
+    ol {
+      margin: 14px 0 0 22px;
     }
 
-    .answers {
-      margin-top: 8px;
-      margin-bottom: 10px;
-      padding-left: 18px;
+    li {
+      margin-bottom: 9px;
+      font-size: 16px;
+      color: #1f2937;
     }
 
-    .answer-line {
-      color: #0f766e;
-      font-weight: 700;
-      margin-top: 8px;
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 28px;
     }
 
-    .related-links {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .related-links a {
-      display: block;
-      padding: 14px 18px;
-      border-radius: 12px;
-      background: #f1f5f9;
-      text-decoration: none;
-      color: #0f172a;
-      font-weight: 700;
-    }
-
-    .cta-box {
-      background: #eff6ff;
+    .value-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
       border-radius: 18px;
-      padding: 26px;
-      text-align: center;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px var(--border);
     }
 
-    .cta-box a {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 14px 22px;
-      border-radius: 12px;
-      background: #2563eb;
-      color: #ffffff;
+    .value-table th {
+      background: var(--orange);
+      color: white;
+      text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .value-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+      vertical-align: top;
+      font-size: 15px;
+      color: #1f2937;
+    }
+
+    .value-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .question-card {
+      background: #fffaf5;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .question-card strong {
+      color: var(--navy);
+      font-size: 18px;
+    }
+
+    .answer {
+      margin-top: 12px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-weight: 900;
+    }
+
+    .explain {
+      margin-top: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #7c2d12;
+      border-radius: 14px;
+      padding: 11px 13px;
+      font-size: 15px;
+    }
+
+    .practice-link {
+      display: block;
       text-decoration: none;
-      font-weight: 700;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+      transition: 0.18s ease;
+    }
+
+    .practice-link:hover {
+      background: #ffedd5;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 34px 0;
+      text-align: center;
+      margin-top: 42px;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #fdba74;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        padding: 42px 0;
+        border-radius: 0 0 26px 26px;
+      }
+
+      .stats,
+      .grid-2,
+      .grid-3,
+      .link-grid,
+      .toc,
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 24px 20px;
+      }
+
+      .cta {
+        width: 100%;
+      }
+
+      .brand strong {
+        font-size: 21px;
+      }
+
+      .value-table,
+      .value-table thead,
+      .value-table tbody,
+      .value-table th,
+      .value-table td,
+      .value-table tr {
+        display: block;
+      }
+
+      .value-table thead {
+        display: none;
+      }
+
+      .value-table tr {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .value-table td {
+        border-bottom: none;
+        padding: 12px 14px;
+      }
+
+      .value-table td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--orange);
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
 
-    <div class="hero">
-      <h1>Digestive System Anatomy Guide</h1>
-      <p>
-        Learn the major organs of the digestive system and what each one does. This simple guide is
-        designed to help students review anatomy, exam prep topics, and core digestive function.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>What Is the Digestive System?</h2>
-      <p>
-        The digestive system is the group of organs that breaks food down into smaller parts so the
-        body can absorb nutrients and use them for energy, growth, and repair. It also helps remove
-        waste after the body takes what it needs from food.
-      </p>
-      <p>
-        Digestive anatomy is important for anatomy students, nursing students, TEAS review, and
-        general healthcare exam preparation. Understanding each organ makes it easier to remember
-        how food moves through the body and where digestion and absorption happen.
-      </p>
-    </div>
-
-    <div class="card">
-      <h2>Main Digestive System Organs</h2>
-
-      <div class="organ-grid">
-        <div class="organ-box">
-          <h3>Mouth</h3>
-          <p>The mouth begins digestion by chewing food and mixing it with saliva.</p>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Digestive anatomy, TEAS, nursing, anatomy labeling, and healthcare study tools</span>
         </div>
+      </a>
 
-        <div class="organ-box">
-          <h3>Esophagus</h3>
-          <p>The esophagus is the tube that moves food from the mouth to the stomach.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Liver</h3>
-          <p>The liver produces bile and helps process nutrients absorbed from food.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Gallbladder</h3>
-          <p>The gallbladder stores and concentrates bile until it is needed for digestion.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Stomach</h3>
-          <p>The stomach breaks down food using acid and enzymes.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Pancreas</h3>
-          <p>The pancreas releases digestive enzymes and also makes hormones such as insulin.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Large Intestine</h3>
-          <p>The large intestine absorbs water and helps form stool.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Small Intestine</h3>
-          <p>The small intestine is where most nutrient absorption takes place.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Rectum</h3>
-          <p>The rectum stores waste before elimination.</p>
-        </div>
-
-        <div class="organ-box">
-          <h3>Anus</h3>
-          <p>The anus is the final opening where waste leaves the body.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Digestive System Practice Questions</h2>
-
-      <ol class="quiz-list">
-        <li>
-          Where does digestion begin?
-          <ul class="answers">
-            <li>A. Stomach</li>
-            <li>B. Mouth</li>
-            <li>C. Small intestine</li>
-            <li>D. Esophagus</li>
-          </ul>
-          <div class="answer-line">Answer: B. Mouth — Digestion begins in the mouth with chewing and saliva.</div>
-        </li>
-
-        <li>
-          Which organ carries food from the mouth to the stomach?
-          <ul class="answers">
-            <li>A. Trachea</li>
-            <li>B. Colon</li>
-            <li>C. Esophagus</li>
-            <li>D. Liver</li>
-          </ul>
-          <div class="answer-line">Answer: C. Esophagus — The esophagus moves food to the stomach.</div>
-        </li>
-
-        <li>
-          Which organ produces bile?
-          <ul class="answers">
-            <li>A. Pancreas</li>
-            <li>B. Stomach</li>
-            <li>C. Liver</li>
-            <li>D. Gallbladder</li>
-          </ul>
-          <div class="answer-line">Answer: C. Liver — The liver produces bile to help digest fats.</div>
-        </li>
-
-        <li>
-          Which organ stores bile?
-          <ul class="answers">
-            <li>A. Liver</li>
-            <li>B. Gallbladder</li>
-            <li>C. Pancreas</li>
-            <li>D. Rectum</li>
-          </ul>
-          <div class="answer-line">Answer: B. Gallbladder — The gallbladder stores and concentrates bile.</div>
-        </li>
-
-        <li>
-          What is the main function of the stomach?
-          <ul class="answers">
-            <li>A. Absorb water</li>
-            <li>B. Break down food with acid and enzymes</li>
-            <li>C. Store bile</li>
-            <li>D. Remove waste</li>
-          </ul>
-          <div class="answer-line">Answer: B. Break down food with acid and enzymes — The stomach begins major chemical digestion.</div>
-        </li>
-
-        <li>
-          Which organ releases digestive enzymes and insulin?
-          <ul class="answers">
-            <li>A. Liver</li>
-            <li>B. Pancreas</li>
-            <li>C. Gallbladder</li>
-            <li>D. Mouth</li>
-          </ul>
-          <div class="answer-line">Answer: B. Pancreas — The pancreas supports digestion and blood sugar regulation.</div>
-        </li>
-
-        <li>
-          Which organ absorbs most nutrients?
-          <ul class="answers">
-            <li>A. Small intestine</li>
-            <li>B. Large intestine</li>
-            <li>C. Esophagus</li>
-            <li>D. Rectum</li>
-          </ul>
-          <div class="answer-line">Answer: A. Small intestine — Most nutrient absorption takes place in the small intestine.</div>
-        </li>
-
-        <li>
-          What is the main function of the large intestine?
-          <ul class="answers">
-            <li>A. Produce bile</li>
-            <li>B. Absorb water</li>
-            <li>C. Break down food with acid</li>
-            <li>D. Transport oxygen</li>
-          </ul>
-          <div class="answer-line">Answer: B. Absorb water — The large intestine removes water and forms stool.</div>
-        </li>
-
-        <li>
-          Which structure stores waste before elimination?
-          <ul class="answers">
-            <li>A. Anus</li>
-            <li>B. Rectum</li>
-            <li>C. Pancreas</li>
-            <li>D. Gallbladder</li>
-          </ul>
-          <div class="answer-line">Answer: B. Rectum — The rectum stores waste before elimination.</div>
-        </li>
-
-        <li>
-          Which structure is the final opening of the digestive tract?
-          <ul class="answers">
-            <li>A. Mouth</li>
-            <li>B. Esophagus</li>
-            <li>C. Anus</li>
-            <li>D. Stomach</li>
-          </ul>
-          <div class="answer-line">Answer: C. Anus — The anus eliminates waste from the body.</div>
-        </li>
-      </ol>
-    </div>
-
-    <div class="card">
-      <h2>Why Study Digestive Anatomy?</h2>
-      <p>
-        Digestive anatomy helps students connect structure with function. It supports understanding
-        of digestion, nutrient absorption, elimination, and common medical topics such as reflux,
-        ulcers, constipation, diarrhea, and liver disease.
-      </p>
-      <p>
-        Repetition through diagrams, anatomy games, and quiz questions helps improve recall and
-        confidence for classwork, exams, and healthcare training.
-      </p>
-
-      <div class="related-links">
-        <a href="/">Try Interactive Anatomy Games</a>
-        <a href="/digestive-system-anatomy-quiz.html">Try the Digestive System Quiz</a>
-        <a href="/browse-all-practice.html">Browse All Practice Pages</a>
-      </div>
-    </div>
-
-    <div class="cta-box">
-      <h2>Want Interactive Practice?</h2>
-      <p>Use MedSkillBuilder to practice anatomy with interactive games and review tools.</p>
-      <a href="/">Start Practicing</a>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/digestive-system-anatomy-quiz.html">Digestive Quiz</a>
+        <a href="/anatomy-labeling-practice.html">Anatomy Practice</a>
+      </nav>
     </div>
   </div>
+
+  <header>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow">Digestive Anatomy Study Guide</div>
+
+        <h1>Digestive System Anatomy Guide</h1>
+
+        <p>
+          Learn the major organs of the digestive system, what each one does, how food moves through the body, where digestion happens, where nutrients are absorbed, and how waste is eliminated.
+        </p>
+
+        <p>
+          Built for anatomy students, nursing students, TEAS learners, allied health students, and healthcare beginners.
+        </p>
+
+        <div class="cta-row">
+          <a class="cta primary" href="/digestive-system-anatomy-quiz.html">Start Digestive System Quiz →</a>
+          <a class="cta secondary" href="/anatomy-labeling-practice.html">Try Anatomy Labeling</a>
+          <a class="cta orange" href="/teas-practice-questions.html">TEAS Practice Questions</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="stats">
+      <div class="stat">Mouth<span>Starts digestion</span></div>
+      <div class="stat">Stomach<span>Breaks down food</span></div>
+      <div class="stat">Liver<span>Makes bile</span></div>
+      <div class="stat">Small Intestine<span>Absorbs nutrients</span></div>
+      <div class="stat">Large Intestine<span>Absorbs water</span></div>
+    </div>
+
+    <section class="section highlight">
+      <h2>Quick Answer</h2>
+
+      <div class="success-box">
+        The digestive system breaks food down, absorbs nutrients, and removes waste. The main organs include the mouth, esophagus, stomach, liver, gallbladder, pancreas, small intestine, large intestine, rectum, and anus.
+      </div>
+
+      <p class="lead">
+        The easiest way to study digestion is to follow the path of food. Food enters the mouth, travels through the esophagus, is broken down in the stomach, is absorbed mostly in the small intestine, has water removed in the large intestine, and exits through the rectum and anus.
+      </p>
+
+      <div class="note-box">
+        <strong>What to notice first:</strong><br />
+        Digestive anatomy is structure plus function. Do not just memorize the organ. Know what job that organ performs.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Jump to a Digestive Topic</h2>
+
+      <div class="toc">
+        <a href="#overview">What It Does</a>
+        <a href="#pathway">Path of Food</a>
+        <a href="#organs">Main Organs</a>
+        <a href="#accessory">Accessory Organs</a>
+        <a href="#absorption">Absorption</a>
+        <a href="#clinical">Clinical Connections</a>
+        <a href="#exam">Exam Study</a>
+        <a href="#practice">Practice Questions</a>
+        <a href="#study-path">Best Study Path</a>
+      </div>
+    </section>
+
+    <section id="overview" class="section">
+      <h2>What Is the Digestive System?</h2>
+
+      <p>
+        The digestive system is the group of organs that breaks food down into smaller parts so the body can absorb nutrients and use them for energy, growth, and repair. It also helps remove waste after the body takes what it needs from food.
+      </p>
+
+      <p>
+        Digestive anatomy is important for anatomy students, nursing students, TEAS review, and general healthcare exam preparation. Understanding each organ makes it easier to remember how food moves through the body and where digestion and absorption happen.
+      </p>
+
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>Break down food</h3>
+          <p>
+            Mechanical and chemical digestion help turn food into smaller usable pieces.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Absorb nutrients</h3>
+          <p>
+            Nutrients move from the digestive tract into the bloodstream, mostly through the small intestine.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Remove waste</h3>
+          <p>
+            Waste is formed, stored, and eliminated after the body absorbs what it needs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pathway" class="section">
+      <h2>Path of Food Through the Digestive System</h2>
+
+      <p>
+        Follow the path of food to make digestive anatomy easier. This helps connect organ order with organ function.
+      </p>
+
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Organ</th>
+              <th>Main Function</th>
+              <th>What to Notice First</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Step"><strong>1</strong></td>
+              <td data-label="Organ">Mouth</td>
+              <td data-label="Main Function">Chews food and mixes it with saliva.</td>
+              <td data-label="What to Notice First">Digestion begins here.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>2</strong></td>
+              <td data-label="Organ">Esophagus</td>
+              <td data-label="Main Function">Moves food from the mouth to the stomach.</td>
+              <td data-label="What to Notice First">Transport tube, not the airway.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>3</strong></td>
+              <td data-label="Organ">Stomach</td>
+              <td data-label="Main Function">Breaks food down using acid and enzymes.</td>
+              <td data-label="What to Notice First">Major chemical digestion begins here.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>4</strong></td>
+              <td data-label="Organ">Small intestine</td>
+              <td data-label="Main Function">Absorbs most nutrients.</td>
+              <td data-label="What to Notice First">Most nutrient absorption occurs here.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>5</strong></td>
+              <td data-label="Organ">Large intestine</td>
+              <td data-label="Main Function">Absorbs water and forms stool.</td>
+              <td data-label="What to Notice First">Water absorption is the big clue.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>6</strong></td>
+              <td data-label="Organ">Rectum</td>
+              <td data-label="Main Function">Stores waste before elimination.</td>
+              <td data-label="What to Notice First">Storage before exit.</td>
+            </tr>
+            <tr>
+              <td data-label="Step"><strong>7</strong></td>
+              <td data-label="Organ">Anus</td>
+              <td data-label="Main Function">Final opening where waste leaves the body.</td>
+              <td data-label="What to Notice First">Final exit point.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="organs" class="section">
+      <h2>Main Digestive System Organs</h2>
+
+      <div class="grid-2">
+        <div class="card strong">
+          <h3>Mouth</h3>
+          <p>
+            The mouth begins digestion by chewing food and mixing it with saliva.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Esophagus</h3>
+          <p>
+            The esophagus is the tube that moves food from the mouth to the stomach.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Stomach</h3>
+          <p>
+            The stomach breaks down food using acid and enzymes.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Small Intestine</h3>
+          <p>
+            The small intestine is where most nutrient absorption takes place.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Large Intestine</h3>
+          <p>
+            The large intestine absorbs water and helps form stool.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Rectum and Anus</h3>
+          <p>
+            The rectum stores waste before elimination, and the anus is the final opening where waste leaves the body.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="accessory" class="section">
+      <h2>Accessory Digestive Organs</h2>
+
+      <p>
+        Some digestive organs help digestion without food passing directly through them. These are often called accessory digestive organs.
+      </p>
+
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>Liver</h3>
+          <p>
+            The liver produces bile and helps process nutrients absorbed from food.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Gallbladder</h3>
+          <p>
+            The gallbladder stores and concentrates bile until it is needed for digestion.
+          </p>
+        </div>
+
+        <div class="card strong">
+          <h3>Pancreas</h3>
+          <p>
+            The pancreas releases digestive enzymes and also makes hormones such as insulin.
+          </p>
+        </div>
+      </div>
+
+      <div class="success-box">
+        Memory tip: Liver makes bile. Gallbladder stores bile. Pancreas releases digestive enzymes and helps with blood sugar regulation.
+      </div>
+    </section>
+
+    <section id="absorption" class="section">
+      <h2>Digestion, Absorption, and Elimination</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Digestion</h3>
+          <p>
+            Digestion breaks food into smaller pieces using chewing, acid, enzymes, bile, and movement through the digestive tract.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Absorption</h3>
+          <p>
+            Absorption moves nutrients from the digestive tract into the body. Most nutrient absorption happens in the small intestine.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Elimination</h3>
+          <p>
+            Elimination removes waste after the body absorbs what it needs. The large intestine, rectum, and anus are important here.
+          </p>
+        </div>
+      </div>
+
+      <div class="note-box">
+        Exam clue: Small intestine usually means nutrient absorption. Large intestine usually means water absorption and stool formation.
+      </div>
+    </section>
+
+    <section id="clinical" class="section">
+      <h2>Why Digestive Anatomy Matters</h2>
+
+      <p>
+        Digestive anatomy helps students connect structure with function. It supports understanding of digestion, nutrient absorption, elimination, and common medical topics such as reflux, ulcers, constipation, diarrhea, gallbladder disease, pancreatitis, liver disease, and bowel obstruction.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Common symptoms</h3>
+          <ul>
+            <li>Abdominal pain</li>
+            <li>Nausea or vomiting</li>
+            <li>Constipation</li>
+            <li>Diarrhea</li>
+            <li>Reflux or heartburn</li>
+            <li>Loss of appetite</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Study connections</h3>
+          <ul>
+            <li>Nutrition</li>
+            <li>Hydration</li>
+            <li>Lab values</li>
+            <li>Anatomy labeling</li>
+            <li>Medical terminology</li>
+            <li>TEAS science review</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="exam" class="section">
+      <h2>Digestive Anatomy and Exam Study</h2>
+
+      <p>
+        Digestive anatomy questions often test whether you can identify the organ and connect it to the correct function.
+      </p>
+
+      <div class="table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr>
+              <th>Exam Clue</th>
+              <th>Likely Answer</th>
+              <th>Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Exam Clue">Digestion begins</td>
+              <td data-label="Likely Answer">Mouth</td>
+              <td data-label="Why">Chewing and saliva begin digestion.</td>
+            </tr>
+            <tr>
+              <td data-label="Exam Clue">Moves food to stomach</td>
+              <td data-label="Likely Answer">Esophagus</td>
+              <td data-label="Why">The esophagus transports food.</td>
+            </tr>
+            <tr>
+              <td data-label="Exam Clue">Produces bile</td>
+              <td data-label="Likely Answer">Liver</td>
+              <td data-label="Why">The liver makes bile.</td>
+            </tr>
+            <tr>
+              <td data-label="Exam Clue">Stores bile</td>
+              <td data-label="Likely Answer">Gallbladder</td>
+              <td data-label="Why">The gallbladder stores and concentrates bile.</td>
+            </tr>
+            <tr>
+              <td data-label="Exam Clue">Most nutrient absorption</td>
+              <td data-label="Likely Answer">Small intestine</td>
+              <td data-label="Why">Most nutrients are absorbed there.</td>
+            </tr>
+            <tr>
+              <td data-label="Exam Clue">Absorbs water and forms stool</td>
+              <td data-label="Likely Answer">Large intestine</td>
+              <td data-label="Why">The large intestine removes water from waste.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="success-box">
+        Exam tip: Most digestive anatomy questions are structure plus function questions.
+      </div>
+    </section>
+
+    <section id="practice" class="section">
+      <h2>Digestive System Practice Questions</h2>
+
+      <div class="question-card">
+        <strong>1. Where does digestion begin?</strong>
+        <div class="answer">Answer: Mouth.</div>
+        <div class="explain">Digestion begins in the mouth with chewing and saliva.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>2. Which organ carries food from the mouth to the stomach?</strong>
+        <div class="answer">Answer: Esophagus.</div>
+        <div class="explain">The esophagus moves food to the stomach.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>3. Which organ produces bile?</strong>
+        <div class="answer">Answer: Liver.</div>
+        <div class="explain">The liver produces bile to help digest fats.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>4. Which organ stores bile?</strong>
+        <div class="answer">Answer: Gallbladder.</div>
+        <div class="explain">The gallbladder stores and concentrates bile.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>5. What is the main function of the stomach?</strong>
+        <div class="answer">Answer: Break down food with acid and enzymes.</div>
+        <div class="explain">The stomach begins major chemical digestion.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>6. Which organ releases digestive enzymes and insulin?</strong>
+        <div class="answer">Answer: Pancreas.</div>
+        <div class="explain">The pancreas supports digestion and blood sugar regulation.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>7. Which organ absorbs most nutrients?</strong>
+        <div class="answer">Answer: Small intestine.</div>
+        <div class="explain">Most nutrient absorption takes place in the small intestine.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>8. What is the main function of the large intestine?</strong>
+        <div class="answer">Answer: Absorb water.</div>
+        <div class="explain">The large intestine removes water and helps form stool.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>9. Which structure stores waste before elimination?</strong>
+        <div class="answer">Answer: Rectum.</div>
+        <div class="explain">The rectum stores waste before elimination.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>10. Which structure is the final opening of the digestive tract?</strong>
+        <div class="answer">Answer: Anus.</div>
+        <div class="explain">The anus eliminates waste from the body.</div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/digestive-system-anatomy-quiz.html">Take the Digestive System Quiz →</a>
+        <a class="cta secondary" href="/anatomy-labeling-practice.html">Try Anatomy Labeling Practice</a>
+      </div>
+    </section>
+
+    <section id="study-path" class="section">
+      <h2>Best Study Path</h2>
+
+      <p>
+        Use this order to connect digestive anatomy with anatomy practice, TEAS review, and healthcare fundamentals.
+      </p>
+
+      <div class="path-grid">
+        <a class="path-card" href="/digestive-system-anatomy-guide.html">
+          1. Digestive System Anatomy Guide
+          <span>Start with organ order, function, digestion, absorption, and elimination.</span>
+        </a>
+
+        <a class="path-card" href="/digestive-system-anatomy-quiz.html">
+          2. Digestive System Quiz
+          <span>Practice organ recognition and function questions.</span>
+        </a>
+
+        <a class="path-card" href="/anatomy-labeling-practice.html">
+          3. Anatomy Labeling Practice
+          <span>Build visual recognition across anatomy systems.</span>
+        </a>
+
+        <a class="path-card" href="/teas-practice-questions.html">
+          4. TEAS Practice Questions
+          <span>Apply anatomy to exam-style review.</span>
+        </a>
+
+        <a class="path-card" href="/medical-terminology-guide.html">
+          5. Medical Terminology Guide
+          <span>Connect anatomy terms with prefixes, suffixes, and roots.</span>
+        </a>
+
+        <a class="path-card" href="/browse-all-practice.html">
+          6. Browse All Practice
+          <span>Find more anatomy, nursing, TEAS, and healthcare review tools.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Related Study Tools</h2>
+
+      <div class="link-grid">
+        <a class="practice-link" href="/digestive-system-anatomy-quiz.html">Digestive System Anatomy Quiz</a>
+        <a class="practice-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+        <a class="practice-link" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
+        <a class="practice-link" href="/heart-anatomy-guide.html">Heart Anatomy Guide</a>
+        <a class="practice-link" href="/skeleton-anatomy-quiz.html">Skeleton Anatomy Quiz</a>
+        <a class="practice-link" href="/brain-anatomy-quiz.html">Brain Anatomy Quiz</a>
+        <a class="practice-link" href="/teas-practice-questions.html">TEAS Practice Questions</a>
+        <a class="practice-link" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
+        <a class="practice-link" href="/medical-terminology-guide.html">Medical Terminology Guide</a>
+        <a class="practice-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
+        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a class="practice-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <h2>Ready to Practice Digestive Anatomy?</h2>
+
+      <p>
+        Reading helps, but practice builds recognition. Start with the digestive system quiz, then use anatomy labeling practice to reinforce the organs and functions.
+      </p>
+
+      <div class="cta-row">
+        <a class="cta primary" href="/digestive-system-anatomy-quiz.html">Start Digestive System Practice →</a>
+        <a class="cta secondary" href="/browse-all-practice.html">Browse All Tools</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>What organs are included in the digestive system?</h3>
+      <p>
+        The digestive system includes the mouth, esophagus, stomach, liver, gallbladder, pancreas, small intestine, large intestine, rectum, and anus.
+      </p>
+
+      <h3>What does the digestive system do?</h3>
+      <p>
+        The digestive system breaks food down, absorbs nutrients, and removes waste from the body.
+      </p>
+
+      <h3>Where does digestion begin?</h3>
+      <p>
+        Digestion begins in the mouth with chewing and saliva.
+      </p>
+
+      <h3>Where does most nutrient absorption happen?</h3>
+      <p>
+        Most nutrient absorption happens in the small intestine.
+      </p>
+
+      <h3>What does the large intestine do?</h3>
+      <p>
+        The large intestine absorbs water and helps form stool.
+      </p>
+    </section>
+
+    <p style="font-size:12px; color:#64748b; margin-top:24px;">
+      For learning purposes only. Always follow your program, instructor, facility, and clinical guidelines.
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for anatomy, digestive system review, TEAS prep, nursing fundamentals, medical terminology, lab values, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/digestive-system-anatomy-quiz.html">Digestive Quiz</a> |
+        <a href="/anatomy-labeling-practice.html">Anatomy Labeling</a> |
+        <a href="/teas-practice-questions.html">TEAS Practice</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
