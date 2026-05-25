@@ -15478,19 +15478,6 @@ return (
           }}
         >
           <button
-            onClick={() => setActiveTab("Contact")}
-            style={{
-              border: "none",
-              background: "transparent",
-              color: "#12355b",
-              textDecoration: "underline",
-              cursor: "pointer",
-              fontWeight: 600
-            }}
-          >
-            Contact
-          </button>
-          <button
             onClick={() => setActiveTab("Support")}
             style={{
               border: "none",
@@ -15502,19 +15489,6 @@ return (
             }}
           >
             Support Our Content
-          </button>
-          <button
-            onClick={() => setActiveTab("Privacy")}
-            style={{
-              border: "none",
-              background: "transparent",
-              color: "#12355b",
-              textDecoration: "underline",
-              cursor: "pointer",
-              fontWeight: 600
-            }}
-          >
-            Privacy Policy
           </button>
           <a
             href="/cbet-practice-questions.html"
@@ -15694,6 +15668,25 @@ return (
           </div>
         </div>
       )}
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    gap: 16,
+    marginTop: 30,
+    marginBottom: 12,
+  }}
+>
+  <a href="/about.html">About</a>
+
+  <a href="/contact.html">Contact</a>
+
+  <a href="/privacy-policy.html">Privacy Policy</a>
+
+  <a href="/terms.html">Terms</a>
+</div>
 
       <div style={{ textAlign: "center", marginTop: 40, padding: "20px 0", color: "#64748b", fontSize: 14 }}>
         © 2026 MedSkillBuilder LLC. All rights reserved.
