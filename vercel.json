@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/how-to-read-an-ekg.html",
+      "destination": "/how-to-read-ekg.html",
+      "permanent": true
+    }
+  ]
+}
