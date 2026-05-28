@@ -8949,6 +8949,79 @@ return (
         </div>
       </div>
 
+      {/* TODAY'S STUDY GEAR PICK: HOMEPAGE AFFILIATE BANNER */}
+      <style>
+        {`
+          @keyframes medskillGearTicker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+          }
+
+          .medskill-gear-ticker-track {
+            display: inline-block;
+            min-width: 100%;
+            animation: medskillGearTicker 20s linear infinite;
+          }
+
+          .medskill-gear-ticker-track:hover {
+            animation-play-state: paused;
+          }
+
+          @media (max-width: 700px) {
+            .medskill-gear-ticker-track {
+              animation-duration: 15s;
+            }
+          }
+        `}
+      </style>
+
+      <div
+        style={{
+          margin: "0 auto 10px",
+          maxWidth: 1100,
+          overflow: "hidden",
+          borderRadius: 999,
+          border: "1px solid #bbf7d0",
+          background: "linear-gradient(135deg, #ecfdf5, #f0fdf4)",
+          boxShadow: "0 10px 24px rgba(22,163,74,0.14)"
+        }}
+      >
+        <a
+          href="https://www.amazon.com/s?k=stethescope&rh=n%3A8297370011&linkCode=ll2&tag=medskillbuild-20&linkId=b86824c23b9139ffdfe17df4599ac50d&language=en_US&ref_=as_li_ss_tl"
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="medskill-gear-ticker-track"
+          onClick={() =>
+            trackSiteEvent("affiliate_study_gear_pick_click", {
+              target_url: "amazon_stethoscope_search",
+              source: "homepage_ticker"
+            })
+          }
+          style={{
+            padding: "13px 22px",
+            color: "#065f46",
+            fontWeight: 950,
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+            fontSize: isSmallScreen ? 14 : 16
+          }}
+        >
+          🩺 Today&apos;s Study Gear Pick • Quality Stethoscopes for Healthcare Learners → View on Amazon
+        </a>
+      </div>
+
+      <p
+        style={{
+          textAlign: "center",
+          color: "#64748b",
+          fontSize: 12,
+          margin: "0 auto 18px",
+          maxWidth: 760
+        }}
+      >
+        As an Amazon Associate, MedSkillBuilder earns from qualifying purchases.
+      </p>
+
       {/* RECOMMENDED STUDY GEAR: AFFILIATE INCOME PATH */}
       <div
         style={{
