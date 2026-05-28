@@ -606,6 +606,25 @@ function EquipmentTab({
               >
                 Browse All Tools
               </a>
+<a
+  href="/recommended-study-gear.html"
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "12px 24px",
+    borderRadius: 999,
+    background: "linear-gradient(135deg, #16a34a, #22c55e)",
+    color: "white",
+    fontWeight: 900,
+    cursor: "pointer",
+    textDecoration: "none",
+    boxShadow: "0 4px 14px rgba(22,163,74,0.18)",
+    marginLeft: 12
+  }}
+>
+  Recommended Study Gear
+</a>
             </div>
           </div>
         </div>
@@ -8895,6 +8914,24 @@ return (
           >
             🚀 Explore All Practice & Study Tools
           </a>
+          <a
+            href="/recommended-study-gear.html"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "14px 22px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #16a34a, #22c55e)",
+              color: "white",
+              textDecoration: "none",
+              fontWeight: 900,
+              boxShadow: "0 8px 20px rgba(22, 163, 74, 0.24)",
+              border: "1px solid rgba(255,255,255,0.35)"
+            }}
+          >
+            🛒 Recommended Study Gear
+          </a>
           <button
             onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
             style={{
@@ -8910,6 +8947,82 @@ return (
             Start CBET Practice
           </button>
         </div>
+      </div>
+
+      {/* RECOMMENDED STUDY GEAR: AFFILIATE INCOME PATH */}
+      <div
+        style={{
+          marginBottom: 18,
+          padding: "24px 18px",
+          borderRadius: 22,
+          background: "linear-gradient(135deg, #ecfdf5, #ffffff)",
+          border: "1px solid #bbf7d0",
+          boxShadow: "0 14px 30px rgba(22,163,74,0.12)",
+          textAlign: "center"
+        }}
+      >
+        <div
+          style={{
+            display: "inline-flex",
+            padding: "7px 12px",
+            borderRadius: 999,
+            background: "#dcfce7",
+            color: "#166534",
+            fontWeight: 900,
+            fontSize: 13,
+            letterSpacing: 0.5,
+            marginBottom: 10
+          }}
+        >
+          STUDY GEAR PICKS
+        </div>
+        <h2
+          style={{
+            color: "#12355b",
+            margin: "0 0 8px",
+            fontSize: isSmallScreen ? 26 : 32
+          }}
+        >
+          Recommended Study Gear for Healthcare Learners
+        </h2>
+        <p
+          style={{
+            color: "#475569",
+            maxWidth: 780,
+            margin: "0 auto 18px",
+            fontSize: 16,
+            lineHeight: 1.55
+          }}
+        >
+          Helpful study tools for nursing students, anatomy practice, medical terminology, CBET prep, biomed learners, and healthcare study setups.
+        </p>
+        <a
+          href="/recommended-study-gear.html"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "14px 24px",
+            borderRadius: 999,
+            background: "linear-gradient(135deg, #16a34a, #22c55e)",
+            color: "white",
+            fontWeight: 900,
+            textDecoration: "none",
+            boxShadow: "0 8px 20px rgba(22,163,74,0.22)"
+          }}
+        >
+          View Recommended Study Gear →
+        </a>
+        <p
+          style={{
+            color: "#64748b",
+            fontSize: 12,
+            margin: "12px auto 0",
+            maxWidth: 760
+          }}
+        >
+          MedSkillBuilder may earn from qualifying purchases. Recommendations are meant to support learning, studying, and healthcare training.
+        </p>
       </div>
 
       {/* START HERE: HIGH-CONVERSION PATHS */}
