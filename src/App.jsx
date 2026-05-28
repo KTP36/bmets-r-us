@@ -7515,6 +7515,55 @@ export default function App() {
   const [revealedAnatomyHelp, setRevealedAnatomyHelp] = useState({});
   const isSmallScreen = window.innerWidth < 768;
   const mobileDropScale = isSmallScreen ? 0.58 : 1;
+
+  const studyGearPicks = [
+    {
+      label: "Today’s Study Gear Pick",
+      icon: "🩺",
+      text: "Quality Stethoscopes for Healthcare Learners",
+      url: "https://www.amazon.com/s?k=stethescope&rh=n%3A8297370011&linkCode=ll2&tag=medskillbuild-20&linkId=b86824c23b9139ffdfe17df4599ac50d&language=en_US&ref_=as_li_ss_tl",
+      eventName: "amazon_stethoscope_search"
+    },
+    {
+      label: "Nursing Study Pick",
+      icon: "📋",
+      text: "Clinical Clipboards and Pocket Organization Tools",
+      url: "https://www.amazon.com/s?k=nursing+clipboard&tag=medskillbuild-20",
+      eventName: "amazon_nursing_clipboard_search"
+    },
+    {
+      label: "Anatomy Study Pick",
+      icon: "🧠",
+      text: "Anatomy Flashcards and Visual Study Tools",
+      url: "https://www.amazon.com/s?k=anatomy+flashcards&tag=medskillbuild-20",
+      eventName: "amazon_anatomy_flashcards_search"
+    },
+    {
+      label: "CBET Tool Pick",
+      icon: "⚡",
+      text: "Beginner Multimeters for Electronics Practice",
+      url: "https://www.amazon.com/s?k=beginner+multimeter&tag=medskillbuild-20",
+      eventName: "amazon_beginner_multimeter_search"
+    },
+    {
+      label: "Study Setup Pick",
+      icon: "💡",
+      text: "Desk Lamps and Study Setup Tools",
+      url: "https://www.amazon.com/s?k=study+desk+lamp&tag=medskillbuild-20",
+      eventName: "amazon_study_desk_lamp_search"
+    }
+  ];
+
+  const [currentStudyGearPickIndex, setCurrentStudyGearPickIndex] = useState(0);
+  const currentStudyGearPick = studyGearPicks[currentStudyGearPickIndex];
+
+  useEffect(() => {
+    const gearRotation = window.setInterval(() => {
+      setCurrentStudyGearPickIndex((prev) => (prev + 1) % studyGearPicks.length);
+    }, 5500);
+
+    return () => window.clearInterval(gearRotation);
+  }, [studyGearPicks.length]);
   // --- CBET STATE ---
   const [shuffledCbetQuestions, setShuffledCbetQuestions] = useState(() =>
     shuffleQuestionSet(cbetQuestions)
@@ -8949,28 +8998,18 @@ return (
         </div>
       </div>
 
-      {/* TODAY'S STUDY GEAR PICK: HOMEPAGE AFFILIATE BANNER */}
+      {/* ROTATING STUDY GEAR PICK: HOMEPAGE AFFILIATE BANNER */}
       <style>
         {`
-          @keyframes medskillGearTicker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+          @keyframes medskillGearPulse {
+            0% { opacity: 0.72; transform: translateY(1px); }
+            50% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0.72; transform: translateY(1px); }
           }
 
-          .medskill-gear-ticker-track {
-            display: inline-block;
-            min-width: 100%;
-            animation: medskillGearTicker 20s linear infinite;
-          }
-
-          .medskill-gear-ticker-track:hover {
-            animation-play-state: paused;
-          }
-
-          @media (max-width: 700px) {
-            .medskill-gear-ticker-track {
-              animation-duration: 15s;
-            }
+          .medskill-gear-rotator:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(22,163,74,0.18);
           }
         `}
       </style>
@@ -8979,35 +9018,80 @@ return (
         style={{
           margin: "0 auto 10px",
           maxWidth: 1100,
-          overflow: "hidden",
           borderRadius: 999,
           border: "1px solid #bbf7d0",
           background: "linear-gradient(135deg, #ecfdf5, #f0fdf4)",
-          boxShadow: "0 10px 24px rgba(22,163,74,0.14)"
+          boxShadow: "0 10px 24px rgba(22,163,74,0.14)",
+          overflow: "hidden"
         }}
       >
         <a
-          href="https://www.amazon.com/s?k=stethescope&rh=n%3A8297370011&linkCode=ll2&tag=medskillbuild-20&linkId=b86824c23b9139ffdfe17df4599ac50d&language=en_US&ref_=as_li_ss_tl"
+          href={currentStudyGearPick.url}
           target="_blank"
           rel="noopener noreferrer sponsored"
-          className="medskill-gear-ticker-track"
+          className="medskill-gear-rotator"
           onClick={() =>
             trackSiteEvent("affiliate_study_gear_pick_click", {
-              target_url: "amazon_stethoscope_search",
-              source: "homepage_ticker"
+              target_url: currentStudyGearPick.eventName,
+              source: "homepage_rotating_banner"
             })
           }
           style={{
-            padding: "13px 22px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            flexWrap: "wrap",
+            minHeight: 48,
+            padding: isSmallScreen ? "12px 14px" : "13px 22px",
             color: "#065f46",
             fontWeight: 950,
             textDecoration: "none",
-            whiteSpace: "nowrap",
-            fontSize: isSmallScreen ? 14 : 16
+            textAlign: "center",
+            fontSize: isSmallScreen ? 13 : 16,
+            transition: "0.2s ease"
           }}
         >
-          🩺 Today&apos;s Study Gear Pick • Quality Stethoscopes for Healthcare Learners → View on Amazon
+          <span
+            aria-hidden="true"
+            style={{
+              fontSize: isSmallScreen ? 17 : 20,
+              animation: "medskillGearPulse 2.4s ease-in-out infinite"
+            }}
+          >
+            {currentStudyGearPick.icon}
+          </span>
+          <span>{currentStudyGearPick.label}:</span>
+          <span>{currentStudyGearPick.text}</span>
+          <span style={{ color: "#047857" }}>→ View on Amazon</span>
         </a>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 8,
+          margin: "0 auto 8px"
+        }}
+        aria-label="Study gear pick rotation indicators"
+      >
+        {studyGearPicks.map((pick, index) => (
+          <button
+            key={pick.eventName}
+            onClick={() => setCurrentStudyGearPickIndex(index)}
+            aria-label={`Show ${pick.label}`}
+            style={{
+              width: index === currentStudyGearPickIndex ? 18 : 8,
+              height: 8,
+              borderRadius: 999,
+              border: "none",
+              background: index === currentStudyGearPickIndex ? "#16a34a" : "#bbf7d0",
+              cursor: "pointer",
+              transition: "0.2s ease"
+            }}
+          />
+        ))}
       </div>
 
       <p
