@@ -1154,6 +1154,70 @@ function formatDuration(totalSeconds) {
 }
 
 
+const MSB_ACHIEVEMENTS = [
+  {
+    id: "first-quiz",
+    icon: "🏆",
+    title: "First Challenge Complete",
+    description: "Complete any MedSkillBuilder quiz or practice activity."
+  },
+  {
+    id: "perfect-score",
+    icon: "💯",
+    title: "Perfect Score",
+    description: "Score 100% on any quiz or challenge."
+  },
+  {
+    id: "cbet-starter",
+    icon: "⚡",
+    title: "CBET Starter",
+    description: "Complete a CBET practice activity."
+  },
+  {
+    id: "terminology-builder",
+    icon: "📚",
+    title: "Terminology Builder",
+    description: "Complete medical terminology practice."
+  },
+  {
+    id: "anatomy-explorer",
+    icon: "🧠",
+    title: "Anatomy Explorer",
+    description: "Complete an anatomy practice activity."
+  },
+  {
+    id: "vitals-detective",
+    icon: "🚨",
+    title: "Vital Signs Detective",
+    description: "Complete a vitals challenge activity."
+  },
+  {
+    id: "lab-values-pro",
+    icon: "🧪",
+    title: "Lab Values Pro",
+    description: "Complete lab values or ABG practice."
+  },
+  {
+    id: "biomed-spotter",
+    icon: "🔧",
+    title: "Biomed Spotter",
+    description: "Complete equipment identification practice."
+  },
+  {
+    id: "bookmark-supporter",
+    icon: "🦊",
+    title: "MedSkillBuilder Supporter",
+    description: "Bookmark MedSkillBuilder so you can come back and keep building skills."
+  },
+  {
+    id: "returning-scholar",
+    icon: "🔥",
+    title: "Returning Scholar",
+    description: "Visit MedSkillBuilder on 3 different days."
+  }
+];
+
+
 const VITALS_CHALLENGE_QUESTIONS = [
   {
     patient: "18-year-old student after gym class",
@@ -7482,6 +7546,64 @@ export default function App() {
   const [saveScoreForm, setSaveScoreForm] = useState({ username: "", email: "" });
   const [saveScoreStatus, setSaveScoreStatus] = useState("idle");
   const [saveScoreMessage, setSaveScoreMessage] = useState("");
+  const [unlockedAchievements, setUnlockedAchievements] = useState(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      return JSON.parse(localStorage.getItem("msbUnlockedAchievements")) || [];
+    } catch {
+      return [];
+    }
+  });
+  const [achievementNotice, setAchievementNotice] = useState(null);
+  const achievementNoticeTimeoutRef = useRef(null);
+
+  const unlockAchievement = (achievementId) => {
+    const achievement = MSB_ACHIEVEMENTS.find((item) => item.id === achievementId);
+    if (!achievement) return;
+
+    setUnlockedAchievements((prev) => {
+      if (prev.includes(achievementId)) return prev;
+
+      const next = [...prev, achievementId];
+      localStorage.setItem("msbUnlockedAchievements", JSON.stringify(next));
+      setAchievementNotice(achievement);
+
+      if (achievementNoticeTimeoutRef.current) {
+        window.clearTimeout(achievementNoticeTimeoutRef.current);
+      }
+
+      achievementNoticeTimeoutRef.current = window.setTimeout(() => {
+        setAchievementNotice(null);
+      }, 4200);
+
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      const today = new Date().toISOString().slice(0, 10);
+      const savedDays = JSON.parse(localStorage.getItem("msbVisitDays")) || [];
+      const nextDays = Array.from(new Set([...savedDays, today])).slice(-30);
+
+      localStorage.setItem("msbVisitDays", JSON.stringify(nextDays));
+
+      if (nextDays.length >= 3) {
+        unlockAchievement("returning-scholar");
+      }
+    } catch {
+      // Achievement tracking should never interrupt the learning tools.
+    }
+
+    return () => {
+      if (achievementNoticeTimeoutRef.current) {
+        window.clearTimeout(achievementNoticeTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const examStartTimesRef = useRef({});
   const anatomyStartRef = useRef({ name: "", startedAt: 0 });
   const anatomyCompletionSavedRef = useRef("");
@@ -7556,6 +7678,10 @@ export default function App() {
 
   const [currentStudyGearPickIndex, setCurrentStudyGearPickIndex] = useState(0);
   const currentStudyGearPick = studyGearPicks[currentStudyGearPickIndex];
+  const achievementProgress =
+    MSB_ACHIEVEMENTS.length > 0
+      ? Math.round((unlockedAchievements.length / MSB_ACHIEVEMENTS.length) * 100)
+      : 0;
 
   useEffect(() => {
     const gearRotation = window.setInterval(() => {
@@ -8624,7 +8750,38 @@ export default function App() {
   const trackExamCompletion = (examName, scoreValue, totalValue) => {
   const startedAt = examStartTimesRef.current[examName];
   const timeSeconds = startedAt ? Math.max(1, Math.round((Date.now() - startedAt) / 1000)) : 0;
+  const completionPercent = totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0;
   delete examStartTimesRef.current[examName];
+
+  unlockAchievement("first-quiz");
+
+  if (completionPercent === 100) {
+    unlockAchievement("perfect-score");
+  }
+
+  if (/CBET/i.test(examName)) {
+    unlockAchievement("cbet-starter");
+  }
+
+  if (/Terminology|Prefix|Suffix/i.test(examName)) {
+    unlockAchievement("terminology-builder");
+  }
+
+  if (/Anatomy|Heart|Brain|Lungs|Skeleton|Digestive/i.test(examName)) {
+    unlockAchievement("anatomy-explorer");
+  }
+
+  if (/Vitals/i.test(examName)) {
+    unlockAchievement("vitals-detective");
+  }
+
+  if (/Lab Values|ABG/i.test(examName)) {
+    unlockAchievement("lab-values-pro");
+  }
+
+  if (/Equipment/i.test(examName)) {
+    unlockAchievement("biomed-spotter");
+  }
 
   setOwnerExamStats((prev) => {
     const current = prev?.[examName] || { started: 0, completed: 0 };
@@ -8777,6 +8934,11 @@ export default function App() {
     anatomyCompletionSavedRef.current = selectedSet;
     const startedAt = anatomyStartRef.current?.startedAt || Date.now();
     const timeSeconds = Math.max(1, Math.round((Date.now() - startedAt) / 1000));
+    unlockAchievement("first-quiz");
+    unlockAchievement("anatomy-explorer");
+    if (score === currentSet.parts.length) {
+      unlockAchievement("perfect-score");
+    }
     openSaveScorePrompt(`${selectedSet} Labeling Game`, score, currentSet.parts.length, timeSeconds);
   }, [selectedSet, currentSet, score]);
 
@@ -8890,6 +9052,33 @@ return (
         "linear-gradient(135deg, #e0f7fa 0%, #eef4ff 35%, #fdf2f8 70%, #fff8e1 100%)"
     }}
   >
+    {achievementNotice && (
+      <div
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          zIndex: 9999,
+          maxWidth: 340,
+          padding: "16px 18px",
+          borderRadius: 20,
+          background: "linear-gradient(135deg, #fff7ed, #fef3c7)",
+          border: "1px solid #fed7aa",
+          boxShadow: "0 16px 36px rgba(15, 23, 42, 0.22)",
+          color: "#7c2d12"
+        }}
+      >
+        <div style={{ fontSize: 13, fontWeight: 950, letterSpacing: 0.7 }}>
+          ACHIEVEMENT UNLOCKED
+        </div>
+        <div style={{ fontSize: 20, fontWeight: 950, marginTop: 4 }}>
+          {achievementNotice.icon} {achievementNotice.title}
+        </div>
+        <div style={{ fontSize: 13, fontWeight: 700, marginTop: 4, lineHeight: 1.35 }}>
+          {achievementNotice.description}
+        </div>
+      </div>
+    )}
     {/* LOGO HEADER */}
 <div
   style={{
@@ -9287,6 +9476,173 @@ return (
             🧠 Anatomy Labeling
             <span style={categoryHomeButtonSubtextStyle}>Visual practice and recognition</span>
           </button>
+        </div>
+      </div>
+
+      {/* ACHIEVEMENT CASE */}
+      <div
+        id="achievement-case"
+        style={{
+          marginBottom: 18,
+          padding: "24px 18px",
+          borderRadius: 22,
+          background: "linear-gradient(135deg, rgba(255,247,237,0.96), rgba(254,243,199,0.92))",
+          border: "1px solid #fed7aa",
+          boxShadow: "0 14px 30px rgba(146,64,14,0.12)"
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            color: "#92400e",
+            fontWeight: 950,
+            letterSpacing: 1,
+            fontSize: 18,
+            marginBottom: 8
+          }}
+        >
+          🏆 ACHIEVEMENT CASE
+        </div>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#7c2d12",
+            fontSize: 16,
+            margin: "0 auto 16px auto",
+            maxWidth: 820,
+            lineHeight: 1.55
+          }}
+        >
+          Complete quizzes, score high, return to practice, and collect trophies. Your achievements save on this device.
+        </p>
+
+        <div
+          style={{
+            maxWidth: 820,
+            margin: "0 auto 18px",
+            padding: 14,
+            borderRadius: 18,
+            background: "rgba(255,255,255,0.72)",
+            border: "1px solid #fed7aa"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              flexWrap: "wrap",
+              color: "#78350f",
+              fontWeight: 900,
+              marginBottom: 10
+            }}
+          >
+            <span>{unlockedAchievements.length} / {MSB_ACHIEVEMENTS.length} trophies unlocked</span>
+            <span>{achievementProgress}% complete</span>
+          </div>
+          <div
+            style={{
+              height: 12,
+              borderRadius: 999,
+              background: "#fde68a",
+              overflow: "hidden"
+            }}
+          >
+            <div
+              style={{
+                width: `${achievementProgress}%`,
+                height: "100%",
+                borderRadius: 999,
+                background: "linear-gradient(135deg, #f59e0b, #f97316)",
+                transition: "width 0.35s ease"
+              }}
+            />
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+            gap: 14,
+            maxWidth: 1100,
+            margin: "0 auto"
+          }}
+        >
+          {MSB_ACHIEVEMENTS.map((achievement) => {
+            const unlocked = unlockedAchievements.includes(achievement.id);
+
+            return (
+              <div
+                key={achievement.id}
+                style={{
+                  padding: 16,
+                  borderRadius: 18,
+                  background: unlocked
+                    ? "linear-gradient(135deg, #ffffff, #fffbeb)"
+                    : "rgba(255,255,255,0.55)",
+                  border: unlocked ? "1px solid #f59e0b" : "1px solid #fcd9a8",
+                  color: unlocked ? "#78350f" : "#92400e",
+                  boxShadow: unlocked ? "0 8px 18px rgba(146,64,14,0.12)" : "none",
+                  opacity: unlocked ? 1 : 0.62
+                }}
+              >
+                <div style={{ fontSize: 30, marginBottom: 6 }}>
+                  {unlocked ? achievement.icon : "🔒"}
+                </div>
+                <div style={{ fontWeight: 950, marginBottom: 4 }}>
+                  {achievement.title}
+                </div>
+                <div style={{ fontSize: 13, lineHeight: 1.4, color: unlocked ? "#7c2d12" : "#92400e" }}>
+                  {achievement.description}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: 18,
+            display: "flex",
+            justifyContent: "center",
+            gap: 12,
+            flexWrap: "wrap"
+          }}
+        >
+          <button
+            onClick={() => unlockAchievement("bookmark-supporter")}
+            style={{
+              padding: "12px 22px",
+              borderRadius: 999,
+              border: "none",
+              background: "linear-gradient(135deg, #92400e, #f59e0b)",
+              color: "white",
+              fontWeight: 950,
+              cursor: "pointer",
+              boxShadow: "0 8px 18px rgba(146,64,14,0.18)"
+            }}
+          >
+            🦊 I Bookmarked MedSkillBuilder
+          </button>
+          <a
+            href="/spot-the-problem-vital-signs-challenge.html"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "12px 22px",
+              borderRadius: 999,
+              background: "linear-gradient(135deg, #b91c1c, #f97316)",
+              color: "white",
+              fontWeight: 950,
+              textDecoration: "none",
+              boxShadow: "0 8px 18px rgba(185,28,28,0.18)"
+            }}
+          >
+            🚨 Earn Vital Signs Trophy
+          </a>
         </div>
       </div>
 
@@ -9759,6 +10115,25 @@ return (
         >
           🚨 Spot the Problem
         </a>
+        <button
+          onClick={() => {
+            const target = document.getElementById("achievement-case");
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }}
+          onMouseEnter={() => setHoveredNavTab("Achievements")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={{
+            ...navButtonStyle(false, hoveredNavTab === "Achievements"),
+            background: hoveredNavTab === "Achievements"
+              ? "linear-gradient(135deg, #92400e, #f59e0b)"
+              : "linear-gradient(135deg, #fef3c7, #fff7ed)",
+            color: hoveredNavTab === "Achievements" ? "white" : "#78350f"
+          }}
+        >
+          🏆 Trophies
+        </button>
         <a
           href="/apparel.html"
           target="_blank"
