@@ -7568,6 +7568,16 @@ export default function App() {
       localStorage.setItem("msbUnlockedAchievements", JSON.stringify(next));
       setAchievementNotice(achievement);
 
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "achievement_unlocked", {
+          achievement_id: achievement.id,
+          achievement_name: achievement.title,
+          total_unlocked: next.length,
+          total_available: MSB_ACHIEVEMENTS.length,
+          page_path: window.location?.pathname || "/"
+        });
+      }
+
       if (achievementNoticeTimeoutRef.current) {
         window.clearTimeout(achievementNoticeTimeoutRef.current);
       }
@@ -9484,166 +9494,212 @@ return (
         id="achievement-case"
         style={{
           marginBottom: 18,
-          padding: "24px 18px",
-          borderRadius: 22,
-          background: "linear-gradient(135deg, rgba(255,247,237,0.96), rgba(254,243,199,0.92))",
+          padding: "16px 16px",
+          borderRadius: 20,
+          background: "linear-gradient(135deg, rgba(255,247,237,0.96), rgba(254,243,199,0.9))",
           border: "1px solid #fed7aa",
-          boxShadow: "0 14px 30px rgba(146,64,14,0.12)"
+          boxShadow: "0 10px 22px rgba(146,64,14,0.10)"
         }}
       >
         <div
           style={{
-            textAlign: "center",
-            color: "#92400e",
-            fontWeight: 950,
-            letterSpacing: 1,
-            fontSize: 18,
-            marginBottom: 8
-          }}
-        >
-          🏆 ACHIEVEMENT CASE
-        </div>
-        <p
-          style={{
-            textAlign: "center",
-            color: "#7c2d12",
-            fontSize: 16,
-            margin: "0 auto 16px auto",
-            maxWidth: 820,
-            lineHeight: 1.55
-          }}
-        >
-          Complete quizzes, score high, return to practice, and collect trophies. Your achievements save on this device.
-        </p>
-
-        <div
-          style={{
-            maxWidth: 820,
-            margin: "0 auto 18px",
-            padding: 14,
-            borderRadius: 18,
-            background: "rgba(255,255,255,0.72)",
-            border: "1px solid #fed7aa"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 12,
-              flexWrap: "wrap",
-              color: "#78350f",
-              fontWeight: 900,
-              marginBottom: 10
-            }}
-          >
-            <span>{unlockedAchievements.length} / {MSB_ACHIEVEMENTS.length} trophies unlocked</span>
-            <span>{achievementProgress}% complete</span>
-          </div>
-          <div
-            style={{
-              height: 12,
-              borderRadius: 999,
-              background: "#fde68a",
-              overflow: "hidden"
-            }}
-          >
-            <div
-              style={{
-                width: `${achievementProgress}%`,
-                height: "100%",
-                borderRadius: 999,
-                background: "linear-gradient(135deg, #f59e0b, #f97316)",
-                transition: "width 0.35s ease"
-              }}
-            />
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
             gap: 14,
+            flexWrap: "wrap",
             maxWidth: 1100,
             margin: "0 auto"
           }}
         >
-          {MSB_ACHIEVEMENTS.map((achievement) => {
-            const unlocked = unlockedAchievements.includes(achievement.id);
+          <div style={{ minWidth: 220, flex: "1 1 260px" }}>
+            <div
+              style={{
+                color: "#92400e",
+                fontWeight: 950,
+                letterSpacing: 0.5,
+                fontSize: 17,
+                marginBottom: 4
+              }}
+            >
+              🏆 Achievements
+            </div>
+            <div style={{ color: "#7c2d12", fontSize: 14, lineHeight: 1.4 }}>
+              Complete practice tools, score high, return later, and unlock trophies on this device.
+            </div>
+          </div>
 
-            return (
+          <div
+            style={{
+              flex: "1 1 280px",
+              maxWidth: 420,
+              minWidth: 240
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 10,
+                color: "#78350f",
+                fontWeight: 900,
+                fontSize: 14,
+                marginBottom: 8
+              }}
+            >
+              <span>{unlockedAchievements.length} / {MSB_ACHIEVEMENTS.length} unlocked</span>
+              <span>{achievementProgress}%</span>
+            </div>
+            <div
+              style={{
+                height: 10,
+                borderRadius: 999,
+                background: "#fde68a",
+                overflow: "hidden"
+              }}
+            >
               <div
-                key={achievement.id}
                 style={{
-                  padding: 16,
-                  borderRadius: 18,
-                  background: unlocked
-                    ? "linear-gradient(135deg, #ffffff, #fffbeb)"
-                    : "rgba(255,255,255,0.55)",
-                  border: unlocked ? "1px solid #f59e0b" : "1px solid #fcd9a8",
-                  color: unlocked ? "#78350f" : "#92400e",
-                  boxShadow: unlocked ? "0 8px 18px rgba(146,64,14,0.12)" : "none",
-                  opacity: unlocked ? 1 : 0.62
+                  width: `${achievementProgress}%`,
+                  height: "100%",
+                  borderRadius: 999,
+                  background: "linear-gradient(135deg, #f59e0b, #f97316)",
+                  transition: "width 0.35s ease"
                 }}
-              >
-                <div style={{ fontSize: 30, marginBottom: 6 }}>
-                  {unlocked ? achievement.icon : "🔒"}
-                </div>
-                <div style={{ fontWeight: 950, marginBottom: 4 }}>
-                  {achievement.title}
-                </div>
-                <div style={{ fontSize: 13, lineHeight: 1.4, color: unlocked ? "#7c2d12" : "#92400e" }}>
-                  {achievement.description}
-                </div>
-              </div>
-            );
-          })}
+              />
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: 10,
+              flexWrap: "wrap",
+              flex: "1 1 240px"
+            }}
+          >
+            <button
+              onClick={() => {
+                trackSiteEvent("achievement_bookmark_click", {
+                  achievement_id: "bookmark-supporter"
+                });
+                unlockAchievement("bookmark-supporter");
+              }}
+              style={{
+                padding: "10px 16px",
+                borderRadius: 999,
+                border: "none",
+                background: "linear-gradient(135deg, #92400e, #f59e0b)",
+                color: "white",
+                fontWeight: 950,
+                cursor: "pointer",
+                boxShadow: "0 8px 16px rgba(146,64,14,0.16)"
+              }}
+            >
+              🦊 I Bookmarked It
+            </button>
+            <a
+              href="/spot-the-problem-vital-signs-challenge.html"
+              onClick={() =>
+                trackSiteEvent("achievement_cta_click", {
+                  destination: "spot_the_problem_vitals"
+                })
+              }
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "10px 16px",
+                borderRadius: 999,
+                background: "linear-gradient(135deg, #b91c1c, #f97316)",
+                color: "white",
+                fontWeight: 950,
+                textDecoration: "none",
+                boxShadow: "0 8px 16px rgba(185,28,28,0.16)"
+              }}
+            >
+              🚨 Earn Vitals Trophy
+            </a>
+          </div>
         </div>
 
-        <div
+        <details
+          onToggle={(event) => {
+            if (event.currentTarget.open) {
+              trackSiteEvent("trophy_case_opened", {
+                unlocked_count: unlockedAchievements.length,
+                total_trophies: MSB_ACHIEVEMENTS.length
+              });
+            }
+          }}
           style={{
-            textAlign: "center",
-            marginTop: 18,
-            display: "flex",
-            justifyContent: "center",
-            gap: 12,
-            flexWrap: "wrap"
+            maxWidth: 1100,
+            margin: "14px auto 0",
+            borderRadius: 16,
+            background: "rgba(255,255,255,0.58)",
+            border: "1px solid #fed7aa",
+            overflow: "hidden"
           }}
         >
-          <button
-            onClick={() => unlockAchievement("bookmark-supporter")}
+          <summary
             style={{
-              padding: "12px 22px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #92400e, #f59e0b)",
-              color: "white",
-              fontWeight: 950,
+              padding: "12px 14px",
               cursor: "pointer",
-              boxShadow: "0 8px 18px rgba(146,64,14,0.18)"
-            }}
-          >
-            🦊 I Bookmarked MedSkillBuilder
-          </button>
-          <a
-            href="/spot-the-problem-vital-signs-challenge.html"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "12px 22px",
-              borderRadius: 999,
-              background: "linear-gradient(135deg, #b91c1c, #f97316)",
-              color: "white",
+              color: "#78350f",
               fontWeight: 950,
-              textDecoration: "none",
-              boxShadow: "0 8px 18px rgba(185,28,28,0.18)"
+              listStyle: "none"
             }}
           >
-            🚨 Earn Vital Signs Trophy
-          </a>
-        </div>
+            View trophy requirements and progress
+          </summary>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
+              gap: 12,
+              padding: "0 14px 14px"
+            }}
+          >
+            {MSB_ACHIEVEMENTS.map((achievement) => {
+              const unlocked = unlockedAchievements.includes(achievement.id);
+
+              return (
+                <div
+                  key={achievement.id}
+                  style={{
+                    padding: 14,
+                    borderRadius: 16,
+                    background: unlocked
+                      ? "linear-gradient(135deg, #ffffff, #fffbeb)"
+                      : "rgba(255,255,255,0.5)",
+                    border: unlocked ? "1px solid #f59e0b" : "1px solid #fcd9a8",
+                    color: unlocked ? "#78350f" : "#92400e",
+                    boxShadow: unlocked ? "0 6px 14px rgba(146,64,14,0.10)" : "none",
+                    opacity: unlocked ? 1 : 0.72
+                  }}
+                >
+                  <div style={{ fontSize: 26, marginBottom: 5 }}>
+                    {unlocked ? achievement.icon : "🔒"}
+                  </div>
+                  <div style={{ fontWeight: 950, marginBottom: 4, fontSize: 14 }}>
+                    {achievement.title}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 12.5,
+                      lineHeight: 1.35,
+                      color: unlocked ? "#7c2d12" : "#92400e"
+                    }}
+                  >
+                    {achievement.description}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </details>
       </div>
 
       {/* CBET ELECTRONICS STUDY TOOLS */}
