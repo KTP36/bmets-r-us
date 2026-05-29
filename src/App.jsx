@@ -9228,15 +9228,15 @@ return (
           }}
         >
           <a
-            href="/biomed-career-guide.html"
+            href="/spot-the-problem-vital-signs-challenge.html"
             onClick={() =>
-              trackSiteEvent("start_here_biomed_click", {
-                target_url: "/biomed-career-guide.html",
-                source: "start_here_biomed"
+              trackSiteEvent("start_here_spot_problem_click", {
+                target_url: "/spot-the-problem-vital-signs-challenge.html",
+                source: "start_here_spot_problem"
               })
             }
             style={{
-              ...categoryHomeButtonStyle("#0f172a", "#334155"),
+              ...categoryHomeButtonStyle("#b91c1c", "#f97316"),
               minHeight: 116,
               textDecoration: "none",
               display: "flex",
@@ -9245,8 +9245,8 @@ return (
               justifyContent: "center"
             }}
           >
-            🏥 Biomed Career Guide
-            <span style={categoryHomeButtonSubtextStyle}>Roles, salaries, education, CBET</span>
+            🚨 Spot the Problem
+            <span style={categoryHomeButtonSubtextStyle}>Challenging vital sign scenarios</span>
           </a>
           <button
             onClick={() =>
@@ -9740,6 +9740,24 @@ return (
           }}
         >
           All Practice
+        </a>
+        <a
+          href="/spot-the-problem-vital-signs-challenge.html"
+          onMouseEnter={() => setHoveredNavTab("SpotProblem")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={{
+            ...navButtonStyle(false, hoveredNavTab === "SpotProblem"),
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textDecoration: "none",
+            background: hoveredNavTab === "SpotProblem"
+              ? "linear-gradient(135deg, #b91c1c, #f97316)"
+              : "linear-gradient(135deg, #fee2e2, #ffedd5)",
+            color: hoveredNavTab === "SpotProblem" ? "white" : "#7f1d1d"
+          }}
+        >
+          🚨 Spot the Problem
         </a>
         <a
           href="/apparel.html"
