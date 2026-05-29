@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spot the Problem: Vital Signs Challenge | MedSkillBuilder</title>
+  <meta name="description" content="Can you spot dangerous vital signs before everyone else? Test yourself with challenging real-world patient scenarios, instant explanations, and professional-level pattern recognition." />
+  <meta name="keywords" content="vital signs challenge, spot the problem vital signs, nursing vital signs quiz, abnormal vital signs, clinical judgment practice, healthcare quiz, patient assessment quiz, nursing student practice" />
+  <link rel="canonical" href="https://medskillbuilder.com/spot-the-problem-vital-signs-challenge.html" />
+  <meta property="og:title" content="Spot the Problem: Vital Signs Challenge | MedSkillBuilder" />
+  <meta property="og:description" content="Think you can recognize unstable patients? Take the professional-level vital signs challenge with real-world scenarios and explanations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/spot-the-problem-vital-signs-challenge.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Spot the Problem Vital Signs Challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Spot the Problem Vital Signs Challenge is an interactive practice tool that asks learners to identify concerning patterns in patient vital signs using clinical judgment and context."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who should use this vital signs challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This challenge is useful for nursing students, medical assistants, EMT learners, allied health students, patient care technicians, healthcare educators, and professionals who want to sharpen pattern recognition."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these questions beginner or advanced?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The challenge includes student, clinician, and expert-level questions. Some questions are straightforward, while others require pattern recognition and patient context."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this medical advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. MedSkillBuilder provides educational practice only. This content is not medical advice, clinical direction, diagnosis, treatment guidance, or a substitute for professional training and local protocols."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --cyan: #06b6d4;
+      --green: #16a34a;
+      --lime: #22c55e;
+      --orange: #f97316;
+      --red: #ef4444;
+      --purple: #7c3aed;
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #f8fafc;
+      --border: #dbeafe;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(239, 68, 68, 0.16), transparent 25%),
+        radial-gradient(circle at 92% 0%, rgba(6, 182, 212, 0.16), transparent 25%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 48%, #ffffff 100%);
+    }
+    a { color: inherit; }
+    .container { width: min(1120px, calc(100% - 34px)); margin: 0 auto; }
+
+    .topbar { padding: 18px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; width: fit-content; }
+    .brand img { width: 58px; height: auto; }
+    .brand strong { display: block; color: var(--navy); font-size: 25px; line-height: 1.1; }
+    .brand span { display: block; color: var(--muted); font-size: 13px; }
+
+    header {
+      background:
+        radial-gradient(circle at right, rgba(239, 68, 68, 0.26), transparent 30%),
+        linear-gradient(135deg, #071a33, #082f57 45%, #1d6fa5);
+      color: white;
+      border-radius: 0 0 34px 34px;
+      padding: 58px 0 48px;
+      box-shadow: 0 24px 60px rgba(8, 47, 87, 0.28);
+      overflow: hidden;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 30px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; padding: 8px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
+      font-size: 13px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;
+    }
+    h1 { font-size: clamp(42px, 6vw, 76px); line-height: 0.95; letter-spacing: -0.055em; margin-bottom: 18px; }
+    header p { color: #e0f2fe; font-size: clamp(18px, 2.1vw, 23px); margin-bottom: 16px; }
+    .hero-card {
+      background: rgba(255,255,255,0.11); border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 28px; padding: 24px; backdrop-filter: blur(8px);
+    }
+    .vitals-preview { display: grid; gap: 12px; margin-top: 12px; }
+    .vital-row { display: flex; justify-content: space-between; gap: 14px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; padding: 12px 14px; }
+    .vital-row strong { font-size: 18px; }
+    .danger { color: #fecaca; font-weight: 900; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+    .cta-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 54px; padding: 15px 24px; border-radius: 999px;
+      color: white; text-decoration: none; font-weight: 900; border: none; cursor: pointer;
+      transition: 0.18s ease; font-size: 16px;
+    }
+    .cta-button:hover { transform: translateY(-2px); }
+    .primary-btn { background: linear-gradient(135deg, var(--red), var(--orange)); box-shadow: 0 16px 28px rgba(239, 68, 68, 0.24); }
+    .secondary-btn { background: linear-gradient(135deg, var(--green), var(--lime)); box-shadow: 0 16px 28px rgba(22, 163, 74, 0.24); }
+    .dark-btn { background: linear-gradient(135deg, var(--navy), var(--blue)); box-shadow: 0 16px 28px rgba(8, 47, 87, 0.22); }
+
+    main { padding: 34px 0 48px; }
+    .notice { background: #fff7ed; border: 1px solid #fed7aa; color: #7c2d12; padding: 14px 16px; border-radius: 16px; font-size: 14px; margin: 0 0 24px; }
+    .section { background: rgba(255,255,255,0.96); border: 1px solid var(--border); border-radius: 28px; padding: 32px; margin-bottom: 24px; box-shadow: var(--shadow); }
+    .section.highlight { background: linear-gradient(180deg, rgba(239, 246, 255, 0.88), rgba(255,255,255,0.98)); }
+    h2 { color: var(--navy); font-size: clamp(28px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.035em; margin-bottom: 14px; }
+    h3 { color: var(--navy); font-size: 21px; margin: 16px 0 8px; }
+    p { font-size: 17px; color: #1f2937; margin-bottom: 13px; }
+    .lead { font-size: 19px; color: #334155; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 22px 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 22px 0; }
+    .card { background: #f8fbff; border: 1px solid var(--border); border-radius: 22px; padding: 20px; }
+    .card.red { border-left: 6px solid var(--red); }
+    .card.green { border-left: 6px solid var(--green); }
+    .card.blue { border-left: 6px solid var(--blue); }
+    .badge { display: inline-flex; padding: 7px 12px; border-radius: 999px; font-size: 12px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+    .badge.student { background: #dcfce7; color: #166534; }
+    .badge.clinician { background: #dbeafe; color: #1e40af; }
+    .badge.expert { background: #ede9fe; color: #5b21b6; }
+
+    #challenge { scroll-margin-top: 20px; }
+    .quiz-shell { max-width: 980px; margin: 0 auto; }
+    .progress-wrap { margin-bottom: 18px; }
+    .progress-top { display: flex; justify-content: space-between; gap: 12px; color: #334155; font-weight: 900; margin-bottom: 8px; flex-wrap: wrap; }
+    .progress-bar { height: 12px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--red), var(--orange)); transition: width 0.25s ease; }
+
+    .question-card { background: white; border: 1px solid #bfdbfe; border-radius: 26px; padding: 26px; box-shadow: 0 12px 34px rgba(15,23,42,0.08); }
+    .scenario-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 18px; }
+    .scenario-title { font-size: 24px; color: var(--navy); font-weight: 900; line-height: 1.15; }
+    .difficulty-pill { padding: 8px 13px; border-radius: 999px; font-weight: 900; font-size: 13px; white-space: nowrap; }
+    .easy-pill { background: #dcfce7; color: #166534; }
+    .medium-pill { background: #dbeafe; color: #1e40af; }
+    .hard-pill { background: #ede9fe; color: #5b21b6; }
+
+    .patient-note { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 18px; padding: 14px; color: #334155; font-weight: 700; margin-bottom: 18px; }
+    .vital-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 18px 0; }
+    .vital-box { background: linear-gradient(180deg, #f8fafc, #ffffff); border: 1px solid #dbeafe; border-radius: 16px; padding: 13px 10px; text-align: center; }
+    .vital-label { color: #64748b; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .vital-value { color: #0f172a; font-size: 19px; font-weight: 900; margin-top: 3px; }
+    .vital-box.alert { border-color: #fecaca; background: #fff1f2; }
+    .question-text { font-size: 22px; color: #0f172a; font-weight: 900; margin: 20px 0 14px; }
+    .options { display: grid; gap: 12px; }
+    .option-btn { width: 100%; text-align: left; padding: 15px 16px; border-radius: 16px; border: 1px solid #cbd5e1; background: #f8fafc; color: #1e293b; font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.15s ease; }
+    .option-btn:hover { transform: translateY(-1px); background: #eff6ff; }
+    .option-btn.correct { border: 2px solid #16a34a; background: #dcfce7; color: #14532d; }
+    .option-btn.wrong { border: 2px solid #ef4444; background: #fee2e2; color: #7f1d1d; }
+    .feedback { display: none; margin-top: 18px; border-radius: 18px; padding: 18px; border: 1px solid #bfdbfe; background: #eff6ff; }
+    .feedback.show { display: block; }
+    .feedback h3 { margin-top: 0; }
+    .teaching { color: #1e3a8a; font-weight: 700; }
+    .priority-clue { margin-top: 12px; background: white; border: 1px solid #bfdbfe; border-left: 6px solid #2563eb; border-radius: 14px; padding: 12px; color: #1e40af; font-weight: 900; }
+    .next-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .next-btn { display: none; }
+    .next-btn.show { display: inline-flex; }
+
+    .results { display: none; text-align: center; }
+    .results.show { display: block; }
+    .score-big { font-size: clamp(48px, 7vw, 84px); font-weight: 900; color: var(--navy); letter-spacing: -0.06em; margin: 12px 0; }
+    .result-badge { display: inline-flex; padding: 10px 16px; border-radius: 999px; color: white; font-weight: 900; background: linear-gradient(135deg, var(--purple), #8b5cf6); margin-bottom: 14px; }
+    .result-message { max-width: 760px; margin: 0 auto 20px; color: #334155; font-size: 18px; }
+
+    .link-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; }
+    .study-link { display: block; text-decoration: none; background: #e8f1fb; border: 1px solid #bfdbfe; color: var(--navy); border-radius: 16px; padding: 14px 16px; font-weight: 900; }
+    .study-link:hover { background: #dbeafe; }
+    ul { margin: 14px 0 0 22px; }
+    li { margin-bottom: 9px; font-size: 16px; color: #1f2937; }
+
+    footer { background: var(--navy); color: white; padding: 34px 0; text-align: center; margin-top: 42px; }
+    footer p { color: rgba(255,255,255,0.86); font-size: 14px; margin-bottom: 8px; }
+    footer a { color: #7dd3fc; text-decoration: none; font-weight: 900; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .grid-3, .grid-2, .link-grid { grid-template-columns: 1fr; }
+      .vital-grid { grid-template-columns: repeat(2, 1fr); }
+      header { padding: 42px 0; border-radius: 0 0 26px 26px; }
+      .section, .question-card { padding: 22px 18px; }
+      .cta-button { width: 100%; }
+      .brand strong { font-size: 21px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Interactive healthcare learning and clinical recognition practice</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Professional-Level Vital Signs Challenge</div>
+          <h1>Spot the Problem</h1>
+          <p>
+            Think you can recognize unstable patients before everyone else? Test your clinical eye with 25 vital sign scenarios that move beyond easy textbook answers.
+          </p>
+          <p>
+            Some cases are obvious. Some require pattern recognition, patient context, trends, and judgment.
+          </p>
+          <div class="cta-row">
+            <a href="#challenge" class="cta-button primary-btn">Start the Challenge →</a>
+            <a href="/normal-vital-signs-chart.html" class="cta-button dark-btn">Review Normal Vital Signs</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="eyebrow">Sample Scenario</div>
+          <h3 style="color:white;margin-top:0;">Would you be worried?</h3>
+          <div class="vitals-preview">
+            <div class="vital-row"><span>BP</span><strong>102/64</strong></div>
+            <div class="vital-row"><span>HR</span><strong class="danger">128</strong></div>
+            <div class="vital-row"><span>SpO2</span><strong>95%</strong></div>
+            <div class="vital-row"><span>RR</span><strong class="danger">28</strong></div>
+            <div class="vital-row"><span>Temp</span><strong>99.8°F</strong></div>
+          </div>
+          <p style="font-size:15px;margin-top:16px;margin-bottom:0;color:#dbeafe;">
+            Looks “not terrible” at first glance. But the pattern may suggest compensation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="notice">
+      Educational use only. This challenge is for learning and practice. It is not medical advice, clinical direction, diagnosis, treatment guidance, or a substitute for professional training, local protocols, or licensed clinical judgment.
+    </div>
+
+    <section class="section highlight">
+      <h2>This is not a basic vital signs quiz.</h2>
+      <p class="lead">
+        Real healthcare recognition is not just knowing that one number is high or low. It is seeing the pattern, understanding the context, and knowing when a patient might be getting worse.
+      </p>
+      <div class="grid-3">
+        <div class="card green">
+          <span class="badge student">Student</span>
+          <h3>Foundational recognition</h3>
+          <p>Start with abnormal values, urgent oxygen concerns, fever patterns, and clear safety issues.</p>
+        </div>
+        <div class="card blue">
+          <span class="badge clinician">Clinician</span>
+          <h3>Pattern thinking</h3>
+          <p>Look at grouped findings like tachycardia plus tachypnea, low pressure trends, and early instability.</p>
+        </div>
+        <div class="card red">
+          <span class="badge expert">Expert</span>
+          <h3>Context matters</h3>
+          <p>Recognize compensated shock, silent hypoxia, medication effects, neuro red flags, and sepsis-like patterns.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenge" class="section">
+      <div class="quiz-shell">
+        <div id="quizIntro">
+          <h2>Start the 25-question challenge</h2>
+          <p class="lead">
+            You will see a patient note, vital signs, and a question. Choose the best answer. Explanations appear immediately so you learn from every scenario.
+          </p>
+          <div class="cta-row">
+            <button class="cta-button primary-btn" onclick="startQuiz()">Begin Challenge</button>
+            <a class="cta-button secondary-btn" href="/normal-vital-signs-chart.html">Review First</a>
+          </div>
+        </div>
+
+        <div id="quizArea" style="display:none;">
+          <div class="progress-wrap">
+            <div class="progress-top">
+              <span id="progressText">Question 1 / 25</span>
+              <span id="scoreText">Score: 0</span>
+              <span id="streakText">Streak: 0</span>
+            </div>
+            <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+          </div>
+
+          <div class="question-card">
+            <div class="scenario-top">
+              <div>
+                <div id="difficulty" class="difficulty-pill medium-pill">Clinician Level</div>
+                <div id="scenarioTitle" class="scenario-title">Scenario</div>
+              </div>
+            </div>
+            <div id="patientNote" class="patient-note"></div>
+            <div id="vitalGrid" class="vital-grid"></div>
+            <div id="questionText" class="question-text"></div>
+            <div id="options" class="options"></div>
+            <div id="feedback" class="feedback">
+              <h3 id="feedbackTitle"></h3>
+              <p id="feedbackText" class="teaching"></p>
+              <div id="priorityClue" class="priority-clue"></div>
+            </div>
+            <div class="next-row">
+              <button id="nextBtn" class="cta-button dark-btn next-btn" onclick="nextQuestion()">Next Question</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="results" class="results">
+          <div class="result-badge" id="resultBadge">Challenge Complete</div>
+          <h2>Your Result</h2>
+          <div class="score-big" id="finalScore">0 / 25</div>
+          <p id="resultMessage" class="result-message"></p>
+          <div class="cta-row" style="justify-content:center;">
+            <button class="cta-button primary-btn" onclick="restartQuiz()">Try Again</button>
+            <a class="cta-button dark-btn" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+            <a class="cta-button secondary-btn" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What this challenge teaches</h2>
+      <p>
+        Strong clinical recognition is about patterns. A single vital sign can matter, but combinations often tell the real story. The same heart rate can mean pain, anxiety, fever, dehydration, hypoxia, bleeding, or compensation depending on the rest of the picture.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Do not get distracted by one normal number</h3>
+          <p>Normal oxygen does not erase low blood pressure. Normal blood pressure does not erase respiratory distress. Look at the whole card.</p>
+        </div>
+        <div class="card">
+          <h3>Trends can matter more than snapshots</h3>
+          <p>A patient moving from normal toward fever, tachycardia, tachypnea, lower pressure, and lower oxygen may be worsening.</p>
+        </div>
+        <div class="card">
+          <h3>Context changes the answer</h3>
+          <p>A heart rate of 52 in a marathon runner may not mean the same thing as a heart rate of 52 with dizziness and hypotension.</p>
+        </div>
+        <div class="card">
+          <h3>Compensation can hide danger</h3>
+          <p>A patient can look “okay” while the heart rate and respiratory rate are already showing the body is working harder.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Keep learning</h2>
+      <p>Use these MedSkillBuilder resources to strengthen the concepts behind this challenge.</p>
+      <div class="link-grid">
+        <a class="study-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a class="study-link" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a>
+        <a class="study-link" href="/abg-normal-values.html">ABG Normal Values Guide</a>
+        <a class="study-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a class="study-link" href="/medical-abbreviations-guide.html">Medical Abbreviations Guide</a>
+        <a class="study-link" href="/how-to-study-medical-terminology.html">How to Study Medical Terminology</a>
+        <a class="study-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+        <a class="study-link" href="/browse-all-practice.html">Browse All Practice Pages</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for anatomy, vitals, medical terminology, CBET prep, nursing review, and clinical recognition practice.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/about.html">About</a> |
+        <a href="/?tab=Contact">Contact</a> |
+        <a href="/?tab=Privacy">Privacy Policy</a> |
+        <a href="/terms.html">Terms</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        level: "Student",
+        title: "Post-op patient after pain medication",
+        note: "A post-op adult is very sleepy after receiving pain medication. The patient responds to voice but drifts back to sleep.",
+        vitals: { BP: "104/66", HR: "58", SpO2: "88%", RR: "8", Temp: "98.0°F" },
+        alerts: ["SpO2", "RR"],
+        question: "What is the most urgent concern?",
+        options: ["Temperature", "Respiratory depression and low oxygen", "Heart rate only", "Pain score is controlled"],
+        answer: 1,
+        teaching: "A respiratory rate of 8 with SpO2 of 88% is a breathing and oxygenation concern, especially after pain medication.",
+        priority: "Priority clue: Slow respirations plus low oxygen should get attention fast."
+      },
+      {
+        level: "Student",
+        title: "Adult with pneumonia symptoms",
+        note: "Adult reports cough, fever, and shortness of breath. They are speaking in short phrases.",
+        vitals: { BP: "118/70", HR: "104", SpO2: "89%", RR: "28", Temp: "101.8°F" },
+        alerts: ["SpO2", "RR", "Temp"],
+        question: "Which finding should stand out first?",
+        options: ["Low oxygen with increased respiratory rate", "Blood pressure", "Pain level", "Heart rate only"],
+        answer: 0,
+        teaching: "SpO2 of 89% with RR of 28 suggests respiratory compromise, especially with fever and pneumonia symptoms.",
+        priority: "Priority clue: Airway and breathing rise to the top."
+      },
+      {
+        level: "Student",
+        title: "Routine adult appointment",
+        note: "Adult arrives for a routine check and denies symptoms.",
+        vitals: { BP: "122/76", HR: "72", SpO2: "98%", RR: "15", Temp: "98.1°F" },
+        alerts: [],
+        question: "What is the best interpretation?",
+        options: ["Stable vital sign pattern", "Shock risk", "Respiratory failure", "Severe hypertension"],
+        answer: 0,
+        teaching: "These values are consistent with stable adult vital signs in this scenario.",
+        priority: "Priority clue: Recognizing normal is part of recognizing abnormal."
+      },
+      {
+        level: "Student",
+        title: "Adult with severe asthma symptoms",
+        note: "Adult is using accessory muscles and says they cannot catch their breath.",
+        vitals: { BP: "138/84", HR: "124", SpO2: "88%", RR: "32", Temp: "98.8°F" },
+        alerts: ["SpO2", "RR", "HR"],
+        question: "Which issue should be prioritized?",
+        options: ["Breathing and oxygenation", "Temperature", "Only blood pressure", "Pain"],
+        answer: 0,
+        teaching: "Fast respirations and SpO2 of 88% point to respiratory distress. This is a priority pattern.",
+        priority: "Priority clue: Low SpO2 plus high RR is not a casual finding."
+      },
+      {
+        level: "Student",
+        title: "Very high blood pressure with neuro symptoms",
+        note: "Adult reports sudden severe headache and blurred vision.",
+        vitals: { BP: "202/116", HR: "90", SpO2: "98%", RR: "18", Temp: "98.7°F" },
+        alerts: ["BP"],
+        question: "What should you notice first?",
+        options: ["Severely elevated blood pressure with symptoms", "Low oxygen", "Fever", "Respiratory rate"],
+        answer: 0,
+        teaching: "Severely elevated blood pressure paired with neurologic symptoms is concerning and needs prompt clinical attention.",
+        priority: "Priority clue: Symptoms change how urgently a number should be interpreted."
+      },
+      {
+        level: "Clinician",
+        title: "Possible dehydration after GI illness",
+        note: "Adult reports two days of vomiting and diarrhea. They feel dizzy when standing.",
+        vitals: { BP: "94/60", HR: "114", SpO2: "98%", RR: "20", Temp: "99.0°F" },
+        alerts: ["BP", "HR"],
+        question: "What pattern should you connect to the history?",
+        options: ["Possible dehydration or volume loss", "Fluid overload", "Respiratory failure", "Normal recovery only"],
+        answer: 0,
+        teaching: "GI fluid loss can lead to dehydration. Tachycardia with lower blood pressure supports that pattern.",
+        priority: "Priority clue: History plus vitals often reveals the pattern."
+      },
+      {
+        level: "Clinician",
+        title: "Fever with compensation pattern",
+        note: "Adult has chills, weakness, and looks flushed. Blood pressure is not low yet.",
+        vitals: { BP: "118/72", HR: "124", SpO2: "96%", RR: "30", Temp: "101.8°F" },
+        alerts: ["HR", "RR", "Temp"],
+        question: "What is the best concern to recognize?",
+        options: ["Blood pressure is the only concern", "Possible infection/sepsis-like pattern", "Normal vitals", "Oxygen failure"],
+        answer: 1,
+        teaching: "Fever with tachycardia and tachypnea can be an early warning pattern even before blood pressure drops.",
+        priority: "Priority clue: Do not wait for hypotension before taking the pattern seriously."
+      },
+      {
+        level: "Clinician",
+        title: "Pain response after injury",
+        note: "Adult has severe pain after an injury but is alert and breathing well.",
+        vitals: { BP: "150/88", HR: "118", SpO2: "99%", RR: "22", Temp: "98.6°F" },
+        alerts: ["HR", "BP"],
+        question: "What is the most likely reason for HR and BP elevation?",
+        options: ["Severe pain response", "Hypoxia", "Hypothermia", "Normal sleep pattern"],
+        answer: 0,
+        teaching: "Pain can raise heart rate, respiratory rate, and blood pressure. Context matters.",
+        priority: "Priority clue: Not every abnormal value has the same cause."
+      },
+      {
+        level: "Clinician",
+        title: "Fluid overload pattern",
+        note: "Adult reports shortness of breath when lying flat and new swelling in both legs.",
+        vitals: { BP: "166/94", HR: "108", SpO2: "90%", RR: "26", Temp: "98.9°F" },
+        alerts: ["BP", "HR", "SpO2", "RR"],
+        question: "Which assessment connects best with this pattern?",
+        options: ["Lung sounds and edema check", "Only pupil reaction", "Only skin temperature", "Only appetite"],
+        answer: 0,
+        teaching: "Shortness of breath, edema, high BP, tachypnea, lower oxygen, and tachycardia can fit a fluid overload picture.",
+        priority: "Priority clue: Breathing plus swelling suggests a fluid/cardiopulmonary connection."
+      },
+      {
+        level: "Clinician",
+        title: "Possible blood loss",
+        note: "Adult has abdominal pain after trauma. Skin is cool and clammy.",
+        vitals: { BP: "78/42", HR: "136", SpO2: "95%", RR: "24", Temp: "98.2°F" },
+        alerts: ["BP", "HR", "RR"],
+        question: "What does this pattern suggest?",
+        options: ["Shock risk or poor perfusion", "Normal vitals", "Only oxygen issue", "Only fever"],
+        answer: 0,
+        teaching: "Very low blood pressure with high heart rate and cool clammy skin is concerning for poor perfusion or shock risk.",
+        priority: "Priority clue: HR often rises as the body tries to compensate."
+      },
+      {
+        level: "Clinician",
+        title: "COPD history with borderline oxygen",
+        note: "Adult has a COPD history and mild shortness of breath. Their usual SpO2 is unknown.",
+        vitals: { BP: "128/76", HR: "96", SpO2: "91%", RR: "21", Temp: "98.7°F" },
+        alerts: ["SpO2"],
+        question: "What is the best first interpretation?",
+        options: ["Always normal for every adult", "Borderline oxygen needing context and baseline", "Blood pressure is critical", "Temperature is the issue"],
+        answer: 1,
+        teaching: "SpO2 of 91% can be concerning, but COPD baseline and symptoms matter. It should not be ignored.",
+        priority: "Priority clue: Baseline and trend are part of assessment."
+      },
+      {
+        level: "Clinician",
+        title: "Medication effect concern",
+        note: "Adult recently started a blood pressure medication and feels lightheaded when standing.",
+        vitals: { BP: "82/46", HR: "62", SpO2: "97%", RR: "16", Temp: "98.3°F" },
+        alerts: ["BP"],
+        question: "What should stand out?",
+        options: ["Low blood pressure and fall risk", "Fever", "Low oxygen", "High respiratory rate"],
+        answer: 0,
+        teaching: "Blood pressure of 82/46 with lightheadedness is a safety concern and may relate to medication timing or volume status.",
+        priority: "Priority clue: Low BP can be dangerous even if oxygen is normal."
+      },
+      {
+        level: "Clinician",
+        title: "Possible hypoglycemia symptoms",
+        note: "Adult is shaky, sweaty, and mildly confused. No oxygen complaint is reported.",
+        vitals: { BP: "126/78", HR: "116", SpO2: "98%", RR: "20", Temp: "98.5°F" },
+        alerts: ["HR"],
+        question: "What should you consider checking based on symptoms?",
+        options: ["Blood glucose if role/protocol allows", "Only temperature", "Assume oxygen failure", "Ignore symptoms"],
+        answer: 0,
+        teaching: "Tachycardia with shakiness, sweating, or confusion may suggest checking blood glucose depending on role and protocol.",
+        priority: "Priority clue: Symptoms can point you toward the next safe check."
+      },
+      {
+        level: "Clinician",
+        title: "Worsening trend",
+        note: "Four hours ago the patient was stable. Now the nurse reports the patient looks worse.",
+        vitals: { BP: "100/62", HR: "112", SpO2: "93%", RR: "24", Temp: "100.9°F" },
+        alerts: ["HR", "RR", "Temp"],
+        question: "What makes this more concerning?",
+        options: ["The trend is worsening", "Pain is zero", "All values are perfect", "Temperature is low"],
+        answer: 0,
+        teaching: "A move from normal to fever, tachycardia, tachypnea, lower pressure, and lower oxygen deserves attention.",
+        priority: "Priority clue: Trends can matter more than one snapshot."
+      },
+      {
+        level: "Clinician",
+        title: "Normal oxygen but abnormal perfusion",
+        note: "Adult feels weak and dizzy. Pulse ox looks normal.",
+        vitals: { BP: "88/56", HR: "76", SpO2: "99%", RR: "16", Temp: "98.6°F" },
+        alerts: ["BP"],
+        question: "What should you avoid assuming?",
+        options: ["That normal oxygen means all vitals are safe", "That BP matters", "That trends matter", "That symptoms matter"],
+        answer: 0,
+        teaching: "Normal oxygen does not erase low blood pressure. Each vital sign adds part of the picture.",
+        priority: "Priority clue: One normal number can distract from one dangerous number."
+      },
+      {
+        level: "Expert",
+        title: "Compensated shock possibility",
+        note: "Adult appears anxious and pale after a possible internal bleed. Blood pressure is not critically low yet.",
+        vitals: { BP: "102/64", HR: "128", SpO2: "95%", RR: "28", Temp: "99.8°F" },
+        alerts: ["HR", "RR"],
+        question: "What is the best interpretation?",
+        options: ["Stable because BP is above 100", "Possible compensated shock", "Only fever", "Normal athletic response"],
+        answer: 1,
+        teaching: "Tachycardia and tachypnea with pallor after possible bleeding may suggest compensation before blood pressure collapses.",
+        priority: "Priority clue: Waiting for severe hypotension can miss early deterioration."
+      },
+      {
+        level: "Expert",
+        title: "Silent hypoxia",
+        note: "Adult says, “I feel okay,” but the pulse oximeter waveform looks reliable.",
+        vitals: { BP: "132/80", HR: "98", SpO2: "85%", RR: "18", Temp: "98.9°F" },
+        alerts: ["SpO2"],
+        question: "What is the most concerning finding?",
+        options: ["Heart rate", "Blood pressure", "Oxygen saturation", "Respiratory rate"],
+        answer: 2,
+        teaching: "SpO2 of 85% is concerning even if the patient does not feel severely short of breath.",
+        priority: "Priority clue: Patient comfort does not always match oxygenation status."
+      },
+      {
+        level: "Expert",
+        title: "Athletic bradycardia versus danger",
+        note: "Adult marathon runner is resting, alert, warm, and denies dizziness, chest pain, or shortness of breath.",
+        vitals: { BP: "138/84", HR: "52", SpO2: "98%", RR: "14", Temp: "98.2°F" },
+        alerts: [],
+        question: "What is the most likely interpretation?",
+        options: ["Shock", "Respiratory failure", "Possible normal athletic adaptation", "Cardiac arrest"],
+        answer: 2,
+        teaching: "A resting HR of 52 may be normal in a trained athlete if asymptomatic and otherwise stable. Context matters.",
+        priority: "Priority clue: Abnormal-looking numbers are not always dangerous without context."
+      },
+      {
+        level: "Expert",
+        title: "Neuro red flag with vital sign clue",
+        note: "Adult has sudden facial droop and slurred speech. They deny chest pain.",
+        vitals: { BP: "184/102", HR: "88", SpO2: "97%", RR: "18", Temp: "98.6°F" },
+        alerts: ["BP"],
+        question: "Which finding should stand out with the symptoms?",
+        options: ["Very high BP with neurologic symptoms", "Normal oxygen only", "Normal temperature", "Pain score"],
+        answer: 0,
+        teaching: "Very high blood pressure paired with neurologic symptoms is concerning and needs immediate attention within proper emergency protocols.",
+        priority: "Priority clue: Symptoms and vitals together create urgency."
+      },
+      {
+        level: "Expert",
+        title: "Sepsis-like instability",
+        note: "Adult is confused, febrile, weak, and has poor skin color.",
+        vitals: { BP: "86/48", HR: "126", SpO2: "92%", RR: "30", Temp: "103.4°F" },
+        alerts: ["BP", "HR", "RR", "Temp", "SpO2"],
+        question: "How should this be classified?",
+        options: ["Urgent instability pattern", "Normal", "Only mildly abnormal", "Pain-only issue"],
+        answer: 0,
+        teaching: "Fever, tachycardia, tachypnea, hypotension, confusion, and lower oxygen are an urgent warning pattern.",
+        priority: "Priority clue: Multiple abnormal vitals together can signal systemic instability."
+      },
+      {
+        level: "Expert",
+        title: "Allergic reaction pattern",
+        note: "Adult has hives, throat tightness, and looks anxious.",
+        vitals: { BP: "84/52", HR: "128", SpO2: "92%", RR: "28", Temp: "98.9°F" },
+        alerts: ["BP", "HR", "SpO2", "RR"],
+        question: "How should this be treated in a challenge question?",
+        options: ["Urgent", "Normal", "Only pain related", "Temperature concern only"],
+        answer: 0,
+        teaching: "Low BP, fast HR/RR, lower oxygen, hives, and throat symptoms suggest a serious allergic reaction pattern.",
+        priority: "Priority clue: Low BP with airway/breathing symptoms is dangerous."
+      },
+      {
+        level: "Expert",
+        title: "Bradycardia with symptoms",
+        note: "Adult is dizzy, cool, and nearly passed out while sitting. No athletic history is known.",
+        vitals: { BP: "88/50", HR: "42", SpO2: "96%", RR: "16", Temp: "98.4°F" },
+        alerts: ["BP", "HR"],
+        question: "What makes this concerning?",
+        options: ["Low HR with symptoms and low BP", "Normal oxygen makes everything fine", "Temperature", "Respiratory rate only"],
+        answer: 0,
+        teaching: "Bradycardia becomes more concerning when paired with dizziness, poor perfusion clues, and low blood pressure.",
+        priority: "Priority clue: Context separates harmless bradycardia from unstable bradycardia."
+      },
+      {
+        level: "Expert",
+        title: "Narrowing pulse pressure clue",
+        note: "Adult feels weak after possible bleeding. Skin is cool. You are asked what pattern matters most.",
+        vitals: { BP: "96/82", HR: "132", SpO2: "96%", RR: "26", Temp: "98.7°F" },
+        alerts: ["BP", "HR", "RR"],
+        question: "Which pattern is most concerning?",
+        options: ["Narrow pulse pressure with tachycardia", "Oxygen saturation only", "Temperature only", "Normal blood pressure pattern"],
+        answer: 0,
+        teaching: "A narrow pulse pressure with tachycardia can be a concerning perfusion clue, especially with possible volume loss.",
+        priority: "Priority clue: BP interpretation is more than the systolic number."
+      },
+      {
+        level: "Expert",
+        title: "Beta blocker masking tachycardia",
+        note: "Older adult takes a beta blocker. They are febrile, confused, and weak. Heart rate is not very high.",
+        vitals: { BP: "90/54", HR: "86", SpO2: "93%", RR: "28", Temp: "102.6°F" },
+        alerts: ["BP", "RR", "Temp", "SpO2"],
+        question: "What is the best interpretation?",
+        options: ["Stable because HR is under 100", "Possible serious infection pattern despite modest HR", "Only fever matters", "Normal vitals"],
+        answer: 1,
+        teaching: "Medications like beta blockers may blunt tachycardia. Fever, confusion, tachypnea, low BP, and lower oxygen still matter.",
+        priority: "Priority clue: Medication history can change how vitals present."
+      },
+      {
+        level: "Expert",
+        title: "Early deterioration after procedure",
+        note: "Adult was stable after a procedure. One hour later, these values are reported with new restlessness.",
+        vitals: { BP: "110/68", HR: "122", SpO2: "94%", RR: "30", Temp: "99.1°F" },
+        alerts: ["HR", "RR"],
+        question: "What is the concern?",
+        options: ["Trend toward deterioration despite acceptable BP", "Normal because BP is okay", "Only temperature", "No reassessment needed"],
+        answer: 0,
+        teaching: "New tachycardia, tachypnea, restlessness, and lower oxygen can be early deterioration clues even before BP becomes low.",
+        priority: "Priority clue: New restlessness can be a meaningful clinical clue."
+      },
+      {
+        level: "Expert",
+        title: "Respiratory fatigue concern",
+        note: "Adult with respiratory distress was breathing 34/min earlier. Now they look exhausted and less responsive.",
+        vitals: { BP: "134/78", HR: "118", SpO2: "89%", RR: "10", Temp: "99.4°F" },
+        alerts: ["HR", "SpO2", "RR"],
+        question: "Why is the lower RR concerning here?",
+        options: ["It may suggest fatigue or worsening ventilation", "It means the patient improved", "It only matters with fever", "It is always normal"],
+        answer: 0,
+        teaching: "A drop from very fast respirations to slow respirations with exhaustion and low oxygen may suggest fatigue, not improvement.",
+        priority: "Priority clue: A number improving on paper can be dangerous if the patient is tiring out."
+      },
+      {
+        level: "Expert",
+        title: "Massive PE-style concern pattern",
+        note: "Adult has sudden shortness of breath and pleuritic chest pain after recent surgery.",
+        vitals: { BP: "108/70", HR: "132", SpO2: "86%", RR: "34", Temp: "99.0°F" },
+        alerts: ["HR", "SpO2", "RR"],
+        question: "What makes this high concern?",
+        options: ["Sudden dyspnea with hypoxia, tachycardia, and tachypnea", "Normal blood pressure means stable", "Temperature", "Pain score only"],
+        answer: 0,
+        teaching: "Sudden shortness of breath after surgery with low oxygen, fast HR, and fast RR is a high-concern pattern requiring urgent evaluation.",
+        priority: "Priority clue: Normal-ish BP does not erase a dangerous breathing pattern."
+      }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let bestStreak = 0;
+    let answered = false;
+
+    function startQuiz() {
+      document.getElementById("quizIntro").style.display = "none";
+      document.getElementById("results").classList.remove("show");
+      document.getElementById("quizArea").style.display = "block";
+      currentIndex = 0;
+      score = 0;
+      streak = 0;
+      bestStreak = 0;
+      showQuestion();
+    }
+
+    function restartQuiz() {
+      document.getElementById("results").classList.remove("show");
+      document.getElementById("quizArea").style.display = "block";
+      currentIndex = 0;
+      score = 0;
+      streak = 0;
+      bestStreak = 0;
+      showQuestion();
+      document.getElementById("challenge").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function showQuestion() {
+      answered = false;
+      const q = questions[currentIndex];
+      document.getElementById("progressText").textContent = `Question ${currentIndex + 1} / ${questions.length}`;
+      document.getElementById("scoreText").textContent = `Score: ${score}`;
+      document.getElementById("streakText").textContent = `Streak: ${streak}`;
+      document.getElementById("progressFill").style.width = `${(currentIndex / questions.length) * 100}%`;
+      document.getElementById("scenarioTitle").textContent = q.title;
+      document.getElementById("patientNote").textContent = q.note;
+      document.getElementById("questionText").textContent = q.question;
+
+      const difficulty = document.getElementById("difficulty");
+      difficulty.textContent = `${q.level} Level`;
+      difficulty.className = "difficulty-pill";
+      if (q.level === "Student") difficulty.classList.add("easy-pill");
+      if (q.level === "Clinician") difficulty.classList.add("medium-pill");
+      if (q.level === "Expert") difficulty.classList.add("hard-pill");
+
+      const vitalGrid = document.getElementById("vitalGrid");
+      vitalGrid.innerHTML = "";
+      Object.entries(q.vitals).forEach(([label, value]) => {
+        const box = document.createElement("div");
+        box.className = "vital-box" + (q.alerts.includes(label) ? " alert" : "");
+        box.innerHTML = `<div class="vital-label">${label}</div><div class="vital-value">${value}</div>`;
+        vitalGrid.appendChild(box);
+      });
+
+      const options = document.getElementById("options");
+      options.innerHTML = "";
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+        btn.onclick = () => selectAnswer(index);
+        options.appendChild(btn);
+      });
+
+      document.getElementById("feedback").classList.remove("show");
+      document.getElementById("nextBtn").classList.remove("show");
+      document.getElementById("nextBtn").textContent = currentIndex === questions.length - 1 ? "See Results" : "Next Question";
+    }
+
+    function selectAnswer(selectedIndex) {
+      if (answered) return;
+      answered = true;
+      const q = questions[currentIndex];
+      const buttons = document.querySelectorAll(".option-btn");
+      buttons.forEach((btn, index) => {
+        btn.disabled = true;
+        if (index === q.answer) btn.classList.add("correct");
+        if (index === selectedIndex && selectedIndex !== q.answer) btn.classList.add("wrong");
+      });
+
+      if (selectedIndex === q.answer) {
+        score += 1;
+        streak += 1;
+        bestStreak = Math.max(bestStreak, streak);
+        document.getElementById("feedbackTitle").textContent = "Correct.";
+      } else {
+        streak = 0;
+        document.getElementById("feedbackTitle").textContent = "Not quite.";
+      }
+
+      document.getElementById("feedbackText").textContent = q.teaching;
+      document.getElementById("priorityClue").textContent = q.priority;
+      document.getElementById("feedback").classList.add("show");
+      document.getElementById("nextBtn").classList.add("show");
+      document.getElementById("scoreText").textContent = `Score: ${score}`;
+      document.getElementById("streakText").textContent = `Streak: ${streak}`;
+    }
+
+    function nextQuestion() {
+      if (currentIndex === questions.length - 1) {
+        showResults();
+        return;
+      }
+      currentIndex += 1;
+      showQuestion();
+      document.getElementById("challenge").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function showResults() {
+      document.getElementById("quizArea").style.display = "none";
+      document.getElementById("results").classList.add("show");
+      document.getElementById("progressFill").style.width = "100%";
+      document.getElementById("finalScore").textContent = `${score} / ${questions.length}`;
+
+      const badge = document.getElementById("resultBadge");
+      const message = document.getElementById("resultMessage");
+      if (score >= 22) {
+        badge.textContent = "Expert Level";
+        message.textContent = "Excellent clinical pattern recognition. You picked up subtle deterioration clues, context-based findings, and high-risk vital sign patterns.";
+      } else if (score >= 16) {
+        badge.textContent = "Clinician Level";
+        message.textContent = "Strong work. You recognized many important patterns. Review the missed concepts and try again to push into expert range.";
+      } else {
+        badge.textContent = "Student Level";
+        message.textContent = "Good start. Focus on oxygenation, perfusion, respiratory rate, trends, and how symptoms change the meaning of vital signs.";
+      }
+    }
+  </script>
+</body>
+</html>
