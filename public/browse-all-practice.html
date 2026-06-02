@@ -4,582 +4,468 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Browse All Practice Tests, Quizzes & Study Tools | MedSkillBuilder</title>
-  <meta
-    name="description"
-    content="Browse all MedSkillBuilder practice tests, anatomy tools, ultrasound challenges, CBET prep, RN practice questions, EKG resources, lab value guides, ABG practice, kidney function guides, electronics guides, medical equipment identification practice, medical terminology study pages, and recommended study gear for healthcare learners."
-  />
-  <meta
-    name="keywords"
-    content="browse all practice tests, medical study tools, ultrasound practice, ultrasound anatomy quiz, ultrasound probe practice, anatomy quizzes, CBET prep, RN practice questions, TEAS practice, EKG study guide, ABG practice, kidney function guide, rectifier guide, medical equipment identification practice, medical terminology practice, recommended study gear, healthcare study gear"
-  />
+  <meta name="description" content="Browse all MedSkillBuilder practice tests, quizzes, anatomy tools, heart sounds practice, CBET prep, TEAS practice, nursing study resources, medical terminology, electronics guides, clinical basics, and healthcare learning tools." />
+  <meta name="keywords" content="browse all practice tests, medical study tools, healthcare quizzes, anatomy quizzes, heart sounds quiz, nursing practice questions, TEAS practice, CBET prep, medical terminology practice, EKG practice, ABG practice, lab values quiz, ultrasound practice, biomedical equipment practice" />
+  <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://medskillbuilder.com/browse-all-practice.html" />
 
   <meta property="og:title" content="Browse All Practice Tests, Quizzes & Study Tools | MedSkillBuilder" />
-  <meta
-    property="og:description"
-    content="Explore all MedSkillBuilder quizzes, study tools, anatomy practice, ultrasound challenges, medical terminology review, CBET prep, nursing questions, ABG practice, kidney guides, electronics guides, equipment identification practice, clinical basics resources, and recommended study gear."
-  />
+  <meta property="og:description" content="Explore MedSkillBuilder's free healthcare quizzes, anatomy tools, heart sounds practice, CBET prep, TEAS practice, medical terminology, EKG, ABG, lab values, and clinical learning resources." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://medskillbuilder.com/browse-all-practice.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
-      line-height: 1.6;
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #2563eb;
+      --cyan: #0891b2;
+      --green: #16a34a;
+      --teal: #0f766e;
+      --rose: #e11d48;
+      --purple: #7c3aed;
+      --orange: #f97316;
+      --slate: #334155;
+      --muted: #64748b;
+      --border: #dbe4ee;
+      --page: #f8fafc;
+      --shadow: 0 18px 46px rgba(15, 23, 42, 0.09);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
     }
 
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #0f172a;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.11), transparent 32%),
+        radial-gradient(circle at top right, rgba(22, 163, 74, 0.10), transparent 30%),
+        linear-gradient(180deg, #f8fafc 0%, #eef7ff 48%, #ffffff 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
     .container {
-      max-width: 960px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 40px 20px 60px;
+      padding: 24px 20px 60px;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .top-link,
+    .mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .mini-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, #1d6fa5 58%, #16a34a 100%);
+      color: white;
+      border-radius: 30px;
+      padding: 38px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -95px;
+      top: -95px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 900;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
-      font-size: 2.4rem;
-      text-align: center;
-      margin-bottom: 12px;
+      margin: 0 0 14px;
+      font-size: clamp(2.1rem, 4vw, 3.45rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      max-width: 920px;
+      position: relative;
+      z-index: 2;
     }
 
-    .subtext {
-      text-align: center;
-      color: #475569;
-      margin-bottom: 26px;
-      max-width: 760px;
-      margin-left: auto;
-      margin-right: auto;
+    .hero p {
+      margin: 0 0 14px;
+      max-width: 890px;
+      color: rgba(255,255,255,0.94);
+      font-size: 1.08rem;
+      position: relative;
+      z-index: 2;
     }
 
-    .hero-cta {
-      background: #ffffff;
-      border: 1px solid #dbe4ee;
-      border-radius: 22px;
-      padding: 24px;
-      margin: 0 auto 34px;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-      text-align: center;
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2;
     }
 
-    .hero-cta h2 {
-      margin-top: 0;
-      color: #12355b;
-    }
-
-    .hero-cta p {
-      color: #475569;
-      max-width: 760px;
-      margin: 0 auto 18px;
-    }
-
-    .cta-row {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-
-    .cta-primary,
-    .cta-secondary {
-      display: inline-block;
-      padding: 15px 24px;
-      border-radius: 12px;
-      color: #ffffff;
+    .quick-card {
+      display: block;
       text-decoration: none;
-      font-weight: 800;
-      min-width: 220px;
-      text-align: center;
-      transition: 0.2s ease;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      padding: 16px;
+      color: white;
+      font-weight: 900;
     }
 
-    .cta-primary {
-      background: linear-gradient(90deg, #16a34a, #22c55e);
+    .quick-card span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(255,255,255,0.86);
+      font-size: 0.92rem;
+      font-weight: 700;
     }
 
-    .cta-secondary {
-      background: linear-gradient(90deg, #1d4ed8, #2948b8);
-    }
-
-    .cta-primary:hover,
-    .cta-secondary:hover {
-      transform: translateY(-1px);
-      opacity: 0.94;
-    }
-
-    .intro-box {
-      background: white;
-      border-radius: 20px;
-      padding: 24px;
-      margin-bottom: 30px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    }
-
+    .intro-box,
     .section {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 24px;
-      margin-bottom: 30px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--soft-shadow);
     }
 
     h2 {
-      margin-bottom: 8px;
-      line-height: 1.2;
+      color: var(--navy);
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
-    .section p,
-    .intro-box p {
-      margin-top: 0;
-      margin-bottom: 16px;
-      color: #475569;
+    p { margin: 0 0 14px; color: var(--slate); }
+
+    .section-note {
+      color: var(--muted);
+      margin-bottom: 18px;
     }
 
     .link-grid {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
       gap: 12px;
+      margin-top: 16px;
     }
 
     .practice-link {
       display: block;
+      min-height: 76px;
       padding: 16px;
-      border-radius: 14px;
+      border-radius: 16px;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 900;
       color: white;
-      text-align: center;
-      transition: 0.2s;
+      box-shadow: 0 7px 18px rgba(15, 23, 42, 0.07);
+      transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
-    .practice-link:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
-    }
+    .practice-link:hover { transform: translateY(-2px); opacity: 0.94; }
 
-    .featured {
-      border: 2px solid rgba(255,255,255,0.4);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    .cbet { background: linear-gradient(90deg, #0f2f57, #153f73); }
-    .anatomy { background: linear-gradient(90deg, #0f766e, #0f9a8a); }
-    .nursing { background: linear-gradient(90deg, #be123c, #e11d48); }
-    .biomed { background: linear-gradient(90deg, #1d4ed8, #2948b8); }
-    .terms { background: linear-gradient(90deg, #6d28d9, #8b5cf6); }
-
-    .top-link {
-      display: inline-block;
-      margin-bottom: 24px;
-      text-decoration: none;
-      color: #2563eb;
+    .practice-link span {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255,255,255,0.88);
+      font-size: 0.9rem;
       font-weight: 700;
+      line-height: 1.35;
     }
+
+    .featured { outline: 2px solid rgba(255,255,255,0.45); }
+
+    .clinical { background: linear-gradient(90deg, #be123c, #e11d48); }
+    .teas { background: linear-gradient(90deg, #b45309, #f97316); }
+    .anatomy { background: linear-gradient(90deg, #0f766e, #0f9a8a); }
+    .terms { background: linear-gradient(90deg, #6d28d9, #8b5cf6); }
+    .cbet { background: linear-gradient(90deg, #0f2f57, #153f73); }
+    .biomed { background: linear-gradient(90deg, #1d4ed8, #2948b8); }
+    .site { background: linear-gradient(90deg, #334155, #64748b); }
 
     .footer-cta {
       text-align: center;
-      margin-top: 30px;
+      background: linear-gradient(135deg, var(--navy), #1d6fa5);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      margin-top: 26px;
+      box-shadow: var(--shadow);
     }
 
+    .footer-cta h2 { color: white; }
+    .footer-cta p { color: rgba(255,255,255,0.88); }
+
     .footer-cta a {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 12px;
-      background: #2563eb;
-      color: white;
+      display: inline-flex;
       text-decoration: none;
-      font-weight: 700;
+      background: white;
+      color: var(--navy);
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 900;
+      margin-top: 8px;
     }
 
     footer {
       text-align: center;
       color: #64748b;
       font-size: 0.92rem;
-      margin-top: 36px;
+      margin-top: 34px;
     }
 
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 2rem;
-      }
+    footer a {
+      color: #2563eb;
+      font-weight: 900;
+      text-decoration: none;
+    }
 
-      .container {
-        padding: 28px 16px 50px;
-      }
-
-      .cta-primary,
-      .cta-secondary {
-        width: 100%;
-        min-width: 0;
-      }
+    @media (max-width: 700px) {
+      .container { padding: 18px 14px 46px; }
+      .hero { padding: 28px 18px; border-radius: 22px; }
+      .intro-box, .section { padding: 20px 16px; border-radius: 18px; }
+      .mini-nav a { flex: 1; }
+      .practice-link { min-height: auto; }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-
-    <a class="top-link" href="/">← Back to Home</a>
-
-    <h1>All Practice Tests, Quizzes & Study Tools</h1>
-    <p class="subtext">
-      Explore all quizzes and interactive tools on MedSkillBuilder, including anatomy practice, ultrasound challenges, medical terminology review, CBET prep, nursing questions, EKG study tools, ABG review, kidney function guides, electronics guides, medical equipment identification, and clinical basics resources.
-    </p>
-
-    <div class="hero-cta">
-      <h2>Start Practicing Faster</h2>
-      <p>
-        Jump straight into high-value practice tools. These are strong starting points for learners who want interactive review instead of only reading.
-      </p>
-      <div class="cta-row">
-        <a class="cta-primary" href="/medical-equipment-identification-practice.html">Start Equipment ID Practice</a>
-        <a class="cta-secondary" href="/ultrasound-practice.html">Try Ultrasound Challenges</a>
-        <a class="cta-secondary" href="/anatomy-labeling-practice.html">Start Anatomy Practice</a>
-        <a class="cta-secondary" href="/basic-electronics-explained-for-beginners.html">Start Basic Electronics</a>
-      </div>
+    <div class="top-row">
+      <a class="top-link" href="/">← Back to Home</a>
+      <nav class="mini-nav" aria-label="Quick browse links">
+        <a href="#featured">Featured</a>
+        <a href="#clinical">Clinical</a>
+        <a href="#anatomy">Anatomy</a>
+        <a href="#cbet">CBET</a>
+      </nav>
     </div>
+
+    <header class="hero">
+      <div class="eyebrow">🦊 MedSkillBuilder Library</div>
+      <h1>Browse All Practice Tests, Quizzes & Study Tools</h1>
+      <p>
+        Find every MedSkillBuilder learning tool in one cleaner place: heart sounds, anatomy, TEAS, nursing, medical terminology, lab values, EKG, ABG, CBET, CRES, electronics, ultrasound, and biomedical equipment practice.
+      </p>
+      <p>
+        Start with a featured tool or jump to the category that matches what you are studying today.
+      </p>
+
+      <div class="quick-grid">
+        <a class="quick-card" href="/heart-sounds-quiz.html">Heart Sounds Quiz <span>Listen and identify cardiac sounds.</span></a>
+        <a class="quick-card" href="/anatomy-labeling-practice.html">Anatomy Labeling <span>Practice visual anatomy recognition.</span></a>
+        <a class="quick-card" href="/free-cbet-practice-test.html">Free CBET Test <span>Biomedical equipment exam prep.</span></a>
+        <a class="quick-card" href="/?tab=Terminology">Terminology Practice <span>Build healthcare vocabulary.</span></a>
+      </div>
+    </header>
 
     <div class="intro-box">
-  <h2>About MedSkillBuilder</h2>
-  <p>
-    Learn the mission behind MedSkillBuilder and why it was built to help healthcare learners, nursing students, anatomy students, and CBET/biomed learners practice for free.
-  </p>
-  <a class="cta-primary" href="/about.html">Read About MedSkillBuilder</a>
-</div>
-
-<div class="intro-box">
-  <h2>Contact MedSkillBuilder</h2>
-  <p>
-    Have a question, suggestion, correction, or idea for a new healthcare study tool? Reach out to MedSkillBuilder.
-  </p>
-  <a class="cta-primary" href="/contact.html">Contact MedSkillBuilder</a>
-</div>
-
-    <div class="intro-box">
-      <p>
-        MedSkillBuilder brings together interactive study tools designed to help healthcare learners build stronger fundamentals. Whether you are studying anatomy, practicing ultrasound image recognition, reviewing medical terminology, preparing for nursing exams, practicing EKG rhythms, interpreting ABGs, or working through CBET concepts, this page gives you one place to explore the full library.
-      </p>
-      <p>
-        Use the sections below to jump into the area you want to practice most and keep building your confidence through active review.
-      </p>
-    </div>
-
-    <!-- FOR TEACHERS -->
-    <div class="section">
-      <h2>For Teachers</h2>
-      <p>
-        MedSkillBuilder can be used as a simple classroom tool to help students learn through recognition, repetition, visual practice, and quick feedback.
-      </p>
-      <p>
-        Teachers can use these tools for warm-up activities, review before exams, student practice, and reinforcement of difficult anatomy, physiology, terminology, and healthcare concepts.
-      </p>
-      <div class="link-grid">
-        <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">
-          Use Anatomy Labeling in Class
-        </a>
-        <a class="practice-link biomed featured" href="/ultrasound-practice.html">
-          Try Ultrasound Image Challenges
-        </a>
-        <a class="practice-link anatomy featured" href="/how-kidneys-work.html">
-          Teach Kidney Function
-        </a>
-        <a class="practice-link nursing featured" href="/normal-vital-signs-chart.html">
-          Review Normal Vital Signs
-        </a>
-        <a class="practice-link nursing featured" href="/spot-the-problem-vital-signs-challenge.html">
-           Spot the Problem: Vital Signs Challenge
-        </a>
-        <a class="practice-link biomed" href="/medical-equipment-identification-practice.html">
-          Start Equipment Identification Practice
-        </a>
-        <a class="practice-link nursing" href="/rn-practice-questions.html">
-          Assign Nursing Practice Questions
-        </a>
-      </div>
-    </div>
-
-
-    <!-- RECOMMENDED STUDY GEAR -->
-    <div class="section">
-      <h2>Recommended Study Gear &amp; Learning Tools</h2>
-      <p>
-        Explore helpful study gear and learning tools for healthcare students, nursing learners, anatomy review, CBET preparation, biomedical equipment learners, and anyone building stronger study habits.
-      </p>
-      <p>
-        This section includes recommended items such as stethoscopes, anatomy study tools, CBET electronics tools, notebooks, desk setup items, and healthcare learning supplies. Some links may be affiliate links, which means MedSkillBuilder may earn from qualifying purchases at no extra cost to you.
-      </p>
-      <div class="link-grid">
-        <a class="practice-link terms featured" href="/recommended-study-gear.html">
-          Recommended Study Gear
-        </a>
-      </div>
-    </div>
-
-    <!-- FEATURED -->
-    <div class="section">
       <h2>Start Here</h2>
       <p>
-        These are some of the best places to begin if you are new to MedSkillBuilder and want a strong mix of terminology, anatomy, ultrasound image recognition, nursing, equipment identification, clinical basics, and exam prep.
+        New to MedSkillBuilder? These tools are the best first stops because they are interactive, practical, and easy to use for quick review.
       </p>
-      <div class="link-grid">
-        <a class="practice-link biomed featured" href="/medical-equipment-identification-practice.html">Medical Equipment Identification Practice</a>
-        <a class="practice-link biomed featured" href="/ultrasound-practice.html">Ultrasound Challenges</a>
-        <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-        <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
-        <a class="practice-link terms featured" href="/recommended-study-gear.html">Recommended Study Gear</a>
-        <a class="practice-link anatomy featured" href="/how-kidneys-work.html">How the Kidneys Work</a>
-        <a class="practice-link" href="/fluid-balance-guide.html"><strong>Fluid Balance Guide</strong><span>Learn intake, output, dehydration, fluid overload, edema, daily weights, urine output, sodium, kidney function, vital signs, and lab value connections.</span></a>
-        <a class="practice-link nursing featured" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
-        <a class="practice-link anatomy featured" href="/how-to-read-ekg.html">How to Read an EKG</a>
-        <a class="practice-link nursing featured" href="/abg-normal-values.html">ABG Normal Values Guide</a>
-        <a class="practice-link" href="/bun-creatinine-gfr-guide.html"><strong>BUN, Creatinine &amp; GFR Guide</strong><span>Learn kidney lab values, renal function, filtration, dehydration clues, creatinine, BUN, GFR, electrolytes, and nursing review.</span></a>
-        <a class="practice-link cbet featured" href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained for Beginners</a>
-        <a class="practice-link nursing featured" href="/rn-practice-questions.html">RN Practice Questions</a>
-        <a class="practice-link cbet featured" href="/cbet-practice-questions.html">CBET Practice Questions</a>
-        <a class="practice-link cbet featured" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
+      <div class="link-grid" id="featured">
+        <a class="practice-link clinical featured" href="/heart-sounds-quiz.html">Heart Sounds Quiz <span>Practice cardiac auscultation by listening to real heart sounds.</span></a>
+        <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice <span>Identify body structures through visual practice.</span></a>
+        <a class="practice-link biomed featured" href="/medical-equipment-identification-practice.html">Medical Equipment Identification Practice <span>Recognize common clinical and biomedical equipment.</span></a>
+        <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder <span>Build terms from prefixes, roots, and suffixes.</span></a>
+        <a class="practice-link cbet featured" href="/free-cbet-practice-test.html">Free CBET Practice Test <span>Practice biomedical equipment exam concepts.</span></a>
+        <a class="practice-link teas featured" href="/teas-practice-questions.html">TEAS Practice Questions <span>Review reading, math, science, and English questions.</span></a>
+        <a class="practice-link biomed featured" href="/ultrasound-practice.html">Ultrasound Challenges <span>Practice ultrasound image and probe recognition.</span></a>
+        <a class="practice-link clinical featured" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet <span>Review common lab values and clinical ranges.</span></a>
       </div>
     </div>
 
-    <!-- CORE CLINICAL CONCEPTS -->
-    <div class="section">
-      <h2>Core Clinical Concepts</h2>
-      <p>
-        Review high-yield clinical basics that students commonly see in nursing, healthcare, anatomy, physiology, and patient care learning.
-      </p>
+    <section class="section" id="clinical">
+      <h2>Nursing, TEAS & Clinical Skills</h2>
+      <p class="section-note">Practice patient-care concepts, nursing fundamentals, TEAS review, cardiac skills, lab values, ABGs, EKGs, and vital signs.</p>
       <div class="link-grid">
-        <a class="practice-link nursing featured" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
-        <a class="practice-link nursing" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a>
-        <a class="practice-link nursing featured" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
-        <a class="practice-link nursing" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
-        <a class="practice-link" href="/electrolyte-imbalance-guide.html"><strong>Electrolyte Imbalance Guide</strong><span>Learn sodium, potassium, calcium, magnesium, chloride, bicarbonate, kidney function, fluid balance, ABGs, and common electrolyte symptoms.</span></a>
-        <a class="practice-link nursing" href="/cbc-practice-quiz.html">CBC Practice Quiz</a>
-        <a class="practice-link nursing" href="/electrolytes-practice-quiz.html">Electrolytes Practice Quiz</a>
-        <a class="practice-link nursing featured" href="/abg-normal-values.html">ABG Normal Values Guide</a>
-        <a class="practice-link nursing" href="/abg-practice-quiz.html">ABG Practice Quiz</a>
-        <a class="practice-link anatomy featured" href="/how-to-read-ekg.html">How to Read an EKG</a>
-        <a class="practice-link anatomy" href="/ekg-practice-quiz.html">EKG Practice Quiz</a>
-        <a class="practice-link anatomy featured" href="/ekg-rhythm-cheat-sheet.html">EKG Rhythm Cheat Sheet</a>
+        <a class="practice-link clinical featured" href="/heart-sounds-quiz.html">Heart Sounds Quiz <span>Listen and identify murmurs and cardiac findings.</span></a>
+        <a class="practice-link clinical featured" href="/rn-practice-questions.html">RN Practice Questions <span>Build nursing-style critical thinking.</span></a>
+        <a class="practice-link teas featured" href="/teas-practice-questions.html">TEAS Practice Questions <span>ATI TEAS-style practice with answers and explanations.</span></a>
+        <a class="practice-link teas" href="/free-teas-practice-test.html">Free TEAS Practice Test <span>Start a free TEAS review experience.</span></a>
+        <a class="practice-link clinical featured" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart <span>Review adult vital sign ranges and meaning.</span></a>
+        <a class="practice-link clinical" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz <span>Test vital signs recognition.</span></a>
+        <a class="practice-link clinical" href="/spot-the-problem-vital-signs-challenge.html">Spot the Problem: Vital Signs Challenge <span>Find abnormal values quickly.</span></a>
+        <a class="practice-link clinical featured" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet <span>Review high-yield lab values.</span></a>
+        <a class="practice-link clinical" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz <span>Practice recognizing normal and abnormal labs.</span></a>
+        <a class="practice-link clinical" href="/cbc-practice-quiz.html">CBC Practice Quiz <span>Review white blood cells, hemoglobin, hematocrit, and platelets.</span></a>
+        <a class="practice-link clinical" href="/electrolytes-practice-quiz.html">Electrolytes Practice Quiz <span>Practice sodium, potassium, calcium, magnesium, and more.</span></a>
+        <a class="practice-link clinical featured" href="/abg-normal-values.html">ABG Normal Values Guide <span>Review pH, CO₂, HCO₃, and oxygenation basics.</span></a>
+        <a class="practice-link clinical" href="/abg-practice-quiz.html">ABG Practice Quiz <span>Practice acid-base interpretation.</span></a>
+        <a class="practice-link clinical featured" href="/how-to-read-ekg.html">How to Read an EKG <span>Learn basic EKG interpretation steps.</span></a>
+        <a class="practice-link clinical" href="/ekg-practice-quiz.html">EKG Practice Quiz <span>Test EKG basics and rhythm recognition.</span></a>
+        <a class="practice-link clinical featured" href="/ekg-rhythm-cheat-sheet.html">EKG Rhythm Cheat Sheet <span>Review common rhythms and clues.</span></a>
       </div>
-    </div>
+    </section>
 
-    <!-- ULTRASOUND LEARNING -->
-    <div class="section">
-      <h2>Ultrasound Learning</h2>
-      <p>
-        Practice identifying ultrasound anatomy, probe selection, scanning orientation, and clinical applications using visual challenges. This section helps learners connect what they see on the screen with the correct probe and real-world use.
-      </p>
+    <section class="section" id="anatomy">
+      <h2>Anatomy & Physiology</h2>
+      <p class="section-note">Use visual quizzes and guides to review body systems, organs, muscles, bones, and physiology basics.</p>
       <div class="link-grid">
-        <a class="practice-link biomed featured" href="/ultrasound-practice.html">
-          Ultrasound Challenges
-        </a>
+        <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice <span>Interactive anatomy recognition practice.</span></a>
+        <a class="practice-link anatomy" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz <span>Practice chambers, valves, vessels, and blood flow.</span></a>
+        <a class="practice-link anatomy" href="/brain-anatomy-quiz.html">Brain Anatomy Quiz <span>Identify key brain structures.</span></a>
+        <a class="practice-link anatomy" href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz <span>Review lung structures and respiratory anatomy.</span></a>
+        <a class="practice-link anatomy featured" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide <span>Learn major lung structures and functions.</span></a>
+        <a class="practice-link anatomy" href="/skeleton-anatomy-quiz.html">Skeleton Anatomy Quiz <span>Practice bones and skeletal landmarks.</span></a>
+        <a class="practice-link anatomy" href="/hand-anatomy-quiz.html">Hand Anatomy Quiz <span>Review hand bones and structures.</span></a>
+        <a class="practice-link anatomy" href="/foot-anatomy-quiz.html">Foot Anatomy Quiz <span>Practice foot anatomy and structures.</span></a>
+        <a class="practice-link anatomy" href="/muscle-anatomy-quiz.html">Muscle Anatomy Quiz <span>Identify major muscles and muscle groups.</span></a>
+        <a class="practice-link anatomy featured" href="/how-kidneys-work.html">How the Kidneys Work <span>Learn filtration, urine output, and kidney basics.</span></a>
+        <a class="practice-link anatomy" href="/kidney-anatomy-function-quiz.html">Kidney Anatomy and Function Quiz <span>Practice kidney structure and function.</span></a>
       </div>
-    </div>
+    </section>
 
-    <!-- CBET ELECTRONICS -->
-    <div class="section">
-      <h2>CBET Electronics Guides</h2>
-      <p>
-        Learn core electronics concepts tested on the CBET exam, including power conversion, circuit components, electrical measurements, and troubleshooting principles used in biomedical equipment.
-      </p>
-      <div class="link-grid">
-        <a class="practice-link cbet featured" href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained for Beginners</a>
-        <a href="/cbet-study-plan.html">CBET Study Plan (30 Day Guide)</a>
-        <a class="practice-link cbet featured" href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
-        <a class="practice-link cbet featured" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions</a>
-        <a class="practice-link cbet featured" href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics Questions</a>
-        <a class="practice-link cbet featured" href="/what-is-ohms-law.html">What Is Ohm’s Law?</a>
-        <a class="practice-link cbet" href="/ohms-law-quiz.html">Ohm’s Law Quiz</a>
-        <a class="practice-link cbet" href="/voltage-current-resistance-cbet.html">Voltage vs Current vs Resistance</a>
-        <a class="practice-link cbet" href="/voltage-current-resistance-quiz.html">Voltage, Current, and Resistance Quiz</a>
-        <a class="practice-link cbet" href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a>
-        <a class="practice-link cbet" href="/series-parallel-quiz.html">Series vs Parallel Quiz</a>
-        <a class="practice-link cbet" href="/ac-vs-dc-current.html">AC vs DC Current</a>
-        <a class="practice-link cbet" href="/power-supply-basics-cbet.html">Power Supply Basics for CBET</a>
-        <a class="practice-link cbet" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
-        <a class="practice-link cbet" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
-        <a class="practice-link cbet" href="/capacitor-quiz.html">Capacitor Quiz</a>
-        <a class="practice-link cbet" href="/what-is-a-diode.html">What Is a Diode?</a>
-        <a class="practice-link cbet" href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
-        <a class="practice-link cbet" href="/multimeter-quiz.html">Multimeter Quiz</a>
-        <a class="practice-link cbet" href="/how-to-read-schematics-symbols.html">How to Read Schematic Symbols</a>
-        <a class="practice-link cbet" href="/schematic-symbols-quiz.html">Schematic Symbols Quiz</a>
-        <a class="practice-link cbet" href="/how-to-test-a-resistor.html">How to Test a Resistor</a>
-        <a class="practice-link cbet" href="/how-to-test-a-capacitor.html">How to Test a Capacitor</a>
-        <a class="practice-link cbet" href="/biomed-career-guide.html">Biomedical Equipment Technician Career Guide</a>
-      </div>
-    </div>
-
-    <!-- ANATOMY -->
-    <div class="section">
-      <h2>Anatomy Learning</h2>
-      <p>
-        Practice identifying important anatomical structures with interactive quizzes and labeling tools designed for students, early healthcare learners, biology learners, and exam review.
-      </p>
-      <div class="link-grid">
-        <a class="practice-link anatomy featured" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-        <a class="practice-link anatomy featured" href="/how-kidneys-work.html">How the Kidneys Work</a>
-        <a class="practice-link anatomy" href="/kidney-anatomy-function-quiz.html">Kidney Anatomy and Function Quiz</a>
-        <a class="practice-link anatomy" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/brain-anatomy-quiz.html">Brain Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/lungs-anatomy-quiz.html">Lungs Anatomy Quiz</a>
-        <a class="practice-link anatomy featured" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
-        <a class="practice-link anatomy" href="/skeleton-anatomy-quiz.html">Skeleton Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/hand-anatomy-quiz.html">Hand Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/foot-anatomy-quiz.html">Foot Anatomy Quiz</a>
-        <a class="practice-link anatomy" href="/muscle-anatomy-quiz.html">Muscle Anatomy Quiz</a>
-      </div>
-    </div>
-
-    <!-- MED TERMS -->
-    <div class="section">
+    <section class="section" id="terminology">
       <h2>Medical Terminology</h2>
-      <p>
-        Build your understanding of medical language through prefixes, suffixes, word-building, and terminology practice that supports nursing, TEAS, anatomy, and general healthcare learning.
-      </p>
+      <p class="section-note">Build healthcare vocabulary with prefixes, suffixes, root words, abbreviations, and clinical examples.</p>
       <div class="link-grid">
-        <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder</a>
-        <a href="/how-to-study-medical-terminology.html">How to Study Medical Terminology</a>
-        <a href="/medical-abbreviations-guide.html">Medical Abbreviations Guide</a>
-        <a class="practice-link terms" href="/medical-prefix-suffix-practice.html">Prefix & Suffix Practice</a>
-        <a class="practice-link terms" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
-        <a class="practice-link terms" href="/medical-terminology-guide.html">Medical Terminology Guide</a>
-        <a class="practice-link terms" href="/what-is-hyperkalemia.html">What is Hyperkalemia?</a>
-        <a class="practice-link terms" href="/what-is-hypokalemia.html">What is Hypokalemia?</a>
-        <a class="practice-link terms" href="/what-is-hyponatremia.html">What is Hyponatremia?</a>
-        <a class="practice-link terms" href="/what-is-hypernatremia.html">What is Hypernatremia?</a>
+        <a class="practice-link terms featured" href="/medical-terminology-builder.html">Medical Terminology Builder <span>Build medical terms from word parts.</span></a>
+        <a class="practice-link terms featured" href="/medical-terminology-practice.html">Medical Terminology Practice <span>Practice terms, definitions, and clinical vocabulary.</span></a>
+        <a class="practice-link terms" href="/medical-terminology-guide.html">Medical Terminology Guide <span>Learn how healthcare words are built.</span></a>
+        <a class="practice-link terms" href="/medical-prefix-suffix-practice.html">Medical Prefix and Suffix Practice <span>Review high-yield word parts.</span></a>
+        <a class="practice-link terms" href="/medical-prefix-suffix-guide.html">Medical Prefix and Suffix Guide <span>Study common prefixes and suffixes.</span></a>
+        <a class="practice-link terms" href="/how-to-study-medical-terminology.html">How to Study Medical Terminology <span>Learn a simple strategy for terminology review.</span></a>
+        <a class="practice-link terms" href="/medical-abbreviations-guide.html">Medical Abbreviations Guide <span>Review common healthcare abbreviations.</span></a>
+        <a class="practice-link terms" href="/top-100-medical-terms.html">Top 100 Medical Terms <span>Review essential healthcare vocabulary.</span></a>
       </div>
-    </div>
+    </section>
 
-    <!-- NURSING -->
-    <div class="section">
-      <h2>Nursing & TEAS</h2>
-      <p>
-        Prepare for nursing exams and TEAS review with practice questions designed to strengthen critical thinking, exam confidence, and foundational healthcare knowledge.
-      </p>
+    <section class="section">
+      <h2>Fluids, Electrolytes & Kidney Function</h2>
+      <p class="section-note">Review fluid balance, sodium, potassium, kidney labs, dehydration, fluid overload, and related clinical clues.</p>
       <div class="link-grid">
-        <a class="practice-link nursing featured" href="/rn-practice-questions.html">RN Practice Questions</a>
-        <a class="practice-link nursing" href="/teas-practice-questions.html">TEAS Practice Questions</a>
-        <a class="practice-link nursing" href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
-        <a class="practice-link nursing featured" href="/how-kidneys-work.html">How the Kidneys Work</a>
-        <a class="practice-link nursing" href="/kidney-anatomy-function-quiz.html">Kidney Anatomy and Function Quiz</a>
-        <a class="practice-link nursing featured" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
-        <a class="practice-link nursing" href="/vital-signs-practice-quiz.html">Vital Signs Practice Quiz</a>
-        <a class="practice-link nursing featured" href="/abg-normal-values.html">ABG Normal Values Guide</a>
-        <a class="practice-link nursing" href="/abg-practice-quiz.html">ABG Practice Quiz</a>
-        <a class="practice-link nursing" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
-        <a class="practice-link nursing" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
-        <a class="practice-link" href="/potassium-imbalance-guide.html"><strong>Potassium Imbalance Guide</strong><span>Learn hypokalemia, hyperkalemia, potassium lab values, kidney function, EKG changes, muscle symptoms, cardiac safety, and nursing review.</span></a>
+        <a class="practice-link clinical featured" href="/fluid-balance-guide.html">Fluid Balance Guide <span>Learn intake, output, edema, dehydration, and fluid overload.</span></a>
+        <a class="practice-link clinical featured" href="/electrolyte-imbalance-guide.html">Electrolyte Imbalance Guide <span>Review sodium, potassium, calcium, magnesium, chloride, and bicarbonate.</span></a>
+        <a class="practice-link clinical featured" href="/bun-creatinine-gfr-guide.html">BUN, Creatinine & GFR Guide <span>Understand kidney labs and renal function.</span></a>
+        <a class="practice-link clinical" href="/potassium-imbalance-guide.html">Potassium Imbalance Guide <span>Learn hypokalemia, hyperkalemia, EKG clues, and symptoms.</span></a>
+        <a class="practice-link clinical" href="/what-is-hyperkalemia.html">What Is Hyperkalemia? <span>Review high potassium causes and symptoms.</span></a>
+        <a class="practice-link clinical" href="/what-is-hypokalemia.html">What Is Hypokalemia? <span>Review low potassium causes and symptoms.</span></a>
+        <a class="practice-link clinical" href="/what-is-hyponatremia.html">What Is Hyponatremia? <span>Review low sodium basics.</span></a>
+        <a class="practice-link clinical" href="/what-is-hypernatremia.html">What Is Hypernatremia? <span>Review high sodium basics.</span></a>
       </div>
-    </div>
+    </section>
 
-    <!-- CBET & EQUIPMENT -->
-    <div class="section">
-      <h2>CBET & Equipment</h2>
-      <p>
-        Learn how to recognize medical equipment, understand core electronics concepts, and test your knowledge with real-world style questions.
-      </p>
-      <p>
-        If you’re preparing for CBET or CRES, start with the fundamentals and build from recognition into application.
-      </p>
-
+    <section class="section" id="cbet">
+      <h2>CBET, Biomedical & Electronics</h2>
+      <p class="section-note">Review biomedical equipment, electronics, troubleshooting, safety, CBET practice, CRES topics, and medical equipment recognition.</p>
       <div class="link-grid">
-        <a class="practice-link cbet featured" href="/basic-electronics-explained-for-beginners.html">
-          Basic Electronics Explained (Start Here)
-        </a>
-
-        <a class="practice-link biomed featured" href="/medical-equipment-identification-practice.html">
-          Medical Equipment Identification Practice
-        </a>
-
-        <a class="practice-link biomed featured" href="/common-medical-equipment-mistakes.html">
-          Common Medical Equipment Mistakes
-        </a>
-
-        <a class="practice-link biomed featured" href="/ultrasound-practice.html">
-          Ultrasound Challenges
-        </a>
-
-        <a class="practice-link cbet featured" href="/cbet-practice-questions.html">
-          CBET Practice Questions
-        </a>
-
-        <a class="practice-link cbet" href="/free-cbet-practice-test.html">
-          Free CBET Practice Test
-        </a>
-
-        <a class="practice-link biomed" href="/cres-practice-questions.html">
-          CRES Practice Questions
-        </a>
-
-        <a class="practice-link cbet" href="/fundamentals-of-xray-cres.html">
-          Fundamentals of X-Ray for CRES
-        </a>
-
-        <a class="practice-link cbet" href="/xray-positioning-guide-cres.html">
-          X-Ray Positioning Guide
-        </a>
-
-        <a class="practice-link cbet" href="/mas-vs-kvp-xray-cres.html">
-          mAs vs kVp Explained
-        </a>
+        <a class="practice-link cbet featured" href="/free-cbet-practice-test.html">Free CBET Practice Test <span>Interactive CBET-style practice and review.</span></a>
+        <a class="practice-link cbet featured" href="/cbet-practice-questions.html">CBET Practice Questions <span>Practice biomedical equipment questions.</span></a>
+        <a class="practice-link cbet" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice Questions <span>Practice electrical and electronics concepts.</span></a>
+        <a class="practice-link cbet" href="/cbet-study-plan.html">CBET Study Plan <span>30-day guide for CBET preparation.</span></a>
+        <a class="practice-link biomed featured" href="/medical-equipment-identification-practice.html">Medical Equipment Identification Practice <span>Recognize common clinical devices.</span></a>
+        <a class="practice-link biomed" href="/common-medical-equipment-mistakes.html">Common Medical Equipment Mistakes <span>Review equipment recognition and safety mistakes.</span></a>
+        <a class="practice-link biomed featured" href="/ultrasound-practice.html">Ultrasound Challenges <span>Practice ultrasound images and probe recognition.</span></a>
+        <a class="practice-link cbet featured" href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained for Beginners <span>Start electronics from the ground up.</span></a>
+        <a class="practice-link cbet featured" href="/basic-electronics-cbet.html">Basic Electronics for CBET <span>Study electronics for biomedical equipment learners.</span></a>
+        <a class="practice-link cbet featured" href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics Questions <span>Review tricky electronics topics.</span></a>
+        <a class="practice-link cbet featured" href="/what-is-ohms-law.html">What Is Ohm's Law? <span>Learn voltage, current, and resistance.</span></a>
+        <a class="practice-link cbet" href="/ohms-law-quiz.html">Ohm's Law Quiz <span>Practice Ohm's Law calculations.</span></a>
+        <a class="practice-link cbet" href="/voltage-current-resistance-cbet.html">Voltage vs Current vs Resistance <span>Understand the core electrical relationship.</span></a>
+        <a class="practice-link cbet" href="/voltage-current-resistance-quiz.html">Voltage, Current, and Resistance Quiz <span>Practice electrical basics.</span></a>
+        <a class="practice-link cbet" href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits <span>Learn how circuit paths affect measurements.</span></a>
+        <a class="practice-link cbet" href="/series-parallel-quiz.html">Series vs Parallel Quiz <span>Test series and parallel concepts.</span></a>
+        <a class="practice-link cbet" href="/ac-vs-dc-current.html">AC vs DC Current <span>Review alternating and direct current.</span></a>
+        <a class="practice-link cbet" href="/power-supply-basics-cbet.html">Power Supply Basics for CBET <span>Review power conversion and device power.</span></a>
+        <a class="practice-link cbet" href="/what-does-a-rectifier-do.html">What Does a Rectifier Do? <span>Learn AC to DC conversion.</span></a>
+        <a class="practice-link cbet" href="/what-does-a-capacitor-do.html">What Does a Capacitor Do? <span>Learn charge storage and filtering basics.</span></a>
+        <a class="practice-link cbet" href="/capacitor-quiz.html">Capacitor Quiz <span>Practice capacitor function and concepts.</span></a>
+        <a class="practice-link cbet" href="/what-is-a-diode.html">What Is a Diode? <span>Learn one-way current flow.</span></a>
+        <a class="practice-link cbet" href="/how-to-use-a-multimeter.html">How to Use a Multimeter <span>Learn basic meter measurements.</span></a>
+        <a class="practice-link cbet" href="/multimeter-quiz.html">Multimeter Quiz <span>Practice meter settings and measurement choices.</span></a>
+        <a class="practice-link cbet" href="/how-to-read-schematics-symbols.html">How to Read Schematic Symbols <span>Review common circuit symbols.</span></a>
+        <a class="practice-link cbet" href="/schematic-symbols-quiz.html">Schematic Symbols Quiz <span>Practice recognizing electronic symbols.</span></a>
+        <a class="practice-link cbet" href="/how-to-test-a-resistor.html">How to Test a Resistor <span>Review resistor testing basics.</span></a>
+        <a class="practice-link cbet" href="/how-to-test-a-capacitor.html">How to Test a Capacitor <span>Review capacitor testing basics.</span></a>
+        <a class="practice-link biomed" href="/biomed-career-guide.html">Biomedical Equipment Technician Career Guide <span>Learn the biomed career path.</span></a>
       </div>
-    </div>
+    </section>
 
-    <!-- CLINICAL BASICS -->
-    <div class="section">
-      <h2>Clinical Basics</h2>
-      <p>
-        Review essential clinical concepts including EKG interpretation, rhythm recognition, kidney function, normal lab values, ABG interpretation, CBC review, electrolytes, and normal vital signs.
-      </p>
+    <section class="section">
+      <h2>CRES & Imaging Equipment</h2>
+      <p class="section-note">Review radiology equipment, CRES practice, X-ray fundamentals, positioning, and exposure concepts.</p>
       <div class="link-grid">
-        <a class="practice-link nursing featured" href="/how-kidneys-work.html">
-          How the Kidneys Work
-        </a>
-        <a class="practice-link nursing featured" href="/normal-lab-values-cheat-sheet.html">
-          Normal Lab Values Cheat Sheet
-        </a>
-        <a class="practice-link anatomy" href="/ekg-practice-quiz.html">
-          EKG Practice Quiz
-        </a>
-        <a class="practice-link anatomy" href="/how-to-read-ekg.html">
-          How to Read an EKG
-        </a>
-        <a class="practice-link anatomy featured" href="/ekg-rhythm-cheat-sheet.html">
-          EKG Rhythm Cheat Sheet
-        </a>
-        <a class="practice-link nursing" href="/abg-normal-values.html">
-          ABG Normal Values
-        </a>
-        <a class="practice-link nursing" href="/abg-practice-quiz.html">
-          ABG Practice Quiz
-        </a>
-        <a class="practice-link nursing" href="/lab-values-practice-quiz.html">
-          Lab Values Practice Quiz
-        </a>
-        <a class="practice-link nursing" href="/cbc-practice-quiz.html">
-          CBC Practice Quiz
-        </a>
-        <a class="practice-link nursing" href="/electrolytes-practice-quiz.html">
-          Electrolytes Practice Quiz
-        </a>
-        <a class="practice-link nursing" href="/what-is-hyperkalemia.html">
-          What is Hyperkalemia?
-        </a>
-        <a class="practice-link nursing" href="/what-is-hypokalemia.html">
-          What is Hypokalemia?
-        </a>
-        <a class="practice-link nursing" href="/what-is-hyponatremia.html">
-          What is Hyponatremia?
-        </a>
-        <a class="practice-link nursing" href="/what-is-hypernatremia.html">
-          What is Hypernatremia?
-        </a>
+        <a class="practice-link biomed featured" href="/cres-practice-questions.html">CRES Practice Questions <span>Practice radiology equipment specialist concepts.</span></a>
+        <a class="practice-link biomed" href="/how-to-pass-cres-exam.html">How to Pass the CRES Exam <span>Study strategy for radiology equipment specialists.</span></a>
+        <a class="practice-link biomed" href="/fundamentals-of-xray-cres.html">Fundamentals of X-Ray for CRES <span>Review X-ray equipment basics.</span></a>
+        <a class="practice-link biomed" href="/xray-positioning-guide-cres.html">X-Ray Positioning Guide <span>Connect positioning to imaging workflow.</span></a>
+        <a class="practice-link biomed" href="/mas-vs-kvp-xray-cres.html">mAs vs kVp Explained <span>Understand X-ray exposure factors.</span></a>
       </div>
-    </div>
+    </section>
+
+    <section class="section">
+      <h2>For Teachers, Study Gear & Site Info</h2>
+      <p class="section-note">Use these links for classroom sharing, recommended learning tools, contact, and site information.</p>
+      <div class="link-grid">
+        <a class="practice-link site featured" href="/about.html">About MedSkillBuilder <span>Learn the mission behind the platform.</span></a>
+        <a class="practice-link site" href="/contact.html">Contact MedSkillBuilder <span>Send questions, corrections, and tool ideas.</span></a>
+        <a class="practice-link site featured" href="/recommended-study-gear.html">Recommended Study Gear <span>Browse study gear and learning tools.</span></a>
+        <a class="practice-link anatomy" href="/anatomy-labeling-practice.html">Use Anatomy Labeling in Class <span>Share visual anatomy practice with students.</span></a>
+        <a class="practice-link biomed" href="/ultrasound-practice.html">Use Ultrasound Challenges in Class <span>Practice visual image recognition.</span></a>
+        <a class="practice-link clinical" href="/normal-vital-signs-chart.html">Review Normal Vital Signs in Class <span>Quick clinical warm-up activity.</span></a>
+      </div>
+    </section>
 
     <div class="footer-cta">
-      <a href="/anatomy-labeling-practice.html">Start Practicing on MedSkillBuilder</a>
+      <h2>Ready to Start Practicing?</h2>
+      <p>Start with one high-value tool, take a quiz, review what you missed, and keep building confidence.</p>
+      <a href="/heart-sounds-quiz.html">Try the Heart Sounds Quiz</a>
     </div>
 
     <footer>
@@ -589,7 +475,6 @@
       <p><a href="/recommended-study-gear.html">Recommended Study Gear</a></p>
       <p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
     </footer>
-
   </div>
 </body>
 </html>
