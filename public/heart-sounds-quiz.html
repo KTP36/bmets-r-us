@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Heart Sounds Quiz | Practice Cardiac Auscultation Online</title>
+  <meta name="description" content="Practice cardiac auscultation with a free heart sounds quiz. Listen to normal and abnormal heart sounds, identify murmurs, valve disorders, split S2, and learn detailed explanations." />
+  <meta name="keywords" content="heart sounds quiz, heart murmur quiz, cardiac auscultation practice, nursing heart sounds practice, identify heart sounds, cardiac assessment quiz, auscultation quiz, valve murmurs" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/heart-sounds-quiz.html" />
+
+  <meta property="og:title" content="Heart Sounds Quiz | Practice Cardiac Auscultation Online" />
+  <meta property="og:description" content="Listen to heart sounds and identify normal S1/S2, murmurs, valve disorders, and split S2 with instant feedback and detailed explanations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/heart-sounds-quiz.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Heart Sounds Quiz",
+    "description": "A free cardiac auscultation quiz that helps learners listen to heart sounds, identify murmurs, valve disorders, split S2, and normal S1/S2 findings.",
+    "url": "https://medskillbuilder.com/heart-sounds-quiz.html",
+    "learningResourceType": "Interactive quiz",
+    "educationalLevel": "Beginner to intermediate",
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Nursing students, medical assistant students, healthcare learners, cardiac assessment learners, and clinical skills learners"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a heart sounds quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A heart sounds quiz is a practice activity where learners listen to cardiac sounds and identify normal heart sounds, murmurs, split sounds, and possible valve disorders."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are S1 and S2 heart sounds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "S1 is commonly called the lub sound and is associated with closure of the mitral and tricuspid valves. S2 is commonly called the dub sound and is associated with closure of the aortic and pulmonic valves."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I learn heart murmurs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start by learning timing, location, sound quality, and radiation pattern. Then practice listening repeatedly while connecting each sound to the valve problem or clinical finding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this heart sounds quiz free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. MedSkillBuilder provides this heart sounds quiz as a free educational tool for learners practicing cardiac auscultation."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #082f57;
+      --blue: #1d6fa5;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --red: #dc2626;
+      --orange: #f97316;
+      --purple: #7c3aed;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbeafe;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-orange: #fff7ed;
+      --soft-red: #fef2f2;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at top left, rgba(29, 111, 165, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, #eef7ff 48%, #ffffff 100%);
+    }
+    a { color: inherit; }
+    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+
+    .topbar {
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand img { width: 58px; height: auto; }
+    .brand strong { display: block; color: var(--navy); font-size: 25px; line-height: 1.1; }
+    .brand span { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+    .mini-nav { display: flex; flex-wrap: wrap; gap: 10px; }
+    .mini-nav a {
+      text-decoration: none;
+      color: var(--navy);
+      background: #fff;
+      border: 1px solid #dbe4ee;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+      font-size: 0.94rem;
+    }
+
+    .hero {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 34%),
+        linear-gradient(135deg, #082f57, #1d6fa5 62%, #0f766e);
+      border-radius: 34px;
+      padding: 58px 38px;
+      box-shadow: 0 24px 60px rgba(8,47,87,0.28);
+      position: relative;
+      overflow: hidden;
+      margin: 8px 0 24px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -95px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 930px; }
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 { font-size: clamp(42px, 6vw, 72px); line-height: 0.98; letter-spacing: -0.055em; margin-bottom: 18px; }
+    .hero p { color: #e0f2fe; font-size: clamp(18px, 2.2vw, 23px); max-width: 850px; margin-bottom: 18px; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; align-items: center; }
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 24px;
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.18s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .cta-button:hover { transform: translateY(-2px); }
+    .primary-btn { background: linear-gradient(135deg, var(--green2), var(--green)); box-shadow: 0 16px 28px rgba(22,163,74,0.30); }
+    .secondary-btn { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.32); color: white; }
+    .dark-btn { background: linear-gradient(135deg, var(--navy), var(--blue)); box-shadow: 0 16px 28px rgba(8,47,87,0.22); }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0 28px; }
+    .stat { background: rgba(255,255,255,0.95); border: 1px solid var(--border); border-radius: 20px; padding: 18px; box-shadow: var(--shadow); color: var(--navy); text-align: center; font-weight: 900; font-size: 22px; }
+    .stat span { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+    main { padding: 34px 0 48px; }
+    .notice, .callout, .success, .warning, .danger {
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 18px 0;
+      font-weight: 800;
+    }
+    .notice { background: var(--soft-orange); border: 1px solid #fed7aa; color: #7c2d12; }
+    .callout { background: var(--soft-blue); border-left: 6px solid #2563eb; color: #1e3a8a; }
+    .success { background: var(--soft-green); border-left: 6px solid var(--green); color: #065f46; }
+    .warning { background: var(--soft-orange); border-left: 6px solid var(--orange); color: #7c2d12; }
+    .danger { background: var(--soft-red); border-left: 6px solid var(--red); color: #7f1d1d; }
+
+    .section {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .section.highlight { background: linear-gradient(180deg, rgba(236,253,245,0.86), rgba(255,255,255,0.98)); border-color: rgba(22,163,74,0.35); }
+    .section.dark { background: radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%), linear-gradient(135deg, var(--navy), var(--blue)); color: white; }
+    .section.dark h2, .section.dark p, .section.dark li { color: white; }
+
+    h2 { color: var(--navy); font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.035em; margin-bottom: 14px; }
+    h3 { color: var(--navy); font-size: 22px; margin: 20px 0 8px; }
+    p { font-size: 17px; color: #1f2937; margin-bottom: 13px; }
+    .lead { font-size: 19px; color: #334155; }
+
+    .grid-4, .grid-3, .grid-2, .link-grid { display: grid; gap: 16px; margin: 22px 0; }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+    }
+    .card.strong { border-left: 6px solid var(--blue); }
+    .card.green { border-left: 6px solid var(--green); }
+    .card.purple { border-left: 6px solid var(--purple); }
+    .card.orange { border-left: 6px solid var(--orange); }
+    .card.red { border-left: 6px solid var(--red); }
+
+    ul, ol { margin: 14px 0 0 22px; }
+    li { margin-bottom: 9px; font-size: 16px; color: #1f2937; }
+
+    .quiz-panel { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; align-items: start; margin-top: 20px; }
+    .audio-box {
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+    }
+    audio { width: 100%; margin: 16px 0; }
+    .sound-count { display: inline-flex; background: #e0f2fe; color: var(--navy); border: 1px solid #bae6fd; border-radius: 999px; padding: 8px 12px; font-weight: 900; margin-bottom: 12px; }
+    .question-title { font-size: 24px; color: var(--navy); font-weight: 900; margin-bottom: 10px; }
+    .choice-grid { display: grid; gap: 10px; margin-top: 14px; }
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: var(--ink);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.16s ease;
+      font-size: 15px;
+    }
+    .choice-btn:hover { transform: translateY(-1px); border-color: var(--blue); background: #f8fbff; }
+    .choice-btn.correct { background: #dcfce7; border-color: #86efac; color: #166534; }
+    .choice-btn.incorrect { background: #fee2e2; border-color: #fecaca; color: #991b1b; }
+    .choice-btn:disabled { cursor: default; }
+    .score-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--soft-shadow);
+      position: sticky;
+      top: 16px;
+    }
+    .score-big { font-size: 42px; color: var(--navy); font-weight: 900; line-height: 1; }
+    .progress-bar { height: 12px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin: 16px 0; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--green), var(--blue)); transition: width 0.25s ease; }
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+    .feedback.show { display: block; }
+    .feedback.correct { border-left: 6px solid var(--green); background: #f0fdf4; }
+    .feedback.incorrect { border-left: 6px solid var(--red); background: #fef2f2; }
+    .feedback h3 { margin-top: 0; }
+    .small-note { color: var(--muted); font-size: 14px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; border-radius: 16px; overflow: hidden; }
+    th, td { border: 1px solid #dbe4ee; padding: 12px; text-align: left; vertical-align: top; }
+    th { background: #eef4ff; color: var(--navy); font-weight: 900; }
+    td { background: white; color: #1f2937; }
+
+    .study-link { display: block; text-decoration: none; background: #e8f1fb; border: 1px solid #bfdbfe; color: var(--navy); border-radius: 16px; padding: 14px 16px; font-weight: 900; }
+    .study-link:hover { background: #dbeafe; }
+
+    footer { background: var(--navy); color: white; padding: 34px 0; text-align: center; margin-top: 42px; }
+    footer p { color: rgba(255,255,255,0.86); font-size: 14px; margin-bottom: 8px; }
+    footer a { color: #7dd3fc; text-decoration: none; font-weight: 900; }
+
+    @media (max-width: 900px) {
+      .grid-4, .grid-3, .grid-2, .link-grid, .quiz-panel { grid-template-columns: 1fr; }
+      .hero { padding: 42px 24px; border-radius: 26px; }
+      .section { padding: 24px 20px; }
+      .cta-button { width: 100%; }
+      .topbar { align-items: flex-start; }
+      .mini-nav { width: 100%; }
+      .mini-nav a { flex: 1; justify-content: center; }
+      .stats { grid-template-columns: 1fr; }
+      .score-card { position: static; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder Logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Interactive healthcare and clinical skills learning</span>
+        </div>
+      </a>
+
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/anatomy-labeling-practice.html">Anatomy</a>
+        <a href="/normal-vital-signs-chart.html">Vitals</a>
+        <a href="/browse-all-practice.html">Browse All</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">🫀 Cardiac Auscultation Practice</div>
+        <h1>Heart Sounds Quiz</h1>
+        <p>
+          Listen to real heart sounds and practice identifying normal S1/S2, valve murmurs, stenosis, regurgitation, pulmonic stenosis, and split S2.
+        </p>
+        <p>
+          This free cardiac auscultation quiz is built for nursing students, medical assistants, clinical learners, and anyone who wants to improve heart sound recognition.
+        </p>
+        <div class="cta-row">
+          <a href="#quiz" class="cta-button primary-btn">Start the Heart Sounds Quiz →</a>
+          <a href="#learn" class="cta-button secondary-btn">Review Heart Sound Basics</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">7<span>Audio challenges</span></div>
+      <div class="stat">Free<span>No login required</span></div>
+      <div class="stat">Instant<span>Feedback and score</span></div>
+      <div class="stat">Clinical<span>Recognition practice</span></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="notice">
+      MedSkillBuilder is an independent educational platform. This page is for learning and practice only and is not a substitute for clinical training, diagnosis, or medical advice.
+    </div>
+
+    <section id="learn" class="section highlight">
+      <h2>Practice Heart Sounds Before Clinicals</h2>
+      <p class="lead">
+        Cardiac auscultation is a recognition skill. Reading about murmurs helps, but listening and choosing what you hear builds a different kind of confidence. This quiz gives you a simple listen-and-identify format with explanations after each answer.
+      </p>
+      <p>
+        When you listen, focus on timing first. Ask whether the sound happens during systole, during diastole, or around S2. Then think about the quality of the sound, where it would usually be heard best, and what valve problem could explain it.
+      </p>
+      <div class="success">
+        Best learning move: listen once without guessing, listen again while thinking about timing, then choose the answer that best matches the pattern.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Heart Sound Basics</h2>
+      <div class="grid-3">
+        <div class="card strong">
+          <h3>S1: “Lub”</h3>
+          <p>S1 is associated with closure of the mitral and tricuspid valves. It marks the beginning of systole, when the ventricles begin contracting.</p>
+        </div>
+        <div class="card green">
+          <h3>S2: “Dub”</h3>
+          <p>S2 is associated with closure of the aortic and pulmonic valves. It marks the end of systole and the beginning of diastole.</p>
+        </div>
+        <div class="card purple">
+          <h3>Murmurs</h3>
+          <p>Murmurs are caused by turbulent blood flow. They may occur when a valve is narrowed, leaking, or when flow is increased across a valve.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What You Will Practice</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Sound</th>
+              <th>What It Usually Means</th>
+              <th>What to Listen For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Normal S1/S2</strong></td>
+              <td>Expected lub-dub heart sounds without an obvious murmur.</td>
+              <td>Regular S1 and S2 pattern.</td>
+            </tr>
+            <tr>
+              <td><strong>Aortic Stenosis</strong></td>
+              <td>Narrowing of the aortic valve, making left ventricular ejection harder.</td>
+              <td>Harsh systolic murmur, classically crescendo-decrescendo.</td>
+            </tr>
+            <tr>
+              <td><strong>Aortic Regurgitation</strong></td>
+              <td>Leaking aortic valve allowing blood to flow backward into the left ventricle.</td>
+              <td>Early diastolic blowing murmur.</td>
+            </tr>
+            <tr>
+              <td><strong>Mitral Regurgitation</strong></td>
+              <td>Leaking mitral valve allowing blood to move backward into the left atrium during systole.</td>
+              <td>Blowing holosystolic murmur, often associated with the apex.</td>
+            </tr>
+            <tr>
+              <td><strong>Mitral Stenosis</strong></td>
+              <td>Narrowing of the mitral valve, limiting flow from left atrium to left ventricle.</td>
+              <td>Diastolic rumble, often described with an opening snap.</td>
+            </tr>
+            <tr>
+              <td><strong>Pulmonic Stenosis</strong></td>
+              <td>Narrowing at the pulmonic valve, affecting flow from the right ventricle to pulmonary artery.</td>
+              <td>Systolic ejection murmur in the pulmonic area.</td>
+            </tr>
+            <tr>
+              <td><strong>Split S2</strong></td>
+              <td>Separation between aortic and pulmonic valve closure sounds.</td>
+              <td>Two components of S2 instead of one single dub.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="quiz" class="section highlight">
+      <h2>Interactive Heart Sounds Quiz</h2>
+      <p class="lead">
+        Press play, listen carefully, then choose the finding that best matches the sound. You will get instant feedback and a detailed explanation after each answer.
+      </p>
+
+      <div class="quiz-panel">
+        <div class="audio-box">
+          <div id="soundCount" class="sound-count">Sound 1 of 7</div>
+          <div id="questionTitle" class="question-title">What heart sound are you hearing?</div>
+          <p id="questionHint" class="small-note">Tip: listen for timing, quality, and whether the sound is systolic or diastolic.</p>
+
+          <audio id="heartAudio" controls preload="metadata">
+            <source id="audioSource" src="/audio/normal.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+
+          <div id="choices" class="choice-grid"></div>
+          <div id="feedback" class="feedback"></div>
+
+          <div class="cta-row">
+            <button id="nextBtn" class="cta-button dark-btn" type="button" style="display:none;">Next Sound →</button>
+            <button id="restartBtn" class="cta-button primary-btn" type="button" style="display:none;">Restart Quiz</button>
+          </div>
+        </div>
+
+        <aside class="score-card">
+          <h3>Your Score</h3>
+          <div class="score-big"><span id="score">0</span>/<span id="total">7</span></div>
+          <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+          <p id="scoreMessage">Start the quiz and listen closely. Your goal is recognition, not memorization.</p>
+          <div class="callout">
+            <strong>Clinical tip:</strong>
+            <p>When unsure, identify whether the abnormal sound is systolic or diastolic before thinking about the exact valve.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Heart Murmur Recognition Tips</h2>
+      <div class="grid-2">
+        <div class="card strong">
+          <h3>Aortic Stenosis</h3>
+          <p>Think narrowed aortic valve. Classically a harsh systolic ejection murmur. Often taught as best heard at the right upper sternal border and may radiate toward the carotids.</p>
+        </div>
+        <div class="card green">
+          <h3>Aortic Regurgitation</h3>
+          <p>Think leaking aortic valve. Blood flows backward after systole, creating an early diastolic murmur pattern.</p>
+        </div>
+        <div class="card purple">
+          <h3>Mitral Regurgitation</h3>
+          <p>Think leaking mitral valve during systole. Often described as a blowing holosystolic murmur associated with the apex.</p>
+        </div>
+        <div class="card orange">
+          <h3>Mitral Stenosis</h3>
+          <p>Think narrowed mitral valve. It classically produces a diastolic rumble and may be described with an opening snap.</p>
+        </div>
+        <div class="card red">
+          <h3>Pulmonic Stenosis</h3>
+          <p>Think narrowed pulmonic valve. This is commonly described as a systolic ejection murmur in the pulmonic area.</p>
+        </div>
+        <div class="card strong">
+          <h3>Split S2</h3>
+          <p>Split S2 means the aortic and pulmonic valve closures are heard separately. It may be easier to recognize by focusing on the second heart sound.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How to Study Cardiac Auscultation</h2>
+      <ol>
+        <li><strong>Start with normal:</strong> Learn the baseline lub-dub pattern first.</li>
+        <li><strong>Focus on timing:</strong> Decide whether the abnormal sound is systolic or diastolic.</li>
+        <li><strong>Listen repeatedly:</strong> Recognition improves with repeated exposure.</li>
+        <li><strong>Connect sound to valve function:</strong> Stenosis means narrowing. Regurgitation means leaking backward.</li>
+        <li><strong>Review explanations:</strong> The explanation is where the learning happens.</li>
+      </ol>
+      <div class="warning">
+        Do not use this quiz to diagnose patients. It is a learning tool for pattern recognition and study practice.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Related Healthcare Study Resources</h2>
+      <p>
+        Continue building assessment skills with these free MedSkillBuilder resources.
+      </p>
+      <div class="link-grid">
+        <a class="study-link" href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a class="study-link" href="/?tab=VitalsChallenge">Vitals Challenge Game</a>
+        <a class="study-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+        <a class="study-link" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a>
+        <a class="study-link" href="/how-to-read-ekg.html">How to Read an EKG</a>
+        <a class="study-link" href="/ekg-rhythm-cheat-sheet.html">EKG Rhythm Cheat Sheet</a>
+        <a class="study-link" href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a class="study-link" href="/browse-all-practice.html">Browse All Practice Tools</a>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <h2>Ready to Keep Practicing?</h2>
+      <p>
+        Heart sounds are easier to learn when you pair listening practice with anatomy, vital signs, and cardiac rhythm review. Use this page as a repeatable challenge and come back until the sounds feel familiar.
+      </p>
+      <div class="cta-row">
+        <a href="#quiz" class="cta-button primary-btn">Retake Heart Sounds Quiz</a>
+        <a href="/browse-all-practice.html" class="cta-button secondary-btn">Browse All Free Tools</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Heart Sounds Quiz FAQ</h2>
+      <h3>What is a heart sounds quiz?</h3>
+      <p>A heart sounds quiz lets you listen to cardiac audio and identify normal heart sounds, murmurs, valve disorders, and other auscultation findings.</p>
+
+      <h3>What are S1 and S2 heart sounds?</h3>
+      <p>S1 is associated with closure of the mitral and tricuspid valves. S2 is associated with closure of the aortic and pulmonic valves.</p>
+
+      <h3>What is the difference between stenosis and regurgitation?</h3>
+      <p>Stenosis means a valve is narrowed. Regurgitation means a valve is leaking and blood is flowing backward.</p>
+
+      <h3>How should nursing students practice heart sounds?</h3>
+      <p>Start with normal S1/S2, then compare systolic and diastolic murmurs. Listen repeatedly and connect each sound to valve function, timing, and clinical meaning.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free healthcare study tools for anatomy, nursing, cardiac assessment, CBET prep, TEAS review, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/anatomy-labeling-practice.html">Anatomy</a> |
+        <a href="/normal-vital-signs-chart.html">Vitals</a> |
+        <a href="/browse-all-practice.html">Browse All</a>
+      </p>
+      <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const quizData = [
+      {
+        sound: "/audio/normal.mp3",
+        answer: "Normal S1/S2",
+        choices: ["Normal S1/S2", "Aortic Stenosis", "Mitral Regurgitation", "Split S2"],
+        explanationTitle: "Normal S1/S2",
+        explanation: "Normal heart sounds are often described as lub-dub. S1 is associated with closure of the mitral and tricuspid valves, and S2 is associated with closure of the aortic and pulmonic valves. The key learning point is to recognize the baseline pattern before comparing abnormal findings."
+      },
+      {
+        sound: "/audio/as-early.mp3",
+        answer: "Aortic Regurgitation",
+        choices: ["Aortic Regurgitation", "Mitral Stenosis", "Normal S1/S2", "Pulmonic Stenosis"],
+        explanationTitle: "Aortic Regurgitation",
+        explanation: "Aortic regurgitation occurs when the aortic valve does not close properly, allowing blood to leak backward into the left ventricle during diastole. It is commonly taught as an early diastolic blowing murmur. The word regurgitation means leaking backward."
+      },
+      {
+        sound: "/audio/lateas.mp3",
+        answer: "Aortic Stenosis",
+        choices: ["Mitral Regurgitation", "Aortic Stenosis", "Split S2", "Normal S1/S2"],
+        explanationTitle: "Aortic Stenosis",
+        explanation: "Aortic stenosis means narrowing of the aortic valve. The left ventricle must generate more pressure to push blood through the narrowed valve. It is classically described as a harsh systolic crescendo-decrescendo murmur, often taught as best heard at the right upper sternal border."
+      },
+      {
+        sound: "/audio/mr.mp3",
+        answer: "Mitral Regurgitation",
+        choices: ["Aortic Regurgitation", "Mitral Regurgitation", "Mitral Stenosis", "Pulmonic Stenosis"],
+        explanationTitle: "Mitral Regurgitation",
+        explanation: "Mitral regurgitation occurs when the mitral valve leaks backward from the left ventricle into the left atrium during systole. It is commonly described as a blowing holosystolic murmur. Remember: regurgitation means backward flow through a valve that should be closed."
+      },
+      {
+        sound: "/audio/ms.mp3",
+        answer: "Mitral Stenosis",
+        choices: ["Mitral Stenosis", "Aortic Stenosis", "Normal S1/S2", "Split S2"],
+        explanationTitle: "Mitral Stenosis",
+        explanation: "Mitral stenosis means narrowing of the mitral valve, which limits blood flow from the left atrium to the left ventricle during diastole. It is classically associated with a diastolic rumble and may be described with an opening snap."
+      },
+      {
+        sound: "/audio/ps.mp3",
+        answer: "Pulmonic Stenosis",
+        choices: ["Pulmonic Stenosis", "Aortic Regurgitation", "Mitral Regurgitation", "Normal S1/S2"],
+        explanationTitle: "Pulmonic Stenosis",
+        explanation: "Pulmonic stenosis means narrowing at the pulmonic valve, affecting blood flow from the right ventricle into the pulmonary artery. It is usually taught as a systolic ejection murmur best associated with the pulmonic area."
+      },
+      {
+        sound: "/audio/splits21.mp3",
+        answer: "Split S2",
+        choices: ["Mitral Stenosis", "Split S2", "Aortic Stenosis", "Aortic Regurgitation"],
+        explanationTitle: "Split S2",
+        explanation: "Split S2 means the aortic and pulmonic components of the second heart sound are heard separately instead of as one single sound. When practicing, focus on the second heart sound and listen for two close components."
+      }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    const soundCount = document.getElementById("soundCount");
+    const audio = document.getElementById("heartAudio");
+    const audioSource = document.getElementById("audioSource");
+    const choicesEl = document.getElementById("choices");
+    const feedback = document.getElementById("feedback");
+    const nextBtn = document.getElementById("nextBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const scoreEl = document.getElementById("score");
+    const totalEl = document.getElementById("total");
+    const progressFill = document.getElementById("progressFill");
+    const scoreMessage = document.getElementById("scoreMessage");
+
+    totalEl.textContent = quizData.length;
+
+    function loadQuestion() {
+      answered = false;
+      const item = quizData[currentIndex];
+      soundCount.textContent = `Sound ${currentIndex + 1} of ${quizData.length}`;
+      audioSource.src = item.sound;
+      audio.load();
+      feedback.className = "feedback";
+      feedback.innerHTML = "";
+      nextBtn.style.display = "none";
+      restartBtn.style.display = "none";
+      choicesEl.innerHTML = "";
+
+      item.choices.forEach(choice => {
+        const btn = document.createElement("button");
+        btn.className = "choice-btn";
+        btn.type = "button";
+        btn.textContent = choice;
+        btn.addEventListener("click", () => handleAnswer(choice, btn));
+        choicesEl.appendChild(btn);
+      });
+      updateScoreDisplay();
+    }
+
+    function handleAnswer(choice, selectedBtn) {
+      if (answered) return;
+      answered = true;
+      const item = quizData[currentIndex];
+      const correct = choice === item.answer;
+      if (correct) score++;
+
+      const buttons = choicesEl.querySelectorAll("button");
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === item.answer) btn.classList.add("correct");
+        if (btn === selectedBtn && !correct) btn.classList.add("incorrect");
+      });
+
+      feedback.className = correct ? "feedback show correct" : "feedback show incorrect";
+      feedback.innerHTML = `
+        <h3>${correct ? "✅ Correct" : "❌ Not quite"}: ${item.explanationTitle}</h3>
+        <p>${item.explanation}</p>
+      `;
+
+      if (currentIndex < quizData.length - 1) {
+        nextBtn.style.display = "inline-flex";
+      } else {
+        restartBtn.style.display = "inline-flex";
+        showFinalMessage();
+      }
+      updateScoreDisplay();
+    }
+
+    function updateScoreDisplay() {
+      scoreEl.textContent = score;
+      const answeredCount = answered ? currentIndex + 1 : currentIndex;
+      const progressPercent = (answeredCount / quizData.length) * 100;
+      progressFill.style.width = `${progressPercent}%`;
+      if (answeredCount === 0) {
+        scoreMessage.textContent = "Start the quiz and listen closely. Your goal is recognition, not memorization.";
+      } else {
+        scoreMessage.textContent = `You have answered ${answeredCount} of ${quizData.length} sounds.`;
+      }
+    }
+
+    function showFinalMessage() {
+      const percent = Math.round((score / quizData.length) * 100);
+      if (percent >= 85) {
+        scoreMessage.textContent = `Excellent work: ${score}/${quizData.length}. You are building strong auscultation recognition.`;
+      } else if (percent >= 60) {
+        scoreMessage.textContent = `Good practice: ${score}/${quizData.length}. Review the explanations and retake it.`;
+      } else {
+        scoreMessage.textContent = `Keep practicing: ${score}/${quizData.length}. Start with normal S1/S2 and timing differences.`;
+      }
+      progressFill.style.width = "100%";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      currentIndex++;
+      loadQuestion();
+      document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    restartBtn.addEventListener("click", () => {
+      currentIndex = 0;
+      score = 0;
+      loadQuestion();
+      document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    loadQuestion();
+  </script>
+</body>
+</html>
