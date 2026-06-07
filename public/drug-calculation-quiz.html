@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drug Calculation Quiz | Nursing Dosage Calculation Practice</title>
+  <meta name="description" content="Practice nursing drug dosage calculations with a free multiple-choice quiz. Review mg, g, mcg, tablets, liquid medication, weight-based dosing, and IV flow rates with step-by-step explanations." />
+  <meta name="keywords" content="drug calculation quiz, dosage calculation quiz, nursing dosage calculations, medication math practice, nursing math quiz, dosage calculation practice questions, IV flow rate quiz, medication calculation practice" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/drug-calculation-quiz.html" />
+
+  <meta property="og:title" content="Drug Calculation Quiz | Nursing Dosage Calculation Practice" />
+  <meta property="og:description" content="Practice medication math with multiple-choice nursing dosage calculation questions and step-by-step explanations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/drug-calculation-quiz.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Drug Calculation Quiz",
+    "description": "A free nursing dosage calculation quiz covering unit conversions, tablets, liquid medications, weight-based dosing, and IV flow rates.",
+    "url": "https://medskillbuilder.com/drug-calculation-quiz.html",
+    "learningResourceType": "Quiz",
+    "educationalLevel": "Beginner to intermediate nursing and healthcare learners",
+    "isAccessibleForFree": true,
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Nursing students, medical assistant students, allied health learners, TEAS learners, and healthcare students"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are drug dosage calculations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Drug dosage calculations are medication math problems used to determine safe doses, tablet amounts, liquid volumes, weight-based doses, and IV infusion rates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are dosage calculations important in nursing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dosage calculations are important because medication errors can affect patient safety. Nurses and healthcare learners need to understand conversions, orders, available doses, and safe calculation steps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What topics are included in this dosage calculation quiz?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This quiz includes mg to g conversions, mcg to mg conversions, tablets, liquid medications, weight-based dosing, IV rates, drops per minute, and safe-dose thinking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this drug calculation quiz free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. MedSkillBuilder provides this drug calculation quiz as a free learning tool for healthcare students and nursing learners."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #12355b;
+      --navy-dark: #0b2440;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --green2: #22c55e;
+      --rose: #e11d48;
+      --orange: #f97316;
+      --purple: #7c3aed;
+      --slate: #334155;
+      --muted: #64748b;
+      --border: #dbe4ee;
+      --page: #f8fafc;
+      --soft-blue: #eff6ff;
+      --soft-green: #ecfdf5;
+      --soft-orange: #fff7ed;
+      --soft-rose: #fff1f2;
+      --shadow: 0 18px 46px rgba(15, 23, 42, 0.10);
+      --soft-shadow: 0 7px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 34%),
+        radial-gradient(circle at top right, rgba(22, 163, 74, 0.12), transparent 32%),
+        var(--page);
+      color: #0f172a;
+      line-height: 1.7;
+    }
+
+    .container { max-width: 1120px; margin: auto; padding: 24px 20px 60px; }
+
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 22px;
+    }
+
+    .back-link, .mini-nav a {
+      display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+      color: var(--navy); background: #fff; border: 1px solid var(--border); border-radius: 999px;
+      padding: 10px 15px; font-weight: 900; box-shadow: var(--soft-shadow); font-size: 0.94rem;
+    }
+
+    .mini-nav { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, #1d6fa5 55%, #16a34a 100%);
+      color: #fff; padding: 42px 38px; border-radius: 30px; margin-bottom: 28px;
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
+    }
+
+    .hero::after {
+      content: ""; position: absolute; right: -90px; top: -90px; width: 280px; height: 280px;
+      border-radius: 999px; background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 8px 14px;
+      font-weight: 900; margin-bottom: 14px; position: relative; z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.15rem, 4vw, 3.6rem); margin-bottom: 14px; line-height: 1.06;
+      letter-spacing: -0.04em; max-width: 920px; position: relative; z-index: 2;
+    }
+
+    .hero p {
+      font-size: 1.08rem; max-width: 900px; color: rgba(255,255,255,0.94); margin-bottom: 16px; position: relative; z-index: 2;
+    }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; position: relative; z-index: 2; }
+
+    .cta-btn {
+      display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 13px 20px;
+      text-decoration: none; font-weight: 900; box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .cta-btn.primary { background: #fff; color: var(--navy-dark); }
+    .cta-btn.secondary { background: rgba(255,255,255,0.14); color: #fff; }
+
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 24px; position: relative; z-index: 2;
+    }
+
+    .hero-stat { background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.24); border-radius: 18px; padding: 14px; }
+    .hero-stat strong { display: block; color: #fff; font-size: 1.45rem; line-height: 1.15; }
+    .hero-stat span { color: rgba(255,255,255,0.88); font-weight: 700; font-size: 0.92rem; }
+
+    .notice, .warning, .success, .strategy-box {
+      padding: 16px 18px; border-radius: 16px; margin: 18px 0;
+    }
+    .notice { background: var(--soft-blue); border-left: 5px solid var(--blue); color: #1e3a8a; }
+    .warning { background: var(--soft-orange); border-left: 5px solid var(--orange); color: #7c2d12; }
+    .success { background: var(--soft-green); border-left: 5px solid var(--green); color: #065f46; }
+    .strategy-box { background: var(--soft-rose); border-left: 5px solid var(--rose); color: #881337; }
+
+    .card {
+      background: #fff; padding: 28px; border-radius: 22px; margin-bottom: 26px;
+      border: 1px solid var(--border); box-shadow: var(--soft-shadow);
+    }
+
+    h2 { color: var(--navy); font-size: clamp(1.45rem, 2.5vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 14px; }
+    h3 { color: #0f2f57; font-size: 1.15rem; margin-top: 18px; margin-bottom: 8px; }
+    p { margin-bottom: 12px; }
+    ul, ol { padding-left: 22px; margin-bottom: 14px; }
+    li { margin-bottom: 8px; }
+    a { color: #2563eb; font-weight: bold; }
+
+    .grid, .path-grid, .toc {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: 14px; margin-top: 16px;
+    }
+
+    .mini-card, .path-card, .toc a {
+      background: #fff; border: 1px solid #cbd5e1; border-radius: 16px; padding: 16px;
+      text-decoration: none; color: #0f172a; font-weight: 800; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .mini-card { border-left: 5px solid #1d6fa5; }
+    .mini-card p, .path-card span { display: block; color: var(--muted); font-weight: 600; font-size: 0.94rem; margin-top: 6px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; border-radius: 16px; overflow: hidden; }
+    th, td { border: 1px solid #dbe4ee; padding: 12px; text-align: left; vertical-align: top; }
+    th { background: #eef4ff; color: var(--navy); font-weight: 900; }
+    td { background: #fff; }
+
+    .quiz-shell { background: linear-gradient(180deg, #ffffff, #f8fbff); }
+    .progress-row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 16px 0; color: var(--slate); font-weight: 900; }
+    .progress-bar { height: 12px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin: 10px 0 18px; }
+    .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--green2), var(--green)); transition: width 0.25s ease; }
+
+    .question-box {
+      background: #f8fafc; border: 1px solid var(--border); border-radius: 20px; padding: 22px; margin-top: 16px;
+    }
+
+    .difficulty {
+      display: inline-flex; align-items: center; border-radius: 999px; padding: 7px 12px; margin-bottom: 12px;
+      font-size: 0.8rem; font-weight: 900; color: #fff; background: var(--purple);
+    }
+
+    .question-text { font-size: 1.18rem; font-weight: 900; color: #0f172a; margin-bottom: 16px; }
+
+    .choices { display: grid; gap: 10px; margin-top: 16px; }
+
+    .choice-btn {
+      width: 100%; border: 1px solid #cbd5e1; background: #fff; color: #0f172a; text-align: left;
+      border-radius: 14px; padding: 14px 15px; font-weight: 900; font-size: 1rem; cursor: pointer;
+      transition: transform 0.14s ease, background 0.14s ease, border-color 0.14s ease;
+    }
+
+    .choice-btn:hover { transform: translateY(-1px); border-color: var(--blue); background: #f8fbff; }
+    .choice-btn.correct { background: #dcfce7; border-color: #86efac; color: #166534; }
+    .choice-btn.wrong { background: #ffe4e6; border-color: #fda4af; color: #9f1239; }
+    .choice-btn:disabled { cursor: default; transform: none; }
+
+    .feedback {
+      display: none; margin-top: 18px; border-radius: 16px; padding: 16px; border: 1px solid #cbd5e1; background: #fff;
+    }
+    .feedback.show { display: block; }
+    .feedback strong { display: block; color: var(--navy); margin-bottom: 6px; }
+
+    .next-btn, .restart-btn {
+      border: none; border-radius: 999px; background: linear-gradient(135deg, var(--navy), #1d6fa5); color: #fff;
+      padding: 13px 20px; font-weight: 900; cursor: pointer; margin-top: 16px;
+    }
+
+    .score-card { text-align: center; display: none; }
+    .score-card.show { display: block; }
+    .score-number { font-size: clamp(2.5rem, 7vw, 5rem); color: var(--green); font-weight: 900; line-height: 1; margin: 18px 0; }
+
+    .formula {
+      background: #0f172a; color: #fff; border-radius: 14px; padding: 14px 16px; font-weight: 900; margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    footer { margin-top: 32px; text-align: center; color: #64748b; font-size: 0.94rem; }
+
+    @media (max-width: 700px) {
+      .container { padding: 18px 14px 46px; }
+      .hero { padding: 26px 18px; border-radius: 22px; }
+      .card { padding: 20px 16px; border-radius: 18px; }
+      .cta-btn, .next-btn, .restart-btn { width: 100%; }
+      .question-text { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <div class="top-bar">
+    <a class="back-link" href="/browse-all-practice.html">← Browse All Practice</a>
+    <nav class="mini-nav" aria-label="Quick links">
+      <a href="/?tab=RN">RN Practice</a>
+      <a href="/teas-practice-questions.html">TEAS Practice</a>
+      <a href="/normal-lab-values-cheat-sheet.html">Lab Values</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">💊 Nursing Medication Math</div>
+    <h1>Drug Calculation Quiz</h1>
+    <p>
+      Practice nursing dosage calculations with realistic multiple-choice questions. Review unit conversions, tablets, liquid medications, weight-based dosing, IV pump rates, and drip calculations with step-by-step explanations.
+    </p>
+    <p>
+      This quiz is built to be challenging without forcing typed answers, so learners can focus on the calculation instead of formatting errors.
+    </p>
+    <div class="cta-row">
+      <a class="cta-btn primary" href="#quiz">Start the Quiz</a>
+      <a class="cta-btn secondary" href="#formula-review">Review Formulas</a>
+      <a class="cta-btn secondary" href="#study-tips">Study Tips</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>25</strong><span>Medication math questions</span></div>
+      <div class="hero-stat"><strong>5</strong><span>Difficulty levels</span></div>
+      <div class="hero-stat"><strong>Free</strong><span>No login required</span></div>
+    </div>
+  </header>
+
+  <div class="warning">
+    <strong>Important:</strong> This page is for learning and practice only. It is not medication administration guidance, clinical instruction, or a substitute for your school, instructor, pharmacist, provider, or facility policy.
+  </div>
+
+  <section class="card">
+    <h2>What This Drug Calculation Quiz Covers</h2>
+    <p>
+      Medication calculation questions can feel intimidating because they combine math, units, patient weight, medication orders, and available concentrations. The goal is to slow the problem down and identify what the question is asking before choosing an answer.
+    </p>
+    <div class="grid">
+      <div class="mini-card"><h3>Unit Conversions</h3><p>Practice mg, g, mcg, mL, L, and common metric conversions.</p></div>
+      <div class="mini-card"><h3>Tablets & Capsules</h3><p>Calculate how many tablets or capsules are needed based on the order and supply.</p></div>
+      <div class="mini-card"><h3>Liquid Medications</h3><p>Use ordered dose and available concentration to calculate mL.</p></div>
+      <div class="mini-card"><h3>Weight-Based Dosing</h3><p>Practice mg/kg calculations and total dose decisions.</p></div>
+      <div class="mini-card"><h3>IV Rates</h3><p>Calculate mL/hr and drip rates for common infusion problems.</p></div>
+      <div class="mini-card"><h3>Safety Thinking</h3><p>Recognize when an answer is unreasonable before giving medication.</p></div>
+    </div>
+  </section>
+
+  <section id="quiz" class="card quiz-shell">
+    <h2>Interactive Drug Calculation Quiz</h2>
+    <p>
+      Choose the best answer. After each question, read the explanation to see the calculation steps.
+    </p>
+
+    <div id="quizArea">
+      <div class="progress-row">
+        <span id="questionCounter">Question 1 of 25</span>
+        <span id="scoreCounter">Score: 0</span>
+      </div>
+      <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+
+      <div class="question-box">
+        <span id="difficulty" class="difficulty">Level</span>
+        <div id="questionText" class="question-text"></div>
+        <div id="choices" class="choices"></div>
+        <div id="feedback" class="feedback"></div>
+        <button id="nextBtn" class="next-btn" style="display:none;">Next Question</button>
+      </div>
+    </div>
+
+    <div id="scoreCard" class="score-card">
+      <h2>Your Final Score</h2>
+      <div id="finalScore" class="score-number"></div>
+      <p id="scoreMessage"></p>
+      <div class="success">
+        <strong>Study move:</strong>
+        <p>Retake the quiz and focus on the question types you missed. Medication math improves fastest when you review the setup, not just the answer.</p>
+      </div>
+      <button class="restart-btn" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+  </section>
+
+  <section id="formula-review" class="card">
+    <h2>Drug Calculation Formulas to Know</h2>
+    <p>
+      These formulas are common in nursing dosage calculation practice. Always follow your program or facility requirements.
+    </p>
+    <div class="grid">
+      <div class="mini-card">
+        <h3>Tablets</h3>
+        <div class="formula">Ordered dose ÷ Available dose = tablets</div>
+        <p>Example: 500 mg ordered ÷ 250 mg available = 2 tablets.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Liquid Dose</h3>
+        <div class="formula">Ordered dose ÷ Available dose × Volume = mL</div>
+        <p>Example: 250 mg ordered ÷ 125 mg × 5 mL = 10 mL.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Weight-Based Dose</h3>
+        <div class="formula">Dose per kg × Weight in kg = Total dose</div>
+        <p>Example: 10 mg/kg × 20 kg = 200 mg.</p>
+      </div>
+      <div class="mini-card">
+        <h3>IV Pump Rate</h3>
+        <div class="formula">Total volume ÷ Time in hours = mL/hr</div>
+        <p>Example: 1000 mL ÷ 8 hr = 125 mL/hr.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Drip Rate</h3>
+        <div class="formula">mL/hr × Drop factor ÷ 60 = gtt/min</div>
+        <p>Example: 100 mL/hr × 15 gtt/mL ÷ 60 = 25 gtt/min.</p>
+      </div>
+      <div class="mini-card">
+        <h3>Unit Safety</h3>
+        <div class="formula">1 g = 1000 mg<br>1 mg = 1000 mcg<br>1 L = 1000 mL</div>
+        <p>Most errors happen when units are skipped or converted too quickly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="study-tips" class="card">
+    <h2>How to Get Better at Dosage Calculations</h2>
+    <ul>
+      <li><strong>Write the unit first:</strong> Decide whether the answer should be mg, mL, tablets, mL/hr, or gtt/min.</li>
+      <li><strong>Convert before calculating:</strong> Do not mix grams with milligrams or liters with milliliters.</li>
+      <li><strong>Estimate the answer:</strong> If the result seems impossible, recheck the setup.</li>
+      <li><strong>Watch decimal places:</strong> A misplaced decimal can change a dose by 10 times or 100 times.</li>
+      <li><strong>Review missed questions:</strong> The best learning happens when you identify exactly where the calculation went wrong.</li>
+    </ul>
+    <div class="strategy-box">
+      <strong>Most missed pattern:</strong>
+      <p>Students often know the formula but miss the question because they fail to convert units before solving.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Common Dosage Calculation Mistakes</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Mistake</th><th>Why It Matters</th><th>How to Prevent It</th></tr>
+        <tr><td>Skipping unit conversion</td><td>Mixing grams and milligrams can create major dose errors.</td><td>Convert everything to the same unit first.</td></tr>
+        <tr><td>Rushing liquid medication questions</td><td>Concentration problems require both dose and volume.</td><td>Use ordered ÷ available × volume.</td></tr>
+        <tr><td>Ignoring weight units</td><td>Weight-based dosing usually uses kilograms, not pounds.</td><td>Convert lb to kg if needed.</td></tr>
+        <tr><td>Forgetting time units</td><td>IV rate problems depend on hours or minutes.</td><td>Convert the time before calculating.</td></tr>
+        <tr><td>Choosing an unrealistic answer</td><td>Some answers are mathematically possible but clinically unreasonable.</td><td>Estimate before selecting.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Who Should Use This Quiz?</h2>
+    <div class="grid">
+      <div class="mini-card"><h3>Nursing Students</h3><p>Practice medication math before exams, clinicals, and dosage calculation tests.</p></div>
+      <div class="mini-card"><h3>TEAS & Pre-Nursing Learners</h3><p>Build comfort with healthcare math before nursing coursework begins.</p></div>
+      <div class="mini-card"><h3>Medical Assistant Students</h3><p>Review common medication and conversion questions used in healthcare training.</p></div>
+      <div class="mini-card"><h3>Healthcare Refresher</h3><p>Use the quiz to refresh basic medication calculation thinking.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Related MedSkillBuilder Practice Tools</h2>
+    <div class="path-grid">
+      <a class="path-card" href="/rn-practice-questions.html">RN Practice Questions <span>Build nursing-style critical thinking.</span></a>
+      <a class="path-card" href="/teas-practice-questions.html">TEAS Practice Questions <span>Review reading, math, science, and English.</span></a>
+      <a class="path-card" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values <span>Review common clinical lab ranges.</span></a>
+      <a class="path-card" href="/abg-practice-quiz.html">ABG Practice Quiz <span>Practice acid-base interpretation.</span></a>
+      <a class="path-card" href="/heart-sounds-quiz.html">Heart Sounds Quiz <span>Practice cardiac auscultation recognition.</span></a>
+      <a class="path-card" href="/lung-sounds-quiz.html">Lung Sounds Quiz <span>Practice respiratory sound recognition.</span></a>
+      <a class="path-card" href="/browse-all-practice.html">Browse All Practice Tools <span>Explore the full MedSkillBuilder library.</span></a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Drug Calculation Quiz FAQ</h2>
+    <h3>What are drug dosage calculations?</h3>
+    <p>Drug dosage calculations are medication math problems used to calculate safe doses, tablet amounts, liquid volumes, weight-based doses, IV pump rates, and drip rates.</p>
+    <h3>Why are dosage calculations important in nursing?</h3>
+    <p>Dosage calculations support patient safety by helping healthcare learners determine whether an ordered dose, available medication, and final amount make sense.</p>
+    <h3>What should I practice first?</h3>
+    <p>Start with unit conversions, then move into tablets, liquid medications, weight-based dosing, and IV rates.</p>
+    <h3>Can I use this quiz for nursing school practice?</h3>
+    <p>Yes. This quiz is designed for nursing students and healthcare learners who want free medication math practice with explanations.</p>
+  </section>
+
+  <p class="warning">
+    <strong>Safety reminder:</strong> Never use this page to make real medication decisions. Always follow your instructor, provider, pharmacist, medication label, facility policy, and official clinical resources.
+  </p>
+
+  <footer>
+    <p>© 2026 MedSkillBuilder LLC. Free healthcare study tools for nursing, TEAS, medical terminology, anatomy, CBET, and clinical learners.</p>
+  </footer>
+</div>
+
+<script>
+const questions = [
+  {
+    level: "Level 1: Unit Conversion",
+    question: "Convert 0.5 g to milligrams.",
+    choices: ["5 mg", "50 mg", "500 mg", "5000 mg"],
+    answer: "500 mg",
+    explanation: "1 g = 1000 mg. 0.5 g × 1000 = 500 mg."
+  },
+  {
+    level: "Level 1: Unit Conversion",
+    question: "Convert 250 mcg to milligrams.",
+    choices: ["0.025 mg", "0.25 mg", "2.5 mg", "25 mg"],
+    answer: "0.25 mg",
+    explanation: "1 mg = 1000 mcg. 250 mcg ÷ 1000 = 0.25 mg."
+  },
+  {
+    level: "Level 1: Unit Conversion",
+    question: "Convert 1.2 L to milliliters.",
+    choices: ["12 mL", "120 mL", "1200 mL", "12,000 mL"],
+    answer: "1200 mL",
+    explanation: "1 L = 1000 mL. 1.2 L × 1000 = 1200 mL."
+  },
+  {
+    level: "Level 1: Unit Conversion",
+    question: "The order is 0.75 g. How many mg is this?",
+    choices: ["75 mg", "750 mg", "7500 mg", "0.075 mg"],
+    answer: "750 mg",
+    explanation: "0.75 g × 1000 = 750 mg."
+  },
+  {
+    level: "Level 1: Unit Conversion",
+    question: "Convert 0.04 mg to micrograms.",
+    choices: ["0.4 mcg", "4 mcg", "40 mcg", "400 mcg"],
+    answer: "40 mcg",
+    explanation: "1 mg = 1000 mcg. 0.04 mg × 1000 = 40 mcg."
+  },
+  {
+    level: "Level 2: Tablets",
+    question: "Order: 500 mg. Available: 250 mg tablets. How many tablets should be given?",
+    choices: ["1 tablet", "2 tablets", "3 tablets", "4 tablets"],
+    answer: "2 tablets",
+    explanation: "Ordered dose ÷ available dose = 500 ÷ 250 = 2 tablets."
+  },
+  {
+    level: "Level 2: Tablets",
+    question: "Order: 0.25 mg. Available: 0.125 mg tablets. How many tablets are needed?",
+    choices: ["0.5 tablet", "1 tablet", "2 tablets", "4 tablets"],
+    answer: "2 tablets",
+    explanation: "0.25 ÷ 0.125 = 2 tablets."
+  },
+  {
+    level: "Level 2: Tablets",
+    question: "Order: 1.5 g. Available: 500 mg tablets. How many tablets are needed?",
+    choices: ["1 tablet", "2 tablets", "3 tablets", "4 tablets"],
+    answer: "3 tablets",
+    explanation: "Convert 1.5 g to 1500 mg. 1500 ÷ 500 = 3 tablets."
+  },
+  {
+    level: "Level 2: Tablets",
+    question: "Order: 75 mg. Available: 25 mg tablets. How many tablets should be given?",
+    choices: ["1 tablet", "2 tablets", "3 tablets", "5 tablets"],
+    answer: "3 tablets",
+    explanation: "75 ÷ 25 = 3 tablets."
+  },
+  {
+    level: "Level 2: Tablets",
+    question: "Order: 0.5 g. Available: 125 mg tablets. How many tablets are needed?",
+    choices: ["2 tablets", "3 tablets", "4 tablets", "5 tablets"],
+    answer: "4 tablets",
+    explanation: "Convert 0.5 g to 500 mg. 500 ÷ 125 = 4 tablets."
+  },
+  {
+    level: "Level 3: Liquid Medication",
+    question: "Order: 250 mg. Available: 125 mg/5 mL. How many mL should be given?",
+    choices: ["5 mL", "10 mL", "15 mL", "20 mL"],
+    answer: "10 mL",
+    explanation: "250 ÷ 125 × 5 mL = 2 × 5 = 10 mL."
+  },
+  {
+    level: "Level 3: Liquid Medication",
+    question: "Order: 500 mg. Available: 250 mg/5 mL. How many mL should be administered?",
+    choices: ["5 mL", "10 mL", "15 mL", "20 mL"],
+    answer: "10 mL",
+    explanation: "500 ÷ 250 × 5 mL = 2 × 5 = 10 mL."
+  },
+  {
+    level: "Level 3: Liquid Medication",
+    question: "Order: 300 mg. Available: 150 mg/5 mL. How many mL are needed?",
+    choices: ["5 mL", "10 mL", "15 mL", "30 mL"],
+    answer: "10 mL",
+    explanation: "300 ÷ 150 × 5 mL = 2 × 5 = 10 mL."
+  },
+  {
+    level: "Level 3: Liquid Medication",
+    question: "Order: 60 mg. Available: 20 mg/mL. How many mL should be given?",
+    choices: ["2 mL", "3 mL", "4 mL", "6 mL"],
+    answer: "3 mL",
+    explanation: "60 mg ÷ 20 mg/mL = 3 mL."
+  },
+  {
+    level: "Level 3: Liquid Medication",
+    question: "Order: 0.4 g. Available: 200 mg/5 mL. How many mL should be given?",
+    choices: ["5 mL", "10 mL", "15 mL", "20 mL"],
+    answer: "10 mL",
+    explanation: "Convert 0.4 g to 400 mg. 400 ÷ 200 × 5 = 10 mL."
+  },
+  {
+    level: "Level 4: Weight-Based Dosing",
+    question: "A child weighs 20 kg. Dose ordered: 10 mg/kg. What total dose should be given?",
+    choices: ["100 mg", "150 mg", "200 mg", "250 mg"],
+    answer: "200 mg",
+    explanation: "10 mg/kg × 20 kg = 200 mg."
+  },
+  {
+    level: "Level 4: Weight-Based Dosing",
+    question: "A patient weighs 70 kg. Dose ordered: 5 mg/kg. What is the total dose?",
+    choices: ["250 mg", "300 mg", "350 mg", "400 mg"],
+    answer: "350 mg",
+    explanation: "5 mg/kg × 70 kg = 350 mg."
+  },
+  {
+    level: "Level 4: Weight-Based Dosing",
+    question: "A child weighs 22 kg. Ordered dose: 15 mg/kg. How many mg should be administered?",
+    choices: ["220 mg", "300 mg", "330 mg", "440 mg"],
+    answer: "330 mg",
+    explanation: "15 mg/kg × 22 kg = 330 mg."
+  },
+  {
+    level: "Level 4: Weight-Based Dosing",
+    question: "A patient weighs 154 lb. Convert to kg using 2.2 lb = 1 kg. What is the weight in kg?",
+    choices: ["60 kg", "65 kg", "70 kg", "75 kg"],
+    answer: "70 kg",
+    explanation: "154 lb ÷ 2.2 = 70 kg."
+  },
+  {
+    level: "Level 4: Weight-Based Dosing",
+    question: "A patient weighs 50 kg. Ordered dose: 2 mcg/kg/min. What dose is required per minute?",
+    choices: ["50 mcg/min", "75 mcg/min", "100 mcg/min", "150 mcg/min"],
+    answer: "100 mcg/min",
+    explanation: "2 mcg/kg/min × 50 kg = 100 mcg/min."
+  },
+  {
+    level: "Level 5: IV Rates",
+    question: "Infuse 1000 mL over 8 hours. What is the IV pump rate?",
+    choices: ["100 mL/hr", "115 mL/hr", "125 mL/hr", "150 mL/hr"],
+    answer: "125 mL/hr",
+    explanation: "1000 mL ÷ 8 hr = 125 mL/hr."
+  },
+  {
+    level: "Level 5: IV Rates",
+    question: "Infuse 500 mL over 4 hours. What is the pump rate?",
+    choices: ["100 mL/hr", "125 mL/hr", "150 mL/hr", "200 mL/hr"],
+    answer: "125 mL/hr",
+    explanation: "500 mL ÷ 4 hr = 125 mL/hr."
+  },
+  {
+    level: "Level 5: IV Rates",
+    question: "Infuse 1500 mL over 12 hours. What is the IV rate?",
+    choices: ["100 mL/hr", "115 mL/hr", "125 mL/hr", "150 mL/hr"],
+    answer: "125 mL/hr",
+    explanation: "1500 mL ÷ 12 hr = 125 mL/hr."
+  },
+  {
+    level: "Level 5: Drip Rate",
+    question: "Infuse 100 mL/hr using tubing with a drop factor of 15 gtt/mL. What is the drip rate?",
+    choices: ["15 gtt/min", "20 gtt/min", "25 gtt/min", "30 gtt/min"],
+    answer: "25 gtt/min",
+    explanation: "100 × 15 ÷ 60 = 25 gtt/min."
+  },
+  {
+    level: "Level 5: Safety Thinking",
+    question: "Order: 2 g. Available: 500 mg vials. How many vials are needed?",
+    choices: ["2 vials", "3 vials", "4 vials", "5 vials"],
+    answer: "4 vials",
+    explanation: "Convert 2 g to 2000 mg. 2000 ÷ 500 = 4 vials."
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+function shuffle(array) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+let quizQuestions = shuffle(questions);
+
+function loadQuestion() {
+  answered = false;
+  const q = quizQuestions[currentQuestion];
+  const progressPercent = (currentQuestion / quizQuestions.length) * 100;
+
+  document.getElementById("questionCounter").textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+  document.getElementById("scoreCounter").textContent = `Score: ${score}`;
+  document.getElementById("progressFill").style.width = `${progressPercent}%`;
+  document.getElementById("difficulty").textContent = q.level;
+  document.getElementById("questionText").textContent = q.question;
+
+  const choicesDiv = document.getElementById("choices");
+  choicesDiv.innerHTML = "";
+
+  const shuffledChoices = shuffle(q.choices);
+  shuffledChoices.forEach(choice => {
+    const button = document.createElement("button");
+    button.className = "choice-btn";
+    button.textContent = choice;
+    button.onclick = () => selectAnswer(button, choice, q.answer, q.explanation);
+    choicesDiv.appendChild(button);
+  });
+
+  document.getElementById("feedback").className = "feedback";
+  document.getElementById("feedback").innerHTML = "";
+  document.getElementById("nextBtn").style.display = "none";
+}
+
+function selectAnswer(button, selected, correct, explanation) {
+  if (answered) return;
+  answered = true;
+
+  const buttons = document.querySelectorAll(".choice-btn");
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correct) btn.classList.add("correct");
+    if (btn === button && selected !== correct) btn.classList.add("wrong");
+  });
+
+  const isCorrect = selected === correct;
+  if (isCorrect) score++;
+
+  const feedback = document.getElementById("feedback");
+  feedback.className = "feedback show";
+  feedback.innerHTML = `
+    <strong>${isCorrect ? "✅ Correct" : "❌ Not quite"}</strong>
+    <p><strong>Correct answer:</strong> ${correct}</p>
+    <p>${explanation}</p>
+  `;
+
+  document.getElementById("scoreCounter").textContent = `Score: ${score}`;
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  currentQuestion++;
+  if (currentQuestion < quizQuestions.length) {
+    loadQuestion();
+  } else {
+    showScore();
+  }
+});
+
+function showScore() {
+  document.getElementById("quizArea").style.display = "none";
+  document.getElementById("scoreCard").className = "score-card show";
+  const percent = Math.round((score / quizQuestions.length) * 100);
+  document.getElementById("finalScore").textContent = `${score}/${quizQuestions.length}`;
+
+  let message = "";
+  if (percent >= 90) {
+    message = "Excellent work. You have strong medication calculation recognition. Keep practicing to maintain accuracy under pressure.";
+  } else if (percent >= 75) {
+    message = "Good job. You understand many of the concepts, but review the question types you missed before moving on.";
+  } else if (percent >= 60) {
+    message = "You're building the foundation. Focus on unit conversions, liquid dose setup, and IV rate formulas.";
+  } else {
+    message = "Keep practicing. Medication math takes repetition. Start with conversions, then tablets, then liquids, then IV rates.";
+  }
+  document.getElementById("scoreMessage").textContent = message;
+  document.getElementById("progressFill").style.width = "100%";
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  score = 0;
+  answered = false;
+  quizQuestions = shuffle(questions);
+  document.getElementById("quizArea").style.display = "block";
+  document.getElementById("scoreCard").className = "score-card";
+  loadQuestion();
+}
+
+loadQuestion();
+</script>
+</body>
+</html>
