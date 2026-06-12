@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Who Do You See First? Nursing Prioritization Challenge | MedSkillBuilder</title>
+  <meta name="description" content="Practice hard nursing prioritization questions with MedSkillBuilder's Who Do You See First challenge. Test ABCs, safety, acute vs chronic, unstable vs stable, sepsis, stroke, airway, labs, and clinical judgment." />
+  <meta name="keywords" content="nursing prioritization quiz, who do you see first nursing, NCLEX prioritization questions, nursing clinical judgment, ABC nursing questions, nursing priority quiz, patient prioritization practice, MedSkillBuilder" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/who-do-you-see-first-challenge.html" />
+
+  <meta property="og:title" content="Who Do You See First? Nursing Prioritization Challenge | MedSkillBuilder" />
+  <meta property="og:description" content="Hard nursing prioritization practice with realistic patient scenarios, immediate feedback, and clinical explanations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/who-do-you-see-first-challenge.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Who Do You See First? Nursing Prioritization Challenge",
+    "description": "A free nursing prioritization quiz that tests clinical judgment, ABCs, safety, acute changes, unstable patients, and NCLEX-style decision making.",
+    "url": "https://medskillbuilder.com/who-do-you-see-first-challenge.html",
+    "learningResourceType": "Practice quiz",
+    "educationalLevel": "Nursing students and healthcare learners",
+    "isAccessibleForFree": true,
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #12355b;
+      --dark: #071f3a;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --red: #dc2626;
+      --orange: #f97316;
+      --rose: #e11d48;
+      --slate: #334155;
+      --muted: #64748b;
+      --border: #dbe4ee;
+      --page: #f8fafc;
+      --shadow: 0 18px 48px rgba(15, 23, 42, 0.11);
+      --soft-shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #0f172a;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(225, 29, 72, 0.10), transparent 32%),
+        linear-gradient(180deg, #f8fafc 0%, #eef7ff 52%, #ffffff 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .top-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      border-radius: 30px;
+      padding: 42px 38px;
+      margin-bottom: 26px;
+      background: linear-gradient(135deg, var(--dark) 0%, #124d7a 55%, #e11d48 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 330px;
+      height: 330px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .eyebrow {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 14px;
+      max-width: 920px;
+      font-size: clamp(2.05rem, 4.2vw, 3.55rem);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 14px;
+      max-width: 880px;
+      color: rgba(255,255,255,0.94);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      color: var(--navy);
+      background: white;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.16);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--soft-shadow);
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.18rem;
+    }
+
+    p { margin: 0 0 14px; color: var(--slate); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      border-radius: 18px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1.3rem;
+    }
+
+    .quiz-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .quiz-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .quiz-head {
+      background: linear-gradient(135deg, var(--navy), #1d6fa5);
+      color: white;
+      padding: 20px 22px;
+    }
+
+    .quiz-head p,
+    .quiz-head h2 { color: white; margin: 0; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.88);
+      font-weight: 800;
+      font-size: 0.94rem;
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: rgba(255,255,255,0.22);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #facc15, #22c55e);
+      transition: width 0.25s ease;
+    }
+
+    .question-area { padding: 22px; }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 0.82rem;
+      font-weight: 900;
+      border: 1px solid #bfdbfe;
+    }
+
+    .tag.hard {
+      background: #fff7ed;
+      color: #c2410c;
+      border-color: #fed7aa;
+    }
+
+    .tag.critical {
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fecaca;
+    }
+
+    .scenario {
+      font-size: 1.22rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .answers {
+      display: grid;
+      gap: 10px;
+    }
+
+    .answer-btn {
+      width: 100%;
+      border: 2px solid var(--border);
+      background: #ffffff;
+      color: #0f172a;
+      text-align: left;
+      border-radius: 18px;
+      padding: 15px 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.35;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: #93c5fd;
+      background: #f8fbff;
+    }
+
+    .answer-btn:disabled { cursor: not-allowed; }
+
+    .answer-btn.correct {
+      border-color: #22c55e;
+      background: #ecfdf5;
+    }
+
+    .answer-btn.wrong {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      background: #f8fafc;
+    }
+
+    .feedback.show { display: block; }
+
+    .feedback.correct { border-color: #86efac; background: #f0fdf4; }
+    .feedback.wrong { border-color: #fecaca; background: #fff7f7; }
+
+    .feedback-title {
+      font-weight: 900;
+      font-size: 1.12rem;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .rationale {
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .clinical-pearl {
+      border-left: 5px solid var(--blue);
+      padding: 10px 12px;
+      background: white;
+      border-radius: 12px;
+      color: var(--slate);
+      font-weight: 700;
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .next-btn,
+    .restart-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(90deg, var(--navy), #1d6fa5);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .restart-btn {
+      background: linear-gradient(90deg, #475569, #64748b);
+    }
+
+    .next-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 14px;
+    }
+
+    .side-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .score-big {
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--navy);
+      font-weight: 900;
+      margin: 10px 0;
+    }
+
+    .principles {
+      padding-left: 19px;
+      margin: 10px 0 0;
+      color: var(--slate);
+    }
+
+    .principles li { margin-bottom: 8px; }
+
+    .results {
+      display: none;
+      padding: 24px;
+    }
+
+    .results.show { display: block; }
+
+    .result-grade {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--navy);
+      font-weight: 900;
+      line-height: 1;
+      margin: 10px 0;
+    }
+
+    .missed-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .missed-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #f8fafc;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .info-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .related-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .related-links a {
+      display: block;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(90deg, var(--navy), #1d6fa5);
+      border-radius: 16px;
+      padding: 15px;
+      font-weight: 900;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 34px;
+    }
+
+    footer a {
+      color: var(--blue);
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .quiz-wrap { grid-template-columns: 1fr; }
+      .sidebar { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 18px 14px 46px; }
+      .hero { padding: 28px 18px; border-radius: 22px; }
+      .panel { padding: 20px 16px; border-radius: 18px; }
+      .question-area { padding: 18px; }
+      .scenario { font-size: 1.08rem; }
+      .answer-btn { font-size: 0.96rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-row">
+      <a class="top-link" href="/">← Back to Home</a>
+      <a class="top-link" href="/browse-all-practice.html">Browse All Practice</a>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow">🩺 Clinical Judgment Challenge</div>
+      <h1>Who Do You See First?</h1>
+      <p>
+        This is not a memorization quiz. These nursing prioritization questions test clinical judgment, urgent assessment,
+        safety, ABCs, acute changes, unstable findings, and recognizing when a patient is in trouble.
+      </p>
+      <p>
+        Choose the patient you would assess first. The explanation appears only after you select an answer.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="#quiz">Start the Challenge</a>
+        <a class="btn secondary" href="/rn-practice-questions.html">RN Practice Questions</a>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>How to Prioritize Patients</h2>
+      <p>
+        On prioritization questions, the sickest-looking number is not always the correct answer. A low oxygen saturation may be expected for one patient, while a subtle mental status change may signal stroke, sepsis, hypoglycemia, or shock.
+      </p>
+      <div class="stats">
+        <div class="stat"><strong>25</strong>hard scenarios</div>
+        <div class="stat"><strong>ABCs</strong>airway, breathing, circulation</div>
+        <div class="stat"><strong>NCLEX-style</strong>clinical judgment practice</div>
+        <div class="stat"><strong>Free</strong>no signup required</div>
+      </div>
+    </section>
+
+    <main id="quiz" class="quiz-wrap">
+      <section class="quiz-card">
+        <div class="quiz-head">
+          <h2 id="quizTitle">Prioritization Question</h2>
+          <div class="progress-row">
+            <span id="questionCounter">Question 1 of 25</span>
+            <span id="scoreLabel">Score: 0</span>
+          </div>
+          <div class="progress-bar" aria-label="Quiz progress">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="question-area" id="questionArea">
+          <div class="tag-row" id="tagRow"></div>
+          <div class="scenario" id="scenarioText"></div>
+          <div class="answers" id="answers"></div>
+
+          <div class="feedback" id="feedback">
+            <div class="feedback-title" id="feedbackTitle"></div>
+            <p class="rationale" id="rationaleText"></p>
+            <div class="clinical-pearl" id="clinicalPearl"></div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="restart-btn" type="button" onclick="restartQuiz()">Restart</button>
+            <button class="next-btn" id="nextBtn" type="button" onclick="nextQuestion()" disabled>Next Question</button>
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <h2>Challenge Complete</h2>
+          <p>You finished the nursing prioritization challenge.</p>
+          <div class="result-grade" id="resultGrade"></div>
+          <p id="resultMessage"></p>
+          <button class="next-btn" type="button" onclick="restartQuiz()">Try Again</button>
+          <div class="missed-list" id="missedList"></div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>Your Score</h3>
+          <div class="score-big" id="sideScore">0/25</div>
+          <p>Explanations appear after each answer so you can learn the reasoning, not just memorize the correct choice.</p>
+        </div>
+
+        <div class="side-card">
+          <h3>Priority Rules</h3>
+          <ul class="principles">
+            <li><strong>ABCs first:</strong> airway, breathing, circulation.</li>
+            <li><strong>Acute beats chronic:</strong> new changes matter.</li>
+            <li><strong>Unstable beats stable:</strong> worsening signs move up.</li>
+            <li><strong>Unexpected beats expected:</strong> expected symptoms may not be first.</li>
+            <li><strong>Safety matters:</strong> bleeding, falls, suicide risk, and airway threats cannot wait.</li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3>MedSkillBuilder Tip</h3>
+          <p>Ask yourself: Who could deteriorate fastest if I wait five minutes?</p>
+        </div>
+      </aside>
+    </main>
+
+    <section class="panel">
+      <h2>What This Quiz Teaches</h2>
+      <p>
+        Nursing prioritization is about recognizing the patient who needs immediate assessment. These questions are designed to be challenging because real clinical judgment rarely feels obvious.
+      </p>
+      <div class="content-grid">
+        <div class="info-card">
+          <h3>Airway & Breathing</h3>
+          <p>Respiratory depression, stridor, severe hypoxia, and sudden shortness of breath usually require immediate attention.</p>
+        </div>
+        <div class="info-card">
+          <h3>Circulation & Perfusion</h3>
+          <p>Chest pain, shock signs, uncontrolled bleeding, and dangerous electrolyte changes may be time-sensitive emergencies.</p>
+        </div>
+        <div class="info-card">
+          <h3>Neurologic Changes</h3>
+          <p>New confusion, facial droop, slurred speech, unequal pupils, or decreased responsiveness can signal urgent problems.</p>
+        </div>
+        <div class="info-card">
+          <h3>Safety & Risk</h3>
+          <p>Fall risk, suicidal statements, medication reactions, airway swelling, and abnormal vital trends require quick action.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Related MedSkillBuilder Practice</h2>
+      <p>Build more clinical judgment with free interactive tools.</p>
+      <div class="related-links">
+        <a href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a href="/drug-calculation-quiz.html">Drug Calculation Quiz</a>
+        <a href="/lung-sounds-quiz.html">Lung Sounds Quiz</a>
+        <a href="/heart-sounds-quiz.html">Heart Sounds Quiz</a>
+        <a href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+        <a href="/medical-abbreviations-quiz.html">Medical Abbreviations Quiz</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        MedSkillBuilder provides free healthcare learning tools for nursing students, medical assistants, biomedical equipment technicians, and early healthcare learners.
+      </p>
+      <p><a href="/browse-all-practice.html">Browse All Practice</a> | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms.html">Terms</a></p>
+      <p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        category: "ABCs",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with COPD whose SpO₂ is 89% and baseline is 88–90%",
+          "A patient with new stridor after receiving an antibiotic",
+          "A patient reporting incisional pain 8/10 after surgery",
+          "A patient asking for discharge paperwork"
+        ],
+        correct: "A patient with new stridor after receiving an antibiotic",
+        rationale: "New stridor after medication may indicate airway swelling or anaphylaxis. Airway compromise is the priority.",
+        pearl: "A chronic low oxygen saturation may be expected. New airway noise after medication is not."
+      },
+      {
+        category: "Neuro",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with chronic left-sided weakness from an old stroke",
+          "A patient with new slurred speech and facial droop that started 20 minutes ago",
+          "A patient with headache rated 6/10 after missing caffeine",
+          "A patient requesting help ordering lunch"
+        ],
+        correct: "A patient with new slurred speech and facial droop that started 20 minutes ago",
+        rationale: "New focal neurologic symptoms may indicate an acute stroke. Time-sensitive treatment depends on rapid recognition.",
+        pearl: "New neurologic deficit is urgent even if vital signs are not dramatic."
+      },
+      {
+        category: "Metabolic",
+        difficulty: "Critical",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with blood glucose 48 mg/dL who is diaphoretic and shaky",
+          "A patient with glucose 178 mg/dL after lunch",
+          "A patient waiting for morning medications",
+          "A patient asking about lab results"
+        ],
+        correct: "A patient with blood glucose 48 mg/dL who is diaphoretic and shaky",
+        rationale: "Symptomatic hypoglycemia can quickly progress to seizure, loss of consciousness, or neurologic injury.",
+        pearl: "Low glucose with symptoms is an immediate priority."
+      },
+      {
+        category: "Cardiac",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with chest pain, diaphoresis, and shortness of breath",
+          "A patient with ankle edema from chronic heart failure",
+          "A patient with BP 142/88 asking for a snack",
+          "A patient with mild dizziness when standing quickly"
+        ],
+        correct: "A patient with chest pain, diaphoresis, and shortness of breath",
+        rationale: "Chest pain with diaphoresis and dyspnea may indicate acute coronary syndrome or another cardiopulmonary emergency.",
+        pearl: "Chest pain plus autonomic symptoms is more concerning than chest discomfort alone."
+      },
+      {
+        category: "Respiratory",
+        difficulty: "Critical",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with respiratory rate 8/min and difficult to arouse",
+          "A patient with seasonal allergies and sneezing",
+          "A patient with mild cough for two days",
+          "A patient asking for cough drops"
+        ],
+        correct: "A patient with respiratory rate 8/min and difficult to arouse",
+        rationale: "Respiratory depression with decreased level of consciousness is an emergency and may lead to airway failure.",
+        pearl: "Slow respirations plus decreased responsiveness is a dangerous combination."
+      },
+      {
+        category: "Electrolytes",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with potassium 2.8 mEq/L who reports palpitations",
+          "A patient with sodium 134 mEq/L and no symptoms",
+          "A patient with calcium 8.5 mg/dL and stable vital signs",
+          "A patient with magnesium 1.8 mg/dL asking for water"
+        ],
+        correct: "A patient with potassium 2.8 mEq/L who reports palpitations",
+        rationale: "Significant hypokalemia can cause dangerous dysrhythmias. Palpitations increase concern.",
+        pearl: "Electrolyte abnormalities become higher priority when symptoms suggest cardiac involvement."
+      },
+      {
+        category: "Sepsis",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with fever 101.8°F, heart rate 124, confusion, and BP 88/54",
+          "A patient with stable pneumonia on antibiotics asking for ice chips",
+          "A patient with a healed surgical incision requesting a dressing change",
+          "A patient with chronic arthritis pain"
+        ],
+        correct: "A patient with fever 101.8°F, heart rate 124, confusion, and BP 88/54",
+        rationale: "Fever, tachycardia, hypotension, and new confusion are concerning for sepsis with poor perfusion.",
+        pearl: "Sepsis is a time-sensitive emergency. Hypotension and mental status changes are red flags."
+      },
+      {
+        category: "Post-op",
+        difficulty: "Hard",
+        scenario: "Four post-op patients call at the same time. Who do you assess first?",
+        answers: [
+          "Patient 1 day post-op with sudden shortness of breath and chest pain",
+          "Patient with pain 7/10 after ambulation",
+          "Patient requesting help repositioning",
+          "Patient asking when the surgeon will round"
+        ],
+        correct: "Patient 1 day post-op with sudden shortness of breath and chest pain",
+        rationale: "Sudden dyspnea and chest pain after surgery may indicate pulmonary embolism or another urgent cardiopulmonary problem.",
+        pearl: "Expected post-op pain is important, but sudden cardiopulmonary symptoms take priority."
+      },
+      {
+        category: "Safety",
+        difficulty: "Critical",
+        scenario: "Who do you see first?",
+        answers: [
+          "A confused patient attempting to climb over the bed rail",
+          "A stable patient requesting a warm blanket",
+          "A patient asking for a phone charger",
+          "A patient waiting for routine vital signs"
+        ],
+        correct: "A confused patient attempting to climb over the bed rail",
+        rationale: "An immediate fall risk is a safety priority. Injury could occur within seconds.",
+        pearl: "Safety risks can outrank stable clinical complaints when harm is imminent."
+      },
+      {
+        category: "Pediatrics",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "An infant with poor feeding, weak cry, and sunken fontanelle",
+          "A school-age child with a mild rash and normal breathing",
+          "A teenager with a sore throat waiting for discharge",
+          "A toddler requesting a toy"
+        ],
+        correct: "An infant with poor feeding, weak cry, and sunken fontanelle",
+        rationale: "Infants can deteriorate quickly. Poor feeding, weak cry, and dehydration signs require prompt assessment.",
+        pearl: "In pediatrics, subtle changes can be serious."
+      },
+      {
+        category: "OB",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A postpartum patient saturating one pad every 15 minutes",
+          "A postpartum patient with mild cramping while breastfeeding",
+          "A patient asking for assistance with newborn photos",
+          "A stable patient requesting extra pillows"
+        ],
+        correct: "A postpartum patient saturating one pad every 15 minutes",
+        rationale: "Heavy postpartum bleeding can indicate hemorrhage and requires immediate assessment.",
+        pearl: "Rapid bleeding is circulation priority."
+      },
+      {
+        category: "Medication Safety",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with facial swelling and wheezing after the first dose of a new medication",
+          "A patient with nausea after taking an oral antibiotic",
+          "A patient asking what time the next medication is due",
+          "A patient refusing a stool softener"
+        ],
+        correct: "A patient with facial swelling and wheezing after the first dose of a new medication",
+        rationale: "Facial swelling and wheezing after a new medication suggest anaphylaxis or airway compromise.",
+        pearl: "Allergic reaction plus respiratory symptoms is an emergency."
+      },
+      {
+        category: "Triage",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with severe abdominal pain and a rigid board-like abdomen",
+          "A patient with mild nausea after eating",
+          "A patient with constipation for two days",
+          "A patient asking for antacids"
+        ],
+        correct: "A patient with severe abdominal pain and a rigid board-like abdomen",
+        rationale: "A rigid abdomen can indicate peritonitis or internal bleeding and requires urgent evaluation.",
+        pearl: "Severe pain plus guarding or rigidity is not routine abdominal discomfort."
+      },
+      {
+        category: "Neuro",
+        difficulty: "Critical",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with a head injury who is now vomiting and difficult to wake",
+          "A patient with chronic migraines requesting dim lights",
+          "A patient with mild dizziness after standing",
+          "A patient asking for glasses"
+        ],
+        correct: "A patient with a head injury who is now vomiting and difficult to wake",
+        rationale: "Worsening level of consciousness and vomiting after head injury may indicate increased intracranial pressure or bleeding.",
+        pearl: "Declining mental status after head trauma is urgent."
+      },
+      {
+        category: "Renal",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A dialysis patient with chest pressure, weakness, and peaked T waves on the monitor",
+          "A dialysis patient asking when transport will arrive",
+          "A patient with chronic kidney disease requesting renal diet education",
+          "A patient asking for a blanket during dialysis"
+        ],
+        correct: "A dialysis patient with chest pressure, weakness, and peaked T waves on the monitor",
+        rationale: "Peaked T waves and weakness may indicate hyperkalemia, which can lead to lethal dysrhythmias.",
+        pearl: "In renal patients, potassium-related ECG changes are high priority."
+      },
+      {
+        category: "Respiratory",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with asthma using accessory muscles and speaking in one-word answers",
+          "A patient with chronic cough requesting water",
+          "A patient with oxygen saturation 92% after walking but recovering",
+          "A patient with nasal congestion"
+        ],
+        correct: "A patient with asthma using accessory muscles and speaking in one-word answers",
+        rationale: "Accessory muscle use and inability to speak full sentences suggest severe respiratory distress.",
+        pearl: "Work of breathing can be more important than a single oxygen number."
+      },
+      {
+        category: "Mental Health",
+        difficulty: "Critical",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient who states, 'I have a plan to kill myself tonight'",
+          "A patient who is tearful after bad news",
+          "A patient requesting to speak with family",
+          "A patient refusing breakfast"
+        ],
+        correct: "A patient who states, 'I have a plan to kill myself tonight'",
+        rationale: "A specific suicidal plan indicates immediate safety risk and requires urgent intervention.",
+        pearl: "Imminent harm to self or others is always a priority."
+      },
+      {
+        category: "Endocrine",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A diabetic patient with fruity breath, abdominal pain, deep rapid respirations, and glucose 468 mg/dL",
+          "A diabetic patient requesting a snack before bedtime",
+          "A patient with glucose 155 mg/dL after dinner",
+          "A patient asking for education about foot care"
+        ],
+        correct: "A diabetic patient with fruity breath, abdominal pain, deep rapid respirations, and glucose 468 mg/dL",
+        rationale: "This presentation suggests diabetic ketoacidosis with metabolic acidosis and requires urgent assessment.",
+        pearl: "Kussmaul respirations and fruity breath are major warning signs."
+      },
+      {
+        category: "Blood Loss",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with black tarry stool, dizziness, HR 126, and BP 90/58",
+          "A patient with hemorrhoids and small streaks of blood on tissue",
+          "A patient requesting stool softener",
+          "A patient asking for diet education"
+        ],
+        correct: "A patient with black tarry stool, dizziness, HR 126, and BP 90/58",
+        rationale: "Melena with tachycardia, hypotension, and dizziness suggests significant GI bleeding and possible shock.",
+        pearl: "Vital sign changes with bleeding symptoms indicate poor perfusion."
+      },
+      {
+        category: "Infection Control",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with suspected meningitis, fever, stiff neck, and new confusion",
+          "A patient with a mild sore throat and normal vital signs",
+          "A patient asking for hand sanitizer",
+          "A patient with a healing wound"
+        ],
+        correct: "A patient with suspected meningitis, fever, stiff neck, and new confusion",
+        rationale: "Meningitis symptoms with altered mental status require urgent evaluation and infection precautions.",
+        pearl: "Fever plus neck stiffness plus confusion is a red flag."
+      },
+      {
+        category: "Burns",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with facial burns, singed nasal hairs, and hoarse voice",
+          "A patient with a small superficial burn on the forearm",
+          "A patient requesting pain medication for a sunburn",
+          "A patient asking about dressing supplies"
+        ],
+        correct: "A patient with facial burns, singed nasal hairs, and hoarse voice",
+        rationale: "Facial burns and hoarseness may indicate inhalation injury and impending airway swelling.",
+        pearl: "Airway symptoms after burns can worsen rapidly."
+      },
+      {
+        category: "Transfusion",
+        difficulty: "Hard",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient receiving blood who develops fever, chills, flank pain, and shortness of breath",
+          "A patient asking when the transfusion will finish",
+          "A patient with mild anxiety before transfusion starts",
+          "A patient requesting a snack"
+        ],
+        correct: "A patient receiving blood who develops fever, chills, flank pain, and shortness of breath",
+        rationale: "These findings suggest an acute transfusion reaction and require immediate action.",
+        pearl: "New symptoms during blood administration are never ignored."
+      },
+      {
+        category: "Obstetric Emergency",
+        difficulty: "Critical",
+        scenario: "Who do you see first?",
+        answers: [
+          "A pregnant patient with severe headache, visual changes, RUQ pain, and BP 168/110",
+          "A pregnant patient with mild ankle swelling at the end of the day",
+          "A pregnant patient asking about prenatal vitamins",
+          "A pregnant patient with nausea in the morning"
+        ],
+        correct: "A pregnant patient with severe headache, visual changes, RUQ pain, and BP 168/110",
+        rationale: "Severe hypertension with headache, vision changes, and right upper quadrant pain suggests severe preeclampsia.",
+        pearl: "Preeclampsia warning signs require immediate assessment."
+      },
+      {
+        category: "Delegation",
+        difficulty: "Hard",
+        scenario: "You receive report on four patients. Who should the RN personally assess first?",
+        answers: [
+          "A patient newly confused after receiving opioid pain medication",
+          "A stable patient needing routine blood pressure recheck",
+          "A patient requesting help bathing",
+          "A patient needing a meal tray set up"
+        ],
+        correct: "A patient newly confused after receiving opioid pain medication",
+        rationale: "New confusion after opioids may indicate oversedation, hypoxia, or respiratory depression and requires RN assessment.",
+        pearl: "New assessment findings and potential medication complications are RN priorities."
+      },
+      {
+        category: "Clinical Judgment",
+        difficulty: "Critical",
+        scenario: "Who do you see first?",
+        answers: [
+          "A patient with sudden restlessness, cool clammy skin, weak pulse, and BP 82/48",
+          "A patient with stable chronic back pain",
+          "A patient requesting help changing TV channels",
+          "A patient asking about discharge time"
+        ],
+        correct: "A patient with sudden restlessness, cool clammy skin, weak pulse, and BP 82/48",
+        rationale: "Restlessness, cool clammy skin, weak pulse, and hypotension suggest shock and poor perfusion.",
+        pearl: "Restlessness can be an early sign of hypoxia or poor perfusion."
+      }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+    let selected = false;
+    let missed = [];
+    let shuffledQuestions = [];
+
+    function shuffleArray(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function startQuiz() {
+      shuffledQuestions = shuffleArray(questions);
+      currentIndex = 0;
+      score = 0;
+      selected = false;
+      missed = [];
+      document.getElementById("questionArea").style.display = "block";
+      document.getElementById("results").classList.remove("show");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      selected = false;
+      const q = shuffledQuestions[currentIndex];
+      const answers = shuffleArray(q.answers);
+      const total = shuffledQuestions.length;
+
+      document.getElementById("questionCounter").textContent = `Question ${currentIndex + 1} of ${total}`;
+      document.getElementById("scoreLabel").textContent = `Score: ${score}`;
+      document.getElementById("sideScore").textContent = `${score}/${total}`;
+      document.getElementById("progressFill").style.width = `${(currentIndex / total) * 100}%`;
+
+      const tagRow = document.getElementById("tagRow");
+      tagRow.innerHTML = `
+        <span class="tag">${q.category}</span>
+        <span class="tag ${q.difficulty === "Critical" ? "critical" : "hard"}">${q.difficulty}</span>
+      `;
+
+      document.getElementById("scenarioText").textContent = q.scenario;
+
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+
+      answers.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.className = "answer-btn";
+        btn.type = "button";
+        btn.innerHTML = `<strong>${String.fromCharCode(65 + index)}.</strong> ${answer}`;
+        btn.onclick = () => selectAnswer(answer, btn);
+        answersDiv.appendChild(btn);
+      });
+
+      const feedback = document.getElementById("feedback");
+      feedback.className = "feedback";
+      document.getElementById("feedbackTitle").textContent = "";
+      document.getElementById("rationaleText").textContent = "";
+      document.getElementById("clinicalPearl").textContent = "";
+      document.getElementById("nextBtn").disabled = true;
+      document.getElementById("nextBtn").textContent = currentIndex === total - 1 ? "See Results" : "Next Question";
+    }
+
+    function selectAnswer(answer, button) {
+      if (selected) return;
+      selected = true;
+
+      const q = shuffledQuestions[currentIndex];
+      const buttons = document.querySelectorAll(".answer-btn");
+      const isCorrect = answer === q.correct;
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent.includes(q.correct)) btn.classList.add("correct");
+      });
+
+      if (!isCorrect) {
+        button.classList.add("wrong");
+        missed.push({
+          scenario: q.scenario,
+          selected: answer,
+          correct: q.correct,
+          rationale: q.rationale
+        });
+      } else {
+        score++;
+      }
+
+      const feedback = document.getElementById("feedback");
+      feedback.className = `feedback show ${isCorrect ? "correct" : "wrong"}`;
+      document.getElementById("feedbackTitle").textContent = isCorrect ? "Correct — good priority choice." : "Not first — review the priority clue.";
+      document.getElementById("rationaleText").textContent = q.rationale;
+      document.getElementById("clinicalPearl").innerHTML = `<strong>Clinical pearl:</strong> ${q.pearl}`;
+      document.getElementById("scoreLabel").textContent = `Score: ${score}`;
+      document.getElementById("sideScore").textContent = `${score}/${shuffledQuestions.length}`;
+      document.getElementById("nextBtn").disabled = false;
+    }
+
+    function nextQuestion() {
+      if (currentIndex < shuffledQuestions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      const total = shuffledQuestions.length;
+      document.getElementById("progressFill").style.width = "100%";
+      document.getElementById("questionArea").style.display = "none";
+      const results = document.getElementById("results");
+      results.classList.add("show");
+
+      const percent = Math.round((score / total) * 100);
+      document.getElementById("resultGrade").textContent = `${score}/${total} (${percent}%)`;
+
+      let message = "";
+      if (percent >= 90) {
+        message = "Excellent clinical judgment. You consistently identified urgent, unstable, and time-sensitive findings.";
+      } else if (percent >= 76) {
+        message = "Strong performance. Review the missed rationales and focus on subtle priority clues.";
+      } else if (percent >= 60) {
+        message = "Good start, but keep practicing. Prioritization questions require pattern recognition and urgency ranking.";
+      } else {
+        message = "This is a tough challenge. Review ABCs, acute vs chronic, unstable vs stable, and safety priorities before retrying.";
+      }
+
+      document.getElementById("resultMessage").textContent = message;
+
+      const missedList = document.getElementById("missedList");
+      missedList.innerHTML = "";
+
+      if (missed.length > 0) {
+        const header = document.createElement("h3");
+        header.textContent = "Questions to Review";
+        missedList.appendChild(header);
+
+        missed.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "missed-item";
+          div.innerHTML = `
+            <strong>Correct priority:</strong> ${item.correct}<br>
+            <strong>You chose:</strong> ${item.selected}<br>
+            <span>${item.rationale}</span>
+          `;
+          missedList.appendChild(div);
+        });
+      } else {
+        const div = document.createElement("div");
+        div.className = "missed-item";
+        div.innerHTML = "<strong>Perfect score.</strong> You selected the correct first patient every time.";
+        missedList.appendChild(div);
+      }
+    }
+
+    function restartQuiz() {
+      startQuiz();
+      document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    startQuiz();
+  </script>
+</body>
+</html>
