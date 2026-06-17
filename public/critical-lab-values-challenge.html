@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Critical Lab Values Challenge | Nursing Lab Prioritization Quiz</title>
+  <meta name="description" content="Take the Critical Lab Values Challenge from MedSkillBuilder. Practice hard nursing lab prioritization questions with immediate feedback, hidden explanations, streak tracking, and clinical judgment scenarios." />
+  <meta name="keywords" content="critical lab values challenge, nursing lab values quiz, NCLEX lab values, critical lab values nursing, lab prioritization quiz, nursing clinical judgment, potassium hyperkalemia quiz, troponin quiz, INR bleeding quiz, MedSkillBuilder" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/critical-lab-values-challenge.html" />
+  <meta property="og:title" content="Critical Lab Values Challenge | MedSkillBuilder" />
+  <meta property="og:description" content="Which lab value requires immediate action? Practice hard nursing prioritization and clinical judgment scenarios." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/critical-lab-values-challenge.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+  <style>
+    :root {
+      --navy: #0b2342;
+ --navy2: #12355b;
+ --blue: #2563eb;
+ --green: #16a34a;
+ --red: #dc2626;
+ --orange: #f97316;
+ --purple: #7c3aed;
+ --slate: #334155;
+ --muted: #64748b;
+ --border: #dbe4ee;
+ --bg: #f8fafc;
+ --shadow: 0 20px 55px rgba(15,23,42,.13);
+ --soft-shadow: 0 8px 24px rgba(15,23,42,.08);
+
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;
+font-family:Arial,Helvetica,sans-serif;
+color:#0f172a;
+background:radial-gradient(circle at top left,rgba(37,99,235,.12),transparent 32%),radial-gradient(circle at top right,rgba(220,38,38,.10),transparent 32%),linear-gradient(180deg,#f8fafc 0%,#eef7ff 48%,#fff 100%);
+line-height:1.65} a{color:inherit} .container{max-width:1180px;
+margin:0 auto;
+padding:24px 20px 70px} .top-row{display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+flex-wrap:wrap;
+margin-bottom:20px} .top-link{display:inline-flex;
+align-items:center;
+text-decoration:none;
+color:var(--navy);
+background:#fff;
+border:1px solid var(--border);
+border-radius:999px;
+padding:10px 16px;
+font-weight:900;
+box-shadow:var(--soft-shadow)} .hero{position:relative;
+overflow:hidden;
+color:#fff;
+border-radius:32px;
+padding:46px 40px;
+margin-bottom:24px;
+background:radial-gradient(circle at 88% 12%,rgba(250,204,21,.24),transparent 24%),linear-gradient(135deg,#071f3a 0%,#12355b 42%,#b91c1c 100%);
+box-shadow:var(--shadow)} .hero:before{content:"CRITICAL";
+position:absolute;
+right:-18px;
+bottom:5px;
+font-size:9rem;
+font-weight:900;
+letter-spacing:-.08em;
+color:rgba(255,255,255,.055);
+transform:rotate(-5deg)} .eyebrow{position:relative;
+z-index:2;
+display:inline-flex;
+gap:8px;
+padding:8px 14px;
+border-radius:999px;
+background:rgba(255,255,255,.16);
+border:1px solid rgba(255,255,255,.25);
+font-weight:900;
+margin-bottom:14px} h1{position:relative;
+z-index:2;
+margin:0 0 14px;
+max-width:920px;
+font-size:clamp(2.05rem,4.2vw,3.75rem);
+line-height:1.02;
+letter-spacing:-.04em} .hero p{position:relative;
+z-index:2;
+margin:0 0 14px;
+max-width:900px;
+color:rgba(255,255,255,.94);
+font-size:1.08rem} .hero-actions{position:relative;
+z-index:2;
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:22px} .btn{border:0;
+cursor:pointer;
+text-decoration:none;
+display:inline-flex;
+justify-content:center;
+align-items:center;
+border-radius:999px;
+padding:13px 18px;
+font-weight:900;
+color:var(--navy);
+background:#fff;
+box-shadow:var(--soft-shadow)} .btn.secondary{background:rgba(255,255,255,.16);
+color:#fff;
+border:1px solid rgba(255,255,255,.28)} .panel{background:rgba(255,255,255,.97);
+border:1px solid var(--border);
+border-radius:24px;
+box-shadow:var(--soft-shadow);
+padding:26px;
+margin-bottom:22px} h2{margin:0 0 10px;
+color:var(--navy);
+font-size:clamp(1.45rem,2.6vw,2.15rem);
+line-height:1.15;
+letter-spacing:-.02em} h3{margin:0 0 8px;
+color:var(--navy);
+font-size:1.18rem} p{margin:0 0 14px;
+color:var(--slate)} .stats{display:grid;
+grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+gap:12px;
+margin-top:18px} .stat{border-radius:18px;
+padding:16px;
+background:#f8fafc;
+border:1px solid var(--border)} .stat strong{display:block;
+color:var(--navy);
+font-size:1.3rem} .quiz-wrap{display:grid;
+grid-template-columns:minmax(0,1fr) 320px;
+gap:20px;
+align-items:start} .quiz-card{background:#fff;
+border:1px solid var(--border);
+border-radius:28px;
+box-shadow:var(--shadow);
+overflow:hidden} .quiz-head{background:linear-gradient(135deg,var(--navy),#0f5484 60%,#b91c1c);
+color:#fff;
+padding:20px 22px} .quiz-head h2,.quiz-head p{color:#fff;
+margin:0} .progress-row{display:flex;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap;
+margin-top:12px;
+color:rgba(255,255,255,.9);
+font-weight:800;
+font-size:.94rem} .progress-bar{height:12px;
+background:rgba(255,255,255,.22);
+border-radius:999px;
+overflow:hidden;
+margin-top:14px} .progress-fill{width:0%;
+height:100%;
+background:linear-gradient(90deg,#facc15,#22c55e);
+transition:width .25s ease} .question-area{padding:22px} .tag-row{display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:12px} .tag{display:inline-flex;
+padding:5px 10px;
+border-radius:999px;
+background:#eff6ff;
+color:#1d4ed8;
+font-size:.82rem;
+font-weight:900;
+border:1px solid #bfdbfe} .tag.critical{background:#fef2f2;
+color:#b91c1c;
+border-color:#fecaca} .tag.brutal{background:#faf5ff;
+color:#6d28d9;
+border-color:#ddd6fe} .scenario{font-size:1.25rem;
+font-weight:900;
+color:var(--navy);
+margin-bottom:16px;
+line-height:1.35} .answers{display:grid;
+gap:10px} .answer-btn{width:100%;
+border:2px solid var(--border);
+background:#fff;
+color:#0f172a;
+text-align:left;
+border-radius:18px;
+padding:15px 16px;
+cursor:pointer;
+font-size:1rem;
+font-weight:800;
+line-height:1.35;
+transition:transform .15s ease,border-color .15s ease,background .15s ease} .answer-btn:hover:not(:disabled){transform:translateY(-1px);
+border-color:#93c5fd;
+background:#f8fbff} .answer-btn:disabled{cursor:not-allowed} .answer-btn.correct{border-color:#22c55e;
+background:#ecfdf5} .answer-btn.wrong{border-color:#ef4444;
+background:#fef2f2} .feedback{display:none;
+margin-top:16px;
+border-radius:20px;
+border:1px solid var(--border);
+padding:16px;
+background:#f8fafc} .feedback.show{display:block} .feedback.correct{border-color:#86efac;
+background:#f0fdf4} .feedback.wrong{border-color:#fecaca;
+background:#fff7f7} .feedback-title{font-weight:900;
+font-size:1.12rem;
+margin-bottom:8px;
+color:var(--navy)} .rationale{color:#1e293b;
+margin-bottom:10px} .clinical-pearl{border-left:5px solid var(--blue);
+padding:10px 12px;
+background:#fff;
+border-radius:12px;
+color:var(--slate);
+font-weight:700} .quiz-actions{display:flex;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap;
+margin-top:18px} .next-btn,.restart-btn{border:0;
+border-radius:999px;
+padding:12px 18px;
+cursor:pointer;
+font-weight:900;
+color:#fff;
+background:linear-gradient(90deg,var(--navy),#1d6fa5);
+box-shadow:var(--soft-shadow)} .restart-btn{background:linear-gradient(90deg,#475569,#64748b)} .next-btn:disabled{opacity:.45;
+cursor:not-allowed} .sidebar{display:grid;
+gap:14px;
+position:sticky;
+top:14px} .side-card{background:#fff;
+border:1px solid var(--border);
+border-radius:22px;
+padding:18px;
+box-shadow:var(--soft-shadow)} .score-big{font-size:2.15rem;
+line-height:1;
+color:var(--navy);
+font-weight:900;
+margin:10px 0} .streak-grid{display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
+margin-top:12px} .streak-box{background:#f8fafc;
+border:1px solid var(--border);
+border-radius:16px;
+padding:12px;
+text-align:center;
+font-weight:900;
+color:var(--navy)} .streak-box span{display:block;
+font-size:1.55rem;
+color:var(--red)} .principles{padding-left:19px;
+margin:10px 0 0;
+color:var(--slate)} .principles li{margin-bottom:8px} .results{display:none;
+padding:24px} .results.show{display:block} .result-grade{font-size:clamp(2rem,4vw,3.2rem);
+color:var(--navy);
+font-weight:900;
+line-height:1;
+margin:10px 0} .rating-badge{display:inline-flex;
+margin:8px 0 12px;
+border-radius:999px;
+padding:10px 15px;
+background:linear-gradient(90deg,var(--red),var(--orange));
+color:#fff;
+font-weight:900} .missed-list{display:grid;
+gap:10px;
+margin-top:16px} .missed-item{border:1px solid var(--border);
+border-radius:16px;
+padding:14px;
+background:#f8fafc} .lab-table{width:100%;
+border-collapse:collapse;
+margin-top:14px;
+font-size:.95rem;
+overflow:hidden;
+border-radius:14px} .lab-table th,.lab-table td{border:1px solid var(--border);
+padding:12px;
+text-align:left;
+vertical-align:top} .lab-table th{background:#eff6ff;
+color:var(--navy)} .lab-table tr:nth-child(even){background:#f8fafc} .related-links{display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:12px;
+margin-top:15px} .related-links a{display:block;
+text-decoration:none;
+color:#fff;
+background:linear-gradient(90deg,var(--navy),#1d6fa5);
+border-radius:16px;
+padding:15px;
+font-weight:900} footer{text-align:center;
+color:var(--muted);
+font-size:.92rem;
+margin-top:34px} footer a{color:var(--blue);
+font-weight:900;
+text-decoration:none} @media(max-width:950px){.quiz-wrap{grid-template-columns:1fr}.sidebar{position:static;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}} @media(max-width:700px){.container{padding:18px 14px 46px}.hero{padding:28px 18px;
+border-radius:22px}.hero:before{font-size:4.8rem}.panel{padding:20px 16px;
+border-radius:18px}.question-area{padding:18px}.scenario{font-size:1.08rem}.answer-btn{font-size:.96rem}}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"Critical Lab Values Challenge","description":"A free nursing lab values prioritization challenge with clinical judgment scenarios, hidden explanations, streak tracking, and critical lab interpretation practice.","url":"https://medskillbuilder.com/critical-lab-values-challenge.html","learningResourceType":"Practice quiz","educationalLevel":"Nursing students, healthcare students, NCLEX review","isAccessibleForFree":true,"provider":{"@type":"Organization","name":"MedSkillBuilder","url":"https://medskillbuilder.com"}}</script>
+</head>
+<body>
+  <div class="container">
+    <div class="top-row">
+<a class="top-link" href="/">← Back to Home</a>
+<a class="top-link" href="/browse-all-practice.html">Browse All Practice</a>
+</div>
+    <header class="hero">
+<div class="eyebrow">⚠️ Elite Nursing Lab Challenge</div>
+<h1>Critical Lab Values Challenge</h1>
+<p>Which lab value requires immediate action? This challenge tests clinical judgment, nursing prioritization, and the ability to spot dangerous lab patterns before a patient deteriorates.</p>
+<p>Explanations stay hidden until you commit to an answer. No guessing from the rationale.</p>
+<div class="hero-actions">
+<a class="btn" href="#quiz">Start the Challenge</a>
+<a class="btn secondary" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+</div>
+</header>
+    <section class="panel">
+<h2>This Is Not a Normal Lab Values Quiz</h2>
+<p>Memorizing normal ranges is helpful, but real clinical judgment asks a harder question: which result is dangerous right now? These questions force you to compare multiple abnormal values and choose the patient who needs the fastest response.</p>
+<div class="stats">
+<div class="stat">
+<strong>25</strong>hard clinical scenarios</div>
+<div class="stat">
+<strong>Streaks</strong>current and best streak tracking</div>
+<div class="stat">
+<strong>NCLEX-style</strong>prioritization logic</div>
+<div class="stat">
+<strong>Free</strong>no signup required</div>
+</div>
+</section>
+    <main id="quiz" class="quiz-wrap">
+<section class="quiz-card">
+<div class="quiz-head">
+<h2>Which Result Requires Immediate Action?</h2>
+<div class="progress-row">
+<span id="questionCounter">Question 1 of 25</span>
+<span id="scoreLabel">Score: 0</span>
+</div>
+<div class="progress-bar" aria-label="Quiz progress">
+<div class="progress-fill" id="progressFill">
+</div>
+</div>
+</div>
+<div class="question-area" id="questionArea">
+<div class="tag-row" id="tagRow">
+</div>
+<div class="scenario" id="scenarioText">
+</div>
+<div class="answers" id="answers">
+</div>
+<div class="feedback" id="feedback">
+<div class="feedback-title" id="feedbackTitle">
+</div>
+<p class="rationale" id="rationaleText">
+</p>
+<div class="clinical-pearl" id="clinicalPearl">
+</div>
+</div>
+<div class="quiz-actions">
+<button class="restart-btn" type="button" onclick="restartQuiz()">Restart</button>
+<button class="next-btn" id="nextBtn" type="button" onclick="nextQuestion()" disabled>Next Question</button>
+</div>
+</div>
+<div class="results" id="results">
+<h2>Challenge Complete</h2>
+<p>You finished the Critical Lab Values Challenge.</p>
+<div class="result-grade" id="resultGrade">
+</div>
+<div class="rating-badge" id="ratingBadge">
+</div>
+<p id="resultMessage">
+</p>
+<button class="next-btn" type="button" onclick="restartQuiz()">Try Again</button>
+<div class="missed-list" id="missedList">
+</div>
+</div>
+</section>
+<aside class="sidebar">
+<div class="side-card">
+<h3>Your Score</h3>
+<div class="score-big" id="sideScore">0/25</div>
+<div class="streak-grid">
+<div class="streak-box">Current<span id="currentStreak">0</span>
+</div>
+<div class="streak-box">Best<span id="bestStreak">0</span>
+</div>
+</div>
+</div>
+<div class="side-card">
+<h3>Elite Priority Rules</h3>
+<ul class="principles">
+<li>
+<strong>ECG changes matter:</strong> abnormal potassium with rhythm changes can be deadly.</li>
+<li>
+<strong>Symptoms change priority:</strong> a lab plus symptoms is more urgent.</li>
+<li>
+<strong>Active bleeding matters:</strong> abnormal coagulation plus bleeding is high risk.</li>
+<li>
+<strong>Critical lows can kill:</strong> glucose, sodium, and hemoglobin can deteriorate fast.</li>
+<li>
+<strong>Trend matters:</strong> a sudden change may be more dangerous than a chronic abnormal value.</li>
+</ul>
+</div>
+<div class="side-card">
+<h3>MedSkillBuilder Tip</h3>
+<p>Ask: which result could lead to seizure, lethal rhythm, shock, respiratory failure, or death if ignored?</p>
+</div>
+</aside>
+</main>
+    <section class="panel">
+<h2>High-Yield Critical Lab Patterns</h2>
+<p>This table is not a substitute for facility policy or clinical judgment. It is a study guide to help recognize common lab patterns that require urgent attention.</p>
+<table class="lab-table">
+<thead>
+<tr>
+<th>Lab Pattern</th>
+<th>Why It Matters</th>
+<th>Danger Clue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Potassium 6.8 with peaked T waves</td>
+<td>Hyperkalemia is affecting cardiac conduction.</td>
+<td>Risk of lethal dysrhythmia or arrest.</td>
+</tr>
+<tr>
+<td>Glucose 38 with confusion</td>
+<td>Brain needs glucose to function.</td>
+<td>Risk of seizure or loss of consciousness.</td>
+</tr>
+<tr>
+<td>Sodium 118 with seizure activity</td>
+<td>Severe hyponatremia can cause cerebral edema and seizures.</td>
+<td>Neurologic symptoms make it urgent.</td>
+</tr>
+<tr>
+<td>INR 8.0 with active bleeding</td>
+<td>Blood is not clotting effectively.</td>
+<td>Hemorrhage risk.</td>
+</tr>
+<tr>
+<td>Troponin 4.5 with active chest pain</td>
+<td>Possible ongoing myocardial injury.</td>
+<td>Chest pain plus elevated marker.</td>
+</tr>
+</tbody>
+</table>
+</section>
+    <section class="panel">
+<h2>Related MedSkillBuilder Practice</h2>
+<p>Keep building clinical judgment with free interactive tools.</p>
+<div class="related-links">
+<a href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+<a href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+<a href="/electrolytes-practice-quiz.html">Electrolytes Practice Quiz</a>
+<a href="/who-do-you-see-first-challenge.html">Who Do You See First? Challenge</a>
+<a href="/drug-calculation-quiz.html">Drug Calculation Quiz</a>
+<a href="/rn-practice-questions.html">RN Practice Questions</a>
+</div>
+</section>
+    <footer>
+<p>MedSkillBuilder provides free healthcare learning tools for nursing students, allied health learners, biomedical equipment technicians, and early healthcare professionals.</p>
+<p>
+<a href="/browse-all-practice.html">Browse All Practice</a> | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms.html">Terms</a>
+</p>
+<p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
+</footer>
+  </div>
+  <script>
+
+const questions = [
+      
+  {
+        category:"Electrolytes",
+        difficulty:"Critical",
+        scenario:"Which result requires immediate action?",
+        answers: [
+          "Sodium 132 mEq/L with mild headache","Potassium 6.8 mEq/L with peaked T waves","Calcium 8.4 mg/dL with stable vital signs","Magnesium 1.8 mg/dL with no symptoms"
+        ],
+        correct:"Potassium 6.8 mEq/L with peaked T waves",
+        rationale:"Peaked T waves indicate hyperkalemia is already affecting cardiac conduction. This patient is at risk for lethal dysrhythmias and cardiac arrest.",
+        pearl:"A critical potassium becomes even more urgent when ECG changes are present."
+      },
+      {
+        category:"Glucose",
+        difficulty:"Critical",
+        scenario:"Which patient do you assess first?",
+        answers: [
+          "Glucose 38 mg/dL, awake but confused and diaphoretic","Glucose 188 mg/dL after lunch","Glucose 145 mg/dL with no symptoms","Glucose 62 mg/dL, alert and eating crackers"
+        ],
+        correct:"Glucose 38 mg/dL, awake but confused and diaphoretic",
+        rationale:"A glucose of 38 with confusion and diaphoresis is symptomatic hypoglycemia. It can quickly progress to seizure, loss of consciousness, and neurologic injury.",
+        pearl:"Low glucose plus mental status change is an immediate priority."
+      },
+      {
+        category:"Cardiac",
+        difficulty:"Critical",
+        scenario:"Which result is most concerning?",
+        answers: [
+          "Troponin 4.5 ng/mL with active chest pain","Hemoglobin 10.8 g/dL with fatigue","Sodium 136 mEq/L","Magnesium 2.0 mg/dL"
+        ],
+        correct:"Troponin 4.5 ng/mL with active chest pain",
+        rationale:"Elevated troponin with active chest pain suggests ongoing myocardial injury. This is time-sensitive and requires urgent evaluation.",
+        pearl:"Cardiac markers matter most when they match active symptoms."
+      },
+      {
+        category:"Coagulation",
+        difficulty:"Critical",
+        scenario:"Which patient is highest priority?",
+        answers: [
+          "INR 8.0 with active bleeding from gums and IV site","Potassium 3.2 mEq/L with no ECG changes","WBC 11,500/mm³ with low-grade fever","Glucose 145 mg/dL after dinner"
+        ],
+        correct:"INR 8.0 with active bleeding from gums and IV site",
+        rationale:"An INR of 8.0 indicates a major bleeding risk. Active bleeding means the risk is no longer theoretical.",
+        pearl:"Abnormal coagulation plus active bleeding is urgent."
+      },
+      {
+        category:"Hematology",
+        difficulty:"Critical",
+        scenario:"Which lab value would concern you most?",
+        answers: [
+          "Hemoglobin 5.9 g/dL with shortness of breath","Sodium 133 mEq/L with no symptoms","Potassium 3.7 mEq/L","Calcium 9.0 mg/dL"
+        ],
+        correct:"Hemoglobin 5.9 g/dL with shortness of breath",
+        rationale:"A hemoglobin of 5.9 is severe anemia. Shortness of breath suggests the patient is not tolerating the low oxygen-carrying capacity well.",
+        pearl:"Severe anemia becomes higher priority when symptoms show poor oxygen delivery."
+      },
+      {
+        category:"Neuro",
+        difficulty:"Critical",
+        scenario:"Which result requires the fastest response?",
+        answers: [
+          "Sodium 118 mEq/L with new seizure activity","Sodium 130 mEq/L with mild nausea","Potassium 3.3 mEq/L without symptoms","WBC 12,000/mm³ after steroids"
+        ],
+        correct:"Sodium 118 mEq/L with new seizure activity",
+        rationale:"Severe hyponatremia with seizures is a neurologic emergency and can indicate cerebral edema.",
+        pearl:"Severe sodium abnormalities are especially dangerous when neurologic symptoms appear."
+      },
+      {
+        category:"Renal/Cardiac",
+        difficulty:"Critical",
+        scenario:"Which patient should be seen first?",
+        answers: [
+          "Dialysis patient with potassium 7.1 mEq/L, weakness, and widened QRS","Patient with creatinine 1.4 mg/dL and normal urine output","Patient with BUN 28 mg/dL asking for water","Patient with sodium 134 mEq/L awaiting discharge"
+        ],
+        correct:"Dialysis patient with potassium 7.1 mEq/L, weakness, and widened QRS",
+        rationale:"Severe hyperkalemia with widened QRS indicates dangerous cardiac conduction effects. This can quickly progress to lethal dysrhythmias.",
+        pearl:"Wide QRS in hyperkalemia is a major danger sign."
+      },
+      {
+        category:"Infection/Sepsis",
+        difficulty:"Hard",
+        scenario:"Which result concerns you most?",
+        answers: [
+          "Lactate 5.2 mmol/L with BP 86/48 and fever","WBC 12,200/mm³ with stable vital signs","Temperature 100.4°F after surgery","Platelets 145,000/mm³"
+        ],
+        correct:"Lactate 5.2 mmol/L with BP 86/48 and fever",
+        rationale:"High lactate with hypotension and fever suggests poor perfusion and possible septic shock.",
+        pearl:"Lactate becomes urgent when paired with shock signs."
+      },
+      {
+        category:"Bleeding",
+        difficulty:"Critical",
+        scenario:"Which patient is highest priority?",
+        answers: [
+          "Platelets 18,000/mm³ with petechiae and nosebleed","Platelets 115,000/mm³ with no bleeding","WBC 3,800/mm³ with no fever","Hemoglobin 11.2 g/dL"
+        ],
+        correct:"Platelets 18,000/mm³ with petechiae and nosebleed",
+        rationale:"A platelet count of 18,000 is severely low. Active bleeding signs increase concern for hemorrhage.",
+        pearl:"Severe thrombocytopenia plus bleeding needs prompt action."
+      },
+      {
+        category:"Respiratory",
+        difficulty:"Critical",
+        scenario:"Which result requires immediate action?",
+        answers: [
+          "PaCO₂ 72 mmHg with drowsiness and slow respirations","PaO₂ 82 mmHg on room air with no symptoms","HCO₃ 24 mEq/L","pH 7.38"
+        ],
+        correct:"PaCO₂ 72 mmHg with drowsiness and slow respirations",
+        rationale:"Severe hypercapnia with drowsiness and slow respirations suggests ventilatory failure and possible CO₂ narcosis.",
+        pearl:"ABG values matter most when they match the clinical picture."
+      },
+      {
+        category:"Acid-Base",
+        difficulty:"Critical",
+        scenario:"Which patient worries you most?",
+        answers: [
+          "pH 7.12, glucose 520 mg/dL, positive ketones, Kussmaul respirations","pH 7.34 with mild anxiety","Glucose 180 mg/dL after dinner","Bicarbonate 22 mEq/L with stable vital signs"
+        ],
+        correct:"pH 7.12, glucose 520 mg/dL, positive ketones, Kussmaul respirations",
+        rationale:"This pattern suggests severe diabetic ketoacidosis with metabolic acidosis. Kussmaul respirations show the body is trying to compensate.",
+        pearl:"Low pH plus DKA symptoms is a critical pattern."
+      },
+      {
+        category:"Anticoagulation",
+        difficulty:"Hard",
+        scenario:"Which lab result requires urgent follow-up before giving medication?",
+        answers: [
+          "aPTT 124 seconds before starting the next heparin dose","INR 1.1 before a procedure","Platelets 185,000/mm³","Hemoglobin 13.1 g/dL"
+        ],
+        correct:"aPTT 124 seconds before starting the next heparin dose",
+        rationale:"A very prolonged aPTT can indicate excessive anticoagulation from heparin and increased bleeding risk.",
+        pearl:"Always connect the lab to the medication being given."
+      },
+      {
+        category:"Oncology/Infection",
+        difficulty:"Critical",
+        scenario:"Which patient requires immediate precautions and notification?",
+        answers: [
+          "Absolute neutrophil count 400/mm³ with fever 101.5°F","WBC 11,000/mm³ after exercise","Hemoglobin 10.5 g/dL with mild fatigue","Platelets 140,000/mm³ with no bleeding"
+        ],
+        correct:"Absolute neutrophil count 400/mm³ with fever 101.5°F",
+        rationale:"Severe neutropenia with fever is a medical emergency because infection can progress rapidly without a strong immune response.",
+        pearl:"Fever in neutropenia is urgent even if the patient does not look very sick."
+      },
+      {
+        category:"Endocrine",
+        difficulty:"Hard",
+        scenario:"Which lab and symptom combination is most urgent?",
+        answers: [
+          "Calcium 14.2 mg/dL with confusion and weakness","Calcium 8.5 mg/dL with no symptoms","Magnesium 1.7 mg/dL with no symptoms","Phosphorus 4.0 mg/dL"
+        ],
+        correct:"Calcium 14.2 mg/dL with confusion and weakness",
+        rationale:"Severe hypercalcemia can cause neurologic changes, dehydration, dysrhythmias, and serious complications.",
+        pearl:"Calcium becomes more urgent when mental status changes are present."
+      },
+      {
+        category:"OB",
+        difficulty:"Critical",
+        scenario:"Which result requires the fastest action?",
+        answers: [
+          "Platelets 62,000/mm³ with severe headache, RUQ pain, and BP 170/112","Hemoglobin 10.9 g/dL during pregnancy","WBC 13,000/mm³ during labor","Glucose 128 mg/dL after a meal"
+        ],
+        correct:"Platelets 62,000/mm³ with severe headache, RUQ pain, and BP 170/112",
+        rationale:"This pattern is concerning for severe preeclampsia or HELLP syndrome and requires urgent intervention.",
+        pearl:"Low platelets plus severe hypertension symptoms in pregnancy is a red flag."
+      },
+      {
+        category:"GI Bleed",
+        difficulty:"Critical",
+        scenario:"Which patient needs urgent evaluation?",
+        answers: [
+          "Hemoglobin dropped from 12.4 to 7.1 g/dL with black tarry stools","Hemoglobin 11.8 g/dL with chronic anemia history","WBC 9,500/mm³","Sodium 135 mEq/L"
+        ],
+        correct:"Hemoglobin dropped from 12.4 to 7.1 g/dL with black tarry stools",
+        rationale:"A rapid hemoglobin drop with melena suggests significant GI bleeding.",
+        pearl:"Trend plus symptoms can matter more than a single number."
+      },
+      {
+        category:"Pancreatitis",
+        difficulty:"Hard",
+        scenario:"Which result is most concerning in context?",
+        answers: [
+          "Lipase 1,800 U/L with severe epigastric pain radiating to the back","Amylase mildly elevated after vomiting","WBC 10,800/mm³ with stable vitals","Glucose 142 mg/dL after eating"
+        ],
+        correct:"Lipase 1,800 U/L with severe epigastric pain radiating to the back",
+        rationale:"A markedly elevated lipase with classic severe pain suggests acute pancreatitis and requires prompt evaluation.",
+        pearl:"Labs become clinically powerful when they match classic symptoms."
+      },
+      {
+        category:"Toxicity",
+        difficulty:"Critical",
+        scenario:"Which result requires immediate attention?",
+        answers: [
+          "Digoxin level 3.1 ng/mL with nausea, confusion, and visual changes","Digoxin level 0.9 ng/mL with stable vital signs","Potassium 4.1 mEq/L","Creatinine 1.0 mg/dL"
+        ],
+        correct:"Digoxin level 3.1 ng/mL with nausea, confusion, and visual changes",
+        rationale:"This suggests digoxin toxicity. Symptoms and elevated level can lead to dangerous dysrhythmias.",
+        pearl:"Drug levels are more urgent when toxicity symptoms appear."
+      },
+      {
+        category:"Brutal Priority",
+        difficulty:"Brutal",
+        scenario:"All four are serious. Which patient do you see FIRST?",
+        answers: [
+          "Potassium 6.8 mEq/L with peaked T waves","Troponin 4.5 ng/mL with active chest pain","Glucose 38 mg/dL and confused","INR 8.0 with active bleeding"
+        ],
+        correct:"Potassium 6.8 mEq/L with peaked T waves",
+        rationale:"All four require rapid action, but hyperkalemia with ECG changes is an immediate cardiac arrest risk. The heart is already showing electrical instability.",
+        pearl:"When every answer is bad, choose the one most likely to cause sudden death first."
+      },
+      {
+        category:"Liver/Coagulation",
+        difficulty:"Hard",
+        scenario:"Which result is most concerning?",
+        answers: [
+          "Ammonia 145 µmol/L with increasing confusion","ALT mildly elevated after acetaminophen use","Albumin 3.4 g/dL","Bilirubin 1.3 mg/dL with no symptoms"
+        ],
+        correct:"Ammonia 145 µmol/L with increasing confusion",
+        rationale:"High ammonia with worsening confusion suggests hepatic encephalopathy and requires prompt attention.",
+        pearl:"Mental status change turns an abnormal lab into an urgent clinical problem."
+      },
+      {
+        category:"Rhabdomyolysis",
+        difficulty:"Hard",
+        scenario:"Which patient should be escalated quickly?",
+        answers: [
+          "CK 18,000 U/L with dark urine after prolonged immobilization","CK 240 U/L after exercise","Creatinine 1.1 mg/dL with good urine output","Potassium 4.0 mEq/L"
+        ],
+        correct:"CK 18,000 U/L with dark urine after prolonged immobilization",
+        rationale:"This suggests rhabdomyolysis, which can lead to acute kidney injury and dangerous electrolyte abnormalities.",
+        pearl:"Dark urine plus very high CK is a key danger pattern."
+      },
+      {
+        category:"Renal",
+        difficulty:"Hard",
+        scenario:"Which lab trend is most concerning?",
+        answers: [
+          "Creatinine rising from 0.9 to 3.2 mg/dL with urine output 15 mL/hr","BUN 24 mg/dL with normal urine output","Creatinine 1.2 mg/dL in chronic kidney disease","Sodium 134 mEq/L"
+        ],
+        correct:"Creatinine rising from 0.9 to 3.2 mg/dL with urine output 15 mL/hr",
+        rationale:"A rapid creatinine rise with oliguria suggests acute kidney injury and poor renal perfusion or obstruction.",
+        pearl:"Trend plus decreased output is more concerning than a mild isolated value."
+      },
+      {
+        category:"Respiratory Failure",
+        difficulty:"Critical",
+        scenario:"Which ABG is most urgent?",
+        answers: [
+          "pH 7.21, PaCO₂ 88, patient difficult to arouse","pH 7.49 after anxiety episode","PaO₂ 88 on room air and talking normally","HCO₃ 26 mEq/L"
+        ],
+        correct:"pH 7.21, PaCO₂ 88, patient difficult to arouse",
+        rationale:"This indicates severe respiratory acidosis with altered mental status. The patient may be failing to ventilate.",
+        pearl:"High CO₂ plus decreased responsiveness is a respiratory emergency."
+      },
+      {
+        category:"Pediatrics",
+        difficulty:"Critical",
+        scenario:"Which pediatric result concerns you most?",
+        answers: [
+          "Glucose 32 mg/dL in an infant with weak cry and poor feeding","WBC 12,000/mm³ after crying","Sodium 134 mEq/L with no symptoms","Hemoglobin 11.5 g/dL"
+        ],
+        correct:"Glucose 32 mg/dL in an infant with weak cry and poor feeding",
+        rationale:"Infants can deteriorate rapidly. Severe hypoglycemia with poor feeding and weak cry is urgent.",
+        pearl:"In infants, subtle symptoms can signal serious instability."
+      },
+      {
+        category:"Final Boss",
+        difficulty:"Brutal",
+        scenario:"Final boss: Which finding is the most immediate life threat?",
+        answers: [
+          "Potassium 7.0 with sine-wave ECG pattern","Sodium 119 with confusion","Hemoglobin 6.2 with fatigue","Troponin 2.2 with no chest pain"
+        ],
+        correct:"Potassium 7.0 with sine-wave ECG pattern",
+        rationale:"A sine-wave ECG pattern in severe hyperkalemia is a pre-arrest finding and can deteriorate into ventricular fibrillation or asystole.",
+        pearl:"Sine-wave ECG in hyperkalemia is one of the most dangerous lab-linked patterns."}
+];
+
+
+let currentIndex=0,score=0,selected=false,missed=[],shuffledQuestions=[],currentStreak=0,bestStreak=0;
+
+function shuffleArray(array){const copy=[...array];
+for(let i=copy.length-1;
+i>0;
+i--){const j=Math.floor(Math.random()*(i+1));
+[copy[i],copy[j]]=[copy[j],copy[i]];
+}return copy;
+}
+function startQuiz(){shuffledQuestions=shuffleArray(questions);
+currentIndex=0;
+score=0;
+selected=false;
+missed=[];
+currentStreak=0;
+bestStreak=0;
+document.getElementById("questionArea").style.display="block";
+document.getElementById("results").classList.remove("show");
+renderQuestion();
+}
+function renderQuestion(){selected=false;
+const q=shuffledQuestions[currentIndex];
+const answers=shuffleArray(q.answers);
+const total=shuffledQuestions.length;
+document.getElementById("questionCounter").textContent=`Question ${currentIndex+1} of ${total}`;
+document.getElementById("scoreLabel").textContent=`Score: ${score}`;
+document.getElementById("sideScore").textContent=`${score}/${total}`;
+document.getElementById("currentStreak").textContent=currentStreak;
+document.getElementById("bestStreak").textContent=bestStreak;
+document.getElementById("progressFill").style.width=`${(currentIndex/total)*100}%`;
+document.getElementById("tagRow").innerHTML=`<span class="tag">${q.category}</span>
+<span class="tag ${q.difficulty==='Critical'?'critical':q.difficulty==='Brutal'?'brutal':''}">${q.difficulty}</span>`;
+document.getElementById("scenarioText").textContent=q.scenario;
+const answersDiv=document.getElementById("answers");
+answersDiv.innerHTML="";
+answers.forEach((answer,index)=>{const btn=document.createElement("button");
+btn.className="answer-btn";
+btn.type="button";
+btn.innerHTML=`<strong>${String.fromCharCode(65+index)}.</strong> ${answer}`;
+btn.onclick=()=>selectAnswer(answer,btn);
+answersDiv.appendChild(btn);
+});
+const feedback=document.getElementById("feedback");
+feedback.className="feedback";
+document.getElementById("feedbackTitle").textContent="";
+document.getElementById("rationaleText").textContent="";
+document.getElementById("clinicalPearl").textContent="";
+document.getElementById("nextBtn").disabled=true;
+document.getElementById("nextBtn").textContent=currentIndex===total-1?"See Results":"Next Question";
+}
+function selectAnswer(answer,button){if(selected)return;
+selected=true;
+const q=shuffledQuestions[currentIndex];
+const buttons=document.querySelectorAll(".answer-btn");
+const isCorrect=answer===q.correct;
+buttons.forEach(btn=>{btn.disabled=true;
+if(btn.textContent.includes(q.correct))btn.classList.add("correct");
+});
+if(!isCorrect){button.classList.add("wrong");
+currentStreak=0;
+missed.push({scenario:q.scenario,selected:answer,correct:q.correct,
+        rationale:q.rationale});
+}else{score++;
+currentStreak++;
+if(currentStreak>bestStreak)bestStreak=currentStreak;
+}const feedback=document.getElementById("feedback");
+feedback.className=`feedback show ${isCorrect?"correct":"wrong"}`;
+document.getElementById("feedbackTitle").textContent=isCorrect?"Correct — that is the most urgent lab pattern.":"Not first — review the danger clue.";
+document.getElementById("rationaleText").textContent=q.rationale;
+document.getElementById("clinicalPearl").innerHTML=`<strong>Clinical pearl:</strong> ${q.pearl}`;
+document.getElementById("scoreLabel").textContent=`Score: ${score}`;
+document.getElementById("sideScore").textContent=`${score}/${shuffledQuestions.length}`;
+document.getElementById("currentStreak").textContent=currentStreak;
+document.getElementById("bestStreak").textContent=bestStreak;
+document.getElementById("nextBtn").disabled=false;
+}
+function nextQuestion(){if(currentIndex<shuffledQuestions.length-1){currentIndex++;
+renderQuestion();
+}else{showResults();
+}}
+function getRating(score){if(score<=5)return"Healthcare Rookie";
+if(score<=10)return"Student Nurse";
+if(score<=15)return"Charge Nurse";
+if(score<=20)return"Clinical Expert";
+return"Lab Value Legend";
+}
+function showResults(){const total=shuffledQuestions.length;
+document.getElementById("progressFill").style.width="100%";
+document.getElementById("questionArea").style.display="none";
+const results=document.getElementById("results");
+results.classList.add("show");
+const percent=Math.round((score/total)*100);
+document.getElementById("resultGrade").textContent=`${score}/${total} (${percent}%)`;
+document.getElementById("ratingBadge").textContent=getRating(score);
+let message="";
+if(percent>=90)message="Elite performance. You recognized the most dangerous lab patterns and prioritized immediate threats.";
+else if(percent>=76)message="Strong clinical judgment. Review your missed rationales and focus on symptom-lab combinations.";
+else if(percent>=60)message="Solid start. Keep practicing the difference between abnormal and immediately dangerous.";
+else message="This challenge is intentionally hard. Review ECG changes, symptomatic lows, bleeding risks, and critical trends before retrying.";
+document.getElementById("resultMessage").textContent=message;
+const missedList=document.getElementById("missedList");
+missedList.innerHTML="";
+if(missed.length>0){const header=document.createElement("h3");
+header.textContent="Questions to Review";
+missedList.appendChild(header);
+missed.forEach(item=>{const div=document.createElement("div");
+div.className="missed-item";
+div.innerHTML=`<strong>Correct priority:</strong> ${item.correct}<br>
+<strong>You chose:</strong> ${item.selected}<br>
+<span>${item.rationale}</span>`;
+missedList.appendChild(div);
+});
+}else{const div=document.createElement("div");
+div.className="missed-item";
+div.innerHTML="<strong>Perfect score.</strong> You earned Lab Value Legend status.";
+missedList.appendChild(div);
+}}
+function restartQuiz(){startQuiz();
+document.getElementById("quiz").scrollIntoView({behavior:"smooth",block:"start"});
+}
+startQuiz();
+
+  </script>
+</body>
+</html>
