@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Medication Error Challenge | Nursing Medication Safety Quiz</title>
+  <meta name="description" content="Test your medication safety skills with realistic nursing medication error scenarios. Practice identifying unsafe orders, high-risk medications, dosage mistakes, look-alike drugs, patient safety risks, allergy checks, and nursing judgment questions." />
+  <meta name="keywords" content="medication error challenge, medication safety quiz, nursing medication errors, NCLEX medication questions, medication administration quiz, high alert medications, nursing safety questions, medication error practice, nursing clinical judgment" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/medication-error-challenge.html" />
+
+  <meta property="og:title" content="Medication Error Challenge | MedSkillBuilder" />
+  <meta property="og:description" content="Can you catch the medication error before it reaches the patient? Practice nursing medication safety with realistic scenarios." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/medication-error-challenge.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Medication Error Challenge",
+    "description": "A free nursing medication safety quiz with realistic medication error scenarios, unsafe orders, high-alert medications, patient safety risks, and clinical judgment explanations.",
+    "url": "https://medskillbuilder.com/medication-error-challenge.html",
+    "learningResourceType": "Quiz",
+    "educationalLevel": "Nursing students, NCLEX preparation, allied health students, and healthcare learners",
+    "isAccessibleForFree": true,
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a medication error?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A medication error is a preventable event involving medication use that may lead to inappropriate medication administration or patient harm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is medication safety important in nursing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Medication safety is important because nurses help protect patients by verifying orders, checking allergies, confirming patient identity, reviewing vital signs and labs, and questioning unsafe medication situations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What topics are included in this Medication Error Challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This challenge includes medication rights, allergy checks, high-alert medications, unsafe orders, dosage concerns, patient identification, look-alike sound-alike medication risks, vital sign safety, lab value safety, and nursing judgment scenarios."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this medication safety quiz free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. MedSkillBuilder provides this Medication Error Challenge as a free learning tool for nursing students, healthcare students, and early healthcare learners."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy: #082f57;
+      --blue: #2563eb;
+      --green: #16a34a;
+      --rose: #e11d48;
+      --orange: #f97316;
+      --purple: #6d28d9;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #dbe4ee;
+      --soft: #f8fafc;
+      --shadow: 0 20px 55px rgba(15, 23, 42, 0.13);
+      --soft-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at top left, rgba(225, 29, 72, 0.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 32%),
+        linear-gradient(180deg, #fff7f9 0%, #f8fbff 48%, #ffffff 100%);
+    }
+
+    a { color: inherit; }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 20px 70px;
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .top-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--navy);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 900;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      border-radius: 34px;
+      padding: 48px 40px;
+      margin-bottom: 24px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(250, 204, 21, 0.25), transparent 24%),
+        linear-gradient(135deg, #4c0519 0%, #9f1239 44%, #082f57 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: "SAFETY";
+      position: absolute;
+      right: -10px;
+      bottom: 5px;
+      font-size: 9rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: rgba(255,255,255,0.055);
+      transform: rotate(-5deg);
+    }
+
+    .eyebrow {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 14px;
+      max-width: 930px;
+      font-size: clamp(2.1rem, 4.4vw, 3.85rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 14px;
+      max-width: 900px;
+      color: rgba(255,255,255,0.94);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      color: #4c0519;
+      background: white;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.16);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.97);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--soft-shadow);
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    .panel.highlight {
+      background: linear-gradient(180deg, rgba(255, 241, 242, 0.94), rgba(255,255,255,0.98));
+      border-color: rgba(225, 29, 72, 0.22);
+    }
+
+    .panel.dark {
+      color: white;
+      background:
+        radial-gradient(circle at right, rgba(250, 204, 21, 0.16), transparent 36%),
+        linear-gradient(135deg, #4c0519, #082f57);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .panel.dark h2,
+    .panel.dark h3,
+    .panel.dark p,
+    .panel.dark li { color: white; }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h3 { margin: 0 0 8px; color: var(--navy); font-size: 1.18rem; }
+    p { margin: 0 0 14px; color: #1f2937; }
+    ul, ol { padding-left: 22px; margin-top: 10px; }
+    li { margin-bottom: 8px; color: #1f2937; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      border-radius: 18px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+    }
+
+    .stat strong { display: block; color: var(--rose); font-size: 1.3rem; }
+
+    .quiz-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    .quiz-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .quiz-head {
+      background: linear-gradient(135deg, #4c0519, #9f1239 52%, #082f57);
+      color: white;
+      padding: 20px 22px;
+    }
+
+    .quiz-head h2,
+    .quiz-head p { color: white; margin: 0; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 800;
+      font-size: 0.94rem;
+    }
+
+    .progress-bar {
+      height: 12px;
+      background: rgba(255,255,255,0.22);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #facc15, #22c55e);
+      transition: width 0.25s ease;
+    }
+
+    .question-area { padding: 22px; }
+
+    .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+
+    .tag {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 0.82rem;
+      font-weight: 900;
+      border: 1px solid #bfdbfe;
+    }
+
+    .tag.high { background: #fff1f2; color: #be123c; border-color: #fecdd3; }
+    .tag.brutal { background: #faf5ff; color: #6d28d9; border-color: #ddd6fe; }
+
+    .scenario {
+      font-size: 1.22rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .answers { display: grid; gap: 10px; }
+
+    .answer-btn {
+      width: 100%;
+      border: 2px solid var(--border);
+      background: #ffffff;
+      color: #0f172a;
+      text-align: left;
+      border-radius: 18px;
+      padding: 15px 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.35;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .answer-btn:hover:not(:disabled) { transform: translateY(-1px); border-color: #93c5fd; background: #f8fbff; }
+    .answer-btn:disabled { cursor: not-allowed; }
+    .answer-btn.correct { border-color: #22c55e; background: #ecfdf5; }
+    .answer-btn.wrong { border-color: #ef4444; background: #fef2f2; }
+
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      background: #f8fafc;
+    }
+
+    .feedback.show { display: block; }
+    .feedback.correct { border-color: #86efac; background: #f0fdf4; }
+    .feedback.wrong { border-color: #fecaca; background: #fff7f7; }
+
+    .feedback-title { font-weight: 900; font-size: 1.12rem; margin-bottom: 8px; color: var(--navy); }
+    .rationale { color: #1e293b; margin-bottom: 10px; }
+
+    .clinical-pearl {
+      border-left: 5px solid var(--rose);
+      padding: 10px 12px;
+      background: white;
+      border-radius: 12px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .quiz-actions { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+
+    .next-btn,
+    .restart-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 900;
+      color: white;
+      background: linear-gradient(90deg, #4c0519, #9f1239);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .restart-btn { background: linear-gradient(90deg, #475569, #64748b); }
+    .next-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .sidebar { display: grid; gap: 14px; position: sticky; top: 14px; }
+
+    .side-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .score-big { font-size: 2.15rem; line-height: 1; color: var(--rose); font-weight: 900; margin: 10px 0; }
+
+    .streak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 12px; }
+
+    .streak-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      text-align: center;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .streak-box span { display: block; font-size: 1.55rem; color: var(--rose); }
+    .principles { padding-left: 19px; margin: 10px 0 0; }
+    .principles li { margin-bottom: 8px; }
+
+    .results { display: none; padding: 24px; }
+    .results.show { display: block; }
+
+    .result-grade {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--rose);
+      font-weight: 900;
+      line-height: 1;
+      margin: 10px 0;
+    }
+
+    .rating-badge {
+      display: inline-flex;
+      margin: 8px 0 12px;
+      border-radius: 999px;
+      padding: 10px 15px;
+      background: linear-gradient(90deg, var(--rose), var(--orange));
+      color: white;
+      font-weight: 900;
+    }
+
+    .missed-list { display: grid; gap: 10px; margin-top: 16px; }
+    .missed-item { border: 1px solid var(--border); border-radius: 16px; padding: 14px; background: #f8fafc; }
+
+    .content-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px; }
+
+    .info-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 18px; padding: 18px; border-left: 5px solid var(--rose); }
+
+    .table-wrap { overflow-x: auto; }
+    .safety-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 0.95rem; overflow: hidden; border-radius: 14px; }
+    .safety-table th, .safety-table td { border: 1px solid var(--border); padding: 12px; text-align: left; vertical-align: top; }
+    .safety-table th { background: #fff1f2; color: #881337; }
+    .safety-table tr:nth-child(even) { background: #f8fafc; }
+
+    .related-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 15px; }
+
+    .related-links a {
+      display: block;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(90deg, #4c0519, #082f57);
+      border-radius: 16px;
+      padding: 15px;
+      font-weight: 900;
+    }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.92rem; margin-top: 34px; }
+    footer a { color: var(--blue); font-weight: 900; text-decoration: none; }
+
+    @media (max-width: 950px) {
+      .quiz-wrap { grid-template-columns: 1fr; }
+      .sidebar { position: static; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 18px 14px 46px; }
+      .hero { padding: 28px 18px; border-radius: 22px; }
+      .hero::before { font-size: 4.8rem; }
+      .panel { padding: 20px 16px; border-radius: 18px; }
+      .question-area { padding: 18px; }
+      .scenario { font-size: 1.08rem; }
+      .answer-btn { font-size: 0.96rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-row">
+      <a class="top-link" href="/">← Back to Home</a>
+      <a class="top-link" href="/browse-all-practice.html">Browse All Practice</a>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow">💊 Medication Safety Practice</div>
+      <h1>Medication Error Challenge</h1>
+      <p>Can you catch the medication error before it reaches the patient? This challenge presents realistic nursing and healthcare scenarios where learners must identify unsafe medication orders, dosage mistakes, patient safety concerns, and administration risks.</p>
+      <p>Designed for nursing students, NCLEX preparation, medical assistants, allied health learners, and healthcare professionals who want to strengthen medication safety thinking.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#quiz">Start the Challenge</a>
+        <a class="btn secondary" href="/drug-calculation-quiz.html">Drug Calculation Quiz</a>
+        <a class="btn secondary" href="/rn-practice-questions.html">RN Practice Questions</a>
+      </div>
+    </header>
+
+    <section class="panel highlight">
+      <h2>This Is Not Just Medication Math</h2>
+      <p>Medication safety is more than calculating a dose. Nurses and healthcare learners must recognize unsafe orders, check allergies, compare medications to labs and vital signs, confirm patient identity, question unclear orders, and know when to stop before administration.</p>
+      <p>This page focuses on medication judgment: what would you question, what is unsafe, and what should happen before medication reaches the patient?</p>
+      <div class="stats">
+        <div class="stat"><strong>25</strong>realistic safety scenarios</div>
+        <div class="stat"><strong>High-alert</strong>medication concepts</div>
+        <div class="stat"><strong>NCLEX-style</strong>clinical judgment</div>
+        <div class="stat"><strong>Free</strong>no signup required</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Medication Safety Topics Covered</h2>
+      <div class="content-grid">
+        <div class="info-card"><h3>Medication Rights</h3><p>Right patient, medication, dose, route, time, documentation, reason, response, and safety checks.</p></div>
+        <div class="info-card"><h3>High-Alert Medications</h3><p>Insulin, anticoagulants, opioids, concentrated electrolytes, and medications that need extra caution.</p></div>
+        <div class="info-card"><h3>Unsafe Orders</h3><p>Unclear, illegible, incomplete, unusually high, or clinically unsafe medication orders.</p></div>
+        <div class="info-card"><h3>Vital Sign Safety</h3><p>When low heart rate, low blood pressure, respiratory depression, or unstable assessment findings should stop administration.</p></div>
+        <div class="info-card"><h3>Lab Value Safety</h3><p>Potassium, INR, glucose, renal function, platelets, and other labs that affect medication risk.</p></div>
+        <div class="info-card"><h3>Allergy Checks</h3><p>Recognizing potential medication-allergy conflicts before giving a drug.</p></div>
+      </div>
+    </section>
+
+    <main id="quiz" class="quiz-wrap">
+      <section class="quiz-card">
+        <div class="quiz-head">
+          <h2>Can You Catch the Medication Error?</h2>
+          <div class="progress-row">
+            <span id="questionCounter">Question 1 of 25</span>
+            <span id="scoreLabel">Score: 0</span>
+          </div>
+          <div class="progress-bar" aria-label="Quiz progress">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <div class="question-area" id="questionArea">
+          <div class="tag-row" id="tagRow"></div>
+          <div class="scenario" id="scenarioText"></div>
+          <div class="answers" id="answers"></div>
+          <div class="feedback" id="feedback">
+            <div class="feedback-title" id="feedbackTitle"></div>
+            <p class="rationale" id="rationaleText"></p>
+            <div class="clinical-pearl" id="clinicalPearl"></div>
+          </div>
+          <div class="quiz-actions">
+            <button class="restart-btn" type="button" onclick="restartQuiz()">Restart</button>
+            <button class="next-btn" id="nextBtn" type="button" onclick="nextQuestion()" disabled>Next Question</button>
+          </div>
+        </div>
+        <div class="results" id="results">
+          <h2>Challenge Complete</h2>
+          <p>You finished the Medication Error Challenge.</p>
+          <div class="result-grade" id="resultGrade"></div>
+          <div class="rating-badge" id="ratingBadge"></div>
+          <p id="resultMessage"></p>
+          <button class="next-btn" type="button" onclick="restartQuiz()">Try Again</button>
+          <div class="missed-list" id="missedList"></div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>Your Score</h3>
+          <div class="score-big" id="sideScore">0/25</div>
+          <div class="streak-grid">
+            <div class="streak-box">Current<span id="currentStreak">0</span></div>
+            <div class="streak-box">Best<span id="bestStreak">0</span></div>
+          </div>
+        </div>
+        <div class="side-card">
+          <h3>Medication Safety Rules</h3>
+          <ul class="principles">
+            <li><strong>Check allergies:</strong> never ignore allergy warnings.</li>
+            <li><strong>Match meds to vitals:</strong> HR, BP, respirations, and oxygenation matter.</li>
+            <li><strong>Review critical labs:</strong> potassium, INR, glucose, platelets, and renal function can change safety.</li>
+            <li><strong>Clarify unclear orders:</strong> guessing is not safe medication practice.</li>
+            <li><strong>Assess first:</strong> if an error occurs, patient safety comes before documentation.</li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>Safety Reminder</h3>
+          <p>This page is for learning only. It is not medication administration guidance. Always follow your instructor, facility policy, pharmacist, provider, and official clinical resources.</p>
+        </div>
+      </aside>
+    </main>
+
+    <section class="panel">
+      <h2>High-Yield Medication Error Patterns</h2>
+      <p>These are common medication safety patterns students should learn to recognize. In real care, always follow your school, facility, pharmacist, provider, and official clinical resources.</p>
+      <div class="table-wrap">
+        <table class="safety-table">
+          <thead>
+            <tr><th>Safety Pattern</th><th>Why It Matters</th><th>What to Do</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Medication conflicts with allergy</td><td>May trigger allergic reaction or anaphylaxis.</td><td>Stop and clarify before administration.</td></tr>
+            <tr><td>Beta blocker with very low heart rate</td><td>Can worsen bradycardia and cause instability.</td><td>Assess and clarify per policy.</td></tr>
+            <tr><td>Potassium ordered with hyperkalemia</td><td>Can worsen dangerous cardiac conduction risk.</td><td>Hold/question and notify per policy.</td></tr>
+            <tr><td>Warfarin with high INR or bleeding</td><td>Increased bleeding or hemorrhage risk.</td><td>Review INR and bleeding status before administration.</td></tr>
+            <tr><td>Wrong-patient barcode alert</td><td>May prevent a serious wrong-patient medication error.</td><td>Investigate. Do not override without resolving the issue.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel dark">
+      <h2>Related MedSkillBuilder Practice</h2>
+      <p>Keep building medication safety, nursing judgment, lab interpretation, and clinical reasoning skills.</p>
+      <div class="related-links">
+        <a href="/drug-calculation-quiz.html">Drug Calculation Quiz</a>
+        <a href="/critical-lab-values-challenge.html">Critical Lab Values Challenge</a>
+        <a href="/who-do-you-see-first-challenge.html">Who Do You See First? Challenge</a>
+        <a href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+        <a href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
+        <a href="/teas-practice-questions.html">TEAS Practice Questions</a>
+        <a href="/browse-all-practice.html">Browse All Practice</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Medication Error Challenge FAQ</h2>
+      <h3>What is a medication error?</h3>
+      <p>A medication error is a preventable event involving medication use that may lead to inappropriate medication administration or patient harm.</p>
+      <h3>What should a nurse do if a medication order seems unsafe?</h3>
+      <p>The nurse should stop, assess the situation, review the order, and clarify according to facility policy before giving the medication.</p>
+      <h3>Why are high-alert medications important?</h3>
+      <p>High-alert medications can cause significant harm if used incorrectly. Examples often include insulin, anticoagulants, opioids, and concentrated electrolytes.</p>
+      <h3>Is this quiz only for nursing students?</h3>
+      <p>No. This challenge can help nursing students, medical assistant students, allied health learners, NCLEX review learners, and healthcare students practice medication safety thinking.</p>
+    </section>
+
+    <footer>
+      <p>MedSkillBuilder provides free healthcare learning tools for nursing students, allied health learners, biomedical equipment technicians, and early healthcare professionals.</p>
+      <p><a href="/browse-all-practice.html">Browse All Practice</a> | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms.html">Terms</a></p>
+      <p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const questions = [
+      {category:"Allergy Safety",difficulty:"High Priority",scenario:"A patient has a documented penicillin allergy. Which medication order should the nurse question first?",answers:["Acetaminophen","Amoxicillin","Ibuprofen","Ondansetron"],correct:"Amoxicillin",rationale:"Amoxicillin belongs to the penicillin family and may trigger an allergic reaction in a patient with a documented penicillin allergy.",pearl:"Always compare the medication order with the allergy list before administration."},
+      {category:"Vital Sign Safety",difficulty:"High Priority",scenario:"The patient's heart rate is 48 bpm. Which medication requires further assessment before administration?",answers:["Metoprolol","Acetaminophen","Amoxicillin","Docusate"],correct:"Metoprolol",rationale:"Metoprolol is a beta blocker and can further decrease heart rate. A heart rate of 48 requires careful assessment and clarification per policy.",pearl:"Vitals can turn a routine medication into a safety concern."},
+      {category:"Lab Safety",difficulty:"Critical",scenario:"A potassium level returns at 6.2 mEq/L. Which medication should be questioned?",answers:["Potassium Chloride","Normal Saline","Acetaminophen","Cefazolin"],correct:"Potassium Chloride",rationale:"Administering potassium to a patient with hyperkalemia may worsen a life-threatening electrolyte abnormality and increase cardiac risk.",pearl:"Potassium orders should always be considered with the current potassium level."},
+      {category:"Medication Rights",difficulty:"Core Safety",scenario:"Which action violates the rights of medication administration?",answers:["Verifying patient identity","Checking allergies","Giving medication without confirming patient identity","Reviewing the order"],correct:"Giving medication without confirming patient identity",rationale:"Medication administration requires patient identification. Skipping identity verification can cause a wrong-patient error.",pearl:"Right patient is one of the most basic and most important medication safety checks."},
+      {category:"High Concentration Risk",difficulty:"Hard",scenario:"A provider orders morphine 10 mg IV. The vial contains morphine 100 mg/mL. What is the biggest safety concern?",answers:["The vial is highly concentrated","The medication color","The patient's room number","The route spelling"],correct:"The vial is highly concentrated",rationale:"A highly concentrated vial increases the risk of drawing up the wrong amount. Concentrated opioids require extra caution and verification.",pearl:"Concentrated medication containers increase the risk of serious dosing errors."},
+      {category:"NPO Safety",difficulty:"High Priority",scenario:"The MAR shows insulin due before breakfast. The patient is NPO. What should the nurse do first?",answers:["Administer immediately","Clarify the order and check blood glucose","Ignore the medication permanently","Double the dose later"],correct:"Clarify the order and check blood glucose",rationale:"A patient who is NPO may be at increased risk for hypoglycemia depending on the insulin type, timing, and blood glucose. The safest action is to assess and clarify.",pearl:"Insulin decisions should match food intake, glucose level, timing, and provider orders."},
+      {category:"High-Alert Medication",difficulty:"Core Safety",scenario:"Which medication is commonly considered high-alert?",answers:["Insulin","Acetaminophen","Calcium carbonate","Loratadine"],correct:"Insulin",rationale:"Insulin is a high-alert medication because incorrect dosing can cause serious hypoglycemia or hyperglycemia.",pearl:"High-alert medications are not always rare. Some are used every day."},
+      {category:"Dose Safety",difficulty:"Hard",scenario:"A nurse notices an order for digoxin 1.25 mg daily. What should raise concern?",answers:["The dose may be unusually high","The medication starts with D","The frequency says daily","The tablet color"],correct:"The dose may be unusually high",rationale:"Digoxin is commonly prescribed in much smaller doses, often written in fractions of a milligram. An order of 1.25 mg may represent a dangerous dose and should be clarified.",pearl:"Some medication errors are caught because the dose does not look reasonable."},
+      {category:"Patient Rights",difficulty:"Core Safety",scenario:"A patient refuses a medication. What should the nurse do?",answers:["Force administration","Hide medication in food","Educate the patient and document the refusal","Call security immediately"],correct:"Educate the patient and document the refusal",rationale:"Patients generally have the right to refuse medication. The nurse should provide education, assess understanding, and document according to policy.",pearl:"Medication safety includes respecting patient rights and documenting appropriately."},
+      {category:"Priority Medication",difficulty:"High Priority",scenario:"Which patient-related medication situation should be addressed first?",answers:["Stable pain patient asking when medication is due","Patient with blood sugar 38 mg/dL","Routine antibiotic due in one hour","Stool softener due at bedtime"],correct:"Patient with blood sugar 38 mg/dL",rationale:"A blood sugar of 38 mg/dL can rapidly lead to seizure, loss of consciousness, or serious neurologic injury. It requires immediate attention.",pearl:"Medication priorities should follow immediate threat to life and patient safety."},
+      {category:"Look-Alike Sound-Alike",difficulty:"Core Safety",scenario:"Look-alike and sound-alike medication names increase the risk for which type of problem?",answers:["Communication or selection errors","Falls only","Burns only","Dehydration only"],correct:"Communication or selection errors",rationale:"Look-alike and sound-alike names can lead to selecting, ordering, dispensing, or administering the wrong medication.",pearl:"Slow down when names look or sound similar."},
+      {category:"Wrong Patient",difficulty:"High Priority",scenario:"A patient receives medication intended for another patient. What type of error occurred?",answers:["Wrong patient error","Wrong room temperature","Wrong meal tray","Wrong documentation font"],correct:"Wrong patient error",rationale:"Administering medication intended for another patient is a wrong-patient medication error.",pearl:"Patient identification is not optional."},
+      {category:"Order Clarity",difficulty:"Core Safety",scenario:"A medication order is illegible. What should the nurse do?",answers:["Guess the medication","Ask another nurse to guess","Clarify the order before administration","Skip documentation"],correct:"Clarify the order before administration",rationale:"Illegible or unclear orders must be clarified before medication administration. Guessing is unsafe.",pearl:"If the order is unclear, stop and clarify."},
+      {category:"Lab Safety",difficulty:"High Priority",scenario:"Which lab value should be reviewed before giving warfarin?",answers:["INR","Sodium","Chloride","Magnesium"],correct:"INR",rationale:"Warfarin affects clotting. INR is used to monitor anticoagulation effect and bleeding risk.",pearl:"Match the medication to the lab that reflects its safety risk."},
+      {category:"Blood Pressure Safety",difficulty:"High Priority",scenario:"Which medication should be questioned with a blood pressure of 82/48?",answers:["Lisinopril","Vitamin D","Multivitamin","Stool softener"],correct:"Lisinopril",rationale:"Lisinopril can lower blood pressure. Giving it to a patient who is already hypotensive may worsen instability.",pearl:"Blood pressure medications require blood pressure assessment before administration."},
+      {category:"Allergy Safety",difficulty:"High Priority",scenario:"A patient is allergic to sulfa drugs. Which medication may require clarification?",answers:["TMP-SMX","Acetaminophen","Omeprazole","Calcium carbonate"],correct:"TMP-SMX",rationale:"TMP-SMX is a sulfonamide antibiotic and may be a concern in a patient with a documented sulfa allergy.",pearl:"Allergy checks are especially important with antibiotic orders."},
+      {category:"Double Check",difficulty:"Core Safety",scenario:"Which medication commonly requires an independent double-check in many facilities?",answers:["Insulin","Acetaminophen","Docusate","Loratadine"],correct:"Insulin",rationale:"Insulin is high-alert and often requires additional safety checks depending on facility policy.",pearl:"Know which medications your facility classifies as high-alert."},
+      {category:"Error Response",difficulty:"Critical",scenario:"A nurse discovers that a medication error occurred. What is the first priority?",answers:["Hide the error","Assess the patient","Delete documentation","Blame another staff member"],correct:"Assess the patient",rationale:"The first priority after discovering a medication error is patient safety. Assess the patient, then follow reporting and notification procedures.",pearl:"After an error, the patient comes first."},
+      {category:"Route Safety",difficulty:"Core Safety",scenario:"Which medication route usually has the most immediate systemic effect?",answers:["Topical","IV","Patch","Eye drops"],correct:"IV",rationale:"IV medications enter the bloodstream directly and can have rapid effects, making route verification important.",pearl:"Wrong-route errors can become serious quickly, especially with IV administration."},
+      {category:"Dose Limit",difficulty:"High Priority",scenario:"A medication order exceeds the recommended maximum dose. What should the nurse do?",answers:["Administer as written","Clarify with the provider or pharmacist according to policy","Split the dose without asking","Delay indefinitely and say nothing"],correct:"Clarify with the provider or pharmacist according to policy",rationale:"An order that exceeds a recommended maximum dose should be clarified before administration.",pearl:"Question unsafe doses before they reach the patient."},
+      {category:"Digoxin Safety",difficulty:"Hard",scenario:"Which electrolyte abnormality can increase the risk of digoxin toxicity?",answers:["Hypokalemia","Hypernatremia","Hyperchloremia","Normal calcium"],correct:"Hypokalemia",rationale:"Low potassium can increase the risk of digoxin toxicity and dysrhythmias.",pearl:"Some medications become more dangerous when certain labs are abnormal."},
+      {category:"Unfamiliar Medication",difficulty:"Core Safety",scenario:"What is the safest response to an unfamiliar medication?",answers:["Skip it without explanation","Administer anyway","Research and verify before administration","Ask the patient to identify it"],correct:"Research and verify before administration",rationale:"The nurse should understand the medication, purpose, dose, route, precautions, and safety concerns before administration.",pearl:"Never give a medication you cannot safely identify and understand."},
+      {category:"Polypharmacy",difficulty:"Hard",scenario:"Which patient is at higher risk for medication errors?",answers:["Patient taking one medication","Patient taking many medications from multiple providers","Healthy athlete with no medications","Outpatient physical therapy patient only"],correct:"Patient taking many medications from multiple providers",rationale:"Polypharmacy increases the risk of interactions, duplicate therapy, confusion, and medication errors.",pearl:"More medications usually means more opportunity for error."},
+      {category:"Barcode Safety",difficulty:"High Priority",scenario:"A medication barcode scan alerts: wrong patient. What should the nurse do?",answers:["Override immediately","Investigate before administration","Ignore the warning","Restart the computer and give the medication"],correct:"Investigate before administration",rationale:"A wrong-patient alert must be investigated. Barcode alerts are designed to catch potential medication errors before administration.",pearl:"Do not override a safety alert until the problem is understood and resolved."},
+      {category:"Final Safety Check",difficulty:"Brutal",scenario:"Which action best prevents medication errors?",answers:["Working faster","Limiting documentation","Following medication safety checks consistently","Skipping barcode scans when busy"],correct:"Following medication safety checks consistently",rationale:"Consistent medication safety checks reduce the chance of wrong patient, wrong medication, wrong dose, wrong route, wrong time, and missed allergy or lab concerns.",pearl:"Medication safety depends on consistent habits, not speed."}
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+    let selected = false;
+    let missed = [];
+    let shuffledQuestions = [];
+    let currentStreak = 0;
+    let bestStreak = 0;
+
+    function shuffleArray(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function startQuiz() {
+      shuffledQuestions = shuffleArray(questions);
+      currentIndex = 0;
+      score = 0;
+      selected = false;
+      missed = [];
+      currentStreak = 0;
+      bestStreak = 0;
+      document.getElementById("questionArea").style.display = "block";
+      document.getElementById("results").classList.remove("show");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      selected = false;
+      const q = shuffledQuestions[currentIndex];
+      const answers = shuffleArray(q.answers);
+      const total = shuffledQuestions.length;
+
+      document.getElementById("questionCounter").textContent = `Question ${currentIndex + 1} of ${total}`;
+      document.getElementById("scoreLabel").textContent = `Score: ${score}`;
+      document.getElementById("sideScore").textContent = `${score}/${total}`;
+      document.getElementById("currentStreak").textContent = currentStreak;
+      document.getElementById("bestStreak").textContent = bestStreak;
+      document.getElementById("progressFill").style.width = `${(currentIndex / total) * 100}%`;
+
+      const tagRow = document.getElementById("tagRow");
+      tagRow.innerHTML = `<span class="tag">${q.category}</span><span class="tag ${q.difficulty === "Critical" || q.difficulty === "High Priority" ? "high" : q.difficulty === "Brutal" ? "brutal" : ""}">${q.difficulty}</span>`;
+      document.getElementById("scenarioText").textContent = q.scenario;
+
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+
+      answers.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.className = "answer-btn";
+        btn.type = "button";
+        btn.innerHTML = `<strong>${String.fromCharCode(65 + index)}.</strong> ${answer}`;
+        btn.onclick = () => selectAnswer(answer, btn);
+        answersDiv.appendChild(btn);
+      });
+
+      const feedback = document.getElementById("feedback");
+      feedback.className = "feedback";
+      document.getElementById("feedbackTitle").textContent = "";
+      document.getElementById("rationaleText").textContent = "";
+      document.getElementById("clinicalPearl").textContent = "";
+      document.getElementById("nextBtn").disabled = true;
+      document.getElementById("nextBtn").textContent = currentIndex === total - 1 ? "See Results" : "Next Question";
+    }
+
+    function selectAnswer(answer, button) {
+      if (selected) return;
+      selected = true;
+      const q = shuffledQuestions[currentIndex];
+      const buttons = document.querySelectorAll(".answer-btn");
+      const isCorrect = answer === q.correct;
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent.includes(q.correct)) btn.classList.add("correct");
+      });
+
+      if (!isCorrect) {
+        button.classList.add("wrong");
+        currentStreak = 0;
+        missed.push({scenario: q.scenario, selected: answer, correct: q.correct, rationale: q.rationale});
+      } else {
+        score++;
+        currentStreak++;
+        if (currentStreak > bestStreak) bestStreak = currentStreak;
+      }
+
+      const feedback = document.getElementById("feedback");
+      feedback.className = `feedback show ${isCorrect ? "correct" : "wrong"}`;
+      document.getElementById("feedbackTitle").textContent = isCorrect ? "Correct — you caught the safety issue." : "Not first — review the medication safety concern.";
+      document.getElementById("rationaleText").textContent = q.rationale;
+      document.getElementById("clinicalPearl").innerHTML = `<strong>Safety pearl:</strong> ${q.pearl}`;
+      document.getElementById("scoreLabel").textContent = `Score: ${score}`;
+      document.getElementById("sideScore").textContent = `${score}/${shuffledQuestions.length}`;
+      document.getElementById("currentStreak").textContent = currentStreak;
+      document.getElementById("bestStreak").textContent = bestStreak;
+      document.getElementById("nextBtn").disabled = false;
+    }
+
+    function nextQuestion() {
+      if (currentIndex < shuffledQuestions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function getRating(score) {
+      if (score <= 5) return "Medication Safety Rookie";
+      if (score <= 10) return "Careful Learner";
+      if (score <= 15) return "Safe Med Pass";
+      if (score <= 20) return "Medication Safety Pro";
+      return "Error-Catching Expert";
+    }
+
+    function showResults() {
+      const total = shuffledQuestions.length;
+      document.getElementById("progressFill").style.width = "100%";
+      document.getElementById("questionArea").style.display = "none";
+      const results = document.getElementById("results");
+      results.classList.add("show");
+
+      const percent = Math.round((score / total) * 100);
+      document.getElementById("resultGrade").textContent = `${score}/${total} (${percent}%)`;
+      document.getElementById("ratingBadge").textContent = getRating(score);
+
+      let message = "";
+      if (percent >= 90) message = "Excellent medication safety judgment. You recognized unsafe orders, allergy concerns, lab risks, and patient safety issues.";
+      else if (percent >= 76) message = "Strong work. Review the missed rationales and focus on allergies, vitals, labs, and high-alert medications.";
+      else if (percent >= 60) message = "Good foundation. Keep practicing medication safety patterns and unsafe order recognition.";
+      else message = "This challenge is intentionally difficult. Review medication rights, allergy checks, vital signs, lab values, and high-alert medications before retrying.";
+      document.getElementById("resultMessage").textContent = message;
+
+      const missedList = document.getElementById("missedList");
+      missedList.innerHTML = "";
+      if (missed.length > 0) {
+        const header = document.createElement("h3");
+        header.textContent = "Questions to Review";
+        missedList.appendChild(header);
+        missed.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "missed-item";
+          div.innerHTML = `<strong>Correct safety concern:</strong> ${item.correct}<br><strong>You chose:</strong> ${item.selected}<br><span>${item.rationale}</span>`;
+          missedList.appendChild(div);
+        });
+      } else {
+        const div = document.createElement("div");
+        div.className = "missed-item";
+        div.innerHTML = "<strong>Perfect score.</strong> You earned Error-Catching Expert status.";
+        missedList.appendChild(div);
+      }
+    }
+
+    function restartQuiz() {
+      startQuiz();
+      document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    startQuiz();
+  </script>
+</body>
+</html>
