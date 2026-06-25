@@ -601,6 +601,12 @@
   </url>
 
   <url>
+    <loc>https://medskillbuilder.com/medication-administration-rights.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
     <loc>https://medskillbuilder.com/about.html</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
