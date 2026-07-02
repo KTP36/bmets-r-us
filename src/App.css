@@ -212,3 +212,25 @@ body {
   right: 0;
   border-right-color: var(--border);
 }
+
+
+
+/* ===== MedSkillBuilder Browse-All Card Fix ===== */
+/* Prevent quiz text rule from overriding Browse All cards */
+
+.practice-link,
+.practice-link * {
+  color: #ffffff !important;
+}
+
+.practice-link span {
+  color: rgba(255,255,255,.92) !important;
+}
+
+.practice-link.terms {
+  background: linear-gradient(90deg, #6d28d9, #8b5cf6) !important;
+}
+
+.practice-link.terms:hover {
+  filter: brightness(1.05);
+}
