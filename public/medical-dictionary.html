@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Medical Dictionary | Free Healthcare Terms &amp; Definitions</title>
-<meta content="Search the free MedSkillBuilder Medical Dictionary for healthcare definitions, nursing terms, lab values, anatomy, equipment, abbreviations, emergency medicine, ICU, imaging, surgery, OB/GYN, pediatrics, wound care, pharmacology, medical word parts, and clinical vocabulary." name="description"/>
+<meta content="Search the free MedSkillBuilder Medical Dictionary for healthcare definitions, nursing terms, lab values, anatomy, equipment, abbreviations, emergency medicine, ICU, imaging, surgery, OB/GYN, pediatrics, oncology, psychiatry, renal, hematology, infectious disease, orthopedics, pharmacology, medical word parts, and clinical vocabulary." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://medskillbuilder.com/medical-dictionary.html" rel="canonical"/>
 <meta content="Medical Dictionary | MedSkillBuilder" property="og:title"/>
@@ -68,6 +68,15 @@
 .term-card[data-category="Surgery"]{border-left-color:#475569}
 .term-card[data-category="Psychiatry"]{border-left-color:#9333ea}
 .term-card[data-category="Neurology"]{border-left-color:#4f46e5}
+
+/* Part 1 Batch 2 Styles */
+.term-card[data-category="Oncology"]{border-left-color:#be123c}
+.term-card[data-category="Nursing"]{border-left-color:#0284c7}
+.term-card[data-category="Gastroenterology"]{border-left-color:#ca8a04}
+.term-card[data-category="Renal"]{border-left-color:#0f766e}
+.term-card[data-category="Hematology"]{border-left-color:#b91c1c}
+.term-card[data-category="Infectious Disease"]{border-left-color:#65a30d}
+.term-card[data-category="Orthopedics"]{border-left-color:#78716c}
 </style>
 </head>
 <body>
@@ -83,7 +92,7 @@
 <a class="btn alt" href="/browse-all-practice.html">Browse All Practice</a>
 </div>
 <div class="stats">
-<div class="stat"><strong>527</strong><span>terms included</span></div>
+<div class="stat"><strong>626</strong><span>terms included</span></div>
 <div class="stat"><strong>Flagship</strong><span>dictionary foundation</span></div>
 <div class="stat"><strong>Search</strong><span>instant filtering</span></div>
 <div class="stat"><strong>Free</strong><span>no login required</span></div>
@@ -108,9 +117,8 @@
 <span>Procedures</span>
 <span>Respiratory</span>
 <span>Vital Signs</span>
-<span>Emergency Medicine</span><span>ICU</span><span>Imaging</span><span>Neurology</span><span>OB/GYN</span><span>Pediatrics</span><span>Psychiatry</span><span>Surgery</span><span>Wound Care</span></div>
+<span>Emergency Medicine</span><span>ICU</span><span>Imaging</span><span>Neurology</span><span>OB/GYN</span><span>Pediatrics</span><span>Psychiatry</span><span>Surgery</span><span>Wound Care</span><span>Gastroenterology</span><span>Hematology</span><span>Infectious Disease</span><span>Nursing</span><span>Oncology</span><span>Orthopedics</span><span>Renal</span></div>
 </section>
-
 <section class="panel">
 <h2>Browse by Specialty</h2>
 <p>Use these specialty areas to quickly explore common healthcare vocabulary by clinical setting, body system, or learning pathway.</p>
@@ -130,6 +138,14 @@
 <p>Start with high-yield terms that appear often in nursing, TEAS, EMT, allied health, medical assistant, and clinical training.</p>
 <div class="category-pills">
 <span>Sepsis</span><span>Troponin</span><span>Hyperkalemia</span><span>ABG</span><span>EKG</span><span>Hypoxia</span><span>Creatinine</span><span>CHF</span><span>COPD</span><span>Stroke</span><span>DKA</span><span>PE</span><span>DVT</span><span>Intubation</span><span>Defibrillation</span><span>GCS</span>
+</div>
+</section>
+
+<section class="panel">
+<h2>Part 1 Specialty Expansion</h2>
+<p>This release expands the dictionary beyond basic terminology into specialty vocabulary learners see in real clinical settings, including oncology, psychiatry, nursing workflow, cardiology, respiratory care, gastroenterology, renal care, hematology, infectious disease, and orthopedics.</p>
+<div class="category-pills">
+<span>Oncology</span><span>Psychiatry</span><span>Nursing</span><span>Gastroenterology</span><span>Renal</span><span>Hematology</span><span>Infectious Disease</span><span>Orthopedics</span>
 </div>
 </section>
 <section class="panel" id="dictionary">
@@ -152,7 +168,7 @@
 <option value="Procedures">Procedures</option>
 <option value="Respiratory">Respiratory</option>
 <option value="Vital Signs">Vital Signs</option>
-<option value="Emergency Medicine">Emergency Medicine</option><option value="ICU">ICU</option><option value="Imaging">Imaging</option><option value="Neurology">Neurology</option><option value="OB/GYN">OB/GYN</option><option value="Pediatrics">Pediatrics</option><option value="Psychiatry">Psychiatry</option><option value="Surgery">Surgery</option><option value="Wound Care">Wound Care</option></select>
+<option value="Emergency Medicine">Emergency Medicine</option><option value="ICU">ICU</option><option value="Imaging">Imaging</option><option value="Neurology">Neurology</option><option value="OB/GYN">OB/GYN</option><option value="Pediatrics">Pediatrics</option><option value="Psychiatry">Psychiatry</option><option value="Surgery">Surgery</option><option value="Wound Care">Wound Care</option><option value="Gastroenterology">Gastroenterology</option><option value="Hematology">Hematology</option><option value="Infectious Disease">Infectious Disease</option><option value="Nursing">Nursing</option><option value="Oncology">Oncology</option><option value="Orthopedics">Orthopedics</option><option value="Renal">Renal</option></select>
 <select aria-label="Sort terms" id="sortFilter">
 <option value="az">Sort A to Z</option>
 <option value="za">Sort Z to A</option>
@@ -4313,7 +4329,6 @@
 <div class="remember">WNL = within normal limits.</div>
 <a href="/medical-abbreviations-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="A" data-search="airway path for air movement the passage that allows air to move in and out of the lungs. emergency medicine breathing passage airway is one of the first priorities in emergency assessment. airway comes before breathing." data-term="airway">
 <span class="badge">Emergency Medicine</span>
 <h3>Airway</h3>
@@ -4324,7 +4339,6 @@
 <div class="remember">Airway comes before breathing.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="A" data-search="acuity level of illness severity a measure of how urgent or serious a patient's condition is. emergency medicine patient severity higher-acuity patients usually need faster evaluation and intervention. acuity = how urgent." data-term="acuity">
 <span class="badge">Emergency Medicine</span>
 <h3>Acuity</h3>
@@ -4335,7 +4349,6 @@
 <div class="remember">Acuity = how urgent.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="C" data-search="cardiac arrest heart stopped pumping effectively a life-threatening emergency where the heart is not effectively circulating blood. emergency medicine code; arrest requires immediate emergency response according to protocol. cardiac arrest = no effective circulation." data-term="cardiac arrest">
 <span class="badge">Emergency Medicine</span>
 <h3>Cardiac arrest</h3>
@@ -4346,7 +4359,6 @@
 <div class="remember">Cardiac arrest = no effective circulation.</div>
 <a href="/ekg-rhythm-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="C" data-search="code blue medical emergency response a hospital emergency call usually used for cardiac or respiratory arrest. emergency medicine code exact meaning can vary by facility, but it signals an urgent team response. code blue = emergency team." data-term="code blue">
 <span class="badge">Emergency Medicine</span>
 <h3>Code blue</h3>
@@ -4357,7 +4369,6 @@
 <div class="remember">Code blue = emergency team.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="D" data-search="defibrillation electrical shock therapy delivery of an electrical shock to treat certain life-threatening heart rhythms. emergency medicine shock used for rhythms such as ventricular fibrillation or pulseless ventricular tachycardia. defib can reset shockable rhythms." data-term="defibrillation">
 <span class="badge">Emergency Medicine</span>
 <h3>Defibrillation</h3>
@@ -4368,7 +4379,6 @@
 <div class="remember">Defib can reset shockable rhythms.</div>
 <a href="/ekg-rhythm-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="G" data-search="glasgow coma scale neurologic scoring tool a scale used to describe level of consciousness using eye, verbal, and motor responses. emergency medicine gcs lower scores suggest decreased neurologic responsiveness. gcs = eye, verbal, motor." data-term="glasgow coma scale">
 <span class="badge">Emergency Medicine</span>
 <h3>Glasgow Coma Scale</h3>
@@ -4379,7 +4389,6 @@
 <div class="remember">GCS = eye, verbal, motor.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="R" data-search="respiratory arrest breathing has stopped a life-threatening condition where a patient is not breathing effectively or at all. emergency medicine stopped breathing can quickly lead to cardiac arrest without intervention. respiratory arrest = no breathing." data-term="respiratory arrest">
 <span class="badge">Emergency Medicine</span>
 <h3>Respiratory arrest</h3>
@@ -4390,7 +4399,6 @@
 <div class="remember">Respiratory arrest = no breathing.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="T" data-search="trauma injury from force physical injury caused by an external force such as a fall, crash, or impact. emergency medicine injury assessment focuses on airway, breathing, circulation, bleeding, and neurologic status. trauma = injury event." data-term="trauma">
 <span class="badge">Emergency Medicine</span>
 <h3>Trauma</h3>
@@ -4401,7 +4409,6 @@
 <div class="remember">Trauma = injury event.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Emergency Medicine" data-letter="R" data-search="rapid response urgent clinical team response a team response called when a patient's condition is worsening before full arrest occurs. emergency medicine rrt used to get help quickly for clinical deterioration. rapid response = get help early." data-term="rapid response">
 <span class="badge">Emergency Medicine</span>
 <h3>Rapid response</h3>
@@ -4412,7 +4419,6 @@
 <div class="remember">Rapid response = get help early.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="S" data-search="septic shock sepsis with severe circulatory failure a severe form of sepsis with dangerously low blood pressure and poor tissue perfusion. icu infection shock a critical emergency requiring rapid recognition and treatment. septic shock = infection plus perfusion failure." data-term="septic shock">
 <span class="badge">ICU</span>
 <h3>Septic shock</h3>
@@ -4423,7 +4429,6 @@
 <div class="remember">Septic shock = infection plus perfusion failure.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="S" data-search="sedation medication-induced calming use of medication to reduce anxiety, agitation, awareness, or discomfort. icu sedative effect requires monitoring of airway, breathing, mental status, and vital signs. sedation can slow breathing." data-term="sedation">
 <span class="badge">ICU</span>
 <h3>Sedation</h3>
@@ -4434,7 +4439,6 @@
 <div class="remember">Sedation can slow breathing.</div>
 <a href="/normal-vital-signs-chart.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="P" data-search="peep positive end-expiratory pressure pressure maintained in the lungs at the end of exhalation during ventilator support. icu positive pressure helps keep alveoli open and can improve oxygenation. peep keeps air sacs open." data-term="peep">
 <span class="badge">ICU</span>
 <h3>PEEP</h3>
@@ -4445,7 +4449,6 @@
 <div class="remember">PEEP keeps air sacs open.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="T" data-search="tidal volume amount of air per breath the volume of air delivered or moved with each breath. icu vt a key ventilator concept and respiratory measurement. tidal volume = breath size." data-term="tidal volume">
 <span class="badge">ICU</span>
 <h3>Tidal volume</h3>
@@ -4456,7 +4459,6 @@
 <div class="remember">Tidal volume = breath size.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="F" data-search="fio2 fraction of inspired oxygen the percentage or fraction of oxygen a patient is receiving. icu inspired oxygen room air is about 21% oxygen; higher fio2 provides more oxygen support. fio2 = oxygen percent." data-term="fio2">
 <span class="badge">ICU</span>
 <h3>FiO2</h3>
@@ -4467,7 +4469,6 @@
 <div class="remember">FiO2 = oxygen percent.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="C" data-search="central line large vein iv access an iv catheter placed into a large central vein. icu central venous catheter; cvc used for certain medications, monitoring, or difficult access. central line = central vein access." data-term="central line">
 <span class="badge">ICU</span>
 <h3>Central line</h3>
@@ -4478,7 +4479,6 @@
 <div class="remember">Central line = central vein access.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="A" data-search="arterial line continuous blood pressure line a catheter placed in an artery for continuous blood pressure monitoring or blood sampling. icu a-line common in critical care and surgical settings. a-line = artery line." data-term="arterial line">
 <span class="badge">ICU</span>
 <h3>Arterial line</h3>
@@ -4489,7 +4489,6 @@
 <div class="remember">A-line = artery line.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="E" data-search="extubation removal of breathing tube removal of an endotracheal tube from the airway. icu tube removal requires readiness assessment and monitoring after removal. extubation = tube exits." data-term="extubation">
 <span class="badge">ICU</span>
 <h3>Extubation</h3>
@@ -4500,7 +4499,6 @@
 <div class="remember">Extubation = tube exits.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="ICU" data-letter="V" data-search="ventilator setting machine breathing parameter a setting used to control how a ventilator supports breathing. icu vent setting examples include respiratory rate, tidal volume, peep, and oxygen concentration. vent settings shape breathing support." data-term="ventilator setting">
 <span class="badge">ICU</span>
 <h3>Ventilator setting</h3>
@@ -4511,7 +4509,6 @@
 <div class="remember">Vent settings shape breathing support.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Imaging" data-letter="C" data-search="ct scan cross-sectional imaging test an imaging test that uses x-rays and computer processing to create detailed body images. imaging computed tomography often used for head, chest, abdomen, trauma, and urgent evaluations. ct = detailed slices." data-term="ct scan">
 <span class="badge">Imaging</span>
 <h3>CT scan</h3>
@@ -4522,7 +4519,6 @@
 <div class="remember">CT = detailed slices.</div>
 <a href="/ultrasound-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Imaging" data-letter="M" data-search="mri magnetic imaging test an imaging test that uses magnets and radio waves to create detailed images. imaging magnetic resonance imaging often useful for soft tissue, brain, spine, and joint evaluation. mri uses magnets." data-term="mri">
 <span class="badge">Imaging</span>
 <h3>MRI</h3>
@@ -4533,7 +4529,6 @@
 <div class="remember">MRI uses magnets.</div>
 <a href="/ultrasound-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Imaging" data-letter="X" data-search="x-ray basic radiographic image an imaging test that uses radiation to create images of bones, chest, or other structures. imaging radiograph commonly used for chest assessment, fractures, and device placement checks. x-ray sees dense structures well." data-term="x-ray">
 <span class="badge">Imaging</span>
 <h3>X-ray</h3>
@@ -4544,7 +4539,6 @@
 <div class="remember">X-ray sees dense structures well.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Imaging" data-letter="U" data-search="ultrasound transducer probe that sends sound waves the handheld part of an ultrasound system that sends and receives sound waves. imaging probe different transducers are used for different body areas and depths. transducer transmits sound." data-term="ultrasound transducer">
 <span class="badge">Imaging</span>
 <h3>Ultrasound transducer</h3>
@@ -4555,7 +4549,6 @@
 <div class="remember">Transducer transmits sound.</div>
 <a href="/ultrasound-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Imaging" data-letter="D" data-search="doppler ultrasound flow-based ultrasound an ultrasound technique used to evaluate movement such as blood flow. imaging doppler often used in vascular, cardiac, and obstetric imaging. doppler detects flow." data-term="doppler ultrasound">
 <span class="badge">Imaging</span>
 <h3>Doppler ultrasound</h3>
@@ -4566,7 +4559,6 @@
 <div class="remember">Doppler detects flow.</div>
 <a href="/ultrasound-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Imaging" data-letter="C" data-search="contrast imaging enhancement substance a substance used during some imaging studies to make structures easier to see. imaging contrast dye contrast use depends on exam, kidney function, allergies, and clinical need. contrast helps structures stand out." data-term="contrast">
 <span class="badge">Imaging</span>
 <h3>Contrast</h3>
@@ -4577,7 +4569,6 @@
 <div class="remember">Contrast helps structures stand out.</div>
 <a href="/bun-creatinine-gfr-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Imaging" data-letter="F" data-search="fluoroscopy real-time x-ray imaging an imaging method that shows moving x-ray images in real time. imaging live x-ray used during certain procedures and dynamic studies. fluoro = live imaging." data-term="fluoroscopy">
 <span class="badge">Imaging</span>
 <h3>Fluoroscopy</h3>
@@ -4588,7 +4579,6 @@
 <div class="remember">Fluoro = live imaging.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Cardiology" data-letter="E" data-search="echocardiogram ultrasound of the heart an ultrasound test used to evaluate heart structure and function. cardiology echo can assess valves, chambers, motion, and pumping function. echo = heart ultrasound." data-term="echocardiogram">
 <span class="badge">Cardiology</span>
 <h3>Echocardiogram</h3>
@@ -4599,7 +4589,6 @@
 <div class="remember">Echo = heart ultrasound.</div>
 <a href="/heart-anatomy-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="OB/GYN" data-letter="A" data-search="antepartum before birth the period during pregnancy before labor and delivery. ob/gyn prenatal period antepartum care focuses on maternal and fetal health before delivery. ante = before; partum = birth." data-term="antepartum">
 <span class="badge">OB/GYN</span>
 <h3>Antepartum</h3>
@@ -4610,7 +4599,6 @@
 <div class="remember">Ante = before; partum = birth.</div>
 <a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="OB/GYN" data-letter="P" data-search="postpartum after birth the period after delivery. ob/gyn after delivery postpartum assessment includes bleeding, pain, mood, vitals, and recovery. post = after; partum = birth." data-term="postpartum">
 <span class="badge">OB/GYN</span>
 <h3>Postpartum</h3>
@@ -4621,7 +4609,6 @@
 <div class="remember">Post = after; partum = birth.</div>
 <a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="OB/GYN" data-letter="G" data-search="gravida number of pregnancies a term used to describe how many times someone has been pregnant. ob/gyn g used in obstetric history documentation. gravida = pregnancies." data-term="gravida">
 <span class="badge">OB/GYN</span>
 <h3>Gravida</h3>
@@ -4632,7 +4619,6 @@
 <div class="remember">Gravida = pregnancies.</div>
 <a href="/medical-terminology-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="OB/GYN" data-letter="P" data-search="para number of births a term used to describe births beyond a defined gestational age. ob/gyn p used with gravida to summarize obstetric history. para = births." data-term="para">
 <span class="badge">OB/GYN</span>
 <h3>Para</h3>
@@ -4643,7 +4629,6 @@
 <div class="remember">Para = births.</div>
 <a href="/medical-terminology-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="OB/GYN" data-letter="F" data-search="fetal heart rate baby's heart rate the heart rate of the fetus during pregnancy or labor monitoring. ob/gyn fhr monitoring helps assess fetal status in appropriate settings. fhr = fetal heart rate." data-term="fetal heart rate">
 <span class="badge">OB/GYN</span>
 <h3>Fetal heart rate</h3>
@@ -4654,7 +4639,6 @@
 <div class="remember">FHR = fetal heart rate.</div>
 <a href="/normal-vital-signs-chart.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="OB/GYN" data-letter="C" data-search="cesarean section surgical birth a surgical procedure to deliver a baby through incisions in the abdomen and uterus. ob/gyn c-section a major surgical birth procedure. c-section = surgical delivery." data-term="cesarean section">
 <span class="badge">OB/GYN</span>
 <h3>Cesarean section</h3>
@@ -4665,7 +4649,6 @@
 <div class="remember">C-section = surgical delivery.</div>
 <a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pediatrics" data-letter="A" data-search="apgar score newborn assessment score a quick newborn scoring system assessing appearance, pulse, grimace, activity, and respiration. pediatrics apgar used shortly after birth to describe newborn transition. apgar = five newborn checks." data-term="apgar score">
 <span class="badge">Pediatrics</span>
 <h3>Apgar score</h3>
@@ -4676,7 +4659,6 @@
 <div class="remember">APGAR = five newborn checks.</div>
 <a href="/normal-vital-signs-chart.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pediatrics" data-letter="F" data-search="fontanelle soft spot on infant skull a soft area between skull bones in an infant. pediatrics soft spot assessment may include whether it is flat, sunken, or bulging. fontanelle = infant soft spot." data-term="fontanelle">
 <span class="badge">Pediatrics</span>
 <h3>Fontanelle</h3>
@@ -4687,7 +4669,6 @@
 <div class="remember">Fontanelle = infant soft spot.</div>
 <a href="/skull-anatomy-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pediatrics" data-letter="P" data-search="pediatric dose child-specific medication dose a medication dose calculated or selected for a child based on age, weight, or condition. pediatrics child dose pediatric medication dosing requires careful verification. pediatric dosing is weight-sensitive." data-term="pediatric dose">
 <span class="badge">Pediatrics</span>
 <h3>Pediatric dose</h3>
@@ -4698,7 +4679,6 @@
 <div class="remember">Pediatric dosing is weight-sensitive.</div>
 <a href="/medication-administration-rights.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pediatrics" data-letter="F" data-search="failure to thrive poor growth pattern a term used when an infant or child is not gaining weight or growing as expected. pediatrics ftt requires clinical evaluation of nutrition, health, and development. ftt = growth concern." data-term="failure to thrive">
 <span class="badge">Pediatrics</span>
 <h3>Failure to thrive</h3>
@@ -4708,7 +4688,6 @@
 <p><strong>Clinical note:</strong> Requires clinical evaluation of nutrition, health, and development.</p>
 <div class="remember">FTT = growth concern.</div>
 </article>
-
 <article class="term-card" data-category="Surgery" data-letter="A" data-search="aseptic technique method to reduce contamination practices used to reduce the risk of introducing microorganisms. surgery clean technique principles important for procedures, dressings, and infection prevention. aseptic = reduce germs." data-term="aseptic technique">
 <span class="badge">Surgery</span>
 <h3>Aseptic technique</h3>
@@ -4719,7 +4698,6 @@
 <div class="remember">Aseptic = reduce germs.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Surgery" data-letter="S" data-search="sterile field area kept free of microorganisms a prepared area maintained as sterile during procedures. surgery sterile area contamination breaks the sterile field and requires correction. sterile field = no contamination zone." data-term="sterile field">
 <span class="badge">Surgery</span>
 <h3>Sterile field</h3>
@@ -4730,7 +4708,6 @@
 <div class="remember">Sterile field = no contamination zone.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Surgery" data-letter="I" data-search="incision surgical cut a cut made into tissue during a procedure. surgery surgical opening incisions are monitored for healing, drainage, redness, and infection signs. incision = cut in." data-term="incision">
 <span class="badge">Surgery</span>
 <h3>Incision</h3>
@@ -4741,7 +4718,6 @@
 <div class="remember">Incision = cut in.</div>
 <a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Surgery" data-letter="S" data-search="sutures stitches material used to close tissue after injury or surgery. surgery stitches may be absorbable or require removal depending type. sutures sew tissue." data-term="sutures">
 <span class="badge">Surgery</span>
 <h3>Sutures</h3>
@@ -4751,7 +4727,6 @@
 <p><strong>Clinical note:</strong> May be absorbable or require removal depending type.</p>
 <div class="remember">Sutures sew tissue.</div>
 </article>
-
 <article class="term-card" data-category="Wound Care" data-letter="D" data-search="dehiscence wound edges separate a complication where a wound or incision opens after closure. wound care wound separation requires prompt clinical attention. dehiscence = incision opens." data-term="dehiscence">
 <span class="badge">Wound Care</span>
 <h3>Dehiscence</h3>
@@ -4761,7 +4736,6 @@
 <p><strong>Clinical note:</strong> Requires prompt clinical attention.</p>
 <div class="remember">Dehiscence = incision opens.</div>
 </article>
-
 <article class="term-card" data-category="Wound Care" data-letter="E" data-search="evisceration organs protrude through wound a severe complication where internal organs protrude through an open wound. wound care organ protrusion this is an emergency finding. evisceration = viscera visible." data-term="evisceration">
 <span class="badge">Wound Care</span>
 <h3>Evisceration</h3>
@@ -4772,7 +4746,6 @@
 <div class="remember">Evisceration = viscera visible.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Wound Care" data-letter="G" data-search="granulation tissue healing tissue new connective tissue and tiny blood vessels that form during wound healing. wound care healthy wound tissue often appears beefy red or pink in healing wounds. granulation = growth/healing tissue." data-term="granulation tissue">
 <span class="badge">Wound Care</span>
 <h3>Granulation tissue</h3>
@@ -4782,7 +4755,6 @@
 <p><strong>Clinical note:</strong> Often appears beefy red or pink in healing wounds.</p>
 <div class="remember">Granulation = growth/healing tissue.</div>
 </article>
-
 <article class="term-card" data-category="Wound Care" data-letter="E" data-search="eschar dead tissue scab thick dead tissue that may appear black or brown on a wound. wound care necrotic tissue wound care decisions depend on wound type and clinical context. eschar = dead cover." data-term="eschar">
 <span class="badge">Wound Care</span>
 <h3>Eschar</h3>
@@ -4792,7 +4764,6 @@
 <p><strong>Clinical note:</strong> Wound care decisions depend on wound type and clinical context.</p>
 <div class="remember">Eschar = dead cover.</div>
 </article>
-
 <article class="term-card" data-category="Wound Care" data-letter="S" data-search="slough soft dead tissue yellow, tan, gray, or stringy dead tissue in a wound. wound care nonviable tissue can interfere with wound healing depending wound status. slough = soft dead tissue." data-term="slough">
 <span class="badge">Wound Care</span>
 <h3>Slough</h3>
@@ -4802,7 +4773,6 @@
 <p><strong>Clinical note:</strong> Can interfere with wound healing depending wound status.</p>
 <div class="remember">Slough = soft dead tissue.</div>
 </article>
-
 <article class="term-card" data-category="Wound Care" data-letter="P" data-search="pressure injury skin/tissue injury from pressure localized damage to skin or underlying tissue caused by pressure or pressure with shear. wound care pressure ulcer; bedsore common risk areas include sacrum, heels, hips, and elbows. pressure injury = pressure damage." data-term="pressure injury">
 <span class="badge">Wound Care</span>
 <h3>Pressure injury</h3>
@@ -4813,7 +4783,6 @@
 <div class="remember">Pressure injury = pressure damage.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Conditions" data-letter="A" data-search="acute kidney injury sudden kidney function decline a rapid decrease in kidney function over hours to days. conditions aki often evaluated using creatinine, urine output, medications, and fluid status. aki = acute kidney issue." data-term="acute kidney injury">
 <span class="badge">Conditions</span>
 <h3>Acute kidney injury</h3>
@@ -4824,7 +4793,6 @@
 <div class="remember">AKI = acute kidney issue.</div>
 <a href="/bun-creatinine-gfr-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Conditions" data-letter="C" data-search="chronic kidney disease long-term kidney disease a long-term reduction in kidney function. conditions ckd often staged using gfr and monitored with kidney-related labs. ckd = chronic kidney decline." data-term="chronic kidney disease">
 <span class="badge">Conditions</span>
 <h3>Chronic kidney disease</h3>
@@ -4835,7 +4803,6 @@
 <div class="remember">CKD = chronic kidney decline.</div>
 <a href="/bun-creatinine-gfr-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Conditions" data-letter="D" data-search="diabetic ketoacidosis dangerous diabetic emergency a serious condition involving high blood sugar, ketones, dehydration, and acidosis. conditions dka requires urgent treatment and close monitoring. dka = diabetes + ketones + acidosis." data-term="diabetic ketoacidosis">
 <span class="badge">Conditions</span>
 <h3>Diabetic ketoacidosis</h3>
@@ -4846,7 +4813,6 @@
 <div class="remember">DKA = diabetes + ketones + acidosis.</div>
 <a href="/abg-normal-values.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Conditions" data-letter="P" data-search="pulmonary embolism clot in lung circulation a blockage in the pulmonary arteries, often from a blood clot. conditions pe can cause shortness of breath, chest pain, low oxygen, or sudden collapse. pe = clot in pulmonary circulation." data-term="pulmonary embolism">
 <span class="badge">Conditions</span>
 <h3>Pulmonary embolism</h3>
@@ -4857,7 +4823,6 @@
 <div class="remember">PE = clot in pulmonary circulation.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Conditions" data-letter="D" data-search="deep vein thrombosis clot in deep vein a blood clot that forms in a deep vein, often in the leg. conditions dvt can lead to pulmonary embolism if part of the clot travels. dvt = deep vein clot." data-term="deep vein thrombosis">
 <span class="badge">Conditions</span>
 <h3>Deep vein thrombosis</h3>
@@ -4867,7 +4832,6 @@
 <p><strong>Clinical note:</strong> Can lead to pulmonary embolism if part of the clot travels.</p>
 <div class="remember">DVT = deep vein clot.</div>
 </article>
-
 <article class="term-card" data-category="Conditions" data-letter="T" data-search="transient ischemic attack temporary stroke-like episode a temporary neurologic event caused by reduced blood flow without lasting infarction. conditions tia; mini-stroke symptoms may resolve, but it is still a warning sign. tia = temporary stroke warning." data-term="transient ischemic attack">
 <span class="badge">Conditions</span>
 <h3>Transient ischemic attack</h3>
@@ -4878,7 +4842,6 @@
 <div class="remember">TIA = temporary stroke warning.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Conditions" data-letter="A" data-search="anaphylaxis severe allergic reaction a rapid, severe allergic reaction that can affect airway, breathing, circulation, and skin. conditions severe allergy can be life-threatening and needs urgent treatment. anaphylaxis = allergic emergency." data-term="anaphylaxis">
 <span class="badge">Conditions</span>
 <h3>Anaphylaxis</h3>
@@ -4889,7 +4852,6 @@
 <div class="remember">Anaphylaxis = allergic emergency.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Neurology" data-letter="D" data-search="delirium acute confusion a sudden change in attention, awareness, or cognition. neurology acute mental status change often has an underlying medical cause and can fluctuate. delirium = sudden confusion." data-term="delirium">
 <span class="badge">Neurology</span>
 <h3>Delirium</h3>
@@ -4900,7 +4862,6 @@
 <div class="remember">Delirium = sudden confusion.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Neurology" data-letter="D" data-search="dementia progressive cognitive decline a chronic decline in memory, thinking, or function. neurology cognitive disorder different from delirium, which is acute and often reversible. dementia develops over time." data-term="dementia">
 <span class="badge">Neurology</span>
 <h3>Dementia</h3>
@@ -4910,7 +4871,6 @@
 <p><strong>Clinical note:</strong> Different from delirium, which is acute and often reversible.</p>
 <div class="remember">Dementia develops over time.</div>
 </article>
-
 <article class="term-card" data-category="Neurology" data-letter="S" data-search="seizure abnormal brain electrical activity a sudden episode caused by abnormal electrical activity in the brain. neurology convulsion; seizure event assessment includes safety, duration, airway, and postictal status. seizure = brain electrical storm." data-term="seizure">
 <span class="badge">Neurology</span>
 <h3>Seizure</h3>
@@ -4921,7 +4881,6 @@
 <div class="remember">Seizure = brain electrical storm.</div>
 <a href="/who-do-you-see-first-challenge.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Neurology" data-letter="P" data-search="postictal after a seizure the period after a seizure when a patient may be confused, sleepy, or recovering. neurology post-seizure period monitoring and safety are important after seizure activity. postictal = after seizure." data-term="postictal">
 <span class="badge">Neurology</span>
 <h3>Postictal</h3>
@@ -4932,7 +4891,6 @@
 <div class="remember">Postictal = after seizure.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Psychiatry" data-letter="A" data-search="anxiety fear or worry response a feeling of worry, fear, or nervousness that may cause physical symptoms. psychiatry anxious state can overlap with chest pain, shortness of breath, or palpitations, so assessment matters. anxiety can feel physical." data-term="anxiety">
 <span class="badge">Psychiatry</span>
 <h3>Anxiety</h3>
@@ -4942,7 +4900,6 @@
 <p><strong>Clinical note:</strong> Can overlap with chest pain, shortness of breath, or palpitations, so assessment matters.</p>
 <div class="remember">Anxiety can feel physical.</div>
 </article>
-
 <article class="term-card" data-category="Psychiatry" data-letter="D" data-search="depression persistent low mood disorder a mood disorder involving persistent sadness, loss of interest, or other symptoms. psychiatry major depression requires compassionate assessment and appropriate referral or treatment. depression is more than sadness." data-term="depression">
 <span class="badge">Psychiatry</span>
 <h3>Depression</h3>
@@ -4952,7 +4909,6 @@
 <p><strong>Clinical note:</strong> Requires compassionate assessment and appropriate referral or treatment.</p>
 <div class="remember">Depression is more than sadness.</div>
 </article>
-
 <article class="term-card" data-category="Pharmacology" data-letter="A" data-search="antiemetic nausea medication a medication used to prevent or treat nausea and vomiting. pharmacology nausea medicine commonly used after surgery, with illness, or with certain medications. anti-emetic = against vomiting." data-term="antiemetic">
 <span class="badge">Pharmacology</span>
 <h3>Antiemetic</h3>
@@ -4963,7 +4919,6 @@
 <div class="remember">Anti-emetic = against vomiting.</div>
 <a href="/medication-administration-rights.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pharmacology" data-letter="A" data-search="antihypertensive blood pressure medication a medication used to lower or control high blood pressure. pharmacology bp medication assessment may include blood pressure, pulse, labs, and symptoms depending medication. anti-hypertensive = against high pressure." data-term="antihypertensive">
 <span class="badge">Pharmacology</span>
 <h3>Antihypertensive</h3>
@@ -4974,7 +4929,6 @@
 <div class="remember">Anti-hypertensive = against high pressure.</div>
 <a href="/normal-vital-signs-chart.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pharmacology" data-letter="A" data-search="antiplatelet medication reducing platelet clotting a medication that reduces platelet aggregation and clot formation. pharmacology platelet inhibitor can increase bleeding risk depending medication and patient factors. antiplatelet = against platelet clumping." data-term="antiplatelet">
 <span class="badge">Pharmacology</span>
 <h3>Antiplatelet</h3>
@@ -4985,7 +4939,6 @@
 <div class="remember">Antiplatelet = against platelet clumping.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pharmacology" data-letter="C" data-search="corticosteroid anti-inflammatory steroid medication a medication class that reduces inflammation and immune activity. pharmacology steroid can affect glucose, infection risk, mood, and other body systems. steroids reduce inflammation." data-term="corticosteroid">
 <span class="badge">Pharmacology</span>
 <h3>Corticosteroid</h3>
@@ -4996,7 +4949,6 @@
 <div class="remember">Steroids reduce inflammation.</div>
 <a href="/medication-administration-rights.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pharmacology" data-letter="N" data-search="nsaid nonsteroidal anti-inflammatory drug a medication class used for pain, fever, and inflammation. pharmacology ibuprofen class can affect bleeding, kidneys, stomach irritation, and blood pressure in some patients. nsaid = pain/inflammation class." data-term="nsaid">
 <span class="badge">Pharmacology</span>
 <h3>NSAID</h3>
@@ -5007,7 +4959,6 @@
 <div class="remember">NSAID = pain/inflammation class.</div>
 <a href="/medication-administration-rights.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Pharmacology" data-letter="P" data-search="ppi acid-reducing medication a proton pump inhibitor reduces stomach acid production. pharmacology proton pump inhibitor used for reflux, ulcers, and gastric protection in some settings. ppi pumps down acid." data-term="ppi">
 <span class="badge">Pharmacology</span>
 <h3>PPI</h3>
@@ -5017,7 +4968,6 @@
 <p><strong>Clinical note:</strong> Used for reflux, ulcers, and gastric protection in some settings.</p>
 <div class="remember">PPI pumps down acid.</div>
 </article>
-
 <article class="term-card" data-category="Pharmacology" data-letter="S" data-search="statin cholesterol-lowering medication a medication class used to lower cholesterol and reduce cardiovascular risk. pharmacology hmg-coa reductase inhibitor often monitored with patient history, symptoms, and labs as ordered. statins lower cholesterol." data-term="statin">
 <span class="badge">Pharmacology</span>
 <h3>Statin</h3>
@@ -5027,7 +4977,6 @@
 <p><strong>Clinical note:</strong> Often monitored with patient history, symptoms, and labs as ordered.</p>
 <div class="remember">Statins lower cholesterol.</div>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="D" data-search="d-dimer clot breakdown marker a blood test that can rise when clots are being formed and broken down. lab values fibrin degradation marker used with clinical assessment, not alone, to evaluate clot-related concerns. d-dimer = clot breakdown clue." data-term="d-dimer">
 <span class="badge">Lab Values</span>
 <h3>D-dimer</h3>
@@ -5038,7 +4987,6 @@
 <div class="remember">D-dimer = clot breakdown clue.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="P" data-search="procalcitonin infection/sepsis marker a lab marker that may rise with certain bacterial infections. lab values pct interpreted with symptoms, cultures, imaging, and clinical context. procalcitonin can point toward bacterial infection." data-term="procalcitonin">
 <span class="badge">Lab Values</span>
 <h3>Procalcitonin</h3>
@@ -5049,7 +4997,6 @@
 <div class="remember">Procalcitonin can point toward bacterial infection.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="C" data-search="crp inflammation marker c-reactive protein is a blood marker that rises with inflammation. lab values c-reactive protein it is nonspecific and must be interpreted with clinical context. crp = inflammation clue." data-term="crp">
 <span class="badge">Lab Values</span>
 <h3>CRP</h3>
@@ -5060,7 +5007,6 @@
 <div class="remember">CRP = inflammation clue.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="E" data-search="esr inflammation marker erythrocyte sedimentation rate is a lab test that can reflect inflammation. lab values sed rate it is nonspecific and often used with other findings. esr = inflammation trend clue." data-term="esr">
 <span class="badge">Lab Values</span>
 <h3>ESR</h3>
@@ -5071,7 +5017,6 @@
 <div class="remember">ESR = inflammation trend clue.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="B" data-search="blood culture test for bloodstream infection a lab test used to check whether microorganisms are present in the blood. lab values culture often obtained when bacteremia or sepsis is suspected. blood culture looks for organisms." data-term="blood culture">
 <span class="badge">Lab Values</span>
 <h3>Blood culture</h3>
@@ -5082,7 +5027,6 @@
 <div class="remember">Blood culture looks for organisms.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="U" data-search="urinalysis urine test a test that evaluates urine for findings such as cells, protein, glucose, ketones, and infection clues. lab values ua often used with urinary symptoms, kidney evaluation, or dehydration assessment. ua = urine assessment." data-term="urinalysis">
 <span class="badge">Lab Values</span>
 <h3>Urinalysis</h3>
@@ -5093,7 +5037,6 @@
 <div class="remember">UA = urine assessment.</div>
 <a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="A" data-search="anion gap calculated acid-base clue a calculated value used to help evaluate certain metabolic acidosis patterns. lab values ag often reviewed with electrolytes, bicarbonate, and clinical status. anion gap helps classify acidosis." data-term="anion gap">
 <span class="badge">Lab Values</span>
 <h3>Anion gap</h3>
@@ -5104,7 +5047,6 @@
 <div class="remember">Anion gap helps classify acidosis.</div>
 <a href="/abg-normal-values.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="R" data-search="reticulocyte young red blood cell an immature red blood cell measured to evaluate bone marrow response. lab values retic useful in anemia evaluation. reticulocytes are baby rbcs." data-term="reticulocyte">
 <span class="badge">Lab Values</span>
 <h3>Reticulocyte</h3>
@@ -5115,7 +5057,6 @@
 <div class="remember">Reticulocytes are baby RBCs.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Lab Values" data-letter="F" data-search="ferritin iron storage marker a lab value that reflects stored iron and can also rise with inflammation. lab values iron storage used with iron studies and anemia evaluation. ferritin stores iron." data-term="ferritin">
 <span class="badge">Lab Values</span>
 <h3>Ferritin</h3>
@@ -5126,7 +5067,6 @@
 <div class="remember">Ferritin stores iron.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="T" data-search="telemetry monitor remote heart rhythm monitor a monitoring system used to observe cardiac rhythm away from the bedside. medical equipment tele box commonly used for patients needing rhythm surveillance. telemetry = rhythm sent remotely." data-term="telemetry monitor">
 <span class="badge">Medical Equipment</span>
 <h3>Telemetry monitor</h3>
@@ -5137,7 +5077,6 @@
 <div class="remember">Telemetry = rhythm sent remotely.</div>
 <a href="/ekg-rhythm-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="H" data-search="holter monitor portable heart rhythm recorder a wearable device that records heart rhythm over a period of time. medical equipment ambulatory ecg monitor used to detect intermittent rhythm problems. holter records rhythm over time." data-term="holter monitor">
 <span class="badge">Medical Equipment</span>
 <h3>Holter monitor</h3>
@@ -5148,7 +5087,6 @@
 <div class="remember">Holter records rhythm over time.</div>
 <a href="/ekg-rhythm-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="C" data-search="capnography carbon dioxide monitoring monitoring of exhaled carbon dioxide. medical equipment etco2 monitoring useful for ventilation assessment and airway confirmation in appropriate settings. capno = co2 monitoring." data-term="capnography">
 <span class="badge">Medical Equipment</span>
 <h3>Capnography</h3>
@@ -5159,7 +5097,6 @@
 <div class="remember">Capno = CO2 monitoring.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="E" data-search="etco2 end-tidal carbon dioxide the amount of carbon dioxide measured at the end of exhalation. medical equipment end tidal co2 provides information about ventilation and circulation in context. etco2 = exhaled co2 clue." data-term="etco2">
 <span class="badge">Medical Equipment</span>
 <h3>EtCO2</h3>
@@ -5170,7 +5107,6 @@
 <div class="remember">EtCO2 = exhaled CO2 clue.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="C" data-search="centrifuge spinning lab device a device that spins samples to separate components by density. medical equipment lab centrifuge common in laboratory processing. centrifuge separates by spinning." data-term="centrifuge">
 <span class="badge">Medical Equipment</span>
 <h3>Centrifuge</h3>
@@ -5181,7 +5117,6 @@
 <div class="remember">Centrifuge separates by spinning.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="G" data-search="glucometer blood glucose meter a device used to measure blood glucose from a small blood sample. medical equipment blood sugar meter used for bedside glucose checks. glucometer measures glucose." data-term="glucometer">
 <span class="badge">Medical Equipment</span>
 <h3>Glucometer</h3>
@@ -5192,7 +5127,6 @@
 <div class="remember">Glucometer measures glucose.</div>
 <a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="B" data-search="bladder scanner urine volume ultrasound device a device used to estimate urine volume in the bladder. medical equipment portable bladder ultrasound helps assess urinary retention without catheterization in some cases. bladder scanner estimates volume." data-term="bladder scanner">
 <span class="badge">Medical Equipment</span>
 <h3>Bladder scanner</h3>
@@ -5203,7 +5137,6 @@
 <div class="remember">Bladder scanner estimates volume.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="N" data-search="nebulizer medication mist device a device that turns liquid medication into a mist for inhalation. medical equipment breathing treatment device common for bronchodilator treatments. nebulizer makes mist." data-term="nebulizer">
 <span class="badge">Medical Equipment</span>
 <h3>Nebulizer</h3>
@@ -5214,7 +5147,6 @@
 <div class="remember">Nebulizer makes mist.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="C" data-search="cpap continuous positive airway pressure a device or mode that provides continuous airway pressure to help keep airways open. medical equipment positive airway pressure often used for sleep apnea or respiratory support in certain settings. cpap keeps pressure continuous." data-term="cpap">
 <span class="badge">Medical Equipment</span>
 <h3>CPAP</h3>
@@ -5225,7 +5157,6 @@
 <div class="remember">CPAP keeps pressure continuous.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="B" data-search="bipap two-level positive airway pressure a noninvasive support device that provides different pressures for inhalation and exhalation. medical equipment bilevel pap can support ventilation in appropriate patients. bipap has two pressures." data-term="bipap">
 <span class="badge">Medical Equipment</span>
 <h3>BiPAP</h3>
@@ -5236,7 +5167,6 @@
 <div class="remember">BiPAP has two pressures.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="A" data-search="adl activities of daily living basic self-care tasks such as bathing, dressing, eating, toileting, and mobility. abbreviations activities of daily living used in functional assessment and discharge planning. adls = daily self-care." data-term="adl">
 <span class="badge">Abbreviations</span>
 <h3>ADL</h3>
@@ -5247,7 +5177,6 @@
 <div class="remember">ADLs = daily self-care.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="I" data-search="i&amp;o intake and output measurement of fluid intake and fluid output. abbreviations i/o important for fluid balance, kidney function, and clinical monitoring. i&amp;o tracks fluid in and out." data-term="i&amp;o">
 <span class="badge">Abbreviations</span>
 <h3>I&amp;O</h3>
@@ -5258,7 +5187,6 @@
 <div class="remember">I&amp;O tracks fluid in and out.</div>
 <a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="N" data-search="n/v nausea and vomiting a common abbreviation used to document nausea and vomiting. abbreviations nausea/vomiting can affect hydration, electrolytes, and medication tolerance. n/v = nausea/vomiting." data-term="n/v">
 <span class="badge">Abbreviations</span>
 <h3>N/V</h3>
@@ -5269,7 +5197,6 @@
 <div class="remember">N/V = nausea/vomiting.</div>
 <a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="D" data-search="dnr do not resuscitate an order indicating that cpr should not be performed if cardiac or respiratory arrest occurs. abbreviations code status must be verified according to legal, ethical, and facility standards. dnr = resuscitation status." data-term="dnr">
 <span class="badge">Abbreviations</span>
 <h3>DNR</h3>
@@ -5279,7 +5206,6 @@
 <p><strong>Clinical note:</strong> Must be verified according to legal, ethical, and facility standards.</p>
 <div class="remember">DNR = resuscitation status.</div>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="F" data-search="full code full resuscitation status a code status indicating that full resuscitative efforts should be provided if needed. abbreviations code status code status must be clearly documented and verified. full code = full response." data-term="full code">
 <span class="badge">Abbreviations</span>
 <h3>Full code</h3>
@@ -5289,7 +5215,6 @@
 <p><strong>Clinical note:</strong> Code status must be clearly documented and verified.</p>
 <div class="remember">Full code = full response.</div>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="H" data-search="h&amp;p history and physical a clinical document or assessment that includes patient history and physical exam findings. abbreviations history and physical exam often used at admission or before procedures. h&amp;p = history plus physical." data-term="h&amp;p">
 <span class="badge">Abbreviations</span>
 <h3>H&amp;P</h3>
@@ -5300,7 +5225,6 @@
 <div class="remember">H&amp;P = history plus physical.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="S" data-search="s/p status post an abbreviation meaning after a condition, event, or procedure. abbreviations status post example: s/p appendectomy means after appendix removal. s/p = after." data-term="s/p">
 <span class="badge">Abbreviations</span>
 <h3>S/P</h3>
@@ -5311,7 +5235,6 @@
 <div class="remember">S/P = after.</div>
 <a href="/medical-abbreviations-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="P" data-search="perrla pupil assessment abbreviation pupils equal, round, reactive to light and accommodation. abbreviations pupil check used in neurologic and eye assessment. perrla = pupil response check." data-term="perrla">
 <span class="badge">Abbreviations</span>
 <h3>PERRLA</h3>
@@ -5322,7 +5245,6 @@
 <div class="remember">PERRLA = pupil response check.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Abbreviations" data-letter="R" data-search="rom range of motion the amount of movement possible at a joint. abbreviations joint movement used in musculoskeletal and functional assessment. rom = movement range." data-term="rom">
 <span class="badge">Abbreviations</span>
 <h3>ROM</h3>
@@ -5333,7 +5255,6 @@
 <div class="remember">ROM = movement range.</div>
 <a href="/anatomy-labeling-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="A" data-search="auscultation listening with a stethoscope an assessment technique using a stethoscope to listen to body sounds. assessment listen used for heart, lung, bowel, and vascular sounds. auscultation = audio assessment." data-term="auscultation">
 <span class="badge">Assessment</span>
 <h3>Auscultation</h3>
@@ -5344,7 +5265,6 @@
 <div class="remember">Auscultation = audio assessment.</div>
 <a href="/heart-sounds-quiz.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="P" data-search="palpation assessment by touch using the hands to feel body structures, temperature, tenderness, pulses, or movement. assessment touch assessment helps assess pain, swelling, pulses, and anatomy. palpation = feel." data-term="palpation">
 <span class="badge">Assessment</span>
 <h3>Palpation</h3>
@@ -5355,7 +5275,6 @@
 <div class="remember">Palpation = feel.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="P" data-search="percussion tapping assessment method an assessment technique that uses tapping to evaluate underlying structures. assessment tap assessment can help assess air, fluid, or density in certain exams. percussion = tap and listen/feel." data-term="percussion">
 <span class="badge">Assessment</span>
 <h3>Percussion</h3>
@@ -5366,7 +5285,6 @@
 <div class="remember">Percussion = tap and listen/feel.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="I" data-search="inspection assessment by looking the assessment technique of visually observing the patient or body area. assessment look often the first step in a physical assessment. inspection = look first." data-term="inspection">
 <span class="badge">Assessment</span>
 <h3>Inspection</h3>
@@ -5377,7 +5295,6 @@
 <div class="remember">Inspection = look first.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="C" data-search="crepitus crackling sensation or sound a crackling feeling or sound that can occur under the skin, in joints, or with certain injuries. assessment crackling requires context because causes vary. crepitus = crackle." data-term="crepitus">
 <span class="badge">Assessment</span>
 <h3>Crepitus</h3>
@@ -5388,7 +5305,6 @@
 <div class="remember">Crepitus = crackle.</div>
 <a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="B" data-search="bounding pulse very strong pulse a pulse that feels unusually forceful. assessment strong pulse can occur with fever, fluid overload, anxiety, or other conditions. bounding = big strong pulse." data-term="bounding pulse">
 <span class="badge">Assessment</span>
 <h3>Bounding pulse</h3>
@@ -5399,7 +5315,6 @@
 <div class="remember">Bounding = big strong pulse.</div>
 <a href="/normal-vital-signs-chart.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="W" data-search="weak pulse difficult-to-feel pulse a pulse that is faint or hard to palpate. assessment thready pulse may suggest poor perfusion or low blood pressure in context. weak pulse = perfusion clue." data-term="weak pulse">
 <span class="badge">Assessment</span>
 <h3>Weak pulse</h3>
@@ -5410,7 +5325,6 @@
 <div class="remember">Weak pulse = perfusion clue.</div>
 <a href="/normal-vital-signs-chart.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Assessment" data-letter="B" data-search="bowel sounds digestive tract sounds sounds heard over the abdomen during auscultation. assessment gi sounds can be active, hypoactive, hyperactive, or absent depending context. bowel sounds = gut movement clue." data-term="bowel sounds">
 <span class="badge">Assessment</span>
 <h3>Bowel sounds</h3>
@@ -5421,7 +5335,6 @@
 <div class="remember">Bowel sounds = gut movement clue.</div>
 <a href="/digestive-system-anatomy-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Neurology" data-letter="A" data-search="ataxia poor coordination impaired balance or coordination during movement. neurology uncoordinated movement can be a neurologic assessment finding. ataxia = lack of coordination." data-term="ataxia">
 <span class="badge">Neurology</span>
 <h3>Ataxia</h3>
@@ -5432,7 +5345,6 @@
 <div class="remember">Ataxia = lack of coordination.</div>
 <a href="/brain-anatomy-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Cardiology" data-letter="M" data-search="murmur abnormal heart sound a whooshing or blowing heart sound caused by turbulent blood flow. cardiology heart murmur may be innocent or related to valve or structural issues depending context. murmur = turbulent sound." data-term="murmur">
 <span class="badge">Cardiology</span>
 <h3>Murmur</h3>
@@ -5443,7 +5355,6 @@
 <div class="remember">Murmur = turbulent sound.</div>
 <a href="/heart-sounds-quiz.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Cardiology" data-letter="S" data-search="s1 first heart sound the first heart sound, usually associated with closure of the mitral and tricuspid valves. cardiology lub part of basic heart sound assessment. s1 = first sound." data-term="s1">
 <span class="badge">Cardiology</span>
 <h3>S1</h3>
@@ -5454,7 +5365,6 @@
 <div class="remember">S1 = first sound.</div>
 <a href="/heart-sounds-quiz.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Cardiology" data-letter="S" data-search="s2 second heart sound the second heart sound, usually associated with closure of the aortic and pulmonic valves. cardiology dub part of basic heart sound assessment. s2 = second sound." data-term="s2">
 <span class="badge">Cardiology</span>
 <h3>S2</h3>
@@ -5465,7 +5375,6 @@
 <div class="remember">S2 = second sound.</div>
 <a href="/heart-sounds-quiz.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Cardiology" data-letter="S" data-search="s3 extra heart sound an additional heart sound that may be associated with fluid overload or heart failure in some adults. cardiology ventricular gallop interpretation depends on age and clinical context. s3 can sound like extra fluid." data-term="s3">
 <span class="badge">Cardiology</span>
 <h3>S3</h3>
@@ -5476,7 +5385,6 @@
 <div class="remember">S3 can sound like extra fluid.</div>
 <a href="/heart-sounds-quiz.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Cardiology" data-letter="S" data-search="s4 extra heart sound before s1 an additional heart sound sometimes associated with a stiff ventricle. cardiology atrial gallop interpretation depends on patient context. s4 comes before s1." data-term="s4">
 <span class="badge">Cardiology</span>
 <h3>S4</h3>
@@ -5487,7 +5395,6 @@
 <div class="remember">S4 comes before S1.</div>
 <a href="/heart-sounds-quiz.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Respiratory" data-letter="H" data-search="hemoptysis coughing blood coughing up blood or blood-streaked sputum from the respiratory tract. respiratory bloody sputum can be a serious symptom depending amount and cause. hemo = blood; ptysis = spit." data-term="hemoptysis">
 <span class="badge">Respiratory</span>
 <h3>Hemoptysis</h3>
@@ -5498,7 +5405,6 @@
 <div class="remember">Hemo = blood; ptysis = spit.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Respiratory" data-letter="P" data-search="pleural effusion fluid around lung fluid buildup in the pleural space around the lung. respiratory pleural fluid may affect breathing and oxygenation depending size and cause. effusion = fluid collection." data-term="pleural effusion">
 <span class="badge">Respiratory</span>
 <h3>Pleural effusion</h3>
@@ -5509,7 +5415,6 @@
 <div class="remember">Effusion = fluid collection.</div>
 <a href="/lungs-anatomy-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Respiratory" data-letter="P" data-search="pneumothorax air in pleural space air trapped between the lung and chest wall that can cause lung collapse. respiratory collapsed lung can become an emergency if tension physiology develops. pneumo = air; thorax = chest." data-term="pneumothorax">
 <span class="badge">Respiratory</span>
 <h3>Pneumothorax</h3>
@@ -5520,7 +5425,6 @@
 <div class="remember">Pneumo = air; thorax = chest.</div>
 <a href="/lungs-anatomy-guide.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Medical Equipment" data-letter="I" data-search="incentive spirometer breathing exercise device a device that encourages deep breathing after surgery or illness. medical equipment is helps promote lung expansion and reduce atelectasis risk. incentive spirometer inspires deep breaths." data-term="incentive spirometer">
 <span class="badge">Medical Equipment</span>
 <h3>Incentive spirometer</h3>
@@ -5531,7 +5435,6 @@
 <div class="remember">Incentive spirometer inspires deep breaths.</div>
 <a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
 </article>
-
 <article class="term-card" data-category="Respiratory" data-letter="H" data-search="high-flow nasal cannula high-flow oxygen support an oxygen delivery system that provides heated, humidified oxygen at high flow rates. respiratory hfnc used for patients needing more oxygen support than standard nasal cannula. hfnc = higher-flow oxygen." data-term="high-flow nasal cannula">
 <span class="badge">Respiratory</span>
 <h3>High-flow nasal cannula</h3>
@@ -5541,6 +5444,1066 @@
 <p><strong>Clinical note:</strong> Used for patients needing more oxygen support than standard nasal cannula.</p>
 <div class="remember">HFNC = higher-flow oxygen.</div>
 <a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="A" data-search="adenocarcinoma cancer from glandular tissue a type of cancer that begins in gland-forming cells. oncology glandular cancer can occur in organs such as lung, colon, pancreas, breast, or prostate depending tissue type. adeno = gland; carcinoma = cancer." data-term="adenocarcinoma">
+<span class="badge">Oncology</span>
+<h3>Adenocarcinoma</h3>
+<p class="simple">Cancer from glandular tissue</p>
+<p>A type of cancer that begins in gland-forming cells.</p>
+<p class="meta"><strong>Also known as:</strong> Glandular cancer</p>
+<p><strong>Clinical note:</strong> Can occur in organs such as lung, colon, pancreas, breast, or prostate depending tissue type.</p>
+<div class="remember">Adeno = gland; carcinoma = cancer.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="B" data-search="benign not cancerous a growth or condition that is not malignant. oncology noncancerous benign does not always mean harmless; location and size still matter. benign = not malignant." data-term="benign">
+<span class="badge">Oncology</span>
+<h3>Benign</h3>
+<p class="simple">Not cancerous</p>
+<p>A growth or condition that is not malignant.</p>
+<p class="meta"><strong>Also known as:</strong> Noncancerous</p>
+<p><strong>Clinical note:</strong> Benign does not always mean harmless; location and size still matter.</p>
+<div class="remember">Benign = not malignant.</div>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="B" data-search="biomarker measurable disease clue a measurable substance or finding that can give information about disease or treatment response. oncology marker in oncology, biomarkers may guide diagnosis, prognosis, or treatment decisions. biomarker = biological clue." data-term="biomarker">
+<span class="badge">Oncology</span>
+<h3>Biomarker</h3>
+<p class="simple">Measurable disease clue</p>
+<p>A measurable substance or finding that can give information about disease or treatment response.</p>
+<p class="meta"><strong>Also known as:</strong> Marker</p>
+<p><strong>Clinical note:</strong> In oncology, biomarkers may guide diagnosis, prognosis, or treatment decisions.</p>
+<div class="remember">Biomarker = biological clue.</div>
+<a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="C" data-search="carcinoma cancer from epithelial tissue a cancer that starts in epithelial cells lining organs, skin, or glands. oncology epithelial cancer many common cancers are carcinomas. carcinoma = lining/gland cancer." data-term="carcinoma">
+<span class="badge">Oncology</span>
+<h3>Carcinoma</h3>
+<p class="simple">Cancer from epithelial tissue</p>
+<p>A cancer that starts in epithelial cells lining organs, skin, or glands.</p>
+<p class="meta"><strong>Also known as:</strong> Epithelial cancer</p>
+<p><strong>Clinical note:</strong> Many common cancers are carcinomas.</p>
+<div class="remember">Carcinoma = lining/gland cancer.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="M" data-search="malignant cancerous or dangerous growth a term describing cancerous growth that can invade or spread. oncology cancerous malignant tumors can invade nearby tissue and metastasize. malignant = harmful cancer behavior." data-term="malignant">
+<span class="badge">Oncology</span>
+<h3>Malignant</h3>
+<p class="simple">Cancerous or dangerous growth</p>
+<p>A term describing cancerous growth that can invade or spread.</p>
+<p class="meta"><strong>Also known as:</strong> Cancerous</p>
+<p><strong>Clinical note:</strong> Malignant tumors can invade nearby tissue and metastasize.</p>
+<div class="remember">Malignant = harmful cancer behavior.</div>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="M" data-search="metastasis cancer spread spread of cancer from its original site to another part of the body. oncology mets metastasis changes staging and treatment planning. meta = beyond; stasis = place." data-term="metastasis">
+<span class="badge">Oncology</span>
+<h3>Metastasis</h3>
+<p class="simple">Cancer spread</p>
+<p>Spread of cancer from its original site to another part of the body.</p>
+<p class="meta"><strong>Also known as:</strong> Mets</p>
+<p><strong>Clinical note:</strong> Metastasis changes staging and treatment planning.</p>
+<div class="remember">Meta = beyond; stasis = place.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="N" data-search="neoplasm new abnormal growth an abnormal growth of tissue that may be benign or malignant. oncology tumor; growth not all neoplasms are cancerous. neo = new; plasm = growth." data-term="neoplasm">
+<span class="badge">Oncology</span>
+<h3>Neoplasm</h3>
+<p class="simple">New abnormal growth</p>
+<p>An abnormal growth of tissue that may be benign or malignant.</p>
+<p class="meta"><strong>Also known as:</strong> Tumor; growth</p>
+<p><strong>Clinical note:</strong> Not all neoplasms are cancerous.</p>
+<div class="remember">Neo = new; plasm = growth.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="O" data-search="oncology cancer specialty the medical specialty focused on cancer diagnosis, treatment, and monitoring. oncology cancer care includes medical, surgical, and radiation oncology. onco = tumor; -logy = study." data-term="oncology">
+<span class="badge">Oncology</span>
+<h3>Oncology</h3>
+<p class="simple">Cancer specialty</p>
+<p>The medical specialty focused on cancer diagnosis, treatment, and monitoring.</p>
+<p class="meta"><strong>Also known as:</strong> Cancer care</p>
+<p><strong>Clinical note:</strong> Includes medical, surgical, and radiation oncology.</p>
+<div class="remember">Onco = tumor; -logy = study.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="R" data-search="radiation therapy cancer treatment using radiation treatment that uses targeted radiation to damage cancer cells. oncology radiotherapy often used alone or with surgery, chemotherapy, or other treatments. radiation therapy targets cancer cells." data-term="radiation therapy">
+<span class="badge">Oncology</span>
+<h3>Radiation therapy</h3>
+<p class="simple">Cancer treatment using radiation</p>
+<p>Treatment that uses targeted radiation to damage cancer cells.</p>
+<p class="meta"><strong>Also known as:</strong> Radiotherapy</p>
+<p><strong>Clinical note:</strong> Often used alone or with surgery, chemotherapy, or other treatments.</p>
+<div class="remember">Radiation therapy targets cancer cells.</div>
+</article>
+
+<article class="term-card" data-category="Oncology" data-letter="T" data-search="tumor abnormal mass an abnormal lump or growth of tissue. oncology mass; growth tumors may be benign or malignant. tumor = mass, not always cancer." data-term="tumor">
+<span class="badge">Oncology</span>
+<h3>Tumor</h3>
+<p class="simple">Abnormal mass</p>
+<p>An abnormal lump or growth of tissue.</p>
+<p class="meta"><strong>Also known as:</strong> Mass; growth</p>
+<p><strong>Clinical note:</strong> Tumors may be benign or malignant.</p>
+<div class="remember">Tumor = mass, not always cancer.</div>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="A" data-search="addiction compulsive substance or behavior pattern a chronic condition involving compulsive use or behavior despite harm. psychiatry substance use disorder context requires nonjudgmental assessment and appropriate support. addiction is a health condition." data-term="addiction">
+<span class="badge">Psychiatry</span>
+<h3>Addiction</h3>
+<p class="simple">Compulsive substance or behavior pattern</p>
+<p>A chronic condition involving compulsive use or behavior despite harm.</p>
+<p class="meta"><strong>Also known as:</strong> Substance use disorder context</p>
+<p><strong>Clinical note:</strong> Requires nonjudgmental assessment and appropriate support.</p>
+<div class="remember">Addiction is a health condition.</div>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="A" data-search="affect visible emotional expression the outward display of emotion observed during assessment. psychiatry emotional expression affect may be flat, blunted, labile, appropriate, or inappropriate. affect = what you see." data-term="affect">
+<span class="badge">Psychiatry</span>
+<h3>Affect</h3>
+<p class="simple">Visible emotional expression</p>
+<p>The outward display of emotion observed during assessment.</p>
+<p class="meta"><strong>Also known as:</strong> Emotional expression</p>
+<p><strong>Clinical note:</strong> Affect may be flat, blunted, labile, appropriate, or inappropriate.</p>
+<div class="remember">Affect = what you see.</div>
+<a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="A" data-search="agitation restless or heightened motor activity a state of increased restlessness, irritability, or motor activity. psychiatry restlessness can be related to pain, anxiety, delirium, hypoxia, medications, or psychiatric illness. agitation means activated distress." data-term="agitation">
+<span class="badge">Psychiatry</span>
+<h3>Agitation</h3>
+<p class="simple">Restless or heightened motor activity</p>
+<p>A state of increased restlessness, irritability, or motor activity.</p>
+<p class="meta"><strong>Also known as:</strong> Restlessness</p>
+<p><strong>Clinical note:</strong> Can be related to pain, anxiety, delirium, hypoxia, medications, or psychiatric illness.</p>
+<div class="remember">Agitation means activated distress.</div>
+<a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="B" data-search="bipolar disorder mood disorder with mania/depression a mood disorder involving episodes of mania or hypomania and often depression. psychiatry bipolar assessment includes mood, sleep, safety, medications, and function. bi = two mood poles." data-term="bipolar disorder">
+<span class="badge">Psychiatry</span>
+<h3>Bipolar disorder</h3>
+<p class="simple">Mood disorder with mania/depression</p>
+<p>A mood disorder involving episodes of mania or hypomania and often depression.</p>
+<p class="meta"><strong>Also known as:</strong> Bipolar</p>
+<p><strong>Clinical note:</strong> Assessment includes mood, sleep, safety, medications, and function.</p>
+<div class="remember">Bi = two mood poles.</div>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="F" data-search="flat affect reduced emotional expression a noticeably limited or absent outward emotional expression. psychiatry blunted expression can be seen in psychiatric, neurologic, or medication-related contexts. flat affect = little visible emotion." data-term="flat affect">
+<span class="badge">Psychiatry</span>
+<h3>Flat affect</h3>
+<p class="simple">Reduced emotional expression</p>
+<p>A noticeably limited or absent outward emotional expression.</p>
+<p class="meta"><strong>Also known as:</strong> Blunted expression</p>
+<p><strong>Clinical note:</strong> Can be seen in psychiatric, neurologic, or medication-related contexts.</p>
+<div class="remember">Flat affect = little visible emotion.</div>
+<a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="H" data-search="hallucination perception without external stimulus seeing, hearing, feeling, tasting, or smelling something that is not actually present. psychiatry false perception requires calm assessment and safety awareness. hallucination = sensing what is not there." data-term="hallucination">
+<span class="badge">Psychiatry</span>
+<h3>Hallucination</h3>
+<p class="simple">Perception without external stimulus</p>
+<p>Seeing, hearing, feeling, tasting, or smelling something that is not actually present.</p>
+<p class="meta"><strong>Also known as:</strong> False perception</p>
+<p><strong>Clinical note:</strong> Requires calm assessment and safety awareness.</p>
+<div class="remember">Hallucination = sensing what is not there.</div>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="M" data-search="mania elevated or irritable high-energy state a mood state with elevated energy, reduced sleep, racing thoughts, impulsivity, or grandiosity. psychiatry manic episode can impair judgment and safety. mania = mood and energy too high." data-term="mania">
+<span class="badge">Psychiatry</span>
+<h3>Mania</h3>
+<p class="simple">Elevated or irritable high-energy state</p>
+<p>A mood state with elevated energy, reduced sleep, racing thoughts, impulsivity, or grandiosity.</p>
+<p class="meta"><strong>Also known as:</strong> Manic episode</p>
+<p><strong>Clinical note:</strong> Can impair judgment and safety.</p>
+<div class="remember">Mania = mood and energy too high.</div>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="M" data-search="mood sustained emotional state a patient's overall emotional state over time. psychiatry emotional state mood is what the patient feels; affect is what you observe. mood = internal feeling." data-term="mood">
+<span class="badge">Psychiatry</span>
+<h3>Mood</h3>
+<p class="simple">Sustained emotional state</p>
+<p>A patient's overall emotional state over time.</p>
+<p class="meta"><strong>Also known as:</strong> Emotional state</p>
+<p><strong>Clinical note:</strong> Mood is what the patient feels; affect is what you observe.</p>
+<div class="remember">Mood = internal feeling.</div>
+<a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="S" data-search="suicidal ideation thoughts of self-harm or suicide thinking about, planning, or wanting to end one's life. psychiatry si always requires serious assessment and immediate support according to setting and risk. si = safety priority." data-term="suicidal ideation">
+<span class="badge">Psychiatry</span>
+<h3>Suicidal ideation</h3>
+<p class="simple">Thoughts of self-harm or suicide</p>
+<p>Thinking about, planning, or wanting to end one's life.</p>
+<p class="meta"><strong>Also known as:</strong> SI</p>
+<p><strong>Clinical note:</strong> Always requires serious assessment and immediate support according to setting and risk.</p>
+<div class="remember">SI = safety priority.</div>
+</article>
+
+<article class="term-card" data-category="Psychiatry" data-letter="T" data-search="therapeutic communication purposeful supportive communication communication techniques used to support patients, gather information, and build trust. psychiatry clinical communication includes active listening, empathy, open-ended questions, and avoiding judgment. therapeutic communication helps healing." data-term="therapeutic communication">
+<span class="badge">Psychiatry</span>
+<h3>Therapeutic communication</h3>
+<p class="simple">Purposeful supportive communication</p>
+<p>Communication techniques used to support patients, gather information, and build trust.</p>
+<p class="meta"><strong>Also known as:</strong> Clinical communication</p>
+<p><strong>Clinical note:</strong> Includes active listening, empathy, open-ended questions, and avoiding judgment.</p>
+<div class="remember">Therapeutic communication helps healing.</div>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="B" data-search="bariatric related to obesity care a term related to care of patients with obesity or larger body size. nursing bariatric care may involve equipment, mobility, skin care, and safety planning. bariatric = obesity-related care." data-term="bariatric">
+<span class="badge">Nursing</span>
+<h3>Bariatric</h3>
+<p class="simple">Related to obesity care</p>
+<p>A term related to care of patients with obesity or larger body size.</p>
+<p class="meta"><strong>Also known as:</strong> Bariatric care</p>
+<p><strong>Clinical note:</strong> May involve equipment, mobility, skin care, and safety planning.</p>
+<div class="remember">Bariatric = obesity-related care.</div>
+<a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="B" data-search="bedside report shift handoff at bedside a nursing handoff performed at the patient's bedside. nursing bedside handoff supports communication, safety checks, and patient involvement. bedside report = handoff with patient present." data-term="bedside report">
+<span class="badge">Nursing</span>
+<h3>Bedside report</h3>
+<p class="simple">Shift handoff at bedside</p>
+<p>A nursing handoff performed at the patient's bedside.</p>
+<p class="meta"><strong>Also known as:</strong> Bedside handoff</p>
+<p><strong>Clinical note:</strong> Supports communication, safety checks, and patient involvement.</p>
+<div class="remember">Bedside report = handoff with patient present.</div>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="C" data-search="care plan patient care roadmap a documented plan that identifies patient needs, goals, interventions, and evaluation. nursing plan of care guides nursing care and interdisciplinary communication. care plan = care roadmap." data-term="care plan">
+<span class="badge">Nursing</span>
+<h3>Care plan</h3>
+<p class="simple">Patient care roadmap</p>
+<p>A documented plan that identifies patient needs, goals, interventions, and evaluation.</p>
+<p class="meta"><strong>Also known as:</strong> Plan of care</p>
+<p><strong>Clinical note:</strong> Guides nursing care and interdisciplinary communication.</p>
+<div class="remember">Care plan = care roadmap.</div>
+<a href="/rn-practice-questions.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="C" data-search="charting clinical documentation recording patient care, assessments, interventions, and responses in the medical record. nursing documentation accurate charting supports communication, safety, and legal documentation. charting = document what happened." data-term="charting">
+<span class="badge">Nursing</span>
+<h3>Charting</h3>
+<p class="simple">Clinical documentation</p>
+<p>Recording patient care, assessments, interventions, and responses in the medical record.</p>
+<p class="meta"><strong>Also known as:</strong> Documentation</p>
+<p><strong>Clinical note:</strong> Accurate charting supports communication, safety, and legal documentation.</p>
+<div class="remember">Charting = document what happened.</div>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="D" data-search="delegation assigning tasks appropriately transferring responsibility for a task to another qualified team member while retaining accountability as appropriate. nursing task assignment requires knowing scope of practice, patient stability, and task complexity. delegation = right task, right person." data-term="delegation">
+<span class="badge">Nursing</span>
+<h3>Delegation</h3>
+<p class="simple">Assigning tasks appropriately</p>
+<p>Transferring responsibility for a task to another qualified team member while retaining accountability as appropriate.</p>
+<p class="meta"><strong>Also known as:</strong> Task assignment</p>
+<p><strong>Clinical note:</strong> Requires knowing scope of practice, patient stability, and task complexity.</p>
+<div class="remember">Delegation = right task, right person.</div>
+<a href="/rn-practice-questions.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="F" data-search="fall risk risk of falling a patient's likelihood of falling based on factors such as weakness, medications, confusion, or mobility problems. nursing fall precautions fall-risk patients may need alarms, assistance, clear pathways, and safety interventions. fall risk = safety risk." data-term="fall risk">
+<span class="badge">Nursing</span>
+<h3>Fall risk</h3>
+<p class="simple">Risk of falling</p>
+<p>A patient's likelihood of falling based on factors such as weakness, medications, confusion, or mobility problems.</p>
+<p class="meta"><strong>Also known as:</strong> Fall precautions</p>
+<p><strong>Clinical note:</strong> Fall-risk patients may need alarms, assistance, clear pathways, and safety interventions.</p>
+<div class="remember">Fall risk = safety risk.</div>
+<a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="H" data-search="handoff transfer of patient information communication that transfers responsibility and key patient information between caregivers. nursing report good handoff reduces missed information and safety events. handoff = pass the care story." data-term="handoff">
+<span class="badge">Nursing</span>
+<h3>Handoff</h3>
+<p class="simple">Transfer of patient information</p>
+<p>Communication that transfers responsibility and key patient information between caregivers.</p>
+<p class="meta"><strong>Also known as:</strong> Report</p>
+<p><strong>Clinical note:</strong> Good handoff reduces missed information and safety events.</p>
+<div class="remember">Handoff = pass the care story.</div>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="H" data-search="hourly rounding regular patient checks a workflow where staff check on patients at scheduled intervals. nursing purposeful rounding often includes pain, position, potty, possessions, and safety checks. hourly rounding prevents missed needs." data-term="hourly rounding">
+<span class="badge">Nursing</span>
+<h3>Hourly rounding</h3>
+<p class="simple">Regular patient checks</p>
+<p>A workflow where staff check on patients at scheduled intervals.</p>
+<p class="meta"><strong>Also known as:</strong> Purposeful rounding</p>
+<p><strong>Clinical note:</strong> Often includes pain, position, potty, possessions, and safety checks.</p>
+<div class="remember">Hourly rounding prevents missed needs.</div>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="S" data-search="sbar structured communication tool a format for communication: situation, background, assessment, recommendation. nursing situation background assessment recommendation used to organize urgent or routine clinical communication. sbar = structured message." data-term="sbar">
+<span class="badge">Nursing</span>
+<h3>SBAR</h3>
+<p class="simple">Structured communication tool</p>
+<p>A format for communication: Situation, Background, Assessment, Recommendation.</p>
+<p class="meta"><strong>Also known as:</strong> Situation Background Assessment Recommendation</p>
+<p><strong>Clinical note:</strong> Used to organize urgent or routine clinical communication.</p>
+<div class="remember">SBAR = structured message.</div>
+<a href="/medical-abbreviations-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Nursing" data-letter="S" data-search="scope of practice legal/professional role limits the activities a healthcare worker is trained, licensed, and permitted to perform. nursing practice scope important for delegation, safety, and accountability. scope = what you are allowed to do." data-term="scope of practice">
+<span class="badge">Nursing</span>
+<h3>Scope of practice</h3>
+<p class="simple">Legal/professional role limits</p>
+<p>The activities a healthcare worker is trained, licensed, and permitted to perform.</p>
+<p class="meta"><strong>Also known as:</strong> Practice scope</p>
+<p><strong>Clinical note:</strong> Important for delegation, safety, and accountability.</p>
+<div class="remember">Scope = what you are allowed to do.</div>
+</article>
+
+<article class="term-card" data-category="Cardiology" data-letter="A" data-search="afterload pressure the heart pumps against the resistance the ventricle must overcome to eject blood. cardiology vascular resistance concept high afterload can make the heart work harder. afterload = pressure after pump." data-term="afterload">
+<span class="badge">Cardiology</span>
+<h3>Afterload</h3>
+<p class="simple">Pressure the heart pumps against</p>
+<p>The resistance the ventricle must overcome to eject blood.</p>
+<p class="meta"><strong>Also known as:</strong> Vascular resistance concept</p>
+<p><strong>Clinical note:</strong> High afterload can make the heart work harder.</p>
+<div class="remember">Afterload = pressure after pump.</div>
+<a href="/heart-anatomy-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Cardiology" data-letter="C" data-search="cardiac output blood pumped per minute the amount of blood the heart pumps in one minute. cardiology co cardiac output depends on heart rate and stroke volume. cardiac output = pump output." data-term="cardiac output">
+<span class="badge">Cardiology</span>
+<h3>Cardiac output</h3>
+<p class="simple">Blood pumped per minute</p>
+<p>The amount of blood the heart pumps in one minute.</p>
+<p class="meta"><strong>Also known as:</strong> CO</p>
+<p><strong>Clinical note:</strong> Cardiac output depends on heart rate and stroke volume.</p>
+<div class="remember">Cardiac output = pump output.</div>
+<a href="/heart-anatomy-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Cardiology" data-letter="E" data-search="ejection fraction percent of blood pumped out the percentage of blood the left ventricle pumps out with each contraction. cardiology ef used to evaluate heart pumping function. ef = ejected fraction." data-term="ejection fraction">
+<span class="badge">Cardiology</span>
+<h3>Ejection fraction</h3>
+<p class="simple">Percent of blood pumped out</p>
+<p>The percentage of blood the left ventricle pumps out with each contraction.</p>
+<p class="meta"><strong>Also known as:</strong> EF</p>
+<p><strong>Clinical note:</strong> Used to evaluate heart pumping function.</p>
+<div class="remember">EF = ejected fraction.</div>
+<a href="/heart-anatomy-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="EKG" data-letter="H" data-search="heart block delayed electrical conduction a condition where electrical signals through the heart are slowed or blocked. ekg av block can be seen on ekg and may affect heart rate and rhythm. heart block = signal delay/block." data-term="heart block">
+<span class="badge">EKG</span>
+<h3>Heart block</h3>
+<p class="simple">Delayed electrical conduction</p>
+<p>A condition where electrical signals through the heart are slowed or blocked.</p>
+<p class="meta"><strong>Also known as:</strong> AV block</p>
+<p><strong>Clinical note:</strong> Can be seen on EKG and may affect heart rate and rhythm.</p>
+<div class="remember">Heart block = signal delay/block.</div>
+<a href="/ekg-rhythm-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="EKG" data-letter="P" data-search="premature beat early heartbeat a heartbeat that occurs earlier than expected in the rhythm. ekg ectopic beat may originate in atria, junction, or ventricles. premature = early." data-term="premature beat">
+<span class="badge">EKG</span>
+<h3>Premature beat</h3>
+<p class="simple">Early heartbeat</p>
+<p>A heartbeat that occurs earlier than expected in the rhythm.</p>
+<p class="meta"><strong>Also known as:</strong> Ectopic beat</p>
+<p><strong>Clinical note:</strong> May originate in atria, junction, or ventricles.</p>
+<div class="remember">Premature = early.</div>
+<a href="/ekg-rhythm-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Cardiology" data-letter="P" data-search="preload blood filling before contraction the amount of stretch or filling in the ventricle before contraction. cardiology ventricular filling preload is influenced by venous return and fluid status. preload = pre-pump filling." data-term="preload">
+<span class="badge">Cardiology</span>
+<h3>Preload</h3>
+<p class="simple">Blood filling before contraction</p>
+<p>The amount of stretch or filling in the ventricle before contraction.</p>
+<p class="meta"><strong>Also known as:</strong> Ventricular filling</p>
+<p><strong>Clinical note:</strong> Preload is influenced by venous return and fluid status.</p>
+<div class="remember">Preload = pre-pump filling.</div>
+<a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Cardiology" data-letter="S" data-search="stroke volume blood pumped per beat the amount of blood ejected by the ventricle with each heartbeat. cardiology sv stroke volume contributes to cardiac output. stroke volume = one-beat output." data-term="stroke volume">
+<span class="badge">Cardiology</span>
+<h3>Stroke volume</h3>
+<p class="simple">Blood pumped per beat</p>
+<p>The amount of blood ejected by the ventricle with each heartbeat.</p>
+<p class="meta"><strong>Also known as:</strong> SV</p>
+<p><strong>Clinical note:</strong> Stroke volume contributes to cardiac output.</p>
+<div class="remember">Stroke volume = one-beat output.</div>
+<a href="/heart-anatomy-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="EKG" data-letter="S" data-search="supraventricular tachycardia fast rhythm above ventricles a rapid heart rhythm that originates above the ventricles. ekg svt can cause palpitations, dizziness, chest discomfort, or shortness of breath. svt = fast rhythm above ventricles." data-term="supraventricular tachycardia">
+<span class="badge">EKG</span>
+<h3>Supraventricular tachycardia</h3>
+<p class="simple">Fast rhythm above ventricles</p>
+<p>A rapid heart rhythm that originates above the ventricles.</p>
+<p class="meta"><strong>Also known as:</strong> SVT</p>
+<p><strong>Clinical note:</strong> Can cause palpitations, dizziness, chest discomfort, or shortness of breath.</p>
+<div class="remember">SVT = fast rhythm above ventricles.</div>
+<a href="/ekg-rhythm-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Cardiology" data-letter="V" data-search="vagal response body response lowering heart rate a response involving the vagus nerve that can slow heart rate and lower blood pressure. cardiology vasovagal response can occur with pain, stress, straining, or procedures. vagal can make vitals drop." data-term="vagal response">
+<span class="badge">Cardiology</span>
+<h3>Vagal response</h3>
+<p class="simple">Body response lowering heart rate</p>
+<p>A response involving the vagus nerve that can slow heart rate and lower blood pressure.</p>
+<p class="meta"><strong>Also known as:</strong> Vasovagal response</p>
+<p><strong>Clinical note:</strong> Can occur with pain, stress, straining, or procedures.</p>
+<div class="remember">Vagal can make vitals drop.</div>
+<a href="/normal-vital-signs-chart.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="EKG" data-letter="W" data-search="wide qrs broad ventricular complex an ekg finding where the qrs complex is wider than expected. ekg prolonged qrs can suggest ventricular origin or conduction delay depending rhythm. wide qrs = slow ventricular conduction clue." data-term="wide qrs">
+<span class="badge">EKG</span>
+<h3>Wide QRS</h3>
+<p class="simple">Broad ventricular complex</p>
+<p>An EKG finding where the QRS complex is wider than expected.</p>
+<p class="meta"><strong>Also known as:</strong> Prolonged QRS</p>
+<p><strong>Clinical note:</strong> Can suggest ventricular origin or conduction delay depending rhythm.</p>
+<div class="remember">Wide QRS = slow ventricular conduction clue.</div>
+<a href="/how-to-read-ekg.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="A" data-search="aspiration material entering airway entry of food, fluid, vomit, or secretions into the airway or lungs. respiratory airway aspiration can lead to coughing, choking, pneumonia, or respiratory distress. aspiration = wrong pipe problem." data-term="aspiration">
+<span class="badge">Respiratory</span>
+<h3>Aspiration</h3>
+<p class="simple">Material entering airway</p>
+<p>Entry of food, fluid, vomit, or secretions into the airway or lungs.</p>
+<p class="meta"><strong>Also known as:</strong> Airway aspiration</p>
+<p><strong>Clinical note:</strong> Can lead to coughing, choking, pneumonia, or respiratory distress.</p>
+<div class="remember">Aspiration = wrong pipe problem.</div>
+<a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="B" data-search="bronchospasm airway muscle tightening contraction of airway smooth muscle that narrows the airways. respiratory airway spasm can cause wheezing, shortness of breath, or chest tightness. bronchospasm = airway squeeze." data-term="bronchospasm">
+<span class="badge">Respiratory</span>
+<h3>Bronchospasm</h3>
+<p class="simple">Airway muscle tightening</p>
+<p>Contraction of airway smooth muscle that narrows the airways.</p>
+<p class="meta"><strong>Also known as:</strong> Airway spasm</p>
+<p><strong>Clinical note:</strong> Can cause wheezing, shortness of breath, or chest tightness.</p>
+<div class="remember">Bronchospasm = airway squeeze.</div>
+<a href="/lung-sounds-quiz.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="H" data-search="hypoventilation too little ventilation breathing that does not adequately remove carbon dioxide. respiratory under-ventilation can cause co2 retention and respiratory acidosis. hypoventilation holds co2." data-term="hypoventilation">
+<span class="badge">Respiratory</span>
+<h3>Hypoventilation</h3>
+<p class="simple">Too little ventilation</p>
+<p>Breathing that does not adequately remove carbon dioxide.</p>
+<p class="meta"><strong>Also known as:</strong> Under-ventilation</p>
+<p><strong>Clinical note:</strong> Can cause CO2 retention and respiratory acidosis.</p>
+<div class="remember">Hypoventilation holds CO2.</div>
+<a href="/abg-normal-values.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="H" data-search="hyperventilation excess ventilation breathing that removes carbon dioxide faster than normal. respiratory over-breathing can lower co2 and contribute to respiratory alkalosis. hyperventilation blows off co2." data-term="hyperventilation">
+<span class="badge">Respiratory</span>
+<h3>Hyperventilation</h3>
+<p class="simple">Excess ventilation</p>
+<p>Breathing that removes carbon dioxide faster than normal.</p>
+<p class="meta"><strong>Also known as:</strong> Over-breathing</p>
+<p><strong>Clinical note:</strong> Can lower CO2 and contribute to respiratory alkalosis.</p>
+<div class="remember">Hyperventilation blows off CO2.</div>
+<a href="/abg-normal-values.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="O" data-search="oxygenation oxygen loading into blood the process of getting oxygen into the blood. respiratory o2 status oxygenation is different from ventilation, which is co2 movement. oxygenation = oxygen in." data-term="oxygenation">
+<span class="badge">Respiratory</span>
+<h3>Oxygenation</h3>
+<p class="simple">Oxygen loading into blood</p>
+<p>The process of getting oxygen into the blood.</p>
+<p class="meta"><strong>Also known as:</strong> O2 status</p>
+<p><strong>Clinical note:</strong> Oxygenation is different from ventilation, which is CO2 movement.</p>
+<div class="remember">Oxygenation = oxygen in.</div>
+<a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="V" data-search="ventilation movement of air/co2 exchange the process of moving air in and out of lungs, especially removing carbon dioxide. respiratory breathing mechanics ventilation problems often show up as co2 problems on abg. ventilation = co2 out." data-term="ventilation">
+<span class="badge">Respiratory</span>
+<h3>Ventilation</h3>
+<p class="simple">Movement of air/CO2 exchange</p>
+<p>The process of moving air in and out of lungs, especially removing carbon dioxide.</p>
+<p class="meta"><strong>Also known as:</strong> Breathing mechanics</p>
+<p><strong>Clinical note:</strong> Ventilation problems often show up as CO2 problems on ABG.</p>
+<div class="remember">Ventilation = CO2 out.</div>
+<a href="/abg-normal-values.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="R" data-search="respiratory distress increased work of breathing a condition where breathing becomes difficult or requires extra effort. respiratory breathing difficulty signs may include retractions, accessory muscle use, tachypnea, or low oxygen. distress = breathing is hard." data-term="respiratory distress">
+<span class="badge">Respiratory</span>
+<h3>Respiratory distress</h3>
+<p class="simple">Increased work of breathing</p>
+<p>A condition where breathing becomes difficult or requires extra effort.</p>
+<p class="meta"><strong>Also known as:</strong> Breathing difficulty</p>
+<p><strong>Clinical note:</strong> Signs may include retractions, accessory muscle use, tachypnea, or low oxygen.</p>
+<div class="remember">Distress = breathing is hard.</div>
+<a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="R" data-search="retractions visible pulling with breathing inward pulling of muscles between ribs or around the chest during breathing. respiratory chest wall retractions a sign of increased work of breathing, especially important in children. retractions = working hard to breathe." data-term="retractions">
+<span class="badge">Respiratory</span>
+<h3>Retractions</h3>
+<p class="simple">Visible pulling with breathing</p>
+<p>Inward pulling of muscles between ribs or around the chest during breathing.</p>
+<p class="meta"><strong>Also known as:</strong> Chest wall retractions</p>
+<p><strong>Clinical note:</strong> A sign of increased work of breathing, especially important in children.</p>
+<div class="remember">Retractions = working hard to breathe.</div>
+<a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="A" data-search="accessory muscle use extra muscles used to breathe use of neck, shoulder, or chest muscles to help breathing. respiratory increased work of breathing can indicate respiratory distress. accessory muscles = backup breathing muscles." data-term="accessory muscle use">
+<span class="badge">Respiratory</span>
+<h3>Accessory muscle use</h3>
+<p class="simple">Extra muscles used to breathe</p>
+<p>Use of neck, shoulder, or chest muscles to help breathing.</p>
+<p class="meta"><strong>Also known as:</strong> Increased work of breathing</p>
+<p><strong>Clinical note:</strong> Can indicate respiratory distress.</p>
+<div class="remember">Accessory muscles = backup breathing muscles.</div>
+<a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Respiratory" data-letter="T" data-search="tripod position position to ease breathing sitting forward with hands or arms braced to help breathing. respiratory tripoding often seen when a patient is working hard to breathe. tripod = bracing to breathe." data-term="tripod position">
+<span class="badge">Respiratory</span>
+<h3>Tripod position</h3>
+<p class="simple">Position to ease breathing</p>
+<p>Sitting forward with hands or arms braced to help breathing.</p>
+<p class="meta"><strong>Also known as:</strong> Tripoding</p>
+<p><strong>Clinical note:</strong> Often seen when a patient is working hard to breathe.</p>
+<div class="remember">Tripod = bracing to breathe.</div>
+<a href="/oxygen-delivery-devices-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="H" data-search="hematemesis vomiting blood vomiting blood or material that may look like coffee grounds. gastroenterology bloody vomit can indicate gastrointestinal bleeding and requires prompt assessment. hemat = blood; emesis = vomit." data-term="hematemesis">
+<span class="badge">Gastroenterology</span>
+<h3>Hematemesis</h3>
+<p class="simple">Vomiting blood</p>
+<p>Vomiting blood or material that may look like coffee grounds.</p>
+<p class="meta"><strong>Also known as:</strong> Bloody vomit</p>
+<p><strong>Clinical note:</strong> Can indicate gastrointestinal bleeding and requires prompt assessment.</p>
+<div class="remember">Hemat = blood; emesis = vomit.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="M" data-search="melena black tarry stool dark, tar-like stool often associated with digested blood from gi bleeding. gastroenterology black stool can be a sign of upper gi bleeding in context. melena = black digested blood stool." data-term="melena">
+<span class="badge">Gastroenterology</span>
+<h3>Melena</h3>
+<p class="simple">Black tarry stool</p>
+<p>Dark, tar-like stool often associated with digested blood from GI bleeding.</p>
+<p class="meta"><strong>Also known as:</strong> Black stool</p>
+<p><strong>Clinical note:</strong> Can be a sign of upper GI bleeding in context.</p>
+<div class="remember">Melena = black digested blood stool.</div>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="H" data-search="hematochezia bright red blood in stool passage of bright red blood from the rectum. gastroenterology bloody stool may be related to lower gi bleeding or brisk upper bleeding depending context. hematochezia = red stool blood." data-term="hematochezia">
+<span class="badge">Gastroenterology</span>
+<h3>Hematochezia</h3>
+<p class="simple">Bright red blood in stool</p>
+<p>Passage of bright red blood from the rectum.</p>
+<p class="meta"><strong>Also known as:</strong> Bloody stool</p>
+<p><strong>Clinical note:</strong> May be related to lower GI bleeding or brisk upper bleeding depending context.</p>
+<div class="remember">Hematochezia = red stool blood.</div>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="D" data-search="dysphagia difficulty swallowing trouble swallowing food, liquids, or saliva. gastroenterology swallowing difficulty can increase aspiration risk and affect nutrition. dys = difficult; phagia = swallowing." data-term="dysphagia">
+<span class="badge">Gastroenterology</span>
+<h3>Dysphagia</h3>
+<p class="simple">Difficulty swallowing</p>
+<p>Trouble swallowing food, liquids, or saliva.</p>
+<p class="meta"><strong>Also known as:</strong> Swallowing difficulty</p>
+<p><strong>Clinical note:</strong> Can increase aspiration risk and affect nutrition.</p>
+<div class="remember">Dys = difficult; phagia = swallowing.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="G" data-search="gerd acid reflux disease a condition where stomach contents reflux into the esophagus causing symptoms or irritation. gastroenterology gastroesophageal reflux disease may cause heartburn, regurgitation, cough, or throat symptoms. gerd = reflux disease." data-term="gerd">
+<span class="badge">Gastroenterology</span>
+<h3>GERD</h3>
+<p class="simple">Acid reflux disease</p>
+<p>A condition where stomach contents reflux into the esophagus causing symptoms or irritation.</p>
+<p class="meta"><strong>Also known as:</strong> Gastroesophageal reflux disease</p>
+<p><strong>Clinical note:</strong> May cause heartburn, regurgitation, cough, or throat symptoms.</p>
+<div class="remember">GERD = reflux disease.</div>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="I" data-search="ileus temporary bowel movement shutdown reduced or absent intestinal movement without a mechanical blockage. gastroenterology paralytic ileus can occur after surgery, illness, medications, or electrolyte problems. ileus = gut not moving." data-term="ileus">
+<span class="badge">Gastroenterology</span>
+<h3>Ileus</h3>
+<p class="simple">Temporary bowel movement shutdown</p>
+<p>Reduced or absent intestinal movement without a mechanical blockage.</p>
+<p class="meta"><strong>Also known as:</strong> Paralytic ileus</p>
+<p><strong>Clinical note:</strong> Can occur after surgery, illness, medications, or electrolyte problems.</p>
+<div class="remember">Ileus = gut not moving.</div>
+<a href="/digestive-system-anatomy-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="A" data-search="ascites fluid in abdomen abnormal fluid accumulation in the abdominal cavity. gastroenterology abdominal fluid often associated with liver disease, cancer, or other conditions. ascites = abdominal fluid." data-term="ascites">
+<span class="badge">Gastroenterology</span>
+<h3>Ascites</h3>
+<p class="simple">Fluid in abdomen</p>
+<p>Abnormal fluid accumulation in the abdominal cavity.</p>
+<p class="meta"><strong>Also known as:</strong> Abdominal fluid</p>
+<p><strong>Clinical note:</strong> Often associated with liver disease, cancer, or other conditions.</p>
+<div class="remember">Ascites = abdominal fluid.</div>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="H" data-search="hepatomegaly enlarged liver abnormal enlargement of the liver. gastroenterology large liver can be caused by liver disease, congestion, infection, or malignancy. hepato = liver; megaly = enlarged." data-term="hepatomegaly">
+<span class="badge">Gastroenterology</span>
+<h3>Hepatomegaly</h3>
+<p class="simple">Enlarged liver</p>
+<p>Abnormal enlargement of the liver.</p>
+<p class="meta"><strong>Also known as:</strong> Large liver</p>
+<p><strong>Clinical note:</strong> Can be caused by liver disease, congestion, infection, or malignancy.</p>
+<div class="remember">Hepato = liver; megaly = enlarged.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="S" data-search="splenomegaly enlarged spleen abnormal enlargement of the spleen. gastroenterology large spleen may occur with infection, blood disorders, liver disease, or malignancy. spleno = spleen; megaly = enlarged." data-term="splenomegaly">
+<span class="badge">Gastroenterology</span>
+<h3>Splenomegaly</h3>
+<p class="simple">Enlarged spleen</p>
+<p>Abnormal enlargement of the spleen.</p>
+<p class="meta"><strong>Also known as:</strong> Large spleen</p>
+<p><strong>Clinical note:</strong> May occur with infection, blood disorders, liver disease, or malignancy.</p>
+<div class="remember">Spleno = spleen; megaly = enlarged.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Gastroenterology" data-letter="J" data-search="j-tube feeding tube into jejunum a tube placed into the jejunum for enteral feeding. gastroenterology jejunostomy tube used when feeding into the stomach is not appropriate or possible. j-tube feeds jejunum." data-term="j-tube">
+<span class="badge">Gastroenterology</span>
+<h3>J-tube</h3>
+<p class="simple">Feeding tube into jejunum</p>
+<p>A tube placed into the jejunum for enteral feeding.</p>
+<p class="meta"><strong>Also known as:</strong> Jejunostomy tube</p>
+<p><strong>Clinical note:</strong> Used when feeding into the stomach is not appropriate or possible.</p>
+<div class="remember">J-tube feeds jejunum.</div>
+<a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="O" data-search="oliguria low urine output producing less urine than expected. renal low uop can suggest dehydration, kidney injury, obstruction, or poor perfusion. oligo = little; uria = urine." data-term="oliguria">
+<span class="badge">Renal</span>
+<h3>Oliguria</h3>
+<p class="simple">Low urine output</p>
+<p>Producing less urine than expected.</p>
+<p class="meta"><strong>Also known as:</strong> Low UOP</p>
+<p><strong>Clinical note:</strong> Can suggest dehydration, kidney injury, obstruction, or poor perfusion.</p>
+<div class="remember">Oligo = little; uria = urine.</div>
+<a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="A" data-search="anuria no urine output absence or near absence of urine production. renal no uop a serious finding that requires prompt clinical attention. an = without; uria = urine." data-term="anuria">
+<span class="badge">Renal</span>
+<h3>Anuria</h3>
+<p class="simple">No urine output</p>
+<p>Absence or near absence of urine production.</p>
+<p class="meta"><strong>Also known as:</strong> No UOP</p>
+<p><strong>Clinical note:</strong> A serious finding that requires prompt clinical attention.</p>
+<div class="remember">An = without; uria = urine.</div>
+<a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="P" data-search="polyuria excessive urine output producing unusually large amounts of urine. renal high uop can occur with diabetes, diuretics, kidney issues, or fluid shifts. poly = many; uria = urine." data-term="polyuria">
+<span class="badge">Renal</span>
+<h3>Polyuria</h3>
+<p class="simple">Excessive urine output</p>
+<p>Producing unusually large amounts of urine.</p>
+<p class="meta"><strong>Also known as:</strong> High UOP</p>
+<p><strong>Clinical note:</strong> Can occur with diabetes, diuretics, kidney issues, or fluid shifts.</p>
+<div class="remember">Poly = many; uria = urine.</div>
+<a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="H" data-search="hematuria blood in urine presence of blood in the urine. renal bloody urine may be visible or found on urinalysis. hemat = blood; uria = urine." data-term="hematuria">
+<span class="badge">Renal</span>
+<h3>Hematuria</h3>
+<p class="simple">Blood in urine</p>
+<p>Presence of blood in the urine.</p>
+<p class="meta"><strong>Also known as:</strong> Bloody urine</p>
+<p><strong>Clinical note:</strong> May be visible or found on urinalysis.</p>
+<div class="remember">Hemat = blood; uria = urine.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="P" data-search="proteinuria protein in urine presence of abnormal protein in the urine. renal urine protein can be a sign of kidney disease or other conditions. protein + uria = protein in urine." data-term="proteinuria">
+<span class="badge">Renal</span>
+<h3>Proteinuria</h3>
+<p class="simple">Protein in urine</p>
+<p>Presence of abnormal protein in the urine.</p>
+<p class="meta"><strong>Also known as:</strong> Urine protein</p>
+<p><strong>Clinical note:</strong> Can be a sign of kidney disease or other conditions.</p>
+<div class="remember">Protein + uria = protein in urine.</div>
+<a href="/bun-creatinine-gfr-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="D" data-search="dialysate fluid used in dialysis special fluid used during dialysis to help remove wastes and balance electrolytes. renal dialysis fluid used in hemodialysis or peritoneal dialysis systems. dialysate helps clean blood." data-term="dialysate">
+<span class="badge">Renal</span>
+<h3>Dialysate</h3>
+<p class="simple">Fluid used in dialysis</p>
+<p>Special fluid used during dialysis to help remove wastes and balance electrolytes.</p>
+<p class="meta"><strong>Also known as:</strong> Dialysis fluid</p>
+<p><strong>Clinical note:</strong> Used in hemodialysis or peritoneal dialysis systems.</p>
+<div class="remember">Dialysate helps clean blood.</div>
+<a href="/bun-creatinine-gfr-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="F" data-search="foley catheter indwelling urinary catheter a tube placed into the bladder to drain urine continuously. renal urinary catheter requires infection prevention and monitoring of urine output. foley drains bladder." data-term="foley catheter">
+<span class="badge">Renal</span>
+<h3>Foley catheter</h3>
+<p class="simple">Indwelling urinary catheter</p>
+<p>A tube placed into the bladder to drain urine continuously.</p>
+<p class="meta"><strong>Also known as:</strong> Urinary catheter</p>
+<p><strong>Clinical note:</strong> Requires infection prevention and monitoring of urine output.</p>
+<div class="remember">Foley drains bladder.</div>
+<a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="U" data-search="urinary retention inability to empty bladder a condition where the bladder does not empty fully or at all. renal retained urine can cause discomfort, bladder distention, or kidney concerns if severe. retention = urine held back." data-term="urinary retention">
+<span class="badge">Renal</span>
+<h3>Urinary retention</h3>
+<p class="simple">Inability to empty bladder</p>
+<p>A condition where the bladder does not empty fully or at all.</p>
+<p class="meta"><strong>Also known as:</strong> Retained urine</p>
+<p><strong>Clinical note:</strong> Can cause discomfort, bladder distention, or kidney concerns if severe.</p>
+<div class="remember">Retention = urine held back.</div>
+<a href="/fluid-balance-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="N" data-search="nephrotoxic harmful to kidneys a substance or medication that can damage kidney function. renal kidney-toxic important when reviewing medications and kidney labs. nephro = kidney; toxic = harmful." data-term="nephrotoxic">
+<span class="badge">Renal</span>
+<h3>Nephrotoxic</h3>
+<p class="simple">Harmful to kidneys</p>
+<p>A substance or medication that can damage kidney function.</p>
+<p class="meta"><strong>Also known as:</strong> Kidney-toxic</p>
+<p><strong>Clinical note:</strong> Important when reviewing medications and kidney labs.</p>
+<div class="remember">Nephro = kidney; toxic = harmful.</div>
+<a href="/bun-creatinine-gfr-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Renal" data-letter="U" data-search="uremia waste buildup in blood a condition where kidney failure leads to buildup of waste products in the blood. renal uremic state can cause nausea, confusion, itching, fatigue, or other symptoms. uremia = urine waste in blood." data-term="uremia">
+<span class="badge">Renal</span>
+<h3>Uremia</h3>
+<p class="simple">Waste buildup in blood</p>
+<p>A condition where kidney failure leads to buildup of waste products in the blood.</p>
+<p class="meta"><strong>Also known as:</strong> Uremic state</p>
+<p><strong>Clinical note:</strong> Can cause nausea, confusion, itching, fatigue, or other symptoms.</p>
+<div class="remember">Uremia = urine waste in blood.</div>
+<a href="/bun-creatinine-gfr-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="L" data-search="leukocytosis high white blood cell count an elevated white blood cell count. hematology high wbc can occur with infection, inflammation, stress, steroids, or blood disorders. leuko = white; cytosis = increased cells." data-term="leukocytosis">
+<span class="badge">Hematology</span>
+<h3>Leukocytosis</h3>
+<p class="simple">High white blood cell count</p>
+<p>An elevated white blood cell count.</p>
+<p class="meta"><strong>Also known as:</strong> High WBC</p>
+<p><strong>Clinical note:</strong> Can occur with infection, inflammation, stress, steroids, or blood disorders.</p>
+<div class="remember">Leuko = white; cytosis = increased cells.</div>
+<a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="L" data-search="leukopenia low white blood cell count a decreased white blood cell count. hematology low wbc can increase infection risk depending severity and cause. leuko = white; penia = low." data-term="leukopenia">
+<span class="badge">Hematology</span>
+<h3>Leukopenia</h3>
+<p class="simple">Low white blood cell count</p>
+<p>A decreased white blood cell count.</p>
+<p class="meta"><strong>Also known as:</strong> Low WBC</p>
+<p><strong>Clinical note:</strong> Can increase infection risk depending severity and cause.</p>
+<div class="remember">Leuko = white; penia = low.</div>
+<a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="N" data-search="neutropenia low neutrophil count a low level of neutrophils, a type of white blood cell important for fighting infection. hematology low neutrophils can increase risk for serious infection. neutropenia = low infection-fighting cells." data-term="neutropenia">
+<span class="badge">Hematology</span>
+<h3>Neutropenia</h3>
+<p class="simple">Low neutrophil count</p>
+<p>A low level of neutrophils, a type of white blood cell important for fighting infection.</p>
+<p class="meta"><strong>Also known as:</strong> Low neutrophils</p>
+<p><strong>Clinical note:</strong> Can increase risk for serious infection.</p>
+<div class="remember">Neutropenia = low infection-fighting cells.</div>
+<a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="T" data-search="thrombocytopenia low platelet count a decreased platelet count. hematology low platelets can increase bleeding risk depending severity. thrombo = clot; cyto = cell; penia = low." data-term="thrombocytopenia">
+<span class="badge">Hematology</span>
+<h3>Thrombocytopenia</h3>
+<p class="simple">Low platelet count</p>
+<p>A decreased platelet count.</p>
+<p class="meta"><strong>Also known as:</strong> Low platelets</p>
+<p><strong>Clinical note:</strong> Can increase bleeding risk depending severity.</p>
+<div class="remember">Thrombo = clot; cyto = cell; penia = low.</div>
+<a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="P" data-search="polycythemia high red blood cell level an increased concentration of red blood cells. hematology high rbc can thicken blood and may require evaluation of cause. poly = many; cythemia = cells in blood." data-term="polycythemia">
+<span class="badge">Hematology</span>
+<h3>Polycythemia</h3>
+<p class="simple">High red blood cell level</p>
+<p>An increased concentration of red blood cells.</p>
+<p class="meta"><strong>Also known as:</strong> High RBC</p>
+<p><strong>Clinical note:</strong> Can thicken blood and may require evaluation of cause.</p>
+<div class="remember">Poly = many; cythemia = cells in blood.</div>
+<a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="C" data-search="coagulation blood clotting process the process by which blood forms clots to stop bleeding. hematology clotting too much or too little clotting can both be dangerous. coagulation = clot formation." data-term="coagulation">
+<span class="badge">Hematology</span>
+<h3>Coagulation</h3>
+<p class="simple">Blood clotting process</p>
+<p>The process by which blood forms clots to stop bleeding.</p>
+<p class="meta"><strong>Also known as:</strong> Clotting</p>
+<p><strong>Clinical note:</strong> Too much or too little clotting can both be dangerous.</p>
+<div class="remember">Coagulation = clot formation.</div>
+<a href="/normal-lab-values-cheat-sheet.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="H" data-search="hemolysis red blood cell breakdown destruction of red blood cells. hematology rbc breakdown can affect lab results and occur in certain diseases. hemo = blood; lysis = breakdown." data-term="hemolysis">
+<span class="badge">Hematology</span>
+<h3>Hemolysis</h3>
+<p class="simple">Red blood cell breakdown</p>
+<p>Destruction of red blood cells.</p>
+<p class="meta"><strong>Also known as:</strong> RBC breakdown</p>
+<p><strong>Clinical note:</strong> Can affect lab results and occur in certain diseases.</p>
+<div class="remember">Hemo = blood; lysis = breakdown.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="P" data-search="petechiae tiny pinpoint bleeding spots small red or purple spots caused by bleeding under the skin. hematology pinpoint rash can be associated with low platelets, infection, trauma, or other causes. petechiae = pinpoint bleeding." data-term="petechiae">
+<span class="badge">Hematology</span>
+<h3>Petechiae</h3>
+<p class="simple">Tiny pinpoint bleeding spots</p>
+<p>Small red or purple spots caused by bleeding under the skin.</p>
+<p class="meta"><strong>Also known as:</strong> Pinpoint rash</p>
+<p><strong>Clinical note:</strong> Can be associated with low platelets, infection, trauma, or other causes.</p>
+<div class="remember">Petechiae = pinpoint bleeding.</div>
+<a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="E" data-search="ecchymosis bruise a larger area of bleeding under the skin. hematology bruising can occur from trauma, bleeding disorders, or anticoagulants. ecchymosis = bruise." data-term="ecchymosis">
+<span class="badge">Hematology</span>
+<h3>Ecchymosis</h3>
+<p class="simple">Bruise</p>
+<p>A larger area of bleeding under the skin.</p>
+<p class="meta"><strong>Also known as:</strong> Bruising</p>
+<p><strong>Clinical note:</strong> Can occur from trauma, bleeding disorders, or anticoagulants.</p>
+<div class="remember">Ecchymosis = bruise.</div>
+<a href="/head-to-toe-physical-assessment-guide.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Hematology" data-letter="H" data-search="hematoma localized blood collection a collection of blood outside blood vessels. hematology blood pocket can occur after injury, procedure, or bleeding problem. hematoma = blood mass." data-term="hematoma">
+<span class="badge">Hematology</span>
+<h3>Hematoma</h3>
+<p class="simple">Localized blood collection</p>
+<p>A collection of blood outside blood vessels.</p>
+<p class="meta"><strong>Also known as:</strong> Blood pocket</p>
+<p><strong>Clinical note:</strong> Can occur after injury, procedure, or bleeding problem.</p>
+<div class="remember">Hematoma = blood mass.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="P" data-search="pathogen disease-causing organism a microorganism or agent capable of causing disease. infectious disease germ includes bacteria, viruses, fungi, and parasites. pathogen = disease producer." data-term="pathogen">
+<span class="badge">Infectious Disease</span>
+<h3>Pathogen</h3>
+<p class="simple">Disease-causing organism</p>
+<p>A microorganism or agent capable of causing disease.</p>
+<p class="meta"><strong>Also known as:</strong> Germ</p>
+<p><strong>Clinical note:</strong> Includes bacteria, viruses, fungi, and parasites.</p>
+<div class="remember">Pathogen = disease producer.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="V" data-search="viremia virus in bloodstream presence of virus in the blood. infectious disease bloodstream virus clinical significance depends on virus and patient context. viremia = virus in blood." data-term="viremia">
+<span class="badge">Infectious Disease</span>
+<h3>Viremia</h3>
+<p class="simple">Virus in bloodstream</p>
+<p>Presence of virus in the blood.</p>
+<p class="meta"><strong>Also known as:</strong> Bloodstream virus</p>
+<p><strong>Clinical note:</strong> Clinical significance depends on virus and patient context.</p>
+<div class="remember">Viremia = virus in blood.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="F" data-search="fungemia fungus in bloodstream presence of fungal organisms in the blood. infectious disease bloodstream fungus can be serious, especially in immunocompromised patients. fungemia = fungus in blood." data-term="fungemia">
+<span class="badge">Infectious Disease</span>
+<h3>Fungemia</h3>
+<p class="simple">Fungus in bloodstream</p>
+<p>Presence of fungal organisms in the blood.</p>
+<p class="meta"><strong>Also known as:</strong> Bloodstream fungus</p>
+<p><strong>Clinical note:</strong> Can be serious, especially in immunocompromised patients.</p>
+<div class="remember">Fungemia = fungus in blood.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="C" data-search="colonization organisms present without disease presence of microorganisms without causing active infection. infectious disease carrier state colonization is different from infection. colonization = present, not necessarily infected." data-term="colonization">
+<span class="badge">Infectious Disease</span>
+<h3>Colonization</h3>
+<p class="simple">Organisms present without disease</p>
+<p>Presence of microorganisms without causing active infection.</p>
+<p class="meta"><strong>Also known as:</strong> Carrier state</p>
+<p><strong>Clinical note:</strong> Colonization is different from infection.</p>
+<div class="remember">Colonization = present, not necessarily infected.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="C" data-search="contagious able to spread person-to-person a disease or organism that can spread from one person to another. infectious disease transmissible transmission depends on organism and route. contagious = can spread." data-term="contagious">
+<span class="badge">Infectious Disease</span>
+<h3>Contagious</h3>
+<p class="simple">Able to spread person-to-person</p>
+<p>A disease or organism that can spread from one person to another.</p>
+<p class="meta"><strong>Also known as:</strong> Transmissible</p>
+<p><strong>Clinical note:</strong> Transmission depends on organism and route.</p>
+<div class="remember">Contagious = can spread.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="I" data-search="isolation precautions infection control measures special precautions used to reduce spread of infectious organisms. infectious disease transmission precautions may include contact, droplet, or airborne precautions. isolation precautions block spread." data-term="isolation precautions">
+<span class="badge">Infectious Disease</span>
+<h3>Isolation precautions</h3>
+<p class="simple">Infection control measures</p>
+<p>Special precautions used to reduce spread of infectious organisms.</p>
+<p class="meta"><strong>Also known as:</strong> Transmission precautions</p>
+<p><strong>Clinical note:</strong> May include contact, droplet, or airborne precautions.</p>
+<div class="remember">Isolation precautions block spread.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="C" data-search="contact precautions precautions for touch spread infection control practices used for organisms spread by direct or indirect contact. infectious disease contact isolation often includes gown and gloves according to policy. contact = touch spread." data-term="contact precautions">
+<span class="badge">Infectious Disease</span>
+<h3>Contact precautions</h3>
+<p class="simple">Precautions for touch spread</p>
+<p>Infection control practices used for organisms spread by direct or indirect contact.</p>
+<p class="meta"><strong>Also known as:</strong> Contact isolation</p>
+<p><strong>Clinical note:</strong> Often includes gown and gloves according to policy.</p>
+<div class="remember">Contact = touch spread.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="D" data-search="droplet precautions precautions for respiratory droplets infection control practices used for organisms spread by larger respiratory droplets. infectious disease droplet isolation often includes mask use according to policy. droplet = cough/sneeze spread." data-term="droplet precautions">
+<span class="badge">Infectious Disease</span>
+<h3>Droplet precautions</h3>
+<p class="simple">Precautions for respiratory droplets</p>
+<p>Infection control practices used for organisms spread by larger respiratory droplets.</p>
+<p class="meta"><strong>Also known as:</strong> Droplet isolation</p>
+<p><strong>Clinical note:</strong> Often includes mask use according to policy.</p>
+<div class="remember">Droplet = cough/sneeze spread.</div>
+</article>
+
+<article class="term-card" data-category="Infectious Disease" data-letter="A" data-search="airborne precautions precautions for airborne spread infection control practices used for organisms that can remain suspended in air. infectious disease airborne isolation may require special room ventilation and respirator use according to policy. airborne = floats in air." data-term="airborne precautions">
+<span class="badge">Infectious Disease</span>
+<h3>Airborne precautions</h3>
+<p class="simple">Precautions for airborne spread</p>
+<p>Infection control practices used for organisms that can remain suspended in air.</p>
+<p class="meta"><strong>Also known as:</strong> Airborne isolation</p>
+<p><strong>Clinical note:</strong> May require special room ventilation and respirator use according to policy.</p>
+<div class="remember">Airborne = floats in air.</div>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="R" data-search="range of motion joint movement ability the movement available at a joint. orthopedics rom can be active, passive, limited, painful, or full. rom = how far it moves." data-term="range of motion">
+<span class="badge">Orthopedics</span>
+<h3>Range of motion</h3>
+<p class="simple">Joint movement ability</p>
+<p>The movement available at a joint.</p>
+<p class="meta"><strong>Also known as:</strong> ROM</p>
+<p><strong>Clinical note:</strong> Can be active, passive, limited, painful, or full.</p>
+<div class="remember">ROM = how far it moves.</div>
+<a href="/anatomy-labeling-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="F" data-search="fracture broken bone a break in the structure of a bone. orthopedics bone break assessment includes pain, deformity, swelling, pulses, sensation, and function. fracture = broken bone." data-term="fracture">
+<span class="badge">Orthopedics</span>
+<h3>Fracture</h3>
+<p class="simple">Broken bone</p>
+<p>A break in the structure of a bone.</p>
+<p class="meta"><strong>Also known as:</strong> Bone break</p>
+<p><strong>Clinical note:</strong> Assessment includes pain, deformity, swelling, pulses, sensation, and function.</p>
+<div class="remember">Fracture = broken bone.</div>
+<a href="/bones-quiz.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="D" data-search="dislocation bone displaced from joint a condition where a bone is forced out of its normal joint position. orthopedics joint out of place can affect nerves, blood flow, and movement. dislocation = joint out of place." data-term="dislocation">
+<span class="badge">Orthopedics</span>
+<h3>Dislocation</h3>
+<p class="simple">Bone displaced from joint</p>
+<p>A condition where a bone is forced out of its normal joint position.</p>
+<p class="meta"><strong>Also known as:</strong> Joint out of place</p>
+<p><strong>Clinical note:</strong> Can affect nerves, blood flow, and movement.</p>
+<div class="remember">Dislocation = joint out of place.</div>
+<a href="/bones-quiz.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="S" data-search="sprain ligament injury stretching or tearing of a ligament. orthopedics ligament injury common around ankles, knees, and wrists. sprain = ligament." data-term="sprain">
+<span class="badge">Orthopedics</span>
+<h3>Sprain</h3>
+<p class="simple">Ligament injury</p>
+<p>Stretching or tearing of a ligament.</p>
+<p class="meta"><strong>Also known as:</strong> Ligament injury</p>
+<p><strong>Clinical note:</strong> Common around ankles, knees, and wrists.</p>
+<div class="remember">Sprain = ligament.</div>
+<a href="/anatomy-labeling-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="S" data-search="strain muscle or tendon injury stretching or tearing of a muscle or tendon. orthopedics muscle/tendon injury can occur from overuse, lifting, or sudden movement. strain = muscle/tendon." data-term="strain">
+<span class="badge">Orthopedics</span>
+<h3>Strain</h3>
+<p class="simple">Muscle or tendon injury</p>
+<p>Stretching or tearing of a muscle or tendon.</p>
+<p class="meta"><strong>Also known as:</strong> Muscle/tendon injury</p>
+<p><strong>Clinical note:</strong> Can occur from overuse, lifting, or sudden movement.</p>
+<div class="remember">Strain = muscle/tendon.</div>
+<a href="/anatomy-labeling-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="C" data-search="cast rigid support for injury a hardened support used to immobilize a broken bone or injured area. orthopedics immobilizer assessment includes circulation, sensation, movement, pain, and skin concerns. cast keeps it still." data-term="cast">
+<span class="badge">Orthopedics</span>
+<h3>Cast</h3>
+<p class="simple">Rigid support for injury</p>
+<p>A hardened support used to immobilize a broken bone or injured area.</p>
+<p class="meta"><strong>Also known as:</strong> Immobilizer</p>
+<p><strong>Clinical note:</strong> Assessment includes circulation, sensation, movement, pain, and skin concerns.</p>
+<div class="remember">Cast keeps it still.</div>
+<a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="S" data-search="splint supportive immobilizer a device used to support and immobilize an injured body part. orthopedics brace support can be temporary or part of treatment. splint supports and protects." data-term="splint">
+<span class="badge">Orthopedics</span>
+<h3>Splint</h3>
+<p class="simple">Supportive immobilizer</p>
+<p>A device used to support and immobilize an injured body part.</p>
+<p class="meta"><strong>Also known as:</strong> Brace support</p>
+<p><strong>Clinical note:</strong> Can be temporary or part of treatment.</p>
+<div class="remember">Splint supports and protects.</div>
+<a href="/medical-equipment-identification-practice.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="T" data-search="traction pulling force treatment use of a pulling force to align or immobilize a body part. orthopedics orthopedic traction requires careful setup and monitoring. traction = therapeutic pulling." data-term="traction">
+<span class="badge">Orthopedics</span>
+<h3>Traction</h3>
+<p class="simple">Pulling force treatment</p>
+<p>Use of a pulling force to align or immobilize a body part.</p>
+<p class="meta"><strong>Also known as:</strong> Orthopedic traction</p>
+<p><strong>Clinical note:</strong> Requires careful setup and monitoring.</p>
+<div class="remember">Traction = therapeutic pulling.</div>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="O" data-search="osteoporosis weak porous bones a condition where bones become less dense and more fracture-prone. orthopedics low bone density increases risk of fractures, especially hip, spine, and wrist. osteo = bone; porosis = porous." data-term="osteoporosis">
+<span class="badge">Orthopedics</span>
+<h3>Osteoporosis</h3>
+<p class="simple">Weak porous bones</p>
+<p>A condition where bones become less dense and more fracture-prone.</p>
+<p class="meta"><strong>Also known as:</strong> Low bone density</p>
+<p><strong>Clinical note:</strong> Increases risk of fractures, especially hip, spine, and wrist.</p>
+<div class="remember">Osteo = bone; porosis = porous.</div>
+<a href="/bones-quiz.html">Related MedSkillBuilder page →</a>
+</article>
+
+<article class="term-card" data-category="Orthopedics" data-letter="A" data-search="arthroplasty joint replacement or repair a surgical procedure to repair or replace a joint. orthopedics joint replacement common examples include hip or knee arthroplasty. arthro = joint; plasty = repair." data-term="arthroplasty">
+<span class="badge">Orthopedics</span>
+<h3>Arthroplasty</h3>
+<p class="simple">Joint replacement or repair</p>
+<p>A surgical procedure to repair or replace a joint.</p>
+<p class="meta"><strong>Also known as:</strong> Joint replacement</p>
+<p><strong>Clinical note:</strong> Common examples include hip or knee arthroplasty.</p>
+<div class="remember">Arthro = joint; plasty = repair.</div>
+<a href="/medical-prefix-suffix-practice.html">Related MedSkillBuilder page →</a>
 </article>
 </div>
 </section>
