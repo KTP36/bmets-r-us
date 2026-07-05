@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>How to Pass the TEAS Exam | Free Study Guide and Practice Questions | MedSkillBuilder</title>
+<title>How to Pass the TEAS Exam | Complete Free TEAS Study Guide, Practice Plan & Strategy</title>
 
-<meta name="description" content="Learn how to pass the TEAS exam with a complete free study guide covering reading, math, science, English, anatomy, test strategy, sample questions, common mistakes, and MedSkillBuilder practice tools." />
+<meta name="description" content="Learn how to pass the TEAS exam with a complete free TEAS study guide covering reading, math, science, English, anatomy, physiology, test strategy, study plans, practice questions, common mistakes, and MedSkillBuilder practice tools." />
 
 <link rel="canonical" href="https://medskillbuilder.com/how-to-pass-teas-exam.html" />
 
@@ -343,7 +343,196 @@ a {
     width: 100%;
   }
 }
+
+/* TEAS Elite Expansion */
+.elite-section {
+  background: white;
+  padding: 28px;
+  border-radius: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  border: 1px solid #dbe4f0;
+}
+
+.elite-section h2 {
+  color: #12355b;
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.elite-section h3 {
+  color: #12355b;
+}
+
+.elite-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.elite-card {
+  background: #f8fafc;
+  border: 1px solid #dbe4f0;
+  border-left: 6px solid #1d6fa5;
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.formula-box {
+  background: #0f172a;
+  color: white;
+  border-radius: 18px;
+  padding: 18px;
+  margin: 16px 0;
+  font-weight: 800;
+}
+
+.formula-box p {
+  color: #e0f2fe;
+}
+
+.green-box {
+  background: #ecfdf5;
+  border-left: 6px solid #16a34a;
+  color: #065f46;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin: 18px 0;
+  font-weight: 800;
+}
+
+.red-box {
+  background: #fef2f2;
+  border-left: 6px solid #dc2626;
+  color: #7f1d1d;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin: 18px 0;
+  font-weight: 800;
+}
+
+.teas-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+}
+
+.teas-table th,
+.teas-table td {
+  border: 1px solid #dbe4f0;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.teas-table th {
+  background: #12355b;
+  color: white;
+}
+
+.practice-question {
+  background: #f8fafc;
+  border: 1px solid #dbe4f0;
+  border-radius: 18px;
+  padding: 18px;
+  margin: 16px 0;
+}
+
+.practice-answer {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  color: #065f46;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  font-weight: 800;
+}
+
+.practice-why {
+  background: #ffffff;
+  border: 1px solid #dbe4f0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  color: #334155;
+}
+
+.study-path-list {
+  counter-reset: teasStep;
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.study-path-step {
+  counter-increment: teasStep;
+  position: relative;
+  background: #f8fafc;
+  border: 1px solid #dbe4f0;
+  border-left: 6px solid #2563eb;
+  border-radius: 18px;
+  padding: 16px 16px 16px 58px;
+}
+
+.study-path-step::before {
+  content: counter(teasStep);
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #12355b;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+@media (max-width: 700px) {
+  .elite-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .elite-section {
+    padding: 22px 16px;
+  }
+}
+
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Pass the TEAS Exam",
+  "description": "A step-by-step study method for preparing for the TEAS exam using section review, practice questions, missed-question tracking, and timed practice.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Take a baseline practice set",
+      "text": "Start with mixed TEAS practice questions to identify weak sections."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Review missed questions",
+      "text": "Track whether mistakes come from content gaps, rushing, wording, or calculation setup."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Study weak sections first",
+      "text": "Focus on the lowest scoring section before spending more time on strengths."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Use timed practice",
+      "text": "Practice under time limits before test day so pacing feels familiar."
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -873,6 +1062,468 @@ Good preparation is not only about what you know. It is also about how you manag
 The goal is not to feel like every question is easy. The goal is to stay calm, use strategy, and make the best choice available.
 </p>
 </div>
+
+
+<section class="elite-section">
+<h2>TEAS Elite Study System</h2>
+
+<p>
+The TEAS exam becomes much easier when you stop studying randomly. The goal is not to read every topic once.
+The goal is to identify your weak areas, practice the exact skills being tested, and review mistakes until the same pattern no longer causes missed questions.
+</p>
+
+<div class="green-box">
+Best rule: every missed question should teach you what to review next. Do not just mark it wrong and move on.
+</div>
+
+<div class="study-path-list">
+  <div class="study-path-step">
+    <strong>Take a baseline set.</strong>
+    Start with mixed TEAS questions so you can see whether reading, math, science, or English is your weakest area.
+  </div>
+
+  <div class="study-path-step">
+    <strong>Sort your missed questions.</strong>
+    Label each miss as content gap, rushing, wording issue, math setup error, vocabulary problem, or test anxiety.
+  </div>
+
+  <div class="study-path-step">
+    <strong>Review one weak area at a time.</strong>
+    Do not jump between ten topics in one sitting. Fix one repeated mistake pattern before moving on.
+  </div>
+
+  <div class="study-path-step">
+    <strong>Practice with explanations.</strong>
+    The explanation matters more than the score. You need to know why the correct answer is correct.
+  </div>
+
+  <div class="study-path-step">
+    <strong>Add timed practice near the end.</strong>
+    Timing should be trained before test day, not discovered during the exam.
+  </div>
+</div>
+</section>
+
+<section class="elite-section">
+<h2>TEAS Science Master Guide</h2>
+
+<p>
+Many students find science hardest because it combines anatomy, physiology, biology, chemistry, and scientific reasoning.
+The fastest way to improve is to study body systems as relationships, not isolated facts.
+</p>
+
+<div class="elite-grid">
+  <div class="elite-card">
+    <h3>Anatomy and Physiology</h3>
+    <p>Focus on the major body systems, organs, functions, and how systems work together to maintain homeostasis.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Biology Basics</h3>
+    <p>Review cells, organelles, DNA, tissues, inheritance basics, and the organization of living systems.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Chemistry Basics</h3>
+    <p>Review atoms, molecules, bonds, pH, acids, bases, solutions, and chemical reactions in the body.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Scientific Reasoning</h3>
+    <p>Practice variables, hypotheses, experiments, graphs, data tables, conclusions, and evidence-based reasoning.</p>
+  </div>
+</div>
+
+<table class="teas-table">
+<tr>
+<th>Body System</th>
+<th>What to Know</th>
+<th>Common TEAS Clue</th>
+</tr>
+<tr>
+<td>Cardiovascular</td>
+<td>Heart chambers, blood flow, arteries, veins, capillaries, blood pressure</td>
+<td>Left ventricle pumps oxygenated blood to the body.</td>
+</tr>
+<tr>
+<td>Respiratory</td>
+<td>Air pathway, lungs, alveoli, diaphragm, oxygen and carbon dioxide exchange</td>
+<td>Alveoli are the main gas exchange site.</td>
+</tr>
+<tr>
+<td>Nervous</td>
+<td>Brain, spinal cord, nerves, sensory input, movement, coordination</td>
+<td>Cerebellum helps with balance and coordination.</td>
+</tr>
+<tr>
+<td>Digestive</td>
+<td>Mouth, stomach, small intestine, large intestine, liver, pancreas, gallbladder</td>
+<td>Small intestine absorbs most nutrients.</td>
+</tr>
+<tr>
+<td>Urinary</td>
+<td>Kidneys, ureters, bladder, urethra, filtration, fluid balance</td>
+<td>Kidneys filter blood and make urine.</td>
+</tr>
+<tr>
+<td>Endocrine</td>
+<td>Hormones, glands, insulin, glucagon, thyroid, adrenal glands</td>
+<td>Insulin lowers blood glucose.</td>
+</tr>
+</table>
+
+<p>
+Use these related pages to strengthen TEAS science:
+<a href="/anatomy-practice-test.html">Anatomy Practice Test</a>,
+<a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>,
+<a href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>,
+and <a href="/medical-dictionary.html">Medical Dictionary</a>.
+</p>
+</section>
+
+<section class="elite-section">
+<h2>TEAS Math Refresher</h2>
+
+<p>
+TEAS math is not just about calculation. Most mistakes happen during setup. Before solving, decide what the question is asking and what operation is needed.
+</p>
+
+<table class="teas-table">
+<tr>
+<th>Skill</th>
+<th>What to Practice</th>
+<th>Common Mistake</th>
+</tr>
+<tr>
+<td>Fractions</td>
+<td>Add, subtract, multiply, divide, simplify, compare</td>
+<td>Using the wrong denominator or skipping simplification</td>
+</tr>
+<tr>
+<td>Decimals</td>
+<td>Place value, rounding, converting between decimals and fractions</td>
+<td>Moving the decimal the wrong direction</td>
+</tr>
+<tr>
+<td>Percentages</td>
+<td>Percent of a number, percent increase/decrease, test scores</td>
+<td>Forgetting that percent means out of 100</td>
+</tr>
+<tr>
+<td>Ratios and proportions</td>
+<td>Set up equal ratios and solve for missing values</td>
+<td>Setting up the proportion backwards</td>
+</tr>
+<tr>
+<td>Measurement</td>
+<td>Units, conversions, metric prefixes, word problems</td>
+<td>Not checking whether the final unit matches the question</td>
+</tr>
+</table>
+
+<div class="formula-box">
+<h3>High-Yield Formulas</h3>
+<p>Percent = part ÷ whole × 100</p>
+<p>Average = total ÷ number of values</p>
+<p>Proportion = one ratio set equal to another ratio</p>
+<p>Area of rectangle = length × width</p>
+<p>Volume of rectangular prism = length × width × height</p>
+</div>
+
+<div class="practice-question">
+<h3>Math Practice Example</h3>
+<p><strong>Question:</strong> A student answers 42 out of 50 questions correctly. What percent did the student get correct?</p>
+<ol type="A">
+<li>74%</li>
+<li>80%</li>
+<li>84%</li>
+<li>92%</li>
+</ol>
+<div class="practice-answer">Answer: C. 84%</div>
+<div class="practice-why">42 ÷ 50 = 0.84. Multiply by 100 to get 84%.</div>
+</div>
+
+<div class="practice-question">
+<h3>Proportion Practice Example</h3>
+<p><strong>Question:</strong> If 3 notebooks cost $12, how much do 5 notebooks cost at the same rate?</p>
+<ol type="A">
+<li>$15</li>
+<li>$18</li>
+<li>$20</li>
+<li>$24</li>
+</ol>
+<div class="practice-answer">Answer: C. $20</div>
+<div class="practice-why">$12 ÷ 3 = $4 per notebook. Five notebooks cost 5 × $4 = $20.</div>
+</div>
+</section>
+
+<section class="elite-section">
+<h2>TEAS Reading Strategy</h2>
+
+<p>
+Reading questions often test whether you can find evidence, identify the main idea, and avoid choosing an answer that sounds true but is not supported by the passage.
+</p>
+
+<table class="teas-table">
+<tr>
+<th>Question Type</th>
+<th>What It Asks</th>
+<th>Best Strategy</th>
+</tr>
+<tr>
+<td>Main idea</td>
+<td>What is the passage mostly about?</td>
+<td>Look for the broad point that includes the details.</td>
+</tr>
+<tr>
+<td>Supporting detail</td>
+<td>Which detail is stated or supported?</td>
+<td>Return to the passage and verify the exact evidence.</td>
+</tr>
+<tr>
+<td>Inference</td>
+<td>What can reasonably be concluded?</td>
+<td>Choose what follows from the text, not outside knowledge.</td>
+</tr>
+<tr>
+<td>Author purpose</td>
+<td>Why did the author write this?</td>
+<td>Decide whether the author informs, persuades, explains, or entertains.</td>
+</tr>
+<tr>
+<td>Vocabulary in context</td>
+<td>What does a word mean in this sentence?</td>
+<td>Use the surrounding sentence, not just the dictionary meaning.</td>
+</tr>
+</table>
+
+<div class="practice-question">
+<h3>Reading Practice Example</h3>
+<p>
+<strong>Mini passage:</strong> Sleep helps the brain process information learned during the day. Students who sleep enough often perform better on memory-based tasks than students who stay up all night studying.
+</p>
+<p><strong>Question:</strong> What is the main idea?</p>
+<ol type="A">
+<li>Studying is never useful.</li>
+<li>Sleep can support memory and learning.</li>
+<li>Students should avoid all nighttime study.</li>
+<li>Memory depends only on genetics.</li>
+</ol>
+<div class="practice-answer">Answer: B. Sleep can support memory and learning.</div>
+<div class="practice-why">The passage focuses on sleep helping the brain process information and supporting memory performance.</div>
+</div>
+</section>
+
+<section class="elite-section">
+<h2>TEAS English and Grammar Review</h2>
+
+<p>
+For English and Language Usage, do not rely only on what sounds right. Learn the rules that appear repeatedly.
+</p>
+
+<div class="elite-grid">
+  <div class="elite-card">
+    <h3>Subject-Verb Agreement</h3>
+    <p>Singular subjects need singular verbs. Plural subjects need plural verbs.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Sentence Fragments</h3>
+    <p>A complete sentence needs a subject and a verb and must express a complete thought.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Run-On Sentences</h3>
+    <p>Two complete sentences cannot be joined with only a comma.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Comma Use</h3>
+    <p>Commas often separate introductory phrases, items in a list, and independent clauses joined by conjunctions.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Pronoun Clarity</h3>
+    <p>A pronoun should clearly refer to one noun.</p>
+  </div>
+
+  <div class="elite-card">
+    <h3>Word Meaning</h3>
+    <p>Use prefixes, suffixes, roots, and sentence context to understand unfamiliar words.</p>
+  </div>
+</div>
+
+<div class="practice-question">
+<h3>English Practice Example</h3>
+<p><strong>Question:</strong> Which sentence is correct?</p>
+<ol type="A">
+<li>The nurse were ready for report.</li>
+<li>The nurses was ready for report.</li>
+<li>The nurses were ready for report.</li>
+<li>The nurse be ready for report.</li>
+</ol>
+<div class="practice-answer">Answer: C. The nurses were ready for report.</div>
+<div class="practice-why">“Nurses” is plural, so it needs the plural verb “were.”</div>
+</div>
+</section>
+
+<section class="elite-section">
+<h2>30-Day TEAS Study Plan</h2>
+
+<table class="teas-table">
+<tr>
+<th>Days</th>
+<th>Focus</th>
+<th>Goal</th>
+</tr>
+<tr>
+<td>Days 1–3</td>
+<td>Baseline practice and missed-question tracking</td>
+<td>Find your weakest section.</td>
+</tr>
+<tr>
+<td>Days 4–10</td>
+<td>Science and anatomy review</td>
+<td>Build body system recognition.</td>
+</tr>
+<tr>
+<td>Days 11–15</td>
+<td>Math setup and calculation practice</td>
+<td>Reduce careless setup errors.</td>
+</tr>
+<tr>
+<td>Days 16–20</td>
+<td>Reading and English practice</td>
+<td>Improve comprehension and grammar rules.</td>
+</tr>
+<tr>
+<td>Days 21–25</td>
+<td>Mixed practice sets</td>
+<td>Practice switching between sections.</td>
+</tr>
+<tr>
+<td>Days 26–30</td>
+<td>Timed review and weak area repair</td>
+<td>Build test-day pacing and confidence.</td>
+</tr>
+</table>
+</section>
+
+<section class="elite-section">
+<h2>TEAS Practice Questions with Explanations</h2>
+
+<div class="practice-question">
+<h3>Science Question 1</h3>
+<p><strong>Which structure is the primary site of gas exchange?</strong></p>
+<ol type="A">
+<li>Trachea</li>
+<li>Bronchi</li>
+<li>Alveoli</li>
+<li>Larynx</li>
+</ol>
+<div class="practice-answer">Answer: C. Alveoli</div>
+<div class="practice-why">Alveoli are tiny air sacs where oxygen enters the blood and carbon dioxide leaves the blood.</div>
+</div>
+
+<div class="practice-question">
+<h3>Science Question 2</h3>
+<p><strong>Which organ filters blood and produces urine?</strong></p>
+<ol type="A">
+<li>Liver</li>
+<li>Kidney</li>
+<li>Stomach</li>
+<li>Gallbladder</li>
+</ol>
+<div class="practice-answer">Answer: B. Kidney</div>
+<div class="practice-why">The kidneys filter blood, remove waste, and produce urine.</div>
+</div>
+
+<div class="practice-question">
+<h3>Math Question 1</h3>
+<p><strong>What is 25% of 80?</strong></p>
+<ol type="A">
+<li>10</li>
+<li>15</li>
+<li>20</li>
+<li>25</li>
+</ol>
+<div class="practice-answer">Answer: C. 20</div>
+<div class="practice-why">25% equals 0.25. 0.25 × 80 = 20.</div>
+</div>
+
+<div class="practice-question">
+<h3>Reading Question 1</h3>
+<p><strong>If a passage lists several benefits of exercise, what is most likely the main idea?</strong></p>
+<ol type="A">
+<li>Exercise has several health benefits.</li>
+<li>Exercise is always dangerous.</li>
+<li>Only athletes should exercise.</li>
+<li>Exercise has no effect on health.</li>
+</ol>
+<div class="practice-answer">Answer: A. Exercise has several health benefits.</div>
+<div class="practice-why">The main idea should summarize the overall point supported by the details.</div>
+</div>
+
+<div class="practice-question">
+<h3>English Question 1</h3>
+<p><strong>Which sentence is a complete sentence?</strong></p>
+<ol type="A">
+<li>Because the student studied.</li>
+<li>After the exam.</li>
+<li>The student studied for the exam.</li>
+<li>While reading the passage.</li>
+</ol>
+<div class="practice-answer">Answer: C. The student studied for the exam.</div>
+<div class="practice-why">It has a subject, verb, and complete thought.</div>
+</div>
+</section>
+
+<section class="elite-section">
+<h2>Common TEAS Score Killers</h2>
+
+<ul>
+<li>Studying everything equally instead of focusing on weak areas.</li>
+<li>Doing practice questions but not reviewing missed answers.</li>
+<li>Memorizing science facts without understanding body system function.</li>
+<li>Rushing reading questions and missing the wording.</li>
+<li>Setting up math problems incorrectly.</li>
+<li>Choosing grammar answers based only on what sounds right.</li>
+<li>Ignoring timing until test week.</li>
+<li>Studying passively by rereading notes instead of actively testing yourself.</li>
+<li>Not checking program-specific TEAS score requirements early.</li>
+</ul>
+
+<div class="red-box">
+Do not measure success only by how many questions you completed. Measure success by how many repeated mistakes you fixed.
+</div>
+</section>
+
+<section class="elite-section">
+<h2>Expanded TEAS Resource Links</h2>
+
+<p>
+Use these MedSkillBuilder pages to strengthen the skills most connected to TEAS success.
+</p>
+
+<div class="resource-links">
+<a href="/free-teas-practice-test.html">Free TEAS Practice Test</a>
+<a href="/teas-practice-questions.html">TEAS Practice Questions</a>
+<a href="/anatomy-practice-test.html">Anatomy Practice Test</a>
+<a href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+<a href="/medical-dictionary.html">Medical Dictionary</a>
+<a href="/medical-terminology-builder.html">Medical Terminology Builder</a>
+<a href="/medical-prefix-suffix-practice.html">Medical Prefix and Suffix Practice</a>
+<a href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+<a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+<a href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+<a href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
+<a href="/heart-anatomy-guide.html">Heart Anatomy Guide</a>
+<a href="/brain-anatomy-guide.html">Brain Anatomy Guide</a>
+<a href="/digestive-system-anatomy-guide.html">Digestive System Anatomy Guide</a>
+<a href="/how-kidneys-work.html">How Kidneys Work</a>
+<a href="/browse-all-practice.html">Browse All Practice</a>
+</div>
+</section>
 
 <section class="card">
 <h2>TEAS Frequently Asked Questions</h2>
