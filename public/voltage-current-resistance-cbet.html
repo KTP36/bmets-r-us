@@ -1,46 +1,49 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Voltage vs Current vs Resistance | CBET Electronics Explained</title>
-
-  <meta name="description" content="Learn the difference between voltage, current, and resistance for CBET electronics. Understand how voltage pushes, current flows, resistance limits, and how Ohm's Law explains real circuit behavior in medical equipment." />
-  <meta name="keywords" content="voltage vs current vs resistance, CBET electronics, CBET exam electronics, Ohm's Law, voltage current resistance explained, basic electronics for CBET, biomedical electronics basics, current flow resistance voltage" />
-  <meta name="robots" content="index, follow" />
-
-  <link rel="canonical" href="https://medskillbuilder.com/voltage-current-resistance-cbet.html" />
-
-  <meta property="og:title" content="Voltage vs Current vs Resistance | CBET Electronics Explained" />
-  <meta property="og:description" content="Understand voltage, current, and resistance for the CBET exam with simple explanations, examples, Ohm's Law, and real circuit behavior." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://medskillbuilder.com/voltage-current-resistance-cbet.html" />
-  <meta property="og:site_name" content="MedSkillBuilder" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LearningResource",
-    "name": "Voltage vs Current vs Resistance",
-    "description": "A CBET electronics guide explaining voltage, current, resistance, Ohm's Law, circuit behavior, troubleshooting clues, and biomedical equipment examples.",
-    "url": "https://medskillbuilder.com/voltage-current-resistance-cbet.html",
-    "learningResourceType": "Electronics guide",
-    "educationalLevel": "Beginner",
-    "audience": {
-      "@type": "Audience",
-      "audienceType": "CBET learners, biomedical equipment technicians, electronics beginners, and healthcare technology learners"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "MedSkillBuilder",
-      "url": "https://medskillbuilder.com"
-    },
-    "isAccessibleForFree": true
-  }
-  </script>
-
-  <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Voltage, Current &amp; Resistance for CBET | Ohm's Law, Troubleshooting &amp; Biomedical Examples</title>
+<meta content="Elite CBET electronics guide to voltage, current, resistance, Ohm's Law, series and parallel circuits, multimeter testing, biomedical troubleshooting, power supply behavior, safety, formulas, practice questions, and real medical equipment examples." name="description"/>
+<meta content="voltage current resistance CBET, Ohm's Law CBET, biomedical electronics, medical equipment troubleshooting, voltage vs current vs resistance, CBET electronics practice, multimeter testing biomedical equipment, series parallel circuits CBET, electrical safety biomedical" name="keywords"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://medskillbuilder.com/voltage-current-resistance-cbet.html" rel="canonical"/>
+<meta content="Voltage vs Current vs Resistance | CBET Electronics Explained" property="og:title"/>
+<meta content="Understand voltage, current, and resistance for the CBET exam with simple explanations, examples, Ohm's Law, and real circuit behavior." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://medskillbuilder.com/voltage-current-resistance-cbet.html" property="og:url"/>
+<meta content="MedSkillBuilder" property="og:site_name"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "Voltage, Current and Resistance for CBET Electronics",
+  "description": "An advanced CBET electronics guide explaining voltage, current, resistance, Ohm's Law, series and parallel circuits, power supply troubleshooting, multimeter testing, electrical safety, and biomedical equipment examples.",
+  "url": "https://medskillbuilder.com/voltage-current-resistance-cbet.html",
+  "learningResourceType": "Electronics guide",
+  "educationalLevel": "Beginner to intermediate",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "CBET learners, biomedical equipment technicians, clinical engineering students, electronics beginners, and healthcare technology learners"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "MedSkillBuilder",
+    "url": "https://medskillbuilder.com"
+  },
+  "isAccessibleForFree": true,
+  "teaches": [
+    "Voltage",
+    "Current",
+    "Resistance",
+    "Ohm's Law",
+    "Series circuits",
+    "Parallel circuits",
+    "Biomedical equipment troubleshooting",
+    "Multimeter testing"
+  ]
+}</script>
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -80,8 +83,7 @@
     ]
   }
   </script>
-
-  <style>
+<style>
     :root {
       --navy: #12355b;
       --navy-dark: #0b2440;
@@ -603,393 +605,809 @@
         width: 100%;
       }
     }
-  </style>
+  
+
+    /* elite-upgrade */
+    .concept-map {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .concept-node {
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--soft-shadow);
+    }
+    .concept-node strong {
+      color: var(--navy);
+      font-size: 1.1rem;
+      display:block;
+      margin-bottom:6px;
+    }
+    .flow-steps {
+      counter-reset: step;
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .flow-step {
+      counter-increment: step;
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-left: 7px solid var(--bright-blue);
+      border-radius: 18px;
+      padding: 16px 18px 16px 56px;
+      position: relative;
+      box-shadow: var(--soft-shadow);
+    }
+    .flow-step:before {
+      content: counter(step);
+      position:absolute;
+      left:16px;
+      top:16px;
+      width:28px;
+      height:28px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:var(--navy);
+      color:white;
+      font-weight:900;
+    }
+    .formula-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .formula-card {
+      background:#0f172a;
+      color:white;
+      border-radius:20px;
+      padding:18px;
+      box-shadow:var(--soft-shadow);
+    }
+    .formula-card strong {
+      color:#7dd3fc;
+      display:block;
+      font-size:1.2rem;
+      margin-bottom:8px;
+    }
+    .formula-card p {
+      color:#e5e7eb;
+      font-size:15px;
+      margin:0;
+    }
+    .diagram-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+      margin: 18px 0;
+      overflow-x:auto;
+      box-shadow: var(--soft-shadow);
+    }
+    .simple-diagram {
+      min-width: 680px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:900;
+      color:var(--navy);
+    }
+    .diagram-part {
+      background:#eff6ff;
+      border:2px solid #bfdbfe;
+      border-radius:18px;
+      padding:16px;
+      text-align:center;
+      min-width:130px;
+    }
+    .arrow {
+      color:#2563eb;
+      font-size:28px;
+      white-space:nowrap;
+    }
+    .practice-mini {
+      border: 1px solid #dbe4ee;
+      border-radius: 18px;
+      padding: 16px;
+      background:#ffffff;
+      margin: 12px 0;
+    }
+    .practice-mini strong { color: var(--navy); }
+    .elite-callout {
+      background: linear-gradient(135deg,#082f57,#1d6fa5);
+      color: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin: 20px 0;
+      box-shadow: 0 18px 42px rgba(8,47,87,.22);
+    }
+    .elite-callout p, .elite-callout li { color: rgba(255,255,255,.9); }
+    .elite-callout h3 { color: white; margin-top: 0; }
+</style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="top-bar">
-      <a class="brand" href="/">
-        <img src="/logo.png" alt="MedSkillBuilder Logo" />
-        <div>
-          <strong>MedSkillBuilder</strong>
-          <span>CBET electronics and biomedical learning</span>
-        </div>
-      </a>
-
-      <nav class="mini-nav" aria-label="Quick links">
-        <a href="/browse-all-practice.html">Browse All</a>
-        <a href="/voltage-current-resistance-quiz.html">Take the Quiz</a>
-        <a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
-      </nav>
-    </div>
-
-    <section class="hero">
-      <div class="eyebrow">CBET Electronics Foundation</div>
-      <h1>Voltage vs Current vs Resistance</h1>
-      <p>
+<div class="container">
+<div class="top-bar">
+<a class="brand" href="/">
+<img alt="MedSkillBuilder Logo" src="/logo.png"/>
+<div>
+<strong>MedSkillBuilder</strong>
+<span>CBET electronics and biomedical learning</span>
+</div>
+</a>
+<nav aria-label="Quick links" class="mini-nav">
+<a href="/browse-all-practice.html">Browse All</a>
+<a href="/voltage-current-resistance-quiz.html">Take the Quiz</a>
+<a href="/cbet-electronics-practice-questions.html">Practice Questions</a>
+</nav>
+</div>
+<section class="hero">
+<div class="eyebrow">CBET Electronics Foundation</div>
+<h1>Voltage vs Current vs Resistance</h1>
+<p>
         Voltage, current, and resistance do not compete. They work together. Once you understand how they interact,
         circuits stop feeling random and start making sense.
       </p>
-      <p>
+<p>
         This is one of the most important concepts in electronics and CBET exam prep because it explains why devices work,
         fail, or behave unexpectedly.
       </p>
-
-      <div class="cta-row">
-        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the 20-Question Quiz</a>
-        <a class="cta secondary" href="/what-is-ohms-law.html">Review Ohm's Law</a>
-        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
-      </div>
-    </section>
-
-    <div class="quick-grid">
-      <div class="quick-stat">Voltage<span>Electrical push</span></div>
-      <div class="quick-stat">Current<span>Electrical flow</span></div>
-      <div class="quick-stat">Resistance<span>Opposition to flow</span></div>
-    </div>
-
-    <section class="card highlight">
-      <h2>Quick Answer</h2>
-      <div class="quick-answer">
+<div class="cta-row">
+<a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the 20-Question Quiz</a>
+<a class="cta secondary" href="/what-is-ohms-law.html">Review Ohm's Law</a>
+<a class="cta secondary" href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+</div>
+</section>
+<div class="quick-grid">
+<div class="quick-stat">Voltage<span>Electrical push</span></div>
+<div class="quick-stat">Current<span>Electrical flow</span></div>
+<div class="quick-stat">Resistance<span>Opposition to flow</span></div>
+</div>
+<section class="card highlight">
+<h2>Quick Answer</h2>
+<div class="quick-answer">
         Voltage pushes, current flows, and resistance opposes.
       </div>
-
-      <p>
+<p>
         Voltage is the electrical pressure that can move current. Current is the actual flow of electrical charge.
         Resistance is what limits or opposes that flow.
       </p>
-
-      <div class="formula">V = I × R</div>
-
-      <div class="notice-first">
-        <strong>What to notice first:</strong>
+<div class="formula">V = I × R</div>
+<div class="notice-first">
+<strong>What to notice first:</strong>
         If voltage increases while resistance stays the same, current increases. If resistance increases while voltage stays the same, current decreases.
       </div>
-    </section>
-
-    <section class="card">
-      <h2>Jump to a Topic</h2>
-      <div class="toc">
-        <a href="#voltage">What Is Voltage?</a>
-        <a href="#current">What Is Current?</a>
-        <a href="#resistance">What Is Resistance?</a>
-        <a href="#comparison">Comparison Table</a>
-        <a href="#ohms-law">How They Work Together</a>
-        <a href="#questions">CBET Questions</a>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Most People Misunderstand This</h2>
-      <p>
+</section>
+<section class="card">
+<h2>Jump to a Topic</h2>
+<div class="toc">
+<a href="#voltage">What Is Voltage?</a>
+<a href="#current">What Is Current?</a>
+<a href="#resistance">What Is Resistance?</a>
+<a href="#comparison">Comparison Table</a>
+<a href="#ohms-law">How They Work Together</a>
+<a href="#questions">CBET Questions</a>
+</div>
+</section>
+<section class="card">
+<h2>Most People Misunderstand This</h2>
+<p>
         A lot of learners memorize voltage, current, and resistance as separate words. That is not enough.
         CBET-style electronics questions often test the relationship between them.
       </p>
-
-      <div class="warning-box">
-        <strong>Common mistake:</strong> Higher resistance does not mean higher current. Higher resistance makes current flow harder.
+<div class="warning-box">
+<strong>Common mistake:</strong> Higher resistance does not mean higher current. Higher resistance makes current flow harder.
       </div>
-    </section>
-
-    <section id="voltage" class="card">
-      <h2>What Is Voltage?</h2>
-      <p>
+</section>
+<section class="card" id="voltage">
+<h2>What Is Voltage?</h2>
+<p>
         Voltage is the electrical force or pressure that pushes electrons through a circuit. A common way to think about voltage is to compare it to pressure in a water pipe.
       </p>
-      <p>
+<p>
         Voltage does not mean electrons are automatically flowing at a high rate. It simply means there is potential to push current through the circuit if the path allows it.
       </p>
-
-      <div class="example-box">
-        <strong>Memory hook:</strong> Voltage is the push.
+<div class="example-box">
+<strong>Memory hook:</strong> Voltage is the push.
       </div>
-    </section>
-
-    <section id="current" class="card">
-      <h2>What Is Current?</h2>
-      <p>
+</section>
+<section class="card" id="current">
+<h2>What Is Current?</h2>
+<p>
         Current is the flow of electrical charge through a circuit. If voltage is the push, current is the actual movement that results from that push.
       </p>
-      <p>
+<p>
         Too little current may prevent a device from operating correctly. Too much current can damage components or cause abnormal behavior.
       </p>
-
-      <div class="example-box">
-        <strong>Memory hook:</strong> Current is the flow.
+<div class="example-box">
+<strong>Memory hook:</strong> Current is the flow.
       </div>
-    </section>
-
-    <section id="resistance" class="card">
-      <h2>What Is Resistance?</h2>
-      <p>
+</section>
+<section class="card" id="resistance">
+<h2>What Is Resistance?</h2>
+<p>
         Resistance is the opposition to current flow. It limits how easily electrons can move through a circuit.
       </p>
-      <p>
+<p>
         In the water analogy, resistance is like narrowing the pipe. More resistance means less current can pass when voltage stays the same.
       </p>
-
-      <div class="example-box">
-        <strong>Memory hook:</strong> Resistance is opposition.
+<div class="example-box">
+<strong>Memory hook:</strong> Resistance is opposition.
       </div>
-    </section>
-
-    <section id="comparison" class="card">
-      <h2>Voltage vs Current vs Resistance Comparison</h2>
-
-      <table class="compare-table">
-        <tr>
-          <th>Concept</th>
-          <th>What It Means</th>
-          <th>Simple Analogy</th>
-          <th>CBET Memory Hook</th>
-        </tr>
-        <tr>
-          <td><strong>Voltage</strong></td>
-          <td>Electrical pressure or potential</td>
-          <td>Water pressure in a pipe</td>
-          <td>Voltage pushes</td>
-        </tr>
-        <tr>
-          <td><strong>Current</strong></td>
-          <td>Flow of electrical charge</td>
-          <td>Water moving through the pipe</td>
-          <td>Current flows</td>
-        </tr>
-        <tr>
-          <td><strong>Resistance</strong></td>
-          <td>Opposition to current flow</td>
-          <td>A narrow pipe that slows water</td>
-          <td>Resistance limits</td>
-        </tr>
-      </table>
-
-      <div class="success-box">
-        <strong>Easy reminder:</strong> Voltage pushes, current flows, and resistance opposes.
+</section>
+<section class="card" id="comparison">
+<h2>Voltage vs Current vs Resistance Comparison</h2>
+<table class="compare-table">
+<tr>
+<th>Concept</th>
+<th>What It Means</th>
+<th>Simple Analogy</th>
+<th>CBET Memory Hook</th>
+</tr>
+<tr>
+<td><strong>Voltage</strong></td>
+<td>Electrical pressure or potential</td>
+<td>Water pressure in a pipe</td>
+<td>Voltage pushes</td>
+</tr>
+<tr>
+<td><strong>Current</strong></td>
+<td>Flow of electrical charge</td>
+<td>Water moving through the pipe</td>
+<td>Current flows</td>
+</tr>
+<tr>
+<td><strong>Resistance</strong></td>
+<td>Opposition to current flow</td>
+<td>A narrow pipe that slows water</td>
+<td>Resistance limits</td>
+</tr>
+</table>
+<div class="success-box">
+<strong>Easy reminder:</strong> Voltage pushes, current flows, and resistance opposes.
       </div>
-    </section>
-
-    <section id="ohms-law" class="card">
-      <h2>How They Work Together</h2>
-      <p>
+</section>
+<section class="card" id="ohms-law">
+<h2>How They Work Together</h2>
+<p>
         Voltage, current, and resistance are directly connected through <a href="/what-is-ohms-law.html">Ohm's Law</a>.
       </p>
-
-      <ul>
-        <li>If voltage increases and resistance stays the same, current increases.</li>
-        <li>If resistance increases and voltage stays the same, current decreases.</li>
-        <li>If resistance decreases and voltage stays the same, current increases.</li>
-      </ul>
-
-      <p>
+<ul>
+<li>If voltage increases and resistance stays the same, current increases.</li>
+<li>If resistance increases and voltage stays the same, current decreases.</li>
+<li>If resistance decreases and voltage stays the same, current increases.</li>
+</ul>
+<p>
         If you want to practice how these relationships show up when testing real components, review:
         <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>.
       </p>
-    </section>
-
-    <section class="card">
-      <h2>Why This Matters in Biomedical Equipment</h2>
-
-      <p>
+</section>
+<section class="card">
+<h2>Why This Matters in Biomedical Equipment</h2>
+<p>
         Biomedical equipment depends on predictable circuit behavior. When voltage, current, or resistance changes,
         a device may power on normally, fail to power on, behave intermittently, or show unstable readings.
       </p>
-
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3>Correct voltage, low current</h3>
-          <p>Resistance may be too high, a path may be restricted, or a component may not be allowing enough flow.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>Very low resistance</h3>
-          <p>Current can become too high, which may stress components, blow fuses, or create abnormal operation.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>Unstable operation</h3>
-          <p>Power, resistance, connections, or component condition may be changing under load.</p>
-        </div>
+<div class="grid-3">
+<div class="mini-card">
+<h3>Correct voltage, low current</h3>
+<p>Resistance may be too high, a path may be restricted, or a component may not be allowing enough flow.</p>
+</div>
+<div class="mini-card">
+<h3>Very low resistance</h3>
+<p>Current can become too high, which may stress components, blow fuses, or create abnormal operation.</p>
+</div>
+<div class="mini-card">
+<h3>Unstable operation</h3>
+<p>Power, resistance, connections, or component condition may be changing under load.</p>
+</div>
+</div>
+<div class="notice-first">
+<strong>Field mindset:</strong> Do not just ask whether voltage is present. Ask whether the circuit can deliver the right current under the right conditions.
       </div>
-
-      <div class="notice-first">
-        <strong>Field mindset:</strong> Do not just ask whether voltage is present. Ask whether the circuit can deliver the right current under the right conditions.
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Real-World Example</h2>
-
-      <p>
+</section>
+<section class="card">
+<h2>Real-World Example</h2>
+<p>
         Imagine a patient monitor circuit where a failing component causes resistance to increase.
       </p>
-
-      <p>
+<p>
         As resistance increases, current falls. If the circuit depends on a stable current level to process signals properly,
         the result could be weak readings, inconsistent behavior, or poor performance.
       </p>
-
-      <p>
+<p>
         This is why voltage, current, and resistance are not just test concepts. They help explain what is happening inside real equipment.
       </p>
-    </section>
-
-    <section class="card">
-      <h2>Why This Matters for the CBET Exam</h2>
-
-      <p>
+</section>
+<section class="card">
+<h2>Why This Matters for the CBET Exam</h2>
+<p>
         CBET electronics questions often test whether you understand how circuits behave, not just whether you can repeat a definition.
       </p>
-
-      <p>
+<p>
         This also helps with later topics like <a href="/ac-vs-dc-current.html">AC vs DC current</a>,
         <a href="/what-is-a-diode.html">diodes</a>, <a href="/what-does-a-capacitor-do.html">capacitors</a>,
         <a href="/what-does-a-rectifier-do.html">rectifiers</a>, and <a href="/power-supply-basics-cbet.html">power supply behavior</a>.
       </p>
-    </section>
-
-    <section id="questions" class="card">
-      <h2>CBET-Style Quick Questions</h2>
-
-      <div class="question-card">
-        <strong>1. Which value represents electrical pressure or push?</strong>
-        <p>A. Voltage &nbsp; B. Current &nbsp; C. Resistance &nbsp; D. Ripple</p>
-        <div class="answer">Answer: A. Voltage</div>
-        <div class="why">Voltage is the electrical push that can drive current through a circuit.</div>
-      </div>
-
-      <div class="question-card">
-        <strong>2. Which value represents the flow of electrical charge?</strong>
-        <p>A. Voltage &nbsp; B. Current &nbsp; C. Resistance &nbsp; D. Insulation</p>
-        <div class="answer">Answer: B. Current</div>
-        <div class="why">Current is the movement or flow of electrical charge.</div>
-      </div>
-
-      <div class="question-card">
-        <strong>3. Which value represents opposition to current flow?</strong>
-        <p>A. Voltage &nbsp; B. Current &nbsp; C. Resistance &nbsp; D. Frequency</p>
-        <div class="answer">Answer: C. Resistance</div>
-        <div class="why">Resistance limits or opposes current flow.</div>
-      </div>
-
-      <div class="question-card">
-        <strong>4. If voltage stays the same and resistance increases, what happens to current?</strong>
-        <p>A. Current increases &nbsp; B. Current decreases &nbsp; C. Current becomes voltage &nbsp; D. Current is unrelated</p>
-        <div class="answer">Answer: B. Current decreases</div>
-        <div class="why">Higher resistance reduces current when voltage stays the same.</div>
-      </div>
-
-      <div class="question-card">
-        <strong>5. What is the best way to remember all three?</strong>
-        <p>A. Voltage pushes, current flows, resistance limits &nbsp; B. Resistance pushes, current blocks, voltage flows &nbsp; C. Current creates all resistance &nbsp; D. They are unrelated</p>
-        <div class="answer">Answer: A. Voltage pushes, current flows, resistance limits</div>
-        <div class="why">That phrase captures the basic relationship behind many beginner circuit questions.</div>
-      </div>
-
-      <div class="cta-row">
-        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Full 20-Question Quiz</a>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Best Study Path After This Page</h2>
-      <p>
+</section>
+<section class="card" id="questions">
+<h2>CBET-Style Quick Questions</h2>
+<div class="question-card">
+<strong>1. Which value represents electrical pressure or push?</strong>
+<p>A. Voltage   B. Current   C. Resistance   D. Ripple</p>
+<div class="answer">Answer: A. Voltage</div>
+<div class="why">Voltage is the electrical push that can drive current through a circuit.</div>
+</div>
+<div class="question-card">
+<strong>2. Which value represents the flow of electrical charge?</strong>
+<p>A. Voltage   B. Current   C. Resistance   D. Insulation</p>
+<div class="answer">Answer: B. Current</div>
+<div class="why">Current is the movement or flow of electrical charge.</div>
+</div>
+<div class="question-card">
+<strong>3. Which value represents opposition to current flow?</strong>
+<p>A. Voltage   B. Current   C. Resistance   D. Frequency</p>
+<div class="answer">Answer: C. Resistance</div>
+<div class="why">Resistance limits or opposes current flow.</div>
+</div>
+<div class="question-card">
+<strong>4. If voltage stays the same and resistance increases, what happens to current?</strong>
+<p>A. Current increases   B. Current decreases   C. Current becomes voltage   D. Current is unrelated</p>
+<div class="answer">Answer: B. Current decreases</div>
+<div class="why">Higher resistance reduces current when voltage stays the same.</div>
+</div>
+<div class="question-card">
+<strong>5. What is the best way to remember all three?</strong>
+<p>A. Voltage pushes, current flows, resistance limits   B. Resistance pushes, current blocks, voltage flows   C. Current creates all resistance   D. They are unrelated</p>
+<div class="answer">Answer: A. Voltage pushes, current flows, resistance limits</div>
+<div class="why">That phrase captures the basic relationship behind many beginner circuit questions.</div>
+</div>
+<div class="cta-row">
+<a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Full 20-Question Quiz</a>
+</div>
+</section>
+<section class="card">
+<h2>Best Study Path After This Page</h2>
+<p>
         This is the foundation. After voltage, current, and resistance make sense, move into Ohm's Law, AC/DC, components, and power supplies.
       </p>
-
-      <div class="path-grid">
-        <a class="path-card" href="/voltage-current-resistance-quiz.html">
+<div class="path-grid">
+<a class="path-card" href="/voltage-current-resistance-quiz.html">
           1. Voltage Current Resistance Quiz
           <span>Test whether you can recognize the relationship.</span>
-        </a>
-        <a class="path-card" href="/what-is-ohms-law.html">
+</a>
+<a class="path-card" href="/what-is-ohms-law.html">
           2. What Is Ohm's Law?
           <span>Connect voltage, current, and resistance with V = I × R.</span>
-        </a>
-        <a class="path-card" href="/ac-vs-dc-current.html">
+</a>
+<a class="path-card" href="/ac-vs-dc-current.html">
           3. AC vs DC Current
           <span>Understand wall power and internal circuit power.</span>
-        </a>
-        <a class="path-card" href="/power-supply-basics-cbet.html">
+</a>
+<a class="path-card" href="/power-supply-basics-cbet.html">
           4. Power Supply Basics
           <span>Follow the power path from AC input to DC output.</span>
-        </a>
-      </div>
-    </section>
+</a>
+</div>
+</section>
+<section class="card">
+<h2>Common CBET Exam Mistakes</h2>
+<ul>
+<li>Confusing voltage with current.</li>
+<li>Thinking resistance creates electricity instead of limiting current.</li>
+<li>Forgetting that Ohm's Law describes the relationship between all three values.</li>
+<li>Ignoring units (Volts, Amps, Ohms).</li>
+<li>Trying to memorize formulas instead of understanding circuit behavior.</li>
+</ul>
+</section>
+<section class="card">
+<h2>Biomedical Troubleshooting Examples</h2>
+<h3>Infusion Pump</h3>
+<p>A weak power supply may provide the correct voltage with no load but fail when current demand increases.</p>
+<h3>Patient Monitor</h3>
+<p>An increase in circuit resistance from corrosion or a damaged connection can reduce current and cause intermittent operation.</p>
+<h3>Defibrillator</h3>
+<p>Understanding voltage, current, and resistance helps explain charging circuits, discharge paths, and preventive maintenance testing.</p>
+</section>
+<section class="card">
+<h2>10 Rapid Review Facts</h2>
+<ol>
+<li>Voltage is measured in volts (V).</li>
+<li>Current is measured in amperes (A).</li>
+<li>Resistance is measured in ohms (Ω).</li>
+<li>Voltage provides electrical potential.</li>
+<li>Current is electron flow.</li>
+<li>Resistance limits current.</li>
+<li>Ohm's Law: V = I × R.</li>
+<li>Higher resistance usually means lower current at constant voltage.</li>
+<li>Higher voltage usually means higher current if resistance is unchanged.</li>
+<li>These concepts are foundational for every CBET electronics topic.</li>
+</ol>
+</section>
 
-    <section class="card">
-      <h2>Frequently Asked Questions</h2>
-
-      <h3>What is voltage?</h3>
-      <p>
+<section class="card highlight">
+<h2>The Relationship That Makes Electronics Make Sense</h2>
+<p>
+    The fastest way to get better at CBET electronics is to stop treating voltage, current, and resistance like isolated vocabulary words.
+    They are a three-part relationship. When one changes, the others may change too.
+  </p>
+<div class="concept-map">
+<div class="concept-node">
+<strong>Voltage creates potential</strong>
+      Voltage is the push available to move charge through a complete path.
+    </div>
+<div class="concept-node">
+<strong>Current shows actual flow</strong>
+      Current tells you how much charge is moving through the circuit.
+    </div>
+<div class="concept-node">
+<strong>Resistance controls the flow</strong>
+      Resistance determines how much the circuit opposes current.
+    </div>
+<div class="concept-node">
+<strong>Load changes the story</strong>
+      A circuit can look normal with no load and fail when real current is required.
+    </div>
+</div>
+<div class="elite-callout">
+<h3>CBET mindset</h3>
+<p>
+      Do not only ask, "Is voltage present?" Ask: "Is the correct voltage present under load, and can the circuit deliver the current needed to operate safely?"
+    </p>
+</div>
+</section>
+<section class="card">
+<h2>Ohm's Law Formula Wheel</h2>
+<p>
+    Ohm's Law connects voltage, current, and resistance. If you know any two values, you can calculate the third.
+  </p>
+<div class="formula-grid">
+<div class="formula-card">
+<strong>Voltage</strong>
+<p>V = I × R<br/>Voltage equals current multiplied by resistance.</p>
+</div>
+<div class="formula-card">
+<strong>Current</strong>
+<p>I = V ÷ R<br/>Current equals voltage divided by resistance.</p>
+</div>
+<div class="formula-card">
+<strong>Resistance</strong>
+<p>R = V ÷ I<br/>Resistance equals voltage divided by current.</p>
+</div>
+</div>
+<div class="notice-first">
+<strong>Exam tip:</strong> If the question says voltage is constant and resistance goes up, current must go down.
+  </div>
+</section>
+<section class="card">
+<h2>Simple Circuit Diagram</h2>
+<p>
+    A basic circuit needs a source, a path, a load, and a return. If any part is open, current cannot complete the loop.
+  </p>
+<div class="diagram-box">
+<div class="simple-diagram">
+<div class="diagram-part">Power Source<br/><span>Voltage push</span></div>
+<div class="arrow">→</div>
+<div class="diagram-part">Wire / Trace<br/><span>Conductive path</span></div>
+<div class="arrow">→</div>
+<div class="diagram-part">Load<br/><span>Resistance</span></div>
+<div class="arrow">→</div>
+<div class="diagram-part">Return Path<br/><span>Complete circuit</span></div>
+</div>
+</div>
+<p>
+    In medical equipment, the "load" may be a motor, display circuit, sensor circuit, relay coil, heater, lamp, pump mechanism, or control board.
+  </p>
+</section>
+<section class="card">
+<h2>Worked Ohm's Law Examples</h2>
+<div class="practice-mini">
+<strong>Example 1: Find current</strong>
+<p>A 12 V circuit has 6 Ω of resistance. What is the current?</p>
+<div class="answer">I = V ÷ R = 12 ÷ 6 = 2 A</div>
+<div class="why">The circuit allows 2 amps of current to flow.</div>
+</div>
+<div class="practice-mini">
+<strong>Example 2: Find resistance</strong>
+<p>A circuit has 24 V and 3 A of current. What is the resistance?</p>
+<div class="answer">R = V ÷ I = 24 ÷ 3 = 8 Ω</div>
+<div class="why">The load or circuit path has 8 ohms of resistance.</div>
+</div>
+<div class="practice-mini">
+<strong>Example 3: Find voltage</strong>
+<p>A circuit has 0.5 A of current through 20 Ω of resistance. What is the voltage?</p>
+<div class="answer">V = I × R = 0.5 × 20 = 10 V</div>
+<div class="why">A 10 V push is required to move 0.5 A through 20 Ω.</div>
+</div>
+</section>
+<section class="card">
+<h2>Series vs Parallel: Why It Matters</h2>
+<p>
+    Voltage, current, and resistance behave differently in series and parallel circuits. This matters for CBET questions and for real biomedical troubleshooting.
+  </p>
+<table class="compare-table">
+<tr>
+<th>Circuit Type</th>
+<th>Current Behavior</th>
+<th>Voltage Behavior</th>
+<th>Resistance Behavior</th>
+<th>Biomedical Example</th>
+</tr>
+<tr>
+<td><strong>Series</strong></td>
+<td>Same current through each component</td>
+<td>Voltage divides across loads</td>
+<td>Total resistance increases as components are added</td>
+<td>Fuse, switch, thermal cutoff, or safety interlock in line with a circuit</td>
+</tr>
+<tr>
+<td><strong>Parallel</strong></td>
+<td>Current splits through branches</td>
+<td>Same voltage across branches</td>
+<td>Total resistance decreases as branches are added</td>
+<td>Multiple loads powered from the same DC supply rail</td>
+</tr>
+</table>
+<p>
+    Continue with <a href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a> after this page.
+  </p>
+</section>
+<section class="card">
+<h2>Multimeter Testing Strategy</h2>
+<p>
+    A multimeter is only useful when you know what you are trying to prove. Before measuring, decide whether you are checking voltage, current, resistance, continuity, or a suspected open or short.
+  </p>
+<div class="flow-steps">
+<div class="flow-step"><strong>Start with safety.</strong> Verify power state, stored energy, isolation, and discharge requirements before touching a circuit.</div>
+<div class="flow-step"><strong>Check voltage first when appropriate.</strong> Confirm whether the expected supply is present at the correct point.</div>
+<div class="flow-step"><strong>Check under load if the symptom requires it.</strong> A weak supply may look correct with no load but collapse when the device operates.</div>
+<div class="flow-step"><strong>Use resistance checks only when appropriate.</strong> Resistance is typically checked with power removed and capacitors discharged.</div>
+<div class="flow-step"><strong>Compare against expected behavior.</strong> A number alone does not tell the story unless you know what the circuit should do.</div>
+</div>
+<div class="warning-box">
+<strong>Safety note:</strong> Never measure resistance on an energized circuit. Always follow equipment service documentation and facility safety procedures.
+  </div>
+</section>
+<section class="card">
+<h2>Open Circuits, Shorts, and High Resistance Faults</h2>
+<p>
+    Many equipment failures can be understood as one of three broad electrical problems.
+  </p>
+<table class="compare-table">
+<tr>
+<th>Fault</th>
+<th>What Happens</th>
+<th>Likely Symptom</th>
+<th>Testing Clue</th>
+</tr>
+<tr>
+<td><strong>Open circuit</strong></td>
+<td>The path is broken, so current cannot flow.</td>
+<td>Device or circuit section does not operate.</td>
+<td>No continuity, missing voltage past the open point.</td>
+</tr>
+<tr>
+<td><strong>Short circuit</strong></td>
+<td>Current takes an unintended low-resistance path.</td>
+<td>Fuse blows, supply shuts down, heat, abnormal current draw.</td>
+<td>Very low resistance where it should not be low.</td>
+</tr>
+<tr>
+<td><strong>High resistance fault</strong></td>
+<td>Current flow is restricted more than expected.</td>
+<td>Intermittent operation, voltage drop, weak output, unstable behavior.</td>
+<td>Voltage may drop under load, connector may be corroded or loose.</td>
+</tr>
+</table>
+</section>
+<section class="card">
+<h2>Voltage Drop: A Critical Troubleshooting Clue</h2>
+<p>
+    Voltage drop is the amount of voltage lost across part of a circuit. Some voltage drop is expected across loads.
+    Unexpected voltage drop across a connector, wire, switch, fuse holder, relay contact, or ground path can reveal a hidden problem.
+  </p>
+<div class="example-box">
+<strong>Example:</strong> A device receives 12 V at the power supply output, but only 9 V reaches the control board when the device starts. That drop suggests resistance somewhere in the path.
+  </div>
+<p>
+    Voltage drop testing is powerful because it checks the circuit while current is actually flowing.
+  </p>
+</section>
+<section class="card">
+<h2>Power: The Missing Fourth Concept</h2>
+<p>
+    Voltage, current, and resistance explain circuit behavior. Power explains how much electrical energy is being used or converted into heat, motion, light, sound, or work.
+  </p>
+<div class="formula-grid">
+<div class="formula-card">
+<strong>Power</strong>
+<p>P = V × I<br/>Power equals voltage times current.</p>
+</div>
+<div class="formula-card">
+<strong>Watts</strong>
+<p>Power is measured in watts (W).</p>
+</div>
+<div class="formula-card">
+<strong>Heat risk</strong>
+<p>Higher current can create heat in wires, connectors, and components.</p>
+</div>
+</div>
+<p>
+    This is why poor connections can become warm. Resistance at a bad connection can convert electrical energy into heat.
+  </p>
+</section>
+<section class="card">
+<h2>Biomedical Equipment Examples</h2>
+<div class="grid-3">
+<div class="mini-card">
+<h3>Infusion pump</h3>
+<p>A weak battery or poor connector may allow the pump to power on but fail under motor load.</p>
+</div>
+<div class="mini-card">
+<h3>Patient monitor</h3>
+<p>A poor ground or failing power rail may create intermittent resets, noisy readings, or display problems.</p>
+</div>
+<div class="mini-card">
+<h3>Defibrillator</h3>
+<p>Charging circuits require stable power delivery and safe discharge paths.</p>
+</div>
+<div class="mini-card">
+<h3>Ultrasound system</h3>
+<p>Power supply instability can affect boards, displays, probes, fans, or boot behavior.</p>
+</div>
+<div class="mini-card">
+<h3>Patient bed</h3>
+<p>Motors and controls depend on voltage supply, switch paths, relays, and current draw.</p>
+</div>
+<div class="mini-card">
+<h3>Warmer or heater circuit</h3>
+<p>Resistance, current draw, sensors, and control boards all affect safe heating behavior.</p>
+</div>
+</div>
+</section>
+<section class="card">
+<h2>CBET Troubleshooting Flow</h2>
+<div class="flow-steps">
+<div class="flow-step"><strong>Verify the complaint.</strong> Does the device fail consistently, intermittently, or only under certain conditions?</div>
+<div class="flow-step"><strong>Check external basics.</strong> Power cord, outlet, battery, fuse, accessories, and user setup.</div>
+<div class="flow-step"><strong>Follow the power path.</strong> Input power, fuse, switch, supply output, distribution, load.</div>
+<div class="flow-step"><strong>Compare expected voltage.</strong> Use service documentation when available.</div>
+<div class="flow-step"><strong>Look for voltage drop.</strong> Check under load when the symptom suggests weak delivery.</div>
+<div class="flow-step"><strong>Confirm the repair.</strong> Test the device through the condition that created the failure.</div>
+</div>
+</section>
+<section class="card">
+<h2>More CBET-Style Practice Questions</h2>
+<div class="question-card">
+<strong>6. A 10 Ω load is connected to a 20 V source. What current flows?</strong>
+<p>A. 0.5 A   B. 2 A   C. 10 A   D. 200 A</p>
+<div class="answer">Answer: B. 2 A</div>
+<div class="why">I = V ÷ R = 20 ÷ 10 = 2 A.</div>
+</div>
+<div class="question-card">
+<strong>7. A connector has corrosion that increases resistance. What is the likely effect under load?</strong>
+<p>A. Current may decrease   B. Current must increase   C. Voltage disappears everywhere   D. Resistance becomes zero</p>
+<div class="answer">Answer: A. Current may decrease</div>
+<div class="why">Extra resistance limits current and can create voltage drop under load.</div>
+</div>
+<div class="question-card">
+<strong>8. Which condition usually creates excessive current?</strong>
+<p>A. Open circuit   B. High resistance path   C. Short circuit   D. Missing return path</p>
+<div class="answer">Answer: C. Short circuit</div>
+<div class="why">A short can create an unintended low-resistance path and high current.</div>
+</div>
+<div class="question-card">
+<strong>9. Why can a power supply show correct voltage with no load but fail during operation?</strong>
+<p>A. It cannot deliver current under load   B. Voltage and current are unrelated   C. Resistance becomes infinite in every load   D. The meter is always wrong</p>
+<div class="answer">Answer: A. It cannot deliver current under load</div>
+<div class="why">A weak supply can appear normal until real current demand is applied.</div>
+</div>
+<div class="question-card">
+<strong>10. What is the safest general rule before measuring resistance?</strong>
+<p>A. Energize the circuit   B. Remove power and discharge stored energy   C. Use the highest voltage range   D. Place the meter in series with AC mains</p>
+<div class="answer">Answer: B. Remove power and discharge stored energy</div>
+<div class="why">Resistance checks are generally performed with power removed.</div>
+</div>
+</section>
+<section class="card">
+<h2>Key Takeaways</h2>
+<ul>
+<li>Voltage is electrical push.</li>
+<li>Current is electrical flow.</li>
+<li>Resistance opposes flow.</li>
+<li>Ohm's Law connects all three.</li>
+<li>Circuits can fail because of opens, shorts, or high resistance faults.</li>
+<li>Voltage under load is often more useful than voltage with no load.</li>
+<li>Biomedical troubleshooting requires understanding how circuits behave, not just memorizing definitions.</li>
+</ul>
+</section>
+<section class="card">
+<h2>Frequently Asked Questions</h2>
+<h3>What is voltage?</h3>
+<p>
         Voltage is electrical pressure or potential. It provides the push that can move current through a circuit.
       </p>
-
-      <h3>What is current?</h3>
-      <p>
+<h3>What is current?</h3>
+<p>
         Current is the flow of electrical charge through a circuit.
       </p>
-
-      <h3>What is resistance?</h3>
-      <p>
+<h3>What is resistance?</h3>
+<p>
         Resistance is opposition to current flow. Higher resistance reduces current when voltage stays the same.
       </p>
-
-      <h3>How do voltage, current, and resistance work together?</h3>
-      <p>
+<h3>How do voltage, current, and resistance work together?</h3>
+<p>
         Voltage pushes, current flows, and resistance opposes. Ohm's Law connects them with V = I × R.
       </p>
-    </section>
 
-    <section class="card">
-      <h2>Related Electronics Guides</h2>
-      <p>
+<h3>Why does voltage drop matter in troubleshooting?</h3>
+<p>
+        Voltage drop matters because it can reveal resistance in wires, connectors, switches, fuses, or contacts while current is flowing.
+      </p>
+<h3>What is an open circuit?</h3>
+<p>
+        An open circuit is a broken path where current cannot complete the loop.
+      </p>
+<h3>What is a short circuit?</h3>
+<p>
+        A short circuit is an unintended low-resistance path that can cause excessive current.
+      </p>
+<h3>Why can a device power on but fail under load?</h3>
+<p>
+        A device may show correct voltage at rest but fail when the circuit demands current. This can happen with weak power supplies, bad batteries, corroded connectors, or high resistance connections.
+      </p>
+</section>
+<section class="card">
+<h2>Related Electronics Guides</h2>
+<p>
         Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
       </p>
-
-      <div class="related-links">
-        <a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
-        <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
-        <a href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
-        <a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
-        <a href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
-        <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
-        <a href="/what-is-a-diode.html">What Is a Diode?</a>
-        <a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
-        <a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
-        <a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
-        <a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
-        <a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
-        <a href="/browse-all-practice.html">Browse All Practice Tools</a>
-      </div>
-    </section>
-
-    <section class="final-cta">
-      <h2>Ready to keep practicing?</h2>
-      <p>
+<div class="related-links">
+<a href="/basic-electronics-explained-for-beginners.html">Basic Electronics Explained</a>
+<a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+<a href="/voltage-current-resistance-quiz.html">Voltage Current Resistance Quiz</a>
+<a href="/what-is-ohms-law.html">What Is Ohm's Law?</a>
+<a href="/ohms-law-quiz.html">Ohm's Law Quiz</a>
+<a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+<a href="/what-is-a-diode.html">What Is a Diode?</a>
+<a href="/what-does-a-rectifier-do.html">What Does a Rectifier Do?</a>
+<a href="/what-does-a-capacitor-do.html">What Does a Capacitor Do?</a>
+<a href="/power-supply-basics-cbet.html">Power Supply Basics</a>
+<a href="/how-to-use-a-multimeter.html">How to Use a Multimeter</a>
+<a href="/cbet-electronics-practice-questions.html">CBET Electronics Practice</a>
+<a href="/browse-all-practice.html">Browse All Practice Tools</a>
+<a href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a><a href="/reading-schematics-and-symbols.html">Reading Schematics</a><a href="/multimeter-quiz.html">Multimeter Quiz</a><a href="/most-missed-cbet-electronics-questions.html">Most Missed CBET Electronics Questions</a><a href="/how-to-read-schematics-symbols.html">How to Read Schematics and Symbols</a><a href="/how-to-test-a-resistor.html">How to Test a Resistor</a><a href="/how-to-test-a-capacitor.html">How to Test a Capacitor</a></div>
+</section>
+<section class="final-cta">
+<h2>Ready to keep practicing?</h2>
+<p>
         Test yourself first, then move into CBET electronics practice questions.
       </p>
-
-      <div class="cta-row">
-        <a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Voltage Current Resistance Quiz</a>
-        <a class="cta secondary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice</a>
-      </div>
-    </section>
-
-    <p class="safety">
+<div class="cta-row">
+<a class="cta primary" href="/voltage-current-resistance-quiz.html">Take the Voltage Current Resistance Quiz</a>
+<a class="cta secondary" href="/cbet-electronics-practice-questions.html">Start CBET Electronics Practice</a>
+</div>
+</section>
+<p class="safety">
       For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
     </p>
-  </div>
-
-  <footer>
-    <div class="container">
-      <p>
-        <a href="/">Home</a> |
+</div>
+<footer>
+<div class="container">
+<p>
+<a href="/">Home</a> |
         <a href="/browse-all-practice.html">Browse All Practice</a> |
         <a href="/cbet-practice-questions.html">CBET Questions</a>
-      </p>
-      <p>&copy; 2026 MedSkillBuilder. All rights reserved.</p>
-    </div>
-  </footer>
+</p>
+<p>© 2026 MedSkillBuilder. All rights reserved.</p>
+</div>
+</footer>
 </body>
 </html>
