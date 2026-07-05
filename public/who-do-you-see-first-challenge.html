@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Who Do You See First? Nursing Prioritization Challenge | MedSkillBuilder</title>
-  <meta name="description" content="Practice hard nursing prioritization questions with MedSkillBuilder's Who Do You See First challenge. Test ABCs, safety, acute vs chronic, unstable vs stable, sepsis, stroke, airway, labs, and clinical judgment." />
+  <title>Who Do You See First? Nursing Prioritization Practice | NCLEX Clinical Judgment Guide</title>
+  <meta name="description" content="Practice nursing prioritization with a complete NCLEX-style clinical judgment guide. Learn ABCs, acute vs chronic, stable vs unstable, safety, sepsis, stroke, respiratory distress, OB emergencies, delegation, triage, labs, and who to see first." />
   <meta name="keywords" content="nursing prioritization quiz, who do you see first nursing, NCLEX prioritization questions, nursing clinical judgment, ABC nursing questions, nursing priority quiz, patient prioritization practice, MedSkillBuilder" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://medskillbuilder.com/who-do-you-see-first-challenge.html" />
@@ -532,7 +532,159 @@
       .scenario { font-size: 1.08rem; }
       .answer-btn { font-size: 0.96rem; }
     }
+
+    .elite-section {
+      background: rgba(255,255,255,0.97);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--soft-shadow);
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+    .framework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .framework-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--blue);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .priority-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      background: white;
+    }
+    .priority-table th,
+    .priority-table td {
+      border: 1px solid var(--border);
+      padding: 13px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .priority-table th {
+      background: var(--navy);
+      color: white;
+    }
+    .red-flag-box {
+      background: #fef2f2;
+      border-left: 6px solid var(--red);
+      color: #7f1d1d;
+      padding: 16px;
+      border-radius: 14px;
+      margin: 16px 0;
+      font-weight: 800;
+    }
+    .green-box {
+      background: #ecfdf5;
+      border-left: 6px solid var(--green);
+      color: #065f46;
+      padding: 16px;
+      border-radius: 14px;
+      margin: 16px 0;
+      font-weight: 800;
+    }
+    .orange-box {
+      background: #fff7ed;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      padding: 16px;
+      border-radius: 14px;
+      margin: 16px 0;
+      font-weight: 800;
+    }
+    .decision-steps {
+      counter-reset: priorityStep;
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .decision-step {
+      counter-increment: priorityStep;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--blue);
+      border-radius: 18px;
+      padding: 16px 16px 16px 58px;
+      position: relative;
+    }
+    .decision-step::before {
+      content: counter(priorityStep);
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+    .scenario-bank { display: grid; gap: 14px; margin-top: 18px; }
+    .scenario-practice {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--soft-shadow);
+    }
+    .answer-highlight {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: #065f46;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 10px;
+      font-weight: 900;
+    }
+    .why-priority {
+      background: #f8fafc;
+      border: 1px solid #dbe4ee;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 10px;
+      color: #334155;
+    }
+    .internal-link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .internal-link-grid a {
+      display: block;
+      text-decoration: none;
+      color: var(--navy);
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 14px;
+      font-weight: 900;
+    }
+    .rapid-list { columns: 2; column-gap: 32px; }
+    @media (max-width: 700px) { .rapid-list { columns: 1; } .elite-section { padding: 20px 16px; } }
+
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"How do nurses decide who to see first?","acceptedAnswer":{"@type":"Answer","text":"Nurses prioritize immediate threats to airway, breathing, circulation, safety, neurologic status, and acute changes from baseline."}},
+      {"@type":"Question","name":"What is the ABC rule in nursing prioritization?","acceptedAnswer":{"@type":"Answer","text":"The ABC rule prioritizes airway first, breathing second, and circulation third when deciding which patient needs immediate assessment."}},
+      {"@type":"Question","name":"Is who do you see first useful for NCLEX prep?","acceptedAnswer":{"@type":"Answer","text":"Yes. Who do you see first questions help nursing students practice clinical judgment, priority setting, safety, and recognizing unstable patients."}}
+    ]
+  }
+  </script>
+
 </head>
 
 <body>
@@ -659,6 +811,1087 @@
           <p>Fall risk, suicidal statements, medication reactions, airway swelling, and abnormal vital trends require quick action.</p>
         </div>
       </div>
+    </section>
+
+
+    <section class="elite-section">
+      <h2>Complete Nursing Prioritization Study Guide</h2>
+      <p>“Who do you see first?” questions test whether you can recognize which patient is unstable, which finding is unexpected, and which situation could become dangerous if care is delayed.</p>
+      <p>The best students do not guess. They use a repeatable thinking process. This guide teaches the frameworks behind prioritization so the quiz becomes clinical reasoning training.</p>
+      <div class="green-box">The core question is not “Which patient has the worst-sounding diagnosis?” The real question is: “Which patient can deteriorate fastest if I wait?”</div>
+    </section>
+
+    <section class="elite-section">
+      <h2>The Priority Decision Ladder</h2>
+      <div class="decision-steps">
+        <div class="decision-step"><strong>Airway threat?</strong> Stridor, airway swelling, choking, facial burns with hoarseness, decreased consciousness with poor airway protection.</div>
+        <div class="decision-step"><strong>Breathing threat?</strong> Respiratory depression, severe work of breathing, one-word speech, new hypoxia, cyanosis, absent breath sounds.</div>
+        <div class="decision-step"><strong>Circulation or perfusion threat?</strong> Shock signs, uncontrolled bleeding, chest pain with diaphoresis, hypotension, weak pulse, cool clammy skin.</div>
+        <div class="decision-step"><strong>New neurologic change?</strong> Sudden confusion, facial droop, slurred speech, new weakness, seizure, decreased level of consciousness.</div>
+        <div class="decision-step"><strong>Immediate safety risk?</strong> Suicide plan, violence risk, confused patient climbing out of bed, fall risk, severe allergic reaction.</div>
+        <div class="decision-step"><strong>Acute unexpected change?</strong> New symptoms usually outrank expected chronic symptoms.</div>
+        <div class="decision-step"><strong>Time-sensitive disease process?</strong> Stroke, sepsis, MI, PE, DKA, hyperkalemia, postpartum hemorrhage, meningitis, preeclampsia, anaphylaxis.</div>
+      </div>
+    </section>
+
+    <section class="elite-section">
+      <h2>ABCs: Airway, Breathing, Circulation</h2>
+      <table class="priority-table">
+        <tr><th>Priority</th><th>Examples</th><th>Why It Matters</th></tr>
+        <tr><td><strong>Airway</strong></td><td>Stridor, choking, airway swelling, facial burns with hoarse voice, decreased LOC unable to protect airway</td><td>No airway means oxygen cannot reach the lungs.</td></tr>
+        <tr><td><strong>Breathing</strong></td><td>RR 8/min, severe asthma, accessory muscle use, one-word speech, sudden dyspnea, low oxygen with distress</td><td>Breathing problems can rapidly lead to respiratory failure.</td></tr>
+        <tr><td><strong>Circulation</strong></td><td>Chest pain with diaphoresis, uncontrolled bleeding, shock signs, hypotension with weak pulse, symptomatic dysrhythmia</td><td>Poor circulation means organs are not being perfused.</td></tr>
+      </table>
+      <div class="orange-box">A stable chronic oxygen saturation may be less urgent than a new airway symptom.</div>
+    </section>
+
+    <section class="elite-section">
+      <h2>Acute vs Chronic</h2>
+      <table class="priority-table">
+        <tr><th>Finding</th><th>Usually Lower Priority</th><th>Usually Higher Priority</th></tr>
+        <tr><td>Respiratory</td><td>COPD patient at baseline SpO2 of 89%</td><td>New stridor, new cyanosis, RR 8/min, sudden dyspnea</td></tr>
+        <tr><td>Neuro</td><td>Old stroke weakness</td><td>New facial droop, new slurred speech, sudden confusion</td></tr>
+        <tr><td>Pain</td><td>Expected post-op pain after activity</td><td>Chest pain with diaphoresis and shortness of breath</td></tr>
+        <tr><td>Renal</td><td>Stable chronic kidney disease education need</td><td>Peaked T waves, weakness, chest pressure, suspected hyperkalemia</td></tr>
+      </table>
+      <div class="green-box">Memory rule: acute beats chronic when the acute problem suggests instability.</div>
+    </section>
+
+    <section class="elite-section">
+      <h2>Maslow, Safety, and Physiologic Needs</h2>
+      <table class="priority-table">
+        <tr><th>Priority Type</th><th>Examples</th><th>Priority Level</th></tr>
+        <tr><td>Physiologic survival</td><td>Airway, breathing, circulation, glucose, temperature extremes, severe electrolyte imbalance</td><td>Highest</td></tr>
+        <tr><td>Safety</td><td>Suicide plan, fall risk, confusion climbing out of bed, violence risk</td><td>High</td></tr>
+        <tr><td>Pain and comfort</td><td>Incisional pain, repositioning, nausea, blanket request</td><td>Important, but not first if unstable patient present</td></tr>
+        <tr><td>Education</td><td>Medication teaching, diet teaching, discharge questions</td><td>Usually lower if urgent clinical needs exist</td></tr>
+      </table>
+    </section>
+
+    <section class="elite-section">
+      <h2>NCLEX Clinical Judgment Model Applied to Prioritization</h2>
+      <div class="framework-grid">
+        <div class="framework-card"><h3>Recognize cues</h3><p>Identify abnormal findings, red flags, new symptoms, and risk clues.</p></div>
+        <div class="framework-card"><h3>Analyze cues</h3><p>Decide which findings suggest immediate danger versus expected symptoms.</p></div>
+        <div class="framework-card"><h3>Prioritize hypotheses</h3><p>Ask which condition is most urgent: sepsis, stroke, MI, PE, shock, DKA, anaphylaxis.</p></div>
+        <div class="framework-card"><h3>Generate solutions</h3><p>Decide who needs assessment, intervention, escalation, or safety protection first.</p></div>
+        <div class="framework-card"><h3>Take action</h3><p>Assess first, call rapid response, stop transfusion, check glucose, apply oxygen, or escalate per protocol.</p></div>
+        <div class="framework-card"><h3>Evaluate outcomes</h3><p>Recheck vital signs, mental status, respiratory status, perfusion, pain, and response.</p></div>
+      </div>
+    </section>
+
+    <section class="elite-section">
+      <h2>Red Flags That Usually Move a Patient to First</h2>
+      <ul class="rapid-list">
+        <li>New stridor</li><li>Facial swelling with wheezing</li><li>Respiratory rate 8/min</li><li>Severe work of breathing</li><li>One-word speech from asthma</li><li>Sudden chest pain with diaphoresis</li><li>Weak pulse with hypotension</li><li>Cool clammy skin</li><li>Sudden confusion</li><li>New facial droop</li><li>New slurred speech</li><li>Head injury with vomiting</li><li>Blood glucose 48 with symptoms</li><li>Fruity breath with Kussmaul respirations</li><li>Peaked T waves</li><li>Postpartum heavy bleeding</li><li>Fever, hypotension, confusion</li><li>Specific suicidal plan</li><li>Transfusion reaction symptoms</li><li>Facial burns with hoarseness</li><li>Rigid board-like abdomen</li><li>Severe headache with pregnancy hypertension</li><li>Black tarry stool with shock signs</li><li>New restlessness with poor perfusion</li>
+      </ul>
+      <div class="red-flag-box">If a finding threatens airway, breathing, circulation, neurologic function, or immediate safety, it usually moves up the list.</div>
+    </section>
+
+
+    <section class="elite-section">
+      <h2>Priority Topics You Must Know</h2>
+      <h3>Sepsis</h3><p>Fever alone may not be first, but fever plus tachycardia, hypotension, confusion, decreased urine output, or poor perfusion is concerning.</p>
+      <h3>Stroke</h3><p>New facial droop, arm weakness, speech change, sudden vision changes, or sudden confusion can be time-sensitive.</p>
+      <h3>Myocardial Infarction</h3><p>Chest pain with diaphoresis, shortness of breath, nausea, or radiation to arm, jaw, or back requires urgent assessment.</p>
+      <h3>Pulmonary Embolism</h3><p>Sudden shortness of breath, chest pain, tachycardia, low oxygen, or post-op risk should raise concern.</p>
+      <h3>DKA</h3><p>Fruity breath, abdominal pain, dehydration, high glucose, and deep rapid breathing suggest metabolic acidosis.</p>
+      <h3>Hyperkalemia</h3><p>Weakness, palpitations, chest symptoms, and ECG changes in a renal patient can indicate a dangerous potassium issue.</p>
+      <h3>Anaphylaxis</h3><p>Wheezing, facial swelling, stridor, hypotension, rash, or throat tightness after exposure can rapidly become airway and circulation failure.</p>
+      <h3>Postpartum Hemorrhage</h3><p>Saturating pads quickly, clots, dizziness, tachycardia, hypotension, or boggy uterus can be urgent.</p>
+    </section>
+
+    <section class="elite-section">
+      <h2>Delegation and Who the RN Must See First</h2>
+      <p>The RN should personally assess unstable patients, new symptoms, changes in condition, teaching needs, and situations requiring nursing judgment.</p>
+      <table class="priority-table">
+        <tr><th>Can often delegate</th><th>RN should assess first</th></tr>
+        <tr><td>Stable vital sign recheck</td><td>New confusion after opioid medication</td></tr>
+        <tr><td>Assisting with bathing</td><td>Chest pain with shortness of breath</td></tr>
+        <tr><td>Helping a stable patient ambulate</td><td>New neurologic deficit</td></tr>
+        <tr><td>Meal tray setup</td><td>Airway swelling after medication</td></tr>
+        <tr><td>Routine intake and output collection</td><td>Patient suddenly not producing urine with shock signs</td></tr>
+      </table>
+      <div class="orange-box">Delegation rule: do not delegate assessment, teaching, unstable patients, or nursing judgment.</div>
+    </section>
+
+    <section class="elite-section">
+      <h2>Disaster Triage Basics</h2>
+      <p>Disaster triage is different from normal prioritization. In a mass casualty situation, the goal is to do the greatest good for the greatest number of people.</p>
+      <table class="priority-table">
+        <tr><th>Category</th><th>Meaning</th><th>Example</th></tr>
+        <tr><td>Immediate</td><td>Life-threatening but likely survivable with rapid intervention</td><td>Airway obstruction that can be opened, severe bleeding controlled by tourniquet</td></tr>
+        <tr><td>Delayed</td><td>Serious but can wait briefly</td><td>Stable fracture or serious wound without shock</td></tr>
+        <tr><td>Minor</td><td>Walking wounded</td><td>Minor cuts, sprains, stable small injuries</td></tr>
+        <tr><td>Expectant</td><td>Unlikely to survive with available resources</td><td>Massive unsurvivable injury when resources are overwhelmed</td></tr>
+      </table>
+    </section>
+
+    <section class="elite-section">
+      <h2>Common Mistakes on Who Do You See First Questions</h2>
+      <ul>
+        <li>Choosing the patient with the highest pain score even when another patient has airway or perfusion problems.</li>
+        <li>Prioritizing chronic abnormal values over sudden new symptoms.</li>
+        <li>Ignoring mental status changes because vital signs look normal.</li>
+        <li>Missing subtle signs of shock such as restlessness, cool clammy skin, and weak pulse.</li>
+        <li>Thinking all low oxygen readings are equal without considering baseline and work of breathing.</li>
+        <li>Choosing education needs before unstable physiologic needs.</li>
+        <li>Ignoring medication reactions that involve airway or breathing.</li>
+        <li>Missing postpartum bleeding red flags.</li>
+        <li>Forgetting that suicidal intent with a plan is an immediate safety emergency.</li>
+        <li>Choosing a stable patient with a known diagnosis over a patient with an acute change.</li>
+      </ul>
+    </section>
+
+    <section class="elite-section">
+      <h2>Additional Practice Scenarios</h2>
+      <p>Use these extra scenarios to reinforce the logic behind the interactive challenge.</p>
+      <div class="scenario-bank">
+
+
+        <div class="scenario-practice">
+          <h3>Airway Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with chronic back pain</p>
+          <p>B. A patient with new tongue swelling after medication</p>
+          <div class="answer-highlight">Correct priority: A patient with new tongue swelling after medication</div>
+          <div class="why-priority">The new tongue swelling is an airway threat and can progress quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Breathing Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient asking for cough drops</p>
+          <p>B. A patient with RR 7/min and pinpoint pupils</p>
+          <div class="answer-highlight">Correct priority: A patient with RR 7/min and pinpoint pupils</div>
+          <div class="why-priority">Respiratory depression is a breathing emergency.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Circulation Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild ankle swelling</p>
+          <p>B. A patient with chest pain, sweating, and nausea</p>
+          <div class="answer-highlight">Correct priority: A patient with chest pain, sweating, and nausea</div>
+          <div class="why-priority">Chest pain plus autonomic symptoms may indicate acute coronary syndrome.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Neuro Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with old left-sided weakness</p>
+          <p>B. A patient with new right arm weakness and slurred speech</p>
+          <div class="answer-highlight">Correct priority: A patient with new right arm weakness and slurred speech</div>
+          <div class="why-priority">New focal deficits suggest possible stroke.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Sepsis Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient with mild sore throat</p>
+          <p>B. A patient with fever, confusion, HR 130, BP 86/50</p>
+          <div class="answer-highlight">Correct priority: A patient with fever, confusion, HR 130, BP 86/50</div>
+          <div class="why-priority">Confusion and hypotension with infection signs suggest sepsis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Safety Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A tearful patient requesting a phone call</p>
+          <p>B. A patient saying they have a plan to kill themselves tonight</p>
+          <div class="answer-highlight">Correct priority: A patient saying they have a plan to kill themselves tonight</div>
+          <div class="why-priority">Specific suicidal plan is immediate safety risk.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>OB Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A postpartum patient with mild cramping during breastfeeding</p>
+          <p>B. A postpartum patient saturating pads every 15 minutes</p>
+          <div class="answer-highlight">Correct priority: A postpartum patient saturating pads every 15 minutes</div>
+          <div class="why-priority">Rapid bleeding suggests postpartum hemorrhage.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Pediatrics Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A child with mild rash and normal breathing</p>
+          <p>B. An infant with nasal flaring, retractions, and poor feeding</p>
+          <div class="answer-highlight">Correct priority: An infant with nasal flaring, retractions, and poor feeding</div>
+          <div class="why-priority">Infants with respiratory distress can deteriorate quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Renal Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A CKD patient asking about diet</p>
+          <p>B. A dialysis patient with weakness and peaked T waves</p>
+          <div class="answer-highlight">Correct priority: A dialysis patient with weakness and peaked T waves</div>
+          <div class="why-priority">Peaked T waves suggest dangerous hyperkalemia.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Endocrine Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A diabetic patient requesting bedtime snack</p>
+          <p>B. A diabetic patient with Kussmaul respirations and fruity breath</p>
+          <div class="answer-highlight">Correct priority: A diabetic patient with Kussmaul respirations and fruity breath</div>
+          <div class="why-priority">This suggests DKA and metabolic acidosis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Transfusion Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient anxious before transfusion</p>
+          <p>B. A patient receiving blood with chills, flank pain, and dyspnea</p>
+          <div class="answer-highlight">Correct priority: A patient receiving blood with chills, flank pain, and dyspnea</div>
+          <div class="why-priority">New symptoms during transfusion suggest reaction.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Burns Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with small forearm burn</p>
+          <p>B. A patient with facial burns and hoarse voice</p>
+          <div class="answer-highlight">Correct priority: A patient with facial burns and hoarse voice</div>
+          <div class="why-priority">Hoarseness after facial burns can signal airway injury.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>GI Bleed Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient requesting stool softener</p>
+          <p>B. A patient with black stool, dizziness, HR 124, BP 88/54</p>
+          <div class="answer-highlight">Correct priority: A patient with black stool, dizziness, HR 124, BP 88/54</div>
+          <div class="why-priority">Shock signs with GI bleeding are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Medication Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient requesting pain reassessment</p>
+          <p>B. A patient newly confused and very sleepy after opioid</p>
+          <div class="answer-highlight">Correct priority: A patient newly confused and very sleepy after opioid</div>
+          <div class="why-priority">Opioid oversedation can lead to respiratory depression.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Abdomen Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild nausea after eating</p>
+          <p>B. A patient with rigid abdomen and severe pain</p>
+          <div class="answer-highlight">Correct priority: A patient with rigid abdomen and severe pain</div>
+          <div class="why-priority">Rigid abdomen can signal peritonitis or internal bleeding.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Falls Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient asking for blanket</p>
+          <p>B. A confused patient climbing over the bed rail</p>
+          <div class="answer-highlight">Correct priority: A confused patient climbing over the bed rail</div>
+          <div class="why-priority">Immediate fall risk requires quick action.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Lab Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with sodium 134 and no symptoms</p>
+          <p>B. A patient with potassium 2.7 and palpitations</p>
+          <div class="answer-highlight">Correct priority: A patient with potassium 2.7 and palpitations</div>
+          <div class="why-priority">Symptomatic potassium abnormality can affect rhythm.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Respiratory Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild seasonal allergies</p>
+          <p>B. An asthma patient speaking one-word answers</p>
+          <div class="answer-highlight">Correct priority: An asthma patient speaking one-word answers</div>
+          <div class="why-priority">One-word speech signals severe respiratory distress.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Head Injury Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild headache from caffeine withdrawal</p>
+          <p>B. A patient with head injury now vomiting and hard to wake</p>
+          <div class="answer-highlight">Correct priority: A patient with head injury now vomiting and hard to wake</div>
+          <div class="why-priority">Declining LOC and vomiting after head injury are red flags.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Preeclampsia Priority Scenario 1</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A pregnant patient with morning nausea</p>
+          <p>B. A pregnant patient with BP 168/110, headache, vision changes</p>
+          <div class="answer-highlight">Correct priority: A pregnant patient with BP 168/110, headache, vision changes</div>
+          <div class="why-priority">Severe preeclampsia signs are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Airway Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with chronic back pain</p>
+          <p>B. A patient with new tongue swelling after medication</p>
+          <div class="answer-highlight">Correct priority: A patient with new tongue swelling after medication</div>
+          <div class="why-priority">The new tongue swelling is an airway threat and can progress quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Breathing Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient asking for cough drops</p>
+          <p>B. A patient with RR 7/min and pinpoint pupils</p>
+          <div class="answer-highlight">Correct priority: A patient with RR 7/min and pinpoint pupils</div>
+          <div class="why-priority">Respiratory depression is a breathing emergency.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Circulation Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild ankle swelling</p>
+          <p>B. A patient with chest pain, sweating, and nausea</p>
+          <div class="answer-highlight">Correct priority: A patient with chest pain, sweating, and nausea</div>
+          <div class="why-priority">Chest pain plus autonomic symptoms may indicate acute coronary syndrome.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Neuro Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with old left-sided weakness</p>
+          <p>B. A patient with new right arm weakness and slurred speech</p>
+          <div class="answer-highlight">Correct priority: A patient with new right arm weakness and slurred speech</div>
+          <div class="why-priority">New focal deficits suggest possible stroke.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Sepsis Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient with mild sore throat</p>
+          <p>B. A patient with fever, confusion, HR 130, BP 86/50</p>
+          <div class="answer-highlight">Correct priority: A patient with fever, confusion, HR 130, BP 86/50</div>
+          <div class="why-priority">Confusion and hypotension with infection signs suggest sepsis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Safety Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A tearful patient requesting a phone call</p>
+          <p>B. A patient saying they have a plan to kill themselves tonight</p>
+          <div class="answer-highlight">Correct priority: A patient saying they have a plan to kill themselves tonight</div>
+          <div class="why-priority">Specific suicidal plan is immediate safety risk.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>OB Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A postpartum patient with mild cramping during breastfeeding</p>
+          <p>B. A postpartum patient saturating pads every 15 minutes</p>
+          <div class="answer-highlight">Correct priority: A postpartum patient saturating pads every 15 minutes</div>
+          <div class="why-priority">Rapid bleeding suggests postpartum hemorrhage.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Pediatrics Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A child with mild rash and normal breathing</p>
+          <p>B. An infant with nasal flaring, retractions, and poor feeding</p>
+          <div class="answer-highlight">Correct priority: An infant with nasal flaring, retractions, and poor feeding</div>
+          <div class="why-priority">Infants with respiratory distress can deteriorate quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Renal Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A CKD patient asking about diet</p>
+          <p>B. A dialysis patient with weakness and peaked T waves</p>
+          <div class="answer-highlight">Correct priority: A dialysis patient with weakness and peaked T waves</div>
+          <div class="why-priority">Peaked T waves suggest dangerous hyperkalemia.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Endocrine Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A diabetic patient requesting bedtime snack</p>
+          <p>B. A diabetic patient with Kussmaul respirations and fruity breath</p>
+          <div class="answer-highlight">Correct priority: A diabetic patient with Kussmaul respirations and fruity breath</div>
+          <div class="why-priority">This suggests DKA and metabolic acidosis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Transfusion Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient anxious before transfusion</p>
+          <p>B. A patient receiving blood with chills, flank pain, and dyspnea</p>
+          <div class="answer-highlight">Correct priority: A patient receiving blood with chills, flank pain, and dyspnea</div>
+          <div class="why-priority">New symptoms during transfusion suggest reaction.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Burns Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with small forearm burn</p>
+          <p>B. A patient with facial burns and hoarse voice</p>
+          <div class="answer-highlight">Correct priority: A patient with facial burns and hoarse voice</div>
+          <div class="why-priority">Hoarseness after facial burns can signal airway injury.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>GI Bleed Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient requesting stool softener</p>
+          <p>B. A patient with black stool, dizziness, HR 124, BP 88/54</p>
+          <div class="answer-highlight">Correct priority: A patient with black stool, dizziness, HR 124, BP 88/54</div>
+          <div class="why-priority">Shock signs with GI bleeding are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Medication Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient requesting pain reassessment</p>
+          <p>B. A patient newly confused and very sleepy after opioid</p>
+          <div class="answer-highlight">Correct priority: A patient newly confused and very sleepy after opioid</div>
+          <div class="why-priority">Opioid oversedation can lead to respiratory depression.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Abdomen Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild nausea after eating</p>
+          <p>B. A patient with rigid abdomen and severe pain</p>
+          <div class="answer-highlight">Correct priority: A patient with rigid abdomen and severe pain</div>
+          <div class="why-priority">Rigid abdomen can signal peritonitis or internal bleeding.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Falls Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient asking for blanket</p>
+          <p>B. A confused patient climbing over the bed rail</p>
+          <div class="answer-highlight">Correct priority: A confused patient climbing over the bed rail</div>
+          <div class="why-priority">Immediate fall risk requires quick action.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Lab Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with sodium 134 and no symptoms</p>
+          <p>B. A patient with potassium 2.7 and palpitations</p>
+          <div class="answer-highlight">Correct priority: A patient with potassium 2.7 and palpitations</div>
+          <div class="why-priority">Symptomatic potassium abnormality can affect rhythm.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Respiratory Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild seasonal allergies</p>
+          <p>B. An asthma patient speaking one-word answers</p>
+          <div class="answer-highlight">Correct priority: An asthma patient speaking one-word answers</div>
+          <div class="why-priority">One-word speech signals severe respiratory distress.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Head Injury Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild headache from caffeine withdrawal</p>
+          <p>B. A patient with head injury now vomiting and hard to wake</p>
+          <div class="answer-highlight">Correct priority: A patient with head injury now vomiting and hard to wake</div>
+          <div class="why-priority">Declining LOC and vomiting after head injury are red flags.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Preeclampsia Priority Scenario 2</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A pregnant patient with morning nausea</p>
+          <p>B. A pregnant patient with BP 168/110, headache, vision changes</p>
+          <div class="answer-highlight">Correct priority: A pregnant patient with BP 168/110, headache, vision changes</div>
+          <div class="why-priority">Severe preeclampsia signs are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Airway Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with chronic back pain</p>
+          <p>B. A patient with new tongue swelling after medication</p>
+          <div class="answer-highlight">Correct priority: A patient with new tongue swelling after medication</div>
+          <div class="why-priority">The new tongue swelling is an airway threat and can progress quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Breathing Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient asking for cough drops</p>
+          <p>B. A patient with RR 7/min and pinpoint pupils</p>
+          <div class="answer-highlight">Correct priority: A patient with RR 7/min and pinpoint pupils</div>
+          <div class="why-priority">Respiratory depression is a breathing emergency.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Circulation Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild ankle swelling</p>
+          <p>B. A patient with chest pain, sweating, and nausea</p>
+          <div class="answer-highlight">Correct priority: A patient with chest pain, sweating, and nausea</div>
+          <div class="why-priority">Chest pain plus autonomic symptoms may indicate acute coronary syndrome.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Neuro Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with old left-sided weakness</p>
+          <p>B. A patient with new right arm weakness and slurred speech</p>
+          <div class="answer-highlight">Correct priority: A patient with new right arm weakness and slurred speech</div>
+          <div class="why-priority">New focal deficits suggest possible stroke.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Sepsis Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient with mild sore throat</p>
+          <p>B. A patient with fever, confusion, HR 130, BP 86/50</p>
+          <div class="answer-highlight">Correct priority: A patient with fever, confusion, HR 130, BP 86/50</div>
+          <div class="why-priority">Confusion and hypotension with infection signs suggest sepsis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Safety Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A tearful patient requesting a phone call</p>
+          <p>B. A patient saying they have a plan to kill themselves tonight</p>
+          <div class="answer-highlight">Correct priority: A patient saying they have a plan to kill themselves tonight</div>
+          <div class="why-priority">Specific suicidal plan is immediate safety risk.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>OB Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A postpartum patient with mild cramping during breastfeeding</p>
+          <p>B. A postpartum patient saturating pads every 15 minutes</p>
+          <div class="answer-highlight">Correct priority: A postpartum patient saturating pads every 15 minutes</div>
+          <div class="why-priority">Rapid bleeding suggests postpartum hemorrhage.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Pediatrics Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A child with mild rash and normal breathing</p>
+          <p>B. An infant with nasal flaring, retractions, and poor feeding</p>
+          <div class="answer-highlight">Correct priority: An infant with nasal flaring, retractions, and poor feeding</div>
+          <div class="why-priority">Infants with respiratory distress can deteriorate quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Renal Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A CKD patient asking about diet</p>
+          <p>B. A dialysis patient with weakness and peaked T waves</p>
+          <div class="answer-highlight">Correct priority: A dialysis patient with weakness and peaked T waves</div>
+          <div class="why-priority">Peaked T waves suggest dangerous hyperkalemia.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Endocrine Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A diabetic patient requesting bedtime snack</p>
+          <p>B. A diabetic patient with Kussmaul respirations and fruity breath</p>
+          <div class="answer-highlight">Correct priority: A diabetic patient with Kussmaul respirations and fruity breath</div>
+          <div class="why-priority">This suggests DKA and metabolic acidosis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Transfusion Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient anxious before transfusion</p>
+          <p>B. A patient receiving blood with chills, flank pain, and dyspnea</p>
+          <div class="answer-highlight">Correct priority: A patient receiving blood with chills, flank pain, and dyspnea</div>
+          <div class="why-priority">New symptoms during transfusion suggest reaction.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Burns Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with small forearm burn</p>
+          <p>B. A patient with facial burns and hoarse voice</p>
+          <div class="answer-highlight">Correct priority: A patient with facial burns and hoarse voice</div>
+          <div class="why-priority">Hoarseness after facial burns can signal airway injury.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>GI Bleed Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient requesting stool softener</p>
+          <p>B. A patient with black stool, dizziness, HR 124, BP 88/54</p>
+          <div class="answer-highlight">Correct priority: A patient with black stool, dizziness, HR 124, BP 88/54</div>
+          <div class="why-priority">Shock signs with GI bleeding are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Medication Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient requesting pain reassessment</p>
+          <p>B. A patient newly confused and very sleepy after opioid</p>
+          <div class="answer-highlight">Correct priority: A patient newly confused and very sleepy after opioid</div>
+          <div class="why-priority">Opioid oversedation can lead to respiratory depression.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Abdomen Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild nausea after eating</p>
+          <p>B. A patient with rigid abdomen and severe pain</p>
+          <div class="answer-highlight">Correct priority: A patient with rigid abdomen and severe pain</div>
+          <div class="why-priority">Rigid abdomen can signal peritonitis or internal bleeding.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Falls Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient asking for blanket</p>
+          <p>B. A confused patient climbing over the bed rail</p>
+          <div class="answer-highlight">Correct priority: A confused patient climbing over the bed rail</div>
+          <div class="why-priority">Immediate fall risk requires quick action.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Lab Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with sodium 134 and no symptoms</p>
+          <p>B. A patient with potassium 2.7 and palpitations</p>
+          <div class="answer-highlight">Correct priority: A patient with potassium 2.7 and palpitations</div>
+          <div class="why-priority">Symptomatic potassium abnormality can affect rhythm.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Respiratory Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild seasonal allergies</p>
+          <p>B. An asthma patient speaking one-word answers</p>
+          <div class="answer-highlight">Correct priority: An asthma patient speaking one-word answers</div>
+          <div class="why-priority">One-word speech signals severe respiratory distress.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Head Injury Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild headache from caffeine withdrawal</p>
+          <p>B. A patient with head injury now vomiting and hard to wake</p>
+          <div class="answer-highlight">Correct priority: A patient with head injury now vomiting and hard to wake</div>
+          <div class="why-priority">Declining LOC and vomiting after head injury are red flags.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Preeclampsia Priority Scenario 3</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A pregnant patient with morning nausea</p>
+          <p>B. A pregnant patient with BP 168/110, headache, vision changes</p>
+          <div class="answer-highlight">Correct priority: A pregnant patient with BP 168/110, headache, vision changes</div>
+          <div class="why-priority">Severe preeclampsia signs are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Airway Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with chronic back pain</p>
+          <p>B. A patient with new tongue swelling after medication</p>
+          <div class="answer-highlight">Correct priority: A patient with new tongue swelling after medication</div>
+          <div class="why-priority">The new tongue swelling is an airway threat and can progress quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Breathing Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient asking for cough drops</p>
+          <p>B. A patient with RR 7/min and pinpoint pupils</p>
+          <div class="answer-highlight">Correct priority: A patient with RR 7/min and pinpoint pupils</div>
+          <div class="why-priority">Respiratory depression is a breathing emergency.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Circulation Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild ankle swelling</p>
+          <p>B. A patient with chest pain, sweating, and nausea</p>
+          <div class="answer-highlight">Correct priority: A patient with chest pain, sweating, and nausea</div>
+          <div class="why-priority">Chest pain plus autonomic symptoms may indicate acute coronary syndrome.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Neuro Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with old left-sided weakness</p>
+          <p>B. A patient with new right arm weakness and slurred speech</p>
+          <div class="answer-highlight">Correct priority: A patient with new right arm weakness and slurred speech</div>
+          <div class="why-priority">New focal deficits suggest possible stroke.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Sepsis Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient with mild sore throat</p>
+          <p>B. A patient with fever, confusion, HR 130, BP 86/50</p>
+          <div class="answer-highlight">Correct priority: A patient with fever, confusion, HR 130, BP 86/50</div>
+          <div class="why-priority">Confusion and hypotension with infection signs suggest sepsis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Safety Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A tearful patient requesting a phone call</p>
+          <p>B. A patient saying they have a plan to kill themselves tonight</p>
+          <div class="answer-highlight">Correct priority: A patient saying they have a plan to kill themselves tonight</div>
+          <div class="why-priority">Specific suicidal plan is immediate safety risk.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>OB Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A postpartum patient with mild cramping during breastfeeding</p>
+          <p>B. A postpartum patient saturating pads every 15 minutes</p>
+          <div class="answer-highlight">Correct priority: A postpartum patient saturating pads every 15 minutes</div>
+          <div class="why-priority">Rapid bleeding suggests postpartum hemorrhage.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Pediatrics Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A child with mild rash and normal breathing</p>
+          <p>B. An infant with nasal flaring, retractions, and poor feeding</p>
+          <div class="answer-highlight">Correct priority: An infant with nasal flaring, retractions, and poor feeding</div>
+          <div class="why-priority">Infants with respiratory distress can deteriorate quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Renal Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A CKD patient asking about diet</p>
+          <p>B. A dialysis patient with weakness and peaked T waves</p>
+          <div class="answer-highlight">Correct priority: A dialysis patient with weakness and peaked T waves</div>
+          <div class="why-priority">Peaked T waves suggest dangerous hyperkalemia.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Endocrine Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A diabetic patient requesting bedtime snack</p>
+          <p>B. A diabetic patient with Kussmaul respirations and fruity breath</p>
+          <div class="answer-highlight">Correct priority: A diabetic patient with Kussmaul respirations and fruity breath</div>
+          <div class="why-priority">This suggests DKA and metabolic acidosis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Transfusion Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient anxious before transfusion</p>
+          <p>B. A patient receiving blood with chills, flank pain, and dyspnea</p>
+          <div class="answer-highlight">Correct priority: A patient receiving blood with chills, flank pain, and dyspnea</div>
+          <div class="why-priority">New symptoms during transfusion suggest reaction.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Burns Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with small forearm burn</p>
+          <p>B. A patient with facial burns and hoarse voice</p>
+          <div class="answer-highlight">Correct priority: A patient with facial burns and hoarse voice</div>
+          <div class="why-priority">Hoarseness after facial burns can signal airway injury.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>GI Bleed Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient requesting stool softener</p>
+          <p>B. A patient with black stool, dizziness, HR 124, BP 88/54</p>
+          <div class="answer-highlight">Correct priority: A patient with black stool, dizziness, HR 124, BP 88/54</div>
+          <div class="why-priority">Shock signs with GI bleeding are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Medication Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient requesting pain reassessment</p>
+          <p>B. A patient newly confused and very sleepy after opioid</p>
+          <div class="answer-highlight">Correct priority: A patient newly confused and very sleepy after opioid</div>
+          <div class="why-priority">Opioid oversedation can lead to respiratory depression.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Abdomen Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild nausea after eating</p>
+          <p>B. A patient with rigid abdomen and severe pain</p>
+          <div class="answer-highlight">Correct priority: A patient with rigid abdomen and severe pain</div>
+          <div class="why-priority">Rigid abdomen can signal peritonitis or internal bleeding.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Falls Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient asking for blanket</p>
+          <p>B. A confused patient climbing over the bed rail</p>
+          <div class="answer-highlight">Correct priority: A confused patient climbing over the bed rail</div>
+          <div class="why-priority">Immediate fall risk requires quick action.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Lab Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with sodium 134 and no symptoms</p>
+          <p>B. A patient with potassium 2.7 and palpitations</p>
+          <div class="answer-highlight">Correct priority: A patient with potassium 2.7 and palpitations</div>
+          <div class="why-priority">Symptomatic potassium abnormality can affect rhythm.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Respiratory Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild seasonal allergies</p>
+          <p>B. An asthma patient speaking one-word answers</p>
+          <div class="answer-highlight">Correct priority: An asthma patient speaking one-word answers</div>
+          <div class="why-priority">One-word speech signals severe respiratory distress.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Head Injury Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild headache from caffeine withdrawal</p>
+          <p>B. A patient with head injury now vomiting and hard to wake</p>
+          <div class="answer-highlight">Correct priority: A patient with head injury now vomiting and hard to wake</div>
+          <div class="why-priority">Declining LOC and vomiting after head injury are red flags.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Preeclampsia Priority Scenario 4</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A pregnant patient with morning nausea</p>
+          <p>B. A pregnant patient with BP 168/110, headache, vision changes</p>
+          <div class="answer-highlight">Correct priority: A pregnant patient with BP 168/110, headache, vision changes</div>
+          <div class="why-priority">Severe preeclampsia signs are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Airway Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with chronic back pain</p>
+          <p>B. A patient with new tongue swelling after medication</p>
+          <div class="answer-highlight">Correct priority: A patient with new tongue swelling after medication</div>
+          <div class="why-priority">The new tongue swelling is an airway threat and can progress quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Breathing Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient asking for cough drops</p>
+          <p>B. A patient with RR 7/min and pinpoint pupils</p>
+          <div class="answer-highlight">Correct priority: A patient with RR 7/min and pinpoint pupils</div>
+          <div class="why-priority">Respiratory depression is a breathing emergency.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Circulation Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild ankle swelling</p>
+          <p>B. A patient with chest pain, sweating, and nausea</p>
+          <div class="answer-highlight">Correct priority: A patient with chest pain, sweating, and nausea</div>
+          <div class="why-priority">Chest pain plus autonomic symptoms may indicate acute coronary syndrome.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Neuro Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with old left-sided weakness</p>
+          <p>B. A patient with new right arm weakness and slurred speech</p>
+          <div class="answer-highlight">Correct priority: A patient with new right arm weakness and slurred speech</div>
+          <div class="why-priority">New focal deficits suggest possible stroke.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Sepsis Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient with mild sore throat</p>
+          <p>B. A patient with fever, confusion, HR 130, BP 86/50</p>
+          <div class="answer-highlight">Correct priority: A patient with fever, confusion, HR 130, BP 86/50</div>
+          <div class="why-priority">Confusion and hypotension with infection signs suggest sepsis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Safety Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A tearful patient requesting a phone call</p>
+          <p>B. A patient saying they have a plan to kill themselves tonight</p>
+          <div class="answer-highlight">Correct priority: A patient saying they have a plan to kill themselves tonight</div>
+          <div class="why-priority">Specific suicidal plan is immediate safety risk.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>OB Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A postpartum patient with mild cramping during breastfeeding</p>
+          <p>B. A postpartum patient saturating pads every 15 minutes</p>
+          <div class="answer-highlight">Correct priority: A postpartum patient saturating pads every 15 minutes</div>
+          <div class="why-priority">Rapid bleeding suggests postpartum hemorrhage.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Pediatrics Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A child with mild rash and normal breathing</p>
+          <p>B. An infant with nasal flaring, retractions, and poor feeding</p>
+          <div class="answer-highlight">Correct priority: An infant with nasal flaring, retractions, and poor feeding</div>
+          <div class="why-priority">Infants with respiratory distress can deteriorate quickly.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Renal Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A CKD patient asking about diet</p>
+          <p>B. A dialysis patient with weakness and peaked T waves</p>
+          <div class="answer-highlight">Correct priority: A dialysis patient with weakness and peaked T waves</div>
+          <div class="why-priority">Peaked T waves suggest dangerous hyperkalemia.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Endocrine Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A diabetic patient requesting bedtime snack</p>
+          <p>B. A diabetic patient with Kussmaul respirations and fruity breath</p>
+          <div class="answer-highlight">Correct priority: A diabetic patient with Kussmaul respirations and fruity breath</div>
+          <div class="why-priority">This suggests DKA and metabolic acidosis.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Transfusion Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient anxious before transfusion</p>
+          <p>B. A patient receiving blood with chills, flank pain, and dyspnea</p>
+          <div class="answer-highlight">Correct priority: A patient receiving blood with chills, flank pain, and dyspnea</div>
+          <div class="why-priority">New symptoms during transfusion suggest reaction.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Burns Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with small forearm burn</p>
+          <p>B. A patient with facial burns and hoarse voice</p>
+          <div class="answer-highlight">Correct priority: A patient with facial burns and hoarse voice</div>
+          <div class="why-priority">Hoarseness after facial burns can signal airway injury.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>GI Bleed Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient requesting stool softener</p>
+          <p>B. A patient with black stool, dizziness, HR 124, BP 88/54</p>
+          <div class="answer-highlight">Correct priority: A patient with black stool, dizziness, HR 124, BP 88/54</div>
+          <div class="why-priority">Shock signs with GI bleeding are urgent.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Medication Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient requesting pain reassessment</p>
+          <p>B. A patient newly confused and very sleepy after opioid</p>
+          <div class="answer-highlight">Correct priority: A patient newly confused and very sleepy after opioid</div>
+          <div class="why-priority">Opioid oversedation can lead to respiratory depression.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Abdomen Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild nausea after eating</p>
+          <p>B. A patient with rigid abdomen and severe pain</p>
+          <div class="answer-highlight">Correct priority: A patient with rigid abdomen and severe pain</div>
+          <div class="why-priority">Rigid abdomen can signal peritonitis or internal bleeding.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Falls Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A stable patient asking for blanket</p>
+          <p>B. A confused patient climbing over the bed rail</p>
+          <div class="answer-highlight">Correct priority: A confused patient climbing over the bed rail</div>
+          <div class="why-priority">Immediate fall risk requires quick action.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Lab Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with sodium 134 and no symptoms</p>
+          <p>B. A patient with potassium 2.7 and palpitations</p>
+          <div class="answer-highlight">Correct priority: A patient with potassium 2.7 and palpitations</div>
+          <div class="why-priority">Symptomatic potassium abnormality can affect rhythm.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Respiratory Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild seasonal allergies</p>
+          <p>B. An asthma patient speaking one-word answers</p>
+          <div class="answer-highlight">Correct priority: An asthma patient speaking one-word answers</div>
+          <div class="why-priority">One-word speech signals severe respiratory distress.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Head Injury Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A patient with mild headache from caffeine withdrawal</p>
+          <p>B. A patient with head injury now vomiting and hard to wake</p>
+          <div class="answer-highlight">Correct priority: A patient with head injury now vomiting and hard to wake</div>
+          <div class="why-priority">Declining LOC and vomiting after head injury are red flags.</div>
+        </div>
+
+        <div class="scenario-practice">
+          <h3>Preeclampsia Priority Scenario 5</h3>
+          <p><strong>Who do you see first?</strong></p>
+          <p>A. A pregnant patient with morning nausea</p>
+          <p>B. A pregnant patient with BP 168/110, headache, vision changes</p>
+          <div class="answer-highlight">Correct priority: A pregnant patient with BP 168/110, headache, vision changes</div>
+          <div class="why-priority">Severe preeclampsia signs are urgent.</div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <section class="elite-section">
+      <h2>Related Study Resources</h2>
+      <p>Build stronger clinical judgment by connecting prioritization to assessment, labs, EKGs, oxygenation, medications, and nursing practice.</p>
+      <div class="internal-link-grid">
+        <a href="/rn-practice-questions.html">RN Practice Questions</a>
+        <a href="/head-to-toe-physical-assessment-guide.html">Head-to-Toe Physical Assessment</a>
+        <a href="/normal-vital-signs-chart.html">Normal Vital Signs Chart</a>
+        <a href="/oxygen-delivery-devices-guide.html">Oxygen Delivery Devices Guide</a>
+        <a href="/abg-normal-values.html">ABG Normal Values</a>
+        <a href="/abg-practice-quiz.html">ABG Practice Quiz</a>
+        <a href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+        <a href="/critical-lab-values-challenge.html">Critical Lab Values Challenge</a>
+        <a href="/ekg-rhythm-cheat-sheet.html">EKG Rhythm Cheat Sheet</a>
+        <a href="/how-to-read-ekg.html">How to Read an EKG</a>
+        <a href="/lung-sounds-quiz.html">Lung Sounds Quiz</a>
+        <a href="/heart-sounds-quiz.html">Heart Sounds Quiz</a>
+        <a href="/medication-administration-rights.html">Medication Administration Rights</a>
+        <a href="/medication-error-challenge.html">Medication Error Challenge</a>
+        <a href="/electrolyte-imbalance-guide.html">Electrolyte Imbalance Guide</a>
+        <a href="/potassium-imbalance-guide.html">Potassium Imbalance Guide</a>
+        <a href="/bun-creatinine-gfr-guide.html">BUN, Creatinine, and GFR Guide</a>
+        <a href="/fluid-balance-guide.html">Fluid Balance Guide</a>
+        <a href="/medical-dictionary.html">Medical Dictionary</a>
+        <a href="/medical-abbreviations-guide.html">Medical Abbreviations Guide</a>
+      </div>
+    </section>
+
+    <section class="elite-section">
+      <h2>Expanded FAQ</h2>
+      <h3>What is the fastest way to answer who do you see first questions?</h3>
+      <p>Look first for airway, breathing, circulation, neurologic change, safety risk, and acute unexpected findings.</p>
+      <h3>Does the patient with the worst pain always come first?</h3>
+      <p>No. Pain matters, but airway compromise, respiratory failure, shock, stroke symptoms, active bleeding, or immediate safety threats usually come first.</p>
+      <h3>Why are subtle mental status changes important?</h3>
+      <p>New confusion or restlessness can be an early sign of hypoxia, shock, sepsis, hypoglycemia, stroke, medication reaction, or neurologic decline.</p>
+      <h3>How should I compare stable and unstable patients?</h3>
+      <p>Stable patients have expected findings and no immediate threat. Unstable patients have new, worsening, or dangerous findings that could deteriorate quickly.</p>
+      <h3>Are prioritization questions useful for NCLEX?</h3>
+      <p>Yes. They practice clinical judgment, cue recognition, urgency ranking, safety, and decision-making under pressure.</p>
     </section>
 
     <section class="panel">
