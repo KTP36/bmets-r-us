@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>ABG Practice Quiz (30 Questions) | MedSkillBuilder</title>
+  <title>ABG Practice Quiz & Interpretation Guide | Acid-Base Balance Practice | MedSkillBuilder</title>
   <meta name="description" content="Test your knowledge with this free ABG practice quiz. Includes 30 multiple-choice questions on normal ABG values, respiratory vs metabolic disorders, pH, PaCO2, HCO3, PaO2, and basic interpretation." />
   <link rel="canonical" href="https://medskillbuilder.com/abg-practice-quiz.html" />
 
@@ -262,6 +262,23 @@
         padding: 24px 14px 50px;
       }
     }
+
+    .study-guide { background:#fff; border:1px solid #dbe4ee; border-radius:14px; padding:22px; box-shadow:0 2px 8px rgba(15,23,42,.04); margin-bottom:22px; }
+    .study-guide h2 { color:#0ea5e9; margin-top:0; }
+    .guide-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:16px 0; }
+    .guide-card { background:#f8fafc; border:1px solid #dbe4ee; border-left:5px solid #0ea5e9; border-radius:12px; padding:16px; }
+    .guide-card h3 { margin-top:0; color:#0f172a; font-size:1.05rem; }
+    .abg-table { width:100%; border-collapse:collapse; margin:16px 0; background:white; font-size:.95rem; }
+    .abg-table th,.abg-table td { border:1px solid #dbe4ee; padding:11px; text-align:left; vertical-align:top; }
+    .abg-table th { background:#0f172a; color:white; }
+    .pearl { background:#ecfdf5; border-left:5px solid #16a34a; color:#065f46; padding:14px 16px; border-radius:10px; margin:16px 0; font-weight:700; }
+    .warning-note { background:#fff7ed; border-left:5px solid #f59e0b; color:#7c2d12; padding:14px 16px; border-radius:10px; margin:16px 0; font-weight:700; }
+    .critical-note { background:#fef2f2; border-left:5px solid #dc2626; color:#7f1d1d; padding:14px 16px; border-radius:10px; margin:16px 0; font-weight:700; }
+    .algorithm-steps { counter-reset:abgStep; display:grid; gap:12px; margin:16px 0; }
+    .algorithm-step { counter-increment:abgStep; background:#f8fafc; border:1px solid #dbe4ee; border-left:5px solid #0ea5e9; border-radius:12px; padding:14px 14px 14px 50px; position:relative; }
+    .algorithm-step::before { content:counter(abgStep); position:absolute; left:14px; top:14px; width:26px; height:26px; border-radius:50%; background:#0ea5e9; color:white; display:grid; place-items:center; font-weight:800; }
+    .case-card { background:#f8fafc; border:1px solid #dbe4ee; border-radius:12px; padding:16px; margin:14px 0; }
+
   </style>
 </head>
 <body>
@@ -279,6 +296,294 @@
       <div class="btn-row">
         <button class="nav-btn" id="startBtn">Start Quiz</button>
         <a class="link-btn secondary" href="/abg-normal-values.html">Review ABG Normal Values</a>
+      </div>
+    </div>
+
+
+    <div class="study-guide">
+      <h2>ABG Interpretation Guide: Start Here</h2>
+      <p>ABGs are easier when you use the same pattern every time: check pH, identify respiratory or metabolic cause, look for compensation, then check oxygenation.</p>
+      <div class="pearl">Beginner rule: pH tells acid or base. PaCO2 is respiratory. HCO3 is metabolic. PaO2 tells oxygenation.</div>
+      <table class="abg-table">
+        <tr><th>Value</th><th>Normal Range</th><th>Meaning</th></tr>
+        <tr><td>pH</td><td>7.35–7.45</td><td>Overall acid-base status.</td></tr>
+        <tr><td>PaCO2</td><td>35–45 mm Hg</td><td>Respiratory component and ventilation.</td></tr>
+        <tr><td>HCO3</td><td>22–26 mEq/L</td><td>Metabolic component and bicarbonate buffer.</td></tr>
+        <tr><td>PaO2</td><td>75–100 mm Hg</td><td>Oxygenation.</td></tr>
+        <tr><td>SaO2</td><td>95–100%</td><td>Arterial oxygen saturation.</td></tr>
+      </table>
+    </div>
+
+    <div class="study-guide">
+      <h2>Step-by-Step ABG Interpretation Algorithm</h2>
+      <div class="algorithm-steps">
+        <div class="algorithm-step"><strong>Check pH.</strong> Low pH is acidosis. High pH is alkalosis.</div>
+        <div class="algorithm-step"><strong>Check PaCO2.</strong> High PaCO2 causes respiratory acidosis. Low PaCO2 causes respiratory alkalosis.</div>
+        <div class="algorithm-step"><strong>Check HCO3.</strong> Low HCO3 causes metabolic acidosis. High HCO3 causes metabolic alkalosis.</div>
+        <div class="algorithm-step"><strong>Match the pH direction.</strong> Find which value explains the pH change.</div>
+        <div class="algorithm-step"><strong>Assess compensation.</strong> If the other system is abnormal, the body may be compensating.</div>
+        <div class="algorithm-step"><strong>Check oxygenation.</strong> PaO2 and SaO2 show whether oxygenation is adequate.</div>
+      </div>
+      <div class="warning-note">Do not use PaO2 to name the acid-base disorder. PaO2 is oxygenation, not the primary acid-base category.</div>
+    </div>
+
+    <div class="study-guide">
+      <h2>Respiratory vs Metabolic Disorders</h2>
+      <table class="abg-table">
+        <tr><th>Disorder</th><th>pH</th><th>Main Abnormal Value</th><th>Common Causes</th></tr>
+        <tr><td>Respiratory Acidosis</td><td>Low</td><td>High PaCO2</td><td>Hypoventilation, COPD, respiratory depression, airway obstruction.</td></tr>
+        <tr><td>Respiratory Alkalosis</td><td>High</td><td>Low PaCO2</td><td>Hyperventilation, anxiety, pain, fever, early sepsis.</td></tr>
+        <tr><td>Metabolic Acidosis</td><td>Low</td><td>Low HCO3</td><td>DKA, renal failure, lactic acidosis, diarrhea.</td></tr>
+        <tr><td>Metabolic Alkalosis</td><td>High</td><td>High HCO3</td><td>Vomiting, NG suction, diuretics, loss of gastric acid.</td></tr>
+      </table>
+      <div class="pearl">ROME: Respiratory Opposite, Metabolic Equal. Respiratory pH and PaCO2 move opposite. Metabolic pH and HCO3 move together.</div>
+    </div>
+
+    <div class="study-guide">
+      <h2>Compensation Made Simple</h2>
+      <p>Compensation means the body is trying to correct the acid-base problem. Lungs can change CO2 quickly; kidneys change bicarbonate more slowly.</p>
+      <table class="abg-table">
+        <tr><th>Type</th><th>Pattern</th><th>Example</th></tr>
+        <tr><td>Uncompensated</td><td>pH abnormal, one main value abnormal, other system normal.</td><td>pH low, PaCO2 high, HCO3 normal.</td></tr>
+        <tr><td>Partially compensated</td><td>pH abnormal, PaCO2 and HCO3 both abnormal.</td><td>pH low, PaCO2 high, HCO3 high.</td></tr>
+        <tr><td>Fully compensated</td><td>pH normal, but PaCO2 and HCO3 abnormal.</td><td>pH normal but acid-leaning, PaCO2 high, HCO3 high.</td></tr>
+      </table>
+      <div class="critical-note">Fully compensated does not mean normal. It means pH returned to normal while abnormal values still reveal the disorder.</div>
+    </div>
+
+    <div class="study-guide">
+      <h2>Clinical ABG Case Examples</h2>
+      <div class="case-card"><p><strong>Case 1:</strong> pH 7.29, PaCO2 58, HCO3 24</p><p><strong>Answer:</strong> Respiratory acidosis. CO2 retention is causing low pH.</p></div>
+      <div class="case-card"><p><strong>Case 2:</strong> pH 7.51, PaCO2 29, HCO3 24</p><p><strong>Answer:</strong> Respiratory alkalosis. Too much CO2 is being blown off.</p></div>
+      <div class="case-card"><p><strong>Case 3:</strong> pH 7.25, PaCO2 39, HCO3 16</p><p><strong>Answer:</strong> Metabolic acidosis. Bicarbonate is low.</p></div>
+      <div class="case-card"><p><strong>Case 4:</strong> pH 7.49, PaCO2 41, HCO3 31</p><p><strong>Answer:</strong> Metabolic alkalosis. Bicarbonate is high.</p></div>
+    </div>
+
+    <div class="study-guide">
+      <h2>More ABG Practice Questions</h2>
+      <div class="case-card"><p><strong>1.</strong> pH 7.32, PaCO2 52, HCO3 25 → <strong>Respiratory acidosis</strong></p></div>
+      <div class="case-card"><p><strong>2.</strong> pH 7.47, PaCO2 30, HCO3 23 → <strong>Respiratory alkalosis</strong></p></div>
+      <div class="case-card"><p><strong>3.</strong> pH 7.30, PaCO2 38, HCO3 17 → <strong>Metabolic acidosis</strong></p></div>
+      <div class="case-card"><p><strong>4.</strong> pH 7.50, PaCO2 42, HCO3 32 → <strong>Metabolic alkalosis</strong></p></div>
+      <div class="case-card"><p><strong>5.</strong> Which value represents oxygenation? <strong>PaO2</strong></p></div>
+      <div class="case-card"><p><strong>6.</strong> Which value represents ventilation? <strong>PaCO2</strong></p></div>
+    </div>
+
+    
+<div class="study-guide">
+<h2>Advanced Respiratory Acid-Base Disorders</h2>
+
+<h3>Respiratory Acidosis</h3>
+<p>Respiratory acidosis develops when the lungs cannot remove enough carbon dioxide. CO₂ retention causes the blood to become more acidic.</p>
+
+<table class="abg-table">
+<tr><th>Common Causes</th><th>Typical Findings</th></tr>
+<tr><td>COPD exacerbation</td><td>High PaCO₂, low pH</td></tr>
+<tr><td>Opioid overdose</td><td>Hypoventilation</td></tr>
+<tr><td>Airway obstruction</td><td>CO₂ retention</td></tr>
+<tr><td>Neuromuscular weakness</td><td>Poor ventilation</td></tr>
+</table>
+
+<div class="critical-note">
+Think: "The patient is not breathing enough."
+</div>
+
+<h3>Respiratory Alkalosis</h3>
+<p>Respiratory alkalosis occurs when excessive ventilation removes too much CO₂.</p>
+
+<table class="abg-table">
+<tr><th>Common Causes</th><th>Typical Findings</th></tr>
+<tr><td>Anxiety / Panic attack</td><td>Low PaCO₂</td></tr>
+<tr><td>Pain</td><td>Hyperventilation</td></tr>
+<tr><td>Early Sepsis</td><td>Low CO₂</td></tr>
+<tr><td>Pregnancy</td><td>Mild chronic respiratory alkalosis</td></tr>
+</table>
+
+<h2>COPD and ABGs</h2>
+
+<p>Patients with advanced COPD frequently retain carbon dioxide and may have chronically elevated PaCO₂ levels. Some patients develop renal compensation by increasing bicarbonate.</p>
+
+<table class="abg-table">
+<tr><th>Stage</th><th>Expected ABG Trend</th></tr>
+<tr><td>Acute Exacerbation</td><td>↓ pH, ↑ PaCO₂</td></tr>
+<tr><td>Chronic COPD</td><td>Near-normal pH, ↑ PaCO₂, ↑ HCO₃</td></tr>
+</table>
+
+<div class="warning-note">
+Avoid assuming every elevated PaCO₂ requires aggressive correction. Always interpret ABGs within the patient's clinical picture.
+</div>
+
+<h2>Mechanical Ventilation Pearls</h2>
+
+<ul>
+<li>Increasing respiratory rate generally lowers PaCO₂.</li>
+<li>Decreasing respiratory rate generally raises PaCO₂.</li>
+<li>Increasing tidal volume also lowers PaCO₂.</li>
+<li>Always evaluate the patient—not just the ventilator.</li>
+</ul>
+
+<h2>Clinical Scenarios</h2>
+
+<div class="case-card">
+<strong>Scenario 1</strong>
+<p>ABG: pH 7.27, PaCO₂ 61, HCO₃ 26</p>
+<p><strong>Interpretation:</strong> Uncompensated respiratory acidosis.</p>
+</div>
+
+<div class="case-card">
+<strong>Scenario 2</strong>
+<p>ABG: pH 7.37, PaCO₂ 56, HCO₃ 33</p>
+<p><strong>Interpretation:</strong> Fully compensated chronic respiratory acidosis, commonly seen in COPD.</p>
+</div>
+
+<div class="case-card">
+<strong>Scenario 3</strong>
+<p>A patient with anxiety is breathing 36 times per minute.</p>
+<p><strong>Expected ABG:</strong> Elevated pH with decreased PaCO₂ (respiratory alkalosis).</p>
+</div>
+
+<h2>Rapid Review Questions</h2>
+
+<ol>
+<li>Which ABG value reflects ventilation? <strong>PaCO₂</strong></li>
+<li>Which disorder is commonly associated with COPD? <strong>Respiratory acidosis</strong></li>
+<li>Which disorder is commonly associated with hyperventilation? <strong>Respiratory alkalosis</strong></li>
+<li>Which organ compensates for chronic respiratory disorders? <strong>Kidneys</strong></li>
+<li>Which ventilator change most directly lowers PaCO₂? <strong>Increase minute ventilation</strong></li>
+<li>Can chronic COPD patients have a normal pH? <strong>Yes, if compensated.</strong></li>
+</ol>
+
+<div class="pearl">
+Clinical tip: The best ABG interpreters always combine the laboratory values with the patient's symptoms, respiratory effort, history, and oxygen requirements.
+</div>
+
+</div>
+
+
+<div class="study-guide">
+<h2>Advanced Metabolic Acid-Base Disorders</h2>
+
+<p>
+Metabolic ABG problems are driven by bicarbonate changes. If HCO3 is low, think metabolic acidosis.
+If HCO3 is high, think metabolic alkalosis. The lungs may try to compensate by changing ventilation.
+</p>
+
+<h3>Metabolic Acidosis</h3>
+<p>
+Metabolic acidosis occurs when bicarbonate is lost or acids build up in the body. The pH drops because the metabolic side is pushing the blood toward acidosis.
+</p>
+
+<table class="abg-table">
+<tr><th>Cause</th><th>Why It Causes Acidosis</th><th>Common Clues</th></tr>
+<tr><td>DKA</td><td>Ketoacid buildup</td><td>High glucose, ketones, fruity breath, Kussmaul respirations</td></tr>
+<tr><td>Lactic acidosis</td><td>Poor perfusion or severe illness produces lactate</td><td>Sepsis, shock, hypoxia, high lactate</td></tr>
+<tr><td>Renal failure</td><td>Kidneys cannot clear acids effectively</td><td>Rising creatinine, low urine output, electrolyte imbalance</td></tr>
+<tr><td>Diarrhea</td><td>Bicarbonate loss through GI tract</td><td>Frequent stools, dehydration, low HCO3</td></tr>
+</table>
+
+<div class="critical-note">
+Metabolic acidosis priority clue: low pH + low HCO3 + symptoms such as Kussmaul breathing, confusion, shock, sepsis, or kidney failure.
+</div>
+
+<h3>Metabolic Alkalosis</h3>
+<p>
+Metabolic alkalosis occurs when bicarbonate is elevated or acid is lost from the body. The pH rises because the metabolic side is pushing the blood toward alkalosis.
+</p>
+
+<table class="abg-table">
+<tr><th>Cause</th><th>Why It Causes Alkalosis</th><th>Common Clues</th></tr>
+<tr><td>Vomiting</td><td>Loss of stomach acid</td><td>Repeated emesis, dehydration, low chloride</td></tr>
+<tr><td>NG suction</td><td>Removes gastric acid</td><td>Post-op patient, suction canister output</td></tr>
+<tr><td>Diuretics</td><td>Fluid and electrolyte shifts</td><td>Hypokalemia risk, dehydration</td></tr>
+<tr><td>Excess bicarbonate</td><td>Adds base</td><td>High HCO3, medication or treatment context</td></tr>
+</table>
+
+<div class="warning-note">
+Metabolic alkalosis often appears with vomiting, NG suction, diuretics, dehydration, and potassium changes.
+</div>
+
+<h2>Respiratory Compensation for Metabolic Problems</h2>
+
+<table class="abg-table">
+<tr><th>Primary Disorder</th><th>Expected Respiratory Response</th><th>Why</th></tr>
+<tr><td>Metabolic Acidosis</td><td>Increased breathing / decreased PaCO2</td><td>The body blows off CO2 to reduce acid.</td></tr>
+<tr><td>Metabolic Alkalosis</td><td>Decreased breathing / increased PaCO2</td><td>The body retains CO2 to add acid back.</td></tr>
+</table>
+
+<div class="pearl">
+Memory: If the kidneys or metabolic system cause the problem, the lungs try to compensate by changing CO2.
+</div>
+
+<h2>Metabolic ABG Case Studies</h2>
+
+<div class="case-card">
+<strong>Case 1: DKA Pattern</strong>
+<p>ABG: pH 7.18, PaCO2 24, HCO3 10</p>
+<p><strong>Interpretation:</strong> Metabolic acidosis with respiratory compensation.</p>
+<p><strong>Why:</strong> HCO3 is very low and pH is acidotic. PaCO2 is low because the patient is blowing off CO2.</p>
+</div>
+
+<div class="case-card">
+<strong>Case 2: Vomiting Pattern</strong>
+<p>ABG: pH 7.52, PaCO2 47, HCO3 35</p>
+<p><strong>Interpretation:</strong> Metabolic alkalosis with respiratory compensation.</p>
+<p><strong>Why:</strong> HCO3 is high and pH is alkalotic. PaCO2 is elevated as the lungs retain CO2 to compensate.</p>
+</div>
+
+<div class="case-card">
+<strong>Case 3: Renal Failure Pattern</strong>
+<p>ABG: pH 7.26, PaCO2 34, HCO3 15</p>
+<p><strong>Interpretation:</strong> Metabolic acidosis.</p>
+<p><strong>Why:</strong> The bicarbonate is low. Kidney failure can reduce acid clearance and contribute to acidosis.</p>
+</div>
+
+<div class="case-card">
+<strong>Case 4: Diuretic Pattern</strong>
+<p>ABG: pH 7.49, PaCO2 45, HCO3 33</p>
+<p><strong>Interpretation:</strong> Metabolic alkalosis.</p>
+<p><strong>Why:</strong> The bicarbonate is elevated and the pH is alkalotic. Diuretics can contribute to alkalosis and potassium loss.</p>
+</div>
+
+<h2>Metabolic ABG Practice Questions</h2>
+
+<ol>
+<li>Low pH + low HCO3 = <strong>Metabolic acidosis</strong></li>
+<li>High pH + high HCO3 = <strong>Metabolic alkalosis</strong></li>
+<li>DKA usually causes which disorder? <strong>Metabolic acidosis</strong></li>
+<li>Repeated vomiting usually causes which disorder? <strong>Metabolic alkalosis</strong></li>
+<li>Diarrhea can cause bicarbonate loss and lead to: <strong>Metabolic acidosis</strong></li>
+<li>NG suction can remove gastric acid and lead to: <strong>Metabolic alkalosis</strong></li>
+<li>In metabolic acidosis, the lungs often compensate by: <strong>Increasing respirations</strong></li>
+<li>In metabolic alkalosis, PaCO2 may rise because the lungs: <strong>Retain CO2</strong></li>
+</ol>
+
+<h2>Metabolic Disorder Clinical Pearls</h2>
+
+<ul>
+<li>DKA often presents with deep rapid respirations because the body is trying to correct acidosis.</li>
+<li>Vomiting removes stomach acid, which can push the patient toward alkalosis.</li>
+<li>Renal failure can contribute to acidosis because the kidneys help regulate acid-base balance.</li>
+<li>Diarrhea can cause bicarbonate loss and metabolic acidosis.</li>
+<li>Metabolic alkalosis may be associated with hypokalemia, especially in vomiting or diuretic use.</li>
+</ul>
+
+<div class="pearl">
+Best habit: always connect the ABG pattern to the patient story. Numbers make more sense when they match the clinical picture.
+</div>
+
+</div>
+
+<div class="study-guide">
+      <h2>Related Study Path</h2>
+      <div class="link-grid">
+        <a class="resource-link" href="/abg-normal-values.html">ABG Normal Values</a>
+        <a class="resource-link" href="/normal-lab-values-cheat-sheet.html">Normal Lab Values Cheat Sheet</a>
+        <a class="resource-link" href="/electrolyte-imbalance-guide.html">Electrolyte Imbalance Guide</a>
+        <a class="resource-link" href="/potassium-imbalance-guide.html">Potassium Imbalance Guide</a>
+        <a class="resource-link" href="/fluid-balance-guide.html">Fluid Balance Guide</a>
+        <a class="resource-link" href="/lungs-anatomy-guide.html">Lungs Anatomy Guide</a>
+        <a class="resource-link" href="/how-kidneys-work.html">How Kidneys Work</a>
+        <a class="resource-link" href="/who-do-you-see-first-challenge.html">Who Do You See First Challenge</a>
       </div>
     </div>
 
