@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>CBET Practice Questions | Free Biomedical Equipment Exam Prep</title>
+  <title>CBET Practice Questions & Study Guide | Free Biomedical Equipment Exam Prep</title>
 
-  <meta name="description" content="Free CBET practice questions with instant feedback, missed-question review, electronics practice, troubleshooting scenarios, and biomedical equipment exam prep for early healthcare and BMET learners." />
+  <meta name="description" content="Free CBET practice questions and biomedical equipment study guide with electronics review, electrical safety, patient monitoring, troubleshooting scenarios, preventive maintenance, and exam prep for BMET learners." />
   <meta name="keywords" content="CBET practice questions, CBET exam prep, biomedical equipment technician, BMET practice questions, CBET study guide, biomedical equipment exam" />
 
   <link rel="canonical" href="https://medskillbuilder.com/cbet-practice-questions.html" />
@@ -488,7 +488,117 @@
         font-size: 21px;
       }
     }
+
+    .super-section {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .super-section h2 {
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+    }
+
+    .super-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      background: white;
+      font-size: 15px;
+    }
+
+    .super-table th,
+    .super-table td {
+      border: 1px solid var(--border);
+      padding: 13px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .super-table th {
+      background: var(--navy);
+      color: white;
+    }
+
+    .tech-tip {
+      background: #ecfdf5;
+      border-left: 6px solid var(--green);
+      color: #065f46;
+      padding: 16px 18px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 900;
+    }
+
+    .safety-tip {
+      background: #fff7ed;
+      border-left: 6px solid var(--orange);
+      color: #7c2d12;
+      padding: 16px 18px;
+      border-radius: 16px;
+      margin: 18px 0;
+      font-weight: 900;
+    }
+
+    .troubleshoot-steps {
+      counter-reset: cbetStep;
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .troubleshoot-step {
+      counter-increment: cbetStep;
+      background: #f8fbff;
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--blue);
+      border-radius: 18px;
+      padding: 16px 16px 16px 58px;
+      position: relative;
+    }
+
+    .troubleshoot-step::before {
+      content: counter(cbetStep);
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "CBET Practice Questions and Biomedical Equipment Study Guide",
+    "description": "A free CBET practice question resource and biomedical equipment study guide for BMET learners.",
+    "url": "https://medskillbuilder.com/cbet-practice-questions.html",
+    "learningResourceType": "Practice questions and study guide",
+    "educationalLevel": "Biomedical equipment technician exam prep",
+    "isAccessibleForFree": true,
+    "provider": {
+      "@type": "Organization",
+      "name": "MedSkillBuilder",
+      "url": "https://medskillbuilder.com"
+    }
+  }
+  </script>
+
 </head>
 
 <body>
@@ -634,6 +744,705 @@
 
         <div class="cta-row">
           <a href="/?tab=cbet" class="cta primary">Practice More CBET Questions →</a>
+        </div>
+      </section>
+
+
+      <section class="super-section">
+        <h2>CBET Exam Study Guide: What to Master First</h2>
+        <p class="lead">
+          The strongest CBET candidates understand how medical equipment behaves in the real world.
+          That means combining electronics, safety, clinical use, troubleshooting, preventive maintenance, and documentation.
+        </p>
+
+        <table class="super-table">
+          <tr>
+            <th>CBET Area</th>
+            <th>What to Know</th>
+            <th>Practice Focus</th>
+          </tr>
+          <tr>
+            <td>Electronics</td>
+            <td>Voltage, current, resistance, power, AC/DC, capacitors, diodes, fuses, rectifiers, transformers.</td>
+            <td>Ohm's Law, circuit behavior, power supplies, basic component function.</td>
+          </tr>
+          <tr>
+            <td>Electrical Safety</td>
+            <td>Grounding, leakage current, equipment risk, line power, patient safety, safe service practices.</td>
+            <td>What to check first, what makes equipment unsafe, when to remove from service.</td>
+          </tr>
+          <tr>
+            <td>Patient Monitoring</td>
+            <td>ECG, SpO2, NIBP, temperature, alarms, sensors, cables, artifacts, signal problems.</td>
+            <td>Common failures, bad accessories, wrong setup, user issues, patient connection issues.</td>
+          </tr>
+          <tr>
+            <td>Therapeutic Equipment</td>
+            <td>Defibrillators, infusion pumps, ventilators, suction, ESU, anesthesia equipment basics.</td>
+            <td>Function checks, safety checks, failure symptoms, clinical risk.</td>
+          </tr>
+          <tr>
+            <td>Maintenance & Documentation</td>
+            <td>PMs, corrective maintenance, incoming inspections, service records, risk levels, CMMS notes.</td>
+            <td>Accurate documentation, repeat failures, escalation, parts tracking.</td>
+          </tr>
+        </table>
+
+        <div class="tech-tip">
+          Study rule: do not memorize equipment names only. Learn what the device does, how it can fail, and what the safest first check would be.
+        </div>
+      </section>
+
+      <section class="super-section">
+        <h2>CBET Troubleshooting Framework</h2>
+        <p>
+          Many CBET-style questions are really troubleshooting questions. A good BMET does not randomly replace parts.
+          A good BMET confirms the complaint, checks simple causes first, isolates the failure, verifies repair, and documents clearly.
+        </p>
+
+        <div class="troubleshoot-steps">
+          <div class="troubleshoot-step">
+            <strong>Confirm the problem.</strong>
+            Ask what happened, when it happened, who saw it, and whether the issue can be repeated.
+          </div>
+          <div class="troubleshoot-step">
+            <strong>Check setup and accessories.</strong>
+            Many problems come from cables, electrodes, sensors, batteries, tubing, settings, or user setup.
+          </div>
+          <div class="troubleshoot-step">
+            <strong>Inspect for obvious damage.</strong>
+            Look for cracked housings, damaged cords, bent pins, fluid intrusion, missing parts, or alarm messages.
+          </div>
+          <div class="troubleshoot-step">
+            <strong>Isolate the system.</strong>
+            Determine whether the problem is the device, accessory, power source, network, patient connection, or environment.
+          </div>
+          <div class="troubleshoot-step">
+            <strong>Test safely.</strong>
+            Use approved test equipment, follow service procedures, and protect patients and staff.
+          </div>
+          <div class="troubleshoot-step">
+            <strong>Verify and document.</strong>
+            Confirm performance after repair and document what was found, corrected, tested, and returned to service.
+          </div>
+        </div>
+
+        <div class="safety-tip">
+          Safety rule: if equipment may present risk to a patient or user, remove it from service until it is evaluated.
+        </div>
+      </section>
+
+      <section class="super-section">
+        <h2>High-Yield Electronics for CBET Practice</h2>
+        <p>
+          CBET candidates do not need to become electrical engineers, but they do need a strong working understanding of basic electronics.
+        </p>
+
+        <div class="grid-3">
+          <div class="card strong">
+            <h3>Voltage</h3>
+            <p>Electrical pressure or potential difference. Measured in volts.</p>
+          </div>
+          <div class="card strong">
+            <h3>Current</h3>
+            <p>Flow of electrical charge. Measured in amps.</p>
+          </div>
+          <div class="card strong">
+            <h3>Resistance</h3>
+            <p>Opposition to current flow. Measured in ohms.</p>
+          </div>
+        </div>
+
+        <table class="super-table">
+          <tr>
+            <th>Concept</th>
+            <th>CBET Meaning</th>
+          </tr>
+          <tr>
+            <td>Fuse</td>
+            <td>Protects a circuit by opening when excessive current flows.</td>
+          </tr>
+          <tr>
+            <td>Capacitor</td>
+            <td>Stores electrical energy; important in power supplies and defibrillators.</td>
+          </tr>
+          <tr>
+            <td>Diode</td>
+            <td>Allows current to flow in one direction.</td>
+          </tr>
+          <tr>
+            <td>Rectifier</td>
+            <td>Converts AC to DC.</td>
+          </tr>
+          <tr>
+            <td>Transformer</td>
+            <td>Changes AC voltage level and may provide isolation depending design.</td>
+          </tr>
+        </table>
+
+        <div class="resource-links">
+          <a href="/basic-electronics-cbet.html">Basic Electronics for CBET</a>
+          <a href="/what-is-ohms-law.html">Ohm's Law Guide</a>
+          <a href="/what-does-a-capacitor-do.html">Capacitor Guide</a>
+          <a href="/what-is-a-diode.html">Diode Guide</a>
+          <a href="/what-does-a-rectifier-do.html">Rectifier Guide</a>
+        </div>
+      </section>
+
+
+      <section class="super-section">
+        <h2>CBET Electronics Deep Dive: DC, AC, Ohm's Law, and Power</h2>
+        <p class="lead">
+          Electronics questions are some of the most missed CBET-style questions because they require understanding relationships, not just memorizing definitions.
+          This section strengthens the foundation behind voltage, current, resistance, power, AC/DC, series circuits, and parallel circuits.
+        </p>
+
+        <h3>Ohm's Law for CBET Candidates</h3>
+        <table class="super-table">
+          <tr>
+            <th>Formula</th>
+            <th>Use It When</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>V = I × R</td>
+            <td>You know current and resistance and need voltage.</td>
+            <td>2 A × 10 Ω = 20 V</td>
+          </tr>
+          <tr>
+            <td>I = V ÷ R</td>
+            <td>You know voltage and resistance and need current.</td>
+            <td>12 V ÷ 6 Ω = 2 A</td>
+          </tr>
+          <tr>
+            <td>R = V ÷ I</td>
+            <td>You know voltage and current and need resistance.</td>
+            <td>24 V ÷ 2 A = 12 Ω</td>
+          </tr>
+        </table>
+
+        <div class="tech-tip">
+          CBET tip: If resistance increases and voltage stays the same, current decreases.
+        </div>
+
+        <h3>Power Formulas</h3>
+        <table class="super-table">
+          <tr>
+            <th>Formula</th>
+            <th>Meaning</th>
+          </tr>
+          <tr>
+            <td>P = V × I</td>
+            <td>Power equals voltage times current.</td>
+          </tr>
+          <tr>
+            <td>P = I² × R</td>
+            <td>Useful when current and resistance are known.</td>
+          </tr>
+          <tr>
+            <td>P = V² ÷ R</td>
+            <td>Useful when voltage and resistance are known.</td>
+          </tr>
+        </table>
+
+        <h3>AC vs DC Current</h3>
+        <table class="super-table">
+          <tr>
+            <th>Type</th>
+            <th>Meaning</th>
+            <th>CBET Relevance</th>
+          </tr>
+          <tr>
+            <td>AC</td>
+            <td>Alternating current changes direction.</td>
+            <td>Wall power, transformers, line power safety.</td>
+          </tr>
+          <tr>
+            <td>DC</td>
+            <td>Direct current flows one direction.</td>
+            <td>Batteries, internal circuits, many electronics boards.</td>
+          </tr>
+        </table>
+
+        <h3>Series vs Parallel Circuits</h3>
+        <table class="super-table">
+          <tr>
+            <th>Circuit Type</th>
+            <th>What Happens</th>
+            <th>Exam Clue</th>
+          </tr>
+          <tr>
+            <td>Series</td>
+            <td>Current has one path. Total resistance increases as components are added.</td>
+            <td>One open component can stop the whole path.</td>
+          </tr>
+          <tr>
+            <td>Parallel</td>
+            <td>Current has multiple paths. Total resistance decreases as branches are added.</td>
+            <td>One branch can fail while others still operate.</td>
+          </tr>
+        </table>
+
+        <div class="resource-links">
+          <a href="/voltage-current-resistance-cbet.html">Voltage, Current & Resistance</a>
+          <a href="/series-vs-parallel-circuits.html">Series vs Parallel Circuits</a>
+          <a href="/series-parallel-quiz.html">Series vs Parallel Quiz</a>
+          <a href="/ac-vs-dc-current.html">AC vs DC Current</a>
+        </div>
+      </section>
+
+      <section class="super-section">
+        <h2>CBET Components: Fuses, Diodes, Capacitors, Transformers, and Rectifiers</h2>
+        <p>
+          Biomedical equipment technicians often troubleshoot power and signal problems by understanding what components are supposed to do.
+          You do not need to design the circuit, but you should know the function of common parts.
+        </p>
+
+        <table class="super-table">
+          <tr>
+            <th>Component</th>
+            <th>Primary Function</th>
+            <th>Common Failure Clue</th>
+          </tr>
+          <tr>
+            <td>Fuse</td>
+            <td>Opens a circuit during excessive current.</td>
+            <td>Device has no power; fuse open after fault.</td>
+          </tr>
+          <tr>
+            <td>Diode</td>
+            <td>Allows current flow in one direction.</td>
+            <td>Power supply or rectification problem.</td>
+          </tr>
+          <tr>
+            <td>Rectifier</td>
+            <td>Converts AC to DC.</td>
+            <td>DC output missing or unstable.</td>
+          </tr>
+          <tr>
+            <td>Capacitor</td>
+            <td>Stores electrical energy and filters ripple.</td>
+            <td>Bulging, leaking, poor filtering, failure to hold charge.</td>
+          </tr>
+          <tr>
+            <td>Transformer</td>
+            <td>Changes AC voltage and may provide isolation.</td>
+            <td>No secondary output, overheating, hum, open winding.</td>
+          </tr>
+          <tr>
+            <td>Relay</td>
+            <td>Electrically controlled switch.</td>
+            <td>Clicking, stuck contacts, load not switching.</td>
+          </tr>
+        </table>
+
+        <div class="safety-tip">
+          Safety note: capacitors can hold charge even after power is removed. Always follow service procedures before working inside equipment.
+        </div>
+      </section>
+
+      <section class="super-section">
+        <h2>CBET Electronics Practice Questions</h2>
+
+        <div class="question-card">
+          <strong>9. A 12 V source is connected to a 6 Ω resistor. What is the current?</strong>
+          <p>A. 0.5 A &nbsp; B. 2 A &nbsp; C. 6 A &nbsp; D. 72 A</p>
+          <div class="answer">Answer: B. 2 A</div>
+          <div class="explain">Use I = V ÷ R. 12 ÷ 6 = 2 amps.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>10. In a series circuit, what happens to total resistance when another resistor is added?</strong>
+          <p>A. It decreases &nbsp; B. It increases &nbsp; C. It becomes zero &nbsp; D. It becomes AC only</p>
+          <div class="answer">Answer: B. It increases</div>
+          <div class="explain">Series resistances add together, increasing total resistance.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>11. In a parallel circuit, what happens to total resistance when another branch is added?</strong>
+          <p>A. It usually decreases &nbsp; B. It always increases &nbsp; C. It becomes infinite &nbsp; D. It changes to voltage</p>
+          <div class="answer">Answer: A. It usually decreases</div>
+          <div class="explain">Adding parallel paths allows more current flow, reducing equivalent resistance.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>12. Which component is commonly used to smooth DC ripple in a power supply?</strong>
+          <p>A. Capacitor &nbsp; B. Speaker &nbsp; C. Keyboard &nbsp; D. Bed rail</p>
+          <div class="answer">Answer: A. Capacitor</div>
+          <div class="explain">Capacitors can store charge and help smooth voltage ripple.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>13. Which component allows current to flow mostly in one direction?</strong>
+          <p>A. Diode &nbsp; B. Resistor only &nbsp; C. Fuse only &nbsp; D. Transformer only</p>
+          <div class="answer">Answer: A. Diode</div>
+          <div class="explain">A diode is a one-way semiconductor device.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>14. What is the likely purpose of a fuse in medical equipment?</strong>
+          <p>A. Store patient data &nbsp; B. Protect against excessive current &nbsp; C. Increase oxygen &nbsp; D. Measure blood pressure</p>
+          <div class="answer">Answer: B. Protect against excessive current</div>
+          <div class="explain">A fuse opens the circuit when current exceeds its rating.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>15. What does a transformer work with?</strong>
+          <p>A. AC &nbsp; B. DC only &nbsp; C. Oxygen flow only &nbsp; D. NIBP cuffs only</p>
+          <div class="answer">Answer: A. AC</div>
+          <div class="explain">Transformers require changing magnetic fields, so they are used with AC.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>16. A device has an open power cord ground. What is the safest action?</strong>
+          <p>A. Return it to use &nbsp; B. Remove it from service until corrected &nbsp; C. Ignore it if battery works &nbsp; D. Increase alarm volume</p>
+          <div class="answer">Answer: B. Remove it from service until corrected</div>
+          <div class="explain">Ground integrity is a safety issue and must be corrected before use.</div>
+        </div>
+      </section>
+
+      
+<section class="super-section">
+<h2>Electrical Safety, Leakage Current & Medical Equipment Protection</h2>
+<section class="super-section">
+<h2>Patient Monitoring Systems: ECG, SpO₂, NIBP, Temperature & Capnography</h2>
+<section class="super-section">
+<h2>Imaging Systems for CBET Prep: X-Ray, CT, MRI, Ultrasound, PACS & DICOM</h2>
+
+<p class="lead">
+Imaging equipment appears throughout biomedical and clinical engineering work. CBET candidates should understand basic imaging concepts, safety risks, common failures, and the difference between image acquisition, image display, and image storage.
+</p>
+
+<h3>X-Ray and Fluoroscopy Basics</h3>
+
+<table class="super-table">
+<tr><th>Concept</th><th>What It Means</th><th>CBET Focus</th></tr>
+<tr><td>X-ray tube</td><td>Generates X-rays using high voltage and electron flow.</td><td>Tube heat, exposure issues, generator problems.</td></tr>
+<tr><td>Collimator</td><td>Limits the X-ray beam field.</td><td>Radiation protection and image area control.</td></tr>
+<tr><td>Detector</td><td>Receives X-rays and creates image data.</td><td>Artifacts, calibration, communication issues.</td></tr>
+<tr><td>Fluoroscopy</td><td>Real-time X-ray imaging.</td><td>Radiation safety, dose awareness, image chain.</td></tr>
+</table>
+
+<div class="safety-tip">
+Radiation safety principle: minimize time, maximize distance, and use shielding when appropriate.
+</div>
+
+<h3>CT Basics</h3>
+<p>
+Computed tomography uses rotating X-ray equipment and computer reconstruction to create cross-sectional images.
+</p>
+
+<table class="super-table">
+<tr><th>CT Component</th><th>Purpose</th></tr>
+<tr><td>Gantry</td><td>Houses rotating tube and detector system.</td></tr>
+<tr><td>Table</td><td>Moves patient accurately through scanner.</td></tr>
+<tr><td>Detector array</td><td>Captures X-ray data for reconstruction.</td></tr>
+<tr><td>Reconstruction computer</td><td>Processes raw data into images.</td></tr>
+</table>
+
+<h3>MRI Safety Basics</h3>
+<p>
+MRI does not use ionizing radiation, but it has major magnetic field safety risks. Metal objects, implants, monitoring equipment, and oxygen cylinders require careful screening.
+</p>
+
+<table class="super-table">
+<tr><th>MRI Risk</th><th>Why It Matters</th></tr>
+<tr><td>Projectile effect</td><td>Ferromagnetic objects can be pulled into the magnet.</td></tr>
+<tr><td>Implants</td><td>Some implants are unsafe or conditional in MRI.</td></tr>
+<tr><td>RF heating</td><td>Conductive loops or leads may heat tissue.</td></tr>
+<tr><td>Quench</td><td>Rapid loss of superconductivity releases cryogens.</td></tr>
+</table>
+
+<div class="safety-tip">
+MRI rule: never bring unknown equipment into the MRI environment without confirming MRI safety status.
+</div>
+
+<h3>Ultrasound Basics</h3>
+<p>
+Ultrasound uses high-frequency sound waves rather than ionizing radiation. Common BMET issues include probe damage, cable breaks, image artifacts, trackball problems, and system boot failures.
+</p>
+
+<table class="super-table">
+<tr><th>Issue</th><th>Likely Cause</th></tr>
+<tr><td>Dropout artifact</td><td>Damaged probe elements or cable issue.</td></tr>
+<tr><td>No image from probe</td><td>Probe, connector, port, or software selection issue.</td></tr>
+<tr><td>Trackball not responding</td><td>Dirt, wear, or input device failure.</td></tr>
+<tr><td>Poor image quality</td><td>Probe damage, incorrect preset, user setup, or system issue.</td></tr>
+</table>
+
+<h3>PACS and DICOM</h3>
+<p>
+Modern imaging depends on networks. Images must be acquired, stored, routed, viewed, and archived correctly.
+</p>
+
+<table class="super-table">
+<tr><th>Term</th><th>Meaning</th><th>CBET Relevance</th></tr>
+<tr><td>DICOM</td><td>Imaging communication standard.</td><td>Image transfer and modality communication.</td></tr>
+<tr><td>PACS</td><td>Picture Archiving and Communication System.</td><td>Image storage and retrieval.</td></tr>
+<tr><td>Modality Worklist</td><td>Patient/order data sent to imaging device.</td><td>Prevents demographic entry errors.</td></tr>
+<tr><td>HL7</td><td>Healthcare data messaging standard.</td><td>Orders/results workflow context.</td></tr>
+</table>
+
+<h2>Imaging Troubleshooting Flow</h2>
+
+<div class="troubleshoot-steps">
+<div class="troubleshoot-step"><strong>Clarify the failure.</strong> Is it acquisition, image quality, network transfer, storage, or display?</div>
+<div class="troubleshoot-step"><strong>Check user setup.</strong> Confirm patient selection, exam type, preset, and workflow steps.</div>
+<div class="troubleshoot-step"><strong>Inspect accessories.</strong> Probes, detectors, cables, coils, and connections are common failure points.</div>
+<div class="troubleshoot-step"><strong>Check network status.</strong> Confirm DICOM destination, IP settings, worklist, and PACS availability when images do not transfer.</div>
+<div class="troubleshoot-step"><strong>Escalate safely.</strong> Imaging systems often require vendor support, radiation safety, MRI safety, or clinical engineering escalation.</div>
+</div>
+
+<h2>Imaging Practice Questions</h2>
+
+<div class="question-card">
+<strong>26. Which imaging modality uses a strong magnetic field?</strong>
+<p>A. X-ray &nbsp; B. CT &nbsp; C. MRI &nbsp; D. Fluoroscopy</p>
+<div class="answer">Answer: C. MRI</div>
+<div class="explain">MRI uses a strong magnetic field and radiofrequency energy.</div>
+</div>
+
+<div class="question-card">
+<strong>27. What does DICOM relate to?</strong>
+<p>A. Imaging communication &nbsp; B. Battery chemistry only &nbsp; C. Blood pressure cuffs &nbsp; D. Sterilizer steam</p>
+<div class="answer">Answer: A. Imaging communication</div>
+<div class="explain">DICOM is the common standard for medical image communication and storage.</div>
+</div>
+
+<div class="question-card">
+<strong>28. A portable X-ray detector will not send images to PACS. What should be checked early?</strong>
+<p>A. DICOM/network destination and connectivity &nbsp; B. Only the room lights &nbsp; C. The bed mattress &nbsp; D. The ECG electrodes</p>
+<div class="answer">Answer: A. DICOM/network destination and connectivity</div>
+<div class="explain">Image transfer issues often involve network, DICOM destination, worklist, or PACS routing.</div>
+</div>
+
+<div class="question-card">
+<strong>29. What is a major MRI safety concern?</strong>
+<p>A. Projectile effect from ferromagnetic objects &nbsp; B. Low printer toner &nbsp; C. Low NIBP cuff pressure &nbsp; D. Loose pulse ox wrap only</p>
+<div class="answer">Answer: A. Projectile effect from ferromagnetic objects</div>
+<div class="explain">Ferromagnetic objects can be pulled toward the magnet and become dangerous projectiles.</div>
+</div>
+
+<div class="question-card">
+<strong>30. An ultrasound image has a consistent dropout line. What is a likely cause?</strong>
+<p>A. Damaged probe element or cable &nbsp; B. PACS archive full only &nbsp; C. Low oxygen tank &nbsp; D. Wrong blood pressure cuff</p>
+<div class="answer">Answer: A. Damaged probe element or cable</div>
+<div class="explain">Probe element or cable damage can create consistent image dropout artifacts.</div>
+</div>
+
+<h2>Rapid Imaging Review</h2>
+<ol>
+<li>X-ray and CT use what type of radiation? <strong>Ionizing radiation.</strong></li>
+<li>MRI's major safety risk comes from what? <strong>Strong magnetic field.</strong></li>
+<li>Ultrasound uses what? <strong>Sound waves.</strong></li>
+<li>PACS stores what? <strong>Medical images.</strong></li>
+<li>DICOM helps with what? <strong>Image communication.</strong></li>
+</ol>
+
+</section>
+
+
+<p class="lead">
+Patient monitoring equipment is a major focus for CBET candidates because these devices are used throughout nearly every hospital.
+Understanding how they work—and how they fail—is far more valuable than simply memorizing model numbers.
+</p>
+
+<h3>ECG Monitoring</h3>
+
+<table class="super-table">
+<tr><th>Component</th><th>Purpose</th><th>Common Failure</th></tr>
+<tr><td>Electrodes</td><td>Detect cardiac electrical activity</td><td>Dry, loose or expired electrodes</td></tr>
+<tr><td>Lead wires</td><td>Carry ECG signals</td><td>Broken conductors or intermittent connections</td></tr>
+<tr><td>Monitor</td><td>Displays rhythm</td><td>Noise, artifact, damaged input channels</td></tr>
+</table>
+
+<div class="tech-tip">
+Most ECG problems are caused by electrodes, lead wires, patient movement, or setup—not the monitor itself.
+</div>
+
+<h3>Pulse Oximetry (SpO₂)</h3>
+
+<table class="super-table">
+<tr><th>Problem</th><th>Likely Cause</th></tr>
+<tr><td>No reading</td><td>Disconnected sensor, poor perfusion, damaged cable</td></tr>
+<tr><td>Intermittent reading</td><td>Motion artifact, loose sensor</td></tr>
+<tr><td>Low reading</td><td>True hypoxia, poor circulation, cold extremities, incorrect placement</td></tr>
+</table>
+
+<h3>Non-Invasive Blood Pressure (NIBP)</h3>
+
+<table class="super-table">
+<tr><th>Failure</th><th>First Check</th></tr>
+<tr><td>Inflation failure</td><td>Air hose, cuff, pump, leaks</td></tr>
+<tr><td>Reading inaccurate</td><td>Correct cuff size and placement</td></tr>
+<tr><td>Repeated errors</td><td>Kinks, valve problems, tubing leaks</td></tr>
+</table>
+
+<h3>Temperature Monitoring</h3>
+
+<p>
+Temperature probes may fail because of damaged cables, broken sensors, contamination, connector problems, or incorrect probe type.
+</p>
+
+<h3>Capnography</h3>
+
+<table class="super-table">
+<tr><th>Issue</th><th>Possible Cause</th></tr>
+<tr><td>No waveform</td><td>Disconnected sampling line or airway issue</td></tr>
+<tr><td>Low ETCO₂</td><td>Hyperventilation, low perfusion, leak</td></tr>
+<tr><td>High ETCO₂</td><td>Hypoventilation or increased CO₂ production</td></tr>
+</table>
+
+<h2>Patient Monitor Troubleshooting Flow</h2>
+
+<div class="troubleshoot-steps">
+<div class="troubleshoot-step"><strong>Confirm complaint.</strong> Verify the reported issue.</div>
+<div class="troubleshoot-step"><strong>Inspect accessories.</strong> Leads, cuffs, probes and sensors fail more often than monitors.</div>
+<div class="troubleshoot-step"><strong>Inspect cables.</strong> Look for bent pins, stretched wires and contamination.</div>
+<div class="troubleshoot-step"><strong>Use simulator.</strong> Verify monitor operation with appropriate test equipment.</div>
+<div class="troubleshoot-step"><strong>Document findings.</strong> Record failure, repair and final testing.</div>
+</div>
+
+<h2>Clinical Scenarios</h2>
+
+<div class="question-card">
+<strong>21. ECG waveform disappears when the patient moves.</strong>
+<div class="answer">Likely Cause:</div>
+<div class="explain">Loose electrodes or motion artifact.</div>
+</div>
+
+<div class="question-card">
+<strong>22. Pulse oximeter reads 72% but the patient appears well.</strong>
+<div class="answer">Best First Action:</div>
+<div class="explain">Check sensor placement, perfusion and cable before assuming true hypoxia.</div>
+</div>
+
+<div class="question-card">
+<strong>23. NIBP repeatedly reports cuff inflation error.</strong>
+<div class="answer">Most Likely Cause:</div>
+<div class="explain">Leaking cuff, disconnected hose or faulty pump.</div>
+</div>
+
+<div class="question-card">
+<strong>24. Capnography shows no waveform after intubation.</strong>
+<div class="answer">First Check:</div>
+<div class="explain">Sampling line connection and airway placement.</div>
+</div>
+
+<div class="question-card">
+<strong>25. ECG monitor has heavy artifact.</strong>
+<div class="answer">Most Common Cause:</div>
+<div class="explain">Poor skin preparation, dried electrodes, damaged lead wires or electrical interference.</div>
+</div>
+
+<h2>Rapid Review</h2>
+
+<ol>
+<li>Most common ECG problem? <strong>Electrodes and lead wires.</strong></li>
+<li>Most common SpO₂ issue? <strong>Sensor placement and motion.</strong></li>
+<li>Most common NIBP issue? <strong>Cuff or tubing leak.</strong></li>
+<li>ETCO₂ measures? <strong>Exhaled carbon dioxide.</strong></li>
+<li>Best troubleshooting habit? <strong>Start with simple external causes before replacing boards.</strong></li>
+</ol>
+
+</section>
+
+<p class="lead">Electrical safety is one of the highest-yield CBET exam topics. The goal is always to protect the patient first, then the user, then the equipment.</p>
+
+<table class="super-table">
+<tr><th>Concept</th><th>Why It Matters</th><th>CBET Focus</th></tr>
+<tr><td>Grounding</td><td>Provides a low-resistance fault path.</td><td>Inspect cords, plugs, continuity.</td></tr>
+<tr><td>Leakage Current</td><td>Small unintended current flow.</td><td>Measure during electrical safety testing.</td></tr>
+<tr><td>Protective Earth</td><td>Limits shock risk.</td><td>Verify ground integrity.</td></tr>
+<tr><td>Isolation</td><td>Reduces electrical hazards.</td><td>Understand isolated power concepts.</td></tr>
+</table>
+
+<div class="safety-tip">Never return equipment with failed electrical safety tests to clinical service.</div>
+
+<h3>Common Electrical Safety Failures</h3>
+<ul>
+<li>Damaged power cords</li>
+<li>Broken ground pin</li>
+<li>Fluid intrusion</li>
+<li>Cracked housings</li>
+<li>Failed leakage current testing</li>
+<li>Improper replacement parts</li>
+</ul>
+
+<h3>Biomedical Safety Workflow</h3>
+<div class="troubleshoot-steps">
+<div class="troubleshoot-step"><strong>Remove from service</strong> if patient safety is questionable.</div>
+<div class="troubleshoot-step"><strong>Perform visual inspection</strong> before powering equipment.</div>
+<div class="troubleshoot-step"><strong>Verify electrical safety</strong> with approved equipment.</div>
+<div class="troubleshoot-step"><strong>Repair and retest</strong> before returning to service.</div>
+<div class="troubleshoot-step"><strong>Document findings</strong> in the CMMS.</div>
+</div>
+
+<h3>CBET Safety Questions</h3>
+
+<div class="question-card">
+<strong>17. A broken ground pin is discovered during PM. What should you do?</strong>
+<div class="answer">Answer: Remove the device from service until repaired and retested.</div>
+<div class="explain">Ground integrity is a patient safety issue.</div>
+</div>
+
+<div class="question-card">
+<strong>18. What is leakage current?</strong>
+<div class="answer">Answer: Small unintended current that may flow from equipment.</div>
+<div class="explain">Leakage current testing helps verify electrical safety.</div>
+</div>
+
+<div class="question-card">
+<strong>19. What should always follow a repair?</strong>
+<div class="answer">Answer: Functional verification, electrical safety testing when appropriate, and documentation.</div>
+</div>
+
+<div class="question-card">
+<strong>20. During troubleshooting, what should be checked before replacing expensive boards?</strong>
+<div class="answer">Answer: Power source, fuses, cords, connectors, accessories, settings, and obvious failures.</div>
+</div>
+
+<div class="tech-tip">
+Exam tip: CBET questions frequently reward the safest and most systematic answer—not the fastest repair.
+</div>
+</section>
+
+<section class="super-section">
+        <h2>More CBET Practice Questions With Explanations</h2>
+
+        <div class="question-card">
+          <strong>4. A device powers on with battery but not AC power. What is a reasonable first check?</strong>
+          <p>A. Replace the main board immediately &nbsp; B. Check power cord, outlet, fuse, and AC inlet &nbsp; C. Replace display &nbsp; D. Calibrate the device</p>
+          <div class="answer">Answer: B. Check power cord, outlet, fuse, and AC inlet</div>
+          <div class="explain">Start with the power path before assuming internal board failure.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>5. A pulse oximeter reads intermittently. What should be checked early?</strong>
+          <p>A. Sensor placement and cable condition &nbsp; B. Hospital plumbing &nbsp; C. Printer toner &nbsp; D. Room temperature only</p>
+          <div class="answer">Answer: A. Sensor placement and cable condition</div>
+          <div class="explain">Poor sensor placement, motion, low perfusion, or damaged cables commonly cause SpO2 issues.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>6. What does a rectifier do?</strong>
+          <p>A. Converts DC to AC &nbsp; B. Converts AC to DC &nbsp; C. Stores mechanical energy &nbsp; D. Measures blood pressure</p>
+          <div class="answer">Answer: B. Converts AC to DC</div>
+          <div class="explain">Rectifiers are common in power supplies because many circuits require DC power.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>7. During PM, why is documentation important?</strong>
+          <p>A. It replaces testing &nbsp; B. It proves equipment never fails &nbsp; C. It records work performed, findings, and return-to-service status &nbsp; D. It is only for billing</p>
+          <div class="answer">Answer: C. It records work performed, findings, and return-to-service status</div>
+          <div class="explain">Good documentation supports safety, compliance, service history, and future troubleshooting.</div>
+        </div>
+
+        <div class="question-card">
+          <strong>8. A monitor shows ECG artifact. Which is most likely?</strong>
+          <p>A. Bad electrode contact or patient movement &nbsp; B. Failed oxygen regulator &nbsp; C. Wrong bed sheet size &nbsp; D. Empty printer tray</p>
+          <div class="answer">Answer: A. Bad electrode contact or patient movement</div>
+          <div class="explain">ECG artifact is often related to electrodes, lead wires, skin prep, movement, or electrical interference.</div>
         </div>
       </section>
 
