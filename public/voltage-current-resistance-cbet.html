@@ -1031,7 +1031,6 @@
 <li>These concepts are foundational for every CBET electronics topic.</li>
 </ol>
 </section>
-
 <section class="card highlight">
 <h2>The Relationship That Makes Electronics Make Sense</h2>
 <p>
@@ -1316,6 +1315,609 @@
 <div class="why">Resistance checks are generally performed with power removed.</div>
 </div>
 </section>
+<section class="card highlight">
+<h2>Advanced CBET Electronics Review: Voltage Rails, Loads &amp; Power Paths</h2>
+<p>
+    In real biomedical equipment, voltage, current, and resistance show up as power rails, loads,
+    wiring paths, switches, fuses, connectors, boards, motors, sensors, and batteries. The CBET exam may ask simple
+    formulas, but the field application is usually troubleshooting.
+  </p>
+<h3>Common DC Voltage Rails in Medical Equipment</h3>
+<table class="compare-table">
+<tr>
+<th>Voltage Rail</th>
+<th>Common Use</th>
+<th>Troubleshooting Clue</th>
+</tr>
+<tr>
+<td><strong>5 V DC</strong></td>
+<td>Logic circuits, sensors, control boards</td>
+<td>Missing 5 V can cause boot failures, blank displays, or communication faults.</td>
+</tr>
+<tr>
+<td><strong>12 V DC</strong></td>
+<td>Fans, motors, relays, some displays</td>
+<td>Low 12 V under load may cause fans to stall or relays to chatter.</td>
+</tr>
+<tr>
+<td><strong>24 V DC</strong></td>
+<td>Motors, pumps, valves, actuators</td>
+<td>Motorized equipment may power on but fail when movement is requested.</td>
+</tr>
+<tr>
+<td><strong>Battery Voltage</strong></td>
+<td>Portable monitors, infusion pumps, defibrillators</td>
+<td>Voltage may look acceptable until the device is placed under load.</td>
+</tr>
+</table>
+<div class="notice-first">
+<strong>CBET field tip:</strong> A circuit can show the correct voltage with no load and still fail when current demand increases.
+  </div>
+</section>
+<section class="card">
+<h2>Load Testing: Why No-Load Voltage Can Fool You</h2>
+<p>
+    One of the most important troubleshooting lessons in clinical engineering is that a weak supply, bad battery,
+    poor connector, or corroded contact may measure correctly until the circuit has to do work.
+  </p>
+<div class="flow-steps">
+<div class="flow-step"><strong>No-load test:</strong> The voltage looks normal when the device is idle or disconnected from the load.</div>
+<div class="flow-step"><strong>Load applied:</strong> Motor, heater, pump, display, relay, or board begins drawing current.</div>
+<div class="flow-step"><strong>Failure appears:</strong> Voltage drops, current is limited, the device resets, alarms, stalls, or shuts down.</div>
+<div class="flow-step"><strong>Best next step:</strong> Check voltage under operating conditions and inspect high-resistance points.</div>
+</div>
+<div class="example-box">
+<strong>Example:</strong> An infusion pump powers on but alarms when the motor starts. The battery may show normal voltage at rest,
+    but collapse under motor load.
+  </div>
+</section>
+<section class="card">
+<h2>Voltage Drop Troubleshooting Table</h2>
+<table class="compare-table">
+<tr>
+<th>Where Voltage Drops</th>
+<th>Possible Cause</th>
+<th>What You May See</th>
+</tr>
+<tr>
+<td>Across a connector</td>
+<td>Loose pin, corrosion, heat damage</td>
+<td>Intermittent operation or resets</td>
+</tr>
+<tr>
+<td>Across a fuse holder</td>
+<td>Weak contact or oxidation</td>
+<td>Correct supply output but low board input</td>
+</tr>
+<tr>
+<td>Across a switch</td>
+<td>Worn contacts</td>
+<td>Device fails when switch is moved or load increases</td>
+</tr>
+<tr>
+<td>Across a relay contact</td>
+<td>Pitted or burned contact</td>
+<td>Load receives weak or unstable power</td>
+</tr>
+<tr>
+<td>Across a ground return</td>
+<td>Poor ground connection</td>
+<td>Noise, unstable readings, resets, communication problems</td>
+</tr>
+</table>
+</section>
+<section class="card">
+<h2>Advanced CBET Practice Questions</h2>
+<div class="question-card">
+<strong>11. A device shows 12 V with no load but drops to 8 V when the motor starts. What is most likely?</strong>
+<p>A. Normal operation   B. Weak supply or high-resistance path   C. Too much shielding   D. Open display cable only</p>
+<div class="answer">Answer: B. Weak supply or high-resistance path</div>
+<div class="why">Voltage collapse under load suggests the circuit cannot deliver current properly.</div>
+</div>
+<div class="question-card">
+<strong>12. A corroded connector increases resistance. What may happen under load?</strong>
+<p>A. Voltage drop across the connector   B. Infinite current   C. No change ever   D. Lower resistance automatically</p>
+<div class="answer">Answer: A. Voltage drop across the connector</div>
+<div class="why">Corrosion can create high resistance, causing voltage to be lost across the connection.</div>
+</div>
+<div class="question-card">
+<strong>13. Which rail is commonly associated with logic circuits?</strong>
+<p>A. 5 V DC   B. 500 V AC   C. Oxygen pressure   D. RF shielding</p>
+<div class="answer">Answer: A. 5 V DC</div>
+<div class="why">Many digital logic and control circuits use low-voltage DC rails such as 5 V or 3.3 V.</div>
+</div>
+<div class="question-card">
+<strong>14. What should you suspect if voltage is correct at the supply but low at the board?</strong>
+<p>A. Voltage loss along the path   B. MRI quench   C. Wrong anatomy label   D. No possible fault</p>
+<div class="answer">Answer: A. Voltage loss along the path</div>
+<div class="why">A connector, fuse holder, wire, switch, relay, or ground path may be dropping voltage.</div>
+</div>
+<div class="question-card">
+<strong>15. Why is testing under load useful?</strong>
+<p>A. It reveals faults that only appear when current is demanded   B. It avoids all safety rules   C. It replaces documentation   D. It changes resistance into voltage</p>
+<div class="answer">Answer: A. It reveals faults that only appear when current is demanded</div>
+<div class="why">Many power delivery faults do not show up until the device has to operate a real load.</div>
+</div>
+</section>
+<section class="card highlight">
+<h2>CBET Power Supply Troubleshooting: From AC Input to DC Output</h2>
+<p>
+    Most medical equipment starts with an input power source and then converts that power into usable DC rails.
+    Understanding the power path helps you troubleshoot no-power, intermittent power, blown fuses, weak batteries,
+    low-voltage rails, and devices that fail only under load.
+  </p>
+<div class="diagram-box">
+<div class="simple-diagram">
+<div class="diagram-part">AC Input<br/><span>Wall power</span></div>
+<div class="arrow">→</div>
+<div class="diagram-part">Fuse / Switch<br/><span>Protection</span></div>
+<div class="arrow">→</div>
+<div class="diagram-part">Power Supply<br/><span>Conversion</span></div>
+<div class="arrow">→</div>
+<div class="diagram-part">DC Rails<br/><span>5V / 12V / 24V</span></div>
+<div class="arrow">→</div>
+<div class="diagram-part">Loads<br/><span>Boards / motors</span></div>
+</div>
+</div>
+<div class="notice-first">
+<strong>CBET field tip:</strong> Do not stop at the wall outlet. Follow the power path from input to output to load.
+  </div>
+</section>
+<section class="card">
+<h2>Power Path Failure Table</h2>
+<table class="compare-table">
+<tr>
+<th>Failure Area</th>
+<th>Likely Symptom</th>
+<th>First Checks</th>
+</tr>
+<tr>
+<td><strong>AC input</strong></td>
+<td>Device completely dead</td>
+<td>Outlet, power cord, inlet, fuse, switch</td>
+</tr>
+<tr>
+<td><strong>Fuse or protection circuit</strong></td>
+<td>No output power or repeated shutdown</td>
+<td>Fuse rating, shorted load, surge damage, power supply fault</td>
+</tr>
+<tr>
+<td><strong>DC power supply</strong></td>
+<td>Low voltage, unstable rails, boot failure</td>
+<td>Output voltage, ripple, load behavior, overheating</td>
+</tr>
+<tr>
+<td><strong>Battery circuit</strong></td>
+<td>Fails on battery, poor runtime, shutdown under load</td>
+<td>Battery age, charge circuit, terminals, load test</td>
+</tr>
+<tr>
+<td><strong>Load circuit</strong></td>
+<td>Supply shuts down when load connects</td>
+<td>Shorted board, motor fault, stuck relay, failed component</td>
+</tr>
+</table>
+</section>
+<section class="card">
+<h2>Ripple Voltage and Why It Matters</h2>
+<p>
+    DC power should be stable. When filtering fails, unwanted AC variation can remain on the DC output.
+    This is called ripple. Excessive ripple can cause resets, noise, unstable readings, display problems,
+    communication faults, or intermittent behavior.
+  </p>
+<div class="formula-grid">
+<div class="formula-card">
+<strong>Good DC</strong>
+<p>Stable output with minimal ripple.</p>
+</div>
+<div class="formula-card">
+<strong>Bad filtering</strong>
+<p>Excessive ripple can indicate capacitor or power supply problems.</p>
+</div>
+<div class="formula-card">
+<strong>Real symptom</strong>
+<p>Boards may reset or sensors may become noisy.</p>
+</div>
+</div>
+<div class="warning-box">
+<strong>Exam connection:</strong> If a question mentions unstable DC output, poor filtering, or excessive ripple, think power supply filtering and capacitors.
+  </div>
+</section>
+<section class="card">
+<h2>Current Draw: Normal Load vs Fault Load</h2>
+<p>
+    Current draw tells you how much electrical flow the device or circuit is demanding. Too little current may mean an open circuit.
+    Too much current may mean a short, stalled motor, damaged component, or overloaded supply.
+  </p>
+<table class="compare-table">
+<tr>
+<th>Current Pattern</th>
+<th>Possible Meaning</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>Very low or zero current</td>
+<td>Open circuit or disconnected load</td>
+<td>Broken wire, open fuse, disconnected motor</td>
+</tr>
+<tr>
+<td>Higher than expected current</td>
+<td>Short, overload, or mechanical resistance</td>
+<td>Stalled motor, shorted board, binding pump</td>
+</tr>
+<tr>
+<td>Current spikes then shuts down</td>
+<td>Protection circuit activating</td>
+<td>Power supply current limiting</td>
+</tr>
+<tr>
+<td>Current changes intermittently</td>
+<td>Loose connection or unstable load</td>
+<td>Bad connector, cracked solder joint, failing relay</td>
+</tr>
+</table>
+</section>
+<section class="card">
+<h2>Advanced CBET Practice Questions</h2>
+<div class="question-card">
+<strong>16. A power supply output has excessive ripple. Which component type is commonly involved?</strong>
+<p>A. Capacitor   B. Bed rail   C. Pulse ox clip   D. Speaker grille</p>
+<div class="answer">Answer: A. Capacitor</div>
+<div class="why">Capacitors are commonly used for filtering and smoothing DC output.</div>
+</div>
+<div class="question-card">
+<strong>17. A device shuts down only when a motor starts. What should you suspect?</strong>
+<p>A. Load-related power problem   B. Normal operation   C. MRI projectile issue   D. Display brightness only</p>
+<div class="answer">Answer: A. Load-related power problem</div>
+<div class="why">Motor startup increases current demand and can reveal weak supplies, bad batteries, or high-resistance connections.</div>
+</div>
+<div class="question-card">
+<strong>18. A blown fuse is replaced and immediately blows again. What should be checked?</strong>
+<p>A. Possible short or overload   B. The room color   C. The logo file   D. The alarm volume only</p>
+<div class="answer">Answer: A. Possible short or overload</div>
+<div class="why">A fuse that repeatedly opens often indicates excessive current caused by a fault.</div>
+</div>
+<div class="question-card">
+<strong>19. Which condition may create very low current draw?</strong>
+<p>A. Open circuit   B. Short circuit only   C. Increased voltage always   D. Normal high load</p>
+<div class="answer">Answer: A. Open circuit</div>
+<div class="why">An open circuit breaks the path, preventing current flow.</div>
+</div>
+<div class="question-card">
+<strong>20. Which troubleshooting path is most systematic for a no-power device?</strong>
+<p>A. Outlet → cord → fuse → switch → supply → load   B. Replace all boards first   C. Ignore power input   D. Start with software only</p>
+<div class="answer">Answer: A. Outlet → cord → fuse → switch → supply → load</div>
+<div class="why">Power problems should be followed logically from source to load.</div>
+</div>
+</section>
+<section class="card highlight">
+<h2>Advanced Biomedical Circuit Troubleshooting</h2>
+<p>Clinical engineers rarely troubleshoot formulas—they troubleshoot symptoms. Learning to recognize electrical patterns is a valuable CBET skill.</p>
+<table class="compare-table">
+<tr><th>Symptom</th><th>Likely Cause</th><th>Next Step</th></tr>
+<tr><td>Device randomly reboots</td><td>Weak power rail or intermittent connection</td><td>Check voltage under load</td></tr>
+<tr><td>Fuse repeatedly blows</td><td>Short circuit or overloaded component</td><td>Isolate downstream loads</td></tr>
+<tr><td>Motor hums but won't turn</td><td>Low voltage or mechanical binding</td><td>Measure current draw</td></tr>
+<tr><td>Display flickers</td><td>Power supply ripple or loose connector</td><td>Inspect supply and connections</td></tr>
+<tr><td>Battery runtime is poor</td><td>Battery deterioration</td><td>Perform load test</td></tr>
+</table>
+<div class="success-box"><strong>Remember:</strong> Good troubleshooting follows the evidence—not assumptions.</div>
+<div class="question-card"><strong>21. A monitor reboots only during alarm events. First suspicion?</strong><div class="answer">Answer: Power delivery under load</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>22. Repeated fuse failures usually indicate?</strong><div class="answer">Answer: Short circuit or overload</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>23. Which measurement is normally made with power removed?</strong><div class="answer">Answer: Resistance</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>24. Best tool for checking opens?</strong><div class="answer">Answer: Continuity function</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>25. Motor draws excessive current. Possible cause?</strong><div class="answer">Answer: Mechanical binding</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>26. Display flickers intermittently. Likely electrical cause?</strong><div class="answer">Answer: Loose connection or ripple</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>27. Battery voltage looks normal but runtime is poor. Best test?</strong><div class="answer">Answer: Load test</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>28. Current higher than expected generally indicates?</strong><div class="answer">Answer: Overload or short</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>29. Most logical troubleshooting approach?</strong><div class="answer">Answer: Follow the power path</div><div class="why">High-yield CBET troubleshooting concept.</div></div><div class="question-card"><strong>30. Goal after every repair?</strong><div class="answer">Answer: Verify operation and document results</div><div class="why">High-yield CBET troubleshooting concept.</div></div></section>
+<section class="card">
+<h2>Electrical Measurements at a Glance</h2>
+<table class="compare-table">
+<tr><th>Measurement</th><th>Meter Setting</th><th>Typical Use</th></tr>
+<tr><td>Voltage</td><td>V AC / V DC</td><td>Power verification</td></tr>
+<tr><td>Current</td><td>A / mA</td><td>Load analysis</td></tr>
+<tr><td>Resistance</td><td>Ω</td><td>Component testing (power off)</td></tr>
+<tr><td>Continuity</td><td>🔔</td><td>Open circuit testing</td></tr>
+</table>
+</section>
+<section class="card">
+<h2>CBET Practice Questions (21–30)</h2>
+</section>
+<section class="card highlight">
+<h2>Electronic Components That Affect Voltage, Current &amp; Resistance</h2>
+<p>Understanding how common electronic components influence voltage, current, and resistance is essential for both the CBET exam and real-world troubleshooting.</p>
+<table class="compare-table">
+<tr><th>Component</th><th>Primary Function</th><th>Common Failure</th></tr>
+<tr><td>Resistor</td><td>Limits current</td><td>Open, drifted value</td></tr>
+<tr><td>Capacitor</td><td>Stores energy &amp; filters ripple</td><td>High ESR, leakage, short</td></tr>
+<tr><td>Diode</td><td>Allows one-way current flow</td><td>Open or short</td></tr>
+<tr><td>Fuse</td><td>Overcurrent protection</td><td>Open after fault</td></tr>
+<tr><td>Relay</td><td>Electrically controlled switch</td><td>Pitted or worn contacts</td></tr>
+</table>
+<div class="notice-first">
+<strong>Exam Tip:</strong> Many CBET questions test what happens when one of these components fails—not just what the component does.
+</div>
+</section>
+<section class="card">
+<h2>Common Voltage Measurements in Biomedical Equipment</h2>
+<table class="compare-table">
+<tr><th>Expected Reading</th><th>Possible Interpretation</th></tr>
+<tr><td>0 V</td><td>No supply, open fuse, disconnected power, failed supply</td></tr>
+<tr><td>Low DC Voltage</td><td>Weak supply, overloaded circuit, voltage drop</td></tr>
+<tr><td>Correct Voltage</td><td>Continue following current path and load testing</td></tr>
+<tr><td>Fluctuating Voltage</td><td>Loose connection, ripple, intermittent fault</td></tr>
+<tr><td>Higher than Expected</td><td>Regulation failure or incorrect measurement point</td></tr>
+</table>
+<div class="warning-box">
+<strong>Field Reminder:</strong> A correct voltage reading alone does not prove the circuit is healthy. Always consider current, load, and resistance.
+</div>
+</section>
+<section class="card">
+<h2>CBET Practice Questions (31–40)</h2>
+<div class="question-card">
+<strong>31. Which component commonly smooths DC ripple?</strong>
+<div class="answer">Answer: Capacitor</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>32. A resistor primarily performs what function?</strong>
+<div class="answer">Answer: Limits current</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>33. A fuse is designed to protect against?</strong>
+<div class="answer">Answer: Excessive current</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>34. Which component allows current to flow in only one direction?</strong>
+<div class="answer">Answer: Diode</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>35. Relay contacts become worn. Likely symptom?</strong>
+<div class="answer">Answer: Intermittent operation</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>36. Stable voltage but poor performance suggests checking?</strong>
+<div class="answer">Answer: Current under load</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>37. High ESR is associated with which component?</strong>
+<div class="answer">Answer: Capacitor</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>38. Which measurement best detects voltage drop?</strong>
+<div class="answer">Answer: Voltage measured under load</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>39. Open fuse usually indicates?</strong>
+<div class="answer">Answer: Previous overcurrent event</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+<div class="question-card">
+<strong>40. Best practice after replacing a failed component?</strong>
+<div class="answer">Answer: Verify operation and document repair</div>
+<div class="why">Important CBET electronics concept.</div>
+</div>
+</section>
+<section class="card highlight">
+<h2>Final CBET Electronics Review: Test-Day Cheat Sheet</h2>
+<p>This final review section pulls the most important voltage, current, resistance, power, load, and troubleshooting concepts into one place.</p>
+<table class="compare-table">
+<tr><th>Concept</th><th>What to Remember</th></tr>
+<tr><td>Voltage</td><td>Electrical push or potential.</td></tr>
+<tr><td>Current</td><td>Flow of electrical charge.</td></tr>
+<tr><td>Resistance</td><td>Opposition to current flow.</td></tr>
+<tr><td>Ohm's Law</td><td>V = I × R.</td></tr>
+<tr><td>Power</td><td>P = V × I.</td></tr>
+<tr><td>Open Circuit</td><td>Broken path, little or no current.</td></tr>
+<tr><td>Short Circuit</td><td>Unintended low-resistance path, often excessive current.</td></tr>
+<tr><td>High Resistance Fault</td><td>May create voltage drop and intermittent operation.</td></tr>
+<tr><td>Load Testing</td><td>Reveals faults that no-load testing may miss.</td></tr>
+<tr><td>Voltage Drop</td><td>Useful for finding bad connections under load.</td></tr>
+</table>
+<div class="elite-callout">
+<h3>CBET Test Strategy</h3>
+<p>When a question gives you a symptom, think like a technician: verify power, follow the path, check the load, identify opens/shorts/high resistance, and confirm the repair.</p>
+</div>
+</section>
+<section class="card">
+<h2>Most-Missed Voltage, Current &amp; Resistance Questions</h2>
+<ul>
+<li>Confusing voltage with current.</li>
+<li>Forgetting resistance limits current.</li>
+<li>Assuming correct no-load voltage means the circuit is healthy.</li>
+<li>Not recognizing voltage drop from corroded connectors.</li>
+<li>Replacing boards before checking power rails.</li>
+<li>Ignoring fuses, switches, relays, and grounds.</li>
+<li>Testing resistance on an energized circuit.</li>
+<li>Forgetting that short circuits can create excessive current.</li>
+</ul>
+</section>
+<section class="card">
+<h2>CBET Practice Questions (41–50)</h2>
+<div class="question-card">
+<strong>41. What is the formula for power?</strong>
+<div class="answer">Answer: P = V × I</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>42. What happens to current when resistance increases and voltage stays constant?</strong>
+<div class="answer">Answer: Current decreases</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>43. A short circuit usually creates what condition?</strong>
+<div class="answer">Answer: Excessive current</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>44. A broken circuit path is called what?</strong>
+<div class="answer">Answer: Open circuit</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>45. What does voltage drop testing help locate?</strong>
+<div class="answer">Answer: High resistance connections</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>46. Which condition may make a device reset under load?</strong>
+<div class="answer">Answer: Weak supply or poor connection</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>47. Which value is measured in ohms?</strong>
+<div class="answer">Answer: Resistance</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>48. Which value is measured in amps?</strong>
+<div class="answer">Answer: Current</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>49. Which value is measured in volts?</strong>
+<div class="answer">Answer: Voltage</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+<div class="question-card">
+<strong>50. Best final step after troubleshooting?</strong>
+<div class="answer">Answer: Verify repair and document results</div>
+<div class="why">Final high-yield CBET electronics review concept.</div>
+</div>
+</section>
+<section class="card highlight">
+<h2>Final Repair: Voltage, Current &amp; Resistance Master Summary</h2>
+<p>This last section turns the page into a complete CBET electronics reference by tying formulas, testing, symptoms, and field decisions together.</p>
+<div class="concept-map">
+<div class="concept-node"><strong>Formula Thinking</strong>Use Ohm's Law to predict how a circuit should behave before measuring.</div>
+<div class="concept-node"><strong>Measurement Thinking</strong>Use the meter to confirm whether the circuit is behaving as expected.</div>
+<div class="concept-node"><strong>Symptom Thinking</strong>Connect symptoms like resets, blown fuses, heat, and weak motors to electrical causes.</div>
+<div class="concept-node"><strong>Safety Thinking</strong>Power down before resistance checks and follow service procedures.</div>
+</div>
+<h3>One-Page CBET Decision Guide</h3>
+<table class="compare-table">
+<tr><th>Symptom</th><th>Think First</th><th>Possible Electrical Cause</th></tr>
+<tr><td>No power</td><td>Follow the input path</td><td>Outlet, cord, fuse, switch, supply</td></tr>
+<tr><td>Works then shuts down</td><td>Check under load</td><td>Weak supply, bad battery, overload</td></tr>
+<tr><td>Fuse blows</td><td>Look for excessive current</td><td>Short, bad load, failed component</td></tr>
+<tr><td>Intermittent reset</td><td>Look for voltage drop</td><td>Loose connector, bad ground, relay contact</td></tr>
+<tr><td>Motor weak or stalled</td><td>Check current draw</td><td>Low voltage, high resistance, mechanical binding</td></tr>
+<tr><td>Noise or unstable readings</td><td>Check supply quality</td><td>Ripple, poor ground, unstable rail</td></tr>
+</table>
+<div class="success-box">
+<strong>Final CBET rule:</strong> The best answer is usually the safest, most systematic troubleshooting step—not the fastest part replacement.
+</div>
+</section>
+<section class="card">
+<h2>50-Question Completion Review</h2>
+<p>You have now expanded this page into a full voltage, current, resistance, Ohm's Law, power-path, and biomedical troubleshooting resource.</p>
+<h3>What This Page Now Covers</h3>
+<ul>
+<li>Voltage, current, and resistance fundamentals</li>
+<li>Ohm's Law formulas and examples</li>
+<li>Power calculations</li>
+<li>Series and parallel circuit behavior</li>
+<li>Open circuits, short circuits, and high-resistance faults</li>
+<li>Voltage drop testing</li>
+<li>Load testing</li>
+<li>Power supply troubleshooting</li>
+<li>Ripple voltage</li>
+<li>Common biomedical circuit symptoms</li>
+<li>Electronic components and failure modes</li>
+<li>50 CBET-style practice questions</li>
+</ul>
+<div class="elite-callout">
+<h3>Recommended next step</h3>
+<p>After publishing this version, request indexing for <strong>voltage-current-resistance-cbet.html</strong>. Then move to the next Search Console repair page.</p>
+</div>
+</section>
+
+<section class="card highlight">
+<h2>Version 8 Final Polish: Quick Reference Tables &amp; Exam-Style Review</h2>
+<p>This section adds a final layer of polish by giving learners quick-reference tables they can review before taking CBET-style electronics questions.</p>
+<h3>Voltage, Current, Resistance, and Power Quick Reference</h3>
+<table class="compare-table">
+<tr><th>Value</th><th>Symbol</th><th>Unit</th><th>What It Tells You</th></tr>
+<tr><td>Voltage</td><td>V</td><td>Volts</td><td>How much electrical push is available.</td></tr>
+<tr><td>Current</td><td>I</td><td>Amps</td><td>How much charge is flowing.</td></tr>
+<tr><td>Resistance</td><td>R</td><td>Ohms</td><td>How much the circuit opposes flow.</td></tr>
+<tr><td>Power</td><td>P</td><td>Watts</td><td>How much energy is being used or converted.</td></tr>
+</table>
+<h3>Most Useful Formulas</h3>
+<table class="compare-table">
+<tr><th>Formula</th><th>Use It When</th></tr>
+<tr><td>V = I × R</td><td>You know current and resistance and need voltage.</td></tr>
+<tr><td>I = V ÷ R</td><td>You know voltage and resistance and need current.</td></tr>
+<tr><td>R = V ÷ I</td><td>You know voltage and current and need resistance.</td></tr>
+<tr><td>P = V × I</td><td>You know voltage and current and need power.</td></tr>
+</table>
+<div class="notice-first">
+<strong>Final study reminder:</strong> Do not only memorize formulas. Understand what should increase, decrease, or fail when voltage, current, or resistance changes.
+</div>
+</section>
+<section class="card">
+<h2>Final CBET Electronics Practice Questions (51–60)</h2>
+
+<div class="question-card">
+<strong>51. A 24 V circuit has 8 Ω of resistance. What is the current?</strong>
+<div class="answer">Answer: 3 A</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>52. A 2 A load operates from 12 V. What is the power?</strong>
+<div class="answer">Answer: 24 W</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>53. A circuit has 10 V and 5 A. What is resistance?</strong>
+<div class="answer">Answer: 2 Ω</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>54. What unit is used for resistance?</strong>
+<div class="answer">Answer: Ohms</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>55. What unit is used for power?</strong>
+<div class="answer">Answer: Watts</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>56. If voltage increases and resistance stays the same, current does what?</strong>
+<div class="answer">Answer: Increases</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>57. If resistance increases and voltage stays the same, current does what?</strong>
+<div class="answer">Answer: Decreases</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>58. A bad ground can cause what symptom?</strong>
+<div class="answer">Answer: Noise, resets, or unstable operation</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>59. A relay contact with high resistance may cause what?</strong>
+<div class="answer">Answer: Voltage drop under load</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+
+<div class="question-card">
+<strong>60. What is the best troubleshooting habit?</strong>
+<div class="answer">Answer: Follow the power path systematically</div>
+<div class="why">This reinforces the voltage, current, resistance, and power relationships used in CBET-style troubleshooting.</div>
+</div>
+</section>
 <section class="card">
 <h2>Key Takeaways</h2>
 <ul>
@@ -1346,7 +1948,6 @@
 <p>
         Voltage pushes, current flows, and resistance opposes. Ohm's Law connects them with V = I × R.
       </p>
-
 <h3>Why does voltage drop matter in troubleshooting?</h3>
 <p>
         Voltage drop matters because it can reveal resistance in wires, connectors, switches, fuses, or contacts while current is flowing.
