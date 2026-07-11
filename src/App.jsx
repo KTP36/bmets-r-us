@@ -9113,7 +9113,8 @@ return (
 </div>
     <div
       style={{
-        maxWidth: 1300,
+        width: "100%",
+        maxWidth: 1480,
         margin: "0 auto"
       }}
     >
