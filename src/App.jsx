@@ -9136,64 +9136,104 @@ return (
         <p style={{ marginTop: 10, fontSize: 18 }}>
           Free healthcare study tools for CBET prep, biomed careers, anatomy, medical terminology, equipment ID, EKG, ABG, RN, TEAS, and CRES practice
         </p>
+        <style>
+          {`
+            .medskill-hero-action {
+              min-height: 58px;
+              min-width: 240px;
+              transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+            }
+
+            .medskill-hero-action:hover {
+              transform: translateY(-3px);
+              filter: brightness(1.02);
+            }
+
+            .medskill-hero-action:focus-visible {
+              outline: 3px solid rgba(255,255,255,0.9);
+              outline-offset: 3px;
+            }
+
+            @media (max-width: 760px) {
+              .medskill-hero-action {
+                width: 100%;
+                min-width: 0;
+              }
+            }
+          `}
+        </style>
+
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: 12,
+            alignItems: "stretch",
+            gap: isSmallScreen ? 10 : 16,
             flexWrap: "wrap",
-            marginTop: 18
+            marginTop: 22
           }}
         >
           <a
             href="/browse-all-practice.html"
+            className="medskill-hero-action"
             style={{
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "14px 22px",
+              padding: isSmallScreen ? "15px 18px" : "17px 26px",
               borderRadius: 999,
               background: "linear-gradient(135deg, #ffffff, #dbeafe)",
               color: "#12355b",
               textDecoration: "none",
-              fontWeight: 900,
-              boxShadow: "0 8px 20px rgba(15, 23, 42, 0.18)",
-              border: "1px solid rgba(255,255,255,0.7)"
+              fontWeight: 950,
+              fontSize: isSmallScreen ? 14 : 16,
+              textAlign: "center",
+              boxShadow: "0 10px 24px rgba(15, 23, 42, 0.22)",
+              border: "1px solid rgba(255,255,255,0.78)"
             }}
           >
             🚀 Explore All Practice & Study Tools
           </a>
+
           <a
             href="/recommended-study-gear.html"
+            className="medskill-hero-action"
             style={{
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "14px 22px",
+              padding: isSmallScreen ? "15px 18px" : "17px 26px",
               borderRadius: 999,
               background: "linear-gradient(135deg, #16a34a, #22c55e)",
               color: "white",
               textDecoration: "none",
-              fontWeight: 900,
-              boxShadow: "0 8px 20px rgba(22, 163, 74, 0.24)",
-              border: "1px solid rgba(255,255,255,0.35)"
+              fontWeight: 950,
+              fontSize: isSmallScreen ? 14 : 16,
+              textAlign: "center",
+              boxShadow: "0 10px 24px rgba(22, 163, 74, 0.30)",
+              border: "1px solid rgba(255,255,255,0.42)"
             }}
           >
             🛒 Recommended Study Gear
           </a>
+
           <button
             onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
+            className="medskill-hero-action"
             style={{
-              padding: "14px 22px",
+              padding: isSmallScreen ? "15px 18px" : "17px 26px",
               borderRadius: 999,
-              border: "1px solid rgba(255,255,255,0.45)",
-              background: "rgba(15,23,42,0.22)",
+              border: "1px solid rgba(255,255,255,0.52)",
+              background: "linear-gradient(135deg, rgba(15,23,42,0.40), rgba(29,111,165,0.45))",
               color: "white",
-              fontWeight: 900,
-              cursor: "pointer"
+              fontWeight: 950,
+              fontSize: isSmallScreen ? 14 : 16,
+              textAlign: "center",
+              cursor: "pointer",
+              boxShadow: "0 10px 24px rgba(8,47,87,0.25)"
             }}
           >
-            Start CBET Practice
+            ⚡ Start CBET Practice
           </button>
         </div>
       </div>
