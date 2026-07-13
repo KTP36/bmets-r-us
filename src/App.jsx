@@ -10143,6 +10143,24 @@ return (
           All Practice
         </a>
         <a
+          href="/recently-added.html"
+          onMouseEnter={() => setHoveredNavTab("RecentlyAdded")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={{
+            ...navButtonStyle(false, hoveredNavTab === "RecentlyAdded"),
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textDecoration: "none",
+            background: hoveredNavTab === "RecentlyAdded"
+              ? "linear-gradient(135deg, #047857, #22c55e)"
+              : "linear-gradient(135deg, #dcfce7, #ecfdf5)",
+            color: hoveredNavTab === "RecentlyAdded" ? "white" : "#166534"
+          }}
+        >
+          🆕 Recently Added
+        </a>
+        <a
           href="/spot-the-problem-vital-signs-challenge.html"
           onMouseEnter={() => setHoveredNavTab("SpotProblem")}
           onMouseLeave={() => setHoveredNavTab("")}
