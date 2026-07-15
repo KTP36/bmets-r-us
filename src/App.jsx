@@ -10,7 +10,10 @@ import ABGQuiz from "./ABGQuiz";
 import { cbetQuestions as baseCbetQuestions } from "./questionData";
 import { cbetElectronicsQuestions } from "./cbetElectronicsQuestions";
 import AmazonBanner from "./components/AmazonBanner";
+import CArmPartnerBanner from "./components/CArmPartnerBanner";
 
+
+const SHOW_CARM_PARTNER = false;
 
 const extraCbetQuestions = [
   {
@@ -9285,6 +9288,13 @@ return (
         </div>
       </div>
 
+      {SHOW_CARM_PARTNER && (
+          <CArmPartnerBanner
+            trackSiteEvent={trackSiteEvent}
+            isSmallScreen={isSmallScreen}
+          />
+        )}
+
       <AmazonBanner
         currentStudyGearPick={currentStudyGearPick}
         currentStudyGearPickIndex={currentStudyGearPickIndex}
@@ -9293,82 +9303,6 @@ return (
         trackSiteEvent={trackSiteEvent}
         isSmallScreen={isSmallScreen}
       />
-
-      {/* RECOMMENDED STUDY GEAR: AFFILIATE INCOME PATH */}
-      <div
-        style={{
-          marginBottom: 18,
-          padding: "24px 18px",
-          borderRadius: 22,
-          background: "linear-gradient(135deg, #ecfdf5, #ffffff)",
-          border: "1px solid #bbf7d0",
-          boxShadow: "0 14px 30px rgba(22,163,74,0.12)",
-          textAlign: "center"
-        }}
-      >
-        <div
-          style={{
-            display: "inline-flex",
-            padding: "7px 12px",
-            borderRadius: 999,
-            background: "#dcfce7",
-            color: "#166534",
-            fontWeight: 900,
-            fontSize: 13,
-            letterSpacing: 0.5,
-            marginBottom: 10
-          }}
-        >
-          STUDY GEAR PICKS
-        </div>
-        <h2
-          style={{
-            color: "#12355b",
-            margin: "0 0 8px",
-            fontSize: isSmallScreen ? 26 : 32
-          }}
-        >
-          Recommended Study Gear for Healthcare Learners
-        </h2>
-        <p
-          style={{
-            color: "#475569",
-            maxWidth: 780,
-            margin: "0 auto 18px",
-            fontSize: 16,
-            lineHeight: 1.55
-          }}
-        >
-          Helpful study tools for nursing students, anatomy practice, medical terminology, CBET prep, biomed learners, and healthcare study setups.
-        </p>
-        <a
-          href="/recommended-study-gear.html"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "14px 24px",
-            borderRadius: 999,
-            background: "linear-gradient(135deg, #16a34a, #22c55e)",
-            color: "white",
-            fontWeight: 900,
-            textDecoration: "none",
-            boxShadow: "0 8px 20px rgba(22,163,74,0.22)"
-          }}
-        >
-          View Recommended Study Gear →
-        </a>
-        <p
-          style={{
-            color: "#64748b",
-            fontSize: 12,
-            margin: "12px auto 0",
-            maxWidth: 760
-          }}
-        >
-          MedSkillBuilder may earn from qualifying purchases. Recommendations are meant to support learning, studying, and healthcare training.
-        </p>
-      </div>
 
       {/* START HERE: HIGH-CONVERSION PATHS */}
       <div
@@ -9830,82 +9764,6 @@ return (
         </div>
       </div>
 
-      {/* QUICK PRACTICE: 5-QUESTION FAST START */}
-      <div
-        style={{
-          marginBottom: 18,
-          padding: "24px 18px",
-          borderRadius: 22,
-          background: "linear-gradient(135deg, rgba(236,253,245,0.95), rgba(255,255,255,0.95))",
-          border: "1px solid #bbf7d0",
-          boxShadow: "0 14px 30px rgba(22,163,74,0.10)"
-        }}
-      >
-        <div
-          style={{
-            textAlign: "center",
-            color: "#14532d",
-            fontWeight: 950,
-            letterSpacing: 1,
-            fontSize: 18,
-            marginBottom: 8
-          }}
-        >
-          QUICK PRACTICE
-        </div>
-        <p
-          style={{
-            textAlign: "center",
-            color: "#334155",
-            fontSize: 16,
-            margin: "0 auto 18px auto",
-            maxWidth: 760
-          }}
-        >
-          Short on time? Start with 5 questions. Finish fast, see your score, review missed questions, and build momentum.
-        </p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: 16,
-            width: "100%",
-            maxWidth: 1100,
-            margin: "0 auto",
-            alignItems: "stretch"
-          }}
-        >
-          <button
-            onClick={() => startQuickPractice("cbet")}
-            style={{ ...categoryHomeButtonStyle("#0f766e", "#14b8a6"), minHeight: 104 }}
-          >
-            🔧 CBET Quick Practice
-            <span style={categoryHomeButtonSubtextStyle}>5 questions • instant score</span>
-          </button>
-          <button
-            onClick={() => startQuickPractice("terminology")}
-            style={{ ...categoryHomeButtonStyle("#16a34a", "#22c55e"), minHeight: 104 }}
-          >
-            🧾 Terminology Quick Practice
-            <span style={categoryHomeButtonSubtextStyle}>5 terms • fast review</span>
-          </button>
-          <button
-            onClick={() => startQuickPractice("equipment")}
-            style={{ ...categoryHomeButtonStyle("#ff6a00", "#ff4d4d"), minHeight: 104 }}
-          >
-            🏥 Equipment ID Quick Practice
-            <span style={categoryHomeButtonSubtextStyle}>5 images • quick recognition</span>
-          </button>
-          <button
-            onClick={() => startQuickPractice("anatomy")}
-            style={{ ...categoryHomeButtonStyle("#7c3aed", "#a855f7"), minHeight: 104 }}
-          >
-            🫀 Anatomy Quick Practice
-            <span style={categoryHomeButtonSubtextStyle}>Start with heart labeling</span>
-          </button>
-        </div>
-      </div>
-
       {/* START PRACTICING BY CATEGORY */}
       <div
         style={{
@@ -10008,101 +9866,6 @@ return (
         </div>
       </div>
 
-      {/* MOST POPULAR RIGHT NOW */}
-      <div
-        style={{
-          marginBottom: 18,
-          padding: "16px 18px",
-          borderRadius: 20,
-          background: "rgba(255,255,255,0.78)",
-          border: "1px solid #d8e4f2",
-          boxShadow: "0 10px 24px rgba(18,53,91,0.08)"
-        }}
-      >
-        <div
-          style={{
-            textAlign: "center",
-            color: "#12355b",
-            fontWeight: 800,
-            letterSpacing: 1,
-            fontSize: 15,
-            marginBottom: 8
-          }}
-        >
-          MOST POPULAR RIGHT NOW
-        </div>
-        <p
-          style={{
-            textAlign: "center",
-            color: "#4f6275",
-            fontSize: 16,
-            margin: "0 0 14px 0"
-          }}
-        >
-          Start with the practice sets people are clicking first.
-        </p>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 12,
-            flexWrap: "wrap"
-          }}
-        >
-          <button
-            onClick={() => {
-              jumpToPracticeCategory("CBET", { examName: "CBET Practice" });
-            }}
-            style={{
-              padding: "12px 18px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #ff6a00, #ff4d4d)",
-              color: "white",
-              fontWeight: 800,
-              cursor: "pointer",
-              boxShadow: "0 6px 14px rgba(255,106,0,0.25)"
-            }}
-          >
-            CBET Practice
-          </button>
-          <button
-            onClick={() => {
-              jumpToPracticeCategory("ABGQuiz", { examName: "ABG Quiz" });
-            }}
-            style={{
-              padding: "12px 18px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #0f766e, #14b8a6)",
-              color: "white",
-              fontWeight: 800,
-              cursor: "pointer",
-              boxShadow: "0 6px 14px rgba(20,184,166,0.25)"
-            }}
-          >
-            ABG Quiz
-          </button>
-          <button
-            onClick={() => {
-              jumpToPracticeCategory("EKGQuiz", { examName: "EKG Waveform Quiz" });
-            }}
-            style={{
-              padding: "12px 18px",
-              borderRadius: 999,
-              border: "none",
-              background: "linear-gradient(135deg, #12355b, #1d6fa5)",
-              color: "white",
-              fontWeight: 800,
-              cursor: "pointer",
-              boxShadow: "0 6px 14px rgba(18,53,91,0.22)"
-            }}
-          >
-            EKG Rhythm Practice
-          </button>
-        </div>
-      </div>
-
       <div style={{ marginBottom: 16 }}>
         {renderAdSlot(topAdSlot)}
       </div>
@@ -10141,24 +9904,6 @@ return (
           }}
         >
           All Practice
-        </a>
-        <a
-          href="/recently-added.html"
-          onMouseEnter={() => setHoveredNavTab("RecentlyAdded")}
-          onMouseLeave={() => setHoveredNavTab("")}
-          style={{
-            ...navButtonStyle(false, hoveredNavTab === "RecentlyAdded"),
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            textDecoration: "none",
-            background: hoveredNavTab === "RecentlyAdded"
-              ? "linear-gradient(135deg, #047857, #22c55e)"
-              : "linear-gradient(135deg, #dcfce7, #ecfdf5)",
-            color: hoveredNavTab === "RecentlyAdded" ? "white" : "#166534"
-          }}
-        >
-          🆕 Recently Added
         </a>
         <a
           href="/spot-the-problem-vital-signs-challenge.html"
