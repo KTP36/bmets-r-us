@@ -95,9 +95,8 @@ export default function CArmPartnerBanner({
               fontWeight: 600
             }}
           >
-            Nationwide C-Arm repair, imaging equipment service, and quality
-            used X-ray systems for hospitals, surgery centers, and imaging
-            facilities.
+            Nationwide GE OEC C-Arm service, parts sales, and premium refurbished systems for hospitals, surgery centers, and imaging facilities. 
+            Use coupon code MedSkillBuilder20 and receive a 20% discount on your next parts order!
           </div>
         </div>
 

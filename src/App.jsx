@@ -13,7 +13,7 @@ import AmazonBanner from "./components/AmazonBanner";
 import CArmPartnerBanner from "./components/CArmPartnerBanner";
 
 
-const SHOW_CARM_PARTNER = false;
+const SHOW_CARM_PARTNER = true;
 
 const extraCbetQuestions = [
   {
