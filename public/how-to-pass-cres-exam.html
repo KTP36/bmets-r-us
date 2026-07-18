@@ -68,7 +68,17 @@
         .callout { background: #eef4ff; border-left: 4px solid #1d6fa5; padding: 16px; margin: 20px 0; border-radius: 4px; }
         .callout strong { color: #12355b; }
         footer { background: #f8fafc; padding: 20px 0; text-align: center; color: #666; font-size: 14px; margin-top: 40px; }
-    </style>
+    
+        table { max-width: 100%; }
+        th, td { vertical-align: top; overflow-wrap: anywhere; }
+        @media (max-width: 700px) {
+            header h2 { font-size: 32px; }
+            .container { padding: 0 14px; }
+            h2 { font-size: 24px; }
+            h3 { font-size: 19px; }
+            table { font-size: 14px; }
+        }
+</style>
 </head>
 <body>
 <div class="branding container">
@@ -77,6 +87,79 @@
 <h1>MedSkillBuilder</h1>
 <p>Interactive Medical Training Platform</p>
 </div>
+</div>
+<header>
+<div class="container">
+<h2>How to Pass the CRES Exam</h2>
+<p>Proven Study Guide &amp; Preparation Timeline</p>
+</div>
+</header>
+<div class="container" style="margin-top: 16px;">
+<div style="background: #fff7ed; border: 1px solid #fed7aa; color: #7c2d12; padding: 12px 14px; border-radius: 10px; font-size: 14px; line-height: 1.5;">
+            MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, or any certification provider.
+        </div>
+</div>
+<main>
+<div class="container">
+<section>
+<h2>Your Complete CRES Exam Preparation Guide</h2>
+<p>The CRES (Certified Radiology Equipment Specialist) exam is one of the most technical certifications in the biomedical field, covering everything from X-ray physics and CT systems to MRI safety and radiation protection. With the right study strategy, passing on your first attempt is absolutely achievable.</p>
+<div class="callout">
+<strong>📊 Exam Readiness:</strong> CRES is a technically demanding exam. Pairing a solid physics foundation with consistent practice questions is the most effective preparation approach.
+                </div>
+</section>
+<section>
+<h2>Quick Modality Comparison Cheat Sheet</h2>
+<div style="overflow-x:auto;">
+<table border="1" cellpadding="8" style="width:100%;border-collapse:collapse;min-width:680px;">
+<tr><th>Modality</th><th>Energy Source</th><th>Primary Strength</th><th>High-Yield CRES Topic</th></tr>
+<tr><td>CR</td><td>X-ray plus PSP plate</td><td>Flexible workflow</td><td>Plate handling, erasure, reader calibration, and artifacts</td></tr>
+<tr><td>DR</td><td>X-ray plus flat-panel detector</td><td>Fast image acquisition</td><td>Direct versus indirect conversion, calibration, MTF, and DQE</td></tr>
+<tr><td>CT</td><td>Rotating X-ray tube and detector array</td><td>Cross-sectional imaging</td><td>Pitch, Hounsfield units, dose, detector calibration, and artifacts</td></tr>
+<tr><td>MRI</td><td>Static magnetic field, gradients, and RF energy</td><td>Excellent soft-tissue contrast</td><td>Safety zones, SAR, coils, quench risks, and image artifacts</td></tr>
+<tr><td>Ultrasound</td><td>High-frequency sound waves</td><td>Real-time imaging without ionizing radiation</td><td>Transducer elements, probe damage, Doppler, and artifacts</td></tr>
+<tr><td>Fluoroscopy</td><td>Continuous or pulsed X-rays</td><td>Real-time procedural imaging</td><td>Automatic brightness control, geometry, cumulative dose, and collimation</td></tr>
+</table>
+</div>
+</section>
+
+<section>
+<h2>Field Notes From an Imaging Engineer</h2>
+<div class="callout">
+<p><strong>Practical troubleshooting principle:</strong> Verify the complaint, reproduce the failure, review service history and error logs, inspect accessories and connections, perform approved diagnostics, and verify image quality before replacing a major assembly.</p>
+</div>
+<div class="timeline">
+<div class="timeline-item">
+<h3>Think Before Replacing Parts</h3>
+<p>Intermittent imaging failures may come from calibration, configuration, damaged cables, detector batteries, network settings, coils, probes, environmental conditions, or workflow issues. A failed major assembly should be a conclusion supported by testing—not the first assumption.</p>
+</div>
+<div class="timeline-item">
+<h3>Separate Image Problems From Workflow Problems</h3>
+<p>A missing image may involve acquisition, modality worklist, DICOM configuration, network communication, PACS routing, or archive availability. Confirm where the workflow stops before replacing imaging hardware.</p>
+</div>
+<div class="timeline-item">
+<h3>Always Verify the Repair</h3>
+<p>After corrective maintenance, repeat the appropriate quality-control test, verify system operation, document the results, and confirm that the equipment is safe before returning it to clinical service.</p>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Recommended CRES Study Order</h2>
+<ol>
+<li>Build a foundation in radiation physics, X-ray production, kVp, mAs, filtration, collimation, and the inverse square law.</li>
+<li>Study CR and DR detector technology, image processing, exposure index, MTF, DQE, SNR, and CNR.</li>
+<li>Move into CT physics, Hounsfield units, pitch, dose, reconstruction, and common artifacts.</li>
+<li>Review MRI physics, coils, sequences, SAR, safety zones, screening, and artifacts.</li>
+<li>Study ultrasound transducers, Doppler principles, probe failures, and image artifacts.</li>
+<li>Finish the modality review with fluoroscopy, mammography, bone densitometry, nuclear medicine, and PET.</li>
+<li>Review acceptance testing, preventive maintenance, quality assurance, radiation safety, PACS, DICOM, and systematic troubleshooting.</li>
+<li>Complete practice questions, study every missed answer, and repeat your weakest topics.</li>
+</ol>
+<div class="callout">
+<strong>Readiness check:</strong> If you can explain a concept to another biomedical technician without looking at your notes—and apply it to a service scenario—you are likely prepared for an application-based question.
+</div>
+</section>
 <section>
 <h2>CRES Master Review: Imaging Systems Deep Dive</h2>
 <div class="callout">
@@ -400,27 +483,7 @@
 <p><strong>59.</strong> What communication issue commonly causes failed image transfers? <strong>DICOM configuration/network errors.</strong></p>
 <p><strong>60.</strong> The best CRES candidates consistently do what? <strong>Use systematic troubleshooting and prioritize patient safety.</strong></p>
 </section>
-</div>
-<header>
-<div class="container">
-<h2>How to Pass the CRES Exam</h2>
-<p>Proven Study Guide &amp; Preparation Timeline</p>
-</div>
-</header>
-<div class="container" style="margin-top: 16px;">
-<div style="background: #fff7ed; border: 1px solid #fed7aa; color: #7c2d12; padding: 12px 14px; border-radius: 10px; font-size: 14px; line-height: 1.5;">
-            MedSkillBuilder is an independent educational platform and is not affiliated with or endorsed by AAMI, ATI, or any certification provider.
-        </div>
-</div>
-<main>
-<div class="container">
-<section>
-<h2>Your Complete CRES Exam Preparation Guide</h2>
-<p>The CRES (Certified Radiology Equipment Specialist) exam is one of the most technical certifications in the biomedical field, covering everything from X-ray physics and CT systems to MRI safety and radiation protection. With the right study strategy, passing on your first attempt is absolutely achievable.</p>
-<div class="callout">
-<strong>📊 Exam Readiness:</strong> CRES is a technically demanding exam. Pairing a solid physics foundation with consistent practice questions is the most effective preparation approach.
-                </div>
-</section>
+
 <section>
 <h2>CRES Exam Format &amp; Content</h2>
 <h3>Exam Overview:</h3>
