@@ -479,6 +479,10 @@
         <a href="#medical-equipment">Medical Equipment</a>
         <a href="#mistakes">Common Mistakes</a>
         <a href="#questions">CBET Questions</a>
+        <a href="#ac-impedance">AC Impedance</a>
+        <a href="#multimeter-mistakes">Meter Mistakes</a>
+        <a href="#biomed-case-studies">Case Studies</a>
+        <a href="#advanced-cbet-questions">Advanced Questions</a>
       </div>
     </section>
 
@@ -742,7 +746,1108 @@
       </div>
     </section>
 
-    <section class="final-cta">
+
+    <section class="card">
+      <h2>How to Rearrange Ohm's Law Without Guessing</h2>
+      <p>
+        Many learners can remember V = I × R but freeze when the question asks for current or resistance.
+        The safest method is to start with the original relationship and isolate the value you need.
+      </p>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Find Voltage</h3>
+          <p><strong>V = I × R</strong></p>
+          <p>Multiply current by resistance.</p>
+          <p><strong>Example:</strong> 3A × 8Ω = 24V</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Find Current</h3>
+          <p><strong>I = V ÷ R</strong></p>
+          <p>Divide voltage by resistance.</p>
+          <p><strong>Example:</strong> 24V ÷ 8Ω = 3A</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Find Resistance</h3>
+          <p><strong>R = V ÷ I</strong></p>
+          <p>Divide voltage by current.</p>
+          <p><strong>Example:</strong> 24V ÷ 3A = 8Ω</p>
+        </div>
+      </div>
+
+      <div class="notice-first">
+        <strong>CBET strategy:</strong>
+        Write the known values with units before choosing a formula. This reduces mistakes and makes unit conversion problems easier to spot.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Ohm's Law Units You Must Recognize</h2>
+      <p>
+        Ohm's Law questions often become harder because the values are written in milliamps, millivolts, kilohms, or megohms.
+        Convert the values before calculating unless the units already match.
+      </p>
+
+      <table class="compare-table">
+        <tr>
+          <th>Quantity</th>
+          <th>Base Unit</th>
+          <th>Common Prefix</th>
+          <th>Conversion</th>
+        </tr>
+        <tr>
+          <td>Voltage</td>
+          <td>Volt (V)</td>
+          <td>Millivolt (mV)</td>
+          <td>1,000 mV = 1 V</td>
+        </tr>
+        <tr>
+          <td>Current</td>
+          <td>Ampere (A)</td>
+          <td>Milliampere (mA)</td>
+          <td>1,000 mA = 1 A</td>
+        </tr>
+        <tr>
+          <td>Current</td>
+          <td>Ampere (A)</td>
+          <td>Microampere (µA)</td>
+          <td>1,000,000 µA = 1 A</td>
+        </tr>
+        <tr>
+          <td>Resistance</td>
+          <td>Ohm (Ω)</td>
+          <td>Kilohm (kΩ)</td>
+          <td>1 kΩ = 1,000 Ω</td>
+        </tr>
+        <tr>
+          <td>Resistance</td>
+          <td>Ohm (Ω)</td>
+          <td>Megohm (MΩ)</td>
+          <td>1 MΩ = 1,000,000 Ω</td>
+        </tr>
+      </table>
+
+      <div class="example-box">
+        <strong>Example:</strong>
+        <p>
+          A 12V circuit has a resistance of 4kΩ. Convert 4kΩ to 4,000Ω, then calculate:
+          I = 12 ÷ 4,000 = 0.003A, or 3mA.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>What Changes When Voltage, Current, or Resistance Changes?</h2>
+      <p>
+        Understanding the direction of change is often more important than doing the arithmetic.
+        Many CBET questions ask what will increase or decrease after one variable changes.
+      </p>
+
+      <table class="compare-table">
+        <tr>
+          <th>Condition</th>
+          <th>What Stays Constant</th>
+          <th>Result</th>
+        </tr>
+        <tr>
+          <td>Voltage increases</td>
+          <td>Resistance</td>
+          <td>Current increases</td>
+        </tr>
+        <tr>
+          <td>Voltage decreases</td>
+          <td>Resistance</td>
+          <td>Current decreases</td>
+        </tr>
+        <tr>
+          <td>Resistance increases</td>
+          <td>Voltage</td>
+          <td>Current decreases</td>
+        </tr>
+        <tr>
+          <td>Resistance decreases</td>
+          <td>Voltage</td>
+          <td>Current increases</td>
+        </tr>
+        <tr>
+          <td>Current increases</td>
+          <td>Resistance</td>
+          <td>Voltage must increase</td>
+        </tr>
+      </table>
+
+      <div class="success-box">
+        <strong>Fast memory rule:</strong>
+        Voltage and current move in the same direction when resistance is constant.
+        Resistance and current move in opposite directions when voltage is constant.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Ohm's Law and Electrical Power</h2>
+      <p>
+        Ohm's Law is often tested together with electrical power. Power describes how quickly electrical energy is used or converted.
+      </p>
+
+      <div class="formula">
+        P = V × I
+        <div class="formula-small">Power = Voltage × Current</div>
+      </div>
+
+      <p>
+        By combining the power formula with Ohm's Law, two additional equations can be derived:
+      </p>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Voltage and Current Known</h3>
+          <p><strong>P = V × I</strong></p>
+          <p>12V × 2A = 24W</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Current and Resistance Known</h3>
+          <p><strong>P = I² × R</strong></p>
+          <p>2A² × 6Ω = 24W</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Voltage and Resistance Known</h3>
+          <p><strong>P = V² ÷ R</strong></p>
+          <p>12V² ÷ 6Ω = 24W</p>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <strong>Why this matters:</strong>
+        Excessive current increases heat production. That is why low-resistance faults can damage wiring, connectors, circuit boards, and power components.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Series Circuits and Ohm's Law</h2>
+      <p>
+        In a series circuit, there is only one path for current. The same current flows through every component.
+      </p>
+
+      <ul>
+        <li>Total resistance equals the sum of all resistances.</li>
+        <li>Current is the same at every point in the circuit.</li>
+        <li>Source voltage is divided across the components.</li>
+        <li>If one component opens, current stops everywhere.</li>
+      </ul>
+
+      <div class="formula">
+        R<sub>T</sub> = R<sub>1</sub> + R<sub>2</sub> + R<sub>3</sub>
+      </div>
+
+      <div class="example-box">
+        <strong>Example:</strong>
+        <p>
+          A 24V source powers three series resistors: 2Ω, 4Ω, and 6Ω.
+          Total resistance is 12Ω. Current is 24 ÷ 12 = 2A.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Parallel Circuits and Ohm's Law</h2>
+      <p>
+        In a parallel circuit, multiple current paths share the same source voltage.
+      </p>
+
+      <ul>
+        <li>Voltage is the same across every branch.</li>
+        <li>Branch currents may be different.</li>
+        <li>Total current equals the sum of branch currents.</li>
+        <li>Total resistance is always less than the smallest branch resistance.</li>
+      </ul>
+
+      <div class="formula">
+        1 ÷ R<sub>T</sub> = 1 ÷ R<sub>1</sub> + 1 ÷ R<sub>2</sub> + 1 ÷ R<sub>3</sub>
+      </div>
+
+      <div class="example-box">
+        <strong>Example:</strong>
+        <p>
+          Two equal 12Ω resistors are connected in parallel. Their combined resistance is 6Ω.
+          If connected to 12V, total current is 2A.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Open Circuits, Short Circuits, and High-Resistance Faults</h2>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Open Circuit</h3>
+          <p>Resistance becomes extremely high.</p>
+          <p>Current drops to zero.</p>
+          <p>Possible causes include broken wires, blown fuses, and disconnected connectors.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Short Circuit</h3>
+          <p>Resistance becomes extremely low.</p>
+          <p>Current rises rapidly.</p>
+          <p>Possible results include blown fuses, tripped protection, heat, or component failure.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>High-Resistance Fault</h3>
+          <p>Resistance rises above its intended value.</p>
+          <p>Current decreases.</p>
+          <p>Possible causes include corrosion, loose terminals, damaged contacts, or deteriorated solder joints.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Using a Multimeter With Ohm's Law</h2>
+      <p>
+        A multimeter gives you real measurements that can be compared with the values predicted by Ohm's Law.
+      </p>
+
+      <h3>Measure Voltage in Parallel</h3>
+      <p>
+        Place the meter leads across the component or source. Voltage can normally be measured while the circuit is energized,
+        but follow all manufacturer procedures and safety precautions.
+      </p>
+
+      <h3>Measure Current in Series</h3>
+      <p>
+        The meter becomes part of the current path. Current measurement is more invasive and may require opening the circuit.
+        Selecting the wrong jack or range can damage the meter or circuit.
+      </p>
+
+      <h3>Measure Resistance With Power Off</h3>
+      <p>
+        Resistance should generally be measured only after power is removed and stored energy is safely discharged.
+        Other circuit paths may affect an in-circuit resistance reading.
+      </p>
+
+      <div class="warning-box">
+        <strong>Safety reminder:</strong>
+        Never place a meter configured for current measurement directly across a voltage source.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Medical Equipment Troubleshooting Examples</h2>
+
+      <div class="example-box">
+        <strong>Infusion Pump Motor:</strong>
+        <p>
+          The supply voltage is correct, but the motor receives less current than expected.
+          Increased resistance in a connector, cable, motor winding, or driver circuit may be limiting current.
+        </p>
+      </div>
+
+      <div class="example-box">
+        <strong>Patient Monitor Power Rail:</strong>
+        <p>
+          A 5V rail falls when the display activates. The circuit may be drawing excessive current,
+          or a power supply component may be unable to maintain voltage under load.
+        </p>
+      </div>
+
+      <div class="example-box">
+        <strong>Battery Charging Circuit:</strong>
+        <p>
+          Correct source voltage does not guarantee correct charging current.
+          Battery condition, cable resistance, current-limiting components, and charger control circuits all affect current flow.
+        </p>
+      </div>
+
+      <div class="example-box">
+        <strong>Heating Element:</strong>
+        <p>
+          A resistive heater draws current and converts electrical power into heat.
+          A change in element resistance changes both current and heating performance.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>A Step-by-Step Troubleshooting Method</h2>
+
+      <ol style="margin-left:22px;">
+        <li><strong>Verify the complaint.</strong> Confirm the failure and identify when it occurs.</li>
+        <li><strong>Inspect first.</strong> Look for damaged cables, loose connectors, corrosion, heat damage, and contamination.</li>
+        <li><strong>Check the source.</strong> Verify the expected supply voltage.</li>
+        <li><strong>Check behavior under load.</strong> A supply may look normal with no load and collapse when current is demanded.</li>
+        <li><strong>Compare expected and measured values.</strong> Use the schematic, service literature, or known-good data.</li>
+        <li><strong>Use Ohm's Law.</strong> Determine whether resistance or current is consistent with the measured voltage.</li>
+        <li><strong>Isolate the circuit.</strong> Narrow the problem to a board, connector, cable, component, or load.</li>
+        <li><strong>Verify the repair.</strong> Retest the device under normal operating conditions.</li>
+      </ol>
+
+      <div class="success-box">
+        <strong>Best practice:</strong>
+        Use Ohm's Law to support your diagnosis, not to replace the manufacturer troubleshooting procedure.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Common CBET Exam Traps</h2>
+      <ul>
+        <li>Using milliamps as though they were amps.</li>
+        <li>Using kilohms as though they were ohms.</li>
+        <li>Multiplying when the question requires division.</li>
+        <li>Ignoring what variable stays constant.</li>
+        <li>Assuming current is used up as it moves through a series circuit.</li>
+        <li>Assuming voltage is identical across all series components.</li>
+        <li>Forgetting that total parallel resistance is less than the smallest branch resistance.</li>
+        <li>Trying to measure resistance in an energized circuit.</li>
+        <li>Confusing electrical power in watts with electrical energy in watt-hours.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Worked Ohm's Law Problems</h2>
+
+      <div class="question-card">
+        <strong>Problem 1: A circuit has 48V and 16Ω. Find current.</strong>
+        <div class="answer">Answer: 3A</div>
+        <div class="why">I = V ÷ R = 48 ÷ 16 = 3A.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 2: A device draws 500mA from a 12V supply. Find resistance.</strong>
+        <div class="answer">Answer: 24Ω</div>
+        <div class="why">Convert 500mA to 0.5A. R = V ÷ I = 12 ÷ 0.5 = 24Ω.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 3: A 2kΩ resistor carries 5mA. Find voltage.</strong>
+        <div class="answer">Answer: 10V</div>
+        <div class="why">Convert 2kΩ to 2,000Ω and 5mA to 0.005A. V = I × R = 0.005 × 2,000 = 10V.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 4: A 120V circuit draws 2A. Find power.</strong>
+        <div class="answer">Answer: 240W</div>
+        <div class="why">P = V × I = 120 × 2 = 240W.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 5: Resistance doubles while voltage stays constant. What happens to current?</strong>
+        <div class="answer">Answer: Current is cut in half.</div>
+        <div class="why">Current and resistance are inversely related when voltage is constant.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 6: Voltage doubles while resistance stays constant. What happens to current?</strong>
+        <div class="answer">Answer: Current doubles.</div>
+        <div class="why">Current changes directly with voltage when resistance remains unchanged.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Additional CBET-Style Practice Questions</h2>
+
+      <div class="question-card">
+        <strong>6. Which condition creates the greatest current?</strong>
+        <p>A. High voltage and high resistance &nbsp; B. Low voltage and high resistance &nbsp; C. High voltage and low resistance &nbsp; D. Low voltage and open circuit</p>
+        <div class="answer">Answer: C. High voltage and low resistance</div>
+        <div class="why">Current increases with voltage and decreases with resistance.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>7. A circuit draws 250mA at 10V. What is the resistance?</strong>
+        <p>A. 2.5Ω &nbsp; B. 25Ω &nbsp; C. 40Ω &nbsp; D. 400Ω</p>
+        <div class="answer">Answer: C. 40Ω</div>
+        <div class="why">250mA = 0.25A. R = 10 ÷ 0.25 = 40Ω.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>8. Which measurement should normally be made with circuit power removed?</strong>
+        <p>A. Voltage &nbsp; B. Resistance &nbsp; C. Frequency &nbsp; D. Duty cycle</p>
+        <div class="answer">Answer: B. Resistance</div>
+        <div class="why">An ohmmeter supplies its own test current and should not be connected to an energized circuit.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>9. What happens to total resistance when another branch is added in parallel?</strong>
+        <p>A. It increases &nbsp; B. It decreases &nbsp; C. It becomes zero &nbsp; D. It equals source voltage</p>
+        <div class="answer">Answer: B. It decreases</div>
+        <div class="why">Adding a parallel path gives current another route and lowers total resistance.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>10. A 5V rail measures correctly with no load but falls to 2V under load. What should be suspected?</strong>
+        <p>A. Perfect operation &nbsp; B. A load or source problem &nbsp; C. Infinite voltage &nbsp; D. No current demand</p>
+        <div class="answer">Answer: B. A load or source problem</div>
+        <div class="why">Voltage collapse under load may indicate excessive current draw, high internal resistance, or a weak power supply.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>11. A fuse repeatedly opens after replacement. What is the best next step?</strong>
+        <p>A. Install a larger fuse &nbsp; B. Bypass the fuse &nbsp; C. Find the cause of excessive current &nbsp; D. Continue replacing fuses</p>
+        <div class="answer">Answer: C. Find the cause of excessive current</div>
+        <div class="why">The fuse is protecting the circuit. A repeated failure suggests an unresolved fault.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>12. Two 10Ω resistors are connected in series. What is total resistance?</strong>
+        <p>A. 5Ω &nbsp; B. 10Ω &nbsp; C. 20Ω &nbsp; D. 100Ω</p>
+        <div class="answer">Answer: C. 20Ω</div>
+        <div class="why">Series resistances add directly.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>13. Two equal 10Ω resistors are connected in parallel. What is total resistance?</strong>
+        <p>A. 5Ω &nbsp; B. 10Ω &nbsp; C. 20Ω &nbsp; D. 100Ω</p>
+        <div class="answer">Answer: A. 5Ω</div>
+        <div class="why">Two equal resistors in parallel have a combined resistance equal to half of one resistor.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>14. Which unit is used for electrical power?</strong>
+        <p>A. Volt &nbsp; B. Ampere &nbsp; C. Ohm &nbsp; D. Watt</p>
+        <div class="answer">Answer: D. Watt</div>
+        <div class="why">Power is measured in watts.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>15. Which fault is most likely to create very high current?</strong>
+        <p>A. Open circuit &nbsp; B. Short circuit &nbsp; C. High-resistance connector &nbsp; D. Disconnected battery</p>
+        <div class="answer">Answer: B. Short circuit</div>
+        <div class="why">A short circuit creates a very low-resistance path.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Rapid Review: Can You Explain These?</h2>
+      <ul>
+        <li>Why does current decrease when resistance increases?</li>
+        <li>Why can a loose connector become hot?</li>
+        <li>Why does an open circuit stop current?</li>
+        <li>Why can a short circuit blow a fuse?</li>
+        <li>Why should resistance be measured with power removed?</li>
+        <li>Why might voltage appear correct until a load is connected?</li>
+        <li>Why is total parallel resistance lower than each branch resistance?</li>
+        <li>How are Ohm's Law and electrical power connected?</li>
+      </ul>
+
+      <div class="notice-first">
+        <strong>Readiness check:</strong>
+        If you can answer these questions in your own words, you understand the concept more deeply than someone who only memorized V = I × R.
+      </div>
+    </section>
+
+    
+<section class="card">
+<h2>Power Supply Diagnostic Walkthrough</h2>
+<p>When a medical device will not power correctly, avoid replacing boards immediately. Verify the input voltage, measure the output under load, compare expected current with measured current, and use Ohm's Law to determine whether the fault is likely in the source, wiring, or load.</p>
+<div class="question-card"><strong>Case Study: Patient Monitor</strong>
+<p>A 12V rail drops to 8V only after the display powers on.</p>
+<div class="answer">Likely cause: excessive load or a weak power supply.</div>
+<div class="why">A no-load measurement can look normal even when the supply cannot deliver enough current.</div>
+</div>
+</section>
+
+<section class="card">
+<h2>Fuse Troubleshooting Guide</h2>
+<ul>
+<li>Never replace a fuse with a higher-rated fuse.</li>
+<li>Determine why the fuse opened before restoring power.</li>
+<li>Look for shorts, damaged insulation, failed components, or excessive current draw.</li>
+<li>Verify current after the repair.</li>
+</ul>
+<div class="warning-box"><strong>CBET Tip:</strong> A fuse is evidence of a problem—not the problem itself.</div>
+</section>
+
+<section class="card">
+<h2>Think Like a Biomedical Technician</h2>
+<p>Successful technicians don't guess. They compare expected values with measured values, isolate the fault, and confirm repairs with repeat measurements.</p>
+<ol style="margin-left:22px;">
+<li>Observe the failure.</li>
+<li>Check power.</li>
+<li>Measure voltage.</li>
+<li>Measure current when appropriate.</li>
+<li>Use Ohm's Law to explain the measurements.</li>
+<li>Repair and verify.</li>
+</ol>
+</section>
+
+<section class="card">
+<h2>Advanced CBET Challenge Questions</h2>
+
+<div class="question-card">
+<strong>16. Advanced Scenario 1</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>17. Advanced Scenario 2</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>18. Advanced Scenario 3</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>19. Advanced Scenario 4</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>20. Advanced Scenario 5</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>21. Advanced Scenario 6</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>22. Advanced Scenario 7</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>23. Advanced Scenario 8</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>24. Advanced Scenario 9</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>25. Advanced Scenario 10</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>26. Advanced Scenario 11</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>27. Advanced Scenario 12</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>28. Advanced Scenario 13</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>29. Advanced Scenario 14</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+<div class="question-card">
+<strong>30. Advanced Scenario 15</strong>
+<p>A biomedical technician measures values that do not match expected circuit behavior. What should be verified first?</p>
+<div class="answer">Answer: Verify measurements, units, and circuit conditions before replacing components.</div>
+<div class="why">Many CBET questions reward systematic troubleshooting over memorization.</div>
+</div>
+
+</section>
+
+<section class="card">
+<h2>Troubleshooting Decision Flow</h2>
+<table class="compare-table">
+<tr><th>Observation</th><th>Next Step</th></tr>
+<tr><td>No voltage</td><td>Check source, fuse, and input power.</td></tr>
+<tr><td>Voltage correct, current low</td><td>Check for excessive resistance or open connections.</td></tr>
+<tr><td>Voltage low under load</td><td>Evaluate power supply capacity and load current.</td></tr>
+<tr><td>Current excessive</td><td>Inspect for shorts or failed components.</td></tr>
+<tr><td>Intermittent readings</td><td>Inspect connectors, wiring, and solder joints.</td></tr>
+</table>
+</section>
+
+
+    <section id="ac-impedance" class="card">
+      <h2>Resistance vs. Impedance in AC Circuits</h2>
+      <p>
+        Ohm's Law still helps in alternating-current circuits, but resistance alone may not describe everything opposing current.
+        Capacitors and inductors create frequency-dependent opposition called <strong>reactance</strong>. The combined opposition is called
+        <strong>impedance</strong> and is measured in ohms.
+      </p>
+
+      <table class="compare-table">
+        <tr>
+          <th>Term</th>
+          <th>Where It Appears</th>
+          <th>What It Describes</th>
+        </tr>
+        <tr>
+          <td><strong>Resistance (R)</strong></td>
+          <td>DC and AC circuits</td>
+          <td>Opposition that converts electrical energy primarily into heat.</td>
+        </tr>
+        <tr>
+          <td><strong>Capacitive Reactance (X<sub>C</sub>)</strong></td>
+          <td>AC circuits with capacitors</td>
+          <td>Opposition that decreases as frequency increases.</td>
+        </tr>
+        <tr>
+          <td><strong>Inductive Reactance (X<sub>L</sub>)</strong></td>
+          <td>AC circuits with coils or transformers</td>
+          <td>Opposition that increases as frequency increases.</td>
+        </tr>
+        <tr>
+          <td><strong>Impedance (Z)</strong></td>
+          <td>AC circuits</td>
+          <td>The total opposition created by resistance and reactance.</td>
+        </tr>
+      </table>
+
+      <div class="formula">
+        I = V ÷ Z
+        <div class="formula-small">AC Current = Voltage ÷ Impedance</div>
+      </div>
+
+      <div class="notice-first">
+        <strong>CBET takeaway:</strong>
+        For a purely resistive load, impedance and resistance may be treated similarly. In circuits containing capacitors,
+        inductors, transformers, or frequency-sensitive loads, impedance gives the more complete picture.
+      </div>
+    </section>
+
+    <section id="nonlinear-devices" class="card">
+      <h2>Why Diodes, LEDs, and Transistors Are Different</h2>
+      <p>
+        A standard resistor is approximately linear: doubling the applied voltage roughly doubles the current when resistance
+        remains constant. Semiconductor devices do not always behave this way. Their effective resistance changes with voltage,
+        current, temperature, and operating region.
+      </p>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Diode</h3>
+          <p>Primarily allows current in one direction.</p>
+          <p>Very little forward current flows until the junction reaches its forward-voltage region.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>LED</h3>
+          <p>A light-emitting diode with a characteristic forward-voltage range.</p>
+          <p>A current-limiting resistor is normally required to prevent excessive current.</p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Transistor</h3>
+          <p>Can act as an electronic switch or amplifier.</p>
+          <p>A small control signal can influence a much larger circuit current.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <strong>LED resistor example:</strong>
+        <p>
+          A 5V supply powers an LED with a 2V forward drop. The desired current is 10mA.
+          The resistor must drop the remaining 3V. Convert 10mA to 0.01A:
+          R = 3V ÷ 0.01A = 300Ω. A nearby standard value such as 330Ω may be selected after checking the design requirements.
+        </p>
+      </div>
+
+      <div class="warning-box">
+        <strong>Important:</strong>
+        Ohm's Law is still used around semiconductor devices, but you must account for the device's voltage drop and operating behavior.
+      </div>
+    </section>
+
+    <section id="multimeter-mistakes" class="card">
+      <h2>Common Digital Multimeter Mistakes</h2>
+      <p>
+        Correct calculations are useless if the measurement was taken incorrectly. These mistakes can produce false conclusions,
+        damage a meter, damage equipment, or create a safety hazard.
+      </p>
+
+      <table class="compare-table">
+        <tr>
+          <th>Mistake</th>
+          <th>Why It Matters</th>
+          <th>Better Practice</th>
+        </tr>
+        <tr>
+          <td>Leaving the red lead in the current jack</td>
+          <td>The next voltage measurement may create a near-short through the meter.</td>
+          <td>Return the lead to the voltage/ohms jack immediately after measuring current.</td>
+        </tr>
+        <tr>
+          <td>Measuring resistance on a powered circuit</td>
+          <td>The meter supplies its own test signal and external voltage can create an invalid reading or damage.</td>
+          <td>Remove power, discharge stored energy, and confirm the circuit is safe.</td>
+        </tr>
+        <tr>
+          <td>Placing an ammeter directly across a source</td>
+          <td>An ammeter has very low internal resistance and may cause excessive current.</td>
+          <td>Open the circuit and connect the meter in series.</td>
+        </tr>
+        <tr>
+          <td>Ignoring meter range or category rating</td>
+          <td>The meter may overload or be unsuitable for the available energy level.</td>
+          <td>Select an appropriate range and use a meter rated for the measurement environment.</td>
+        </tr>
+        <tr>
+          <td>Trusting an in-circuit resistance reading without context</td>
+          <td>Parallel paths can make the measured resistance lower than the component's actual value.</td>
+          <td>Compare with the schematic and isolate one component lead when necessary and permitted.</td>
+        </tr>
+        <tr>
+          <td>Using continuity as a complete circuit test</td>
+          <td>A circuit may beep for continuity yet fail under normal current demand.</td>
+          <td>Check resistance, voltage drop, and performance under load.</td>
+        </tr>
+      </table>
+
+      <div class="success-box">
+        <strong>Technician habit:</strong>
+        Before touching the probes to a circuit, confirm the function, lead position, expected value, range, and safe connection method.
+      </div>
+    </section>
+
+    <section id="biomed-case-studies" class="card">
+      <h2>Biomedical Equipment Case Studies</h2>
+      <p>
+        Use each scenario to connect measured voltage, current, and resistance with a practical troubleshooting decision.
+      </p>
+
+      <div class="question-card">
+        <strong>Case 1: Infusion Pump Will Not Charge</strong>
+        <p>
+          The charger output is 15V with no battery connected. When the battery is connected, the output falls to 6V and the charger becomes warm.
+        </p>
+        <div class="answer">Most likely direction: investigate excessive load current, a failing battery, or a weak charger.</div>
+        <div class="why">
+          Correct no-load voltage does not prove the supply can maintain voltage while delivering current. Isolate the battery and charger according to the service procedure.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 2: Patient Monitor Has an Intermittent Display</strong>
+        <p>
+          The display works when the cable is moved. Supply voltage is correct at the power board but varies at the display connector.
+        </p>
+        <div class="answer">Most likely direction: inspect the cable, connector contacts, and solder joints for intermittent resistance.</div>
+        <div class="why">
+          A damaged connection can create changing resistance and voltage drop as the cable moves.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 3: Ventilator Blower Starts Slowly</strong>
+        <p>
+          The motor supply measures 24V with the motor disconnected but falls to 17V during startup. Startup current is above specification.
+        </p>
+        <div class="answer">Most likely direction: inspect for mechanical binding, motor failure, or a weak supply.</div>
+        <div class="why">
+          A stalled or heavily loaded motor can draw excessive current. The increased current can cause supply voltage to sag.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 4: Defibrillator Will Not Complete Charging</strong>
+        <p>
+          The low-voltage supply is normal, but the charging current is below the manufacturer's expected range.
+        </p>
+        <div class="answer">Most likely direction: follow the service manual to evaluate the charging path, switching circuit, connections, and energy-storage components.</div>
+        <div class="why">
+          Low charging current can result from excessive resistance, an open path, a control problem, or a component that is not being driven correctly.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 5: Surgical Light Is Dim</strong>
+        <p>
+          Source voltage is correct. A voltage-drop measurement across a connector shows 2.5V while the lamp is operating.
+        </p>
+        <div class="answer">Most likely direction: repair or replace the high-resistance connector according to the approved procedure.</div>
+        <div class="why">
+          A healthy closed connector should not consume a large portion of the supply voltage. Voltage across the connection indicates unwanted resistance under load.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 6: Ultrasound System Reboots During Imaging</strong>
+        <p>
+          Standby measurements are normal. During high processing demand, a power rail drops and ripple increases.
+        </p>
+        <div class="answer">Most likely direction: evaluate the power supply under load and inspect filtering components and high-current connections.</div>
+        <div class="why">
+          Dynamic failures may appear only when current demand increases. Static voltage checks can miss them.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 7: ECG Lead Reports Frequent Disconnects</strong>
+        <p>
+          Visual inspection is normal, but conductor resistance changes when the lead wire is flexed.
+        </p>
+        <div class="answer">Most likely direction: replace the damaged lead assembly.</div>
+        <div class="why">
+          A partially broken conductor creates intermittent resistance that can interrupt the low-level ECG signal.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 8: Battery Operated Device Has Short Runtime</strong>
+        <p>
+          Battery voltage appears acceptable at rest but drops sharply when the device begins operating.
+        </p>
+        <div class="answer">Most likely direction: perform the approved battery capacity or load test.</div>
+        <div class="why">
+          Increased internal resistance can allow normal open-circuit voltage while causing excessive voltage drop under load.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 9: Portable X-Ray Unit Blows an Input Fuse</strong>
+        <p>
+          A replacement fuse opens immediately when the system is powered.</p>
+        <div class="answer">Most likely direction: stop replacing fuses and isolate the overcurrent fault.</div>
+        <div class="why">
+          Repeated fuse operation indicates excessive current. Installing a larger fuse or bypassing protection is unsafe.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Case 10: Warming Device Heats Slowly</strong>
+        <p>
+          Supply voltage is within specification, but the heating element's measured resistance is much higher than the service value.
+        </p>
+        <div class="answer">Most likely direction: evaluate the element and its connections for deterioration or partial failure.</div>
+        <div class="why">
+          At constant voltage, increased resistance reduces current and lowers electrical power delivered to the heater.
+        </div>
+      </div>
+    </section>
+
+    <section id="meter-reading-exercises" class="card">
+      <h2>Read the Meter: Troubleshooting Exercises</h2>
+
+      <div class="question-card">
+        <strong>Exercise 1: 12V Source, 4Ω Load, 3A Measured</strong>
+        <p>Does the measurement agree with Ohm's Law?</p>
+        <div class="answer">Yes. Expected current is 12 ÷ 4 = 3A.</div>
+        <div class="why">The measured current matches the predicted value.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Exercise 2: 12V Source, 4Ω Intended Load, 1A Measured</strong>
+        <p>What effective resistance does the measurement indicate?</p>
+        <div class="answer">12Ω.</div>
+        <div class="why">
+          R = V ÷ I = 12 ÷ 1 = 12Ω. The circuit has more resistance than expected, so inspect the load and series connections.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Exercise 3: 24V Supply Falls to 18V at 2A</strong>
+        <p>What is the approximate internal or series resistance causing the 6V loss?</p>
+        <div class="answer">3Ω.</div>
+        <div class="why">R = V ÷ I = 6V ÷ 2A = 3Ω of effective unwanted series resistance.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Exercise 4: 5V Across a 1kΩ Resistor</strong>
+        <p>What current should flow?</p>
+        <div class="answer">5mA.</div>
+        <div class="why">I = 5 ÷ 1,000 = 0.005A, which equals 5mA.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Exercise 5: 10mA Through a 470Ω Resistor</strong>
+        <p>What voltage should appear across the resistor?</p>
+        <div class="answer">4.7V.</div>
+        <div class="why">Convert 10mA to 0.01A. V = 0.01 × 470 = 4.7V.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Exercise 6: Connector Drops 1.2V While Carrying 0.4A</strong>
+        <p>What is the connector's effective resistance?</p>
+        <div class="answer">3Ω.</div>
+        <div class="why">R = 1.2 ÷ 0.4 = 3Ω. That would be excessive for many power connectors and could create heat.</div>
+      </div>
+    </section>
+
+    <section id="advanced-worked-problems" class="card">
+      <h2>Advanced Worked Problems</h2>
+
+      <div class="question-card">
+        <strong>Problem 7: A 24V supply powers a 60Ω load. Find current and power.</strong>
+        <div class="answer">Current = 0.4A; Power = 9.6W.</div>
+        <div class="why">
+          I = 24 ÷ 60 = 0.4A. Then P = V × I = 24 × 0.4 = 9.6W.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 8: A device draws 800mA from a 15V adapter. Find the equivalent load resistance.</strong>
+        <div class="answer">18.75Ω.</div>
+        <div class="why">Convert 800mA to 0.8A. R = 15 ÷ 0.8 = 18.75Ω.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 9: Two resistors, 100Ω and 220Ω, are in series across 16V. Find total current.</strong>
+        <div class="answer">0.05A, or 50mA.</div>
+        <div class="why">Total resistance is 320Ω. I = 16 ÷ 320 = 0.05A.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 10: Two 100Ω resistors are connected in parallel across 10V. Find total current.</strong>
+        <div class="answer">0.2A, or 200mA.</div>
+        <div class="why">
+          Two equal 100Ω resistors in parallel equal 50Ω. I = 10 ÷ 50 = 0.2A.
+        </div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 11: A resistor dissipates 2W while carrying 0.2A. Find resistance.</strong>
+        <div class="answer">50Ω.</div>
+        <div class="why">Use P = I²R. R = P ÷ I² = 2 ÷ 0.04 = 50Ω.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>Problem 12: A 12V circuit should draw 300mA but draws 600mA. Compare the effective resistances.</strong>
+        <div class="answer">Expected resistance = 40Ω; measured effective resistance = 20Ω.</div>
+        <div class="why">
+          Expected: 12 ÷ 0.3 = 40Ω. Actual: 12 ÷ 0.6 = 20Ω. The lower effective resistance explains the doubled current.
+        </div>
+      </div>
+    </section>
+
+    <section id="advanced-cbet-questions" class="card">
+      <h2>Advanced CBET-Style Questions: 31–40</h2>
+
+      <div class="question-card">
+        <strong>31. A 24V supply powers a 48Ω load. What current should flow?</strong>
+        <p>A. 0.25A &nbsp; B. 0.5A &nbsp; C. 2A &nbsp; D. 72A</p>
+        <div class="answer">Answer: B. 0.5A</div>
+        <div class="why">I = V ÷ R = 24 ÷ 48 = 0.5A.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>32. Which condition can make a battery show normal voltage at rest but fail under load?</strong>
+        <p>A. Low internal resistance &nbsp; B. Increased internal resistance &nbsp; C. Infinite capacity &nbsp; D. Perfect connections</p>
+        <div class="answer">Answer: B. Increased internal resistance</div>
+        <div class="why">Internal resistance creates a larger voltage drop when current is demanded.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>33. A connector drops 2V while carrying 0.5A. What is its effective resistance?</strong>
+        <p>A. 0.25Ω &nbsp; B. 1Ω &nbsp; C. 4Ω &nbsp; D. 10Ω</p>
+        <div class="answer">Answer: C. 4Ω</div>
+        <div class="why">R = V ÷ I = 2 ÷ 0.5 = 4Ω.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>34. Why can continuity mode miss a failing power connection?</strong>
+        <p>A. Continuity always measures voltage &nbsp; B. A connection may pass a tiny test current but fail under load &nbsp; C. Continuity creates AC power &nbsp; D. The meter removes resistance</p>
+        <div class="answer">Answer: B. A connection may pass a tiny test current but fail under load</div>
+        <div class="why">Voltage-drop testing under normal current demand may reveal resistance that continuity mode does not.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>35. In an AC circuit, what term describes total opposition to current?</strong>
+        <p>A. Capacitance &nbsp; B. Impedance &nbsp; C. Conductance only &nbsp; D. Charge</p>
+        <div class="answer">Answer: B. Impedance</div>
+        <div class="why">Impedance combines resistance and reactance.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>36. Why is a resistor commonly placed in series with an LED?</strong>
+        <p>A. To increase source voltage &nbsp; B. To limit current &nbsp; C. To reverse polarity &nbsp; D. To create an open circuit</p>
+        <div class="answer">Answer: B. To limit current</div>
+        <div class="why">Once forward biased, an LED can draw damaging current without a limiting element.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>37. A supply measures correctly until the load is connected. What measurement is especially useful next?</strong>
+        <p>A. Voltage under load &nbsp; B. Room temperature only &nbsp; C. Fuse color &nbsp; D. Device weight</p>
+        <div class="answer">Answer: A. Voltage under load</div>
+        <div class="why">A source may have normal open-circuit voltage but collapse when current is demanded.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>38. A 5V circuit draws 20mA. What is the equivalent resistance?</strong>
+        <p>A. 25Ω &nbsp; B. 100Ω &nbsp; C. 250Ω &nbsp; D. 2,500Ω</p>
+        <div class="answer">Answer: C. 250Ω</div>
+        <div class="why">20mA = 0.02A. R = 5 ÷ 0.02 = 250Ω.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>39. Which action is unsafe when a fuse repeatedly opens?</strong>
+        <p>A. Inspecting for shorts &nbsp; B. Measuring current according to procedure &nbsp; C. Installing a larger fuse &nbsp; D. Reviewing the schematic</p>
+        <div class="answer">Answer: C. Installing a larger fuse</div>
+        <div class="why">A larger fuse defeats the intended protection and may allow damaging current.</div>
+      </div>
+
+      <div class="question-card">
+        <strong>40. A 12V heater's resistance increases from 6Ω to 12Ω. What happens to power?</strong>
+        <p>A. It doubles &nbsp; B. It is cut in half &nbsp; C. It remains constant &nbsp; D. It becomes zero</p>
+        <div class="answer">Answer: B. It is cut in half</div>
+        <div class="why">
+          P = V² ÷ R. At 6Ω, power is 24W. At 12Ω, power is 12W.
+        </div>
+      </div>
+    </section>
+
+    <section id="when-ohms-law-is-not-enough" class="card">
+      <h2>When Ohm's Law Is Not Enough</h2>
+      <p>
+        Ohm's Law remains foundational, but advanced troubleshooting may also require waveform analysis, frequency response,
+        component specifications, control signals, temperature behavior, software logs, and manufacturer diagnostic procedures.
+      </p>
+
+      <ul>
+        <li><strong>Diodes and LEDs:</strong> account for forward voltage and nonlinear current behavior.</li>
+        <li><strong>Transistors:</strong> identify whether the device is switching, amplifying, saturated, or cut off.</li>
+        <li><strong>Capacitors:</strong> evaluate charge, discharge, capacitance, leakage, equivalent series resistance, and frequency.</li>
+        <li><strong>Inductors and transformers:</strong> consider inductance, reactance, winding resistance, coupling, and frequency.</li>
+        <li><strong>Digital circuits:</strong> logic thresholds and timing may matter more than a simple equivalent resistance.</li>
+        <li><strong>Regulated power supplies:</strong> feedback, protection, ripple, switching operation, and load response affect behavior.</li>
+      </ul>
+
+      <div class="success-box">
+        <strong>The bigger lesson:</strong>
+        Ohm's Law helps you interpret electrical evidence. The schematic and service documentation tell you how the complete system is intended to work.
+      </div>
+    </section>
+
+<section class="final-cta">
       <h2>Ready to test yourself?</h2>
       <p>
         Take the Ohm's Law quiz first, then move into CBET electronics practice questions.
