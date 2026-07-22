@@ -350,7 +350,7 @@
 
     .achievement-grid{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
       gap:14px;
       margin-top:18px;
     }
@@ -550,17 +550,25 @@
           </div>
         </article>
 
-        <article class="module-card locked">
+        <article class="module-card locked" id="module4Card">
           <div class="module-number">4</div>
           <div>
             <div class="module-title">
-              <h3>Patient Assessment &amp; Vital Signs</h3>
-              <span class="status locked">Locked</span>
+              <h3>Vital Signs &amp; Patient Assessment</h3>
+              <span class="status locked" id="module4Status">Locked</span>
             </div>
-            <p class="module-desc">Temperature, pulse, respirations, blood pressure, oxygen saturation, pain assessment, height, weight, and documentation.</p>
-            <div class="module-meta"><span>Future module</span><span>Clinical foundations</span></div>
+            <p class="module-desc">Temperature, pulse, respirations, blood pressure, oxygen saturation, pain assessment, documentation, and clinical escalation.</p>
+            <div class="module-meta">
+              <span>8 lessons</span>
+              <span>60–90 minutes</span>
+              <span>250 XP</span>
+              <span>🩺 Vital Signs Specialist</span>
+            </div>
+            <div class="module-progress"><span id="module4Progress"></span></div>
           </div>
-          <div class="module-action"><span class="btn locked">Locked</span></div>
+          <div class="module-action">
+            <a class="btn locked" id="module4Button" href="/medical-assistant-module-4.html" aria-disabled="true">Complete Module 3</a>
+          </div>
         </article>
 
         <article class="module-card locked">
@@ -641,19 +649,24 @@
           <strong>Terminology Foundations</strong>
           <span>Complete all of Module 1</span>
         </div>
+        <div class="achievement" id="achievementVitals">
+          <div class="icon">🩺</div>
+          <strong>Vital Signs Specialist</strong>
+          <span>Pass Module 4 with 80% or higher</span>
+        </div>
       </div>
     </section>
 
     <section class="section dark">
       <h2>Module Completion</h2>
-      <p>When you complete Module 1, Anatomy &amp; Physiology will unlock automatically.</p>
+      <p>Complete each available module to unlock the next step in your Medical Assistant learning path.</p>
       <div class="completion-banner" id="completionBanner">
         <div class="icon">🎉</div>
         <strong>Medical Terminology Foundations Complete!</strong>
         <p>You completed eight lessons, passed the final checkpoint, earned your terminology badge, and unlocked Module 2.</p>
         <a class="btn white" href="#module2Card">View Unlocked Module 2 →</a>
       </div>
-      <p id="completionWaiting">Your Module 1 progress will appear here automatically.</p>
+      <p id="completionWaiting">Your module progress and newly unlocked lessons will appear here automatically.</p>
     </section>
 
     <section class="section">
@@ -725,18 +738,21 @@
         const m1=moduleState("msb_ma_module1_v1");
         const m2=moduleState("msb_ma_module2_v1");
         const m3=moduleState("msb_ma_module3_v1");
-        const c1=complete(m1), c2=complete(m2), c3=complete(m3);
+        const raw4=read("medskillbuilder_ma_module4");
+        const m4={completedLessons:Array.isArray(raw4.completedLessons)?raw4.completedLessons:[],quizPassed:!!raw4.passed,quickCheckPassed:false,streak:raw4.streak||1,storedXp:Number(raw4.xp)||0};
+        const c1=complete(m1), c2=complete(m2), c3=complete(m3), c4=complete(m4);
 
         const path=read(PATH_KEY);
         if(c1){path.module1Complete=true;path.module2Unlocked=true;}
         if(c2){path.module2Complete=true;path.module3Unlocked=true;}
         if(c3){path.module3Complete=true;path.module4Unlocked=true;}
+        if(c4){path.module4Complete=true;path.module5Unlocked=true;}
         localStorage.setItem(PATH_KEY,JSON.stringify(path));
 
-        const completedModules=[c1,c2,c3].filter(Boolean).length;
+        const completedModules=[c1,c2,c3,c4].filter(Boolean).length;
         const overallPercent=Math.round(completedModules/8*100);
-        const totalXp=xp(m1)+xp(m2)+xp(m3);
-        const streak=Math.max(m1.streak,m2.streak,m3.streak);
+        const totalXp=xp(m1)+xp(m2)+xp(m3)+(m4.storedXp||(c4?250:0));
+        const streak=Math.max(m1.streak,m2.streak,m3.streak,m4.streak);
 
         document.getElementById("overallProgressText").textContent=overallPercent+"% Complete";
         document.getElementById("overallProgressBar").style.width=overallPercent+"%";
@@ -749,6 +765,7 @@
         document.getElementById("achievementFour").classList.toggle("unlocked",m1.completedLessons.length>=4);
         document.getElementById("achievementQuiz").classList.toggle("unlocked",m1.quizPassed);
         document.getElementById("achievementModule").classList.toggle("unlocked",c1);
+        document.getElementById("achievementVitals").classList.toggle("unlocked",c4);
 
         const module1Card=document.getElementById("module1Card");
         const module1Status=document.getElementById("module1Status");
@@ -767,26 +784,39 @@
 
         setCard(2,c2?"complete":c1?"current":"locked",percent(m2));
         setCard(3,c3?"complete":c2?"current":"locked",percent(m3));
+        setCard(4,c4?"complete":c3?"current":"locked",percent(m4));
 
         const m2Button=document.getElementById("module2Button");
         const m3Button=document.getElementById("module3Button");
+        const m4Button=document.getElementById("module4Button");
         m2Button.href="/medical-assistant-module-2.html";
         m3Button.href="/medical-assistant-module-3.html";
+        m4Button.href="/medical-assistant-module-4.html";
         if(!c1) m2Button.textContent="Complete Module 1";
         if(!c2) m3Button.textContent="Complete Module 2";
+        if(!c3) m4Button.textContent="Complete Module 3";
 
         const hero=document.getElementById("heroContinueButton");
         const cont=document.getElementById("continueButton");
         const title=document.getElementById("continueTitle");
         const desc=document.getElementById("continueDescription");
 
-        if(c3){
-          hero.textContent="Review Module 3";
-          hero.href="/medical-assistant-module-3.html";
-          title.textContent="Module 3 complete";
-          desc.textContent="You completed Infection Control & Patient Safety. Module 4 is unlocked and ready for the next build.";
-          cont.textContent="Review Module 3 →";
-          cont.href="/medical-assistant-module-3.html";
+        if(c4){
+          hero.textContent="Review Module 4";
+          hero.href="/medical-assistant-module-4.html";
+          title.textContent="Module 4 complete";
+          desc.textContent="You earned the Vital Signs Specialist badge and completed all currently available modules.";
+          cont.textContent="Review Module 4 →";
+          cont.href="/medical-assistant-module-4.html";
+        }else if(c3){
+          hero.textContent=m4.completedLessons.length?"Continue Module 4":"Start Module 4";
+          hero.href="/medical-assistant-module-4.html";
+          title.textContent="Module 4: Vital Signs & Patient Assessment";
+          desc.textContent=m4.completedLessons.length
+            ? m4.completedLessons.length+" of 8 lessons complete. Continue your vital-signs training."
+            : "Infection Control & Patient Safety is complete. Begin vital signs and patient assessment.";
+          cont.textContent=m4.completedLessons.length?"Continue Module 4 →":"Start Module 4 →";
+          cont.href="/medical-assistant-module-4.html";
         }else if(c2){
           hero.textContent=m3.completedLessons.length?"Continue Module 3":"Start Module 3";
           hero.href="/medical-assistant-module-3.html";
