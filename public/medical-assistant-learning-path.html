@@ -571,17 +571,25 @@
           </div>
         </article>
 
-        <article class="module-card locked">
+        <article class="module-card locked" id="module5Card">
           <div class="module-number">5</div>
           <div>
             <div class="module-title">
               <h3>Clinical Procedures</h3>
-              <span class="status locked">Locked</span>
+              <span class="status locked" id="module5Status">Locked</span>
             </div>
-            <p class="module-desc">Specimen collection, blood glucose, EKG basics, medication safety, patient positioning, and assisting with procedures.</p>
-            <div class="module-meta"><span>Future module</span><span>Procedure focused</span></div>
+            <p class="module-desc">Medication safety, injections, specimen collection, venipuncture, capillary collection, EKG preparation, sterile technique, procedure assistance, and emergency response.</p>
+            <div class="module-meta">
+              <span>8 lessons</span>
+              <span>75–105 minutes</span>
+              <span>250 XP</span>
+              <span>💉 Clinical Procedures Specialist</span>
+            </div>
+            <div class="module-progress"><span id="module5Progress"></span></div>
           </div>
-          <div class="module-action"><span class="btn locked">Locked</span></div>
+          <div class="module-action">
+            <a class="btn locked" id="module5Button" href="/medical-assistant-module-5.html" aria-disabled="true">Complete Module 4</a>
+          </div>
         </article>
 
         <article class="module-card locked">
@@ -654,6 +662,11 @@
           <strong>Vital Signs Specialist</strong>
           <span>Pass Module 4 with 80% or higher</span>
         </div>
+        <div class="achievement" id="achievementClinical">
+          <div class="icon">💉</div>
+          <strong>Clinical Procedures Specialist</strong>
+          <span>Pass Module 5 with 80% or higher</span>
+        </div>
       </div>
     </section>
 
@@ -687,30 +700,56 @@
       const PATH_KEY = "msb_ma_path_v1";
 
       function read(key){
-        try{return JSON.parse(localStorage.getItem(key))||{};}catch(error){return {};}
+        try{return JSON.parse(localStorage.getItem(key))||{};}
+        catch(error){return {};}
       }
-      function moduleState(key){
+
+      function standardModuleState(key){
         const s=read(key);
         return {
           completedLessons:Array.isArray(s.completedLessons)?s.completedLessons:[],
           quizPassed:!!s.quizPassed,
           quickCheckPassed:!!s.quickCheckPassed,
-          streak:s.streak||1
+          streak:s.streak||1,
+          storedXp:Number(s.xp)||0
         };
       }
-      function complete(s){return s.completedLessons.length===8 && s.quizPassed;}
-      function percent(s){return Math.round((s.completedLessons.length+(s.quizPassed?1:0))/9*100);}
-      function xp(s){return s.completedLessons.length*100+(s.quickCheckPassed?50:0)+(s.quizPassed?250:0);}
 
-      function setCard(n, mode, progress){
+      function newerModuleState(key){
+        const s=read(key);
+        return {
+          completedLessons:Array.isArray(s.completedLessons)?s.completedLessons:[],
+          quizPassed:!!s.passed,
+          quickCheckPassed:false,
+          streak:s.streak||1,
+          storedXp:Number(s.xp)||0
+        };
+      }
+
+      function complete(s){
+        return s.completedLessons.length===8 && s.quizPassed;
+      }
+
+      function percent(s){
+        return Math.round((s.completedLessons.length+(s.quizPassed?1:0))/9*100);
+      }
+
+      function xp(s){
+        if(s.storedXp) return s.completedLessons.length*100+s.storedXp;
+        return s.completedLessons.length*100+(s.quickCheckPassed?50:0)+(s.quizPassed?250:0);
+      }
+
+      function setCard(n,mode,progress){
         const card=document.getElementById(`module${n}Card`);
         const status=document.getElementById(`module${n}Status`);
         const button=document.getElementById(`module${n}Button`);
         const bar=document.getElementById(`module${n}Progress`);
+
         if(bar) bar.style.width=progress+"%";
         if(!card||!status||!button) return;
 
         card.classList.remove("locked","current","complete");
+
         if(mode==="complete"){
           card.classList.add("complete");
           status.className="status complete";
@@ -735,24 +774,30 @@
       }
 
       function update(){
-        const m1=moduleState("msb_ma_module1_v1");
-        const m2=moduleState("msb_ma_module2_v1");
-        const m3=moduleState("msb_ma_module3_v1");
-        const raw4=read("medskillbuilder_ma_module4");
-        const m4={completedLessons:Array.isArray(raw4.completedLessons)?raw4.completedLessons:[],quizPassed:!!raw4.passed,quickCheckPassed:false,streak:raw4.streak||1,storedXp:Number(raw4.xp)||0};
-        const c1=complete(m1), c2=complete(m2), c3=complete(m3), c4=complete(m4);
+        const m1=standardModuleState("msb_ma_module1_v1");
+        const m2=standardModuleState("msb_ma_module2_v1");
+        const m3=standardModuleState("msb_ma_module3_v1");
+        const m4=newerModuleState("medskillbuilder_ma_module4");
+        const m5=newerModuleState("medskillbuilder_ma_module5");
+
+        const c1=complete(m1);
+        const c2=complete(m2);
+        const c3=complete(m3);
+        const c4=complete(m4);
+        const c5=complete(m5);
 
         const path=read(PATH_KEY);
         if(c1){path.module1Complete=true;path.module2Unlocked=true;}
         if(c2){path.module2Complete=true;path.module3Unlocked=true;}
         if(c3){path.module3Complete=true;path.module4Unlocked=true;}
         if(c4){path.module4Complete=true;path.module5Unlocked=true;}
+        if(c5){path.module5Complete=true;path.module6Unlocked=true;}
         localStorage.setItem(PATH_KEY,JSON.stringify(path));
 
-        const completedModules=[c1,c2,c3,c4].filter(Boolean).length;
+        const completedModules=[c1,c2,c3,c4,c5].filter(Boolean).length;
         const overallPercent=Math.round(completedModules/8*100);
-        const totalXp=xp(m1)+xp(m2)+xp(m3)+(m4.storedXp||(c4?250:0));
-        const streak=Math.max(m1.streak,m2.streak,m3.streak,m4.streak);
+        const totalXp=xp(m1)+xp(m2)+xp(m3)+xp(m4)+xp(m5);
+        const streak=Math.max(m1.streak,m2.streak,m3.streak,m4.streak,m5.streak);
 
         document.getElementById("overallProgressText").textContent=overallPercent+"% Complete";
         document.getElementById("overallProgressBar").style.width=overallPercent+"%";
@@ -766,14 +811,19 @@
         document.getElementById("achievementQuiz").classList.toggle("unlocked",m1.quizPassed);
         document.getElementById("achievementModule").classList.toggle("unlocked",c1);
         document.getElementById("achievementVitals").classList.toggle("unlocked",c4);
+        document.getElementById("achievementClinical").classList.toggle("unlocked",c5);
 
         const module1Card=document.getElementById("module1Card");
         const module1Status=document.getElementById("module1Status");
         const module1Button=document.getElementById("module1Button");
+
         if(c1){
-          module1Card.classList.remove("current"); module1Card.classList.add("complete");
-          module1Status.className="status complete"; module1Status.textContent="Complete";
-          module1Button.className="btn green"; module1Button.textContent="Review Module";
+          module1Card.classList.remove("current");
+          module1Card.classList.add("complete");
+          module1Status.className="status complete";
+          module1Status.textContent="Complete";
+          module1Button.className="btn green";
+          module1Button.textContent="Review Module";
         }else{
           module1Card.classList.add("current");
           module1Status.className="status active";
@@ -785,29 +835,44 @@
         setCard(2,c2?"complete":c1?"current":"locked",percent(m2));
         setCard(3,c3?"complete":c2?"current":"locked",percent(m3));
         setCard(4,c4?"complete":c3?"current":"locked",percent(m4));
+        setCard(5,c5?"complete":c4?"current":"locked",percent(m5));
 
         const m2Button=document.getElementById("module2Button");
         const m3Button=document.getElementById("module3Button");
         const m4Button=document.getElementById("module4Button");
+        const m5Button=document.getElementById("module5Button");
+
         m2Button.href="/medical-assistant-module-2.html";
         m3Button.href="/medical-assistant-module-3.html";
         m4Button.href="/medical-assistant-module-4.html";
+        m5Button.href="/medical-assistant-module-5.html";
+
         if(!c1) m2Button.textContent="Complete Module 1";
         if(!c2) m3Button.textContent="Complete Module 2";
         if(!c3) m4Button.textContent="Complete Module 3";
+        if(!c4) m5Button.textContent="Complete Module 4";
 
         const hero=document.getElementById("heroContinueButton");
         const cont=document.getElementById("continueButton");
         const title=document.getElementById("continueTitle");
         const desc=document.getElementById("continueDescription");
 
-        if(c4){
-          hero.textContent="Review Module 4";
-          hero.href="/medical-assistant-module-4.html";
-          title.textContent="Module 4 complete";
-          desc.textContent="You earned the Vital Signs Specialist badge and completed all currently available modules.";
-          cont.textContent="Review Module 4 →";
-          cont.href="/medical-assistant-module-4.html";
+        if(c5){
+          hero.textContent="Review Module 5";
+          hero.href="/medical-assistant-module-5.html";
+          title.textContent="Module 5 complete";
+          desc.textContent="You earned the Clinical Procedures Specialist badge and completed all currently available modules.";
+          cont.textContent="Review Module 5 →";
+          cont.href="/medical-assistant-module-5.html";
+        }else if(c4){
+          hero.textContent=m5.completedLessons.length?"Continue Module 5":"Start Module 5";
+          hero.href="/medical-assistant-module-5.html";
+          title.textContent="Module 5: Clinical Procedures";
+          desc.textContent=m5.completedLessons.length
+            ? m5.completedLessons.length+" of 8 lessons complete. Continue your clinical-procedures training."
+            : "Vital Signs & Patient Assessment is complete. Begin clinical procedures.";
+          cont.textContent=m5.completedLessons.length?"Continue Module 5 →":"Start Module 5 →";
+          cont.href="/medical-assistant-module-5.html";
         }else if(c3){
           hero.textContent=m4.completedLessons.length?"Continue Module 4":"Start Module 4";
           hero.href="/medical-assistant-module-4.html";
@@ -838,7 +903,9 @@
         }else{
           hero.textContent=m1.completedLessons.length?"Continue Module 1":"Start Learning";
           hero.href="/medical-assistant-module-1.html";
-          title.textContent=m1.completedLessons.length?"Continue Medical Terminology Foundations":"Start Medical Terminology Foundations";
+          title.textContent=m1.completedLessons.length
+            ? "Continue Medical Terminology Foundations"
+            : "Start Medical Terminology Foundations";
           desc.textContent=m1.completedLessons.length
             ? m1.completedLessons.length+" of 8 lessons complete. Pick up where you left off."
             : "Begin Module 1 and learn how medical words are built.";
@@ -846,8 +913,37 @@
           cont.href="/medical-assistant-module-1.html";
         }
 
-        document.getElementById("completionBanner").classList.toggle("show",c1);
-        document.getElementById("completionWaiting").style.display=c1?"none":"";
+        const banner=document.getElementById("completionBanner");
+        const waiting=document.getElementById("completionWaiting");
+        const bannerTitle=banner.querySelector("strong");
+        const bannerText=banner.querySelector("p");
+        const bannerLink=banner.querySelector("a");
+
+        if(c5){
+          banner.classList.add("show");
+          bannerTitle.textContent="All Available Modules Complete!";
+          bannerText.textContent="You completed Modules 1–5 and earned the Clinical Procedures Specialist badge.";
+          bannerLink.textContent="Review Module 5 →";
+          bannerLink.href="/medical-assistant-module-5.html";
+          waiting.style.display="none";
+        }else if(c4){
+          banner.classList.add("show");
+          bannerTitle.textContent="Vital Signs & Patient Assessment Complete!";
+          bannerText.textContent="You completed Module 4 and unlocked Clinical Procedures.";
+          bannerLink.textContent="Open Module 5 →";
+          bannerLink.href="/medical-assistant-module-5.html";
+          waiting.style.display="none";
+        }else if(c1){
+          banner.classList.add("show");
+          bannerTitle.textContent="Medical Terminology Foundations Complete!";
+          bannerText.textContent="You completed Module 1 and unlocked Anatomy & Physiology.";
+          bannerLink.textContent="Open Module 2 →";
+          bannerLink.href="/medical-assistant-module-2.html";
+          waiting.style.display="none";
+        }else{
+          banner.classList.remove("show");
+          waiting.style.display="";
+        }
       }
 
       update();
