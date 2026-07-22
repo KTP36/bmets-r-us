@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Medical Assistant Infection Control Module | MedSkillBuilder Academy</title>
+  <meta name="description" content="Study infection control and patient safety for medical assisting with eight guided lessons, clinical scenarios, progress tracking, XP, and a final assessment." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/medical-assistant-module-1.html" />
+  <meta property="og:title" content="Medical Assistant Module 1: Infection Control & Patient Safety" />
+  <meta property="og:description" content="A free guided medical terminology module for future medical assistants, healthcare students, and beginners." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/medical-assistant-module-1.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Course",
+    "name":"Medical Assistant Module 1: Infection Control & Patient Safety",
+    "description":"A beginner-friendly guided module covering medical word parts, prefixes, suffixes, root words, abbreviations, directional terms, body regions, and terminology practice.",
+    "provider":{"@type":"Organization","name":"MedSkillBuilder","url":"https://medskillbuilder.com"},
+    "isAccessibleForFree":true,
+    "educationalLevel":"Beginner",
+    "coursePrerequisites":"No prior healthcare experience required"
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy:#082f57;
+      --navy2:#12355b;
+      --blue:#2563eb;
+      --blue2:#1d6fa5;
+      --purple:#6d28d9;
+      --purple2:#8b5cf6;
+      --green:#16a34a;
+      --green2:#22c55e;
+      --orange:#f97316;
+      --red:#dc2626;
+      --ink:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --white:#fff;
+      --soft:#f8fafc;
+      --shadow:0 18px 45px rgba(15,23,42,.10);
+      --soft-shadow:0 7px 20px rgba(15,23,42,.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      line-height:1.65;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left,rgba(139,92,246,.14),transparent 33%),
+        radial-gradient(circle at top right,rgba(37,99,235,.12),transparent 28%),
+        linear-gradient(180deg,#faf7ff 0%,#f8fbff 45%,#fff 100%);
+    }
+
+    a{color:inherit}
+    button,input{font:inherit}
+    .container{width:min(1120px,calc(100% - 34px));margin:0 auto}
+
+    .topbar{
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(226,232,240,.9);
+      padding:16px 0;
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{width:56px;height:auto}
+    .brand strong{display:block;color:var(--navy);font-size:24px;line-height:1.1}
+    .brand span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+    .mini-nav{display:flex;gap:9px;flex-wrap:wrap}
+    .mini-nav a{
+      text-decoration:none;background:#fff;border:1px solid var(--border);
+      padding:9px 14px;border-radius:999px;color:var(--navy);font-weight:800;
+      box-shadow:var(--soft-shadow);font-size:.92rem;
+    }
+
+    header{
+      color:#fff;
+      padding:64px 0 58px;
+      background:
+        radial-gradient(circle at 90% 20%,rgba(34,197,94,.22),transparent 28%),
+        linear-gradient(135deg,var(--purple),var(--purple2));
+      border-radius:0 0 36px 36px;
+      box-shadow:0 24px 60px rgba(109,40,217,.23);
+      position:relative;overflow:hidden;
+    }
+    header:before,header:after{content:"";position:absolute;border-radius:16px;background:rgba(255,255,255,.1)}
+    header:before{width:310px;height:310px;right:-90px;top:-125px}
+    header:after{width:270px;height:270px;left:-120px;bottom:-150px}
+    .hero{position:relative;z-index:1}
+    .eyebrow{
+      display:inline-flex;padding:8px 14px;border-radius:999px;
+      background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+      font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;
+    }
+    h1{font-size:clamp(40px,6vw,68px);line-height:1;letter-spacing:-.05em;margin-bottom:18px}
+    header p{font-size:clamp(18px,2.1vw,22px);color:#f3e8ff;max-width:900px;margin-bottom:14px}
+    .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .meta-pill{
+      padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.25);font-weight:800;font-size:.92rem;
+    }
+
+    main{padding:34px 0 56px}
+    .section{
+      background:rgba(255,255,255,.97);border:1px solid var(--border);
+      border-radius:28px;padding:30px;margin-bottom:24px;box-shadow:var(--shadow);
+    }
+    .section.highlight{
+      background:linear-gradient(180deg,rgba(245,243,255,.95),rgba(255,255,255,.98));
+      border-color:rgba(139,92,246,.35);
+    }
+    .section.dark{
+      color:#fff;background:linear-gradient(135deg,var(--purple),var(--navy));
+      border-color:rgba(255,255,255,.16);
+    }
+    .section.dark h2,.section.dark p,.section.dark li{color:#fff}
+    h2{font-size:clamp(28px,4vw,43px);line-height:1.12;color:var(--purple);letter-spacing:-.035em;margin-bottom:12px}
+    h3{color:var(--navy);font-size:22px;margin-bottom:8px}
+    p{color:#1f2937;margin-bottom:12px;font-size:17px}
+    ul{margin:12px 0 0 22px}
+    li{margin-bottom:8px;color:#1f2937}
+
+    .progress-wrap{margin-top:24px}
+    .progress-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px;font-weight:900}
+    .progress-track{height:18px;background:rgba(255,255,255,.22);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.28)}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--green2),#86efac);transition:width .3s ease}
+    .progress-note{font-size:14px;color:#e9d5ff;margin-top:8px}
+
+    .grid-2,.lesson-grid,.objective-grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .objective-grid{grid-template-columns:repeat(3,1fr);margin-top:18px}
+    .objective{
+      border:1px solid var(--border);border-radius:18px;padding:18px;background:#f8fbff;
+      color:var(--navy);font-weight:800;
+    }
+
+    .lesson-grid{grid-template-columns:repeat(2,1fr);margin-top:22px}
+    .lesson-card{
+      background:#fff;border:1px solid var(--border);border-radius:22px;padding:21px;
+      box-shadow:var(--soft-shadow);display:flex;flex-direction:column;gap:12px;position:relative;
+    }
+    .lesson-card.complete{border-color:#86efac;background:#f0fdf4}
+    .lesson-top{display:flex;gap:12px;align-items:flex-start}
+    .lesson-number{
+      flex:0 0 42px;width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;background:#ede9fe;color:var(--purple);font-weight:900;
+    }
+    .lesson-card.complete .lesson-number{background:#dcfce7;color:#166534}
+    .lesson-title{font-weight:900;color:var(--navy);font-size:20px;line-height:1.2}
+    .lesson-time{font-size:13px;color:var(--muted);font-weight:800;margin-top:4px}
+    .lesson-desc{font-size:15px;color:var(--muted);margin:0}
+    .lesson-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+      padding:12px 17px;border-radius:999px;border:none;text-decoration:none;font-weight:900;
+      cursor:pointer;transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff}
+    .btn.secondary{background:#eff6ff;color:#1e3a8a;border:1px solid #bfdbfe}
+    .btn.complete-btn{background:#ecfdf5;color:#166534;border:1px solid #86efac}
+    .lesson-card.complete .complete-btn{background:#166534;color:#fff}
+
+    .note,.success,.warning{
+      border-radius:18px;padding:16px 18px;margin:18px 0;font-weight:800;
+    }
+    .note{background:#eff6ff;border:1px solid #bfdbfe;border-left:6px solid var(--blue);color:#1e3a8a}
+    .success{background:#ecfdf5;border:1px solid #bbf7d0;border-left:6px solid var(--green);color:#065f46}
+    .warning{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);color:#7c2d12}
+
+    .quiz-card{
+      background:#f8fbff;border:1px solid var(--border);border-radius:20px;padding:20px;margin:16px 0;
+    }
+    .quiz-card legend{font-weight:900;color:var(--navy);padding:0 6px;font-size:18px}
+    .option{display:block;padding:10px 12px;margin:8px 0;border-radius:12px;background:#fff;border:1px solid var(--border);cursor:pointer}
+    .option:hover{border-color:#a78bfa;background:#faf5ff}
+    .option input{margin-right:8px}
+    .quiz-result{display:none;margin-top:18px;padding:18px;border-radius:18px;font-weight:900}
+    .quiz-result.pass{display:block;background:#ecfdf5;border:1px solid #86efac;color:#166534}
+    .quiz-result.retry{display:block;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}
+
+    .course-footer{
+      background:var(--navy);color:#fff;text-align:center;padding:36px 0;margin-top:44px;
+    }
+    .course-footer p{color:rgba(255,255,255,.86);font-size:14px}
+    .course-footer a{color:#c4b5fd;text-decoration:none;font-weight:900}
+    .disclaimer{font-size:14px;color:var(--muted);margin-top:12px}
+
+
+    /* Enhanced learning experience */
+    .learner-dashboard{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr)) 1.35fr;
+      gap:12px;
+      margin-top:24px;
+    }
+    .dashboard-stat,.continue-panel{
+      border-radius:18px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.13);
+      backdrop-filter:blur(8px);
+    }
+    .dashboard-stat span{
+      display:block;
+      color:#ede9fe;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .dashboard-stat strong{
+      display:block;
+      margin-top:5px;
+      color:#fff;
+      font-size:25px;
+      line-height:1;
+    }
+    .continue-panel{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:8px;
+    }
+    .continue-panel small{color:#ede9fe;font-weight:800}
+    .continue-panel strong{font-size:18px;line-height:1.2}
+    .continue-panel .btn{align-self:flex-start;background:#fff;color:var(--purple)}
+    .coach-card{
+      display:grid;
+      grid-template-columns:82px 1fr;
+      gap:18px;
+      align-items:center;
+      background:linear-gradient(135deg,#eff6ff,#faf5ff);
+      border:1px solid #c4b5fd;
+      border-radius:22px;
+      padding:20px;
+      margin-top:20px;
+    }
+    .coach-card img{
+      width:82px;
+      height:82px;
+      object-fit:contain;
+      background:#fff;
+      border-radius:50%;
+      padding:7px;
+      box-shadow:var(--soft-shadow);
+    }
+    .coach-label{
+      display:inline-block;
+      color:var(--purple);
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:5px;
+    }
+    .course-map{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .map-step{
+      min-height:92px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:15px;
+      background:#fff;
+      position:relative;
+    }
+    .map-step strong{display:block;color:var(--navy);margin-bottom:4px}
+    .map-step span{font-size:13px;color:var(--muted)}
+    .map-step.active{
+      border-color:#8b5cf6;
+      box-shadow:0 0 0 3px rgba(139,92,246,.12);
+      background:#faf5ff;
+    }
+    .map-step.done{background:#f0fdf4;border-color:#86efac}
+    .map-step.done:after{
+      content:"✓";
+      position:absolute;
+      right:12px;
+      top:9px;
+      color:#166534;
+      font-weight:900;
+    }
+    .knowledge-check{
+      background:linear-gradient(180deg,#f8fbff,#fff);
+      border:1px solid #bfdbfe;
+      border-radius:22px;
+      padding:22px;
+      margin-top:18px;
+    }
+    .check-question{
+      padding:16px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .check-question:last-of-type{border-bottom:none}
+    .check-question strong{display:block;color:var(--navy);margin-bottom:9px}
+    .check-options{display:flex;gap:9px;flex-wrap:wrap}
+    .check-option{
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--ink);
+      border-radius:999px;
+      padding:9px 13px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .check-option:hover{border-color:#8b5cf6;background:#faf5ff}
+    .check-option.selected{background:#ede9fe;border-color:#8b5cf6;color:#5b21b6}
+    .check-feedback{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:15px;
+      display:none;
+      font-weight:900;
+    }
+    .check-feedback.show{display:block}
+    .check-feedback.pass{background:#ecfdf5;color:#166534;border:1px solid #86efac}
+    .check-feedback.retry{background:#fff7ed;color:#9a3412;border:1px solid #fdba74}
+    .lesson-card.next-up{
+      border-color:#8b5cf6;
+      box-shadow:0 0 0 4px rgba(139,92,246,.11),var(--soft-shadow);
+    }
+    .lesson-card.next-up:before{
+      content:"NEXT UP";
+      position:absolute;
+      right:15px;
+      top:14px;
+      background:var(--purple);
+      color:#fff;
+      border-radius:999px;
+      padding:5px 9px;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+    }
+    .completion-badge{
+      display:none;
+      margin:18px auto 0;
+      width:min(360px,100%);
+      text-align:center;
+      padding:20px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:22px;
+    }
+    .completion-badge.show{display:block}
+    .completion-badge .badge-icon{font-size:50px;line-height:1}
+    .completion-badge strong{display:block;font-size:22px;margin-top:8px}
+    .confetti-piece{
+      position:fixed;
+      width:10px;
+      height:16px;
+      top:-20px;
+      z-index:9999;
+      pointer-events:none;
+      animation:confettiFall 2.8s linear forwards;
+    }
+    @keyframes confettiFall{
+      to{transform:translate3d(var(--drift),105vh,0) rotate(760deg);opacity:.95}
+    }
+
+    @media(max-width:850px){
+      .objective-grid,.lesson-grid,.grid-2,.learner-dashboard,.course-map{grid-template-columns:1fr}
+      .coach-card{grid-template-columns:64px 1fr}
+      .coach-card img{width:64px;height:64px}
+      .section{padding:23px 19px}
+      header{padding:46px 0;border-radius:0 0 28px 28px}
+      .btn{width:100%}
+      .lesson-actions{flex-direction:column}
+      .topbar{position:static}
+    }
+  </style>
+</head>
+
+
+
+<body>
+  <div class="progress-top"><div id="topProgress"></div></div>
+
+  <header class="site-header">
+    <a class="brand" href="/medical-assistant-learning-path.html">
+      <img src="/medskillbuilder-logo.png" alt="MedSkillBuilder logo">
+      <div><strong>MedSkillBuilder Academy</strong><span>Medical Assistant Learning Path</span></div>
+    </a>
+    <a class="header-link" href="/medical-assistant-learning-path.html">← Learning Path</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Module 3 of 8</span>
+        <h1>Infection Control &amp; Patient Safety</h1>
+        <p>Learn how infections spread, when to use standard and transmission-based precautions, how to select PPE, and what to do after an occupational exposure.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#lesson-1" id="continueButton">Begin Module 3</a>
+          <a class="btn secondary" href="#module-map">View Module Map</a>
+        </div>
+        <div class="hero-note">Eight lessons · Clinical scenarios · Final checkpoint · 80% required</div>
+      </div>
+
+      <aside class="progress-card">
+        <div class="progress-ring" id="progressRing"><span id="progressPercent">0%</span></div>
+        <h2>Your Progress</h2>
+        <p id="progressText">0 of 8 lessons complete</p>
+        <div class="stats-grid">
+          <div><strong id="xpCount">0</strong><span>XP earned</span></div>
+          <div><strong id="streakCount">1</strong><span>day streak</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="continue-panel">
+      <div>
+        <span class="small-label">CONTINUE LEARNING</span>
+        <h2 id="continueTitle">Start with the chain of infection</h2>
+        <p id="continueDescription">Learn the six links and how healthcare workers can interrupt transmission.</p>
+      </div>
+      <a class="btn primary" href="#lesson-1" id="continuePanelButton">Start Lesson 1 →</a>
+    </section>
+
+    <section class="section" id="module-map">
+      <span class="section-kicker">MODULE MAP</span>
+      <h2>Eight guided lessons</h2>
+      <p>Complete each lesson in order. Your progress is saved automatically on this device.</p>
+      <div class="lesson-map">
+        <a href="#lesson-1" data-map="1"><span>1</span>Chain of Infection</a>
+        <a href="#lesson-2" data-map="2"><span>2</span>Standard Precautions</a>
+        <a href="#lesson-3" data-map="3"><span>3</span>Transmission Precautions</a>
+        <a href="#lesson-4" data-map="4"><span>4</span>PPE</a>
+        <a href="#lesson-5" data-map="5"><span>5</span>Hand Hygiene</a>
+        <a href="#lesson-6" data-map="6"><span>6</span>Asepsis</a>
+        <a href="#lesson-7" data-map="7"><span>7</span>Sharps &amp; Bloodborne Pathogens</a>
+        <a href="#lesson-8" data-map="8"><span>8</span>Waste &amp; Exposure Response</a>
+      </div>
+    </section>
+
+    <section class="lesson section" id="lesson-1" data-lesson="1">
+      <span class="lesson-number">Lesson 1</span>
+      <h2>The Chain of Infection</h2>
+      <p>Infection requires a connected chain. Breaking even one link can prevent transmission.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>1. Infectious agent</strong><span>Bacteria, viruses, fungi, or parasites</span></div>
+        <div class="concept"><strong>2. Reservoir</strong><span>Where the organism lives and multiplies</span></div>
+        <div class="concept"><strong>3. Portal of exit</strong><span>How it leaves the reservoir</span></div>
+        <div class="concept"><strong>4. Mode of transmission</strong><span>How it travels to another person</span></div>
+        <div class="concept"><strong>5. Portal of entry</strong><span>How it enters the next host</span></div>
+        <div class="concept"><strong>6. Susceptible host</strong><span>A person vulnerable to infection</span></div>
+      </div>
+      <div class="tip"><strong>Clinical pearl:</strong> Hand hygiene interrupts the mode-of-transmission link and is one of the most effective infection-prevention actions.</div>
+      <div class="tip"><strong>Memory trick:</strong> Agent → Reservoir → Exit → Transmission → Entry → Host.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-2" data-lesson="2">
+      <span class="lesson-number">Lesson 2</span>
+      <h2>Standard Precautions</h2>
+      <p>Use standard precautions for every patient, regardless of diagnosis or known infection status. Treat blood, body fluids, nonintact skin, and mucous membranes as potentially infectious.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Hand hygiene</strong><span>Before and after patient contact</span></div>
+        <div class="concept"><strong>PPE selection</strong><span>Based on anticipated exposure</span></div>
+        <div class="concept"><strong>Respiratory hygiene</strong><span>Contain coughs and respiratory secretions</span></div>
+        <div class="concept"><strong>Injection safety</strong><span>Use a new needle and syringe every time</span></div>
+        <div class="concept"><strong>Sharps safety</strong><span>Dispose immediately in an approved container</span></div>
+        <div class="concept"><strong>Environmental cleaning</strong><span>Clean and disinfect contaminated surfaces</span></div>
+      </div>
+      <div class="tip"><strong>Common mistake:</strong> Waiting for a confirmed diagnosis before using precautions. Standard precautions begin with the first patient interaction.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-3" data-lesson="3">
+      <span class="lesson-number">Lesson 3</span>
+      <h2>Transmission-Based Precautions</h2>
+      <p>Transmission-based precautions are added to standard precautions when a pathogen spreads through contact, droplets, or airborne particles.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Contact</strong><span>Gown and gloves; dedicated equipment when possible</span></div>
+        <div class="concept"><strong>Droplet</strong><span>Surgical mask for close contact; patient masking during transport</span></div>
+        <div class="concept"><strong>Airborne</strong><span>Fit-tested respirator and airborne-infection isolation room</span></div>
+      </div>
+      <div class="tip"><strong>Examples:</strong> Contact may be used for uncontrolled drainage or certain gastrointestinal infections. Droplet may be used for influenza. Airborne may be used for measles, varicella, or pulmonary tuberculosis.</div>
+      <div class="tip"><strong>Common mistake:</strong> Confusing a surgical mask with a respirator. A surgical mask is not a substitute for a fit-tested respirator when airborne precautions are required.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-4" data-lesson="4">
+      <span class="lesson-number">Lesson 4</span>
+      <h2>Personal Protective Equipment</h2>
+      <p>Select PPE based on the task and the exposure you reasonably expect. PPE protects skin, clothing, eyes, nose, and mouth.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Gloves</strong><span>Blood, body fluids, mucous membranes, or nonintact skin</span></div>
+        <div class="concept"><strong>Gown</strong><span>Possible contamination of skin or clothing</span></div>
+        <div class="concept"><strong>Mask or respirator</strong><span>Respiratory protection based on transmission risk</span></div>
+        <div class="concept"><strong>Eye protection</strong><span>Splash or spray risk to eyes</span></div>
+      </div>
+      <div class="tip"><strong>Typical donning order:</strong> Gown → mask or respirator → eye protection → gloves.</div>
+      <div class="tip"><strong>Typical removal principle:</strong> Remove the most contaminated items without touching clean skin or clothing; perform hand hygiene immediately afterward.</div>
+      <div class="tip"><strong>Real-world scenario:</strong> For a procedure likely to splash blood toward your face, gloves alone are not enough. Add a gown, mask, and eye protection or face shield.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-5" data-lesson="5">
+      <span class="lesson-number">Lesson 5</span>
+      <h2>Hand Hygiene</h2>
+      <p>Perform hand hygiene before touching a patient, before a clean procedure, after body-fluid exposure risk, after touching a patient, and after touching the patient environment.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Alcohol-based hand rub</strong><span>Preferred in many routine situations when hands are not visibly soiled</span></div>
+        <div class="concept"><strong>Soap and water</strong><span>Use when hands are visibly dirty or contaminated</span></div>
+        <div class="concept"><strong>After glove removal</strong><span>Gloves do not replace hand hygiene</span></div>
+        <div class="concept"><strong>Nails and jewelry</strong><span>Follow workplace policy and keep hands easy to clean</span></div>
+      </div>
+      <div class="tip"><strong>Common mistake:</strong> Using gloves as a substitute for hand hygiene. Hands can become contaminated during glove removal or through tiny defects.</div>
+      <div class="tip"><strong>Clinical pearl:</strong> Clean your hands before reaching for clean supplies so you do not contaminate them.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-6" data-lesson="6">
+      <span class="lesson-number">Lesson 6</span>
+      <h2>Medical Asepsis, Surgical Asepsis &amp; Reprocessing</h2>
+      <p>Medical asepsis reduces the number and spread of microorganisms. Surgical asepsis keeps an area or object free of all microorganisms.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Cleaning</strong><span>Removes soil and organic material</span></div>
+        <div class="concept"><strong>Disinfection</strong><span>Destroys many or most pathogens on objects</span></div>
+        <div class="concept"><strong>Sterilization</strong><span>Destroys all microbial life, including spores</span></div>
+        <div class="concept"><strong>Sterile field</strong><span>Only sterile items may touch sterile areas</span></div>
+      </div>
+      <div class="tip"><strong>Important sequence:</strong> Items must be cleaned before effective disinfection or sterilization.</div>
+      <div class="tip"><strong>Common mistake:</strong> Reaching over a sterile field or turning away from it. When sterility is uncertain, consider the item contaminated.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-7" data-lesson="7">
+      <span class="lesson-number">Lesson 7</span>
+      <h2>Bloodborne Pathogens &amp; Sharps Safety</h2>
+      <p>Bloodborne pathogens can spread through needlesticks, cuts from contaminated sharps, and contact with mucous membranes or nonintact skin.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Engineering controls</strong><span>Safety needles and sharps containers</span></div>
+        <div class="concept"><strong>Work-practice controls</strong><span>Safe handling and immediate disposal</span></div>
+        <div class="concept"><strong>Never overfill</strong><span>Replace sharps containers before the fill line</span></div>
+        <div class="concept"><strong>Avoid recapping</strong><span>Use approved safety procedures if recapping is unavoidable</span></div>
+      </div>
+      <div class="tip"><strong>Real-world scenario:</strong> After giving an injection, activate the safety feature and place the device directly into the sharps container. Do not carry it around the room.</div>
+      <div class="tip"><strong>Common mistake:</strong> Trying to retrieve an item from a sharps container. Never reach into a sharps container.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-8" data-lesson="8">
+      <span class="lesson-number">Lesson 8</span>
+      <h2>Medical Waste &amp; Exposure Response</h2>
+      <p>Follow facility policy for regulated medical waste, contaminated laundry, specimens, and environmental spills. Occupational exposures require immediate action and prompt reporting.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Needlestick or cut</strong><span>Wash promptly with soap and water</span></div>
+        <div class="concept"><strong>Mucous-membrane splash</strong><span>Flush eyes, nose, or mouth with water</span></div>
+        <div class="concept"><strong>Report immediately</strong><span>Notify the designated supervisor or exposure contact</span></div>
+        <div class="concept"><strong>Medical evaluation</strong><span>Seek timely assessment and follow-up</span></div>
+      </div>
+      <div class="tip"><strong>Clinical pearl:</strong> Do not delay reporting because the source patient appears healthy. Some infections may be unknown or asymptomatic.</div>
+      <div class="tip"><strong>Waste reminder:</strong> Follow the facility's labeled-container and local disposal rules. Not every item that touched a patient belongs in regulated medical waste.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="section" id="quick-check">
+      <span class="section-kicker">CLINICAL DECISION CHALLENGE</span>
+      <h2>Choose the safest action</h2>
+
+      <div class="check-question" data-correct="airborne">
+        <strong>1. A patient is being evaluated for pulmonary tuberculosis. Which additional precaution is expected?</strong>
+        <div class="check-options">
+          <button class="check-option" type="button" data-value="contact">Contact precautions only</button>
+          <button class="check-option" type="button" data-value="droplet">Droplet precautions only</button>
+          <button class="check-option" type="button" data-value="airborne">Airborne precautions with a fit-tested respirator</button>
+        </div>
+      </div>
+
+      <div class="check-question" data-correct="wash">
+        <strong>2. Your hands are visibly soiled after patient care. What should you use?</strong>
+        <div class="check-options">
+          <button class="check-option" type="button" data-value="rub">Alcohol hand rub only</button>
+          <button class="check-option" type="button" data-value="wash">Soap and water</button>
+          <button class="check-option" type="button" data-value="gloves">Put on another pair of gloves</button>
+        </div>
+      </div>
+
+      <div class="check-question" data-correct="report">
+        <strong>3. You sustain a needlestick. What is the best response?</strong>
+        <div class="check-options">
+          <button class="check-option" type="button" data-value="wait">Wait for symptoms</button>
+          <button class="check-option" type="button" data-value="report">Wash the area, report immediately, and obtain evaluation</button>
+          <button class="check-option" type="button" data-value="hide">Finish the shift before telling anyone</button>
+        </div>
+      </div>
+
+      <button class="btn secondary" type="button" id="gradeQuickCheck">Check My Answers</button>
+      <div class="check-feedback" id="quickCheckFeedback" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="checkpoint">
+      <span class="section-kicker">FINAL CHECKPOINT</span>
+      <h2>Module 3 Assessment</h2>
+      <p>Answer all 10 questions. A score of <strong>80% or higher</strong> completes this module and unlocks Module 4.</p>
+
+      <form id="quizForm">
+        <fieldset class="quiz-card"><legend>1. Which action most directly breaks the mode-of-transmission link?</legend>
+          <label class="option"><input type="radio" name="q1" value="a"> Hand hygiene</label>
+          <label class="option"><input type="radio" name="q1" value="b"> Taking a temperature</label>
+          <label class="option"><input type="radio" name="q1" value="c"> Recording insurance information</label>
+          <label class="option"><input type="radio" name="q1" value="d"> Measuring height</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>2. Standard precautions should be used:</legend>
+          <label class="option"><input type="radio" name="q2" value="a"> Only for patients with known infections</label>
+          <label class="option"><input type="radio" name="q2" value="b"> Only in hospitals</label>
+          <label class="option"><input type="radio" name="q2" value="c"> For every patient</label>
+          <label class="option"><input type="radio" name="q2" value="d"> Only when blood is visible</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>3. Which PPE is most associated with airborne precautions?</legend>
+          <label class="option"><input type="radio" name="q3" value="a"> Cloth face covering</label>
+          <label class="option"><input type="radio" name="q3" value="b"> Fit-tested respirator</label>
+          <label class="option"><input type="radio" name="q3" value="c"> Gloves only</label>
+          <label class="option"><input type="radio" name="q3" value="d"> Shoe covers only</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>4. PPE should be selected primarily according to:</legend>
+          <label class="option"><input type="radio" name="q4" value="a"> The worker's favorite equipment</label>
+          <label class="option"><input type="radio" name="q4" value="b"> The anticipated exposure</label>
+          <label class="option"><input type="radio" name="q4" value="c"> The patient's age only</label>
+          <label class="option"><input type="radio" name="q4" value="d"> The length of the appointment</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>5. Gloves replace hand hygiene:</legend>
+          <label class="option"><input type="radio" name="q5" value="a"> Always</label>
+          <label class="option"><input type="radio" name="q5" value="b"> Only during injections</label>
+          <label class="option"><input type="radio" name="q5" value="c"> Only during specimen handling</label>
+          <label class="option"><input type="radio" name="q5" value="d"> Never</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>6. Which process destroys all microbial life, including spores?</legend>
+          <label class="option"><input type="radio" name="q6" value="a"> Cleaning</label>
+          <label class="option"><input type="radio" name="q6" value="b"> Sterilization</label>
+          <label class="option"><input type="radio" name="q6" value="c"> Rinsing</label>
+          <label class="option"><input type="radio" name="q6" value="d"> Low-level wiping</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>7. After using a safety needle, the best next action is to:</legend>
+          <label class="option"><input type="radio" name="q7" value="a"> Place it on the counter</label>
+          <label class="option"><input type="radio" name="q7" value="b"> Carry it to another room</label>
+          <label class="option"><input type="radio" name="q7" value="c"> Activate the safety feature and dispose of it immediately</label>
+          <label class="option"><input type="radio" name="q7" value="d"> Bend it before disposal</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>8. After a splash to the eyes, the first response is to:</legend>
+          <label class="option"><input type="radio" name="q8" value="a"> Flush the eyes with water</label>
+          <label class="option"><input type="radio" name="q8" value="b"> Wait for redness</label>
+          <label class="option"><input type="radio" name="q8" value="c"> Cover the eyes and continue working</label>
+          <label class="option"><input type="radio" name="q8" value="d"> Apply hand sanitizer to the eyelids</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>9. Which statement about a sterile field is correct?</legend>
+          <label class="option"><input type="radio" name="q9" value="a"> Clean items may touch it</label>
+          <label class="option"><input type="radio" name="q9" value="b"> It remains sterile when left unattended</label>
+          <label class="option"><input type="radio" name="q9" value="c"> Only sterile items should touch sterile areas</label>
+          <label class="option"><input type="radio" name="q9" value="d"> Reaching across it is acceptable</label></fieldset>
+
+        <fieldset class="quiz-card"><legend>10. An occupational exposure should be reported:</legend>
+          <label class="option"><input type="radio" name="q10" value="a"> Only if symptoms develop</label>
+          <label class="option"><input type="radio" name="q10" value="b"> At the next annual physical</label>
+          <label class="option"><input type="radio" name="q10" value="c"> Immediately according to workplace procedure</label>
+          <label class="option"><input type="radio" name="q10" value="d"> Only if the source patient is known to be infected</label></fieldset>
+
+        <button class="btn primary" type="submit">Grade Final Checkpoint</button>
+      </form>
+      <div class="quiz-result" id="quizResult" aria-live="polite"></div>
+    </section>
+
+    <section class="completion-card" id="completionCard">
+      <span class="badge-icon">🛡️</span>
+      <div>
+        <span class="small-label">ACHIEVEMENT UNLOCKED</span>
+        <h2>Infection Control &amp; Patient Safety Complete</h2>
+        <p>You completed all eight lessons and passed the final checkpoint. Module 4: Patient Assessment &amp; Vital Signs is now unlocked.</p>
+        <a class="btn secondary" href="/medical-assistant-learning-path.html">Return to Medical Assistant Path</a>
+      </div>
+    </section>
+
+    <section class="disclaimer">
+      <p><strong>Educational achievement only:</strong> Completing this module or earning an achievement does not confer professional certification, licensure, continuing education credit, or an accredited credential. Follow current workplace policies and supervising-clinician instructions.</p>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = "msb_ma_module3_v1";
+      const PATH_KEY = "msb_ma_path_v1";
+      const answers = {q1:"a",q2:"c",q3:"b",q4:"b",q5:"d",q6:"b",q7:"c",q8:"a",q9:"c",q10:"c"};
+
+      function today(){ return new Date().toISOString().slice(0,10); }
+      function load(){
+        try{
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+            completedLessons:[], quizScore:0, quizPassed:false, quickCheckPassed:false,
+            streak:1, lastVisit:today()
+          };
+        }catch(e){
+          return {completedLessons:[],quizScore:0,quizPassed:false,quickCheckPassed:false,streak:1,lastVisit:today()};
+        }
+      }
+      let state = load();
+
+      if(state.lastVisit !== today()){
+        const previous = new Date(state.lastVisit);
+        const current = new Date(today());
+        const days = Math.round((current-previous)/86400000);
+        state.streak = days === 1 ? (state.streak || 1)+1 : 1;
+        state.lastVisit = today();
+      }
+
+      function save(){
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+        if(state.completedLessons.length===8 && state.quizPassed){
+          let path={};
+          try{ path=JSON.parse(localStorage.getItem(PATH_KEY))||{}; }catch(e){}
+          path.module3Complete=true;
+          path.module4Unlocked=true;
+          localStorage.setItem(PATH_KEY,JSON.stringify(path));
+        }
+      }
+
+      function update(){
+        const completed = state.completedLessons.length;
+        const items = completed + (state.quizPassed ? 1 : 0);
+        const percent = Math.round(items/9*100);
+        const xp = completed*100 + (state.quickCheckPassed?50:0) + (state.quizPassed?250:0);
+
+        document.getElementById("progressPercent").textContent=percent+"%";
+        document.getElementById("progressText").textContent=completed+" of 8 lessons complete";
+        document.getElementById("xpCount").textContent=xp;
+        document.getElementById("streakCount").textContent=state.streak||1;
+        document.getElementById("topProgress").style.width=percent+"%";
+        document.getElementById("progressRing").style.background=`conic-gradient(#22c55e ${percent*3.6}deg,#dbeafe 0deg)`;
+
+        document.querySelectorAll(".lesson").forEach(section=>{
+          const n=Number(section.dataset.lesson);
+          const done=state.completedLessons.includes(n);
+          section.classList.toggle("complete",done);
+          const button=section.querySelector(".lesson-complete");
+          button.textContent=done?"✓ Lesson Complete":"Mark Lesson Complete";
+          button.classList.toggle("green",done);
+          const map=document.querySelector(`[data-map="${n}"]`);
+          if(map) map.classList.toggle("complete",done);
+        });
+
+        let next=1;
+        while(state.completedLessons.includes(next) && next<=8) next++;
+        const target = next<=8 ? `#lesson-${next}` : "#checkpoint";
+        const title = next<=8 ? document.querySelector(target+" h2").textContent : "Take the Module 3 Final Checkpoint";
+        const desc = next<=8 ? `${completed} of 8 lessons complete. Continue with Lesson ${next}.` : "All lessons are complete. Pass the final checkpoint with 80% or higher.";
+        ["continueButton","continuePanelButton"].forEach(id=>document.getElementById(id).href=target);
+        document.getElementById("continueButton").textContent=completed ? "Continue Module 3" : "Begin Module 3";
+        document.getElementById("continuePanelButton").textContent=next<=8 ? `Continue to Lesson ${next} →` : "Take Final Checkpoint →";
+        document.getElementById("continueTitle").textContent=title;
+        document.getElementById("continueDescription").textContent=desc;
+
+        document.getElementById("completionCard").classList.toggle("show",completed===8 && state.quizPassed);
+      }
+
+      document.querySelectorAll(".lesson-complete").forEach(button=>{
+        button.addEventListener("click",()=>{
+          const n=Number(button.closest(".lesson").dataset.lesson);
+          if(state.completedLessons.includes(n)){
+            state.completedLessons=state.completedLessons.filter(x=>x!==n);
+          }else{
+            state.completedLessons.push(n);
+            state.completedLessons.sort((a,b)=>a-b);
+          }
+          save(); update();
+        });
+      });
+
+      document.querySelectorAll(".check-option").forEach(button=>{
+        button.addEventListener("click",()=>{
+          const q=button.closest(".check-question");
+          q.querySelectorAll(".check-option").forEach(b=>b.classList.remove("selected"));
+          button.classList.add("selected");
+        });
+      });
+
+      document.getElementById("gradeQuickCheck").addEventListener("click",()=>{
+        const questions=[...document.querySelectorAll(".check-question")];
+        let correct=0;
+        questions.forEach(q=>{
+          const selected=q.querySelector(".check-option.selected");
+          q.querySelectorAll(".check-option").forEach(b=>b.classList.remove("correct","incorrect"));
+          if(selected){
+            const ok=selected.dataset.value===q.dataset.correct;
+            selected.classList.add(ok?"correct":"incorrect");
+            if(ok) correct++;
+          }
+        });
+        const feedback=document.getElementById("quickCheckFeedback");
+        feedback.textContent=`You answered ${correct} of 3 correctly.`;
+        feedback.className="check-feedback show "+(correct===3?"success":"try-again");
+        if(correct===3){state.quickCheckPassed=true;save();update();}
+      });
+
+      document.getElementById("quizForm").addEventListener("submit",e=>{
+        e.preventDefault();
+        let correct=0, answered=0;
+        Object.entries(answers).forEach(([q,a])=>{
+          const selected=document.querySelector(`input[name="${q}"]:checked`);
+          if(selected){answered++; if(selected.value===a) correct++;}
+        });
+        const result=document.getElementById("quizResult");
+        if(answered<10){
+          result.className="quiz-result show fail";
+          result.innerHTML="<strong>Please answer all 10 questions.</strong>";
+          return;
+        }
+        const score=correct*10;
+        state.quizScore=Math.max(state.quizScore||0,score);
+        state.quizPassed=score>=80;
+        save(); update();
+        result.className="quiz-result show "+(score>=80?"pass":"fail");
+        result.innerHTML=score>=80
+          ? `<strong>${score}% — Passed!</strong><p>You completed the Module 3 checkpoint and unlocked Module 4.</p>`
+          : `<strong>${score}% — Keep practicing.</strong><p>Review the lessons and try again. You need 80% to pass.</p>`;
+        if(score>=80) document.getElementById("completionCard").scrollIntoView({behavior:"smooth"});
+      });
+
+      save(); update();
+      window.addEventListener("focus",()=>{state=load();update();});
+    })();
+  </script>
+</body>
+</html>

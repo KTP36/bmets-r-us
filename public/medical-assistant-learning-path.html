@@ -526,21 +526,28 @@
             </div>
           </div>
           <div class="module-action">
-            <a class="btn locked" id="module2Button" href="#" aria-disabled="true">Complete Module 1</a>
+            <a class="btn locked" id="module2Button" href="/medical-assistant-module-2.html" aria-disabled="true">Complete Module 1</a>
           </div>
         </article>
 
-        <article class="module-card locked">
+        <article class="module-card locked" id="module3Card">
           <div class="module-number">3</div>
           <div>
             <div class="module-title">
               <h3>Infection Control &amp; Patient Safety</h3>
-              <span class="status locked">Locked</span>
+              <span class="status locked" id="module3Status">Locked</span>
             </div>
-            <p class="module-desc">Standard precautions, hand hygiene, PPE, sharps safety, asepsis, disinfection, sterilization, and exposure prevention.</p>
-            <div class="module-meta"><span>Future module</span><span>Safety focused</span></div>
+            <p class="module-desc">Standard precautions, hand hygiene, PPE, transmission precautions, sharps safety, asepsis, and exposure response.</p>
+            <div class="module-meta">
+              <span>8 lessons</span>
+              <span>Safety focused</span>
+              <span>Beginner → Intermediate</span>
+            </div>
+            <div class="module-progress"><span id="module3Progress"></span></div>
           </div>
-          <div class="module-action"><span class="btn locked">Locked</span></div>
+          <div class="module-action">
+            <a class="btn locked" id="module3Button" href="/medical-assistant-module-3.html" aria-disabled="true">Complete Module 2</a>
+          </div>
         </article>
 
         <article class="module-card locked">
@@ -663,112 +670,154 @@
   </footer>
 
   <script>
-    (function(){
-      const MODULE1_KEY = "msbMedicalAssistantModule1";
-      const PATH_KEY = "msbMedicalAssistantPath";
+    (() => {
+      const PATH_KEY = "msb_ma_path_v1";
 
-      function getModule1(){
-        try{
-          return JSON.parse(localStorage.getItem(MODULE1_KEY)) || {
-            completedLessons:[],
-            quizScore:0,
-            quizPassed:false
-          };
-        }catch(error){
-          return {completedLessons:[],quizScore:0,quizPassed:false};
-        }
+      function read(key){
+        try{return JSON.parse(localStorage.getItem(key))||{};}catch(error){return {};}
       }
-
-      function getPath(){
-        try{
-          return JSON.parse(localStorage.getItem(PATH_KEY)) || {};
-        }catch(error){
-          return {};
-        }
+      function moduleState(key){
+        const s=read(key);
+        return {
+          completedLessons:Array.isArray(s.completedLessons)?s.completedLessons:[],
+          quizPassed:!!s.quizPassed,
+          quickCheckPassed:!!s.quickCheckPassed,
+          streak:s.streak||1
+        };
       }
+      function complete(s){return s.completedLessons.length===8 && s.quizPassed;}
+      function percent(s){return Math.round((s.completedLessons.length+(s.quizPassed?1:0))/9*100);}
+      function xp(s){return s.completedLessons.length*100+(s.quickCheckPassed?50:0)+(s.quizPassed?250:0);}
 
-      function savePath(state){
-        localStorage.setItem(PATH_KEY,JSON.stringify(state));
+      function setCard(n, mode, progress){
+        const card=document.getElementById(`module${n}Card`);
+        const status=document.getElementById(`module${n}Status`);
+        const button=document.getElementById(`module${n}Button`);
+        const bar=document.getElementById(`module${n}Progress`);
+        if(bar) bar.style.width=progress+"%";
+        if(!card||!status||!button) return;
+
+        card.classList.remove("locked","current","complete");
+        if(mode==="complete"){
+          card.classList.add("complete");
+          status.className="status complete";
+          status.textContent="Complete";
+          button.className="btn green";
+          button.textContent="Review Module";
+          button.removeAttribute("aria-disabled");
+        }else if(mode==="current"){
+          card.classList.add("current");
+          status.className="status active";
+          status.textContent=progress>0?"In Progress":"Unlocked";
+          button.className="btn primary";
+          button.textContent=progress>0?"Continue Module":"Open Module";
+          button.removeAttribute("aria-disabled");
+        }else{
+          card.classList.add("locked");
+          status.className="status locked";
+          status.textContent="Locked";
+          button.className="btn locked";
+          button.setAttribute("aria-disabled","true");
+        }
       }
 
       function update(){
-        const m1 = getModule1();
-        const path = getPath();
-        const completedLessons = Array.isArray(m1.completedLessons) ? m1.completedLessons.length : 0;
-        const module1Items = completedLessons + (m1.quizPassed ? 1 : 0);
-        const module1Percent = Math.round((module1Items / 9) * 100);
-        const module1Complete = completedLessons === 8 && m1.quizPassed;
+        const m1=moduleState("msb_ma_module1_v1");
+        const m2=moduleState("msb_ma_module2_v1");
+        const m3=moduleState("msb_ma_module3_v1");
+        const c1=complete(m1), c2=complete(m2), c3=complete(m3);
 
-        if(module1Complete){
-          path.module1Complete = true;
-          path.module2Unlocked = true;
-          savePath(path);
-        }
+        const path=read(PATH_KEY);
+        if(c1){path.module1Complete=true;path.module2Unlocked=true;}
+        if(c2){path.module2Complete=true;path.module3Unlocked=true;}
+        if(c3){path.module3Complete=true;path.module4Unlocked=true;}
+        localStorage.setItem(PATH_KEY,JSON.stringify(path));
 
-        const completedModules = module1Complete ? 1 : 0;
-        const overallPercent = Math.round((completedModules / 8) * 100);
-        const xp = completedLessons * 100 + (m1.quizPassed ? 250 : 0) + (m1.quickCheckPassed ? 50 : 0);
-        const streak = m1.streak || 1;
+        const completedModules=[c1,c2,c3].filter(Boolean).length;
+        const overallPercent=Math.round(completedModules/8*100);
+        const totalXp=xp(m1)+xp(m2)+xp(m3);
+        const streak=Math.max(m1.streak,m2.streak,m3.streak);
 
-        document.getElementById("overallProgressText").textContent = overallPercent + "% Complete";
-        document.getElementById("overallProgressBar").style.width = overallPercent + "%";
-        document.getElementById("totalXp").textContent = xp;
-        document.getElementById("modulesCompleted").textContent = completedModules + "/8";
-        document.getElementById("studyStreak").textContent = streak + (streak === 1 ? " day" : " days");
-        document.getElementById("module1Progress").style.width = module1Percent + "%";
+        document.getElementById("overallProgressText").textContent=overallPercent+"% Complete";
+        document.getElementById("overallProgressBar").style.width=overallPercent+"%";
+        document.getElementById("totalXp").textContent=totalXp;
+        document.getElementById("modulesCompleted").textContent=completedModules+"/8";
+        document.getElementById("studyStreak").textContent=streak+(streak===1?" day":" days");
+        document.getElementById("module1Progress").style.width=percent(m1)+"%";
 
-        document.getElementById("achievementFirst").classList.toggle("unlocked",completedLessons >= 1);
-        document.getElementById("achievementFour").classList.toggle("unlocked",completedLessons >= 4);
+        document.getElementById("achievementFirst").classList.toggle("unlocked",m1.completedLessons.length>=1);
+        document.getElementById("achievementFour").classList.toggle("unlocked",m1.completedLessons.length>=4);
         document.getElementById("achievementQuiz").classList.toggle("unlocked",m1.quizPassed);
-        document.getElementById("achievementModule").classList.toggle("unlocked",module1Complete);
+        document.getElementById("achievementModule").classList.toggle("unlocked",c1);
 
-        const heroButton = document.getElementById("heroContinueButton");
-        const continueButton = document.getElementById("continueButton");
-        const continueTitle = document.getElementById("continueTitle");
-        const continueDescription = document.getElementById("continueDescription");
-        const module1Card = document.getElementById("module1Card");
-        const module1Status = document.getElementById("module1Status");
-        const module1Button = document.getElementById("module1Button");
-
-        if(module1Complete){
-          heroButton.textContent = "View Unlocked Module 2";
-          heroButton.href = "#module2Card";
-          continueTitle.textContent = "Module 2: Anatomy & Physiology is unlocked";
-          continueDescription.textContent = "You completed Medical Terminology Foundations. Your next step is anatomy and physiology.";
-          continueButton.textContent = "View Module 2 →";
-          continueButton.href = "#module2Card";
-
-          module1Card.classList.remove("current");
-          module1Card.classList.add("complete");
-          module1Status.className = "status complete";
-          module1Status.textContent = "Complete";
-          module1Button.className = "btn green";
-          module1Button.textContent = "Review Module";
-
-          const m2Card = document.getElementById("module2Card");
-          const m2Status = document.getElementById("module2Status");
-          const m2Button = document.getElementById("module2Button");
-          m2Card.classList.remove("locked");
-          m2Card.classList.add("current");
-          m2Status.className = "status active";
-          m2Status.textContent = "Unlocked";
-          m2Button.className = "btn primary";
-          m2Button.textContent = "Coming Next";
-          m2Button.removeAttribute("aria-disabled");
-
-          document.getElementById("completionBanner").classList.add("show");
-          document.getElementById("completionWaiting").style.display = "none";
+        const module1Card=document.getElementById("module1Card");
+        const module1Status=document.getElementById("module1Status");
+        const module1Button=document.getElementById("module1Button");
+        if(c1){
+          module1Card.classList.remove("current"); module1Card.classList.add("complete");
+          module1Status.className="status complete"; module1Status.textContent="Complete";
+          module1Button.className="btn green"; module1Button.textContent="Review Module";
         }else{
-          heroButton.textContent = completedLessons > 0 ? "Continue Module 1" : "Start Learning";
-          continueButton.textContent = completedLessons > 0 ? "Continue Module 1 →" : "Start Module 1 →";
-          continueTitle.textContent = completedLessons > 0
-            ? "Continue Medical Terminology Foundations"
-            : "Start Medical Terminology Foundations";
-          continueDescription.textContent = completedLessons > 0
-            ? completedLessons + " of 8 lessons complete. Pick up where you left off."
-            : "Begin Module 1 and learn how medical words are built.";
-          module1Status.textContent = completedLessons > 0 ? "In Progress" : "Not Started";
+          module1Card.classList.add("current");
+          module1Status.className="status active";
+          module1Status.textContent=m1.completedLessons.length?"In Progress":"Start Here";
+          module1Button.className="btn primary";
+          module1Button.textContent=m1.completedLessons.length?"Continue Module":"Open Module";
         }
+
+        setCard(2,c2?"complete":c1?"current":"locked",percent(m2));
+        setCard(3,c3?"complete":c2?"current":"locked",percent(m3));
+
+        const m2Button=document.getElementById("module2Button");
+        const m3Button=document.getElementById("module3Button");
+        m2Button.href="/medical-assistant-module-2.html";
+        m3Button.href="/medical-assistant-module-3.html";
+        if(!c1) m2Button.textContent="Complete Module 1";
+        if(!c2) m3Button.textContent="Complete Module 2";
+
+        const hero=document.getElementById("heroContinueButton");
+        const cont=document.getElementById("continueButton");
+        const title=document.getElementById("continueTitle");
+        const desc=document.getElementById("continueDescription");
+
+        if(c3){
+          hero.textContent="Review Module 3";
+          hero.href="/medical-assistant-module-3.html";
+          title.textContent="Module 3 complete";
+          desc.textContent="You completed Infection Control & Patient Safety. Module 4 is unlocked and ready for the next build.";
+          cont.textContent="Review Module 3 →";
+          cont.href="/medical-assistant-module-3.html";
+        }else if(c2){
+          hero.textContent=m3.completedLessons.length?"Continue Module 3":"Start Module 3";
+          hero.href="/medical-assistant-module-3.html";
+          title.textContent="Module 3: Infection Control & Patient Safety";
+          desc.textContent=m3.completedLessons.length
+            ? m3.completedLessons.length+" of 8 lessons complete. Continue your infection-control training."
+            : "Anatomy & Physiology is complete. Begin infection control and patient safety.";
+          cont.textContent=m3.completedLessons.length?"Continue Module 3 →":"Start Module 3 →";
+          cont.href="/medical-assistant-module-3.html";
+        }else if(c1){
+          hero.textContent=m2.completedLessons.length?"Continue Module 2":"Start Module 2";
+          hero.href="/medical-assistant-module-2.html";
+          title.textContent="Module 2: Anatomy & Physiology";
+          desc.textContent=m2.completedLessons.length
+            ? m2.completedLessons.length+" of 8 lessons complete. Pick up where you left off."
+            : "Medical Terminology is complete. Continue with anatomy and physiology.";
+          cont.textContent=m2.completedLessons.length?"Continue Module 2 →":"Start Module 2 →";
+          cont.href="/medical-assistant-module-2.html";
+        }else{
+          hero.textContent=m1.completedLessons.length?"Continue Module 1":"Start Learning";
+          hero.href="/medical-assistant-module-1.html";
+          title.textContent=m1.completedLessons.length?"Continue Medical Terminology Foundations":"Start Medical Terminology Foundations";
+          desc.textContent=m1.completedLessons.length
+            ? m1.completedLessons.length+" of 8 lessons complete. Pick up where you left off."
+            : "Begin Module 1 and learn how medical words are built.";
+          cont.textContent=m1.completedLessons.length?"Continue Module 1 →":"Start Module 1 →";
+          cont.href="/medical-assistant-module-1.html";
+        }
+
+        document.getElementById("completionBanner").classList.toggle("show",c1);
+        document.getElementById("completionWaiting").style.display=c1?"none":"";
       }
 
       update();

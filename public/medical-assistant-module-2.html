@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Medical Assistant Anatomy & Physiology Module | MedSkillBuilder Academy</title>
+  <meta name="description" content="Study anatomy and physiology for medical assisting with eight guided lessons, interactive knowledge checks, progress tracking, XP, and a final assessment." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/medical-assistant-module-1.html" />
+  <meta property="og:title" content="Medical Assistant Module 1: Anatomy & Physiology Foundations" />
+  <meta property="og:description" content="A free guided medical terminology module for future medical assistants, healthcare students, and beginners." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/medical-assistant-module-1.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Course",
+    "name":"Medical Assistant Module 1: Anatomy & Physiology Foundations",
+    "description":"A beginner-friendly guided module covering medical word parts, prefixes, suffixes, root words, abbreviations, directional terms, body regions, and terminology practice.",
+    "provider":{"@type":"Organization","name":"MedSkillBuilder","url":"https://medskillbuilder.com"},
+    "isAccessibleForFree":true,
+    "educationalLevel":"Beginner",
+    "coursePrerequisites":"No prior healthcare experience required"
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy:#082f57;
+      --navy2:#12355b;
+      --blue:#2563eb;
+      --blue2:#1d6fa5;
+      --purple:#6d28d9;
+      --purple2:#8b5cf6;
+      --green:#16a34a;
+      --green2:#22c55e;
+      --orange:#f97316;
+      --red:#dc2626;
+      --ink:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --white:#fff;
+      --soft:#f8fafc;
+      --shadow:0 18px 45px rgba(15,23,42,.10);
+      --soft-shadow:0 7px 20px rgba(15,23,42,.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      line-height:1.65;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left,rgba(139,92,246,.14),transparent 33%),
+        radial-gradient(circle at top right,rgba(37,99,235,.12),transparent 28%),
+        linear-gradient(180deg,#faf7ff 0%,#f8fbff 45%,#fff 100%);
+    }
+
+    a{color:inherit}
+    button,input{font:inherit}
+    .container{width:min(1120px,calc(100% - 34px));margin:0 auto}
+
+    .topbar{
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(226,232,240,.9);
+      padding:16px 0;
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{width:56px;height:auto}
+    .brand strong{display:block;color:var(--navy);font-size:24px;line-height:1.1}
+    .brand span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+    .mini-nav{display:flex;gap:9px;flex-wrap:wrap}
+    .mini-nav a{
+      text-decoration:none;background:#fff;border:1px solid var(--border);
+      padding:9px 14px;border-radius:999px;color:var(--navy);font-weight:800;
+      box-shadow:var(--soft-shadow);font-size:.92rem;
+    }
+
+    header{
+      color:#fff;
+      padding:64px 0 58px;
+      background:
+        radial-gradient(circle at 90% 20%,rgba(34,197,94,.22),transparent 28%),
+        linear-gradient(135deg,var(--purple),var(--purple2));
+      border-radius:0 0 36px 36px;
+      box-shadow:0 24px 60px rgba(109,40,217,.23);
+      position:relative;overflow:hidden;
+    }
+    header:before,header:after{content:"";position:absolute;border-radius:16px;background:rgba(255,255,255,.1)}
+    header:before{width:310px;height:310px;right:-90px;top:-125px}
+    header:after{width:270px;height:270px;left:-120px;bottom:-150px}
+    .hero{position:relative;z-index:1}
+    .eyebrow{
+      display:inline-flex;padding:8px 14px;border-radius:999px;
+      background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+      font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;
+    }
+    h1{font-size:clamp(40px,6vw,68px);line-height:1;letter-spacing:-.05em;margin-bottom:18px}
+    header p{font-size:clamp(18px,2.1vw,22px);color:#f3e8ff;max-width:900px;margin-bottom:14px}
+    .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .meta-pill{
+      padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.25);font-weight:800;font-size:.92rem;
+    }
+
+    main{padding:34px 0 56px}
+    .section{
+      background:rgba(255,255,255,.97);border:1px solid var(--border);
+      border-radius:28px;padding:30px;margin-bottom:24px;box-shadow:var(--shadow);
+    }
+    .section.highlight{
+      background:linear-gradient(180deg,rgba(245,243,255,.95),rgba(255,255,255,.98));
+      border-color:rgba(139,92,246,.35);
+    }
+    .section.dark{
+      color:#fff;background:linear-gradient(135deg,var(--purple),var(--navy));
+      border-color:rgba(255,255,255,.16);
+    }
+    .section.dark h2,.section.dark p,.section.dark li{color:#fff}
+    h2{font-size:clamp(28px,4vw,43px);line-height:1.12;color:var(--purple);letter-spacing:-.035em;margin-bottom:12px}
+    h3{color:var(--navy);font-size:22px;margin-bottom:8px}
+    p{color:#1f2937;margin-bottom:12px;font-size:17px}
+    ul{margin:12px 0 0 22px}
+    li{margin-bottom:8px;color:#1f2937}
+
+    .progress-wrap{margin-top:24px}
+    .progress-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px;font-weight:900}
+    .progress-track{height:18px;background:rgba(255,255,255,.22);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.28)}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--green2),#86efac);transition:width .3s ease}
+    .progress-note{font-size:14px;color:#e9d5ff;margin-top:8px}
+
+    .grid-2,.lesson-grid,.objective-grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .objective-grid{grid-template-columns:repeat(3,1fr);margin-top:18px}
+    .objective{
+      border:1px solid var(--border);border-radius:18px;padding:18px;background:#f8fbff;
+      color:var(--navy);font-weight:800;
+    }
+
+    .lesson-grid{grid-template-columns:repeat(2,1fr);margin-top:22px}
+    .lesson-card{
+      background:#fff;border:1px solid var(--border);border-radius:22px;padding:21px;
+      box-shadow:var(--soft-shadow);display:flex;flex-direction:column;gap:12px;position:relative;
+    }
+    .lesson-card.complete{border-color:#86efac;background:#f0fdf4}
+    .lesson-top{display:flex;gap:12px;align-items:flex-start}
+    .lesson-number{
+      flex:0 0 42px;width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;background:#ede9fe;color:var(--purple);font-weight:900;
+    }
+    .lesson-card.complete .lesson-number{background:#dcfce7;color:#166534}
+    .lesson-title{font-weight:900;color:var(--navy);font-size:20px;line-height:1.2}
+    .lesson-time{font-size:13px;color:var(--muted);font-weight:800;margin-top:4px}
+    .lesson-desc{font-size:15px;color:var(--muted);margin:0}
+    .lesson-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+      padding:12px 17px;border-radius:999px;border:none;text-decoration:none;font-weight:900;
+      cursor:pointer;transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff}
+    .btn.secondary{background:#eff6ff;color:#1e3a8a;border:1px solid #bfdbfe}
+    .btn.complete-btn{background:#ecfdf5;color:#166534;border:1px solid #86efac}
+    .lesson-card.complete .complete-btn{background:#166534;color:#fff}
+
+    .note,.success,.warning{
+      border-radius:18px;padding:16px 18px;margin:18px 0;font-weight:800;
+    }
+    .note{background:#eff6ff;border:1px solid #bfdbfe;border-left:6px solid var(--blue);color:#1e3a8a}
+    .success{background:#ecfdf5;border:1px solid #bbf7d0;border-left:6px solid var(--green);color:#065f46}
+    .warning{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);color:#7c2d12}
+
+    .quiz-card{
+      background:#f8fbff;border:1px solid var(--border);border-radius:20px;padding:20px;margin:16px 0;
+    }
+    .quiz-card legend{font-weight:900;color:var(--navy);padding:0 6px;font-size:18px}
+    .option{display:block;padding:10px 12px;margin:8px 0;border-radius:12px;background:#fff;border:1px solid var(--border);cursor:pointer}
+    .option:hover{border-color:#a78bfa;background:#faf5ff}
+    .option input{margin-right:8px}
+    .quiz-result{display:none;margin-top:18px;padding:18px;border-radius:18px;font-weight:900}
+    .quiz-result.pass{display:block;background:#ecfdf5;border:1px solid #86efac;color:#166534}
+    .quiz-result.retry{display:block;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}
+
+    .course-footer{
+      background:var(--navy);color:#fff;text-align:center;padding:36px 0;margin-top:44px;
+    }
+    .course-footer p{color:rgba(255,255,255,.86);font-size:14px}
+    .course-footer a{color:#c4b5fd;text-decoration:none;font-weight:900}
+    .disclaimer{font-size:14px;color:var(--muted);margin-top:12px}
+
+
+    /* Enhanced learning experience */
+    .learner-dashboard{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr)) 1.35fr;
+      gap:12px;
+      margin-top:24px;
+    }
+    .dashboard-stat,.continue-panel{
+      border-radius:18px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.13);
+      backdrop-filter:blur(8px);
+    }
+    .dashboard-stat span{
+      display:block;
+      color:#ede9fe;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .dashboard-stat strong{
+      display:block;
+      margin-top:5px;
+      color:#fff;
+      font-size:25px;
+      line-height:1;
+    }
+    .continue-panel{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:8px;
+    }
+    .continue-panel small{color:#ede9fe;font-weight:800}
+    .continue-panel strong{font-size:18px;line-height:1.2}
+    .continue-panel .btn{align-self:flex-start;background:#fff;color:var(--purple)}
+    .coach-card{
+      display:grid;
+      grid-template-columns:82px 1fr;
+      gap:18px;
+      align-items:center;
+      background:linear-gradient(135deg,#eff6ff,#faf5ff);
+      border:1px solid #c4b5fd;
+      border-radius:22px;
+      padding:20px;
+      margin-top:20px;
+    }
+    .coach-card img{
+      width:82px;
+      height:82px;
+      object-fit:contain;
+      background:#fff;
+      border-radius:50%;
+      padding:7px;
+      box-shadow:var(--soft-shadow);
+    }
+    .coach-label{
+      display:inline-block;
+      color:var(--purple);
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:5px;
+    }
+    .course-map{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .map-step{
+      min-height:92px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:15px;
+      background:#fff;
+      position:relative;
+    }
+    .map-step strong{display:block;color:var(--navy);margin-bottom:4px}
+    .map-step span{font-size:13px;color:var(--muted)}
+    .map-step.active{
+      border-color:#8b5cf6;
+      box-shadow:0 0 0 3px rgba(139,92,246,.12);
+      background:#faf5ff;
+    }
+    .map-step.done{background:#f0fdf4;border-color:#86efac}
+    .map-step.done:after{
+      content:"✓";
+      position:absolute;
+      right:12px;
+      top:9px;
+      color:#166534;
+      font-weight:900;
+    }
+    .knowledge-check{
+      background:linear-gradient(180deg,#f8fbff,#fff);
+      border:1px solid #bfdbfe;
+      border-radius:22px;
+      padding:22px;
+      margin-top:18px;
+    }
+    .check-question{
+      padding:16px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .check-question:last-of-type{border-bottom:none}
+    .check-question strong{display:block;color:var(--navy);margin-bottom:9px}
+    .check-options{display:flex;gap:9px;flex-wrap:wrap}
+    .check-option{
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--ink);
+      border-radius:999px;
+      padding:9px 13px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .check-option:hover{border-color:#8b5cf6;background:#faf5ff}
+    .check-option.selected{background:#ede9fe;border-color:#8b5cf6;color:#5b21b6}
+    .check-feedback{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:15px;
+      display:none;
+      font-weight:900;
+    }
+    .check-feedback.show{display:block}
+    .check-feedback.pass{background:#ecfdf5;color:#166534;border:1px solid #86efac}
+    .check-feedback.retry{background:#fff7ed;color:#9a3412;border:1px solid #fdba74}
+    .lesson-card.next-up{
+      border-color:#8b5cf6;
+      box-shadow:0 0 0 4px rgba(139,92,246,.11),var(--soft-shadow);
+    }
+    .lesson-card.next-up:before{
+      content:"NEXT UP";
+      position:absolute;
+      right:15px;
+      top:14px;
+      background:var(--purple);
+      color:#fff;
+      border-radius:999px;
+      padding:5px 9px;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+    }
+    .completion-badge{
+      display:none;
+      margin:18px auto 0;
+      width:min(360px,100%);
+      text-align:center;
+      padding:20px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:22px;
+    }
+    .completion-badge.show{display:block}
+    .completion-badge .badge-icon{font-size:50px;line-height:1}
+    .completion-badge strong{display:block;font-size:22px;margin-top:8px}
+    .confetti-piece{
+      position:fixed;
+      width:10px;
+      height:16px;
+      top:-20px;
+      z-index:9999;
+      pointer-events:none;
+      animation:confettiFall 2.8s linear forwards;
+    }
+    @keyframes confettiFall{
+      to{transform:translate3d(var(--drift),105vh,0) rotate(760deg);opacity:.95}
+    }
+
+    @media(max-width:850px){
+      .objective-grid,.lesson-grid,.grid-2,.learner-dashboard,.course-map{grid-template-columns:1fr}
+      .coach-card{grid-template-columns:64px 1fr}
+      .coach-card img{width:64px;height:64px}
+      .section{padding:23px 19px}
+      header{padding:46px 0;border-radius:0 0 28px 28px}
+      .btn{width:100%}
+      .lesson-actions{flex-direction:column}
+      .topbar{position:static}
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="progress-top"><div id="topProgress"></div></div>
+
+  <header class="site-header">
+    <a class="brand" href="/medical-assistant-learning-path.html">
+      <img src="/medskillbuilder-logo.png" alt="MedSkillBuilder logo">
+      <div><strong>MedSkillBuilder Academy</strong><span>Medical Assistant Learning Path</span></div>
+    </a>
+    <a class="header-link" href="/medical-assistant-learning-path.html">← Learning Path</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Module 2 of 8</span>
+        <h1>Anatomy &amp; Physiology Foundations</h1>
+        <p>Learn the body systems medical assistants encounter most often, connect structure to function, and practice recognizing important clinical clues.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#lesson-1" id="continueButton">Begin Module 2</a>
+          <a class="btn secondary" href="#module-map">View Module Map</a>
+        </div>
+        <div class="hero-note">Eight lessons · Interactive checks · Final checkpoint · 80% required</div>
+      </div>
+
+      <aside class="progress-card">
+        <div class="progress-ring" id="progressRing"><span id="progressPercent">0%</span></div>
+        <h2>Your Progress</h2>
+        <p id="progressText">0 of 8 lessons complete</p>
+        <div class="stats-grid">
+          <div><strong id="xpCount">0</strong><span>XP earned</span></div>
+          <div><strong id="streakCount">1</strong><span>day streak</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="continue-panel">
+      <div>
+        <span class="small-label">CONTINUE LEARNING</span>
+        <h2 id="continueTitle">Start with body organization</h2>
+        <p id="continueDescription">Begin with anatomical position, body directions, cavities, and organization.</p>
+      </div>
+      <a class="btn primary" href="#lesson-1" id="continuePanelButton">Start Lesson 1 →</a>
+    </section>
+
+    <section class="section" id="module-map">
+      <span class="section-kicker">MODULE MAP</span>
+      <h2>Eight guided lessons</h2>
+      <p>Complete each lesson in order. Your progress is saved automatically on this device.</p>
+      <div class="lesson-map">
+        <a href="#lesson-1" data-map="1"><span>1</span>Body Organization</a>
+        <a href="#lesson-2" data-map="2"><span>2</span>Skeletal &amp; Muscular</a>
+        <a href="#lesson-3" data-map="3"><span>3</span>Cardiovascular</a>
+        <a href="#lesson-4" data-map="4"><span>4</span>Respiratory</a>
+        <a href="#lesson-5" data-map="5"><span>5</span>Digestive</a>
+        <a href="#lesson-6" data-map="6"><span>6</span>Urinary</a>
+        <a href="#lesson-7" data-map="7"><span>7</span>Nervous &amp; Endocrine</a>
+        <a href="#lesson-8" data-map="8"><span>8</span>Integumentary &amp; Immune</a>
+      </div>
+    </section>
+
+    <section class="lesson section" id="lesson-1" data-lesson="1">
+      <span class="lesson-number">Lesson 1</span>
+      <h2>Body Organization &amp; Directional Language</h2>
+      <p>The body is organized from <strong>cells → tissues → organs → organ systems → organism</strong>. Anatomical position gives healthcare workers one consistent reference point.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Superior / Inferior</strong><span>Above / below</span></div>
+        <div class="concept"><strong>Anterior / Posterior</strong><span>Front / back</span></div>
+        <div class="concept"><strong>Medial / Lateral</strong><span>Toward / away from midline</span></div>
+        <div class="concept"><strong>Proximal / Distal</strong><span>Nearer / farther from attachment</span></div>
+      </div>
+      <div class="tip"><strong>Clinical connection:</strong> “Pain in the distal right forearm” is more precise than “arm pain.”</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-2" data-lesson="2">
+      <span class="lesson-number">Lesson 2</span>
+      <h2>Skeletal &amp; Muscular Systems</h2>
+      <p>The skeletal system provides support, protects organs, stores minerals, and produces blood cells. Muscles create movement, maintain posture, and generate heat.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Axial skeleton</strong><span>Skull, spine, ribs, sternum</span></div>
+        <div class="concept"><strong>Appendicular skeleton</strong><span>Limbs and girdles</span></div>
+        <div class="concept"><strong>Skeletal muscle</strong><span>Voluntary movement</span></div>
+        <div class="concept"><strong>Smooth muscle</strong><span>Involuntary organ movement</span></div>
+      </div>
+      <div class="resource-links">
+        <a href="/skeleton-anatomy-quiz.html">Practice: Skeleton Anatomy Quiz</a>
+        <a href="/muscle-anatomy-quiz.html">Practice: Muscle Anatomy Quiz</a>
+      </div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-3" data-lesson="3">
+      <span class="lesson-number">Lesson 3</span>
+      <h2>Cardiovascular System</h2>
+      <p>The heart pumps blood through pulmonary and systemic circulation. Arteries carry blood away from the heart; veins return blood to the heart.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Right heart</strong><span>Sends blood to the lungs</span></div>
+        <div class="concept"><strong>Left heart</strong><span>Sends blood to the body</span></div>
+        <div class="concept"><strong>Arteries</strong><span>Carry blood away</span></div>
+        <div class="concept"><strong>Veins</strong><span>Carry blood toward the heart</span></div>
+      </div>
+      <div class="tip"><strong>Blood flow:</strong> Body → right atrium → right ventricle → lungs → left atrium → left ventricle → body.</div>
+      <div class="resource-links">
+        <a href="/heart-anatomy-quiz.html">Practice: Heart Anatomy Quiz</a>
+        <a href="/heart-sounds-quiz.html">Practice: Heart Sounds Quiz</a>
+      </div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-4" data-lesson="4">
+      <span class="lesson-number">Lesson 4</span>
+      <h2>Respiratory System</h2>
+      <p>Air moves through the upper and lower airways to the alveoli, where oxygen and carbon dioxide are exchanged with the blood.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Trachea</strong><span>Main airway to the bronchi</span></div>
+        <div class="concept"><strong>Bronchi</strong><span>Conduct air into each lung</span></div>
+        <div class="concept"><strong>Alveoli</strong><span>Site of gas exchange</span></div>
+        <div class="concept"><strong>Diaphragm</strong><span>Primary breathing muscle</span></div>
+      </div>
+      <div class="resource-links">
+        <a href="/lungs-anatomy-guide.html">Review: Lungs Anatomy Guide</a>
+        <a href="/lung-sounds-quiz.html">Practice: Lung Sounds Quiz</a>
+      </div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-5" data-lesson="5">
+      <span class="lesson-number">Lesson 5</span>
+      <h2>Digestive System</h2>
+      <p>The digestive system breaks food down, absorbs nutrients, and eliminates solid waste. Accessory organs assist digestion even though food does not pass through them.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Stomach</strong><span>Mixes food with acid and enzymes</span></div>
+        <div class="concept"><strong>Small intestine</strong><span>Major nutrient absorption</span></div>
+        <div class="concept"><strong>Large intestine</strong><span>Water absorption and stool formation</span></div>
+        <div class="concept"><strong>Liver &amp; pancreas</strong><span>Produce substances used in digestion</span></div>
+      </div>
+      <div class="resource-links">
+        <a href="/digestive-system-anatomy-guide.html">Review: Digestive System Guide</a>
+      </div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-6" data-lesson="6">
+      <span class="lesson-number">Lesson 6</span>
+      <h2>Urinary System</h2>
+      <p>The kidneys filter blood, regulate fluid and electrolytes, help control blood pressure, and produce urine.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Kidneys</strong><span>Filter blood and form urine</span></div>
+        <div class="concept"><strong>Ureters</strong><span>Carry urine to the bladder</span></div>
+        <div class="concept"><strong>Bladder</strong><span>Stores urine</span></div>
+        <div class="concept"><strong>Urethra</strong><span>Carries urine out of the body</span></div>
+      </div>
+      <div class="resource-links">
+        <a href="/how-kidneys-work.html">Review: How the Kidneys Work</a>
+        <a href="/kidney-anatomy-function-quiz.html">Practice: Kidney Quiz</a>
+      </div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-7" data-lesson="7">
+      <span class="lesson-number">Lesson 7</span>
+      <h2>Nervous &amp; Endocrine Systems</h2>
+      <p>The nervous system sends rapid electrical messages. The endocrine system uses hormones for slower, longer-lasting regulation.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Central nervous system</strong><span>Brain and spinal cord</span></div>
+        <div class="concept"><strong>Peripheral nervous system</strong><span>Nerves outside the CNS</span></div>
+        <div class="concept"><strong>Pituitary gland</strong><span>Coordinates many endocrine functions</span></div>
+        <div class="concept"><strong>Pancreas</strong><span>Helps regulate blood glucose</span></div>
+      </div>
+      <div class="resource-links">
+        <a href="/brain-anatomy-quiz.html">Practice: Brain Anatomy Quiz</a>
+      </div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="lesson section" id="lesson-8" data-lesson="8">
+      <span class="lesson-number">Lesson 8</span>
+      <h2>Integumentary, Lymphatic &amp; Immune Systems</h2>
+      <p>The skin protects the body and helps regulate temperature. The lymphatic and immune systems return tissue fluid to circulation and defend against infection.</p>
+      <div class="concept-grid">
+        <div class="concept"><strong>Epidermis</strong><span>Outer skin layer</span></div>
+        <div class="concept"><strong>Dermis</strong><span>Contains vessels, nerves, and glands</span></div>
+        <div class="concept"><strong>Lymph nodes</strong><span>Filter lymph and support immunity</span></div>
+        <div class="concept"><strong>White blood cells</strong><span>Help defend against pathogens</span></div>
+      </div>
+      <div class="tip"><strong>Clinical connection:</strong> Skin color, temperature, moisture, wounds, edema, and lymph-node changes can all provide useful assessment clues.</div>
+      <button class="btn lesson-complete" type="button">Mark Lesson Complete</button>
+    </section>
+
+    <section class="section" id="quick-check">
+      <span class="section-kicker">QUICK KNOWLEDGE CHECK</span>
+      <h2>Connect structure with function</h2>
+      <div class="check-question" data-correct="alveoli">
+        <strong>1. Where does gas exchange occur?</strong>
+        <div class="check-options">
+          <button class="check-option" type="button" data-value="trachea">Trachea</button>
+          <button class="check-option" type="button" data-value="alveoli">Alveoli</button>
+          <button class="check-option" type="button" data-value="pleura">Pleura</button>
+        </div>
+      </div>
+      <div class="check-question" data-correct="kidneys">
+        <strong>2. Which organs filter blood and form urine?</strong>
+        <div class="check-options">
+          <button class="check-option" type="button" data-value="kidneys">Kidneys</button>
+          <button class="check-option" type="button" data-value="lungs">Lungs</button>
+          <button class="check-option" type="button" data-value="spleen">Spleen</button>
+        </div>
+      </div>
+      <div class="check-question" data-correct="small">
+        <strong>3. Where does most nutrient absorption occur?</strong>
+        <div class="check-options">
+          <button class="check-option" type="button" data-value="stomach">Stomach</button>
+          <button class="check-option" type="button" data-value="small">Small intestine</button>
+          <button class="check-option" type="button" data-value="large">Large intestine</button>
+        </div>
+      </div>
+      <button class="btn secondary" type="button" id="gradeQuickCheck">Check My Answers</button>
+      <div class="check-feedback" id="quickCheckFeedback" aria-live="polite"></div>
+    </section>
+
+    <section class="section" id="checkpoint">
+      <span class="section-kicker">FINAL CHECKPOINT</span>
+      <h2>Module 2 Assessment</h2>
+      <p>Answer all 10 questions. A score of <strong>80% or higher</strong> completes this module.</p>
+      <form id="quizForm">
+        <fieldset class="quiz-card"><legend>1. Which term means toward the body's midline?</legend>
+          <label class="option"><input type="radio" name="q1" value="a"> Lateral</label>
+          <label class="option"><input type="radio" name="q1" value="b"> Medial</label>
+          <label class="option"><input type="radio" name="q1" value="c"> Distal</label>
+          <label class="option"><input type="radio" name="q1" value="d"> Inferior</label></fieldset>
+        <fieldset class="quiz-card"><legend>2. Which structure is part of the axial skeleton?</legend>
+          <label class="option"><input type="radio" name="q2" value="a"> Femur</label>
+          <label class="option"><input type="radio" name="q2" value="b"> Humerus</label>
+          <label class="option"><input type="radio" name="q2" value="c"> Vertebral column</label>
+          <label class="option"><input type="radio" name="q2" value="d"> Pelvic girdle</label></fieldset>
+        <fieldset class="quiz-card"><legend>3. Which chamber pumps blood to the body?</legend>
+          <label class="option"><input type="radio" name="q3" value="a"> Right atrium</label>
+          <label class="option"><input type="radio" name="q3" value="b"> Right ventricle</label>
+          <label class="option"><input type="radio" name="q3" value="c"> Left atrium</label>
+          <label class="option"><input type="radio" name="q3" value="d"> Left ventricle</label></fieldset>
+        <fieldset class="quiz-card"><legend>4. Gas exchange occurs primarily in the:</legend>
+          <label class="option"><input type="radio" name="q4" value="a"> Bronchi</label>
+          <label class="option"><input type="radio" name="q4" value="b"> Alveoli</label>
+          <label class="option"><input type="radio" name="q4" value="c"> Trachea</label>
+          <label class="option"><input type="radio" name="q4" value="d"> Diaphragm</label></fieldset>
+        <fieldset class="quiz-card"><legend>5. Most nutrient absorption occurs in the:</legend>
+          <label class="option"><input type="radio" name="q5" value="a"> Esophagus</label>
+          <label class="option"><input type="radio" name="q5" value="b"> Stomach</label>
+          <label class="option"><input type="radio" name="q5" value="c"> Small intestine</label>
+          <label class="option"><input type="radio" name="q5" value="d"> Large intestine</label></fieldset>
+        <fieldset class="quiz-card"><legend>6. Which tube carries urine from a kidney to the bladder?</legend>
+          <label class="option"><input type="radio" name="q6" value="a"> Ureter</label>
+          <label class="option"><input type="radio" name="q6" value="b"> Urethra</label>
+          <label class="option"><input type="radio" name="q6" value="c"> Nephron</label>
+          <label class="option"><input type="radio" name="q6" value="d"> Renal artery</label></fieldset>
+        <fieldset class="quiz-card"><legend>7. The brain and spinal cord form the:</legend>
+          <label class="option"><input type="radio" name="q7" value="a"> Peripheral nervous system</label>
+          <label class="option"><input type="radio" name="q7" value="b"> Central nervous system</label>
+          <label class="option"><input type="radio" name="q7" value="c"> Endocrine system</label>
+          <label class="option"><input type="radio" name="q7" value="d"> Autonomic gland system</label></fieldset>
+        <fieldset class="quiz-card"><legend>8. Which system communicates mainly through hormones?</legend>
+          <label class="option"><input type="radio" name="q8" value="a"> Endocrine</label>
+          <label class="option"><input type="radio" name="q8" value="b"> Skeletal</label>
+          <label class="option"><input type="radio" name="q8" value="c"> Respiratory</label>
+          <label class="option"><input type="radio" name="q8" value="d"> Integumentary</label></fieldset>
+        <fieldset class="quiz-card"><legend>9. The outermost skin layer is the:</legend>
+          <label class="option"><input type="radio" name="q9" value="a"> Dermis</label>
+          <label class="option"><input type="radio" name="q9" value="b"> Epidermis</label>
+          <label class="option"><input type="radio" name="q9" value="c"> Fascia</label>
+          <label class="option"><input type="radio" name="q9" value="d"> Peritoneum</label></fieldset>
+        <fieldset class="quiz-card"><legend>10. Which blood cells are central to immune defense?</legend>
+          <label class="option"><input type="radio" name="q10" value="a"> Red blood cells</label>
+          <label class="option"><input type="radio" name="q10" value="b"> Platelets</label>
+          <label class="option"><input type="radio" name="q10" value="c"> White blood cells</label>
+          <label class="option"><input type="radio" name="q10" value="d"> Plasma proteins only</label></fieldset>
+        <button class="btn primary" type="submit">Grade Final Checkpoint</button>
+      </form>
+      <div class="quiz-result" id="quizResult" aria-live="polite"></div>
+    </section>
+
+    <section class="completion-card" id="completionCard">
+      <span class="badge-icon">🏅</span>
+      <div>
+        <span class="small-label">ACHIEVEMENT UNLOCKED</span>
+        <h2>Anatomy &amp; Physiology Foundations Complete</h2>
+        <p>You completed all eight lessons and passed the final checkpoint. Module 3: Infection Control is now ready for the next build.</p>
+        <a class="btn secondary" href="/medical-assistant-learning-path.html">Return to Medical Assistant Path</a>
+      </div>
+    </section>
+
+    <section class="disclaimer">
+      <p><strong>Educational achievement only:</strong> Completing this module or earning an achievement does not confer professional certification, licensure, continuing education credit, or an accredited credential.</p>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const STORAGE_KEY = "msb_ma_module2_v1";
+      const PATH_KEY = "msb_ma_path_v1";
+      const answers = {q1:"b",q2:"c",q3:"d",q4:"b",q5:"c",q6:"a",q7:"b",q8:"a",q9:"b",q10:"c"};
+
+      function today(){ return new Date().toISOString().slice(0,10); }
+      function load(){
+        try{
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+            completedLessons:[], quizScore:0, quizPassed:false, quickCheckPassed:false,
+            streak:1, lastVisit:today()
+          };
+        }catch(e){
+          return {completedLessons:[],quizScore:0,quizPassed:false,quickCheckPassed:false,streak:1,lastVisit:today()};
+        }
+      }
+      let state = load();
+
+      if(state.lastVisit !== today()){
+        const previous = new Date(state.lastVisit);
+        const current = new Date(today());
+        const days = Math.round((current-previous)/86400000);
+        state.streak = days === 1 ? (state.streak || 1)+1 : 1;
+        state.lastVisit = today();
+      }
+
+      function save(){
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+        if(state.completedLessons.length===8 && state.quizPassed){
+          let path={};
+          try{ path=JSON.parse(localStorage.getItem(PATH_KEY))||{}; }catch(e){}
+          path.module2Complete=true;
+          path.module3Unlocked=true;
+          localStorage.setItem(PATH_KEY,JSON.stringify(path));
+        }
+      }
+
+      function update(){
+        const completed = state.completedLessons.length;
+        const items = completed + (state.quizPassed ? 1 : 0);
+        const percent = Math.round(items/9*100);
+        const xp = completed*100 + (state.quickCheckPassed?50:0) + (state.quizPassed?250:0);
+
+        document.getElementById("progressPercent").textContent=percent+"%";
+        document.getElementById("progressText").textContent=completed+" of 8 lessons complete";
+        document.getElementById("xpCount").textContent=xp;
+        document.getElementById("streakCount").textContent=state.streak||1;
+        document.getElementById("topProgress").style.width=percent+"%";
+        document.getElementById("progressRing").style.background=`conic-gradient(#22c55e ${percent*3.6}deg,#dbeafe 0deg)`;
+
+        document.querySelectorAll(".lesson").forEach(section=>{
+          const n=Number(section.dataset.lesson);
+          const done=state.completedLessons.includes(n);
+          section.classList.toggle("complete",done);
+          const button=section.querySelector(".lesson-complete");
+          button.textContent=done?"✓ Lesson Complete":"Mark Lesson Complete";
+          button.classList.toggle("green",done);
+          const map=document.querySelector(`[data-map="${n}"]`);
+          if(map) map.classList.toggle("complete",done);
+        });
+
+        let next=1;
+        while(state.completedLessons.includes(next) && next<=8) next++;
+        const target = next<=8 ? `#lesson-${next}` : "#checkpoint";
+        const title = next<=8 ? document.querySelector(target+" h2").textContent : "Take the Module 2 Final Checkpoint";
+        const desc = next<=8 ? `${completed} of 8 lessons complete. Continue with Lesson ${next}.` : "All lessons are complete. Pass the final checkpoint with 80% or higher.";
+        ["continueButton","continuePanelButton"].forEach(id=>document.getElementById(id).href=target);
+        document.getElementById("continueButton").textContent=completed ? "Continue Module 2" : "Begin Module 2";
+        document.getElementById("continuePanelButton").textContent=next<=8 ? `Continue to Lesson ${next} →` : "Take Final Checkpoint →";
+        document.getElementById("continueTitle").textContent=title;
+        document.getElementById("continueDescription").textContent=desc;
+
+        document.getElementById("completionCard").classList.toggle("show",completed===8 && state.quizPassed);
+      }
+
+      document.querySelectorAll(".lesson-complete").forEach(button=>{
+        button.addEventListener("click",()=>{
+          const n=Number(button.closest(".lesson").dataset.lesson);
+          if(state.completedLessons.includes(n)){
+            state.completedLessons=state.completedLessons.filter(x=>x!==n);
+          }else{
+            state.completedLessons.push(n);
+            state.completedLessons.sort((a,b)=>a-b);
+          }
+          save(); update();
+        });
+      });
+
+      document.querySelectorAll(".check-option").forEach(button=>{
+        button.addEventListener("click",()=>{
+          const q=button.closest(".check-question");
+          q.querySelectorAll(".check-option").forEach(b=>b.classList.remove("selected"));
+          button.classList.add("selected");
+        });
+      });
+
+      document.getElementById("gradeQuickCheck").addEventListener("click",()=>{
+        const questions=[...document.querySelectorAll(".check-question")];
+        let correct=0;
+        questions.forEach(q=>{
+          const selected=q.querySelector(".check-option.selected");
+          q.querySelectorAll(".check-option").forEach(b=>b.classList.remove("correct","incorrect"));
+          if(selected){
+            const ok=selected.dataset.value===q.dataset.correct;
+            selected.classList.add(ok?"correct":"incorrect");
+            if(ok) correct++;
+          }
+        });
+        const feedback=document.getElementById("quickCheckFeedback");
+        feedback.textContent=`You answered ${correct} of 3 correctly.`;
+        feedback.className="check-feedback show "+(correct===3?"success":"try-again");
+        if(correct===3){state.quickCheckPassed=true;save();update();}
+      });
+
+      document.getElementById("quizForm").addEventListener("submit",e=>{
+        e.preventDefault();
+        let correct=0, answered=0;
+        Object.entries(answers).forEach(([q,a])=>{
+          const selected=document.querySelector(`input[name="${q}"]:checked`);
+          if(selected){answered++; if(selected.value===a) correct++;}
+        });
+        const result=document.getElementById("quizResult");
+        if(answered<10){
+          result.className="quiz-result show fail";
+          result.innerHTML="<strong>Please answer all 10 questions.</strong>";
+          return;
+        }
+        const score=correct*10;
+        state.quizScore=Math.max(state.quizScore||0,score);
+        state.quizPassed=score>=80;
+        save(); update();
+        result.className="quiz-result show "+(score>=80?"pass":"fail");
+        result.innerHTML=score>=80
+          ? `<strong>${score}% — Passed!</strong><p>You completed the Module 2 checkpoint.</p>`
+          : `<strong>${score}% — Keep practicing.</strong><p>Review the lessons and try again. You need 80% to pass.</p>`;
+        if(score>=80) document.getElementById("completionCard").scrollIntoView({behavior:"smooth"});
+      });
+
+      save(); update();
+      window.addEventListener("focus",()=>{state=load();update();});
+    })();
+  </script>
+</body>
+</html>
