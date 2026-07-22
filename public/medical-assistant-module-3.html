@@ -851,7 +851,7 @@
         <span class="small-label">ACHIEVEMENT UNLOCKED</span>
         <h2>Infection Control &amp; Patient Safety Complete</h2>
         <p>You completed all eight lessons and passed the final checkpoint. Module 4: Patient Assessment &amp; Vital Signs is now unlocked.</p>
-        <a class="btn secondary" href="/medical-assistant-learning-path.html">Return to Medical Assistant Path</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;"><a class="btn primary" href="/medical-assistant-module-4.html">Continue to Module 4 →</a><a class="btn secondary" href="/medical-assistant-learning-path.html">Return to Learning Path</a></div>
       </div>
     </section>
 
@@ -888,13 +888,18 @@
       }
 
       function save(){
-        localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
-        if(state.completedLessons.length===8 && state.quizPassed){
-          let path={};
-          try{ path=JSON.parse(localStorage.getItem(PATH_KEY))||{}; }catch(e){}
-          path.module3Complete=true;
-          path.module4Unlocked=true;
-          localStorage.setItem(PATH_KEY,JSON.stringify(path));
+        try{
+          localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+
+          if(state.quizPassed){
+            let path={};
+            try{ path=JSON.parse(localStorage.getItem(PATH_KEY))||{}; }catch(e){}
+            path.module3Complete=true;
+            path.module4Unlocked=true;
+            localStorage.setItem(PATH_KEY,JSON.stringify(path));
+          }
+        }catch(error){
+          console.error("Unable to save Module 3 progress:",error);
         }
       }
 
@@ -990,13 +995,23 @@
         }
         const score=correct*10;
         state.quizScore=Math.max(state.quizScore||0,score);
-        state.quizPassed=score>=80;
-        save(); update();
+        state.quizPassed=state.quizPassed || score>=80;
+
+        if(score>=80){
+          state.completedLessons=[1,2,3,4,5,6,7,8];
+        }
+
+        save();
+        update();
+
         result.className="quiz-result show "+(score>=80?"pass":"fail");
         result.innerHTML=score>=80
-          ? `<strong>${score}% — Passed!</strong><p>You completed the Module 3 checkpoint and unlocked Module 4.</p>`
+          ? `<strong>${score}% — Passed!</strong><p>Your Module 3 completion has been saved and Module 4 is now unlocked.</p><p><a class="btn primary" href="/medical-assistant-module-4.html" style="margin-top:10px;">Continue to Module 4 →</a></p>`
           : `<strong>${score}% — Keep practicing.</strong><p>Review the lessons and try again. You need 80% to pass.</p>`;
-        if(score>=80) document.getElementById("completionCard").scrollIntoView({behavior:"smooth"});
+
+        if(score>=80){
+          document.getElementById("completionCard").scrollIntoView({behavior:"smooth"});
+        }
       });
 
       save(); update();
