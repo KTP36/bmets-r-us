@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Medical Assistant Module 1: Medical Terminology Foundations | MedSkillBuilder</title>
+  <meta name="description" content="Start the Medical Assistant Learning Path with Medical Terminology Foundations. Complete guided lessons, practice activities, checkpoints, and a final module quiz for free." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/medical-assistant-module-1.html" />
+  <meta property="og:title" content="Medical Assistant Module 1: Medical Terminology Foundations" />
+  <meta property="og:description" content="A free guided medical terminology module for future medical assistants, healthcare students, and beginners." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/medical-assistant-module-1.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Course",
+    "name":"Medical Assistant Module 1: Medical Terminology Foundations",
+    "description":"A beginner-friendly guided module covering medical word parts, prefixes, suffixes, root words, abbreviations, directional terms, body regions, and terminology practice.",
+    "provider":{"@type":"Organization","name":"MedSkillBuilder","url":"https://medskillbuilder.com"},
+    "isAccessibleForFree":true,
+    "educationalLevel":"Beginner",
+    "coursePrerequisites":"No prior healthcare experience required"
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy:#082f57;
+      --navy2:#12355b;
+      --blue:#2563eb;
+      --blue2:#1d6fa5;
+      --purple:#6d28d9;
+      --purple2:#8b5cf6;
+      --green:#16a34a;
+      --green2:#22c55e;
+      --orange:#f97316;
+      --red:#dc2626;
+      --ink:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --white:#fff;
+      --soft:#f8fafc;
+      --shadow:0 18px 45px rgba(15,23,42,.10);
+      --soft-shadow:0 7px 20px rgba(15,23,42,.06);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      line-height:1.65;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left,rgba(139,92,246,.14),transparent 33%),
+        radial-gradient(circle at top right,rgba(37,99,235,.12),transparent 28%),
+        linear-gradient(180deg,#faf7ff 0%,#f8fbff 45%,#fff 100%);
+    }
+
+    a{color:inherit}
+    button,input{font:inherit}
+    .container{width:min(1120px,calc(100% - 34px));margin:0 auto}
+
+    .topbar{
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(226,232,240,.9);
+      padding:16px 0;
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{width:56px;height:auto}
+    .brand strong{display:block;color:var(--navy);font-size:24px;line-height:1.1}
+    .brand span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+    .mini-nav{display:flex;gap:9px;flex-wrap:wrap}
+    .mini-nav a{
+      text-decoration:none;background:#fff;border:1px solid var(--border);
+      padding:9px 14px;border-radius:999px;color:var(--navy);font-weight:800;
+      box-shadow:var(--soft-shadow);font-size:.92rem;
+    }
+
+    header{
+      color:#fff;
+      padding:64px 0 58px;
+      background:
+        radial-gradient(circle at 90% 20%,rgba(34,197,94,.22),transparent 28%),
+        linear-gradient(135deg,var(--purple),var(--purple2));
+      border-radius:0 0 36px 36px;
+      box-shadow:0 24px 60px rgba(109,40,217,.23);
+      position:relative;overflow:hidden;
+    }
+    header:before,header:after{content:"";position:absolute;border-radius:16px;background:rgba(255,255,255,.1)}
+    header:before{width:310px;height:310px;right:-90px;top:-125px}
+    header:after{width:270px;height:270px;left:-120px;bottom:-150px}
+    .hero{position:relative;z-index:1}
+    .eyebrow{
+      display:inline-flex;padding:8px 14px;border-radius:999px;
+      background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+      font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;
+    }
+    h1{font-size:clamp(40px,6vw,68px);line-height:1;letter-spacing:-.05em;margin-bottom:18px}
+    header p{font-size:clamp(18px,2.1vw,22px);color:#f3e8ff;max-width:900px;margin-bottom:14px}
+    .hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .meta-pill{
+      padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.25);font-weight:800;font-size:.92rem;
+    }
+
+    main{padding:34px 0 56px}
+    .section{
+      background:rgba(255,255,255,.97);border:1px solid var(--border);
+      border-radius:28px;padding:30px;margin-bottom:24px;box-shadow:var(--shadow);
+    }
+    .section.highlight{
+      background:linear-gradient(180deg,rgba(245,243,255,.95),rgba(255,255,255,.98));
+      border-color:rgba(139,92,246,.35);
+    }
+    .section.dark{
+      color:#fff;background:linear-gradient(135deg,var(--purple),var(--navy));
+      border-color:rgba(255,255,255,.16);
+    }
+    .section.dark h2,.section.dark p,.section.dark li{color:#fff}
+    h2{font-size:clamp(28px,4vw,43px);line-height:1.12;color:var(--purple);letter-spacing:-.035em;margin-bottom:12px}
+    h3{color:var(--navy);font-size:22px;margin-bottom:8px}
+    p{color:#1f2937;margin-bottom:12px;font-size:17px}
+    ul{margin:12px 0 0 22px}
+    li{margin-bottom:8px;color:#1f2937}
+
+    .progress-wrap{margin-top:24px}
+    .progress-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px;font-weight:900}
+    .progress-track{height:18px;background:rgba(255,255,255,.22);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.28)}
+    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--green2),#86efac);transition:width .3s ease}
+    .progress-note{font-size:14px;color:#e9d5ff;margin-top:8px}
+
+    .grid-2,.lesson-grid,.objective-grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .objective-grid{grid-template-columns:repeat(3,1fr);margin-top:18px}
+    .objective{
+      border:1px solid var(--border);border-radius:18px;padding:18px;background:#f8fbff;
+      color:var(--navy);font-weight:800;
+    }
+
+    .lesson-grid{grid-template-columns:repeat(2,1fr);margin-top:22px}
+    .lesson-card{
+      background:#fff;border:1px solid var(--border);border-radius:22px;padding:21px;
+      box-shadow:var(--soft-shadow);display:flex;flex-direction:column;gap:12px;position:relative;
+    }
+    .lesson-card.complete{border-color:#86efac;background:#f0fdf4}
+    .lesson-top{display:flex;gap:12px;align-items:flex-start}
+    .lesson-number{
+      flex:0 0 42px;width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;background:#ede9fe;color:var(--purple);font-weight:900;
+    }
+    .lesson-card.complete .lesson-number{background:#dcfce7;color:#166534}
+    .lesson-title{font-weight:900;color:var(--navy);font-size:20px;line-height:1.2}
+    .lesson-time{font-size:13px;color:var(--muted);font-weight:800;margin-top:4px}
+    .lesson-desc{font-size:15px;color:var(--muted);margin:0}
+    .lesson-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+      padding:12px 17px;border-radius:999px;border:none;text-decoration:none;font-weight:900;
+      cursor:pointer;transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff}
+    .btn.secondary{background:#eff6ff;color:#1e3a8a;border:1px solid #bfdbfe}
+    .btn.complete-btn{background:#ecfdf5;color:#166534;border:1px solid #86efac}
+    .lesson-card.complete .complete-btn{background:#166534;color:#fff}
+
+    .note,.success,.warning{
+      border-radius:18px;padding:16px 18px;margin:18px 0;font-weight:800;
+    }
+    .note{background:#eff6ff;border:1px solid #bfdbfe;border-left:6px solid var(--blue);color:#1e3a8a}
+    .success{background:#ecfdf5;border:1px solid #bbf7d0;border-left:6px solid var(--green);color:#065f46}
+    .warning{background:#fff7ed;border:1px solid #fed7aa;border-left:6px solid var(--orange);color:#7c2d12}
+
+    .quiz-card{
+      background:#f8fbff;border:1px solid var(--border);border-radius:20px;padding:20px;margin:16px 0;
+    }
+    .quiz-card legend{font-weight:900;color:var(--navy);padding:0 6px;font-size:18px}
+    .option{display:block;padding:10px 12px;margin:8px 0;border-radius:12px;background:#fff;border:1px solid var(--border);cursor:pointer}
+    .option:hover{border-color:#a78bfa;background:#faf5ff}
+    .option input{margin-right:8px}
+    .quiz-result{display:none;margin-top:18px;padding:18px;border-radius:18px;font-weight:900}
+    .quiz-result.pass{display:block;background:#ecfdf5;border:1px solid #86efac;color:#166534}
+    .quiz-result.retry{display:block;background:#fff7ed;border:1px solid #fdba74;color:#9a3412}
+
+    .course-footer{
+      background:var(--navy);color:#fff;text-align:center;padding:36px 0;margin-top:44px;
+    }
+    .course-footer p{color:rgba(255,255,255,.86);font-size:14px}
+    .course-footer a{color:#c4b5fd;text-decoration:none;font-weight:900}
+    .disclaimer{font-size:14px;color:var(--muted);margin-top:12px}
+
+
+    /* Enhanced learning experience */
+    .learner-dashboard{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr)) 1.35fr;
+      gap:12px;
+      margin-top:24px;
+    }
+    .dashboard-stat,.continue-panel{
+      border-radius:18px;
+      padding:16px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.13);
+      backdrop-filter:blur(8px);
+    }
+    .dashboard-stat span{
+      display:block;
+      color:#ede9fe;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .dashboard-stat strong{
+      display:block;
+      margin-top:5px;
+      color:#fff;
+      font-size:25px;
+      line-height:1;
+    }
+    .continue-panel{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:8px;
+    }
+    .continue-panel small{color:#ede9fe;font-weight:800}
+    .continue-panel strong{font-size:18px;line-height:1.2}
+    .continue-panel .btn{align-self:flex-start;background:#fff;color:var(--purple)}
+    .coach-card{
+      display:grid;
+      grid-template-columns:82px 1fr;
+      gap:18px;
+      align-items:center;
+      background:linear-gradient(135deg,#eff6ff,#faf5ff);
+      border:1px solid #c4b5fd;
+      border-radius:22px;
+      padding:20px;
+      margin-top:20px;
+    }
+    .coach-card img{
+      width:82px;
+      height:82px;
+      object-fit:contain;
+      background:#fff;
+      border-radius:50%;
+      padding:7px;
+      box-shadow:var(--soft-shadow);
+    }
+    .coach-label{
+      display:inline-block;
+      color:var(--purple);
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:5px;
+    }
+    .course-map{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .map-step{
+      min-height:92px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:15px;
+      background:#fff;
+      position:relative;
+    }
+    .map-step strong{display:block;color:var(--navy);margin-bottom:4px}
+    .map-step span{font-size:13px;color:var(--muted)}
+    .map-step.active{
+      border-color:#8b5cf6;
+      box-shadow:0 0 0 3px rgba(139,92,246,.12);
+      background:#faf5ff;
+    }
+    .map-step.done{background:#f0fdf4;border-color:#86efac}
+    .map-step.done:after{
+      content:"✓";
+      position:absolute;
+      right:12px;
+      top:9px;
+      color:#166534;
+      font-weight:900;
+    }
+    .knowledge-check{
+      background:linear-gradient(180deg,#f8fbff,#fff);
+      border:1px solid #bfdbfe;
+      border-radius:22px;
+      padding:22px;
+      margin-top:18px;
+    }
+    .check-question{
+      padding:16px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .check-question:last-of-type{border-bottom:none}
+    .check-question strong{display:block;color:var(--navy);margin-bottom:9px}
+    .check-options{display:flex;gap:9px;flex-wrap:wrap}
+    .check-option{
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--ink);
+      border-radius:999px;
+      padding:9px 13px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .check-option:hover{border-color:#8b5cf6;background:#faf5ff}
+    .check-option.selected{background:#ede9fe;border-color:#8b5cf6;color:#5b21b6}
+    .check-feedback{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:15px;
+      display:none;
+      font-weight:900;
+    }
+    .check-feedback.show{display:block}
+    .check-feedback.pass{background:#ecfdf5;color:#166534;border:1px solid #86efac}
+    .check-feedback.retry{background:#fff7ed;color:#9a3412;border:1px solid #fdba74}
+    .lesson-card.next-up{
+      border-color:#8b5cf6;
+      box-shadow:0 0 0 4px rgba(139,92,246,.11),var(--soft-shadow);
+    }
+    .lesson-card.next-up:before{
+      content:"NEXT UP";
+      position:absolute;
+      right:15px;
+      top:14px;
+      background:var(--purple);
+      color:#fff;
+      border-radius:999px;
+      padding:5px 9px;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+    }
+    .completion-badge{
+      display:none;
+      margin:18px auto 0;
+      width:min(360px,100%);
+      text-align:center;
+      padding:20px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:22px;
+    }
+    .completion-badge.show{display:block}
+    .completion-badge .badge-icon{font-size:50px;line-height:1}
+    .completion-badge strong{display:block;font-size:22px;margin-top:8px}
+    .confetti-piece{
+      position:fixed;
+      width:10px;
+      height:16px;
+      top:-20px;
+      z-index:9999;
+      pointer-events:none;
+      animation:confettiFall 2.8s linear forwards;
+    }
+    @keyframes confettiFall{
+      to{transform:translate3d(var(--drift),105vh,0) rotate(760deg);opacity:.95}
+    }
+
+    @media(max-width:850px){
+      .objective-grid,.lesson-grid,.grid-2,.learner-dashboard,.course-map{grid-template-columns:1fr}
+      .coach-card{grid-template-columns:64px 1fr}
+      .coach-card img{width:64px;height:64px}
+      .section{padding:23px 19px}
+      header{padding:46px 0;border-radius:0 0 28px 28px}
+      .btn{width:100%}
+      .lesson-actions{flex-direction:column}
+      .topbar{position:static}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/medskillbuilder-logo.png" alt="MedSkillBuilder logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Free interactive healthcare learning</span>
+        </div>
+      </a>
+      <nav class="mini-nav" aria-label="Quick links">
+        <a href="/">Home</a>
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/medical-terminology-guide.html">Terminology Guide</a>
+      </nav>
+    </div>
+  </div>
+
+  <header>
+    <div class="container hero">
+      <div class="eyebrow">Medical Assistant Learning Path · Module 1</div>
+      <h1>Medical Terminology Foundations</h1>
+      <p>Learn how medical words are built, decode unfamiliar terms, and develop the vocabulary used throughout medical assistant education and clinical practice.</p>
+      <div class="hero-meta">
+        <span class="meta-pill">Beginner friendly</span>
+        <span class="meta-pill">8 guided lessons</span>
+        <span class="meta-pill">Estimated time: 3–5 hours</span>
+        <span class="meta-pill">Free</span>
+      </div>
+
+
+      <div class="learner-dashboard" aria-label="Learner dashboard">
+        <div class="dashboard-stat">
+          <span>XP Earned</span>
+          <strong id="xpValue">0</strong>
+        </div>
+        <div class="dashboard-stat">
+          <span>Lessons Done</span>
+          <strong id="lessonCountValue">0/8</strong>
+        </div>
+        <div class="dashboard-stat">
+          <span>Study Streak</span>
+          <strong id="streakValue">0 days</strong>
+        </div>
+        <div class="continue-panel">
+          <small>Continue your course</small>
+          <strong id="nextLessonTitle">Start with Lesson 1</strong>
+          <a class="btn" id="continueButton" href="#lessonGrid">Continue Learning →</a>
+        </div>
+      </div>
+
+      <div class="progress-wrap" aria-label="Module progress">
+        <div class="progress-head">
+          <span>Your Module Progress</span>
+          <span id="progressText">0% Complete</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-note">Progress is saved automatically on this device.</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section highlight">
+      <h2>Welcome to Module 1</h2>
+      <p>Medical terminology is the language of healthcare. Medical assistants use it while reviewing charts, documenting information, communicating with clinicians, explaining instructions, scheduling procedures, and supporting patients.</p>
+      <div class="note">
+        You do not need to memorize every medical word. The goal is to recognize common word parts and use them to determine what an unfamiliar term probably means.
+      </div>
+
+
+      <div class="coach-card">
+        <img src="/medskillbuilder-logo.png" alt="MedSkillBuilder logo" />
+        <div>
+          <span class="coach-label">MedSkillBuilder Learning Strategy</span>
+          <h3>Decode first. Memorize second.</h3>
+          <p>When you see a difficult term, look at the suffix first, then find the root, and finally add the prefix. This turns one long word into smaller clues.</p>
+        </div>
+      </div>
+
+      <h3>By the end of this module, you should be able to:</h3>
+      <div class="objective-grid">
+        <div class="objective">Break medical words into prefixes, roots, and suffixes.</div>
+        <div class="objective">Recognize common terms used in patient care and documentation.</div>
+        <div class="objective">Interpret directional, positional, and anatomical language.</div>
+        <div class="objective">Understand frequently used healthcare abbreviations.</div>
+        <div class="objective">Use context clues to decode unfamiliar medical terms.</div>
+        <div class="objective">Complete terminology practice with at least 80% accuracy.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Why This Matters</h2>
+      <p>Imagine a chart says a patient has <strong>tachypnea</strong>, <strong>hypertension</strong>, and <strong>hypoglycemia</strong>. Understanding the word parts helps you quickly recognize rapid breathing, high blood pressure, and low blood sugar.</p>
+      <p>That vocabulary affects communication, documentation, patient safety, and your ability to understand the rest of a medical assistant curriculum.</p>
+    </section>
+
+
+    <section class="section">
+      <h2>Your Module Map</h2>
+      <p>Each step builds on the one before it. Your current step is highlighted automatically.</p>
+      <div class="course-map" id="courseMap">
+        <div class="map-step" data-map="1"><strong>Build the Language</strong><span>Lessons 1–2</span></div>
+        <div class="map-step" data-map="2"><strong>Decode Word Parts</strong><span>Lessons 3–4</span></div>
+        <div class="map-step" data-map="3"><strong>Apply the Language</strong><span>Lessons 5–6</span></div>
+        <div class="map-step" data-map="4"><strong>Prove Your Skills</strong><span>Lessons 7–8 + final</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Complete the Lessons in Order</h2>
+      <p>Open each lesson, complete the reading or practice activity, then return here and mark it complete.</p>
+
+      <div class="lesson-grid" id="lessonGrid">
+        <article class="lesson-card" data-lesson="1">
+          <div class="lesson-top">
+            <div class="lesson-number">1</div>
+            <div>
+              <div class="lesson-title">How Medical Words Are Built</div>
+              <div class="lesson-time">20–30 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Learn the basic structure of medical terms and how prefixes, roots, suffixes, and combining vowels work together.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/medical-terminology-guide.html">Open Lesson</a>
+            <button class="btn complete-btn" type="button" data-complete="1">Mark Complete</button>
+          </div>
+        </article>
+
+        <article class="lesson-card" data-lesson="2">
+          <div class="lesson-top">
+            <div class="lesson-number">2</div>
+            <div>
+              <div class="lesson-title">Common Prefixes</div>
+              <div class="lesson-time">25–35 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Recognize prefixes that describe location, amount, speed, number, direction, and condition.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/medical-prefix-suffix-guide.html">Study Prefixes</a>
+            <button class="btn complete-btn" type="button" data-complete="2">Mark Complete</button>
+          </div>
+        </article>
+
+        <article class="lesson-card" data-lesson="3">
+          <div class="lesson-top">
+            <div class="lesson-number">3</div>
+            <div>
+              <div class="lesson-title">Common Suffixes</div>
+              <div class="lesson-time">25–35 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Learn endings that identify conditions, procedures, specialties, tests, and disease processes.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/medical-prefix-suffix-guide.html#suffixes">Study Suffixes</a>
+            <button class="btn complete-btn" type="button" data-complete="3">Mark Complete</button>
+          </div>
+        </article>
+
+        <article class="lesson-card" data-lesson="4">
+          <div class="lesson-top">
+            <div class="lesson-number">4</div>
+            <div>
+              <div class="lesson-title">Root Words and Combining Forms</div>
+              <div class="lesson-time">30–40 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Connect common roots to organs, body systems, symptoms, and clinical concepts.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/medical-terminology-builder.html">Use the Builder</a>
+            <button class="btn complete-btn" type="button" data-complete="4">Mark Complete</button>
+          </div>
+        </article>
+
+        <article class="lesson-card" data-lesson="5">
+          <div class="lesson-top">
+            <div class="lesson-number">5</div>
+            <div>
+              <div class="lesson-title">Directional Terms and Body Language</div>
+              <div class="lesson-time">25–35 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Review anatomical position, anterior and posterior, superior and inferior, medial and lateral, and other location terms.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/anatomy-labeling-practice.html">Practice Anatomy Terms</a>
+            <button class="btn complete-btn" type="button" data-complete="5">Mark Complete</button>
+          </div>
+        </article>
+
+        <article class="lesson-card" data-lesson="6">
+          <div class="lesson-top">
+            <div class="lesson-number">6</div>
+            <div>
+              <div class="lesson-title">High-Yield Medical Vocabulary</div>
+              <div class="lesson-time">35–45 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Review common medical words that healthcare learners are likely to encounter in classes, charts, and patient care.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/top-100-medical-terms.html">Study Top 100 Terms</a>
+            <button class="btn complete-btn" type="button" data-complete="6">Mark Complete</button>
+          </div>
+        </article>
+
+        <article class="lesson-card" data-lesson="7">
+          <div class="lesson-top">
+            <div class="lesson-number">7</div>
+            <div>
+              <div class="lesson-title">Prefix and Suffix Checkpoint</div>
+              <div class="lesson-time">20–30 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Practice recognizing word parts quickly and reinforce the patterns from Lessons 1–6.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/medical-prefix-suffix-practice.html">Start Practice</a>
+            <button class="btn complete-btn" type="button" data-complete="7">Mark Complete</button>
+          </div>
+        </article>
+
+        <article class="lesson-card" data-lesson="8">
+          <div class="lesson-top">
+            <div class="lesson-number">8</div>
+            <div>
+              <div class="lesson-title">Full Medical Terminology Practice</div>
+              <div class="lesson-time">30–45 minutes</div>
+            </div>
+          </div>
+          <p class="lesson-desc">Apply what you learned to full medical terms and prepare for the final Module 1 checkpoint.</p>
+          <div class="lesson-actions">
+            <a class="btn primary" href="/medical-terminology-practice.html">Start Practice</a>
+            <button class="btn complete-btn" type="button" data-complete="8">Mark Complete</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="section highlight">
+      <h2>Quick Decode Challenge</h2>
+      <p>Try this short knowledge check before the final checkpoint. It is for practice and does not affect your module completion.</p>
+
+      <div class="knowledge-check" id="quickCheck">
+        <div class="check-question" data-correct="slow">
+          <strong>1. In “bradycardia,” what does “brady-” tell you?</strong>
+          <div class="check-options">
+            <button class="check-option" type="button" data-value="fast">Fast</button>
+            <button class="check-option" type="button" data-value="slow">Slow</button>
+            <button class="check-option" type="button" data-value="pain">Pain</button>
+          </div>
+        </div>
+
+        <div class="check-question" data-correct="kidney">
+          <strong>2. The root “nephr/o” refers to which organ?</strong>
+          <div class="check-options">
+            <button class="check-option" type="button" data-value="heart">Heart</button>
+            <button class="check-option" type="button" data-value="kidney">Kidney</button>
+            <button class="check-option" type="button" data-value="skin">Skin</button>
+          </div>
+        </div>
+
+        <div class="check-question" data-correct="inflammation">
+          <strong>3. What does the suffix “-itis” indicate?</strong>
+          <div class="check-options">
+            <button class="check-option" type="button" data-value="removal">Removal</button>
+            <button class="check-option" type="button" data-value="inflammation">Inflammation</button>
+            <button class="check-option" type="button" data-value="recording">Recording</button>
+          </div>
+        </div>
+
+        <button class="btn secondary" type="button" id="gradeQuickCheck">Check My Answers</button>
+        <div class="check-feedback" id="quickCheckFeedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="checkpoint">
+      <h2>Module 1 Final Checkpoint</h2>
+      <p>Answer all 10 questions. A score of <strong>80% or higher</strong> completes the checkpoint.</p>
+
+      <form id="quizForm">
+        <fieldset class="quiz-card">
+          <legend>1. What does the prefix “brady-” mean?</legend>
+          <label class="option"><input type="radio" name="q1" value="a"> Fast</label>
+          <label class="option"><input type="radio" name="q1" value="b"> Slow</label>
+          <label class="option"><input type="radio" name="q1" value="c"> Above</label>
+          <label class="option"><input type="radio" name="q1" value="d"> Pain</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>2. The suffix “-itis” means:</legend>
+          <label class="option"><input type="radio" name="q2" value="a"> Inflammation</label>
+          <label class="option"><input type="radio" name="q2" value="b"> Surgical removal</label>
+          <label class="option"><input type="radio" name="q2" value="c"> Enlargement</label>
+          <label class="option"><input type="radio" name="q2" value="d"> Recording</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>3. Which root refers to the heart?</legend>
+          <label class="option"><input type="radio" name="q3" value="a"> Nephr/o</label>
+          <label class="option"><input type="radio" name="q3" value="b"> Hepat/o</label>
+          <label class="option"><input type="radio" name="q3" value="c"> Cardi/o</label>
+          <label class="option"><input type="radio" name="q3" value="d"> Gastr/o</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>4. “Hypoglycemia” refers to:</legend>
+          <label class="option"><input type="radio" name="q4" value="a"> High blood pressure</label>
+          <label class="option"><input type="radio" name="q4" value="b"> Low blood sugar</label>
+          <label class="option"><input type="radio" name="q4" value="c"> Fast breathing</label>
+          <label class="option"><input type="radio" name="q4" value="d"> Kidney inflammation</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>5. Which term means closer to the body's midline?</legend>
+          <label class="option"><input type="radio" name="q5" value="a"> Lateral</label>
+          <label class="option"><input type="radio" name="q5" value="b"> Distal</label>
+          <label class="option"><input type="radio" name="q5" value="c"> Medial</label>
+          <label class="option"><input type="radio" name="q5" value="d"> Posterior</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>6. Which suffix means surgical removal?</legend>
+          <label class="option"><input type="radio" name="q6" value="a"> -ectomy</label>
+          <label class="option"><input type="radio" name="q6" value="b"> -megaly</label>
+          <label class="option"><input type="radio" name="q6" value="c"> -algia</label>
+          <label class="option"><input type="radio" name="q6" value="d"> -scopy</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>7. “Tachypnea” means:</legend>
+          <label class="option"><input type="radio" name="q7" value="a"> Slow heart rate</label>
+          <label class="option"><input type="radio" name="q7" value="b"> Rapid breathing</label>
+          <label class="option"><input type="radio" name="q7" value="c"> Difficult swallowing</label>
+          <label class="option"><input type="radio" name="q7" value="d"> Low temperature</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>8. The root “derm” refers to:</legend>
+          <label class="option"><input type="radio" name="q8" value="a"> Bone</label>
+          <label class="option"><input type="radio" name="q8" value="b"> Blood</label>
+          <label class="option"><input type="radio" name="q8" value="c"> Skin</label>
+          <label class="option"><input type="radio" name="q8" value="d"> Lung</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>9. Which term means farther from the point of attachment?</legend>
+          <label class="option"><input type="radio" name="q9" value="a"> Proximal</label>
+          <label class="option"><input type="radio" name="q9" value="b"> Distal</label>
+          <label class="option"><input type="radio" name="q9" value="c"> Superior</label>
+          <label class="option"><input type="radio" name="q9" value="d"> Medial</label>
+        </fieldset>
+
+        <fieldset class="quiz-card">
+          <legend>10. “Nephritis” means inflammation of the:</legend>
+          <label class="option"><input type="radio" name="q10" value="a"> Liver</label>
+          <label class="option"><input type="radio" name="q10" value="b"> Stomach</label>
+          <label class="option"><input type="radio" name="q10" value="c"> Kidney</label>
+          <label class="option"><input type="radio" name="q10" value="d"> Heart</label>
+        </fieldset>
+
+        <button class="btn primary" type="submit">Submit Final Checkpoint</button>
+        <div id="quizResult" class="quiz-result" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section class="section dark" id="completionSection">
+      <h2>Complete Module 1</h2>
+      <p>Finish all eight lessons and score at least 80% on the final checkpoint. Your completion will be stored on this device.</p>
+      <div id="completionMessage" class="warning">Module 1 is still in progress.</div>
+
+      <div class="completion-badge" id="completionBadge">
+        <div class="badge-icon">🏆</div>
+        <strong>Terminology Foundations</strong>
+        <span>Module badge earned</span>
+      </div>
+
+      <div class="grid-2">
+        <a class="btn secondary" href="/medical-assistant-learning-path.html">Return to Medical Assistant Path</a>
+        <button class="btn complete-btn" id="resetProgress" type="button">Reset Module Progress</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Educational Disclaimer</h2>
+      <p class="disclaimer">This learning module is a supplemental educational resource. It is not an accredited medical assistant program and does not replace formal education, supervised clinical training, certification requirements, employer policies, or professional medical guidance.</p>
+    </section>
+  </main>
+
+  <footer class="course-footer">
+    <div class="container">
+      <p><strong>MedSkillBuilder</strong> — Free interactive healthcare learning.</p>
+      <p><a href="/">Home</a> · <a href="/browse-all-practice.html">Browse All</a> · <a href="/about-medskillbuilder.html">About</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "msbMedicalAssistantModule1";
+      const totalLessons = 8;
+      const passingScore = 80;
+      const answerKey = {
+        q1:"b", q2:"a", q3:"c", q4:"b", q5:"c",
+        q6:"a", q7:"b", q8:"c", q9:"b", q10:"c"
+      };
+
+      function getState() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
+            completedLessons: [],
+            quizScore: 0,
+            quizPassed: false
+          };
+        } catch (error) {
+          return { completedLessons: [], quizScore: 0, quizPassed: false };
+        }
+      }
+
+      function saveState(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function updateUI() {
+        const state = getState();
+
+        document.querySelectorAll("[data-lesson]").forEach(card => {
+          const lesson = Number(card.dataset.lesson);
+          const button = card.querySelector("[data-complete]");
+          const done = state.completedLessons.includes(lesson);
+
+          card.classList.toggle("complete", done);
+          button.textContent = done ? "Completed ✓" : "Mark Complete";
+        });
+
+        const completedItems = state.completedLessons.length + (state.quizPassed ? 1 : 0);
+        const totalItems = totalLessons + 1;
+        const percent = Math.round((completedItems / totalItems) * 100);
+
+        document.getElementById("progressBar").style.width = percent + "%";
+        document.getElementById("progressText").textContent = percent + "% Complete";
+
+        const completionMessage = document.getElementById("completionMessage");
+        if (state.completedLessons.length === totalLessons && state.quizPassed) {
+          completionMessage.className = "success";
+          completionMessage.innerHTML = "🎉 <strong>Module 1 Complete!</strong> You finished every lesson and passed the final checkpoint with a score of " + state.quizScore + "%.";
+        } else {
+          const lessonsLeft = totalLessons - state.completedLessons.length;
+          completionMessage.className = "warning";
+          completionMessage.textContent =
+            lessonsLeft + " lesson" + (lessonsLeft === 1 ? "" : "s") +
+            " remaining. Final checkpoint status: " +
+            (state.quizPassed ? "Passed (" + state.quizScore + "%)." : "Not yet passed.");
+        }
+      }
+
+      document.querySelectorAll("[data-complete]").forEach(button => {
+        button.addEventListener("click", () => {
+          const lesson = Number(button.dataset.complete);
+          const state = getState();
+          const existingIndex = state.completedLessons.indexOf(lesson);
+
+          if (existingIndex >= 0) {
+            state.completedLessons.splice(existingIndex, 1);
+          } else {
+            state.completedLessons.push(lesson);
+            state.completedLessons.sort((a,b) => a-b);
+          }
+
+          saveState(state);
+          updateUI();
+        });
+      });
+
+      document.getElementById("quizForm").addEventListener("submit", event => {
+        event.preventDefault();
+
+        let correct = 0;
+        let answered = 0;
+
+        Object.keys(answerKey).forEach(question => {
+          const selected = document.querySelector('input[name="' + question + '"]:checked');
+          if (selected) {
+            answered++;
+            if (selected.value === answerKey[question]) correct++;
+          }
+        });
+
+        const result = document.getElementById("quizResult");
+
+        if (answered < Object.keys(answerKey).length) {
+          result.className = "quiz-result retry";
+          result.textContent = "Please answer all 10 questions before submitting.";
+          return;
+        }
+
+        const score = Math.round((correct / Object.keys(answerKey).length) * 100);
+        const state = getState();
+        state.quizScore = Math.max(state.quizScore || 0, score);
+        state.quizPassed = score >= passingScore || state.quizPassed;
+        saveState(state);
+
+        if (score >= passingScore) {
+          result.className = "quiz-result pass";
+          result.innerHTML = "You scored <strong>" + score + "%</strong>. You passed the Module 1 checkpoint!";
+        } else {
+          result.className = "quiz-result retry";
+          result.innerHTML = "You scored <strong>" + score + "%</strong>. Review the lessons and try again. You need 80% to pass.";
+        }
+
+        updateUI();
+        result.scrollIntoView({behavior:"smooth", block:"center"});
+      });
+
+      document.getElementById("resetProgress").addEventListener("click", () => {
+        if (window.confirm("Reset all Module 1 lesson and quiz progress on this device?")) {
+          localStorage.removeItem(STORAGE_KEY);
+          document.getElementById("quizForm").reset();
+          const result = document.getElementById("quizResult");
+          result.className = "quiz-result";
+          result.textContent = "";
+          updateUI();
+        }
+      });
+
+      updateUI();
+    })();
+  </script>
+
+  <script>
+    (function(){
+      const key = "msbMedicalAssistantModule1";
+      const today = new Date().toISOString().slice(0,10);
+      let celebrated = sessionStorage.getItem("msbModule1Celebrated") === "yes";
+
+      function state(){
+        try{
+          return JSON.parse(localStorage.getItem(key)) || {completedLessons:[],quizScore:0,quizPassed:false};
+        }catch(e){
+          return {completedLessons:[],quizScore:0,quizPassed:false};
+        }
+      }
+
+      function save(s){ localStorage.setItem(key,JSON.stringify(s)); }
+
+      function updateActivity(){
+        const s = state();
+        if(!s.lastStudyDate){
+          s.lastStudyDate = today;
+          s.streak = 1;
+        }else if(s.lastStudyDate !== today){
+          const yesterday = new Date();
+          yesterday.setDate(yesterday.getDate()-1);
+          const y = yesterday.toISOString().slice(0,10);
+          s.streak = s.lastStudyDate === y ? (s.streak || 1) + 1 : 1;
+          s.lastStudyDate = today;
+        }
+        save(s);
+      }
+
+      function launchConfetti(){
+        const palette = ["#8b5cf6","#2563eb","#22c55e","#f97316","#facc15","#ec4899"];
+        for(let i=0;i<90;i++){
+          const piece=document.createElement("span");
+          piece.className="confetti-piece";
+          piece.style.left=Math.random()*100+"vw";
+          piece.style.background=palette[Math.floor(Math.random()*palette.length)];
+          piece.style.setProperty("--drift",(Math.random()*240-120)+"px");
+          piece.style.animationDelay=(Math.random()*.7)+"s";
+          piece.style.transform="rotate("+Math.random()*360+"deg)";
+          document.body.appendChild(piece);
+          setTimeout(()=>piece.remove(),3600);
+        }
+      }
+
+      function refreshEnhancements(){
+        const s = state();
+        const done = Array.isArray(s.completedLessons) ? s.completedLessons : [];
+        const xp = done.length * 100 + (s.quizPassed ? 250 : 0) + (s.quickCheckPassed ? 50 : 0);
+
+        document.getElementById("xpValue").textContent = xp;
+        document.getElementById("lessonCountValue").textContent = done.length + "/8";
+        document.getElementById("streakValue").textContent = (s.streak || 1) + ((s.streak || 1) === 1 ? " day" : " days");
+
+        document.querySelectorAll(".lesson-card").forEach(card=>card.classList.remove("next-up"));
+        const next = [1,2,3,4,5,6,7,8].find(n=>!done.includes(n));
+        const nextCard = next ? document.querySelector('[data-lesson="'+next+'"]') : null;
+        const title = nextCard ? nextCard.querySelector(".lesson-title").textContent : (s.quizPassed ? "Module complete!" : "Take the final checkpoint");
+        document.getElementById("nextLessonTitle").textContent = title;
+        document.getElementById("continueButton").href = nextCard ? "#lessonGrid" : "#checkpoint";
+        if(nextCard) nextCard.classList.add("next-up");
+
+        const stage = done.length < 2 ? 1 : done.length < 4 ? 2 : done.length < 6 ? 3 : 4;
+        document.querySelectorAll("[data-map]").forEach(el=>{
+          const n=Number(el.dataset.map);
+          el.classList.toggle("done",n<stage);
+          el.classList.toggle("active",n===stage);
+        });
+
+        const finished = done.length === 8 && s.quizPassed;
+        document.getElementById("completionBadge").classList.toggle("show",finished);
+        if(finished && !celebrated){
+          launchConfetti();
+          sessionStorage.setItem("msbModule1Celebrated","yes");
+          celebrated=true;
+        }
+      }
+
+      document.querySelectorAll(".check-option").forEach(button=>{
+        button.addEventListener("click",()=>{
+          const group=button.closest(".check-options");
+          group.querySelectorAll(".check-option").forEach(b=>b.classList.remove("selected"));
+          button.classList.add("selected");
+        });
+      });
+
+      document.getElementById("gradeQuickCheck").addEventListener("click",()=>{
+        const questions=[...document.querySelectorAll(".check-question")];
+        let answered=0,correct=0;
+        questions.forEach(q=>{
+          const selected=q.querySelector(".check-option.selected");
+          if(selected){
+            answered++;
+            if(selected.dataset.value===q.dataset.correct) correct++;
+          }
+        });
+        const feedback=document.getElementById("quickCheckFeedback");
+        if(answered<questions.length){
+          feedback.className="check-feedback show retry";
+          feedback.textContent="Answer all three questions first.";
+          return;
+        }
+        const s=state();
+        s.quickCheckScore=correct;
+        s.quickCheckPassed=correct===questions.length;
+        save(s);
+        if(correct===questions.length){
+          feedback.className="check-feedback show pass";
+          feedback.textContent="Perfect—3 out of 3. You earned 50 bonus XP.";
+        }else{
+          feedback.className="check-feedback show retry";
+          feedback.textContent="You got "+correct+" out of 3. Review the word parts and try again.";
+        }
+        refreshEnhancements();
+      });
+
+      document.addEventListener("click",event=>{
+        if(event.target.matches("[data-complete], #resetProgress")){
+          setTimeout(()=>{
+            updateActivity();
+            refreshEnhancements();
+          },0);
+        }
+      });
+
+      document.getElementById("quizForm").addEventListener("submit",()=>{
+        setTimeout(()=>{
+          updateActivity();
+          refreshEnhancements();
+        },0);
+      });
+
+      updateActivity();
+      refreshEnhancements();
+    })();
+  </script>
+
+</body>
+</html>

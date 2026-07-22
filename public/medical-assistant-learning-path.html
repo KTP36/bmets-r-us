@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Medical Assistant Learning Path | MedSkillBuilder Academy</title>
+  <meta name="description" content="Follow the free Medical Assistant Learning Path from MedSkillBuilder Academy. Build skills in medical terminology, anatomy, infection control, patient care, clinical procedures, laboratory fundamentals, equipment, and professionalism." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/medical-assistant-learning-path.html" />
+  <meta property="og:title" content="Medical Assistant Learning Path | MedSkillBuilder Academy" />
+  <meta property="og:description" content="A free, guided Medical Assistant learning pathway with modules, progress tracking, XP, badges, and interactive practice." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/medical-assistant-learning-path.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Course",
+    "name":"Medical Assistant Learning Path",
+    "description":"A guided supplemental learning pathway covering concepts commonly taught in Medical Assistant education.",
+    "provider":{"@type":"Organization","name":"MedSkillBuilder","url":"https://medskillbuilder.com"},
+    "isAccessibleForFree":true,
+    "educationalLevel":"Beginner to Intermediate",
+    "coursePrerequisites":"No prior healthcare experience required"
+  }
+  </script>
+
+  <style>
+    :root{
+      --navy:#082f57;
+      --navy2:#12355b;
+      --blue:#2563eb;
+      --purple:#6d28d9;
+      --purple2:#8b5cf6;
+      --green:#16a34a;
+      --green2:#22c55e;
+      --orange:#f97316;
+      --gold:#f59e0b;
+      --red:#dc2626;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --soft:#f8fafc;
+      --white:#fff;
+      --shadow:0 20px 55px rgba(15,23,42,.11);
+      --soft-shadow:0 8px 24px rgba(15,23,42,.07);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      line-height:1.6;
+      background:
+        radial-gradient(circle at 5% 5%,rgba(139,92,246,.12),transparent 32%),
+        radial-gradient(circle at 95% 0%,rgba(37,99,235,.12),transparent 28%),
+        linear-gradient(180deg,#fbfaff 0%,#f8fbff 48%,#fff 100%);
+    }
+    a{color:inherit}
+    .container{width:min(1180px,calc(100% - 34px));margin:0 auto}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      padding:15px 0;
+      background:rgba(255,255,255,.9);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(226,232,240,.9);
+    }
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{width:92px;height:55px;object-fit:contain;border-radius:10px;background:#fff}
+    .brand strong{display:block;color:var(--navy);font-size:23px;line-height:1.05}
+    .brand span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+    .top-links{display:flex;gap:9px;flex-wrap:wrap}
+    .top-links a{
+      text-decoration:none;
+      background:#fff;
+      color:var(--navy);
+      border:1px solid var(--border);
+      padding:9px 14px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:.9rem;
+      box-shadow:var(--soft-shadow);
+    }
+
+    header{
+      color:#fff;
+      padding:64px 0 58px;
+      border-radius:0 0 38px 38px;
+      overflow:hidden;
+      position:relative;
+      background:
+        radial-gradient(circle at 88% 12%,rgba(34,197,94,.2),transparent 26%),
+        radial-gradient(circle at 10% 95%,rgba(255,255,255,.11),transparent 28%),
+        linear-gradient(135deg,var(--purple),var(--purple2) 55%,var(--blue));
+      box-shadow:0 26px 65px rgba(109,40,217,.24);
+    }
+    header:before{
+      content:"";
+      position:absolute;
+      width:340px;height:340px;
+      border-radius:50%;
+      background:rgba(255,255,255,.08);
+      top:-170px;right:-90px;
+    }
+    .hero{position:relative;z-index:2}
+    .eyebrow{
+      display:inline-flex;
+      border:1px solid rgba(255,255,255,.3);
+      background:rgba(255,255,255,.14);
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      margin-bottom:17px;
+    }
+    h1{
+      font-size:clamp(42px,6vw,72px);
+      line-height:.98;
+      letter-spacing:-.055em;
+      margin-bottom:18px;
+      max-width:900px;
+    }
+    .hero-copy{
+      color:#f3e8ff;
+      font-size:clamp(18px,2vw,22px);
+      max-width:850px;
+      margin-bottom:24px;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:12px 18px;
+      border-radius:999px;
+      border:none;
+      text-decoration:none;
+      font-weight:900;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.white{background:#fff;color:var(--purple)}
+    .btn.glass{background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.28)}
+    .btn.primary{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff}
+    .btn.secondary{background:#eff6ff;color:#1e3a8a;border:1px solid #bfdbfe}
+    .btn.green{background:#166534;color:#fff}
+    .btn.locked{background:#e2e8f0;color:#64748b;cursor:not-allowed}
+    .btn.locked:hover{transform:none}
+
+    .dashboard{
+      display:grid;
+      grid-template-columns:1.4fr repeat(3,1fr);
+      gap:14px;
+      margin-top:30px;
+    }
+    .dash-card{
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.27);
+      border-radius:20px;
+      padding:18px;
+      backdrop-filter:blur(8px);
+    }
+    .dash-card small{
+      display:block;
+      color:#e9d5ff;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-size:11px;
+    }
+    .dash-card strong{
+      display:block;
+      color:#fff;
+      font-size:27px;
+      margin-top:5px;
+      line-height:1.1;
+    }
+    .dash-card.progress-card strong{font-size:21px}
+    .progress-track{
+      height:15px;
+      margin-top:12px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.23);
+    }
+    .progress-bar{
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,#22c55e,#bbf7d0);
+      transition:width .35s ease;
+    }
+
+    main{padding:34px 0 58px}
+    .section{
+      background:rgba(255,255,255,.97);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:30px;
+      margin-bottom:24px;
+      box-shadow:var(--shadow);
+    }
+    .section.highlight{
+      background:linear-gradient(180deg,#faf5ff,#fff);
+      border-color:#c4b5fd;
+    }
+    .section.dark{
+      color:#fff;
+      background:linear-gradient(135deg,var(--navy),var(--purple));
+      border-color:rgba(255,255,255,.15);
+    }
+    h2{
+      color:var(--purple);
+      font-size:clamp(29px,4vw,44px);
+      line-height:1.1;
+      letter-spacing:-.04em;
+      margin-bottom:12px;
+    }
+    .section.dark h2,.section.dark p{color:#fff}
+    h3{color:var(--navy);font-size:22px;margin-bottom:7px}
+    p{font-size:17px;color:#27364a;margin-bottom:12px}
+
+    .continue-card{
+      display:grid;
+      grid-template-columns:90px 1fr auto;
+      align-items:center;
+      gap:20px;
+      padding:22px;
+      border:1px solid #c4b5fd;
+      border-radius:22px;
+      background:linear-gradient(135deg,#eff6ff,#faf5ff);
+    }
+    .continue-card img{
+      width:90px;height:90px;
+      object-fit:contain;
+      border-radius:18px;
+      background:#fff;
+      padding:8px;
+      box-shadow:var(--soft-shadow);
+    }
+    .continue-card small{
+      color:var(--purple);
+      text-transform:uppercase;
+      font-weight:900;
+      letter-spacing:.07em;
+      font-size:12px;
+    }
+    .continue-card h3{font-size:27px;margin:5px 0}
+    .continue-card p{margin:0;color:var(--muted);font-size:15px}
+
+    .module-list{
+      display:grid;
+      gap:16px;
+      margin-top:22px;
+    }
+    .module-card{
+      display:grid;
+      grid-template-columns:72px 1fr auto;
+      gap:18px;
+      align-items:center;
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:22px;
+      background:#fff;
+      box-shadow:var(--soft-shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .module-card.current{
+      border-color:#8b5cf6;
+      box-shadow:0 0 0 4px rgba(139,92,246,.11),var(--soft-shadow);
+    }
+    .module-card.complete{
+      border-color:#86efac;
+      background:linear-gradient(135deg,#f0fdf4,#fff);
+    }
+    .module-card.locked{background:#f8fafc}
+    .module-number{
+      width:62px;height:62px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:24px;
+      background:#ede9fe;
+      color:var(--purple);
+    }
+    .module-card.complete .module-number{background:#dcfce7;color:#166534}
+    .module-card.locked .module-number{background:#e2e8f0;color:#64748b}
+    .module-title{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .module-title h3{font-size:23px;margin:0}
+    .status{
+      display:inline-flex;
+      border-radius:999px;
+      padding:5px 10px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .status.active{background:#ede9fe;color:#5b21b6}
+    .status.complete{background:#dcfce7;color:#166534}
+    .status.locked{background:#e2e8f0;color:#475569}
+    .module-desc{margin-top:6px;color:var(--muted);font-size:15px}
+    .module-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:11px;
+    }
+    .module-meta span{
+      border-radius:999px;
+      background:#f8fafc;
+      border:1px solid var(--border);
+      padding:5px 9px;
+      font-size:12px;
+      font-weight:800;
+      color:#475569;
+    }
+    .module-progress{
+      height:9px;
+      max-width:420px;
+      border-radius:999px;
+      background:#e2e8f0;
+      overflow:hidden;
+      margin-top:13px;
+    }
+    .module-progress span{
+      display:block;
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,var(--purple),var(--purple2));
+    }
+    .module-card.complete .module-progress span{background:linear-gradient(90deg,#16a34a,#4ade80)}
+
+    .achievement-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .achievement{
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:18px;
+      text-align:center;
+      background:#f8fafc;
+      opacity:.55;
+      filter:grayscale(1);
+      transition:.2s ease;
+    }
+    .achievement.unlocked{
+      opacity:1;
+      filter:none;
+      background:linear-gradient(180deg,#fffbeb,#fff);
+      border-color:#fde68a;
+      box-shadow:var(--soft-shadow);
+    }
+    .achievement .icon{font-size:39px;line-height:1}
+    .achievement strong{display:block;color:var(--navy);margin-top:10px}
+    .achievement span{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+
+    .completion-banner{
+      display:none;
+      text-align:center;
+      padding:26px;
+      border-radius:24px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.27);
+      margin-top:18px;
+    }
+    .completion-banner.show{display:block}
+    .completion-banner .icon{font-size:56px;line-height:1}
+    .completion-banner strong{display:block;font-size:28px;margin-top:10px}
+    .completion-banner p{color:#e9d5ff}
+    .disclaimer{font-size:14px;color:var(--muted)}
+
+    footer{
+      background:var(--navy);
+      color:#fff;
+      padding:38px 0;
+      text-align:center;
+    }
+    footer p{color:rgba(255,255,255,.85);font-size:14px}
+    footer a{color:#c4b5fd;text-decoration:none;font-weight:900}
+
+    @media(max-width:900px){
+      .dashboard{grid-template-columns:1fr 1fr}
+      .continue-card{grid-template-columns:70px 1fr}
+      .continue-card img{width:70px;height:70px}
+      .continue-card .btn{grid-column:1/-1;width:100%}
+      .achievement-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:680px){
+      .topbar{position:static}
+      header{padding:46px 0;border-radius:0 0 28px 28px}
+      .dashboard{grid-template-columns:1fr}
+      .section{padding:23px 18px}
+      .module-card{grid-template-columns:54px 1fr}
+      .module-number{width:50px;height:50px;border-radius:15px;font-size:20px}
+      .module-card .module-action{grid-column:1/-1}
+      .module-card .module-action .btn{width:100%}
+      .achievement-grid{grid-template-columns:1fr}
+      .continue-card{grid-template-columns:60px 1fr}
+      .continue-card img{width:60px;height:60px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <img src="/medskillbuilder-logo.png" alt="MedSkillBuilder logo" />
+        <div>
+          <strong>MedSkillBuilder Academy</strong>
+          <span>Free guided healthcare learning</span>
+        </div>
+      </a>
+      <nav class="top-links" aria-label="Quick links">
+        <a href="/">Home</a>
+        <a href="/browse-all-practice.html">Browse All</a>
+        <a href="/about-medskillbuilder.html">About</a>
+      </nav>
+    </div>
+  </div>
+
+  <header>
+    <div class="container hero">
+      <div class="eyebrow">MedSkillBuilder Academy</div>
+      <h1>Medical Assistant Learning Path</h1>
+      <p class="hero-copy">Build foundational knowledge through guided modules, interactive practice, real clinical examples, progress tracking, XP, and achievements.</p>
+
+      <div class="hero-actions">
+        <a class="btn white" id="heroContinueButton" href="/medical-assistant-module-1.html">Start Learning</a>
+        <a class="btn glass" href="#curriculum">View Curriculum</a>
+      </div>
+
+      <div class="dashboard">
+        <div class="dash-card progress-card">
+          <small>Overall Path Progress</small>
+          <strong id="overallProgressText">0% Complete</strong>
+          <div class="progress-track"><div class="progress-bar" id="overallProgressBar"></div></div>
+        </div>
+        <div class="dash-card">
+          <small>Total XP</small>
+          <strong id="totalXp">0</strong>
+        </div>
+        <div class="dash-card">
+          <small>Modules Completed</small>
+          <strong id="modulesCompleted">0/8</strong>
+        </div>
+        <div class="dash-card">
+          <small>Study Streak</small>
+          <strong id="studyStreak">1 day</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section highlight">
+      <div class="continue-card">
+        <img src="/medskillbuilder-logo.png" alt="MedSkillBuilder logo" />
+        <div>
+          <small>MedSkillBuilder · Continue Learning</small>
+          <h3 id="continueTitle">Start Medical Terminology Foundations</h3>
+          <p id="continueDescription">Begin Module 1 and learn how medical words are built.</p>
+        </div>
+        <a class="btn primary" id="continueButton" href="/medical-assistant-module-1.html">Start Module 1 →</a>
+      </div>
+    </section>
+
+    <section class="section" id="curriculum">
+      <h2>Your Learning Journey</h2>
+      <p>Modules unlock as you progress. Complete the current module to move forward.</p>
+
+      <div class="module-list">
+        <article class="module-card current" id="module1Card">
+          <div class="module-number">1</div>
+          <div>
+            <div class="module-title">
+              <h3>Medical Terminology Foundations</h3>
+              <span class="status active" id="module1Status">In Progress</span>
+            </div>
+            <p class="module-desc">Prefixes, suffixes, root words, combining forms, directional terms, high-yield vocabulary, and terminology practice.</p>
+            <div class="module-meta">
+              <span>8 lessons</span>
+              <span>3–5 hours</span>
+              <span>Beginner</span>
+            </div>
+            <div class="module-progress"><span id="module1Progress"></span></div>
+          </div>
+          <div class="module-action">
+            <a class="btn primary" id="module1Button" href="/medical-assistant-module-1.html">Open Module</a>
+          </div>
+        </article>
+
+        <article class="module-card locked" id="module2Card">
+          <div class="module-number">2</div>
+          <div>
+            <div class="module-title">
+              <h3>Anatomy &amp; Physiology</h3>
+              <span class="status locked" id="module2Status">Locked</span>
+            </div>
+            <p class="module-desc">Body organization, anatomical position, major systems, organs, tissues, and how structure supports function.</p>
+            <div class="module-meta">
+              <span>Coming next</span>
+              <span>Interactive anatomy</span>
+              <span>Beginner → Intermediate</span>
+            </div>
+          </div>
+          <div class="module-action">
+            <a class="btn locked" id="module2Button" href="#" aria-disabled="true">Complete Module 1</a>
+          </div>
+        </article>
+
+        <article class="module-card locked">
+          <div class="module-number">3</div>
+          <div>
+            <div class="module-title">
+              <h3>Infection Control &amp; Patient Safety</h3>
+              <span class="status locked">Locked</span>
+            </div>
+            <p class="module-desc">Standard precautions, hand hygiene, PPE, sharps safety, asepsis, disinfection, sterilization, and exposure prevention.</p>
+            <div class="module-meta"><span>Future module</span><span>Safety focused</span></div>
+          </div>
+          <div class="module-action"><span class="btn locked">Locked</span></div>
+        </article>
+
+        <article class="module-card locked">
+          <div class="module-number">4</div>
+          <div>
+            <div class="module-title">
+              <h3>Patient Assessment &amp; Vital Signs</h3>
+              <span class="status locked">Locked</span>
+            </div>
+            <p class="module-desc">Temperature, pulse, respirations, blood pressure, oxygen saturation, pain assessment, height, weight, and documentation.</p>
+            <div class="module-meta"><span>Future module</span><span>Clinical foundations</span></div>
+          </div>
+          <div class="module-action"><span class="btn locked">Locked</span></div>
+        </article>
+
+        <article class="module-card locked">
+          <div class="module-number">5</div>
+          <div>
+            <div class="module-title">
+              <h3>Clinical Procedures</h3>
+              <span class="status locked">Locked</span>
+            </div>
+            <p class="module-desc">Specimen collection, blood glucose, EKG basics, medication safety, patient positioning, and assisting with procedures.</p>
+            <div class="module-meta"><span>Future module</span><span>Procedure focused</span></div>
+          </div>
+          <div class="module-action"><span class="btn locked">Locked</span></div>
+        </article>
+
+        <article class="module-card locked">
+          <div class="module-number">6</div>
+          <div>
+            <div class="module-title">
+              <h3>Laboratory Fundamentals</h3>
+              <span class="status locked">Locked</span>
+            </div>
+            <p class="module-desc">CBC, BMP, CMP, electrolytes, specimen handling, normal values, and recognizing critical results.</p>
+            <div class="module-meta"><span>Future module</span><span>Lab interpretation</span></div>
+          </div>
+          <div class="module-action"><span class="btn locked">Locked</span></div>
+        </article>
+
+        <article class="module-card locked">
+          <div class="module-number">7</div>
+          <div>
+            <div class="module-title">
+              <h3>Medical Equipment</h3>
+              <span class="status locked">Locked</span>
+            </div>
+            <p class="module-desc">Stethoscopes, blood pressure cuffs, pulse oximeters, thermometers, ECG machines, centrifuges, autoclaves, and basic safety.</p>
+            <div class="module-meta"><span>Future module</span><span>Equipment recognition</span></div>
+          </div>
+          <div class="module-action"><span class="btn locked">Locked</span></div>
+        </article>
+
+        <article class="module-card locked">
+          <div class="module-number">8</div>
+          <div>
+            <div class="module-title">
+              <h3>Professional Practice</h3>
+              <span class="status locked">Locked</span>
+            </div>
+            <p class="module-desc">HIPAA, ethics, communication, professionalism, teamwork, cultural awareness, and patient-centered care.</p>
+            <div class="module-meta"><span>Future module</span><span>Career readiness</span></div>
+          </div>
+          <div class="module-action"><span class="btn locked">Locked</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Your Achievements</h2>
+      <p>Achievements unlock automatically as you complete lessons and checkpoints.</p>
+      <div class="achievement-grid">
+        <div class="achievement" id="achievementFirst">
+          <div class="icon">🌟</div>
+          <strong>First Step</strong>
+          <span>Complete your first lesson</span>
+        </div>
+        <div class="achievement" id="achievementFour">
+          <div class="icon">📚</div>
+          <strong>Halfway There</strong>
+          <span>Complete four Module 1 lessons</span>
+        </div>
+        <div class="achievement" id="achievementQuiz">
+          <div class="icon">🧠</div>
+          <strong>Knowledge Check</strong>
+          <span>Pass the Module 1 final checkpoint</span>
+        </div>
+        <div class="achievement" id="achievementModule">
+          <div class="icon">🏆</div>
+          <strong>Terminology Foundations</strong>
+          <span>Complete all of Module 1</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <h2>Module Completion</h2>
+      <p>When you complete Module 1, Anatomy &amp; Physiology will unlock automatically.</p>
+      <div class="completion-banner" id="completionBanner">
+        <div class="icon">🎉</div>
+        <strong>Medical Terminology Foundations Complete!</strong>
+        <p>You completed eight lessons, passed the final checkpoint, earned your terminology badge, and unlocked Module 2.</p>
+        <a class="btn white" href="#module2Card">View Unlocked Module 2 →</a>
+      </div>
+      <p id="completionWaiting">Your Module 1 progress will appear here automatically.</p>
+    </section>
+
+    <section class="section">
+      <h2>About This Path</h2>
+      <p class="disclaimer">The Medical Assistant Learning Path is a supplemental educational resource designed to reinforce concepts commonly taught in medical assistant programs. It is not an accredited program and does not replace formal education, clinical training, certification requirements, employer policies, or professional medical guidance. Completing modules or earning achievements does not confer certification, licensure, continuing education credit, or an accredited credential.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder Academy</strong> — Free interactive healthcare learning.</p>
+      <p><a href="/">Home</a> · <a href="/browse-all-practice.html">Browse All</a> · <a href="/about-medskillbuilder.html">About MedSkillBuilder</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const MODULE1_KEY = "msbMedicalAssistantModule1";
+      const PATH_KEY = "msbMedicalAssistantPath";
+
+      function getModule1(){
+        try{
+          return JSON.parse(localStorage.getItem(MODULE1_KEY)) || {
+            completedLessons:[],
+            quizScore:0,
+            quizPassed:false
+          };
+        }catch(error){
+          return {completedLessons:[],quizScore:0,quizPassed:false};
+        }
+      }
+
+      function getPath(){
+        try{
+          return JSON.parse(localStorage.getItem(PATH_KEY)) || {};
+        }catch(error){
+          return {};
+        }
+      }
+
+      function savePath(state){
+        localStorage.setItem(PATH_KEY,JSON.stringify(state));
+      }
+
+      function update(){
+        const m1 = getModule1();
+        const path = getPath();
+        const completedLessons = Array.isArray(m1.completedLessons) ? m1.completedLessons.length : 0;
+        const module1Items = completedLessons + (m1.quizPassed ? 1 : 0);
+        const module1Percent = Math.round((module1Items / 9) * 100);
+        const module1Complete = completedLessons === 8 && m1.quizPassed;
+
+        if(module1Complete){
+          path.module1Complete = true;
+          path.module2Unlocked = true;
+          savePath(path);
+        }
+
+        const completedModules = module1Complete ? 1 : 0;
+        const overallPercent = Math.round((completedModules / 8) * 100);
+        const xp = completedLessons * 100 + (m1.quizPassed ? 250 : 0) + (m1.quickCheckPassed ? 50 : 0);
+        const streak = m1.streak || 1;
+
+        document.getElementById("overallProgressText").textContent = overallPercent + "% Complete";
+        document.getElementById("overallProgressBar").style.width = overallPercent + "%";
+        document.getElementById("totalXp").textContent = xp;
+        document.getElementById("modulesCompleted").textContent = completedModules + "/8";
+        document.getElementById("studyStreak").textContent = streak + (streak === 1 ? " day" : " days");
+        document.getElementById("module1Progress").style.width = module1Percent + "%";
+
+        document.getElementById("achievementFirst").classList.toggle("unlocked",completedLessons >= 1);
+        document.getElementById("achievementFour").classList.toggle("unlocked",completedLessons >= 4);
+        document.getElementById("achievementQuiz").classList.toggle("unlocked",m1.quizPassed);
+        document.getElementById("achievementModule").classList.toggle("unlocked",module1Complete);
+
+        const heroButton = document.getElementById("heroContinueButton");
+        const continueButton = document.getElementById("continueButton");
+        const continueTitle = document.getElementById("continueTitle");
+        const continueDescription = document.getElementById("continueDescription");
+        const module1Card = document.getElementById("module1Card");
+        const module1Status = document.getElementById("module1Status");
+        const module1Button = document.getElementById("module1Button");
+
+        if(module1Complete){
+          heroButton.textContent = "View Unlocked Module 2";
+          heroButton.href = "#module2Card";
+          continueTitle.textContent = "Module 2: Anatomy & Physiology is unlocked";
+          continueDescription.textContent = "You completed Medical Terminology Foundations. Your next step is anatomy and physiology.";
+          continueButton.textContent = "View Module 2 →";
+          continueButton.href = "#module2Card";
+
+          module1Card.classList.remove("current");
+          module1Card.classList.add("complete");
+          module1Status.className = "status complete";
+          module1Status.textContent = "Complete";
+          module1Button.className = "btn green";
+          module1Button.textContent = "Review Module";
+
+          const m2Card = document.getElementById("module2Card");
+          const m2Status = document.getElementById("module2Status");
+          const m2Button = document.getElementById("module2Button");
+          m2Card.classList.remove("locked");
+          m2Card.classList.add("current");
+          m2Status.className = "status active";
+          m2Status.textContent = "Unlocked";
+          m2Button.className = "btn primary";
+          m2Button.textContent = "Coming Next";
+          m2Button.removeAttribute("aria-disabled");
+
+          document.getElementById("completionBanner").classList.add("show");
+          document.getElementById("completionWaiting").style.display = "none";
+        }else{
+          heroButton.textContent = completedLessons > 0 ? "Continue Module 1" : "Start Learning";
+          continueButton.textContent = completedLessons > 0 ? "Continue Module 1 →" : "Start Module 1 →";
+          continueTitle.textContent = completedLessons > 0
+            ? "Continue Medical Terminology Foundations"
+            : "Start Medical Terminology Foundations";
+          continueDescription.textContent = completedLessons > 0
+            ? completedLessons + " of 8 lessons complete. Pick up where you left off."
+            : "Begin Module 1 and learn how medical words are built.";
+          module1Status.textContent = completedLessons > 0 ? "In Progress" : "Not Started";
+        }
+      }
+
+      update();
+      window.addEventListener("storage",update);
+      window.addEventListener("focus",update);
+    })();
+  </script>
+</body>
+</html>
