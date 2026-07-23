@@ -613,17 +613,25 @@
           </div>
         </article>
 
-        <article class="module-card locked">
+        <article class="module-card locked" id="module7Card">
           <div class="module-number">7</div>
           <div>
             <div class="module-title">
               <h3>Medical Equipment</h3>
-              <span class="status locked">Locked</span>
+              <span class="status locked" id="module7Status">Locked</span>
             </div>
-            <p class="module-desc">Stethoscopes, blood pressure cuffs, pulse oximeters, thermometers, ECG machines, centrifuges, autoclaves, and basic safety.</p>
-            <div class="module-meta"><span>Future module</span><span>Equipment recognition</span></div>
+            <p class="module-desc">Safe use, cleaning, inspection, troubleshooting, and documentation for stethoscopes, blood pressure devices, pulse oximeters, thermometers, ECG machines, centrifuges, and autoclaves.</p>
+            <div class="module-meta">
+              <span>8 lessons</span>
+              <span>75–105 minutes</span>
+              <span>250 XP</span>
+              <span>🛠️ Medical Equipment Specialist</span>
+            </div>
+            <div class="module-progress"><span id="module7Progress"></span></div>
           </div>
-          <div class="module-action"><span class="btn locked">Locked</span></div>
+          <div class="module-action">
+            <a class="btn locked" id="module7Button" href="/medical-assistant-module-7.html" aria-disabled="true">Complete Module 6</a>
+          </div>
         </article>
 
         <article class="module-card locked">
@@ -679,6 +687,11 @@
           <div class="icon">🧪</div>
           <strong>Laboratory Fundamentals Specialist</strong>
           <span>Pass Module 6 with 80% or higher</span>
+        </div>
+        <div class="achievement" id="achievementEquipment">
+          <div class="icon">🛠️</div>
+          <strong>Medical Equipment Specialist</strong>
+          <span>Pass Module 7 with 80% or higher</span>
         </div>
       </div>
     </section>
@@ -793,6 +806,7 @@
         const m4=newerModuleState("medskillbuilder_ma_module4");
         const m5=newerModuleState("medskillbuilder_ma_module5");
         const m6=newerModuleState("medskillbuilder_ma_module6");
+        const m7=newerModuleState("medskillbuilder_ma_module7");
 
         const c1=complete(m1);
         const c2=complete(m2);
@@ -800,6 +814,7 @@
         const c4=complete(m4);
         const c5=complete(m5);
         const c6=complete(m6);
+        const c7=complete(m7);
 
         const path=read(PATH_KEY);
         if(c1){path.module1Complete=true;path.module2Unlocked=true;}
@@ -808,12 +823,13 @@
         if(c4){path.module4Complete=true;path.module5Unlocked=true;}
         if(c5){path.module5Complete=true;path.module6Unlocked=true;}
         if(c6){path.module6Complete=true;path.module7Unlocked=true;}
+        if(c7){path.module7Complete=true;path.module8Unlocked=true;}
         localStorage.setItem(PATH_KEY,JSON.stringify(path));
 
-        const completedModules=[c1,c2,c3,c4,c5,c6].filter(Boolean).length;
+        const completedModules=[c1,c2,c3,c4,c5,c6,c7].filter(Boolean).length;
         const overallPercent=Math.round(completedModules/8*100);
-        const totalXp=xp(m1)+xp(m2)+xp(m3)+xp(m4)+xp(m5)+xp(m6);
-        const streak=Math.max(m1.streak,m2.streak,m3.streak,m4.streak,m5.streak,m6.streak);
+        const totalXp=xp(m1)+xp(m2)+xp(m3)+xp(m4)+xp(m5)+xp(m6)+xp(m7);
+        const streak=Math.max(m1.streak,m2.streak,m3.streak,m4.streak,m5.streak,m6.streak,m7.streak);
 
         document.getElementById("overallProgressText").textContent=overallPercent+"% Complete";
         document.getElementById("overallProgressBar").style.width=overallPercent+"%";
@@ -829,6 +845,7 @@
         document.getElementById("achievementVitals").classList.toggle("unlocked",c4);
         document.getElementById("achievementClinical").classList.toggle("unlocked",c5);
         document.getElementById("achievementLab").classList.toggle("unlocked",c6);
+        document.getElementById("achievementEquipment").classList.toggle("unlocked",c7);
 
         const module1Card=document.getElementById("module1Card");
         const module1Status=document.getElementById("module1Status");
@@ -854,37 +871,50 @@
         setCard(4,c4?"complete":c3?"current":"locked",percent(m4));
         setCard(5,c5?"complete":c4?"current":"locked",percent(m5));
         setCard(6,c6?"complete":c5?"current":"locked",percent(m6));
+        setCard(7,c7?"complete":c6?"current":"locked",percent(m7));
 
         const m2Button=document.getElementById("module2Button");
         const m3Button=document.getElementById("module3Button");
         const m4Button=document.getElementById("module4Button");
         const m5Button=document.getElementById("module5Button");
         const m6Button=document.getElementById("module6Button");
+        const m7Button=document.getElementById("module7Button");
 
         m2Button.href="/medical-assistant-module-2.html";
         m3Button.href="/medical-assistant-module-3.html";
         m4Button.href="/medical-assistant-module-4.html";
         m5Button.href="/medical-assistant-module-5.html";
         m6Button.href="/medical-assistant-module-6.html";
+        m7Button.href="/medical-assistant-module-7.html";
 
         if(!c1) m2Button.textContent="Complete Module 1";
         if(!c2) m3Button.textContent="Complete Module 2";
         if(!c3) m4Button.textContent="Complete Module 3";
         if(!c4) m5Button.textContent="Complete Module 4";
         if(!c5) m6Button.textContent="Complete Module 5";
+        if(!c6) m7Button.textContent="Complete Module 6";
 
         const hero=document.getElementById("heroContinueButton");
         const cont=document.getElementById("continueButton");
         const title=document.getElementById("continueTitle");
         const desc=document.getElementById("continueDescription");
 
-        if(c6){
-          hero.textContent="Review Module 6";
-          hero.href="/medical-assistant-module-6.html";
-          title.textContent="Module 6 complete";
-          desc.textContent="You earned the Laboratory Fundamentals Specialist badge and completed all currently available modules.";
-          cont.textContent="Review Module 6 →";
-          cont.href="/medical-assistant-module-6.html";
+        if(c7){
+          hero.textContent="Review Module 7";
+          hero.href="/medical-assistant-module-7.html";
+          title.textContent="Module 7 complete";
+          desc.textContent="You earned the Medical Equipment Specialist badge and completed all currently available modules.";
+          cont.textContent="Review Module 7 →";
+          cont.href="/medical-assistant-module-7.html";
+        }else if(c6){
+          hero.textContent=m7.completedLessons.length?"Continue Module 7":"Start Module 7";
+          hero.href="/medical-assistant-module-7.html";
+          title.textContent="Module 7: Medical Equipment";
+          desc.textContent=m7.completedLessons.length
+            ? m7.completedLessons.length+" of 8 lessons complete. Continue your medical-equipment training."
+            : "Laboratory Fundamentals is complete. Begin medical equipment.";
+          cont.textContent=m7.completedLessons.length?"Continue Module 7 →":"Start Module 7 →";
+          cont.href="/medical-assistant-module-7.html";
         }else if(c5){
           hero.textContent=m6.completedLessons.length?"Continue Module 6":"Start Module 6";
           hero.href="/medical-assistant-module-6.html";
@@ -949,12 +979,19 @@
         const bannerText=banner.querySelector("p");
         const bannerLink=banner.querySelector("a");
 
-        if(c6){
+        if(c7){
           banner.classList.add("show");
           bannerTitle.textContent="All Available Modules Complete!";
-          bannerText.textContent="You completed Modules 1–6 and earned the Laboratory Fundamentals Specialist badge.";
-          bannerLink.textContent="Review Module 6 →";
-          bannerLink.href="/medical-assistant-module-6.html";
+          bannerText.textContent="You completed Modules 1–7 and earned the Medical Equipment Specialist badge.";
+          bannerLink.textContent="Review Module 7 →";
+          bannerLink.href="/medical-assistant-module-7.html";
+          waiting.style.display="none";
+        }else if(c6){
+          banner.classList.add("show");
+          bannerTitle.textContent="Laboratory Fundamentals Complete!";
+          bannerText.textContent="You completed Module 6 and unlocked Medical Equipment.";
+          bannerLink.textContent="Open Module 7 →";
+          bannerLink.href="/medical-assistant-module-7.html";
           waiting.style.display="none";
         }else if(c5){
           banner.classList.add("show");
