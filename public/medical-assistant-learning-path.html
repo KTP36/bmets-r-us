@@ -634,17 +634,25 @@
           </div>
         </article>
 
-        <article class="module-card locked">
+        <article class="module-card locked" id="module8Card">
           <div class="module-number">8</div>
           <div>
             <div class="module-title">
-              <h3>Professional Practice</h3>
-              <span class="status locked">Locked</span>
+              <h3>Professional Practice &amp; Career Readiness</h3>
+              <span class="status locked" id="module8Status">Locked</span>
             </div>
-            <p class="module-desc">HIPAA, ethics, communication, professionalism, teamwork, cultural awareness, and patient-centered care.</p>
-            <div class="module-meta"><span>Future module</span><span>Career readiness</span></div>
+            <p class="module-desc">Professionalism, communication, HIPAA, ethics, cultural competence, teamwork, career readiness, and capstone review.</p>
+            <div class="module-meta">
+              <span>8 lessons</span>
+              <span>75–105 minutes</span>
+              <span>250 XP</span>
+              <span>🏅 Academy Graduate</span>
+            </div>
+            <div class="module-progress"><span id="module8Progress"></span></div>
           </div>
-          <div class="module-action"><span class="btn locked">Locked</span></div>
+          <div class="module-action">
+            <a class="btn locked" id="module8Button" href="/medical-assistant-module-8.html" aria-disabled="true">Complete Module 7</a>
+          </div>
         </article>
       </div>
     </section>
@@ -692,6 +700,11 @@
           <div class="icon">🛠️</div>
           <strong>Medical Equipment Specialist</strong>
           <span>Pass Module 7 with 80% or higher</span>
+        </div>
+        <div class="achievement" id="achievementGraduate">
+          <div class="icon">🏅</div>
+          <strong>Medical Assistant Academy Graduate</strong>
+          <span>Complete all 8 modules</span>
         </div>
       </div>
     </section>
@@ -807,6 +820,7 @@
         const m5=newerModuleState("medskillbuilder_ma_module5");
         const m6=newerModuleState("medskillbuilder_ma_module6");
         const m7=newerModuleState("medskillbuilder_ma_module7");
+        const m8=newerModuleState("medskillbuilder_ma_module8");
 
         const c1=complete(m1);
         const c2=complete(m2);
@@ -815,6 +829,7 @@
         const c5=complete(m5);
         const c6=complete(m6);
         const c7=complete(m7);
+        const c8=complete(m8);
 
         const path=read(PATH_KEY);
         if(c1){path.module1Complete=true;path.module2Unlocked=true;}
@@ -824,12 +839,13 @@
         if(c5){path.module5Complete=true;path.module6Unlocked=true;}
         if(c6){path.module6Complete=true;path.module7Unlocked=true;}
         if(c7){path.module7Complete=true;path.module8Unlocked=true;}
+        if(c8){path.module8Complete=true;path.academyComplete=true;}
         localStorage.setItem(PATH_KEY,JSON.stringify(path));
 
-        const completedModules=[c1,c2,c3,c4,c5,c6,c7].filter(Boolean).length;
+        const completedModules=[c1,c2,c3,c4,c5,c6,c7,c8].filter(Boolean).length;
         const overallPercent=Math.round(completedModules/8*100);
-        const totalXp=xp(m1)+xp(m2)+xp(m3)+xp(m4)+xp(m5)+xp(m6)+xp(m7);
-        const streak=Math.max(m1.streak,m2.streak,m3.streak,m4.streak,m5.streak,m6.streak,m7.streak);
+        const totalXp=xp(m1)+xp(m2)+xp(m3)+xp(m4)+xp(m5)+xp(m6)+xp(m7)+xp(m8);
+        const streak=Math.max(m1.streak,m2.streak,m3.streak,m4.streak,m5.streak,m6.streak,m7.streak,m8.streak);
 
         document.getElementById("overallProgressText").textContent=overallPercent+"% Complete";
         document.getElementById("overallProgressBar").style.width=overallPercent+"%";
@@ -846,6 +862,7 @@
         document.getElementById("achievementClinical").classList.toggle("unlocked",c5);
         document.getElementById("achievementLab").classList.toggle("unlocked",c6);
         document.getElementById("achievementEquipment").classList.toggle("unlocked",c7);
+        document.getElementById("achievementGraduate").classList.toggle("unlocked",c8);
 
         const module1Card=document.getElementById("module1Card");
         const module1Status=document.getElementById("module1Status");
@@ -872,6 +889,7 @@
         setCard(5,c5?"complete":c4?"current":"locked",percent(m5));
         setCard(6,c6?"complete":c5?"current":"locked",percent(m6));
         setCard(7,c7?"complete":c6?"current":"locked",percent(m7));
+        setCard(8,c8?"complete":c7?"current":"locked",percent(m8));
 
         const m2Button=document.getElementById("module2Button");
         const m3Button=document.getElementById("module3Button");
@@ -879,6 +897,7 @@
         const m5Button=document.getElementById("module5Button");
         const m6Button=document.getElementById("module6Button");
         const m7Button=document.getElementById("module7Button");
+        const m8Button=document.getElementById("module8Button");
 
         m2Button.href="/medical-assistant-module-2.html";
         m3Button.href="/medical-assistant-module-3.html";
@@ -886,6 +905,7 @@
         m5Button.href="/medical-assistant-module-5.html";
         m6Button.href="/medical-assistant-module-6.html";
         m7Button.href="/medical-assistant-module-7.html";
+        m8Button.href="/medical-assistant-module-8.html";
 
         if(!c1) m2Button.textContent="Complete Module 1";
         if(!c2) m3Button.textContent="Complete Module 2";
@@ -893,19 +913,29 @@
         if(!c4) m5Button.textContent="Complete Module 4";
         if(!c5) m6Button.textContent="Complete Module 5";
         if(!c6) m7Button.textContent="Complete Module 6";
+        if(!c7) m8Button.textContent="Complete Module 7";
 
         const hero=document.getElementById("heroContinueButton");
         const cont=document.getElementById("continueButton");
         const title=document.getElementById("continueTitle");
         const desc=document.getElementById("continueDescription");
 
-        if(c7){
-          hero.textContent="Review Module 7";
-          hero.href="/medical-assistant-module-7.html";
-          title.textContent="Module 7 complete";
-          desc.textContent="You earned the Medical Equipment Specialist badge and completed all currently available modules.";
-          cont.textContent="Review Module 7 →";
-          cont.href="/medical-assistant-module-7.html";
+        if(c8){
+          hero.textContent="View Certificate";
+          hero.href="/medical-assistant-certificate.html";
+          title.textContent="Medical Assistant Academy complete";
+          desc.textContent="You completed all 8 modules, earned the Graduate badge, and unlocked your completion certificate.";
+          cont.textContent="Open Certificate →";
+          cont.href="/medical-assistant-certificate.html";
+        }else if(c7){
+          hero.textContent=m8.completedLessons.length?"Continue Module 8":"Start Module 8";
+          hero.href="/medical-assistant-module-8.html";
+          title.textContent="Module 8: Professional Practice & Career Readiness";
+          desc.textContent=m8.completedLessons.length
+            ? m8.completedLessons.length+" of 8 lessons complete. Finish your academy capstone."
+            : "Medical Equipment is complete. Begin the final academy module.";
+          cont.textContent=m8.completedLessons.length?"Continue Module 8 →":"Start Module 8 →";
+          cont.href="/medical-assistant-module-8.html";
         }else if(c6){
           hero.textContent=m7.completedLessons.length?"Continue Module 7":"Start Module 7";
           hero.href="/medical-assistant-module-7.html";
@@ -979,12 +1009,19 @@
         const bannerText=banner.querySelector("p");
         const bannerLink=banner.querySelector("a");
 
-        if(c7){
+        if(c8){
           banner.classList.add("show");
-          bannerTitle.textContent="All Available Modules Complete!";
-          bannerText.textContent="You completed Modules 1–7 and earned the Medical Equipment Specialist badge.";
-          bannerLink.textContent="Review Module 7 →";
-          bannerLink.href="/medical-assistant-module-7.html";
+          bannerTitle.textContent="Medical Assistant Academy Complete! 🎓";
+          bannerText.textContent="You completed all 8 modules, earned the Medical Assistant Academy Graduate badge, and unlocked your certificate.";
+          bannerLink.textContent="Open Certificate →";
+          bannerLink.href="/medical-assistant-certificate.html";
+          waiting.style.display="none";
+        }else if(c7){
+          banner.classList.add("show");
+          bannerTitle.textContent="Medical Equipment Complete!";
+          bannerText.textContent="You completed Module 7 and unlocked the final Professional Practice & Career Readiness module.";
+          bannerLink.textContent="Open Module 8 →";
+          bannerLink.href="/medical-assistant-module-8.html";
           waiting.style.display="none";
         }else if(c6){
           banner.classList.add("show");
