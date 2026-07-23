@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Medical Assistant Module 6: Laboratory Fundamentals | MedSkillBuilder</title>
+  <meta name="description" content="Complete Medical Assistant Module 6 on laboratory fundamentals. Learn specimen safety, CLIA-waived testing, urinalysis, blood glucose, hematology basics, microbiology, quality control, documentation, and critical-result escalation." />
+  <meta name="keywords" content="medical assistant laboratory fundamentals, CLIA waived testing, urinalysis, blood glucose, hematology basics, microbiology, quality control, medical assistant academy" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://medskillbuilder.com/medical-assistant-module-6.html" />
+
+  <meta property="og:title" content="Medical Assistant Module 6: Laboratory Fundamentals" />
+  <meta property="og:description" content="Learn the safety, quality-control, specimen-handling, and documentation skills behind common medical assistant laboratory tasks." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://medskillbuilder.com/medical-assistant-module-6.html" />
+  <meta property="og:site_name" content="MedSkillBuilder" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Course",
+    "name":"Medical Assistant Module 6: Laboratory Fundamentals",
+    "description":"A structured medical assistant module covering laboratory safety, specimen handling, CLIA-waived testing, urinalysis, blood glucose, hematology, microbiology, quality control, documentation, and result escalation.",
+    "provider":{
+      "@type":"Organization",
+      "name":"MedSkillBuilder",
+      "sameAs":"https://medskillbuilder.com"
+    },
+    "educationalLevel":"Beginner to Intermediate",
+    "isAccessibleForFree":true,
+    "inLanguage":"en-US"
+  }
+  </script>
+
+  <style>
+    :root {
+      --navy:#12355b;
+      --navy-dark:#0b2440;
+      --blue:#2563eb;
+      --cyan:#0891b2;
+      --green:#16a34a;
+      --teal:#0f766e;
+      --purple:#7c3aed;
+      --rose:#e11d48;
+      --orange:#f97316;
+      --yellow:#f59e0b;
+      --slate:#334155;
+      --muted:#64748b;
+      --border:#dbe4ee;
+      --page:#f8fafc;
+      --card:#ffffff;
+      --shadow:0 18px 46px rgba(15,23,42,.10);
+      --soft-shadow:0 7px 20px rgba(15,23,42,.07);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      color:#0f172a;
+      background:
+        radial-gradient(circle at top left,rgba(8,145,178,.11),transparent 30%),
+        radial-gradient(circle at top right,rgba(22,163,74,.10),transparent 27%),
+        linear-gradient(180deg,#f8fafc 0%,#eefaf8 48%,#fff 100%);
+      line-height:1.65;
+    }
+
+    a{color:inherit}
+    button,input{font:inherit}
+
+    .container{
+      max-width:1120px;
+      margin:0 auto;
+      padding:22px 20px 70px;
+    }
+
+    .top-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+
+    .top-link,.top-nav a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      color:var(--navy);
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:10px 15px;
+      font-weight:900;
+      box-shadow:var(--soft-shadow);
+      font-size:.94rem;
+    }
+
+    .top-nav{display:flex;gap:9px;flex-wrap:wrap}
+
+    .hero{
+      background:linear-gradient(135deg,var(--navy-dark) 0%,#0f766e 55%,#16a34a 100%);
+      color:#fff;
+      border-radius:30px;
+      padding:38px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+      margin-bottom:24px;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      right:-105px;
+      top:-125px;
+      background:rgba(255,255,255,.12);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      font-weight:900;
+      position:relative;
+      z-index:2;
+    }
+
+    h1{
+      margin:14px 0 12px;
+      font-size:clamp(2.15rem,5vw,3.6rem);
+      line-height:1.03;
+      letter-spacing:-.04em;
+      max-width:900px;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero p{
+      color:rgba(255,255,255,.93);
+      max-width:890px;
+      font-size:1.08rem;
+      margin:0 0 16px;
+      position:relative;
+      z-index:2;
+    }
+
+    .meta-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(165px,1fr));
+      gap:12px;
+      margin-top:22px;
+      position:relative;
+      z-index:2;
+    }
+
+    .meta-card{
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:17px;
+      padding:15px;
+      font-weight:900;
+    }
+
+    .meta-card span{
+      display:block;
+      color:rgba(255,255,255,.82);
+      font-size:.9rem;
+      font-weight:700;
+      margin-top:3px;
+    }
+
+    .progress-wrap{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:20px;
+      box-shadow:var(--soft-shadow);
+      margin-bottom:22px;
+    }
+
+    .progress-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      margin-bottom:10px;
+      font-weight:900;
+      color:var(--navy);
+    }
+
+    .progress-track{
+      width:100%;
+      height:14px;
+      background:#e8eef6;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .progress-bar{
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,var(--teal),var(--green));
+      transition:width .3s ease;
+    }
+
+    .grid-two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      margin-bottom:22px;
+    }
+
+    .card,.lesson,.quiz-card,.completion-card{
+      background:rgba(255,255,255,.97);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:26px;
+      box-shadow:var(--soft-shadow);
+      margin-bottom:22px;
+    }
+
+    h2{
+      color:var(--navy);
+      margin:0 0 10px;
+      font-size:clamp(1.55rem,3vw,2.15rem);
+      line-height:1.15;
+      letter-spacing:-.02em;
+    }
+
+    h3{
+      color:var(--navy);
+      margin:22px 0 8px;
+      font-size:1.25rem;
+    }
+
+    p{margin:0 0 14px;color:var(--slate)}
+
+    .objective-list,.clean-list{
+      margin:12px 0 0;
+      padding-left:21px;
+      color:var(--slate);
+    }
+
+    .objective-list li,.clean-list li{margin-bottom:7px}
+
+    .lesson-tag{
+      display:inline-flex;
+      background:#ccfbf1;
+      color:var(--teal);
+      border-radius:999px;
+      padding:6px 11px;
+      font-size:.85rem;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .lesson-complete{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid var(--border);
+      flex-wrap:wrap;
+    }
+
+    .complete-btn,.quiz-btn,.reset-btn{
+      border:none;
+      cursor:pointer;
+      border-radius:999px;
+      padding:11px 17px;
+      font-weight:900;
+      transition:transform .18s ease,opacity .18s ease;
+    }
+
+    .complete-btn,.quiz-btn{
+      background:linear-gradient(90deg,var(--teal),var(--green));
+      color:#fff;
+    }
+
+    .complete-btn.done{background:linear-gradient(90deg,var(--green),#15803d)}
+
+    .reset-btn{background:#e2e8f0;color:var(--navy)}
+
+    .complete-btn:hover,.quiz-btn:hover,.reset-btn:hover{
+      transform:translateY(-1px);
+      opacity:.95;
+    }
+
+    .callout,.pearl,.warning,.memory{
+      border-radius:18px;
+      padding:18px;
+      margin:18px 0;
+    }
+
+    .callout{background:#eff6ff;border-left:5px solid var(--blue)}
+    .pearl{background:#ecfdf5;border-left:5px solid var(--green)}
+    .warning{background:#fff7ed;border-left:5px solid var(--orange)}
+    .memory{background:#f0fdfa;border-left:5px solid var(--teal)}
+
+    .callout strong,.pearl strong,.warning strong,.memory strong{color:var(--navy)}
+
+    .range-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+      gap:12px;
+      margin:16px 0;
+    }
+
+    .range-card{
+      border-radius:17px;
+      padding:16px;
+      border:1px solid var(--border);
+      background:#f8fafc;
+    }
+
+    .range-card strong{
+      display:block;
+      color:var(--navy);
+      font-size:1.05rem;
+    }
+
+    .range-card span{
+      display:block;
+      color:var(--muted);
+      margin-top:3px;
+    }
+
+    .scenario{
+      background:linear-gradient(135deg,#f8fafc,#ecfeff);
+      border:1px solid #cbd5e1;
+      border-radius:20px;
+      padding:20px;
+      margin:18px 0;
+    }
+
+    .scenario h3{margin-top:0}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:16px 0;
+      overflow:hidden;
+      border-radius:16px;
+    }
+
+    th,td{
+      border:1px solid var(--border);
+      padding:12px;
+      text-align:left;
+      vertical-align:top;
+    }
+
+    th{background:var(--navy);color:#fff}
+    tr:nth-child(even) td{background:#f8fafc}
+
+    .quiz-intro{
+      background:linear-gradient(135deg,var(--navy),var(--teal));
+      color:#fff;
+      border-radius:20px;
+      padding:22px;
+      margin-bottom:20px;
+    }
+
+    .quiz-intro p{color:rgba(255,255,255,.9)}
+
+    .question{
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      margin-bottom:16px;
+      background:#fff;
+    }
+
+    .question legend{
+      font-weight:900;
+      color:var(--navy);
+      padding:0 5px;
+    }
+
+    .option{
+      display:block;
+      margin:9px 0;
+      padding:10px 12px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:12px;
+      cursor:pointer;
+    }
+
+    .option:hover{background:#ecfeff}
+
+    .feedback{
+      display:none;
+      margin-top:10px;
+      padding:11px 13px;
+      border-radius:12px;
+      font-weight:700;
+    }
+
+    .feedback.correct{
+      display:block;
+      background:#dcfce7;
+      color:#166534;
+    }
+
+    .feedback.incorrect{
+      display:block;
+      background:#fee2e2;
+      color:#991b1b;
+    }
+
+    .result-box{
+      display:none;
+      margin-top:20px;
+      border-radius:20px;
+      padding:22px;
+      background:#ecfeff;
+      border:1px solid #a5f3fc;
+    }
+
+    .result-box.show{display:block}
+
+    .badge-box{
+      text-align:center;
+      padding:24px;
+      border:2px dashed #5eead4;
+      border-radius:20px;
+      background:#f0fdfa;
+    }
+
+    .badge-icon{font-size:3.2rem}
+
+    .nav-footer{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:24px;
+    }
+
+    .nav-footer a{
+      flex:1;
+      min-width:210px;
+      text-align:center;
+      text-decoration:none;
+      border-radius:999px;
+      padding:13px 18px;
+      font-weight:900;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--navy);
+      box-shadow:var(--soft-shadow);
+    }
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      margin-top:34px;
+      font-size:.92rem;
+    }
+
+    @media(max-width:760px){
+      .container{padding:16px 13px 48px}
+      .hero{padding:28px 18px;border-radius:22px}
+      .grid-two{grid-template-columns:1fr}
+      .card,.lesson,.quiz-card,.completion-card{padding:20px 16px;border-radius:19px}
+      .top-nav a{flex:1}
+      table{font-size:.92rem}
+      th,td{padding:9px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-row">
+      <a class="top-link" href="/medical-assistant-learning-path.html">← Learning Path</a>
+      <nav class="top-nav" aria-label="Module navigation">
+        <a href="/medical-assistant-module-5.html">Module 5</a>
+        <a href="#quiz">Final Quiz</a>
+        <a href="/">Home</a>
+      </nav>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow">🎓 MedSkillBuilder Academy</div>
+      <h1>Module 6: Laboratory Fundamentals</h1>
+      <p>
+        Build the safety, specimen-handling, quality-control, testing, and documentation habits used in common medical assistant laboratory workflows.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-card">⏱️ 75–105 minutes<span>Self-paced lesson</span></div>
+        <div class="meta-card">⭐ 250 XP<span>Earned after passing</span></div>
+        <div class="meta-card">🧪 Badge<span>Laboratory Fundamentals Specialist</span></div>
+        <div class="meta-card">✅ Passing Score<span>80% or higher</span></div>
+      </div>
+    </header>
+
+    <section class="progress-wrap" aria-label="Module progress">
+      <div class="progress-head">
+        <span>Module Progress</span>
+        <span id="progressText">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </section>
+
+    <div class="grid-two">
+      <section class="card">
+        <h2>Learning Objectives</h2>
+        <ul class="objective-list">
+          <li>Apply laboratory safety and specimen-identification principles.</li>
+          <li>Explain the purpose of CLIA-waived point-of-care testing.</li>
+          <li>Describe common urinalysis and blood-glucose workflows.</li>
+          <li>Recognize basic hematology and microbiology concepts.</li>
+          <li>Explain quality control, calibration, and documentation responsibilities.</li>
+          <li>Identify results or situations requiring immediate escalation.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>What You Will Practice</h2>
+        <ul class="objective-list">
+          <li>Laboratory safety</li>
+          <li>Specimen labeling</li>
+          <li>Point-of-care testing</li>
+          <li>Urinalysis</li>
+          <li>Blood glucose testing</li>
+          <li>Hematology basics</li>
+          <li>Microbiology basics</li>
+          <li>Quality control</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="lesson" data-lesson="1">
+      <div class="lesson-tag">Lesson 6.1</div>
+      <h2>Laboratory Safety and Workflow</h2>
+      <p>
+        Safe laboratory work begins before testing starts. The medical assistant must verify the order, identify the patient, select the correct supplies, use appropriate PPE, and follow the manufacturer's instructions and office policy.
+      </p>
+
+      <div class="range-grid">
+        <div class="range-card"><strong>Verify</strong><span>Correct patient and test order</span></div>
+        <div class="range-card"><strong>Prepare</strong><span>Correct supplies and equipment</span></div>
+        <div class="range-card"><strong>Protect</strong><span>PPE and exposure prevention</span></div>
+        <div class="range-card"><strong>Collect</strong><span>Correct specimen and technique</span></div>
+        <div class="range-card"><strong>Test</strong><span>Follow instructions exactly</span></div>
+        <div class="range-card"><strong>Document</strong><span>Record results and actions</span></div>
+      </div>
+
+      <div class="warning">
+        <strong>Safety Rule:</strong> Treat blood, body fluids, specimens, and contaminated equipment as potentially infectious.
+      </div>
+
+      <div class="lesson-complete">
+        <span>Laboratory safety lesson completed.</span>
+        <button class="complete-btn" data-complete="1">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="lesson" data-lesson="2">
+      <div class="lesson-tag">Lesson 6.2</div>
+      <h2>Specimen Identification, Collection, and Transport</h2>
+      <p>
+        A test result is only useful when the specimen belongs to the correct patient and has been collected, labeled, stored, and transported correctly.
+      </p>
+
+      <h3>Specimen Integrity Checklist</h3>
+      <ul class="clean-list">
+        <li>Use two approved patient identifiers.</li>
+        <li>Match the specimen container to the ordered test.</li>
+        <li>Label the specimen in the patient's presence.</li>
+        <li>Record the collection date and time when required.</li>
+        <li>Use the required storage temperature and transport method.</li>
+        <li>Protect specimens from contamination, leakage, and delay.</li>
+      </ul>
+
+      <div class="scenario">
+        <h3>Clinical Scenario</h3>
+        <p>You notice that a urine cup has no label and the patient has already left the collection area.</p>
+        <p><strong>Best response:</strong> Do not guess whose specimen it is. Follow rejection and recollection policy.</p>
+      </div>
+
+      <div class="pearl">
+        <strong>Clinical Pearl:</strong> Never prelabel an empty specimen container unless the facility has a specific approved workflow that still verifies the patient at collection.
+      </div>
+
+      <div class="lesson-complete">
+        <span>Specimen-handling lesson completed.</span>
+        <button class="complete-btn" data-complete="2">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="lesson" data-lesson="3">
+      <div class="lesson-tag">Lesson 6.3</div>
+      <h2>CLIA-Waived and Point-of-Care Testing</h2>
+      <p>
+        Many outpatient offices perform simple point-of-care tests classified as waived. Waived does not mean risk-free. Staff must still follow instructions, quality-control requirements, documentation standards, and competency policies.
+      </p>
+
+      <div class="range-grid">
+        <div class="range-card"><strong>Examples</strong><span>Glucose, pregnancy, rapid strep, urine dipstick</span></div>
+        <div class="range-card"><strong>Purpose</strong><span>Fast results near the patient</span></div>
+        <div class="range-card"><strong>Responsibility</strong><span>Follow the exact approved procedure</span></div>
+      </div>
+
+      <h3>Before Performing a Test</h3>
+      <ul class="clean-list">
+        <li>Confirm the test kit has not expired.</li>
+        <li>Check storage requirements.</li>
+        <li>Verify quality control is acceptable.</li>
+        <li>Use the correct specimen type and volume.</li>
+        <li>Time the test exactly as instructed.</li>
+        <li>Record the result in the appropriate location.</li>
+      </ul>
+
+      <div class="warning">
+        <strong>Do Not Improvise:</strong> Changing the timing, specimen amount, or reading window may make the result invalid.
+      </div>
+
+      <div class="lesson-complete">
+        <span>Point-of-care testing lesson completed.</span>
+        <button class="complete-btn" data-complete="3">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="lesson" data-lesson="4">
+      <div class="lesson-tag">Lesson 6.4</div>
+      <h2>Urinalysis Fundamentals</h2>
+      <p>
+        Urinalysis may include visual inspection, chemical testing with a reagent strip, and microscopic examination when ordered and performed by qualified personnel.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Urine Finding</th><th>Possible Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Glucose</td><td>May be associated with elevated blood glucose.</td></tr>
+          <tr><td>Protein</td><td>May suggest kidney-related or other conditions.</td></tr>
+          <tr><td>Ketones</td><td>May occur with fasting, illness, or uncontrolled diabetes.</td></tr>
+          <tr><td>Blood</td><td>May reflect urinary, renal, menstrual, or collection-related causes.</td></tr>
+          <tr><td>Leukocyte esterase</td><td>May suggest white blood cells in the urine.</td></tr>
+          <tr><td>Nitrite</td><td>May suggest certain bacterial activity.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="memory">
+        <strong>Dipstick Reminder:</strong> Use fresh, well-mixed urine, remove excess urine from the strip, and read each pad at the correct time.
+      </div>
+
+      <div class="warning">
+        <strong>Interpretation Reminder:</strong> A dipstick result does not diagnose a condition by itself. Report and document according to office protocol.
+      </div>
+
+      <div class="lesson-complete">
+        <span>Urinalysis lesson completed.</span>
+        <button class="complete-btn" data-complete="4">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="lesson" data-lesson="5">
+      <div class="lesson-tag">Lesson 6.5</div>
+      <h2>Blood Glucose Testing</h2>
+      <p>
+        Point-of-care glucose testing uses a small capillary blood sample and a glucose meter. Accuracy depends on proper patient preparation, test-strip storage, meter quality control, sample technique, and documentation.
+      </p>
+
+      <h3>Basic Workflow</h3>
+      <ol class="clean-list">
+        <li>Verify the order and identify the patient.</li>
+        <li>Perform hand hygiene and wear gloves.</li>
+        <li>Confirm the meter and strips are ready for use.</li>
+        <li>Select and clean the puncture site.</li>
+        <li>Allow antiseptic to dry.</li>
+        <li>Obtain the specimen without excessive squeezing.</li>
+        <li>Apply the correct amount of blood to the strip.</li>
+        <li>Read, document, and report the result.</li>
+        <li>Dispose of the lancet immediately in a sharps container.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>Accuracy Factors:</strong> Dirty or wet fingers, expired strips, poor circulation, improper storage, and insufficient sample volume can affect results.
+      </div>
+
+      <div class="scenario">
+        <h3>Clinical Scenario</h3>
+        <p>A patient is shaky, sweaty, and confused. The glucose meter reads 48 mg/dL.</p>
+        <p><strong>Best response:</strong> Treat the situation as urgent, keep the patient safe, and immediately notify the appropriate clinical professional according to protocol.</p>
+      </div>
+
+      <div class="lesson-complete">
+        <span>Blood-glucose lesson completed.</span>
+        <button class="complete-btn" data-complete="5">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="lesson" data-lesson="6">
+      <div class="lesson-tag">Lesson 6.6</div>
+      <h2>Hematology Basics</h2>
+      <p>
+        Hematology focuses on blood cells and related measurements. Medical assistants may collect specimens, perform approved waived tests, prepare slides, or communicate results according to training and policy.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Main Function</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Red blood cells</td><td>Carry oxygen using hemoglobin.</td></tr>
+          <tr><td>White blood cells</td><td>Support immune defense.</td></tr>
+          <tr><td>Platelets</td><td>Help form blood clots.</td></tr>
+          <tr><td>Hemoglobin</td><td>Oxygen-carrying protein in red blood cells.</td></tr>
+          <tr><td>Hematocrit</td><td>Percentage of blood volume made up of red blood cells.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="pearl">
+        <strong>Clinical Pearl:</strong> A specimen with a clot in a tube that requires whole blood may be unacceptable and may need recollection.
+      </div>
+
+      <div class="warning">
+        <strong>Critical Results:</strong> Follow the office's critical-value procedure. Document who was notified, when, and any instructions received.
+      </div>
+
+      <div class="lesson-complete">
+        <span>Hematology lesson completed.</span>
+        <button class="complete-btn" data-complete="6">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="lesson" data-lesson="7">
+      <div class="lesson-tag">Lesson 6.7</div>
+      <h2>Microbiology and Rapid Testing</h2>
+      <p>
+        Microbiology examines microorganisms. In the medical office, common tasks may include throat swabs, nasal swabs, wound swabs, culture preparation, and rapid antigen testing.
+      </p>
+
+      <h3>Collection Principles</h3>
+      <ul class="clean-list">
+        <li>Collect from the correct anatomical site.</li>
+        <li>Avoid touching nearby surfaces that may contaminate the swab.</li>
+        <li>Use the correct transport medium.</li>
+        <li>Label the specimen immediately.</li>
+        <li>Transport within the required time and temperature range.</li>
+      </ul>
+
+      <div class="scenario">
+        <h3>Clinical Scenario</h3>
+        <p>During a throat swab, the swab touches the patient's tongue before reaching the tonsillar area.</p>
+        <p><strong>Best response:</strong> Use a new sterile swab and recollect according to procedure.</p>
+      </div>
+
+      <div class="memory">
+        <strong>Collection Rule:</strong> Correct site, correct swab, correct transport, correct timing.
+      </div>
+
+      <div class="lesson-complete">
+        <span>Microbiology lesson completed.</span>
+        <button class="complete-btn" data-complete="7">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="lesson" data-lesson="8">
+      <div class="lesson-tag">Lesson 6.8</div>
+      <h2>Quality Control, Documentation, and Result Escalation</h2>
+      <p>
+        Quality control helps confirm that equipment, reagents, and testing systems are working as expected. Results should not be reported when required quality control is outside the acceptable range.
+      </p>
+
+      <div class="range-grid">
+        <div class="range-card"><strong>Quality Control</strong><span>Checks expected performance</span></div>
+        <div class="range-card"><strong>Calibration</strong><span>Aligns instrument measurement</span></div>
+        <div class="range-card"><strong>Maintenance</strong><span>Keeps equipment operating properly</span></div>
+        <div class="range-card"><strong>Documentation</strong><span>Creates a traceable testing record</span></div>
+      </div>
+
+      <h3>Document as Required</h3>
+      <ul class="clean-list">
+        <li>Patient identifiers</li>
+        <li>Date and time</li>
+        <li>Test performed</li>
+        <li>Result and units</li>
+        <li>Operator identification</li>
+        <li>Quality-control status when required</li>
+        <li>Notifications and actions taken</li>
+      </ul>
+
+      <div class="warning">
+        <strong>Stop Testing When:</strong> Quality control fails, the device shows an error, reagents are expired, the specimen is unacceptable, or the result conflicts sharply with the patient's condition.
+      </div>
+
+      <div class="pearl">
+        <strong>Clinical Pearl:</strong> When a result appears critical or inconsistent, protect the patient, repeat only when policy allows, and promptly escalate.
+      </div>
+
+      <div class="lesson-complete">
+        <span>Quality-control lesson completed.</span>
+        <button class="complete-btn" data-complete="8">Mark Complete</button>
+      </div>
+    </section>
+
+    <section class="quiz-card" id="quiz">
+      <div class="quiz-intro">
+        <h2 style="color:white;">Module 6 Final Quiz</h2>
+        <p>Answer all 15 questions. A score of 80% or higher saves your completion, unlocks Module 7, awards 250 XP, and unlocks the Laboratory Fundamentals Specialist badge.</p>
+      </div>
+
+      <form id="quizForm">
+        <fieldset class="question" data-answer="b">
+          <legend>1. What is the safest method for identifying a patient before specimen collection?</legend>
+          <label class="option"><input type="radio" name="q1" value="a"> Use the room number only</label>
+          <label class="option"><input type="radio" name="q1" value="b"> Use two approved patient identifiers</label>
+          <label class="option"><input type="radio" name="q1" value="c"> Identify the patient by appearance</label>
+          <label class="option"><input type="radio" name="q1" value="d"> Ask another patient</label>
+          <div class="feedback">Use two approved patient identifiers before specimen collection or testing.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="d">
+          <legend>2. When should a specimen be labeled?</legend>
+          <label class="option"><input type="radio" name="q2" value="a"> Before the patient arrives</label>
+          <label class="option"><input type="radio" name="q2" value="b"> At the end of the shift</label>
+          <label class="option"><input type="radio" name="q2" value="c"> In another room later</label>
+          <label class="option"><input type="radio" name="q2" value="d"> Immediately after collection in the patient's presence</label>
+          <div class="feedback">Label the specimen immediately after collection in the patient's presence.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="a">
+          <legend>3. What should you do with an unlabeled specimen when the patient is no longer present?</legend>
+          <label class="option"><input type="radio" name="q3" value="a"> Follow rejection and recollection policy</label>
+          <label class="option"><input type="radio" name="q3" value="b"> Guess the patient based on location</label>
+          <label class="option"><input type="radio" name="q3" value="c"> Label it using the appointment schedule</label>
+          <label class="option"><input type="radio" name="q3" value="d"> Test it without identification</label>
+          <div class="feedback">Never guess. Follow the facility's rejection and recollection policy.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="c">
+          <legend>4. Which is a common example of a waived point-of-care test?</legend>
+          <label class="option"><input type="radio" name="q4" value="a"> Tissue biopsy diagnosis</label>
+          <label class="option"><input type="radio" name="q4" value="b"> Bone marrow examination</label>
+          <label class="option"><input type="radio" name="q4" value="c"> Blood glucose testing</label>
+          <label class="option"><input type="radio" name="q4" value="d"> Complex genetic sequencing</label>
+          <div class="feedback">Blood glucose testing is a common point-of-care test in outpatient settings.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="b">
+          <legend>5. What should be checked before using a test kit?</legend>
+          <label class="option"><input type="radio" name="q5" value="a"> The patient's shoe size</label>
+          <label class="option"><input type="radio" name="q5" value="b"> Expiration date and storage conditions</label>
+          <label class="option"><input type="radio" name="q5" value="c"> Whether the packaging color matches the room</label>
+          <label class="option"><input type="radio" name="q5" value="d"> The provider's handwriting style</label>
+          <div class="feedback">Verify expiration, storage, quality control, and required testing conditions.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="d">
+          <legend>6. Which urine dipstick finding may be associated with certain bacterial activity?</legend>
+          <label class="option"><input type="radio" name="q6" value="a"> Protein only</label>
+          <label class="option"><input type="radio" name="q6" value="b"> Glucose only</label>
+          <label class="option"><input type="radio" name="q6" value="c"> Ketones only</label>
+          <label class="option"><input type="radio" name="q6" value="d"> Nitrite</label>
+          <div class="feedback">Nitrite may suggest certain bacterial activity in urine.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="a">
+          <legend>7. Why must each urine dipstick pad be read at the correct time?</legend>
+          <label class="option"><input type="radio" name="q7" value="a"> Reading too early or late may produce an inaccurate result</label>
+          <label class="option"><input type="radio" name="q7" value="b"> It changes the patient's identity</label>
+          <label class="option"><input type="radio" name="q7" value="c"> It prevents specimen labeling</label>
+          <label class="option"><input type="radio" name="q7" value="d"> It changes the urine volume</label>
+          <div class="feedback">Each reagent pad has a specific reading window that must be followed.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="c">
+          <legend>8. Which action can reduce the accuracy of a capillary glucose sample?</legend>
+          <label class="option"><input type="radio" name="q8" value="a"> Allowing antiseptic to dry</label>
+          <label class="option"><input type="radio" name="q8" value="b"> Using gloves</label>
+          <label class="option"><input type="radio" name="q8" value="c"> Excessively squeezing the finger</label>
+          <label class="option"><input type="radio" name="q8" value="d"> Verifying the strip expiration date</label>
+          <div class="feedback">Excessive squeezing may dilute the specimen with tissue fluid.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="b">
+          <legend>9. A patient is confused and sweaty with a glucose of 48 mg/dL. What is the priority?</legend>
+          <label class="option"><input type="radio" name="q9" value="a"> Ask the patient to leave</label>
+          <label class="option"><input type="radio" name="q9" value="b"> Keep the patient safe and escalate immediately</label>
+          <label class="option"><input type="radio" name="q9" value="c"> Ignore the result</label>
+          <label class="option"><input type="radio" name="q9" value="d"> Wait until the end of the day</label>
+          <div class="feedback">Symptoms with a very low glucose require urgent escalation according to protocol.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="d">
+          <legend>10. Which blood component primarily carries oxygen?</legend>
+          <label class="option"><input type="radio" name="q10" value="a"> Platelets</label>
+          <label class="option"><input type="radio" name="q10" value="b"> Plasma only</label>
+          <label class="option"><input type="radio" name="q10" value="c"> White blood cells</label>
+          <label class="option"><input type="radio" name="q10" value="d"> Red blood cells</label>
+          <div class="feedback">Red blood cells carry oxygen using hemoglobin.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="a">
+          <legend>11. Which blood component helps form clots?</legend>
+          <label class="option"><input type="radio" name="q11" value="a"> Platelets</label>
+          <label class="option"><input type="radio" name="q11" value="b"> Neutrophils only</label>
+          <label class="option"><input type="radio" name="q11" value="c"> Red blood cells</label>
+          <label class="option"><input type="radio" name="q11" value="d"> Hemoglobin</label>
+          <div class="feedback">Platelets are central to blood clot formation.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="c">
+          <legend>12. What should happen if a throat swab touches the tongue before the target area is sampled?</legend>
+          <label class="option"><input type="radio" name="q12" value="a"> Continue using the same swab</label>
+          <label class="option"><input type="radio" name="q12" value="b"> Rinse the swab</label>
+          <label class="option"><input type="radio" name="q12" value="c"> Use a new sterile swab and recollect</label>
+          <label class="option"><input type="radio" name="q12" value="d"> Label it as contaminated but submit it</label>
+          <div class="feedback">Use a new sterile swab to avoid a contaminated or poor-quality specimen.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="b">
+          <legend>13. What is the purpose of quality control?</legend>
+          <label class="option"><input type="radio" name="q13" value="a"> To identify the patient's insurance</label>
+          <label class="option"><input type="radio" name="q13" value="b"> To verify that the testing system is performing as expected</label>
+          <label class="option"><input type="radio" name="q13" value="c"> To replace patient identification</label>
+          <label class="option"><input type="radio" name="q13" value="d"> To shorten every testing procedure</label>
+          <div class="feedback">Quality control helps verify that equipment and reagents are producing acceptable results.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="d">
+          <legend>14. What should you do when required quality control is outside the acceptable range?</legend>
+          <label class="option"><input type="radio" name="q14" value="a"> Report patient results anyway</label>
+          <label class="option"><input type="radio" name="q14" value="b"> Change the result manually</label>
+          <label class="option"><input type="radio" name="q14" value="c"> Ignore it if the office is busy</label>
+          <label class="option"><input type="radio" name="q14" value="d"> Stop patient testing and follow troubleshooting policy</label>
+          <div class="feedback">Do not report patient results when required quality control is unacceptable.</div>
+        </fieldset>
+
+        <fieldset class="question" data-answer="a">
+          <legend>15. Which documentation is appropriate after reporting a critical result?</legend>
+          <label class="option"><input type="radio" name="q15" value="a"> Record who was notified, when, and what action was taken</label>
+          <label class="option"><input type="radio" name="q15" value="b"> Document only the room number</label>
+          <label class="option"><input type="radio" name="q15" value="c"> Wait several days to document</label>
+          <label class="option"><input type="radio" name="q15" value="d"> Avoid documentation if the result was repeated</label>
+          <div class="feedback">Critical-result documentation should include the result, notification, time, and action taken.</div>
+        </fieldset>
+
+        <button type="button" class="quiz-btn" id="submitQuiz">Submit Final Quiz</button>
+        <button type="button" class="reset-btn" id="resetQuiz">Reset Quiz</button>
+      </form>
+
+      <div class="result-box" id="resultBox">
+        <h2 id="resultTitle">Your Result</h2>
+        <p id="resultText"></p>
+      </div>
+    </section>
+
+    <section class="completion-card">
+      <h2>Module Achievement</h2>
+      <div class="badge-box">
+        <div class="badge-icon">🧪</div>
+        <h3>Laboratory Fundamentals Specialist</h3>
+        <p id="badgeStatus">Pass the final quiz with 80% or higher to unlock this badge and earn 250 XP.</p>
+      </div>
+    </section>
+
+    <div class="nav-footer">
+      <a href="/medical-assistant-module-5.html">← Previous: Clinical Procedures</a>
+      <a href="/medical-assistant-learning-path.html">Return to Learning Path</a>
+      <a href="/medical-assistant-module-7.html">Next Module →</a>
+    </div>
+
+    <footer>
+      <p>© 2026 MedSkillBuilder LLC. Free healthcare learning tools for students and early healthcare professionals.</p>
+    </footer>
+  </div>
+
+  <script>
+    const storageKey="medskillbuilder_ma_module6";
+    const pathKey="msb_ma_path_v1";
+    const lessonButtons=document.querySelectorAll("[data-complete]");
+    const totalLessons=lessonButtons.length;
+
+    function getState(){
+      try{
+        return JSON.parse(localStorage.getItem(storageKey))||{
+          completedLessons:[],
+          passed:false,
+          bestScore:0,
+          xp:0
+        };
+      }catch{
+        return{completedLessons:[],passed:false,bestScore:0,xp:0};
+      }
+    }
+
+    function saveState(state){
+      try{
+        localStorage.setItem(storageKey,JSON.stringify(state));
+
+        if(state.passed){
+          let path={};
+          try{path=JSON.parse(localStorage.getItem(pathKey))||{};}catch{}
+          path.module6Complete=true;
+          path.module7Unlocked=true;
+          localStorage.setItem(pathKey,JSON.stringify(path));
+        }
+      }catch(error){
+        console.error("Unable to save Module 6 progress:",error);
+      }
+    }
+
+    function updateProgress(){
+      const state=getState();
+      const lessonProgress=state.completedLessons.length;
+      const quizProgress=state.passed?1:0;
+      const totalSteps=totalLessons+1;
+      const percent=Math.round(((lessonProgress+quizProgress)/totalSteps)*100);
+
+      document.getElementById("progressBar").style.width=percent+"%";
+      document.getElementById("progressText").textContent=percent+"%";
+
+      lessonButtons.forEach(btn=>{
+        const id=Number(btn.dataset.complete);
+        if(state.completedLessons.includes(id)){
+          btn.textContent="✓ Completed";
+          btn.classList.add("done");
+        }else{
+          btn.textContent="Mark Complete";
+          btn.classList.remove("done");
+        }
+      });
+
+      if(state.passed){
+        document.getElementById("badgeStatus").textContent=
+          "Unlocked! You earned the Laboratory Fundamentals Specialist badge and 250 XP.";
+      }
+    }
+
+    lessonButtons.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const state=getState();
+        const id=Number(btn.dataset.complete);
+
+        if(state.completedLessons.includes(id)){
+          state.completedLessons=state.completedLessons.filter(item=>item!==id);
+        }else{
+          state.completedLessons.push(id);
+          state.completedLessons.sort((a,b)=>a-b);
+        }
+
+        saveState(state);
+        updateProgress();
+      });
+    });
+
+    document.getElementById("submitQuiz").addEventListener("click",()=>{
+      const questions=document.querySelectorAll(".question");
+      let score=0;
+      let answered=0;
+
+      questions.forEach(question=>{
+        const selected=question.querySelector("input[type='radio']:checked");
+        const feedback=question.querySelector(".feedback");
+        feedback.classList.remove("correct","incorrect");
+
+        if(selected){
+          answered++;
+          if(selected.value===question.dataset.answer){
+            score++;
+            feedback.classList.add("correct");
+            feedback.textContent="Correct. "+feedback.textContent.replace(/^Correct\. /,"").replace(/^Incorrect\. /,"");
+          }else{
+            feedback.classList.add("incorrect");
+            feedback.textContent="Incorrect. "+feedback.textContent.replace(/^Correct\. /,"").replace(/^Incorrect\. /,"");
+          }
+        }
+      });
+
+      const resultBox=document.getElementById("resultBox");
+      const resultTitle=document.getElementById("resultTitle");
+      const resultText=document.getElementById("resultText");
+
+      if(answered<questions.length){
+        resultBox.classList.add("show");
+        resultTitle.textContent="Please Complete Every Question";
+        resultText.textContent=`You answered ${answered} of ${questions.length} questions.`;
+        resultBox.scrollIntoView({behavior:"smooth",block:"center"});
+        return;
+      }
+
+      const percent=Math.round((score/questions.length)*100);
+      const state=getState();
+      state.bestScore=Math.max(state.bestScore||0,percent);
+
+      if(percent>=80){
+        state.passed=true;
+        state.completedLessons=[1,2,3,4,5,6,7,8];
+        state.xp=250;
+        resultTitle.textContent="Module Passed! 🎉";
+        resultText.innerHTML=`You scored ${score} out of ${questions.length} (${percent}%). Your completion was saved, you earned 250 XP, and Module 7 is unlocked.<br><br><a href="/medical-assistant-module-7.html" style="font-weight:900;color:#0f766e;">Continue to Module 7 →</a>`;
+      }else{
+        resultTitle.textContent="Keep Practicing";
+        resultText.textContent=`You scored ${score} out of ${questions.length} (${percent}%). Review the lessons and try again. You need 80% to pass.`;
+      }
+
+      saveState(state);
+      updateProgress();
+      resultBox.classList.add("show");
+      resultBox.scrollIntoView({behavior:"smooth",block:"center"});
+    });
+
+    document.getElementById("resetQuiz").addEventListener("click",()=>{
+      document.getElementById("quizForm").reset();
+      document.querySelectorAll(".feedback").forEach(item=>{
+        item.classList.remove("correct","incorrect");
+      });
+      document.getElementById("resultBox").classList.remove("show");
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>
