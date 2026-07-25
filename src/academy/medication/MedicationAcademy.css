@@ -680,3 +680,42 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.mma-clinical-pearl {
+  display: grid;
+  gap: 0.35rem;
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(14, 116, 144, 0.22);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(236, 254, 255, 0.96), rgba(240, 249, 255, 0.96));
+}
+
+.mma-clinical-pearl strong {
+  color: #0e7490;
+}
+
+.mma-clinical-pearl span {
+  color: #334155;
+  line-height: 1.65;
+}
+
+.mma-practice-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.25rem 0 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.mma-practice-link:hover {
+  background: #dbeafe;
+  transform: translateY(-1px);
+}
+

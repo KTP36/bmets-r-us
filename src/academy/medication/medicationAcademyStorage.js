@@ -102,3 +102,12 @@ export function completeModuleOne(score, passingScore = 80) {
 export function completeModuleTwo(score, passingScore = 80) {
   return completeModule(2, score, passingScore, 175);
 }
+
+export function completeModuleThree(score, passingScore = 80) {
+  return completeModule(3, score, passingScore, 200);
+}
+
+export function completeModuleFour(score, passingScore = 80) {
+  return completeModule(4, score, passingScore, 225);
+}
+

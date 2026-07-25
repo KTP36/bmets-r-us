@@ -729,3 +729,658 @@ export const moduleTwoSources = [
   },
 ];
 
+export const moduleThreeBriefing = {
+  title: "Follow the Cardiovascular Purpose",
+  summary:
+    "Learn how common cardiovascular medications affect blood pressure, heart rate, fluid balance, cholesterol, chest discomfort, and clotting. The goal is recognition and safe reasoning—not independent prescribing or medication changes.",
+  objectives: [
+    "Connect major cardiovascular medication classes with their general purpose.",
+    "Recognize common examples such as lisinopril, losartan, metoprolol, amlodipine, furosemide, nitroglycerin, atorvastatin, and anticoagulants.",
+    "Identify important assessment themes such as blood pressure, pulse, dizziness, swelling, fluid status, bleeding, and muscle symptoms.",
+    "Explain why cardiovascular medications should not be stopped, doubled, or substituted without the appropriate prescriber or pharmacist.",
+  ],
+};
+
+export const moduleThreeLessons = [
+  {
+    title: "ACE Inhibitors and ARBs",
+    icon: "🫀",
+    body:
+      "ACE inhibitors and angiotensin II receptor blockers, or ARBs, help prevent blood vessels from narrowing. Common examples include lisinopril and losartan. These medicines may be used for hypertension and selected heart or kidney conditions. Important safety themes include dizziness, blood pressure changes, kidney function, potassium, and pregnancy-related warnings. ACE inhibitors may also cause cough or angioedema.",
+    takeaway:
+      "ACE inhibitors and ARBs affect the renin-angiotensin system, but the individual medication and patient factors determine the exact risks and monitoring.",
+    check: {
+      question: "Which medication is an ACE inhibitor?",
+      options: ["Lisinopril", "Metoprolol", "Amlodipine", "Atorvastatin"],
+      answer: 0,
+      explanation:
+        "Lisinopril is an ACE inhibitor. The -pril ending is a common recognition clue.",
+    },
+  },
+  {
+    title: "Beta Blockers",
+    icon: "💓",
+    body:
+      "Beta blockers help the heart beat slower and with less force. Examples include metoprolol, carvedilol, and propranolol. Depending on the medication and indication, they may be used for hypertension, selected rhythm problems, angina, heart failure, or other conditions. Common assessment themes include pulse, blood pressure, dizziness, fatigue, and breathing history.",
+    takeaway:
+      "A slow pulse, low blood pressure, or new breathing concern may be important context when reviewing a beta blocker.",
+    check: {
+      question: "Which effect is most associated with beta blockers?",
+      options: [
+        "Slowing heart rate",
+        "Increasing clot formation",
+        "Raising cholesterol",
+        "Increasing fluid retention as the intended effect",
+      ],
+      answer: 0,
+      explanation:
+        "Beta blockers commonly reduce heart rate and the force of contraction.",
+    },
+  },
+  {
+    title: "Calcium Channel Blockers",
+    icon: "🩸",
+    body:
+      "Calcium channel blockers prevent calcium from entering certain heart and blood-vessel muscle cells. This can relax blood vessels, lower blood pressure, and—depending on the specific drug—affect heart rate or conduction. Examples include amlodipine, diltiazem, verapamil, and nifedipine. Common safety themes include dizziness, ankle swelling, flushing, blood pressure, and pulse.",
+    takeaway:
+      "Not all calcium channel blockers affect the heart in the same way; identify the individual medication rather than relying on the class name alone.",
+    check: {
+      question: "Which medication is a calcium channel blocker?",
+      options: ["Amlodipine", "Losartan", "Furosemide", "Warfarin"],
+      answer: 0,
+      explanation:
+        "Amlodipine is a calcium channel blocker commonly used for hypertension and angina.",
+    },
+  },
+  {
+    title: "Diuretics and Fluid Balance",
+    icon: "💧",
+    body:
+      "Diuretics help remove extra sodium and water. Examples include furosemide, hydrochlorothiazide, chlorthalidone, and spironolactone. They may be used for hypertension, edema, or selected heart conditions. Important assessment themes include blood pressure, daily weight, swelling, fluid intake and output, kidney function, and electrolytes. Different diuretic subclasses can affect potassium differently.",
+    takeaway:
+      "A diuretic changes fluid and electrolyte balance, so weight trends, symptoms, kidney function, and laboratory results can matter.",
+    check: {
+      question: "Which medication is a loop diuretic?",
+      options: ["Furosemide", "Metoprolol", "Lisinopril", "Nitroglycerin"],
+      answer: 0,
+      explanation:
+        "Furosemide is a loop diuretic used to remove excess fluid.",
+    },
+  },
+  {
+    title: "Nitrates and Angina",
+    icon: "⚡",
+    body:
+      "Nitroglycerin is a nitrate used in the management of angina. Nitrates relax blood vessels and reduce the heart's workload. Headache, dizziness, and low blood pressure are important safety themes. A key interaction concern is the combination of nitrates with phosphodiesterase-5 inhibitors because severe hypotension can occur.",
+    takeaway:
+      "Chest discomfort requires the emergency or clinical process appropriate to the setting; medication education should never delay urgent evaluation.",
+    check: {
+      question: "Which medication is commonly used to relieve or prevent angina?",
+      options: ["Nitroglycerin", "Atorvastatin", "Furosemide", "Warfarin"],
+      answer: 0,
+      explanation:
+        "Nitroglycerin is a nitrate used for angina management.",
+    },
+  },
+  {
+    title: "Statins and Antithrombotic Medicines",
+    icon: "🛡️",
+    body:
+      "Statins such as atorvastatin and rosuvastatin lower cholesterol and may reduce cardiovascular risk in appropriate patients. Anticoagulants and antiplatelet medicines reduce clot formation through different pathways. Examples include warfarin, apixaban, heparin, aspirin, and clopidogrel. Safety themes include bleeding, interactions, laboratory or renal monitoring when applicable, and following the exact product instructions.",
+    takeaway:
+      "A statin manages lipids; anticoagulants and antiplatelets affect clotting. These are different purposes with different risks.",
+    check: {
+      question: "Which finding is especially important when reviewing an anticoagulant or antiplatelet medicine?",
+      options: [
+        "Unusual bleeding or bruising",
+        "Package color",
+        "Hair length",
+        "Room temperature only",
+      ],
+      answer: 0,
+      explanation:
+        "Unexpected bleeding or bruising can be clinically important when a medication affects clotting.",
+    },
+  },
+];
+
+export const moduleThreeScenarios = [
+  {
+    title: "Scenario 1: Pulse and Blood Pressure",
+    patient:
+      "A patient scheduled to receive a beta blocker has a heart rate much lower than their usual baseline and reports new dizziness.",
+    question: "What is the safest general response?",
+    options: [
+      "Give an extra dose to raise the blood pressure",
+      "Ignore the findings because beta blockers always cause this",
+      "Pause and follow the clinical assessment and medication-clarification process",
+      "Substitute a calcium channel blocker",
+    ],
+    answer: 2,
+    explanation:
+      "A significant change in pulse with symptoms should be assessed according to the verified order, parameters, scope, and organizational policy.",
+  },
+  {
+    title: "Scenario 2: Bleeding Concern",
+    patient:
+      "A patient taking an anticoagulant reports black stools and increasing weakness.",
+    question: "Which response is most appropriate?",
+    options: [
+      "Treat it as a possible bleeding concern and escalate promptly",
+      "Recommend doubling the anticoagulant",
+      "Wait several weeks to see whether it stops",
+      "Assume the stool color is unrelated",
+    ],
+    answer: 0,
+    explanation:
+      "Black stools and weakness may indicate gastrointestinal bleeding and require prompt clinical evaluation.",
+  },
+];
+
+export const moduleThreeQuestions = [
+  {
+    question: "ACE inhibitors and ARBs generally help lower blood pressure by:",
+    options: [
+      "Keeping blood vessels from narrowing",
+      "Increasing sodium retention",
+      "Increasing clot formation",
+      "Raising heart rate",
+    ],
+    answer: 0,
+    explanation:
+      "ACE inhibitors and ARBs affect the renin-angiotensin system and help reduce vessel narrowing.",
+  },
+  {
+    question: "Which medication is an ARB?",
+    options: ["Losartan", "Lisinopril", "Metoprolol", "Amlodipine"],
+    answer: 0,
+    explanation:
+      "Losartan is an angiotensin II receptor blocker, or ARB.",
+  },
+  {
+    question: "Which symptom is commonly associated with ACE inhibitors?",
+    options: ["Dry cough", "Blue urine", "Improved night vision", "Hair growth"],
+    answer: 0,
+    explanation:
+      "A dry cough is a recognized common effect of ACE inhibitors.",
+  },
+  {
+    question: "Beta blockers commonly:",
+    options: [
+      "Slow heart rate and reduce force of contraction",
+      "Increase heart rate",
+      "Dissolve blood clots immediately",
+      "Increase sodium and water retention as their main purpose",
+    ],
+    answer: 0,
+    explanation:
+      "Beta blockers reduce beta-receptor stimulation and commonly slow the heart.",
+  },
+  {
+    question: "Which medication is a beta blocker?",
+    options: ["Metoprolol", "Losartan", "Amlodipine", "Atorvastatin"],
+    answer: 0,
+    explanation:
+      "Metoprolol is a beta blocker.",
+  },
+  {
+    question: "Which medication is a calcium channel blocker?",
+    options: ["Amlodipine", "Furosemide", "Warfarin", "Lisinopril"],
+    answer: 0,
+    explanation:
+      "Amlodipine is a calcium channel blocker.",
+  },
+  {
+    question: "Ankle swelling is a common safety theme with which class?",
+    options: [
+      "Calcium channel blockers",
+      "Statins only",
+      "Antibiotics only",
+      "Antivirals only",
+    ],
+    answer: 0,
+    explanation:
+      "Ankle or peripheral swelling is a recognized effect of some calcium channel blockers.",
+  },
+  {
+    question: "What is the general purpose of a diuretic?",
+    options: [
+      "Remove extra sodium and water",
+      "Increase clot formation",
+      "Raise cholesterol",
+      "Slow bacterial growth",
+    ],
+    answer: 0,
+    explanation:
+      "Diuretics increase the removal of sodium and water and can reduce fluid volume.",
+  },
+  {
+    question: "Which medication is a loop diuretic?",
+    options: ["Furosemide", "Metoprolol", "Nitroglycerin", "Clopidogrel"],
+    answer: 0,
+    explanation:
+      "Furosemide is a loop diuretic.",
+  },
+  {
+    question: "Which information is especially useful when monitoring fluid status?",
+    options: [
+      "Daily weight trend",
+      "Favorite color",
+      "Room number",
+      "Shoe brand",
+    ],
+    answer: 0,
+    explanation:
+      "Daily weight trends can help identify changes in fluid balance.",
+  },
+  {
+    question: "Nitroglycerin belongs to which general medication group?",
+    options: ["Nitrates", "Statins", "Diuretics", "Antibiotics"],
+    answer: 0,
+    explanation:
+      "Nitroglycerin is a nitrate used in angina management.",
+  },
+  {
+    question: "Which effect is common with nitrates?",
+    options: ["Headache and dizziness", "High fever", "Increased clotting", "High cholesterol"],
+    answer: 0,
+    explanation:
+      "Vasodilation from nitrates can contribute to headache, dizziness, and low blood pressure.",
+  },
+  {
+    question: "Which medication is a statin?",
+    options: ["Atorvastatin", "Apixaban", "Nitroglycerin", "Furosemide"],
+    answer: 0,
+    explanation:
+      "Atorvastatin is an HMG-CoA reductase inhibitor, commonly called a statin.",
+  },
+  {
+    question: "Which symptom should be reported when taking a statin?",
+    options: [
+      "Unexplained muscle pain or weakness",
+      "Normal hunger before lunch",
+      "A preference for cold water",
+      "A stable pulse",
+    ],
+    answer: 0,
+    explanation:
+      "Unexplained muscle pain or weakness can be an important statin safety concern.",
+  },
+  {
+    question: "Which finding is most concerning in a patient taking an anticoagulant?",
+    options: [
+      "Black stools and weakness",
+      "A normal appetite",
+      "Clear urine",
+      "A stable temperature",
+    ],
+    answer: 0,
+    explanation:
+      "Black stools and weakness may suggest gastrointestinal bleeding and require prompt evaluation.",
+  },
+];
+
+export const moduleThreeSources = [
+  {
+    label: "FDA: High Blood Pressure Medicines",
+    href: "https://www.fda.gov/consumers/womens-health-topics/high-blood-pressure",
+  },
+  {
+    label: "FDA: Hypertension Medication Types",
+    href: "https://www.fda.gov/consumers/health-education-resources/hypertension",
+  },
+  {
+    label: "FDA: Cholesterol Medicines Guide",
+    href: "https://www.fda.gov/consumers/womens-health-topics/cholesterol-medicines-guide",
+  },
+  {
+    label: "MedlinePlus: Blood Pressure Medicines",
+    href: "https://medlineplus.gov/bloodpressuremedicines.html",
+  },
+  {
+    label: "MedlinePlus: Stable Angina",
+    href: "https://medlineplus.gov/ency/article/000198.htm",
+  },
+];
+
+export const moduleFourBriefing = {
+  title: "Breathe Easier Through Medication Recognition",
+  summary:
+    "Learn how common respiratory medications support patients with asthma, COPD, bronchospasm, and airway inflammation. This mission emphasizes rescue-versus-maintenance recognition, inhaler safety, patient teaching, and knowing when worsening symptoms require escalation.",
+  objectives: [
+    "Distinguish quick-relief medicines from long-term control medicines.",
+    "Recognize SABAs, LABAs, inhaled corticosteroids, anticholinergics, and common combination inhalers.",
+    "Connect inhaler and nebulizer devices with safe use and patient education.",
+    "Identify important concerns such as frequent rescue-inhaler use, oral thrush, tremor, fast heart rate, and worsening breathing.",
+    "Apply oxygen-safety principles and follow the verified order, patient-specific plan, and organizational policy.",
+  ],
+};
+
+export const moduleFourLessons = [
+  {
+    title: "Rescue vs. Maintenance Medicines",
+    icon: "🚨",
+    body:
+      "Quick-relief, or rescue, medicines act rapidly during coughing, wheezing, bronchospasm, or breathing difficulty. Albuterol and levalbuterol are common short-acting beta agonists. Maintenance medicines are taken on a schedule to reduce symptoms or prevent flare-ups. They are not automatically substitutes for a rescue medicine during sudden breathing difficulty.",
+    takeaway:
+      "Frequent or increasing rescue-medication use may signal poor control or worsening disease and should be addressed through the patient's action plan and healthcare team.",
+    pearl:
+      "A medication can be inhaled and still be a maintenance medicine. Identify its class and purpose instead of assuming every inhaler is for immediate relief.",
+    check: {
+      question: "Which medication is commonly used as a quick-relief bronchodilator?",
+      options: ["Albuterol", "Fluticasone", "Tiotropium", "Budesonide"],
+      answer: 0,
+      explanation:
+        "Albuterol is a short-acting beta agonist commonly used for rapid relief of bronchospasm.",
+    },
+  },
+  {
+    title: "SABAs and LABAs",
+    icon: "💨",
+    body:
+      "Short-acting beta agonists, or SABAs, include albuterol and levalbuterol. They relax airway muscles quickly. Long-acting beta agonists, or LABAs, include salmeterol and formoterol and provide longer bronchodilation. In asthma care, LABAs are generally used as part of a controller plan rather than as stand-alone rescue treatment. Beta agonists may cause tremor, nervousness, or a fast heartbeat.",
+    takeaway:
+      "SABA usually signals quick relief; LABA signals longer control. The exact product and action plan still determine how it should be used.",
+    pearl:
+      "When a patient reports palpitations or marked tremor after repeated rescue doses, assess the full situation and escalate according to the clinical setting.",
+    check: {
+      question: "Which medication is a long-acting beta agonist?",
+      options: ["Salmeterol", "Albuterol", "Ipratropium", "Fluticasone"],
+      answer: 0,
+      explanation:
+        "Salmeterol is a LABA. Albuterol is a SABA.",
+    },
+  },
+  {
+    title: "Inhaled Corticosteroids",
+    icon: "🛡️",
+    body:
+      "Inhaled corticosteroids reduce airway inflammation and are common long-term control medicines. Examples include fluticasone, budesonide, and beclomethasone. They do not usually provide immediate relief during an acute episode. Patients are commonly instructed to rinse, gargle, and spit after use to reduce mouth and throat effects such as oral candidiasis.",
+    takeaway:
+      "Inhaled corticosteroids control inflammation over time; consistent technique and mouth care are important.",
+    pearl:
+      "White patches, mouth soreness, or hoarseness after regular inhaled-steroid use may require assessment of technique and possible oral candidiasis.",
+    check: {
+      question: "Why is mouth rinsing commonly taught after an inhaled corticosteroid?",
+      options: [
+        "To reduce oral candidiasis and local irritation",
+        "To make the drug act as a rescue medicine",
+        "To increase oxygen flow",
+        "To prevent all systemic effects",
+      ],
+      answer: 0,
+      explanation:
+        "Rinsing, gargling, and spitting can reduce medication residue and local mouth or throat effects.",
+    },
+  },
+  {
+    title: "Anticholinergic Bronchodilators",
+    icon: "🔓",
+    body:
+      "Anticholinergic, or antimuscarinic, medicines help relax airways by blocking muscarinic effects. Ipratropium is short acting, while tiotropium is long acting. These medicines are commonly encountered in COPD treatment and may be used in selected asthma plans. Dry mouth, blurred vision from eye exposure, urinary difficulty, and other anticholinergic effects are important safety themes.",
+    takeaway:
+      "Ipratropium is generally shorter acting; tiotropium is a long-acting maintenance medicine and is not a substitute for immediate rescue therapy.",
+    pearl:
+      "Nebulized or mist medication should be kept out of the eyes when the product instructions warn of eye effects.",
+    check: {
+      question: "Which medication is a long-acting anticholinergic bronchodilator?",
+      options: ["Tiotropium", "Albuterol", "Budesonide", "Salmeterol"],
+      answer: 0,
+      explanation:
+        "Tiotropium is a long-acting muscarinic antagonist commonly used as maintenance therapy.",
+    },
+  },
+  {
+    title: "Combination Inhalers and Devices",
+    icon: "🧩",
+    body:
+      "Combination inhalers place two or more medication classes in one device. Common combinations may pair an inhaled corticosteroid with a LABA, or combine bronchodilator classes. Metered-dose inhalers, dry-powder inhalers, soft-mist inhalers, spacers, and nebulizers use different techniques. The medication name, device instructions, dose counter, priming steps, and cleaning directions should all be verified.",
+    takeaway:
+      "Correct medication plus incorrect device technique can still lead to poor delivery. Teach and verify technique for the exact device.",
+    pearl:
+      "Do not assume two inhalers work the same way. Some require slow inhalation, some forceful inhalation, and some need shaking or priming.",
+    check: {
+      question: "A common controller combination inhaler contains:",
+      options: [
+        "An inhaled corticosteroid plus a LABA",
+        "A statin plus an anticoagulant",
+        "An antibiotic plus insulin",
+        "A diuretic plus a nitrate",
+      ],
+      answer: 0,
+      explanation:
+        "Many controller combination inhalers pair an inhaled corticosteroid with a long-acting bronchodilator.",
+    },
+  },
+  {
+    title: "Nebulizers, Oxygen, and Escalation",
+    icon: "🫁",
+    body:
+      "A nebulizer turns liquid medication into a mist for inhalation. Albuterol, ipratropium, or a combination may be delivered this way. Oxygen is a prescribed therapy with specific device and flow requirements. Oxygen does not burn by itself, but it supports combustion. Keep it away from smoking, sparks, flames, petroleum-based products when prohibited, and unsecured cylinders. Severe breathing difficulty, cyanosis, altered mental status, silent chest, or failure to respond requires urgent escalation.",
+    takeaway:
+      "Follow the verified oxygen order and equipment instructions, and never allow medication teaching to delay emergency evaluation.",
+    pearl:
+      "A patient who cannot speak normally, is becoming confused, or is worsening despite rescue treatment needs urgent help—not another round of casual teaching.",
+    practice: {
+      label: "Practice recognizing respiratory findings",
+      href: "/?tab=EvaluateLungSounds",
+    },
+    check: {
+      question: "Which statement about oxygen is correct?",
+      options: [
+        "Oxygen supports combustion and must be kept away from ignition sources",
+        "Oxygen is safe beside an open flame",
+        "Cylinder storage does not matter",
+        "The flow rate may be changed without checking the order or plan",
+      ],
+      answer: 0,
+      explanation:
+        "Oxygen enriches the environment and can make fires burn more intensely, so strict safety practices are required.",
+    },
+  },
+];
+
+export const moduleFourScenarios = [
+  {
+    title: "Scenario 1: Increasing Rescue Use",
+    patient:
+      "A patient with asthma reports using albuterol many times today and still has worsening wheezing and difficulty speaking in full sentences.",
+    question: "What is the safest general response?",
+    options: [
+      "Treat this as worsening respiratory distress and follow the urgent action or escalation plan",
+      "Advise the patient to wait until tomorrow",
+      "Replace albuterol with a maintenance inhaler without an order",
+      "Assume repeated rescue use proves the symptoms are controlled",
+    ],
+    answer: 0,
+    explanation:
+      "Worsening symptoms despite repeated rescue use—especially difficulty speaking—can indicate significant respiratory distress and require urgent evaluation.",
+  },
+  {
+    title: "Scenario 2: Mouth Changes",
+    patient:
+      "A patient who uses fluticasone every day reports hoarseness and new white patches inside the mouth. They say they do not rinse after using the inhaler.",
+    question: "Which interpretation is most appropriate?",
+    options: [
+      "The findings may reflect a local inhaled-corticosteroid effect and should be assessed",
+      "Fluticasone is acting as a rescue bronchodilator",
+      "The patient should double every dose",
+      "The findings prove an oxygen allergy",
+    ],
+    answer: 0,
+    explanation:
+      "Inhaled corticosteroids can contribute to oral candidiasis and hoarseness. Technique, mouth rinsing, and clinical assessment are important.",
+  },
+];
+
+export const moduleFourQuestions = [
+  {
+    question: "Which medication is most commonly recognized as a quick-relief SABA?",
+    options: ["Albuterol", "Fluticasone", "Tiotropium", "Salmeterol"],
+    answer: 0,
+    explanation: "Albuterol is a short-acting beta agonist used for rapid bronchodilation.",
+  },
+  {
+    question: "Which statement best describes a maintenance respiratory medicine?",
+    options: [
+      "It is used on a planned schedule to support long-term control",
+      "It always works immediately during severe distress",
+      "It can be substituted for any rescue medicine",
+      "It should be stopped whenever symptoms improve for one hour",
+    ],
+    answer: 0,
+    explanation:
+      "Maintenance medicines are generally used consistently as part of a long-term treatment plan.",
+  },
+  {
+    question: "Which medication is a LABA?",
+    options: ["Salmeterol", "Albuterol", "Ipratropium", "Prednisone"],
+    answer: 0,
+    explanation: "Salmeterol is a long-acting beta agonist.",
+  },
+  {
+    question: "Which effect may occur after repeated beta-agonist use?",
+    options: ["Tremor and fast heartbeat", "Severe bradycardia as the expected effect", "Black stools", "Low cholesterol"],
+    answer: 0,
+    explanation:
+      "Beta agonists may cause tremor, nervousness, or tachycardia.",
+  },
+  {
+    question: "What is the primary role of an inhaled corticosteroid?",
+    options: [
+      "Reduce airway inflammation over time",
+      "Provide immediate clot reversal",
+      "Remove excess fluid",
+      "Treat bacterial pneumonia directly",
+    ],
+    answer: 0,
+    explanation:
+      "Inhaled corticosteroids are controller medicines that reduce airway inflammation.",
+  },
+  {
+    question: "Which teaching is commonly appropriate after inhaled corticosteroid use?",
+    options: [
+      "Rinse, gargle, and spit",
+      "Lie flat for one hour",
+      "Take an extra rescue dose automatically",
+      "Store every device in water",
+    ],
+    answer: 0,
+    explanation:
+      "Mouth rinsing can reduce local medication residue and mouth or throat effects.",
+  },
+  {
+    question: "Which medication is an inhaled corticosteroid?",
+    options: ["Budesonide", "Albuterol", "Ipratropium", "Tiotropium"],
+    answer: 0,
+    explanation: "Budesonide is an inhaled corticosteroid.",
+  },
+  {
+    question: "Which medication is a short-acting anticholinergic?",
+    options: ["Ipratropium", "Tiotropium", "Salmeterol", "Fluticasone"],
+    answer: 0,
+    explanation: "Ipratropium is a short-acting muscarinic antagonist.",
+  },
+  {
+    question: "Which medication is a long-acting anticholinergic used for maintenance?",
+    options: ["Tiotropium", "Albuterol", "Levalbuterol", "Prednisone"],
+    answer: 0,
+    explanation: "Tiotropium is a long-acting muscarinic antagonist.",
+  },
+  {
+    question: "Which pairing is common in a controller combination inhaler?",
+    options: [
+      "Inhaled corticosteroid plus LABA",
+      "SABA plus statin",
+      "Antibiotic plus anticoagulant",
+      "Diuretic plus insulin",
+    ],
+    answer: 0,
+    explanation:
+      "Many combination controller inhalers pair an inhaled corticosteroid with a LABA.",
+  },
+  {
+    question: "What does a nebulizer do?",
+    options: [
+      "Turns liquid medication into an inhaled mist",
+      "Measures blood glucose",
+      "Converts oxygen into carbon dioxide",
+      "Automatically selects a medication dose",
+    ],
+    answer: 0,
+    explanation:
+      "A nebulizer converts liquid medication into a mist that can be inhaled.",
+  },
+  {
+    question: "Which statement about inhaler devices is safest?",
+    options: [
+      "Technique must match the exact device and product instructions",
+      "All inhalers are used identically",
+      "Dose counters can always be ignored",
+      "Dry-powder inhalers should always be shaken like an MDI",
+    ],
+    answer: 0,
+    explanation:
+      "Different inhaler types require different preparation and inhalation techniques.",
+  },
+  {
+    question: "A patient needs a rescue inhaler every day and symptoms are increasing. What does this suggest?",
+    options: [
+      "Control may be inadequate and the treatment plan needs prompt review",
+      "The maintenance plan is automatically perfect",
+      "The rescue inhaler should be replaced with oxygen without assessment",
+      "No follow-up is needed",
+    ],
+    answer: 0,
+    explanation:
+      "Frequent or increasing quick-relief use can indicate poor control or worsening disease.",
+  },
+  {
+    question: "Which oxygen-safety statement is correct?",
+    options: [
+      "Keep oxygen away from smoking, sparks, and open flames",
+      "Oxygen cylinders may be left unsecured",
+      "Oxygen does not affect fire behavior",
+      "Anyone may change the prescribed flow rate",
+    ],
+    answer: 0,
+    explanation:
+      "Oxygen supports combustion, and equipment and flow settings require appropriate safety controls.",
+  },
+  {
+    question: "A patient is confused, cyanotic, and worsening despite rescue treatment. What is the priority?",
+    options: [
+      "Urgent emergency assessment and escalation",
+      "A routine lesson about device cleaning",
+      "Waiting for the next scheduled visit",
+      "Independent substitution of another inhaler",
+    ],
+    answer: 0,
+    explanation:
+      "Altered mental status, cyanosis, and treatment failure are emergency warning signs.",
+  },
+];
+
+export const moduleFourSources = [
+  {
+    label: "MedlinePlus: Asthma Quick-Relief Medicines",
+    href: "https://medlineplus.gov/ency/patientinstructions/000008.htm",
+  },
+  {
+    label: "MedlinePlus: Asthma Control Medicines",
+    href: "https://medlineplus.gov/ency/patientinstructions/000005.htm",
+  },
+  {
+    label: "MedlinePlus: COPD Quick-Relief Medicines",
+    href: "https://medlineplus.gov/ency/patientinstructions/000026.htm",
+  },
+  {
+    label: "MedlinePlus: Inhaler Use With a Spacer",
+    href: "https://medlineplus.gov/ency/patientinstructions/000042.htm",
+  },
+  {
+    label: "MedlinePlus: Tiotropium",
+    href: "https://medlineplus.gov/druginfo/meds/a604018.html",
+  },
+];
+
