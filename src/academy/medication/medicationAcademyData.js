@@ -2103,3 +2103,197 @@ export const moduleSevenSources = [
   { label: "FDA: Fluoroquinolone Safety Communication", href: "https://www.fda.gov/drugs/drug-safety-and-availability/fda-updates-warnings-oral-and-injectable-fluoroquinolone-antibiotics-due-disabling-side-effects" },
 ];
 
+export const moduleEightBriefing = {
+  title: "Respond Fast, Verify Every High-Risk Step",
+  summary:
+    "Learn to recognize emergency and high-alert medications used in time-critical situations. This mission emphasizes indication, concentration, route, monitoring, double-checks, reversal agents, infusion safety, and immediate escalation when a patient's condition changes.",
+  objectives: [
+    "Recognize major emergency medication purposes and common clinical contexts.",
+    "Explain why high-alert medications require added safeguards.",
+    "Identify common reversal agents and antidote concepts.",
+    "Recognize insulin, anticoagulants, opioids, concentrated electrolytes, and vasoactive infusions as high-risk therapies.",
+    "Apply safe verification principles for dose, concentration, route, pump programming, and monitoring.",
+    "Recognize red flags requiring immediate emergency response.",
+  ],
+};
+
+export const moduleEightLessons = [
+  {
+    title: "What Makes a Medication High Alert?",
+    icon: "🚨",
+    body:
+      "High-alert medications carry a heightened risk of causing significant harm when used in error. This does not mean they are unsafe when prescribed correctly. It means the consequences of a dosing, concentration, route, timing, or monitoring mistake can be severe. Common examples include insulin, anticoagulants, opioids, concentrated electrolytes, chemotherapy, and vasoactive infusions.",
+    takeaway:
+      "High-alert status should trigger stronger safeguards, not fear: verify the patient, drug, dose, concentration, route, timing, indication, and monitoring plan.",
+    pearl:
+      "Independent double-checks are most useful when each clinician separately verifies the critical information before comparing results.",
+    check: {
+      question: "What does high-alert medication mean?",
+      options: [
+        "An error involving the medication may cause serious harm",
+        "The medication should never be used",
+        "The medication is always experimental",
+        "The medication requires no monitoring",
+      ],
+      answer: 0,
+      explanation:
+        "High-alert medications are used appropriately every day, but errors involving them can have serious consequences.",
+    },
+  },
+  {
+    title: "Epinephrine and Time-Critical Emergencies",
+    icon: "⚡",
+    body:
+      "Epinephrine is used in several emergencies, including anaphylaxis and selected cardiac arrest situations, but the concentration, route, dose, and clinical context differ. Intramuscular epinephrine is first-line treatment for anaphylaxis. Cardiac arrest dosing follows a different emergency protocol. Confusing concentrations or routes can cause major harm.",
+    takeaway:
+      "Never rely on the word epinephrine alone. Verify the indication, concentration, route, and protocol before administration.",
+    pearl:
+      "For suspected anaphylaxis, do not delay epinephrine while waiting for antihistamines to work. Airway, breathing, and circulation can deteriorate rapidly.",
+    check: {
+      question: "Which medication is first-line for anaphylaxis?",
+      options: ["Epinephrine", "Diphenhydramine alone", "Acetaminophen", "Naloxone"],
+      answer: 0,
+      explanation:
+        "Intramuscular epinephrine is the first-line treatment for anaphylaxis.",
+    },
+  },
+  {
+    title: "Opioids and Naloxone",
+    icon: "🫁",
+    body:
+      "Opioids can cause sedation, respiratory depression, hypotension, and overdose. Naloxone reverses opioid effects, especially respiratory depression, but its duration may be shorter than that of the opioid. Repeated dosing and continued monitoring may be required. A response to naloxone does not end the emergency.",
+    takeaway:
+      "When opioid toxicity is suspected, support breathing, activate the emergency response, give naloxone according to protocol, and continue close monitoring.",
+    pearl:
+      "A patient who wakes after naloxone can become sedated again. Recurrent respiratory depression is a major safety concern.",
+    check: {
+      question: "What is naloxone used for?",
+      options: [
+        "Reversal of opioid effects",
+        "Reversal of warfarin",
+        "Treatment of hypoglycemia",
+        "Treatment of anaphylaxis",
+      ],
+      answer: 0,
+      explanation:
+        "Naloxone is an opioid antagonist used to reverse opioid-induced respiratory and central nervous system depression.",
+    },
+  },
+  {
+    title: "Anticoagulants and Reversal",
+    icon: "🩸",
+    body:
+      "Anticoagulants reduce clot formation but increase bleeding risk. Heparin, warfarin, and direct oral anticoagulants differ in mechanism, monitoring, interactions, and reversal strategies. Protamine is used for heparin reversal. Vitamin K and selected clotting-factor products may be used for warfarin reversal depending on urgency. Other anticoagulants have specific reversal agents or supportive strategies.",
+    takeaway:
+      "For significant bleeding, hold further doses as directed, assess severity, identify the exact anticoagulant, and follow the emergency reversal protocol.",
+    pearl:
+      "The safest reversal choice depends on the exact drug, last dose, kidney function, bleeding site, laboratory results, and urgency.",
+    check: {
+      question: "Which medication reverses heparin?",
+      options: ["Protamine", "Naloxone", "Flumazenil", "Glucagon"],
+      answer: 0,
+      explanation:
+        "Protamine sulfate is used to reverse unfractionated heparin and may partially reverse low-molecular-weight heparin.",
+    },
+  },
+  {
+    title: "Insulin, Glucagon, and Concentrated Electrolytes",
+    icon: "💉",
+    body:
+      "Insulin is a high-alert medication because product names, concentrations, devices, timing, meal intake, and glucose trends can all affect safety. Severe hypoglycemia may require glucagon or intravenous dextrose according to protocol. Concentrated potassium and other electrolytes can cause fatal harm if prepared or administered incorrectly. These products require controlled storage, dilution, pump use, and monitoring according to policy.",
+    takeaway:
+      "Never give concentrated potassium by direct intravenous push. Verify the final concentration, infusion rate, line, pump settings, and laboratory monitoring.",
+    pearl:
+      "A decimal-point error in insulin or electrolyte dosing can be catastrophic. Avoid unsafe abbreviations and verify unusual doses.",
+    check: {
+      question: "Which statement about concentrated potassium is safest?",
+      options: [
+        "It must be diluted and infused according to protocol; never give it by direct IV push",
+        "It can be given rapidly by IV push",
+        "Monitoring is unnecessary",
+        "The concentration does not matter",
+      ],
+      answer: 0,
+      explanation:
+        "Concentrated potassium is a high-alert medication and must be diluted, infused, and monitored according to policy.",
+    },
+  },
+  {
+    title: "Vasoactive Infusions and Emergency Monitoring",
+    icon: "📈",
+    body:
+      "Vasoactive medicines such as norepinephrine can support blood pressure in shock. These infusions require careful concentration verification, pump programming, frequent reassessment, and monitoring of perfusion, rhythm, urine output, and the infusion site. Extravasation, arrhythmia, severe hypertension, worsening ischemia, or an incorrect rate requires immediate action.",
+    takeaway:
+      "For vasoactive infusions, the medication and the monitor are inseparable. Response and adverse effects must be assessed continuously.",
+    pearl:
+      "When a high-alert infusion seems ineffective, first assess the patient and then verify the line, pump, concentration, connection, and actual delivery before automatically increasing the dose.",
+    check: {
+      question: "Which medication is commonly used as a vasopressor in shock?",
+      options: ["Norepinephrine", "Naloxone", "Protamine", "Vitamin K"],
+      answer: 0,
+      explanation:
+        "Norepinephrine is a commonly used vasopressor for selected patients with shock.",
+    },
+  },
+];
+
+export const moduleEightScenarios = [
+  {
+    title: "Scenario 1: Opioid-Induced Respiratory Depression",
+    patient:
+      "A patient who received an opioid is difficult to arouse, has pinpoint pupils, and is breathing 6 times per minute.",
+    question: "What is the safest response?",
+    options: [
+      "Support ventilation, activate the emergency response, and give naloxone according to protocol",
+      "Allow the patient to sleep and reassess later",
+      "Give another opioid dose for comfort",
+      "Offer oral fluids",
+    ],
+    answer: 0,
+    explanation:
+      "Severe sedation and respiratory depression after opioid exposure require immediate airway and breathing support, emergency escalation, and reversal according to protocol.",
+  },
+  {
+    title: "Scenario 2: High-Alert Infusion Mismatch",
+    patient:
+      "Before starting a vasoactive infusion, the pump library displays a concentration that does not match the medication bag label.",
+    question: "What is the safest next step?",
+    options: [
+      "Stop and resolve the discrepancy before connecting the infusion",
+      "Start the infusion and correct it later",
+      "Estimate the rate without using the ordered concentration",
+      "Ignore the mismatch because the medication name is correct",
+    ],
+    answer: 0,
+    explanation:
+      "A concentration mismatch can create a major dosing error. The discrepancy must be resolved before administration.",
+  },
+];
+
+export const moduleEightQuestions = [
+  { question: "Why are high-alert medications treated differently?", options: ["Errors involving them can cause serious harm", "They are always prohibited", "They never require monitoring", "They are only used in research"], answer: 0, explanation: "High-alert medications require additional safeguards because the consequences of error may be severe." },
+  { question: "Which medication is first-line for anaphylaxis?", options: ["Epinephrine", "Naloxone", "Protamine", "Glucagon"], answer: 0, explanation: "Intramuscular epinephrine is first-line treatment for anaphylaxis." },
+  { question: "What must be verified before epinephrine administration?", options: ["Indication, concentration, route, and dose", "Only the medication color", "Only the patient's age", "Nothing if the name is correct"], answer: 0, explanation: "Epinephrine products and emergency uses differ, making concentration, route, dose, and indication critical." },
+  { question: "Which medication reverses opioid effects?", options: ["Naloxone", "Vitamin K", "Protamine", "Flumazenil"], answer: 0, explanation: "Naloxone is an opioid antagonist." },
+  { question: "Why is continued monitoring needed after naloxone?", options: ["Opioid effects can return after naloxone wears off", "Naloxone permanently removes all opioids", "Respiratory status cannot change", "Monitoring is only for legal documentation"], answer: 0, explanation: "Naloxone may have a shorter duration than the opioid, so recurrent respiratory depression can occur." },
+  { question: "Which medication reverses heparin?", options: ["Protamine", "Naloxone", "Glucagon", "Epinephrine"], answer: 0, explanation: "Protamine is used to reverse heparin." },
+  { question: "Which medication is commonly used in warfarin reversal?", options: ["Vitamin K", "Naloxone", "Flumazenil", "Atropine"], answer: 0, explanation: "Vitamin K is used in warfarin reversal, sometimes with clotting-factor replacement depending on urgency." },
+  { question: "Which finding in a patient taking an anticoagulant requires urgent evaluation?", options: ["New neurologic symptoms after a fall", "A normal appetite", "Stable vital signs", "No bruising or bleeding"], answer: 0, explanation: "Head injury or neurologic changes while anticoagulated may indicate serious internal bleeding." },
+  { question: "Which medication may be used for severe hypoglycemia when a patient cannot safely swallow?", options: ["Glucagon", "Warfarin", "Protamine", "Norepinephrine"], answer: 0, explanation: "Glucagon may be used for severe hypoglycemia according to the patient's plan and clinical setting." },
+  { question: "Which statement about insulin is safest?", options: ["Verify the exact product, concentration, dose, timing, and glucose", "All insulin products are interchangeable", "Meal timing never matters", "Unusual doses do not require review"], answer: 0, explanation: "Insulin products differ and require careful verification." },
+  { question: "How should concentrated potassium be administered?", options: ["Diluted and infused according to protocol", "By rapid IV push", "Without a pump", "Without laboratory monitoring"], answer: 0, explanation: "Concentrated potassium must never be administered by direct IV push." },
+  { question: "Which medication is a vasopressor?", options: ["Norepinephrine", "Naloxone", "Vitamin K", "Glucagon"], answer: 0, explanation: "Norepinephrine is a vasopressor used in selected shock states." },
+  { question: "What should be done when the pump concentration does not match the bag label?", options: ["Stop and resolve the discrepancy before starting", "Start at half the rate", "Ignore it if the drug name matches", "Estimate the dose"], answer: 0, explanation: "A concentration mismatch can cause a severe dosing error." },
+  { question: "Which is a best practice for independent double-checks?", options: ["Each person verifies critical details separately before comparing", "One person reads while the other agrees", "Skip the check when busy", "Check only the drug name"], answer: 0, explanation: "Independent verification reduces confirmation bias and strengthens the safety check." },
+  { question: "Which change during a vasoactive infusion requires immediate reassessment?", options: ["New arrhythmia or signs of poor perfusion", "Stable blood pressure and improving urine output", "Correct pump settings", "An intact infusion site"], answer: 0, explanation: "Arrhythmia, ischemia, extravasation, or worsening perfusion may indicate serious adverse effects or delivery problems." },
+];
+
+export const moduleEightSources = [
+  { label: "ISMP: High-Alert Medications in Acute Care Settings", href: "https://www.ismp.org/recommendations/high-alert-medications-acute-list" },
+  { label: "FDA: Naloxone and Opioid Overdose", href: "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/naloxone-opioid-overdose" },
+  { label: "MedlinePlus: Epinephrine Injection", href: "https://medlineplus.gov/druginfo/meds/a603002.html" },
+  { label: "MedlinePlus: Naloxone Injection", href: "https://medlineplus.gov/druginfo/meds/a612022.html" },
+  { label: "MedlinePlus: Warfarin", href: "https://medlineplus.gov/druginfo/meds/a682277.html" },
+  { label: "MedlinePlus: Insulin and Injections", href: "https://medlineplus.gov/insulin.html" },
+];
+

@@ -123,3 +123,7 @@ export function completeModuleSeven(score, passingScore = 80) {
   return completeModule(7, score, passingScore, 300);
 }
 
+export function completeModuleEight(score, passingScore = 80) {
+  return completeModule(8, score, passingScore, 350);
+}
+
