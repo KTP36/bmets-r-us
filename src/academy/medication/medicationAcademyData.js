@@ -1904,3 +1904,202 @@ export const moduleSixSources = [
   { label: "FDA: Safe Use of Medicines", href: "https://www.fda.gov/drugs/resources-you-drugs/safe-use-medicines" },
 ];
 
+export const moduleSevenBriefing = {
+  title: "Target the Germ and Protect the Patient",
+  summary:
+    "Learn to recognize major antibacterial, antiviral, antifungal, and antiparasitic medication concepts. This mission emphasizes matching the medicine to the organism, obtaining cultures when ordered, allergy and interaction screening, antimicrobial stewardship, severe reaction recognition, and prompt escalation when infection is worsening.",
+  objectives: [
+    "Explain why antibacterial medicines do not treat viral infections.",
+    "Recognize common antibiotic classes and major safety themes.",
+    "Distinguish expected side effects from severe allergy, toxicity, and treatment failure.",
+    "Identify important antiviral, antifungal, and antiparasitic medication concepts.",
+    "Explain the purpose of cultures, susceptibility testing, and antimicrobial stewardship.",
+    "Recognize red flags such as anaphylaxis, sepsis, severe antibiotic-associated diarrhea, and worsening infection.",
+  ],
+};
+
+export const moduleSevenLessons = [
+  {
+    title: "Match the Medicine to the Organism",
+    icon: "🦠",
+    body:
+      "Antimicrobial medicines are selected according to the suspected or confirmed organism, infection site, patient factors, local resistance patterns, and test results. Antibiotics treat selected bacterial infections; they do not treat viruses such as influenza or the common cold. Antivirals, antifungals, and antiparasitic medicines target different organisms and are not interchangeable.",
+    takeaway:
+      "The word infection does not automatically mean antibiotic. Identify the likely organism and follow the verified treatment plan.",
+    pearl:
+      "Using an antibiotic when it is not needed can still cause harm and contributes to antimicrobial resistance.",
+    check: {
+      question: "Which statement is correct?",
+      options: [
+        "Antibiotics treat selected bacterial infections, not viral infections",
+        "Antibiotics cure influenza",
+        "All antimicrobial medicines treat the same organisms",
+        "A fever always proves a bacterial infection",
+      ],
+      answer: 0,
+      explanation:
+        "Antibiotics act against selected bacteria. Viral, fungal, and parasitic infections require different evaluation and treatment.",
+    },
+  },
+  {
+    title: "Common Antibiotic Classes",
+    icon: "💊",
+    body:
+      "Penicillins include amoxicillin and related medicines. Cephalosporins include cephalexin and ceftriaxone. Macrolides include azithromycin. Tetracyclines include doxycycline. Fluoroquinolones include ciprofloxacin and levofloxacin. Sulfonamide combinations include trimethoprim-sulfamethoxazole. Each class has different coverage, dosing, interactions, organ-function considerations, and adverse-effect risks.",
+    takeaway:
+      "Class recognition is only the starting point. The infection, culture data, allergy history, kidney or liver function, and verified order determine safe therapy.",
+    pearl:
+      "Fluoroquinolones carry important warnings involving tendons, nerves, the central nervous system, and other serious effects. New tendon pain, weakness, numbness, or major neurologic symptoms require prompt follow-up.",
+    check: {
+      question: "Which medication is a macrolide antibiotic?",
+      options: ["Azithromycin", "Amoxicillin", "Doxycycline", "Fluconazole"],
+      answer: 0,
+      explanation:
+        "Azithromycin is a macrolide antibiotic.",
+    },
+  },
+  {
+    title: "Allergy, Anaphylaxis, and Safe Administration",
+    icon: "🚨",
+    body:
+      "Before an antimicrobial is administered, verify the documented allergy, the reaction, its severity, and when it occurred. Mild nausea is not the same as an immune-mediated allergy. Hives, facial or tongue swelling, wheezing, difficulty breathing, hypotension, or rapidly progressing symptoms may signal anaphylaxis and require immediate emergency action. Infusion-related reactions and severe skin reactions also require prompt assessment.",
+    takeaway:
+      "Do not rely on the word allergy alone. Clarify the reaction—but never delay emergency treatment for signs of anaphylaxis.",
+    pearl:
+      "A new widespread rash with blistering, skin peeling, mouth sores, or eye involvement is a medical emergency and may represent a severe cutaneous reaction.",
+    check: {
+      question: "Which finding most strongly suggests anaphylaxis?",
+      options: [
+        "Hives with tongue swelling and difficulty breathing",
+        "Mild temporary nausea",
+        "A metallic taste",
+        "One loose stool",
+      ],
+      answer: 0,
+      explanation:
+        "Airway swelling, breathing difficulty, hives, and circulatory symptoms require immediate emergency response.",
+    },
+  },
+  {
+    title: "Cultures, Timing, and Stewardship",
+    icon: "🧫",
+    body:
+      "Cultures help identify an organism, and susceptibility testing helps determine which medicines may be effective. When ordered and clinically appropriate, cultures are often collected before the first antimicrobial dose, but urgent treatment should not be delayed when the patient is unstable. Broad-spectrum therapy may be narrowed when results return. Stewardship means using the right medicine, dose, route, and duration while reassessing the need for continued treatment.",
+    takeaway:
+      "Collect the correct specimen at the correct time, then act on culture and susceptibility results according to the clinical plan.",
+    pearl:
+      "Never save antibiotics for later, share them, or use someone else's prescription. These practices can delay correct treatment and increase harm.",
+    check: {
+      question: "What is a major purpose of antimicrobial stewardship?",
+      options: [
+        "Improve treatment while reducing avoidable harm and resistance",
+        "Give the broadest antibiotic to every patient",
+        "Treat all viral illnesses with antibiotics",
+        "Continue every antibiotic indefinitely",
+      ],
+      answer: 0,
+      explanation:
+        "Stewardship aims to optimize antimicrobial selection, dosing, route, duration, and reassessment.",
+    },
+  },
+  {
+    title: "Antivirals, Antifungals, and Antiparasitics",
+    icon: "🔬",
+    body:
+      "Antivirals act against specific viruses. Examples include oseltamivir for influenza, acyclovir or valacyclovir for herpes viruses, and combination antiretroviral therapy for HIV. Antifungals include fluconazole, nystatin, and terbinafine, while serious invasive infections may require other agents. Antiparasitic medicines vary widely by organism. Timing, interactions, organ function, pregnancy status, and the exact diagnosis matter.",
+    takeaway:
+      "Antiviral, antifungal, and antiparasitic medicines are organism-specific; one product cannot be substituted for another without verification.",
+    pearl:
+      "Some antivirals work best when started early in the illness. Prompt testing and treatment decisions can matter for high-risk patients.",
+    check: {
+      question: "Which medication is an antifungal?",
+      options: ["Fluconazole", "Azithromycin", "Oseltamivir", "Amoxicillin"],
+      answer: 0,
+      explanation:
+        "Fluconazole is an antifungal medicine.",
+    },
+  },
+  {
+    title: "Treatment Failure, C. diff, and Sepsis Red Flags",
+    icon: "🩺",
+    body:
+      "Infection should be reassessed when symptoms worsen, fever persists, the patient cannot keep medicine down, new organ dysfunction appears, or culture results do not support the current therapy. Antibiotic-associated diarrhea may be mild, but frequent watery diarrhea, abdominal pain, fever, dehydration, or symptoms during or after antibiotic use can indicate Clostridioides difficile infection. Confusion, low blood pressure, breathing difficulty, very rapid heart rate, mottled skin, or reduced urine output may signal sepsis.",
+    takeaway:
+      "Worsening infection, severe diarrhea, or signs of organ dysfunction require prompt escalation—not simply another routine dose.",
+    pearl:
+      "Do not automatically treat significant antibiotic-associated diarrhea with an antidiarrheal. The cause must be evaluated, especially when C. diff is possible.",
+    check: {
+      question: "Which situation requires prompt clinical evaluation?",
+      options: [
+        "Frequent watery diarrhea with abdominal pain after recent antibiotics",
+        "Symptoms steadily improving",
+        "One mild, isolated loose stool",
+        "A completed prescription with no concerns",
+      ],
+      answer: 0,
+      explanation:
+        "Significant diarrhea during or after antibiotics may indicate C. diff and can become severe.",
+    },
+  },
+];
+
+export const moduleSevenScenarios = [
+  {
+    title: "Scenario 1: Possible Immediate Allergic Reaction",
+    patient:
+      "Minutes after an antibiotic begins infusing, a patient develops hives, wheezing, tongue swelling, and dizziness.",
+    question: "What is the safest response?",
+    options: [
+      "Stop the infusion and activate the emergency response for suspected anaphylaxis",
+      "Slow the infusion and reassess at the end of the shift",
+      "Give the next dose early",
+      "Document nausea as the only reaction",
+    ],
+    answer: 0,
+    explanation:
+      "Hives, airway swelling, wheezing, and dizziness are compatible with anaphylaxis and require immediate emergency management.",
+  },
+  {
+    title: "Scenario 2: Diarrhea After Antibiotics",
+    patient:
+      "A patient recently treated with antibiotics now has frequent watery stools, fever, abdominal tenderness, and increasing weakness.",
+    question: "What is the best next step?",
+    options: [
+      "Promptly notify the healthcare team and evaluate for antibiotic-associated infection such as C. diff",
+      "Automatically give loperamide and delay evaluation",
+      "Restart the leftover antibiotic at home",
+      "Assume the symptoms are harmless because the antibiotic course is finished",
+    ],
+    answer: 0,
+    explanation:
+      "C. diff can occur during or after antibiotic exposure and may cause severe colitis, dehydration, and systemic illness.",
+  },
+];
+
+export const moduleSevenQuestions = [
+  { question: "What do antibiotics treat?", options: ["Selected bacterial infections", "All viral infections", "Every fungal infection", "Every fever"], answer: 0, explanation: "Antibiotics target selected bacteria and do not treat viral illnesses such as colds or influenza." },
+  { question: "Which medication is a penicillin-class antibiotic?", options: ["Amoxicillin", "Azithromycin", "Doxycycline", "Fluconazole"], answer: 0, explanation: "Amoxicillin is a penicillin-class antibiotic." },
+  { question: "Which medication is a cephalosporin?", options: ["Cephalexin", "Oseltamivir", "Metronidazole", "Nystatin"], answer: 0, explanation: "Cephalexin is a cephalosporin antibiotic." },
+  { question: "Which medication is a tetracycline antibiotic?", options: ["Doxycycline", "Amoxicillin", "Ceftriaxone", "Acyclovir"], answer: 0, explanation: "Doxycycline is a tetracycline antibiotic." },
+  { question: "Which medication is a fluoroquinolone?", options: ["Ciprofloxacin", "Azithromycin", "Fluconazole", "Valacyclovir"], answer: 0, explanation: "Ciprofloxacin is a fluoroquinolone antibiotic." },
+  { question: "Which new symptom during fluoroquinolone therapy needs prompt follow-up?", options: ["Tendon pain or new numbness", "Stable appetite", "Normal urine color", "Improving fever"], answer: 0, explanation: "Fluoroquinolones have serious warnings involving tendons, nerves, and the central nervous system." },
+  { question: "Which symptom pattern suggests anaphylaxis?", options: ["Hives, tongue swelling, wheezing, and dizziness", "Mild nausea only", "A temporary bad taste", "One episode of heartburn"], answer: 0, explanation: "Anaphylaxis may rapidly affect the skin, airway, breathing, and circulation." },
+  { question: "What should be clarified when a patient reports an antibiotic allergy?", options: ["The exact reaction, severity, and timing", "Only the tablet color", "The pharmacy parking location", "Nothing; all reactions are identical"], answer: 0, explanation: "The nature and severity of the reaction help guide safe clinical decisions." },
+  { question: "What does susceptibility testing help determine?", options: ["Which antimicrobial may be effective against the organism", "Whether the patient has a fracture", "The patient's blood type", "Whether a virus is always present"], answer: 0, explanation: "Susceptibility results help guide targeted antimicrobial treatment." },
+  { question: "Which action supports antimicrobial stewardship?", options: ["Reassess therapy and narrow treatment when appropriate", "Use antibiotics for every cold", "Share leftover antibiotics", "Continue treatment without reviewing results"], answer: 0, explanation: "Stewardship promotes appropriate selection, dosing, route, duration, and reassessment." },
+  { question: "Which medication is an antiviral used for influenza?", options: ["Oseltamivir", "Amoxicillin", "Fluconazole", "Cephalexin"], answer: 0, explanation: "Oseltamivir is an antiviral used for influenza in selected patients." },
+  { question: "Which medication is commonly used for herpes viruses?", options: ["Acyclovir", "Azithromycin", "Ceftriaxone", "Terbinafine"], answer: 0, explanation: "Acyclovir is an antiviral used for selected herpes-virus infections." },
+  { question: "Which medication is an antifungal?", options: ["Fluconazole", "Levofloxacin", "Amoxicillin", "Oseltamivir"], answer: 0, explanation: "Fluconazole is an antifungal." },
+  { question: "Which finding raises concern for C. diff after antibiotic use?", options: ["Frequent watery diarrhea with abdominal pain and fever", "A normal formed stool", "Improving appetite", "No gastrointestinal symptoms"], answer: 0, explanation: "C. diff can cause significant diarrhea and colitis during or after antibiotic exposure." },
+  { question: "Which finding may signal sepsis or worsening systemic infection?", options: ["New confusion, low blood pressure, and reduced urine output", "Steady improvement and normal vital signs", "A healed incision", "Normal mentation and hydration"], answer: 0, explanation: "Changes in mental status, circulation, breathing, or organ function require urgent evaluation." },
+];
+
+export const moduleSevenSources = [
+  { label: "CDC: Antibiotic Do's and Don'ts", href: "https://www.cdc.gov/antibiotic-use/about/" },
+  { label: "CDC: Antibiotic Use and Antimicrobial Resistance", href: "https://www.cdc.gov/antibiotic-use/data-research/facts-stats/index.html" },
+  { label: "CDC: Core Elements of Antibiotic Stewardship", href: "https://www.cdc.gov/antibiotic-use/hcp/core-elements/" },
+  { label: "CDC: About C. diff", href: "https://www.cdc.gov/c-diff/about/index.html" },
+  { label: "MedlinePlus: Antibiotics", href: "https://medlineplus.gov/antibiotics.html" },
+  { label: "FDA: Fluoroquinolone Safety Communication", href: "https://www.fda.gov/drugs/drug-safety-and-availability/fda-updates-warnings-oral-and-injectable-fluoroquinolone-antibiotics-due-disabling-side-effects" },
+];
+

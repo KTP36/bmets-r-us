@@ -118,3 +118,8 @@ export function completeModuleFive(score, passingScore = 80) {
 export function completeModuleSix(score, passingScore = 80) {
   return completeModule(6, score, passingScore, 275);
 }
+
+export function completeModuleSeven(score, passingScore = 80) {
+  return completeModule(7, score, passingScore, 300);
+}
+
