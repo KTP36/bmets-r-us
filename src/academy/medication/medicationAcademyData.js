@@ -1731,3 +1731,176 @@ export const moduleFiveSources = [
   },
 ];
 
+export const moduleSixBriefing = {
+  title: "Protect Digestion, Kidney Function, and Electrolyte Balance",
+  summary:
+    "Learn to recognize common gastrointestinal medicines, renal medication precautions, and electrolyte replacement risks. This mission emphasizes medication purpose, red-flag symptoms, kidney-function considerations, and safe escalation rather than independent treatment decisions.",
+  objectives: [
+    "Distinguish proton pump inhibitors, H2 blockers, antacids, and mucosal-protective medicines.",
+    "Recognize common antiemetic, laxative, stool-softener, and antidiarrheal classes.",
+    "Identify gastrointestinal warning signs that require prompt evaluation.",
+    "Explain why kidney function can change medication dosing, accumulation, and toxicity risk.",
+    "Recognize major potassium, magnesium, calcium, sodium, and phosphate replacement precautions.",
+    "Apply dialysis and medication-timing concepts using the verified prescription and organizational policy.",
+  ],
+};
+
+export const moduleSixLessons = [
+  {
+    title: "Acid-Reducing and Protective Medicines",
+    icon: "🔥",
+    body:
+      "Proton pump inhibitors such as omeprazole and pantoprazole strongly reduce stomach-acid production. H2 blockers such as famotidine also reduce acid through a different mechanism. Antacids neutralize existing acid and can interact with the absorption of other medicines. Sucralfate forms a protective barrier over irritated tissue and also requires attention to administration timing.",
+    takeaway:
+      "The class provides an important clue, but indication, duration, timing, kidney function, and interacting medicines determine safe use.",
+    pearl:
+      "Persistent reflux symptoms, difficulty swallowing, unexplained weight loss, vomiting blood, or black tarry stools should not be treated as routine indigestion.",
+    check: {
+      question: "Which medication is a proton pump inhibitor?",
+      options: ["Pantoprazole", "Famotidine", "Calcium carbonate", "Ondansetron"],
+      answer: 0,
+      explanation: "Pantoprazole is a proton pump inhibitor that suppresses gastric-acid production.",
+    },
+  },
+  {
+    title: "Antiemetics and Hydration Risk",
+    icon: "🤢",
+    body:
+      "Antiemetics treat nausea and vomiting through different pathways. Ondansetron blocks serotonin receptors and may affect the QT interval in susceptible patients. Metoclopramide promotes gastric movement but may cause movement-related adverse effects. Promethazine can cause sedation and has route-specific safety concerns. The underlying cause of vomiting and the patient's hydration status still require assessment.",
+    takeaway:
+      "Stopping nausea is not the same as correcting dehydration, electrolyte loss, bowel obstruction, infection, or another serious cause.",
+    pearl:
+      "Repeated vomiting, severe abdominal pain, confusion, fainting, blood in vomit, or inability to keep fluids down warrants prompt clinical evaluation.",
+    check: {
+      question: "Which medication is commonly used as an antiemetic?",
+      options: ["Ondansetron", "Omeprazole", "Loperamide", "Potassium chloride"],
+      answer: 0,
+      explanation: "Ondansetron is an antiemetic commonly used to prevent or treat nausea and vomiting.",
+    },
+  },
+  {
+    title: "Constipation Medicines and Obstruction Warnings",
+    icon: "🚽",
+    body:
+      "Constipation medicines include bulk-forming agents, osmotic laxatives, stimulant laxatives, and stool softeners. Psyllium requires adequate fluid intake. Polyethylene glycol draws water into the bowel. Senna and bisacodyl stimulate intestinal movement. Docusate softens stool. Choice depends on the cause, duration, comorbidities, hydration, and whether obstruction is possible.",
+    takeaway:
+      "Do not automatically give a laxative when severe pain, vomiting, abdominal swelling, absent bowel sounds, or inability to pass gas suggests possible obstruction.",
+    pearl:
+      "Long-term or excessive laxative use can contribute to dehydration and electrolyte imbalance. Follow the individualized bowel regimen.",
+    check: {
+      question: "Which medication is an osmotic laxative?",
+      options: ["Polyethylene glycol", "Loperamide", "Famotidine", "Ondansetron"],
+      answer: 0,
+      explanation: "Polyethylene glycol is an osmotic laxative that increases water in the stool.",
+    },
+  },
+  {
+    title: "Antidiarrheals and Red Flags",
+    icon: "💧",
+    body:
+      "Loperamide slows intestinal movement and may help selected patients with uncomplicated diarrhea. Bismuth subsalicylate has antisecretory and antimicrobial effects but carries salicylate-related precautions and can darken the tongue or stool. Antidiarrheals may be inappropriate when diarrhea is bloody, accompanied by high fever, associated with severe abdominal pain, or caused by certain infections.",
+    takeaway:
+      "Hydration and cause matter. Suppressing intestinal movement can be harmful in selected infectious or inflammatory conditions.",
+    pearl:
+      "Recent antibiotic use followed by frequent watery diarrhea raises concern for Clostridioides difficile and requires clinical evaluation rather than routine self-treatment.",
+    check: {
+      question: "Which finding makes routine antidiarrheal use less appropriate without clinical guidance?",
+      options: ["Bloody diarrhea with fever", "One loose stool after a dietary change", "Normal hydration", "Improving symptoms"],
+      answer: 0,
+      explanation: "Bloody diarrhea and fever may indicate invasive infection or inflammation requiring prompt assessment.",
+    },
+  },
+  {
+    title: "Kidney Function and Medication Accumulation",
+    icon: "🫘",
+    body:
+      "The kidneys remove many medicines and metabolites from the body. Reduced kidney function can allow a drug to accumulate, increasing adverse-effect risk. Estimated glomerular filtration rate, serum creatinine trends, urine output, age, hydration, and dialysis status may influence medication selection or dosing. Nephrotoxic medicines and contrast exposure require particular attention in at-risk patients.",
+    takeaway:
+      "A familiar dose may be unsafe when kidney function changes. Verify renal dosing rather than relying on memory.",
+    pearl:
+      "A sudden fall in urine output, rapidly rising creatinine, new confusion, severe weakness, or fluid overload should be escalated promptly.",
+    check: {
+      question: "Why might a medication dose need adjustment in reduced kidney function?",
+      options: ["The drug may accumulate and cause toxicity", "All drugs become inactive", "The stomach stops absorbing medicine", "Kidney disease prevents every interaction"],
+      answer: 0,
+      explanation: "Reduced renal clearance can increase medication concentration and toxicity risk.",
+    },
+  },
+  {
+    title: "Electrolyte Replacement and Dialysis Safety",
+    icon: "⚡",
+    body:
+      "Potassium, magnesium, calcium, sodium, and phosphate are essential but can be dangerous when replaced incorrectly. Concentration, route, infusion rate, kidney function, cardiac rhythm, and repeat laboratory testing matter. Potassium chloride is a high-alert medicine and must never be administered by direct intravenous push. Dialysis can remove some medicines and electrolytes while leaving others relatively unaffected, so timing must follow the verified dialysis plan.",
+    takeaway:
+      "Electrolyte replacement is guided by the laboratory result, symptoms, route, renal function, and monitoring plan—not by the supplement name alone.",
+    pearl:
+      "Potassium abnormalities can trigger life-threatening arrhythmias. Severe weakness, palpitations, chest symptoms, or ECG changes require urgent escalation.",
+    check: {
+      question: "Which statement about intravenous potassium chloride is correct?",
+      options: ["It must never be given by direct IV push", "It can be pushed rapidly in any peripheral IV", "It requires no monitoring", "It is safe regardless of kidney function"],
+      answer: 0,
+      explanation: "Concentrated potassium chloride is high alert and must be diluted and infused according to strict policy; direct IV push can be fatal.",
+    },
+  },
+];
+
+export const moduleSixScenarios = [
+  {
+    title: "Scenario 1: Constipation or Possible Obstruction?",
+    patient:
+      "A patient requests a laxative but reports severe cramping, repeated vomiting, abdominal distention, and inability to pass gas.",
+    question: "What is the safest response?",
+    options: [
+      "Hold routine laxative treatment and promptly escalate for evaluation",
+      "Give the strongest stimulant laxative available",
+      "Encourage a large meal and wait several days",
+      "Assume the symptoms are uncomplicated constipation",
+    ],
+    answer: 0,
+    explanation:
+      "Severe pain, vomiting, distention, and inability to pass gas may indicate bowel obstruction. Routine laxatives may be inappropriate until evaluated.",
+  },
+  {
+    title: "Scenario 2: Potassium Replacement With Reduced Kidney Function",
+    patient:
+      "A patient with worsening kidney function has a potassium replacement order. The newest potassium result is higher than the previous value, and urine output has fallen substantially.",
+    question: "What should happen before administration?",
+    options: [
+      "Verify the current laboratory result and clarify the order promptly",
+      "Administer the dose because potassium orders never change",
+      "Give the medication by direct IV push",
+      "Ignore urine output because it does not affect potassium handling",
+    ],
+    answer: 0,
+    explanation:
+      "Reduced kidney function can impair potassium removal. A rising level and low urine output require verification and clinical clarification before replacement.",
+  },
+];
+
+export const moduleSixQuestions = [
+  { question: "Which medication is a proton pump inhibitor?", options: ["Omeprazole", "Famotidine", "Ondansetron", "Loperamide"], answer: 0, explanation: "Omeprazole is a proton pump inhibitor." },
+  { question: "Which medication is an H2 receptor blocker?", options: ["Famotidine", "Pantoprazole", "Sucralfate", "Metoclopramide"], answer: 0, explanation: "Famotidine is an H2 blocker that reduces gastric-acid secretion." },
+  { question: "Which finding is a gastrointestinal bleeding warning sign?", options: ["Black tarry stool", "Mild hiccups", "Normal appetite", "One episode of heartburn"], answer: 0, explanation: "Black tarry stool may represent digested blood and requires evaluation." },
+  { question: "Which medication is commonly used to treat nausea and vomiting?", options: ["Ondansetron", "Psyllium", "Loperamide", "Calcium carbonate"], answer: 0, explanation: "Ondansetron is an antiemetic." },
+  { question: "Which antiemetic may cause movement-related adverse effects?", options: ["Metoclopramide", "Famotidine", "Omeprazole", "Docusate"], answer: 0, explanation: "Metoclopramide can cause extrapyramidal symptoms and tardive dyskinesia." },
+  { question: "Which medication is a stimulant laxative?", options: ["Senna", "Docusate", "Psyllium", "Loperamide"], answer: 0, explanation: "Senna stimulates intestinal motility." },
+  { question: "Which symptom pattern suggests possible bowel obstruction?", options: ["Severe pain, vomiting, distention, and inability to pass gas", "Mild constipation after travel", "Normal bowel sounds and appetite", "One firm stool"], answer: 0, explanation: "This combination is a red flag for obstruction and requires evaluation." },
+  { question: "Which medication slows intestinal movement?", options: ["Loperamide", "Polyethylene glycol", "Senna", "Metoclopramide"], answer: 0, explanation: "Loperamide decreases intestinal motility." },
+  { question: "When should diarrhea receive prompt clinical evaluation?", options: ["When it is bloody or accompanied by high fever", "When hydration is normal and symptoms are resolving", "After one loose stool", "Whenever a person eats fiber"], answer: 0, explanation: "Bloody diarrhea or high fever may signal invasive infection or inflammation." },
+  { question: "Why is kidney function important in medication dosing?", options: ["Reduced clearance may cause drug accumulation", "It changes every drug into insulin", "It eliminates all adverse effects", "It prevents oral absorption"], answer: 0, explanation: "Many drugs depend on renal clearance, so reduced function may increase toxicity risk." },
+  { question: "Which value commonly helps estimate renal medication clearance?", options: ["Estimated glomerular filtration rate", "Visual acuity", "Respiratory rate alone", "Body temperature alone"], answer: 0, explanation: "eGFR is one measure used when assessing renal function, though product-specific dosing guidance may use other calculations." },
+  { question: "Which electrolyte replacement is considered high alert?", options: ["Potassium chloride", "Dietary fiber", "Calcium carbonate antacid", "Docusate"], answer: 0, explanation: "Potassium chloride carries a high risk of severe harm if prepared or administered incorrectly." },
+  { question: "How should concentrated potassium chloride be administered?", options: ["Only after proper dilution and by controlled infusion according to policy", "By direct IV push", "Without checking kidney function", "As rapidly as possible"], answer: 0, explanation: "Potassium must be diluted and infused under strict safeguards; direct IV push is unsafe." },
+  { question: "Which finding can accompany a dangerous electrolyte abnormality?", options: ["New palpitations and severe weakness", "Stable energy and normal rhythm", "Improving hydration", "Normal laboratory values"], answer: 0, explanation: "Electrolyte abnormalities can affect muscles and cardiac conduction, producing weakness or arrhythmias." },
+  { question: "What determines whether a medicine should be given before or after dialysis?", options: ["The verified drug-specific dialysis plan", "A universal rule for all medicines", "The tablet color", "The patient's breakfast preference alone"], answer: 0, explanation: "Dialyzability differs among medicines, so timing must follow drug-specific and patient-specific guidance." },
+];
+
+export const moduleSixSources = [
+  { label: "MedlinePlus: GERD", href: "https://medlineplus.gov/gerd.html" },
+  { label: "MedlinePlus: Nausea and Vomiting", href: "https://medlineplus.gov/nauseaandvomiting.html" },
+  { label: "MedlinePlus: Constipation", href: "https://medlineplus.gov/constipation.html" },
+  { label: "MedlinePlus: Diarrhea", href: "https://medlineplus.gov/diarrhea.html" },
+  { label: "NIDDK: Keeping Kidneys Safe", href: "https://www.niddk.nih.gov/health-information/kidney-disease/keeping-kidneys-safe" },
+  { label: "FDA: Safe Use of Medicines", href: "https://www.fda.gov/drugs/resources-you-drugs/safe-use-medicines" },
+];
+

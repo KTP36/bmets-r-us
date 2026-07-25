@@ -5,6 +5,7 @@ import {
   completeModuleThree,
   completeModuleFour,
   completeModuleFive,
+  completeModuleSix,
   completionPercent,
   getAcademyState,
   getModuleState,
@@ -38,6 +39,11 @@ import {
   moduleFiveQuestions,
   moduleFiveScenarios,
   moduleFiveSources,
+  moduleSixBriefing,
+  moduleSixLessons,
+  moduleSixQuestions,
+  moduleSixScenarios,
+  moduleSixSources,
 } from "./medicationAcademyData";
 import "./MedicationAcademy.css";
 
@@ -1778,6 +1784,416 @@ function MedicationModuleFive({ onBack, onComplete }) {
 }
 
 
+
+
+function MedicationModuleSix({ onBack, onComplete }) {
+  const questions = useMemo(
+    () => moduleSixQuestions.map(shuffleQuestion),
+    []
+  );
+
+  const [phase, setPhase] = useState("briefing");
+  const [lessonIndex, setLessonIndex] = useState(0);
+  const [lessonChecks, setLessonChecks] = useState({});
+  const [scenarioIndex, setScenarioIndex] = useState(0);
+  const [scenarioChecks, setScenarioChecks] = useState({});
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
+
+  const currentQuestion = questions[questionIndex];
+  const selected = answers[questionIndex];
+  const answered = selected !== undefined;
+  const percent = Math.round((score / questions.length) * 100);
+  const passed = percent >= 80;
+
+  function chooseAnswer(optionIndex) {
+    if (answered) return;
+
+    setAnswers((previous) => ({
+      ...previous,
+      [questionIndex]: optionIndex,
+    }));
+
+    if (optionIndex === currentQuestion.answer) {
+      setScore((previous) => previous + 1);
+    }
+  }
+
+  function nextQuestion() {
+    if (!answered) return;
+
+    if (questionIndex === questions.length - 1) {
+      const finalPercent = Math.round((score / questions.length) * 100);
+      completeModuleSix(finalPercent);
+      setFinished(true);
+      onComplete();
+      return;
+    }
+
+    setQuestionIndex((previous) => previous + 1);
+  }
+
+  function restartQuiz() {
+    setQuestionIndex(0);
+    setAnswers({});
+    setScore(0);
+    setFinished(false);
+  }
+
+  if (phase === "briefing") {
+    return (
+      <section className="mma-module-shell">
+        <button className="mma-text-button" onClick={onBack}>
+          ← Back to Academy
+        </button>
+
+        <div className="mma-briefing-card">
+          <div className="mma-briefing-icon">🫘</div>
+          <span className="mma-pill">Mission 6 Briefing</span>
+          <h1>{moduleSixBriefing.title}</h1>
+          <p>{moduleSixBriefing.summary}</p>
+
+          <div className="mma-objectives">
+            <h2>By the end of this mission, you should be able to:</h2>
+            {moduleSixBriefing.objectives.map((objective) => (
+              <div className="mma-objective" key={objective}>
+                <span>✓</span>
+                <p>{objective}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mma-mission-stats">
+            <div><strong>6</strong><span>Lessons</span></div>
+            <div><strong>2</strong><span>Scenarios</span></div>
+            <div><strong>15</strong><span>Final Questions</span></div>
+            <div><strong>275</strong><span>XP</span></div>
+          </div>
+
+          <button
+            className="mma-primary-button full"
+            onClick={() => setPhase("lessons")}
+          >
+            Begin Mission
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "lessons") {
+    const lesson = moduleSixLessons[lessonIndex];
+    const checkComplete = Boolean(lessonChecks[lessonIndex]);
+    const finalLesson = lessonIndex === moduleSixLessons.length - 1;
+
+    return (
+      <section className="mma-module-shell">
+        <button className="mma-text-button" onClick={onBack}>
+          ← Back to Academy
+        </button>
+
+        <div className="mma-module-heading">
+          <span className="mma-pill">Mission 6</span>
+          <h1>Gastrointestinal & Renal Medications</h1>
+          <p>Complete every lesson and knowledge check before moving forward.</p>
+        </div>
+
+        <div className="mma-step-progress">
+          {moduleSixLessons.map((item, index) => (
+            <div
+              key={item.title}
+              className={`mma-step ${
+                index < lessonIndex || lessonChecks[index] ? "done" : ""
+              } ${index === lessonIndex ? "active" : ""}`}
+            >
+              <span>{index + 1}</span>
+              <small>{index < lessonIndex || lessonChecks[index] ? "Done" : "Lesson"}</small>
+            </div>
+          ))}
+        </div>
+
+        <div className="mma-lesson-layout">
+          <aside className="mma-lesson-list" aria-label="Module lessons">
+            {moduleSixLessons.map((item, index) => (
+              <button
+                key={item.title}
+                className={`mma-lesson-link ${
+                  index === lessonIndex ? "active" : ""
+                }`}
+                onClick={() => setLessonIndex(index)}
+              >
+                <span>{item.icon}</span>
+                <span>{index + 1}. {item.title}</span>
+              </button>
+            ))}
+          </aside>
+
+          <article className="mma-lesson-card">
+            <div className="mma-lesson-icon">{lesson.icon}</div>
+            <div className="mma-lesson-counter">
+              Lesson {lessonIndex + 1} of {moduleSixLessons.length}
+            </div>
+            <h2>{lesson.title}</h2>
+            <p>{lesson.body}</p>
+
+            <div className="mma-key-point">
+              <strong>GI & renal takeaway</strong>
+              <span>{lesson.takeaway}</span>
+            </div>
+
+            {lesson.pearl && (
+              <div className="mma-clinical-pearl">
+                <strong>💡 Clinical Pearl</strong>
+                <span>{lesson.pearl}</span>
+              </div>
+            )}
+
+            {lesson.practice && (
+              <a className="mma-practice-link" href={lesson.practice.href}>
+                🎧 {lesson.practice.label} →
+              </a>
+            )
+
+            <KnowledgeCheck
+              key={`module6-${lessonIndex}`}
+              check={lesson.check}
+              onComplete={() =>
+                setLessonChecks((previous) => ({
+                  ...previous,
+                  [lessonIndex]: true,
+                }))
+              }
+            />
+
+            <div className="mma-row">
+              <button
+                className="mma-secondary-button"
+                disabled={lessonIndex === 0}
+                onClick={() =>
+                  setLessonIndex((previous) => Math.max(0, previous - 1))
+                }
+              >
+                Previous
+              </button>
+
+              {finalLesson ? (
+                <button
+                  className="mma-primary-button"
+                  disabled={!checkComplete}
+                  onClick={() => setPhase("scenarios")}
+                >
+                  Continue to Scenarios
+                </button>
+              ) : (
+                <button
+                  className="mma-primary-button"
+                  disabled={!checkComplete}
+                  onClick={() =>
+                    setLessonIndex((previous) =>
+                      Math.min(moduleSixLessons.length - 1, previous + 1)
+                    )
+                  }
+                >
+                  Next Lesson
+                </button>
+              )}
+            </div>
+          </article>
+        </div>
+
+        <div className="mma-disclaimer">
+          Educational use only. Gastrointestinal, renal, and electrolyte education does not replace the verified order,
+          patient-specific treatment plan, renal dosing guidance, laboratory monitoring, emergency response,
+          or organizational policy.
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "scenarios") {
+    const scenario = moduleSixScenarios[scenarioIndex];
+    const scenarioComplete = Boolean(scenarioChecks[scenarioIndex]);
+    const finalScenario = scenarioIndex === moduleSixScenarios.length - 1;
+
+    return (
+      <section className="mma-module-shell">
+        <button className="mma-text-button" onClick={() => setPhase("lessons")}>
+          ← Review Lessons
+        </button>
+
+        <div className="mma-module-heading">
+          <span className="mma-pill">Apply What You Learned</span>
+          <h1>Gastrointestinal & Renal Medication Scenarios</h1>
+          <p>Use gastrointestinal medication purpose, kidney function, electrolyte findings, and escalation principles to choose the safest response.</p>
+        </div>
+
+        <ScenarioCard
+          key={`module6-${scenarioIndex}`}
+          scenario={scenario}
+          number={scenarioIndex + 1}
+          onComplete={() =>
+            setScenarioChecks((previous) => ({
+              ...previous,
+              [scenarioIndex]: true,
+            }))
+          }
+        />
+
+        <div className="mma-row mma-scenario-nav">
+          <button
+            className="mma-secondary-button"
+            disabled={scenarioIndex === 0}
+            onClick={() =>
+              setScenarioIndex((previous) => Math.max(0, previous - 1))
+            }
+          >
+            Previous Scenario
+          </button>
+
+          {finalScenario ? (
+            <button
+              className="mma-primary-button"
+              disabled={!scenarioComplete}
+              onClick={() => setPhase("quiz")}
+            >
+              Start Final Challenge
+            </button>
+          ) : (
+            <button
+              className="mma-primary-button"
+              disabled={!scenarioComplete}
+              onClick={() =>
+                setScenarioIndex((previous) =>
+                  Math.min(moduleSixScenarios.length - 1, previous + 1)
+                )
+              }
+            >
+              Next Scenario
+            </button>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  if (finished) {
+    return (
+      <section className="mma-result-card">
+        <div className="mma-result-icon">{passed ? "🏆" : "📘"}</div>
+        <span className="mma-pill">
+          {passed ? "Mission Complete" : "Keep Building"}
+        </span>
+        <h1>{passed ? "Gastrointestinal & Renal Medication Specialist" : "Review and Try Again"}</h1>
+        <div className="mma-score">{percent}%</div>
+        <p>You answered {score} of {questions.length} questions correctly.</p>
+
+        {passed ? (
+          <>
+            <div className="mma-badge-earned">
+              <span>🏅</span>
+              <div>
+                <strong>Badge Unlocked</strong>
+                <p>Gastrointestinal & Renal Medication Specialist</p>
+              </div>
+            </div>
+            <p className="mma-success">275 XP earned • Mission 7 unlocked</p>
+            <button className="mma-primary-button" onClick={onBack}>
+              Return to Learning Path
+            </button>
+          </>
+        ) : (
+          <div className="mma-row center">
+            <button className="mma-secondary-button" onClick={() => setPhase("lessons")}>
+              Review Lessons
+            </button>
+            <button className="mma-primary-button" onClick={restartQuiz}>
+              Try Again
+            </button>
+          </div>
+        )}
+
+        <div className="mma-sources">
+          <h2>Learning sources</h2>
+          {moduleSixSources.map((source) => (
+            <a
+              key={source.href}
+              href={source.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {source.label}
+            </a>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="mma-quiz-shell">
+      <button className="mma-text-button" onClick={() => setPhase("scenarios")}>
+        ← Review Scenarios
+      </button>
+
+      <div className="mma-quiz-card">
+        <div className="mma-quiz-meta">
+          <span>Question {questionIndex + 1} of {questions.length}</span>
+          <span>Score: {score}</span>
+        </div>
+
+        <div className="mma-mini-progress">
+          <div style={{ width: `${((questionIndex + 1) / questions.length) * 100}%` }} />
+        </div>
+
+        <span className="mma-pill">Mission 6 Final Challenge</span>
+        <h2>{currentQuestion.question}</h2>
+
+        <div className="mma-options">
+          {currentQuestion.options.map((option, optionIndex) => {
+            const correct = optionIndex === currentQuestion.answer;
+            const wrongSelection =
+              answered && optionIndex === selected && !correct;
+
+            return (
+              <button
+                key={option}
+                className={`mma-option ${
+                  answered && correct ? "correct" : ""
+                } ${wrongSelection ? "wrong" : ""}`}
+                onClick={() => chooseAnswer(optionIndex)}
+                disabled={answered}
+              >
+                <strong>{String.fromCharCode(65 + optionIndex)}.</strong>{" "}
+                {option}
+              </button>
+            );
+          })}
+        </div>
+
+        {answered && (
+          <div className="mma-explanation">
+            <strong>{selected === currentQuestion.answer ? "Correct." : "Not quite."}</strong>
+            <span>{currentQuestion.explanation}</span>
+          </div>
+        )}
+
+        <button
+          className="mma-primary-button full"
+          disabled={!answered}
+          onClick={nextQuestion}
+        >
+          {questionIndex === questions.length - 1
+            ? "Finish Challenge"
+            : "Next Question"}
+        </button>
+      </div>
+    </section>
+  );
+}
+
+
 function MedicationModuleOne({ onBack, onComplete }) {
   const questions = useMemo(
     () => moduleOneQuestions.map(shuffleQuestion),
@@ -2283,6 +2699,18 @@ export default function MedicationAcademy() {
     );
   }
 
+  if (screen === "module6") {
+    return (
+      <MedicationModuleSix
+        onBack={() => {
+          refreshProgress();
+          setScreen("path");
+        }}
+        onComplete={refreshProgress}
+      />
+    );
+  }
+
   return (
     <section className="mma-page">
       <header className="mma-hero">
@@ -2320,7 +2748,7 @@ export default function MedicationAcademy() {
             const state = getModuleState(module.number);
             const unlocked = isModuleUnlocked(module.number);
             const complete = Boolean(state.complete || state.passed);
-            const available = module.number >= 1 && module.number <= 5;
+            const available = module.number >= 1 && module.number <= 6;
 
             return (
               <article
@@ -2348,7 +2776,7 @@ export default function MedicationAcademy() {
                 <p>{module.description}</p>
                 <div className="mma-badge-line">🏅 {module.badge}</div>
 
-                {module.number >= 1 && module.number <= 5 ? (
+                {module.number >= 1 && module.number <= 6 ? (
                   <button
                     className="mma-primary-button full"
                     disabled={!unlocked}
