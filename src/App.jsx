@@ -11,6 +11,7 @@ import { cbetQuestions as baseCbetQuestions } from "./questionData";
 import { cbetElectronicsQuestions } from "./cbetElectronicsQuestions";
 import AmazonBanner from "./components/AmazonBanner";
 import CArmPartnerBanner from "./components/CArmPartnerBanner";
+import MedicationAcademy from "./academy/medication/MedicationAcademy";
 
 
 const SHOW_CARM_PARTNER = true;
@@ -7119,6 +7120,7 @@ const DEEP_LINK_TABS = new Set([
   "HeartQuiz",
   "Home",
   "LabValuesQuiz",
+  "MedicationAcademy",
   "Leaderboard",
   "MuscleConceptQuiz",
   "MuscleQuiz",
@@ -7184,7 +7186,10 @@ const DEEP_LINK_TAB_ALIASES = {
   teaspractice: "TEAS",
   terminology: "Terminology",
   medicalterminology: "Terminology",
-  medicalterminologybuilder: "Terminology"
+  medicalterminologybuilder: "Terminology",
+  medicationacademy: "MedicationAcademy",
+  medicationmastery: "MedicationAcademy",
+  medications: "MedicationAcademy"
 };
 
 function normalizeDeepLinkedTab(value) {
@@ -10213,6 +10218,9 @@ return (
           </>
         )}
       </div>
+      {/* MEDICATION MASTERY ACADEMY */}
+      {activeTab === "MedicationAcademy" && <MedicationAcademy />}
+
       {/* HOME TAB */}
       {activeTab === "Home" && (
         <div

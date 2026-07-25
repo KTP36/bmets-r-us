@@ -1,0 +1,682 @@
+.mma-page,
+.mma-module-shell,
+.mma-quiz-shell,
+.mma-result-card {
+  --mma-navy: #12355b;
+  --mma-blue: #1d6fa5;
+  --mma-sky: #eef7ff;
+  --mma-border: #dbe7f2;
+  --mma-text: #172033;
+  --mma-muted: #5d6b7c;
+  --mma-green: #15803d;
+  --mma-gold: #9a6b00;
+  --mma-shadow: 0 14px 34px rgba(18, 53, 91, 0.12);
+  color: var(--mma-text);
+}
+
+.mma-page {
+  min-height: 100vh;
+  background: #f7fbff;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.mma-hero {
+  padding: 54px 24px 44px;
+  background: linear-gradient(135deg, var(--mma-navy), var(--mma-blue));
+  color: white;
+}
+
+.mma-hero-content,
+.mma-content,
+.mma-module-shell,
+.mma-quiz-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.mma-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.mma-hero h1 {
+  margin: 10px 0 12px;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1;
+}
+
+.mma-hero p {
+  max-width: 760px;
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  opacity: 0.95;
+}
+
+.mma-progress-card {
+  margin-top: 26px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mma-progress-track,
+.mma-mini-progress {
+  height: 13px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.mma-progress-track > div,
+.mma-mini-progress > div {
+  height: 100%;
+  border-radius: inherit;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.mma-progress-labels,
+.mma-quiz-meta,
+.mma-row,
+.mma-card-top,
+.mma-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.mma-progress-labels {
+  margin-top: 10px;
+  font-weight: 900;
+}
+
+.mma-content {
+  padding: 38px 0 50px;
+}
+
+.mma-intro {
+  margin-bottom: 22px;
+  align-items: end;
+}
+
+.mma-intro h2 {
+  margin: 8px 0 0;
+  color: var(--mma-navy);
+}
+
+.mma-intro p {
+  margin: 0;
+  color: var(--mma-muted);
+}
+
+.mma-pill {
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #e8f3ff;
+  color: var(--mma-navy);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mma-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.mma-module-card,
+.mma-lesson-card,
+.mma-quiz-card,
+.mma-result-card,
+.mma-briefing-card,
+.mma-scenario-card {
+  border: 1px solid var(--mma-border);
+  border-radius: 22px;
+  background: white;
+  box-shadow: var(--mma-shadow);
+}
+
+.mma-module-card {
+  padding: 24px;
+}
+
+.mma-module-card.locked {
+  opacity: 0.65;
+  box-shadow: none;
+}
+
+.mma-number {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mma-sky);
+  color: var(--mma-navy);
+  font-weight: 900;
+}
+
+.mma-status {
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.mma-status.complete {
+  color: var(--mma-green);
+}
+
+.mma-status.open {
+  color: var(--mma-blue);
+}
+
+.mma-status.locked {
+  color: #64748b;
+}
+
+.mma-module-card h3 {
+  margin: 16px 0 8px;
+  color: var(--mma-navy);
+  font-size: 1.3rem;
+}
+
+.mma-module-card p {
+  min-height: 72px;
+  margin: 0 0 16px;
+  color: var(--mma-muted);
+  line-height: 1.55;
+}
+
+.mma-badge-line {
+  margin-bottom: 18px;
+  color: var(--mma-gold);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.mma-primary-button,
+.mma-secondary-button,
+.mma-text-button,
+.mma-lesson-link,
+.mma-option {
+  font: inherit;
+}
+
+.mma-primary-button,
+.mma-secondary-button {
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 11px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.mma-primary-button {
+  border: 0;
+  background: linear-gradient(135deg, var(--mma-navy), var(--mma-blue));
+  color: white;
+}
+
+.mma-secondary-button {
+  border: 1px solid var(--mma-border);
+  background: white;
+  color: var(--mma-navy);
+}
+
+.mma-primary-button:disabled,
+.mma-secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.full {
+  width: 100%;
+}
+
+.center {
+  justify-content: center;
+}
+
+.mma-text-button {
+  margin: 26px 0 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--mma-navy);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.mma-module-shell,
+.mma-quiz-shell {
+  padding-bottom: 50px;
+}
+
+.mma-module-heading {
+  margin-bottom: 24px;
+}
+
+.mma-module-heading h1,
+.mma-briefing-card h1 {
+  margin: 10px 0 8px;
+  color: var(--mma-navy);
+}
+
+.mma-module-heading p,
+.mma-briefing-card > p {
+  margin: 0;
+  color: var(--mma-muted);
+}
+
+.mma-briefing-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 46px);
+}
+
+.mma-briefing-icon {
+  margin-bottom: 10px;
+  font-size: 3.6rem;
+}
+
+.mma-objectives {
+  margin: 28px 0;
+  padding: 22px;
+  border: 1px solid #cfe0ef;
+  border-radius: 18px;
+  background: #f7fbff;
+}
+
+.mma-objectives h2 {
+  margin-top: 0;
+  color: var(--mma-navy);
+  font-size: 1.1rem;
+}
+
+.mma-objective {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.mma-objective span {
+  display: grid;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e8f7ee;
+  color: var(--mma-green);
+  font-weight: 900;
+}
+
+.mma-objective p {
+  margin: 0;
+  color: var(--mma-muted);
+}
+
+.mma-mission-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.mma-mission-stats div {
+  display: grid;
+  gap: 3px;
+  padding: 16px 10px;
+  border: 1px solid var(--mma-border);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.mma-mission-stats strong {
+  color: var(--mma-navy);
+  font-size: 1.5rem;
+}
+
+.mma-mission-stats span {
+  color: var(--mma-muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.mma-step-progress {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.mma-step {
+  display: grid;
+  place-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.mma-step span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 2px solid #cbd8e5;
+  border-radius: 50%;
+  background: white;
+  color: #6b7d90;
+  font-weight: 900;
+}
+
+.mma-step small {
+  color: var(--mma-muted);
+  font-weight: 800;
+}
+
+.mma-step.active span {
+  border-color: var(--mma-blue);
+  background: var(--mma-blue);
+  color: white;
+}
+
+.mma-step.done span {
+  border-color: var(--mma-green);
+  background: #eaf8f0;
+  color: var(--mma-green);
+}
+
+.mma-lesson-layout {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 22px;
+}
+
+.mma-lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mma-lesson-link {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--mma-border);
+  border-radius: 13px;
+  background: white;
+  color: var(--mma-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.mma-lesson-link.active {
+  border-color: #77a9d3;
+  background: var(--mma-sky);
+  color: var(--mma-navy);
+  font-weight: 900;
+}
+
+.mma-lesson-card {
+  padding: clamp(22px, 4vw, 38px);
+}
+
+.mma-lesson-icon,
+.mma-result-icon {
+  font-size: 3rem;
+}
+
+.mma-lesson-counter {
+  margin-top: 8px;
+  color: var(--mma-blue);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mma-lesson-card h2,
+.mma-scenario-card h2,
+.mma-scenario-card h3 {
+  color: var(--mma-navy);
+}
+
+.mma-lesson-card p {
+  color: var(--mma-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.mma-key-point,
+.mma-explanation,
+.mma-disclaimer {
+  display: grid;
+  gap: 5px;
+  padding: 16px;
+  border-radius: 14px;
+}
+
+.mma-key-point {
+  margin: 22px 0;
+  border: 1px solid #b9dfca;
+  background: #effaf4;
+  color: #14532d;
+}
+
+.mma-knowledge-check {
+  margin: 26px 0;
+  padding: 20px;
+  border: 1px solid #cbdff1;
+  border-radius: 16px;
+  background: #f7fbff;
+}
+
+.mma-check-label {
+  color: var(--mma-blue);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mma-knowledge-check h3 {
+  color: var(--mma-navy);
+}
+
+.mma-options.compact {
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.mma-disclaimer {
+  margin-top: 22px;
+  border: 1px solid #fde0a8;
+  background: #fffaf0;
+  color: #7c4a03;
+  font-size: 0.9rem;
+}
+
+.mma-scenario-card {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(22px, 4vw, 36px);
+}
+
+.mma-scenario-patient {
+  padding: 18px;
+  border-left: 5px solid var(--mma-blue);
+  border-radius: 10px;
+  background: #f1f7fd;
+  color: #334a60;
+  line-height: 1.7;
+}
+
+.mma-scenario-nav {
+  max-width: 860px;
+  margin: 20px auto 0;
+}
+
+.mma-quiz-card {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: clamp(22px, 4vw, 36px);
+}
+
+.mma-quiz-meta {
+  color: var(--mma-muted);
+  font-weight: 900;
+}
+
+.mma-mini-progress {
+  margin: 12px 0 26px;
+  background: #e4edf6;
+}
+
+.mma-mini-progress > div {
+  background: linear-gradient(135deg, var(--mma-navy), var(--mma-blue));
+}
+
+.mma-quiz-card h2 {
+  color: var(--mma-navy);
+  line-height: 1.35;
+}
+
+.mma-options {
+  display: grid;
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.mma-option {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #cbd8e5;
+  border-radius: 13px;
+  background: #fbfdff;
+  color: var(--mma-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.mma-option:hover:not(:disabled) {
+  border-color: #78a7cf;
+  background: var(--mma-sky);
+}
+
+.mma-option.correct {
+  border-color: #22a35a;
+  background: #eaf8f0;
+}
+
+.mma-option.wrong {
+  border-color: #dc4545;
+  background: #fff0f0;
+}
+
+.mma-explanation {
+  margin: 18px 0;
+  border: 1px solid #bfd8ef;
+  background: #f1f7fd;
+  color: var(--mma-navy);
+}
+
+.mma-result-card {
+  width: min(720px, calc(100% - 32px));
+  margin: 40px auto;
+  padding: 38px;
+  text-align: center;
+}
+
+.mma-result-card h1 {
+  color: var(--mma-navy);
+}
+
+.mma-score {
+  margin: 10px 0;
+  color: var(--mma-blue);
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.mma-success {
+  color: var(--mma-green);
+  font-weight: 900;
+}
+
+.mma-badge-earned {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px auto;
+  padding: 15px 20px;
+  border: 1px solid #ead59d;
+  border-radius: 16px;
+  background: #fff9e8;
+  color: #765200;
+  text-align: left;
+}
+
+.mma-badge-earned > span {
+  font-size: 2.2rem;
+}
+
+.mma-badge-earned p {
+  margin: 2px 0 0;
+}
+
+.mma-sources {
+  display: grid;
+  gap: 8px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--mma-border);
+  text-align: left;
+}
+
+.mma-sources h2 {
+  margin: 0 0 6px;
+  color: var(--mma-navy);
+  font-size: 1rem;
+}
+
+.mma-sources a {
+  color: var(--mma-blue);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+@media (max-width: 780px) {
+  .mma-grid,
+  .mma-lesson-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mma-intro,
+  .mma-row,
+  .mma-progress-labels {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mma-module-card p {
+    min-height: 0;
+  }
+
+  .mma-mission-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mma-step-progress {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
