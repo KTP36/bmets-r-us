@@ -1,6 +1,7 @@
 const ACADEMY_SLUG = "medication_mastery";
 const MODULE_COUNT = 8;
 const PATH_KEY = `msb_academy_${ACADEMY_SLUG}_path_v1`;
+const FINAL_BOARD_KEY = `msb_academy_${ACADEMY_SLUG}_final_board_v1`;
 
 export function moduleStorageKey(moduleNumber) {
   return `medskillbuilder_${ACADEMY_SLUG}_module${moduleNumber}`;
@@ -127,3 +128,33 @@ export function completeModuleEight(score, passingScore = 80) {
   return completeModule(8, score, passingScore, 350);
 }
 
+
+
+export function getFinalBoardState() {
+  return safeParse(localStorage.getItem(FINAL_BOARD_KEY), {
+    attempts: 0,
+    passed: false,
+    bestScore: 0,
+    lastScore: 0,
+    bonusXp: 0,
+    completedAt: null,
+    categoryResults: {},
+  });
+}
+
+export function saveFinalBoardResult(result) {
+  const previous = getFinalBoardState();
+  const passed = Boolean(result.passed);
+  const next = {
+    ...previous,
+    attempts: Number(previous.attempts || 0) + 1,
+    passed: Boolean(previous.passed || passed),
+    bestScore: Math.max(Number(previous.bestScore || 0), Number(result.percent || 0)),
+    lastScore: Number(result.percent || 0),
+    bonusXp: previous.passed || !passed ? Number(previous.bonusXp || 0) : 500,
+    completedAt: passed ? (previous.completedAt || result.completedAt || new Date().toISOString()) : previous.completedAt,
+    categoryResults: result.categories || {},
+  };
+  localStorage.setItem(FINAL_BOARD_KEY, JSON.stringify(next));
+  return next;
+}

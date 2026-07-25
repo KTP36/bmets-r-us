@@ -1,60 +1,12 @@
 export const medicationAcademyModules = [
-  {
-    number: 1,
-    title: "Medication Safety Fundamentals",
-    description:
-      "Medication verification, patient identification, routes, labels, abbreviations, high-alert medications, and error prevention.",
-    badge: "Medication Safety Specialist",
-  },
-  {
-    number: 2,
-    title: "Drug Classes",
-    description:
-      "Recognize major medication classes, common naming patterns, uses, and precautions.",
-    badge: "Drug Class Specialist",
-  },
-  {
-    number: 3,
-    title: "Cardiovascular Medications",
-    description:
-      "Blood pressure, heart rate, heart failure, angina, anticoagulation, and lipid medications.",
-    badge: "Cardiovascular Medication Specialist",
-  },
-  {
-    number: 4,
-    title: "Respiratory Medications",
-    description:
-      "Bronchodilators, inhaled corticosteroids, anticholinergics, and related therapies.",
-    badge: "Respiratory Medication Specialist",
-  },
-  {
-    number: 5,
-    title: "Diabetes Medications",
-    description:
-      "Insulin, metformin, GLP-1 medicines, SGLT2 inhibitors, and other diabetes therapies.",
-    badge: "Diabetes Medication Specialist",
-  },
-  {
-    number: 6,
-    title: "Antibiotics",
-    description:
-      "Common antibiotic families, appropriate use, safety concerns, and resistance principles.",
-    badge: "Antibiotic Safety Specialist",
-  },
-  {
-    number: 7,
-    title: "Emergency Medications",
-    description:
-      "Epinephrine, naloxone, atropine, adenosine, dextrose, glucagon, and urgent-use medications.",
-    badge: "Emergency Medication Specialist",
-  },
-  {
-    number: 8,
-    title: "Medication Mastery Final Challenge",
-    description:
-      "A comprehensive mixed review and final exam covering all academy topics.",
-    badge: "Medication Mastery Graduate",
-  },
+  { number: 1, title: "Medication Safety Fundamentals", description: "Medication verification, patient identification, routes, labels, abbreviations, high-alert medications, and error prevention.", badge: "Medication Safety Specialist" },
+  { number: 2, title: "Drug Classes", description: "Recognize major medication classes, naming patterns, purposes, and safety precautions.", badge: "Drug Class Specialist" },
+  { number: 3, title: "Cardiovascular Medications", description: "Blood pressure, heart rate, heart failure, angina, anticoagulation, and lipid medications.", badge: "Cardiovascular Medication Specialist" },
+  { number: 4, title: "Respiratory Medications", description: "Bronchodilators, corticosteroids, inhaler devices, oxygen safety, and escalation principles.", badge: "Respiratory Medication Specialist" },
+  { number: 5, title: "Endocrine Medications", description: "Insulin, non-insulin diabetes medicines, GLP-1 therapies, thyroid replacement, and corticosteroids.", badge: "Endocrine Medication Specialist" },
+  { number: 6, title: "Gastrointestinal & Renal Medications", description: "Acid suppression, antiemetics, bowel medicines, kidney-function dosing, electrolytes, and dialysis considerations.", badge: "Gastrointestinal & Renal Medication Specialist" },
+  { number: 7, title: "Infectious Disease Medications", description: "Antibiotics, antivirals, antifungals, cultures, stewardship, allergy safety, and infection red flags.", badge: "Infectious Disease Medication Specialist" },
+  { number: 8, title: "Emergency & High-Alert Medications", description: "Epinephrine, naloxone, reversal agents, insulin, concentrated electrolytes, and vasoactive infusions.", badge: "Emergency & High-Alert Medication Specialist" },
 ];
 
 export const moduleOneBriefing = {

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   completeModuleOne,
   completeModuleTwo,
@@ -10,9 +10,11 @@ import {
   completeModuleEight,
   completionPercent,
   getAcademyState,
+  getFinalBoardState,
   getModuleState,
   isModuleUnlocked,
   syncAcademyState,
+  saveFinalBoardResult,
 } from "./medicationAcademyStorage";
 import {
   medicationAcademyModules,
@@ -3457,6 +3459,313 @@ function MedicationModuleOne({ onBack, onComplete }) {
   );
 }
 
+
+
+function formatExamTime(totalSeconds) {
+  const safeSeconds = Math.max(0, totalSeconds);
+  const hours = Math.floor(safeSeconds / 3600);
+  const minutes = Math.floor((safeSeconds % 3600) / 60);
+  const seconds = safeSeconds % 60;
+  return `${hours}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function buildFinalBoardQuestions() {
+  const groups = [
+    ["Medication Safety", moduleOneQuestions],
+    ["Drug Classes", moduleTwoQuestions],
+    ["Cardiovascular", moduleThreeQuestions],
+    ["Respiratory", moduleFourQuestions],
+    ["Endocrine", moduleFiveQuestions],
+    ["GI & Renal", moduleSixQuestions],
+    ["Infectious Disease", moduleSevenQuestions],
+    ["Emergency & High Alert", moduleEightQuestions],
+  ];
+
+  const pool = groups.flatMap(([category, questions]) =>
+    questions.map((question, index) => ({
+      ...shuffleQuestion(question),
+      category,
+      boardId: `${category}-${index}`,
+    }))
+  );
+
+  for (let index = pool.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [pool[index], pool[randomIndex]] = [pool[randomIndex], pool[index]];
+  }
+
+  return pool.slice(0, Math.min(75, pool.length));
+}
+
+function MedicationFinalBoard({ onBack, onComplete }) {
+  const questions = useMemo(buildFinalBoardQuestions, []);
+  const [phase, setPhase] = useState("intro");
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [flagged, setFlagged] = useState({});
+  const [secondsRemaining, setSecondsRemaining] = useState(120 * 60);
+  const [result, setResult] = useState(null);
+  const [learnerName, setLearnerName] = useState("");
+
+  const currentQuestion = questions[questionIndex];
+  const answeredCount = Object.keys(answers).length;
+  const currentAnswer = answers[questionIndex];
+
+  useEffect(() => {
+    if (phase !== "exam") return undefined;
+    const timer = window.setInterval(() => {
+      setSecondsRemaining((previous) => {
+        if (previous <= 1) {
+          window.clearInterval(timer);
+          window.setTimeout(() => finishExam(true), 0);
+          return 0;
+        }
+        return previous - 1;
+      });
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [phase, answers]);
+
+  function calculateResult() {
+    let correct = 0;
+    const categories = {};
+
+    questions.forEach((question, index) => {
+      if (!categories[question.category]) {
+        categories[question.category] = { correct: 0, total: 0 };
+      }
+      categories[question.category].total += 1;
+      if (answers[index] === question.answer) {
+        correct += 1;
+        categories[question.category].correct += 1;
+      }
+    });
+
+    const percent = Math.round((correct / questions.length) * 100);
+    return {
+      correct,
+      total: questions.length,
+      percent,
+      passed: percent >= 85,
+      categories,
+      secondsUsed: 120 * 60 - secondsRemaining,
+      completedAt: new Date().toISOString(),
+    };
+  }
+
+  function finishExam(forced = false) {
+    if (!forced && answeredCount < questions.length) {
+      const unanswered = questions.length - answeredCount;
+      const proceed = window.confirm(
+        `You still have ${unanswered} unanswered question${unanswered === 1 ? "" : "s"}. Submit anyway?`
+      );
+      if (!proceed) return;
+    }
+
+    const finalResult = calculateResult();
+    setResult(finalResult);
+    saveFinalBoardResult(finalResult);
+    setPhase("results");
+    onComplete();
+  }
+
+  function restartExam() {
+    setQuestionIndex(0);
+    setAnswers({});
+    setFlagged({});
+    setSecondsRemaining(120 * 60);
+    setResult(null);
+    setPhase("intro");
+  }
+
+  if (phase === "intro") {
+    return (
+      <section className="mma-module-shell">
+        <button className="mma-text-button" onClick={onBack}>← Back to Academy</button>
+        <div className="mma-board-intro">
+          <div className="mma-board-emblem">🏆</div>
+          <span className="mma-pill">Academy Graduation Challenge</span>
+          <h1>Medication Mastery Final Board Challenge</h1>
+          <p>
+            Complete a comprehensive 75-question review covering all eight missions.
+            You may skip questions, flag them, and return before submitting.
+          </p>
+          <div className="mma-mission-stats">
+            <div><strong>75</strong><span>Questions</span></div>
+            <div><strong>120</strong><span>Minutes</span></div>
+            <div><strong>85%</strong><span>Passing Score</span></div>
+            <div><strong>500</strong><span>Bonus XP</span></div>
+          </div>
+          <div className="mma-board-notice">
+            <strong>Before you begin</strong>
+            <span>This is a MedSkillBuilder educational challenge, not a licensing, certification, or continuing-education examination.</span>
+          </div>
+          <button className="mma-primary-button full" onClick={() => setPhase("exam")}>Begin Final Challenge</button>
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "exam") {
+    return (
+      <section className="mma-board-shell">
+        <header className="mma-board-header">
+          <div>
+            <span className="mma-pill">Final Board Challenge</span>
+            <h1>Question {questionIndex + 1} of {questions.length}</h1>
+          </div>
+          <div className={`mma-board-timer ${secondsRemaining <= 600 ? "urgent" : ""}`}>
+            <span>Time Remaining</span>
+            <strong>{formatExamTime(secondsRemaining)}</strong>
+          </div>
+        </header>
+
+        <div className="mma-board-progress">
+          <div style={{ width: `${(answeredCount / questions.length) * 100}%` }} />
+        </div>
+        <div className="mma-board-progress-labels">
+          <span>{answeredCount} answered</span>
+          <span>{Object.values(flagged).filter(Boolean).length} flagged</span>
+        </div>
+
+        <div className="mma-board-layout">
+          <aside className="mma-question-navigator" aria-label="Question navigator">
+            <h2>Questions</h2>
+            <div className="mma-question-grid">
+              {questions.map((question, index) => (
+                <button
+                  key={question.boardId}
+                  className={`${index === questionIndex ? "active" : ""} ${answers[index] !== undefined ? "answered" : ""} ${flagged[index] ? "flagged" : ""}`}
+                  onClick={() => setQuestionIndex(index)}
+                  aria-label={`Question ${index + 1}${flagged[index] ? ", flagged" : ""}`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+            <div className="mma-nav-legend">
+              <span><i className="answered" /> Answered</span>
+              <span><i className="flagged" /> Flagged</span>
+            </div>
+          </aside>
+
+          <article className="mma-board-question-card">
+            <div className="mma-board-question-meta">
+              <span>{currentQuestion.category}</span>
+              <button
+                className={`mma-flag-button ${flagged[questionIndex] ? "active" : ""}`}
+                onClick={() => setFlagged((previous) => ({ ...previous, [questionIndex]: !previous[questionIndex] }))}
+              >
+                {flagged[questionIndex] ? "★ Flagged" : "☆ Flag for Review"}
+              </button>
+            </div>
+            <h2>{currentQuestion.question}</h2>
+            <div className="mma-options board-options">
+              {currentQuestion.options.map((option, optionIndex) => (
+                <button
+                  key={option}
+                  className={`mma-option ${currentAnswer === optionIndex ? "selected" : ""}`}
+                  onClick={() => setAnswers((previous) => ({ ...previous, [questionIndex]: optionIndex }))}
+                >
+                  <strong>{String.fromCharCode(65 + optionIndex)}.</strong> {option}
+                </button>
+              ))}
+            </div>
+            <div className="mma-board-actions">
+              <button className="mma-secondary-button" disabled={questionIndex === 0} onClick={() => setQuestionIndex((value) => Math.max(0, value - 1))}>Previous</button>
+              <button className="mma-secondary-button" onClick={() => setQuestionIndex((value) => Math.min(questions.length - 1, value + 1))}>{currentAnswer === undefined ? "Skip for Now" : "Next Question"}</button>
+              <button className="mma-primary-button" onClick={() => finishExam(false)}>Submit Exam</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "certificate" && result?.passed) {
+    const completionDate = new Date(result.completedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    return (
+      <section className="mma-certificate-page">
+        <div className="mma-no-print mma-certificate-toolbar">
+          <button className="mma-text-button" onClick={() => setPhase("results")}>← Back to Results</button>
+          <div className="mma-row">
+            <button className="mma-secondary-button" onClick={() => window.print()}>Print / Save as PDF</button>
+            <button className="mma-primary-button" onClick={onBack}>Return to Academy</button>
+          </div>
+        </div>
+
+        <div className="mma-certificate" id="medication-mastery-certificate">
+          <div className="mma-certificate-watermark">🦊</div>
+          <div className="mma-certificate-border">
+            <div className="mma-certificate-brand">MedSkillBuilder</div>
+            <div className="mma-certificate-kicker">Certificate of Completion</div>
+            <p className="mma-certificate-presented">Presented to</p>
+            <h1>{learnerName.trim()}</h1>
+            <div className="mma-certificate-rule" />
+            <p className="mma-certificate-copy">For successfully completing all eight learning missions in the</p>
+            <h2>Medication Mastery Academy</h2>
+            <p className="mma-certificate-copy">and earning a passing score on the Final Board Challenge.</p>
+            <div className="mma-certificate-details">
+              <div><span>Completion Date</span><strong>{completionDate}</strong></div>
+              <div><span>Final Score</span><strong>{result.percent}%</strong></div>
+            </div>
+            <div className="mma-certificate-footer">
+              <div className="mma-signature"><strong>Kevin Pugh</strong><span>Founder, MedSkillBuilder</span></div>
+              <div className="mma-graduate-seal"><span>MEDSKILLBUILDER</span><strong>GRADUATE</strong><small>Educational Achievement</small></div>
+            </div>
+            <p className="mma-certificate-disclaimer">This certificate recognizes completion of MedSkillBuilder educational content. It is not a professional certification, license, academic degree, or continuing education credit.</p>
+          </div>
+        </div>
+        <p className="mma-no-print mma-screenshot-note">You can take a screenshot now, or use <strong>Print / Save as PDF</strong> to keep a clean copy.</p>
+      </section>
+    );
+  }
+
+  return (
+    <section className="mma-result-card mma-board-results">
+      <div className="mma-result-icon">{result.passed ? "🎉" : "📘"}</div>
+      <span className="mma-pill">Final Board Challenge</span>
+      <h1>{result.passed ? "Medication Mastery Academy Complete" : "Keep Building Your Mastery"}</h1>
+      <div className="mma-score">{result.percent}%</div>
+      <p>You answered {result.correct} of {result.total} questions correctly in {formatExamTime(result.secondsUsed)}.</p>
+      <div className={`mma-board-outcome ${result.passed ? "passed" : "review"}`}>
+        <strong>{result.passed ? "Passed — 500 bonus XP earned" : "85% is required to pass"}</strong>
+        <span>{result.passed ? "Your Medication Mastery Graduate trophy has been saved in this browser." : "Review your category results and try again when ready."}</span>
+      </div>
+
+      <div className="mma-category-results">
+        <h2>Performance by Category</h2>
+        {Object.entries(result.categories).map(([category, values]) => {
+          const categoryPercent = Math.round((values.correct / values.total) * 100);
+          return (
+            <div className="mma-category-row" key={category}>
+              <span>{category}</span>
+              <div className="mma-category-bar"><i style={{ width: `${categoryPercent}%` }} /></div>
+              <strong>{categoryPercent}%</strong>
+            </div>
+          );
+        })}
+      </div>
+
+      {result.passed ? (
+        <div className="mma-certificate-claim">
+          <h2>Create Your Certificate of Completion</h2>
+          <p>No email or account is required. Enter the name you want displayed.</p>
+          <label htmlFor="mma-learner-name">Name for certificate</label>
+          <input id="mma-learner-name" value={learnerName} onChange={(event) => setLearnerName(event.target.value)} placeholder="Enter your name" maxLength={60} />
+          <button className="mma-primary-button full" disabled={!learnerName.trim()} onClick={() => setPhase("certificate")}>View My Certificate</button>
+          <small>Educational achievement only—not a professional credential or continuing education credit.</small>
+        </div>
+      ) : (
+        <div className="mma-row center">
+          <button className="mma-secondary-button" onClick={onBack}>Return to Academy</button>
+          <button className="mma-primary-button" onClick={restartExam}>Try Final Challenge Again</button>
+        </div>
+      )}
+    </section>
+  );
+}
+
 export default function MedicationAcademy() {
   const [screen, setScreen] = useState("path");
   const [, forceRefresh] = useState(0);
@@ -3465,6 +3774,7 @@ export default function MedicationAcademy() {
 
   const academy = getAcademyState();
   const progress = completionPercent();
+  const finalBoard = getFinalBoardState();
 
   function refreshProgress() {
     syncAcademyState();
@@ -3567,6 +3877,18 @@ export default function MedicationAcademy() {
     );
   }
 
+  if (screen === "finalBoard") {
+    return (
+      <MedicationFinalBoard
+        onBack={() => {
+          refreshProgress();
+          setScreen("path");
+        }}
+        onComplete={refreshProgress}
+      />
+    );
+  }
+
   return (
     <section className="mma-page">
       <header className="mma-hero">
@@ -3652,6 +3974,26 @@ export default function MedicationAcademy() {
             );
           })}
         </div>
+
+        <section className={`mma-final-card ${academy.academyComplete ? "unlocked" : "locked"}`}>
+          <div className="mma-final-card-icon">🏆</div>
+          <div className="mma-final-card-copy">
+            <span className="mma-pill">Graduation Challenge</span>
+            <h2>Medication Mastery Final Board Challenge</h2>
+            <p>75 randomized questions • 120 minutes • 85% required to pass</p>
+            {finalBoard.passed && (
+              <div className="mma-final-passed">✓ Passed with {finalBoard.bestScore}% • Medication Mastery Graduate</div>
+            )}
+          </div>
+          <button
+            className="mma-primary-button"
+            disabled={!academy.academyComplete}
+            onClick={() => setScreen("finalBoard")}
+          >
+            {!academy.academyComplete ? "Complete All 8 Missions" : finalBoard.passed ? "Review Final Challenge" : "Begin Final Challenge"}
+          </button>
+        </section>
+
       </div>
     </section>
   );
