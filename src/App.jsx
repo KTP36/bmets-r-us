@@ -9189,7 +9189,7 @@ return (
           MedSkillBuilder
         </h1>
         <p style={{ marginTop: 10, fontSize: 18 }}>
-          Free healthcare study tools for CBET prep, biomed careers, anatomy, medical terminology, equipment ID, EKG, ABG, RN, TEAS, and CRES practice
+          Free healthcare learning academies and interactive study tools for medical assisting, medication mastery, CBET prep, biomed careers, anatomy, medical terminology, EKG, ABG, RN, TEAS, CRES, and more
         </p>
         <style>
           {`
@@ -9309,7 +9309,245 @@ return (
         isSmallScreen={isSmallScreen}
       />
 
-      {/* START HERE: HIGH-CONVERSION PATHS */}
+      {/* FEATURED LEARNING ACADEMIES */}
+      <section
+        aria-labelledby="featured-academies-heading"
+        style={{
+          marginBottom: 18,
+          padding: isSmallScreen ? "24px 16px" : "30px 24px",
+          borderRadius: 24,
+          background: "linear-gradient(135deg, rgba(239,246,255,0.98), rgba(240,253,250,0.98))",
+          border: "1px solid #bfdbfe",
+          boxShadow: "0 16px 34px rgba(18,53,91,0.12)"
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 22 }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "7px 13px",
+              borderRadius: 999,
+              background: "#12355b",
+              color: "white",
+              fontSize: 12,
+              fontWeight: 950,
+              letterSpacing: 1,
+              textTransform: "uppercase",
+              marginBottom: 10
+            }}
+          >
+            🎓 Guided Learning Paths
+          </div>
+          <h2
+            id="featured-academies-heading"
+            style={{
+              color: "#12355b",
+              fontSize: isSmallScreen ? 27 : 34,
+              lineHeight: 1.15,
+              margin: "0 0 8px"
+            }}
+          >
+            Featured Learning Academies
+          </h2>
+          <p
+            style={{
+              color: "#4f6275",
+              fontSize: 16,
+              lineHeight: 1.6,
+              maxWidth: 780,
+              margin: "0 auto"
+            }}
+          >
+            Follow a structured academy for deeper learning, or continue below for quick practice.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
+            gap: 20,
+            maxWidth: 1120,
+            margin: "0 auto"
+          }}
+        >
+          <a
+            href="/medical-assistant-learning-path.html"
+            onClick={() =>
+              trackSiteEvent("featured_academy_click", {
+                academy: "medical_assistant",
+                target_url: "/medical-assistant-learning-path.html",
+                source: "homepage_featured_academies"
+              })
+            }
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 330,
+              padding: isSmallScreen ? 22 : 28,
+              borderRadius: 24,
+              color: "white",
+              textDecoration: "none",
+              overflow: "hidden",
+              background: "linear-gradient(145deg, #12355b, #1d6fa5 58%, #38bdf8)",
+              border: "1px solid rgba(255,255,255,0.28)",
+              boxShadow: "0 16px 30px rgba(18,53,91,0.24)"
+            }}
+          >
+            <span
+              style={{
+                alignSelf: "flex-start",
+                padding: "6px 11px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.18)",
+                border: "1px solid rgba(255,255,255,0.34)",
+                fontSize: 12,
+                fontWeight: 950,
+                letterSpacing: 0.7,
+                textTransform: "uppercase"
+              }}
+            >
+              🩺 Medical Assistant Academy
+            </span>
+            <h3 style={{ fontSize: isSmallScreen ? 27 : 31, lineHeight: 1.12, margin: "18px 0 10px" }}>
+              Build Real-World Medical Assisting Skills
+            </h3>
+            <p style={{ margin: "0 0 18px", lineHeight: 1.58, color: "rgba(255,255,255,0.94)" }}>
+              Follow a guided path through clinical skills, patient care, vital signs, infection control,
+              medical terminology, medications, and professional readiness.
+            </p>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                marginBottom: 22
+              }}
+            >
+              {["Clinical skills", "Patient care", "Vital signs", "Certificate path"].map((label) => (
+                <span
+                  key={label}
+                  style={{
+                    padding: "7px 10px",
+                    borderRadius: 999,
+                    background: "rgba(255,255,255,0.14)",
+                    border: "1px solid rgba(255,255,255,0.24)",
+                    fontSize: 12,
+                    fontWeight: 850
+                  }}
+                >
+                  ✓ {label}
+                </span>
+              ))}
+            </div>
+            <span
+              style={{
+                marginTop: "auto",
+                alignSelf: "flex-start",
+                padding: "12px 18px",
+                borderRadius: 999,
+                background: "white",
+                color: "#12355b",
+                fontWeight: 950,
+                boxShadow: "0 8px 20px rgba(15,23,42,0.20)"
+              }}
+            >
+              Start Medical Assistant Academy →
+            </span>
+          </a>
+
+          <a
+            href="/medication-mastery-academy.html"
+            onClick={() =>
+              trackSiteEvent("featured_academy_click", {
+                academy: "medication_mastery",
+                target_url: "/medication-mastery-academy.html",
+                source: "homepage_featured_academies"
+              })
+            }
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 330,
+              padding: isSmallScreen ? 22 : 28,
+              borderRadius: 24,
+              color: "white",
+              textDecoration: "none",
+              overflow: "hidden",
+              background: "linear-gradient(145deg, #6d28d9, #9333ea 54%, #e11d48)",
+              border: "1px solid rgba(255,255,255,0.28)",
+              boxShadow: "0 16px 30px rgba(109,40,217,0.24)"
+            }}
+          >
+            <span
+              style={{
+                alignSelf: "flex-start",
+                padding: "6px 11px",
+                borderRadius: 999,
+                background: "#fbbf24",
+                color: "#4c1d95",
+                fontSize: 12,
+                fontWeight: 950,
+                letterSpacing: 0.7,
+                textTransform: "uppercase"
+              }}
+            >
+              💊 New Guided Academy
+            </span>
+            <h3 style={{ fontSize: isSmallScreen ? 27 : 31, lineHeight: 1.12, margin: "18px 0 10px" }}>
+              Medication Mastery Academy
+            </h3>
+            <p style={{ margin: "0 0 18px", lineHeight: 1.58, color: "rgba(255,255,255,0.94)" }}>
+              Master medication safety and major drug groups through eight interactive missions,
+              clinical scenarios, quizzes, and a comprehensive Final Board Challenge.
+            </p>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                marginBottom: 22
+              }}
+            >
+              {["8 missions", "75-question final", "500 XP", "Certificate included"].map((label) => (
+                <span
+                  key={label}
+                  style={{
+                    padding: "7px 10px",
+                    borderRadius: 999,
+                    background: "rgba(255,255,255,0.14)",
+                    border: "1px solid rgba(255,255,255,0.24)",
+                    fontSize: 12,
+                    fontWeight: 850
+                  }}
+                >
+                  ✓ {label}
+                </span>
+              ))}
+            </div>
+            <span
+              style={{
+                marginTop: "auto",
+                alignSelf: "flex-start",
+                padding: "12px 18px",
+                borderRadius: 999,
+                background: "white",
+                color: "#6d28d9",
+                fontWeight: 950,
+                boxShadow: "0 8px 20px rgba(15,23,42,0.20)"
+              }}
+            >
+              Start Medication Mastery →
+            </span>
+          </a>
+        </div>
+      </section>
+
+      {/* QUICK PRACTICE LEARNING PATHS */}
       <div
         style={{
           marginBottom: 18,
@@ -9330,7 +9568,7 @@ return (
             marginBottom: 8
           }}
         >
-          START HERE
+          CHOOSE YOUR LEARNING PATH
         </div>
         <p
           style={{
@@ -9341,7 +9579,7 @@ return (
             maxWidth: 760
           }}
         >
-          New to MedSkillBuilder? Pick one of the fastest paths below. Quick practice takes 2 to 5 minutes. Finish to see your score and missed questions.
+          Complete a guided academy above or jump into quick practice below. Whether you are preparing for school, certification, or your healthcare career, MedSkillBuilder has a path for you.
         </p>
         <div
           style={{
@@ -10420,89 +10658,148 @@ return (
             <div
               style={{
                 ...homeInfoCardStyle,
-                flex: isSmallScreen ? "1 1 100%" : "1 1 280px",
-                background: "linear-gradient(180deg, #fffdf8, #ffffff)",
-                border: "1px solid #f1e1b8",
-                textAlign: "left"
+                flex: isSmallScreen ? "1 1 100%" : "1 1 300px",
+                background: "linear-gradient(145deg, #fff7ed 0%, #ffffff 48%, #eff6ff 100%)",
+                border: "1px solid #fed7aa",
+                textAlign: "left",
+                position: "relative",
+                overflow: "hidden"
               }}
             >
               <div
+                aria-hidden="true"
                 style={{
-                  color: "#9a6700",
-                  fontWeight: 800,
+                  position: "absolute",
+                  width: 150,
+                  height: 150,
+                  borderRadius: "50%",
+                  background: "rgba(37,99,235,0.08)",
+                  top: -72,
+                  right: -58
+                }}
+              />
+              <div
+                style={{
+                  position: "relative",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 7,
+                  padding: "6px 10px",
+                  borderRadius: 999,
+                  background: "#fff7ed",
+                  border: "1px solid #fed7aa",
+                  color: "#9a3412",
+                  fontWeight: 900,
                   fontSize: 12,
-                  letterSpacing: 0.6,
+                  letterSpacing: 0.5,
                   textTransform: "uppercase",
-                  marginBottom: 10
+                  marginBottom: 12
                 }}
               >
-                Start smart
+                💊 Featured Academy
               </div>
-              <h3 style={{ color: "#12355b", marginTop: 0, marginBottom: 10 }}>
-                Don’t just browse. Pick a lane.
+              <h3
+                style={{
+                  position: "relative",
+                  color: "#12355b",
+                  marginTop: 0,
+                  marginBottom: 10,
+                  fontSize: isSmallScreen ? 23 : 25,
+                  lineHeight: 1.15
+                }}
+              >
+                Medication Mastery Academy
               </h3>
-              <p style={{ color: "#5b6f82", fontSize: 14, marginTop: 0, marginBottom: 14 }}>
-                Start with the format that matches what you need today, then come back for another rep tomorrow.
+              <p
+                style={{
+                  position: "relative",
+                  color: "#4f6275",
+                  fontSize: 14,
+                  lineHeight: 1.55,
+                  marginTop: 0,
+                  marginBottom: 14
+                }}
+              >
+                Build medication confidence through guided clinical practice—not memorization alone.
               </p>
-              <div style={{ display: "grid", gap: 10 }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    startCbetFullExam();
-                    jumpToPracticeCategory("CBET");
-                  }}
+              <div
+                style={{
+                  position: "relative",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                  gap: 8,
+                  marginBottom: 16
+                }}
+              >
+                {[
+                  ["8", "Missions"],
+                  ["75", "Final Questions"],
+                  ["🏆", "Certificate"]
+                ].map(([value, label]) => (
+                  <div
+                    key={label}
+                    style={{
+                      padding: "10px 6px",
+                      borderRadius: 14,
+                      background: "rgba(255,255,255,0.88)",
+                      border: "1px solid #e2e8f0",
+                      textAlign: "center",
+                      boxShadow: "0 5px 14px rgba(18,53,91,0.05)"
+                    }}
+                  >
+                    <div style={{ color: "#12355b", fontWeight: 900, fontSize: 18 }}>{value}</div>
+                    <div style={{ color: "#64748b", fontSize: 11, fontWeight: 800, lineHeight: 1.2 }}>
+                      {label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ position: "relative", display: "grid", gap: 10 }}>
+                <a
+                  href="/medication-mastery-academy.html"
                   style={{
-                    ...homeActionLinkStyle("linear-gradient(135deg, #f97316, #ef4444)"),
+                    ...homeActionLinkStyle("linear-gradient(135deg, #e11d48, #f97316)"),
                     width: "100%",
-                    textAlign: "left",
-                    border: "none",
-                    cursor: "pointer"
+                    textAlign: "center",
+                    justifyContent: "center",
+                    boxSizing: "border-box"
                   }}
                 >
-                  Start 75-Question CBET Exam
-                </button>
-                <button
-                  type="button"
-                  onClick={() => jumpToPracticeCategory("ABGQuiz", { examName: "ABG Quiz" })}
+                  Start Medication Mastery →
+                </a>
+                <a
+                  href="/browse-all-practice.html"
                   style={{
-                    ...homeActionLinkStyle("linear-gradient(135deg, #0f766e, #14b8a6)"),
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     width: "100%",
-                    textAlign: "left",
-                    border: "none",
-                    cursor: "pointer"
+                    boxSizing: "border-box",
+                    padding: "10px 14px",
+                    borderRadius: 999,
+                    border: "1px solid #cbd5e1",
+                    background: "rgba(255,255,255,0.88)",
+                    color: "#12355b",
+                    fontWeight: 900,
+                    fontSize: 14,
+                    textDecoration: "none"
                   }}
                 >
-                  Jump into ABG Practice
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveTab("Anatomy");
-                    setMode("organs");
-                    setSelectedSet(null);
-                  }}
-                  style={{
-                    ...homeActionLinkStyle("linear-gradient(135deg, #12355b, #1d6fa5)"),
-                    width: "100%",
-                    textAlign: "left",
-                    border: "none",
-                    cursor: "pointer"
-                  }}
-                >
-                  Warm up with Anatomy
-                </button>
+                  Browse All Practice
+                </a>
               </div>
               <div
                 style={{
-                  marginTop: 16,
-                  paddingTop: 14,
-                  borderTop: "1px solid #eef2f7",
-                  color: "#5b6f82",
-                  fontSize: 14,
-                  lineHeight: 1.5
+                  position: "relative",
+                  marginTop: 14,
+                  paddingTop: 12,
+                  borderTop: "1px solid #e2e8f0",
+                  color: "#64748b",
+                  fontSize: 12,
+                  lineHeight: 1.45
                 }}
               >
-                Best flow: hit one focused practice set, review what you missed, then come back when new questions drop.
+                Free educational practice. Progress is saved on this device.
               </div>
             </div>
           </div>

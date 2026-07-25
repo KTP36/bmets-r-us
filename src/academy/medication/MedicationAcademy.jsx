@@ -329,7 +329,7 @@ function MedicationModuleTwo({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={`module2-${lessonIndex}`}
@@ -738,7 +738,7 @@ function MedicationModuleThree({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={`module3-${lessonIndex}`}
@@ -1148,7 +1148,7 @@ function MedicationModuleFour({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={`module4-${lessonIndex}`}
@@ -1558,7 +1558,7 @@ function MedicationModuleFive({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={`module5-${lessonIndex}`}
@@ -1968,7 +1968,7 @@ function MedicationModuleSix({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={`module6-${lessonIndex}`}
@@ -2378,7 +2378,7 @@ function MedicationModuleSeven({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={`module7-${lessonIndex}`}
@@ -2788,7 +2788,7 @@ function MedicationModuleEight({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={`module8-${lessonIndex}`}
@@ -3198,7 +3198,7 @@ function MedicationModuleOne({ onBack, onComplete }) {
               <a className="mma-practice-link" href={lesson.practice.href}>
                 🎧 {lesson.practice.label} →
               </a>
-            )
+            )}
 
             <KnowledgeCheck
               key={lessonIndex}
