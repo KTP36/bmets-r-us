@@ -1384,3 +1384,350 @@ export const moduleFourSources = [
   },
 ];
 
+export const moduleFiveBriefing = {
+  title: "Regulate Glucose, Hormones, and Inflammation",
+  summary:
+    "Learn to recognize major endocrine medicines used for diabetes, thyroid disorders, and corticosteroid therapy. This mission emphasizes insulin timing concepts, hypoglycemia recognition, GLP-1 safety, thyroid replacement, steroid precautions, and knowing when abnormal findings require prompt escalation.",
+  objectives: [
+    "Distinguish rapid-, short-, intermediate-, and long-acting insulin concepts.",
+    "Recognize common non-insulin diabetes medicine classes and their general purposes.",
+    "Identify signs of hypoglycemia and appropriate emergency escalation principles.",
+    "Explain key GLP-1 receptor agonist safety and medication-verification concerns.",
+    "Recognize levothyroxine as thyroid hormone replacement and understand consistent administration principles.",
+    "Identify important corticosteroid effects, including infection risk, blood-glucose changes, and the danger of abrupt discontinuation after prolonged use.",
+  ],
+};
+
+export const moduleFiveLessons = [
+  {
+    title: "Insulin Types and Timing",
+    icon: "💉",
+    body:
+      "Insulin lowers blood glucose by helping glucose move from the bloodstream into cells. Rapid-acting insulin is commonly associated with meals and begins working quickly. Regular insulin is short acting. NPH is intermediate acting. Long-acting products such as insulin glargine provide basal coverage. Exact onset, peak, duration, concentration, device, and timing must be verified for the specific product.",
+    takeaway:
+      "Insulin names and timing patterns are recognition clues, but the verified product label and patient-specific order determine safe use.",
+    pearl:
+      "Never assume that two insulin products are interchangeable. Similar names, different concentrations, and different delivery devices can create high-risk errors.",
+    check: {
+      question: "Which insulin is commonly recognized as long acting?",
+      options: ["Insulin glargine", "Insulin lispro", "Regular insulin", "NPH insulin"],
+      answer: 0,
+      explanation:
+        "Insulin glargine is a long-acting basal insulin. Product-specific instructions still apply.",
+    },
+  },
+  {
+    title: "Hypoglycemia Recognition",
+    icon: "⚠️",
+    body:
+      "Hypoglycemia can occur with insulin and selected diabetes medicines. Symptoms may develop quickly and include shaking, sweating, hunger, dizziness, anxiety, irritability, confusion, weakness, or visual changes. Severe hypoglycemia may cause seizure, loss of consciousness, coma, or death. Treatment depends on severity, ability to swallow, the patient's plan, and the clinical setting.",
+    takeaway:
+      "A glucose value below the patient's safe range plus symptoms requires prompt action according to the established hypoglycemia protocol.",
+    pearl:
+      "A patient who is unconscious or unable to swallow should not be given food or drink by mouth. Activate the appropriate emergency process.",
+    check: {
+      question: "Which cluster most strongly suggests hypoglycemia?",
+      options: [
+        "Shaking, sweating, hunger, and confusion",
+        "Dry skin, slow hair growth, and constipation only",
+        "Ankle swelling and black stools",
+        "Cough and oral thrush",
+      ],
+      answer: 0,
+      explanation:
+        "Shaking, sweating, hunger, dizziness, and confusion are common warning signs of low blood glucose.",
+    },
+  },
+  {
+    title: "Non-Insulin Diabetes Medicines",
+    icon: "🧪",
+    body:
+      "Type 2 diabetes medicines work in different ways. Metformin reduces liver glucose production and improves insulin sensitivity. Sulfonylureas such as glipizide stimulate insulin release and can contribute to hypoglycemia. SGLT2 inhibitors increase glucose loss through urine and have important hydration, infection, and ketoacidosis precautions. DPP-4 inhibitors and other classes have their own indications and safety profiles.",
+    takeaway:
+      "Do not treat all diabetes pills as the same. Class, kidney function, meal intake, illness, and patient-specific factors can change the risk.",
+    pearl:
+      "A patient taking a medicine that can lower glucose who skips meals may have a higher risk of hypoglycemia. Follow the verified plan rather than guessing.",
+    check: {
+      question: "Which medication is commonly recognized as a biguanide?",
+      options: ["Metformin", "Glipizide", "Semaglutide", "Levothyroxine"],
+      answer: 0,
+      explanation:
+        "Metformin is a biguanide commonly used in type 2 diabetes.",
+    },
+  },
+  {
+    title: "GLP-1 Receptor Agonists",
+    icon: "📉",
+    body:
+      "GLP-1 receptor agonists include medicines such as semaglutide, liraglutide, and dulaglutide. Depending on the exact product, they may be approved for type 2 diabetes, chronic weight management, or selected cardiovascular-risk reduction. They are not insulin. Nausea, vomiting, reduced appetite, dehydration, gallbladder concerns, pancreatitis symptoms, and product-specific thyroid warnings are important safety themes.",
+    takeaway:
+      "The brand, active ingredient, strength, indication, and dosing schedule must all match the verified prescription.",
+    pearl:
+      "Unapproved or improperly compounded products may create dosing and quality risks. Patients should use medicines from appropriate licensed sources and clarify any unfamiliar vial or syringe.",
+    check: {
+      question: "Which statement about GLP-1 receptor agonists is correct?",
+      options: [
+        "They are not the same as insulin",
+        "They may always replace insulin in type 1 diabetes",
+        "Every product has the same dosing schedule",
+        "Severe vomiting never requires follow-up",
+      ],
+      answer: 0,
+      explanation:
+        "GLP-1 receptor agonists are a separate medication class and are not substitutes for insulin when insulin is required.",
+    },
+  },
+  {
+    title: "Thyroid Replacement",
+    icon: "🦋",
+    body:
+      "Levothyroxine replaces thyroid hormone in hypothyroidism. It is commonly taken consistently on an empty stomach, often 30 to 60 minutes before breakfast, according to the prescription. Food, calcium, iron, antacids, and other medicines can affect absorption. Dose changes are guided by clinical assessment and laboratory monitoring. Excess thyroid hormone may cause palpitations, tremor, sweating, anxiety, or chest discomfort.",
+    takeaway:
+      "Consistency matters with levothyroxine: timing, product, interactions, and follow-up laboratory testing all affect therapy.",
+    pearl:
+      "Levothyroxine is not a weight-loss medicine. Large or inappropriate doses can cause serious cardiovascular effects.",
+    check: {
+      question: "Which medication replaces thyroid hormone?",
+      options: ["Levothyroxine", "Prednisone", "Metformin", "Glucagon"],
+      answer: 0,
+      explanation:
+        "Levothyroxine is synthetic thyroid hormone used to treat hypothyroidism.",
+    },
+  },
+  {
+    title: "Corticosteroids and Sick-Day Safety",
+    icon: "🛡️",
+    body:
+      "Systemic corticosteroids such as prednisone reduce inflammation and suppress immune activity. They may raise blood glucose, increase infection risk, affect mood and sleep, cause fluid retention, and create other effects depending on dose and duration. After prolonged therapy, abrupt discontinuation can be dangerous because the body may not immediately produce enough natural cortisol. Illness can also destabilize diabetes even when usual medicines are taken.",
+    takeaway:
+      "Corticosteroids and sick days can change glucose and hormone needs. Follow the patient's written plan and seek help for persistent abnormal glucose, vomiting, confusion, or inability to keep fluids down.",
+    pearl:
+      "A patient taking long-term corticosteroids should not independently stop the medicine suddenly. Tapering decisions require the prescribing clinician.",
+    check: {
+      question: "Which statement about prolonged corticosteroid therapy is safest?",
+      options: [
+        "It should not be stopped abruptly without prescriber guidance",
+        "It never affects blood glucose",
+        "It always improves infection resistance",
+        "The dose should be doubled whenever sleep is poor",
+      ],
+      answer: 0,
+      explanation:
+        "Abrupt discontinuation after prolonged corticosteroid use can cause adrenal insufficiency and requires clinical guidance.",
+    },
+  },
+];
+
+export const moduleFiveScenarios = [
+  {
+    title: "Scenario 1: Low Glucose and Confusion",
+    patient:
+      "A patient who received insulin becomes sweaty, shaky, and confused. A glucose check is below the patient's prescribed safe range.",
+    question: "What is the safest general response?",
+    options: [
+      "Follow the hypoglycemia protocol immediately and assess the patient's ability to swallow",
+      "Give another insulin dose",
+      "Wait for the next scheduled meal without reassessment",
+      "Assume confusion is unrelated to glucose",
+    ],
+    answer: 0,
+    explanation:
+      "Symptoms plus a low glucose reading require prompt treatment according to the established protocol. Route depends on alertness and swallowing ability.",
+  },
+  {
+    title: "Scenario 2: Vomiting With a GLP-1 Medicine",
+    patient:
+      "A patient using semaglutide reports repeated vomiting, severe abdominal pain, and difficulty keeping fluids down.",
+    question: "Which response is most appropriate?",
+    options: [
+      "Promptly contact the healthcare team or seek urgent evaluation based on severity",
+      "Take an extra dose to replace the medicine lost through vomiting",
+      "Ignore the symptoms because nausea is always harmless",
+      "Substitute insulin without an order",
+    ],
+    answer: 0,
+    explanation:
+      "Persistent vomiting, severe abdominal pain, and dehydration risk require prompt clinical assessment and may signal a serious adverse effect.",
+  },
+];
+
+export const moduleFiveQuestions = [
+  {
+    question: "What is insulin's primary glucose-lowering role?",
+    options: [
+      "Help glucose move from the bloodstream into cells",
+      "Block all carbohydrate absorption permanently",
+      "Increase liver glucose release",
+      "Replace thyroid hormone",
+    ],
+    answer: 0,
+    explanation:
+      "Insulin helps cells use and store glucose, lowering blood glucose.",
+  },
+  {
+    question: "Which insulin is rapid acting?",
+    options: ["Insulin lispro", "Insulin glargine", "NPH insulin", "Regular insulin"],
+    answer: 0,
+    explanation:
+      "Insulin lispro is a rapid-acting insulin commonly associated with meal coverage.",
+  },
+  {
+    question: "Which insulin is intermediate acting?",
+    options: ["NPH insulin", "Insulin lispro", "Insulin glargine", "Insulin degludec"],
+    answer: 0,
+    explanation:
+      "NPH is an intermediate-acting insulin.",
+  },
+  {
+    question: "Which symptom group most strongly suggests hypoglycemia?",
+    options: [
+      "Sweating, shaking, hunger, and confusion",
+      "Constipation, dry skin, and cold sensitivity",
+      "Cough, fever, and sputum",
+      "Edema, black stools, and bruising",
+    ],
+    answer: 0,
+    explanation:
+      "Hypoglycemia often develops quickly with autonomic and neurologic symptoms.",
+  },
+  {
+    question: "A patient with severe hypoglycemia is unconscious. What is unsafe?",
+    options: [
+      "Giving food or drink by mouth",
+      "Activating the emergency process",
+      "Checking the glucose when possible",
+      "Following the prescribed glucagon or emergency protocol",
+    ],
+    answer: 0,
+    explanation:
+      "An unconscious person cannot safely swallow and is at risk for aspiration.",
+  },
+  {
+    question: "Which medication is a biguanide?",
+    options: ["Metformin", "Glipizide", "Semaglutide", "Prednisone"],
+    answer: 0,
+    explanation:
+      "Metformin is a biguanide.",
+  },
+  {
+    question: "Which class can stimulate insulin release and increase hypoglycemia risk?",
+    options: ["Sulfonylureas", "Thyroid hormones", "Inhaled corticosteroids", "Statins"],
+    answer: 0,
+    explanation:
+      "Sulfonylureas such as glipizide increase insulin secretion and may cause hypoglycemia.",
+  },
+  {
+    question: "Which medicine is a GLP-1 receptor agonist?",
+    options: ["Semaglutide", "Levothyroxine", "Prednisone", "Insulin glargine"],
+    answer: 0,
+    explanation:
+      "Semaglutide is a GLP-1 receptor agonist.",
+  },
+  {
+    question: "Which statement about GLP-1 medicines is correct?",
+    options: [
+      "The exact product, strength, and schedule must be verified",
+      "All products use identical doses",
+      "They are insulin",
+      "They are appropriate substitutes for required insulin in type 1 diabetes",
+    ],
+    answer: 0,
+    explanation:
+      "GLP-1 products differ in indication, strength, formulation, and dosing schedule.",
+  },
+  {
+    question: "Which symptom combination during GLP-1 therapy needs prompt assessment?",
+    options: [
+      "Severe abdominal pain with persistent vomiting",
+      "A brief mild appetite change only",
+      "A normal pulse",
+      "Stable hydration",
+    ],
+    answer: 0,
+    explanation:
+      "Severe abdominal pain and persistent vomiting may indicate a serious adverse effect or dehydration.",
+  },
+  {
+    question: "Which medication is used for thyroid hormone replacement?",
+    options: ["Levothyroxine", "Glucagon", "Metformin", "Dulaglutide"],
+    answer: 0,
+    explanation:
+      "Levothyroxine replaces thyroid hormone in hypothyroidism.",
+  },
+  {
+    question: "Which administration principle is commonly associated with levothyroxine?",
+    options: [
+      "Take it consistently on an empty stomach as directed",
+      "Change the timing every day",
+      "Take extra doses for weight loss",
+      "Stop when energy improves for one day",
+    ],
+    answer: 0,
+    explanation:
+      "Consistent timing and attention to food and medication interactions support reliable absorption.",
+  },
+  {
+    question: "Which finding may suggest excessive thyroid hormone effect?",
+    options: [
+      "Rapid heartbeat, tremor, and sweating",
+      "Slow breathing after an opioid",
+      "Black stools",
+      "Oral thrush",
+    ],
+    answer: 0,
+    explanation:
+      "Excess thyroid hormone may produce hyperthyroid-like cardiovascular and neurologic symptoms.",
+  },
+  {
+    question: "Which effect can occur with systemic corticosteroids?",
+    options: [
+      "Higher blood glucose and increased infection risk",
+      "Guaranteed lower blood glucose",
+      "Permanent immunity to infection",
+      "Immediate thyroid replacement",
+    ],
+    answer: 0,
+    explanation:
+      "Systemic corticosteroids can raise glucose and suppress immune function.",
+  },
+  {
+    question: "A patient with diabetes is ill, vomiting, and has glucose that will not return to the target range. What is safest?",
+    options: [
+      "Follow the sick-day plan and contact the healthcare team promptly",
+      "Stop every medicine without guidance",
+      "Wait several days despite worsening symptoms",
+      "Double all diabetes medicines automatically",
+    ],
+    answer: 0,
+    explanation:
+      "Illness can destabilize glucose control. Persistent abnormal glucose, vomiting, or confusion requires prompt guidance.",
+  },
+];
+
+export const moduleFiveSources = [
+  {
+    label: "MedlinePlus: Diabetes Medicines",
+    href: "https://medlineplus.gov/diabetesmedicines.html",
+  },
+  {
+    label: "MedlinePlus: Insulin Therapy",
+    href: "https://medlineplus.gov/ency/patientinstructions/000965.htm",
+  },
+  {
+    label: "MedlinePlus: Hypoglycemia",
+    href: "https://medlineplus.gov/hypoglycemia.html",
+  },
+  {
+    label: "MedlinePlus: Levothyroxine",
+    href: "https://medlineplus.gov/druginfo/meds/a682461.html",
+  },
+  {
+    label: "MedlinePlus: Semaglutide",
+    href: "https://medlineplus.gov/druginfo/meds/a619057.html",
+  },
+  {
+    label: "FDA: Diabetes Medicines",
+    href: "https://www.fda.gov/consumers/womens-health-topics/women-and-diabetes-diabetes-medicines",
+  },
+];
+
