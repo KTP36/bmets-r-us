@@ -1481,10 +1481,3 @@
   font-size: .7rem;
   line-height: 1.3;
 }
-
-/* Allow two columns again only when the circuit area is genuinely wide. */
-@media (min-width: 1500px) {
-  .vl-point-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
