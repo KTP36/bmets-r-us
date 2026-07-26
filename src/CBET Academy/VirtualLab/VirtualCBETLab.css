@@ -1483,7 +1483,7 @@
 }
 
 /* Make the probe connection panel span the full circuit-board width */
-.vl-circuit-board > .vl-connection-panel {
+.vl-circuit-board .vl-connection-panel {
   grid-column: 1 / -1 !important;
   width: 100% !important;
   max-width: none !important;
