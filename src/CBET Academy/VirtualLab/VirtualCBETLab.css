@@ -1,0 +1,1490 @@
+/* =========================================================
+   CBET VIRTUAL LAB — FLAGSHIP RESPONSIVE SIMULATOR
+   Drop-in replacement for VirtualCBETLab.css
+   ========================================================= */
+
+.virtual-lab-shell {
+  --bg: #04111a;
+  --panel: #071d2a;
+  --panel-2: #0b2637;
+  --line: #17435a;
+  --cyan: #50d8ff;
+  --yellow: #ffc21c;
+  --green: #2bd46f;
+  --muted: #91adbd;
+  min-height: 100vh;
+  padding: 18px;
+  overflow-x: hidden;
+  color: #f4fbff;
+  background:
+    radial-gradient(circle at 15% -5%, rgba(31, 154, 211, .18), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(255, 194, 28, .10), transparent 24%),
+    var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.virtual-lab-shell * { box-sizing: border-box; }
+.virtual-lab-shell button { font: inherit; }
+.virtual-lab-shell button:focus-visible {
+  outline: 3px solid rgba(80, 216, 255, .75);
+  outline-offset: 3px;
+}
+
+.vl-topbar,
+.vl-course-progress,
+.vl-page-grid,
+.vl-safety,
+.vl-complete {
+  width: min(1800px, 100%);
+  margin-inline: auto;
+}
+
+.vl-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 8px 6px 16px;
+  border-bottom: 1px solid rgba(80,216,255,.18);
+}
+
+.vl-topbar > div:first-child { min-width: 0; }
+.vl-topbar span {
+  color: var(--cyan);
+  font-size: .76rem;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.vl-topbar h1 {
+  margin: 3px 0 0;
+  max-width: 100%;
+  color: white;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: .98;
+  letter-spacing: -.045em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.vl-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+.vl-xp,
+.vl-top-actions button {
+  min-height: 52px;
+  padding: 0 20px;
+  border: 1px solid #1a4a61;
+  border-radius: 14px;
+  background: #0a2638;
+  color: white;
+  font-weight: 900;
+}
+.vl-xp {
+  display: grid;
+  place-items: center;
+  border-color: rgba(255,194,28,.35);
+  background: rgba(255,194,28,.08);
+  color: #ffe57c;
+}
+.vl-top-actions button { cursor: pointer; }
+
+.vl-course-progress {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(90px, 1fr));
+  gap: 4px;
+  margin-top: 12px;
+  padding: 12px 18px;
+  overflow-x: auto;
+  border: 1px solid #12384d;
+  border-radius: 16px;
+  background: rgba(5, 21, 31, .88);
+}
+.vl-course-progress > div {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  min-width: 90px;
+  color: #7895a6;
+}
+.vl-course-progress > div::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 18px;
+  left: calc(50% + 18px);
+  width: calc(100% - 36px);
+  height: 2px;
+  background: #294859;
+}
+.vl-course-progress > div:last-child::after { display: none; }
+.vl-course-progress span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #426072;
+  border-radius: 50%;
+  background: #263946;
+  color: white;
+  font-weight: 950;
+}
+.vl-course-progress small {
+  font-size: .66rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+.vl-course-progress .active { color: white; }
+.vl-course-progress .active span {
+  border-color: var(--cyan);
+  background: #108fc4;
+  box-shadow: 0 0 18px rgba(80,216,255,.38);
+}
+.vl-course-progress .done span {
+  border-color: var(--green);
+  background: #168448;
+}
+
+.vl-page-grid {
+  display: grid;
+  grid-template-columns: 240px 300px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  margin-top: 14px;
+}
+
+.vl-roadmap,
+.vl-instructor,
+.vl-lab-area {
+  min-width: 0;
+  border: 1px solid #163e52;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(8,30,43,.98), rgba(4,20,30,.98));
+  box-shadow: 0 20px 48px rgba(0,0,0,.2);
+}
+
+.vl-roadmap,
+.vl-instructor {
+  position: sticky;
+  top: 12px;
+}
+
+.vl-roadmap {
+  padding: 14px;
+}
+.vl-roadmap-header {
+  display: grid;
+  gap: 5px;
+  padding: 5px 5px 15px;
+}
+.vl-roadmap-header > span,
+.vl-task-label,
+.vl-workbench-heading span,
+.vl-panel-heading span {
+  color: var(--cyan);
+  font-size: .68rem;
+  font-weight: 950;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.vl-roadmap-header > strong { font-size: .95rem; }
+.vl-roadmap-header > small {
+  margin-top: 15px;
+  color: #7898aa;
+  font-size: .64rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.vl-roadmap-percent {
+  color: white;
+  font-size: .75rem;
+  font-weight: 850;
+}
+.vl-roadmap-track,
+.vl-step-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #03101a;
+}
+.vl-roadmap-track i,
+.vl-step-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #12a6dc, #67e4ff);
+  transition: width .35s ease;
+}
+.vl-roadmap-list {
+  display: grid;
+  gap: 8px;
+}
+.vl-roadmap-list button {
+  display: grid;
+  grid-template-columns: 34px minmax(0,1fr);
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 62px;
+  padding: 10px;
+  border: 1px solid #123a4f;
+  border-radius: 12px;
+  background: #0a2638;
+  color: #809dab;
+  text-align: left;
+  cursor: pointer;
+}
+.vl-roadmap-list button:disabled {
+  opacity: .48;
+  cursor: not-allowed;
+}
+.vl-roadmap-list button.active {
+  border-color: var(--cyan);
+  background: #10374d;
+  color: white;
+}
+.vl-roadmap-list button.complete {
+  border-color: rgba(43,212,111,.45);
+}
+.vl-roadmap-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #143b50;
+  font-size: .75rem;
+  font-weight: 950;
+}
+.complete .vl-roadmap-number { background: #168448; color: white; }
+.vl-roadmap-copy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+.vl-roadmap-copy small {
+  color: #5f8498;
+  font-size: .57rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+.vl-roadmap-copy strong {
+  overflow: hidden;
+  font-size: .76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vl-instructor {
+  padding: 18px;
+}
+.vl-instructor-head {
+  display: grid;
+  grid-template-columns: 66px 1fr;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #173d50;
+}
+.vl-avatar {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  border: 3px solid rgba(80,216,255,.35);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #b9efff, #65c1e2);
+  font-size: 2.35rem;
+}
+.vl-instructor-head > div:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+.vl-instructor-head span {
+  color: var(--cyan);
+  font-size: .63rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+.vl-instructor-head strong { font-size: 1rem; }
+.vl-instructor-head small { color: #8ba6b6; }
+
+.vl-task-label {
+  margin-top: 26px;
+  text-align: center;
+}
+.vl-instructor h2 {
+  margin: 14px 0;
+  color: white;
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  line-height: 1.12;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.vl-task-main {
+  margin: 0;
+  color: white;
+  font-size: 1.03rem;
+  font-weight: 800;
+  line-height: 1.55;
+  text-align: center;
+}
+.vl-why-card,
+.vl-pro-tip {
+  margin-top: 22px;
+  padding: 17px;
+  border: 1px solid rgba(255,194,28,.32);
+  border-radius: 14px;
+  background: rgba(255,194,28,.07);
+}
+.vl-why-card strong { color: #ffe076; }
+.vl-why-card p,
+.vl-pro-tip p {
+  margin: 10px 0 0;
+  color: #d9e9f1;
+  line-height: 1.55;
+}
+.vl-pro-tip {
+  border-color: rgba(80,216,255,.28);
+  background: rgba(80,216,255,.05);
+}
+.vl-pro-tip strong { color: var(--cyan); }
+.vl-primary {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffcf39, #ffb900);
+  color: #172433 !important;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(255,185,0,.18);
+}
+
+.vl-lab-area {
+  overflow: hidden;
+}
+.vl-stepbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+}
+.vl-stepbar > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.vl-stepbar span {
+  flex: 0 0 auto;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #0d3347;
+  color: var(--cyan);
+  font-size: .68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+.vl-stepbar strong {
+  overflow: hidden;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vl-feedback {
+  flex: 0 1 430px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #102d3f;
+  color: #aac4d2;
+  font-size: .76rem;
+  font-weight: 800;
+}
+.vl-feedback.good { background: rgba(43,212,111,.16); color: #c2f7d4; }
+.vl-feedback.warn { background: rgba(255,163,26,.16); color: #ffe1aa; }
+
+.vl-workbench-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 390px);
+  grid-template-areas:
+    "circuit meter"
+    "probes probes";
+  gap: 14px;
+  min-width: 0;
+  padding: 14px;
+  background:
+    linear-gradient(rgba(255,255,255,.016) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.016) 1px, transparent 1px),
+    #061a27;
+  background-size: 26px 26px;
+}
+.vl-circuit-column {
+  grid-area: circuit;
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+}
+.vl-workbench-heading {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+}
+.vl-workbench-heading > div { display: grid; gap: 2px; }
+.vl-workbench-heading strong { font-size: 1rem; }
+
+.vl-circuit-board {
+  display: grid;
+  grid-template-columns: minmax(145px, 190px) minmax(210px, 1fr) minmax(135px, 180px);
+  gap: 14px;
+  align-items: stretch;
+  min-width: 0;
+  min-height: 390px;
+  padding: 16px;
+  border: 7px solid #5d6d77;
+  border-radius: 17px;
+  background:
+    radial-gradient(circle, rgba(35,52,63,.45) 1px, transparent 1.6px),
+    #d8dcdd;
+  background-size: 28px 28px;
+  color: #122635;
+  box-shadow: inset 0 0 28px rgba(0,0,0,.18);
+}
+.vl-power-supply,
+.vl-training-load {
+  align-self: center;
+  min-width: 0;
+  padding: 14px;
+  border: 3px solid #3d5261;
+  border-radius: 15px;
+  background: linear-gradient(155deg, #283e4c, #182c39);
+  color: white;
+  box-shadow: 0 14px 24px rgba(0,0,0,.22);
+}
+.vl-device-title {
+  display: block;
+  color: #b6cfdd;
+  font-size: .62rem;
+  font-weight: 950;
+  letter-spacing: .07em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.vl-power-screen {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 4px;
+  margin: 14px 0;
+  padding: 13px 8px;
+  border: 4px inset #16252e;
+  border-radius: 7px;
+  background: #06120c;
+  color: #6cff91;
+  font-family: "Courier New", monospace;
+}
+.vl-power-screen strong { font-size: clamp(1.7rem, 3vw, 2.5rem); }
+.vl-power-knob {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 7px auto 13px;
+  border: 4px solid #13232d;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#1d2f3a 0 6deg, #526571 6deg 8deg);
+  box-shadow: inset 0 0 0 13px #263945;
+}
+.vl-power-knob i {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 4px;
+  height: 21px;
+  border-radius: 999px;
+  background: white;
+  transform: translateX(-50%) rotate(36deg);
+  transform-origin: 2px 24px;
+}
+.vl-power-supply button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #688091;
+  border-radius: 9px;
+  background: #102532;
+  color: white;
+  font-size: .7rem;
+  font-weight: 950;
+  cursor: pointer;
+}
+.vl-power-supply button i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #64748b;
+}
+.vl-power-supply button.on {
+  border-color: #4ade80;
+  background: #10643a;
+}
+.vl-power-supply button.on i {
+  background: #4ade80;
+  box-shadow: 0 0 12px #4ade80;
+}
+.vl-supply-jacks {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 13px;
+}
+.vl-supply-jacks span,
+.vl-point-grid button > span {
+  display: block;
+  width: 27px;
+  height: 27px;
+  border: 6px solid #101820;
+  border-radius: 50%;
+  background: #687987;
+  box-shadow: inset 0 0 0 4px #c9d1d7;
+}
+.vl-supply-jacks .red,
+.vl-point-grid button > span.red { border-color: #9e1e16; background: #ef3327; }
+
+.vl-circuit-path {
+  position: relative;
+  min-width: 0;
+  min-height: 320px;
+}
+.vl-terminal {
+  position: absolute;
+  z-index: 4;
+  width: 22px;
+  height: 22px;
+  border: 5px solid #20282d;
+  border-radius: 50%;
+  background: #5a6972;
+  box-shadow: 0 2px 4px rgba(0,0,0,.35);
+}
+.vl-terminal.tl { left: 8%; top: 20%; }
+.vl-terminal.tr { right: 8%; top: 20%; }
+.vl-terminal.bl { left: 8%; bottom: 20%; }
+.vl-terminal.br { right: 8%; bottom: 20%; }
+.vl-wire {
+  position: absolute;
+  z-index: 2;
+  background: #222a2f;
+}
+.vl-wire.top,
+.vl-wire.bottom {
+  left: calc(8% + 11px);
+  right: calc(8% + 11px);
+  height: 5px;
+}
+.vl-wire.top { top: calc(20% + 8px); }
+.vl-wire.bottom { bottom: calc(20% + 8px); }
+.vl-wire.left,
+.vl-wire.right {
+  top: calc(20% + 11px);
+  bottom: calc(20% + 11px);
+  width: 5px;
+}
+.vl-wire.left { left: calc(8% + 8px); }
+.vl-wire.right { right: calc(8% + 8px); }
+.vl-resistor {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: calc(20% - 20px);
+  display: grid;
+  justify-items: center;
+  transform: translateX(-50%);
+}
+.vl-resistor span {
+  margin-bottom: 6px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  background: rgba(255,255,255,.92);
+  font-size: .76rem;
+  font-weight: 950;
+  box-shadow: 0 4px 10px rgba(0,0,0,.12);
+}
+.vl-resistor i {
+  display: block;
+  width: 92px;
+  height: 28px;
+  border: 2px solid #6d3b17;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg,
+      #dcb06a 0 19%,
+      #7a2f1b 19% 26%,
+      #111 26% 33%,
+      #d43f25 33% 40%,
+      #dcb06a 40% 68%,
+      #d7b42d 68% 74%,
+      #dcb06a 74% 100%);
+}
+.vl-circuit-state,
+.vl-discharge {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 51%;
+  padding: 12px 16px;
+  border: 1px solid #94a8b4;
+  border-radius: 12px;
+  background: rgba(247,250,252,.95);
+  color: #182f40;
+  font-size: .68rem;
+  font-weight: 950;
+  text-align: center;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+}
+.vl-discharge {
+  top: 68%;
+  border-color: #d29d12;
+  background: #ffd34e;
+}
+
+.vl-training-load {
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+.vl-load-symbol {
+  margin: 25px 0;
+  color: #ffdb5f;
+  font-size: clamp(1.4rem, 2.5vw, 2.25rem);
+  font-weight: 950;
+}
+.vl-training-load strong { font-size: 1.2rem; }
+.vl-training-load small { margin-top: 5px; color: #abc0cc; }
+
+.vl-connection-panel,
+.vl-diagnosis {
+  padding: 14px;
+  border: 1px solid #1a485e;
+  border-radius: 15px;
+  background: #081f2d;
+}
+.vl-panel-heading > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+.vl-panel-heading small {
+  color: #8ca8b7;
+  font-size: .72rem;
+}
+.vl-point-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px;
+  margin-top: 11px;
+}
+.vl-point-grid button {
+  display: grid;
+  grid-template-columns: 38px minmax(0,1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  min-width: 0;
+  min-height: 82px;
+  padding: 12px;
+  border: 2px solid #577184;
+  border-radius: 12px;
+  background: #eef3f6;
+  color: #122536;
+  text-align: left;
+  cursor: pointer;
+}
+.vl-point-grid button > span { grid-row: 1 / 3; width: 29px; height: 29px; }
+.vl-point-grid button strong { font-size: .76rem; }
+.vl-point-grid button small { color: #5b7485; font-size: .68rem; font-weight: 800; }
+.vl-point-grid button.connected { border-color: var(--green); background: #e5f9ec; }
+
+.vl-diagnosis > span {
+  color: var(--cyan);
+  font-size: .68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+.vl-diagnosis > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.vl-diagnosis button {
+  padding: 10px 12px;
+  border: 1px solid #315a70;
+  border-radius: 9px;
+  background: #0d2d3f;
+  color: white;
+  font-weight: 850;
+  cursor: pointer;
+}
+.vl-diagnosis button.selected { border-color: var(--green); background: #12663b; }
+
+.vl-meter-card {
+  grid-area: meter;
+  align-self: start;
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  border: 7px solid #d49500;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #ffc928, #e4a700);
+  color: #111c24;
+  box-shadow:
+    inset 0 0 0 3px rgba(255,255,255,.28),
+    0 18px 35px rgba(0,0,0,.28);
+}
+.vl-meter-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 2px 12px;
+}
+.vl-meter-brand strong {
+  padding: 4px 7px;
+  border-radius: 3px;
+  background: #f3a900;
+  color: #1d1b12;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.15);
+}
+.vl-meter-brand span {
+  font-size: .72rem;
+  font-weight: 950;
+  letter-spacing: .04em;
+}
+.vl-meter-screen {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  padding: 16px;
+  border: 7px solid #1f2528;
+  border-radius: 12px;
+  background: #b7cda9;
+  color: #122015;
+  text-align: right;
+  cursor: pointer;
+  box-shadow: inset 0 0 18px rgba(25,42,24,.28);
+}
+.vl-meter-screen small {
+  display: block;
+  min-height: 18px;
+  font-family: "Courier New", monospace;
+  font-size: .66rem;
+  font-weight: 900;
+}
+.vl-meter-screen strong {
+  display: block;
+  margin-top: 8px;
+  font-family: "Courier New", monospace;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: .9;
+}
+.vl-meter-screen > span {
+  position: absolute;
+  right: 15px;
+  bottom: 31px;
+  font-family: "Courier New", monospace;
+  font-weight: 950;
+}
+.vl-meter-screen > i {
+  position: absolute;
+  left: 15px;
+  bottom: 12px;
+  font-family: "Courier New", monospace;
+  font-size: .62rem;
+  font-style: normal;
+  font-weight: 950;
+}
+.vl-meter-softkeys {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 7px;
+  margin: 13px 0;
+}
+.vl-meter-softkeys button {
+  min-width: 0;
+  min-height: 34px;
+  border: 2px solid #11191e;
+  border-radius: 6px;
+  background: #22292d;
+  color: white;
+  font-size: .52rem;
+  font-weight: 950;
+}
+.vl-meter-softkeys .yellow { background: #f8ad00; }
+
+.vl-selector {
+  position: relative;
+  min-height: 310px;
+}
+.vl-dial-labels button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 76px;
+  min-height: 48px;
+  padding: 3px;
+  border: 0;
+  background: transparent;
+  color: #20282e;
+  text-align: center;
+  cursor: pointer;
+  transform:
+    translate(-50%,-50%)
+    rotate(calc(-130deg + (var(--position) * 43deg)))
+    translateY(-126px)
+    rotate(calc(130deg - (var(--position) * 43deg)));
+}
+.vl-dial-labels button b {
+  display: block;
+  font-size: 1rem;
+}
+.vl-dial-labels button small {
+  display: block;
+  margin-top: 2px;
+  font-size: .43rem;
+  font-weight: 950;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+.vl-dial-labels button.active { color: #0877a1; }
+.vl-dial {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 175px;
+  height: 175px;
+  border: 8px solid #11191e;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#161c20 0 4deg, #30383d 4deg 7deg);
+  box-shadow:
+    inset 0 0 0 22px #242b30,
+    inset 0 0 0 25px #0f1519,
+    0 10px 18px rgba(0,0,0,.28);
+  transform: translate(-50%,-50%);
+}
+.vl-dial i {
+  position: absolute;
+  left: 50%;
+  top: 13px;
+  width: 10px;
+  height: 63px;
+  border-radius: 999px;
+  background: #ffb300;
+  transform-origin: 5px 74px;
+  transition: transform .35s ease;
+}
+.vl-dial span {
+  position: absolute;
+  inset: 44px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #31383d, #141a1e);
+}
+
+.vl-meter-jacks {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 8px;
+  padding-top: 5px;
+}
+.vl-meter-jacks > div {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+}
+.vl-meter-jacks strong { font-size: .9rem; }
+.vl-meter-jacks small { font-size: .48rem; font-weight: 950; }
+.jack {
+  display: block;
+  width: 45px;
+  height: 45px;
+  border: 8px solid #111;
+  border-radius: 50%;
+  background: #202020;
+  box-shadow: inset 0 0 0 5px #050505;
+}
+.jack.red { border-color: #ae2518; background: #ed3828; }
+.jack.plugged::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 54px;
+  margin: 23px auto 0;
+  border-radius: 5px;
+  background: #111;
+}
+.jack.red.plugged::after { background: #e82e22; }
+
+.vl-probe-dock {
+  grid-area: probes;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+  min-width: 0;
+}
+.vl-probe-dock > button {
+  display: grid;
+  grid-template-columns: 42px minmax(100px,.65fr) minmax(140px,1fr);
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  min-height: 92px;
+  padding: 12px 16px;
+  overflow: hidden;
+  border: 3px solid #767f84;
+  border-radius: 14px;
+  background: linear-gradient(180deg,#e7e8e7,#bfc3c4);
+  color: #172630;
+  text-align: left;
+  cursor: pointer;
+}
+.vl-probe-dock > button.selected {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(80,216,255,.14);
+}
+.vl-probe-dock > button > span:nth-child(2) { display: grid; gap: 4px; min-width: 0; }
+.vl-probe-dock strong { font-size: .8rem; text-transform: uppercase; }
+.vl-probe-dock small { font-size: .66rem; font-weight: 800; }
+.vl-probe-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 5px solid #26333b;
+  border-radius: 50%;
+  background: #cbd5db;
+}
+.vl-probe-icon i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #111;
+}
+.red .vl-probe-icon i { background: #e12b20; }
+.vl-probe-body {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 140px;
+  height: 18px;
+  border-radius: 8px 3px 3px 8px;
+  background: #11181c;
+}
+.vl-probe-body::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 6px;
+  width: 58px;
+  height: 5px;
+  background: #aeb7bc;
+}
+.vl-probe-body::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  top: -5px;
+  height: 28px;
+  border-left: 5px solid #070b0d;
+  border-right: 5px solid #070b0d;
+}
+.vl-probe-dock .red .vl-probe-body { background: #e52e21; }
+.vl-probe-dock .red .vl-probe-body::after { border-color: #9d1a12; }
+
+.vl-safety {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 13px 18px;
+  border: 1px solid #15394a;
+  border-radius: 13px;
+  background: #081e2c;
+  color: #a3bcc9;
+  font-size: .76rem;
+}
+.vl-safety strong { color: #ffd75e; text-transform: uppercase; }
+
+.target-highlight {
+  position: relative;
+  z-index: 20 !important;
+  animation: vlPulse 1.25s ease-in-out infinite;
+}
+.target-highlight::after {
+  content: "";
+  position: absolute;
+  z-index: 30;
+  inset: -5px;
+  border: 3px solid var(--cyan);
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 4px rgba(80,216,255,.13), 0 0 24px rgba(80,216,255,.55);
+}
+@keyframes vlPulse {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(1.18); }
+}
+
+.vl-complete {
+  display: grid;
+  place-items: center;
+  min-height: 720px;
+  margin-top: 15px;
+  padding: 48px;
+  border: 1px solid #174255;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255,194,28,.16), transparent 30%),
+    #061b28;
+  text-align: center;
+}
+.vl-complete > div:first-child { font-size: 5rem; }
+.vl-complete > span {
+  color: var(--cyan);
+  font-size: .76rem;
+  font-weight: 950;
+  letter-spacing: .14em;
+}
+.vl-complete h2 {
+  margin: 9px 0;
+  font-size: clamp(2.5rem,5vw,4.8rem);
+}
+.vl-complete p { max-width: 660px; color: #b0c8d4; font-size: 1.05rem; }
+.vl-rewards,
+.vl-skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 18px;
+}
+.vl-rewards strong,
+.vl-skill-grid strong {
+  padding: 9px 13px;
+  border: 1px solid rgba(255,194,28,.34);
+  border-radius: 999px;
+  background: rgba(255,194,28,.08);
+  color: #ffe17a;
+}
+.vl-complete-actions {
+  display: grid;
+  gap: 10px;
+  width: min(600px,100%);
+  margin-top: 25px;
+}
+.vl-complete-actions button {
+  padding: 13px;
+  border: 1px solid #31596d;
+  border-radius: 11px;
+  background: #0b2b3d;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+.vl-finale {
+  background:
+    radial-gradient(circle at 50% 10%, rgba(80,216,255,.18), transparent 31%),
+    #061b28;
+}
+
+@media (max-width: 1500px) {
+  .vl-page-grid {
+    grid-template-columns: 210px 270px minmax(0,1fr);
+  }
+  .vl-workbench-grid {
+    grid-template-columns: minmax(0,1fr) 340px;
+  }
+  .vl-circuit-board {
+    grid-template-columns: 150px minmax(190px,1fr) 145px;
+    gap: 10px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .vl-page-grid {
+    grid-template-columns: 220px minmax(0,1fr);
+    grid-template-areas:
+      "roadmap instructor"
+      "lab lab";
+  }
+  .vl-roadmap { grid-area: roadmap; position: static; }
+  .vl-instructor { grid-area: instructor; position: static; }
+  .vl-lab-area { grid-area: lab; }
+  .vl-roadmap-list {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+
+@media (max-width: 1020px) {
+  .vl-workbench-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "circuit"
+      "meter"
+      "probes";
+  }
+  .vl-meter-card {
+    width: min(520px,100%);
+    justify-self: center;
+  }
+  .vl-probe-dock { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 780px) {
+  .virtual-lab-shell { padding: 10px; }
+  .vl-topbar,
+  .vl-stepbar,
+  .vl-panel-heading > div {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .vl-topbar { display: flex; }
+  .vl-top-actions { width: 100%; }
+  .vl-top-actions > * { flex: 1; }
+  .vl-page-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "roadmap"
+      "instructor"
+      "lab";
+  }
+  .vl-roadmap-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .vl-circuit-board {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .vl-power-supply,
+  .vl-training-load { width: min(280px,100%); justify-self: center; }
+  .vl-circuit-path { min-height: 330px; }
+  .vl-point-grid,
+  .vl-probe-dock { grid-template-columns: 1fr; }
+  .vl-feedback { flex: 1; }
+}
+
+@media (max-width: 520px) {
+  .vl-topbar h1 { font-size: 2rem; }
+  .vl-top-actions { flex-direction: column; }
+  .vl-roadmap-list { grid-template-columns: 1fr; }
+  .vl-workbench-grid { padding: 8px; }
+  .vl-meter-card { padding: 11px; border-width: 5px; }
+  .vl-selector { min-height: 285px; transform: scale(.9); transform-origin: center; }
+  .vl-meter-jacks { gap: 3px; }
+  .jack { width: 38px; height: 38px; }
+  .vl-probe-dock > button {
+    grid-template-columns: 38px minmax(0,1fr);
+  }
+  .vl-probe-body { grid-column: 1 / -1; min-width: 100px; margin-top: 9px; }
+  .vl-safety { align-items: flex-start; flex-direction: column; }
+}
+
+
+/* =========================================================
+   VIRTUAL LAB 4.0 — FINAL BALANCE + ZERO-OVERLAP PASS
+   These rules intentionally come last so they override all
+   earlier desktop and responsive declarations.
+   ========================================================= */
+
+.vl-lab-area,
+.vl-workbench-grid,
+.vl-circuit-column,
+.vl-circuit-board,
+.vl-circuit-path,
+.vl-connection-panel,
+.vl-meter-card,
+.vl-probe-dock {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Keep the circuit and the meter in separate, contained grid cells. */
+.vl-workbench-grid {
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 340px) !important;
+  column-gap: 18px !important;
+  align-items: start !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+.vl-circuit-column {
+  position: relative;
+  z-index: 1;
+  overflow: hidden !important;
+}
+
+.vl-meter-card {
+  position: relative;
+  z-index: 2;
+  width: 100% !important;
+  max-width: 340px !important;
+  justify-self: end !important;
+  padding: 13px !important;
+  border-width: 6px !important;
+  overflow: hidden !important;
+}
+
+/* The training board may never paint outside its own column. */
+.vl-circuit-board {
+  grid-template-columns: minmax(130px, 170px) minmax(170px, 1fr) minmax(120px, 155px) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+.vl-circuit-board > * {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.vl-circuit-path {
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+.vl-resistor,
+.vl-circuit-state,
+.vl-discharge,
+.vl-terminal,
+.vl-wire {
+  max-width: calc(100% - 12px);
+}
+
+/* Slightly reduce the meter face so the workbench remains balanced. */
+.vl-meter-brand {
+  gap: 6px !important;
+  padding-bottom: 9px !important;
+}
+
+.vl-meter-brand strong {
+  font-size: .82rem !important;
+}
+
+.vl-meter-brand span {
+  font-size: .62rem !important;
+}
+
+.vl-meter-screen {
+  min-height: 128px !important;
+  padding: 13px !important;
+  border-width: 6px !important;
+}
+
+.vl-meter-screen strong {
+  font-size: clamp(2.7rem, 4vw, 4.2rem) !important;
+}
+
+.vl-meter-softkeys {
+  margin: 10px 0 !important;
+}
+
+.vl-selector {
+  min-height: 270px !important;
+}
+
+.vl-dial {
+  width: 154px !important;
+  height: 154px !important;
+}
+
+.vl-dial-labels button {
+  width: 67px !important;
+  transform:
+    translate(-50%,-50%)
+    rotate(calc(-130deg + (var(--position) * 43deg)))
+    translateY(-110px)
+    rotate(calc(130deg - (var(--position) * 43deg))) !important;
+}
+
+.vl-meter-jacks {
+  gap: 4px !important;
+}
+
+.jack {
+  width: 39px !important;
+  height: 39px !important;
+  border-width: 7px !important;
+}
+
+/* Keep all highlight rings inside instrument boundaries. */
+.vl-circuit-board .target-highlight::after,
+.vl-meter-card .target-highlight::after {
+  inset: -3px !important;
+  box-shadow:
+    0 0 0 2px rgba(80,216,255,.12),
+    0 0 16px rgba(80,216,255,.45) !important;
+}
+
+/* Medium desktops: stack the meter before either instrument becomes cramped. */
+@media (max-width: 1360px) {
+  .vl-workbench-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "circuit"
+      "meter"
+      "probes" !important;
+  }
+
+  .vl-meter-card {
+    width: min(430px, 100%) !important;
+    max-width: 430px !important;
+    justify-self: center !important;
+  }
+
+  .vl-circuit-board {
+    grid-template-columns: minmax(145px, 190px) minmax(190px, 1fr) minmax(130px, 170px) !important;
+  }
+}
+
+/* Smaller laptops/tablets: preserve the lab, then stack equipment internally. */
+@media (max-width: 900px) {
+  .vl-circuit-board {
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+  }
+
+  .vl-power-supply,
+  .vl-training-load {
+    width: min(290px, 100%) !important;
+    justify-self: center !important;
+  }
+
+  .vl-circuit-path {
+    min-height: 340px !important;
+  }
+
+  .vl-probe-dock {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Phones: no scaling that can create invisible overflow. */
+@media (max-width: 520px) {
+  .vl-selector {
+    min-height: 255px !important;
+    transform: none !important;
+  }
+
+  .vl-dial {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  .vl-dial-labels button {
+    width: 60px !important;
+    transform:
+      translate(-50%,-50%)
+      rotate(calc(-130deg + (var(--position) * 43deg)))
+      translateY(-100px)
+      rotate(calc(130deg - (var(--position) * 43deg))) !important;
+  }
+}
+
+
+/* =========================================================
+   PROBE CONNECTION PANEL — READABILITY FIX
+   Keeps all instructions and button labels fully visible.
+   ========================================================= */
+
+.vl-connection-panel {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.vl-panel-heading > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  align-items: start;
+}
+
+.vl-panel-heading span {
+  display: block;
+  width: 100%;
+  color: #50d8ff;
+  font-size: .72rem;
+  font-weight: 950;
+  line-height: 1.35;
+  letter-spacing: .07em;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.vl-panel-heading small {
+  display: block;
+  width: 100%;
+  max-width: none;
+  color: #b7ceda;
+  font-size: .75rem;
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* The panel sits in the narrower circuit column, so one full-width
+   connection button per row is clearer and prevents clipped words. */
+.vl-point-grid {
+  grid-template-columns: 1fr;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.vl-point-grid button {
+  grid-template-columns: 38px minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  padding: 12px 14px;
+  overflow: hidden;
+}
+
+.vl-point-grid button strong,
+.vl-point-grid button small {
+  display: block;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.vl-point-grid button strong {
+  color: #122536;
+  font-size: .78rem;
+  line-height: 1.25;
+}
+
+.vl-point-grid button small {
+  margin-top: 3px;
+  color: #5b7485;
+  font-size: .7rem;
+  line-height: 1.3;
+}
+
+/* Allow two columns again only when the circuit area is genuinely wide. */
+@media (min-width: 1500px) {
+  .vl-point-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

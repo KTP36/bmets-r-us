@@ -12,6 +12,7 @@ import { cbetElectronicsQuestions } from "./cbetElectronicsQuestions";
 import AmazonBanner from "./components/AmazonBanner";
 import CArmPartnerBanner from "./components/CArmPartnerBanner";
 import MedicationAcademy from "./academy/medication/MedicationAcademy";
+import CBETAcademy from "./CBET Academy/CBETAcademy";
 
 
 const SHOW_CARM_PARTNER = true;
@@ -7121,6 +7122,7 @@ const DEEP_LINK_TABS = new Set([
   "Home",
   "LabValuesQuiz",
   "MedicationAcademy",
+  "CBETAcademy",
   "Leaderboard",
   "MuscleConceptQuiz",
   "MuscleQuiz",
@@ -7189,7 +7191,9 @@ const DEEP_LINK_TAB_ALIASES = {
   medicalterminologybuilder: "Terminology",
   medicationacademy: "MedicationAcademy",
   medicationmastery: "MedicationAcademy",
-  medications: "MedicationAcademy"
+  medications: "MedicationAcademy",
+  cbetacademy: "CBETAcademy",
+  cbetcertificationacademy: "CBETAcademy"
 };
 
 function normalizeDeepLinkedTab(value) {
@@ -9544,6 +9548,92 @@ return (
               Start Medication Mastery →
             </span>
           </a>
+
+          <a
+            href="/?tab=CBETAcademy"
+            onClick={() =>
+              trackSiteEvent("featured_academy_click", {
+                academy: "cbet_certification",
+                target_url: "/?tab=CBETAcademy",
+                source: "homepage_featured_academies"
+              })
+            }
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 330,
+              padding: isSmallScreen ? 22 : 28,
+              borderRadius: 24,
+              color: "white",
+              textDecoration: "none",
+              overflow: "hidden",
+              background: "linear-gradient(145deg, #0f766e, #0e7490 54%, #2563eb)",
+              border: "1px solid rgba(255,255,255,0.28)",
+              boxShadow: "0 16px 30px rgba(15,118,110,0.24)"
+            }}
+          >
+            <span
+              style={{
+                alignSelf: "flex-start",
+                padding: "6px 11px",
+                borderRadius: 999,
+                background: "#fbbf24",
+                color: "#134e4a",
+                fontSize: 12,
+                fontWeight: 950,
+                letterSpacing: 0.7,
+                textTransform: "uppercase"
+              }}
+            >
+              ⚡ Interactive Certification Academy
+            </span>
+            <h3 style={{ fontSize: isSmallScreen ? 27 : 31, lineHeight: 1.12, margin: "18px 0 10px" }}>
+              CBET Certification Academy
+            </h3>
+            <p style={{ margin: "0 0 18px", lineHeight: 1.58, color: "rgba(255,255,255,0.94)" }}>
+              Build biomedical equipment technician skills through guided electronics lessons,
+              test-equipment training, troubleshooting challenges, and the interactive Virtual Lab.
+            </p>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                marginBottom: 22
+              }}
+            >
+              {["Guided lessons", "Virtual Lab", "Troubleshooting", "Saved progress"].map((label) => (
+                <span
+                  key={label}
+                  style={{
+                    padding: "7px 10px",
+                    borderRadius: 999,
+                    background: "rgba(255,255,255,0.14)",
+                    border: "1px solid rgba(255,255,255,0.24)",
+                    fontSize: 12,
+                    fontWeight: 850
+                  }}
+                >
+                  ✓ {label}
+                </span>
+              ))}
+            </div>
+            <span
+              style={{
+                marginTop: "auto",
+                alignSelf: "flex-start",
+                padding: "12px 18px",
+                borderRadius: 999,
+                background: "white",
+                color: "#0f766e",
+                fontWeight: 950,
+                boxShadow: "0 8px 20px rgba(15,23,42,0.20)"
+              }}
+            >
+              Start CBET Certification Academy →
+            </span>
+          </a>
         </div>
       </section>
 
@@ -10458,6 +10548,9 @@ return (
       </div>
       {/* MEDICATION MASTERY ACADEMY */}
       {activeTab === "MedicationAcademy" && <MedicationAcademy />}
+
+      {/* CBET CERTIFICATION ACADEMY */}
+      {activeTab === "CBETAcademy" && <CBETAcademy />}
 
       {/* HOME TAB */}
       {activeTab === "Home" && (
