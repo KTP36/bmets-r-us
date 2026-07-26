@@ -38,6 +38,27 @@ function titleCase(value = "") {
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
+function playContinuityBeep() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    const context = new AudioContextClass();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(1050, context.currentTime);
+    gain.gain.setValueAtTime(0.04, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.28);
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start();
+    oscillator.stop(context.currentTime + 0.28);
+    oscillator.addEventListener("ended", () => context.close());
+  } catch {
+    // Audio is optional.
+  }
+}
+
 function modeFromLesson(lesson) {
   const raw = String(lesson?.mode || "").toLowerCase();
   if (raw.includes("volt")) return "voltage";
@@ -148,6 +169,9 @@ function CircuitBoard({
   blackConnected,
   redConnected,
   diagnosis,
+  readingReady,
+  continuityScenario,
+  diodeScenario,
   onPower,
   onSeries,
   onDischarge,
@@ -202,10 +226,24 @@ function CircuitBoard({
           <div className="vl-wire left" />
           <div className="vl-wire right" />
           <div className="vl-wire bottom" />
-          <div className="vl-resistor">
-            <span>{lesson.expected || "1 kΩ"}</span>
-            <i />
-          </div>
+          {lesson.id === "continuity" ? (
+            <div className={`vl-fuse ${readingReady ? continuityScenario : ""}`} aria-label="Training fuse">
+              <span>{readingReady ? (continuityScenario === "good" ? "GOOD FUSE" : "OPEN FUSE") : "FUSE"}</span>
+              <i />
+            </div>
+          ) : lesson.id === "diode" ? (
+            <div className={`vl-diode ${readingReady ? diodeScenario : ""}`} aria-label="Training diode">
+              <span>{readingReady ? (diodeScenario === "good" ? "GOOD DIODE" : diodeScenario === "open" ? "OPEN DIODE" : "SHORTED DIODE") : "DIODE"}</span>
+              <i className="anode" />
+              <b>▶|</b>
+              <i className="cathode" />
+            </div>
+          ) : (
+            <div className="vl-resistor">
+              <span>{lesson.expected || "1 kΩ"}</span>
+              <i />
+            </div>
+          )}
 
           <button
             type="button"
@@ -222,11 +260,11 @@ function CircuitBoard({
           )}
         </div>
 
-        <div className="vl-training-load">
-          <span className="vl-device-title">Training Load</span>
-          <div className="vl-load-symbol">—/\/\/—</div>
-          <strong>{lesson.expected || "1 kΩ"}</strong>
-          <small>{seriesOpen ? "Open circuit" : "Connected"}</small>
+        <div className={`vl-training-load ${lesson.id === "continuity" ? "fuse-load" : ""} ${lesson.id === "diode" ? "diode-load" : ""}`}>
+          <span className="vl-device-title">{lesson.id === "continuity" ? "Training Fuse" : lesson.id === "diode" ? "Training Diode" : "Training Load"}</span>
+          <div className="vl-load-symbol">{lesson.id === "continuity" ? "—[ FUSE ]—" : lesson.id === "diode" ? "—▶|—" : "—/\/\—"}</div>
+          <strong>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "CONTINUITY" : "OPEN") : "TEST REQUIRED") : lesson.id === "diode" ? (readingReady ? (diodeScenario === "good" ? "FORWARD DROP" : diodeScenario === "open" ? "OPEN" : "SHORT") : "TEST REQUIRED") : lesson.expected || "1 kΩ"}</strong>
+          <small>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "Electrical path complete" : "Electrical path broken") : "Condition hidden") : lesson.id === "diode" ? (readingReady ? (diodeScenario === "good" ? "Normal silicon junction" : diodeScenario === "open" ? "No forward conduction" : "Near-zero junction drop") : "Condition hidden") : seriesOpen ? "Open circuit" : "Connected"}</small>
         </div>
       </div>
 
@@ -312,7 +350,7 @@ function Meter({
         <small>{meterMode === "off" ? "SELECT FUNCTION" : MODE_OPTIONS.find((m) => m.id === meterMode)?.label}</small>
         <strong>{displayValue || (meterMode === "off" ? "— — —" : "OL")}</strong>
         <span>{meterMode === "resistance" ? "kΩ" : meterMode === "voltage" ? "V" : meterMode === "current" ? "A" : ""}</span>
-        <i>{readingReady ? "STABLE" : "AUTO"}</i>
+        <i>{meterMode === "continuity" && readingReady && displayValue !== "OL" ? "BEEP" : readingReady ? "STABLE" : "AUTO"}</i>
       </button>
 
       <div className="vl-meter-softkeys">
@@ -445,11 +483,37 @@ export default function VirtualCBETLab({ onExit }) {
   const [seriesOpen, setSeriesOpen] = useState(false);
   const [discharged, setDischarged] = useState(false);
   const [diagnosis, setDiagnosis] = useState("");
+  const [continuityScenario, setContinuityScenario] = useState(() => Math.random() < 0.5 ? "good" : "blown");
+  const [diodeScenario, setDiodeScenario] = useState(() => ["good", "open", "shorted"][Math.floor(Math.random() * 3)]);
   const [feedback, setFeedback] = useState("Follow the glowing control.");
   const [feedbackKind, setFeedbackKind] = useState("");
   const timer = useRef(null);
 
-  const lesson = LESSONS[lessonIndex];
+  const baseLesson = LESSONS[lessonIndex];
+  const lesson = useMemo(() => {
+    if (baseLesson?.id === "continuity") {
+      const goodFuse = continuityScenario === "good";
+      return {
+        ...baseLesson,
+        expected: goodFuse ? "0.2 Ω" : "OL",
+        component: { ...(baseLesson.component || {}), label: "TRAINING FUSE", symbol: "—[ FUSE ]—", name: goodFuse ? "Good Fuse" : "Blown Fuse", kind: "fuse" },
+        diagnosis: { correct: goodFuse ? "Fuse Good" : "Fuse Blown", options: ["Fuse Good", "Fuse Blown"] },
+      };
+    }
+
+    if (baseLesson?.id === "diode") {
+      const expectedByScenario = { good: "0.650 V", open: "OL", shorted: "0.000 V" };
+      const diagnosisByScenario = { good: "Diode Good", open: "Diode Open", shorted: "Diode Shorted" };
+      return {
+        ...baseLesson,
+        expected: expectedByScenario[diodeScenario],
+        component: { ...(baseLesson.component || {}), label: "TRAINING DIODE", symbol: "—▶|—", name: diagnosisByScenario[diodeScenario], kind: "diode" },
+        diagnosis: { correct: diagnosisByScenario[diodeScenario], options: ["Diode Good", "Diode Open", "Diode Shorted"] },
+      };
+    }
+
+    return baseLesson;
+  }, [baseLesson, continuityScenario, diodeScenario]);
   const step = lesson.steps[stepIndex];
   const action = step?.[3];
 
@@ -471,6 +535,8 @@ export default function VirtualCBETLab({ onExit }) {
     setSeriesOpen(false);
     setDischarged(false);
     setDiagnosis("");
+    if (LESSONS[nextLessonIndex]?.id === "continuity") setContinuityScenario(Math.random() < 0.5 ? "good" : "blown");
+    if (LESSONS[nextLessonIndex]?.id === "diode") setDiodeScenario(["good", "open", "shorted"][Math.floor(Math.random() * 3)]);
     setFeedback("Follow the glowing control.");
     setFeedbackKind("");
   }
@@ -569,6 +635,20 @@ export default function VirtualCBETLab({ onExit }) {
   function recordReading() {
     if (action !== "read") return wrong("The display is not the current step.");
     if (!readingReady) return wrong("Check the meter mode, power state, safety step, and probe placement.");
+    if (lesson.id === "continuity" && continuityScenario === "good") playContinuityBeep();
+    if (lesson.id === "continuity") {
+      advance(continuityScenario === "good" ? "Beep confirmed. The fuse has a complete electrical path." : "OL confirmed. The fuse has an open electrical path.");
+      return;
+    }
+    if (lesson.id === "diode") {
+      const message = diodeScenario === "good"
+        ? "0.650 V confirms a normal silicon forward-voltage drop."
+        : diodeScenario === "open"
+        ? "OL confirms the diode is not conducting in the forward direction."
+        : "0.000 V confirms an internal short across the diode junction.";
+      advance(message);
+      return;
+    }
     advance(`Correct reading: ${lesson.expected}.`);
   }
 
@@ -648,6 +728,9 @@ export default function VirtualCBETLab({ onExit }) {
                 blackConnected={blackConnected}
                 redConnected={redConnected}
                 diagnosis={diagnosis}
+                readingReady={readingReady}
+                continuityScenario={continuityScenario}
+                diodeScenario={diodeScenario}
                 onPower={handlePower}
                 onSeries={handleSeriesGap}
                 onDischarge={handleDischarge}

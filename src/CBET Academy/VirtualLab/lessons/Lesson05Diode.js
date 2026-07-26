@@ -1,73 +1,76 @@
 const lesson = {
-  "id": "diode",
-  "title": "Test a Diode",
-  "shortTitle": "Diode Test",
-  "badge": "Diode Detective",
-  "xp": 150,
-  "intro": "Check forward voltage drop and identify diode polarity.",
-  "expected": "0.67 V",
-  "mode": "diode",
-  "component": {
-    "label": "SILICON DIODE",
-    "symbol": "—|>|—",
-    "name": "1N400x Diode",
-    "kind": "diode"
+  id: "diode",
+  title: "Diode Testing & Fault Diagnosis",
+  shortTitle: "Diode Test",
+  badge: "Diode Diagnostic Specialist",
+  xp: 175,
+  intro: "Test an unknown silicon diode and determine whether it is good, open, or shorted.",
+  why: "Diodes appear in power supplies, protection circuits, rectifiers, and medical-device boards. A diode-mode test quickly reveals junction condition without powering the circuit.",
+  expected: "0.650 V",
+  mode: "diode",
+  component: {
+    label: "TRAINING DIODE",
+    symbol: "—▶|—",
+    name: "Unknown Silicon Diode",
+    kind: "diode",
   },
-  "points": [
-    [
-      "anode",
-      "ANODE",
-      "positive"
-    ],
-    [
-      "cathode",
-      "CATHODE",
-      "negative"
-    ]
+  points: [
+    ["left", "ANODE", "red"],
+    ["right", "CATHODE", "black"],
   ],
-  "probeTargets": {
-    "black": "cathode",
-    "red": "anode"
+  probeTargets: {
+    red: "left",
+    black: "right",
   },
-  "readingRule": "unpowered",
-  "steps": [
+  readingRule: "unpowered",
+  diagnosis: {
+    correct: "Diode Good",
+    options: ["Diode Good", "Diode Open", "Diode Shorted"],
+  },
+  steps: [
     [
       "welcome",
-      "Welcome to Lesson 5",
-      "You will test a silicon diode in the forward direction.",
-      "continue"
+      "A power-supply board has an unknown diode",
+      "Use diode-test mode to evaluate the junction before replacing the component.",
+      "continue",
     ],
     [
       "poweroff",
-      "Verify Power Is Off",
-      "Diode mode supplies its own small test voltage.",
-      "poweroff"
+      "Verify the board is de-energized",
+      "Diode testing is performed with circuit power removed.",
+      "poweroff",
     ],
     [
       "mode",
-      "Select Diode Test",
-      "Click the diode symbol.",
-      "mode"
+      "Select diode-test mode",
+      "The meter applies a small test current and displays the junction voltage drop.",
+      "mode",
     ],
     [
       "black",
-      "Connect the Black Probe",
-      "Select black, then click CATHODE.",
-      "black"
+      "Place the black probe on the cathode",
+      "The cathode is the banded side of a physical diode and the bar side of its schematic symbol.",
+      "black",
     ],
     [
       "red",
-      "Connect the Red Probe",
-      "Select red, then click ANODE.",
-      "red"
+      "Place the red probe on the anode",
+      "Red on the anode and black on the cathode forward-biases the junction.",
+      "red",
     ],
     [
       "read",
-      "Record Forward Drop",
-      "Click the display when it shows approximately 0.67 V.",
-      "read"
-    ]
-  ]
+      "Read the forward-bias result",
+      "About 0.5–0.8 V is typical for a silicon diode. OL indicates an open junction; near 0 V indicates a short.",
+      "read",
+    ],
+    [
+      "diagnose",
+      "Submit the diode diagnosis",
+      "Use the displayed forward-voltage evidence to identify the diode condition.",
+      "diagnose",
+    ],
+  ],
 };
 
 export default lesson;

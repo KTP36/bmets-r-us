@@ -1,13 +1,19 @@
+const STORAGE_KEY = "msbGuidedCBETCourseV3";
+
 export function loadCourseState() {
   try {
-    return JSON.parse(localStorage.getItem("msbGuidedCBETCourseV3")) || {};
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
   } catch {
     return {};
   }
 }
 
 export function saveCourseState(state) {
-  localStorage.setItem("msbGuidedCBETCourseV3", JSON.stringify(state));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // Course progress should never stop the lab from running.
+  }
 }
 
 export function isReadingReady({
@@ -19,7 +25,9 @@ export function isReadingReady({
   seriesOpen,
   discharged,
 }) {
-  if (!blackConnected || !redConnected || meterMode !== lesson.mode) return false;
+  if (!lesson || !blackConnected || !redConnected || meterMode !== lesson.mode) {
+    return false;
+  }
 
   switch (lesson.readingRule) {
     case "powered":
@@ -35,7 +43,19 @@ export function isReadingReady({
 }
 
 export function getDisplayValue({ lesson, ready, meterMode }) {
-  if (ready) return lesson.expected;
-  if (meterMode === "off") return "— — —";
-  return "0.0";
+  if (ready) return lesson?.expected || "0.0";
+
+  switch (meterMode) {
+    case "off":
+      return "— — —";
+    case "resistance":
+    case "continuity":
+    case "diode":
+      return "OL";
+    case "voltage":
+    case "current":
+    case "capacitance":
+    default:
+      return "0.000";
+  }
 }

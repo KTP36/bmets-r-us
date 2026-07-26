@@ -11,6 +11,8 @@ export default function CircuitBoard({
   blackConnected,
   redConnected,
   diagnosis,
+  readingReady,
+  continuityScenario,
   onPower,
   onSeries,
   onDischarge,
@@ -73,10 +75,17 @@ export default function CircuitBoard({
           <div className="vl-wire left" />
           <div className="vl-wire right" />
           <div className="vl-wire bottom" />
-          <div className="vl-resistor">
-            <span>{lesson.expected || "1 kΩ"}</span>
-            <i />
-          </div>
+          {lesson.id === "continuity" ? (
+            <div className={`vl-fuse ${readingReady ? continuityScenario : ""}`} aria-label="Training fuse">
+              <span>{readingReady ? (continuityScenario === "good" ? "GOOD FUSE" : "OPEN FUSE") : "FUSE"}</span>
+              <i />
+            </div>
+          ) : (
+            <div className="vl-resistor">
+              <span>{lesson.expected || "1 kΩ"}</span>
+              <i />
+            </div>
+          )}
 
           <button
             type="button"
@@ -109,11 +118,11 @@ export default function CircuitBoard({
           )}
         </div>
 
-        <div className="vl-training-load">
-          <span className="vl-device-title">Training Load</span>
-          <div className="vl-load-symbol">—/\/\/—</div>
-          <strong>{lesson.expected || "1 kΩ"}</strong>
-          <small>{seriesOpen ? "Open circuit" : "Connected"}</small>
+        <div className={`vl-training-load ${lesson.id === "continuity" ? "fuse-load" : ""}`}>
+          <span className="vl-device-title">{lesson.id === "continuity" ? "Training Fuse" : "Training Load"}</span>
+          <div className="vl-load-symbol">{lesson.id === "continuity" ? "—[ FUSE ]—" : "—/\\/\\—"}</div>
+          <strong>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "CONTINUITY" : "OPEN") : "TEST REQUIRED") : lesson.expected || "1 kΩ"}</strong>
+          <small>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "Electrical path complete" : "Electrical path broken") : "Condition hidden") : seriesOpen ? "Open circuit" : "Connected"}</small>
         </div>
       </div>
 

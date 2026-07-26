@@ -1,73 +1,76 @@
 const lesson = {
-  "id": "continuity",
-  "title": "Perform a Continuity Test",
-  "shortTitle": "Continuity",
-  "badge": "Continuity Checker",
-  "xp": 130,
-  "intro": "Confirm that a fuse or wire has an unbroken electrical path.",
-  "expected": "BEEP",
-  "mode": "continuity",
-  "component": {
-    "label": "TRAINING FUSE",
-    "symbol": "—[ FUSE ]—",
-    "name": "Good Fuse",
-    "kind": "fuse"
+  id: "continuity",
+  title: "Continuity & Fuse Testing",
+  shortTitle: "Continuity",
+  badge: "Continuity Apprentice",
+  xp: 150,
+  intro: "Determine whether a training fuse has a complete or broken electrical path.",
+  why: "Continuity testing quickly isolates open fuses, broken wires, and failed connections without energizing the circuit.",
+  expected: "0.2 Ω",
+  mode: "continuity",
+  component: {
+    label: "TRAINING FUSE",
+    symbol: "—[ FUSE ]—",
+    name: "Unknown Fuse",
+    kind: "fuse",
   },
-  "points": [
-    [
-      "left",
-      "LEFT SIDE",
-      "neutral"
-    ],
-    [
-      "right",
-      "RIGHT SIDE",
-      "neutral"
-    ]
+  points: [
+    ["left", "LEFT SIDE", "neutral"],
+    ["right", "RIGHT SIDE", "neutral"],
   ],
-  "probeTargets": {
-    "black": "left",
-    "red": "right"
+  probeTargets: {
+    black: "left",
+    red: "right",
   },
-  "readingRule": "unpowered",
-  "steps": [
+  readingRule: "unpowered",
+  diagnosis: {
+    correct: "Fuse Good",
+    options: ["Fuse Good", "Fuse Blown"],
+  },
+  steps: [
     [
       "welcome",
-      "Welcome to Lesson 4",
-      "You will check whether the training fuse is intact.",
-      "continue"
+      "A monitor will not power on",
+      "Test the protective fuse and decide whether it is intact or blown.",
+      "continue",
     ],
     [
       "poweroff",
-      "Verify Power Is Off",
-      "Continuity testing must be performed on a de-energized circuit.",
-      "poweroff"
+      "Verify the circuit is de-energized",
+      "Never use continuity mode on a powered circuit.",
+      "poweroff",
     ],
     [
       "mode",
-      "Select Continuity",
-      "Click the continuity symbol.",
-      "mode"
+      "Select continuity mode",
+      "Choose the sound-wave continuity setting on the meter.",
+      "mode",
     ],
     [
       "black",
-      "Connect the Black Probe",
-      "Select black, then click one side of the fuse.",
-      "black"
+      "Connect the black probe",
+      "Select the black probe, then touch the left side of the fuse.",
+      "black",
     ],
     [
       "red",
-      "Connect the Red Probe",
-      "Select red, then click the other side.",
-      "red"
+      "Connect the red probe",
+      "Select the red probe, then touch the right side of the fuse.",
+      "red",
     ],
     [
       "read",
-      "Confirm Continuity",
-      "Click the display when the meter indicates BEEP.",
-      "read"
-    ]
-  ]
+      "Interpret the meter",
+      "A low reading with a beep means continuity. OL without a beep means the path is open.",
+      "read",
+    ],
+    [
+      "diagnose",
+      "Submit your fuse diagnosis",
+      "Use the meter evidence to decide whether the fuse is good or blown.",
+      "diagnose",
+    ],
+  ],
 };
 
 export default lesson;
