@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./VirtualCBETLab.css";
+import medSkillBuilderLogo from "./MedSkillBuilder-logo.png";
 import LESSONS from "./lessons";
 import {
   getDisplayValue,
@@ -443,27 +444,95 @@ function ProbeDock({
   );
 }
 
+function EducationNotice() {
+  return (
+    <section className="vl-education-notice" aria-label="Educational simulation notice">
+      <img src={medSkillBuilderLogo} alt="MedSkillBuilder" />
+      <div>
+        <strong>Educational Simulation</strong>
+        <p>
+          This interactive lab reinforces healthcare technology concepts through guided practice. It supports
+          classroom learning and certification preparation, but does not replace formal education, supervised
+          hands-on experience, employer training, manufacturer instruction, or professional certification.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function CompletionScreen({ lesson, lastLesson, nextLesson, resetBench, onExit }) {
   return (
-    <section className="vl-complete">
-      <div>🏆</div>
-      <span>{lesson.id === "practical" ? "PRACTICAL EXAM PASSED" : "LESSON COMPLETE"}</span>
+    <section className="vl-complete vl-learning-complete">
+      <div className="vl-complete-mark">✓</div>
+      <span>LEARNING OBJECTIVE ACHIEVED</span>
       <h2>{lesson.badge}</h2>
-      <p>
-        You completed <strong>{lesson.title}</strong>
-        {lesson.expected ? <> and recorded <strong>{lesson.expected}</strong>.</> : "."}
-      </p>
+      <p>You successfully completed <strong>{lesson.title}</strong> and demonstrated the concepts presented in this guided lesson.</p>
+      <div className="vl-objective-list">
+        <strong>✓ Correct meter setup</strong>
+        <strong>✓ Safe testing procedures</strong>
+        <strong>✓ Proper probe placement</strong>
+        <strong>✓ Accurate interpretation of results</strong>
+      </div>
       <div className="vl-rewards">
-        <strong>+{lesson.xp} XP</strong>
-        <strong>Skill unlocked: {lesson.shortTitle}</strong>
+        <strong>⚡ +{lesson.xp} XP earned</strong>
+        <strong>🏅 {lesson.badge} badge unlocked</strong>
+      </div>
+      <div className="vl-readiness-note">
+        <strong>Ready for the next concept?</strong>
+        <span>Continue building your knowledge with the next guided lesson.</span>
       </div>
       <div className="vl-complete-actions">
         <button className="vl-primary" onClick={nextLesson}>
-          {lastLesson ? "Complete Multimeter Course →" : "Continue to Next Lesson →"}
+          {lastLesson ? "Complete Multimeter Academy →" : "Continue to Next Lesson →"}
         </button>
         <button onClick={resetBench}>Practice Again</button>
         <button onClick={onExit}>Return to Academy Dashboard</button>
       </div>
+    </section>
+  );
+}
+
+function CertificateScreen({ learnerName, setLearnerName, onBack, onExit }) {
+  const completionDate = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" }).format(new Date());
+  const certificateId = `MSB-VMA-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`;
+
+  function updateName(value) {
+    setLearnerName(value);
+    localStorage.setItem("msbLearnerName", value);
+  }
+
+  return (
+    <section className="vl-certificate-page">
+      <div className="vl-certificate-controls no-print">
+        <label>
+          Name shown on certificate
+          <input value={learnerName} onChange={(event) => updateName(event.target.value)} placeholder="Learner Name" />
+        </label>
+        <button className="vl-primary" type="button" onClick={() => window.print()}>Print Certificate</button>
+        <button type="button" onClick={onBack}>Back to Completion</button>
+        <button type="button" onClick={onExit}>Academy Dashboard</button>
+      </div>
+
+      <article className="vl-certificate" aria-label="Certificate of completion">
+        <img src={medSkillBuilderLogo} alt="MedSkillBuilder" />
+        <span>LEARN. PRACTICE. GROW.</span>
+        <h2>Certificate of Completion</h2>
+        <p>This certifies that</p>
+        <h3>{learnerName.trim() || "Learner Name"}</h3>
+        <p>has successfully completed the</p>
+        <h4>Virtual Multimeter Academy</h4>
+        <p className="vl-certificate-copy">
+          and demonstrated an understanding of the educational concepts presented throughout this interactive learning experience.
+        </p>
+        <div className="vl-certificate-disclaimer">
+          This certificate recognizes completion of a MedSkillBuilder educational program. It is not a professional
+          certification, license, credential, or authorization to independently perform clinical or biomedical engineering duties.
+        </div>
+        <footer>
+          <span>Certificate ID: {certificateId}</span>
+          <span>Completed: {completionDate}</span>
+        </footer>
+      </article>
     </section>
   );
 }
@@ -475,6 +544,7 @@ export default function VirtualCBETLab({ onExit }) {
   const [completedLessons, setCompletedLessons] = useState(stored.completedLessons || []);
   const [totalXp, setTotalXp] = useState(stored.totalXp || 0);
   const [screen, setScreen] = useState("lesson");
+  const [learnerName, setLearnerName] = useState(() => localStorage.getItem("msbLearnerName") || "");
   const [supplyOn, setSupplyOn] = useState(false);
   const [meterMode, setMeterMode] = useState("off");
   const [selectedProbe, setSelectedProbe] = useState("");
@@ -682,6 +752,8 @@ export default function VirtualCBETLab({ onExit }) {
         </div>
       </header>
 
+      <EducationNotice />
+
       <div className="vl-course-progress">
         {LESSONS.map((item, index) => (
           <div key={item.id} className={`${index === lessonIndex ? "active" : ""} ${completedLessons.includes(item.id) ? "done" : ""}`}>
@@ -771,28 +843,50 @@ export default function VirtualCBETLab({ onExit }) {
       )}
 
       {screen === "courseComplete" && (
-        <section className="vl-complete vl-finale">
-          <div>🎓</div>
-          <span>COURSE COMPLETE</span>
-          <h2>Multimeter Foundations Certified</h2>
-          <p>You completed eight guided labs and the final practical exam.</p>
+        <section className="vl-complete vl-finale vl-responsible-finale">
+          <img className="vl-finale-logo" src={medSkillBuilderLogo} alt="MedSkillBuilder" />
+          <span>ACADEMY COMPLETE</span>
+          <h2>Congratulations!</h2>
+          <p>You completed the <strong>MedSkillBuilder Virtual Multimeter Academy</strong>.</p>
           <div className="vl-rewards">
             <strong>{totalPossibleXp} possible XP</strong>
-            <strong>{LESSONS.length} completed skill checks</strong>
+            <strong>{LESSONS.length} completed learning checks</strong>
           </div>
           <div className="vl-skill-grid">
             {LESSONS.map((item) => <strong key={item.id}>✓ {item.shortTitle}</strong>)}
           </div>
+          <div className="vl-professional-reminder">
+            <strong>Remember</strong>
+            <p>
+              Completing this academy demonstrates understanding of the educational concepts presented. Professional competency
+              develops through continued study, supervised hands-on experience, employer training, manufacturer instruction,
+              and formal certification when appropriate.
+            </p>
+            <div><span>Keep learning.</span><span>Keep practicing.</span><span>Keep growing.</span></div>
+          </div>
           <div className="vl-complete-actions">
-            <button className="vl-primary" onClick={onExit}>Return to CBET Academy →</button>
+            <button className="vl-primary" onClick={() => setScreen("certificate")}>View Certificate of Completion →</button>
             <button onClick={() => resetBench(0)}>Review Lessons</button>
+            <button onClick={onExit}>Return to CBET Academy</button>
           </div>
         </section>
       )}
 
-      <footer className="vl-safety">
-        <strong>⚠ Safety reminder</strong>
-        <span>Use the correct meter function and verify circuit power before connecting probes.</span>
+      {screen === "certificate" && (
+        <CertificateScreen
+          learnerName={learnerName}
+          setLearnerName={setLearnerName}
+          onBack={() => setScreen("courseComplete")}
+          onExit={onExit}
+        />
+      )}
+
+      <footer className="vl-safety vl-brand-promise">
+        <img src={medSkillBuilderLogo} alt="" aria-hidden="true" />
+        <div>
+          <strong>Learn. Practice. Grow.</strong>
+          <span>MedSkillBuilder helps learners build confidence through interactive practice while encouraging continued education, supervised practice, and lifelong professional development.</span>
+        </div>
       </footer>
     </main>
   );
