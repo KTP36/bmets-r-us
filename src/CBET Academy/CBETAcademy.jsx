@@ -159,8 +159,13 @@ function StatsPanel({ stats, onClose }) {
   );
 }
 
-function KnowledgeCheck({ check, onComplete }) {
+function KnowledgeCheck({ check, onComplete, resetKey }) {
   const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    setSelected(null);
+  }, [resetKey]);
+
   const answered = selected !== null;
   const correct = selected === check.answer;
 
@@ -180,7 +185,9 @@ function KnowledgeCheck({ check, onComplete }) {
         {check.options.map((option, index) => (
           <button
             key={option}
+            type="button"
             disabled={correct}
+            aria-pressed={selected === index}
             className={`cbet-option ${
               correct && index === check.answer ? "correct" : ""
             } ${answered && index === selected && !correct ? "wrong" : ""}`}
@@ -994,7 +1001,8 @@ function MissionOne({ onBack, onComplete }) {
           <GlossaryTerms text={`${lesson.title} ${lesson.points.join(" ")}`} />
           <InteractiveLab type={lesson.interaction} />
           <KnowledgeCheck
-            key={lessonIndex}
+            key={`mission-1-lesson-${lessonIndex}`}
+            resetKey={`mission-1-lesson-${lessonIndex}`}
             check={lesson.check}
             onComplete={(isCorrect) => {
               if (isCorrect) markLessonComplete(lessonIndex);
@@ -1736,6 +1744,7 @@ function MissionTwo({ onExit }) {
           <MissionTwoLab type={lesson.interaction} />
           <KnowledgeCheck
             key={`mission-2-lesson-${lessonIndex}`}
+            resetKey={`mission-2-lesson-${lessonIndex}`}
             check={{
               prompt: lessonIndex === 0 ? "What happens to current when resistance increases and voltage stays constant?"
                 : lessonIndex === 1 ? "What commonly causes excessive ripple after a rectifier?"
