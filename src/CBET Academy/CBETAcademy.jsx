@@ -164,10 +164,18 @@ function KnowledgeCheck({ check, onComplete }) {
   const answered = selected !== null;
   const correct = selected === check.answer;
 
+  const questionText =
+    check.question ||
+    check.prompt ||
+    check.questionText ||
+    check.text ||
+    check.title ||
+    "Select the best answer.";
+
   return (
     <div className="cbet-check">
       <span className="cbet-label">Quick Knowledge Check</span>
-      <h3>{check.question}</h3>
+      <h3 className="cbet-check-question">{questionText}</h3>
       <div className="cbet-options">
         {check.options.map((option, index) => (
           <button
