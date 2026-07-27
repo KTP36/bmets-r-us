@@ -968,3 +968,17 @@
   .cbet-signature-lab { grid-template-columns: 1fr; }
   .cbet-signature-lab > button { width: 100%; }
 }
+
+
+/* --- Knowledge Check Question Visibility Fix --- */
+.cbet-check h3 {
+  display: block;
+  margin: 16px 0 22px;
+  color: #10233c !important;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 900;
+  line-height: 1.35;
+  text-align: center;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
