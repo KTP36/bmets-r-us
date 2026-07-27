@@ -827,10 +827,7 @@ function MissionOne({ onBack, onComplete }) {
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
   const answered = selected !== undefined;
-  const displayedCorrect = finalResult?.correct ?? score;
-  const percent =
-    finalResult?.percent ??
-    Math.round((displayedCorrect / questions.length) * 100);
+  const percent = Math.round((score / questions.length) * 100);
   const passed = percent >= 80;
 
   useEffect(() => {
@@ -1145,7 +1142,10 @@ function MissionTwo({ onExit }) {
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
-  const percent = Math.round((score / questions.length) * 100);
+  const displayedCorrect = finalResult?.correct ?? score;
+  const percent =
+    finalResult?.percent ??
+    Math.round((displayedCorrect / questions.length) * 100);
   const passed = percent >= 80;
 
   useEffect(() => {
