@@ -1735,6 +1735,7 @@ function MissionTwo({ onExit }) {
           <GlossaryTerms text={`${lesson.title} ${lesson.points.join(" ")}`} />
           <MissionTwoLab type={lesson.interaction} />
           <KnowledgeCheck
+            key={`mission-2-lesson-${lessonIndex}`}
             check={{
               prompt: lessonIndex === 0 ? "What happens to current when resistance increases and voltage stays constant?"
                 : lessonIndex === 1 ? "What commonly causes excessive ripple after a rectifier?"
