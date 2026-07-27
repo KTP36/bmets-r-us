@@ -180,14 +180,18 @@ function KnowledgeCheck({ check, onComplete }) {
         {check.options.map((option, index) => (
           <button
             key={option}
-            disabled={answered}
+            disabled={correct}
             className={`cbet-option ${
-              answered && index === check.answer ? "correct" : ""
+              correct && index === check.answer ? "correct" : ""
             } ${answered && index === selected && !correct ? "wrong" : ""}`}
             onClick={() => {
+              const isCorrect = index === check.answer;
               setSelected(index);
-              playCbetTone(index === check.answer ? "correct" : "wrong");
-              onComplete(index === check.answer);
+              playCbetTone(isCorrect ? "correct" : "wrong");
+
+              if (isCorrect) {
+                onComplete(true);
+              }
             }}
           >
             <strong>{String.fromCharCode(65 + index)}.</strong> {option}
@@ -196,8 +200,12 @@ function KnowledgeCheck({ check, onComplete }) {
       </div>
       {answered && (
         <div className="cbet-feedback">
-          <strong>{correct ? "Correct." : "Review this point."}</strong>
-          <span>{check.explanation}</span>
+          <strong>{correct ? "Correct." : "Not quite. Try again."}</strong>
+          <span>
+            {correct
+              ? check.explanation
+              : "Review the lesson and choose another answer."}
+          </span>
         </div>
       )}
     </div>
@@ -988,7 +996,9 @@ function MissionOne({ onBack, onComplete }) {
           <KnowledgeCheck
             key={lessonIndex}
             check={lesson.check}
-            onComplete={() => markLessonComplete(lessonIndex)}
+            onComplete={(isCorrect) => {
+              if (isCorrect) markLessonComplete(lessonIndex);
+            }}
           />
           <div className="cbet-actions">
             <button className="cbet-secondary" disabled={lessonIndex === 0}
@@ -1747,7 +1757,9 @@ function MissionTwo({ onExit }) {
               answer: lessonIndex === 0 ? 1 : lessonIndex === 1 ? 1 : lessonIndex === 2 ? 1 : lessonIndex === 3 ? 0 : lessonIndex === 4 ? 0 : lessonIndex === 5 ? 0 : lessonIndex === 6 ? 0 : lessonIndex === 7 ? 0 : 0,
               explanation: "Correct. This is the key behavior to remember for this component."
             }}
-            onComplete={() => markLessonComplete(lessonIndex)}
+            onComplete={(isCorrect) => {
+              if (isCorrect) markLessonComplete(lessonIndex);
+            }}
           />
           <div className="cbet-nav-row">
             <button className="cbet-secondary" disabled={lessonIndex === 0}
