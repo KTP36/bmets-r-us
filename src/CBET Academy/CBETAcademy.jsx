@@ -1192,35 +1192,473 @@ function MissionTwo({ onExit }) {
   );
 
   if (phase === "briefing") {
+    const hasSavedProgress =
+      savedProgress.phase !== "briefing" && savedProgress.phase !== "complete";
+
+    const resumeLabel =
+      savedProgress.phase === "lessons"
+        ? `Lesson ${(savedProgress.lessonIndex || 0) + 1}`
+        : savedProgress.phase === "scenarios"
+        ? `Scenario ${(savedProgress.scenarioIndex || 0) + 1}`
+        : "Mission Challenge";
+
     return (
-      <section className="cbet-shell">
+      <section className="cbet-shell mission-two-launch-shell">
         {missionOverlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
-        <article className="cbet-mission-briefing mission-two-briefing">
-          <div className="cbet-hero-icon">🔧</div>
-          <span className="cbet-label">Mission 2</span>
-          <h1>Electronic Components</h1>
-          <p>Learn how real components behave, fail, and appear during troubleshooting.</p>
-          <div className="cbet-brief-grid">
-            <div><strong>9</strong><span>Interactive lessons</span></div>
-            <div><strong>4</strong><span>Applied cases</span></div>
-            <div><strong>25</strong><span>Challenge questions</span></div>
-            <div><strong>350 XP</strong><span>Mission reward</span></div>
+
+        <style>{`
+          .mission-two-launch-shell {
+            --m2-navy: #0b2742;
+            --m2-blue: #1769aa;
+            --m2-cyan: #55d7ff;
+            --m2-gold: #ffc83d;
+            --m2-text: #eef8ff;
+            --m2-muted: #b9d2e2;
+            min-height: 100vh;
+            padding: clamp(18px, 3vw, 42px);
+            color: var(--m2-text);
+            background:
+              radial-gradient(circle at 12% 0%, rgba(40, 151, 211, .25), transparent 34%),
+              radial-gradient(circle at 100% 14%, rgba(255, 200, 61, .12), transparent 26%),
+              linear-gradient(135deg, #071827 0%, #0b2b47 58%, #193e4a 100%);
+          }
+
+          .mission-two-launch-shell * {
+            box-sizing: border-box;
+          }
+
+          .mission-two-topbar,
+          .mission-two-launch-card {
+            width: min(1180px, 100%);
+            margin-inline: auto;
+          }
+
+          .mission-two-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: clamp(22px, 4vw, 42px);
+          }
+
+          .mission-two-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            min-height: 44px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #d9efff;
+            font: inherit;
+            font-weight: 800;
+            cursor: pointer;
+          }
+
+          .mission-two-back:hover {
+            color: white;
+            transform: translateX(-2px);
+          }
+
+          .mission-two-path {
+            color: #82bddf;
+            font-size: .78rem;
+            font-weight: 900;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+          }
+
+          .mission-two-launch-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(120, 204, 244, .24);
+            border-radius: 30px;
+            background: linear-gradient(145deg, rgba(13, 47, 75, .96), rgba(8, 28, 44, .98));
+            box-shadow: 0 28px 75px rgba(0, 0, 0, .34);
+          }
+
+          .mission-two-launch-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+              linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(to bottom, black, transparent 78%);
+          }
+
+          .mission-two-hero {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(280px, .75fr);
+            gap: clamp(28px, 5vw, 72px);
+            align-items: center;
+            padding: clamp(30px, 6vw, 72px);
+          }
+
+          .mission-two-copy {
+            min-width: 0;
+          }
+
+          .mission-two-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            border: 1px solid rgba(85, 215, 255, .34);
+            border-radius: 999px;
+            background: rgba(85, 215, 255, .08);
+            color: #8ce4ff;
+            font-size: .78rem;
+            font-weight: 950;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+          }
+
+          .mission-two-kicker i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--m2-cyan);
+            box-shadow: 0 0 18px rgba(85, 215, 255, .85);
+          }
+
+          .mission-two-copy h1 {
+            margin: 22px 0 16px;
+            color: white;
+            font-size: clamp(2.7rem, 7vw, 5.6rem);
+            line-height: .96;
+            letter-spacing: -.055em;
+          }
+
+          .mission-two-copy > p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--m2-muted);
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            line-height: 1.65;
+          }
+
+          .mission-two-focus {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+          }
+
+          .mission-two-focus span {
+            padding: 9px 12px;
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 999px;
+            background: rgba(255,255,255,.055);
+            color: #e6f6ff;
+            font-size: .82rem;
+            font-weight: 800;
+          }
+
+          .mission-two-emblem {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: min(280px, 100%);
+            aspect-ratio: 1;
+            margin-inline: auto;
+            border: 1px solid rgba(85, 215, 255, .22);
+            border-radius: 50%;
+            background:
+              radial-gradient(circle, rgba(85, 215, 255, .14), rgba(17, 74, 110, .08) 58%, transparent 60%),
+              rgba(4, 20, 31, .42);
+            box-shadow:
+              inset 0 0 50px rgba(85, 215, 255, .08),
+              0 20px 55px rgba(0,0,0,.24);
+          }
+
+          .mission-two-emblem::before,
+          .mission-two-emblem::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(85, 215, 255, .22);
+            border-radius: 50%;
+          }
+
+          .mission-two-emblem::before { inset: 17%; }
+          .mission-two-emblem::after { inset: 33%; }
+
+          .mission-two-emblem span {
+            position: relative;
+            z-index: 2;
+            font-size: clamp(4rem, 9vw, 7rem);
+            filter: drop-shadow(0 14px 22px rgba(0,0,0,.32));
+          }
+
+          .mission-two-emblem strong {
+            position: absolute;
+            bottom: 16%;
+            z-index: 2;
+            color: #a9eaff;
+            font-size: .72rem;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+          }
+
+          .mission-two-stat-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            padding: 0 clamp(30px, 6vw, 72px) clamp(28px, 5vw, 56px);
+          }
+
+          .mission-two-stat {
+            min-width: 0;
+            padding: 20px;
+            border: 1px solid rgba(123, 198, 235, .17);
+            border-radius: 18px;
+            background: rgba(255,255,255,.045);
+            backdrop-filter: blur(5px);
+          }
+
+          .mission-two-stat small {
+            display: block;
+            color: #87b9d5;
+            font-size: .7rem;
+            font-weight: 950;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+          }
+
+          .mission-two-stat strong {
+            display: block;
+            margin-top: 7px;
+            color: white;
+            font-size: clamp(1.65rem, 3vw, 2.25rem);
+          }
+
+          .mission-two-stat span {
+            display: block;
+            margin-top: 4px;
+            color: #b9d2e2;
+            font-size: .85rem;
+          }
+
+          .mission-two-resume {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 clamp(30px, 6vw, 72px) 22px;
+            padding: 15px 18px;
+            border: 1px solid rgba(255, 200, 61, .28);
+            border-radius: 14px;
+            background: rgba(255, 200, 61, .07);
+            color: #ffe99a;
+            font-weight: 800;
+          }
+
+          .mission-two-actions {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 24px clamp(30px, 6vw, 72px);
+            border-top: 1px solid rgba(123, 198, 235, .15);
+            background: rgba(3, 17, 27, .46);
+          }
+
+          .mission-two-actions-copy strong {
+            display: block;
+            color: white;
+            font-size: 1rem;
+          }
+
+          .mission-two-actions-copy span {
+            display: block;
+            margin-top: 4px;
+            color: #8fb8cf;
+            font-size: .83rem;
+          }
+
+          .mission-two-start {
+            flex: 0 0 auto;
+            min-width: 240px;
+            min-height: 58px;
+            padding: 0 25px;
+            border: 0;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ffd75a, #ffb300);
+            color: #142536;
+            font: inherit;
+            font-size: 1rem;
+            font-weight: 950;
+            cursor: pointer;
+            box-shadow: 0 14px 30px rgba(255, 179, 0, .22);
+            transition: transform .18s ease, box-shadow .18s ease;
+          }
+
+          .mission-two-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 38px rgba(255, 179, 0, .3);
+          }
+
+          .mission-two-start:focus-visible,
+          .mission-two-back:focus-visible {
+            outline: 3px solid rgba(85, 215, 255, .72);
+            outline-offset: 4px;
+          }
+
+          @media (max-width: 880px) {
+            .mission-two-hero {
+              grid-template-columns: 1fr;
+            }
+
+            .mission-two-emblem {
+              width: min(220px, 70vw);
+            }
+
+            .mission-two-stat-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+          }
+
+          @media (max-width: 600px) {
+            .mission-two-launch-shell {
+              padding: 14px;
+            }
+
+            .mission-two-topbar {
+              align-items: flex-start;
+              flex-direction: column;
+            }
+
+            .mission-two-hero,
+            .mission-two-stat-grid,
+            .mission-two-actions {
+              padding-left: 20px;
+              padding-right: 20px;
+            }
+
+            .mission-two-copy h1 {
+              font-size: clamp(2.35rem, 13vw, 3.8rem);
+            }
+
+            .mission-two-stat-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .mission-two-resume {
+              margin-left: 20px;
+              margin-right: 20px;
+            }
+
+            .mission-two-actions {
+              align-items: stretch;
+              flex-direction: column;
+            }
+
+            .mission-two-start {
+              width: 100%;
+              min-width: 0;
+            }
+          }
+        `}</style>
+
+        <div className="mission-two-topbar">
+          <button type="button" className="mission-two-back" onClick={onExit}>
+            <span aria-hidden="true">←</span>
+            Back to Academy Dashboard
+          </button>
+          <span className="mission-two-path">CBET Certification Academy</span>
+        </div>
+
+        <article className="mission-two-launch-card">
+          <div className="mission-two-hero">
+            <div className="mission-two-copy">
+              <span className="mission-two-kicker">
+                <i aria-hidden="true" />
+                Mission 2
+              </span>
+
+              <h1>Electronic Components</h1>
+
+              <p>
+                Learn how real components behave, fail, and appear during
+                troubleshooting through guided lessons, interactive benches,
+                and applied diagnostic cases.
+              </p>
+
+              <div className="mission-two-focus" aria-label="Mission focus areas">
+                <span>Component recognition</span>
+                <span>Failure behavior</span>
+                <span>Safe troubleshooting</span>
+                <span>Power-supply diagnostics</span>
+              </div>
+            </div>
+
+            <div className="mission-two-emblem" aria-hidden="true">
+              <span>🔧</span>
+              <strong>Component Specialist Path</strong>
+            </div>
           </div>
-          {savedProgress.phase !== "briefing" && savedProgress.phase !== "complete" && (
-            <div className="cbet-resume-note">
-              Progress saved: resume at {savedProgress.phase === "lessons"
-                ? `Lesson ${(savedProgress.lessonIndex || 0) + 1}`
-                : savedProgress.phase === "scenarios"
-                ? `Scenario ${(savedProgress.scenarioIndex || 0) + 1}`
-                : "Mission Challenge"}.
+
+          <div className="mission-two-stat-grid">
+            <div className="mission-two-stat">
+              <small>Guided learning</small>
+              <strong>9</strong>
+              <span>Interactive lessons</span>
+            </div>
+            <div className="mission-two-stat">
+              <small>Applied practice</small>
+              <strong>4</strong>
+              <span>Troubleshooting cases</span>
+            </div>
+            <div className="mission-two-stat">
+              <small>Knowledge challenge</small>
+              <strong>25</strong>
+              <span>Mission questions</span>
+            </div>
+            <div className="mission-two-stat">
+              <small>Completion reward</small>
+              <strong>350 XP</strong>
+              <span>Component Specialist badge</span>
+            </div>
+          </div>
+
+          {hasSavedProgress && (
+            <div className="mission-two-resume">
+              <span aria-hidden="true">●</span>
+              Progress saved — continue at {resumeLabel}.
             </div>
           )}
-          <button className="cbet-primary full" onClick={() =>
-            setPhase(savedProgress.phase === "briefing" ? "lessons" : savedProgress.phase)
-          }>
-            {savedProgress.phase === "briefing" ? "Begin Mission 2" : "Resume Mission 2"}
-          </button>
+
+          <div className="mission-two-actions">
+            <div className="mission-two-actions-copy">
+              <strong>Ready to begin Mission 2?</strong>
+              <span>Your progress is saved automatically as you advance.</span>
+            </div>
+
+            <button
+              type="button"
+              className="mission-two-start"
+              onClick={() =>
+                setPhase(
+                  savedProgress.phase === "briefing"
+                    ? "lessons"
+                    : savedProgress.phase
+                )
+              }
+            >
+              {savedProgress.phase === "briefing"
+                ? "Begin Mission 2 →"
+                : "Resume Mission 2 →"}
+            </button>
+          </div>
         </article>
       </section>
     );
