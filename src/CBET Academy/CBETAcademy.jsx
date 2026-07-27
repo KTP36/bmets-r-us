@@ -758,6 +758,29 @@ function ScenarioCard({ scenario, number, onComplete }) {
   );
 }
 
+function scrollCbetPageToTop() {
+  if (typeof window === "undefined") return;
+
+  window.requestAnimationFrame(() => {
+    const target =
+      document.querySelector(".cbet-academy .cbet-shell") ||
+      document.querySelector(".cbet-academy");
+
+    if (!target) return;
+
+    const top = Math.max(
+      0,
+      target.getBoundingClientRect().top + window.scrollY - 24
+    );
+
+    window.scrollTo({
+      top,
+      behavior: "smooth",
+    });
+  });
+}
+
+
 function MissionOne({ onBack, onComplete }) {
   const questions = useMemo(() => missionOneQuestions.map(shuffleQuestion), []);
   const savedProgress = getMissionProgress(1);
@@ -782,6 +805,10 @@ function MissionOne({ onBack, onComplete }) {
   const answered = selected !== undefined;
   const percent = Math.round((score / questions.length) * 100);
   const passed = percent >= 80;
+
+  useEffect(() => {
+    scrollCbetPageToTop();
+  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
 
   function setPhase(nextPhase) {
     setPhaseState(nextPhase);
@@ -1090,6 +1117,10 @@ function MissionTwo({ onExit }) {
   const selected = answers[questionIndex];
   const percent = Math.round((score / questions.length) * 100);
   const passed = percent >= 80;
+
+  useEffect(() => {
+    scrollCbetPageToTop();
+  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
 
   function setPhase(nextPhase) {
     setPhaseState(nextPhase);
