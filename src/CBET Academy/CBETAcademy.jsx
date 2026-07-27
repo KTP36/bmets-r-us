@@ -1861,6 +1861,7 @@ export default function CBETAcademy() {
   const [screen, setScreen] = useState("dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
+  const [returnToMissions, setReturnToMissions] = useState(false);
   const [streak, setStreak] = useState(() => registerCbetVisit());
   const academy = getCbetAcademyState();
   const progress = cbetCompletionPercent();
@@ -1869,6 +1870,51 @@ export default function CBETAcademy() {
   useEffect(() => {
     setStreak(registerCbetVisit());
   }, [refresh]);
+
+  useEffect(() => {
+    if (screen !== "dashboard") return undefined;
+
+    const previousScrollRestoration =
+      "scrollRestoration" in window.history
+        ? window.history.scrollRestoration
+        : null;
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    const scrollToTrainingPath = () => {
+      const missionSection = document.getElementById("cbet-training-path");
+      if (!missionSection) return;
+
+      const top = Math.max(
+        0,
+        missionSection.getBoundingClientRect().top + window.scrollY - 24
+      );
+
+      window.scrollTo({
+        top,
+        behavior: "auto",
+      });
+    };
+
+    // Repeat briefly because images, fonts, and cards above the missions
+    // can finish loading after the first scroll and shift the page.
+    const timers = [0, 80, 200, 450, 800, 1200].map((delay) =>
+      window.setTimeout(scrollToTrainingPath, delay)
+    );
+
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+
+      if (
+        previousScrollRestoration !== null &&
+        "scrollRestoration" in window.history
+      ) {
+        window.history.scrollRestoration = previousScrollRestoration;
+      }
+    };
+  }, [screen, returnToMissions, refresh]);
 
   if (screen === "mission1") {
     return (
@@ -1895,7 +1941,14 @@ export default function CBETAcademy() {
   }
 
   if (screen === "virtualLab") {
-    return <VirtualCBETLab onExit={() => setScreen("dashboard")} />;
+    return (
+      <VirtualCBETLab
+        onExit={() => {
+          setReturnToMissions(true);
+          setScreen("dashboard");
+        }}
+      />
+    );
   }
 
   return (
@@ -1940,7 +1993,7 @@ export default function CBETAcademy() {
       </section>
 
       <section className="cbet-shell cbet-dashboard">
-        <div className="cbet-section-heading">
+        <div className="cbet-section-heading" id="cbet-training-path">
           <span className="cbet-label">Training Path</span>
           <h2>Complete each mission to unlock the next</h2>
         </div>
