@@ -820,13 +820,17 @@ function MissionOne({ onBack, onComplete }) {
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [finalResult, setFinalResult] = useState(null);
   const [xpToast, setXpToast] = useState(null);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false);
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
   const answered = selected !== undefined;
-  const percent = Math.round((score / questions.length) * 100);
+  const displayedCorrect = finalResult?.correct ?? score;
+  const percent =
+    finalResult?.percent ??
+    Math.round((displayedCorrect / questions.length) * 100);
   const passed = percent >= 80;
 
   useEffect(() => {
@@ -1212,14 +1216,34 @@ function MissionTwo({ onExit }) {
     if (questionIndex < questions.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
-      const finalCorrect = score + (selected === question.answer ? 1 : 0);
-      const finalScore = Math.round((finalCorrect / questions.length) * 100);
+      const completedAnswers = {
+        ...answers,
+        [questionIndex]: selected,
+      };
+
+      const finalCorrect = questions.reduce(
+        (total, item, index) =>
+          total + (completedAnswers[index] === item.answer ? 1 : 0),
+        0
+      );
+
+      const finalScore = Math.round(
+        (finalCorrect / questions.length) * 100
+      );
+
+      setFinalResult({
+        correct: finalCorrect,
+        percent: finalScore,
+      });
+
       const wasComplete = getCbetModuleState(2).complete;
       completeCbetModule(2, finalScore, 350);
+
       if (finalScore >= 80 && !wasComplete) {
         setShowBadgeUnlock(true);
         setXpToast({ amount: 350, label: "Mission 2 complete" });
       }
+
       setFinished(true);
       setPhase("complete");
     }
@@ -1230,6 +1254,7 @@ function MissionTwo({ onExit }) {
     setAnswers({});
     setScore(0);
     setFinished(false);
+    setFinalResult(null);
     saveMissionProgress(2, { phase: "quiz", quizIndex: 0 });
     setPhaseState("quiz");
   }
@@ -1862,8 +1887,13 @@ function MissionTwo({ onExit }) {
         )}
         <div className="cbet-hero-icon">{passed ? "🔧" : "📘"}</div>
         <span className="cbet-label">Mission 2 Results</span>
-        <h1>{passed ? "Component Specialist" : "Keep Building Your Skills"}</h1>
-        <div className="cbet-score-ring"><strong>{percent}%</strong><span>{score} of {questions.length}</span></div>
+        <h1 className="cbet-results-title">
+          {passed ? "Component Specialist" : "Keep Building Your Skills"}
+        </h1>
+        <div className="cbet-score-ring" aria-label={`${percent}% score`}>
+          <strong>{percent}%</strong>
+          <span>{displayedCorrect} of {questions.length}</span>
+        </div>
         <p>{passed
           ? "You completed Electronic Components and earned 350 XP plus the Component Specialist badge."
           : "An 80% score is required. Review the interactive component labs, then try again."}</p>
