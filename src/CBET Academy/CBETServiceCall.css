@@ -1,0 +1,1795 @@
+.service-call {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 0, rgba(81, 196, 243, .12), transparent 28%),
+    linear-gradient(180deg, #eef6fb, #e7f1f7);
+  color: #10243a;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.service-call * { box-sizing: border-box; }
+
+.service-call button {
+  font: inherit;
+}
+
+.service-call-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 56px;
+}
+
+.service-call-shell.narrow {
+  width: min(820px, calc(100% - 32px));
+}
+
+.service-call-back {
+  margin-bottom: 20px;
+  border: 0;
+  background: transparent;
+  color: #0b4f87;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.service-call-eyebrow {
+  display: inline-block;
+  color: #1595c7;
+  font-size: .76rem;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.service-call-primary,
+.service-call-secondary {
+  border: 0;
+  border-radius: 13px;
+  padding: 13px 18px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.service-call-primary {
+  background: linear-gradient(135deg, #1478bd, #0b426f);
+  color: white;
+}
+
+.service-call-primary:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.service-call-secondary {
+  background: #e4f2fb;
+  color: #0b4f87;
+}
+
+.service-call-primary.full {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.service-call-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.service-call-briefing,
+.service-call-card,
+.service-call-complete {
+  position: relative;
+  padding: clamp(26px, 5vw, 46px);
+  overflow: hidden;
+  border: 1px solid #d5e4ee;
+  border-radius: 28px;
+  background: white;
+  box-shadow: 0 22px 60px rgba(22, 57, 83, .11);
+}
+
+.service-call-priority {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #c92b2b;
+  color: white;
+  font-weight: 950;
+}
+
+.service-call-briefing h1,
+.service-call-card h1,
+.service-call-complete h1,
+.service-call-stage-heading h1 {
+  margin: 9px 0 24px;
+  line-height: 1.06;
+}
+
+.service-call-briefing h1,
+.service-call-card h1,
+.service-call-complete h1 {
+  font-size: clamp(2rem, 5vw, 3.35rem);
+}
+
+.service-call-brief-grid,
+.service-call-complete-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.service-call-brief-grid > div,
+.service-call-complete-grid > div {
+  padding: 16px;
+  border-radius: 15px;
+  background: #f1f7fb;
+}
+
+.service-call-brief-grid span,
+.service-call-brief-grid strong,
+.service-call-complete-grid span,
+.service-call-complete-grid strong {
+  display: block;
+}
+
+.service-call-brief-grid span,
+.service-call-complete-grid span {
+  color: #60758a;
+  font-size: .75rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.service-call-brief-grid strong,
+.service-call-complete-grid strong {
+  margin-top: 7px;
+}
+
+.service-call-note,
+.service-call-report {
+  margin-top: 18px;
+  padding: 18px;
+  border-left: 5px solid #42bfe9;
+  border-radius: 12px;
+  background: #eef9fd;
+}
+
+.service-call-note span {
+  font-size: .76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.service-call-note p,
+.service-call-report p {
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+
+.service-call-stage-heading {
+  margin-bottom: 22px;
+}
+
+.service-call-room-grid {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 20px;
+}
+
+.guardian-monitor,
+.service-call-toolbox,
+.service-call-evidence {
+  border: 1px solid #d5e4ee;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 14px 38px rgba(22, 57, 83, .08);
+}
+
+.guardian-monitor {
+  padding: 20px;
+  background: #102234;
+}
+
+.guardian-monitor-top {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: .85rem;
+}
+
+.guardian-monitor-top span {
+  color: #65e8a4;
+  font-size: .72rem;
+  font-weight: 900;
+}
+
+.guardian-monitor-screen {
+  display: grid;
+  grid-template-columns: 1.4fr .6fr;
+  gap: 12px;
+  min-height: 390px;
+  margin-top: 15px;
+  padding: 18px;
+  border: 5px solid #07131e;
+  border-radius: 18px;
+  background:
+    linear-gradient(rgba(45, 104, 130, .17) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 104, 130, .17) 1px, transparent 1px),
+    #031019;
+  background-size: 24px 24px;
+  color: white;
+}
+
+.guardian-ecg {
+  display: flex;
+  flex-direction: column;
+}
+
+.guardian-ecg > span {
+  color: #59ec91;
+  font-weight: 900;
+}
+
+.guardian-ecg > strong {
+  margin-top: 20px;
+  color: #59ec91;
+  font-size: 4rem;
+}
+
+.guardian-flatline {
+  height: 3px;
+  margin: 64px 0 18px;
+  background: #59ec91;
+  box-shadow: 0 0 10px rgba(89, 236, 145, .65);
+}
+
+.guardian-ecg small {
+  color: #ffcb65;
+}
+
+.guardian-vitals {
+  display: grid;
+  gap: 10px;
+}
+
+.guardian-vitals div {
+  padding: 12px;
+  border-left: 4px solid #4bc7ff;
+  background: rgba(255,255,255,.04);
+}
+
+.guardian-vitals span,
+.guardian-vitals strong,
+.guardian-vitals small {
+  display: block;
+}
+
+.guardian-vitals span { color: #69d8ff; }
+.guardian-vitals strong { font-size: clamp(1.6rem, 4vw, 2.7rem); }
+.guardian-vitals small { color: #9bb2c3; }
+
+.guardian-monitor-controls {
+  padding-top: 15px;
+}
+
+.guardian-monitor-controls button {
+  width: 100%;
+  border: 1px solid #31506a;
+  border-radius: 12px;
+  padding: 12px;
+  background: #18384e;
+  color: white;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.guardian-monitor-controls button.complete {
+  border-color: #4fd790;
+  color: #83f3b8;
+}
+
+.service-call-toolbox {
+  padding: 22px;
+}
+
+.service-call-toolbox h2 {
+  margin: 7px 0 8px;
+}
+
+.service-call-toolbox > p {
+  color: #60758a;
+  line-height: 1.5;
+}
+
+.service-call-tools {
+  display: grid;
+  gap: 9px;
+}
+
+.service-call-tools > button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  padding: 12px;
+  border: 1px solid #d5e4ee;
+  border-radius: 13px;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.service-call-tools > button.active {
+  border-color: #48c7f3;
+  outline: 3px solid rgba(72, 199, 243, .22);
+  background: #eefaff;
+}
+
+.service-call-tools > button span {
+  grid-row: 1 / 3;
+  align-self: center;
+  font-size: 1.6rem;
+}
+
+.service-call-tools > button small {
+  color: #60758a;
+}
+
+.service-call-tool-action {
+  margin-top: 14px;
+  padding: 15px;
+  border-radius: 14px;
+  background: #f1f7fb;
+}
+
+.service-call-tool-action p {
+  color: #60758a;
+  line-height: 1.45;
+}
+
+.service-call-result {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  line-height: 1.5;
+}
+
+.service-call-result.success {
+  border: 1px solid #8cd3ad;
+  background: #e7f8ef;
+  color: #11643b;
+}
+
+.service-call-result.warning {
+  border: 1px solid #f0c879;
+  background: #fff7df;
+  color: #7a4a00;
+}
+
+.service-call-result p {
+  margin: 5px 0 0;
+}
+
+.service-call-evidence {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.service-call-evidence > div span,
+.service-call-evidence > div strong {
+  display: block;
+}
+
+.service-call-evidence > div span {
+  color: #60758a;
+  font-size: .75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.service-call-evidence ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-call-evidence li {
+  padding: 7px 9px;
+  border-radius: 999px;
+  background: #edf2f6;
+  color: #617386;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.service-call-evidence li.done {
+  background: #dff6e9;
+  color: #11643b;
+}
+
+.service-call-diagnostic-summary {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.service-call-diagnostic-summary p {
+  margin: 0;
+  padding: 13px;
+  border-radius: 12px;
+  background: #f1f7fb;
+}
+
+.service-call-diagnosis-options,
+.service-call-answer-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.service-call-diagnosis-options button,
+.service-call-answer-grid button {
+  padding: 14px 16px;
+  border: 2px solid #d5e4ee;
+  border-radius: 13px;
+  background: white;
+  color: #10243a;
+  text-align: left;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.service-call-diagnosis-options button.correct,
+.service-call-answer-grid button.correct {
+  border-color: #49b87e;
+  background: #e7f8ef;
+}
+
+.service-call-diagnosis-options button.wrong,
+.service-call-answer-grid button.wrong {
+  border-color: #dc695e;
+  background: #fff0ef;
+}
+
+.service-call-repair-monitor {
+  padding: 20px;
+  border: 7px solid #15293a;
+  border-radius: 18px;
+  background: #031019;
+  color: #59ec91;
+}
+
+.service-call-repair-monitor > span,
+.service-call-repair-monitor > strong,
+.service-call-repair-monitor > small {
+  display: block;
+}
+
+.service-call-repair-monitor > strong {
+  font-size: 4rem;
+}
+
+.service-call-waveform {
+  position: relative;
+  height: 95px;
+  margin: 10px 0;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, transparent 0 42%, #59ec91 43% 46%, transparent 47% 52%, #59ec91 53% 56%, transparent 57%) 0 0 / 125px 95px repeat-x;
+  filter: drop-shadow(0 0 4px rgba(89,236,145,.8));
+  animation: serviceWave 1.6s linear infinite;
+}
+
+@keyframes serviceWave {
+  to { background-position-x: 125px; }
+}
+
+.service-call-question-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-call-complete {
+  text-align: center;
+}
+
+.service-call-complete-icon {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #dff6e9;
+  color: #117142;
+  font-size: 2.4rem;
+  font-weight: 950;
+}
+
+.service-call-complete-grid {
+  text-align: left;
+}
+
+.service-call-report {
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .service-call-room-grid,
+  .service-call-evidence {
+    grid-template-columns: 1fr;
+  }
+
+  .guardian-monitor-screen {
+    min-height: 330px;
+  }
+}
+
+@media (max-width: 650px) {
+  .service-call-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 20px;
+  }
+
+  .service-call-brief-grid,
+  .service-call-complete-grid,
+  .guardian-monitor-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-priority {
+    position: static;
+    width: auto;
+    height: auto;
+    margin-bottom: 14px;
+    padding: 8px 12px;
+    border-radius: 999px;
+  }
+
+  .service-call-actions {
+    flex-direction: column;
+  }
+
+  .service-call-actions button {
+    width: 100%;
+  }
+
+  .guardian-monitor-screen {
+    min-height: 520px;
+  }
+}
+
+/* Realistic clinical workflow additions */
+
+.service-call-safety {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #f0c879;
+  border-radius: 14px;
+  background: #fff8e5;
+}
+
+.service-call-safety p {
+  margin: 7px 0 0;
+  line-height: 1.55;
+}
+
+.service-call-handoff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 22px;
+  border: 1px solid #d5e4ee;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 14px 38px rgba(22, 57, 83, .08);
+}
+
+.service-call-handoff h2 {
+  margin: 6px 0 8px;
+}
+
+.service-call-handoff p {
+  margin: 0;
+  color: #60758a;
+  line-height: 1.55;
+}
+
+.service-call-handoff-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.service-call-handoff-actions button {
+  padding: 13px;
+  border: 1px solid #d5e4ee;
+  border-radius: 12px;
+  background: #f8fbfd;
+  color: #10243a;
+  text-align: left;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.service-call-handoff-actions button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.service-call-handoff-actions button.complete {
+  border-color: #74c79b;
+  background: #e6f7ee;
+  color: #12613a;
+}
+
+.guardian-monitor.bench-mode {
+  box-shadow: 0 0 0 4px rgba(75, 199, 255, .13), 0 14px 38px rgba(22, 57, 83, .08);
+}
+
+.service-call-cable-diagram {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto;
+  align-items: center;
+  gap: 7px;
+  margin: 14px 0;
+}
+
+.service-call-cable-diagram span {
+  padding: 7px 8px;
+  border: 1px solid #cfdde8;
+  border-radius: 8px;
+  background: white;
+  color: #60758a;
+  font-size: .67rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.service-call-cable-diagram i {
+  height: 3px;
+  background: #cfdde8;
+}
+
+.service-call-cable-diagram span.connected,
+.service-call-cable-diagram i.connected {
+  border-color: #45bd7d;
+  background: #45bd7d;
+  color: white;
+}
+
+.service-call-dmm {
+  margin: 14px 0;
+  padding: 15px;
+  border: 4px solid #172b43;
+  border-radius: 18px;
+  background: #f5b700;
+}
+
+.service-call-dmm-display {
+  display: grid;
+  place-items: center;
+  min-height: 65px;
+  border: 3px solid #172b43;
+  border-radius: 9px;
+  background: #d9e6d1;
+  color: #172b43;
+  font-family: "Courier New", monospace;
+  font-size: 1.55rem;
+  font-weight: 950;
+}
+
+.service-call-dmm-modes {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.service-call-dmm-modes button {
+  flex: 1;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px;
+  background: #172b43;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.service-call-dmm-modes button.active {
+  background: white;
+  color: #0b4f87;
+  outline: 3px solid #68d7ff;
+}
+
+.service-call-probe-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.service-call-probe-board span {
+  padding: 9px 6px;
+  border: 2px solid #172b43;
+  border-radius: 8px;
+  background: #fff4b5;
+  font-size: .7rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.service-call-probe-board span.tested {
+  border-color: #248653;
+  background: #dff5e9;
+}
+
+.service-call-probe-board span.open {
+  border-color: #c72f2f;
+  background: #ffe4e1;
+  color: #9f1f1f;
+}
+
+.service-call-log {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #d5e4ee;
+  border-radius: 20px;
+  background: #102234;
+  color: white;
+}
+
+.service-call-log p {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  color: #c9dce8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .83rem;
+}
+
+.service-call-verification-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 17px;
+  border-radius: 14px;
+  background: #f1f7fb;
+}
+
+.service-call-verification-list label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+}
+
+.service-call-verification-list input {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 760px) {
+  .service-call-handoff {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-cable-diagram {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-cable-diagram i {
+    width: 3px;
+    height: 18px;
+    margin: 0 auto;
+  }
+}
+
+/* Guided step highlighting */
+
+.service-call-guide {
+  position: sticky;
+  top: 14px;
+  z-index: 20;
+  margin-bottom: 20px;
+  padding: 22px;
+  border: 1px solid #b9dff1;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .97);
+  box-shadow: 0 18px 46px rgba(16, 75, 112, .13);
+  backdrop-filter: blur(8px);
+}
+
+.service-call-guide.compact {
+  position: static;
+}
+
+.service-call-guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.service-call-guide-header h2 {
+  margin: 5px 0 0;
+}
+
+.service-call-guide-header > strong {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e2f5fd;
+  color: #0b6b9b;
+  font-size: 1.05rem;
+}
+
+.service-call-step-track {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(58px, 1fr));
+  gap: 7px;
+  margin: 19px 0;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.service-call-step {
+  position: relative;
+  min-width: 58px;
+  text-align: center;
+  opacity: .48;
+}
+
+.service-call-step::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 18px);
+  width: calc(100% - 28px);
+  height: 3px;
+  background: #d2e1ea;
+}
+
+.service-call-step:last-child::after {
+  display: none;
+}
+
+.service-call-step > span {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 7px;
+  border: 2px solid #b9cbd7;
+  border-radius: 50%;
+  background: white;
+  color: #60758a;
+  font-size: .78rem;
+  font-weight: 950;
+}
+
+.service-call-step small {
+  display: block;
+  color: #60758a;
+  font-size: .66rem;
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.service-call-step.complete,
+.service-call-step.active {
+  opacity: 1;
+}
+
+.service-call-step.complete > span {
+  border-color: #35a76e;
+  background: #35a76e;
+  color: white;
+}
+
+.service-call-step.complete::after {
+  background: #67c993;
+}
+
+.service-call-step.active > span {
+  border-color: #169bd2;
+  background: #e1f6ff;
+  color: #0875a5;
+  box-shadow: 0 0 0 6px rgba(34, 177, 232, .14);
+  animation: serviceStepPulse 1.7s ease-in-out infinite;
+}
+
+.service-call-step.active small {
+  color: #0875a5;
+}
+
+@keyframes serviceStepPulse {
+  50% { box-shadow: 0 0 0 11px rgba(34, 177, 232, .05); }
+}
+
+.service-call-next-action {
+  padding: 17px;
+  border-left: 5px solid #1fa5dc;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eaf8ff, #f6fcff);
+}
+
+.service-call-next-action > span {
+  color: #0875a5;
+  font-size: .7rem;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.service-call-next-action h3 {
+  margin: 6px 0;
+}
+
+.service-call-next-action p {
+  margin: 0;
+  color: #526b7e;
+  line-height: 1.5;
+}
+
+.service-call-next-action > strong {
+  display: block;
+  margin-top: 10px;
+  color: #0b5e88;
+}
+
+.service-call-senior-guide {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #dbe8f0;
+}
+
+.service-call-guide-avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: #102f49;
+  color: white;
+  font-size: .76rem;
+  font-weight: 950;
+}
+
+.service-call-senior-guide p {
+  margin: 5px 0 0;
+  color: #60758a;
+  font-size: .9rem;
+  line-height: 1.45;
+}
+
+.guided-highlight {
+  position: relative;
+  z-index: 3;
+  border-color: #39b7ea !important;
+  box-shadow:
+    0 0 0 4px rgba(57, 183, 234, .15),
+    0 18px 46px rgba(20, 102, 144, .14) !important;
+  animation: guidedHighlight 1.8s ease-in-out infinite;
+}
+
+@keyframes guidedHighlight {
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(57, 183, 234, .07),
+      0 18px 46px rgba(20, 102, 144, .14);
+  }
+}
+
+.service-call-tools > button.recommended {
+  order: -1;
+  border-color: #39b7ea;
+  background: #ebf9ff;
+}
+
+.service-call-tools > button.recommended::after {
+  content: "RECOMMENDED NEXT";
+  grid-column: 2;
+  width: fit-content;
+  margin-top: 4px;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #147db0;
+  color: white;
+  font-size: .58rem;
+  font-weight: 950;
+  letter-spacing: .05em;
+}
+
+.service-call-handoff.guided-dim {
+  opacity: .82;
+}
+
+@media (max-width: 900px) {
+  .service-call-guide {
+    position: static;
+  }
+
+  .service-call-step-track {
+    grid-template-columns: repeat(10, 72px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-call-step.active > span,
+  .guided-highlight {
+    animation: none;
+  }
+}
+
+/* Polished workstation layout */
+
+.service-call-workstation {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.service-call-workstation-sidebar {
+  position: sticky;
+  top: 12px;
+  display: grid;
+  gap: 16px;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #b7d4e4 transparent;
+}
+
+.service-call-workstation-main {
+  min-width: 0;
+}
+
+.service-call-workstation .service-call-guide {
+  position: static;
+  margin: 0;
+  padding: 18px;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(16, 75, 112, .11);
+}
+
+.service-call-workstation .service-call-guide-header h2 {
+  font-size: 1.15rem;
+}
+
+.service-call-workstation .service-call-guide-header > strong {
+  width: 48px;
+  height: 48px;
+  font-size: .95rem;
+}
+
+.service-call-workstation .service-call-step-track {
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 16px 0;
+  overflow: visible;
+  padding: 0;
+}
+
+.service-call-workstation .service-call-step {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 6px 0;
+  text-align: left;
+  opacity: .55;
+}
+
+.service-call-workstation .service-call-step::after {
+  top: 36px;
+  left: 14px;
+  width: 2px;
+  height: calc(100% - 10px);
+}
+
+.service-call-workstation .service-call-step:last-child::after {
+  display: none;
+}
+
+.service-call-workstation .service-call-step > span {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  font-size: .72rem;
+}
+
+.service-call-workstation .service-call-step small {
+  font-size: .78rem;
+  line-height: 1.2;
+}
+
+.service-call-workstation .service-call-next-action {
+  padding: 14px;
+}
+
+.service-call-workstation .service-call-next-action h3 {
+  font-size: 1rem;
+}
+
+.service-call-workstation .service-call-next-action p,
+.service-call-workstation .service-call-next-action > strong {
+  font-size: .84rem;
+}
+
+.service-call-workstation .service-call-senior-guide {
+  grid-template-columns: 36px 1fr;
+  gap: 10px;
+}
+
+.service-call-workstation .service-call-guide-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.service-call-workstation .service-call-senior-guide strong {
+  font-size: .86rem;
+}
+
+.service-call-workstation .service-call-senior-guide p {
+  font-size: .8rem;
+}
+
+.service-call-workstation .service-call-handoff {
+  grid-template-columns: 1fr;
+  margin: 0;
+  padding: 17px;
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(22, 57, 83, .07);
+}
+
+.service-call-workstation .service-call-handoff h2 {
+  font-size: 1.05rem;
+}
+
+.service-call-workstation .service-call-handoff p {
+  font-size: .86rem;
+}
+
+.service-call-workstation .service-call-handoff-actions button {
+  padding: 11px;
+  font-size: .82rem;
+}
+
+.service-call-workstation .service-call-room-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+  align-items: start;
+}
+
+.service-call-workstation .guardian-monitor-screen {
+  min-height: 430px;
+}
+
+.service-call-workstation .service-call-evidence {
+  grid-template-columns: 190px minmax(0, 1fr) auto;
+}
+
+.service-call-workstation .service-call-log {
+  max-height: 230px;
+  overflow-y: auto;
+}
+
+.service-call-workstation-sidebar::-webkit-scrollbar,
+.service-call-log::-webkit-scrollbar {
+  width: 8px;
+}
+
+.service-call-workstation-sidebar::-webkit-scrollbar-thumb,
+.service-call-log::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #b7d4e4;
+}
+
+.service-call-workstation-sidebar::-webkit-scrollbar-track,
+.service-call-log::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Keep the full-width guided panel compact on diagnosis, repair, and review screens. */
+.service-call-guide.compact {
+  margin-bottom: 16px;
+  padding: 16px 18px;
+}
+
+.service-call-guide.compact .service-call-step-track {
+  margin: 14px 0;
+}
+
+.service-call-guide.compact .service-call-next-action {
+  padding: 13px 15px;
+}
+
+.service-call-guide.compact .service-call-senior-guide {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+@media (max-width: 1180px) {
+  .service-call-workstation {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+
+  .service-call-workstation .service-call-room-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-workstation .service-call-toolbox {
+    display: grid;
+    grid-template-columns: minmax(0, .55fr) minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .service-call-workstation .service-call-toolbox > .service-call-eyebrow,
+  .service-call-workstation .service-call-toolbox > h2,
+  .service-call-workstation .service-call-toolbox > p {
+    grid-column: 1 / -1;
+  }
+
+  .service-call-workstation .service-call-tools {
+    align-self: start;
+  }
+}
+
+@media (max-width: 900px) {
+  .service-call-workstation {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-workstation-sidebar {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .service-call-workstation .service-call-guide {
+    position: static;
+  }
+
+  .service-call-workstation .service-call-step-track {
+    grid-template-columns: repeat(10, 72px);
+    gap: 7px;
+    overflow-x: auto;
+  }
+
+  .service-call-workstation .service-call-step {
+    display: block;
+    min-width: 72px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .service-call-workstation .service-call-step::after {
+    top: 15px;
+    left: calc(50% + 16px);
+    width: calc(100% - 26px);
+    height: 3px;
+  }
+
+  .service-call-workstation .service-call-step > span {
+    margin: 0 auto 7px;
+  }
+
+  .service-call-workstation .service-call-handoff {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-call-workstation .service-call-evidence {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .service-call-workstation .service-call-handoff,
+  .service-call-workstation .service-call-toolbox {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-workstation .guardian-monitor-screen {
+    min-height: 520px;
+  }
+}
+
+/* Workstation usability refinement */
+
+@media (min-width: 901px) {
+  .service-call-workstation {
+    height: calc(100vh - 138px);
+    min-height: 660px;
+    overflow: hidden;
+  }
+
+  .service-call-workstation-sidebar {
+    position: static;
+    height: 100%;
+    max-height: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 1px 7px 10px 1px;
+  }
+
+  .service-call-workstation-main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 1px 7px 10px 1px;
+    scroll-padding-bottom: 120px;
+  }
+
+  .service-call-workstation .service-call-room-grid {
+    flex: 0 0 auto;
+  }
+
+  .service-call-workstation .service-call-evidence {
+    position: sticky;
+    bottom: 0;
+    z-index: 15;
+    margin-top: 16px;
+    border-color: #b9dff1;
+    background: rgba(255, 255, 255, .97);
+    box-shadow: 0 -10px 30px rgba(16, 75, 112, .11);
+    backdrop-filter: blur(9px);
+  }
+
+  .service-call-workstation .service-call-log {
+    flex: 0 0 auto;
+    margin: 14px 0 110px;
+  }
+
+  .service-call-workstation .service-call-guide {
+    padding: 15px;
+  }
+
+  .service-call-workstation .service-call-step {
+    padding: 4px 0;
+  }
+
+  .service-call-workstation .service-call-next-action {
+    padding: 12px;
+  }
+
+  .service-call-workstation .service-call-senior-guide {
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+
+  .service-call-workstation .service-call-handoff {
+    padding: 14px;
+  }
+}
+
+/* Prevent the simulator-to-monitor path from extending outside its card. */
+.service-call-cable-diagram {
+  grid-template-columns:
+    minmax(68px, 1fr)
+    14px
+    minmax(86px, 1fr)
+    14px
+    minmax(68px, 1fr);
+  width: 100%;
+  min-width: 0;
+}
+
+.service-call-cable-diagram span {
+  min-width: 0;
+  padding: 7px 5px;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  font-size: clamp(.56rem, .75vw, .67rem);
+}
+
+.service-call-cable-diagram i {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Compact expandable activity log. */
+details.service-call-log {
+  max-height: none;
+  overflow: hidden;
+  padding: 0;
+}
+
+.service-call-log summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.service-call-log summary::-webkit-details-marker {
+  display: none;
+}
+
+.service-call-log summary::after {
+  content: "＋";
+  color: #70d5ff;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.service-call-log[open] summary::after {
+  content: "−";
+}
+
+.service-call-log summary > strong {
+  margin-left: auto;
+  color: #c9dce8;
+  font-size: .76rem;
+}
+
+.service-call-log-entries {
+  max-height: 170px;
+  overflow-y: auto;
+  padding: 0 18px 15px;
+}
+
+.service-call-log-entries p:first-child {
+  margin-top: 0;
+}
+
+/* Keep the action bar readable instead of letting badges create a tall column. */
+.service-call-workstation .service-call-evidence ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(130px, 1fr));
+  gap: 7px;
+}
+
+.service-call-workstation .service-call-evidence li {
+  text-align: center;
+}
+
+@media (max-width: 1180px) and (min-width: 901px) {
+  .service-call-workstation {
+    height: calc(100vh - 125px);
+  }
+
+  .service-call-workstation .service-call-toolbox {
+    display: block;
+  }
+
+  .service-call-workstation .service-call-tools {
+    margin-bottom: 14px;
+  }
+
+  .service-call-workstation .service-call-evidence {
+    grid-template-columns: 165px minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .service-call-workstation {
+    height: auto;
+    overflow: visible;
+  }
+
+  .service-call-workstation-main,
+  .service-call-workstation-sidebar {
+    height: auto;
+    overflow: visible;
+  }
+
+  .service-call-workstation .service-call-evidence {
+    position: static;
+  }
+
+  .service-call-workstation .service-call-log {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .service-call-cable-diagram {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-cable-diagram i {
+    width: 3px;
+    height: 14px;
+    margin: 0 auto;
+  }
+
+  .service-call-workstation .service-call-evidence ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Screen-entry and scroll-position correction */
+
+.service-call {
+  scroll-margin-top: 0;
+}
+
+.service-call-shell {
+  scroll-margin-top: 0;
+}
+
+@media (min-width: 901px) {
+  .service-call-workstation {
+    /* Use available viewport space without forcing the surrounding page
+       to retain a previous footer-level scroll position. */
+    height: min(760px, calc(100vh - 170px));
+    min-height: 610px;
+  }
+}
+
+/* Clickable guided bubbles and focused step modal */
+
+.service-call-step {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.service-call-step.locked {
+  opacity: .38;
+}
+
+.service-call-open-step {
+  margin-top: 12px;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 13px;
+  background: #0d75a8;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.service-call-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(6, 22, 35, .62);
+  backdrop-filter: blur(5px);
+}
+
+.service-call-step-modal {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: min(720px, calc(100vh - 40px));
+  overflow-y: auto;
+  padding: 30px;
+  border: 1px solid #b9dff1;
+  border-radius: 26px;
+  background: white;
+  box-shadow: 0 30px 80px rgba(3, 19, 31, .34);
+}
+
+.service-call-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf5f9;
+  color: #17334b;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.service-call-modal-step-number {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 16px;
+  border: 3px solid #28a8dc;
+  border-radius: 50%;
+  background: #e4f7ff;
+  color: #0876a6;
+  font-size: 1.35rem;
+  font-weight: 950;
+}
+
+.service-call-modal-step-number.complete {
+  border-color: #3aae72;
+  background: #e2f7eb;
+  color: #147044;
+}
+
+.service-call-step-modal h2 {
+  margin: 8px 0 14px;
+  font-size: clamp(1.7rem, 4vw, 2.35rem);
+  line-height: 1.08;
+}
+
+.service-call-modal-message {
+  color: #536d80;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.service-call-modal-instructions,
+.service-call-modal-status {
+  margin-top: 18px;
+  padding: 17px;
+  border-radius: 15px;
+  background: #edf8fd;
+}
+
+.service-call-modal-instructions p,
+.service-call-modal-status p {
+  margin: 7px 0 0;
+  line-height: 1.5;
+}
+
+.service-call-modal-status.success {
+  border: 1px solid #84d0a7;
+  background: #e8f8ef;
+  color: #11613a;
+}
+
+.service-call-modal-status.locked {
+  border: 1px solid #efc56d;
+  background: #fff7df;
+  color: #7a4b00;
+}
+
+.service-call-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* Compact evidence bar */
+
+.service-call-evidence-compact {
+  position: sticky;
+  bottom: 0;
+  z-index: 15;
+  margin-top: 16px;
+  border: 1px solid #b9dff1;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .98);
+  box-shadow: 0 -10px 30px rgba(16, 75, 112, .12);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.service-call-evidence-summary {
+  display: grid;
+  grid-template-columns: minmax(180px, .7fr) minmax(220px, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  width: 100%;
+  padding: 15px 18px;
+  border: 0;
+  background: transparent;
+  color: #10243a;
+  text-align: left;
+  cursor: pointer;
+}
+
+.service-call-evidence-summary span,
+.service-call-evidence-summary strong {
+  display: block;
+}
+
+.service-call-evidence-summary span {
+  color: #60758a;
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.service-call-evidence-summary strong {
+  margin-top: 4px;
+}
+
+.service-call-evidence-toggle {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #e7f5fb;
+  color: #0b6c9b !important;
+}
+
+.service-call-evidence-expanded {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 0 18px 18px;
+}
+
+.service-call-evidence-expanded ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(130px, 1fr));
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-call-evidence-expanded li {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #edf2f6;
+  color: #60758a;
+  font-size: .72rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+.service-call-evidence-expanded li.done {
+  background: #dff6e9;
+  color: #11643b;
+}
+
+@media (max-width: 800px) {
+  .service-call-modal-actions {
+    flex-direction: column;
+  }
+
+  .service-call-modal-actions button {
+    width: 100%;
+  }
+
+  .service-call-evidence-summary,
+  .service-call-evidence-expanded {
+    grid-template-columns: 1fr;
+  }
+
+  .service-call-evidence-expanded ul {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .service-call-step-modal {
+    padding: 24px 18px 20px;
+    border-radius: 20px;
+  }
+
+  .service-call-evidence-expanded ul {
+    grid-template-columns: 1fr;
+  }
+}
+

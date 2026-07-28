@@ -1044,3 +1044,166 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   Results screen layout
+   Added for Mission 2 and Mission 3 result-card markup.
+   Keeps the result title, score ring, navigation, and icon
+   from inheriting the older score-only <h1> presentation.
+   ========================================================= */
+
+.cbet-results {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: min(760px, 100%);
+  padding: clamp(26px, 5vw, 46px);
+  overflow: hidden;
+  text-align: center;
+}
+
+.cbet-results > .cbet-hero-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 14px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #dff3ff, #8edcff);
+  color: var(--cbet-blue);
+  font-size: 2.5rem;
+  line-height: 1;
+  box-shadow: inset 7px 0 0 rgba(11, 59, 115, .35);
+}
+
+.cbet-results > .cbet-label {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 12px;
+}
+
+.cbet-results h1.cbet-results-title {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto 22px;
+  color: var(--cbet-ink);
+  font-size: clamp(2rem, 6vw, 3.45rem);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  overflow-wrap: anywhere;
+}
+
+.cbet-score-ring {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 154px;
+  height: 154px;
+  margin: 0 auto 20px;
+  border: 12px solid #d9e9f7;
+  border-top-color: var(--cbet-blue-2);
+  border-right-color: #43b8e8;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(17, 50, 85, .12);
+}
+
+.cbet-results.passed .cbet-score-ring {
+  border-color: #ccebdc;
+  border-top-color: var(--cbet-green);
+  border-right-color: #45ba7e;
+}
+
+.cbet-score-ring strong,
+.cbet-score-ring span {
+  display: block;
+}
+
+.cbet-score-ring strong {
+  color: var(--cbet-blue);
+  font-size: 2.1rem;
+  line-height: 1;
+}
+
+.cbet-score-ring span {
+  margin-top: 5px;
+  color: var(--cbet-muted);
+  font-size: .88rem;
+  font-weight: 850;
+}
+
+.cbet-results > p {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--cbet-muted);
+  font-size: clamp(1rem, 2.2vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.cbet-nav-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.cbet-nav-row.center {
+  justify-content: center;
+}
+
+.cbet-back {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 16px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--cbet-blue);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.cbet-back:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .cbet-results {
+    padding: 24px 18px 28px;
+  }
+
+  .cbet-results h1.cbet-results-title {
+    font-size: clamp(1.85rem, 11vw, 2.7rem);
+    margin-bottom: 18px;
+  }
+
+  .cbet-score-ring {
+    width: 132px;
+    height: 132px;
+    border-width: 10px;
+  }
+
+  .cbet-score-ring strong {
+    font-size: 1.8rem;
+  }
+
+  .cbet-nav-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cbet-nav-row button {
+    width: 100%;
+  }
+}
+

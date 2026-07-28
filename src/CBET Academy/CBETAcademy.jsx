@@ -23,7 +23,9 @@ import {
   saveMissionProgress,
 } from "./cbetAcademyStorage";
 import "./CBETAcademy.css";
+import "./CBETServiceCall.css";
 import VirtualCBETLab from "./VirtualLab/VirtualCBETLab";
+import CBETHospitalDashboard from "./CBETHospitalDashboard";
 
 function shuffleQuestion(question) {
   const choices = question.options.map((text, index) => ({
@@ -2521,6 +2523,965 @@ function MissionThree({ onExit }) {
 
 
 
+
+
+function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
+  const [stage, setStage] = useState("briefing");
+  const [patientTransferred, setPatientTransferred] = useState(false);
+  const [deviceRemoved, setDeviceRemoved] = useState(false);
+  const [selectedTool, setSelectedTool] = useState(null);
+  const [simulatorConnected, setSimulatorConnected] = useState(false);
+  const [knownGoodCableInstalled, setKnownGoodCableInstalled] = useState(false);
+  const [originalCableRemoved, setOriginalCableRemoved] = useState(false);
+  const [meterMode, setMeterMode] = useState("continuity");
+  const [probeStep, setProbeStep] = useState(0);
+  const [tests, setTests] = useState({
+    visual: false,
+    simulatorOriginal: false,
+    simulatorKnownGood: false,
+    continuity: false,
+  });
+  const [diagnosis, setDiagnosis] = useState(null);
+  const [repairComplete, setRepairComplete] = useState(false);
+  const [alarmVerified, setAlarmVerified] = useState(false);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [xpAwarded, setXpAwarded] = useState(false);
+  const [log, setLog] = useState([
+    "06:42 — Work order WO-1048 dispatched to Clinical Engineering.",
+  ]);
+  const [openGuideStep, setOpenGuideStep] = useState(1);
+  const [evidenceOpen, setEvidenceOpen] = useState(false);
+
+  const questions = useMemo(
+    () =>
+      [
+        {
+          question: "Before removing a bedside monitor from clinical use, what is the first priority?",
+          options: [
+            "Confirm the patient is safely supported by alternate monitoring",
+            "Open the monitor enclosure",
+            "Measure cable resistance",
+            "Clear the alarm history",
+          ],
+          answer: 0,
+          explanation:
+            "Patient care comes first. The clinical team must transfer the patient to appropriate alternate monitoring before the device is removed for service.",
+        },
+        {
+          question: "Why should the patient simulator be connected through the original ECG cable first?",
+          options: [
+            "To test the complete signal path before substituting parts",
+            "To charge the monitor battery",
+            "To verify NIBP pressure",
+            "To test electrical leakage current",
+          ],
+          answer: 0,
+          explanation:
+            "Testing through the original accessories preserves the reported configuration and helps determine whether the fault is in the cable, connector, or monitor input.",
+        },
+        {
+          question: "The monitor displays ECG with a known-good cable. What has been isolated?",
+          options: [
+            "The original ECG lead set is defective",
+            "The monitor display is defective",
+            "The SpO₂ module is defective",
+            "The AC power supply is defective",
+          ],
+          answer: 0,
+          explanation:
+            "A normal waveform with the same simulator and monitor, after changing only the cable, isolates the failure to the original cable assembly.",
+        },
+        {
+          question: "When is continuity testing of the removed ECG cable appropriate?",
+          options: [
+            "After it is disconnected from the patient and monitor",
+            "While connected to the patient",
+            "While the monitor is delivering a defibrillation pulse",
+            "Only while the cable is wet",
+          ],
+          answer: 0,
+          explanation:
+            "A resistance or continuity measurement should be performed only on an isolated cable, disconnected from the patient and powered equipment.",
+        },
+        {
+          question: "What belongs in the final service record?",
+          options: [
+            "Complaint, safety actions, tests, findings, repair, and verification",
+            "Only the replacement part number",
+            "Only the final waveform",
+            "Only the technician's initials",
+          ],
+          answer: 0,
+          explanation:
+            "A defensible service record documents the reported issue, patient-safety precautions, diagnostic evidence, corrective action, and final performance verification.",
+        },
+      ].map(shuffleQuestion),
+    []
+  );
+
+  const currentQuestion = questions[questionIndex];
+  const selectedAnswer = answers[questionIndex];
+  const debriefComplete = Object.keys(answers).length === questions.length;
+  const score = questions.reduce(
+    (total, question, index) => total + (answers[index] === question.answer ? 1 : 0),
+    0
+  );
+  const waveformVisible = simulatorConnected && knownGoodCableInstalled;
+  const originalPathTested = tests.simulatorOriginal;
+  const enoughEvidence = tests.simulatorOriginal && tests.simulatorKnownGood && tests.continuity;
+
+  const workflowSteps = [
+    { id: 1, label: "Patient safety", complete: patientTransferred },
+    { id: 2, label: "Remove device", complete: deviceRemoved },
+    { id: 3, label: "Visual inspection", complete: tests.visual },
+    { id: 4, label: "Connect simulator", complete: simulatorConnected },
+    { id: 5, label: "Test original setup", complete: tests.simulatorOriginal },
+    { id: 6, label: "Substitute cable", complete: tests.simulatorKnownGood },
+    { id: 7, label: "Continuity test", complete: tests.continuity },
+    { id: 8, label: "Diagnosis", complete: diagnosis === "cable" || ["repair", "debrief"].includes(stage) || debriefComplete },
+    { id: 9, label: "Repair and verify", complete: repairComplete && alarmVerified },
+    { id: 10, label: "Documentation", complete: debriefComplete },
+  ];
+
+  const roomStep =
+    !patientTransferred ? 1 :
+    !deviceRemoved ? 2 :
+    !tests.visual ? 3 :
+    !simulatorConnected ? 4 :
+    !tests.simulatorOriginal ? 5 :
+    !tests.simulatorKnownGood ? 6 :
+    !tests.continuity ? 7 : 8;
+
+  const activeStep =
+    stage === "room" ? roomStep :
+    stage === "diagnosis" ? 8 :
+    stage === "repair" ? 9 :
+    stage === "debrief" ? 10 : 1;
+
+  const guideContent = {
+    1: {
+      title: "Confirm alternate monitoring",
+      message: "Before touching the monitor, make sure the patient is safely supported by another approved monitoring method.",
+      action: "Ask the nurse to transfer the patient.",
+      target: "handoff",
+    },
+    2: {
+      title: "Remove the device from clinical use",
+      message: "Label the device out of service and move it to a safe test location before connecting test equipment.",
+      action: "Remove and label the monitor.",
+      target: "handoff",
+    },
+    3: {
+      title: "Begin with a visual inspection",
+      message: "Inspect the ECG connector, cable jacket, strain relief, and obvious signs of damage before changing the setup.",
+      action: "Inspect the cable and connector.",
+      target: "monitor",
+    },
+    4: {
+      title: "Connect a known test source",
+      message: "Use the patient simulator to apply a controlled ECG signal while preserving the original cable path.",
+      action: "Select the BioSim patient simulator.",
+      target: "simulator",
+    },
+    5: {
+      title: "Reproduce the complaint",
+      message: "Apply the simulated ECG through the original lead set before substituting any parts.",
+      action: "Run the ECG through the original cable.",
+      target: "simulator",
+    },
+    6: {
+      title: "Perform a substitution test",
+      message: "Change only one item. Install a known-good ECG lead set while keeping the simulator and monitor unchanged.",
+      action: "Select the known-good ECG lead set.",
+      target: "cable",
+    },
+    7: {
+      title: "Confirm the cable fault",
+      message: "Isolate the removed cable, select continuity mode, and test each conductor to locate the open circuit.",
+      action: "Use the digital multimeter.",
+      target: "multimeter",
+    },
+    8: {
+      title: "Document the diagnosis",
+      message: "Use the evidence from the original-path test, substitution test, and continuity test to identify the failed component.",
+      action: "Continue to diagnosis.",
+      target: "evidence",
+    },
+    9: {
+      title: "Repair and verify",
+      message: "Install the replacement lead set, then verify ECG response, lead-off detection, and alarm operation.",
+      action: "Complete all functional checks.",
+      target: "repair",
+    },
+    10: {
+      title: "Close the work order",
+      message: "Complete the after-action review and document the complaint, findings, corrective action, and final verification.",
+      action: "Finish the review.",
+      target: "documentation",
+    },
+  };
+
+  const currentGuide = guideContent[activeStep];
+
+  function GuidedWorkflow({ compact = false }) {
+    return (
+      <aside className={`service-call-guide ${compact ? "compact" : ""}`}>
+        <div className="service-call-guide-header">
+          <div>
+            <span className="service-call-eyebrow">Guided Workflow</span>
+            <h2>Step {activeStep} of 10</h2>
+          </div>
+          <strong>{Math.round((workflowSteps.filter((step) => step.complete).length / workflowSteps.length) * 100)}%</strong>
+        </div>
+
+        <div className="service-call-step-track" aria-label="Work order progress">
+          {workflowSteps.map((step) => {
+            const locked = step.id > activeStep && !step.complete;
+            return (
+              <button
+                type="button"
+                key={step.id}
+                className={`service-call-step ${
+                  step.complete ? "complete" : step.id === activeStep ? "active" : ""
+                } ${locked ? "locked" : ""}`}
+                onClick={() => setOpenGuideStep(step.id)}
+                aria-label={`Open step ${step.id}: ${step.label}`}
+              >
+                <span>{step.complete ? "✓" : step.id}</span>
+                <small>{step.label}</small>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="service-call-next-action">
+          <span>Next action</span>
+          <h3>{currentGuide.title}</h3>
+          <p>{currentGuide.message}</p>
+          <button
+            type="button"
+            className="service-call-open-step"
+            onClick={() => setOpenGuideStep(activeStep)}
+          >
+            Open Step {activeStep}
+          </button>
+        </div>
+      </aside>
+    );
+  }
+
+  function completeCurrentGuideAction(stepId) {
+    if (stepId === 1) acknowledgeHandoff();
+    else if (stepId === 2) removeDeviceFromService();
+    else if (stepId === 3) inspectConnections();
+    else if (stepId === 4) {
+      setSelectedTool("simulator");
+      connectSimulator();
+    } else if (stepId === 5) {
+      setSelectedTool("simulator");
+      testOriginalCable();
+    } else if (stepId === 6) {
+      setSelectedTool("cable");
+      installKnownGoodCable();
+    } else if (stepId === 7) {
+      setSelectedTool("multimeter");
+    } else if (stepId === 8) {
+      setOpenGuideStep(null);
+      window.requestAnimationFrame(() => setStage("diagnosis"));
+      return;
+    } else if (stepId === 9) {
+      setOpenGuideStep(null);
+      window.requestAnimationFrame(() => setStage("repair"));
+      return;
+    } else if (stepId === 10) {
+      setOpenGuideStep(null);
+      window.requestAnimationFrame(() => setStage("debrief"));
+      return;
+    }
+  }
+
+  function GuideStepModal() {
+    if (!openGuideStep) return null;
+
+    const step = workflowSteps.find((item) => item.id === openGuideStep);
+    const content = guideContent[openGuideStep];
+    const locked = openGuideStep > activeStep && !step?.complete;
+    const isCurrent = openGuideStep === activeStep;
+    const isComplete = Boolean(step?.complete);
+
+    return (
+      <div
+        className="service-call-modal-backdrop"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="service-call-modal-title"
+        onClick={() => setOpenGuideStep(null)}
+      >
+        <article className="service-call-step-modal" onClick={(event) => event.stopPropagation()}>
+          <button
+            type="button"
+            className="service-call-modal-close"
+            onClick={() => setOpenGuideStep(null)}
+            aria-label="Close step instructions"
+          >
+            ×
+          </button>
+
+          <div className={`service-call-modal-step-number ${isComplete ? "complete" : ""}`}>
+            {isComplete ? "✓" : openGuideStep}
+          </div>
+
+          <span className="service-call-eyebrow">
+            {isComplete ? "Step Complete" : locked ? "Locked Step" : `Step ${openGuideStep} of 10`}
+          </span>
+          <h2 id="service-call-modal-title">{content.title}</h2>
+
+          {isComplete ? (
+            <div className="service-call-modal-status success">
+              <strong>{step.label} completed</strong>
+              <p>This action has been recorded in the service activity log.</p>
+            </div>
+          ) : locked ? (
+            <div className="service-call-modal-status locked">
+              <strong>Complete Step {activeStep} first</strong>
+              <p>{guideContent[activeStep].action}</p>
+            </div>
+          ) : (
+            <>
+              <p className="service-call-modal-message">{content.message}</p>
+              <div className="service-call-modal-instructions">
+                <strong>What to do</strong>
+                <p>{content.action}</p>
+              </div>
+
+              {openGuideStep === 7 && (
+                <div className="service-call-modal-status">
+                  <strong>Multimeter sequence</strong>
+                  <p>Select continuity mode, then test RA, LA, and LL conductors in order.</p>
+                </div>
+              )}
+            </>
+          )}
+
+          <div className="service-call-modal-actions">
+            <button
+              type="button"
+              className="service-call-secondary"
+              onClick={() => setOpenGuideStep(null)}
+            >
+              Close
+            </button>
+
+            {isCurrent && !isComplete && !locked && (
+              <button
+                type="button"
+                className="service-call-primary"
+                onClick={() => {
+                  const selectedStep = openGuideStep;
+                  completeCurrentGuideAction(selectedStep);
+
+                  if (![8, 9, 10].includes(selectedStep)) {
+                    setOpenGuideStep(null);
+                  }
+                }}
+              >
+                {content.action}
+              </button>
+            )}
+          </div>
+        </article>
+      </div>
+    );
+  }
+
+
+  function addLog(message) {
+    setLog((previous) => [...previous, `${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} — ${message}`]);
+  }
+
+  function acknowledgeHandoff() {
+    setPatientTransferred(true);
+    addLog("Charge nurse confirmed patient transferred to alternate monitoring.");
+    playCbetTone("correct");
+  }
+
+  function removeDeviceFromService() {
+    if (!patientTransferred) return;
+    setDeviceRemoved(true);
+    addLog("Monitor labeled out of service and moved to a safe test location.");
+    playCbetTone("correct");
+  }
+
+  function inspectConnections() {
+    setTests((previous) => ({ ...previous, visual: true }));
+    addLog("Visual inspection completed: ECG connector seated, no visible fluid intrusion, cable strain relief worn.");
+    playCbetTone("correct");
+  }
+
+  function connectSimulator() {
+    if (!deviceRemoved) return;
+    setSimulatorConnected(true);
+    addLog("BioSim patient simulator connected at 80 bpm, 1 mV ECG output.");
+    playCbetTone("correct");
+  }
+
+  function testOriginalCable() {
+    if (!simulatorConnected || knownGoodCableInstalled) return;
+    setTests((previous) => ({ ...previous, simulatorOriginal: true }));
+    addLog("No ECG waveform obtained through original lead set.");
+    playCbetTone("wrong");
+  }
+
+  function installKnownGoodCable() {
+    if (!simulatorConnected) return;
+    setKnownGoodCableInstalled(true);
+    setOriginalCableRemoved(true);
+    setTests((previous) => ({ ...previous, simulatorKnownGood: true }));
+    addLog("Known-good ECG lead set installed; waveform restored at 80 bpm.");
+    playCbetTone("correct");
+  }
+
+  function advanceProbe() {
+    if (!originalCableRemoved || meterMode !== "continuity") return;
+    const next = Math.min(3, probeStep + 1);
+    setProbeStep(next);
+    if (next === 3) {
+      setTests((previous) => ({ ...previous, continuity: true }));
+      addLog("Continuity test found an open conductor in the Lead II path.");
+      playCbetTone("correct");
+    }
+  }
+
+  useEffect(() => {
+    if (stage === "room") {
+      setOpenGuideStep(activeStep);
+    }
+  }, [stage, activeStep]);
+
+  useEffect(() => {
+    // Open every service-call phase at its heading.
+    const resetStageScroll = () => {
+      const assignment = document.getElementById("service-call-top");
+
+      if (assignment) {
+        assignment.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+          inline: "nearest",
+        });
+        window.scrollBy({ top: -18, left: 0, behavior: "auto" });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+
+      const mainPane = document.querySelector(".service-call-workstation-main");
+      const sidePane = document.querySelector(".service-call-workstation-sidebar");
+      if (mainPane) mainPane.scrollTop = 0;
+      if (sidePane) sidePane.scrollTop = 0;
+    };
+
+    resetStageScroll();
+    const timers = [0, 50, 140].map((delay) =>
+      window.setTimeout(resetStageScroll, delay)
+    );
+
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, [stage]);
+
+  useEffect(() => {
+    if (!debriefComplete || !repairComplete || !alarmVerified || xpAwarded) return;
+    awardCbetXp(180, "hospital-work-order-1048");
+    setXpAwarded(true);
+    if (onComplete) onComplete();
+    playCbetTone("correct");
+  }, [debriefComplete, repairComplete, alarmVerified, xpAwarded, onComplete]);
+
+  if (stage === "briefing") {
+    return (
+      <main className="service-call">
+        <section className="service-call-shell" id="service-call-top">
+          <button className="service-call-back" onClick={onExit}>← Hospital Dashboard</button>
+          <article className="service-call-briefing">
+            <div className="service-call-priority">STAT</div>
+            <span className="service-call-eyebrow">Clinical Engineering Dispatch</span>
+            <h1>Work Order WO-1048</h1>
+            <div className="service-call-brief-grid">
+              <div><span>Department</span><strong>Emergency Department • Bay 8</strong></div>
+              <div><span>Equipment</span><strong>Guardian Bedside Monitor</strong></div>
+              <div><span>Reported problem</span><strong>ECG waveform lost during monitoring</strong></div>
+              <div><span>Current status</span><strong>SpO₂ and NIBP remain available</strong></div>
+            </div>
+            <div className="service-call-note">
+              <span>Nurse handoff</span>
+              <p>“The ECG dropped out suddenly. The patient is stable, but we need continuous cardiac monitoring.”</p>
+            </div>
+            <div className="service-call-safety">
+              <strong>Before touching the equipment</strong>
+              <p>Confirm the patient is placed on alternate monitoring. Do not remove or test clinical equipment while it is still supporting patient care.</p>
+            </div>
+            <div className="service-call-actions">
+              <button className="service-call-secondary" onClick={onExit}>Return to Queue</button>
+              <button className="service-call-primary" onClick={() => setStage("room")}>Accept Assignment</button>
+            </div>
+          </article>
+        </section>
+      </main>
+    );
+  }
+
+  if (stage === "room") {
+    return (
+      <main className="service-call">
+        <section className="service-call-shell" id="service-call-top">
+          <button className="service-call-back" onClick={onExit}>← Hospital Dashboard</button>
+          <div className="service-call-stage-heading">
+            <span className="service-call-eyebrow">Emergency Department • Bay 8</span>
+            <h1>Stabilize the clinical situation before troubleshooting.</h1>
+          </div>
+
+          <div className="service-call-workstation">
+            <aside className="service-call-workstation-sidebar">
+              <GuidedWorkflow />
+
+              <div className={`service-call-handoff ${activeStep <= 2 ? "guided-highlight" : "guided-dim"}`}>
+            <div>
+              <span className="service-call-eyebrow">Clinical handoff</span>
+              <h2>Patient monitoring status</h2>
+              <p>The bedside monitor is still connected to the patient. The nurse is waiting for your direction.</p>
+            </div>
+            <div className="service-call-handoff-actions">
+              <button
+                className={patientTransferred ? "complete" : ""}
+                onClick={acknowledgeHandoff}
+              >
+                {patientTransferred ? "✓ Alternate monitoring confirmed" : "Ask nurse to transfer patient to alternate monitoring"}
+              </button>
+              <button
+                disabled={!patientTransferred}
+                className={deviceRemoved ? "complete" : ""}
+                onClick={removeDeviceFromService}
+              >
+                {deviceRemoved ? "✓ Device removed from service" : "Label and remove device from clinical use"}
+              </button>
+            </div>
+              </div>
+            </aside>
+
+            <div className="service-call-workstation-main">
+              <div className="service-call-room-grid">
+            <article className={`guardian-monitor ${deviceRemoved ? "bench-mode" : ""} ${currentGuide.target === "monitor" ? "guided-highlight" : ""}`}>
+              <div className="guardian-monitor-top">
+                <strong>Guardian Bedside Monitor</strong>
+                <span>{deviceRemoved ? "SERVICE MODE" : "PATIENT CONNECTED"}</span>
+              </div>
+              <div className="guardian-monitor-screen">
+                <div className="guardian-ecg">
+                  <span>ECG II</span>
+                  <strong>{waveformVisible ? "80" : "— —"}</strong>
+                  <div className={waveformVisible ? "service-call-waveform" : "guardian-flatline"} />
+                  <small>{waveformVisible ? "SIMULATED SIGNAL" : "ECG LEADS OFF / NO SIGNAL"}</small>
+                </div>
+                <div className="guardian-vitals">
+                  <div><span>SpO₂</span><strong>{deviceRemoved ? "—" : "98"}</strong><small>%</small></div>
+                  <div><span>NIBP</span><strong>{deviceRemoved ? "—/—" : "121/79"}</strong><small>mmHg</small></div>
+                  <div><span>Pulse</span><strong>{waveformVisible ? "80" : deviceRemoved ? "—" : "74"}</strong><small>bpm</small></div>
+                </div>
+              </div>
+              <div className="guardian-monitor-controls">
+                <button
+                  disabled={!deviceRemoved}
+                  onClick={inspectConnections}
+                  className={tests.visual ? "complete" : ""}
+                >
+                  {tests.visual ? "✓ Visual inspection documented" : "Inspect connector, cable, and strain relief"}
+                </button>
+              </div>
+            </article>
+
+            <aside className="service-call-toolbox">
+              <span className="service-call-eyebrow">Technician Toolbox</span>
+              <h2>Select a diagnostic tool</h2>
+              <p>Use tools in a logical order. Preserve the reported configuration before substituting parts.</p>
+
+              <div className="service-call-tools">
+                {[
+                  ["simulator", "🫀", "BioSim patient simulator"],
+                  ["cable", "🔌", "Known-good ECG lead set"],
+                  ["multimeter", "🔧", "Digital multimeter"],
+                ].map(([id, icon, label]) => (
+                  <button
+                    key={id}
+                    disabled={!deviceRemoved}
+                    className={`${selectedTool === id ? "active" : ""} ${
+                      currentGuide.target === id ? "recommended guided-highlight" : ""
+                    }`}
+                    onClick={() => setSelectedTool(id)}
+                  >
+                    <span>{icon}</span>
+                    <strong>{label}</strong>
+                    <small>{selectedTool === id ? "Selected" : "Available"}</small>
+                  </button>
+                ))}
+              </div>
+
+              {selectedTool === "simulator" && (
+                <div className="service-call-tool-action">
+                  <strong>BioSim patient simulator</strong>
+                  <p>Output: normal sinus rhythm, 80 bpm, 1 mV amplitude.</p>
+                  <div className="service-call-cable-diagram">
+                    <span className={simulatorConnected ? "connected" : ""}>SIMULATOR</span>
+                    <i className={simulatorConnected ? "connected" : ""} />
+                    <span className={simulatorConnected ? "connected" : ""}>
+                      {knownGoodCableInstalled ? "KNOWN-GOOD CABLE" : "ORIGINAL ECG CABLE"}
+                    </span>
+                    <i className={simulatorConnected ? "connected" : ""} />
+                    <span className={simulatorConnected ? "connected" : ""}>MONITOR</span>
+                  </div>
+                  {!simulatorConnected ? (
+                    <button className="service-call-primary" onClick={connectSimulator}>Connect simulator</button>
+                  ) : !originalPathTested ? (
+                    <button className="service-call-primary" onClick={testOriginalCable}>Apply ECG through original cable</button>
+                  ) : (
+                    <div className="service-call-result warning">No waveform through the original cable path.</div>
+                  )}
+                </div>
+              )}
+
+              {selectedTool === "cable" && (
+                <div className="service-call-tool-action">
+                  <strong>Known-good ECG lead set</strong>
+                  <p>Substitute only after documenting the original configuration.</p>
+                  <button
+                    className="service-call-primary"
+                    disabled={!tests.simulatorOriginal}
+                    onClick={installKnownGoodCable}
+                  >
+                    Install known-good lead set
+                  </button>
+                  {knownGoodCableInstalled && (
+                    <div className="service-call-result success">ECG restored at 80 bpm. Monitor input is responding normally.</div>
+                  )}
+                </div>
+              )}
+
+              {selectedTool === "multimeter" && (
+                <div className="service-call-tool-action">
+                  <strong>Digital multimeter</strong>
+                  <p>Use only on the removed cable, isolated from the patient and monitor.</p>
+                  <div className="service-call-dmm">
+                    <div className="service-call-dmm-display">
+                      {!originalCableRemoved
+                        ? "DISCONNECT CABLE"
+                        : meterMode !== "continuity"
+                        ? "WRONG MODE"
+                        : probeStep < 3
+                        ? "0.3 Ω"
+                        : "OL"}
+                    </div>
+                    <div className="service-call-dmm-modes">
+                      {["voltage", "continuity", "resistance"].map((mode) => (
+                        <button
+                          key={mode}
+                          className={meterMode === mode ? "active" : ""}
+                          onClick={() => setMeterMode(mode)}
+                        >
+                          {mode === "voltage" ? "V" : mode === "continuity" ? "🔔" : "Ω"}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="service-call-probe-board">
+                      <span className={probeStep >= 1 ? "tested" : ""}>RA</span>
+                      <span className={probeStep >= 2 ? "tested" : ""}>LA</span>
+                      <span className={probeStep >= 3 ? "open" : ""}>LL / Lead II</span>
+                    </div>
+                  </div>
+                  <button
+                    className="service-call-primary"
+                    disabled={!originalCableRemoved || meterMode !== "continuity" || probeStep >= 3}
+                    onClick={advanceProbe}
+                  >
+                    {probeStep === 0 ? "Test RA conductor" : probeStep === 1 ? "Test LA conductor" : "Test LL conductor"}
+                  </button>
+                  {tests.continuity && (
+                    <div className="service-call-result warning">Open circuit found in the LL conductor used for Lead II.</div>
+                  )}
+                </div>
+              )}
+            </aside>
+          </div>
+
+          <article className={`service-call-evidence-compact ${currentGuide.target === "evidence" ? "guided-highlight" : ""}`}>
+            <button
+              type="button"
+              className="service-call-evidence-summary"
+              onClick={() => setEvidenceOpen((value) => !value)}
+              aria-expanded={evidenceOpen}
+            >
+              <div>
+                <span>Diagnostic Evidence</span>
+                <strong>{Object.values(tests).filter(Boolean).length} of 4 findings recorded</strong>
+              </div>
+              <div className="service-call-current-task">
+                <span>Current task</span>
+                <strong>{currentGuide.title}</strong>
+              </div>
+              <span className="service-call-evidence-toggle">{evidenceOpen ? "Hide" : "View"}</span>
+            </button>
+
+            {evidenceOpen && (
+              <div className="service-call-evidence-expanded">
+                <ul>
+                  <li className={patientTransferred ? "done" : ""}>Alternate monitoring confirmed</li>
+                  <li className={deviceRemoved ? "done" : ""}>Device removed from service</li>
+                  <li className={tests.visual ? "done" : ""}>Visual inspection</li>
+                  <li className={tests.simulatorOriginal ? "done" : ""}>Original signal path tested</li>
+                  <li className={tests.simulatorKnownGood ? "done" : ""}>Known-good cable verified</li>
+                  <li className={tests.continuity ? "done" : ""}>Continuity fault located</li>
+                </ul>
+                <button
+                  type="button"
+                  className="service-call-primary"
+                  disabled={!enoughEvidence}
+                  onClick={() => setStage("diagnosis")}
+                >
+                  Document Diagnosis
+                </button>
+              </div>
+            )}
+          </article>
+
+              <details className="service-call-log">
+                <summary>
+                  <span className="service-call-eyebrow">Service Activity Log</span>
+                  <strong>{log.length} entries</strong>
+                </summary>
+                <div className="service-call-log-entries">
+                  {log.map((entry, index) => <p key={`${entry}-${index}`}>{entry}</p>)}
+                </div>
+              </details>
+            </div>
+          </div>
+          <GuideStepModal />
+        </section>
+      </main>
+    );
+  }
+
+  if (stage === "diagnosis") {
+    const choices = [
+      ["monitor", "Replace the complete bedside monitor"],
+      ["cable", "Original ECG lead set has an open conductor"],
+      ["module", "SpO₂ module failure"],
+      ["configuration", "Incorrect NIBP configuration"],
+    ];
+
+    return (
+      <main className="service-call">
+        <section className="service-call-shell narrow" id="service-call-top">
+          <button className="service-call-back" onClick={() => setStage("room")}>← Return to test bench</button>
+          <GuidedWorkflow compact />
+          <article className="service-call-card guided-highlight">
+            <span className="service-call-eyebrow">Fault Isolation</span>
+            <h1>Select the diagnosis supported by the evidence.</h1>
+            <div className="service-call-diagnostic-summary">
+              <p>Simulator through original cable: <strong>No ECG waveform</strong></p>
+              <p>Simulator through known-good cable: <strong>Normal 80 bpm waveform</strong></p>
+              {tests.continuity && <p>Original cable continuity: <strong>LL conductor open</strong></p>}
+            </div>
+            <div className="service-call-diagnosis-options">
+              {choices.map(([id, label]) => (
+                <button
+                  key={id}
+                  className={diagnosis === id ? (id === "cable" ? "correct" : "wrong") : ""}
+                  onClick={() => {
+                    setDiagnosis(id);
+                    playCbetTone(id === "cable" ? "correct" : "wrong");
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            {diagnosis && diagnosis !== "cable" && (
+              <div className="service-call-result warning">
+                This choice does not fit the substitution test. The same monitor and simulator worked when only the cable changed.
+              </div>
+            )}
+            {diagnosis === "cable" && (
+              <>
+                <div className="service-call-result success">
+                  Fault isolated to the original ECG lead set. Replace the accessory and perform a full functional verification.
+                </div>
+                <button className="service-call-primary full" onClick={() => setStage("repair")}>
+                  Continue to Corrective Action
+                </button>
+              </>
+            )}
+          </article>
+          <GuideStepModal />
+        </section>
+      </main>
+    );
+  }
+
+  if (stage === "repair") {
+    return (
+      <main className="service-call">
+        <section className="service-call-shell narrow" id="service-call-top">
+          <button className="service-call-back" onClick={() => setStage("diagnosis")}>← Diagnosis</button>
+          <GuidedWorkflow compact />
+          <article className="service-call-card guided-highlight">
+            <span className="service-call-eyebrow">Corrective Action and Verification</span>
+            <h1>Replace the failed lead set and verify performance.</h1>
+
+            <div className={`service-call-repair-monitor ${repairComplete ? "repaired" : ""}`}>
+              <span>ECG II</span>
+              <strong>{repairComplete ? "80" : "—"}</strong>
+              <div className={repairComplete ? "service-call-waveform" : "guardian-flatline"} />
+              <small>{repairComplete ? "NORMAL SINUS RHYTHM • 1 mV SIMULATOR INPUT" : "NO SIGNAL"}</small>
+            </div>
+
+            {!repairComplete ? (
+              <button
+                className="service-call-primary full"
+                onClick={() => {
+                  setRepairComplete(true);
+                  addLog("Replacement ECG lead set installed and waveform verified.");
+                  playCbetTone("correct");
+                }}
+              >
+                Install Replacement Lead Set
+              </button>
+            ) : (
+              <>
+                <div className="service-call-verification-list">
+                  <label><input type="checkbox" checked readOnly /> ECG waveform and heart rate verified</label>
+                  <label><input type="checkbox" checked readOnly /> Lead-off detection verified</label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={alarmVerified}
+                      onChange={(event) => {
+                        setAlarmVerified(event.target.checked);
+                        if (event.target.checked) addLog("ECG high/low alarm response verified.");
+                      }}
+                    />
+                    High and low heart-rate alarms verified
+                  </label>
+                </div>
+
+                <button
+                  className="service-call-primary full"
+                  disabled={!alarmVerified}
+                  onClick={() => setStage("debrief")}
+                >
+                  Close Technical Work and Begin Review
+                </button>
+              </>
+            )}
+          </article>
+          <GuideStepModal />
+        </section>
+      </main>
+    );
+  }
+
+  if (stage === "debrief" && !debriefComplete) {
+    return (
+      <main className="service-call">
+        <section className="service-call-shell narrow" id="service-call-top">
+          <GuidedWorkflow compact />
+          <article className="service-call-card guided-highlight">
+            <div className="service-call-question-meta">
+              <span className="service-call-eyebrow">After-Action Review</span>
+              <strong>{questionIndex + 1} of {questions.length}</strong>
+            </div>
+            <h1>{currentQuestion.question}</h1>
+            <div className="service-call-answer-grid">
+              {currentQuestion.options.map((option, index) => {
+                const answered = selectedAnswer !== undefined;
+                const className = answered
+                  ? index === currentQuestion.answer
+                    ? "correct"
+                    : index === selectedAnswer
+                    ? "wrong"
+                    : ""
+                  : "";
+                return (
+                  <button
+                    key={option}
+                    className={className}
+                    disabled={answered}
+                    onClick={() => {
+                      setAnswers((previous) => ({ ...previous, [questionIndex]: index }));
+                      playCbetTone(index === currentQuestion.answer ? "correct" : "wrong");
+                    }}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            {selectedAnswer !== undefined && (
+              <div className={`service-call-result ${selectedAnswer === currentQuestion.answer ? "success" : "warning"}`}>
+                <strong>{selectedAnswer === currentQuestion.answer ? "Correct." : "Review this point."}</strong>
+                <p>{currentQuestion.explanation}</p>
+              </div>
+            )}
+            <button
+              className="service-call-primary full"
+              disabled={selectedAnswer === undefined}
+              onClick={() => setQuestionIndex((index) => Math.min(index + 1, questions.length - 1))}
+            >
+              {questionIndex === questions.length - 1 ? "Complete Work Order" : "Next Question"}
+            </button>
+          </article>
+          <GuideStepModal />
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className="service-call">
+      <section className="service-call-shell narrow" id="service-call-top">
+        <article className="service-call-complete">
+          <div className="service-call-complete-icon">✓</div>
+          <span className="service-call-eyebrow">Work Order Closed</span>
+          <h1>Guardian monitor returned to clinical service.</h1>
+          <div className="service-call-complete-grid">
+            <div><span>Failure</span><strong>Open conductor in ECG lead set</strong></div>
+            <div><span>Corrective action</span><strong>Lead set replaced</strong></div>
+            <div><span>Verification</span><strong>ECG, lead-off, and alarms passed</strong></div>
+            <div><span>Review score</span><strong>{score} of {questions.length}</strong></div>
+            <div><span>Disposition</span><strong>Returned to service</strong></div>
+            <div><span>Reward</span><strong>+180 XP</strong></div>
+          </div>
+          <div className="service-call-report">
+            <strong>Final service note</strong>
+            <p>
+              Confirmed patient transfer to alternate monitoring and removed the device from clinical use.
+              Reproduced loss of ECG using an 80 bpm, 1 mV simulated signal through the original lead set.
+              Substituted a known-good lead set and restored ECG. Continuity testing identified an open LL
+              conductor in the original accessory. Replaced the lead set and verified waveform display,
+              lead-off detection, heart-rate calculation, and high/low alarm response.
+            </p>
+          </div>
+          <div className="service-call-actions">
+            <button className="service-call-secondary" onClick={onOpenTraining}>Review Related Training</button>
+            <button className="service-call-primary" onClick={onExit}>Return to Hospital</button>
+          </div>
+        </article>
+      </section>
+    </main>
+  );
+}
+
+
+
 function getCbetCareerRank(xp = 0) {
   if (xp >= 15000) return "CBET Master";
   if (xp >= 10000) return "CBET Candidate";
@@ -2532,7 +3493,7 @@ function getCbetCareerRank(xp = 0) {
 }
 
 export default function CBETAcademy() {
-  const [screen, setScreen] = useState("dashboard");
+  const [screen, setScreen] = useState("hospital");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
   const [returnToMissions, setReturnToMissions] = useState(false);
@@ -2546,8 +3507,6 @@ export default function CBETAcademy() {
   }, [refresh]);
 
   useEffect(() => {
-    if (screen !== "dashboard") return undefined;
-
     const previousScrollRestoration =
       "scrollRestoration" in window.history
         ? window.history.scrollRestoration
@@ -2557,25 +3516,43 @@ export default function CBETAcademy() {
       window.history.scrollRestoration = "manual";
     }
 
-    const scrollToTrainingPath = () => {
-      const missionSection = document.getElementById("cbet-training-path");
-      if (!missionSection) return;
+    const positionScreen = () => {
+      if (screen === "hospital") {
+        const hospitalMap = document.getElementById("cbet-hospital-map");
+        if (hospitalMap) {
+          hospitalMap.scrollIntoView({
+            behavior: "auto",
+            block: "start",
+            inline: "nearest",
+          });
+          window.scrollBy({ top: -18, left: 0, behavior: "auto" });
+          return;
+        }
+      }
 
-      const top = Math.max(
-        0,
-        missionSection.getBoundingClientRect().top + window.scrollY - 24
-      );
+      if (screen === "serviceCall1048") {
+        const assignment = document.getElementById("service-call-top");
+        if (assignment) {
+          assignment.scrollIntoView({
+            behavior: "auto",
+            block: "start",
+            inline: "nearest",
+          });
+          window.scrollBy({ top: -18, left: 0, behavior: "auto" });
+          return;
+        }
+      }
 
-      window.scrollTo({
-        top,
-        behavior: "auto",
-      });
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     };
 
-    // Repeat briefly because images, fonts, and cards above the missions
-    // can finish loading after the first scroll and shift the page.
-    const timers = [0, 80, 200, 450, 800, 1200].map((delay) =>
-      window.setTimeout(scrollToTrainingPath, delay)
+    positionScreen();
+
+    // Repeat after layout, fonts, and the parent site's footer/header settle.
+    const timers = [0, 60, 180, 420, 850].map((delay) =>
+      window.setTimeout(positionScreen, delay)
     );
 
     return () => {
@@ -2588,13 +3565,45 @@ export default function CBETAcademy() {
         window.history.scrollRestoration = previousScrollRestoration;
       }
     };
-  }, [screen, returnToMissions, refresh]);
+  }, [screen]);
+
+
+  if (screen === "hospital") {
+    return (
+      <>
+        <CBETHospitalDashboard
+          xp={academy.xp}
+          progress={progress}
+          badges={Object.values(academy.modules || {}).filter((module) => module.complete).length}
+          streak={streak.current || 1}
+          onOpenTraining={() => setScreen("dashboard")}
+          onOpenLab={() => setScreen("virtualLab")}
+          onOpenMission={() => setScreen("serviceCall1048")}
+          onOpenStats={() => setShowStats(true)}
+        />
+        {showStats && <StatsPanel stats={stats} onClose={() => setShowStats(false)} />}
+      </>
+    );
+  }
+
+  if (screen === "serviceCall1048") {
+    return (
+      <GuardianEcgServiceCall
+        onExit={() => {
+          setScreen("hospital");
+          setRefresh((value) => value + 1);
+        }}
+        onOpenTraining={() => setScreen("dashboard")}
+        onComplete={() => setRefresh((value) => value + 1)}
+      />
+    );
+  }
 
   if (screen === "mission1") {
     return (
       <main className="cbet-academy">
         <MissionOne
-          onBack={() => setScreen("dashboard")}
+          onBack={() => setScreen("hospital")}
           onComplete={() => setRefresh((v) => v + 1)}
         />
       </main>
@@ -2606,7 +3615,7 @@ export default function CBETAcademy() {
       <main className="cbet-academy">
         <MissionTwo
           onExit={() => {
-            setScreen("dashboard");
+            setScreen("hospital");
             setRefresh((v) => v + 1);
           }}
         />
@@ -2619,7 +3628,7 @@ export default function CBETAcademy() {
       <main className="cbet-academy">
         <MissionThree
           onExit={() => {
-            setScreen("dashboard");
+            setScreen("hospital");
             setRefresh((v) => v + 1);
           }}
         />
@@ -2632,7 +3641,7 @@ export default function CBETAcademy() {
       <VirtualCBETLab
         onExit={() => {
           setReturnToMissions(true);
-          setScreen("dashboard");
+          setScreen("hospital");
         }}
       />
     );
@@ -2676,6 +3685,7 @@ export default function CBETAcademy() {
                     ? "Start Mission 3"
                     : "Continue Mission 3"}
                 </button>
+                <button className="cbet-secondary" onClick={() => setScreen("hospital")}>🏥 Hospital Dashboard</button>
                 <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
                 <button className="cbet-secondary cbet-lab-launch-button" onClick={() => setScreen("virtualLab")}>🧪 Open Virtual Lab</button>
               </div>
