@@ -2156,3 +2156,88 @@
     position: static;
   }
 }
+
+/* =========================================================
+   Pixel Perfect pass: Mission 3 analyzer + knowledge header
+   ========================================================= */
+
+/* Give each header element its own space so labels never collide. */
+.cbet-check-heading {
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: stretch;
+  gap: 8px !important;
+}
+
+.cbet-check-heading > .cbet-label {
+  justify-self: start;
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+.cbet-check-header-tools {
+  width: 100%;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
+  gap: 6px 12px !important;
+}
+
+.cbet-check-progress,
+.cbet-auto-advance-toggle {
+  line-height: 1.2;
+}
+
+/* Keep analyzer text contained inside the LCD at every width. */
+.mission-three-display {
+  min-width: 0;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.mission-three-display small,
+.mission-three-display strong,
+.mission-three-display span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.mission-three-display strong {
+  margin: 7px 0;
+  font-size: clamp(1.25rem, 2.35vw, 2rem);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.mission-three-display span {
+  font-size: clamp(.88rem, 1.2vw, 1.05rem);
+  line-height: 1.2;
+}
+
+/* Tighten the Mission 3 bench without sacrificing readability. */
+.mission-three-instrument {
+  gap: 16px;
+}
+
+.mission-three-lab .cbet-toggle {
+  gap: 10px;
+}
+
+.mission-three-lab .cbet-toggle button {
+  min-height: 46px;
+  padding: 10px 16px;
+}
+
+.mission-three-lab .cbet-lab-tip {
+  margin-top: 14px;
+}
+
+@media (max-width: 760px) {
+  .cbet-check-header-tools {
+    align-items: center;
+  }
+
+  .mission-three-display strong {
+    font-size: clamp(1.2rem, 7vw, 1.85rem);
+  }
+}
