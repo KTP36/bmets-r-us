@@ -3458,7 +3458,25 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
             <div><span>Verification</span><strong>ECG, lead-off, and alarms passed</strong></div>
             <div><span>Review score</span><strong>{score} of {questions.length}</strong></div>
             <div><span>Disposition</span><strong>Returned to service</strong></div>
-            <div><span>Reward</span><strong>+180 XP</strong></div>
+            <div className="service-call-competencies">
+              <span>Competencies Demonstrated</span>
+              <ul>
+                <li>✅ Patient Safety</li>
+                <li>✅ Visual Inspection</li>
+                <li>✅ Signal Tracing</li>
+                <li>✅ Evidence-Based Troubleshooting</li>
+              </ul>
+              <small>+180 Learning Points</small>
+            </div>
+          </div>
+          <div className="service-call-learning-summary">
+            <h3>What You Practiced</h3>
+            <p>
+              You safely removed a monitor from service, reproduced the complaint,
+              isolated the failure using a known-good lead set, confirmed the diagnosis
+              with continuity testing, and verified proper operation before returning
+              the monitor to clinical service.
+            </p>
           </div>
           <div className="service-call-report">
             <strong>Final service note</strong>

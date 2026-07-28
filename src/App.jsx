@@ -9417,7 +9417,7 @@ return (
               🩺 Medical Assistant Academy
             </span>
             <h3 style={{ fontSize: isSmallScreen ? 27 : 31, lineHeight: 1.12, margin: "18px 0 10px" }}>
-              Build Real-World Medical Assisting Skills
+              Build Real-World Medical Assistant Skills
             </h3>
             <p style={{ margin: "0 0 18px", lineHeight: 1.58, color: "rgba(255,255,255,0.94)" }}>
               Follow a guided path through clinical skills, patient care, vital signs, infection control,

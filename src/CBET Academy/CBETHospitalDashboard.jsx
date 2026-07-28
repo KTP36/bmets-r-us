@@ -30,6 +30,7 @@ const WORK_ORDERS = [
     reward: 150,
     mission: 3,
     tools: ["Infusion analyzer", "Test tubing", "Service checklist"],
+    available: false,
   },
   {
     id: "PM-2044",
@@ -40,6 +41,7 @@ const WORK_ORDERS = [
     reward: 125,
     mission: 3,
     tools: ["Defibrillator analyzer", "Safety analyzer", "Inspection checklist"],
+    available: false,
   },
 ];
 
@@ -65,8 +67,15 @@ export default function CBETHospitalDashboard({
 }) {
   const [selectedDepartment, setSelectedDepartment] = useState("ed");
   const [acceptedOrder, setAcceptedOrder] = useState(() => {
-    try { return window.localStorage.getItem("cbetActiveWorkOrder") || ""; }
-    catch { return ""; }
+    try {
+      const savedOrder = window.localStorage.getItem("cbetActiveWorkOrder");
+      const supportedOrder = WORK_ORDERS.find(
+        (order) => order.id === savedOrder && order.available !== false
+      );
+      return supportedOrder?.id || "WO-1048";
+    } catch {
+      return "WO-1048";
+    }
   });
 
   const activeOrder = useMemo(
@@ -96,6 +105,9 @@ export default function CBETHospitalDashboard({
   }, []);
 
   const acceptOrder = (id) => {
+    const order = WORK_ORDERS.find((item) => item.id === id);
+    if (!order || order.available === false) return;
+
     setAcceptedOrder(id);
     try { window.localStorage.setItem("cbetActiveWorkOrder", id); } catch { /* optional */ }
   };
@@ -195,7 +207,17 @@ export default function CBETHospitalDashboard({
               <p>{order.problem}</p>
               <div className="hospital-order-actions">
                 <span>+{order.reward} XP</span>
-                <button type="button" onClick={() => acceptOrder(order.id)}>{acceptedOrder === order.id ? "Accepted" : "Accept call"}</button>
+                <button
+                  type="button"
+                  disabled={order.available === false}
+                  onClick={() => acceptOrder(order.id)}
+                >
+                  {order.available === false
+                    ? "Coming soon"
+                    : acceptedOrder === order.id
+                    ? "Accepted"
+                    : "Accept call"}
+                </button>
               </div>
             </article>
           ))}
