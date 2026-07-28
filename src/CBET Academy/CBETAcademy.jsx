@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   cbetAcademyModules,
   missionOneBriefing,
@@ -25,6 +25,7 @@ import {
 import "./CBETAcademy.css";
 import "./CBETServiceCall.css";
 import VirtualCBETLab from "./VirtualLab/VirtualCBETLab";
+import { loadCourseState } from "./VirtualLab/LessonEngine";
 import CBETHospitalDashboard from "./CBETHospitalDashboard";
 
 function shuffleQuestion(question) {
@@ -161,9 +162,9 @@ function StatsPanel({ stats, onClose }) {
   );
 }
 
-function KnowledgeCheck({ check, onComplete, resetKey }) {
+function KnowledgeCheck({ check, onComplete, resetKey, progressLabel, actions }) {
   const [selected, setSelected] = useState(null);
-  const randomizedCheck = useMemo(() => shuffleQuestion(check), [check, resetKey]);
+  const randomizedCheck = useMemo(() => shuffleQuestion(check), [resetKey]);
 
   useEffect(() => {
     setSelected(null);
@@ -182,7 +183,10 @@ function KnowledgeCheck({ check, onComplete, resetKey }) {
 
   return (
     <div className="cbet-check">
-      <span className="cbet-label">Quick Knowledge Check</span>
+      <div className="cbet-check-heading">
+        <span className="cbet-label">Quick Knowledge Check</span>
+        {progressLabel && <span className="cbet-check-progress">{progressLabel}</span>}
+      </div>
       <h3 className="cbet-check-question">{questionText}</h3>
       <div className="cbet-options">
         {randomizedCheck.options.map((option, index) => (
@@ -218,6 +222,7 @@ function KnowledgeCheck({ check, onComplete, resetKey }) {
           </span>
         </div>
       )}
+      {actions && <div className="cbet-check-actions">{actions}</div>}
     </div>
   );
 }
@@ -790,6 +795,7 @@ function scrollCbetPageToTop() {
 
   window.requestAnimationFrame(() => {
     const target =
+      document.getElementById("mission-1-active") ||
       document.querySelector(".cbet-academy .cbet-shell") ||
       document.querySelector(".cbet-academy");
 
@@ -808,7 +814,40 @@ function scrollCbetPageToTop() {
 }
 
 
-function MissionOne({ onBack, onComplete }) {
+
+function MissionJourney({ phase, lessonIndex = 0, lessonCount = 9, passed = false }) {
+  const phaseOrder = ["briefing", "lessons", "scenarios", "quiz", "complete"];
+  const activePhase = passed ? "complete" : phase;
+  const activeIndex = phaseOrder.indexOf(activePhase);
+  const steps = [
+    { key: "briefing", label: "Briefing" },
+    { key: "lessons", label: `Lessons${phase === "lessons" ? ` ${lessonIndex + 1}/${lessonCount}` : ""}` },
+    { key: "scenarios", label: "Troubleshooting" },
+    { key: "quiz", label: "Challenge" },
+    { key: "complete", label: "Complete" },
+  ];
+
+  return (
+    <nav className="cbet-mission-journey" aria-label="Mission progress">
+      {steps.map((step, index) => {
+        const isDone = index < activeIndex;
+        const isActive = index === activeIndex;
+        return (
+          <div
+            key={step.key}
+            className={`${isDone ? "done" : ""} ${isActive ? "active" : ""}`}
+            aria-current={isActive ? "step" : undefined}
+          >
+            <span>{isDone ? "✓" : index + 1}</span>
+            <strong>{step.label}</strong>
+          </div>
+        );
+      })}
+    </nav>
+  );
+}
+
+function MissionOne({ onBack, onComplete, onContinueMission2 }) {
   const questions = useMemo(() => missionOneQuestions.map(shuffleQuestion), []);
   const savedProgress = getMissionProgress(1);
   const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
@@ -826,6 +865,7 @@ function MissionOne({ onBack, onComplete }) {
   const [finished, setFinished] = useState(false);
   const [xpToast, setXpToast] = useState(null);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false);
+  const missionContentRef = useRef(null);
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
@@ -834,7 +874,15 @@ function MissionOne({ onBack, onComplete }) {
   const passed = percent >= 80;
 
   useEffect(() => {
-    scrollCbetPageToTop();
+    const timerId = window.setTimeout(() => {
+      if (phase === "lessons" && missionContentRef.current) {
+        missionContentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        scrollCbetPageToTop();
+      }
+    }, 60);
+
+    return () => window.clearTimeout(timerId);
   }, [phase, lessonIndex, scenarioIndex, questionIndex]);
 
   function setPhase(nextPhase) {
@@ -902,6 +950,7 @@ function MissionOne({ onBack, onComplete }) {
     if (questionIndex === questions.length - 1) {
       const finalCorrect = score + (selected === question.answer ? 1 : 0);
       const finalScore = Math.round((finalCorrect / questions.length) * 100);
+      setScore(finalCorrect);
       const wasComplete = getCbetModuleState(1).complete;
       completeCbetModule(1, finalScore, 250);
       if (finalScore >= 80 && !wasComplete) {
@@ -939,9 +988,10 @@ function MissionOne({ onBack, onComplete }) {
 
   if (phase === "briefing") {
     return (
-      <section className="cbet-shell">
+      <section id="mission-1-active" className="cbet-shell">
         {missionOverlay}
         <button className="cbet-text-button" onClick={onBack}>← Back to Academy</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} passed={finished && passed} />
         <div className="cbet-briefing">
           <div className="cbet-hero-icon">⚡</div>
           <span className="cbet-label">Mission 1 Briefing</span>
@@ -984,9 +1034,10 @@ function MissionOne({ onBack, onComplete }) {
     const finalLesson = lessonIndex === missionOneLessons.length - 1;
 
     return (
-      <section className="cbet-shell">
+      <section id="mission-1-active" className="cbet-shell">
         {missionOverlay}
         <button className="cbet-text-button" onClick={onBack}>← Back to Academy</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} passed={finished && passed} />
         <div className="cbet-heading">
           <span className="cbet-label">Mission 1 • Lesson {lessonIndex + 1} of 9</span>
           <h1>{lesson.icon} {lesson.title}</h1>
@@ -1007,19 +1058,22 @@ function MissionOne({ onBack, onComplete }) {
           <KnowledgeCheck
             key={`mission-1-lesson-${lessonIndex}`}
             resetKey={`mission-1-lesson-${lessonIndex}`}
+            progressLabel={`Lesson ${lessonIndex + 1} of ${missionOneLessons.length}`}
             check={lesson.check}
             onComplete={(isCorrect) => {
               if (isCorrect) markLessonComplete(lessonIndex);
             }}
+            actions={(
+              <>
+                <button className="cbet-secondary" disabled={lessonIndex === 0}
+                  onClick={() => setLessonIndex((i) => i - 1)}>Previous</button>
+                <button className="cbet-primary" disabled={!done}
+                  onClick={() => finalLesson ? setPhase("scenarios") : setLessonIndex((i) => i + 1)}>
+                  {finalLesson ? "Continue to Troubleshooting" : "Continue to Next Lesson"}
+                </button>
+              </>
+            )}
           />
-          <div className="cbet-actions">
-            <button className="cbet-secondary" disabled={lessonIndex === 0}
-              onClick={() => setLessonIndex((i) => i - 1)}>Previous</button>
-            <button className="cbet-primary" disabled={!done}
-              onClick={() => finalLesson ? setPhase("scenarios") : setLessonIndex((i) => i + 1)}>
-              {finalLesson ? "Begin Scenarios" : "Next Lesson"}
-            </button>
-          </div>
         </article>
       </section>
     );
@@ -1030,9 +1084,10 @@ function MissionOne({ onBack, onComplete }) {
     const done = Boolean(scenarioChecks[scenarioIndex]);
     const final = scenarioIndex === missionOneScenarios.length - 1;
     return (
-      <section className="cbet-shell">
+      <section id="mission-1-active" className="cbet-shell">
         {missionOverlay}
         <button className="cbet-text-button" onClick={onBack}>← Back to Academy</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} passed={finished && passed} />
         <div className="cbet-heading">
           <span className="cbet-label">Mission 1 • Applied Troubleshooting</span>
           <h1>Use the fundamentals</h1>
@@ -1048,7 +1103,7 @@ function MissionOne({ onBack, onComplete }) {
             onClick={() => setScenarioIndex((i) => i - 1)}>Previous</button>
           <button className="cbet-primary" disabled={!done}
             onClick={() => final ? setPhase("quiz") : setScenarioIndex((i) => i + 1)}>
-            {final ? "Begin Mission Challenge" : "Next Scenario"}
+            {final ? "Continue to Mission Challenge" : "Continue to Next Scenario"}
           </button>
         </div>
       </section>
@@ -1056,9 +1111,10 @@ function MissionOne({ onBack, onComplete }) {
   }
 
   return (
-    <section className="cbet-shell">
+    <section id="mission-1-active" className="cbet-shell">
         {missionOverlay}
       <button className="cbet-text-button" onClick={onBack}>← Back to Academy</button>
+      <MissionJourney phase={phase} lessonIndex={lessonIndex} passed={finished && passed} />
       <div className="cbet-heading">
         <span className="cbet-label">Mission 1 Challenge</span>
         <h1>Electronics Fundamentals</h1>
@@ -1110,9 +1166,17 @@ function MissionOne({ onBack, onComplete }) {
           <p>{passed
             ? "Electronics Apprentice badge unlocked. You earned 250 XP."
             : "You need 80% to pass. Review the lessons and try again."}</p>
+          <div className="cbet-completion-summary">
+            <div><span>XP earned</span><strong>{passed ? "+250" : "0"}</strong></div>
+            <div><span>Mission status</span><strong>{passed ? "Complete" : "Review required"}</strong></div>
+            <div><span>Next step</span><strong>{passed ? "Mission 2" : "Retake challenge"}</strong></div>
+          </div>
           <div className="cbet-actions center">
-            <button className="cbet-secondary" onClick={restart}>Retake Challenge</button>
-            <button className="cbet-primary" onClick={onBack}>Return to Academy</button>
+            {!passed && <button className="cbet-secondary" onClick={restart}>Retake Challenge</button>}
+            <button className="cbet-secondary" onClick={onBack}>Return to Academy</button>
+            {passed && (
+              <button className="cbet-primary" onClick={onContinueMission2}>Continue to Mission 2 →</button>
+            )}
           </div>
         </article>
       )}
@@ -1121,7 +1185,7 @@ function MissionOne({ onBack, onComplete }) {
 }
 
 
-function MissionTwo({ onExit }) {
+function MissionTwo({ onExit, onContinueMission3 }) {
   const lessons = missionTwoLessons;
   const scenarios = missionTwoScenarios;
   const questions = useMemo(() => missionTwoQuestions.map(shuffleQuestion), []);
@@ -1143,6 +1207,7 @@ function MissionTwo({ onExit }) {
   const [finalResult, setFinalResult] = useState(null);
   const [xpToast, setXpToast] = useState(null);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false);
+  const lessonStageRef = useRef(null);
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
@@ -1153,7 +1218,43 @@ function MissionTwo({ onExit }) {
   const passed = percent >= 80;
 
   useEffect(() => {
-    scrollCbetPageToTop();
+    if (typeof window === "undefined") return undefined;
+
+    let timeoutId;
+    let frameOne;
+    let frameTwo;
+
+    const moveToActiveStep = () => {
+      const target =
+        phase === "lessons"
+          ? lessonStageRef.current
+          : document.getElementById("mission-2-active-step");
+
+      if (!target) {
+        scrollCbetPageToTop();
+        return;
+      }
+
+      const headerOffset = window.innerWidth <= 760 ? 12 : 24;
+      const top = Math.max(
+        0,
+        target.getBoundingClientRect().top + window.scrollY - headerOffset
+      );
+
+      window.scrollTo({ top, behavior: "smooth" });
+    };
+
+    // Wait for the selected lesson, lab controls, and question card to finish rendering.
+    frameOne = window.requestAnimationFrame(() => {
+      frameTwo = window.requestAnimationFrame(moveToActiveStep);
+    });
+    timeoutId = window.setTimeout(moveToActiveStep, 180);
+
+    return () => {
+      window.cancelAnimationFrame(frameOne);
+      window.cancelAnimationFrame(frameTwo);
+      window.clearTimeout(timeoutId);
+    };
   }, [phase, lessonIndex, scenarioIndex, questionIndex]);
 
   function setPhase(nextPhase) {
@@ -1664,6 +1765,7 @@ function MissionTwo({ onExit }) {
         </div>
 
         <article className="mission-two-launch-card">
+          <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={false} />
           <div className="mission-two-hero">
             <div className="mission-two-copy">
               <span className="mission-two-kicker">
@@ -1757,11 +1859,12 @@ function MissionTwo({ onExit }) {
       <section className="cbet-shell">
         {missionOverlay}
         <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Lesson {lessonIndex + 1} of {lessons.length}</span>
           <div><i style={{ width: `${((lessonIndex + (complete ? 1 : 0)) / lessons.length) * 100}%` }} /></div>
         </div>
-        <article className="cbet-lesson-card">
+        <article id="mission-2-active-step" className="cbet-lesson-card mission-two-lesson-card">
           <div className="cbet-lesson-icon">{lesson.icon}</div>
           <span className="cbet-label">Component Lesson {lessonIndex + 1}</span>
           <h2>{lesson.title}</h2>
@@ -1770,11 +1873,18 @@ function MissionTwo({ onExit }) {
             {lesson.points.map((point) => <p key={point}><span>●</span>{point}</p>)}
           </div>
           <GlossaryTerms text={`${lesson.title} ${lesson.points.join(" ")}`} />
-          <MissionTwoLab type={lesson.interaction} />
-          <KnowledgeCheck
-            key={`mission-2-lesson-${lessonIndex}`}
-            resetKey={`mission-2-lesson-${lessonIndex}`}
-            check={{
+          <div className="mission-two-guided-stage" ref={lessonStageRef}>
+            <div className="mission-two-activity-pane">
+              <span className="mission-two-pane-label">Interactive activity</span>
+              <MissionTwoLab type={lesson.interaction} />
+            </div>
+            <div className="mission-two-question-pane">
+              <span className="mission-two-pane-label">Apply what you learned</span>
+              <KnowledgeCheck
+                key={`mission-2-lesson-${lessonIndex}`}
+                resetKey={`mission-2-lesson-${lessonIndex}`}
+                progressLabel={`Lesson ${lessonIndex + 1} of ${lessons.length}`}
+                check={{
               prompt: lessonIndex === 0 ? "What happens to current when resistance increases and voltage stays constant?"
                 : lessonIndex === 1 ? "What commonly causes excessive ripple after a rectifier?"
                 : lessonIndex === 2 ? "What should a healthy diode do in reverse bias?"
@@ -1796,20 +1906,24 @@ function MissionTwo({ onExit }) {
               answer: lessonIndex === 0 ? 1 : lessonIndex === 1 ? 1 : lessonIndex === 2 ? 1 : lessonIndex === 3 ? 0 : lessonIndex === 4 ? 0 : lessonIndex === 5 ? 0 : lessonIndex === 6 ? 0 : lessonIndex === 7 ? 0 : 0,
               explanation: "Correct. This is the key behavior to remember for this component."
             }}
-            onComplete={(isCorrect) => {
-              if (isCorrect) markLessonComplete(lessonIndex);
-            }}
-          />
-          <div className="cbet-nav-row">
-            <button className="cbet-secondary" disabled={lessonIndex === 0}
-              onClick={() => setLessonIndex(Math.max(0, lessonIndex - 1))}>Previous</button>
-            {lessonIndex < lessons.length - 1 ? (
-              <button className="cbet-primary" disabled={!complete}
-                onClick={() => setLessonIndex(lessonIndex + 1)}>Next Lesson</button>
-            ) : (
-              <button className="cbet-primary" disabled={!complete}
-                onClick={() => setPhase("scenarios")}>Begin Applied Cases</button>
-            )}
+                onComplete={(isCorrect) => {
+                  if (isCorrect) markLessonComplete(lessonIndex);
+                }}
+                actions={(
+                  <>
+                    <button className="cbet-secondary" disabled={lessonIndex === 0}
+                      onClick={() => setLessonIndex(Math.max(0, lessonIndex - 1))}>Previous</button>
+                    {lessonIndex < lessons.length - 1 ? (
+                      <button className="cbet-primary" disabled={!complete}
+                        onClick={() => setLessonIndex(lessonIndex + 1)}>Next Lesson</button>
+                    ) : (
+                      <button className="cbet-primary" disabled={!complete}
+                        onClick={() => setPhase("scenarios")}>Begin Applied Cases</button>
+                    )}
+                  </>
+                )}
+              />
+            </div>
           </div>
         </article>
       </section>
@@ -1823,11 +1937,14 @@ function MissionTwo({ onExit }) {
       <section className="cbet-shell">
         {missionOverlay}
         <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Applied Case {scenarioIndex + 1} of {scenarios.length}</span>
           <div><i style={{ width: `${((scenarioIndex + (complete ? 1 : 0)) / scenarios.length) * 100}%` }} /></div>
         </div>
-        <ScenarioCard scenario={scenario} onComplete={() => markScenarioComplete(scenarioIndex)} />
+        <div id="mission-2-active-step">
+          <ScenarioCard scenario={scenario} onComplete={() => markScenarioComplete(scenarioIndex)} />
+        </div>
         <div className="cbet-nav-row">
           <button className="cbet-secondary" disabled={scenarioIndex === 0}
             onClick={() => setScenarioIndex(Math.max(0, scenarioIndex - 1))}>Previous</button>
@@ -1848,11 +1965,12 @@ function MissionTwo({ onExit }) {
       <section className="cbet-shell">
         {missionOverlay}
         <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Question {questionIndex + 1} of {questions.length}</span>
           <div><i style={{ width: `${((questionIndex + 1) / questions.length) * 100}%` }} /></div>
         </div>
-        <article className="cbet-quiz-card">
+        <article id="mission-2-active-step" className="cbet-quiz-card">
           <span className="cbet-label">Mission 2 Challenge</span>
           <h2>{question.question}</h2>
           <div className="cbet-option-grid">
@@ -1883,6 +2001,7 @@ function MissionTwo({ onExit }) {
     <section className="cbet-shell">
       {missionOverlay}
       <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+      <MissionJourney phase="complete" lessonIndex={lessons.length - 1} lessonCount={lessons.length} passed={passed} />
       <article className={`cbet-results ${passed ? "passed" : ""}`}>
         {passed && (
           <div className="cbet-confetti" aria-hidden="true">
@@ -1901,9 +2020,17 @@ function MissionTwo({ onExit }) {
         <p>{passed
           ? "You completed Electronic Components and earned 350 XP plus the Component Specialist badge."
           : "An 80% score is required. Review the interactive component labs, then try again."}</p>
+        <div className="cbet-completion-summary">
+          <div><span>XP earned</span><strong>{passed ? "+350" : "0"}</strong></div>
+          <div><span>Mission status</span><strong>{passed ? "Complete" : "Review required"}</strong></div>
+          <div><span>Next step</span><strong>{passed ? "Mission 3" : "Retake challenge"}</strong></div>
+        </div>
         <div className="cbet-nav-row center">
-          <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>
-          <button className="cbet-primary" onClick={onExit}>Return to Academy</button>
+          {!passed && <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>}
+          <button className="cbet-secondary" onClick={onExit}>Return to Academy</button>
+          {passed && (
+            <button className="cbet-primary" onClick={onContinueMission3}>Continue to Mission 3 →</button>
+          )}
         </div>
       </article>
     </section>
@@ -2310,6 +2437,7 @@ function MissionThree({ onExit }) {
       <section className="cbet-shell">
         {overlay}
         <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={false} />
         <article className="cbet-briefing mission-three-briefing">
           <div className="cbet-hero-icon">🧰</div>
           <span className="cbet-label">Mission 3 Briefing</span>
@@ -2344,6 +2472,7 @@ function MissionThree({ onExit }) {
       <section className="cbet-shell">
         {overlay}
         <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Lesson {lessonIndex + 1} of {lessons.length}</span>
           <div><i style={{ width: `${((lessonIndex + (complete ? 1 : 0)) / lessons.length) * 100}%` }} /></div>
@@ -2360,37 +2489,40 @@ function MissionThree({ onExit }) {
           <KnowledgeCheck
             key={`mission-3-lesson-${lessonIndex}`}
             resetKey={`mission-3-lesson-${lessonIndex}`}
+            progressLabel={`Lesson ${lessonIndex + 1} of ${lessons.length}`}
             check={lesson.check}
             onComplete={(isCorrect) => {
               if (isCorrect) markLessonComplete(lessonIndex);
             }}
-          />
-          <div className="cbet-nav-row">
-            <button
-              className="cbet-secondary"
-              disabled={lessonIndex === 0}
-              onClick={() => setLessonIndex(Math.max(0, lessonIndex - 1))}
-            >
-              Previous
-            </button>
-            {lessonIndex < lessons.length - 1 ? (
-              <button
-                className="cbet-primary"
-                disabled={!complete}
-                onClick={() => setLessonIndex(lessonIndex + 1)}
-              >
-                Next Lesson
-              </button>
-            ) : (
-              <button
-                className="cbet-primary"
-                disabled={!complete}
-                onClick={() => setPhase("scenarios")}
-              >
-                Begin Applied Cases
-              </button>
+            actions={(
+              <>
+                <button
+                  className="cbet-secondary"
+                  disabled={lessonIndex === 0}
+                  onClick={() => setLessonIndex(Math.max(0, lessonIndex - 1))}
+                >
+                  Previous
+                </button>
+                {lessonIndex < lessons.length - 1 ? (
+                  <button
+                    className="cbet-primary"
+                    disabled={!complete}
+                    onClick={() => setLessonIndex(lessonIndex + 1)}
+                  >
+                    Next Lesson
+                  </button>
+                ) : (
+                  <button
+                    className="cbet-primary"
+                    disabled={!complete}
+                    onClick={() => setPhase("scenarios")}
+                  >
+                    Begin Applied Cases
+                  </button>
+                )}
+              </>
             )}
-          </div>
+          />
         </article>
       </section>
     );
@@ -2404,6 +2536,7 @@ function MissionThree({ onExit }) {
       <section className="cbet-shell">
         {overlay}
         <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Applied Case {scenarioIndex + 1} of {scenarios.length}</span>
           <div><i style={{ width: `${((scenarioIndex + (complete ? 1 : 0)) / scenarios.length) * 100}%` }} /></div>
@@ -2449,6 +2582,7 @@ function MissionThree({ onExit }) {
       <section className="cbet-shell">
         {overlay}
         <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Question {questionIndex + 1} of {questions.length}</span>
           <div><i style={{ width: `${((questionIndex + 1) / questions.length) * 100}%` }} /></div>
@@ -2497,6 +2631,7 @@ function MissionThree({ onExit }) {
   return (
     <section className="cbet-shell">
       <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+      <MissionJourney phase="complete" lessonIndex={lessons.length - 1} lessonCount={lessons.length} passed={passed} />
       <article className={`cbet-results ${passed ? "passed" : ""}`}>
         <div className="cbet-hero-icon">{passed ? "🧰" : "📘"}</div>
         <span className="cbet-label">Mission 3 Results</span>
@@ -2512,9 +2647,16 @@ function MissionThree({ onExit }) {
             ? "Mission 3 is complete. You earned 350 XP and the Test Equipment Specialist badge."
             : "An 80% score is required. Review the analyzer setup and measurement lessons, then try again."}
         </p>
+        <div className="cbet-completion-summary">
+          <div><span>XP earned</span><strong>{passed ? "+350" : "0"}</strong></div>
+          <div><span>Mission status</span><strong>{passed ? "Complete" : "Review required"}</strong></div>
+          <div><span>Next step</span><strong>{passed ? "Academy dashboard" : "Retake challenge"}</strong></div>
+        </div>
         <div className="cbet-nav-row center">
-          <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>
-          <button className="cbet-primary" onClick={onExit}>Return to Academy</button>
+          {!passed && <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>}
+          <button className="cbet-primary" onClick={onExit}>
+            {passed ? "Finish Mission Path →" : "Return to Academy"}
+          </button>
         </div>
       </article>
     </section>
@@ -3634,10 +3776,15 @@ export default function CBETAcademy() {
   const [screen, setScreen] = useState("dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
+  const [showAllMissions, setShowAllMissions] = useState(false);
   const [streak, setStreak] = useState(() => registerCbetVisit());
   const academy = getCbetAcademyState();
   const progress = cbetCompletionPercent();
   const stats = getCbetStats();
+  const virtualLabState = loadCourseState();
+  const virtualLabLessonsCompleted = Array.isArray(virtualLabState.completedLessons)
+    ? virtualLabState.completedLessons.length
+    : 0;
 
   useEffect(() => {
     setStreak(registerCbetVisit());
@@ -3678,10 +3825,6 @@ export default function CBETAcademy() {
           if (scrollToScreenTarget("cbet-academy-top")) return;
           break;
 
-        case "virtualLab":
-          if (scrollToScreenTarget("multimeter-foundations")) return;
-          break;
-
         case "hospital":
           if (scrollToScreenTarget("cbet-hospital-map")) return;
           break;
@@ -3690,6 +3833,16 @@ export default function CBETAcademy() {
         case "serviceCall1052":
           if (scrollToScreenTarget("service-call-top")) return;
           break;
+
+        case "mission1":
+          if (scrollToScreenTarget("mission-1-active")) return;
+          return;
+
+        case "mission2":
+        case "mission3":
+          // Each mission owns its own step positioning. Do not repeatedly force
+          // the page to the top while its lesson/activity is trying to scroll.
+          return;
 
         default:
           break;
@@ -3769,6 +3922,7 @@ export default function CBETAcademy() {
         <MissionOne
           onBack={() => setScreen("dashboard")}
           onComplete={() => setRefresh((v) => v + 1)}
+          onContinueMission2={() => setScreen("mission2")}
         />
       </main>
     );
@@ -3782,6 +3936,7 @@ export default function CBETAcademy() {
             setScreen("dashboard");
             setRefresh((v) => v + 1);
           }}
+          onContinueMission3={() => setScreen("mission3")}
         />
       </main>
     );
@@ -3803,139 +3958,182 @@ export default function CBETAcademy() {
   if (screen === "virtualLab") {
     return (
       <VirtualCBETLab
-        onExit={() => {
-          setScreen("dashboard");
-        }}
+        onExit={() => setScreen("dashboard")}
       />
     );
   }
 
-  const nextMissionScreen = !getCbetModuleState(1).complete
+  const missionStates = [1, 2, 3].map((number) => getCbetModuleState(number));
+  const completedMissionCount = missionStates.filter((mission) => mission.complete).length;
+
+  const nextMissionScreen = !missionStates[0].complete
     ? "mission1"
-    : !getCbetModuleState(2).complete
+    : !missionStates[1].complete
     ? "mission2"
     : "mission3";
 
-  const nextMissionLabel = !getCbetModuleState(1).complete
-    ? getMissionProgress(1).phase === "briefing" ? "Start Mission 1" : "Continue Mission 1"
-    : !getCbetModuleState(2).complete
-    ? getMissionProgress(2).phase === "briefing" ? "Start Mission 2" : "Continue Mission 2"
-    : getMissionProgress(3).phase === "briefing" ? "Start Mission 3" : "Continue Mission 3";
+  const nextMissionNumber = nextMissionScreen === "mission1" ? 1 : nextMissionScreen === "mission2" ? 2 : 3;
+  const nextMission = cbetAcademyModules.find((module) => module.number === nextMissionNumber);
+  const nextMissionProgress = getMissionProgress(nextMissionNumber);
+  const nextMissionStarted = nextMissionProgress.phase !== "briefing";
+  const nextMissionLabel = missionStates.every((mission) => mission.complete)
+    ? "Review Mission 3"
+    : nextMissionStarted
+    ? `Continue Mission ${nextMissionNumber}`
+    : `Start Mission ${nextMissionNumber}`;
 
-  const hubCardStyle = {
-    border: "1px solid #dbe4ee",
-    borderRadius: "18px",
-    padding: "22px",
-    background: "#ffffff",
-    boxShadow: "0 8px 24px rgba(15, 23, 42, 0.06)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    minHeight: "210px",
-  };
+  const badgeCount = Object.values(academy.modules || {}).filter((module) => module.complete).length;
+  const virtualLabPercent = Math.min(100, Math.round((virtualLabLessonsCompleted / 9) * 100));
+  const missionPercent = Math.min(100, Math.round((completedMissionCount / 3) * 100));
 
   return (
     <main className="cbet-academy" key={refresh}>
-      <section id="cbet-academy-top" className="cbet-dashboard-hero">
+      <section id="cbet-academy-top" className="cbet-dashboard-hero cbet-dashboard-hero-v1">
         <div className="cbet-shell">
-          <div className="cbet-hero-grid">
-            <div>
+          <div className="cbet-dashboard-intro">
+            <div className="cbet-dashboard-copy">
               <span className="cbet-label">MedSkillBuilder Academy</span>
-              <h1>🔧 CBET Academy</h1>
-              <p>Choose what you want to do. Every major area is available directly from this page.</p>
-              <div className="cbet-progress-bar large"><span style={{ width: `${progress}%` }} /></div>
-              <div className="cbet-progress-copy">
-                <span>{progress}% complete</span><span>{academy.xp} XP earned</span>
+              <h1>CBET Academy</h1>
+              <p>
+                Build your electronics knowledge, practice on the virtual bench, and apply it to realistic hospital service calls.
+              </p>
+              <div className="cbet-dashboard-continue">
+                <button className="cbet-primary cbet-continue-button" onClick={() => setScreen(nextMissionScreen)}>
+                  <span>{nextMissionLabel}</span>
+                  <small>{nextMission?.title || "Training Mission"}</small>
+                </button>
+                <button className="cbet-hero-secondary" onClick={() => setScreen("virtualLab")}>
+                  Open Virtual Lab
+                </button>
               </div>
             </div>
-            <div className="cbet-rank-card">
-              <span>Your Progress</span>
-              <strong>{getCbetCareerRank(academy.xp)}</strong>
-              <div>🏅 {Object.values(academy.modules || {}).filter((m) => m.complete).length} badges earned</div>
-              <div className="cbet-streak-chip">🔥 {streak.current || 1}-day learning streak</div>
-              <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
-            </div>
+
+            <aside className="cbet-overview-card" aria-label="Academy progress overview">
+              <div className="cbet-overview-heading">
+                <span>Current rank</span>
+                <strong>{getCbetCareerRank(academy.xp)}</strong>
+              </div>
+              <div className="cbet-overview-xp">
+                <span>{academy.xp.toLocaleString()} XP</span>
+                <span>{progress}% complete</span>
+              </div>
+              <div className="cbet-progress-bar large" aria-label={`${progress}% academy completion`}>
+                <span style={{ width: `${progress}%` }} />
+              </div>
+              <div className="cbet-overview-metrics">
+                <div><strong>{completedMissionCount}/3</strong><span>Missions</span></div>
+                <div><strong>{virtualLabLessonsCompleted}/9</strong><span>Lab lessons</span></div>
+                <div><strong>{badgeCount}</strong><span>Badges</span></div>
+                <div><strong>{streak.current || 1}</strong><span>Day streak</span></div>
+              </div>
+              <button className="cbet-overview-link" onClick={() => setShowStats(true)}>View full progress →</button>
+            </aside>
           </div>
         </div>
       </section>
 
-      <section className="cbet-shell cbet-dashboard">
-        <div className="cbet-section-heading">
-          <span className="cbet-label">Choose an Area</span>
-          <h2>What would you like to do?</h2>
-          <p>Four clear destinations. No searching through the page.</p>
+      <section className="cbet-shell cbet-dashboard cbet-dashboard-v1">
+        <div className="cbet-section-heading cbet-dashboard-heading">
+          <span className="cbet-label">Choose your next step</span>
+          <h2>Everything you need, in one place</h2>
+          <p>Learn the concepts, practice the skills, then use them on the job.</p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "18px", marginBottom: "34px" }}>
-          <article style={hubCardStyle}>
-            <div style={{ fontSize: "2rem" }}>📘</div>
-            <span className="cbet-label">Learn</span>
-            <h2 style={{ margin: 0 }}>Training Missions</h2>
-            <p style={{ flex: 1 }}>Structured lessons, interactive activities, scenarios, and mission challenges.</p>
-            <button className="cbet-primary full" onClick={() => setScreen(nextMissionScreen)}>{nextMissionLabel}</button>
-            <button className="cbet-secondary full" onClick={() => document.getElementById("cbet-training-path")?.scrollIntoView({ behavior: "smooth" })}>View All Missions</button>
+        <div className="cbet-hub-grid">
+          <article className="cbet-hub-card featured">
+            <div className="cbet-hub-card-top">
+              <span className="cbet-hub-icon" aria-hidden="true">📘</span>
+              <span className="cbet-hub-kicker">Learn</span>
+            </div>
+            <h3>Training Missions</h3>
+            <p>Guided instruction, interactive activities, and knowledge checks organized into a clear path.</p>
+            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 3 complete</span><strong>{missionPercent}%</strong></div>
+            <div className="cbet-card-progress"><span style={{ width: `${missionPercent}%` }} /></div>
+            <button className="cbet-primary" onClick={() => setScreen(nextMissionScreen)}>{nextMissionLabel}</button>
           </article>
 
-          <article style={hubCardStyle}>
-            <div style={{ fontSize: "2rem" }}>🧪</div>
-            <span className="cbet-label">Practice</span>
-            <h2 style={{ margin: 0 }}>Virtual Lab</h2>
-            <p style={{ flex: 1 }}>Open the biomedical electronics bench for hands-on meter, circuit, and troubleshooting practice.</p>
-            <button className="cbet-primary full" onClick={() => setScreen("virtualLab")}>Open Virtual Lab</button>
+          <article className="cbet-hub-card">
+            <div className="cbet-hub-card-top">
+              <span className="cbet-hub-icon" aria-hidden="true">🧪</span>
+              <span className="cbet-hub-kicker">Practice</span>
+            </div>
+            <h3>Virtual Lab</h3>
+            <p>Practice meter setup, circuit measurements, and troubleshooting on an interactive electronics bench.</p>
+            <div className="cbet-card-progress-row"><span>{virtualLabLessonsCompleted} of 9 lessons</span><strong>{virtualLabPercent}%</strong></div>
+            <div className="cbet-card-progress"><span style={{ width: `${virtualLabPercent}%` }} /></div>
+            <button className="cbet-secondary" onClick={() => setScreen("virtualLab")}>Open Virtual Lab</button>
           </article>
 
-          <article style={hubCardStyle}>
-            <div style={{ fontSize: "2rem" }}>🏥</div>
-            <span className="cbet-label">Work</span>
-            <h2 style={{ margin: 0 }}>Hospital Simulator</h2>
-            <p style={{ flex: 1 }}>Enter the hospital dashboard, accept work orders, and complete realistic service calls.</p>
-            <button className="cbet-primary full" onClick={() => setScreen("hospital")}>Open Hospital</button>
+          <article className="cbet-hub-card">
+            <div className="cbet-hub-card-top">
+              <span className="cbet-hub-icon" aria-hidden="true">🏥</span>
+              <span className="cbet-hub-kicker">Work</span>
+            </div>
+            <h3>Hospital Simulator</h3>
+            <p>Accept realistic work orders, isolate faults, document repairs, and return equipment to service.</p>
+            <div className="cbet-hub-summary"><strong>{stats.scenariosCompleted}</strong><span>scenarios completed</span></div>
+            <button className="cbet-secondary" onClick={() => setScreen("hospital")}>Enter Hospital</button>
           </article>
 
-          <article style={hubCardStyle}>
-            <div style={{ fontSize: "2rem" }}>📊</div>
-            <span className="cbet-label">Progress</span>
-            <h2 style={{ margin: 0 }}>Statistics</h2>
-            <p style={{ flex: 1 }}>See completed lessons, scenarios, badges, scores, XP, and learning streaks.</p>
-            <button className="cbet-primary full" onClick={() => setShowStats(true)}>View Progress</button>
+          <article className="cbet-hub-card">
+            <div className="cbet-hub-card-top">
+              <span className="cbet-hub-icon" aria-hidden="true">📊</span>
+              <span className="cbet-hub-kicker">Progress</span>
+            </div>
+            <h3>Your Progress</h3>
+            <p>Review XP, completed lessons, badges, scores, and your learning streak.</p>
+            <div className="cbet-hub-summary"><strong>{academy.xp.toLocaleString()}</strong><span>total XP earned</span></div>
+            <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
           </article>
         </div>
 
-        <div className="cbet-section-heading" id="cbet-training-path">
-          <span className="cbet-label">Learn</span>
-          <h2>Training Missions</h2>
+        <div className="cbet-mission-toggle-row">
+          <div>
+            <span className="cbet-label">Training path</span>
+            <h2>Three missions available now</h2>
+          </div>
+          <button
+            className="cbet-secondary"
+            aria-expanded={showAllMissions}
+            aria-controls="cbet-training-path"
+            onClick={() => setShowAllMissions((value) => !value)}
+          >
+            {showAllMissions ? "Hide Missions" : "View All Missions"}
+          </button>
         </div>
 
-        <div className="cbet-grid">
-          {cbetAcademyModules.map((module) => {
-            const state = getCbetModuleState(module.number);
-            const unlocked = module.number <= 3 ? true : isCbetModuleUnlocked(module.number);
-            const available = module.number <= 3;
-            return (
-              <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
-                <div className="cbet-card-top">
-                  <span className="cbet-number">{module.number}</span>
-                  <span className={`cbet-status ${state.complete ? "complete" : unlocked ? "ready" : "locked"}`}>
-                    {state.complete ? "✓ Complete" : unlocked ? (available ? "Ready" : "Coming next") : "🔒 Locked"}
-                  </span>
-                </div>
-                <h3>{module.title}</h3>
-                <p>{module.description}</p>
-                <div className="cbet-badge">🏅 {module.badge}</div>
-                <div className="cbet-card-footer">
-                  <span>{module.xp} XP</span>
-                  {available ? (
-                    <button className="cbet-primary" disabled={!unlocked} onClick={() => setScreen(module.number === 1 ? "mission1" : module.number === 2 ? "mission2" : "mission3")}>
-                      {state.complete ? "Review Mission" : getMissionProgress(module.number).phase !== "briefing" ? "Continue Mission" : "Start Mission"}
-                    </button>
-                  ) : (
-                    <button className="cbet-secondary" disabled>{unlocked ? "Coming Soon" : "Locked"}</button>
-                  )}
-                </div>
-              </article>
-            );
-          })}
-        </div>
+        {showAllMissions && (
+          <div id="cbet-training-path" className="cbet-grid cbet-training-grid">
+            {cbetAcademyModules.map((module) => {
+              const state = getCbetModuleState(module.number);
+              const unlocked = module.number <= 3 ? true : isCbetModuleUnlocked(module.number);
+              const available = module.number <= 3;
+              return (
+                <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
+                  <div className="cbet-card-top">
+                    <span className="cbet-number">{module.number}</span>
+                    <span className={`cbet-status ${state.complete ? "complete" : unlocked ? "ready" : "locked"}`}>
+                      {state.complete ? "✓ Complete" : unlocked ? (available ? "Ready" : "Coming next") : "🔒 Locked"}
+                    </span>
+                  </div>
+                  <h3>{module.title}</h3>
+                  <p>{module.description}</p>
+                  <div className="cbet-badge">🏅 {module.badge}</div>
+                  <div className="cbet-card-footer">
+                    <span>{module.xp} XP</span>
+                    {available ? (
+                      <button className="cbet-primary" disabled={!unlocked} onClick={() => setScreen(module.number === 1 ? "mission1" : module.number === 2 ? "mission2" : "mission3")}>
+                        {state.complete ? "Review Mission" : getMissionProgress(module.number).phase !== "briefing" ? "Continue Mission" : "Start Mission"}
+                      </button>
+                    ) : (
+                      <button className="cbet-secondary" disabled>{unlocked ? "Coming Soon" : "Locked"}</button>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
       </section>
       {showStats && <StatsPanel stats={stats} onClose={() => setShowStats(false)} />}
     </main>
