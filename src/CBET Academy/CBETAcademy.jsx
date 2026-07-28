@@ -161,20 +161,21 @@ function StatsPanel({ stats, onClose }) {
 
 function KnowledgeCheck({ check, onComplete, resetKey }) {
   const [selected, setSelected] = useState(null);
+  const randomizedCheck = useMemo(() => shuffleQuestion(check), [check, resetKey]);
 
   useEffect(() => {
     setSelected(null);
   }, [resetKey]);
 
   const answered = selected !== null;
-  const correct = selected === check.answer;
+  const correct = selected === randomizedCheck.answer;
 
   const questionText =
-    check.question ||
-    check.prompt ||
-    check.questionText ||
-    check.text ||
-    check.title ||
+    randomizedCheck.question ||
+    randomizedCheck.prompt ||
+    randomizedCheck.questionText ||
+    randomizedCheck.text ||
+    randomizedCheck.title ||
     "Select the best answer.";
 
   return (
@@ -182,17 +183,17 @@ function KnowledgeCheck({ check, onComplete, resetKey }) {
       <span className="cbet-label">Quick Knowledge Check</span>
       <h3 className="cbet-check-question">{questionText}</h3>
       <div className="cbet-options">
-        {check.options.map((option, index) => (
+        {randomizedCheck.options.map((option, index) => (
           <button
             key={option}
             type="button"
             disabled={correct}
             aria-pressed={selected === index}
             className={`cbet-option ${
-              correct && index === check.answer ? "correct" : ""
+              correct && index === randomizedCheck.answer ? "correct" : ""
             } ${answered && index === selected && !correct ? "wrong" : ""}`}
             onClick={() => {
-              const isCorrect = index === check.answer;
+              const isCorrect = index === randomizedCheck.answer;
               setSelected(index);
               playCbetTone(isCorrect ? "correct" : "wrong");
 
@@ -210,7 +211,7 @@ function KnowledgeCheck({ check, onComplete, resetKey }) {
           <strong>{correct ? "Correct." : "Not quite. Try again."}</strong>
           <span>
             {correct
-              ? check.explanation
+              ? randomizedCheck.explanation
               : "Review the lesson and choose another answer."}
           </span>
         </div>
@@ -745,22 +746,23 @@ function MissionTwoLab({ type }) {
 
 function ScenarioCard({ scenario, number, onComplete }) {
   const [selected, setSelected] = useState(null);
+  const randomizedScenario = useMemo(() => shuffleQuestion(scenario), [scenario]);
   const answered = selected !== null;
-  const correct = selected === scenario.answer;
+  const correct = selected === randomizedScenario.answer;
 
   return (
     <article className="cbet-scenario">
       <span className="cbet-label">Troubleshooting Scenario {number}</span>
-      <h2>{scenario.title}</h2>
-      <p>{scenario.patient}</p>
-      <h3>{scenario.question}</h3>
+      <h2>{randomizedScenario.title}</h2>
+      <p>{randomizedScenario.patient}</p>
+      <h3>{randomizedScenario.question}</h3>
       <div className="cbet-options">
-        {scenario.options.map((option, index) => (
+        {randomizedScenario.options.map((option, index) => (
           <button
             key={option}
             disabled={answered}
             className={`cbet-option ${
-              answered && index === scenario.answer ? "correct" : ""
+              answered && index === randomizedScenario.answer ? "correct" : ""
             } ${answered && index === selected && !correct ? "wrong" : ""}`}
             onClick={() => {
               setSelected(index);
@@ -774,7 +776,7 @@ function ScenarioCard({ scenario, number, onComplete }) {
       {answered && (
         <div className="cbet-feedback">
           <strong>{correct ? "Best action." : "Better approach:"}</strong>
-          <span>{scenario.explanation}</span>
+          <span>{randomizedScenario.explanation}</span>
         </div>
       )}
     </article>
@@ -1120,7 +1122,7 @@ function MissionOne({ onBack, onComplete }) {
 function MissionTwo({ onExit }) {
   const lessons = missionTwoLessons;
   const scenarios = missionTwoScenarios;
-  const questions = missionTwoQuestions;
+  const questions = useMemo(() => missionTwoQuestions.map(shuffleQuestion), []);
   const savedProgress = getMissionProgress(2);
 
   const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
@@ -1907,6 +1909,618 @@ function MissionTwo({ onExit }) {
 }
 
 
+
+const MISSION_THREE_LESSONS = [
+  {
+    icon: "🔌",
+    title: "Digital Multimeter Setup",
+    summary: "Select the correct function, input jack, range, and probe placement before taking a measurement.",
+    points: [
+      "Voltage is measured across a component or source.",
+      "Current is measured by opening the circuit and placing the meter in series.",
+      "Resistance and continuity are checked only after power is removed."
+    ],
+    interaction: "dmm",
+    check: {
+      question: "Before measuring resistance, what must you do first?",
+      options: ["Remove power from the circuit", "Move the red lead to the current jack", "Increase the fuse rating", "Connect the meter in series"],
+      answer: 0,
+      explanation: "Resistance testing uses the meter's internal source, so external circuit power must be removed."
+    }
+  },
+  {
+    icon: "📈",
+    title: "Oscilloscope Fundamentals",
+    summary: "Use vertical scale, time base, triggering, and probe compensation to obtain a stable waveform.",
+    points: [
+      "Volts/div controls the waveform's vertical size.",
+      "Time/div controls how much time appears across the screen.",
+      "Trigger settings stabilize repeating signals."
+    ],
+    interaction: "scope",
+    check: {
+      question: "Which oscilloscope control changes the amount of time shown horizontally?",
+      options: ["Time per division", "Volts per division", "Trigger level only", "Probe attenuation"],
+      answer: 0,
+      explanation: "Time per division controls the horizontal time scale."
+    }
+  },
+  {
+    icon: "🛡️",
+    title: "Electrical Safety Analyzer",
+    summary: "Evaluate protective earth resistance, leakage current, and applied-part safety using the correct standard and setup.",
+    points: [
+      "Inspect the device and power cord before testing.",
+      "Protective earth resistance verifies the grounding path.",
+      "Leakage tests must match the device class and applied-part type."
+    ],
+    interaction: "safety",
+    check: {
+      question: "What does a protective earth resistance test primarily evaluate?",
+      options: ["The low-resistance grounding path", "Battery capacity", "Network speed", "Display brightness"],
+      answer: 0,
+      explanation: "The test confirms that exposed conductive parts have a dependable path to protective earth."
+    }
+  },
+  {
+    icon: "❤️",
+    title: "Patient Simulators",
+    summary: "Generate known ECG, respiration, temperature, and invasive-pressure signals to verify monitor performance.",
+    points: [
+      "Start with a known normal signal before testing alarms.",
+      "Match cable configuration and lead selection to the device.",
+      "Document both the simulator setting and monitor response."
+    ],
+    interaction: "simulator",
+    check: {
+      question: "Why should the simulator setting be documented with the monitor reading?",
+      options: ["To compare the known input with the displayed output", "To increase leakage current", "To bypass calibration", "To change the network address"],
+      answer: 0,
+      explanation: "A known input and observed output are both needed to evaluate accuracy."
+    }
+  },
+  {
+    icon: "💧",
+    title: "Infusion Device Analyzer",
+    summary: "Measure flow rate, delivered volume, occlusion pressure, and alarm behavior safely.",
+    points: [
+      "Prime tubing to remove air before beginning the test.",
+      "Allow enough test time for a meaningful flow-rate average.",
+      "Verify occlusion and air-in-line alarms separately."
+    ],
+    interaction: "infusion",
+    check: {
+      question: "What should be done before starting an infusion flow test?",
+      options: ["Prime the tubing and remove air", "Increase the programmed rate beyond specifications", "Disable all alarms", "Use an open container with no analyzer"],
+      answer: 0,
+      explanation: "Air in the test line can distort flow and volume measurements."
+    }
+  },
+  {
+    icon: "⚡",
+    title: "Defibrillator Analyzer",
+    summary: "Verify delivered energy, charge time, synchronization, pacing output, and safety without using a patient.",
+    points: [
+      "Use a rated defibrillator analyzer or approved test load.",
+      "Confirm selected energy and measured delivered energy.",
+      "Test synchronized cardioversion timing with a simulated ECG."
+    ],
+    interaction: "defib",
+    check: {
+      question: "Where should a defibrillator be discharged during performance testing?",
+      options: ["Into a rated analyzer or approved test load", "Into open air", "Through a standard multimeter", "Directly into an oscilloscope input"],
+      answer: 0,
+      explanation: "A rated analyzer safely absorbs the pulse and measures delivered energy."
+    }
+  },
+  {
+    icon: "🌡️",
+    title: "Pressure, Flow, and Temperature Analyzers",
+    summary: "Apply traceable reference values to verify sensors used in ventilators, anesthesia systems, pumps, and monitors.",
+    points: [
+      "Zero pressure channels before applying a reference.",
+      "Use the correct units and environmental conditions.",
+      "Compare multiple points across the operating range."
+    ],
+    interaction: "process",
+    check: {
+      question: "Why should multiple points across a device's range be tested?",
+      options: ["To evaluate accuracy across the operating range", "To eliminate the need for documentation", "To change the device serial number", "To avoid using a reference standard"],
+      answer: 0,
+      explanation: "One point cannot confirm linearity or performance across the full range."
+    }
+  }
+];
+
+const MISSION_THREE_SCENARIOS = [
+  {
+    title: "Unstable ECG Waveform",
+    patient: "A patient monitor shows a drifting, unstable waveform while connected to a simulator.",
+    question: "What is the best first troubleshooting step?",
+    options: [
+      "Verify lead connections, simulator output, and selected lead",
+      "Replace the monitor immediately",
+      "Increase the alarm limits",
+      "Disable the ECG function"
+    ],
+    answer: 0,
+    explanation: "Confirm the known source and signal path before replacing equipment."
+  },
+  {
+    title: "Infusion Pump Flow Discrepancy",
+    patient: "A pump programmed for 100 mL/hr averages 86 mL/hr on the analyzer.",
+    question: "What should the technician do next?",
+    options: [
+      "Confirm the tubing set, priming, test duration, and setup before adjustment",
+      "Increase the pump rate until the analyzer reads 100",
+      "Ignore the result because flow varies",
+      "Replace the battery only"
+    ],
+    answer: 0,
+    explanation: "Rule out setup and consumable errors before calibration or repair."
+  },
+  {
+    title: "Excessive Leakage Current",
+    patient: "An analyzer reports leakage above the applicable limit.",
+    question: "What is the safest next action?",
+    options: [
+      "Remove the device from service and inspect the power path, grounding, and accessories",
+      "Bypass the ground conductor",
+      "Repeat the test with a higher limit",
+      "Return the device without documentation"
+    ],
+    answer: 0,
+    explanation: "An out-of-limit safety result requires removal from service and investigation."
+  }
+];
+
+const MISSION_THREE_QUESTIONS = [
+  ["Voltage should normally be measured:", ["Across the source or component", "In series with the load", "With power removed only", "Through the current jack"], 0],
+  ["Current should normally be measured:", ["With the meter in series", "Across the source", "With both probes in COM", "Using resistance mode"], 0],
+  ["Resistance testing requires:", ["Power removed", "Maximum line voltage", "Current mode", "An energized relay"], 0],
+  ["The oscilloscope vertical scale is controlled by:", ["Volts per division", "Time per division", "Trigger slope only", "Sweep delay only"], 0],
+  ["The oscilloscope horizontal scale is controlled by:", ["Time per division", "Volts per division", "Input impedance only", "Coupling only"], 0],
+  ["A trigger is used to:", ["Stabilize a repeating waveform", "Measure protective earth resistance", "Prime infusion tubing", "Charge a defibrillator"], 0],
+  ["Protective earth resistance evaluates:", ["The grounding path", "ECG amplitude", "Battery chemistry", "Network latency"], 0],
+  ["Leakage-current limits depend on:", ["Device class and applied-part type", "Screen size only", "Hospital bed count", "Cable color"], 0],
+  ["Before electrical safety testing, first:", ["Inspect the device and power cord", "Bypass the ground", "Disable the analyzer", "Increase the limits"], 0],
+  ["A patient simulator provides:", ["A known reference signal", "A repair history", "A network password", "A leakage-current path"], 0],
+  ["To verify ECG accuracy, compare:", ["Simulator setting with monitor display", "Battery age with room temperature", "Cable color with serial number", "Alarm volume with network speed"], 0],
+  ["Before an infusion flow test:", ["Prime the tubing", "Disable all alarms", "Use damaged tubing", "Skip the analyzer setup"], 0],
+  ["A longer infusion test generally provides:", ["A more meaningful average flow rate", "A higher leakage current", "A lower line voltage", "A different serial number"], 0],
+  ["Occlusion pressure testing evaluates:", ["The pump's response to a blocked line", "ECG gain", "Defibrillator energy", "Ground resistance"], 0],
+  ["A defibrillator should be discharged into:", ["A rated analyzer or approved load", "Open air", "A standard DMM", "A patient simulator ECG lead"], 0],
+  ["Synchronized cardioversion testing verifies:", ["Pulse timing relative to the ECG", "Infusion volume", "Protective earth resistance", "Temperature accuracy"], 0],
+  ["Delivered defibrillator energy should be compared with:", ["The selected energy setting and tolerance", "The room number", "The battery serial number only", "The ECG lead color"], 0],
+  ["Pressure channels should be zeroed:", ["Before applying the reference pressure", "After every answer choice", "Only after a failed test", "While over-ranged"], 0],
+  ["Testing several points across a range evaluates:", ["Accuracy and linearity", "Only the power cord", "Network security", "Alarm volume"], 0],
+  ["Traceability means the reference is linked to:", ["Recognized measurement standards", "A random device", "The hospital logo", "An unverified source"], 0],
+  ["An out-of-limit safety result requires:", ["Removal from service and investigation", "Changing the limit", "Ignoring the result", "Bypassing protective earth"], 0],
+  ["The safest troubleshooting sequence begins by:", ["Confirming setup and the known source", "Replacing every board", "Increasing fuse ratings", "Skipping inspection"], 0],
+  ["Documentation should include:", ["Test setup, reference values, results, and disposition", "Only the technician's initials", "Only the device color", "No failed results"], 0],
+  ["Probe attenuation must match:", ["The oscilloscope channel setting", "The infusion rate", "The defibrillator energy", "The leakage-current limit"], 0],
+  ["The best reason to use specialized analyzers is to:", ["Apply controlled references and safely measure device performance", "Avoid all documentation", "Bypass manufacturer procedures", "Replace visual inspection"], 0]
+].map(([question, options, answer]) => ({
+  question,
+  options,
+  answer,
+  explanation: "Use the correct analyzer, setup, and safety process for the measurement being performed."
+}));
+
+function MissionThreeLab({ type }) {
+  const [value, setValue] = useState(type === "scope" ? 5 : 50);
+  const [mode, setMode] = useState("ready");
+
+  const labels = {
+    dmm: ["Meter mode", "DC Voltage", `${value.toFixed(1)} V`],
+    scope: ["Time base", `${value} ms/div`, "Stable waveform"],
+    safety: ["Protective earth", `${(value / 100).toFixed(2)} Ω`, value < 50 ? "Pass" : "Review"],
+    simulator: ["ECG rate", `${value + 30} bpm`, "Known reference"],
+    infusion: ["Programmed flow", `${value + 50} mL/hr`, `${value + 48} mL/hr measured`],
+    defib: ["Selected energy", `${value * 2 + 100} J`, `${value * 2 + 96} J delivered`],
+    process: ["Reference input", `${value} units`, `${(value * 0.99).toFixed(1)} measured`]
+  };
+
+  const [label, setting, reading] = labels[type] || labels.dmm;
+
+  return (
+    <div className="cbet-lab mission-three-lab">
+      <div className="cbet-lab-title">Interactive Test Equipment Bench</div>
+      <div className="mission-three-instrument">
+        <div className="mission-three-display">
+          <small>{label}</small>
+          <strong>{reading}</strong>
+          <span>{mode === "ready" ? "Reference applied" : "Analyzer reset"}</span>
+        </div>
+        <label>
+          {setting}
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value={value}
+            onChange={(event) => setValue(Number(event.target.value))}
+          />
+        </label>
+        <div className="cbet-toggle">
+          <button
+            type="button"
+            className={mode === "ready" ? "active" : ""}
+            onClick={() => setMode("ready")}
+          >
+            Apply Reference
+          </button>
+          <button
+            type="button"
+            className={mode === "reset" ? "active" : ""}
+            onClick={() => setMode("reset")}
+          >
+            Reset Analyzer
+          </button>
+        </div>
+      </div>
+      <p className="cbet-lab-tip">
+        Confirm the analyzer setup, units, leads, and applicable limits before recording a result.
+      </p>
+    </div>
+  );
+}
+
+function MissionThree({ onExit }) {
+  const lessons = MISSION_THREE_LESSONS;
+  const scenarios = MISSION_THREE_SCENARIOS;
+  const questions = useMemo(
+    () => MISSION_THREE_QUESTIONS.map(shuffleQuestion),
+    []
+  );
+  const savedProgress = getMissionProgress(3);
+
+  const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
+  const [lessonIndex, setLessonIndexState] = useState(savedProgress.lessonIndex || 0);
+  const [lessonChecks, setLessonChecks] = useState(
+    Object.fromEntries((savedProgress.completedLessons || []).map((index) => [index, true]))
+  );
+  const [scenarioIndex, setScenarioIndexState] = useState(savedProgress.scenarioIndex || 0);
+  const [scenarioChecks, setScenarioChecks] = useState(
+    Object.fromEntries((savedProgress.completedScenarios || []).map((index) => [index, true]))
+  );
+  const [questionIndex, setQuestionIndexState] = useState(savedProgress.quizIndex || 0);
+  const [answers, setAnswers] = useState({});
+  const [score, setScore] = useState(0);
+  const [finalResult, setFinalResult] = useState(null);
+  const [xpToast, setXpToast] = useState(null);
+
+  const question = questions[questionIndex];
+  const selected = answers[questionIndex];
+  const displayedCorrect = finalResult?.correct ?? score;
+  const percent =
+    finalResult?.percent ??
+    Math.round((displayedCorrect / questions.length) * 100);
+  const passed = percent >= 80;
+
+  useEffect(() => {
+    scrollCbetPageToTop();
+  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+
+  function setPhase(nextPhase) {
+    setPhaseState(nextPhase);
+    saveMissionProgress(3, { phase: nextPhase });
+  }
+
+  function setLessonIndex(nextIndex) {
+    setLessonIndexState(nextIndex);
+    saveMissionProgress(3, { lessonIndex: nextIndex, phase: "lessons" });
+  }
+
+  function setScenarioIndex(nextIndex) {
+    setScenarioIndexState(nextIndex);
+    saveMissionProgress(3, { scenarioIndex: nextIndex, phase: "scenarios" });
+  }
+
+  function setQuestionIndex(nextIndex) {
+    setQuestionIndexState(nextIndex);
+    saveMissionProgress(3, { quizIndex: nextIndex, phase: "quiz" });
+  }
+
+  function markLessonComplete(index) {
+    setLessonChecks((previous) => {
+      const next = { ...previous, [index]: true };
+      saveMissionProgress(3, {
+        completedLessons: Object.keys(next).filter((key) => next[key]).map(Number),
+        lessonIndex: index,
+        phase: "lessons"
+      });
+      const before = getCbetAcademyState().xp;
+      const updated = awardCbetXp(15, `mission3-lesson-${index}`);
+      if (updated.xp > before) {
+        setXpToast({ amount: 15, label: "Test-equipment lesson complete" });
+      }
+      return next;
+    });
+  }
+
+  function markScenarioComplete(index) {
+    setScenarioChecks((previous) => {
+      const next = { ...previous, [index]: true };
+      saveMissionProgress(3, {
+        completedScenarios: Object.keys(next).filter((key) => next[key]).map(Number),
+        scenarioIndex: index,
+        phase: "scenarios"
+      });
+      const before = getCbetAcademyState().xp;
+      const updated = awardCbetXp(20, `mission3-scenario-${index}`);
+      if (updated.xp > before) {
+        setXpToast({ amount: 20, label: "Applied case complete" });
+      }
+      return next;
+    });
+  }
+
+  function chooseAnswer(index) {
+    if (selected !== undefined) return;
+    setAnswers((previous) => ({ ...previous, [questionIndex]: index }));
+    playCbetTone(index === question.answer ? "correct" : "wrong");
+    if (index === question.answer) setScore((previous) => previous + 1);
+  }
+
+  function nextQuestion() {
+    if (selected === undefined) return;
+
+    if (questionIndex < questions.length - 1) {
+      setQuestionIndex(questionIndex + 1);
+      return;
+    }
+
+    const completedAnswers = {
+      ...answers,
+      [questionIndex]: selected
+    };
+
+    const finalCorrect = questions.reduce(
+      (total, item, index) =>
+        total + (completedAnswers[index] === item.answer ? 1 : 0),
+      0
+    );
+    const finalScore = Math.round((finalCorrect / questions.length) * 100);
+
+    setFinalResult({ correct: finalCorrect, percent: finalScore });
+    completeCbetModule(3, finalScore, 350);
+    setPhase("complete");
+  }
+
+  function restartQuiz() {
+    setQuestionIndexState(0);
+    setAnswers({});
+    setScore(0);
+    setFinalResult(null);
+    saveMissionProgress(3, { phase: "quiz", quizIndex: 0 });
+    setPhaseState("quiz");
+  }
+
+  const overlay = (
+    <>
+      {xpToast && <XpToast {...xpToast} onDone={() => setXpToast(null)} />}
+    </>
+  );
+
+  if (phase === "briefing") {
+    return (
+      <section className="cbet-shell">
+        {overlay}
+        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <article className="cbet-briefing mission-three-briefing">
+          <div className="cbet-hero-icon">🧰</div>
+          <span className="cbet-label">Mission 3 Briefing</span>
+          <h1>Test Equipment</h1>
+          <p>
+            Learn to select, configure, and apply the instruments biomedical technicians use to verify safety, accuracy, and performance.
+          </p>
+          <div className="cbet-stats">
+            <div><strong>{lessons.length}</strong><span>Lessons</span></div>
+            <div><strong>{scenarios.length}</strong><span>Cases</span></div>
+            <div><strong>{questions.length}</strong><span>Questions</span></div>
+            <div><strong>350</strong><span>XP</span></div>
+          </div>
+          <button
+            className="cbet-primary full"
+            onClick={() =>
+              setPhase(savedProgress.phase === "briefing" ? "lessons" : savedProgress.phase)
+            }
+          >
+            {savedProgress.phase === "briefing" ? "Begin Mission 3" : "Resume Mission 3"}
+          </button>
+        </article>
+      </section>
+    );
+  }
+
+  if (phase === "lessons") {
+    const lesson = lessons[lessonIndex];
+    const complete = Boolean(lessonChecks[lessonIndex]);
+
+    return (
+      <section className="cbet-shell">
+        {overlay}
+        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <div className="cbet-subprogress">
+          <span>Lesson {lessonIndex + 1} of {lessons.length}</span>
+          <div><i style={{ width: `${((lessonIndex + (complete ? 1 : 0)) / lessons.length) * 100}%` }} /></div>
+        </div>
+        <article className="cbet-lesson-card">
+          <div className="cbet-lesson-icon">{lesson.icon}</div>
+          <span className="cbet-label">Test Equipment Lesson {lessonIndex + 1}</span>
+          <h2>{lesson.title}</h2>
+          <p className="cbet-lesson-summary">{lesson.summary}</p>
+          <div className="cbet-points">
+            {lesson.points.map((point) => <p key={point}><span>●</span>{point}</p>)}
+          </div>
+          <MissionThreeLab type={lesson.interaction} />
+          <KnowledgeCheck
+            key={`mission-3-lesson-${lessonIndex}`}
+            resetKey={`mission-3-lesson-${lessonIndex}`}
+            check={lesson.check}
+            onComplete={(isCorrect) => {
+              if (isCorrect) markLessonComplete(lessonIndex);
+            }}
+          />
+          <div className="cbet-nav-row">
+            <button
+              className="cbet-secondary"
+              disabled={lessonIndex === 0}
+              onClick={() => setLessonIndex(Math.max(0, lessonIndex - 1))}
+            >
+              Previous
+            </button>
+            {lessonIndex < lessons.length - 1 ? (
+              <button
+                className="cbet-primary"
+                disabled={!complete}
+                onClick={() => setLessonIndex(lessonIndex + 1)}
+              >
+                Next Lesson
+              </button>
+            ) : (
+              <button
+                className="cbet-primary"
+                disabled={!complete}
+                onClick={() => setPhase("scenarios")}
+              >
+                Begin Applied Cases
+              </button>
+            )}
+          </div>
+        </article>
+      </section>
+    );
+  }
+
+  if (phase === "scenarios") {
+    const scenario = scenarios[scenarioIndex];
+    const complete = Boolean(scenarioChecks[scenarioIndex]);
+
+    return (
+      <section className="cbet-shell">
+        {overlay}
+        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <div className="cbet-subprogress">
+          <span>Applied Case {scenarioIndex + 1} of {scenarios.length}</span>
+          <div><i style={{ width: `${((scenarioIndex + (complete ? 1 : 0)) / scenarios.length) * 100}%` }} /></div>
+        </div>
+        <ScenarioCard
+          key={`mission-3-scenario-${scenarioIndex}`}
+          scenario={scenario}
+          number={scenarioIndex + 1}
+          onComplete={() => markScenarioComplete(scenarioIndex)}
+        />
+        <div className="cbet-nav-row">
+          <button
+            className="cbet-secondary"
+            disabled={scenarioIndex === 0}
+            onClick={() => setScenarioIndex(Math.max(0, scenarioIndex - 1))}
+          >
+            Previous
+          </button>
+          {scenarioIndex < scenarios.length - 1 ? (
+            <button
+              className="cbet-primary"
+              disabled={!complete}
+              onClick={() => setScenarioIndex(scenarioIndex + 1)}
+            >
+              Next Case
+            </button>
+          ) : (
+            <button
+              className="cbet-primary"
+              disabled={!complete}
+              onClick={() => setPhase("quiz")}
+            >
+              Begin Mission Challenge
+            </button>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  if (phase === "quiz") {
+    return (
+      <section className="cbet-shell">
+        {overlay}
+        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <div className="cbet-subprogress">
+          <span>Question {questionIndex + 1} of {questions.length}</span>
+          <div><i style={{ width: `${((questionIndex + 1) / questions.length) * 100}%` }} /></div>
+        </div>
+        <article className="cbet-quiz-card">
+          <span className="cbet-label">Mission 3 Challenge</span>
+          <h2>{question.question}</h2>
+          <div className="cbet-option-grid">
+            {question.options.map((option, index) => {
+              let className = "";
+              if (selected !== undefined) {
+                if (index === question.answer) className = "correct";
+                else if (index === selected) className = "wrong";
+              }
+              return (
+                <button
+                  type="button"
+                  key={option}
+                  className={className}
+                  disabled={selected !== undefined}
+                  onClick={() => chooseAnswer(index)}
+                >
+                  {option}
+                </button>
+              );
+            })}
+          </div>
+          {selected !== undefined && (
+            <div className={`cbet-feedback ${selected === question.answer ? "good" : "bad"}`}>
+              <strong>{selected === question.answer ? "Correct" : "Review this concept"}</strong>
+              <p>{question.explanation}</p>
+            </div>
+          )}
+          <button
+            className="cbet-primary full"
+            disabled={selected === undefined}
+            onClick={nextQuestion}
+          >
+            {questionIndex === questions.length - 1 ? "Finish Mission" : "Next Question"}
+          </button>
+        </article>
+      </section>
+    );
+  }
+
+  return (
+    <section className="cbet-shell">
+      <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+      <article className={`cbet-results ${passed ? "passed" : ""}`}>
+        <div className="cbet-hero-icon">{passed ? "🧰" : "📘"}</div>
+        <span className="cbet-label">Mission 3 Results</span>
+        <h1 className="cbet-results-title">
+          {passed ? "Test Equipment Specialist" : "Keep Building Your Skills"}
+        </h1>
+        <div className="cbet-score-ring">
+          <strong>{percent}%</strong>
+          <span>{displayedCorrect} of {questions.length}</span>
+        </div>
+        <p>
+          {passed
+            ? "Mission 3 is complete. You earned 350 XP and the Test Equipment Specialist badge."
+            : "An 80% score is required. Review the analyzer setup and measurement lessons, then try again."}
+        </p>
+        <div className="cbet-nav-row center">
+          <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>
+          <button className="cbet-primary" onClick={onExit}>Return to Academy</button>
+        </div>
+      </article>
+    </section>
+  );
+}
+
+
+
 function getCbetCareerRank(xp = 0) {
   if (xp >= 15000) return "CBET Master";
   if (xp >= 10000) return "CBET Candidate";
@@ -2000,6 +2614,19 @@ export default function CBETAcademy() {
     );
   }
 
+  if (screen === "mission3") {
+    return (
+      <main className="cbet-academy">
+        <MissionThree
+          onExit={() => {
+            setScreen("dashboard");
+            setRefresh((v) => v + 1);
+          }}
+        />
+      </main>
+    );
+  }
+
   if (screen === "virtualLab") {
     return (
       <VirtualCBETLab
@@ -2027,15 +2654,27 @@ export default function CBETAcademy() {
               <div className="cbet-hero-actions">
                 <button
                   className="cbet-primary"
-                  onClick={() => setScreen(getCbetModuleState(1).complete ? "mission2" : "mission1")}
+                  onClick={() =>
+                    setScreen(
+                      !getCbetModuleState(1).complete
+                        ? "mission1"
+                        : !getCbetModuleState(2).complete
+                        ? "mission2"
+                        : "mission3"
+                    )
+                  }
                 >
-                  {getCbetModuleState(1).complete
+                  {!getCbetModuleState(1).complete
+                    ? getMissionProgress(1).phase === "briefing"
+                      ? "Start Mission 1"
+                      : "Continue Mission 1"
+                    : !getCbetModuleState(2).complete
                     ? getMissionProgress(2).phase === "briefing"
                       ? "Start Mission 2"
                       : "Continue Mission 2"
-                    : getMissionProgress(1).phase === "briefing"
-                    ? "Start Mission 1"
-                    : "Continue Mission 1"}
+                    : getMissionProgress(3).phase === "briefing"
+                    ? "Start Mission 3"
+                    : "Continue Mission 3"}
                 </button>
                 <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
                 <button className="cbet-secondary cbet-lab-launch-button" onClick={() => setScreen("virtualLab")}>🧪 Open Virtual Lab</button>
@@ -2061,8 +2700,8 @@ export default function CBETAcademy() {
         <div className="cbet-grid">
           {cbetAcademyModules.map((module) => {
             const state = getCbetModuleState(module.number);
-            const unlocked = isCbetModuleUnlocked(module.number);
-            const available = module.number === 1 || module.number === 2;
+            const unlocked = module.number <= 3 ? true : isCbetModuleUnlocked(module.number);
+            const available = module.number <= 3;
             return (
               <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
                 <div className="cbet-card-top">
@@ -2079,10 +2718,20 @@ export default function CBETAcademy() {
                   {available ? (
                     <button
                       className="cbet-primary"
-                      disabled={!unlocked || (module.comingSoon && module.number > 2)}
-                      onClick={() => setScreen(module.number === 1 ? "mission1" : module.number === 2 ? "mission2" : "dashboard")}
+                      disabled={!unlocked || (module.comingSoon && module.number > 3)}
+                      onClick={() =>
+                        setScreen(
+                          module.number === 1
+                            ? "mission1"
+                            : module.number === 2
+                            ? "mission2"
+                            : module.number === 3
+                            ? "mission3"
+                            : "dashboard"
+                        )
+                      }
                     >
-                      {module.comingSoon && module.number > 2
+                      {module.comingSoon && module.number > 3
                         ? "Coming Soon"
                         : state.complete
                         ? "Review Mission"
