@@ -590,6 +590,28 @@ export default function VirtualCBETLab({ onExit }) {
   useEffect(() => () => clearTimeout(timer.current), []);
 
   useEffect(() => {
+    const positionLab = () => {
+      const target = document.getElementById("multimeter-foundations");
+      if (!target) return;
+
+      target.scrollIntoView({
+        behavior: "auto",
+        block: "start",
+        inline: "nearest",
+      });
+
+      window.scrollBy({ top: -12, left: 0, behavior: "auto" });
+    };
+
+    positionLab();
+    const timers = [0, 60, 180, 420, 850].map((delay) =>
+      window.setTimeout(positionLab, delay)
+    );
+
+    return () => timers.forEach((scrollTimer) => window.clearTimeout(scrollTimer));
+  }, []);
+
+  useEffect(() => {
     saveCourseState({ lessonIndex, completedLessons, totalXp });
   }, [lessonIndex, completedLessons, totalXp]);
 
@@ -741,7 +763,7 @@ export default function VirtualCBETLab({ onExit }) {
 
   return (
     <main className={`virtual-lab-shell feedback-${feedbackKind}`}>
-      <header className="vl-topbar">
+      <header id="multimeter-foundations" className="vl-topbar">
         <div>
           <span>CBET Virtual Lab 4.0</span>
           <h1>Multimeter Foundations</h1>

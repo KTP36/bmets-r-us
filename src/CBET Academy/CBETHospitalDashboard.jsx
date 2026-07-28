@@ -18,19 +18,18 @@ const WORK_ORDERS = [
     device: "Guardian Bedside Monitor",
     problem: "No ECG waveform while SpO₂ and NIBP remain available.",
     reward: 180,
-    mission: 3,
+    mission: "WO-1048",
     tools: ["Patient simulator", "Digital multimeter", "Known-good ECG cable"],
   },
   {
-    id: "WO-1051",
+    id: "WO-1052",
     priority: "URGENT",
     department: "Intensive Care Unit",
-    device: "Flow Volumetric Infusion Pump",
-    problem: "Programmed flow differs from the analyzer measurement.",
-    reward: 150,
-    mission: 3,
-    tools: ["Infusion analyzer", "Test tubing", "Service checklist"],
-    available: false,
+    device: "Guardian Bedside Monitor",
+    problem: "NIBP inflates briefly, then stops with a leak error. ECG and SpO₂ remain available.",
+    reward: 160,
+    mission: "WO-1052",
+    tools: ["Known-good NIBP cuff and hose", "Pneumatic leak tester", "Service checklist"],
   },
   {
     id: "PM-2044",
@@ -134,7 +133,7 @@ export default function CBETHospitalDashboard({
           <h1>Welcome to Clinical Engineering</h1>
           <p>Accept service calls, choose the right test equipment, complete training, and build your career without using real manufacturer branding.</p>
           <div className="hospital-hero-actions">
-            <button type="button" className="hospital-primary" onClick={() => onOpenMission(activeOrder.mission)}>Continue active assignment</button>
+            <button type="button" className="hospital-primary" onClick={() => onOpenMission(activeOrder.id)}>Continue active assignment</button>
             <button type="button" onClick={onOpenLab}>Open equipment lab</button>
           </div>
         </div>
@@ -189,7 +188,7 @@ export default function CBETHospitalDashboard({
           </div>
           <div className="hospital-order-footer">
             <strong>+{activeOrder.reward} XP</strong>
-            <button type="button" className="hospital-primary" onClick={() => onOpenMission(activeOrder.mission)}>Begin assignment</button>
+            <button type="button" className="hospital-primary" onClick={() => onOpenMission(activeOrder.id)}>Begin assignment</button>
           </div>
         </article>
       </section>

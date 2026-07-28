@@ -39,6 +39,10 @@
   margin-inline: auto;
 }
 
+#multimeter-foundations {
+  scroll-margin-top: 12px;
+}
+
 .vl-topbar {
   display: flex;
   align-items: center;

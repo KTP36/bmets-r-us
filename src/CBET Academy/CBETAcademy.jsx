@@ -2525,6 +2525,126 @@ function MissionThree({ onExit }) {
 
 
 
+
+const SERVICE_CALL_SCENARIOS = {
+  "WO-1052": {
+    id: "WO-1052",
+    mode: "Guided Troubleshooting",
+    title: "NIBP Leak Error",
+    equipment: "Guardian GX5 Bedside Monitor",
+    location: "4 West • Room 418",
+    complaint: "The cuff begins inflating, then the cycle stops with a leak error. ECG and SpO₂ remain available.",
+    tools: ["Patient handoff", "Known-good cuff", "Known-good NIBP hose", "Pressure leak tester"],
+    stages: [
+      { id: "safety", label: "Protect the patient", action: "Confirm alternate BP monitoring", log: "Alternate blood-pressure monitoring confirmed with nursing." },
+      { id: "remove", label: "Control the device", action: "Remove monitor from service", log: "Monitor labeled and removed from clinical service." },
+      { id: "inspect", label: "Inspect the pneumatic path", action: "Inspect cuff, hose, and connectors", log: "Visual inspection found no obvious cuff damage; wear noted near hose connector strain relief." },
+      { id: "reproduce", label: "Reproduce the complaint", action: "Run NIBP cycle with original setup", log: "Original setup inflated to 42 mmHg, pressure fell rapidly, and LEAK ERROR displayed." },
+      { id: "substitute", label: "Change one variable", action: "Install known-good cuff and hose", log: "Known-good cuff and hose completed a normal 122/78 mmHg cycle." },
+      { id: "isolate", label: "Test the suspect component", action: "Pressure-test original hose", log: "Original hose failed pressure-decay test; leak localized near connector strain relief." },
+    ],
+    diagnoses: [
+      { id: "hose", label: "Leak in original NIBP hose", correct: true },
+      { id: "cuff", label: "Damaged NIBP cuff bladder", correct: false },
+      { id: "pump", label: "Failed internal NIBP pump", correct: false },
+      { id: "software", label: "Incorrect monitor configuration", correct: false },
+    ],
+    repair: "Replace NIBP hose",
+    verify: "Complete three verification cycles",
+    questions: [
+      { q: "What is the first priority before removing the monitor?", options: ["Confirm alternate BP monitoring", "Open the monitor", "Replace the pump", "Run a calibration"], answer: 0, why: "Patient care must remain supported before equipment is removed." },
+      { q: "Why does a normal cycle with known-good accessories matter?", options: ["It isolates the fault to the original external pneumatic path", "It proves the battery is new", "It confirms ECG calibration", "It clears every stored error"], answer: 0, why: "Changing one variable and restoring operation narrows the failure to the original cuff/hose path." },
+      { q: "Which finding most directly confirms the hose failure?", options: ["Failed pressure-decay test near the connector", "Normal SpO₂ reading", "The monitor powers on", "The cuff is the correct size"], answer: 0, why: "A direct pressure-decay failure provides component-level evidence." },
+      { q: "What is required after replacing the hose?", options: ["Repeated successful operating cycles", "Only a visual inspection", "A software update", "No additional testing"], answer: 0, why: "The repair must be verified under actual operating conditions." },
+      { q: "What should the service record include?", options: ["Complaint, evidence, root cause, corrective action, and verification", "Only the replaced part", "Only the final reading", "The technician's opinion"], answer: 0, why: "Complete documentation shows how the conclusion was reached and how safe operation was confirmed." },
+    ],
+  },
+};
+
+function TroubleshootingMonitor({ phase, cycleNumber }) {
+  const originalFailure = phase === "failed";
+  const normal = phase === "normal" || phase === "verified";
+  const pressure = originalFailure ? 42 : normal ? 122 : 0;
+  return (
+    <div className="sim-monitor" aria-label="Guardian GX5 patient monitor">
+      <div className="sim-monitor-top"><strong>Guardian GX5</strong><span>BED 418</span></div>
+      <div className="sim-screen">
+        <div className="sim-vital ecg"><span>ECG</span><strong>72</strong><small>bpm</small><i className="sim-wave">⌁⌁╱╲⌁⌁╱╲⌁⌁</i></div>
+        <div className="sim-vital spo2"><span>SpO₂</span><strong>98</strong><small>%</small><i className="sim-wave">∿∿∿∿∿∿∿</i></div>
+        <div className="sim-nibp">
+          <span>NIBP</span>
+          <strong>{normal ? "122/78" : originalFailure ? `${pressure} ↓` : "—/—"}</strong>
+          <small>mmHg</small>
+          {originalFailure && <b>LEAK ERROR</b>}
+          {phase === "inflating" && <b>INFLATING…</b>}
+          {phase === "verified" && <b className="ok">PASS • CYCLE {cycleNumber}/3</b>}
+        </div>
+      </div>
+      <div className="sim-monitor-controls"><button type="button">Silence</button><button type="button">Trends</button><button type="button" className="nibp-key">NIBP Start/Stop</button></div>
+    </div>
+  );
+}
+
+function GuidedTroubleshootingEngine({ scenario, onExit, onComplete }) {
+  const [screen, setScreen] = useState("briefing");
+  const [step, setStep] = useState(0);
+  const [monitorPhase, setMonitorPhase] = useState("idle");
+  const [diagnosis, setDiagnosis] = useState("");
+  const [repairDone, setRepairDone] = useState(false);
+  const [verifyCount, setVerifyCount] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [log, setLog] = useState(["08:17 — Work order WO-1052 dispatched to Clinical Engineering."]);
+
+  const addLog = (message) => setLog((items) => [...items, `${String(18 + items.length * 3).padStart(2, "0")}:${items.length % 2 ? "21" : "18"} — ${message}`]);
+  const completeStep = () => {
+    const current = scenario.stages[step];
+    if (!current) return;
+    if (current.id === "reproduce") setMonitorPhase("failed");
+    if (current.id === "substitute") setMonitorPhase("normal");
+    addLog(current.log);
+    const next = step + 1;
+    setStep(next);
+    if (next >= scenario.stages.length) setTimeout(() => setScreen("diagnosis"), 250);
+  };
+  const correctDiagnosis = scenario.diagnoses.find((item) => item.correct)?.id;
+  const score = Object.entries(answers).filter(([idx, value]) => scenario.questions[Number(idx)].answer === value).length;
+
+  return (
+    <section className="service-engine-shell">
+      <style>{`
+        .service-engine-shell{min-height:100vh;background:linear-gradient(135deg,#eef8fc,#e5f1f8);padding:24px;color:#07111f;font-family:inherit}.engine-topbar{max-width:1400px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:center}.engine-back{border:0;background:#fff;padding:12px 16px;border-radius:12px;font-weight:800;box-shadow:0 8px 30px #16344b14;cursor:pointer}.engine-badge{font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#0788c1}.engine-brief{max-width:1000px;margin:45px auto;background:#fff;border-radius:30px;padding:48px;box-shadow:0 24px 70px #16344b1a}.engine-brief h1{font-size:clamp(2.4rem,6vw,5rem);margin:8px 0 20px;line-height:.95}.engine-brief-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;margin:30px 0}.engine-card{background:#f3f8fb;border:1px solid #d8e7ef;border-radius:20px;padding:22px}.engine-primary{border:0;background:#057eb5;color:#fff;padding:15px 22px;border-radius:14px;font-weight:900;font-size:1rem;cursor:pointer}.engine-layout{max-width:1400px;margin:auto;display:grid;grid-template-columns:minmax(250px,320px) minmax(480px,1fr) minmax(290px,390px);gap:22px;align-items:start}.engine-panel{background:#fff;border-radius:26px;padding:26px;box-shadow:0 18px 55px #16344b16}.engine-case h1{font-size:clamp(2rem,3.2vw,3.3rem);line-height:1;margin:10px 0 16px}.engine-case p{line-height:1.55}.engine-progress{display:grid;gap:10px;margin-top:24px}.engine-step{display:flex;gap:12px;align-items:center;padding:12px;border-radius:14px;background:#f4f8fa;border:1px solid #dce8ee}.engine-step.done{background:#e9f8f1;border-color:#afe1c9}.engine-step.active{background:#e8f5fc;border-color:#83cbe9}.engine-step b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fff}.engine-workbench{display:grid;gap:20px}.sim-monitor{background:#1b2731;border:10px solid #dbe1e4;border-radius:28px;padding:16px;box-shadow:inset 0 0 0 2px #9ca8ad,0 18px 45px #07111f2b}.sim-monitor-top{display:flex;justify-content:space-between;color:#dbe9ef;padding:2px 5px 12px;font-size:.85rem;letter-spacing:.08em}.sim-screen{background:#07131b;border-radius:12px;padding:18px;color:#eaf8ff;min-height:330px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.sim-vital,.sim-nibp{position:relative;border-bottom:1px solid #28414e;padding:12px}.sim-vital span,.sim-nibp span{display:block;font-weight:900;letter-spacing:.08em}.sim-vital strong,.sim-nibp strong{font-size:3rem}.sim-vital small,.sim-nibp small{margin-left:8px}.sim-wave{display:block;font-style:normal;font-size:1.6rem;letter-spacing:.12em;margin-top:18px}.sim-vital.ecg{color:#6df58d}.sim-vital.spo2{color:#62d8ff}.sim-nibp{grid-column:1/-1;color:#fff}.sim-nibp b{display:inline-block;margin-top:15px;margin-left:14px;padding:8px 12px;border-radius:8px;background:#9d2731;color:#fff}.sim-nibp b.ok{background:#18754a}.sim-monitor-controls{display:flex;gap:10px;padding-top:14px}.sim-monitor-controls button{flex:1;border:1px solid #64737b;background:#34444d;color:#fff;border-radius:9px;padding:10px;font-weight:800}.sim-monitor-controls .nibp-key{background:#e5edf0;color:#15232b}.engine-action{background:#fff;border-radius:22px;padding:24px;border:1px solid #d9e7ee}.engine-action h2{margin-top:4px}.engine-action button{width:100%}.engine-log{max-height:610px;overflow:auto}.engine-log-entry{font-family:ui-monospace,monospace;background:#102638;color:#eefaff;border-radius:13px;padding:14px;margin:10px 0;line-height:1.45}.engine-choice{width:100%;text-align:left;border:1px solid #d7e5ec;background:#f7fafb;border-radius:14px;padding:15px;margin:7px 0;font-weight:800;cursor:pointer}.engine-choice.selected{border-color:#0788c1;background:#e8f6fc}.engine-choice.correct{border-color:#2d9b68;background:#eaf8f1}.engine-choice.wrong{border-color:#c94e56;background:#fff0f1}.engine-result{max-width:900px;margin:30px auto}.engine-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.engine-summary div{background:#f3f8fb;border-radius:14px;padding:16px}.engine-summary span{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:#537080}.engine-summary strong{display:block;margin-top:5px}.engine-doc{background:#102638;color:#eefaff;border-radius:18px;padding:22px;line-height:1.7;margin-top:20px}.engine-score{font-size:4rem;font-weight:900}.engine-verify{display:flex;gap:10px;margin-top:15px}.engine-verify i{flex:1;height:10px;border-radius:99px;background:#d7e5ec}.engine-verify i.done{background:#27a56c}@media(max-width:1100px){.engine-layout{grid-template-columns:280px 1fr}.engine-log-panel{grid-column:1/-1}.engine-log{max-height:300px}}@media(max-width:760px){.service-engine-shell{padding:12px}.engine-layout,.engine-brief-grid{grid-template-columns:1fr}.engine-case h1{font-size:2.4rem}.sim-screen{min-height:280px}.engine-brief{padding:28px}.engine-summary{grid-template-columns:1fr}}
+      `}</style>
+      <div className="engine-topbar"><button className="engine-back" onClick={onExit}>← Hospital Dashboard</button><span className="engine-badge">Biomedical Training Hospital</span></div>
+
+      {screen === "briefing" && <article className="engine-brief">
+        <span className="engine-badge">{scenario.id} • {scenario.mode}</span><h1>{scenario.title}</h1><p>{scenario.complaint}</p>
+        <div className="engine-brief-grid"><div className="engine-card"><strong>Device</strong><h2>{scenario.equipment}</h2><p>{scenario.location}</p></div><div className="engine-card"><strong>Recommended setup</strong>{scenario.tools.map((tool) => <p key={tool}>✓ {tool}</p>)}</div></div>
+        <button className="engine-primary" onClick={() => setScreen("workbench")}>Accept Work Order</button>
+      </article>}
+
+      {screen === "workbench" && <div className="engine-layout">
+        <aside className="engine-panel engine-case"><span className="engine-badge">{scenario.id}</span><h1>{scenario.title}</h1><p>{scenario.complaint}</p><div className="engine-progress">{scenario.stages.map((item, idx) => <div key={item.id} className={`engine-step ${idx < step ? "done" : idx === step ? "active" : ""}`}><b>{idx < step ? "✓" : idx + 1}</b><span>{item.label}</span></div>)}</div></aside>
+        <main className="engine-workbench"><TroubleshootingMonitor phase={monitorPhase} cycleNumber={verifyCount}/><div className="engine-action"><span className="engine-badge">Current action</span><h2>{scenario.stages[step]?.label || "Evidence collected"}</h2><p>{scenario.stages[step]?.id === "reproduce" ? "Observe the pressure rise and fall. The behavior—not the error text alone—is your evidence." : "Complete the action, observe the result, and let the evidence guide the next step."}</p><button className="engine-primary" onClick={completeStep}>{scenario.stages[step]?.action || "Continue to diagnosis"}</button></div></main>
+        <aside className="engine-panel engine-log-panel"><span className="engine-badge">Evidence log</span><h2>Service record</h2><div className="engine-log">{log.map((entry, idx) => <div className="engine-log-entry" key={`${entry}-${idx}`}>{entry}</div>)}</div></aside>
+      </div>}
+
+      {screen === "diagnosis" && <article className="engine-panel engine-result"><span className="engine-badge">Root-cause decision</span><h1>Select the diagnosis supported by the evidence</h1>{scenario.diagnoses.map((item) => <button key={item.id} className={`engine-choice ${diagnosis === item.id ? "selected" : ""}`} onClick={() => setDiagnosis(item.id)}>{item.label}</button>)}<button className="engine-primary" disabled={!diagnosis} onClick={() => { if (diagnosis === correctDiagnosis) { addLog("Root cause documented: leak in original NIBP hose."); setScreen("repair"); } }}>Submit Evidence-Based Diagnosis</button>{diagnosis && diagnosis !== correctDiagnosis && <p><strong>Not yet supported.</strong> Review what changed when normal operation returned and which component failed direct testing.</p>}</article>}
+
+      {screen === "repair" && <article className="engine-panel engine-result"><span className="engine-badge">Corrective action and verification</span><h1>{repairDone ? "Verify the repair" : scenario.repair}</h1><TroubleshootingMonitor phase={repairDone ? (verifyCount ? "verified" : "normal") : "failed"} cycleNumber={verifyCount}/>{!repairDone ? <button className="engine-primary" onClick={() => { setRepairDone(true); addLog("Failed NIBP hose removed and replacement hose installed."); }}>Replace NIBP Hose</button> : <><div className="engine-verify">{[1,2,3].map((n) => <i key={n} className={verifyCount >= n ? "done" : ""}/>)}</div><button className="engine-primary" onClick={() => { const next = verifyCount + 1; setVerifyCount(next); addLog(`Verification cycle ${next} completed successfully without leak error.`); if (next === 3) setTimeout(() => setScreen("questions"), 250); }}>Run Verification Cycle {Math.min(verifyCount + 1,3)} of 3</button></>}</article>}
+
+      {screen === "questions" && <article className="engine-panel engine-result"><span className="engine-badge">After-action review • {questionIndex + 1}/{scenario.questions.length}</span><h1>{scenario.questions[questionIndex].q}</h1>{scenario.questions[questionIndex].options.map((option, idx) => { const chosen = answers[questionIndex]; const answered = chosen !== undefined; return <button key={option} disabled={answered} className={`engine-choice ${answered && idx === scenario.questions[questionIndex].answer ? "correct" : answered && idx === chosen ? "wrong" : ""}`} onClick={() => setAnswers((old) => ({...old,[questionIndex]:idx}))}>{option}</button>; })}{answers[questionIndex] !== undefined && <><p><strong>{answers[questionIndex] === scenario.questions[questionIndex].answer ? "Correct." : "Review this concept."}</strong> {scenario.questions[questionIndex].why}</p><button className="engine-primary" onClick={() => questionIndex < scenario.questions.length - 1 ? setQuestionIndex(questionIndex + 1) : setScreen("debrief")}>{questionIndex < scenario.questions.length - 1 ? "Next Question" : "Complete Service Call"}</button></>}</article>}
+
+      {screen === "debrief" && <article className="engine-panel engine-result"><span className="engine-badge">Service call complete</span><h1>Device returned to service</h1><div className="engine-score">{score}/{scenario.questions.length}</div><p>After-action review score</p><div className="engine-summary"><div><span>Failure</span><strong>Leak in original NIBP hose</strong></div><div><span>Corrective action</span><strong>NIBP hose replaced</strong></div><div><span>Verification</span><strong>Three successful NIBP cycles</strong></div><div><span>Competencies</span><strong>Patient Safety • Signal Isolation • Evidence-Based Troubleshooting • Documentation</strong></div></div><div className="engine-doc"><strong>Service documentation</strong><br/>Confirmed alternate blood-pressure monitoring and removed the monitor from clinical service. Reproduced the reported NIBP leak error with the original cuff and hose. A known-good accessory set restored normal operation. Pressure-decay testing isolated the leak to the original hose near the connector strain relief. Replaced the NIBP hose and completed three successful verification cycles without error. Device returned to clinical service.</div><button className="engine-primary" onClick={() => { onComplete?.(); onExit(); }}>Close Work Order</button></article>}
+    </section>
+  );
+}
+
+function GuardianNibpServiceCall({ onExit, onComplete }) {
+  return <GuidedTroubleshootingEngine scenario={SERVICE_CALL_SCENARIOS["WO-1052"]} onExit={onExit} onComplete={onComplete} />;
+}
+
+
 function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
   const [stage, setStage] = useState("briefing");
   const [patientTransferred, setPatientTransferred] = useState(false);
@@ -2632,16 +2752,16 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
   const enoughEvidence = tests.simulatorOriginal && tests.simulatorKnownGood && tests.continuity;
 
   const workflowSteps = [
-    { id: 1, label: "Patient safety", complete: patientTransferred },
-    { id: 2, label: "Remove device", complete: deviceRemoved },
-    { id: 3, label: "Visual inspection", complete: tests.visual },
-    { id: 4, label: "Connect simulator", complete: simulatorConnected },
-    { id: 5, label: "Test original setup", complete: tests.simulatorOriginal },
-    { id: 6, label: "Substitute cable", complete: tests.simulatorKnownGood },
-    { id: 7, label: "Continuity test", complete: tests.continuity },
-    { id: 8, label: "Diagnosis", complete: diagnosis === "cable" || ["repair", "debrief"].includes(stage) || debriefComplete },
-    { id: 9, label: "Repair and verify", complete: repairComplete && alarmVerified },
-    { id: 10, label: "Documentation", complete: debriefComplete },
+    { id: 1, label: "Confirm alternate monitoring", complete: patientTransferred },
+    { id: 2, label: "Remove from clinical service", complete: deviceRemoved },
+    { id: 3, label: "Inspect ECG signal path", complete: tests.visual },
+    { id: 4, label: "Connect ECG patient simulator", complete: simulatorConnected },
+    { id: 5, label: "Reproduce reported complaint", complete: tests.simulatorOriginal },
+    { id: 6, label: "Install known-good ECG lead set", complete: tests.simulatorKnownGood },
+    { id: 7, label: "Verify cable continuity", complete: tests.continuity },
+    { id: 8, label: "Document root cause", complete: diagnosis === "cable" || ["repair", "debrief"].includes(stage) || debriefComplete },
+    { id: 9, label: "Repair and verify performance", complete: repairComplete && alarmVerified },
+    { id: 10, label: "Close work order", complete: debriefComplete },
   ];
 
   const roomStep =
@@ -2709,7 +2829,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
       target: "evidence",
     },
     9: {
-      title: "Repair and verify",
+      title: "Repair and verify performance",
       message: "Install the replacement lead set, then verify ECG response, lead-off detection, and alarm operation.",
       action: "Complete all functional checks.",
       target: "repair",
@@ -3141,9 +3261,9 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
                     <span className={simulatorConnected ? "connected" : ""}>MONITOR</span>
                   </div>
                   {!simulatorConnected ? (
-                    <button className="service-call-primary" onClick={connectSimulator}>Connect simulator</button>
+                    <button className="service-call-primary" onClick={connectSimulator}>Connect ECG patient simulator</button>
                   ) : !originalPathTested ? (
-                    <button className="service-call-primary" onClick={testOriginalCable}>Apply ECG through original cable</button>
+                    <button className="service-call-primary" onClick={testOriginalCable}>Reproduce reported complaint</button>
                   ) : (
                     <div className="service-call-result warning">No waveform through the original cable path.</div>
                   )}
@@ -3159,7 +3279,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
                     disabled={!tests.simulatorOriginal}
                     onClick={installKnownGoodCable}
                   >
-                    Install known-good lead set
+                    Install known-good ECG lead set
                   </button>
                   {knownGoodCableInstalled && (
                     <div className="service-call-result success">ECG restored at 80 bpm. Monitor input is responding normally.</div>
@@ -3247,7 +3367,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
                   disabled={!enoughEvidence}
                   onClick={() => setStage("diagnosis")}
                 >
-                  Document Diagnosis
+                  Document Root Cause
                 </button>
               </div>
             )}
@@ -3511,10 +3631,9 @@ function getCbetCareerRank(xp = 0) {
 }
 
 export default function CBETAcademy() {
-  const [screen, setScreen] = useState("hospital");
+  const [screen, setScreen] = useState("dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
-  const [returnToMissions, setReturnToMissions] = useState(false);
   const [streak, setStreak] = useState(() => registerCbetVisit());
   const academy = getCbetAcademyState();
   const progress = cbetCompletionPercent();
@@ -3535,30 +3654,45 @@ export default function CBETAcademy() {
     }
 
     const positionScreen = () => {
-      if (screen === "hospital") {
-        const hospitalMap = document.getElementById("cbet-hospital-map");
-        if (hospitalMap) {
-          hospitalMap.scrollIntoView({
-            behavior: "auto",
-            block: "start",
-            inline: "nearest",
-          });
-          window.scrollBy({ top: -18, left: 0, behavior: "auto" });
-          return;
-        }
-      }
+      const scrollToScreenTarget = (id) => {
+        const target = document.getElementById(id);
+        if (!target) return false;
 
-      if (screen === "serviceCall1048") {
-        const assignment = document.getElementById("service-call-top");
-        if (assignment) {
-          assignment.scrollIntoView({
-            behavior: "auto",
-            block: "start",
-            inline: "nearest",
-          });
-          window.scrollBy({ top: -18, left: 0, behavior: "auto" });
-          return;
-        }
+        target.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+          inline: "nearest",
+        });
+
+        window.scrollBy({
+          top: -18,
+          left: 0,
+          behavior: "auto",
+        });
+
+        return true;
+      };
+
+      switch (screen) {
+        case "dashboard":
+          if (scrollToScreenTarget("cbet-academy-top")) return;
+          break;
+
+        case "virtualLab":
+          if (scrollToScreenTarget("multimeter-foundations")) return;
+          break;
+
+        case "hospital":
+          if (scrollToScreenTarget("cbet-hospital-map")) return;
+          break;
+
+        case "serviceCall1048":
+        case "serviceCall1052":
+          if (scrollToScreenTarget("service-call-top")) return;
+          break;
+
+        default:
+          break;
       }
 
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -3596,7 +3730,7 @@ export default function CBETAcademy() {
           streak={streak.current || 1}
           onOpenTraining={() => setScreen("dashboard")}
           onOpenLab={() => setScreen("virtualLab")}
-          onOpenMission={() => setScreen("serviceCall1048")}
+          onOpenMission={(orderId) => setScreen(orderId === "WO-1052" ? "serviceCall1052" : "serviceCall1048")}
           onOpenStats={() => setShowStats(true)}
         />
         {showStats && <StatsPanel stats={stats} onClose={() => setShowStats(false)} />}
@@ -3617,11 +3751,23 @@ export default function CBETAcademy() {
     );
   }
 
+  if (screen === "serviceCall1052") {
+    return (
+      <GuardianNibpServiceCall
+        onExit={() => {
+          setScreen("hospital");
+          setRefresh((value) => value + 1);
+        }}
+        onComplete={() => setRefresh((value) => value + 1)}
+      />
+    );
+  }
+
   if (screen === "mission1") {
     return (
       <main className="cbet-academy">
         <MissionOne
-          onBack={() => setScreen("hospital")}
+          onBack={() => setScreen("dashboard")}
           onComplete={() => setRefresh((v) => v + 1)}
         />
       </main>
@@ -3633,7 +3779,7 @@ export default function CBETAcademy() {
       <main className="cbet-academy">
         <MissionTwo
           onExit={() => {
-            setScreen("hospital");
+            setScreen("dashboard");
             setRefresh((v) => v + 1);
           }}
         />
@@ -3646,7 +3792,7 @@ export default function CBETAcademy() {
       <main className="cbet-academy">
         <MissionThree
           onExit={() => {
-            setScreen("hospital");
+            setScreen("dashboard");
             setRefresh((v) => v + 1);
           }}
         />
@@ -3658,71 +3804,106 @@ export default function CBETAcademy() {
     return (
       <VirtualCBETLab
         onExit={() => {
-          setReturnToMissions(true);
-          setScreen("hospital");
+          setScreen("dashboard");
         }}
       />
     );
   }
 
+  const nextMissionScreen = !getCbetModuleState(1).complete
+    ? "mission1"
+    : !getCbetModuleState(2).complete
+    ? "mission2"
+    : "mission3";
+
+  const nextMissionLabel = !getCbetModuleState(1).complete
+    ? getMissionProgress(1).phase === "briefing" ? "Start Mission 1" : "Continue Mission 1"
+    : !getCbetModuleState(2).complete
+    ? getMissionProgress(2).phase === "briefing" ? "Start Mission 2" : "Continue Mission 2"
+    : getMissionProgress(3).phase === "briefing" ? "Start Mission 3" : "Continue Mission 3";
+
+  const hubCardStyle = {
+    border: "1px solid #dbe4ee",
+    borderRadius: "18px",
+    padding: "22px",
+    background: "#ffffff",
+    boxShadow: "0 8px 24px rgba(15, 23, 42, 0.06)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+    minHeight: "210px",
+  };
+
   return (
     <main className="cbet-academy" key={refresh}>
-      <section className="cbet-dashboard-hero">
+      <section id="cbet-academy-top" className="cbet-dashboard-hero">
         <div className="cbet-shell">
           <div className="cbet-hero-grid">
             <div>
               <span className="cbet-label">MedSkillBuilder Academy</span>
-              <h1>🔧 CBET Certification Academy</h1>
-              <p>Build biomedical equipment knowledge through guided missions, interactive labs, troubleshooting, and exam-style practice.</p>
+              <h1>🔧 CBET Academy</h1>
+              <p>Choose what you want to do. Every major area is available directly from this page.</p>
               <div className="cbet-progress-bar large"><span style={{ width: `${progress}%` }} /></div>
               <div className="cbet-progress-copy">
                 <span>{progress}% complete</span><span>{academy.xp} XP earned</span>
               </div>
-              <div className="cbet-hero-actions">
-                <button
-                  className="cbet-primary"
-                  onClick={() =>
-                    setScreen(
-                      !getCbetModuleState(1).complete
-                        ? "mission1"
-                        : !getCbetModuleState(2).complete
-                        ? "mission2"
-                        : "mission3"
-                    )
-                  }
-                >
-                  {!getCbetModuleState(1).complete
-                    ? getMissionProgress(1).phase === "briefing"
-                      ? "Start Mission 1"
-                      : "Continue Mission 1"
-                    : !getCbetModuleState(2).complete
-                    ? getMissionProgress(2).phase === "briefing"
-                      ? "Start Mission 2"
-                      : "Continue Mission 2"
-                    : getMissionProgress(3).phase === "briefing"
-                    ? "Start Mission 3"
-                    : "Continue Mission 3"}
-                </button>
-                <button className="cbet-secondary" onClick={() => setScreen("hospital")}>🏥 Hospital Dashboard</button>
-                <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
-                <button className="cbet-secondary cbet-lab-launch-button" onClick={() => setScreen("virtualLab")}>🧪 Open Virtual Lab</button>
-              </div>
             </div>
             <div className="cbet-rank-card">
-              <span>Current Rank</span>
-              <strong>{progress === 100 ? "CBET Ready" : progress > 0 ? "Electronics Apprentice" : "Biomedical Rookie"}</strong>
+              <span>Your Progress</span>
+              <strong>{getCbetCareerRank(academy.xp)}</strong>
               <div>🏅 {Object.values(academy.modules || {}).filter((m) => m.complete).length} badges earned</div>
-              <div>🎖️ Current rank: <strong>{getCbetCareerRank(academy.xp)}</strong></div>
               <div className="cbet-streak-chip">🔥 {streak.current || 1}-day learning streak</div>
+              <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
             </div>
           </div>
         </div>
       </section>
 
       <section className="cbet-shell cbet-dashboard">
+        <div className="cbet-section-heading">
+          <span className="cbet-label">Choose an Area</span>
+          <h2>What would you like to do?</h2>
+          <p>Four clear destinations. No searching through the page.</p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "18px", marginBottom: "34px" }}>
+          <article style={hubCardStyle}>
+            <div style={{ fontSize: "2rem" }}>📘</div>
+            <span className="cbet-label">Learn</span>
+            <h2 style={{ margin: 0 }}>Training Missions</h2>
+            <p style={{ flex: 1 }}>Structured lessons, interactive activities, scenarios, and mission challenges.</p>
+            <button className="cbet-primary full" onClick={() => setScreen(nextMissionScreen)}>{nextMissionLabel}</button>
+            <button className="cbet-secondary full" onClick={() => document.getElementById("cbet-training-path")?.scrollIntoView({ behavior: "smooth" })}>View All Missions</button>
+          </article>
+
+          <article style={hubCardStyle}>
+            <div style={{ fontSize: "2rem" }}>🧪</div>
+            <span className="cbet-label">Practice</span>
+            <h2 style={{ margin: 0 }}>Virtual Lab</h2>
+            <p style={{ flex: 1 }}>Open the biomedical electronics bench for hands-on meter, circuit, and troubleshooting practice.</p>
+            <button className="cbet-primary full" onClick={() => setScreen("virtualLab")}>Open Virtual Lab</button>
+          </article>
+
+          <article style={hubCardStyle}>
+            <div style={{ fontSize: "2rem" }}>🏥</div>
+            <span className="cbet-label">Work</span>
+            <h2 style={{ margin: 0 }}>Hospital Simulator</h2>
+            <p style={{ flex: 1 }}>Enter the hospital dashboard, accept work orders, and complete realistic service calls.</p>
+            <button className="cbet-primary full" onClick={() => setScreen("hospital")}>Open Hospital</button>
+          </article>
+
+          <article style={hubCardStyle}>
+            <div style={{ fontSize: "2rem" }}>📊</div>
+            <span className="cbet-label">Progress</span>
+            <h2 style={{ margin: 0 }}>Statistics</h2>
+            <p style={{ flex: 1 }}>See completed lessons, scenarios, badges, scores, XP, and learning streaks.</p>
+            <button className="cbet-primary full" onClick={() => setShowStats(true)}>View Progress</button>
+          </article>
+        </div>
+
         <div className="cbet-section-heading" id="cbet-training-path">
-          <span className="cbet-label">Training Path</span>
-          <h2>Complete each mission to unlock the next</h2>
+          <span className="cbet-label">Learn</span>
+          <h2>Training Missions</h2>
         </div>
 
         <div className="cbet-grid">
@@ -3744,28 +3925,8 @@ export default function CBETAcademy() {
                 <div className="cbet-card-footer">
                   <span>{module.xp} XP</span>
                   {available ? (
-                    <button
-                      className="cbet-primary"
-                      disabled={!unlocked || (module.comingSoon && module.number > 3)}
-                      onClick={() =>
-                        setScreen(
-                          module.number === 1
-                            ? "mission1"
-                            : module.number === 2
-                            ? "mission2"
-                            : module.number === 3
-                            ? "mission3"
-                            : "dashboard"
-                        )
-                      }
-                    >
-                      {module.comingSoon && module.number > 3
-                        ? "Coming Soon"
-                        : state.complete
-                        ? "Review Mission"
-                        : getMissionProgress(module.number).phase !== "briefing"
-                        ? "Continue Mission"
-                        : "Start Mission"}
+                    <button className="cbet-primary" disabled={!unlocked} onClick={() => setScreen(module.number === 1 ? "mission1" : module.number === 2 ? "mission2" : "mission3")}>
+                      {state.complete ? "Review Mission" : getMissionProgress(module.number).phase !== "briefing" ? "Continue Mission" : "Start Mission"}
                     </button>
                   ) : (
                     <button className="cbet-secondary" disabled>{unlocked ? "Coming Soon" : "Locked"}</button>
@@ -3775,32 +3936,6 @@ export default function CBETAcademy() {
             );
           })}
         </div>
-
-        <section className="cbet-signature-lab">
-          <div className="cbet-signature-lab-icon">🧪</div>
-          <div>
-            <span className="cbet-label">Signature Learning Experience</span>
-            <h2>Virtual Biomedical Electronics Bench</h2>
-            <p>Learn one technical skill at a time with highlighted controls, friendly feedback, clear probe placement, and step-by-step coaching.</p>
-            <div className="cbet-signature-lab-features">
-              <span>One step at a time</span>
-              <span>Highlighted controls</span>
-              <span>Beginner feedback</span>
-              <span>Saved progress</span>
-            </div>
-          </div>
-          <button className="cbet-primary" onClick={() => setScreen("virtualLab")}>Launch Lab</button>
-        </section>
-
-        <section className="cbet-final">
-          <div className="cbet-hero-icon">🏆</div>
-          <div>
-            <span className="cbet-label">Graduation Challenge</span>
-            <h2>CBET Final Board Challenge</h2>
-            <p>Comprehensive randomized exam with category scoring, question review, and a printable academy certificate.</p>
-          </div>
-          <button className="cbet-secondary" disabled>Complete All 9 Missions</button>
-        </section>
       </section>
       {showStats && <StatsPanel stats={stats} onClose={() => setShowStats(false)} />}
     </main>
