@@ -820,7 +820,6 @@ function MissionOne({ onBack, onComplete }) {
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
-  const [finalResult, setFinalResult] = useState(null);
   const [xpToast, setXpToast] = useState(null);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false);
 
@@ -1137,6 +1136,7 @@ function MissionTwo({ onExit }) {
   const [answers, setAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [finalResult, setFinalResult] = useState(null);
   const [xpToast, setXpToast] = useState(null);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false);
 
