@@ -1769,3 +1769,390 @@
     width: 100%;
   }
 }
+
+/* Lesson Engine 1.1: premium, stable lesson card behavior. */
+.cbet-check-premium {
+  position: relative;
+}
+
+.cbet-check-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  margin: -2px -2px 16px;
+  padding: 2px 2px 12px;
+  background: linear-gradient(180deg, #ffffff 82%, rgba(255, 255, 255, 0.92) 100%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.cbet-check-progress-bar {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dfeaf3;
+}
+
+.cbet-check-progress-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1769aa, #29a6cf);
+  transition: width 240ms ease;
+}
+
+.cbet-check-premium .cbet-option {
+  position: relative;
+  padding-right: 48px;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+
+.cbet-check-premium .cbet-option:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 52, 82, 0.09);
+}
+
+.cbet-check-premium .cbet-option kbd {
+  position: absolute;
+  top: 50%;
+  right: 13px;
+  min-width: 25px;
+  padding: 3px 6px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(96, 117, 138, 0.28);
+  border-radius: 7px;
+  background: rgba(238, 246, 251, 0.9);
+  color: #50677a;
+  font: 800 0.72rem/1 system-ui, sans-serif;
+  text-align: center;
+  box-shadow: 0 1px 0 rgba(15, 52, 82, 0.08);
+}
+
+.cbet-feedback-slot {
+  display: flex;
+  min-height: 112px;
+  margin-top: 12px;
+  align-items: stretch;
+}
+
+.cbet-feedback-slot > .cbet-feedback {
+  width: 100%;
+  margin-top: 0;
+  animation: cbetFeedbackIn 180ms ease-out;
+}
+
+.cbet-feedback-slot:not(.is-visible) {
+  min-height: 42px;
+  align-items: center;
+}
+
+.cbet-keyboard-hint {
+  color: var(--cbet-muted, #60758a);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.cbet-feedback-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.cbet-feedback-title > span {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(22, 163, 74, 0.14);
+  color: #15803d;
+  font-weight: 950;
+}
+
+.cbet-feedback.bad .cbet-feedback-title > span {
+  background: rgba(217, 119, 6, 0.14);
+  color: #b45309;
+}
+
+.cbet-feedback-slot .cbet-feedback small {
+  color: var(--cbet-muted, #60758a);
+  font-weight: 750;
+}
+
+@keyframes cbetFeedbackIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .cbet-check-sticky-header {
+    top: 0;
+  }
+
+  .cbet-check-premium .cbet-option kbd,
+  .cbet-keyboard-hint {
+    display: none;
+  }
+
+  .cbet-check-premium .cbet-option {
+    padding-right: 14px;
+  }
+
+  .cbet-feedback-slot {
+    min-height: 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbet-check-progress-bar > span,
+  .cbet-check-premium .cbet-option,
+  .cbet-feedback-slot > .cbet-feedback {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Lesson Engine 1.2: optional auto-advance and smoother completion feedback. */
+.cbet-check-header-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cbet-auto-advance-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--cbet-muted, #60758a);
+  font-size: 0.75rem;
+  font-weight: 850;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cbet-auto-advance-toggle input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #1769aa;
+}
+
+.cbet-check-actions {
+  position: relative;
+  overflow: hidden;
+}
+
+.cbet-check-actions.is-advancing .cbet-primary {
+  box-shadow: 0 0 0 4px rgba(23, 105, 170, 0.12);
+}
+
+.cbet-auto-advance-line {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  transform-origin: left center;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1769aa, #29a6cf);
+  animation: cbetAutoAdvance 1800ms linear forwards;
+}
+
+.cbet-feedback.good {
+  animation: cbetSuccessPulse 320ms ease-out;
+}
+
+@keyframes cbetAutoAdvance {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes cbetSuccessPulse {
+  0% { transform: scale(0.985); }
+  55% { transform: scale(1.008); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .cbet-check-header-tools {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbet-auto-advance-line,
+  .cbet-feedback.good {
+    animation: none;
+  }
+}
+
+/* Lesson Engine 2.0: one page scrollbar, compact question panel, visible navigation. */
+@media (min-width: 761px) {
+  .mission-two-guided-stage {
+    grid-template-columns: minmax(0, 1.35fr) minmax(390px, 0.8fr);
+    gap: 28px;
+  }
+
+  .mission-two-question-pane {
+    position: sticky;
+    top: 12px;
+    align-self: start;
+  }
+}
+
+/* Never create a second scrollbar inside the knowledge-check card. */
+.mission-two-guided-stage .cbet-check,
+.mission-two-question-pane .cbet-check {
+  max-height: none;
+  height: auto;
+  overflow: visible;
+  overscroll-behavior: auto;
+}
+
+.cbet-check-premium {
+  padding-top: 0;
+}
+
+.cbet-check-sticky-header {
+  position: relative;
+  top: auto;
+  margin: 0 0 12px;
+  padding: 12px 0 10px;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.cbet-check-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 9px;
+}
+
+.cbet-check-heading > .cbet-label {
+  justify-self: start;
+  padding: 6px 10px;
+  font-size: 0.7rem;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.cbet-check-header-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cbet-check-progress {
+  white-space: nowrap;
+  font-size: 0.73rem;
+}
+
+.cbet-auto-advance-toggle {
+  flex: 0 0 auto;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: 0.71rem;
+}
+
+.cbet-auto-advance-toggle input {
+  width: 15px;
+  height: 15px;
+}
+
+.cbet-check-question {
+  margin: 14px 0 16px !important;
+  font-size: clamp(1.35rem, 2.25vw, 2rem) !important;
+  line-height: 1.18;
+}
+
+.cbet-options {
+  gap: 8px;
+}
+
+.cbet-check-premium .cbet-option {
+  min-height: 56px;
+  padding: 11px 44px 11px 14px;
+  border-radius: 12px;
+  font-size: clamp(0.98rem, 1.35vw, 1.12rem);
+  line-height: 1.25;
+}
+
+.cbet-check-premium .cbet-option kbd {
+  right: 11px;
+  min-width: 24px;
+  padding: 3px 5px;
+}
+
+.cbet-feedback-slot,
+.cbet-feedback-slot:not(.is-visible) {
+  min-height: 36px;
+  margin-top: 9px;
+}
+
+.cbet-feedback-slot.is-visible {
+  min-height: 0;
+}
+
+.cbet-feedback-slot .cbet-feedback {
+  padding: 11px 12px;
+}
+
+.cbet-check-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin-top: 10px;
+  padding: 11px 0 4px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), #fff 24%);
+  border-top: 1px solid var(--cbet-line, rgba(148, 163, 184, 0.3));
+  overflow: hidden;
+}
+
+.cbet-check-actions button {
+  min-height: 46px;
+}
+
+@media (max-width: 980px) and (min-width: 761px) {
+  .mission-two-guided-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(350px, 0.82fr);
+    gap: 18px;
+  }
+
+  .cbet-check-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .cbet-check-header-tools {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 760px) {
+  .mission-two-question-pane {
+    position: static;
+    order: -1;
+  }
+
+  .mission-two-guided-stage .cbet-check {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .cbet-check-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .cbet-check-header-tools {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .cbet-check-actions {
+    position: static;
+  }
+}

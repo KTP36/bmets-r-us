@@ -164,14 +164,90 @@ function StatsPanel({ stats, onClose }) {
 
 function KnowledgeCheck({ check, onComplete, resetKey, progressLabel, actions }) {
   const [selected, setSelected] = useState(null);
+  const [autoAdvance, setAutoAdvance] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem("cbet-auto-advance") === "true";
+  });
+  const [advancePending, setAdvancePending] = useState(false);
+  const checkRef = useRef(null);
   const randomizedCheck = useMemo(() => shuffleQuestion(check), [resetKey]);
 
   useEffect(() => {
     setSelected(null);
+    setAdvancePending(false);
   }, [resetKey]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("cbet-auto-advance", String(autoAdvance));
+    }
+  }, [autoAdvance]);
 
   const answered = selected !== null;
   const correct = selected === randomizedCheck.answer;
+  const progressMatch = progressLabel?.match(/(\d+)\s+of\s+(\d+)/i);
+  const progressCurrent = progressMatch ? Number(progressMatch[1]) : null;
+  const progressTotal = progressMatch ? Number(progressMatch[2]) : null;
+  const progressPercent = progressCurrent && progressTotal
+    ? Math.min(100, Math.round((progressCurrent / progressTotal) * 100))
+    : null;
+
+  const chooseOption = (index) => {
+    if (correct || index < 0 || index >= randomizedCheck.options.length) return;
+
+    const isCorrect = index === randomizedCheck.answer;
+    setSelected(index);
+    playCbetTone(isCorrect ? "correct" : "wrong");
+
+    if (isCorrect) onComplete(true);
+  };
+
+  useEffect(() => {
+    if (!correct || !autoAdvance) {
+      setAdvancePending(false);
+      return undefined;
+    }
+
+    const nextButton = checkRef.current?.querySelector(
+      ".cbet-check-actions .cbet-primary:not(:disabled)"
+    );
+    if (!nextButton) return undefined;
+
+    setAdvancePending(true);
+    const timer = window.setTimeout(() => {
+      setAdvancePending(false);
+      nextButton.click();
+    }, 1800);
+
+    return () => window.clearTimeout(timer);
+  }, [correct, autoAdvance, resetKey]);
+
+  useEffect(() => {
+    const handleKeyboard = (event) => {
+      const activeTag = document.activeElement?.tagName;
+      if (activeTag === "INPUT" || activeTag === "TEXTAREA" || activeTag === "SELECT") return;
+
+      const number = Number(event.key);
+      if (number >= 1 && number <= randomizedCheck.options.length && !correct) {
+        event.preventDefault();
+        chooseOption(number - 1);
+        return;
+      }
+
+      if (event.key === "Enter" && correct) {
+        const nextButton = checkRef.current?.querySelector(
+          ".cbet-check-actions .cbet-primary:not(:disabled)"
+        );
+        if (nextButton) {
+          event.preventDefault();
+          nextButton.click();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyboard);
+    return () => window.removeEventListener("keydown", handleKeyboard);
+  }, [correct, randomizedCheck.options.length, randomizedCheck.answer]);
 
   const questionText =
     randomizedCheck.question ||
@@ -182,11 +258,29 @@ function KnowledgeCheck({ check, onComplete, resetKey, progressLabel, actions })
     "Select the best answer.";
 
   return (
-    <div className="cbet-check">
-      <div className="cbet-check-heading">
-        <span className="cbet-label">Quick Knowledge Check</span>
-        {progressLabel && <span className="cbet-check-progress">{progressLabel}</span>}
+    <div className="cbet-check cbet-check-premium" ref={checkRef}>
+      <div className="cbet-check-sticky-header">
+        <div className="cbet-check-heading">
+          <span className="cbet-label">Quick Knowledge Check</span>
+          <div className="cbet-check-header-tools">
+            {progressLabel && <span className="cbet-check-progress">{progressLabel}</span>}
+            <label className="cbet-auto-advance-toggle">
+              <input
+                type="checkbox"
+                checked={autoAdvance}
+                onChange={(event) => setAutoAdvance(event.target.checked)}
+              />
+              <span>Auto-advance</span>
+            </label>
+          </div>
+        </div>
+        {progressPercent !== null && (
+          <div className="cbet-check-progress-bar" aria-label={`${progressPercent}% complete`}>
+            <span style={{ width: `${progressPercent}%` }} />
+          </div>
+        )}
       </div>
+
       <h3 className="cbet-check-question">{questionText}</h3>
       <div className="cbet-options">
         {randomizedCheck.options.map((option, index) => (
@@ -198,31 +292,47 @@ function KnowledgeCheck({ check, onComplete, resetKey, progressLabel, actions })
             className={`cbet-option ${
               correct && index === randomizedCheck.answer ? "correct" : ""
             } ${answered && index === selected && !correct ? "wrong" : ""}`}
-            onClick={() => {
-              const isCorrect = index === randomizedCheck.answer;
-              setSelected(index);
-              playCbetTone(isCorrect ? "correct" : "wrong");
-
-              if (isCorrect) {
-                onComplete(true);
-              }
-            }}
+            onClick={() => chooseOption(index)}
           >
             <strong>{String.fromCharCode(65 + index)}.</strong> {option}
+            <kbd>{index + 1}</kbd>
           </button>
         ))}
       </div>
-      {answered && (
-        <div className="cbet-feedback">
-          <strong>{correct ? "Correct." : "Not quite. Try again."}</strong>
-          <span>
-            {correct
-              ? randomizedCheck.explanation
-              : "Review the lesson and choose another answer."}
-          </span>
+
+      <div className={`cbet-feedback-slot ${answered ? "is-visible" : ""}`} aria-live="polite">
+        {answered ? (
+          <div className={`cbet-feedback ${correct ? "good" : "bad"}`}>
+            <div className="cbet-feedback-title">
+              <span aria-hidden="true">{correct ? "✓" : "↻"}</span>
+              <strong>{correct ? "Correct — excellent work!" : "Not quite — try again."}</strong>
+            </div>
+            <span>
+              {correct
+                ? randomizedCheck.explanation
+                : "Review the activity and select another answer."}
+            </span>
+            {correct && (
+              <small>
+                {advancePending
+                  ? "Moving to the next lesson…"
+                  : autoAdvance
+                  ? "Auto-advance is on."
+                  : "Press Enter or select the next lesson button."}
+              </small>
+            )}
+          </div>
+        ) : (
+          <span className="cbet-keyboard-hint">Use keys 1–4 or select an answer.</span>
+        )}
+      </div>
+
+      {actions && (
+        <div className={`cbet-check-actions ${advancePending ? "is-advancing" : ""}`}>
+          {actions}
+          {advancePending && <span className="cbet-auto-advance-line" aria-hidden="true" />}
         </div>
       )}
-      {actions && <div className="cbet-check-actions">{actions}</div>}
     </div>
   );
 }
@@ -751,7 +861,7 @@ function MissionTwoLab({ type }) {
   return null;
 }
 
-function ScenarioCard({ scenario, number, onComplete }) {
+function ScenarioCard({ scenario, number, onComplete, actions }) {
   const [selected, setSelected] = useState(null);
   const randomizedScenario = useMemo(() => shuffleQuestion(scenario), [scenario]);
   const answered = selected !== null;
@@ -767,13 +877,14 @@ function ScenarioCard({ scenario, number, onComplete }) {
         {randomizedScenario.options.map((option, index) => (
           <button
             key={option}
-            disabled={answered}
+            disabled={correct}
             className={`cbet-option ${
-              answered && index === randomizedScenario.answer ? "correct" : ""
+              correct && index === randomizedScenario.answer ? "correct" : ""
             } ${answered && index === selected && !correct ? "wrong" : ""}`}
             onClick={() => {
+              const isCorrect = index === randomizedScenario.answer;
               setSelected(index);
-              onComplete();
+              if (isCorrect) onComplete(true);
             }}
           >
             <strong>{String.fromCharCode(65 + index)}.</strong> {option}
@@ -781,9 +892,14 @@ function ScenarioCard({ scenario, number, onComplete }) {
         ))}
       </div>
       {answered && (
-        <div className="cbet-feedback">
-          <strong>{correct ? "Best action." : "Better approach:"}</strong>
-          <span>{randomizedScenario.explanation}</span>
+        <div className={`cbet-feedback ${correct ? "good" : "bad"}`}>
+          <strong>{correct ? "Best action." : "Not quite. Try another answer."}</strong>
+          <span>{correct ? randomizedScenario.explanation : "That choice is not the best next step. Choose another answer."}</span>
+          {correct && actions && (
+            <div className="cbet-nav-row cbet-scenario-inline-actions">
+              {actions}
+            </div>
+          )}
         </div>
       )}
     </article>
@@ -861,6 +977,8 @@ function MissionOne({ onBack, onComplete, onContinueMission2 }) {
   );
   const [questionIndex, setQuestionIndexState] = useState(savedProgress.quizIndex || 0);
   const [answers, setAnswers] = useState({});
+  const [wrongAnswers, setWrongAnswers] = useState({});
+  const [missedQuestions, setMissedQuestions] = useState({});
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [xpToast, setXpToast] = useState(null);
@@ -869,6 +987,7 @@ function MissionOne({ onBack, onComplete, onContinueMission2 }) {
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
+  const wrongSelected = wrongAnswers[questionIndex];
   const answered = selected !== undefined;
   const percent = Math.round((score / questions.length) * 100);
   const passed = percent >= 80;
@@ -967,6 +1086,8 @@ function MissionOne({ onBack, onComplete, onContinueMission2 }) {
   function restart() {
     setQuestionIndex(0);
     setAnswers({});
+    setWrongAnswers({});
+    setMissedQuestions({});
     setScore(0);
     setFinished(false);
     saveMissionProgress(1, { phase: "quiz", quizIndex: 0 });
@@ -1201,16 +1322,24 @@ function MissionTwo({ onExit, onContinueMission3 }) {
     Object.fromEntries((savedProgress.completedScenarios || []).map((index) => [index, true]))
   );
   const [questionIndex, setQuestionIndexState] = useState(savedProgress.quizIndex || 0);
+  const completedModule = getCbetModuleState(2) || { complete: false, bestScore: 0 };
   const [answers, setAnswers] = useState({});
+  const [wrongAnswers, setWrongAnswers] = useState({});
+  const [missedQuestions, setMissedQuestions] = useState({});
   const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
-  const [finalResult, setFinalResult] = useState(null);
+  const [finished, setFinished] = useState(savedProgress.phase === "complete" && completedModule.complete);
+  const [finalResult, setFinalResult] = useState(
+    savedProgress.phase === "complete" && completedModule.complete
+      ? { correct: Math.round((completedModule.bestScore / 100) * questions.length), percent: completedModule.bestScore }
+      : null
+  );
   const [xpToast, setXpToast] = useState(null);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false);
   const lessonStageRef = useRef(null);
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
+  const wrongSelected = wrongAnswers[questionIndex];
   const displayedCorrect = finalResult?.correct ?? score;
   const percent =
     finalResult?.percent ??
@@ -1312,9 +1441,22 @@ function MissionTwo({ onExit, onContinueMission3 }) {
 
   function chooseAnswer(index) {
     if (selected !== undefined) return;
+
+    if (index !== question.answer) {
+      setWrongAnswers((previous) => ({ ...previous, [questionIndex]: index }));
+      setMissedQuestions((previous) => ({ ...previous, [questionIndex]: true }));
+      playCbetTone("wrong");
+      return;
+    }
+
     setAnswers((previous) => ({ ...previous, [questionIndex]: index }));
-    playCbetTone(index === question.answer ? "correct" : "wrong");
-    if (index === question.answer) setScore((previous) => previous + 1);
+    setWrongAnswers((previous) => {
+      const next = { ...previous };
+      delete next[questionIndex];
+      return next;
+    });
+    playCbetTone("correct");
+    if (!missedQuestions[questionIndex]) setScore((previous) => previous + 1);
   }
 
   function nextQuestion() {
@@ -1328,7 +1470,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
 
       const finalCorrect = questions.reduce(
         (total, item, index) =>
-          total + (completedAnswers[index] === item.answer ? 1 : 0),
+          total + (completedAnswers[index] === item.answer && !missedQuestions[index] ? 1 : 0),
         0
       );
 
@@ -1943,18 +2085,25 @@ function MissionTwo({ onExit, onContinueMission3 }) {
           <div><i style={{ width: `${((scenarioIndex + (complete ? 1 : 0)) / scenarios.length) * 100}%` }} /></div>
         </div>
         <div id="mission-2-active-step">
-          <ScenarioCard scenario={scenario} onComplete={() => markScenarioComplete(scenarioIndex)} />
-        </div>
-        <div className="cbet-nav-row">
-          <button className="cbet-secondary" disabled={scenarioIndex === 0}
-            onClick={() => setScenarioIndex(Math.max(0, scenarioIndex - 1))}>Previous</button>
-          {scenarioIndex < scenarios.length - 1 ? (
-            <button className="cbet-primary" disabled={!complete}
-              onClick={() => setScenarioIndex(scenarioIndex + 1)}>Next Case</button>
-          ) : (
-            <button className="cbet-primary" disabled={!complete}
-              onClick={() => setPhase("quiz")}>Begin Mission Challenge</button>
-          )}
+          <ScenarioCard
+            key={`mission-2-scenario-${scenarioIndex}`}
+            scenario={scenario}
+            number={scenarioIndex + 1}
+            onComplete={() => markScenarioComplete(scenarioIndex)}
+            actions={(
+              <>
+                <button className="cbet-secondary" disabled={scenarioIndex === 0}
+                  onClick={() => setScenarioIndex(Math.max(0, scenarioIndex - 1))}>Previous</button>
+                {scenarioIndex < scenarios.length - 1 ? (
+                  <button className="cbet-primary"
+                    onClick={() => setScenarioIndex(scenarioIndex + 1)}>Next Case</button>
+                ) : (
+                  <button className="cbet-primary"
+                    onClick={() => setPhase("quiz")}>Begin Mission Challenge</button>
+                )}
+              </>
+            )}
+          />
         </div>
       </section>
     );
@@ -1976,17 +2125,15 @@ function MissionTwo({ onExit, onContinueMission3 }) {
           <div className="cbet-option-grid">
             {question.options.map((option, index) => {
               let className = "";
-              if (selected !== undefined) {
-                if (index === question.answer) className = "correct";
-                else if (index === selected) className = "wrong";
-              }
+              if (selected !== undefined && index === selected) className = "correct";
+              else if (wrongSelected !== undefined && index === wrongSelected) className = "wrong";
               return <button key={option} className={className} onClick={() => chooseAnswer(index)}>{option}</button>;
             })}
           </div>
-          {selected !== undefined && (
-            <div className={`cbet-feedback ${selected === question.answer ? "good" : "bad"}`}>
-              <strong>{selected === question.answer ? "Correct" : "Review this concept"}</strong>
-              <p>{question.explanation}</p>
+          {(selected !== undefined || wrongSelected !== undefined) && (
+            <div className={`cbet-feedback ${selected !== undefined ? "good" : "bad"}`}>
+              <strong>{selected !== undefined ? "Correct" : "Not quite. Try again."}</strong>
+              <p>{selected !== undefined ? question.explanation : "Choose another answer. The correct answer will not be revealed."}</p>
             </div>
           )}
           <button className="cbet-primary full" disabled={selected === undefined} onClick={nextQuestion}>
@@ -2314,13 +2461,21 @@ function MissionThree({ onExit }) {
     Object.fromEntries((savedProgress.completedScenarios || []).map((index) => [index, true]))
   );
   const [questionIndex, setQuestionIndexState] = useState(savedProgress.quizIndex || 0);
+  const completedModule = getCbetModuleState(3) || { complete: false, bestScore: 0 };
   const [answers, setAnswers] = useState({});
+  const [wrongAnswers, setWrongAnswers] = useState({});
+  const [missedQuestions, setMissedQuestions] = useState({});
   const [score, setScore] = useState(0);
-  const [finalResult, setFinalResult] = useState(null);
+  const [finalResult, setFinalResult] = useState(
+    savedProgress.phase === "complete" && completedModule.complete
+      ? { correct: Math.round((completedModule.bestScore / 100) * questions.length), percent: completedModule.bestScore }
+      : null
+  );
   const [xpToast, setXpToast] = useState(null);
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
+  const wrongSelected = wrongAnswers[questionIndex];
   const displayedCorrect = finalResult?.correct ?? score;
   const percent =
     finalResult?.percent ??
@@ -2387,9 +2542,22 @@ function MissionThree({ onExit }) {
 
   function chooseAnswer(index) {
     if (selected !== undefined) return;
+
+    if (index !== question.answer) {
+      setWrongAnswers((previous) => ({ ...previous, [questionIndex]: index }));
+      setMissedQuestions((previous) => ({ ...previous, [questionIndex]: true }));
+      playCbetTone("wrong");
+      return;
+    }
+
     setAnswers((previous) => ({ ...previous, [questionIndex]: index }));
-    playCbetTone(index === question.answer ? "correct" : "wrong");
-    if (index === question.answer) setScore((previous) => previous + 1);
+    setWrongAnswers((previous) => {
+      const next = { ...previous };
+      delete next[questionIndex];
+      return next;
+    });
+    playCbetTone("correct");
+    if (!missedQuestions[questionIndex]) setScore((previous) => previous + 1);
   }
 
   function nextQuestion() {
@@ -2407,7 +2575,7 @@ function MissionThree({ onExit }) {
 
     const finalCorrect = questions.reduce(
       (total, item, index) =>
-        total + (completedAnswers[index] === item.answer ? 1 : 0),
+        total + (completedAnswers[index] === item.answer && !missedQuestions[index] ? 1 : 0),
       0
     );
     const finalScore = Math.round((finalCorrect / questions.length) * 100);
@@ -2420,6 +2588,8 @@ function MissionThree({ onExit }) {
   function restartQuiz() {
     setQuestionIndexState(0);
     setAnswers({});
+    setWrongAnswers({});
+    setMissedQuestions({});
     setScore(0);
     setFinalResult(null);
     saveMissionProgress(3, { phase: "quiz", quizIndex: 0 });
@@ -2477,7 +2647,7 @@ function MissionThree({ onExit }) {
           <span>Lesson {lessonIndex + 1} of {lessons.length}</span>
           <div><i style={{ width: `${((lessonIndex + (complete ? 1 : 0)) / lessons.length) * 100}%` }} /></div>
         </div>
-        <article className="cbet-lesson-card">
+        <article id="mission-3-active-step" className="cbet-lesson-card mission-two-lesson-card mission-three-lesson-card">
           <div className="cbet-lesson-icon">{lesson.icon}</div>
           <span className="cbet-label">Test Equipment Lesson {lessonIndex + 1}</span>
           <h2>{lesson.title}</h2>
@@ -2485,44 +2655,54 @@ function MissionThree({ onExit }) {
           <div className="cbet-points">
             {lesson.points.map((point) => <p key={point}><span>●</span>{point}</p>)}
           </div>
-          <MissionThreeLab type={lesson.interaction} />
-          <KnowledgeCheck
-            key={`mission-3-lesson-${lessonIndex}`}
-            resetKey={`mission-3-lesson-${lessonIndex}`}
-            progressLabel={`Lesson ${lessonIndex + 1} of ${lessons.length}`}
-            check={lesson.check}
-            onComplete={(isCorrect) => {
-              if (isCorrect) markLessonComplete(lessonIndex);
-            }}
-            actions={(
-              <>
-                <button
-                  className="cbet-secondary"
-                  disabled={lessonIndex === 0}
-                  onClick={() => setLessonIndex(Math.max(0, lessonIndex - 1))}
-                >
-                  Previous
-                </button>
-                {lessonIndex < lessons.length - 1 ? (
-                  <button
-                    className="cbet-primary"
-                    disabled={!complete}
-                    onClick={() => setLessonIndex(lessonIndex + 1)}
-                  >
-                    Next Lesson
-                  </button>
-                ) : (
-                  <button
-                    className="cbet-primary"
-                    disabled={!complete}
-                    onClick={() => setPhase("scenarios")}
-                  >
-                    Begin Applied Cases
-                  </button>
+
+          <div className="mission-two-guided-stage mission-three-guided-stage">
+            <div className="mission-two-activity-pane mission-three-activity-pane">
+              <span className="mission-two-pane-label">Interactive activity</span>
+              <MissionThreeLab type={lesson.interaction} />
+            </div>
+
+            <div className="mission-two-question-pane mission-three-question-pane">
+              <span className="mission-two-pane-label">Apply what you learned</span>
+              <KnowledgeCheck
+                key={`mission-3-lesson-${lessonIndex}`}
+                resetKey={`mission-3-lesson-${lessonIndex}`}
+                progressLabel={`Lesson ${lessonIndex + 1} of ${lessons.length}`}
+                check={lesson.check}
+                onComplete={(isCorrect) => {
+                  if (isCorrect) markLessonComplete(lessonIndex);
+                }}
+                actions={(
+                  <>
+                    <button
+                      className="cbet-secondary"
+                      disabled={lessonIndex === 0}
+                      onClick={() => setLessonIndex(Math.max(0, lessonIndex - 1))}
+                    >
+                      Previous
+                    </button>
+                    {lessonIndex < lessons.length - 1 ? (
+                      <button
+                        className="cbet-primary"
+                        disabled={!complete}
+                        onClick={() => setLessonIndex(lessonIndex + 1)}
+                      >
+                        Next Lesson
+                      </button>
+                    ) : (
+                      <button
+                        className="cbet-primary"
+                        disabled={!complete}
+                        onClick={() => setPhase("scenarios")}
+                      >
+                        Begin Applied Cases
+                      </button>
+                    )}
+                  </>
                 )}
-              </>
-            )}
-          />
+              />
+            </div>
+          </div>
         </article>
       </section>
     );
@@ -2546,33 +2726,33 @@ function MissionThree({ onExit }) {
           scenario={scenario}
           number={scenarioIndex + 1}
           onComplete={() => markScenarioComplete(scenarioIndex)}
-        />
-        <div className="cbet-nav-row">
-          <button
-            className="cbet-secondary"
-            disabled={scenarioIndex === 0}
-            onClick={() => setScenarioIndex(Math.max(0, scenarioIndex - 1))}
-          >
-            Previous
-          </button>
-          {scenarioIndex < scenarios.length - 1 ? (
-            <button
-              className="cbet-primary"
-              disabled={!complete}
-              onClick={() => setScenarioIndex(scenarioIndex + 1)}
-            >
-              Next Case
-            </button>
-          ) : (
-            <button
-              className="cbet-primary"
-              disabled={!complete}
-              onClick={() => setPhase("quiz")}
-            >
-              Begin Mission Challenge
-            </button>
+          actions={(
+            <>
+              <button
+                className="cbet-secondary"
+                disabled={scenarioIndex === 0}
+                onClick={() => setScenarioIndex(Math.max(0, scenarioIndex - 1))}
+              >
+                Previous
+              </button>
+              {scenarioIndex < scenarios.length - 1 ? (
+                <button
+                  className="cbet-primary"
+                  onClick={() => setScenarioIndex(scenarioIndex + 1)}
+                >
+                  Next Case
+                </button>
+              ) : (
+                <button
+                  className="cbet-primary"
+                  onClick={() => setPhase("quiz")}
+                >
+                  Begin Mission Challenge
+                </button>
+              )}
+            </>
           )}
-        </div>
+        />
       </section>
     );
   }
@@ -2593,10 +2773,8 @@ function MissionThree({ onExit }) {
           <div className="cbet-option-grid">
             {question.options.map((option, index) => {
               let className = "";
-              if (selected !== undefined) {
-                if (index === question.answer) className = "correct";
-                else if (index === selected) className = "wrong";
-              }
+              if (selected !== undefined && index === selected) className = "correct";
+              else if (wrongSelected !== undefined && index === wrongSelected) className = "wrong";
               return (
                 <button
                   type="button"
@@ -2610,10 +2788,10 @@ function MissionThree({ onExit }) {
               );
             })}
           </div>
-          {selected !== undefined && (
-            <div className={`cbet-feedback ${selected === question.answer ? "good" : "bad"}`}>
-              <strong>{selected === question.answer ? "Correct" : "Review this concept"}</strong>
-              <p>{question.explanation}</p>
+          {(selected !== undefined || wrongSelected !== undefined) && (
+            <div className={`cbet-feedback ${selected !== undefined ? "good" : "bad"}`}>
+              <strong>{selected !== undefined ? "Correct" : "Not quite. Try again."}</strong>
+              <p>{selected !== undefined ? question.explanation : "Choose another answer. The correct answer will not be revealed."}</p>
             </div>
           )}
           <button
@@ -3776,7 +3954,7 @@ export default function CBETAcademy() {
   const [screen, setScreen] = useState("dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
-  const [showAllMissions, setShowAllMissions] = useState(false);
+  const [showAllMissions, setShowAllMissions] = useState(true);
   const [streak, setStreak] = useState(() => registerCbetVisit());
   const academy = getCbetAcademyState();
   const progress = cbetCompletionPercent();
