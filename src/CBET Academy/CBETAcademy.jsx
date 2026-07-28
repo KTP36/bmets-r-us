@@ -1002,7 +1002,7 @@ function MissionOne({ onBack, onComplete, onContinueMission2 }) {
     }, 60);
 
     return () => window.clearTimeout(timerId);
-  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+  }, [phase, lessonIndex, scenarioIndex]);
 
   function setPhase(nextPhase) {
     setPhaseState(nextPhase);
@@ -1384,7 +1384,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
       window.cancelAnimationFrame(frameTwo);
       window.clearTimeout(timeoutId);
     };
-  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+  }, [phase, lessonIndex, scenarioIndex]);
 
   function setPhase(nextPhase) {
     setPhaseState(nextPhase);
@@ -2472,6 +2472,7 @@ function MissionThree({ onExit }) {
       : null
   );
   const [xpToast, setXpToast] = useState(null);
+  const lessonStageRef = useRef(null);
 
   const question = questions[questionIndex];
   const selected = answers[questionIndex];
@@ -2483,8 +2484,45 @@ function MissionThree({ onExit }) {
   const passed = percent >= 80;
 
   useEffect(() => {
-    scrollCbetPageToTop();
-  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+    if (typeof window === "undefined") return undefined;
+
+    let timeoutId;
+    let frameOne;
+    let frameTwo;
+
+    const moveToActiveStep = () => {
+      const target =
+        phase === "lessons"
+          ? lessonStageRef.current
+          : document.getElementById("mission-3-active-step");
+
+      if (!target) {
+        scrollCbetPageToTop();
+        return;
+      }
+
+      // Leave enough room above the workstation so the question header is never clipped.
+      const headerOffset = window.innerWidth <= 760 ? 16 : 72;
+      const top = Math.max(
+        0,
+        target.getBoundingClientRect().top + window.scrollY - headerOffset
+      );
+
+      window.scrollTo({ top, behavior: "smooth" });
+    };
+
+    // Scroll only when the learner changes lessons/phases—not when an answer is selected.
+    frameOne = window.requestAnimationFrame(() => {
+      frameTwo = window.requestAnimationFrame(moveToActiveStep);
+    });
+    timeoutId = window.setTimeout(moveToActiveStep, 180);
+
+    return () => {
+      window.cancelAnimationFrame(frameOne);
+      window.cancelAnimationFrame(frameTwo);
+      window.clearTimeout(timeoutId);
+    };
+  }, [phase, lessonIndex, scenarioIndex]);
 
   function setPhase(nextPhase) {
     setPhaseState(nextPhase);
@@ -2656,7 +2694,7 @@ function MissionThree({ onExit }) {
             {lesson.points.map((point) => <p key={point}><span>●</span>{point}</p>)}
           </div>
 
-          <div className="mission-two-guided-stage mission-three-guided-stage">
+          <div className="mission-two-guided-stage mission-three-guided-stage" ref={lessonStageRef}>
             <div className="mission-two-activity-pane mission-three-activity-pane">
               <span className="mission-two-pane-label">Interactive activity</span>
               <MissionThreeLab type={lesson.interaction} />
