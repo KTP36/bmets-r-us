@@ -115,7 +115,73 @@ function OperatingPath({ steps }) {
   );
 }
 
+
+function PatientMonitorDiagram({ activeIndex, onSelect }) {
+  const callouts = [
+    [1, 178, 62, "Display"],
+    [2, 90, 142, "ECG module"],
+    [3, 90, 202, "SpO₂ module"],
+    [4, 90, 262, "NIBP module"],
+    [5, 178, 330, "Battery"],
+    [6, 302, 330, "Power system"],
+    [7, 366, 214, "Network interface"],
+    [8, 366, 112, "Alarm speaker"],
+  ];
+  return (
+    <div className="elc-monitor-figure">
+      <svg viewBox="0 0 460 390" role="img" aria-label="Patient monitor illustration with numbered component callouts">
+        <defs>
+          <linearGradient id="monitorBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffffff"/><stop offset="1" stopColor="#eaf2f7"/></linearGradient>
+          <linearGradient id="monitorScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#06253b"/><stop offset="1" stopColor="#0c4667"/></linearGradient>
+        </defs>
+        <rect x="120" y="38" width="230" height="285" rx="28" fill="url(#monitorBody)" stroke="#9fb7c8" strokeWidth="4"/>
+        <rect x="145" y="66" width="180" height="120" rx="13" fill="url(#monitorScreen)"/>
+        <path d="M158 126h24l9-25 15 52 15-38 10 11h35" fill="none" stroke="#6ef0a8" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+        <text x="285" y="102" fill="#ffffff" fontSize="22" fontWeight="800">72</text>
+        <text x="285" y="142" fill="#8fe7ff" fontSize="18" fontWeight="700">98%</text>
+        <rect x="145" y="206" width="78" height="34" rx="8" fill="#dceaf3" stroke="#9fb7c8"/>
+        <rect x="145" y="250" width="78" height="34" rx="8" fill="#dceaf3" stroke="#9fb7c8"/>
+        <circle cx="292" cy="236" r="22" fill="#edf5fa" stroke="#9fb7c8"/>
+        <circle cx="292" cy="236" r="7" fill="#2c7db5"/>
+        <rect x="172" y="304" width="128" height="15" rx="7" fill="#a9bdca"/>
+        {callouts.map(([n,x,y,label],index) => {
+          const active = activeIndex === index;
+          return <g key={n} role="button" tabIndex="0" aria-label={`${n}. ${label}`} onClick={()=>onSelect(index)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();onSelect(index);}}} className={active?"is-active":""}>
+            <circle cx={x} cy={y} r="18" className="elc-callout-circle"/>
+            <text x={x} y={y+6} textAnchor="middle" className="elc-callout-number">{n}</text>
+          </g>;
+        })}
+      </svg>
+      <p>Select a number to connect the illustration with the component explanation.</p>
+    </div>
+  );
+}
+
+function PatientMonitorComponentExplorer({ components }) {
+  const expanded = [
+    ["Display", "Shows waveforms, numeric values, trends, prompts, and alarm information.", "Clinicians use the display to recognize changes quickly and make treatment decisions."],
+    ["ECG module", "Receives the small electrical signals detected by the ECG electrodes and lead set.", "Reliable ECG acquisition supports heart-rate calculation, rhythm observation, and alarm generation."],
+    ["SpO₂ module", "Processes signals from the pulse-oximetry sensor to estimate oxygen saturation and pulse rate.", "Poor signal quality can create misleading values, so waveform and sensor condition matter."],
+    ["NIBP module", "Controls cuff inflation and interprets pressure changes to calculate non-invasive blood pressure.", "Cuff size, hose integrity, motion, and patient condition can all affect the result."],
+    ["Battery", "Provides temporary power during transport and interruptions of AC power.", "Battery condition directly affects portability and readiness during patient movement."],
+    ["Power system", "Converts incoming power, supplies internal circuits, and manages battery charging.", "A stable power system supports continuous monitoring and safe transition between AC and battery operation."],
+    ["Network interface", "Connects supported monitors to central stations and hospital information systems.", "Connectivity allows clinicians to view alarms, waveforms, and trends beyond the bedside."],
+    ["Alarm speaker", "Produces audible alarm tones and interface sounds.", "An alarm that cannot be heard can delay recognition of a clinically important change."],
+  ];
+  const [active,setActive]=useState(0);
+  return <div className="elc-component-explorer">
+    <PatientMonitorDiagram activeIndex={active} onSelect={setActive}/>
+    <div className="elc-component-list" role="tablist" aria-label="Patient monitor components">
+      {expanded.map(([title,purpose,importance],index)=><button key={title} role="tab" aria-selected={active===index} className={active===index?"active":""} onClick={()=>setActive(index)}>
+        <span className="elc-component-index">{index+1}</span>
+        <span><strong>{title}</strong>{active===index&&<span className="elc-component-detail"><b>What it does</b>{purpose}<b>Why it matters</b>{importance}</span>}</span>
+      </button>)}
+    </div>
+  </div>;
+}
+
 function DevicePage({ name, data, onBack, onNext, position, completed, markComplete }){
+  const isPatientMonitor = name === "Patient Monitor";
   const learningRef = useRef(null);
 
   useEffect(() => {
@@ -131,11 +197,17 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
           <span>{position.label}</span>
           {completed && <span>✓ Completed</span>}
         </div>
-        <h1>{name}</h1>
-        <p>{data.subtitle}</p>
+        <div className={isPatientMonitor ? "elc-gold-hero-grid" : ""}>
+          <div><h1>{name}</h1><p>{data.subtitle}</p>{isPatientMonitor && <span className="elc-gold-badge">Gold Standard Equipment Page</span>}</div>
+          {isPatientMonitor && <div className="elc-hero-monitor" aria-hidden="true"><div className="elc-mini-screen"><span>72</span><span>98%</span><i></i></div></div>}
+        </div>
       </header>
 
       <div className="elc-content">
+        <RevealSection className="elc-why-matters">
+          <div className="elc-why-icon" aria-hidden="true">✦</div>
+          <div><span className="elc-eyebrow">Why this matters</span><p>{isPatientMonitor ? "Every waveform, oxygen-saturation reading, and blood-pressure value can influence a clinical decision. Biomedical professionals help ensure clinicians receive dependable information and alarms when patients need them most." : `Understanding how ${name.toLowerCase()} functions helps biomedical professionals recognize what information matters, communicate clearly with clinicians, and support safe, reliable equipment.`}</p></div>
+        </RevealSection>
         <RevealSection className="elc-intro-grid">
           <article>
             <span className="elc-eyebrow">Equipment overview</span>
@@ -158,14 +230,15 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
         <RevealSection>
           <span className="elc-eyebrow">Major components</span>
           <h2>Understand the major components</h2>
-          <div className="elc-card-grid">
-            {data.components.map(([title,text]) => (
+          {isPatientMonitor ? <PatientMonitorComponentExplorer components={data.components}/> : <div className="elc-card-grid">
+            {data.components.map(([title,text],index) => (
               <article key={title}>
+                <span className="elc-card-number">{index+1}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
               </article>
             ))}
-          </div>
+          </div>}
         </RevealSection>
 
         <Scenario scenario={data.scenario}/>
@@ -211,7 +284,7 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
           <div>
             <span className="elc-eyebrow">Equipment overview</span>
             <h2>{completed ? "✓ Complete" : "Finish the knowledge check to complete this overview"}</h2>
-            <p>This page is intentionally self-contained. No extra reading is required.</p>
+            {completed ? <div className="elc-can-explain"><strong>You can now explain:</strong><span>✓ What this equipment does and why hospitals rely on it</span><span>✓ How information or energy moves through the system</span><span>✓ The purpose of its major components</span><span>✓ Common clinician-reported concerns</span><span>✓ The role of common biomedical test equipment</span><span>✓ Important safety concepts</span></div> : <p>Answer all five questions correctly to confirm your understanding.</p>}
           </div>
           <div className="elc-completion-actions">
             <button onClick={onBack}>← Back to Equipment Library</button>
