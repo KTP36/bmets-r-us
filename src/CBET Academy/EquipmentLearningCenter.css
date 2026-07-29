@@ -72,294 +72,192 @@
   }
 }
 
-/* v1.3 visual-quality pass — no new learning layers or deeper navigation */
-.elc-home,
-.elc-page {
-  --elc-border: #d7e3ed;
-  --elc-text-muted: #526f85;
-  --elc-blue: #0e5f96;
-  --elc-blue-dark: #0a456f;
-}
-
-.elc-browser,
-.elc-content {
-  max-width: 1240px;
-}
-
-.elc-content > section:not(.elc-scenario):not(.elc-safety):not(.elc-completion):not(.elc-scope) {
+/* v1.4 professional-publishing polish */
+.elc-content > section {
   position: relative;
 }
 
-.elc-content > section > .elc-eyebrow,
-.elc-intro-grid .elc-eyebrow {
-  display: block;
-  margin-bottom: 8px;
+.elc-content > section:not(.elc-intro-grid):not(.elc-scenario):not(.elc-safety):not(.elc-knowledge):not(.elc-completion):not(.elc-scope) {
+  padding-top: 4px;
 }
 
-.elc-content > section > h2,
-.elc-intro-grid h2 {
-  line-height: 1.14;
-  letter-spacing: -0.025em;
+.elc-content h2 {
+  letter-spacing: -0.028em;
+  line-height: 1.12;
+  color: #071f35;
 }
 
-.elc-browser-heading {
-  align-items: center;
+.elc-section-lead {
+  max-width: 760px;
+  margin: -6px 0 22px;
+  font-size: 1rem;
 }
 
-.elc-library-progress {
-  width: min(430px, 100%);
-  margin-top: 16px;
-}
-
-.elc-progress-copy {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  color: var(--elc-text-muted);
-  font-size: 0.9rem;
-}
-
-.elc-progress-copy strong {
-  color: #214b69;
-}
-
-.elc-progress-track {
-  height: 9px;
-  margin-top: 8px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: #e4edf4;
-}
-
-.elc-progress-track span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #176fa7, #2a94ca);
-  transition: width 280ms ease;
-}
-
-.elc-search {
-  width: min(340px, 100%);
-}
-
-.elc-search input {
-  width: 100%;
-  box-sizing: border-box;
-  background: #fff;
-  box-shadow: 0 7px 20px rgba(26, 65, 95, 0.06);
-}
-
-.elc-browser input:focus-visible,
-.elc-category-row button:focus-visible,
-.elc-device-list button:focus-visible,
-.elc-options button:focus-visible,
-.elc-question-list button:focus-visible,
-.elc-quiz-actions button:focus-visible,
-.elc-completion-actions button:focus-visible,
-.elc-empty-state button:focus-visible {
-  outline: 3px solid rgba(29, 129, 187, 0.28);
-  outline-offset: 3px;
-}
-
-.elc-category-row {
-  scrollbar-width: thin;
-}
-
-.elc-category-row button,
-.elc-device-list button,
+.elc-intro-grid article,
+.elc-intro-grid aside,
 .elc-card-grid article,
-.elc-intro-grid article,
-.elc-intro-grid aside {
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+.elc-symptoms details,
+.elc-safety,
+.elc-knowledge,
+.elc-completion,
+.elc-scope {
+  box-shadow: 0 14px 34px rgba(28, 64, 91, 0.065);
 }
 
-.elc-category-card {
-  display: flex;
+.elc-intro-grid article,
+.elc-intro-grid aside {
   min-height: 100%;
-  flex-direction: column;
-}
-
-.elc-category-title {
-  min-height: 58px;
-}
-
-.elc-device-list {
-  flex: 1;
-}
-
-.elc-device-list button {
-  min-height: 54px;
-}
-
-.elc-device-list button:hover {
-  box-shadow: 0 8px 18px rgba(26, 65, 95, 0.09);
-}
-
-.elc-device-list small {
-  flex: 0 0 auto;
-}
-
-.elc-device-list small.is-complete {
-  color: #23784a;
-}
-
-.elc-intro-grid {
-  align-items: stretch;
-}
-
-.elc-intro-grid article,
-.elc-intro-grid aside {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 260px;
 }
 
 .elc-intro-grid aside > strong {
   display: block;
-  margin-bottom: 18px;
-  font-size: 1.12rem;
-  text-align: center;
-}
-
-.elc-pills {
-  justify-content: center;
-  align-items: stretch;
+  font-size: 1.08rem;
+  color: #0b2941;
+  margin-bottom: 12px;
 }
 
 .elc-pills span {
+  min-height: 40px;
   display: inline-flex;
-  min-height: 42px;
   align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: 9px 14px;
-  line-height: 1.2;
-  text-align: center;
+  line-height: 1.15;
 }
 
-.elc-card-grid {
-  align-items: stretch;
+.elc-operating-section {
+  overflow: hidden;
+}
+
+.elc-flow-shell {
+  position: relative;
+  padding: 24px;
+  border: 1px solid #d3e1eb;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(55, 143, 197, 0.08), transparent 30%),
+    linear-gradient(180deg, #fbfdff 0%, #f4f8fb 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 16px 34px rgba(28, 64, 91, .06);
+}
+
+.elc-flow-step {
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 11px;
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%) !important;
+  border-color: #cddde8 !important;
+  box-shadow: 0 10px 22px rgba(27, 67, 97, .075);
+}
+
+.elc-flow-number {
+  width: 34px;
+  height: 24px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #e8f4fb;
+  color: #2679ad;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.elc-flow-step strong {
+  color: #082b47;
+  font-size: .98rem;
+  line-height: 1.3;
+}
+
+.elc-flow-arrow {
+  color: #4384ad !important;
+  font-weight: 900;
 }
 
 .elc-card-grid article {
+  min-height: 170px;
   display: flex;
-  min-height: 148px;
   flex-direction: column;
+  justify-content: flex-start;
+  border-top: 4px solid #dceaf3;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .elc-card-grid article:hover {
-  transform: translateY(-2px);
-  border-color: #b7d3e5;
-  box-shadow: 0 12px 24px rgba(26, 65, 95, 0.08);
+  transform: translateY(-3px);
+  border-top-color: #2c7db5;
+  box-shadow: 0 18px 34px rgba(28, 64, 91, .11);
+}
+
+.elc-card-grid h3 {
+  color: #0a2d48;
+  font-size: 1.08rem;
 }
 
 .elc-card-grid p {
   margin-bottom: 0;
 }
 
+.elc-tool-grid article {
+  border-top-color: #c9d7e3;
+}
+
 .elc-symptoms details[open] {
-  border-color: #b9d5e7;
-  box-shadow: 0 9px 20px rgba(26, 65, 95, 0.06);
+  border-color: #9dc8e0;
+  box-shadow: 0 14px 28px rgba(28, 64, 91, .085);
 }
 
 .elc-symptoms summary span {
-  transition: transform 160ms ease;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #edf6fc;
+  color: #1d6f9f;
 }
 
 .elc-symptoms details[open] summary span {
   transform: rotate(45deg);
 }
 
-.elc-empty-state {
-  padding: 48px 24px;
-  border: 1px dashed #b9cede;
-  border-radius: 20px;
-  background: #fff;
-  text-align: center;
+.elc-safety li {
+  padding-left: 4px;
+  line-height: 1.55;
 }
 
-.elc-empty-state strong {
-  font-size: 1.2rem;
+.elc-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .48s ease, transform .48s ease;
 }
 
-.elc-empty-state p {
-  color: var(--elc-text-muted);
+.elc-reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-.elc-empty-state button {
-  border: 1px solid #9cc3dc;
-  border-radius: 11px;
-  background: #fff;
-  color: var(--elc-blue);
-  padding: 10px 14px;
-  font: inherit;
-  font-weight: 850;
-  cursor: pointer;
-}
-
-.sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-@media (min-width: 801px) {
-  .elc-flow {
-    display: grid;
-    grid-template-columns: repeat(11, minmax(0, auto));
-    align-items: stretch;
+@media (prefers-reduced-motion: reduce) {
+  .elc-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
-
-  .elc-flow > div {
-    display: flex;
-    min-height: 112px;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-
-  .elc-flow > span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .elc-card-grid article {
+    transition: none;
   }
 }
 
 @media (max-width: 800px) {
-  .elc-browser-heading {
-    align-items: stretch;
+  .elc-flow-shell {
+    padding: 16px 12px 8px;
   }
-
-  .elc-intro-grid article,
-  .elc-intro-grid aside {
-    min-height: 0;
+  .elc-flow-step {
+    min-height: 104px;
   }
-
-  .elc-pills {
-    justify-content: flex-start;
-  }
-
   .elc-card-grid article {
-    min-height: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .elc-progress-track span,
-  .elc-category-row button,
-  .elc-device-list button,
-  .elc-card-grid article,
-  .elc-intro-grid article,
-  .elc-intro-grid aside,
-  .elc-symptoms summary span {
-    transition: none;
+    min-height: auto;
   }
 }

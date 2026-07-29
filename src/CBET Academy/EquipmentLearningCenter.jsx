@@ -69,188 +69,179 @@ function KnowledgeCheck({ questions, onComplete }){
   return <section className="elc-knowledge"><span className="elc-eyebrow">Knowledge check</span><h2>Confirm the essentials</h2><p className="elc-section-lead">Answer all five questions. A perfect score marks this overview complete.</p><div className="elc-question-list">{questions.map(([q,correct,options],i)=><article key={q}><h3>{i+1}. {q}</h3><div>{options.map(option=><button key={option} onClick={()=>choose(i,option)} className={`${answers[i]===option?"chosen":""} ${submitted&&option===correct?"answer-correct":""} ${submitted&&answers[i]===option&&option!==correct?"answer-wrong":""}`}>{option}</button>)}</div>{submitted&&<p>{answers[i]===correct?"Correct.":`Correct answer: ${correct}`}</p>}</article>)}</div><div className="elc-quiz-actions">{!submitted?<button className="elc-primary" disabled={Object.keys(answers).length!==questions.length} onClick={submit}>Check answers</button>:<><strong>{score} of {questions.length} correct</strong>{score<questions.length&&<button onClick={reset}>Try again</button>}</>}</div></section>;
 }
 
+function RevealSection({ children, className = "" }) {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          node.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -36px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className={`elc-reveal ${className}`.trim()}>
+      {children}
+    </section>
+  );
+}
+
+function OperatingPath({ steps }) {
+  return (
+    <div className="elc-flow-shell" role="img" aria-label={`Operating path: ${steps.join(" to ")}`}>
+      <div className="elc-flow">
+        {steps.map((step, index) => (
+          <React.Fragment key={step}>
+            <div className="elc-flow-step">
+              <span className="elc-flow-number">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{step}</strong>
+            </div>
+            {index < steps.length - 1 && <span className="elc-flow-arrow" aria-hidden="true">→</span>}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function DevicePage({ name, data, onBack, onNext, position, completed, markComplete }){
   const learningRef = useRef(null);
+
   useEffect(() => {
     scrollToLearningTarget(learningRef.current);
   }, [name]);
-  return <main className="elc-page"><header ref={learningRef} tabIndex="-1" className="elc-device-hero elc-scroll-target"><button className="elc-back" onClick={onBack}>← Equipment Library</button><div className="elc-device-meta"><span>{data.category}</span><span>{position.label}</span>{completed&&<span>✓ Completed</span>}</div><h1>{name}</h1><p>{data.subtitle}</p></header><div className="elc-content">
-    <section className="elc-intro-grid"><article><span className="elc-eyebrow">Equipment overview</span><h2>What it is and why it matters</h2><p>{data.overview}</p></article><aside><strong>Where you’ll see it</strong><div className="elc-pills">{data.locations.map(x=><span key={x}>{x}</span>)}</div></aside></section>
-    <section><span className="elc-eyebrow">Operating principle</span><h2>Follow the information or energy path</h2><div className="elc-flow">{data.flow.map((x,i)=><React.Fragment key={x}><div>{x}</div>{i<data.flow.length-1&&<span>→</span>}</React.Fragment>)}</div></section>
-    <section><span className="elc-eyebrow">Major components</span><h2>Know the role of each subsystem</h2><div className="elc-card-grid">{data.components.map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div></section>
-    <Scenario scenario={data.scenario}/>
-    <section><span className="elc-eyebrow">Common reported symptoms</span><h2>Recognize patterns before forming conclusions</h2><div className="elc-symptoms">{data.symptoms.map(([title,text])=><details key={title}><summary>{title}<span>+</span></summary><p>{text}</p></details>)}</div></section>
-    <section><span className="elc-eyebrow">Test equipment awareness</span><h2>What information can each tool provide?</h2><div className="elc-card-grid">{data.tools.map(([title,text])=><article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div></section>
-    <section className="elc-safety"><div><span className="elc-eyebrow">Safety awareness</span><h2>Pause and consider the hazards</h2></div><ul>{data.safety.map(x=><li key={x}>{x}</li>)}</ul></section>
-    <KnowledgeCheck questions={data.quiz} onComplete={markComplete}/>
-    <section className={`elc-completion ${completed?"is-complete":""}`}><div><span className="elc-eyebrow">Equipment overview</span><h2>{completed?"✓ Complete":"Finish the knowledge check to complete this overview"}</h2><p>This page is intentionally self-contained. No extra reading is required.</p></div><div className="elc-completion-actions"><button onClick={onBack}>← Back to Equipment Library</button>{onNext&&<button className="elc-primary" onClick={onNext}>Next Equipment →</button>}</div></section>
-    <section className="elc-scope"><strong>Educational scope</strong><p>CBET Academy teaches equipment concepts, clinical context, safety awareness, and professional reasoning. It does not teach preventive-maintenance procedures, calibration instructions, repairs, or model-specific service methods. Always use applicable OEM documentation and your organization’s approved maintenance, safety, and AEM policies.</p></section>
-  </div></main>;
+
+  return (
+    <main className="elc-page">
+      <header ref={learningRef} tabIndex="-1" className="elc-device-hero elc-scroll-target">
+        <button className="elc-back" onClick={onBack}>← Equipment Library</button>
+        <div className="elc-device-meta">
+          <span>{data.category}</span>
+          <span>{position.label}</span>
+          {completed && <span>✓ Completed</span>}
+        </div>
+        <h1>{name}</h1>
+        <p>{data.subtitle}</p>
+      </header>
+
+      <div className="elc-content">
+        <RevealSection className="elc-intro-grid">
+          <article>
+            <span className="elc-eyebrow">Equipment overview</span>
+            <h2>What it is and why it matters</h2>
+            <p>{data.overview}</p>
+          </article>
+          <aside>
+            <strong>Where you’ll see it</strong>
+            <div className="elc-pills">{data.locations.map(x => <span key={x}>{x}</span>)}</div>
+          </aside>
+        </RevealSection>
+
+        <RevealSection className="elc-operating-section">
+          <span className="elc-eyebrow">Operating principle</span>
+          <h2>Follow the information or energy path</h2>
+          <p className="elc-section-lead">Trace the device from its first input through the final clinical output.</p>
+          <OperatingPath steps={data.flow} />
+        </RevealSection>
+
+        <RevealSection>
+          <span className="elc-eyebrow">Major components</span>
+          <h2>Understand the major components</h2>
+          <div className="elc-card-grid">
+            {data.components.map(([title,text]) => (
+              <article key={title}>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </RevealSection>
+
+        <Scenario scenario={data.scenario}/>
+
+        <RevealSection>
+          <span className="elc-eyebrow">Common reported symptoms</span>
+          <h2>Common reports from clinicians</h2>
+          <p className="elc-section-lead">Use the reported symptom as a starting point—not as a diagnosis.</p>
+          <div className="elc-symptoms">
+            {data.symptoms.map(([title,text]) => (
+              <details key={title}>
+                <summary>{title}<span>+</span></summary>
+                <p>{text}</p>
+              </details>
+            ))}
+          </div>
+        </RevealSection>
+
+        <RevealSection>
+          <span className="elc-eyebrow">Test equipment awareness</span>
+          <h2>Know what each tool can tell you</h2>
+          <div className="elc-card-grid elc-tool-grid">
+            {data.tools.map(([title,text]) => (
+              <article key={title}>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </RevealSection>
+
+        <RevealSection className="elc-safety">
+          <div>
+            <span className="elc-eyebrow">Safety awareness</span>
+            <h2>What every BMET should consider</h2>
+          </div>
+          <ul>{data.safety.map(x => <li key={x}>{x}</li>)}</ul>
+        </RevealSection>
+
+        <KnowledgeCheck questions={data.quiz} onComplete={markComplete}/>
+
+        <RevealSection className={`elc-completion ${completed ? "is-complete" : ""}`}>
+          <div>
+            <span className="elc-eyebrow">Equipment overview</span>
+            <h2>{completed ? "✓ Complete" : "Finish the knowledge check to complete this overview"}</h2>
+            <p>This page is intentionally self-contained. No extra reading is required.</p>
+          </div>
+          <div className="elc-completion-actions">
+            <button onClick={onBack}>← Back to Equipment Library</button>
+            {onNext && <button className="elc-primary" onClick={onNext}>Next Equipment →</button>}
+          </div>
+        </RevealSection>
+
+        <RevealSection className="elc-scope">
+          <strong>Educational scope</strong>
+          <p>CBET Academy teaches equipment concepts, clinical context, safety awareness, and professional reasoning. It does not teach preventive-maintenance procedures, calibration instructions, repairs, or model-specific service methods. Always use applicable OEM documentation and your organization’s approved maintenance, safety, and AEM policies.</p>
+        </RevealSection>
+      </div>
+    </main>
+  );
 }
 
-export default function EquipmentLearningCenter({ onExit }) {
+export default function EquipmentLearningCenter({ onExit }){
   const homeRef = useRef(null);
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedDevice, setSelectedDevice] = useState(null);
-  const [query, setQuery] = useState("");
-  const [completed, setCompleted] = useState(loadCompleted);
+  const libraryRef = useRef(null);
+  const [selectedCategory,setSelectedCategory]=useState("all");
+  const [selectedDevice,setSelectedDevice]=useState(null);
+  const [query,setQuery]=useState("");
+  const [completed,setCompleted]=useState(loadCompleted);
 
   useEffect(() => {
     if (!selectedDevice) scrollToLearningTarget(homeRef.current);
   }, [selectedDevice]);
-
-  const allNames = categories.flatMap((category) => category.devices);
-  const completionPercent = Math.round((completed.length / allNames.length) * 100);
-  const normalizedQuery = query.trim().toLowerCase();
-  const visibleCategories = useMemo(
-    () => categories.filter((category) => selectedCategory === "all" || category.id === selectedCategory),
-    [selectedCategory]
-  );
-
-  const filteredCategories = visibleCategories
-    .map((category) => ({
-      ...category,
-      matches: category.devices.filter((name) => name.toLowerCase().includes(normalizedQuery)),
-    }))
-    .filter((category) => category.matches.length > 0);
-
-  const persist = (name) => {
-    setCompleted((previous) => {
-      if (previous.includes(name)) return previous;
-      const next = [...previous, name];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      return next;
-    });
-  };
-
-  if (selectedDevice && equipment[selectedDevice]) {
-    const category = categories.find((item) => item.title === equipment[selectedDevice].category);
-    const index = category.devices.indexOf(selectedDevice);
-    const next = category.devices[index + 1];
-
-    return (
-      <DevicePage
-        name={selectedDevice}
-        data={equipment[selectedDevice]}
-        onBack={() => setSelectedDevice(null)}
-        onNext={next ? () => setSelectedDevice(next) : null}
-        position={{ label: `${index + 1} of ${category.devices.length} in ${category.title}` }}
-        completed={completed.includes(selectedDevice)}
-        markComplete={() => persist(selectedDevice)}
-      />
-    );
-  }
-
-  return (
-    <main className="elc-home">
-      <header
-        id="equipment-learning-center"
-        ref={homeRef}
-        tabIndex="-1"
-        className="elc-home-hero elc-scroll-target"
-      >
-        <div>
-          <button className="elc-back" onClick={onExit}>← CBET Academy</button>
-          <span className="elc-eyebrow">Biomedical Equipment Learning Center</span>
-          <h1>Focused equipment learning—without the rabbit holes.</h1>
-          <p>
-            Each device is one complete, self-contained overview. Learn the purpose, operating principle,
-            major components, reported symptoms, associated test equipment, safety concepts, and
-            professional reasoning—then return to the library.
-          </p>
-        </div>
-        <div className="elc-principles" aria-label="Learning Center scope">
-          <strong>Version 1.0 is intentionally limited</strong>
-          <span>20 core equipment overviews.</span>
-          <span>No related-equipment links.</span>
-          <span>No PM checklists or service procedures.</span>
-        </div>
-      </header>
-
-      <section className="elc-browser elc-scroll-target" aria-labelledby="elc-library-title">
-        <div className="elc-browser-heading">
-          <div>
-            <span className="elc-eyebrow">Equipment Library</span>
-            <h2 id="elc-library-title">Choose one focused overview</h2>
-            <div className="elc-library-progress" aria-label={`${completed.length} of ${allNames.length} completed`}>
-              <div className="elc-progress-copy">
-                <strong>{completed.length} of {allNames.length} completed</strong>
-                <span>{completionPercent}%</span>
-              </div>
-              <div className="elc-progress-track" aria-hidden="true">
-                <span style={{ width: `${completionPercent}%` }} />
-              </div>
-            </div>
-          </div>
-          <label className="elc-search">
-            <span className="sr-only">Search equipment</span>
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search equipment"
-              aria-label="Search equipment"
-            />
-          </label>
-        </div>
-
-        <div className="elc-category-row" aria-label="Equipment categories">
-          <button
-            className={selectedCategory === "all" ? "active" : ""}
-            aria-pressed={selectedCategory === "all"}
-            onClick={() => setSelectedCategory("all")}
-          >
-            All
-          </button>
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              className={selectedCategory === category.id ? "active" : ""}
-              aria-pressed={selectedCategory === category.id}
-              onClick={() => setSelectedCategory(category.id)}
-            >
-              {category.icon} {category.title}
-            </button>
-          ))}
-        </div>
-
-        {filteredCategories.length > 0 ? (
-          <div className="elc-category-grid">
-            {filteredCategories.map((category) => {
-              const categoryComplete = category.devices.filter((name) => completed.includes(name)).length;
-              return (
-                <article key={category.id} className="elc-category-card">
-                  <div className="elc-category-title">
-                    <span aria-hidden="true">{category.icon}</span>
-                    <div>
-                      <h3>{category.title}</h3>
-                      <p>{categoryComplete} of {category.devices.length} complete</p>
-                    </div>
-                  </div>
-                  <div className="elc-device-list">
-                    {category.matches.map((name) => {
-                      const isComplete = completed.includes(name);
-                      return (
-                        <button key={name} onClick={() => setSelectedDevice(name)}>
-                          <span>{name}</span>
-                          <small className={isComplete ? "is-complete" : ""}>
-                            {isComplete ? "✓ Complete" : "Open overview"}
-                          </small>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        ) : (
-          <div className="elc-empty-state" role="status">
-            <strong>No equipment matches “{query.trim()}”.</strong>
-            <p>Try a broader search or choose another category.</p>
-            <button onClick={() => { setQuery(""); setSelectedCategory("all"); }}>Clear filters</button>
-          </div>
-        )}
-      </section>
-    </main>
-  );
+  const allNames=categories.flatMap(c=>c.devices);
+  const visibleCategories=useMemo(()=>categories.filter(c=>selectedCategory==="all"||c.id===selectedCategory),[selectedCategory]);
+  const persist=(name)=>{setCompleted(prev=>{if(prev.includes(name))return prev;const next=[...prev,name];localStorage.setItem(STORAGE_KEY,JSON.stringify(next));return next;});};
+  if(selectedDevice&&equipment[selectedDevice]){const category=categories.find(c=>c.title===equipment[selectedDevice].category);const index=category.devices.indexOf(selectedDevice);const next=category.devices[index+1];return <DevicePage name={selectedDevice} data={equipment[selectedDevice]} onBack={()=>setSelectedDevice(null)} onNext={next?()=>setSelectedDevice(next):null} position={{label:`${index+1} of ${category.devices.length} in ${category.title}`}} completed={completed.includes(selectedDevice)} markComplete={()=>persist(selectedDevice)}/>;}
+  return <main className="elc-home"><header id="equipment-learning-center" ref={homeRef} tabIndex="-1" className="elc-home-hero elc-scroll-target"><div><button className="elc-back" onClick={onExit}>← CBET Academy</button><span className="elc-eyebrow">Biomedical Equipment Learning Center</span><h1>Focused equipment learning—without the rabbit holes.</h1><p>Each device is one complete, self-contained overview. Learn the purpose, operating principle, major components, reported symptoms, associated test equipment, safety concepts, and professional reasoning—then return to the library.</p></div><div className="elc-principles"><strong>Version 1.0 is intentionally limited</strong><span>20 core equipment overviews.</span><span>No related-equipment links.</span><span>No PM checklists or service procedures.</span></div></header><section ref={libraryRef} className="elc-browser elc-scroll-target"><div className="elc-browser-heading"><div><span className="elc-eyebrow">Equipment Library</span><h2>Choose one focused overview</h2><p>{completed.length} of {allNames.length} completed</p></div><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search equipment" aria-label="Search equipment"/></div><div className="elc-category-row"><button className={selectedCategory==="all"?"active":""} onClick={()=>setSelectedCategory("all")}>All</button>{categories.map(c=><button key={c.id} className={selectedCategory===c.id?"active":""} onClick={()=>setSelectedCategory(c.id)}>{c.icon} {c.title}</button>)}</div><div className="elc-category-grid">{visibleCategories.map(category=>{const matches=category.devices.filter(name=>name.toLowerCase().includes(query.toLowerCase()));if(!matches.length)return null;return <article key={category.id} className="elc-category-card"><div className="elc-category-title"><span>{category.icon}</span><div><h3>{category.title}</h3><p>{category.devices.filter(x=>completed.includes(x)).length} of {category.devices.length} complete</p></div></div><div className="elc-device-list">{matches.map(name=><button key={name} onClick={()=>setSelectedDevice(name)}><span>{name}</span><small>{completed.includes(name)?"✓ Complete":"Open overview"}</small></button>)}</div></article>})}</div></section></main>;
 }
