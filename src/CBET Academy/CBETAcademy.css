@@ -2241,3 +2241,41 @@
     font-size: clamp(1.2rem, 7vw, 1.85rem);
   }
 }
+
+/* Completed-mission review mode */
+.cbet-review-banner {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(37, 99, 235, 0.24);
+  border-radius: 0 0 14px 14px;
+  background: rgba(239, 246, 255, 0.97);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  color: #1e3a8a;
+  backdrop-filter: blur(10px);
+}
+
+.cbet-review-banner strong {
+  white-space: nowrap;
+}
+
+.cbet-review-banner span {
+  color: #334155;
+}
+
+@media (max-width: 640px) {
+  .cbet-review-banner {
+    position: relative;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: center;
+    border-radius: 14px;
+  }
+}

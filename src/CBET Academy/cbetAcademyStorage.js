@@ -15,6 +15,7 @@ const defaultState = {
   missionProgress: {
     1: defaultMissionProgress,
     2: { ...defaultMissionProgress },
+    3: { ...defaultMissionProgress },
   },
   finalBoard: { passed: false, bestScore: 0 },
   streak: {
@@ -40,6 +41,10 @@ function mergeState(saved = {}) {
       2: {
         ...defaultMissionProgress,
         ...(saved.missionProgress?.[2] || {}),
+      },
+      3: {
+        ...defaultMissionProgress,
+        ...(saved.missionProgress?.[3] || {}),
       },
     },
     finalBoard: { ...defaultState.finalBoard, ...(saved.finalBoard || {}) },
@@ -133,6 +138,29 @@ export function completeCbetModule(number, score, xp) {
   return next;
 }
 
+
+export function beginMissionReview(number = 1) {
+  const state = getCbetAcademyState();
+  const previousModule = state.modules?.[number] || {};
+
+  state.modules = {
+    ...state.modules,
+    [number]: {
+      ...previousModule,
+      timesReviewed: (previousModule.timesReviewed || 0) + 1,
+      lastReviewed: localDateKey(),
+    },
+  };
+
+  state.missionProgress = {
+    ...state.missionProgress,
+    [number]: { ...defaultMissionProgress },
+  };
+
+  saveCbetAcademyState(state);
+  return state;
+}
+
 export function resetMissionProgress(number = 1) {
   const state = getCbetAcademyState();
   state.missionProgress = {
@@ -202,7 +230,7 @@ export function getCbetStats() {
   return {
     xp: state.xp || 0,
     completedMissions: completedModules.length,
-    badges: completedModules.length,
+    badges: completedModules.length, // legacy key used by the UI; represents earned competencies
     bestMissionOneScore: state.modules?.[1]?.bestScore || 0,
     lessonsCompleted: lessonAwards,
     scenariosCompleted: scenarioAwards,
