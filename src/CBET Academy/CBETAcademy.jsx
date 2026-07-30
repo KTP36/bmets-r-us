@@ -30,6 +30,7 @@ import { loadCourseState } from "./VirtualLab/LessonEngine";
 import CBETHospitalDashboard from "./CBETHospitalDashboard";
 import EquipmentLearningScreen from "./components/EquipmentLearningScreen";
 import useAcademyScreenPosition from "./useAcademyScreenPosition";
+import CertificateCenter from "./CertificateCenter";
 
 function shuffleQuestion(question) {
   const choices = question.options.map((text, index) => ({
@@ -3997,6 +3998,7 @@ export default function CBETAcademy() {
   const [showStats, setShowStats] = useState(false);
   const [showAllMissions, setShowAllMissions] = useState(true);
   const [reviewMissionNumber, setReviewMissionNumber] = useState(null);
+  const [certificateTarget, setCertificateTarget] = useState(null);
   const [streak, setStreak] = useState(() => registerCbetVisit());
   const academy = getCbetAcademyState();
   const progress = cbetCompletionPercent();
@@ -4123,13 +4125,36 @@ export default function CBETAcademy() {
   }
 
   if (screen === "equipmentLearning") {
-    return <EquipmentLearningScreen onExit={() => setScreen("dashboard")} />;
+    return (
+      <EquipmentLearningScreen
+        onExit={() => setScreen("dashboard")}
+        onCertificates={(certificateKey) => {
+          setCertificateTarget(certificateKey || null);
+          setScreen("certificates");
+        }}
+      />
+    );
   }
 
   if (screen === "virtualLab") {
     return (
       <VirtualCBETLab
         onExit={() => setScreen("dashboard")}
+      />
+    );
+  }
+
+  if (screen === "certificates") {
+    const certificateModules = cbetAcademyModules.map((module) => ({
+      ...module,
+      complete: Boolean(getCbetModuleState(module.number).complete),
+    }));
+    return (
+      <CertificateCenter
+        modules={certificateModules}
+        targetCertificateKey={certificateTarget}
+        onTargetHandled={() => setCertificateTarget(null)}
+        onExit={() => { setCertificateTarget(null); setScreen("dashboard"); }}
       />
     );
   }
@@ -4266,6 +4291,17 @@ export default function CBETAcademy() {
             <p>Review XP, completed lessons, professional competencies, scores, and your learning streak.</p>
             <div className="cbet-hub-summary"><strong>{academy.xp.toLocaleString()}</strong><span>total XP earned</span></div>
             <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
+          </article>
+
+          <article className="cbet-hub-card">
+            <div className="cbet-hub-card-top">
+              <span className="cbet-hub-icon" aria-hidden="true">📜</span>
+              <span className="cbet-hub-kicker">Recognize</span>
+            </div>
+            <h3>Certificates of Completion</h3>
+            <p>View educational completion certificates for finished Academy modules. These are not CBET certifications or professional credentials.</p>
+            <div className="cbet-hub-summary"><strong>{badgeCount}</strong><span>module certificates available</span></div>
+            <button className="cbet-secondary" onClick={() => setScreen("certificates")}>Open Certificate Center</button>
           </article>
         </div>
 

@@ -9,7 +9,11 @@ const SCREEN_TARGETS = {
   equipmentLearning: "equipment-learning-center",
 };
 
-const SELF_POSITIONED_SCREENS = new Set(["mission2", "mission3"]);
+const SELF_POSITIONED_SCREENS = new Set([
+    "mission2",
+    "mission3",
+    "certificates"
+]);
 
 function scrollToTarget(id) {
   const target = document.getElementById(id);

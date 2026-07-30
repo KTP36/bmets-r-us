@@ -59,14 +59,14 @@ function Scenario({ scenario }) {
   return <section className="elc-scenario"><span className="elc-eyebrow">Think Like a BMET</span><h2>Pause before reaching for a tool</h2><h3>{scenario.prompt}</h3><div className="elc-options">{scenario.options.map((option,index)=><button key={option} onClick={()=>setSelected(index)} className={selected===index?(correct?"correct":"selected"):""}>{option}</button>)}</div>{selected!==null&&<div className={`elc-feedback ${correct?"correct":"retry"}`}><strong>{correct?"Strong approach":"Keep reasoning"}</strong><p>{correct?scenario.explanation:"That choice moves too quickly. Start with information gathering, setup, accessories, and the reported pattern."}</p>{!correct&&<button onClick={()=>setSelected(null)}>Try again</button>}</div>}</section>;
 }
 
-function KnowledgeCheck({ questions, onComplete }){
+function KnowledgeCheck({ questions, onComplete, goldStandard = false }){
   const [answers,setAnswers]=useState({});
   const [submitted,setSubmitted]=useState(false);
   const score=questions.reduce((n,[,correct],i)=>n+(answers[i]===correct?1:0),0);
   const choose=(i,value)=>{if(!submitted)setAnswers(a=>({...a,[i]:value}));};
   const submit=()=>{if(Object.keys(answers).length!==questions.length)return;setSubmitted(true);if(score===questions.length)onComplete();};
   const reset=()=>{setAnswers({});setSubmitted(false);};
-  return <section className="elc-knowledge"><span className="elc-eyebrow">Knowledge check</span><h2>Confirm the essentials</h2><p className="elc-section-lead">Answer all five questions. A perfect score marks this overview complete.</p><div className="elc-question-list">{questions.map(([q,correct,options],i)=><article key={q}><h3>{i+1}. {q}</h3><div>{options.map(option=><button key={option} onClick={()=>choose(i,option)} className={`${answers[i]===option?"chosen":""} ${submitted&&option===correct?"answer-correct":""} ${submitted&&answers[i]===option&&option!==correct?"answer-wrong":""}`}>{option}</button>)}</div>{submitted&&<p>{answers[i]===correct?"Correct.":`Correct answer: ${correct}`}</p>}</article>)}</div><div className="elc-quiz-actions">{!submitted?<button className="elc-primary" disabled={Object.keys(answers).length!==questions.length} onClick={submit}>Check answers</button>:<><strong>{score} of {questions.length} correct</strong>{score<questions.length&&<button onClick={reset}>Try again</button>}</>}</div></section>;
+  return <section className={`elc-knowledge ${goldStandard ? "elc-explain-check" : ""}`}><span className="elc-eyebrow">{goldStandard ? "Can you explain it?" : "Knowledge check"}</span><h2>{goldStandard ? "Show that you understand the system" : "Confirm the essentials"}</h2><p className="elc-section-lead">{goldStandard ? "Choose the explanation that demonstrates understanding—not memorization. A perfect score completes this overview." : "Answer all five questions. A perfect score marks this overview complete."}</p><div className="elc-question-list">{questions.map(([q,correct,options],i)=><article key={q}><h3>{i+1}. {q}</h3><div>{options.map(option=><button key={option} onClick={()=>choose(i,option)} className={`${answers[i]===option?"chosen":""} ${submitted&&option===correct?"answer-correct":""} ${submitted&&answers[i]===option&&option!==correct?"answer-wrong":""}`}>{option}</button>)}</div>{submitted&&<p>{answers[i]===correct?"Correct.":`Correct answer: ${correct}`}</p>}</article>)}</div><div className="elc-quiz-actions">{!submitted?<button className="elc-primary" disabled={Object.keys(answers).length!==questions.length} onClick={submit}>Check answers</button>:<><strong>{score} of {questions.length} correct</strong>{score<questions.length&&<button onClick={reset}>Try again</button>}</>}</div></section>;
 }
 
 function RevealSection({ children, className = "" }) {
@@ -97,20 +97,28 @@ function RevealSection({ children, className = "" }) {
   );
 }
 
-function OperatingPath({ steps }) {
+function OperatingPath({ steps, descriptions = [] }) {
+  const [active, setActive] = useState(0);
+  const hasDescriptions = descriptions.length === steps.length;
   return (
-    <div className="elc-flow-shell" role="img" aria-label={`Operating path: ${steps.join(" to ")}`}>
+    <div className={`elc-flow-shell ${hasDescriptions ? "elc-flow-interactive" : ""}`} aria-label={`Operating path: ${steps.join(" to ")}`}>
       <div className="elc-flow">
         {steps.map((step, index) => (
           <React.Fragment key={step}>
-            <div className="elc-flow-step">
+            <button
+              type="button"
+              className={`elc-flow-step ${hasDescriptions && active === index ? "is-active" : ""}`}
+              onClick={() => hasDescriptions && setActive(index)}
+              aria-pressed={hasDescriptions ? active === index : undefined}
+            >
               <span className="elc-flow-number">{String(index + 1).padStart(2, "0")}</span>
               <strong>{step}</strong>
-            </div>
+            </button>
             {index < steps.length - 1 && <span className="elc-flow-arrow" aria-hidden="true">→</span>}
           </React.Fragment>
         ))}
       </div>
+      {hasDescriptions && <div className="elc-flow-explanation" aria-live="polite"><span>Step {active + 1}</span><strong>{steps[active]}</strong><p>{descriptions[active]}</p></div>}
     </div>
   );
 }
@@ -157,7 +165,7 @@ function PatientMonitorDiagram({ activeIndex, onSelect }) {
   );
 }
 
-function PatientMonitorComponentExplorer({ components }) {
+function PatientMonitorComponentExplorer() {
   const expanded = [
     ["Display", "Shows waveforms, numeric values, trends, prompts, and alarm information.", "Clinicians use the display to recognize changes quickly and make treatment decisions."],
     ["ECG module", "Receives the small electrical signals detected by the ECG electrodes and lead set.", "Reliable ECG acquisition supports heart-rate calculation, rhythm observation, and alarm generation."],
@@ -180,7 +188,34 @@ function PatientMonitorComponentExplorer({ components }) {
   </div>;
 }
 
-function DevicePage({ name, data, onBack, onNext, position, completed, markComplete }){
+const patientMonitorFlowDescriptions = [
+  "The process begins with the patient and the physiologic activity clinicians need to observe.",
+  "Electrodes, cuffs, probes, and cables detect or carry physiologic information from the patient.",
+  "Parameter modules receive specific signal types such as ECG, SpO₂, NIBP, temperature, or capnography.",
+  "The monitor filters, measures, and converts incoming signals into usable waveforms, values, and trends.",
+  "The bedside display presents information while the alarm system compares values and conditions with configured limits.",
+  "Supported systems send information to a central station or network so clinicians can observe the patient beyond the bedside."
+];
+
+const patientMonitorReports = [
+  ["No ECG waveform", "The waveform is absent, intermittent, or replaced by a lead-off message.", "Reliable ECG supports rhythm observation, heart-rate calculation, and alarms.", "Begin with the reported pattern, electrodes, lead placement, lead-set movement, and signal quality."],
+  ["Display is blank", "The screen appears off or does not present patient information.", "A blank display can remove immediate access to values, waveforms, and visual alarms.", "Clarify whether power indicators, sounds, battery operation, or an external display response are present."],
+  ["Battery will not charge", "The monitor remains on AC power but the battery level does not increase or runtime is poor.", "Battery readiness supports transport and continued monitoring during power transitions.", "Consider battery age, charge state, AC recognition, usage pattern, and whether the complaint is repeatable."],
+  ["Alarms are not heard", "Staff report that an expected audible alarm was absent or too quiet.", "Alarm audibility is a direct patient-safety concern and should be treated with urgency.", "Confirm the exact event, alarm state, volume or pause conditions, speaker output, and escalation needs."],
+  ["SpO₂ is not reading", "The monitor shows no saturation value, an unstable value, or a sensor-related message.", "Clinicians rely on both the displayed value and signal-quality indicators when assessing oxygenation.", "Consider sensor placement, perfusion, motion, cable condition, compatibility, and the pleth waveform."],
+  ["Monitor is disconnected from central", "The bedside monitor works locally but information is absent at the central station.", "Loss of connectivity can limit remote observation, alarm distribution, and trend availability.", "Clarify whether one monitor or multiple devices are affected, then consider assignment, network status, and location."],
+];
+
+const patientMonitorSafety = [
+  ["⚡", "Electrical safety", "Patient-connected equipment requires awareness of grounding, leakage, damaged power components, and approved electrical-safety evaluation."],
+  ["🔋", "Battery readiness", "Transport depends on usable battery capacity, accurate status indication, and reliable transition between AC and battery power."],
+  ["🔔", "Alarm reliability", "Audible and visual alarms must remain available, appropriately configured, and understandable to clinical users."],
+  ["📶", "Connectivity", "Central monitoring depends on correct patient association, network availability, and dependable communication beyond the bedside."],
+  ["🧼", "Infection prevention", "Reusable accessories, touch surfaces, and cables must be handled according to approved cleaning and infection-prevention practices."],
+  ["👤", "Clinical workflow", "Before removing a monitor from service, understand the patient-care situation and coordinate a safe replacement or transition with staff."],
+];
+
+function DevicePage({ name, data, onBack, onNext, nextName, position, completed, markComplete, categoryComplete, onCertificates, celebration, onCloseCelebration, onContinueCelebration }){
   const isPatientMonitor = name === "Patient Monitor";
   const learningRef = useRef(null);
 
@@ -224,13 +259,14 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
           <span className="elc-eyebrow">Operating principle</span>
           <h2>Follow the information or energy path</h2>
           <p className="elc-section-lead">Trace the device from its first input through the final clinical output.</p>
-          <OperatingPath steps={data.flow} />
+          <OperatingPath steps={data.flow} descriptions={isPatientMonitor ? patientMonitorFlowDescriptions : []} />
         </RevealSection>
 
         <RevealSection>
           <span className="elc-eyebrow">Major components</span>
           <h2>Understand the major components</h2>
-          {isPatientMonitor ? <PatientMonitorComponentExplorer components={data.components}/> : <div className="elc-card-grid">
+          <p className="elc-section-lead">Learn what each component does and why it matters in patient care.</p>
+          {isPatientMonitor ? <PatientMonitorComponentExplorer/> : <div className="elc-card-grid">
             {data.components.map(([title,text],index) => (
               <article key={title}>
                 <span className="elc-card-number">{index+1}</span>
@@ -247,19 +283,25 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
           <span className="elc-eyebrow">Common reported symptoms</span>
           <h2>Common reports from clinicians</h2>
           <p className="elc-section-lead">Use the reported symptom as a starting point—not as a diagnosis.</p>
-          <div className="elc-symptoms">
+          {isPatientMonitor ? <div className="elc-report-grid">
+            {patientMonitorReports.map(([title, observed, matters, consider]) => <details key={title}>
+              <summary><span>{title}</span><i aria-hidden="true">+</i></summary>
+              <div className="elc-report-detail"><p><b>What the clinician observes</b>{observed}</p><p><b>Why it matters</b>{matters}</p><p><b>What to consider first</b>{consider}</p></div>
+            </details>)}
+          </div> : <div className="elc-symptoms">
             {data.symptoms.map(([title,text]) => (
               <details key={title}>
                 <summary>{title}<span>+</span></summary>
                 <p>{text}</p>
               </details>
             ))}
-          </div>
+          </div>}
         </RevealSection>
 
         <RevealSection>
           <span className="elc-eyebrow">Test equipment awareness</span>
           <h2>Know what each tool can tell you</h2>
+          <p className="elc-section-lead">Understand the purpose of each tool without replacing approved OEM procedures.</p>
           <div className="elc-card-grid elc-tool-grid">
             {data.tools.map(([title,text]) => (
               <article key={title}>
@@ -275,10 +317,10 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
             <span className="elc-eyebrow">Safety awareness</span>
             <h2>What every BMET should consider</h2>
           </div>
-          <ul>{data.safety.map(x => <li key={x}>{x}</li>)}</ul>
+          {isPatientMonitor ? <div className="elc-safety-grid">{patientMonitorSafety.map(([icon,title,text]) => <article key={title}><span aria-hidden="true">{icon}</span><div><strong>{title}</strong><p>{text}</p></div></article>)}</div> : <ul>{data.safety.map(x => <li key={x}>{x}</li>)}</ul>}
         </RevealSection>
 
-        <KnowledgeCheck questions={data.quiz} onComplete={markComplete}/>
+        <KnowledgeCheck questions={data.quiz} onComplete={markComplete} goldStandard={isPatientMonitor}/>
 
         <RevealSection className={`elc-completion ${completed ? "is-complete" : ""}`}>
           <div>
@@ -288,7 +330,10 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
           </div>
           <div className="elc-completion-actions">
             <button onClick={onBack}>← Back to Equipment Library</button>
-            {onNext && <button className="elc-primary" onClick={onNext}>Next Equipment →</button>}
+            {categoryComplete && onCertificates && (
+              <button className="elc-certificate-button" onClick={() => openCertificateCenter(onCertificates, CATEGORY_CERTIFICATES[data.category]?.key)}>📜 View {data.category} Certificate</button>
+            )}
+            {onNext && <button className="elc-primary" onClick={onNext}>Continue to {nextName} →</button>}
           </div>
         </RevealSection>
 
@@ -297,24 +342,89 @@ function DevicePage({ name, data, onBack, onNext, position, completed, markCompl
           <p>CBET Academy teaches equipment concepts, clinical context, safety awareness, and professional reasoning. It does not teach preventive-maintenance procedures, calibration instructions, repairs, or model-specific service methods. Always use applicable OEM documentation and your organization’s approved maintenance, safety, and AEM policies.</p>
         </RevealSection>
       </div>
+
+      {celebration && (
+        <div className="elc-celebration-backdrop" role="presentation">
+          <div className="elc-confetti" aria-hidden="true">
+            {Array.from({ length: 18 }, (_, index) => <i key={index} style={{ "--i": index }} />)}
+          </div>
+          <section className="elc-celebration-modal" role="dialog" aria-modal="true" aria-labelledby="elc-celebration-title">
+            <button type="button" className="elc-celebration-close" onClick={onCloseCelebration} aria-label="Close celebration">×</button>
+            <div className="elc-celebration-icon" aria-hidden="true">🏆</div>
+            <span className="elc-eyebrow">Certificate unlocked</span>
+            <h2 id="elc-celebration-title">Congratulations!</h2>
+            <p>You completed every overview in <strong>{celebration.title}</strong>.</p>
+            <div className="elc-celebration-award">
+              <small>MedSkillBuilder Certificate of Completion</small>
+              <strong>{celebration.certificateTitle}</strong>
+              <span>Educational achievement — not a CBET certification</span>
+            </div>
+            <div className="elc-celebration-actions">
+              <button type="button" className="elc-primary" onClick={() => openCertificateCenter(onCertificates, celebration.certificateKey)}>View &amp; Print Certificate</button>
+              {onContinueCelebration && <button type="button" onClick={onContinueCelebration}>Continue to {nextName} →</button>}
+              {!onContinueCelebration && <button type="button" onClick={onCloseCelebration}>Return to lesson</button>}
+            </div>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
 
-export default function EquipmentLearningCenter({ onExit }){
+const CATEGORY_CERTIFICATES = {
+  "Life Support": { key: "equipment-life-support", title: "Life Support Equipment Foundations" },
+  "Patient Monitoring": { key: "equipment-patient-monitoring", title: "Patient Monitoring Foundations" },
+  "Infusion": { key: "equipment-infusion", title: "Infusion Systems Foundations" },
+  "Anesthesia": { key: "equipment-anesthesia", title: "Anesthesia Equipment Foundations" },
+  "Surgical Equipment": { key: "equipment-surgical", title: "Surgical Equipment Foundations" },
+  "Respiratory Care": { key: "equipment-respiratory", title: "Respiratory Care Equipment Foundations" },
+  "Imaging": { key: "equipment-imaging", title: "Medical Imaging Equipment Foundations" },
+  "Test Equipment": { key: "equipment-test", title: "Biomedical Test Equipment Foundations" },
+};
+
+const PENDING_CERTIFICATE_TARGET_KEY = "medskillbuilder-pending-certificate-target";
+function openCertificateCenter(onCertificates, certificateKey) {
+  if (!onCertificates || !certificateKey) return;
+  sessionStorage.setItem(PENDING_CERTIFICATE_TARGET_KEY, certificateKey);
+  onCertificates(certificateKey);
+}
+
+export default function EquipmentLearningCenter({ onExit, onCertificates }){
   const homeRef = useRef(null);
   const libraryRef = useRef(null);
   const [selectedCategory,setSelectedCategory]=useState("all");
   const [selectedDevice,setSelectedDevice]=useState(null);
   const [query,setQuery]=useState("");
   const [completed,setCompleted]=useState(loadCompleted);
+  const [celebration,setCelebration]=useState(null);
 
   useEffect(() => {
     if (!selectedDevice) scrollToLearningTarget(homeRef.current);
   }, [selectedDevice]);
   const allNames=categories.flatMap(c=>c.devices);
   const visibleCategories=useMemo(()=>categories.filter(c=>selectedCategory==="all"||c.id===selectedCategory),[selectedCategory]);
-  const persist=(name)=>{setCompleted(prev=>{if(prev.includes(name))return prev;const next=[...prev,name];localStorage.setItem(STORAGE_KEY,JSON.stringify(next));return next;});};
-  if(selectedDevice&&equipment[selectedDevice]){const category=categories.find(c=>c.title===equipment[selectedDevice].category);const index=category.devices.indexOf(selectedDevice);const next=category.devices[index+1];return <DevicePage name={selectedDevice} data={equipment[selectedDevice]} onBack={()=>setSelectedDevice(null)} onNext={next?()=>setSelectedDevice(next):null} position={{label:`${index+1} of ${category.devices.length} in ${category.title}`}} completed={completed.includes(selectedDevice)} markComplete={()=>persist(selectedDevice)}/>;}
-  return <main className="elc-home"><header id="equipment-learning-center" ref={homeRef} tabIndex="-1" className="elc-home-hero elc-scroll-target"><div><button className="elc-back" onClick={onExit}>← CBET Academy</button><span className="elc-eyebrow">Biomedical Equipment Learning Center</span><h1>Focused equipment learning—without the rabbit holes.</h1><p>Each device is one complete, self-contained overview. Learn the purpose, operating principle, major components, reported symptoms, associated test equipment, safety concepts, and professional reasoning—then return to the library.</p></div><div className="elc-principles"><strong>Version 1.0 is intentionally limited</strong><span>20 core equipment overviews.</span><span>No related-equipment links.</span><span>No PM checklists or service procedures.</span></div></header><section ref={libraryRef} className="elc-browser elc-scroll-target"><div className="elc-browser-heading"><div><span className="elc-eyebrow">Equipment Library</span><h2>Choose one focused overview</h2><p>{completed.length} of {allNames.length} completed</p></div><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search equipment" aria-label="Search equipment"/></div><div className="elc-category-row"><button className={selectedCategory==="all"?"active":""} onClick={()=>setSelectedCategory("all")}>All</button>{categories.map(c=><button key={c.id} className={selectedCategory===c.id?"active":""} onClick={()=>setSelectedCategory(c.id)}>{c.icon} {c.title}</button>)}</div><div className="elc-category-grid">{visibleCategories.map(category=>{const matches=category.devices.filter(name=>name.toLowerCase().includes(query.toLowerCase()));if(!matches.length)return null;return <article key={category.id} className="elc-category-card"><div className="elc-category-title"><span>{category.icon}</span><div><h3>{category.title}</h3><p>{category.devices.filter(x=>completed.includes(x)).length} of {category.devices.length} complete</p></div></div><div className="elc-device-list">{matches.map(name=><button key={name} onClick={()=>setSelectedDevice(name)}><span>{name}</span><small>{completed.includes(name)?"✓ Complete":"Open overview"}</small></button>)}</div></article>})}</div></section></main>;
+  const persist=(name)=>{
+    if(completed.includes(name)) return;
+    const nextCompleted=[...completed,name];
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(nextCompleted));
+    setCompleted(nextCompleted);
+    const finishedCategory=categories.find(category=>category.devices.includes(name));
+    if(finishedCategory && finishedCategory.devices.every(deviceName=>nextCompleted.includes(deviceName))){
+      const certificate=CATEGORY_CERTIFICATES[finishedCategory.title];
+      setCelebration({
+        title: finishedCategory.title,
+        certificateKey: certificate.key,
+        certificateTitle: certificate.title,
+      });
+    }
+  };
+  if(selectedDevice&&equipment[selectedDevice]){
+    const category=categories.find(c=>c.title===equipment[selectedDevice].category);
+    const index=category.devices.indexOf(selectedDevice);
+    const globalIndex=allNames.indexOf(selectedDevice);
+    const next=allNames[globalIndex+1];
+    const categoryComplete=category.devices.every(deviceName=>completed.includes(deviceName));
+    return <DevicePage key={selectedDevice} name={selectedDevice} data={equipment[selectedDevice]} onBack={()=>setSelectedDevice(null)} onNext={next?()=>setSelectedDevice(next):null} nextName={next} position={{label:`${index+1} of ${category.devices.length} in ${category.title}`}} completed={completed.includes(selectedDevice)} markComplete={()=>persist(selectedDevice)} categoryComplete={categoryComplete} onCertificates={onCertificates} celebration={celebration} onCloseCelebration={()=>setCelebration(null)} onContinueCelebration={next?()=>{setCelebration(null);setSelectedDevice(next);}:null}/>;
+  }
+  return <main className="elc-home"><header id="equipment-learning-center" ref={homeRef} tabIndex="-1" className="elc-home-hero elc-scroll-target"><div><button className="elc-back" onClick={onExit}>← CBET Academy</button><span className="elc-eyebrow">Biomedical Equipment Learning Center</span><h1>Focused equipment learning—without the rabbit holes.</h1><p>Each device is one complete, self-contained overview. Learn the purpose, operating principle, major components, reported symptoms, associated test equipment, safety concepts, and professional reasoning—then return to the library.</p></div><div className="elc-principles"><strong>Version 1.0 is intentionally limited</strong><span>20 core equipment overviews.</span><span>No related-equipment links.</span><span>No PM checklists or service procedures.</span></div></header><section ref={libraryRef} className="elc-browser elc-scroll-target"><div className="elc-browser-heading"><div><span className="elc-eyebrow">Equipment Library</span><h2>Choose one focused overview</h2><p>{completed.length} of {allNames.length} completed</p></div><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search equipment" aria-label="Search equipment"/></div><div className="elc-category-row"><button className={selectedCategory==="all"?"active":""} onClick={()=>setSelectedCategory("all")}>All</button>{categories.map(c=><button key={c.id} className={selectedCategory===c.id?"active":""} onClick={()=>setSelectedCategory(c.id)}>{c.icon} {c.title}</button>)}</div><div className="elc-category-grid">{visibleCategories.map(category=>{const matches=category.devices.filter(name=>name.toLowerCase().includes(query.toLowerCase()));if(!matches.length)return null;return <article key={category.id} className="elc-category-card"><div className="elc-category-title"><span>{category.icon}</span><div><h3>{category.title}</h3><p>{category.devices.filter(x=>completed.includes(x)).length} of {category.devices.length} complete</p></div></div><div className="elc-device-list">{matches.map(name=><button key={name} onClick={()=>setSelectedDevice(name)}><span>{name}</span><small>{completed.includes(name)?"✓ Complete":"Open overview"}</small></button>)}</div>{category.devices.every(deviceName=>completed.includes(deviceName))&&onCertificates&&<button type="button" className="elc-category-certificate" onClick={() => openCertificateCenter(onCertificates, CATEGORY_CERTIFICATES[category.title]?.key)}>📜 Certificate unlocked — View &amp; print certificate</button>}</article>})}</div></section></main>;
 }
