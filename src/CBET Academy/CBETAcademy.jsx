@@ -29,7 +29,6 @@ import VirtualCBETLab from "./VirtualLab/VirtualCBETLab";
 import { loadCourseState } from "./VirtualLab/LessonEngine";
 import CBETHospitalDashboard from "./CBETHospitalDashboard";
 import EquipmentLearningScreen from "./components/EquipmentLearningScreen";
-import useAcademyScreenPosition from "./useAcademyScreenPosition";
 import CertificateCenter from "./CertificateCenter";
 
 function shuffleQuestion(question) {
@@ -908,6 +907,39 @@ function ScenarioCard({ scenario, number, onComplete, actions }) {
       )}
     </article>
   );
+}
+
+
+function scrollToCbetTrainingTarget(targetId) {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+
+  const run = () => {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    // scrollIntoView handles the window and most nested scrolling containers.
+    target.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
+
+    // Some MedSkillBuilder layouts use an overflow container instead of the window.
+    // Reset every scrollable ancestor so the assignment starts at the visible top.
+    let parent = target.parentElement;
+    while (parent && parent !== document.body && parent !== document.documentElement) {
+      const style = window.getComputedStyle(parent);
+      const canScroll = /(auto|scroll|overlay)/.test(style.overflowY || "") && parent.scrollHeight > parent.clientHeight;
+      if (canScroll) {
+        const parentTop = parent.getBoundingClientRect().top;
+        const targetTop = target.getBoundingClientRect().top;
+        parent.scrollTop += targetTop - parentTop - 12;
+      }
+      parent = parent.parentElement;
+    }
+
+    const top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - 12);
+    window.scrollTo({ top, left: 0, behavior: "auto" });
+  };
+
+  run();
+  [0, 40, 120, 260, 500].forEach((delay) => window.setTimeout(run, delay));
 }
 
 function scrollCbetPageToTop() {
@@ -2923,6 +2955,280 @@ const SERVICE_CALL_SCENARIOS = {
   },
 };
 
+
+const EXPANDED_SERVICE_SCENARIOS = {
+  "PM-2044": {
+    id: "PM-2044", title: "Defibrillator Preventive Maintenance", equipment: "Pulse External Defibrillator",
+    location: "Cardiology • Equipment Bay", complaint: "Annual delivered-energy and charge-time verification is due.",
+    tools: ["Defibrillator analyzer", "Electrical safety analyzer", "Inspection checklist"],
+    steps: [
+      ["Inspect readiness", "Check enclosure, cables, pads, battery status, labels, and accessories."],
+      ["Connect analyzer", "Connect the defibrillator analyzer using the approved test setup."],
+      ["Verify delivered energy", "Test multiple selected energy levels and compare measured values with tolerance."],
+      ["Verify charge time", "Measure charge time at the required high-energy setting."],
+      ["Complete safety checks", "Run applicable electrical-safety and functional alarm checks."],
+    ],
+    diagnosis: "Preventive maintenance completed within specification",
+    correctiveAction: "Document results and return the defibrillator to service",
+    questions: [
+      ["Which analyzer verifies delivered energy?", ["Defibrillator analyzer", "Gas flow analyzer", "Infusion analyzer", "NIBP simulator"], 0],
+      ["Why test more than one energy setting?", ["To verify performance across the operating range", "To drain the battery", "To clear alarms", "To update software"], 0],
+      ["What must be documented?", ["Measured results and pass/fail criteria", "Only the asset number", "Only the technician name", "Only the battery age"], 0],
+    ],
+  },
+  "WO-1061": {
+    id: "WO-1061", title: "Low-Pressure Leak Test Failure", equipment: "AeroVent Anesthesia Ventilator",
+    location: "Operating Room • OR 6", complaint: "Low-pressure alarm appears during the pre-use leak test.",
+    tools: ["Gas flow analyzer", "Test lung", "Known-good breathing circuit"],
+    steps: [
+      ["Protect the patient", "Confirm another anesthesia workstation is available before removing the unit."],
+      ["Inspect the breathing path", "Check circuit connections, reservoir bag, absorber canister, and seals."],
+      ["Reproduce the failure", "Run the documented leak test with the original circuit."],
+      ["Substitute the circuit", "Install a known-good circuit and repeat the leak test."],
+      ["Verify performance", "Use the gas flow analyzer and test lung to confirm pressure, flow, and alarm response."],
+    ],
+    diagnosis: "Leak in the original breathing circuit connection",
+    correctiveAction: "Replace the damaged circuit and complete full pre-use verification",
+    questions: [
+      ["What should be checked first for a low-pressure alarm?", ["External circuit and connections", "Internal control board", "Display brightness", "Network settings"], 0],
+      ["What does a normal test with a known-good circuit show?", ["The original external circuit is suspect", "The battery is defective", "The oxygen sensor is calibrated", "The display is accurate"], 0],
+      ["Which tool verifies flow and pressure?", ["Gas flow analyzer", "Defibrillator analyzer", "ECG simulator", "Lux meter"], 0],
+    ],
+  },
+  "WO-1073": {
+    id: "WO-1073", title: "Immediate Occlusion Alarm", equipment: "NeoFlow Syringe Pump",
+    location: "NICU • Bed 12", complaint: "Pump reports downstream occlusion immediately after setup.",
+    tools: ["Infusion device analyzer", "Approved syringe", "Occlusion test fixture"],
+    steps: [
+      ["Protect therapy", "Coordinate alternate medication delivery with clinical staff."],
+      ["Inspect setup", "Check clamps, tubing, syringe seating, plunger engagement, and downstream line."],
+      ["Reproduce the alarm", "Run the pump with the reported syringe and setup."],
+      ["Test with approved setup", "Install an approved syringe and known-good tubing."],
+      ["Measure occlusion performance", "Use the infusion analyzer to confirm alarm pressure and delivery accuracy."],
+    ],
+    diagnosis: "Incorrect syringe seating caused false occlusion detection",
+    correctiveAction: "Reload the approved syringe correctly and verify delivery accuracy",
+    questions: [
+      ["What should be inspected first?", ["The complete fluid path and syringe loading", "The network cable", "The display color", "The battery label"], 0],
+      ["Which tool measures flow and occlusion pressure?", ["Infusion device analyzer", "Patient simulator", "Gas analyzer", "Defibrillator analyzer"], 0],
+      ["Why coordinate alternate therapy first?", ["Medication delivery is clinically critical", "It resets the pump", "It changes the alarm limit", "It charges the battery"], 0],
+    ],
+  },
+  "WO-1080": {
+    id: "WO-1080", title: "Transducer Not Detected", equipment: "Portable Ultrasound System",
+    location: "Imaging • Ultrasound Room 3", complaint: "System powers on, but the selected transducer is not detected.",
+    tools: ["Known-good transducer", "Connector inspection light", "Service diagnostics"],
+    steps: [
+      ["Confirm clinical coverage", "Make sure another ultrasound system is available for scheduled patients."],
+      ["Inspect the interface", "Check connector pins, latch, strain relief, contamination, and physical damage."],
+      ["Reproduce the complaint", "Connect the reported transducer and confirm the detection error."],
+      ["Substitute the transducer", "Connect a compatible known-good transducer to the same port."],
+      ["Cross-check the original", "Test the original transducer on another compatible system if permitted."],
+    ],
+    diagnosis: "Failed transducer cable near the connector strain relief",
+    correctiveAction: "Remove the damaged transducer from service and verify the system with a known-good probe",
+    questions: [
+      ["What is the best first technical check?", ["Inspect and reseat the transducer connector", "Replace the system board", "Disable diagnostics", "Increase output power"], 0],
+      ["A known-good probe works on the same port. What is isolated?", ["The original transducer", "The system power supply", "The display", "The network"], 0],
+      ["Why inspect connector pins?", ["Bent or contaminated pins can prevent detection", "They control room lighting", "They charge the battery", "They set image depth"], 0],
+    ],
+  },
+};
+
+function ExpandedServiceCall({ scenario, onExit, onComplete }) {
+  // The Hospital dashboard already provides the assignment briefing.
+  // Open directly in the interactive troubleshooting workflow.
+  const [phase, setPhase] = useState("work");
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const assignmentRef = useRef(null);
+
+  useEffect(() => {
+    setPhase("work");
+    setStep(0);
+    setAnswers({});
+    setQuestionIndex(0);
+  }, [scenario.id]);
+
+  const score = Object.entries(answers).filter(
+    ([index, answer]) => scenario.questions[Number(index)]?.[2] === answer
+  ).length;
+
+  useEffect(() => {
+    scrollToCbetTrainingTarget("expanded-service-call-top");
+  }, [phase, step, questionIndex, scenario.id]);
+
+  const goToPhase = (nextPhase) => setPhase(nextPhase);
+  const currentStep = scenario.steps[Math.min(step, scenario.steps.length - 1)];
+  const currentQuestion = scenario.questions[questionIndex];
+  const answered = answers[questionIndex] !== undefined;
+
+  return (
+    <section ref={assignmentRef} id="expanded-service-call-top" className="msb-service-call">
+      <style>{`
+        .msb-service-call{box-sizing:border-box;width:100%;max-width:1500px;margin:0 auto;padding:18px 24px 42px;color:#102a43;font-family:inherit;scroll-margin-top:12px}
+        .msb-service-call *{box-sizing:border-box}
+        .msb-service-call button{font:inherit}
+        .msb-call-topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+        .msb-call-back{border:1px solid #bdd3e3;background:#fff;color:#123f66;border-radius:12px;padding:10px 16px;font-weight:800;cursor:pointer}
+        .msb-call-kicker{display:inline-flex;align-items:center;border-radius:999px;background:#e7f5fb;color:#087cab;padding:8px 13px;font-size:.78rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+        .msb-call-card{background:#fff;border:1px solid #d7e5ee;border-radius:26px;box-shadow:0 14px 36px rgba(25,70,100,.11);padding:clamp(24px,4vw,52px)}
+        .msb-call-card h1{margin:10px 0 14px;color:#071a2f;font-size:clamp(2.1rem,5vw,4.8rem);line-height:1.03;overflow-wrap:anywhere}
+        .msb-call-card h2{margin:8px 0 12px;color:#0b2e4f;font-size:clamp(1.65rem,3vw,2.7rem);line-height:1.12;overflow-wrap:anywhere}
+        .msb-call-lead{max-width:1000px;margin:0 auto 24px;color:#526b80;font-size:clamp(1rem,1.7vw,1.25rem);line-height:1.6;text-align:center}
+        .msb-call-center{text-align:center}
+        .msb-call-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0}
+        .msb-call-info{min-width:0;background:#f2f7fa;border:1px solid #d5e4ed;border-radius:20px;padding:22px}
+        .msb-call-info span{display:block;color:#587186;font-size:.78rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px}
+        .msb-call-info strong{display:block;color:#102a43;font-size:clamp(1.05rem,2vw,1.45rem);line-height:1.35;overflow-wrap:anywhere}
+        .msb-call-info p{margin:7px 0;color:#294d68;line-height:1.45;overflow-wrap:anywhere}
+        .msb-call-primary{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:14px;background:linear-gradient(135deg,#078fc6,#075887);color:#fff;padding:14px 23px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(7,104,153,.22)}
+        .msb-call-primary:disabled{opacity:.55;cursor:not-allowed}
+        .msb-call-work{display:grid;grid-template-columns:minmax(250px,340px) minmax(0,1fr);gap:20px;align-items:start}
+        .msb-call-sidebar{position:sticky;top:12px}
+        .msb-call-sidebar h1{font-size:clamp(1.8rem,3vw,2.7rem)}
+        .msb-call-steps{display:grid;gap:9px;margin-top:20px}
+        .msb-call-step{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:center;padding:10px;border-radius:13px;background:#f5f8fa;color:#607489}
+        .msb-call-step b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#dbe7ee;color:#31536c}
+        .msb-call-step span{font-weight:800;line-height:1.25;overflow-wrap:anywhere}
+        .msb-call-step.active{background:#e6f5fb;color:#075f8b;border:1px solid #8fd3ec}
+        .msb-call-step.active b,.msb-call-step.done b{background:#078fc6;color:#fff}
+        .msb-call-step.done{color:#18734d;background:#ecf8f2}
+        .msb-call-action{min-width:0}
+        .msb-call-action p{font-size:1.1rem;line-height:1.65;color:#48657b}
+        .msb-call-tool{margin:22px 0;background:#edf7fb;border-left:5px solid #0790c7;border-radius:14px;padding:17px 19px}
+        .msb-call-tool span{display:block;font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#4f6e82;margin-bottom:6px}
+        .msb-call-tool strong{font-size:1.12rem;color:#0b3554;overflow-wrap:anywhere}
+        .msb-call-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}
+        .msb-call-summary>div{min-width:0;background:#f2f7fa;border-radius:16px;padding:18px}
+        .msb-call-summary span{display:block;color:#5b7285;font-size:.76rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
+        .msb-call-summary strong{display:block;line-height:1.4;overflow-wrap:anywhere}
+        .msb-call-choice{display:block;width:100%;border:1px solid #cfdee8;background:#f8fbfc;border-radius:14px;padding:15px 17px;margin:9px 0;text-align:left;color:#173b57;font-weight:800;line-height:1.35;cursor:pointer;overflow-wrap:anywhere}
+        .msb-call-choice.correct{border-color:#36a774;background:#eaf8f1;color:#17633f}
+        .msb-call-choice.wrong{border-color:#d7656c;background:#fff0f1;color:#922d35}
+        .msb-call-score{font-size:clamp(3rem,8vw,5rem);font-weight:950;color:#087db0;line-height:1}
+        .msb-call-progress-note{color:#587186;font-weight:800;margin:8px 0 18px}
+        @media(max-width:850px){.msb-service-call{padding:12px 12px 34px}.msb-call-grid,.msb-call-summary,.msb-call-work{grid-template-columns:1fr}.msb-call-sidebar{position:static}.msb-call-card{border-radius:20px;padding:22px}.msb-call-card h1{font-size:clamp(2rem,10vw,3.2rem)}}
+      `}</style>
+
+      <div className="msb-call-topbar">
+        <button type="button" className="msb-call-back" onClick={onExit}>← Hospital Dashboard</button>
+        <span className="msb-call-kicker">Biomedical Training Hospital</span>
+      </div>
+
+      {phase === "briefing" && (
+        <article className="msb-call-card msb-call-center">
+          <span className="msb-call-kicker">{scenario.id} • Guided assignment</span>
+          <h1>{scenario.title}</h1>
+          <p className="msb-call-lead">{scenario.complaint}</p>
+          <div className="msb-call-grid">
+            <div className="msb-call-info">
+              <span>Device and location</span>
+              <strong>{scenario.equipment}</strong>
+              <p>{scenario.location}</p>
+            </div>
+            <div className="msb-call-info">
+              <span>Recommended toolbox</span>
+              {scenario.tools.map((tool) => <p key={tool}>✓ {tool}</p>)}
+            </div>
+          </div>
+          <button type="button" className="msb-call-primary" onClick={() => goToPhase("work")}>Begin Assignment</button>
+        </article>
+      )}
+
+      {phase === "work" && currentStep && (
+        <div className="msb-call-work">
+          <aside className="msb-call-card msb-call-sidebar">
+            <span className="msb-call-kicker">{scenario.id}</span>
+            <h1>{scenario.title}</h1>
+            <p>{scenario.complaint}</p>
+            <div className="msb-call-steps">
+              {scenario.steps.map((item, index) => (
+                <div key={item[0]} className={`msb-call-step ${index < step ? "done" : index === step ? "active" : ""}`}>
+                  <b>{index < step ? "✓" : index + 1}</b>
+                  <span>{item[0]}</span>
+                </div>
+              ))}
+            </div>
+          </aside>
+
+          <article className="msb-call-card msb-call-action">
+            <span className="msb-call-kicker">Step {step + 1} of {scenario.steps.length}</span>
+            <h2>{currentStep[0]}</h2>
+            <p>{currentStep[1]}</p>
+            <div className="msb-call-tool">
+              <span>Tool focus</span>
+              <strong>{scenario.tools[Math.min(step, scenario.tools.length - 1)]}</strong>
+            </div>
+            <button
+              type="button"
+              className="msb-call-primary"
+              onClick={() => step < scenario.steps.length - 1 ? setStep((value) => value + 1) : goToPhase("diagnosis")}
+            >
+              {step < scenario.steps.length - 1 ? "Complete Step" : "Review Evidence"}
+            </button>
+          </article>
+        </div>
+      )}
+
+      {phase === "diagnosis" && (
+        <article className="msb-call-card msb-call-center">
+          <span className="msb-call-kicker">Evidence review</span>
+          <h2>Root cause identified</h2>
+          <p className="msb-call-lead">{scenario.diagnosis}</p>
+          <div className="msb-call-summary">
+            <div><span>Corrective action</span><strong>{scenario.correctiveAction}</strong></div>
+            <div><span>Tools used</span><strong>{scenario.tools.join(" • ")}</strong></div>
+          </div>
+          <button type="button" className="msb-call-primary" onClick={() => goToPhase("questions")}>Start After-Action Review</button>
+        </article>
+      )}
+
+      {phase === "questions" && currentQuestion && (
+        <article className="msb-call-card">
+          <span className="msb-call-kicker">After-action review • {questionIndex + 1}/{scenario.questions.length}</span>
+          <h2>{currentQuestion[0]}</h2>
+          {currentQuestion[1].map((option, index) => (
+            <button
+              type="button"
+              key={option}
+              disabled={answered}
+              className={`msb-call-choice ${answered && index === currentQuestion[2] ? "correct" : answered && index === answers[questionIndex] ? "wrong" : ""}`}
+              onClick={() => setAnswers((previous) => ({ ...previous, [questionIndex]: index }))}
+            >
+              {option}
+            </button>
+          ))}
+          {answered && (
+            <button
+              type="button"
+              className="msb-call-primary"
+              onClick={() => questionIndex < scenario.questions.length - 1 ? setQuestionIndex((value) => value + 1) : goToPhase("debrief")}
+            >
+              {questionIndex < scenario.questions.length - 1 ? "Next Question" : "Complete Work Order"}
+            </button>
+          )}
+        </article>
+      )}
+
+      {phase === "debrief" && (
+        <article className="msb-call-card msb-call-center">
+          <span className="msb-call-kicker">Service call complete</span>
+          <h2>{scenario.id} closed</h2>
+          <div className="msb-call-score">{score}/{scenario.questions.length}</div>
+          <p className="msb-call-progress-note">After-action review score</p>
+          <div className="msb-call-summary">
+            <div><span>Root cause</span><strong>{scenario.diagnosis}</strong></div>
+            <div><span>Resolution</span><strong>{scenario.correctiveAction}</strong></div>
+          </div>
+          <button type="button" className="msb-call-primary" onClick={() => { onComplete?.(); onExit(); }}>Return to Hospital</button>
+        </article>
+      )}
+    </section>
+  );
+}
+
 function TroubleshootingMonitor({ phase, cycleNumber }) {
   const originalFailure = phase === "failed";
   const normal = phase === "normal" || phase === "verified";
@@ -2956,7 +3262,7 @@ function GuidedTroubleshootingEngine({ scenario, onExit, onComplete }) {
   const [verifyCount, setVerifyCount] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [log, setLog] = useState(["08:17 — Work order WO-1052 dispatched to Clinical Engineering."]);
+  const [log, setLog] = useState([`08:17 — Work order ${scenario.id} dispatched to Clinical Engineering.`]);
 
   const addLog = (message) => setLog((items) => [...items, `${String(18 + items.length * 3).padStart(2, "0")}:${items.length % 2 ? "21" : "18"} — ${message}`]);
   const completeStep = () => {
@@ -4029,7 +4335,31 @@ export default function CBETAcademy() {
     setStreak(registerCbetVisit());
   }, [refresh]);
 
-  useAcademyScreenPosition(screen);
+  useEffect(() => {
+    const targetId =
+      screen === "dashboard"
+        ? "cbet-academy-top"
+        : screen === "hospital"
+        ? "cbet-hospital-map"
+        : screen === "serviceCall1048"
+        ? "service-call-top"
+        : screen === "serviceCall1052"
+        ? "guided-troubleshooting-top"
+        : screen.startsWith("serviceCall:")
+        ? "expanded-service-call-top"
+        : "";
+
+    if (!targetId) return undefined;
+
+    const moveToTarget = () => scrollToCbetTrainingTarget(targetId);
+    moveToTarget();
+
+    const timers = [20, 80, 180, 350, 700, 1100].map((delay) =>
+      window.setTimeout(moveToTarget, delay)
+    );
+
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, [screen]);
 
 
   if (screen === "hospital") {
@@ -4042,7 +4372,11 @@ export default function CBETAcademy() {
           streak={streak.current || 1}
           onOpenTraining={() => setScreen("dashboard")}
           onOpenLab={() => setScreen("virtualLab")}
-          onOpenMission={(orderId) => setScreen(orderId === "WO-1052" ? "serviceCall1052" : "serviceCall1048")}
+          onOpenMission={(orderId) => {
+            if (orderId === "WO-1048") setScreen("serviceCall1048");
+            else if (orderId === "WO-1052") setScreen("serviceCall1052");
+            else setScreen(`serviceCall:${orderId}`);
+          }}
           onOpenStats={() => setShowStats(true)}
         />
         {showStats && <StatsPanel stats={stats} onClose={() => setShowStats(false)} />}
@@ -4073,6 +4407,20 @@ export default function CBETAcademy() {
         onComplete={() => setRefresh((value) => value + 1)}
       />
     );
+  }
+
+  if (screen.startsWith("serviceCall:")) {
+    const scenarioId = screen.split(":")[1];
+    const scenario = EXPANDED_SERVICE_SCENARIOS[scenarioId];
+    if (scenario) {
+      return (
+        <ExpandedServiceCall
+          scenario={scenario}
+          onExit={() => { setScreen("hospital"); setRefresh((value) => value + 1); }}
+          onComplete={() => setRefresh((value) => value + 1)}
+        />
+      );
+    }
   }
 
   if (screen === "mission1") {

@@ -1,46 +1,45 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./CBETHospitalDashboard.css";
 
 const DEPARTMENTS = [
-  { id: "ed", icon: "🚑", name: "Emergency Department", status: "3 open calls", risk: "High" },
-  { id: "icu", icon: "❤️", name: "Intensive Care Unit", status: "2 open calls", risk: "High" },
-  { id: "or", icon: "🏥", name: "Operating Room", status: "1 open call", risk: "Critical" },
+  { id: "ed", icon: "🚑", name: "Emergency Department", status: "1 active call", risk: "High" },
+  { id: "icu", icon: "❤️", name: "Intensive Care Unit", status: "1 active call", risk: "High" },
+  { id: "or", icon: "🏥", name: "Operating Room", status: "1 critical call", risk: "Critical" },
   { id: "cardiology", icon: "💓", name: "Cardiology", status: "1 PM due", risk: "Medium" },
-  { id: "imaging", icon: "🩻", name: "Imaging", status: "Training locked", risk: "Medium" },
-  { id: "nicu", icon: "🍼", name: "NICU", status: "Training locked", risk: "Critical" },
+  { id: "imaging", icon: "🩻", name: "Imaging", status: "1 active call", risk: "Medium" },
+  { id: "nicu", icon: "🍼", name: "NICU", status: "1 active call", risk: "Critical" },
 ];
 
 const WORK_ORDERS = [
   {
-    id: "WO-1048",
-    priority: "STAT",
-    department: "Emergency Department",
-    device: "Guardian Bedside Monitor",
-    problem: "No ECG waveform while SpO₂ and NIBP remain available.",
-    reward: 180,
-    mission: "WO-1048",
-    tools: ["Patient simulator", "Digital multimeter", "Known-good ECG cable"],
+    id: "WO-1048", priority: "STAT", departmentId: "ed", department: "Emergency Department",
+    device: "Guardian Bedside Monitor", problem: "No ECG waveform while SpO₂ and NIBP remain available.",
+    reward: 180, tools: ["Patient simulator", "Digital multimeter", "Known-good ECG cable"],
   },
   {
-    id: "WO-1052",
-    priority: "URGENT",
-    department: "Intensive Care Unit",
-    device: "Guardian Bedside Monitor",
-    problem: "NIBP inflates briefly, then stops with a leak error. ECG and SpO₂ remain available.",
-    reward: 160,
-    mission: "WO-1052",
-    tools: ["Known-good NIBP cuff and hose", "Pneumatic leak tester", "Service checklist"],
+    id: "WO-1052", priority: "URGENT", departmentId: "icu", department: "Intensive Care Unit",
+    device: "Guardian Bedside Monitor", problem: "NIBP inflates briefly, then stops with a leak error. ECG and SpO₂ remain available.",
+    reward: 160, tools: ["Known-good NIBP cuff and hose", "Pneumatic leak tester", "Service checklist"],
   },
   {
-    id: "PM-2044",
-    priority: "ROUTINE",
-    department: "Cardiology",
-    device: "Pulse External Defibrillator",
-    problem: "Annual delivered-energy and charge-time verification is due.",
-    reward: 125,
-    mission: 3,
-    tools: ["Defibrillator analyzer", "Safety analyzer", "Inspection checklist"],
-    available: false,
+    id: "PM-2044", priority: "ROUTINE", departmentId: "cardiology", department: "Cardiology",
+    device: "Pulse External Defibrillator", problem: "Annual delivered-energy and charge-time verification is due.",
+    reward: 125, tools: ["Defibrillator analyzer", "Electrical safety analyzer", "Inspection checklist"],
+  },
+  {
+    id: "WO-1061", priority: "CRITICAL", departmentId: "or", department: "Operating Room",
+    device: "AeroVent Anesthesia Ventilator", problem: "Low-pressure alarm appears during the pre-use leak test.",
+    reward: 210, tools: ["Gas flow analyzer", "Test lung", "Known-good breathing circuit"],
+  },
+  {
+    id: "WO-1073", priority: "HIGH", departmentId: "nicu", department: "NICU",
+    device: "NeoFlow Syringe Pump", problem: "Pump reports downstream occlusion immediately after setup.",
+    reward: 175, tools: ["Infusion device analyzer", "Approved syringe", "Occlusion test fixture"],
+  },
+  {
+    id: "WO-1080", priority: "MEDIUM", departmentId: "imaging", department: "Imaging",
+    device: "Portable Ultrasound System", problem: "System powers on, but the selected transducer is not detected.",
+    reward: 150, tools: ["Known-good transducer", "Connector inspection light", "Service diagnostics"],
   },
 ];
 
@@ -65,6 +64,7 @@ export default function CBETHospitalDashboard({
   onOpenStats,
 }) {
   const [selectedDepartment, setSelectedDepartment] = useState("ed");
+  const activeAssignmentRef = useRef(null);
   const [acceptedOrder, setAcceptedOrder] = useState(() => {
     try {
       const savedOrder = window.localStorage.getItem("cbetActiveWorkOrder");
@@ -103,12 +103,26 @@ export default function CBETHospitalDashboard({
     return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, []);
 
-  const acceptOrder = (id) => {
+  const scrollToActiveAssignment = () => {
+    window.setTimeout(() => {
+      activeAssignmentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 60);
+  };
+
+  const acceptOrder = (id, shouldScroll = true) => {
     const order = WORK_ORDERS.find((item) => item.id === id);
-    if (!order || order.available === false) return;
+    if (!order) return;
 
     setAcceptedOrder(id);
+    setSelectedDepartment(order.departmentId);
     try { window.localStorage.setItem("cbetActiveWorkOrder", id); } catch { /* optional */ }
+    if (shouldScroll) scrollToActiveAssignment();
+  };
+
+  const selectDepartment = (departmentId) => {
+    setSelectedDepartment(departmentId);
+    const firstOrder = WORK_ORDERS.find((order) => order.departmentId === departmentId);
+    if (firstOrder) acceptOrder(firstOrder.id, true);
   };
 
   return (
@@ -131,7 +145,7 @@ export default function CBETHospitalDashboard({
         <div>
           <span className="hospital-eyebrow">Shift briefing</span>
           <h1>Welcome to Clinical Engineering</h1>
-          <p>Accept service calls, choose the right test equipment, complete training, and build your career without using real manufacturer branding.</p>
+          <p>Choose a department, accept a service call, and complete a distinct troubleshooting assignment using realistic biomedical test equipment.</p>
           <div className="hospital-hero-actions">
             <button type="button" className="hospital-primary" onClick={() => onOpenMission(activeOrder.id)}>Continue active assignment</button>
             <button type="button" onClick={onOpenLab}>Open equipment lab</button>
@@ -161,7 +175,7 @@ export default function CBETHospitalDashboard({
               <button type="button"
                 key={department.id}
                 className={selectedDepartment === department.id ? "active" : ""}
-                onClick={() => setSelectedDepartment(department.id)}
+                onClick={() => selectDepartment(department.id)}
               >
                 <span>{department.icon}</span>
                 <strong>{department.name}</strong>
@@ -172,7 +186,7 @@ export default function CBETHospitalDashboard({
           </div>
         </article>
 
-        <article className="hospital-panel hospital-active-order">
+        <article ref={activeAssignmentRef} className="hospital-panel hospital-active-order">
           <div className="hospital-panel-heading">
             <div><span className="hospital-eyebrow">Active assignment</span><h2>{activeOrder.id}</h2></div>
             <span className={`priority priority-${activeOrder.priority.toLowerCase()}`}>{activeOrder.priority}</span>
@@ -206,16 +220,8 @@ export default function CBETHospitalDashboard({
               <p>{order.problem}</p>
               <div className="hospital-order-actions">
                 <span>+{order.reward} XP</span>
-                <button
-                  type="button"
-                  disabled={order.available === false}
-                  onClick={() => acceptOrder(order.id)}
-                >
-                  {order.available === false
-                    ? "Coming soon"
-                    : acceptedOrder === order.id
-                    ? "Accepted"
-                    : "Accept call"}
+                <button type="button" onClick={() => acceptOrder(order.id)}>
+                  {acceptedOrder === order.id ? "Accepted" : "Accept call"}
                 </button>
               </div>
             </article>
