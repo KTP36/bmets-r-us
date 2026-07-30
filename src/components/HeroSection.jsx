@@ -102,9 +102,9 @@ export default function HeroSection({ isSmallScreen, jumpToPracticeCategory }) {
             fontWeight: 600
           }}
         >
-          Explore free academies, quizzes, and interactive study tools for medical assisting,
-          medication mastery, CBET and biomed, anatomy, medical terminology, EKG, ABG, RN,
-          TEAS, CRES, and more.
+          Explore interactive healthcare academies, realistic clinical simulations, certification prep, 
+          and hands-on study tools all completely free. Medication mastery, CBET and biomed, anatomy, medical 
+          terminology, EKG, ABG, RN,TEAS, CRES, and much more.
         </p>
 
         <style>
