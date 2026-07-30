@@ -103,7 +103,7 @@ export default function HeroSection({ isSmallScreen, jumpToPracticeCategory }) {
           }}
         >
           Explore interactive healthcare academies, realistic clinical simulations, certification prep, 
-          and hands-on study tools all completely free. Medication mastery, CBET and biomed, anatomy, medical 
+          and interactive study tools all completely free. Medication mastery, CBET and biomed, anatomy, medical 
           terminology, EKG, ABG, RN,TEAS, CRES, and much more.
         </p>
 
