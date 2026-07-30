@@ -1,0 +1,60 @@
+/*
+ * MedSkillBuilder design tokens
+ *
+ * Pass 1 intentionally introduces aliases only. No existing component uses
+ * these variables yet, so importing this file must not change the rendered UI.
+ * Future cleanup passes should migrate one component family at a time.
+ */
+
+:root {
+  /* Brand */
+  --msb-color-navy: #12355b;
+  --msb-color-blue: #1d6fa5;
+  --msb-color-blue-dark: #0f4c75;
+
+  /* Text */
+  --msb-color-text: #1e293b;
+  --msb-color-text-strong: #0f172a;
+  --msb-color-text-muted: #64748b;
+
+  /* Surfaces and borders */
+  --msb-color-surface: #ffffff;
+  --msb-color-surface-soft: #f8fafc;
+  --msb-color-border: #e2e8f0;
+
+  /* Semantic colors */
+  --msb-color-success: #16a34a;
+  --msb-color-warning: #d97706;
+  --msb-color-danger: #dc2626;
+
+  /* Spacing scale */
+  --msb-space-1: 0.25rem;
+  --msb-space-2: 0.5rem;
+  --msb-space-3: 0.75rem;
+  --msb-space-4: 1rem;
+  --msb-space-5: 1.25rem;
+  --msb-space-6: 1.5rem;
+  --msb-space-8: 2rem;
+  --msb-space-10: 2.5rem;
+  --msb-space-12: 3rem;
+  --msb-space-16: 4rem;
+
+  /* Shape */
+  --msb-radius-sm: 0.375rem;
+  --msb-radius-md: 0.5rem;
+  --msb-radius-lg: 0.75rem;
+  --msb-radius-xl: 1rem;
+  --msb-radius-pill: 9999px;
+
+  /* Elevation */
+  --msb-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --msb-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.1);
+  --msb-shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.14);
+
+  /* Motion */
+  --msb-transition-fast: 150ms ease;
+  --msb-transition-standard: 200ms ease;
+
+  /* Layout */
+  --msb-content-max-width: 1126px;
+}

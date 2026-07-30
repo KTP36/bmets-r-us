@@ -11,6 +11,8 @@ import { cbetQuestions as baseCbetQuestions } from "./questionData";
 import { cbetElectronicsQuestions } from "./cbetElectronicsQuestions";
 import AmazonBanner from "./components/AmazonBanner";
 import CArmPartnerBanner from "./components/CArmPartnerBanner";
+import Button from "./components/Button";
+import Card from "./components/Card";
 import MedicationAcademy from "./academy/medication/MedicationAcademy";
 import CBETAcademy from "./CBET Academy/CBETAcademy";
 
@@ -1604,7 +1606,7 @@ function VitalsChallengeGame({ trackExamCompletion, shareQuizResult }) {
 
   if (showMissedReview) {
     return (
-      <div style={{ maxWidth: 980, margin: "0 auto", background: "rgba(255,255,255,0.96)", borderRadius: 24, padding: 28, boxShadow: "0 10px 30px rgba(0,0,0,0.08)", border: "1px solid #dbeafe" }}>
+      <Card style={{ maxWidth: 980, margin: "0 auto", background: "rgba(255,255,255,0.96)", borderRadius: 24, padding: 28, boxShadow: "0 10px 30px rgba(0,0,0,0.08)", border: "1px solid #dbeafe" }}>
         <h2 style={{ color: "#12355b", textAlign: "center", marginTop: 0 }}>Vitals Missed Questions Review</h2>
         {missedQuestions.length === 0 ? (
           <p style={{ textAlign: "center", color: "#1e293b" }}>You did not miss any questions.</p>
@@ -1631,16 +1633,16 @@ function VitalsChallengeGame({ trackExamCompletion, shareQuizResult }) {
           </div>
         )}
         <div style={{ textAlign: "center", marginTop: 20 }}>
-          <button onClick={() => setShowMissedReview(false)} style={{ ...buttonBase, background: "linear-gradient(135deg, #12355b, #1d6fa5)" }}>Back to Results</button>
+          <Button onClick={() => setShowMissedReview(false)} style={{ ...buttonBase, background: "linear-gradient(135deg, #12355b, #1d6fa5)" }}>Back to Results</Button>
         </div>
-      </div>
+      </Card>
     );
   }
 
   if (showResults) {
     const accuracy = questions.length ? Math.round((score / questions.length) * 100) : 0;
     return (
-      <div style={{ maxWidth: 900, margin: "0 auto", background: "rgba(255,255,255,0.96)", borderRadius: 24, padding: 28, boxShadow: "0 10px 30px rgba(0,0,0,0.08)", border: "1px solid #dbeafe", textAlign: "center" }}>
+      <Card style={{ maxWidth: 900, margin: "0 auto", background: "rgba(255,255,255,0.96)", borderRadius: 24, padding: 28, boxShadow: "0 10px 30px rgba(0,0,0,0.08)", border: "1px solid #dbeafe", textAlign: "center" }}>
         <div style={{ display: "inline-flex", padding: "8px 14px", borderRadius: 999, background: "#ecfeff", color: "#0f766e", fontWeight: 900, marginBottom: 14 }}>Vitals Challenge Complete</div>
         <h2 style={{ color: "#12355b", marginTop: 0 }}>{mode === "quick" ? "Quick Vitals Challenge Complete" : "Full Vitals Challenge Complete"}</h2>
         <p style={{ color: "#475569", maxWidth: 700, margin: "0 auto 22px" }}>Great job. Review your score, study missed scenarios, or switch between quick and full practice.</p>
@@ -1651,13 +1653,13 @@ function VitalsChallengeGame({ trackExamCompletion, shareQuizResult }) {
           <div style={{ ...statStyle, background: "#f5f3ff", borderColor: "#ddd6fe", color: "#6d28d9" }}><div style={{ fontSize: 28 }}>{bestStreak}</div><div style={{ fontSize: 13, color: "#64748b" }}>Best Streak</div></div>
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-          <button onClick={() => setShowMissedReview(true)} style={{ ...buttonBase, background: "linear-gradient(135deg, #7c3aed, #8b5cf6)" }}>Study Misses</button>
-          <button onClick={() => shareQuizResult && shareQuizResult(activityName, score, questions.length)} style={{ ...buttonBase, background: "linear-gradient(135deg, #0f766e, #14b8a6)" }}>Share Result</button>
-          <button onClick={restart} style={{ ...buttonBase, background: "linear-gradient(135deg, #dc2626, #ef4444)" }}>Try Again</button>
-          <button onClick={() => startMode(mode === "quick" ? "full" : "quick")} style={{ ...buttonBase, background: "linear-gradient(135deg, #12355b, #1d6fa5)" }}>{mode === "quick" ? "Try Full Version" : "Try Quick Version"}</button>
+          <Button onClick={() => setShowMissedReview(true)} style={{ ...buttonBase, background: "linear-gradient(135deg, #7c3aed, #8b5cf6)" }}>Study Misses</Button>
+          <Button onClick={() => shareQuizResult && shareQuizResult(activityName, score, questions.length)} style={{ ...buttonBase, background: "linear-gradient(135deg, #0f766e, #14b8a6)" }}>Share Result</Button>
+          <Button onClick={restart} style={{ ...buttonBase, background: "linear-gradient(135deg, #dc2626, #ef4444)" }}>Try Again</Button>
+          <Button onClick={() => startMode(mode === "quick" ? "full" : "quick")} style={{ ...buttonBase, background: "linear-gradient(135deg, #12355b, #1d6fa5)" }}>{mode === "quick" ? "Try Full Version" : "Try Quick Version"}</Button>
           <a href="/browse-all-practice.html" style={{ ...buttonBase, background: "linear-gradient(135deg, #334155, #0f172a)", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>Browse All Tools</a>
         </div>
-      </div>
+      </Card>
     );
   }
 
@@ -1669,11 +1671,11 @@ function VitalsChallengeGame({ trackExamCompletion, shareQuizResult }) {
       </div>
 
       <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", marginBottom: 18 }}>
-        <button onClick={() => startMode("quick")} style={{ ...buttonBase, background: mode === "quick" ? "linear-gradient(135deg, #12355b, #1d6fa5)" : "linear-gradient(135deg, #94a3b8, #64748b)" }}>Quick Practice • 5 Questions</button>
-        <button onClick={() => startMode("full")} style={{ ...buttonBase, background: mode === "full" ? "linear-gradient(135deg, #12355b, #1d6fa5)" : "linear-gradient(135deg, #94a3b8, #64748b)" }}>Full Challenge • 25 Questions</button>
+        <Button onClick={() => startMode("quick")} style={{ ...buttonBase, background: mode === "quick" ? "linear-gradient(135deg, #12355b, #1d6fa5)" : "linear-gradient(135deg, #94a3b8, #64748b)" }}>Quick Practice • 5 Questions</Button>
+        <Button onClick={() => startMode("full")} style={{ ...buttonBase, background: mode === "full" ? "linear-gradient(135deg, #12355b, #1d6fa5)" : "linear-gradient(135deg, #94a3b8, #64748b)" }}>Full Challenge • 25 Questions</Button>
       </div>
 
-      <div style={{ background: "rgba(255,255,255,0.94)", borderRadius: 24, padding: 28, boxShadow: "0 10px 30px rgba(0,0,0,0.08)", border: "1px solid #dbeafe" }}>
+      <Card style={{ background: "rgba(255,255,255,0.94)", borderRadius: 24, padding: 28, boxShadow: "0 10px 30px rgba(0,0,0,0.08)", border: "1px solid #dbeafe" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(145px, 1fr))", gap: 10, marginBottom: 20 }}>
           <div style={statStyle}>Question {index + 1} / {questions.length}</div>
           <div style={statStyle}>Score: {score}</div>
@@ -1764,7 +1766,7 @@ function VitalsChallengeGame({ trackExamCompletion, shareQuizResult }) {
             {index + 1 === questions.length ? "Finish Challenge" : "Next Scenario"}
           </button>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
@@ -9148,28 +9150,6 @@ return (
         </div>
       </div>
     )}
-    {/* LOGO HEADER */}
-<div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "12px",
-    padding: "12px",
-    flexWrap: "wrap",
-    textAlign: "center"
-  }}
->
-  <img
-    src={logo}
-    alt="MedSkillBuilder Logo"
-    style={{
-      width: "min(200px, 42vw)",
-      height: "auto",
-      filter: "drop-shadow(0 0 6px rgba(88, 180, 216, 0.55)) drop-shadow(0 0 16px rgba(29, 111, 165, 0.35))"
-    }}
-  />
-</div>
     <div
       style={{
         width: "100%",
@@ -9177,125 +9157,230 @@ return (
         margin: "0 auto"
       }}
     >
-      {/* HERO HEADER */}
-      <div
+      {/* HOMEPAGE HERO */}
+      <section
+        aria-labelledby="medskill-home-heading"
         style={{
+          position: "relative",
+          overflow: "hidden",
           textAlign: "center",
-          marginBottom: 20,
-          padding: "20px 10px",
-          borderRadius: 22,
-          background: "linear-gradient(135deg, #12355b, #1d6fa5, #58b4d8)",
+          marginBottom: 24,
+          padding: isSmallScreen ? "30px 18px 26px" : "38px 40px 28px",
+          borderRadius: isSmallScreen ? 24 : 30,
+          background: "linear-gradient(135deg, #12355b 0%, #1d6fa5 56%, #58b4d8 100%)",
           color: "white",
-          boxShadow: "0 10px 28px rgba(18,53,91,0.25)"
+          boxShadow: "0 18px 42px rgba(18,53,91,0.26)",
+          border: "1px solid rgba(255,255,255,0.22)"
         }}
       >
-        <h1 style={{ margin: 0, fontSize: 42, letterSpacing: 1 }}>
-          MedSkillBuilder
-        </h1>
-        <p style={{ marginTop: 10, fontSize: 18 }}>
-          Free healthcare learning academies and interactive study tools for medical assisting, medication mastery, CBET prep, biomed careers, anatomy, medical terminology, EKG, ABG, RN, TEAS, CRES, and more
-        </p>
-        <style>
-          {`
-            .medskill-hero-action {
-              min-height: 58px;
-              min-width: 240px;
-              transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-            }
-
-            .medskill-hero-action:hover {
-              transform: translateY(-3px);
-              filter: brightness(1.02);
-            }
-
-            .medskill-hero-action:focus-visible {
-              outline: 3px solid rgba(255,255,255,0.9);
-              outline-offset: 3px;
-            }
-
-            @media (max-width: 760px) {
-              .medskill-hero-action {
-                width: 100%;
-                min-width: 0;
-              }
-            }
-          `}
-        </style>
-
         <div
+          aria-hidden="true"
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "stretch",
-            gap: isSmallScreen ? 10 : 16,
-            flexWrap: "wrap",
-            marginTop: 22
+            position: "absolute",
+            width: 340,
+            height: 340,
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.08)",
+            top: -210,
+            right: -90
           }}
-        >
-          <a
-            href="/browse-all-practice.html"
-            className="medskill-hero-action"
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            width: 250,
+            height: 250,
+            borderRadius: "50%",
+            background: "rgba(88,180,216,0.13)",
+            bottom: -170,
+            left: -60
+          }}
+        />
+
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1120, margin: "0 auto" }}>
+          <img
+            src={logo}
+            alt="MedSkillBuilder"
+            style={{
+              width: isSmallScreen ? "min(138px, 44vw)" : 145,
+              height: "auto",
+              display: "block",
+              margin: isSmallScreen ? "0 auto 12px" : "0 auto 12px",
+              borderRadius: 18,
+              boxShadow: "0 12px 28px rgba(8,47,87,0.26)"
+            }}
+          />
+
+          <div
             style={{
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: isSmallScreen ? "15px 18px" : "17px 26px",
+              padding: "7px 13px",
               borderRadius: 999,
-              background: "linear-gradient(135deg, #ffffff, #dbeafe)",
-              color: "#12355b",
-              textDecoration: "none",
-              fontWeight: 950,
-              fontSize: isSmallScreen ? 14 : 16,
-              textAlign: "center",
-              boxShadow: "0 10px 24px rgba(15, 23, 42, 0.22)",
-              border: "1px solid rgba(255,255,255,0.78)"
+              marginBottom: 8,
+              background: "rgba(255,255,255,0.14)",
+              border: "1px solid rgba(255,255,255,0.28)",
+              color: "#eff6ff",
+              fontSize: isSmallScreen ? 12 : 13,
+              fontWeight: 900,
+              letterSpacing: 0.7,
+              textTransform: "uppercase"
             }}
           >
-            🚀 Explore All Practice & Study Tools
-          </a>
+            Learn faster. Remember longer.
+          </div>
 
-          <a
-            href="/recommended-study-gear.html"
-            className="medskill-hero-action"
+          <h1
+            id="medskill-home-heading"
             style={{
-              display: "inline-flex",
-              alignItems: "center",
+              margin: 0,
+              color: "white",
+              fontSize: isSmallScreen ? 34 : 48,
+              lineHeight: 1.08,
+              letterSpacing: isSmallScreen ? -0.7 : -1.2,
+              fontWeight: 950,
+              textShadow: "0 3px 16px rgba(8,47,87,0.25)"
+            }}
+          >
+            Build Real Healthcare Skills Through Practice
+          </h1>
+
+          <p
+            style={{
+              maxWidth: 920,
+              margin: isSmallScreen ? "16px auto 0" : "20px auto 0",
+              color: "rgba(255,255,255,0.94)",
+              fontSize: isSmallScreen ? 16 : 20,
+              lineHeight: 1.55,
+              fontWeight: 600
+            }}
+          >
+            Explore free academies, quizzes, and interactive study tools for medical assisting,
+            medication mastery, CBET and biomed, anatomy, medical terminology, EKG, ABG, RN,
+            TEAS, CRES, and more.
+          </p>
+
+          <style>
+            {`
+              .medskill-hero-action {
+                min-height: 58px;
+                min-width: 230px;
+                transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+              }
+
+              .medskill-hero-action:hover {
+                transform: translateY(-3px);
+                filter: brightness(1.03);
+              }
+
+              .medskill-hero-action:focus-visible {
+                outline: 3px solid rgba(255,255,255,0.95);
+                outline-offset: 3px;
+              }
+
+              @media (max-width: 760px) {
+                .medskill-hero-action {
+                  width: 100%;
+                  min-width: 0;
+                }
+              }
+            `}
+          </style>
+
+          <div
+            style={{
+              display: "flex",
               justifyContent: "center",
-              padding: isSmallScreen ? "15px 18px" : "17px 26px",
-              borderRadius: 999,
-              background: "linear-gradient(135deg, #16a34a, #22c55e)",
-              color: "white",
-              textDecoration: "none",
-              fontWeight: 950,
-              fontSize: isSmallScreen ? 14 : 16,
-              textAlign: "center",
-              boxShadow: "0 10px 24px rgba(22, 163, 74, 0.30)",
-              border: "1px solid rgba(255,255,255,0.42)"
+              alignItems: "stretch",
+              gap: isSmallScreen ? 10 : 14,
+              flexWrap: "wrap",
+              marginTop: isSmallScreen ? 26 : 32
             }}
           >
-            🛒 Recommended Study Gear
-          </a>
+            <Button
+              onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
+              className="medskill-hero-action"
+              style={{
+                padding: isSmallScreen ? "15px 18px" : "17px 30px",
+                borderRadius: 999,
+                border: "1px solid rgba(255,255,255,0.7)",
+                background: "linear-gradient(135deg, #ffffff, #dbeafe)",
+                color: "#12355b",
+                fontWeight: 950,
+                fontSize: isSmallScreen ? 15 : 17,
+                textAlign: "center",
+                cursor: "pointer",
+                boxShadow: "0 12px 28px rgba(8,47,87,0.30)"
+              }}
+            >
+              ⚡ Start CBET Practice
+            </Button>
 
-          <button
-            onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
-            className="medskill-hero-action"
+            <a
+              href="/browse-all-practice.html"
+              className="medskill-hero-action"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: isSmallScreen ? "15px 18px" : "17px 26px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.12)",
+                color: "white",
+                textDecoration: "none",
+                fontWeight: 900,
+                fontSize: isSmallScreen ? 14 : 16,
+                textAlign: "center",
+                boxShadow: "0 10px 24px rgba(8,47,87,0.18)",
+                border: "1px solid rgba(255,255,255,0.48)"
+              }}
+            >
+              🚀 Explore All Practice Tools
+            </a>
+
+            <a
+              href="/recommended-study-gear.html"
+              className="medskill-hero-action"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: isSmallScreen ? "15px 18px" : "17px 26px",
+                borderRadius: 999,
+                background: "rgba(10,96,64,0.38)",
+                color: "white",
+                textDecoration: "none",
+                fontWeight: 900,
+                fontSize: isSmallScreen ? 14 : 16,
+                textAlign: "center",
+                boxShadow: "0 10px 24px rgba(8,47,87,0.18)",
+                border: "1px solid rgba(187,247,208,0.48)"
+              }}
+            >
+              🛒 Recommended Study Gear
+            </a>
+          </div>
+
+          <div
             style={{
-              padding: isSmallScreen ? "15px 18px" : "17px 26px",
-              borderRadius: 999,
-              border: "1px solid rgba(255,255,255,0.52)",
-              background: "linear-gradient(135deg, rgba(15,23,42,0.40), rgba(29,111,165,0.45))",
-              color: "white",
-              fontWeight: 950,
-              fontSize: isSmallScreen ? 14 : 16,
-              textAlign: "center",
-              cursor: "pointer",
-              boxShadow: "0 10px 24px rgba(8,47,87,0.25)"
+              display: "flex",
+              justifyContent: "center",
+              gap: isSmallScreen ? 12 : 24,
+              flexWrap: "wrap",
+              marginTop: isSmallScreen ? 18 : 16,
+              color: "rgba(255,255,255,0.88)",
+              fontSize: isSmallScreen ? 12 : 14,
+              fontWeight: 800
             }}
           >
-            ⚡ Start CBET Practice
-          </button>
+            <span><span aria-hidden="true" style={{ fontSize: isSmallScreen ? 15 : 17 }}>✓</span> No sign-up required</span>
+            <span><span aria-hidden="true" style={{ fontSize: isSmallScreen ? 15 : 17 }}>✓</span> Practice at your own pace</span>
+            <span><span aria-hidden="true" style={{ fontSize: isSmallScreen ? 15 : 17 }}>✓</span> Built by a healthcare professional</span>
+          </div>
         </div>
-      </div>
+      </section>
 
       {SHOW_CARM_PARTNER && (
           <CArmPartnerBanner
@@ -9317,15 +9402,296 @@ return (
       <section
         aria-labelledby="featured-academies-heading"
         style={{
-          marginBottom: 18,
-          padding: isSmallScreen ? "24px 16px" : "30px 24px",
-          borderRadius: 24,
-          background: "linear-gradient(135deg, rgba(239,246,255,0.98), rgba(240,253,250,0.98))",
-          border: "1px solid #bfdbfe",
-          boxShadow: "0 16px 34px rgba(18,53,91,0.12)"
+          position: "relative",
+          marginBottom: 20,
+          padding: isSmallScreen ? "30px 16px" : "42px 30px",
+          borderRadius: 28,
+          overflow: "hidden",
+          background: "linear-gradient(145deg, rgba(248,250,252,0.99), rgba(239,246,255,0.98) 55%, rgba(236,254,255,0.96))",
+          border: "1px solid rgba(147,197,253,0.72)",
+          boxShadow: "0 18px 42px rgba(18,53,91,0.13)"
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: 22 }}>
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            width: 260,
+            height: 260,
+            borderRadius: "50%",
+            right: -95,
+            top: -120,
+            background: "rgba(56,189,248,0.10)"
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            width: 190,
+            height: 190,
+            borderRadius: "50%",
+            left: -85,
+            bottom: -105,
+            background: "rgba(14,165,233,0.08)"
+          }}
+        />
+
+        <style>
+          {`
+            .featured-academy-card {
+              transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            }
+
+            .featured-academy-card:hover {
+              transform: translateY(-6px);
+              box-shadow: 0 22px 46px rgba(18, 53, 91, 0.18) !important;
+              border-color: rgba(59, 130, 246, 0.42) !important;
+            }
+
+            .featured-academy-card:focus-visible {
+              outline: 3px solid #38bdf8;
+              outline-offset: 4px;
+            }
+
+            .featured-academy-card:hover .featured-academy-cta {
+              transform: translateX(4px);
+            }
+
+            .featured-academy-cta {
+              transition: transform 0.2s ease;
+            }
+          `}
+        </style>
+
+        <div style={{ position: "relative", zIndex: 1, textAlign: "center", marginBottom: isSmallScreen ? 24 : 30 }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "8px 14px",
+              borderRadius: 999,
+              background: "#12355b",
+              color: "white",
+              fontSize: 12,
+              fontWeight: 950,
+              letterSpacing: 1,
+              textTransform: "uppercase",
+              marginBottom: 12,
+              boxShadow: "0 8px 18px rgba(18,53,91,0.18)"
+            }}
+          >
+            🎓 Guided Learning Paths
+          </div>
+          <h2
+            id="featured-academies-heading"
+            style={{
+              color: "#12355b",
+              fontSize: isSmallScreen ? 29 : 38,
+              lineHeight: 1.12,
+              margin: "0 0 10px",
+              letterSpacing: -0.5
+            }}
+          >
+            Choose an Academy. Build a Real Skill.
+          </h2>
+          <p
+            style={{
+              color: "#4f6275",
+              fontSize: isSmallScreen ? 15 : 17,
+              lineHeight: 1.65,
+              maxWidth: 760,
+              margin: "0 auto"
+            }}
+          >
+            Follow a structured path with guided lessons, interactive practice, progress milestones, and focused skill building.
+          </p>
+        </div>
+
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(285px, 1fr))",
+            gap: isSmallScreen ? 16 : 22,
+            maxWidth: 1180,
+            margin: "0 auto"
+          }}
+        >
+          <a
+            className="featured-academy-card"
+            href="/medical-assistant-learning-path.html"
+            onClick={() =>
+              trackSiteEvent("featured_academy_click", {
+                academy: "medical_assistant",
+                target_url: "/medical-assistant-learning-path.html",
+                source: "homepage_featured_academies"
+              })
+            }
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 390,
+              padding: isSmallScreen ? 22 : 26,
+              borderRadius: 24,
+              color: "#1e293b",
+              textDecoration: "none",
+              background: "rgba(255,255,255,0.98)",
+              border: "1px solid #bfdbfe",
+              boxShadow: "0 14px 30px rgba(18,53,91,0.11)",
+              overflow: "hidden"
+            }}
+          >
+            <div style={{ height: 7, margin: isSmallScreen ? "-22px -22px 22px" : "-26px -26px 24px", background: "linear-gradient(90deg, #12355b, #1d6fa5, #38bdf8)" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+              <span style={{ width: 54, height: 54, borderRadius: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(145deg, #dbeafe, #e0f2fe)", fontSize: 27, boxShadow: "0 8px 18px rgba(29,111,165,0.12)" }}>🩺</span>
+              <span style={{ padding: "6px 10px", borderRadius: 999, background: "#eff6ff", color: "#1d4ed8", border: "1px solid #bfdbfe", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>Career Path</span>
+            </div>
+            <h3 style={{ color: "#12355b", fontSize: isSmallScreen ? 25 : 28, lineHeight: 1.15, margin: "20px 0 10px" }}>
+              Medical Assistant Academy
+            </h3>
+            <p style={{ margin: "0 0 18px", lineHeight: 1.6, color: "#526579" }}>
+              Build practical confidence in clinical skills, patient care, vital signs, infection control, terminology, medications, and professional readiness.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 22 }}>
+              {["Clinical skills", "Patient care", "Vital signs", "Certificate path"].map((label) => (
+                <span key={label} style={{ padding: "7px 10px", borderRadius: 999, background: "#f8fafc", border: "1px solid #dbeafe", color: "#334155", fontSize: 12, fontWeight: 800 }}>✓ {label}</span>
+              ))}
+            </div>
+            <span className="featured-academy-cta" style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "100%", padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, #12355b, #1d6fa5)", color: "white", fontWeight: 950, boxShadow: "0 8px 18px rgba(18,53,91,0.18)" }}>
+              Start Academy <span aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a
+            className="featured-academy-card"
+            href="/medication-mastery-academy.html"
+            onClick={() =>
+              trackSiteEvent("featured_academy_click", {
+                academy: "medication_mastery",
+                target_url: "/medication-mastery-academy.html",
+                source: "homepage_featured_academies"
+              })
+            }
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 390,
+              padding: isSmallScreen ? 22 : 26,
+              borderRadius: 24,
+              color: "#1e293b",
+              textDecoration: "none",
+              background: "rgba(255,255,255,0.98)",
+              border: "1px solid #ddd6fe",
+              boxShadow: "0 14px 30px rgba(91,33,182,0.11)",
+              overflow: "hidden"
+            }}
+          >
+            <div style={{ height: 7, margin: isSmallScreen ? "-22px -22px 22px" : "-26px -26px 24px", background: "linear-gradient(90deg, #6d28d9, #9333ea, #e11d48)" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+              <span style={{ width: 54, height: 54, borderRadius: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(145deg, #ede9fe, #fce7f3)", fontSize: 27, boxShadow: "0 8px 18px rgba(109,40,217,0.12)" }}>💊</span>
+              <span style={{ padding: "6px 10px", borderRadius: 999, background: "#faf5ff", color: "#7e22ce", border: "1px solid #e9d5ff", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>8 Missions</span>
+            </div>
+            <h3 style={{ color: "#5b21b6", fontSize: isSmallScreen ? 25 : 28, lineHeight: 1.15, margin: "20px 0 10px" }}>
+              Medication Mastery Academy
+            </h3>
+            <p style={{ margin: "0 0 18px", lineHeight: 1.6, color: "#526579" }}>
+              Master medication safety and major drug groups through interactive missions, clinical scenarios, quizzes, and a comprehensive Final Board Challenge.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 22 }}>
+              {["8 missions", "75-question final", "500 XP", "Certificate included"].map((label) => (
+                <span key={label} style={{ padding: "7px 10px", borderRadius: 999, background: "#faf5ff", border: "1px solid #e9d5ff", color: "#4c1d95", fontSize: 12, fontWeight: 800 }}>✓ {label}</span>
+              ))}
+            </div>
+            <span className="featured-academy-cta" style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "100%", padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, #6d28d9, #9333ea)", color: "white", fontWeight: 950, boxShadow: "0 8px 18px rgba(109,40,217,0.18)" }}>
+              Start Academy <span aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a
+            className="featured-academy-card"
+            href="/?tab=CBETAcademy"
+            onClick={() =>
+              trackSiteEvent("featured_academy_click", {
+                academy: "cbet_certification",
+                target_url: "/?tab=CBETAcademy",
+                source: "homepage_featured_academies"
+              })
+            }
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: 390,
+              padding: isSmallScreen ? 22 : 26,
+              borderRadius: 24,
+              color: "#1e293b",
+              textDecoration: "none",
+              background: "rgba(255,255,255,0.98)",
+              border: "1px solid #a7f3d0",
+              boxShadow: "0 14px 30px rgba(15,118,110,0.11)",
+              overflow: "hidden"
+            }}
+          >
+            <div style={{ height: 7, margin: isSmallScreen ? "-22px -22px 22px" : "-26px -26px 24px", background: "linear-gradient(90deg, #0f766e, #0e7490, #2563eb)" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+              <span style={{ width: 54, height: 54, borderRadius: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(145deg, #ccfbf1, #dbeafe)", fontSize: 27, boxShadow: "0 8px 18px rgba(15,118,110,0.12)" }}>⚡</span>
+              <span style={{ padding: "6px 10px", borderRadius: 999, background: "#ecfdf5", color: "#047857", border: "1px solid #a7f3d0", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>Certification Prep</span>
+            </div>
+            <h3 style={{ color: "#0f766e", fontSize: isSmallScreen ? 25 : 28, lineHeight: 1.15, margin: "20px 0 10px" }}>
+              CBET Certification Academy
+            </h3>
+            <p style={{ margin: "0 0 18px", lineHeight: 1.6, color: "#526579" }}>
+              Build biomedical equipment technician skills through guided electronics lessons, test-equipment training, troubleshooting, and the Virtual Lab.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 22 }}>
+              {["Guided lessons", "Virtual Lab", "Troubleshooting", "Saved progress"].map((label) => (
+                <span key={label} style={{ padding: "7px 10px", borderRadius: 999, background: "#f0fdfa", border: "1px solid #a7f3d0", color: "#134e4a", fontSize: 12, fontWeight: 800 }}>✓ {label}</span>
+              ))}
+            </div>
+            <span className="featured-academy-cta" style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "100%", padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, #0f766e, #0e7490)", color: "white", fontWeight: 950, boxShadow: "0 8px 18px rgba(15,118,110,0.18)" }}>
+              Start Academy <span aria-hidden="true">→</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      {/* QUICK PRACTICE LEARNING PATHS */}
+      <section
+        aria-labelledby="quick-practice-heading"
+        style={{
+          marginBottom: 18,
+          padding: isSmallScreen ? "28px 16px" : "38px 28px",
+          borderRadius: 26,
+          background: "linear-gradient(145deg, rgba(255,255,255,0.97), rgba(239,246,255,0.96))",
+          border: "1px solid #cbdff5",
+          boxShadow: "0 16px 34px rgba(18,53,91,0.10)",
+          overflow: "hidden"
+        }}
+      >
+        <style>
+          {`
+            .quick-practice-card {
+              height: 100%;
+              box-sizing: border-box;
+              transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            }
+
+            .quick-practice-card:hover {
+              transform: translateY(-7px);
+              box-shadow: 0 24px 42px rgba(18,53,91,0.20) !important;
+              filter: saturate(1.04);
+            }
+
+            .quick-practice-card:focus-visible {
+              outline: 3px solid rgba(29,111,165,0.34);
+              outline-offset: 4px;
+            }
+          `}
+        </style>
+
+        <div style={{ textAlign: "center", marginBottom: isSmallScreen ? 22 : 28 }}>
           <div
             style={{
               display: "inline-flex",
@@ -9339,345 +9705,44 @@ return (
               fontWeight: 950,
               letterSpacing: 1,
               textTransform: "uppercase",
-              marginBottom: 10
+              marginBottom: 11,
+              boxShadow: "0 8px 18px rgba(18,53,91,0.18)"
             }}
           >
-            🎓 Guided Learning Paths
+            ⚡ Quick Practice
           </div>
           <h2
-            id="featured-academies-heading"
+            id="quick-practice-heading"
             style={{
               color: "#12355b",
-              fontSize: isSmallScreen ? 27 : 34,
+              fontSize: isSmallScreen ? 28 : 36,
               lineHeight: 1.15,
-              margin: "0 0 8px"
+              margin: "0 0 9px"
             }}
           >
-            Featured Learning Academies
+            Pick a Skill. Start Practicing.
           </h2>
           <p
             style={{
+              textAlign: "center",
               color: "#4f6275",
-              fontSize: 16,
+              fontSize: isSmallScreen ? 15 : 17,
               lineHeight: 1.6,
-              maxWidth: 780,
-              margin: "0 auto"
+              margin: "0 auto",
+              maxWidth: 760
             }}
           >
-            Follow a structured academy for deeper learning, or continue below for quick practice.
+            Short, focused activities make it easy to build confidence one healthcare skill at a time.
           </p>
         </div>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
-            gap: 20,
-            maxWidth: 1120,
-            margin: "0 auto"
-          }}
-        >
-          <a
-            href="/medical-assistant-learning-path.html"
-            onClick={() =>
-              trackSiteEvent("featured_academy_click", {
-                academy: "medical_assistant",
-                target_url: "/medical-assistant-learning-path.html",
-                source: "homepage_featured_academies"
-              })
-            }
-            style={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              minHeight: 330,
-              padding: isSmallScreen ? 22 : 28,
-              borderRadius: 24,
-              color: "white",
-              textDecoration: "none",
-              overflow: "hidden",
-              background: "linear-gradient(145deg, #12355b, #1d6fa5 58%, #38bdf8)",
-              border: "1px solid rgba(255,255,255,0.28)",
-              boxShadow: "0 16px 30px rgba(18,53,91,0.24)"
-            }}
-          >
-            <span
-              style={{
-                alignSelf: "flex-start",
-                padding: "6px 11px",
-                borderRadius: 999,
-                background: "rgba(255,255,255,0.18)",
-                border: "1px solid rgba(255,255,255,0.34)",
-                fontSize: 12,
-                fontWeight: 950,
-                letterSpacing: 0.7,
-                textTransform: "uppercase"
-              }}
-            >
-              🩺 Medical Assistant Academy
-            </span>
-            <h3 style={{ fontSize: isSmallScreen ? 27 : 31, lineHeight: 1.12, margin: "18px 0 10px" }}>
-              Build Real-World Medical Assistant Skills
-            </h3>
-            <p style={{ margin: "0 0 18px", lineHeight: 1.58, color: "rgba(255,255,255,0.94)" }}>
-              Follow a guided path through clinical skills, patient care, vital signs, infection control,
-              medical terminology, medications, and professional readiness.
-            </p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 8,
-                marginBottom: 22
-              }}
-            >
-              {["Clinical skills", "Patient care", "Vital signs", "Certificate path"].map((label) => (
-                <span
-                  key={label}
-                  style={{
-                    padding: "7px 10px",
-                    borderRadius: 999,
-                    background: "rgba(255,255,255,0.14)",
-                    border: "1px solid rgba(255,255,255,0.24)",
-                    fontSize: 12,
-                    fontWeight: 850
-                  }}
-                >
-                  ✓ {label}
-                </span>
-              ))}
-            </div>
-            <span
-              style={{
-                marginTop: "auto",
-                alignSelf: "flex-start",
-                padding: "12px 18px",
-                borderRadius: 999,
-                background: "white",
-                color: "#12355b",
-                fontWeight: 950,
-                boxShadow: "0 8px 20px rgba(15,23,42,0.20)"
-              }}
-            >
-              Start Medical Assistant Academy →
-            </span>
-          </a>
-
-          <a
-            href="/medication-mastery-academy.html"
-            onClick={() =>
-              trackSiteEvent("featured_academy_click", {
-                academy: "medication_mastery",
-                target_url: "/medication-mastery-academy.html",
-                source: "homepage_featured_academies"
-              })
-            }
-            style={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              minHeight: 330,
-              padding: isSmallScreen ? 22 : 28,
-              borderRadius: 24,
-              color: "white",
-              textDecoration: "none",
-              overflow: "hidden",
-              background: "linear-gradient(145deg, #6d28d9, #9333ea 54%, #e11d48)",
-              border: "1px solid rgba(255,255,255,0.28)",
-              boxShadow: "0 16px 30px rgba(109,40,217,0.24)"
-            }}
-          >
-            <span
-              style={{
-                alignSelf: "flex-start",
-                padding: "6px 11px",
-                borderRadius: 999,
-                background: "#fbbf24",
-                color: "#4c1d95",
-                fontSize: 12,
-                fontWeight: 950,
-                letterSpacing: 0.7,
-                textTransform: "uppercase"
-              }}
-            >
-              💊 New Guided Academy
-            </span>
-            <h3 style={{ fontSize: isSmallScreen ? 27 : 31, lineHeight: 1.12, margin: "18px 0 10px" }}>
-              Medication Mastery Academy
-            </h3>
-            <p style={{ margin: "0 0 18px", lineHeight: 1.58, color: "rgba(255,255,255,0.94)" }}>
-              Master medication safety and major drug groups through eight interactive missions,
-              clinical scenarios, quizzes, and a comprehensive Final Board Challenge.
-            </p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 8,
-                marginBottom: 22
-              }}
-            >
-              {["8 missions", "75-question final", "500 XP", "Certificate included"].map((label) => (
-                <span
-                  key={label}
-                  style={{
-                    padding: "7px 10px",
-                    borderRadius: 999,
-                    background: "rgba(255,255,255,0.14)",
-                    border: "1px solid rgba(255,255,255,0.24)",
-                    fontSize: 12,
-                    fontWeight: 850
-                  }}
-                >
-                  ✓ {label}
-                </span>
-              ))}
-            </div>
-            <span
-              style={{
-                marginTop: "auto",
-                alignSelf: "flex-start",
-                padding: "12px 18px",
-                borderRadius: 999,
-                background: "white",
-                color: "#6d28d9",
-                fontWeight: 950,
-                boxShadow: "0 8px 20px rgba(15,23,42,0.20)"
-              }}
-            >
-              Start Medication Mastery →
-            </span>
-          </a>
-
-          <a
-            href="/?tab=CBETAcademy"
-            onClick={() =>
-              trackSiteEvent("featured_academy_click", {
-                academy: "cbet_certification",
-                target_url: "/?tab=CBETAcademy",
-                source: "homepage_featured_academies"
-              })
-            }
-            style={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              minHeight: 330,
-              padding: isSmallScreen ? 22 : 28,
-              borderRadius: 24,
-              color: "white",
-              textDecoration: "none",
-              overflow: "hidden",
-              background: "linear-gradient(145deg, #0f766e, #0e7490 54%, #2563eb)",
-              border: "1px solid rgba(255,255,255,0.28)",
-              boxShadow: "0 16px 30px rgba(15,118,110,0.24)"
-            }}
-          >
-            <span
-              style={{
-                alignSelf: "flex-start",
-                padding: "6px 11px",
-                borderRadius: 999,
-                background: "#fbbf24",
-                color: "#134e4a",
-                fontSize: 12,
-                fontWeight: 950,
-                letterSpacing: 0.7,
-                textTransform: "uppercase"
-              }}
-            >
-              ⚡ Interactive Certification Academy
-            </span>
-            <h3 style={{ fontSize: isSmallScreen ? 27 : 31, lineHeight: 1.12, margin: "18px 0 10px" }}>
-              CBET Certification Academy
-            </h3>
-            <p style={{ margin: "0 0 18px", lineHeight: 1.58, color: "rgba(255,255,255,0.94)" }}>
-              Build biomedical equipment technician skills through guided electronics lessons,
-              test-equipment training, troubleshooting challenges, and the interactive Virtual Lab.
-            </p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 8,
-                marginBottom: 22
-              }}
-            >
-              {["Guided lessons", "Virtual Lab", "Troubleshooting", "Saved progress"].map((label) => (
-                <span
-                  key={label}
-                  style={{
-                    padding: "7px 10px",
-                    borderRadius: 999,
-                    background: "rgba(255,255,255,0.14)",
-                    border: "1px solid rgba(255,255,255,0.24)",
-                    fontSize: 12,
-                    fontWeight: 850
-                  }}
-                >
-                  ✓ {label}
-                </span>
-              ))}
-            </div>
-            <span
-              style={{
-                marginTop: "auto",
-                alignSelf: "flex-start",
-                padding: "12px 18px",
-                borderRadius: 999,
-                background: "white",
-                color: "#0f766e",
-                fontWeight: 950,
-                boxShadow: "0 8px 20px rgba(15,23,42,0.20)"
-              }}
-            >
-              Start CBET Certification Academy →
-            </span>
-          </a>
-        </div>
-      </section>
-
-      {/* QUICK PRACTICE LEARNING PATHS */}
-      <div
-        style={{
-          marginBottom: 18,
-          padding: "24px 18px",
-          borderRadius: 22,
-          background: "rgba(255,255,255,0.92)",
-          border: "1px solid #d8e4f2",
-          boxShadow: "0 14px 30px rgba(18,53,91,0.10)"
-        }}
-      >
-        <div
-          style={{
-            textAlign: "center",
-            color: "#12355b",
-            fontWeight: 950,
-            letterSpacing: 1,
-            fontSize: 18,
-            marginBottom: 8
-          }}
-        >
-          CHOOSE YOUR LEARNING PATH
-        </div>
-        <p
-          style={{
-            textAlign: "center",
-            color: "#4f6275",
-            fontSize: 16,
-            margin: "0 auto 18px auto",
-            maxWidth: 760
-          }}
-        >
-          Complete a guided academy above or jump into quick practice below. Whether you are preparing for school, certification, or your healthcare career, MedSkillBuilder has a path for you.
-        </p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-            gap: 20,
+            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+            gap: isSmallScreen ? 14 : 18,
             width: "100%",
-            maxWidth: 1100,
+            maxWidth: 1160,
             margin: "0 auto",
             alignItems: "stretch"
           }}
@@ -9690,19 +9755,38 @@ return (
                 source: "start_here_spot_problem"
               })
             }
+            className="quick-practice-card"
             style={{
-              ...categoryHomeButtonStyle("#b91c1c", "#f97316"),
-              minHeight: 116,
-              textDecoration: "none",
+              position: "relative",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center"
+              minHeight: isSmallScreen ? 230 : 250,
+              padding: 22,
+              borderRadius: 22,
+              background: "white",
+              border: "1px solid #fecaca",
+              borderTop: "7px solid #ef4444",
+              color: "#12355b",
+              textDecoration: "none",
+              boxShadow: "0 12px 24px rgba(18,53,91,0.09)",
+              textAlign: "left"
             }}
           >
-            🚨 Spot the Problem
-            <span style={categoryHomeButtonSubtextStyle}>Challenging vital sign scenarios</span>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "flex-start" }}>
+              <span style={{ fontSize: 32, lineHeight: 1 }}>🚨</span>
+              <span style={{ padding: "6px 10px", borderRadius: 999, background: "#fff1f2", color: "#be123c", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>
+                Clinical Judgment
+              </span>
+            </div>
+            <h3 style={{ fontSize: 23, lineHeight: 1.18, margin: "18px 0 8px", color: "#991b1b" }}>Spot the Problem</h3>
+            <p style={{ margin: 0, color: "#52677c", lineHeight: 1.55, fontSize: 15 }}>
+              Work through challenging vital-sign scenarios and identify the most important clinical concern.
+            </p>
+            <span style={{ marginTop: "auto", paddingTop: 18, color: "#b91c1c", fontWeight: 950 }}>
+              Start Vitals Challenge →
+            </span>
           </a>
+
           <button
             onClick={() =>
               jumpToPracticeCategory("CBET", {
@@ -9710,11 +9794,39 @@ return (
                 source: "start_here_cbet"
               })
             }
-            style={{ ...categoryHomeButtonStyle("#ff6a00", "#ff4d4d"), minHeight: 116 }}
+            className="quick-practice-card"
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: isSmallScreen ? 230 : 250,
+              padding: 22,
+              borderRadius: 22,
+              background: "white",
+              border: "1px solid #fed7aa",
+              borderTop: "7px solid #f97316",
+              color: "#12355b",
+              boxShadow: "0 12px 24px rgba(18,53,91,0.09)",
+              textAlign: "left",
+              cursor: "pointer",
+              fontFamily: "inherit"
+            }}
           >
-            🔧 Free CBET Practice
-            <span style={categoryHomeButtonSubtextStyle}>Exam-style questions and feedback</span>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "flex-start", width: "100%" }}>
+              <span style={{ fontSize: 32, lineHeight: 1 }}>🔧</span>
+              <span style={{ padding: "6px 10px", borderRadius: 999, background: "#fff7ed", color: "#c2410c", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>
+                Certification Prep
+              </span>
+            </div>
+            <h3 style={{ fontSize: 23, lineHeight: 1.18, margin: "18px 0 8px", color: "#c2410c" }}>Free CBET Practice</h3>
+            <p style={{ margin: 0, color: "#52677c", lineHeight: 1.55, fontSize: 15 }}>
+              Build biomedical equipment knowledge with exam-style questions, explanations, and immediate feedback.
+            </p>
+            <span style={{ marginTop: "auto", paddingTop: 18, color: "#c2410c", fontWeight: 950 }}>
+              Start CBET Practice →
+            </span>
           </button>
+
           <button
             onClick={() =>
               jumpToPracticeCategory("Terminology", {
@@ -9722,11 +9834,39 @@ return (
                 source: "start_here_terminology"
               })
             }
-            style={{ ...categoryHomeButtonStyle("#16a34a", "#22c55e"), minHeight: 116 }}
+            className="quick-practice-card"
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: isSmallScreen ? 230 : 250,
+              padding: 22,
+              borderRadius: 22,
+              background: "white",
+              border: "1px solid #bbf7d0",
+              borderTop: "7px solid #22c55e",
+              color: "#12355b",
+              boxShadow: "0 12px 24px rgba(18,53,91,0.09)",
+              textAlign: "left",
+              cursor: "pointer",
+              fontFamily: "inherit"
+            }}
           >
-            🧾 Medical Terminology
-            <span style={categoryHomeButtonSubtextStyle}>Prefixes, suffixes, and word parts</span>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "flex-start", width: "100%" }}>
+              <span style={{ fontSize: 32, lineHeight: 1 }}>🧾</span>
+              <span style={{ padding: "6px 10px", borderRadius: 999, background: "#ecfdf5", color: "#047857", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>
+                Core Vocabulary
+              </span>
+            </div>
+            <h3 style={{ fontSize: 23, lineHeight: 1.18, margin: "18px 0 8px", color: "#047857" }}>Medical Terminology</h3>
+            <p style={{ margin: 0, color: "#52677c", lineHeight: 1.55, fontSize: 15 }}>
+              Learn prefixes, suffixes, roots, and common word parts through fast recognition practice.
+            </p>
+            <span style={{ marginTop: "auto", paddingTop: 18, color: "#047857", fontWeight: 950 }}>
+              Practice Medical Terms →
+            </span>
           </button>
+
           <button
             onClick={() =>
               jumpToPracticeCategory("Anatomy", {
@@ -9737,13 +9877,40 @@ return (
                 }
               })
             }
-            style={{ ...categoryHomeButtonStyle("#7c3aed", "#a855f7"), minHeight: 116 }}
+            className="quick-practice-card"
+            style={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              minHeight: isSmallScreen ? 230 : 250,
+              padding: 22,
+              borderRadius: 22,
+              background: "white",
+              border: "1px solid #ddd6fe",
+              borderTop: "7px solid #8b5cf6",
+              color: "#12355b",
+              boxShadow: "0 12px 24px rgba(18,53,91,0.09)",
+              textAlign: "left",
+              cursor: "pointer",
+              fontFamily: "inherit"
+            }}
           >
-            🧠 Anatomy Labeling
-            <span style={categoryHomeButtonSubtextStyle}>Visual practice and recognition</span>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 12, alignItems: "flex-start", width: "100%" }}>
+              <span style={{ fontSize: 32, lineHeight: 1 }}>🧠</span>
+              <span style={{ padding: "6px 10px", borderRadius: 999, background: "#f5f3ff", color: "#6d28d9", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>
+                Visual Learning
+              </span>
+            </div>
+            <h3 style={{ fontSize: 23, lineHeight: 1.18, margin: "18px 0 8px", color: "#6d28d9" }}>Anatomy Labeling</h3>
+            <p style={{ margin: 0, color: "#52677c", lineHeight: 1.55, fontSize: 15 }}>
+              Strengthen recognition of organs and body structures through interactive visual practice.
+            </p>
+            <span style={{ marginTop: "auto", paddingTop: 18, color: "#6d28d9", fontWeight: 950 }}>
+              Start Anatomy Practice →
+            </span>
           </button>
         </div>
-      </div>
+      </section>
 
       {/* ACHIEVEMENT CASE */}
       <div
