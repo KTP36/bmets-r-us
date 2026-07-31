@@ -3376,983 +3376,372 @@ function GuidedTroubleshootingEngine({ scenario, onExit, onComplete }) {
 }
 
 function GuardianNibpServiceCall({ onExit, onComplete }) {
-  return <GuidedTroubleshootingEngine scenario={SERVICE_CALL_SCENARIOS["WO-1052"]} onExit={onExit} onComplete={onComplete} />;
-}
-
-
-function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
-  const [stage, setStage] = useState("briefing");
-  const [patientTransferred, setPatientTransferred] = useState(false);
-  const [deviceRemoved, setDeviceRemoved] = useState(false);
-  const [selectedTool, setSelectedTool] = useState(null);
-  const [simulatorConnected, setSimulatorConnected] = useState(false);
-  const [knownGoodCableInstalled, setKnownGoodCableInstalled] = useState(false);
-  const [originalCableRemoved, setOriginalCableRemoved] = useState(false);
-  const [meterMode, setMeterMode] = useState("continuity");
-  const [probeStep, setProbeStep] = useState(0);
-  const [tests, setTests] = useState({
-    visual: false,
-    simulatorOriginal: false,
-    simulatorKnownGood: false,
-    continuity: false,
-  });
-  const [diagnosis, setDiagnosis] = useState(null);
-  const [repairComplete, setRepairComplete] = useState(false);
-  const [alarmVerified, setAlarmVerified] = useState(false);
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [phase, setPhase] = useState("dispatch");
+  const [choice, setChoice] = useState("");
+  const [attempts, setAttempts] = useState(0);
   const [xpAwarded, setXpAwarded] = useState(false);
-  const [log, setLog] = useState([
-    "06:42 — Service call WO-1048 dispatched to Clinical Engineering.",
-  ]);
-  const [openGuideStep, setOpenGuideStep] = useState(1);
-  const [evidenceOpen, setEvidenceOpen] = useState(false);
 
-  const questions = useMemo(
-    () =>
-      [
-        {
-          question: "Before removing a bedside monitor from clinical use, what is the first priority?",
-          options: [
-            "Confirm the patient is safely supported by alternate monitoring",
-            "Open the monitor enclosure",
-            "Measure cable resistance",
-            "Clear the alarm history",
-          ],
-          answer: 0,
-          explanation:
-            "Patient care comes first. The clinical team must transfer the patient to appropriate alternate monitoring before the device is removed for service.",
-        },
-        {
-          question: "Why should the patient simulator be connected through the original ECG cable first?",
-          options: [
-            "To test the complete signal path before substituting parts",
-            "To charge the monitor battery",
-            "To verify NIBP pressure",
-            "To test electrical leakage current",
-          ],
-          answer: 0,
-          explanation:
-            "Testing through the original accessories preserves the reported configuration and helps determine whether the fault is in the cable, connector, or monitor input.",
-        },
-        {
-          question: "The monitor displays ECG with a known-good cable. What has been isolated?",
-          options: [
-            "The original ECG lead set is defective",
-            "The monitor display is defective",
-            "The SpO₂ module is defective",
-            "The AC power supply is defective",
-          ],
-          answer: 0,
-          explanation:
-            "A normal waveform with the same simulator and monitor, after changing only the cable, isolates the failure to the original cable assembly.",
-        },
-        {
-          question: "When is continuity testing of the removed ECG cable appropriate?",
-          options: [
-            "After it is disconnected from the patient and monitor",
-            "While connected to the patient",
-            "While the monitor is delivering a defibrillation pulse",
-            "Only while the cable is wet",
-          ],
-          answer: 0,
-          explanation:
-            "A resistance or continuity measurement should be performed only on an isolated cable, disconnected from the patient and powered equipment.",
-        },
-        {
-          question: "What belongs in the final service record?",
-          options: [
-            "Complaint, safety actions, tests, findings, repair, and verification",
-            "Only the replacement part number",
-            "Only the final waveform",
-            "Only the technician's initials",
-          ],
-          answer: 0,
-          explanation:
-            "A defensible service record documents the reported issue, patient-safety precautions, diagnostic evidence, corrective action, and final performance verification.",
-        },
-      ].map(shuffleQuestion),
-    []
-  );
+  const phases = ["Dispatch", "Prioritize", "Assess", "Inspect", "Isolate", "Resolve"];
+  const phaseIndex = {
+    dispatch: 0,
+    priority: 1,
+    assess: 2,
+    inspect: 3,
+    cuffTest: 4,
+    hoseTest: 4,
+    root: 4,
+    complete: 5,
+  }[phase] ?? 0;
 
-  const currentQuestion = questions[questionIndex];
-  const selectedAnswer = answers[questionIndex];
-  const debriefComplete = Object.keys(answers).length === questions.length;
-  const score = questions.reduce(
-    (total, question, index) => total + (answers[index] === question.answer ? 1 : 0),
-    0
-  );
-  const waveformVisible = simulatorConnected && knownGoodCableInstalled;
-  const originalPathTested = tests.simulatorOriginal;
-  const enoughEvidence = tests.simulatorOriginal && tests.simulatorKnownGood && tests.continuity;
-
-  const workflowSteps = [
-    { id: 1, label: "Confirm alternate monitoring", complete: patientTransferred },
-    { id: 2, label: "Remove from clinical service", complete: deviceRemoved },
-    { id: 3, label: "Inspect ECG signal path", complete: tests.visual },
-    { id: 4, label: "Connect ECG patient simulator", complete: simulatorConnected },
-    { id: 5, label: "Reproduce reported complaint", complete: tests.simulatorOriginal },
-    { id: 6, label: "Install known-good ECG lead set", complete: tests.simulatorKnownGood },
-    { id: 7, label: "Verify cable continuity", complete: tests.continuity },
-    { id: 8, label: "Document root cause", complete: diagnosis === "cable" || ["repair", "debrief"].includes(stage) || debriefComplete },
-    { id: 9, label: "Repair and verify performance", complete: repairComplete && alarmVerified },
-    { id: 10, label: "Complete service call", complete: debriefComplete },
-  ];
-
-  const roomStep =
-    !patientTransferred ? 1 :
-    !deviceRemoved ? 2 :
-    !tests.visual ? 3 :
-    !simulatorConnected ? 4 :
-    !tests.simulatorOriginal ? 5 :
-    !tests.simulatorKnownGood ? 6 :
-    !tests.continuity ? 7 : 8;
-
-  const activeStep =
-    stage === "room" ? roomStep :
-    stage === "diagnosis" ? 8 :
-    stage === "repair" ? 9 :
-    stage === "debrief" ? 10 : 1;
-
-  const guideContent = {
-    1: {
-      title: "Confirm alternate monitoring",
-      message: "Before touching the monitor, make sure the patient is safely supported by another approved monitoring method.",
-      action: "Ask the nurse to transfer the patient.",
-      target: "handoff",
-    },
-    2: {
-      title: "Remove the device from clinical use",
-      message: "Label the device out of service and move it to a safe test location before connecting test equipment.",
-      action: "Remove and label the monitor.",
-      target: "handoff",
-    },
-    3: {
-      title: "Begin with a visual inspection",
-      message: "Inspect the ECG connector, cable jacket, strain relief, and obvious signs of damage before changing the setup.",
-      action: "Inspect the cable and connector.",
-      target: "monitor",
-    },
-    4: {
-      title: "Connect a known test source",
-      message: "Use the patient simulator to apply a controlled ECG signal while preserving the original cable path.",
-      action: "Select the BioSim patient simulator.",
-      target: "simulator",
-    },
-    5: {
-      title: "Reproduce the complaint",
-      message: "Apply the simulated ECG through the original lead set before substituting any parts.",
-      action: "Run the ECG through the original cable.",
-      target: "simulator",
-    },
-    6: {
-      title: "Perform a substitution test",
-      message: "Change only one item. Install a known-good ECG lead set while keeping the simulator and monitor unchanged.",
-      action: "Select the known-good ECG lead set.",
-      target: "cable",
-    },
-    7: {
-      title: "Confirm the cable fault",
-      message: "Isolate the removed cable, select continuity mode, and test each conductor to locate the open circuit.",
-      action: "Use the digital multimeter.",
-      target: "multimeter",
-    },
-    8: {
-      title: "Document the diagnosis",
-      message: "Use the evidence from the original-path test, substitution test, and continuity test to identify the failed component.",
-      action: "Continue to diagnosis.",
-      target: "evidence",
-    },
-    9: {
-      title: "Repair and verify performance",
-      message: "Install the replacement lead set, then verify ECG response, lead-off detection, and alarm operation.",
-      action: "Complete all functional checks.",
-      target: "repair",
-    },
-    10: {
-      title: "Complete the service call",
-      message: "Complete the after-action review and document the complaint, findings, corrective action, and final verification.",
-      action: "Finish the review.",
-      target: "documentation",
-    },
+  const finishCall = () => {
+    if (!xpAwarded) {
+      awardCbetXp(175, "service-call-WO-1052");
+      setXpAwarded(true);
+    }
+    onComplete?.();
+    setPhase("complete");
   };
 
-  const currentGuide = guideContent[activeStep];
-
-  function GuidedWorkflow({ compact = false }) {
-    return (
-      <aside className={`service-call-guide ${compact ? "compact" : ""}`}>
-        <div className="service-call-guide-header">
-          <div>
-            <span className="service-call-eyebrow">Guided Workflow</span>
-            <h2>Step {activeStep} of 10</h2>
-          </div>
-          <strong>{Math.round((workflowSteps.filter((step) => step.complete).length / workflowSteps.length) * 100)}%</strong>
-        </div>
-
-        <div className="service-call-step-track" aria-label="Service call progress">
-          {workflowSteps.map((step) => {
-            const locked = step.id > activeStep && !step.complete;
-            return (
-              <button
-                type="button"
-                key={step.id}
-                className={`service-call-step ${
-                  step.complete ? "complete" : step.id === activeStep ? "active" : ""
-                } ${locked ? "locked" : ""}`}
-                onClick={() => setOpenGuideStep(step.id)}
-                aria-label={`Open step ${step.id}: ${step.label}`}
-              >
-                <span>{step.complete ? "✓" : step.id}</span>
-                <small>{step.label}</small>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="service-call-next-action">
-          <span>Next action</span>
-          <h3>{currentGuide.title}</h3>
-          <p>{currentGuide.message}</p>
-          <button
-            type="button"
-            className="service-call-open-step"
-            onClick={() => setOpenGuideStep(activeStep)}
-          >
-            Open Step {activeStep}
-          </button>
-        </div>
-      </aside>
-    );
-  }
-
-  function completeCurrentGuideAction(stepId) {
-    if (stepId === 1) acknowledgeHandoff();
-    else if (stepId === 2) removeDeviceFromService();
-    else if (stepId === 3) inspectConnections();
-    else if (stepId === 4) {
-      setSelectedTool("simulator");
-      connectSimulator();
-    } else if (stepId === 5) {
-      setSelectedTool("simulator");
-      testOriginalCable();
-    } else if (stepId === 6) {
-      setSelectedTool("cable");
-      installKnownGoodCable();
-    } else if (stepId === 7) {
-      setSelectedTool("multimeter");
-    } else if (stepId === 8) {
-      setOpenGuideStep(null);
-      window.requestAnimationFrame(() => setStage("diagnosis"));
-      return;
-    } else if (stepId === 9) {
-      setOpenGuideStep(null);
-      window.requestAnimationFrame(() => setStage("repair"));
-      return;
-    } else if (stepId === 10) {
-      setOpenGuideStep(null);
-      window.requestAnimationFrame(() => setStage("debrief"));
-      return;
-    }
-  }
-
-  function GuideStepModal() {
-    if (!openGuideStep) return null;
-
-    const step = workflowSteps.find((item) => item.id === openGuideStep);
-    const content = guideContent[openGuideStep];
-    const locked = openGuideStep > activeStep && !step?.complete;
-    const isCurrent = openGuideStep === activeStep;
-    const isComplete = Boolean(step?.complete);
-
-    return (
-      <div
-        className="service-call-modal-backdrop"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="service-call-modal-title"
-        onClick={() => setOpenGuideStep(null)}
-      >
-        <article className="service-call-step-modal" onClick={(event) => event.stopPropagation()}>
-          <button
-            type="button"
-            className="service-call-modal-close"
-            onClick={() => setOpenGuideStep(null)}
-            aria-label="Close step instructions"
-          >
-            ×
-          </button>
-
-          <div className={`service-call-modal-step-number ${isComplete ? "complete" : ""}`}>
-            {isComplete ? "✓" : openGuideStep}
-          </div>
-
-          <span className="service-call-eyebrow">
-            {isComplete ? "Step Complete" : locked ? "Locked Step" : `Step ${openGuideStep} of 10`}
-          </span>
-          <h2 id="service-call-modal-title">{content.title}</h2>
-
-          {isComplete ? (
-            <div className="service-call-modal-status success">
-              <strong>{step.label} completed</strong>
-              <p>This action has been recorded in the service activity log.</p>
-            </div>
-          ) : locked ? (
-            <div className="service-call-modal-status locked">
-              <strong>Complete Step {activeStep} first</strong>
-              <p>{guideContent[activeStep].action}</p>
-            </div>
-          ) : (
-            <>
-              <p className="service-call-modal-message">{content.message}</p>
-              <div className="service-call-modal-instructions">
-                <strong>What to do</strong>
-                <p>{content.action}</p>
-              </div>
-
-              {openGuideStep === 7 && (
-                <div className="service-call-modal-status">
-                  <strong>Multimeter sequence</strong>
-                  <p>Select continuity mode, then test RA, LA, and LL conductors in order.</p>
-                </div>
-              )}
-            </>
-          )}
-
-          <div className="service-call-modal-actions">
-            <button
-              type="button"
-              className="service-call-secondary"
-              onClick={() => setOpenGuideStep(null)}
-            >
-              Close
-            </button>
-
-            {isCurrent && !isComplete && !locked && (
-              <button
-                type="button"
-                className="service-call-primary"
-                onClick={() => {
-                  const selectedStep = openGuideStep;
-                  completeCurrentGuideAction(selectedStep);
-
-                  if (![8, 9, 10].includes(selectedStep)) {
-                    setOpenGuideStep(null);
-                  }
-                }}
-              >
-                {content.action}
-              </button>
-            )}
-          </div>
-        </article>
-      </div>
-    );
-  }
-
-
-  function addLog(message) {
-    setLog((previous) => [...previous, `${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} — ${message}`]);
-  }
-
-  function acknowledgeHandoff() {
-    setPatientTransferred(true);
-    addLog("Charge nurse confirmed patient transferred to alternate monitoring.");
-    playCbetTone("correct");
-  }
-
-  function removeDeviceFromService() {
-    if (!patientTransferred) return;
-    setDeviceRemoved(true);
-    addLog("Monitor labeled out of service and moved to a safe test location.");
-    playCbetTone("correct");
-  }
-
-  function inspectConnections() {
-    setTests((previous) => ({ ...previous, visual: true }));
-    addLog("Visual inspection completed: ECG connector seated, no visible fluid intrusion, cable strain relief worn.");
-    playCbetTone("correct");
-  }
-
-  function connectSimulator() {
-    if (!deviceRemoved) return;
-    setSimulatorConnected(true);
-    addLog("BioSim patient simulator connected at 80 bpm, 1 mV ECG output.");
-    playCbetTone("correct");
-  }
-
-  function testOriginalCable() {
-    if (!simulatorConnected || knownGoodCableInstalled) return;
-    setTests((previous) => ({ ...previous, simulatorOriginal: true }));
-    addLog("No ECG waveform obtained through original lead set.");
-    playCbetTone("wrong");
-  }
-
-  function installKnownGoodCable() {
-    if (!simulatorConnected) return;
-    setKnownGoodCableInstalled(true);
-    setOriginalCableRemoved(true);
-    setTests((previous) => ({ ...previous, simulatorKnownGood: true }));
-    addLog("Known-good ECG lead set installed; waveform restored at 80 bpm.");
-    playCbetTone("correct");
-  }
-
-  function advanceProbe() {
-    if (!originalCableRemoved || meterMode !== "continuity") return;
-    const next = Math.min(3, probeStep + 1);
-    setProbeStep(next);
-    if (next === 3) {
-      setTests((previous) => ({ ...previous, continuity: true }));
-      addLog("Continuity test found an open conductor in the Lead II path.");
+  const selectAnswer = (value, correct, nextPhase) => {
+    setChoice(value);
+    if (correct) {
       playCbetTone("correct");
+      window.setTimeout(() => {
+        setChoice("");
+        setAttempts(0);
+        if (nextPhase === "complete") finishCall();
+        else setPhase(nextPhase);
+      }, 550);
+    } else {
+      playCbetTone("wrong");
+      setAttempts((count) => count + 1);
     }
-  }
+  };
 
-  useEffect(() => {
-    if (stage === "room") {
-      setOpenGuideStep(activeStep);
-    }
-  }, [stage, activeStep]);
+  const Feedback = ({ first, second }) => {
+    if (!choice) return null;
+    return <div className="pressure-feedback">{attempts >= 2 ? second : first}</div>;
+  };
 
-  useEffect(() => {
-    // Open every service-call phase at its heading.
-    const resetStageScroll = () => {
-      const assignment = document.getElementById("service-call-top");
-
-      if (assignment) {
-        assignment.scrollIntoView({
-          behavior: "auto",
-          block: "start",
-          inline: "nearest",
-        });
-        window.scrollBy({ top: -18, left: 0, behavior: "auto" });
-      } else {
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }
-
-      const mainPane = document.querySelector(".service-call-workstation-main");
-      const sidePane = document.querySelector(".service-call-workstation-sidebar");
-      if (mainPane) mainPane.scrollTop = 0;
-      if (sidePane) sidePane.scrollTop = 0;
-    };
-
-    resetStageScroll();
-    const timers = [0, 50, 140].map((delay) =>
-      window.setTimeout(resetStageScroll, delay)
-    );
-
-    return () => timers.forEach((timer) => window.clearTimeout(timer));
-  }, [stage]);
-
-  useEffect(() => {
-    if (!debriefComplete || !repairComplete || !alarmVerified || xpAwarded) return;
-    awardCbetXp(180, "hospital-work-order-1048");
-    setXpAwarded(true);
-    if (onComplete) onComplete();
-    playCbetTone("correct");
-  }, [debriefComplete, repairComplete, alarmVerified, xpAwarded, onComplete]);
-
-  if (stage === "briefing") {
-    return (
-      <main className="service-call">
-        <section className="service-call-shell" id="service-call-top">
-          <button className="service-call-back" onClick={onExit}>← Service Calls</button>
-          <article className="service-call-briefing">
-            <div className="service-call-priority">STAT</div>
-            <span className="service-call-eyebrow">Clinical Engineering Dispatch</span>
-            <h1>Service Call #048</h1>
-            <div className="service-call-brief-grid">
-              <div><span>Department</span><strong>Emergency Department • Bay 8</strong></div>
-              <div><span>Equipment</span><strong>Guardian Bedside Monitor</strong></div>
-              <div><span>Reason for service</span><strong>ECG waveform lost during monitoring</strong></div>
-              <div><span>Current status</span><strong>SpO₂ and NIBP remain available</strong></div>
-            </div>
-            <div className="service-call-note">
-              <span>Nurse handoff</span>
-              <p>“The ECG dropped out suddenly. The patient is stable, but we need continuous cardiac monitoring.”</p>
-            </div>
-            <div className="service-call-safety">
-              <strong>Before touching the equipment</strong>
-              <p>Confirm the patient is placed on alternate monitoring. Do not remove or test clinical equipment while it is still supporting patient care.</p>
-            </div>
-            <div className="service-call-actions">
-              <button className="service-call-secondary" onClick={onExit}>Return to Queue</button>
-              <button className="service-call-primary" onClick={() => setStage("room")}>Accept Assignment</button>
-            </div>
-          </article>
-        </section>
-      </main>
-    );
-  }
-
-  if (stage === "room") {
-    return (
-      <main className="service-call">
-        <section className="service-call-shell" id="service-call-top">
-          <button className="service-call-back" onClick={onExit}>← Service Calls</button>
-          <div className="service-call-stage-heading">
-            <span className="service-call-eyebrow">Emergency Department • Bay 8</span>
-            <h1>Stabilize the clinical situation before troubleshooting.</h1>
-          </div>
-
-          <div className="service-call-workstation">
-            <aside className="service-call-workstation-sidebar">
-              <GuidedWorkflow />
-
-              <div className={`service-call-handoff ${activeStep <= 2 ? "guided-highlight" : "guided-dim"}`}>
-            <div>
-              <span className="service-call-eyebrow">Clinical handoff</span>
-              <h2>Patient monitoring status</h2>
-              <p>The bedside monitor is still connected to the patient. The nurse is waiting for your direction.</p>
-            </div>
-            <div className="service-call-handoff-actions">
-              <button
-                className={patientTransferred ? "complete" : ""}
-                onClick={acknowledgeHandoff}
-              >
-                {patientTransferred ? "✓ Alternate monitoring confirmed" : "Ask nurse to transfer patient to alternate monitoring"}
-              </button>
-              <button
-                disabled={!patientTransferred}
-                className={deviceRemoved ? "complete" : ""}
-                onClick={removeDeviceFromService}
-              >
-                {deviceRemoved ? "✓ Device removed from service" : "Label and remove device from clinical use"}
-              </button>
-            </div>
-              </div>
-            </aside>
-
-            <div className="service-call-workstation-main">
-              <div className="service-call-room-grid">
-            <article className={`guardian-monitor ${deviceRemoved ? "bench-mode" : ""} ${currentGuide.target === "monitor" ? "guided-highlight" : ""}`}>
-              <div className="guardian-monitor-top">
-                <strong>Guardian Bedside Monitor</strong>
-                <span>{deviceRemoved ? "SERVICE MODE" : "PATIENT CONNECTED"}</span>
-              </div>
-              <div className="guardian-monitor-screen">
-                <div className="guardian-ecg">
-                  <span>ECG II</span>
-                  <strong>{waveformVisible ? "80" : "— —"}</strong>
-                  <div className={waveformVisible ? "service-call-waveform" : "guardian-flatline"} />
-                  <small>{waveformVisible ? "SIMULATED SIGNAL" : "ECG LEADS OFF / NO SIGNAL"}</small>
-                </div>
-                <div className="guardian-vitals">
-                  <div><span>SpO₂</span><strong>{deviceRemoved ? "—" : "98"}</strong><small>%</small></div>
-                  <div><span>NIBP</span><strong>{deviceRemoved ? "—/—" : "121/79"}</strong><small>mmHg</small></div>
-                  <div><span>Pulse</span><strong>{waveformVisible ? "80" : deviceRemoved ? "—" : "74"}</strong><small>bpm</small></div>
-                </div>
-              </div>
-              <div className="guardian-monitor-controls">
-                <button
-                  disabled={!deviceRemoved}
-                  onClick={inspectConnections}
-                  className={tests.visual ? "complete" : ""}
-                >
-                  {tests.visual ? "✓ Visual inspection documented" : "Inspect connector, cable, and strain relief"}
-                </button>
-              </div>
-            </article>
-
-            <aside className="service-call-toolbox">
-              <span className="service-call-eyebrow">Technician Toolbox</span>
-              <h2>Select a diagnostic tool</h2>
-              <p>Use tools in a logical order. Preserve the reported configuration before substituting parts.</p>
-
-              <div className="service-call-tools">
-                {[
-                  ["simulator", "🫀", "BioSim patient simulator"],
-                  ["cable", "🔌", "Known-good ECG lead set"],
-                  ["multimeter", "🔧", "Digital multimeter"],
-                ].map(([id, icon, label]) => (
-                  <button
-                    key={id}
-                    disabled={!deviceRemoved}
-                    className={`${selectedTool === id ? "active" : ""} ${
-                      currentGuide.target === id ? "recommended guided-highlight" : ""
-                    }`}
-                    onClick={() => setSelectedTool(id)}
-                  >
-                    <span>{icon}</span>
-                    <strong>{label}</strong>
-                    <small>{selectedTool === id ? "Selected" : "Available"}</small>
-                  </button>
-                ))}
-              </div>
-
-              {selectedTool === "simulator" && (
-                <div className="service-call-tool-action">
-                  <strong>BioSim patient simulator</strong>
-                  <p>Output: normal sinus rhythm, 80 bpm, 1 mV amplitude.</p>
-                  <div className="service-call-cable-diagram">
-                    <span className={simulatorConnected ? "connected" : ""}>SIMULATOR</span>
-                    <i className={simulatorConnected ? "connected" : ""} />
-                    <span className={simulatorConnected ? "connected" : ""}>
-                      {knownGoodCableInstalled ? "KNOWN-GOOD CABLE" : "ORIGINAL ECG CABLE"}
-                    </span>
-                    <i className={simulatorConnected ? "connected" : ""} />
-                    <span className={simulatorConnected ? "connected" : ""}>MONITOR</span>
-                  </div>
-                  {!simulatorConnected ? (
-                    <button className="service-call-primary" onClick={connectSimulator}>Connect ECG patient simulator</button>
-                  ) : !originalPathTested ? (
-                    <button className="service-call-primary" onClick={testOriginalCable}>Reproduce reported complaint</button>
-                  ) : (
-                    <div className="service-call-result warning">No waveform through the original cable path.</div>
-                  )}
-                </div>
-              )}
-
-              {selectedTool === "cable" && (
-                <div className="service-call-tool-action">
-                  <strong>Known-good ECG lead set</strong>
-                  <p>Substitute only after documenting the original configuration.</p>
-                  <button
-                    className="service-call-primary"
-                    disabled={!tests.simulatorOriginal}
-                    onClick={installKnownGoodCable}
-                  >
-                    Install known-good ECG lead set
-                  </button>
-                  {knownGoodCableInstalled && (
-                    <div className="service-call-result success">ECG restored at 80 bpm. Monitor input is responding normally.</div>
-                  )}
-                </div>
-              )}
-
-              {selectedTool === "multimeter" && (
-                <div className="service-call-tool-action">
-                  <strong>Digital multimeter</strong>
-                  <p>Use only on the removed cable, isolated from the patient and monitor.</p>
-                  <div className="service-call-dmm">
-                    <div className="service-call-dmm-display">
-                      {!originalCableRemoved
-                        ? "DISCONNECT CABLE"
-                        : meterMode !== "continuity"
-                        ? "WRONG MODE"
-                        : probeStep < 3
-                        ? "0.3 Ω"
-                        : "OL"}
-                    </div>
-                    <div className="service-call-dmm-modes">
-                      {["voltage", "continuity", "resistance"].map((mode) => (
-                        <button
-                          key={mode}
-                          className={meterMode === mode ? "active" : ""}
-                          onClick={() => setMeterMode(mode)}
-                        >
-                          {mode === "voltage" ? "V" : mode === "continuity" ? "🔔" : "Ω"}
-                        </button>
-                      ))}
-                    </div>
-                    <div className="service-call-probe-board">
-                      <span className={probeStep >= 1 ? "tested" : ""}>RA</span>
-                      <span className={probeStep >= 2 ? "tested" : ""}>LA</span>
-                      <span className={probeStep >= 3 ? "open" : ""}>LL / Lead II</span>
-                    </div>
-                  </div>
-                  <button
-                    className="service-call-primary"
-                    disabled={!originalCableRemoved || meterMode !== "continuity" || probeStep >= 3}
-                    onClick={advanceProbe}
-                  >
-                    {probeStep === 0 ? "Test RA conductor" : probeStep === 1 ? "Test LA conductor" : "Test LL conductor"}
-                  </button>
-                  {tests.continuity && (
-                    <div className="service-call-result warning">Open circuit found in the LL conductor used for Lead II.</div>
-                  )}
-                </div>
-              )}
-            </aside>
-          </div>
-
-          <article className={`service-call-evidence-compact ${currentGuide.target === "evidence" ? "guided-highlight" : ""}`}>
-            <button
-              type="button"
-              className="service-call-evidence-summary"
-              onClick={() => setEvidenceOpen((value) => !value)}
-              aria-expanded={evidenceOpen}
-            >
-              <div>
-                <span>Diagnostic Evidence</span>
-                <strong>{Object.values(tests).filter(Boolean).length} of 4 findings recorded</strong>
-              </div>
-              <div className="service-call-current-task">
-                <span>Current task</span>
-                <strong>{currentGuide.title}</strong>
-              </div>
-              <span className="service-call-evidence-toggle">{evidenceOpen ? "Hide" : "View"}</span>
-            </button>
-
-            {evidenceOpen && (
-              <div className="service-call-evidence-expanded">
-                <ul>
-                  <li className={patientTransferred ? "done" : ""}>Alternate monitoring confirmed</li>
-                  <li className={deviceRemoved ? "done" : ""}>Device removed from service</li>
-                  <li className={tests.visual ? "done" : ""}>Visual inspection</li>
-                  <li className={tests.simulatorOriginal ? "done" : ""}>Original signal path tested</li>
-                  <li className={tests.simulatorKnownGood ? "done" : ""}>Known-good cable verified</li>
-                  <li className={tests.continuity ? "done" : ""}>Continuity fault located</li>
-                </ul>
-                <button
-                  type="button"
-                  className="service-call-primary"
-                  disabled={!enoughEvidence}
-                  onClick={() => setStage("diagnosis")}
-                >
-                  Document Root Cause
-                </button>
-              </div>
-            )}
-          </article>
-
-              <details className="service-call-log">
-                <summary>
-                  <span className="service-call-eyebrow">Service Activity Log</span>
-                  <strong>{log.length} entries</strong>
-                </summary>
-                <div className="service-call-log-entries">
-                  {log.map((entry, index) => <p key={`${entry}-${index}`}>{entry}</p>)}
-                </div>
-              </details>
-            </div>
-          </div>
-          <GuideStepModal />
-        </section>
-      </main>
-    );
-  }
-
-  if (stage === "diagnosis") {
-    const choices = [
-      ["monitor", "Replace the complete bedside monitor"],
-      ["cable", "Original ECG lead set has an open conductor"],
-      ["module", "SpO₂ module failure"],
-      ["configuration", "Incorrect NIBP configuration"],
-    ];
-
-    return (
-      <main className="service-call">
-        <section className="service-call-shell narrow" id="service-call-top">
-          <button className="service-call-back" onClick={() => setStage("room")}>← Return to test bench</button>
-          <GuidedWorkflow compact />
-          <article className="service-call-card guided-highlight">
-            <span className="service-call-eyebrow">Fault Isolation</span>
-            <h1>Select the diagnosis supported by the evidence.</h1>
-            <div className="service-call-diagnostic-summary">
-              <p>Simulator through original cable: <strong>No ECG waveform</strong></p>
-              <p>Simulator through known-good cable: <strong>Normal 80 bpm waveform</strong></p>
-              {tests.continuity && <p>Original cable continuity: <strong>LL conductor open</strong></p>}
-            </div>
-            <div className="service-call-diagnosis-options">
-              {choices.map(([id, label]) => (
-                <button
-                  key={id}
-                  className={diagnosis === id ? (id === "cable" ? "correct" : "wrong") : ""}
-                  onClick={() => {
-                    setDiagnosis(id);
-                    playCbetTone(id === "cable" ? "correct" : "wrong");
-                  }}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-            {diagnosis && diagnosis !== "cable" && (
-              <div className="service-call-result warning">
-                This choice does not fit the substitution test. The same monitor and simulator worked when only the cable changed.
-              </div>
-            )}
-            {diagnosis === "cable" && (
-              <>
-                <div className="service-call-result success">
-                  Fault isolated to the original ECG lead set. Replace the accessory and perform a full functional verification.
-                </div>
-                <button className="service-call-primary full" onClick={() => setStage("repair")}>
-                  Continue to Corrective Action
-                </button>
-              </>
-            )}
-          </article>
-          <GuideStepModal />
-        </section>
-      </main>
-    );
-  }
-
-  if (stage === "repair") {
-    return (
-      <main className="service-call">
-        <section className="service-call-shell narrow" id="service-call-top">
-          <button className="service-call-back" onClick={() => setStage("diagnosis")}>← Diagnosis</button>
-          <GuidedWorkflow compact />
-          <article className="service-call-card guided-highlight">
-            <span className="service-call-eyebrow">Corrective Action and Verification</span>
-            <h1>Replace the failed lead set and verify performance.</h1>
-
-            <div className={`service-call-repair-monitor ${repairComplete ? "repaired" : ""}`}>
-              <span>ECG II</span>
-              <strong>{repairComplete ? "80" : "—"}</strong>
-              <div className={repairComplete ? "service-call-waveform" : "guardian-flatline"} />
-              <small>{repairComplete ? "NORMAL SINUS RHYTHM • 1 mV SIMULATOR INPUT" : "NO SIGNAL"}</small>
-            </div>
-
-            {!repairComplete ? (
-              <button
-                className="service-call-primary full"
-                onClick={() => {
-                  setRepairComplete(true);
-                  addLog("Replacement ECG lead set installed and waveform verified.");
-                  playCbetTone("correct");
-                }}
-              >
-                Install Replacement Lead Set
-              </button>
-            ) : (
-              <>
-                <div className="service-call-verification-list">
-                  <label><input type="checkbox" checked readOnly /> ECG waveform and heart rate verified</label>
-                  <label><input type="checkbox" checked readOnly /> Lead-off detection verified</label>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={alarmVerified}
-                      onChange={(event) => {
-                        setAlarmVerified(event.target.checked);
-                        if (event.target.checked) addLog("ECG high/low alarm response verified.");
-                      }}
-                    />
-                    High and low heart-rate alarms verified
-                  </label>
-                </div>
-
-                <button
-                  className="service-call-primary full"
-                  disabled={!alarmVerified}
-                  onClick={() => setStage("debrief")}
-                >
-                  Close Technical Work and Begin Review
-                </button>
-              </>
-            )}
-          </article>
-          <GuideStepModal />
-        </section>
-      </main>
-    );
-  }
-
-  if (stage === "debrief" && !debriefComplete) {
-    return (
-      <main className="service-call">
-        <section className="service-call-shell narrow" id="service-call-top">
-          <GuidedWorkflow compact />
-          <article className="service-call-card guided-highlight">
-            <div className="service-call-question-meta">
-              <span className="service-call-eyebrow">After-Action Review</span>
-              <strong>{questionIndex + 1} of {questions.length}</strong>
-            </div>
-            <h1>{currentQuestion.question}</h1>
-            <div className="service-call-answer-grid">
-              {currentQuestion.options.map((option, index) => {
-                const answered = selectedAnswer !== undefined;
-                const className = answered
-                  ? index === currentQuestion.answer
-                    ? "correct"
-                    : index === selectedAnswer
-                    ? "wrong"
-                    : ""
-                  : "";
-                return (
-                  <button
-                    key={option}
-                    className={className}
-                    disabled={answered}
-                    onClick={() => {
-                      setAnswers((previous) => ({ ...previous, [questionIndex]: index }));
-                      playCbetTone(index === currentQuestion.answer ? "correct" : "wrong");
-                    }}
-                  >
-                    {option}
-                  </button>
-                );
-              })}
-            </div>
-            {selectedAnswer !== undefined && (
-              <div className={`service-call-result ${selectedAnswer === currentQuestion.answer ? "success" : "warning"}`}>
-                <strong>{selectedAnswer === currentQuestion.answer ? "Correct." : "Review this point."}</strong>
-                <p>{currentQuestion.explanation}</p>
-              </div>
-            )}
-            <button
-              className="service-call-primary full"
-              disabled={selectedAnswer === undefined}
-              onClick={() => setQuestionIndex((index) => Math.min(index + 1, questions.length - 1))}
-            >
-              {questionIndex === questions.length - 1 ? "Complete Service Call" : "Next Question"}
-            </button>
-          </article>
-          <GuideStepModal />
-        </section>
-      </main>
-    );
-  }
+  const Choice = ({ id, children, correct, next }) => (
+    <button
+      type="button"
+      className={`pressure-choice ${choice === id ? (correct ? "correct" : "wrong") : ""}`}
+      onClick={() => selectAnswer(id, correct, next)}
+    >
+      {children}
+    </button>
+  );
 
   return (
-    <main className="service-call">
-      <section className="service-call-shell narrow" id="service-call-top">
-        <article className="service-call-complete">
-          <div className="service-call-complete-icon">✓</div>
-          <span className="service-call-eyebrow">Service Call Complete</span>
-          <h1>Guardian monitor returned to clinical service.</h1>
-          <div className="service-call-complete-grid">
-            <div><span>Failure</span><strong>Open conductor in ECG lead set</strong></div>
-            <div><span>Corrective action</span><strong>Lead set replaced</strong></div>
-            <div><span>Verification</span><strong>ECG, lead-off, and alarms passed</strong></div>
-            <div><span>Review score</span><strong>{score} of {questions.length}</strong></div>
-            <div><span>Disposition</span><strong>Returned to service</strong></div>
-            <div className="service-call-competencies">
-              <span>Competencies Demonstrated</span>
-              <ul>
-                <li>✅ Patient Safety</li>
-                <li>✅ Visual Inspection</li>
-                <li>✅ Signal Tracing</li>
-                <li>✅ Evidence-Based Troubleshooting</li>
-              </ul>
-              <small>+180 Learning Points</small>
+    <section className="pressure-shell" id="guided-troubleshooting-top">
+      <style>{`
+        .pressure-shell{min-height:100vh;background:#eef5f8;color:#102a43;padding:18px;font-family:inherit;box-sizing:border-box}
+        .pressure-shell *{box-sizing:border-box}.pressure-shell button{font:inherit}
+        .pressure-topbar{max-width:1220px;margin:0 auto 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+        .pressure-back{border:1px solid #c7d9e4;background:#fff;color:#174565;border-radius:12px;padding:10px 15px;font-weight:850;cursor:pointer}
+        .pressure-brand{font-size:.77rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#087aa7}
+        .pressure-card{max-width:1220px;margin:0 auto;background:#fff;border:1px solid #d3e3ec;border-radius:26px;box-shadow:0 16px 40px rgba(22,65,91,.12);overflow:hidden}
+        .pressure-header{padding:26px clamp(22px,4vw,46px);background:linear-gradient(135deg,#122f49,#126a82);color:#fff}
+        .pressure-header-grid{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.pressure-header h1{font-size:clamp(2.2rem,5vw,4.4rem);line-height:1;margin:8px 0 12px}.pressure-header p{font-size:1.05rem;line-height:1.55;margin:0;max-width:760px;color:#dceef7}
+        .pressure-icon{width:98px;height:98px;border-radius:24px;background:rgba(255,255,255,.13);display:grid;place-items:center;font-size:3rem;border:1px solid rgba(255,255,255,.22)}
+        .pressure-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.pressure-meta span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 12px;font-size:.86rem;font-weight:750}
+        .pressure-progress{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;padding:17px clamp(18px,3vw,38px);border-bottom:1px solid #dce8ef;background:#f8fbfc}.pressure-progress span{padding:8px 6px;border-radius:10px;text-align:center;color:#7890a1;font-size:.74rem;font-weight:850}.pressure-progress span.active{background:#dff3fb;color:#087aa7}.pressure-progress span.done{background:#e3f5eb;color:#14734c}
+        .pressure-body{padding:clamp(24px,4vw,46px);max-width:900px;margin:auto}.pressure-body h2{font-size:clamp(1.65rem,3vw,2.45rem);line-height:1.15;margin:8px 0 12px;color:#0b2942}.pressure-body>p{font-size:1.05rem;line-height:1.65;color:#536c7e}
+        .pressure-kicker{display:inline-flex;border-radius:999px;background:#e5f4fa;color:#087ba7;padding:7px 11px;font-size:.75rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+        .pressure-call{margin:24px 0;background:#f4f8fa;border:1px solid #d5e4ec;border-radius:20px;padding:22px}.pressure-call strong{display:block;color:#0b3858;margin-bottom:9px}.pressure-call blockquote{margin:0;color:#456174;font-size:1.08rem;line-height:1.62}
+        .pressure-choice{width:100%;text-align:left;border:1px solid #cbdde7;background:#fff;color:#173d58;border-radius:15px;padding:15px 17px;margin:8px 0;font-weight:800;cursor:pointer;transition:.16s}.pressure-choice:hover{border-color:#1389b4;transform:translateY(-1px);box-shadow:0 7px 18px rgba(30,100,130,.09)}.pressure-choice.correct{border-color:#1c9b66;background:#e9f8f0}.pressure-choice.wrong{border-color:#d95d63;background:#fff0f0}
+        .pressure-primary,.pressure-secondary{border:0;border-radius:13px;padding:13px 19px;font-weight:900;cursor:pointer}.pressure-primary{background:#087ca8;color:#fff;box-shadow:0 8px 20px rgba(8,124,168,.22)}.pressure-secondary{background:#e7f0f4;color:#174565}.pressure-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+        .pressure-feedback{margin-top:12px;background:#fff7e6;border:1px solid #f2d493;color:#72541b;border-radius:14px;padding:13px 15px;line-height:1.5;font-weight:720}
+        .pressure-clues{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:21px 0}.pressure-clue{border-radius:16px;padding:17px;border:1px solid #d6e3ea;background:#f7fafb}.pressure-clue span{display:block;font-size:.73rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:#71899a;margin-bottom:7px}.pressure-clue strong{font-size:1.05rem}.pressure-clue.good{border-color:#b9e4cb;background:#effaf4}.pressure-clue.bad{border-color:#f0c0c0;background:#fff3f3}
+        .pressure-monitor{background:#071923;color:#d8f8ff;border-radius:20px;padding:18px;margin:22px 0;box-shadow:inset 0 0 0 1px #234653}.pressure-monitor-top{display:flex;justify-content:space-between;color:#7cb4c5;font-size:.72rem;font-weight:900;letter-spacing:.08em}.pressure-gauge{height:92px;margin:18px 0 10px;display:flex;align-items:flex-end;gap:8px}.pressure-gauge i{display:block;flex:1;background:#43d4e7;border-radius:5px 5px 1px 1px;min-height:10px}.pressure-gauge.failed i:nth-child(n+5){background:#b64950}.pressure-readings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pressure-readings div{background:#102d39;border-radius:10px;padding:10px}.pressure-readings span{display:block;color:#75aebe;font-size:.68rem;font-weight:850}.pressure-readings strong{display:block;margin-top:4px;font-size:.97rem;color:#e8fbff}
+        .pressure-teach{margin:18px 0;background:#eaf6fb;border-left:4px solid #1688b2;border-radius:12px;padding:15px 17px;color:#24546d;line-height:1.55}
+        .pressure-success{text-align:center}.pressure-success-icon{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;background:#dff5e8;color:#148052;font-size:2.2rem;font-weight:950}.pressure-report{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left;margin:24px 0}.pressure-report div{border:1px solid #d9e6ed;border-radius:15px;padding:15px;background:#f9fbfc}.pressure-report span{display:block;color:#71899a;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}.pressure-report strong{color:#173c56}
+        .pressure-consequence{text-align:left;border:1px solid #f0cf9c;background:#fff8ec;border-radius:18px;padding:19px;margin:22px 0}.pressure-consequence h3{margin:0 0 10px;color:#7d5512}.pressure-consequence p{margin:7px 0;color:#624e2d;line-height:1.5}
+        .pressure-pearl{border-radius:18px;padding:20px;background:linear-gradient(135deg,#0d334e,#0b6b86);color:#fff;text-align:left;margin:22px 0}.pressure-pearl span{display:block;color:#aee9f6;font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}.pressure-pearl strong{font-size:1.08rem;line-height:1.55}
+        .pressure-achievement{display:flex;align-items:center;gap:13px;border:1px solid #d3e3ec;background:#f5f9fb;border-radius:18px;padding:17px;text-align:left}.pressure-achievement>b{font-size:2rem}.pressure-achievement span{display:block;color:#71899a;font-size:.72rem;font-weight:900;text-transform:uppercase}.pressure-achievement strong{display:block;color:#173d58}.pressure-xp{margin-left:auto!important;color:#0b8560!important;font-size:1.15rem}
+        @media(max-width:700px){.pressure-header-grid{grid-template-columns:1fr}.pressure-icon{display:none}.pressure-progress{grid-template-columns:repeat(3,1fr)}.pressure-clues,.pressure-report{grid-template-columns:1fr}.pressure-readings{grid-template-columns:1fr}.pressure-body{padding:23px 17px}}
+      `}</style>
+
+      <div className="pressure-topbar">
+        <button type="button" className="pressure-back" onClick={onExit}>← Service Calls</button>
+        <span className="pressure-brand">MedSkillBuilder Clinical Engineering Academy</span>
+      </div>
+
+      <article className="pressure-card">
+        <header className="pressure-header">
+          <div className="pressure-header-grid">
+            <div>
+              <span className="pressure-brand" style={{ color: "#bceaff" }}>Interactive Service Call</span>
+              <h1>Pressure Lost</h1>
+              <p>The blood-pressure cuff inflates, but the bedside monitor cannot complete a reading.</p>
+              <div className="pressure-meta"><span>4 West • Room 418</span><span>Guardian GX5 Bedside Monitor</span><span>Beginner+ • 7–9 minutes</span></div>
             </div>
+            <div className="pressure-icon" aria-hidden="true">◉</div>
           </div>
-          <div className="service-call-learning-summary">
-            <h3>What You Practiced</h3>
-            <p>
-              You safely removed a monitor from service, reproduced the complaint,
-              isolated the failure using a known-good lead set, confirmed the diagnosis
-              with continuity testing, and verified proper operation before returning
-              the monitor to clinical service.
-            </p>
-          </div>
-          <div className="service-call-report">
-            <strong>Final service note</strong>
-            <p>
-              Confirmed patient transfer to alternate monitoring and removed the device from clinical use.
-              Reproduced loss of ECG using an 80 bpm, 1 mV simulated signal through the original lead set.
-              Substituted a known-good lead set and restored ECG. Continuity testing identified an open LL
-              conductor in the original accessory. Replaced the lead set and verified waveform display,
-              lead-off detection, heart-rate calculation, and high/low alarm response.
-            </p>
-          </div>
-          <div className="service-call-actions">
-            <button className="service-call-secondary" onClick={onOpenTraining}>Review Related Training</button>
-            <button className="service-call-primary" onClick={onExit}>Return to Service Calls</button>
-          </div>
-        </article>
-      </section>
-    </main>
+        </header>
+
+        <div className="pressure-progress">
+          {phases.map((label, index) => <span key={label} className={index < phaseIndex ? "done" : index === phaseIndex ? "active" : ""}>{index < phaseIndex ? "✓ " : ""}{label}</span>)}
+        </div>
+
+        <main className="pressure-body">
+          {phase === "dispatch" && <>
+            <span className="pressure-kicker">Incoming Service Call</span>
+            <h2>4 West needs Clinical Engineering.</h2>
+            <div className="pressure-call"><strong>Nurse report</strong><blockquote>“The cuff starts inflating, then the monitor stops and says LEAK. ECG and pulse ox are fine. We tried the blood pressure twice.”</blockquote></div>
+            <button type="button" className="pressure-primary" onClick={() => setPhase("priority")}>Accept Service Call</button>
+          </>}
+
+          {phase === "priority" && <>
+            <span className="pressure-kicker">Step 1 • Prioritize</span><h2>What should happen before troubleshooting begins?</h2>
+            <Choice id="cycle" correct={false} next="assess">Run several more NIBP cycles on the patient</Choice>
+            <Choice id="alternate" correct={true} next="assess">Confirm the patient is stable and another blood-pressure method is available</Choice>
+            <Choice id="open" correct={false} next="assess">Open the monitor and inspect the pump</Choice>
+            <Choice id="reset" correct={false} next="assess">Reset the monitor to factory settings</Choice>
+            <Feedback first="Start with the clinical situation, not the suspected component." second="The monitor may need to be removed from use. Make sure blood-pressure monitoring continues first." />
+          </>}
+
+          {phase === "assess" && <>
+            <span className="pressure-kicker">Step 2 • Assess the Evidence</span><h2>What does the pattern suggest?</h2>
+            <div className="pressure-clues"><div className="pressure-clue good"><span>ECG</span><strong>Normal waveform</strong></div><div className="pressure-clue good"><span>SpO₂</span><strong>98% • good pleth</strong></div><div className="pressure-clue bad"><span>NIBP</span><strong>Inflates • LEAK</strong></div></div>
+            <Choice id="total" correct={false} next="inspect">The entire monitor has failed</Choice>
+            <Choice id="pneumatic" correct={true} next="inspect">The problem is likely within the NIBP pneumatic path</Choice>
+            <Choice id="network" correct={false} next="inspect">The central monitoring network has failed</Choice>
+            <Choice id="power" correct={false} next="inspect">The monitor power supply is unstable</Choice>
+            <Feedback first="Use the functions that still work to narrow the affected system." second="Only the cuff-based pressure function is failing; focus on the cuff, hose, connections, and NIBP hardware." />
+          </>}
+
+          {phase === "inspect" && <>
+            <span className="pressure-kicker">Step 3 • Inspect</span><h2>What is the best first equipment check?</h2>
+            <div className="pressure-monitor"><div className="pressure-monitor-top"><span>GUARDIAN GX5</span><span>NIBP CYCLE</span></div><div className="pressure-gauge failed">{[18,30,45,62,48,35,22,12].map((h,i)=><i key={i} style={{height:`${h}px`}}/>)}</div><div className="pressure-readings"><div><span>ECG</span><strong>78 bpm</strong></div><div><span>SpO₂</span><strong>98%</strong></div><div><span>NIBP</span><strong>LEAK</strong></div></div></div>
+            <Choice id="external" correct={true} next="cuffTest">Inspect cuff size and placement, tubing, and all external connections</Choice>
+            <Choice id="pump" correct={false} next="cuffTest">Replace the internal NIBP pump</Choice>
+            <Choice id="software" correct={false} next="cuffTest">Reinstall the monitor software</Choice>
+            <Choice id="network2" correct={false} next="cuffTest">Troubleshoot the network switch</Choice>
+            <Feedback first="Begin with accessible causes before internal repair." second="A leak message should first lead you through the external pneumatic pathway from cuff to monitor connector." />
+          </>}
+
+          {phase === "cuffTest" && <>
+            <span className="pressure-kicker">Step 4 • Change One Variable</span><h2>The cuff is correctly sized and positioned. The patient is still. What should you do next?</h2>
+            <div className="pressure-teach"><strong>Inspection evidence:</strong> The cuff bladder looks intact. The hose shows light wear near the connector, but no obvious opening is visible.</div>
+            <Choice id="goodcuff" correct={true} next="hoseTest">Test with a compatible known-good cuff while keeping the original hose</Choice>
+            <Choice id="wholemonitor" correct={false} next="hoseTest">Replace the complete bedside monitor</Choice>
+            <Choice id="calibrate" correct={false} next="hoseTest">Calibrate the ECG channel</Choice>
+            <Choice id="ignore" correct={false} next="hoseTest">Return it to use because ECG and SpO₂ work</Choice>
+            <Feedback first="Choose an action that isolates one part of the pneumatic path." second="Keep the original hose and change only the cuff. The result will tell you whether the cuff is responsible." />
+          </>}
+
+          {phase === "hoseTest" && <>
+            <span className="pressure-kicker">Step 5 • Isolate the Fault</span><h2>The known-good cuff produces the same leak error. What is the strongest next test?</h2>
+            <div className="pressure-teach"><strong>New evidence:</strong> Changing only the cuff did not change the failure. The original hose remains in the test setup.</div>
+            <Choice id="goodhose" correct={true} next="root">Install a known-good NIBP hose and repeat the cycle</Choice>
+            <Choice id="pump2" correct={false} next="root">Replace the internal pump immediately</Choice>
+            <Choice id="battery" correct={false} next="root">Replace the monitor battery</Choice>
+            <Choice id="alarm" correct={false} next="root">Disable the leak alarm</Choice>
+            <Feedback first="Continue isolating the external pressure path before moving inside the device." second="The cuff has been ruled out. The remaining external component between cuff and monitor is the hose." />
+          </>}
+
+          {phase === "root" && <>
+            <span className="pressure-kicker">Step 6 • Identify Root Cause</span><h2>A normal 122/78 reading completes with the known-good hose. What conclusion is supported?</h2>
+            <div className="pressure-monitor"><div className="pressure-monitor-top"><span>GUARDIAN GX5</span><span>CYCLE COMPLETE</span></div><div className="pressure-gauge">{[12,22,34,48,62,72,82,90].map((h,i)=><i key={i} style={{height:`${h}px`}}/>)}</div><div className="pressure-readings"><div><span>ECG</span><strong>78 bpm</strong></div><div><span>SpO₂</span><strong>98%</strong></div><div><span>NIBP</span><strong>122/78</strong></div></div></div>
+            <Choice id="hose" correct={true} next="complete">The original NIBP hose is leaking</Choice>
+            <Choice id="cuff" correct={false} next="complete">The original cuff is leaking</Choice>
+            <Choice id="pump3" correct={false} next="complete">The internal pump has failed</Choice>
+            <Choice id="network3" correct={false} next="complete">The network caused the failed cycle</Choice>
+            <Feedback first="Follow what changed immediately before normal operation returned." second="The cuff had already failed to change the result. Replacing only the hose restored a complete cycle." />
+          </>}
+
+          {phase === "complete" && <div className="pressure-success">
+            <div className="pressure-success-icon">✓</div><span className="pressure-kicker">Service Call Complete</span><h2>Blood-pressure monitoring restored.</h2><p>The Guardian monitor and NIBP pump were functioning. A leak in the original hose prevented the cuff from maintaining pressure.</p>
+            <div className="pressure-report"><div><span>Complaint</span><strong>Cuff inflates, then cycle stops with LEAK</strong></div><div><span>Root cause</span><strong>Leak near original hose connector strain relief</strong></div><div><span>Corrective action</span><strong>Replaced NIBP hose</strong></div><div><span>Verification</span><strong>Three successful NIBP cycles completed</strong></div></div>
+            <div className="pressure-consequence"><h3>What would have happened?</h3><p>Replacing the monitor first could have removed a working device while leaving the leaking hose in use.</p><p>If the original hose were connected to the replacement monitor, the same leak error would likely return.</p><p>Opening the monitor too early would add downtime without first eliminating the more common external causes.</p></div>
+            <div className="pressure-pearl"><span>Clinical Pearl</span><strong>For pneumatic failures, isolate the pressure path one component at a time: cuff, hose, connector, then internal hardware.</strong></div>
+            <div className="pressure-achievement"><b>🏅</b><div><span>Achievement Unlocked</span><strong>Pressure Pathfinder</strong></div><strong className="pressure-xp">+175 XP</strong></div>
+            <div className="pressure-call" style={{ textAlign: "left" }}><strong>Next Service Call Unlocked</strong><blockquote><b>Low-Pressure Leak Test Failure</b><br/>An anesthesia workstation fails its pre-use leak test in Operating Room 6.</blockquote></div>
+            <div className="pressure-actions"><button type="button" className="pressure-primary" onClick={onExit}>Return to Service Calls</button><button type="button" className="pressure-secondary" onClick={() => { setChoice(""); setAttempts(0); setPhase("dispatch"); }}>Replay Call</button></div>
+          </div>}
+        </main>
+      </article>
+    </section>
   );
 }
 
+function GuardianEcgServiceCall({ onExit, onComplete }) {
+  const [phase, setPhase] = useState("dispatch");
+  const [choice, setChoice] = useState("");
+  const [attempts, setAttempts] = useState(0);
+  const [xpAwarded, setXpAwarded] = useState(false);
+
+  const phases = ["Dispatch", "Prioritize", "Assess", "Inspect", "Isolate", "Resolve"];
+  const phaseIndex = {
+    dispatch: 0,
+    priority: 1,
+    assess: 2,
+    inspect: 3,
+    cable: 4,
+    root: 4,
+    complete: 5,
+  }[phase] ?? 0;
+
+  const selectAnswer = (value, correct, nextPhase) => {
+    setChoice(value);
+    if (correct) {
+      playCbetTone("correct");
+      window.setTimeout(() => {
+        setChoice("");
+        if (nextPhase === "complete") finishCall();
+        else setPhase(nextPhase);
+      }, 550);
+    } else {
+      playCbetTone("wrong");
+      setAttempts((count) => count + 1);
+    }
+  };
+
+  const finishCall = () => {
+    if (!xpAwarded) {
+      awardCbetXp(150, "service-call-WO-1048");
+      setXpAwarded(true);
+    }
+    onComplete?.();
+    setPhase("complete");
+  };
+
+  const Choice = ({ id, children, correct, next }) => (
+    <button
+      type="button"
+      className={`missing-choice ${choice === id ? (correct ? "correct" : "wrong") : ""}`}
+      onClick={() => selectAnswer(id, correct, next)}
+    >
+      {children}
+    </button>
+  );
+
+  return (
+    <section className="missing-beat-shell" id="missing-beat-top">
+      <style>{`
+        .missing-beat-shell{min-height:100vh;background:#eef5f8;color:#102a43;padding:18px;font-family:inherit;box-sizing:border-box}
+        .missing-beat-shell *{box-sizing:border-box}.missing-beat-shell button{font:inherit}
+        .missing-topbar{max-width:1220px;margin:0 auto 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+        .missing-back{border:1px solid #c7d9e4;background:#fff;color:#174565;border-radius:12px;padding:10px 15px;font-weight:850;cursor:pointer}
+        .missing-brand{font-size:.77rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#087aa7}
+        .missing-card{max-width:1220px;margin:0 auto;background:#fff;border:1px solid #d3e3ec;border-radius:26px;box-shadow:0 16px 40px rgba(22,65,91,.12);overflow:hidden}
+        .missing-header{padding:26px clamp(22px,4vw,46px);background:linear-gradient(135deg,#082c49,#0a6894);color:#fff}
+        .missing-header-grid{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}.missing-header h1{font-size:clamp(2.2rem,5vw,4.4rem);line-height:1;margin:8px 0 12px}.missing-header p{font-size:1.05rem;line-height:1.55;margin:0;max-width:760px;color:#dceef7}
+        .missing-heart{width:98px;height:98px;border-radius:24px;background:rgba(255,255,255,.13);display:grid;place-items:center;font-size:3.2rem;border:1px solid rgba(255,255,255,.22)}
+        .missing-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.missing-meta span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 12px;font-size:.86rem;font-weight:750}
+        .missing-progress{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;padding:17px clamp(18px,3vw,38px);border-bottom:1px solid #dce8ef;background:#f8fbfc}.missing-progress span{padding:8px 6px;border-radius:10px;text-align:center;color:#7890a1;font-size:.74rem;font-weight:850}.missing-progress span.active{background:#dff3fb;color:#087aa7}.missing-progress span.done{background:#e3f5eb;color:#14734c}
+        .missing-body{padding:clamp(24px,4vw,46px);max-width:900px;margin:auto}.missing-body h2{font-size:clamp(1.65rem,3vw,2.45rem);line-height:1.15;margin:8px 0 12px;color:#0b2942}.missing-body>p{font-size:1.05rem;line-height:1.65;color:#536c7e}
+        .missing-kicker{display:inline-flex;border-radius:999px;background:#e5f4fa;color:#087ba7;padding:7px 11px;font-size:.75rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+        .missing-call{margin:24px 0;background:#f4f8fa;border:1px solid #d5e4ec;border-radius:20px;padding:22px}.missing-call strong{display:block;color:#0b3858;margin-bottom:9px}.missing-call blockquote{margin:0;color:#244a63;font-size:1.08rem;line-height:1.6}
+        .missing-clues{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}.missing-clue{border:1px solid #d7e4eb;border-radius:18px;padding:18px;background:#f8fbfc}.missing-clue.good{border-top:5px solid #1a9363}.missing-clue.bad{border-top:5px solid #cf3d4b}.missing-clue span{display:block;color:#6e8595;font-size:.77rem;font-weight:850;text-transform:uppercase;letter-spacing:.06em}.missing-clue strong{display:block;margin-top:7px;color:#153c57;font-size:1.15rem}
+        .missing-choice{display:block;width:100%;text-align:left;border:1px solid #cbdde7;background:#fff;color:#173d57;border-radius:15px;padding:15px 17px;margin:10px 0;font-weight:780;cursor:pointer;transition:.16s}.missing-choice:hover{border-color:#1493bf;transform:translateY(-1px)}.missing-choice.correct{border-color:#23845b;background:#eaf8f0;color:#12603f}.missing-choice.wrong{border-color:#c44350;background:#fff0f1;color:#932e39}
+        .missing-feedback{margin-top:16px;border-radius:15px;padding:15px 17px;background:#fff1f2;border:1px solid #ecc7cc;color:#8c3039;line-height:1.5;font-weight:700}
+        .missing-primary{border:0;border-radius:14px;background:linear-gradient(135deg,#078fc6,#075887);color:#fff;padding:14px 22px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(7,104,153,.22)}
+        .missing-monitor{margin:22px 0;border-radius:22px;background:#071b25;border:8px solid #263c46;padding:18px;color:#d6f8e7}.missing-monitor-top{display:flex;justify-content:space-between;color:#9bc8d7;font-size:.78rem;font-weight:800}.missing-wave{height:90px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;letter-spacing:.08em;color:#5ee393;border-bottom:1px solid #31505b}.missing-wave.missing{color:#e85b66}.missing-readings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:14px}.missing-readings span{display:block;font-size:.73rem;color:#92b5c0}.missing-readings strong{font-size:1.2rem}
+        .missing-teach{margin:20px 0;border-left:5px solid #1695c1;background:#eef9fd;border-radius:14px;padding:17px 19px;color:#234b63;line-height:1.55}.missing-teach strong{color:#087aa7}
+        .missing-success{text-align:center}.missing-success-icon{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;background:#dff5e8;color:#14734c;font-size:2.8rem;font-weight:950}.missing-report{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0;text-align:left}.missing-report div{background:#f5f9fb;border:1px solid #d8e6ed;border-radius:15px;padding:16px}.missing-report span{display:block;color:#6e8595;font-size:.75rem;font-weight:850;text-transform:uppercase}.missing-report strong{display:block;margin-top:6px;color:#173d57;line-height:1.4}
+        .missing-consequence{margin:20px 0;text-align:left;border-radius:18px;padding:20px;background:#fff7e7;border:1px solid #ead39d}.missing-consequence h3{margin:0 0 9px;color:#74520c}.missing-consequence p{margin:7px 0;color:#654f24}
+        .missing-pearl{margin:20px 0;border-radius:20px;padding:22px;text-align:left;background:linear-gradient(135deg,#0a3858,#087da9);color:#fff}.missing-pearl span{display:block;font-size:.74rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#bceaff}.missing-pearl strong{display:block;font-size:1.3rem;line-height:1.45;margin-top:8px}
+        .missing-achievement{display:grid;grid-template-columns:auto 1fr auto;gap:15px;align-items:center;border:1px solid #dcc67c;background:#fffaf0;border-radius:18px;padding:18px;text-align:left;margin:20px 0}.missing-achievement b{font-size:2rem}.missing-achievement span{display:block;color:#856c24;font-size:.73rem;font-weight:900;text-transform:uppercase}.missing-achievement strong{display:block;color:#59430d;font-size:1.15rem}.missing-xp{font-size:1.2rem!important;color:#14734c!important}
+        .missing-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.missing-secondary{border:1px solid #bcd2df;background:#fff;color:#164764;border-radius:14px;padding:13px 20px;font-weight:850;cursor:pointer}
+        @media(max-width:760px){.missing-header-grid{grid-template-columns:1fr}.missing-heart{display:none}.missing-progress{grid-template-columns:repeat(3,1fr)}.missing-clues,.missing-readings,.missing-report{grid-template-columns:1fr}.missing-achievement{grid-template-columns:auto 1fr}.missing-achievement .missing-xp{grid-column:1/-1}}
+      `}</style>
+
+      <div className="missing-topbar">
+        <button type="button" className="missing-back" onClick={onExit}>← Service Calls</button>
+        <span className="missing-brand">Summit University Medical Center</span>
+      </div>
+
+      <article className="missing-card">
+        <header className="missing-header">
+          <div className="missing-header-grid">
+            <div>
+              <span className="missing-brand" style={{ color: "#bceaff" }}>Interactive Service Call</span>
+              <h1>Missing Beat</h1>
+              <p>A bedside monitor has lost its ECG waveform while the other monitored parameters remain available.</p>
+              <div className="missing-meta"><span>Emergency Department • Room 12</span><span>Guardian Bedside Monitor</span><span>Beginner • 6–8 minutes</span></div>
+            </div>
+            <div className="missing-heart" aria-hidden="true">♥</div>
+          </div>
+        </header>
+
+        <div className="missing-progress">
+          {phases.map((label, index) => <span key={label} className={index < phaseIndex ? "done" : index === phaseIndex ? "active" : ""}>{index < phaseIndex ? "✓ " : ""}{label}</span>)}
+        </div>
+
+        <main className="missing-body">
+          {phase === "dispatch" && <>
+            <span className="missing-kicker">Incoming Service Call</span>
+            <h2>Emergency Department needs Clinical Engineering.</h2>
+            <div className="missing-call"><strong>Nurse report</strong><blockquote>“The patient is awake and talking, but the ECG waveform disappeared. Pulse ox still reads 82 and blood pressure is working. Is the monitor broken?”</blockquote></div>
+            <button type="button" className="missing-primary" onClick={() => setPhase("priority")}>Accept Service Call</button>
+          </>}
+
+          {phase === "priority" && <>
+            <span className="missing-kicker">Step 1 • Prioritize</span><h2>Before touching the monitor, what comes first?</h2>
+            <Choice id="replace" correct={false} next="assess">Replace the bedside monitor immediately</Choice>
+            <Choice id="stable" correct={true} next="assess">Verify the patient is stable and monitoring needs are covered</Choice>
+            <Choice id="restart" correct={false} next="assess">Restart the monitor</Choice>
+            <Choice id="disconnect" correct={false} next="assess">Disconnect every patient cable</Choice>
+            {choice && choice !== "stable" && <div className="missing-feedback">The equipment matters, but the patient and continuity of monitoring come first. Review the choices.</div>}
+          </>}
+
+          {phase === "assess" && <>
+            <span className="missing-kicker">Step 2 • Assess the Evidence</span><h2>What does the available information suggest?</h2>
+            <div className="missing-clues"><div className="missing-clue bad"><span>ECG</span><strong>No waveform</strong></div><div className="missing-clue good"><span>SpO₂</span><strong>82 bpm • good pleth</strong></div><div className="missing-clue good"><span>NIBP</span><strong>118/74 mmHg</strong></div></div>
+            <Choice id="whole" correct={false} next="inspect">The entire monitor has failed</Choice>
+            <Choice id="single" correct={true} next="inspect">Only the ECG signal path appears affected</Choice>
+            <Choice id="network" correct={false} next="inspect">The hospital network has failed</Choice>
+            <Choice id="power" correct={false} next="inspect">The monitor has lost power</Choice>
+            {choice && choice !== "single" && <div className="missing-feedback">Two other monitoring functions are still operating. Use that evidence to narrow the problem.</div>}
+          </>}
+
+          {phase === "inspect" && <>
+            <span className="missing-kicker">Step 3 • Inspect</span><h2>Where should you look first?</h2>
+            <div className="missing-monitor"><div className="missing-monitor-top"><span>GUARDIAN MONITOR</span><span>ED 12</span></div><div className="missing-wave missing">────────────</div><div className="missing-readings"><div><span>ECG</span><strong>LEADS OFF</strong></div><div><span>SpO₂</span><strong>98% • 82</strong></div><div><span>NIBP</span><strong>118/74</strong></div></div></div>
+            <Choice id="leads" correct={true} next="cable">Inspect the ECG electrodes, lead placement, and connections</Choice>
+            <Choice id="housing" correct={false} next="cable">Open the monitor housing</Choice>
+            <Choice id="manufacturer" correct={false} next="cable">Call the manufacturer</Choice>
+            <Choice id="battery" correct={false} next="cable">Replace the monitor battery</Choice>
+            {choice && choice !== "leads" && <div className="missing-feedback">Start with the external signal path before assuming an internal equipment failure.</div>}
+          </>}
+
+          {phase === "cable" && <>
+            <span className="missing-kicker">Step 4 • Isolate the Fault</span><h2>You replace a loose chest electrode, but the ECG is still missing. What next?</h2>
+            <div className="missing-teach"><strong>New evidence:</strong> Electrode contact is now secure. The monitor still displays a lead-off condition.</div>
+            <Choice id="known" correct={true} next="root">Substitute a compatible known-good ECG lead set</Choice>
+            <Choice id="entire" correct={false} next="root">Replace the entire monitor</Choice>
+            <Choice id="ignore" correct={false} next="root">Ignore ECG because SpO₂ is working</Choice>
+            <Choice id="software" correct={false} next="root">Reinstall the monitor software</Choice>
+            {choice && choice !== "known" && <div className="missing-feedback">Change one likely variable at a time. The external ECG pathway has not yet been fully isolated.</div>}
+          </>}
+
+          {phase === "root" && <>
+            <span className="missing-kicker">Step 5 • Identify Root Cause</span><h2>The waveform returns immediately with the known-good lead set. What failed?</h2>
+            <div className="missing-monitor"><div className="missing-monitor-top"><span>GUARDIAN MONITOR</span><span>ECG RESTORED</span></div><div className="missing-wave">─╲╱─╲╱╲───╲╱─</div><div className="missing-readings"><div><span>ECG</span><strong>82 bpm</strong></div><div><span>SpO₂</span><strong>98% • 82</strong></div><div><span>NIBP</span><strong>118/74</strong></div></div></div>
+            <Choice id="leadset" correct={true} next="complete">The original ECG lead set</Choice>
+            <Choice id="monitor" correct={false} next="complete">The bedside monitor</Choice>
+            <Choice id="network2" correct={false} next="complete">The hospital network</Choice>
+            <Choice id="power2" correct={false} next="complete">The monitor power supply</Choice>
+            {choice && choice !== "leadset" && <div className="missing-feedback">The monitor displayed ECG normally after only the lead set changed. Follow the evidence.</div>}
+          </>}
+
+          {phase === "complete" && <div className="missing-success">
+            <div className="missing-success-icon">✓</div><span className="missing-kicker">Service Call Complete</span><h2>ECG monitoring restored.</h2><p>The Guardian monitor was functioning correctly. The original ECG lead set was faulty and was replaced.</p>
+            <div className="missing-report"><div><span>Complaint</span><strong>No ECG waveform</strong></div><div><span>Root cause</span><strong>Failed ECG lead set</strong></div><div><span>Corrective action</span><strong>Replaced lead set and restored waveform</strong></div><div><span>Verification</span><strong>ECG, lead-off detection, and alarms verified</strong></div></div>
+            <div className="missing-consequence"><h3>What would have happened?</h3><p>Replacing the entire monitor first would have removed a working device.</p><p>If the faulty lead set moved with the patient, the replacement monitor could show the same problem.</p><p>Nursing would wait longer while the actual fault remained unresolved.</p></div>
+            <div className="missing-pearl"><span>Clinical Pearl</span><strong>When one parameter fails but others remain normal, isolate that parameter’s external signal path before replacing the monitor.</strong></div>
+            <div className="missing-achievement"><b>🏅</b><div><span>Achievement Unlocked</span><strong>Accessory Detective</strong></div><strong className="missing-xp">+150 XP</strong></div>
+            <div className="missing-call" style={{ textAlign: "left" }}><strong>Next Service Call Unlocked</strong><blockquote><b>Pressure Lost</b><br/>The blood pressure cuff inflates, but never completes a reading.</blockquote></div>
+            <div className="missing-actions"><button type="button" className="missing-primary" onClick={onExit}>Return to Service Calls</button><button type="button" className="missing-secondary" onClick={() => { setChoice(""); setAttempts(0); setPhase("dispatch"); }}>Replay Call</button></div>
+          </div>}
+        </main>
+      </article>
+    </section>
+  );
+}
 
 
 function getCbetCareerRank(xp = 0) {
