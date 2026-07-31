@@ -2957,24 +2957,43 @@ const SERVICE_CALL_SCENARIOS = {
 
 
 const EXPANDED_SERVICE_SCENARIOS = {
-  "PM-2044": {
-    id: "PM-2044", title: "Defibrillator Preventive Maintenance", equipment: "Pulse External Defibrillator",
-    location: "Cardiology • Equipment Bay", complaint: "Annual delivered-energy and charge-time verification is due.",
-    tools: ["Defibrillator analyzer", "Electrical safety analyzer", "Inspection checklist"],
-    steps: [
-      ["Inspect readiness", "Check enclosure, cables, pads, battery status, labels, and accessories."],
-      ["Connect analyzer", "Connect the defibrillator analyzer using the approved test setup."],
-      ["Verify delivered energy", "Test multiple selected energy levels and compare measured values with tolerance."],
-      ["Verify charge time", "Measure charge time at the required high-energy setting."],
-      ["Complete safety checks", "Run applicable electrical-safety and functional alarm checks."],
+  "WO-1001": {
+    id: "WO-1001",
+    engineVersion: 2,
+    title: "PEEP High / Blockage",
+    equipment: "PMT AeroVent A900",
+    location: "Operating Room 4",
+    priority: "URGENT",
+    complaint: "During pre-use checkout, the anesthesia system displays PEEP HIGH / BLOCKAGE and pressure does not release normally.",
+    patientStatus: "No patient connected — safe to troubleshoot",
+    tools: ["Visual inspection", "Test lung", "Gas flow analyzer"],
+    safetyChecks: [
+      { id: "patient", label: "Verify no patient is connected", required: true },
+      { id: "backup", label: "Confirm another anesthesia system is available", required: true },
+      { id: "staff", label: "Notify the anesthesia provider that the unit is being evaluated", required: true },
+      { id: "parts", label: "Begin replacing internal components", required: false },
     ],
-    diagnosis: "Preventive maintenance completed within specification",
-    correctiveAction: "Document results and return the defibrillator to service",
-    questions: [
-      ["Which analyzer verifies delivered energy?", ["Defibrillator analyzer", "Gas flow analyzer", "Infusion analyzer", "NIBP simulator"], 0],
-      ["Why test more than one energy setting?", ["To verify performance across the operating range", "To drain the battery", "To clear alarms", "To update software"], 0],
-      ["What must be documented?", ["Measured results and pass/fail criteria", "Only the asset number", "Only the technician name", "Only the battery age"], 0],
+    investigationOptions: [
+      { id: "scavenging", label: "Inspect the scavenging system", correct: true, evidence: "The scavenging relief valve is CLOSED. Pressure cannot vent from the system." },
+      { id: "vaporizer", label: "Replace the vaporizer", correct: false, evidence: "The vaporizer is seated correctly and does not explain the trapped pressure." },
+      { id: "battery", label: "Test the backup battery", correct: false, evidence: "The unit is on AC power and the alarm is pneumatic, not electrical." },
+      { id: "network", label: "Check network settings", correct: false, evidence: "Network communication does not control pressure release." },
     ],
+    correctiveActions: [
+      { id: "open", label: "Open the scavenging relief valve", correct: true },
+      { id: "sensor", label: "Replace the pressure sensor", correct: false },
+      { id: "circuit", label: "Replace the breathing circuit immediately", correct: false },
+      { id: "restart", label: "Restart the system and return it to service", correct: false },
+    ],
+    verificationChecks: [
+      "Repeat the pre-use leak test",
+      "Verify the PEEP HIGH / BLOCKAGE alarm clears",
+      "Confirm pressure releases through the scavenging path",
+      "Complete a functional ventilation test with a test lung",
+    ],
+    rootCause: "The scavenging relief valve was closed, preventing pressure from releasing.",
+    resolution: "Opened the scavenging relief valve and completed full functional verification.",
+    clinicalPearl: "When high airway pressure or blockage alarms appear during checkout, inspect the scavenging path before replacing components. A closed relief valve can trap pressure even when the breathing circuit is intact.",
   },
   "WO-1061": {
     id: "WO-1061", title: "Low-Pressure Leak Test Failure", equipment: "AeroVent Anesthesia Ventilator",
@@ -3035,7 +3054,55 @@ const EXPANDED_SERVICE_SCENARIOS = {
   },
 };
 
+
+function InteractiveServiceCallEngine({ scenario, onExit, onComplete }) {
+  const [phase, setPhase] = useState("safety");
+  const [safety, setSafety] = useState({});
+  const [investigation, setInvestigation] = useState("");
+  const [action, setAction] = useState("");
+  const [verification, setVerification] = useState({});
+  const [attempts, setAttempts] = useState(0);
+  const [safetyFeedback, setSafetyFeedback] = useState(false);
+
+  useEffect(() => {
+    setPhase("safety"); setSafety({}); setInvestigation(""); setAction(""); setVerification({}); setAttempts(0); setSafetyFeedback(false);
+  }, [scenario.id]);
+
+  useEffect(() => { scrollToCbetTrainingTarget("interactive-service-call-top"); }, [phase, scenario.id]);
+
+  const requiredSafety = scenario.safetyChecks.filter((item) => item.required);
+  const safetyReady = requiredSafety.every((item) => safety[item.id]) && !scenario.safetyChecks.some((item) => !item.required && safety[item.id]);
+  const chosenInvestigation = scenario.investigationOptions.find((item) => item.id === investigation);
+  const chosenAction = scenario.correctiveActions.find((item) => item.id === action);
+  const verificationReady = scenario.verificationChecks.every((_, index) => verification[index]);
+  const phases = ["Safety", "Investigate", "Correct", "Verify", "Report"];
+  const activeIndex = { safety: 0, investigate: 1, correct: 2, verify: 3, report: 4 }[phase];
+
+  const chooseInvestigation = (item) => { setInvestigation(item.id); if (!item.correct) setAttempts((value) => value + 1); };
+  const chooseAction = (item) => { setAction(item.id); if (!item.correct) setAttempts((value) => value + 1); };
+
+  return <section id="interactive-service-call-top" className="sim2-shell">
+    <style>{`
+      .sim2-shell{max-width:1500px;margin:0 auto;padding:18px 24px 48px;color:#102a43;scroll-margin-top:10px}.sim2-shell *{box-sizing:border-box}.sim2-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}.sim2-back,.sim2-primary{border:0;border-radius:13px;padding:12px 18px;font-weight:900;cursor:pointer}.sim2-back{background:#fff;border:1px solid #c9dbe7;color:#164565}.sim2-primary{background:linear-gradient(135deg,#078fc6,#075887);color:#fff}.sim2-primary:disabled{opacity:.45;cursor:not-allowed}.sim2-brand{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;font-weight:950;color:#087cab}.sim2-header{background:linear-gradient(135deg,#071f35,#0c4e72);color:#fff;border-radius:26px;padding:24px 28px;box-shadow:0 18px 45px #16344b24}.sim2-header-grid{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start}.sim2-header h1{margin:7px 0 8px;font-size:clamp(2rem,4.5vw,4rem);line-height:1}.sim2-header p{margin:0;max-width:900px;line-height:1.55;color:#d7edf8}.sim2-priority{background:#b32632;border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:950}.sim2-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.sim2-meta span{background:#ffffff16;border:1px solid #ffffff2a;border-radius:10px;padding:8px 11px;font-weight:800}.sim2-progress{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0}.sim2-progress div{background:#dfeaf0;border-radius:12px;padding:10px;text-align:center;font-size:.8rem;font-weight:900;color:#60788a}.sim2-progress .active{background:#087fac;color:#fff}.sim2-progress .done{background:#e5f6ee;color:#176b48}.sim2-grid{display:grid;grid-template-columns:minmax(250px,330px) minmax(0,1fr);gap:18px}.sim2-card{background:#fff;border:1px solid #d5e4ed;border-radius:24px;padding:24px;box-shadow:0 14px 34px #173e5815}.sim2-side{position:sticky;top:12px}.sim2-side h2,.sim2-card h2{margin:4px 0 12px}.sim2-side dl{display:grid;gap:13px}.sim2-side dt{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#648093;font-weight:900}.sim2-side dd{margin:3px 0 0;font-weight:850}.sim2-tool{display:block;background:#eef7fb;border-radius:10px;padding:9px 11px;margin:7px 0;font-weight:800}.sim2-choice{width:100%;text-align:left;border:1px solid #cddde7;background:#f8fbfc;border-radius:14px;padding:14px 16px;margin:8px 0;font-weight:850;color:#173b57;cursor:pointer}.sim2-choice.selected{border-color:#168fc0;background:#eaf7fc}.sim2-choice.correct{border-color:#2f9e69;background:#e9f8f0;color:#17643f}.sim2-choice.wrong{border-color:#d45d66;background:#fff0f1;color:#8d2b34}.sim2-feedback{margin:14px 0;padding:15px 17px;border-radius:14px;background:#edf6fa;border-left:5px solid #078fc6;line-height:1.55}.sim2-check{display:flex;gap:11px;align-items:flex-start;padding:13px;border:1px solid #d7e5ed;border-radius:13px;margin:8px 0;background:#f9fbfc;font-weight:800}.sim2-check input{margin-top:3px;transform:scale(1.2)}.sim2-check.unsafe-selected{border-color:#d45d66;background:#fff0f1;color:#8d2b34}.sim2-check.unsafe-selected span::after{content:" — uncheck this action";font-size:.78rem;font-weight:900}.sim2-safety-help{margin:12px 0 0;padding:13px 15px;border-radius:12px;background:#fff0f1;border-left:5px solid #b32632;color:#8d2b34;font-weight:850;line-height:1.45}.sim2-monitor{background:#101f2b;color:#fff;border:8px solid #dce3e7;border-radius:22px;padding:18px;margin:18px 0}.sim2-alarm{background:#9b1f2a;border-radius:9px;padding:12px;text-align:center;font-size:1.3rem;font-weight:950;letter-spacing:.04em}.sim2-reading{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.sim2-reading div{background:#07131b;border-radius:10px;padding:14px;text-align:center}.sim2-reading span{display:block;color:#8eb7ca;font-size:.72rem;text-transform:uppercase}.sim2-reading strong{display:block;font-size:1.35rem;margin-top:5px}.sim2-report{background:#102638;color:#eefaff;border-radius:18px;padding:20px;display:grid;gap:14px}.sim2-report span{display:block;color:#93bdcf;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}.sim2-report strong{display:block;margin-top:4px;line-height:1.45}.sim2-pearl{margin-top:18px;background:#fff7df;border-left:5px solid #e2a426;border-radius:14px;padding:17px;line-height:1.55}.sim2-footer{display:flex;justify-content:flex-end;margin-top:18px}.sim2-error{color:#9a3038;font-weight:850;margin-top:10px}@media(max-width:800px){.sim2-shell{padding:12px}.sim2-grid,.sim2-header-grid{grid-template-columns:1fr}.sim2-side{position:static}.sim2-progress{grid-template-columns:1fr}.sim2-reading{grid-template-columns:1fr}}
+    `}</style>
+    <div className="sim2-top"><button className="sim2-back" onClick={onExit}>← Service Calls</button><span className="sim2-brand">Summit University Medical Center</span></div>
+    <header className="sim2-header"><div className="sim2-header-grid"><div><span className="sim2-brand">Interactive service call</span><h1>{scenario.title}</h1><p>{scenario.complaint}</p></div><span className="sim2-priority">{scenario.priority}</span></div><div className="sim2-meta"><span>{scenario.location}</span><span>{scenario.equipment}</span><span>{scenario.patientStatus}</span></div></header>
+    <div className="sim2-progress">{phases.map((label,index)=><div key={label} className={index<activeIndex?"done":index===activeIndex?"active":""}>{index<activeIndex?"✓ ":""}{label}</div>)}</div>
+    <div className="sim2-grid">
+      <aside className="sim2-card sim2-side"><span className="sim2-brand">Service call details</span><h2>{scenario.equipment}</h2><dl><div><dt>Location</dt><dd>{scenario.location}</dd></div><div><dt>Reason for service</dt><dd>{scenario.title}</dd></div><div><dt>Toolbox</dt><dd>{scenario.tools.map(t=><span className="sim2-tool" key={t}>✓ {t}</span>)}</dd></div><div><dt>Learning attempts</dt><dd>{attempts}</dd></div></dl></aside>
+      <main className="sim2-card">
+        {phase==="safety"&&<><span className="sim2-brand">Step 1 • Protect the patient</span><h2>Select every required action</h2><p>Before technical troubleshooting begins, establish a safe clinical handoff.</p>{scenario.safetyChecks.map(item=>{const unsafeSelected=!item.required&&!!safety[item.id];return <label className={`sim2-check ${unsafeSelected?"unsafe-selected":""}`} key={item.id}><input type="checkbox" checked={!!safety[item.id]} onChange={()=>{setSafety(v=>({...v,[item.id]:!v[item.id]}));setSafetyFeedback(false);}}/><span>{item.label}</span></label>})}{(safetyFeedback||scenario.safetyChecks.some(i=>!i.required&&safety[i.id]))&&!safetyReady&&<div className="sim2-safety-help">Uncheck the highlighted unsafe action, and make sure every required safety action is selected.</div>}<div className="sim2-footer"><button className="sim2-primary" onClick={()=>{if(safetyReady){setSafetyFeedback(false);setPhase("investigate");}else{setSafetyFeedback(true);setAttempts(value=>value+1);}}}>{safetyReady?"Begin Investigation":"Review Safety Selections"}</button></div></>}
+        {phase==="investigate"&&<><span className="sim2-brand">Step 2 • Investigate</span><h2>Where should you inspect first?</h2><div className="sim2-monitor"><div className="sim2-alarm">PEEP HIGH • BLOCKAGE</div><div className="sim2-reading"><div><span>Airway pressure</span><strong>38 cmH₂O</strong></div><div><span>Set PEEP</span><strong>5 cmH₂O</strong></div><div><span>Pressure release</span><strong>Restricted</strong></div></div></div>{scenario.investigationOptions.map(item=><button key={item.id} className={`sim2-choice ${investigation===item.id?(item.correct?"correct":"wrong"):""}`} onClick={()=>chooseInvestigation(item)}>{item.label}</button>)}{chosenInvestigation&&<div className="sim2-feedback"><strong>{chosenInvestigation.correct?"Evidence found":"No fault found here"}</strong><br/>{chosenInvestigation.evidence}</div>}<div className="sim2-footer"><button className="sim2-primary" disabled={!chosenInvestigation?.correct} onClick={()=>setPhase("correct")}>Choose Corrective Action</button></div></>}
+        {phase==="correct"&&<><span className="sim2-brand">Step 3 • Correct the fault</span><h2>What should you do?</h2>{scenario.correctiveActions.map(item=><button key={item.id} className={`sim2-choice ${action===item.id?(item.correct?"correct":"wrong"):""}`} onClick={()=>chooseAction(item)}>{item.label}</button>)}{chosenAction&&<div className="sim2-feedback">{chosenAction.correct?"The scavenging path is now open and trapped pressure can release.":"That action is not supported by the evidence collected."}</div>}<div className="sim2-footer"><button className="sim2-primary" disabled={!chosenAction?.correct} onClick={()=>setPhase("verify")}>Verify the Repair</button></div></>}
+        {phase==="verify"&&<><span className="sim2-brand">Step 4 • Verification</span><h2>Complete every return-to-service check</h2>{scenario.verificationChecks.map((label,index)=><label className="sim2-check" key={label}><input type="checkbox" checked={!!verification[index]} onChange={()=>setVerification(v=>({...v,[index]:!v[index]}))}/><span>{label}</span></label>)}{verificationReady&&<div className="sim2-monitor"><div className="sim2-alarm" style={{background:'#19734b'}}>FUNCTIONAL TEST PASSED</div><div className="sim2-reading"><div><span>Airway pressure</span><strong>18 cmH₂O</strong></div><div><span>Pressure release</span><strong>Normal</strong></div><div><span>Alarm status</span><strong>Cleared</strong></div></div></div>}<div className="sim2-footer"><button className="sim2-primary" disabled={!verificationReady} onClick={()=>setPhase("report")}>Complete Service Call</button></div></>}
+        {phase==="report"&&<><span className="sim2-brand">Service call complete</span><h2>Service call completed successfully</h2><div className="sim2-report"><div><span>Complaint</span><strong>{scenario.title}</strong></div><div><span>Root cause</span><strong>{scenario.rootCause}</strong></div><div><span>Corrective action</span><strong>{scenario.resolution}</strong></div><div><span>Verification</span><strong>Leak test passed • Pressure release normal • Functional ventilation test passed</strong></div><div><span>Disposition</span><strong>Equipment returned to clinical service</strong></div></div><div className="sim2-pearl"><strong>Clinical Pearl</strong><br/>{scenario.clinicalPearl}</div><div className="sim2-footer"><button className="sim2-primary" onClick={()=>{onComplete?.();onExit();}}>Return to Service Calls</button></div></>}
+      </main>
+    </div>
+  </section>;
+}
+
 function ExpandedServiceCall({ scenario, onExit, onComplete }) {
+  if (scenario.engineVersion === 2) return <InteractiveServiceCallEngine scenario={scenario} onExit={onExit} onComplete={onComplete} />;
   // The Hospital dashboard already provides the assignment briefing.
   // Open directly in the interactive troubleshooting workflow.
   const [phase, setPhase] = useState("work");
@@ -3113,7 +3180,7 @@ function ExpandedServiceCall({ scenario, onExit, onComplete }) {
       `}</style>
 
       <div className="msb-call-topbar">
-        <button type="button" className="msb-call-back" onClick={onExit}>← Hospital Dashboard</button>
+        <button type="button" className="msb-call-back" onClick={onExit}>← Service Calls</button>
         <span className="msb-call-kicker">Biomedical Training Hospital</span>
       </div>
 
@@ -3206,7 +3273,7 @@ function ExpandedServiceCall({ scenario, onExit, onComplete }) {
               className="msb-call-primary"
               onClick={() => questionIndex < scenario.questions.length - 1 ? setQuestionIndex((value) => value + 1) : goToPhase("debrief")}
             >
-              {questionIndex < scenario.questions.length - 1 ? "Next Question" : "Complete Work Order"}
+              {questionIndex < scenario.questions.length - 1 ? "Next Question" : "Complete Service Call"}
             </button>
           )}
         </article>
@@ -3222,7 +3289,7 @@ function ExpandedServiceCall({ scenario, onExit, onComplete }) {
             <div><span>Root cause</span><strong>{scenario.diagnosis}</strong></div>
             <div><span>Resolution</span><strong>{scenario.correctiveAction}</strong></div>
           </div>
-          <button type="button" className="msb-call-primary" onClick={() => { onComplete?.(); onExit(); }}>Return to Hospital</button>
+          <button type="button" className="msb-call-primary" onClick={() => { onComplete?.(); onExit(); }}>Return to Service Calls</button>
         </article>
       )}
     </section>
@@ -3262,7 +3329,7 @@ function GuidedTroubleshootingEngine({ scenario, onExit, onComplete }) {
   const [verifyCount, setVerifyCount] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [log, setLog] = useState([`08:17 — Work order ${scenario.id} dispatched to Clinical Engineering.`]);
+  const [log, setLog] = useState([`08:17 — Service call ${scenario.id} dispatched to Clinical Engineering.`]);
 
   const addLog = (message) => setLog((items) => [...items, `${String(18 + items.length * 3).padStart(2, "0")}:${items.length % 2 ? "21" : "18"} — ${message}`]);
   const completeStep = () => {
@@ -3283,12 +3350,12 @@ function GuidedTroubleshootingEngine({ scenario, onExit, onComplete }) {
       <style>{`
         .service-engine-shell{min-height:100vh;background:linear-gradient(135deg,#eef8fc,#e5f1f8);padding:24px;color:#07111f;font-family:inherit}.engine-topbar{max-width:1400px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:center}.engine-back{border:0;background:#fff;padding:12px 16px;border-radius:12px;font-weight:800;box-shadow:0 8px 30px #16344b14;cursor:pointer}.engine-badge{font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#0788c1}.engine-brief{max-width:1000px;margin:45px auto;background:#fff;border-radius:30px;padding:48px;box-shadow:0 24px 70px #16344b1a}.engine-brief h1{font-size:clamp(2.4rem,6vw,5rem);margin:8px 0 20px;line-height:.95}.engine-brief-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;margin:30px 0}.engine-card{background:#f3f8fb;border:1px solid #d8e7ef;border-radius:20px;padding:22px}.engine-primary{border:0;background:#057eb5;color:#fff;padding:15px 22px;border-radius:14px;font-weight:900;font-size:1rem;cursor:pointer}.engine-layout{max-width:1400px;margin:auto;display:grid;grid-template-columns:minmax(250px,320px) minmax(480px,1fr) minmax(290px,390px);gap:22px;align-items:start}.engine-panel{background:#fff;border-radius:26px;padding:26px;box-shadow:0 18px 55px #16344b16}.engine-case h1{font-size:clamp(2rem,3.2vw,3.3rem);line-height:1;margin:10px 0 16px}.engine-case p{line-height:1.55}.engine-progress{display:grid;gap:10px;margin-top:24px}.engine-step{display:flex;gap:12px;align-items:center;padding:12px;border-radius:14px;background:#f4f8fa;border:1px solid #dce8ee}.engine-step.done{background:#e9f8f1;border-color:#afe1c9}.engine-step.active{background:#e8f5fc;border-color:#83cbe9}.engine-step b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fff}.engine-workbench{display:grid;gap:20px}.sim-monitor{background:#1b2731;border:10px solid #dbe1e4;border-radius:28px;padding:16px;box-shadow:inset 0 0 0 2px #9ca8ad,0 18px 45px #07111f2b}.sim-monitor-top{display:flex;justify-content:space-between;color:#dbe9ef;padding:2px 5px 12px;font-size:.85rem;letter-spacing:.08em}.sim-screen{background:#07131b;border-radius:12px;padding:18px;color:#eaf8ff;min-height:330px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.sim-vital,.sim-nibp{position:relative;border-bottom:1px solid #28414e;padding:12px}.sim-vital span,.sim-nibp span{display:block;font-weight:900;letter-spacing:.08em}.sim-vital strong,.sim-nibp strong{font-size:3rem}.sim-vital small,.sim-nibp small{margin-left:8px}.sim-wave{display:block;font-style:normal;font-size:1.6rem;letter-spacing:.12em;margin-top:18px}.sim-vital.ecg{color:#6df58d}.sim-vital.spo2{color:#62d8ff}.sim-nibp{grid-column:1/-1;color:#fff}.sim-nibp b{display:inline-block;margin-top:15px;margin-left:14px;padding:8px 12px;border-radius:8px;background:#9d2731;color:#fff}.sim-nibp b.ok{background:#18754a}.sim-monitor-controls{display:flex;gap:10px;padding-top:14px}.sim-monitor-controls button{flex:1;border:1px solid #64737b;background:#34444d;color:#fff;border-radius:9px;padding:10px;font-weight:800}.sim-monitor-controls .nibp-key{background:#e5edf0;color:#15232b}.engine-action{background:#fff;border-radius:22px;padding:24px;border:1px solid #d9e7ee}.engine-action h2{margin-top:4px}.engine-action button{width:100%}.engine-log{max-height:610px;overflow:auto}.engine-log-entry{font-family:ui-monospace,monospace;background:#102638;color:#eefaff;border-radius:13px;padding:14px;margin:10px 0;line-height:1.45}.engine-choice{width:100%;text-align:left;border:1px solid #d7e5ec;background:#f7fafb;border-radius:14px;padding:15px;margin:7px 0;font-weight:800;cursor:pointer}.engine-choice.selected{border-color:#0788c1;background:#e8f6fc}.engine-choice.correct{border-color:#2d9b68;background:#eaf8f1}.engine-choice.wrong{border-color:#c94e56;background:#fff0f1}.engine-result{max-width:900px;margin:30px auto}.engine-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.engine-summary div{background:#f3f8fb;border-radius:14px;padding:16px}.engine-summary span{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:#537080}.engine-summary strong{display:block;margin-top:5px}.engine-doc{background:#102638;color:#eefaff;border-radius:18px;padding:22px;line-height:1.7;margin-top:20px}.engine-score{font-size:4rem;font-weight:900}.engine-verify{display:flex;gap:10px;margin-top:15px}.engine-verify i{flex:1;height:10px;border-radius:99px;background:#d7e5ec}.engine-verify i.done{background:#27a56c}@media(max-width:1100px){.engine-layout{grid-template-columns:280px 1fr}.engine-log-panel{grid-column:1/-1}.engine-log{max-height:300px}}@media(max-width:760px){.service-engine-shell{padding:12px}.engine-layout,.engine-brief-grid{grid-template-columns:1fr}.engine-case h1{font-size:2.4rem}.sim-screen{min-height:280px}.engine-brief{padding:28px}.engine-summary{grid-template-columns:1fr}}
       `}</style>
-      <div className="engine-topbar"><button className="engine-back" onClick={onExit}>← Hospital Dashboard</button><span className="engine-badge">Biomedical Training Hospital</span></div>
+      <div className="engine-topbar"><button className="engine-back" onClick={onExit}>← Service Calls</button><span className="engine-badge">Biomedical Training Hospital</span></div>
 
       {screen === "briefing" && <article className="engine-brief">
         <span className="engine-badge">{scenario.id} • {scenario.mode}</span><h1>{scenario.title}</h1><p>{scenario.complaint}</p>
         <div className="engine-brief-grid"><div className="engine-card"><strong>Device</strong><h2>{scenario.equipment}</h2><p>{scenario.location}</p></div><div className="engine-card"><strong>Recommended setup</strong>{scenario.tools.map((tool) => <p key={tool}>✓ {tool}</p>)}</div></div>
-        <button className="engine-primary" onClick={() => setScreen("workbench")}>Accept Work Order</button>
+        <button className="engine-primary" onClick={() => setScreen("workbench")}>Accept Service Call</button>
       </article>}
 
       {screen === "workbench" && <div className="engine-layout">
@@ -3303,7 +3370,7 @@ function GuidedTroubleshootingEngine({ scenario, onExit, onComplete }) {
 
       {screen === "questions" && <article className="engine-panel engine-result"><span className="engine-badge">After-action review • {questionIndex + 1}/{scenario.questions.length}</span><h1>{scenario.questions[questionIndex].q}</h1>{scenario.questions[questionIndex].options.map((option, idx) => { const chosen = answers[questionIndex]; const answered = chosen !== undefined; return <button key={option} disabled={answered} className={`engine-choice ${answered && idx === scenario.questions[questionIndex].answer ? "correct" : answered && idx === chosen ? "wrong" : ""}`} onClick={() => setAnswers((old) => ({...old,[questionIndex]:idx}))}>{option}</button>; })}{answers[questionIndex] !== undefined && <><p><strong>{answers[questionIndex] === scenario.questions[questionIndex].answer ? "Correct." : "Review this concept."}</strong> {scenario.questions[questionIndex].why}</p><button className="engine-primary" onClick={() => questionIndex < scenario.questions.length - 1 ? setQuestionIndex(questionIndex + 1) : setScreen("debrief")}>{questionIndex < scenario.questions.length - 1 ? "Next Question" : "Complete Service Call"}</button></>}</article>}
 
-      {screen === "debrief" && <article className="engine-panel engine-result"><span className="engine-badge">Service call complete</span><h1>Device returned to service</h1><div className="engine-score">{score}/{scenario.questions.length}</div><p>After-action review score</p><div className="engine-summary"><div><span>Failure</span><strong>Leak in original NIBP hose</strong></div><div><span>Corrective action</span><strong>NIBP hose replaced</strong></div><div><span>Verification</span><strong>Three successful NIBP cycles</strong></div><div><span>Competencies</span><strong>Patient Safety • Signal Isolation • Evidence-Based Troubleshooting • Documentation</strong></div></div><div className="engine-doc"><strong>Service documentation</strong><br/>Confirmed alternate blood-pressure monitoring and removed the monitor from clinical service. Reproduced the reported NIBP leak error with the original cuff and hose. A known-good accessory set restored normal operation. Pressure-decay testing isolated the leak to the original hose near the connector strain relief. Replaced the NIBP hose and completed three successful verification cycles without error. Device returned to clinical service.</div><button className="engine-primary" onClick={() => { onComplete?.(); onExit(); }}>Close Work Order</button></article>}
+      {screen === "debrief" && <article className="engine-panel engine-result"><span className="engine-badge">Service call complete</span><h1>Device returned to service</h1><div className="engine-score">{score}/{scenario.questions.length}</div><p>After-action review score</p><div className="engine-summary"><div><span>Failure</span><strong>Leak in original NIBP hose</strong></div><div><span>Corrective action</span><strong>NIBP hose replaced</strong></div><div><span>Verification</span><strong>Three successful NIBP cycles</strong></div><div><span>Competencies</span><strong>Patient Safety • Signal Isolation • Evidence-Based Troubleshooting • Documentation</strong></div></div><div className="engine-doc"><strong>Service documentation</strong><br/>Confirmed alternate blood-pressure monitoring and removed the monitor from clinical service. Reproduced the reported NIBP leak error with the original cuff and hose. A known-good accessory set restored normal operation. Pressure-decay testing isolated the leak to the original hose near the connector strain relief. Replaced the NIBP hose and completed three successful verification cycles without error. Device returned to clinical service.</div><button className="engine-primary" onClick={() => { onComplete?.(); onExit(); }}>Complete Service Call</button></article>}
     </section>
   );
 }
@@ -3336,7 +3403,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
   const [answers, setAnswers] = useState({});
   const [xpAwarded, setXpAwarded] = useState(false);
   const [log, setLog] = useState([
-    "06:42 — Work order WO-1048 dispatched to Clinical Engineering.",
+    "06:42 — Service call WO-1048 dispatched to Clinical Engineering.",
   ]);
   const [openGuideStep, setOpenGuideStep] = useState(1);
   const [evidenceOpen, setEvidenceOpen] = useState(false);
@@ -3429,7 +3496,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
     { id: 7, label: "Verify cable continuity", complete: tests.continuity },
     { id: 8, label: "Document root cause", complete: diagnosis === "cable" || ["repair", "debrief"].includes(stage) || debriefComplete },
     { id: 9, label: "Repair and verify performance", complete: repairComplete && alarmVerified },
-    { id: 10, label: "Close work order", complete: debriefComplete },
+    { id: 10, label: "Complete service call", complete: debriefComplete },
   ];
 
   const roomStep =
@@ -3503,7 +3570,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
       target: "repair",
     },
     10: {
-      title: "Close the work order",
+      title: "Complete the service call",
       message: "Complete the after-action review and document the complaint, findings, corrective action, and final verification.",
       action: "Finish the review.",
       target: "documentation",
@@ -3523,7 +3590,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
           <strong>{Math.round((workflowSteps.filter((step) => step.complete).length / workflowSteps.length) * 100)}%</strong>
         </div>
 
-        <div className="service-call-step-track" aria-label="Work order progress">
+        <div className="service-call-step-track" aria-label="Service call progress">
           {workflowSteps.map((step) => {
             const locked = step.id > activeStep && !step.complete;
             return (
@@ -3791,15 +3858,15 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
     return (
       <main className="service-call">
         <section className="service-call-shell" id="service-call-top">
-          <button className="service-call-back" onClick={onExit}>← Hospital Dashboard</button>
+          <button className="service-call-back" onClick={onExit}>← Service Calls</button>
           <article className="service-call-briefing">
             <div className="service-call-priority">STAT</div>
             <span className="service-call-eyebrow">Clinical Engineering Dispatch</span>
-            <h1>Work Order WO-1048</h1>
+            <h1>Service Call #048</h1>
             <div className="service-call-brief-grid">
               <div><span>Department</span><strong>Emergency Department • Bay 8</strong></div>
               <div><span>Equipment</span><strong>Guardian Bedside Monitor</strong></div>
-              <div><span>Reported problem</span><strong>ECG waveform lost during monitoring</strong></div>
+              <div><span>Reason for service</span><strong>ECG waveform lost during monitoring</strong></div>
               <div><span>Current status</span><strong>SpO₂ and NIBP remain available</strong></div>
             </div>
             <div className="service-call-note">
@@ -3824,7 +3891,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
     return (
       <main className="service-call">
         <section className="service-call-shell" id="service-call-top">
-          <button className="service-call-back" onClick={onExit}>← Hospital Dashboard</button>
+          <button className="service-call-back" onClick={onExit}>← Service Calls</button>
           <div className="service-call-stage-heading">
             <span className="service-call-eyebrow">Emergency Department • Bay 8</span>
             <h1>Stabilize the clinical situation before troubleshooting.</h1>
@@ -4224,7 +4291,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
               disabled={selectedAnswer === undefined}
               onClick={() => setQuestionIndex((index) => Math.min(index + 1, questions.length - 1))}
             >
-              {questionIndex === questions.length - 1 ? "Complete Work Order" : "Next Question"}
+              {questionIndex === questions.length - 1 ? "Complete Service Call" : "Next Question"}
             </button>
           </article>
           <GuideStepModal />
@@ -4238,7 +4305,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
       <section className="service-call-shell narrow" id="service-call-top">
         <article className="service-call-complete">
           <div className="service-call-complete-icon">✓</div>
-          <span className="service-call-eyebrow">Work Order Closed</span>
+          <span className="service-call-eyebrow">Service Call Complete</span>
           <h1>Guardian monitor returned to clinical service.</h1>
           <div className="service-call-complete-grid">
             <div><span>Failure</span><strong>Open conductor in ECG lead set</strong></div>
@@ -4278,7 +4345,7 @@ function GuardianEcgServiceCall({ onExit, onOpenTraining, onComplete }) {
           </div>
           <div className="service-call-actions">
             <button className="service-call-secondary" onClick={onOpenTraining}>Review Related Training</button>
-            <button className="service-call-primary" onClick={onExit}>Return to Hospital</button>
+            <button className="service-call-primary" onClick={onExit}>Return to Service Calls</button>
           </div>
         </article>
       </section>
@@ -4298,7 +4365,43 @@ function getCbetCareerRank(xp = 0) {
   return "Biomedical Rookie";
 }
 
+const SERVICE_CALL_PROGRESSION = [
+  "WO-1001",
+  "WO-1048",
+  "WO-1052",
+  "WO-1061",
+  "WO-1073",
+  "WO-1080",
+];
+
+function findNextServiceCall(completedCalls, completedId) {
+  const completedSet = new Set(completedCalls);
+  const completedIndex = SERVICE_CALL_PROGRESSION.indexOf(completedId);
+  const orderedIds = [
+    ...SERVICE_CALL_PROGRESSION.slice(completedIndex + 1),
+    ...SERVICE_CALL_PROGRESSION.slice(0, completedIndex + 1),
+  ];
+  return orderedIds.find((id) => !completedSet.has(id)) || completedId;
+}
+
 export default function CBETAcademy() {
+  const markServiceCallComplete = (serviceCallId) => {
+    try {
+      const current = JSON.parse(window.localStorage.getItem("cbetCompletedServiceCalls") || "[]");
+      const completed = Array.isArray(current) ? current : [];
+      const updatedCompleted = completed.includes(serviceCallId)
+        ? completed
+        : [...completed, serviceCallId];
+      window.localStorage.setItem("cbetCompletedServiceCalls", JSON.stringify(updatedCompleted));
+
+      const nextServiceCallId = findNextServiceCall(updatedCompleted, serviceCallId);
+      window.localStorage.setItem("cbetActiveServiceCall", nextServiceCallId);
+      window.localStorage.removeItem("cbetActiveWorkOrder");
+    } catch {
+      // Completion tracking is optional when storage is unavailable.
+    }
+    setRefresh((value) => value + 1);
+  };
   const [screen, setScreen] = useState("dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
@@ -4392,7 +4495,7 @@ export default function CBETAcademy() {
           setRefresh((value) => value + 1);
         }}
         onOpenTraining={() => setScreen("dashboard")}
-        onComplete={() => setRefresh((value) => value + 1)}
+        onComplete={() => markServiceCallComplete("WO-1048")}
       />
     );
   }
@@ -4404,7 +4507,7 @@ export default function CBETAcademy() {
           setScreen("hospital");
           setRefresh((value) => value + 1);
         }}
-        onComplete={() => setRefresh((value) => value + 1)}
+        onComplete={() => markServiceCallComplete("WO-1052")}
       />
     );
   }
@@ -4417,7 +4520,7 @@ export default function CBETAcademy() {
         <ExpandedServiceCall
           scenario={scenario}
           onExit={() => { setScreen("hospital"); setRefresh((value) => value + 1); }}
-          onComplete={() => setRefresh((value) => value + 1)}
+          onComplete={() => markServiceCallComplete(scenarioId)}
         />
       );
     }
@@ -4614,7 +4717,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Explore</span>
             </div>
             <h3>Equipment Learning Center</h3>
-            <p>Understand clinical purpose, operating principles, major components, reported symptoms, and BMET reasoning—without PM procedures.</p>
+            <p>Understand clinical purpose, operating principles, major components, reported symptoms, and BMET reasoning. Preventive maintenance is discussed conceptually, but no PM procedures are simulated.</p>
             <div className="cbet-hub-summary"><strong>8</strong><span>equipment families</span></div>
             <button className="cbet-secondary" onClick={() => setScreen("equipmentLearning")}>Explore Equipment</button>
           </article>
@@ -4625,7 +4728,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Work</span>
             </div>
             <h3>Hospital Simulator</h3>
-            <p>Accept realistic work orders, isolate faults, document repairs, and return equipment to service.</p>
+            <p>Complete realistic service calls, isolate faults, document repairs, and return equipment to service.</p>
             <div className="cbet-hub-summary"><strong>{stats.scenariosCompleted}</strong><span>scenarios completed</span></div>
             <button className="cbet-secondary" onClick={() => setScreen("hospital")}>Enter Hospital</button>
           </article>

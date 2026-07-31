@@ -1,56 +1,100 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./CBETHospitalDashboard.css";
 
-const DEPARTMENTS = [
-  { id: "ed", icon: "🚑", name: "Emergency Department", status: "1 active call", risk: "High" },
-  { id: "icu", icon: "❤️", name: "Intensive Care Unit", status: "1 active call", risk: "High" },
-  { id: "or", icon: "🏥", name: "Operating Room", status: "1 critical call", risk: "Critical" },
-  { id: "cardiology", icon: "💓", name: "Cardiology", status: "1 PM due", risk: "Medium" },
-  { id: "imaging", icon: "🩻", name: "Imaging", status: "1 active call", risk: "Medium" },
-  { id: "nicu", icon: "🍼", name: "NICU", status: "1 active call", risk: "Critical" },
+const SERVICE_CALLS = [
+  {
+    id: "WO-1001",
+    title: "Silent Breath",
+    difficulty: "Intermediate",
+    department: "Operating Room 4",
+    equipment: "PMT AeroVent A900",
+    reason: "PEEP HIGH / BLOCKAGE",
+    detail: "Pressure does not release normally during pre-use checkout.",
+  },
+  {
+    id: "WO-1048",
+    title: "Missing Beat",
+    difficulty: "Beginner",
+    department: "Emergency Department",
+    equipment: "Guardian Bedside Monitor",
+    reason: "No ECG waveform",
+    detail: "SpO₂ and NIBP remain available after the patient was moved.",
+  },
+  {
+    id: "WO-1052",
+    title: "Pressure Lost",
+    difficulty: "Beginner",
+    department: "Intensive Care Unit",
+    equipment: "Guardian Bedside Monitor",
+    reason: "NIBP leak error",
+    detail: "The cuff inflates briefly, then the measurement stops.",
+  },
+  {
+    id: "WO-1061",
+    title: "The Hidden Leak",
+    difficulty: "Intermediate",
+    department: "Operating Room",
+    equipment: "AeroVent Anesthesia Ventilator",
+    reason: "Low-pressure leak test failure",
+    detail: "A low-pressure alarm appears during pre-use testing.",
+  },
+  {
+    id: "WO-1073",
+    title: "The Blocked Line",
+    difficulty: "Intermediate",
+    department: "NICU",
+    equipment: "NeoFlow Syringe Pump",
+    reason: "Downstream occlusion",
+    detail: "The pump alarms immediately after setup.",
+  },
+  {
+    id: "WO-1080",
+    title: "No Probe Found",
+    difficulty: "Beginner",
+    department: "Imaging",
+    equipment: "Portable Ultrasound System",
+    reason: "Transducer not detected",
+    detail: "The system powers on but cannot recognize the selected probe.",
+  },
 ];
 
-const WORK_ORDERS = [
-  {
-    id: "WO-1048", priority: "STAT", departmentId: "ed", department: "Emergency Department",
-    device: "Guardian Bedside Monitor", problem: "No ECG waveform while SpO₂ and NIBP remain available.",
-    reward: 180, tools: ["Patient simulator", "Digital multimeter", "Known-good ECG cable"],
-  },
-  {
-    id: "WO-1052", priority: "URGENT", departmentId: "icu", department: "Intensive Care Unit",
-    device: "Guardian Bedside Monitor", problem: "NIBP inflates briefly, then stops with a leak error. ECG and SpO₂ remain available.",
-    reward: 160, tools: ["Known-good NIBP cuff and hose", "Pneumatic leak tester", "Service checklist"],
-  },
-  {
-    id: "PM-2044", priority: "ROUTINE", departmentId: "cardiology", department: "Cardiology",
-    device: "Pulse External Defibrillator", problem: "Annual delivered-energy and charge-time verification is due.",
-    reward: 125, tools: ["Defibrillator analyzer", "Electrical safety analyzer", "Inspection checklist"],
-  },
-  {
-    id: "WO-1061", priority: "CRITICAL", departmentId: "or", department: "Operating Room",
-    device: "AeroVent Anesthesia Ventilator", problem: "Low-pressure alarm appears during the pre-use leak test.",
-    reward: 210, tools: ["Gas flow analyzer", "Test lung", "Known-good breathing circuit"],
-  },
-  {
-    id: "WO-1073", priority: "HIGH", departmentId: "nicu", department: "NICU",
-    device: "NeoFlow Syringe Pump", problem: "Pump reports downstream occlusion immediately after setup.",
-    reward: 175, tools: ["Infusion device analyzer", "Approved syringe", "Occlusion test fixture"],
-  },
-  {
-    id: "WO-1080", priority: "MEDIUM", departmentId: "imaging", department: "Imaging",
-    device: "Portable Ultrasound System", problem: "System powers on, but the selected transducer is not detected.",
-    reward: 150, tools: ["Known-good transducer", "Connector inspection light", "Service diagnostics"],
-  },
-];
+const DIFFICULTIES = ["Beginner", "Intermediate", "Advanced"];
+const TOTAL_PLANNED_CALLS = 25;
+const SERVICE_CALL_ORDER = SERVICE_CALLS.map((call) => call.id);
 
-function rankForXp(xp) {
-  if (xp >= 15000) return "Chief Clinical Engineer";
-  if (xp >= 10000) return "CBET Certified Professional";
-  if (xp >= 6000) return "Clinical Engineering Specialist";
-  if (xp >= 3000) return "Senior Biomedical Technician";
-  if (xp >= 1500) return "Biomedical Technician II";
-  if (xp >= 500) return "Biomedical Technician I";
-  return "Biomedical Intern";
+function getNextIncompleteCall(completedSet, afterId = "") {
+  const startIndex = Math.max(-1, SERVICE_CALL_ORDER.indexOf(afterId));
+  const orderedIds = [
+    ...SERVICE_CALL_ORDER.slice(startIndex + 1),
+    ...SERVICE_CALL_ORDER.slice(0, startIndex + 1),
+  ];
+  const nextId = orderedIds.find((id) => !completedSet.has(id));
+  return SERVICE_CALLS.find((call) => call.id === nextId) || null;
+}
+
+function readCompletedCalls() {
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem("cbetCompletedServiceCalls") || "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function readActiveCall() {
+  try {
+    return (
+      window.localStorage.getItem("cbetActiveServiceCall") ||
+      window.localStorage.getItem("cbetActiveWorkOrder") ||
+      "WO-1001"
+    );
+  } catch {
+    return "WO-1001";
+  }
+}
+
+function difficultyClass(difficulty) {
+  return `difficulty-${difficulty.toLowerCase()}`;
 }
 
 export default function CBETHospitalDashboard({
@@ -63,195 +107,158 @@ export default function CBETHospitalDashboard({
   onOpenMission,
   onOpenStats,
 }) {
-  const [selectedDepartment, setSelectedDepartment] = useState("ed");
-  const activeAssignmentRef = useRef(null);
-  const [acceptedOrder, setAcceptedOrder] = useState(() => {
+  const [activeCallId, setActiveCallId] = useState(readActiveCall);
+  const [completedCalls] = useState(readCompletedCalls);
+  const [openDifficulty, setOpenDifficulty] = useState("");
+
+  const completedSet = useMemo(() => new Set(completedCalls), [completedCalls]);
+  const activeCall = getNextIncompleteCall(completedSet) || SERVICE_CALLS[0];
+  const recommendedCall =
+    getNextIncompleteCall(new Set([...completedSet, activeCall.id]), activeCall.id) || activeCall;
+
+  const launchCall = (id) => {
+    setActiveCallId(id);
     try {
-      const savedOrder = window.localStorage.getItem("cbetActiveWorkOrder");
-      const supportedOrder = WORK_ORDERS.find(
-        (order) => order.id === savedOrder && order.available !== false
-      );
-      return supportedOrder?.id || "WO-1048";
+      window.localStorage.setItem("cbetActiveServiceCall", id);
     } catch {
-      return "WO-1048";
+      // Local progress storage is optional.
     }
-  });
-
-  const activeOrder = useMemo(
-    () => WORK_ORDERS.find((order) => order.id === acceptedOrder) || WORK_ORDERS[0],
-    [acceptedOrder]
-  );
-
-  useEffect(() => {
-    const scrollToHospitalMap = () => {
-      const map = document.getElementById("cbet-hospital-map");
-      if (!map) return;
-
-      map.scrollIntoView({
-        behavior: "auto",
-        block: "start",
-        inline: "nearest",
-      });
-      window.scrollBy({ top: -18, left: 0, behavior: "auto" });
-    };
-
-    scrollToHospitalMap();
-    const timers = [0, 80, 240, 600, 1000].map((delay) =>
-      window.setTimeout(scrollToHospitalMap, delay)
-    );
-
-    return () => timers.forEach((timer) => window.clearTimeout(timer));
-  }, []);
-
-  const scrollToActiveAssignment = () => {
-    window.setTimeout(() => {
-      activeAssignmentRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 60);
+    onOpenMission(id);
   };
 
-  const acceptOrder = (id, shouldScroll = true) => {
-    const order = WORK_ORDERS.find((item) => item.id === id);
-    if (!order) return;
-
-    setAcceptedOrder(id);
-    setSelectedDepartment(order.departmentId);
-    try { window.localStorage.setItem("cbetActiveWorkOrder", id); } catch { /* optional */ }
-    if (shouldScroll) scrollToActiveAssignment();
-  };
-
-  const selectDepartment = (departmentId) => {
-    setSelectedDepartment(departmentId);
-    const firstOrder = WORK_ORDERS.find((order) => order.departmentId === departmentId);
-    if (firstOrder) acceptOrder(firstOrder.id, true);
-  };
+  const completedCount = completedSet.size;
+  const serviceProgress = Math.min(100, (completedCount / TOTAL_PLANNED_CALLS) * 100);
 
   return (
-    <main className="hospital-engine">
-      <header className="hospital-topbar">
-        <div className="hospital-brand">
-          <span className="hospital-brand-mark">MSB</span>
+    <main className="academy-home" id="cbet-hospital-map">
+      <header className="academy-topbar">
+        <div className="academy-brand">
+          <span className="academy-brand-mark">MSB</span>
           <div>
             <strong>MedSkillBuilder</strong>
-            <small>Biomedical Training Hospital</small>
+            <small>Clinical Engineering Academy</small>
           </div>
         </div>
-        <div className="hospital-top-actions">
-          <button type="button" onClick={onOpenStats}>View statistics</button>
-          <button type="button" className="hospital-primary" onClick={onOpenTraining}>Training academy</button>
+        <div className="academy-top-actions">
+          <button type="button" onClick={onOpenStats}>Statistics</button>
+          <button type="button" onClick={onOpenTraining}>Learning modules</button>
         </div>
       </header>
 
-      <section className="hospital-hero">
-        <div>
-          <span className="hospital-eyebrow">Shift briefing</span>
-          <h1>Welcome to Clinical Engineering</h1>
-          <p>Choose a department, accept a service call, and complete a distinct troubleshooting assignment using realistic biomedical test equipment.</p>
-          <div className="hospital-hero-actions">
-            <button type="button" className="hospital-primary" onClick={() => onOpenMission(activeOrder.id)}>Continue active assignment</button>
-            <button type="button" onClick={onOpenLab}>Open equipment lab</button>
-          </div>
-        </div>
-        <aside className="hospital-profile-card">
-          <span>Current role</span>
-          <strong>{rankForXp(xp)}</strong>
-          <div className="hospital-profile-stats">
-            <div><b>{xp.toLocaleString()}</b><small>XP</small></div>
-            <div><b>{badges}</b><small>Badges</small></div>
-            <div><b>{streak}</b><small>Day streak</small></div>
-          </div>
-          <div className="hospital-progress"><i style={{ width: `${Math.min(progress, 100)}%` }} /></div>
-          <small>{progress}% academy completion</small>
-        </aside>
-      </section>
+      <section className="academy-shell">
+        <section className="academy-intro">
+          <span className="academy-eyebrow">Clinical Engineering Academy</span>
+          <h1>Learn by solving realistic service calls.</h1>
+          <p>Work through one focused equipment problem at a time. Investigate, identify the cause, verify the solution, and document what you learned.</p>
+        </section>
 
-      <section className="hospital-command-grid" id="cbet-hospital-map">
-        <article className="hospital-panel hospital-map-panel">
-          <div className="hospital-panel-heading">
-            <div><span className="hospital-eyebrow">Hospital map</span><h2>Departments</h2></div>
-            <span className="hospital-live-dot">Live</span>
+        <section className="academy-progress-card" aria-label="Career progress">
+          <div className="academy-progress-heading">
+            <div>
+              <span className="academy-eyebrow">Career progress</span>
+              <strong>{completedCount} of {TOTAL_PLANNED_CALLS} service calls completed</strong>
+            </div>
+            <button type="button" className="academy-text-button" onClick={onOpenStats}>View achievements</button>
           </div>
-          <div className="hospital-map">
-            {DEPARTMENTS.map((department) => (
-              <button type="button"
-                key={department.id}
-                className={selectedDepartment === department.id ? "active" : ""}
-                onClick={() => selectDepartment(department.id)}
-              >
-                <span>{department.icon}</span>
-                <strong>{department.name}</strong>
-                <small>{department.status}</small>
-                <em className={`risk-${department.risk.toLowerCase()}`}>{department.risk}</em>
-              </button>
-            ))}
+          <div className="academy-progress-track" aria-hidden="true">
+            <i style={{ width: `${serviceProgress}%` }} />
           </div>
-        </article>
+          <div className="academy-progress-meta">
+            <span>{xp.toLocaleString()} XP</span>
+            <span>{badges} badges</span>
+            <span>{streak} day streak</span>
+            <span>{progress}% academy completion</span>
+          </div>
+        </section>
 
-        <article ref={activeAssignmentRef} className="hospital-panel hospital-active-order">
-          <div className="hospital-panel-heading">
-            <div><span className="hospital-eyebrow">Active assignment</span><h2>{activeOrder.id}</h2></div>
-            <span className={`priority priority-${activeOrder.priority.toLowerCase()}`}>{activeOrder.priority}</span>
-          </div>
-          <dl>
-            <div><dt>Department</dt><dd>{activeOrder.department}</dd></div>
-            <div><dt>Equipment</dt><dd>{activeOrder.device}</dd></div>
-            <div><dt>Reported problem</dt><dd>{activeOrder.problem}</dd></div>
-          </dl>
-          <div className="hospital-tool-preview">
-            <span>Recommended toolbox</span>
-            {activeOrder.tools.map((tool) => <small key={tool}>✓ {tool}</small>)}
-          </div>
-          <div className="hospital-order-footer">
-            <strong>+{activeOrder.reward} XP</strong>
-            <button type="button" className="hospital-primary" onClick={() => onOpenMission(activeOrder.id)}>Begin assignment</button>
-          </div>
-        </article>
-      </section>
-
-      <section className="hospital-panel hospital-orders-panel">
-        <div className="hospital-panel-heading">
-          <div><span className="hospital-eyebrow">Service desk</span><h2>Open work orders</h2></div>
-          <button type="button" onClick={onOpenTraining}>View training path</button>
-        </div>
-        <div className="hospital-order-list">
-          {WORK_ORDERS.map((order) => (
-            <article key={order.id} className={acceptedOrder === order.id ? "accepted" : ""}>
-              <div className="hospital-order-id"><span className={`priority priority-${order.priority.toLowerCase()}`}>{order.priority}</span><strong>{order.id}</strong></div>
-              <div><strong>{order.device}</strong><small>{order.department}</small></div>
-              <p>{order.problem}</p>
-              <div className="hospital-order-actions">
-                <span>+{order.reward} XP</span>
-                <button type="button" onClick={() => acceptOrder(order.id)}>
-                  {acceptedOrder === order.id ? "Accepted" : "Accept call"}
-                </button>
+        <section className="academy-focus-grid">
+          <article className="academy-call-card academy-call-primary">
+            <span className="academy-card-label">Continue learning</span>
+            <div className="academy-call-heading">
+              <div>
+                <span className={`academy-difficulty ${difficultyClass(activeCall.difficulty)}`}>{activeCall.difficulty}</span>
+                <h2>{activeCall.title}</h2>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+              <span className="academy-call-icon" aria-hidden="true">🔧</span>
+            </div>
+            <dl>
+              <div><dt>Equipment</dt><dd>{activeCall.equipment}</dd></div>
+              <div><dt>Department</dt><dd>{activeCall.department}</dd></div>
+              <div><dt>Reason for service</dt><dd>{activeCall.reason}</dd></div>
+            </dl>
+            <p>{activeCall.detail}</p>
+            <button type="button" className="academy-primary-button" onClick={() => launchCall(activeCall.id)}>
+              Continue service call
+            </button>
+          </article>
 
-      <section className="hospital-shift-grid">
-        <article className="hospital-panel">
-          <span className="hospital-eyebrow">Today's shift</span>
-          <h2>Assignment checklist</h2>
-          <label><input type="checkbox" /> Complete one guided lesson</label>
-          <label><input type="checkbox" /> Run one analyzer simulation</label>
-          <label><input type="checkbox" /> Finish one applied case</label>
-          <label><input type="checkbox" /> Review one missed concept</label>
-        </article>
-        <article className="hospital-panel hospital-career-panel">
-          <span className="hospital-eyebrow">Career pathway</span>
-          <h2>Next promotion</h2>
-          <div className="career-route">
-            <span className="complete">Biomedical Intern</span>
-            <i />
-            <span className={xp >= 500 ? "complete" : "current"}>Biomedical Technician I</span>
-            <i />
-            <span>Biomedical Technician II</span>
-            <i />
-            <span>Senior Biomedical Technician</span>
+          <article className="academy-call-card academy-recommended-card">
+            <span className="academy-card-label">Recommended next</span>
+            <div className="academy-call-heading">
+              <div>
+                <span className={`academy-difficulty ${difficultyClass(recommendedCall.difficulty)}`}>{recommendedCall.difficulty}</span>
+                <h2>{recommendedCall.title}</h2>
+              </div>
+              <span className="academy-call-icon" aria-hidden="true">★</span>
+            </div>
+            <strong className="academy-reason">{recommendedCall.reason}</strong>
+            <span className="academy-equipment">{recommendedCall.equipment} · {recommendedCall.department}</span>
+            <p>{recommendedCall.detail}</p>
+            <button type="button" onClick={() => launchCall(recommendedCall.id)}>Start recommended call</button>
+          </article>
+        </section>
+
+        <section className="academy-library">
+          <div className="academy-section-heading">
+            <div>
+              <span className="academy-eyebrow">Optional browsing</span>
+              <h2>Service Call Library</h2>
+              <p>Open only the difficulty group you want to explore.</p>
+            </div>
+            <button type="button" onClick={onOpenLab}>Equipment lab</button>
           </div>
-          <button type="button" className="hospital-primary" onClick={onOpenTraining}>Build promotion progress</button>
-        </article>
+
+          <div className="academy-library-groups">
+            {DIFFICULTIES.map((difficulty) => {
+              const calls = SERVICE_CALLS.filter((call) => call.difficulty === difficulty);
+              const isOpen = openDifficulty === difficulty;
+              return (
+                <section className="academy-library-group" key={difficulty}>
+                  <button
+                    type="button"
+                    className="academy-library-toggle"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenDifficulty(isOpen ? "" : difficulty)}
+                  >
+                    <span>
+                      <i className={`academy-dot ${difficultyClass(difficulty)}`} />
+                      <strong>{difficulty}</strong>
+                      <small>{calls.length ? `${calls.length} available` : "Coming soon"}</small>
+                    </span>
+                    <b>{isOpen ? "−" : "+"}</b>
+                  </button>
+
+                  {isOpen && calls.length > 0 && (
+                    <div className="academy-library-list">
+                      {calls.slice(0, 5).map((call) => (
+                        <article key={call.id} className={completedSet.has(call.id) ? "complete" : ""}>
+                          <div>
+                            <span>{completedSet.has(call.id) ? "✓ Completed" : call.reason}</span>
+                            <strong>{call.title}</strong>
+                            <small>{call.equipment} · {call.department}</small>
+                          </div>
+                          <button type="button" onClick={() => launchCall(call.id)}>
+                            {completedSet.has(call.id) ? "Review" : "Start"}
+                          </button>
+                        </article>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              );
+            })}
+          </div>
+        </section>
       </section>
     </main>
   );
