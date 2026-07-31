@@ -3052,6 +3052,111 @@ const EXPANDED_SERVICE_SCENARIOS = {
       ["Why inspect connector pins?", ["Bent or contaminated pins can prevent detection", "They control room lighting", "They charge the battery", "They set image depth"], 0],
     ],
   },
+  "WO-1092": {
+    id: "WO-1092",
+    title: "Temperature Trouble",
+    equipment: "Guardian GX5 Bedside Monitor",
+    location: "PACU • Bay 7",
+    complaint: "The monitor displays 29.8°C, but the patient is awake, warm, and showing no signs consistent with severe hypothermia.",
+    tools: ["Clinical handoff", "Known-good temperature probe", "Temperature simulator"],
+    steps: [
+      ["Protect the patient", "Confirm the patient's condition with clinical staff and ensure temperature can be checked by an alternate method."],
+      ["Compare the reading", "Determine whether the displayed value matches the patient's appearance and the alternate temperature measurement."],
+      ["Inspect the probe", "Check probe placement, connector seating, cable strain relief, and visible damage."],
+      ["Change one variable", "Connect a compatible known-good temperature probe and compare the result."],
+      ["Verify the channel", "Use a temperature simulator to verify the monitor accurately displays multiple known values."],
+    ],
+    diagnosis: "Intermittent open circuit in the original temperature probe cable",
+    correctiveAction: "Remove the damaged probe from service, install a known-good probe, and verify the temperature channel with simulated values",
+    clinicalPearl: "When a displayed value does not match the patient's condition, verify the complete measurement pathway before assuming either patient deterioration or monitor failure.",
+    achievement: "Temperature Detective",
+    xp: 175,
+    questions: [
+      ["What is the first priority when the temperature reading appears implausible?", ["Assess the patient and confirm an alternate measurement", "Replace the monitor", "Open the monitor housing", "Disable the alarm"], 0],
+      ["What does a normal reading with a known-good probe suggest?", ["The original probe is suspect", "The monitor display has failed", "The network is offline", "The battery is depleted"], 0],
+      ["Why use a temperature simulator after replacing the probe?", ["To verify the monitor channel at known values", "To charge the probe", "To update the software", "To test NIBP pressure"], 0],
+      ["Which finding best supports an intermittent probe-cable failure?", ["The reading changes when the cable is flexed near the strain relief", "ECG remains normal", "The monitor is on AC power", "The patient is awake"], 0],
+    ],
+  },
+  "WO-1099": {
+    id: "WO-1099",
+    title: "Dead Battery",
+    equipment: "Guardian Transit Transport Monitor",
+    location: "Emergency Department • Equipment Alcove",
+    complaint: "The transport monitor works on AC power but shuts off immediately whenever it is unplugged.",
+    tools: ["Alternate transport monitor", "Known-good charged battery", "Battery analyzer"],
+    steps: [
+      ["Protect the transport", "Confirm another charged monitor is available before the affected unit is removed from service."],
+      ["Reproduce the complaint", "Verify normal AC operation, then safely disconnect AC power and observe the shutdown."],
+      ["Inspect the battery path", "Check battery seating, contacts, latch condition, charge indication, and visible damage."],
+      ["Substitute the battery", "Install a compatible known-good charged battery and repeat the unplugged operating test."],
+      ["Verify runtime", "Confirm charging, battery status, alarm operation, and stable battery-powered operation before return to service."],
+    ],
+    diagnosis: "The installed battery can no longer store sufficient energy to support the monitor",
+    correctiveAction: "Replace the failed battery and complete charging, runtime, and functional verification",
+    clinicalPearl: "A device that operates normally on AC power but fails immediately when unplugged usually points to the battery or battery connection—not the entire monitor.",
+    achievement: "Power Restored",
+    xp: 175,
+    questions: [
+      ["What must be confirmed before testing a transport monitor that cannot run on battery?", ["Another safe transport-monitoring option is available", "The display brightness is maximum", "The network cable is connected", "The printer has paper"], 0],
+      ["The monitor works on AC but shuts off when unplugged. Which subsystem should be isolated first?", ["Battery and battery connection", "ECG lead set", "NIBP cuff", "Network interface"], 0],
+      ["A known-good battery keeps the monitor operating. What does that demonstrate?", ["The original battery is the likely fault", "The monitor power supply has failed", "The display is defective", "The AC outlet is faulty"], 0],
+      ["What is required before returning the monitor to service?", ["Verify charging, battery operation, alarms, and functional performance", "Only confirm that it powers on", "Clear the service history", "Disable the low-battery alarm"], 0],
+    ],
+  },
+  "WO-1105": {
+    id: "WO-1105",
+    title: "Silent Shock",
+    equipment: "PMT PulseGuard X Defibrillator",
+    location: "Emergency Department • Resuscitation Bay",
+    complaint: "The defibrillator reports a readiness self-test failure and is not cleared for emergency use.",
+    tools: ["Alternate emergency defibrillator", "Known-good therapy cable", "Defibrillator analyzer"],
+    steps: [
+      ["Protect emergency readiness", "Confirm another tested defibrillator is immediately available and remove the affected unit from emergency use."],
+      ["Review the failure", "Check the displayed readiness message and ask staff what occurred during the last operational check."],
+      ["Inspect external connections", "Examine the therapy cable, connector, pads interface, battery seating, and visible damage before opening the device."],
+      ["Substitute the accessory", "Connect a compatible known-good therapy cable and repeat the manufacturer-independent readiness check."],
+      ["Verify safe operation", "Use a defibrillator analyzer to verify delivered energy, synchronization indication, charging, alarms, and basic operation before release."],
+    ],
+    diagnosis: "A loose, worn therapy-cable connector caused the readiness self-test failure",
+    correctiveAction: "Replace the faulty therapy cable and complete functional verification with a defibrillator analyzer",
+    clinicalPearl: "A failed readiness check means the device must not be assumed ready. Secure alternate coverage, inspect external accessories first, and verify performance before return to emergency service.",
+    achievement: "Emergency Ready",
+    xp: 200,
+    questions: [
+      ["What is the first priority after a defibrillator fails a readiness check?", ["Ensure another verified defibrillator is available", "Open the device", "Clear the message and continue use", "Replace the display"], 0],
+      ["What should be inspected before suspecting an internal failure?", ["Therapy cable, connector, battery, and external accessories", "Only the printer paper", "The hospital network", "The room lighting"], 0],
+      ["A known-good therapy cable clears the failure. What does that suggest?", ["The original cable or connector is the likely fault", "The analyzer is defective", "The battery must be replaced", "The display has failed"], 0],
+      ["What tool is appropriate for confirming delivered-energy performance?", ["Defibrillator analyzer", "Infusion analyzer", "Temperature simulator", "Gas-flow meter"], 0],
+    ],
+  },
+  "WO-1112": {
+    id: "WO-1112",
+    title: "Vanishing Pressure",
+    equipment: "PMT RespiraOne Critical-Care Ventilator",
+    location: "Intensive Care Unit • Room 9",
+    complaint: "The ventilator repeatedly alarms LOW PRESSURE / LOW EXHALED VOLUME while the patient is being supported by an alternate ventilator.",
+    tools: ["Alternate ventilator confirmed", "Test lung", "Known-good patient circuit"],
+    steps: [
+      ["Protect ventilation", "Confirm the patient remains safely supported on an alternate ventilator before evaluating the affected unit."],
+      ["Gather the clinical report", "Ask when the alarm began and whether the circuit, humidifier, suction port, or patient connection was recently changed."],
+      ["Inspect the complete breathing path", "Check circuit connections, water traps, caps, humidifier seals, exhalation components, and open ports."],
+      ["Reproduce with a test lung", "Connect the original circuit to a test lung and confirm that pressure and exhaled volume cannot be maintained."],
+      ["Substitute one variable", "Install a known-good circuit, repeat the functional test, and verify pressure, volume, and alarm response."],
+    ],
+    diagnosis: "An uncapped sampling port in the original patient circuit created a major leak",
+    correctiveAction: "Cap the open port, replace the compromised circuit as appropriate, and verify operation with a test lung",
+    clinicalPearl: "Low-pressure and low-volume alarms often indicate a leak or disconnect in the external breathing path. Inspect the entire circuit before assuming an internal ventilator failure.",
+    achievement: "Circuit Investigator",
+    xp: 225,
+    questions: [
+      ["What must happen before the affected ventilator is evaluated?", ["The patient must be safely supported by an alternate method", "The alarm must be silenced permanently", "The ventilator must be opened", "The network cable must be removed"], 0],
+      ["Which finding most commonly explains simultaneous low pressure and low exhaled volume?", ["A circuit leak or disconnect", "High battery charge", "Excessive screen brightness", "A normal test lung"], 0],
+      ["Why test the original circuit on a test lung?", ["To reproduce the complaint without involving a patient", "To calibrate the hospital oxygen supply", "To charge the ventilator", "To test the ECG module"], 0],
+      ["A known-good circuit restores normal performance. What is the best conclusion?", ["The fault is isolated to the original external circuit path", "The internal blower has failed", "The test lung is defective", "The display needs replacement"], 0],
+    ],
+  },
+
 };
 
 
@@ -3289,7 +3394,19 @@ function ExpandedServiceCall({ scenario, onExit, onComplete }) {
             <div><span>Root cause</span><strong>{scenario.diagnosis}</strong></div>
             <div><span>Resolution</span><strong>{scenario.correctiveAction}</strong></div>
           </div>
-          <button type="button" className="msb-call-primary" onClick={() => { onComplete?.(); onExit(); }}>Return to Service Calls</button>
+          {scenario.clinicalPearl && (
+            <div className="msb-call-tool" style={{ textAlign: "left", background: "#fff7df", borderLeftColor: "#e2a426" }}>
+              <span>Clinical Pearl</span>
+              <strong>{scenario.clinicalPearl}</strong>
+            </div>
+          )}
+          {scenario.achievement && (
+            <div className="msb-call-info" style={{ maxWidth: 620, margin: "18px auto", textAlign: "left" }}>
+              <span>Achievement unlocked</span>
+              <strong>🏅 {scenario.achievement}{scenario.xp ? ` • +${scenario.xp} XP` : ""}</strong>
+            </div>
+          )}
+          <button type="button" className="msb-call-primary" onClick={() => { if (scenario.xp) awardCbetXp(scenario.xp, `service-call-${scenario.id}`); onComplete?.(); onExit(); }}>Return to Service Calls</button>
         </article>
       )}
     </section>
@@ -3758,9 +3875,13 @@ const SERVICE_CALL_PROGRESSION = [
   "WO-1001",
   "WO-1048",
   "WO-1052",
+  "WO-1092",
+  "WO-1099",
   "WO-1061",
   "WO-1073",
   "WO-1080",
+  "WO-1105",
+  "WO-1112",
 ];
 
 function findNextServiceCall(completedCalls, completedId) {

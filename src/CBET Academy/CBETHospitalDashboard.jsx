@@ -39,6 +39,30 @@ const SERVICE_CALLS = [
     achievement: "Pressure Pathfinder",
   },
   {
+    id: "WO-1092",
+    title: "Temperature Trouble",
+    difficulty: "Beginner",
+    time: "7–9 minutes",
+    department: "PACU • Bay 7",
+    equipment: "Guardian GX5 Bedside Monitor",
+    equipmentGroup: "Temperature Monitoring",
+    reason: "Implausible temperature reading",
+    detail: "The monitor displays 29.8°C even though the patient appears warm and stable.",
+    achievement: "Temperature Detective",
+  },
+  {
+    id: "WO-1099",
+    title: "Dead Battery",
+    difficulty: "Beginner",
+    time: "7–9 minutes",
+    department: "Emergency Department",
+    equipment: "Guardian Transit Transport Monitor",
+    equipmentGroup: "Transport Monitoring",
+    reason: "Powers off when unplugged",
+    detail: "The monitor operates on AC power but shuts down immediately on battery.",
+    achievement: "Power Restored",
+  },
+  {
     id: "WO-1061",
     title: "The Hidden Leak",
     difficulty: "Intermediate",
@@ -71,9 +95,34 @@ const SERVICE_CALLS = [
     reason: "Transducer not detected",
     detail: "The system powers on but cannot recognize the selected probe.",
   },
+  {
+    id: "WO-1105",
+    title: "Silent Shock",
+    difficulty: "Intermediate",
+    time: "8–10 minutes",
+    department: "Emergency Department",
+    equipment: "PMT PulseGuard X Defibrillator",
+    equipmentGroup: "Defibrillation",
+    reason: "Readiness self-test failure",
+    detail: "The unit is not cleared for emergency use after its readiness check fails.",
+    achievement: "Emergency Ready",
+  },
+  {
+    id: "WO-1112",
+    title: "Vanishing Pressure",
+    difficulty: "Intermediate",
+    time: "8–10 minutes",
+    department: "Intensive Care Unit",
+    equipment: "PMT RespiraOne Ventilator",
+    equipmentGroup: "Ventilation",
+    reason: "Low pressure / low exhaled volume",
+    detail: "The ventilator cannot maintain pressure with the reported patient circuit.",
+    achievement: "Circuit Investigator",
+  },
+
 ];
 
-const TOTAL_PLANNED_CALLS = 25;
+const TOTAL_PLANNED_CALLS = 10;
 
 function readCompletedCalls() {
   if (typeof window === "undefined") return [];
