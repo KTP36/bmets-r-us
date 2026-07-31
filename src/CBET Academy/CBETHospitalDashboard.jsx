@@ -6,35 +6,46 @@ const SERVICE_CALLS = [
     id: "WO-1001",
     title: "Silent Breath",
     difficulty: "Intermediate",
+    time: "8–10 minutes",
     department: "Operating Room 4",
     equipment: "PMT AeroVent A900",
+    equipmentGroup: "Anesthesia",
     reason: "PEEP HIGH / BLOCKAGE",
     detail: "Pressure does not release normally during pre-use checkout.",
+    achievement: "Silent Savior",
   },
   {
     id: "WO-1048",
     title: "Missing Beat",
     difficulty: "Beginner",
+    time: "6–8 minutes",
     department: "Emergency Department",
     equipment: "Guardian Bedside Monitor",
+    equipmentGroup: "Patient Monitor",
     reason: "No ECG waveform",
     detail: "SpO₂ and NIBP remain available after the patient was moved.",
+    achievement: "Accessory Detective",
   },
   {
     id: "WO-1052",
     title: "Pressure Lost",
     difficulty: "Beginner",
+    time: "6–8 minutes",
     department: "Intensive Care Unit",
     equipment: "Guardian Bedside Monitor",
+    equipmentGroup: "NIBP",
     reason: "NIBP leak error",
     detail: "The cuff inflates briefly, then the measurement stops.",
+    achievement: "Pressure Pathfinder",
   },
   {
     id: "WO-1061",
     title: "The Hidden Leak",
     difficulty: "Intermediate",
+    time: "8–10 minutes",
     department: "Operating Room",
     equipment: "AeroVent Anesthesia Ventilator",
+    equipmentGroup: "Anesthesia",
     reason: "Low-pressure leak test failure",
     detail: "A low-pressure alarm appears during pre-use testing.",
   },
@@ -42,8 +53,10 @@ const SERVICE_CALLS = [
     id: "WO-1073",
     title: "The Blocked Line",
     difficulty: "Intermediate",
+    time: "7–9 minutes",
     department: "NICU",
     equipment: "NeoFlow Syringe Pump",
+    equipmentGroup: "Infusion",
     reason: "Downstream occlusion",
     detail: "The pump alarms immediately after setup.",
   },
@@ -51,28 +64,19 @@ const SERVICE_CALLS = [
     id: "WO-1080",
     title: "No Probe Found",
     difficulty: "Beginner",
+    time: "6–8 minutes",
     department: "Imaging",
     equipment: "Portable Ultrasound System",
+    equipmentGroup: "Ultrasound",
     reason: "Transducer not detected",
     detail: "The system powers on but cannot recognize the selected probe.",
   },
 ];
 
-const DIFFICULTIES = ["Beginner", "Intermediate", "Advanced"];
 const TOTAL_PLANNED_CALLS = 25;
-const SERVICE_CALL_ORDER = SERVICE_CALLS.map((call) => call.id);
-
-function getNextIncompleteCall(completedSet, afterId = "") {
-  const startIndex = Math.max(-1, SERVICE_CALL_ORDER.indexOf(afterId));
-  const orderedIds = [
-    ...SERVICE_CALL_ORDER.slice(startIndex + 1),
-    ...SERVICE_CALL_ORDER.slice(0, startIndex + 1),
-  ];
-  const nextId = orderedIds.find((id) => !completedSet.has(id));
-  return SERVICE_CALLS.find((call) => call.id === nextId) || null;
-}
 
 function readCompletedCalls() {
+  if (typeof window === "undefined") return [];
   try {
     const parsed = JSON.parse(window.localStorage.getItem("cbetCompletedServiceCalls") || "[]");
     return Array.isArray(parsed) ? parsed : [];
@@ -82,6 +86,7 @@ function readCompletedCalls() {
 }
 
 function readActiveCall() {
+  if (typeof window === "undefined") return "WO-1001";
   try {
     return (
       window.localStorage.getItem("cbetActiveServiceCall") ||
@@ -97,11 +102,12 @@ function difficultyClass(difficulty) {
   return `difficulty-${difficulty.toLowerCase()}`;
 }
 
+function stars(value) {
+  const safeValue = Math.max(1, Math.min(5, value));
+  return `${"★".repeat(safeValue)}${"☆".repeat(5 - safeValue)}`;
+}
+
 export default function CBETHospitalDashboard({
-  xp = 0,
-  progress = 0,
-  badges = 0,
-  streak = 1,
   onOpenTraining,
   onOpenLab,
   onOpenMission,
@@ -109,12 +115,29 @@ export default function CBETHospitalDashboard({
 }) {
   const [activeCallId, setActiveCallId] = useState(readActiveCall);
   const [completedCalls] = useState(readCompletedCalls);
-  const [openDifficulty, setOpenDifficulty] = useState("");
 
   const completedSet = useMemo(() => new Set(completedCalls), [completedCalls]);
-  const activeCall = getNextIncompleteCall(completedSet) || SERVICE_CALLS[0];
-  const recommendedCall =
-    getNextIncompleteCall(new Set([...completedSet, activeCall.id]), activeCall.id) || activeCall;
+  const completedCount = completedSet.size;
+  const progressPercent = Math.min(100, (completedCount / TOTAL_PLANNED_CALLS) * 100);
+
+  const activeCall = useMemo(() => {
+    const storedCall = SERVICE_CALLS.find(
+      (call) => call.id === activeCallId && !completedSet.has(call.id)
+    );
+    return storedCall || SERVICE_CALLS.find((call) => !completedSet.has(call.id)) || SERVICE_CALLS[0];
+  }, [activeCallId, completedSet]);
+
+  const completedCallDetails = SERVICE_CALLS.filter((call) => completedSet.has(call.id));
+  const upcomingCalls = SERVICE_CALLS.filter((call) => !completedSet.has(call.id)).slice(0, 3);
+  const recentAchievements = completedCallDetails
+    .filter((call) => call.achievement)
+    .slice(-3)
+    .reverse();
+  const equipmentExperience = [...new Set(completedCallDetails.map((call) => call.equipmentGroup))];
+
+  const skillLevel = Math.min(5, 2 + Math.floor(completedCount / 2));
+  const safetyLevel = Math.min(5, 3 + Math.floor(completedCount / 3));
+  const equipmentLevel = Math.min(5, 2 + Math.floor(equipmentExperience.length / 2));
 
   const launchCall = (id) => {
     setActiveCallId(id);
@@ -125,9 +148,6 @@ export default function CBETHospitalDashboard({
     }
     onOpenMission(id);
   };
-
-  const completedCount = completedSet.size;
-  const serviceProgress = Math.min(100, (completedCount / TOTAL_PLANNED_CALLS) * 100);
 
   return (
     <main className="academy-home" id="cbet-hospital-map">
@@ -140,125 +160,139 @@ export default function CBETHospitalDashboard({
           </div>
         </div>
         <div className="academy-top-actions">
-          <button type="button" onClick={onOpenStats}>Statistics</button>
           <button type="button" onClick={onOpenTraining}>Learning modules</button>
+          <button type="button" onClick={onOpenLab}>Equipment lab</button>
         </div>
       </header>
 
       <section className="academy-shell">
         <section className="academy-intro">
           <span className="academy-eyebrow">Clinical Engineering Academy</span>
-          <h1>Learn by solving realistic service calls.</h1>
-          <p>Work through one focused equipment problem at a time. Investigate, identify the cause, verify the solution, and document what you learned.</p>
+          <h1>Start your shift.</h1>
+          <p>Solve one realistic equipment problem at a time and build practical troubleshooting experience.</p>
         </section>
 
         <section className="academy-progress-card" aria-label="Career progress">
           <div className="academy-progress-heading">
             <div>
               <span className="academy-eyebrow">Career progress</span>
-              <strong>{completedCount} of {TOTAL_PLANNED_CALLS} service calls completed</strong>
+              <strong>{completedCount} of {TOTAL_PLANNED_CALLS} service calls complete</strong>
             </div>
-            <button type="button" className="academy-text-button" onClick={onOpenStats}>View achievements</button>
+            <span>{Math.round(progressPercent)}%</span>
           </div>
           <div className="academy-progress-track" aria-hidden="true">
-            <i style={{ width: `${serviceProgress}%` }} />
-          </div>
-          <div className="academy-progress-meta">
-            <span>{xp.toLocaleString()} XP</span>
-            <span>{badges} badges</span>
-            <span>{streak} day streak</span>
-            <span>{progress}% academy completion</span>
+            <i style={{ width: `${progressPercent}%` }} />
           </div>
         </section>
 
-        <section className="academy-focus-grid">
-          <article className="academy-call-card academy-call-primary">
-            <span className="academy-card-label">Continue learning</span>
-            <div className="academy-call-heading">
+        <article className="academy-shift-card">
+          <div className="academy-shift-copy">
+            <span className="academy-card-label">Continue your shift</span>
+            <div className="academy-call-title-row">
               <div>
-                <span className={`academy-difficulty ${difficultyClass(activeCall.difficulty)}`}>{activeCall.difficulty}</span>
+                <span className={`academy-difficulty ${difficultyClass(activeCall.difficulty)}`}>
+                  {activeCall.difficulty}
+                </span>
                 <h2>{activeCall.title}</h2>
               </div>
-              <span className="academy-call-icon" aria-hidden="true">🔧</span>
+              <span className="academy-shift-icon" aria-hidden="true">🔧</span>
             </div>
-            <dl>
-              <div><dt>Equipment</dt><dd>{activeCall.equipment}</dd></div>
-              <div><dt>Department</dt><dd>{activeCall.department}</dd></div>
-              <div><dt>Reason for service</dt><dd>{activeCall.reason}</dd></div>
-            </dl>
+            <p className="academy-call-reason">{activeCall.reason}</p>
             <p>{activeCall.detail}</p>
-            <button type="button" className="academy-primary-button" onClick={() => launchCall(activeCall.id)}>
-              Continue service call
-            </button>
-          </article>
+            <div className="academy-call-meta">
+              <span>{activeCall.equipment}</span>
+              <span>{activeCall.department}</span>
+              <span>{activeCall.time}</span>
+            </div>
+          </div>
+          <button type="button" className="academy-primary-button" onClick={() => launchCall(activeCall.id)}>
+            Respond to service call
+          </button>
+        </article>
 
-          <article className="academy-call-card academy-recommended-card">
-            <span className="academy-card-label">Recommended next</span>
-            <div className="academy-call-heading">
+        <section className="academy-compact-grid">
+          <article className="academy-panel">
+            <div className="academy-panel-heading">
               <div>
-                <span className={`academy-difficulty ${difficultyClass(recommendedCall.difficulty)}`}>{recommendedCall.difficulty}</span>
-                <h2>{recommendedCall.title}</h2>
+                <span className="academy-card-label">Your skills</span>
+                <h2>Growing with every call</h2>
               </div>
-              <span className="academy-call-icon" aria-hidden="true">★</span>
             </div>
-            <strong className="academy-reason">{recommendedCall.reason}</strong>
-            <span className="academy-equipment">{recommendedCall.equipment} · {recommendedCall.department}</span>
-            <p>{recommendedCall.detail}</p>
-            <button type="button" onClick={() => launchCall(recommendedCall.id)}>Start recommended call</button>
+            <div className="academy-skills-list">
+              <div><span>Patient safety</span><strong aria-label={`${safetyLevel} out of 5 stars`}>{stars(safetyLevel)}</strong></div>
+              <div><span>Troubleshooting</span><strong aria-label={`${skillLevel} out of 5 stars`}>{stars(skillLevel)}</strong></div>
+              <div><span>Equipment knowledge</span><strong aria-label={`${equipmentLevel} out of 5 stars`}>{stars(equipmentLevel)}</strong></div>
+            </div>
+          </article>
+
+          <article className="academy-panel">
+            <div className="academy-panel-heading">
+              <div>
+                <span className="academy-card-label">Recent achievements</span>
+                <h2>Your latest wins</h2>
+              </div>
+              <button type="button" className="academy-text-button" onClick={onOpenStats}>View all</button>
+            </div>
+            <div className="academy-achievement-list">
+              {recentAchievements.length ? recentAchievements.map((call) => (
+                <div key={call.id}>
+                  <span aria-hidden="true">🏅</span>
+                  <strong>{call.achievement}</strong>
+                </div>
+              )) : (
+                <p>Complete your first service call to earn an achievement.</p>
+              )}
+            </div>
           </article>
         </section>
 
-        <section className="academy-library">
-          <div className="academy-section-heading">
+        <section className="academy-panel academy-call-status">
+          <div className="academy-panel-heading">
             <div>
-              <span className="academy-eyebrow">Optional browsing</span>
-              <h2>Service Call Library</h2>
-              <p>Open only the difficulty group you want to explore.</p>
+              <span className="academy-card-label">Service calls</span>
+              <h2>Turn every call green</h2>
             </div>
-            <button type="button" onClick={onOpenLab}>Equipment lab</button>
           </div>
 
-          <div className="academy-library-groups">
-            {DIFFICULTIES.map((difficulty) => {
-              const calls = SERVICE_CALLS.filter((call) => call.difficulty === difficulty);
-              const isOpen = openDifficulty === difficulty;
-              return (
-                <section className="academy-library-group" key={difficulty}>
-                  <button
-                    type="button"
-                    className="academy-library-toggle"
-                    aria-expanded={isOpen}
-                    onClick={() => setOpenDifficulty(isOpen ? "" : difficulty)}
-                  >
-                    <span>
-                      <i className={`academy-dot ${difficultyClass(difficulty)}`} />
-                      <strong>{difficulty}</strong>
-                      <small>{calls.length ? `${calls.length} available` : "Coming soon"}</small>
-                    </span>
-                    <b>{isOpen ? "−" : "+"}</b>
+          <div className="academy-status-columns">
+            <div>
+              <h3>Completed</h3>
+              <div className="academy-status-list">
+                {completedCallDetails.length ? completedCallDetails.slice(-3).reverse().map((call) => (
+                  <button type="button" className="complete" key={call.id} onClick={() => launchCall(call.id)}>
+                    <span>✓</span>
+                    <strong>{call.title}</strong>
                   </button>
+                )) : <p>No calls completed yet.</p>}
+              </div>
+            </div>
 
-                  {isOpen && calls.length > 0 && (
-                    <div className="academy-library-list">
-                      {calls.slice(0, 5).map((call) => (
-                        <article key={call.id} className={completedSet.has(call.id) ? "complete" : ""}>
-                          <div>
-                            <span>{completedSet.has(call.id) ? "✓ Completed" : call.reason}</span>
-                            <strong>{call.title}</strong>
-                            <small>{call.equipment} · {call.department}</small>
-                          </div>
-                          <button type="button" onClick={() => launchCall(call.id)}>
-                            {completedSet.has(call.id) ? "Review" : "Start"}
-                          </button>
-                        </article>
-                      ))}
-                    </div>
-                  )}
-                </section>
-              );
-            })}
+            <div>
+              <h3>Upcoming</h3>
+              <div className="academy-status-list">
+                {upcomingCalls.map((call) => (
+                  <button type="button" key={call.id} onClick={() => launchCall(call.id)}>
+                    <span>○</span>
+                    <strong>{call.title}</strong>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
+
+        {equipmentExperience.length > 0 && (
+          <section className="academy-equipment-experience" aria-label="Equipment experience">
+            <span>Equipment experience</span>
+            <div>
+              {equipmentExperience.map((equipment) => <strong key={equipment}>{equipment}</strong>)}
+            </div>
+          </section>
+        )}
+
+        <blockquote className="academy-quote">
+          “The best troubleshooters don’t guess. They investigate.”
+        </blockquote>
       </section>
     </main>
   );
