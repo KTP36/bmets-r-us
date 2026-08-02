@@ -12,6 +12,7 @@ import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
 import AnatomyStudyHubIntro from "./components/AnatomyStudyHubIntro";
 import HomePage from "./pages/HomePage";
+import PartnerPage from "./pages/PartnerPage";
 import AchievementCase from "./components/AchievementCase";
 import EquipmentTab from "./components/EquipmentTab";
 import VitalsChallengeGame from "./components/VitalsChallengeGame";
@@ -5642,6 +5643,7 @@ const DEEP_LINK_TABS = new Set([
   "MuscleConceptQuiz",
   "MuscleQuiz",
   "OwnerAnalytics",
+  "Partner",
   "Privacy",
   "RN",
   "VitalsChallenge",
@@ -5689,6 +5691,10 @@ const DEEP_LINK_TAB_ALIASES = {
   muscleconceptquiz: "MuscleConceptQuiz",
   musclequiz: "MuscleQuiz",
   owneranalytics: "OwnerAnalytics",
+  partner: "Partner",
+  partners: "Partner",
+  partnership: "Partner",
+  partnerwithmedskillbuilder: "Partner",
   privacy: "Privacy",
   rn: "RN",
   rnpractice: "RN",
@@ -5725,6 +5731,13 @@ function getDeepLinkedTab() {
   if (typeof window === "undefined") return "Home";
 
   const url = new URL(window.location.href);
+  const normalizedPath = url.pathname.replace(/\/+$/, "").toLowerCase();
+
+  // Professional standalone partnership URL.
+  if (normalizedPath === "/partner" || normalizedPath === "/partnership") {
+    return "Partner";
+  }
+
   const queryTab =
     url.searchParams.get("tab") ||
     url.searchParams.get("section") ||
@@ -6050,10 +6063,18 @@ export default function App() {
 
     const url = new URL(window.location.href);
 
-    if (activeTab === "Home") {
+    if (activeTab === "Partner") {
+      url.pathname = "/partner";
+      url.searchParams.delete("tab");
+      url.searchParams.delete("section");
+      url.searchParams.delete("practice");
+      url.hash = "";
+    } else if (activeTab === "Home") {
+      url.pathname = "/";
       url.searchParams.delete("tab");
       url.hash = "";
     } else {
+      url.pathname = "/";
       url.searchParams.set("tab", activeTab);
       url.hash = "";
     }
@@ -7626,7 +7647,14 @@ export default function App() {
     fontWeight: 700,
     opacity: 0.9
   };
-return (
+
+  // Render the partnership page as a true standalone page.
+  // This prevents the homepage and practice sections from appearing above it.
+  if (activeTab === "Partner") {
+    return <PartnerPage />;
+  }
+
+  return (
   <div
     style={{
       minHeight: "100vh",
@@ -8279,6 +8307,9 @@ return (
           </>
         )}
       </div>
+      {/* PARTNER WITH MEDSKILLBUILDER */}
+      {activeTab === "Partner" && <PartnerPage />}
+
       {/* MEDICATION MASTERY ACADEMY */}
       {activeTab === "MedicationAcademy" && <MedicationAcademy />}
 
