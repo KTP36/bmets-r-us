@@ -39,6 +39,26 @@ import CBETHospitalDashboard from "./CBETHospitalDashboard";
 import EquipmentLearningScreen from "./components/EquipmentLearningScreen";
 import CertificateCenter from "./CertificateCenter";
 
+function isLocalAcademyHost() {
+  if (typeof window === "undefined") return false;
+  return ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+}
+
+function LocalDeveloperPanel({ unlockAll, onToggle }) {
+  if (!isLocalAcademyHost()) return null;
+  return (
+    <aside className="cbet-local-dev-panel" aria-label="Local Academy developer tools">
+      <div>
+        <strong>⚙ Local Developer Mode</strong>
+        <span>{unlockAll ? "All available missions and lessons are unlocked for testing." : "Normal learner unlock rules are active."}</span>
+      </div>
+      <button type="button" className={unlockAll ? "active" : ""} onClick={onToggle}>
+        {unlockAll ? "Unlock All: ON" : "Unlock All: OFF"}
+      </button>
+    </aside>
+  );
+}
+
 function shuffleQuestion(question) {
   const choices = question.options.map((text, index) => ({
     text,
@@ -4487,6 +4507,659 @@ function MissionFour({ onExit }) {
   return <section className="cbet-shell cbet-module10-results-shell"><article className={`cbet-results cbet-module10-results ${passed?"passed":""}`}><div className="cbet-hero-icon">{passed?"🏆":"📘"}</div><span className="cbet-label">{passed?"Mission 4 Complete":"Review Required"}</span><h1 className="cbet-module10-result-score">{result||0}%</h1><h2 className="cbet-module10-result-title">Medical Equipment Systems</h2><p>{passed?"You completed the equipment lessons, hospital service calls, and final challenge.":"You need 80% to pass. Review the lessons and retake the final challenge."}</p><div className="cbet-completion-summary cbet-module10-summary"><div><span>Lessons</span><strong>{completedLessons.length}/{missionFourLessons.length}</strong></div><div><span>Service Calls</span><strong>{completedScenarios.length}/{missionFourScenarios.length}</strong></div><div><span>Status</span><strong>{passed?"Complete":"Review"}</strong></div></div>{passed&&<section className="cbet-achievement-card"><span className="cbet-achievement-eyebrow">Achievement Earned</span><div className="cbet-achievement-mark">🏅</div><h2>Medical Equipment Systems</h2><p>This recognizes successful completion of Mission 4 in the MedSkillBuilder CBET Academy.</p><div className="cbet-achievement-details"><div><span>Mission</span><strong>4</strong></div><div><span>Score</span><strong>{result}%</strong></div><div><span>XP</span><strong>450</strong></div></div><button className="cbet-primary cbet-print-achievement" onClick={()=>window.print()}>Print My Achievement</button></section>}<div className="cbet-actions center cbet-module10-result-actions">{!passed&&<button className="cbet-primary" onClick={restartQuiz}>Retake Final Challenge</button>}{passed&&<button className="cbet-primary" onClick={()=>reviewLesson(0)}>Review Equipment Explorers</button>}<button className="cbet-secondary" onClick={onExit}>Return to Academy</button></div></article></section>;
 }
 
+
+
+const MISSION_FIVE_CONDUCTION = [
+  {
+    id: "sa",
+    label: "SA Node",
+    color: "#16a34a",
+    location: "Upper right atrium",
+    purpose: "Begins the normal electrical impulse and sets the heart's rhythm.",
+    equipment: "The resulting atrial depolarization contributes to the P wave seen on an ECG monitor.",
+    challenge: "Which structure normally initiates the cardiac electrical impulse?",
+    options: ["SA node", "AV node", "Bundle branches", "Purkinje fibers"],
+    answer: 0,
+  },
+  {
+    id: "av",
+    label: "AV Node",
+    color: "#eab308",
+    location: "Lower interatrial septum",
+    purpose: "Briefly delays conduction so the ventricles can fill before they contract.",
+    equipment: "Changes in AV conduction can alter the PR interval on the ECG.",
+    challenge: "What is the main function of the AV node in normal conduction?",
+    options: ["Create the QRS complex", "Delay the impulse briefly", "Measure blood pressure", "Oxygenate the blood"],
+    answer: 1,
+  },
+  {
+    id: "his",
+    label: "Bundle of His",
+    color: "#f97316",
+    location: "Upper interventricular septum",
+    purpose: "Carries the impulse from the AV node into the ventricular conduction system.",
+    equipment: "A conduction interruption below the AV node can widen or alter the QRS complex.",
+    challenge: "Which pathway carries the impulse from the AV node toward the ventricles?",
+    options: ["Pulmonary vein", "Bundle of His", "Aorta", "Coronary sinus"],
+    answer: 1,
+  },
+  {
+    id: "branches",
+    label: "Bundle Branches",
+    color: "#2563eb",
+    location: "Right and left sides of the septum",
+    purpose: "Distribute the impulse toward the right and left ventricles.",
+    equipment: "A bundle-branch delay can change ventricular depolarization and QRS appearance.",
+    challenge: "The right and left bundle branches primarily distribute conduction to what area?",
+    options: ["The atria", "The ventricles", "The lungs", "The skin electrodes"],
+    answer: 1,
+  },
+  {
+    id: "purkinje",
+    label: "Purkinje Fibers",
+    color: "#9333ea",
+    location: "Ventricular walls",
+    purpose: "Rapidly spread the impulse through ventricular muscle for coordinated contraction.",
+    equipment: "Coordinated ventricular depolarization produces the dominant QRS complex on the ECG.",
+    challenge: "Which fibers rapidly spread the impulse through the ventricular myocardium?",
+    options: ["Purkinje fibers", "Chordae tendineae", "Papillary muscles", "Coronary arteries"],
+    answer: 0,
+  },
+];
+
+function MissionFiveHeartGraphic({ activeId, explored, onSelect, signalStep = -1 }) {
+  const active = MISSION_FIVE_CONDUCTION.find((item) => item.id === activeId) || MISSION_FIVE_CONDUCTION[0];
+  const nodeClass = (id) => `${activeId === id ? "active" : ""} ${explored.includes(id) ? "explored" : ""} ${MISSION_FIVE_CONDUCTION.findIndex((item) => item.id === id) === signalStep ? "signal" : ""}`;
+  return (
+    <div className="m5-heart-graphic" style={{ "--m5-active": active.color }}>
+      <svg viewBox="0 0 720 650" role="img" aria-label="Original educational heart illustration showing the cardiac conduction pathway">
+        <defs>
+          <linearGradient id="m5-heart-fill" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stopColor="#fb7185" />
+            <stop offset=".58" stopColor="#dc2626" />
+            <stop offset="1" stopColor="#991b1b" />
+          </linearGradient>
+          <filter id="m5-heart-shadow" x="-30%" y="-30%" width="170%" height="180%">
+            <feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="#5f0f18" floodOpacity=".28" />
+          </filter>
+          <filter id="m5-node-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="7" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#m5-heart-shadow)">
+          <path className="m5-aorta" d="M391 135 C397 71 466 55 505 91 C543 126 522 179 480 193 L456 165 C479 143 483 113 458 105 C434 97 421 119 423 146 Z" />
+          <path className="m5-vessel" d="M279 173 C244 108 259 68 300 54 C343 39 378 74 371 133 L348 185 Z" />
+          <path className="m5-heart-body" d="M359 572 C319 535 224 459 191 356 C160 258 194 177 267 158 C307 148 340 164 363 197 C389 163 430 147 474 162 C550 188 574 278 535 370 C494 469 405 544 359 572 Z" />
+          <path className="m5-heart-septum" d="M363 198 C350 272 349 372 359 556" />
+          <path className="m5-chamber-line" d="M210 303 C265 288 319 303 354 337" />
+          <path className="m5-chamber-line" d="M371 330 C417 294 481 286 536 313" />
+          <path className="m5-conduction-main" d="M291 224 C314 246 329 275 346 300 C357 317 359 338 359 361" />
+          <path className="m5-conduction-left" d="M358 360 C331 392 302 432 277 489" />
+          <path className="m5-conduction-right" d="M360 360 C393 397 427 438 453 492" />
+          <path className="m5-purkinje" d="M277 489 C251 480 232 457 219 430 M277 489 C299 500 311 516 319 540 M453 492 C480 478 496 454 506 427 M453 492 C430 510 417 530 407 548" />
+        </g>
+        <text className="m5-chamber-label" x="255" y="290">RA</text>
+        <text className="m5-chamber-label" x="435" y="290">LA</text>
+        <text className="m5-chamber-label" x="274" y="420">RV</text>
+        <text className="m5-chamber-label" x="430" y="420">LV</text>
+        <g className={`m5-heart-node ${nodeClass("sa")}`} onClick={() => onSelect("sa")} role="button" tabIndex="0" aria-label="SA node" style={{ "--node-color": "#16a34a" }}>
+          <circle cx="291" cy="224" r="18" /><text x="215" y="216">SA NODE</text>
+        </g>
+        <g className={`m5-heart-node ${nodeClass("av")}`} onClick={() => onSelect("av")} role="button" tabIndex="0" aria-label="AV node" style={{ "--node-color": "#eab308" }}>
+          <circle cx="346" cy="300" r="17" /><text x="272" y="294">AV NODE</text>
+        </g>
+        <g className={`m5-heart-node ${nodeClass("his")}`} onClick={() => onSelect("his")} role="button" tabIndex="0" aria-label="Bundle of His" style={{ "--node-color": "#f97316" }}>
+          <circle cx="359" cy="350" r="15" /><text x="376" y="354">BUNDLE OF HIS</text>
+        </g>
+        <g className={`m5-heart-node ${nodeClass("branches")}`} onClick={() => onSelect("branches")} role="button" tabIndex="0" aria-label="Bundle branches" style={{ "--node-color": "#2563eb" }}>
+          <circle cx="360" cy="405" r="15" /><text x="378" y="410">BUNDLE BRANCHES</text>
+        </g>
+        <g className={`m5-heart-node ${nodeClass("purkinje")}`} onClick={() => onSelect("purkinje")} role="button" tabIndex="0" aria-label="Purkinje fibers" style={{ "--node-color": "#9333ea" }}>
+          <circle cx="453" cy="492" r="15" /><text x="474" y="500">PURKINJE</text>
+        </g>
+      </svg>
+      <div className="m5-heart-ecg" aria-label="Animated ECG waveform">
+        <span>ECG</span>
+        <svg viewBox="0 0 700 120" preserveAspectRatio="none"><path d="M0 72 L90 72 L112 66 L128 78 L148 72 L188 72 L205 64 L222 72 L250 72 L270 16 L290 104 L310 48 L330 72 L405 72 L427 66 L443 78 L463 72 L503 72 L520 64 L537 72 L565 72 L585 16 L605 104 L625 48 L645 72 L700 72" /></svg>
+      </div>
+    </div>
+  );
+}
+
+
+const MISSION_FIVE_RESPIRATORY = [
+  { id: "trachea", label: "Trachea", color: "#0ea5e9", location: "Central airway below the larynx", purpose: "Conducts air toward the right and left main bronchi.", equipment: "Ventilator circuits and capnography depend on a patent airway and correctly positioned airway device.", challenge: "Which structure is the main airway before it divides into the bronchi?", options: ["Trachea", "Alveoli", "Diaphragm", "Pulmonary vein"], answer: 0 },
+  { id: "bronchi", label: "Bronchi", color: "#0284c7", location: "Right and left branches from the trachea", purpose: "Distribute inspired gas into each lung and into progressively smaller bronchioles.", equipment: "Unequal breath sounds or airway obstruction can change measured pressure, flow, and delivered tidal volume.", challenge: "What do the main bronchi primarily do?", options: ["Exchange oxygen", "Distribute air into each lung", "Pump blood", "Measure CO₂"], answer: 1 },
+  { id: "alveoli", label: "Alveoli", color: "#8b5cf6", location: "Microscopic air sacs at the ends of bronchioles", purpose: "Provide the thin surface where oxygen enters blood and carbon dioxide leaves it.", equipment: "SpO₂ and capnography reflect different parts of ventilation, gas exchange, and perfusion—not merely machine output.", challenge: "Where does most pulmonary gas exchange occur?", options: ["Trachea", "Main bronchi", "Alveoli", "Diaphragm"], answer: 2 },
+  { id: "capillaries", label: "Pulmonary Capillaries", color: "#ef4444", location: "Dense vessel network surrounding the alveoli", purpose: "Bring deoxygenated blood to the alveoli and carry oxygenated blood toward the heart.", equipment: "A normal ventilator can coexist with poor oxygenation when perfusion or diffusion is impaired.", challenge: "Which vessels directly surround the alveoli for gas exchange?", options: ["Coronary arteries", "Pulmonary capillaries", "Aorta", "Vena cava"], answer: 1 },
+  { id: "diaphragm", label: "Diaphragm", color: "#f59e0b", location: "Dome-shaped muscle below the lungs", purpose: "Contracts downward during spontaneous inspiration, increasing thoracic volume.", equipment: "Ventilators create positive-pressure inspiration, while spontaneous breathing normally uses negative intrathoracic pressure.", challenge: "Which muscle is the primary driver of quiet inspiration?", options: ["Diaphragm", "Biceps", "Myocardium", "Trapezius"], answer: 0 },
+];
+
+function MissionFiveLungGraphic({ activeId, explored, onSelect, breathing = true }) {
+  const nodeClass = (id) => `${activeId === id ? "active" : ""} ${explored.includes(id) ? "explored" : ""}`;
+  return (
+    <div className={`m5-lung-graphic ${breathing ? "is-breathing" : ""}`}>
+      <svg viewBox="0 0 760 650" role="img" aria-label="Original educational illustration of the lungs, airway, alveoli, capillaries, and diaphragm">
+        <defs>
+          <linearGradient id="m5-lung-fill" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#fda4af"/><stop offset="1" stopColor="#e11d48"/></linearGradient>
+          <filter id="m5-lung-shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="#5f1235" floodOpacity=".22"/></filter>
+          <filter id="m5-lung-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g filter="url(#m5-lung-shadow)">
+          <path className="m5-lung-lobe m5-lung-left" d="M330 174 C266 132 181 167 147 249 C111 338 130 480 227 533 C275 559 318 532 331 468 Z"/>
+          <path className="m5-lung-lobe m5-lung-right" d="M430 174 C494 132 579 167 613 249 C649 338 630 480 533 533 C485 559 442 532 429 468 Z"/>
+          <rect className="m5-trachea" x="350" y="64" width="60" height="168" rx="25"/>
+          <path className="m5-bronchi" d="M380 219 C340 245 307 273 274 316 M380 219 C420 245 453 273 486 316"/>
+          <path className="m5-bronchi m5-bronchi-small" d="M274 316 L230 360 M274 316 L288 382 M486 316 L530 360 M486 316 L472 382"/>
+          <path className="m5-diaphragm" d="M146 520 C246 575 514 575 614 520"/>
+        </g>
+        <g className="m5-alveoli-cluster">
+          {[0,1,2,3,4,5,6].map((n)=><circle key={n} cx={560 + (n%3)*24 - Math.floor(n/3)*11} cy={415 + Math.floor(n/3)*25} r="18"/>)}
+          <path className="m5-capillary-loop" d="M520 390 C620 365 644 465 552 492 C486 511 470 420 520 390"/>
+          <circle className="m5-o2-dot dot-1" cx="548" cy="410" r="7"/><circle className="m5-o2-dot dot-2" cx="585" cy="430" r="7"/><circle className="m5-co2-dot dot-3" cx="610" cy="470" r="7"/>
+          <text x="520" y="355">Gas exchange</text>
+        </g>
+        <g className={`m5-lung-node ${nodeClass("trachea")}`} style={{"--node-color":"#0ea5e9"}} onClick={()=>onSelect("trachea")} tabIndex="0" role="button"><circle cx="380" cy="110" r="18"/><text x="420" y="116">Trachea</text></g>
+        <g className={`m5-lung-node ${nodeClass("bronchi")}`} style={{"--node-color":"#0284c7"}} onClick={()=>onSelect("bronchi")} tabIndex="0" role="button"><circle cx="380" cy="235" r="18"/><text x="420" y="242">Bronchi</text></g>
+        <g className={`m5-lung-node ${nodeClass("alveoli")}`} style={{"--node-color":"#8b5cf6"}} onClick={()=>onSelect("alveoli")} tabIndex="0" role="button"><circle cx="586" cy="414" r="18"/><text x="620" y="420">Alveoli</text></g>
+        <g className={`m5-lung-node ${nodeClass("capillaries")}`} style={{"--node-color":"#ef4444"}} onClick={()=>onSelect("capillaries")} tabIndex="0" role="button"><circle cx="520" cy="478" r="18"/><text x="555" y="505">Capillaries</text></g>
+        <g className={`m5-lung-node ${nodeClass("diaphragm")}`} style={{"--node-color":"#f59e0b"}} onClick={()=>onSelect("diaphragm")} tabIndex="0" role="button"><circle cx="380" cy="552" r="18"/><text x="420" y="560">Diaphragm</text></g>
+        <g className="m5-air-arrows"><path d="M380 42 V92"/><path d="M380 150 V205"/><path d="M355 245 L300 300"/><path d="M405 245 L460 300"/></g>
+      </svg>
+      <div className="m5-respiratory-monitor"><div><span>SpO₂</span><strong>98%</strong><svg viewBox="0 0 340 70" preserveAspectRatio="none"><path d="M0 48 C20 10 42 10 62 48 S104 86 124 48 S166 10 186 48 S228 86 248 48 S290 10 310 48 L340 48"/></svg></div><div><span>ETCO₂</span><strong>38</strong><svg viewBox="0 0 340 70" preserveAspectRatio="none"><path d="M0 55 L45 55 L55 18 L205 18 L220 55 L340 55"/></svg></div></div>
+    </div>
+  );
+}
+
+
+const MISSION_FIVE_CIRCULATION = [
+  { id: "rightheart", label: "Right Heart", color: "#2563eb", location: "Right atrium and right ventricle", purpose: "Receives systemic venous blood and pumps it toward the lungs.", equipment: "Central venous pressure, ECG, and hemodynamic measurements must be interpreted within the complete circulation pathway.", challenge: "Which side of the heart sends deoxygenated blood toward the lungs?", options: ["Right heart", "Left heart", "Aorta", "Pulmonary veins"], answer: 0 },
+  { id: "lungs", label: "Pulmonary Circulation", color: "#06b6d4", location: "Between the right heart, lungs, and left heart", purpose: "Moves blood through the lungs for gas exchange before returning it to the left heart.", equipment: "SpO₂ can look normal only when ventilation, diffusion, perfusion, and sensor acquisition all support the measurement.", challenge: "What is the main purpose of pulmonary circulation?", options: ["Filter urine", "Exchange oxygen and carbon dioxide", "Create ECG voltage", "Measure temperature"], answer: 1 },
+  { id: "leftheart", label: "Left Heart", color: "#ef4444", location: "Left atrium and left ventricle", purpose: "Receives oxygenated blood from the lungs and pumps it into systemic circulation.", equipment: "Arterial pressure and pulse-derived measurements reflect the mechanical output that follows electrical activation.", challenge: "Which chamber generates most of the pressure for systemic circulation?", options: ["Right atrium", "Left ventricle", "Pulmonary artery", "Vena cava"], answer: 1 },
+  { id: "arteries", label: "Systemic Arteries", color: "#dc2626", location: "Vessels carrying blood away from the left ventricle", purpose: "Distribute oxygenated blood under pressure to tissues throughout the body.", equipment: "NIBP cuffs estimate arterial pressure, while invasive arterial lines directly transmit pressure from an artery to a transducer.", challenge: "Which vessels carry blood away from the heart under the highest systemic pressure?", options: ["Veins", "Lymphatics", "Arteries", "Capillaries"], answer: 2 },
+  { id: "veins", label: "Systemic Veins", color: "#7c3aed", location: "Low-pressure vessels returning blood to the right heart", purpose: "Return deoxygenated blood from tissues and act as a major blood-volume reservoir.", equipment: "Venous pressure and volume status can change without producing the same waveform or pressure seen in an artery.", challenge: "Which vessels return systemic blood to the right side of the heart?", options: ["Veins", "Aorta", "Pulmonary arteries only", "Coronary arteries"], answer: 0 },
+];
+
+function MissionFiveCirculationGraphic({ activeId, explored, onSelect, flowing = true }) {
+  const nodeClass = (id) => `${activeId === id ? "active" : ""} ${explored.includes(id) ? "explored" : ""}`;
+  return (
+    <div className={`m5-circulation-graphic ${flowing ? "is-flowing" : ""}`}>
+      <svg viewBox="0 0 820 650" role="img" aria-label="Original educational circulation diagram showing heart, lungs, arteries, veins, blood pressure cuff, arterial line, and pulse oximeter">
+        <defs>
+          <linearGradient id="m5-circ-heart" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#fb7185"/><stop offset="1" stopColor="#b91c1c"/></linearGradient>
+          <filter id="m5-circ-shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="0" dy="16" stdDeviation="16" floodColor="#172554" floodOpacity=".2"/></filter>
+          <filter id="m5-circ-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g filter="url(#m5-circ-shadow)">
+          <path className="m5-circ-lung left" d="M280 115 C220 95 170 130 158 210 C145 294 183 355 267 369 C291 310 302 210 280 115Z"/>
+          <path className="m5-circ-lung right" d="M540 115 C600 95 650 130 662 210 C675 294 637 355 553 369 C529 310 518 210 540 115Z"/>
+          <path className="m5-circ-heart" d="M407 430 C362 391 321 350 328 294 C335 238 387 220 410 261 C433 220 485 238 492 294 C499 350 458 391 413 430Z"/>
+          <path className="m5-circ-red-path" d="M430 302 C506 262 550 239 574 226 C650 186 733 222 742 318 C752 421 682 483 594 500 C508 518 456 541 422 590"/>
+          <path className="m5-circ-blue-path" d="M390 302 C314 262 270 239 246 226 C170 186 87 222 78 318 C68 421 138 483 226 500 C312 518 364 541 398 590"/>
+          <path className="m5-circ-pulmonary-red" d="M424 280 C472 244 520 220 565 210"/>
+          <path className="m5-circ-pulmonary-blue" d="M396 280 C348 244 300 220 255 210"/>
+        </g>
+        <g className="m5-circ-particles red">{[0,1,2,3,4].map(n=><circle key={n} cx={430+n*58} cy={303+n*48} r="8" style={{"--delay":`${n*.28}s`}}/>)}</g>
+        <g className="m5-circ-particles blue">{[0,1,2,3,4].map(n=><circle key={n} cx={390-n*58} cy={303+n*48} r="8" style={{"--delay":`${n*.28}s`}}/>)}</g>
+        <g className="m5-circ-device m5-cuff"><rect x="615" y="390" width="105" height="72" rx="20"/><text x="667" y="420">NIBP</text><text x="667" y="446">120/80</text></g>
+        <g className="m5-circ-device m5-artline"><path d="M554 480 L638 530"/><circle cx="638" cy="530" r="17"/><text x="655" y="536">IBP</text></g>
+        <g className="m5-circ-device m5-spo2"><rect x="84" y="390" width="108" height="68" rx="18"/><text x="138" y="420">SpO₂</text><text x="138" y="446">98%</text></g>
+        <g className={`m5-circ-node ${nodeClass("rightheart")}`} style={{"--node-color":"#2563eb"}} onClick={()=>onSelect("rightheart")} tabIndex="0" role="button"><circle cx="380" cy="320" r="19"/><text x="270" y="328">Right Heart</text></g>
+        <g className={`m5-circ-node ${nodeClass("lungs")}`} style={{"--node-color":"#06b6d4"}} onClick={()=>onSelect("lungs")} tabIndex="0" role="button"><circle cx="410" cy="175" r="19"/><text x="330" y="145">Pulmonary Circulation</text></g>
+        <g className={`m5-circ-node ${nodeClass("leftheart")}`} style={{"--node-color":"#ef4444"}} onClick={()=>onSelect("leftheart")} tabIndex="0" role="button"><circle cx="440" cy="320" r="19"/><text x="462" y="328">Left Heart</text></g>
+        <g className={`m5-circ-node ${nodeClass("arteries")}`} style={{"--node-color":"#dc2626"}} onClick={()=>onSelect("arteries")} tabIndex="0" role="button"><circle cx="610" cy="490" r="19"/><text x="630" y="486">Systemic Arteries</text></g>
+        <g className={`m5-circ-node ${nodeClass("veins")}`} style={{"--node-color":"#7c3aed"}} onClick={()=>onSelect("veins")} tabIndex="0" role="button"><circle cx="210" cy="490" r="19"/><text x="45" y="486">Systemic Veins</text></g>
+      </svg>
+      <div className="m5-circulation-readouts"><div><span>NIBP</span><strong>120/80</strong><small>Estimated arterial pressure</small></div><div><span>IBP</span><strong>118/76</strong><small>Direct arterial pressure</small></div><div><span>SpO₂</span><strong>98%</strong><small>Pulse-derived oxygen saturation</small></div></div>
+    </div>
+  );
+}
+
+
+
+const MISSION_FIVE_NEURO = [
+  { id: "frontal", label: "Frontal Lobe", color: "#2563eb", location: "Front of the cerebrum", purpose: "Supports planning, voluntary movement, attention, speech production, and executive function.", equipment: "EEG channels over frontal regions can be strongly affected by eye movement, facial muscle activity, and poor electrode contact.", challenge: "Which lobe is most associated with executive function and voluntary motor planning?", options: ["Frontal lobe", "Occipital lobe", "Cerebellum", "Brainstem"], answer: 0 },
+  { id: "parietal", label: "Parietal Lobe", color: "#7c3aed", location: "Upper rear portion of the cerebrum", purpose: "Integrates touch, body position, and spatial information.", equipment: "Electrode placement must be reproducible because channel location determines which cortical region contributes most strongly to the recorded signal.", challenge: "Which lobe primarily integrates somatic sensation and spatial awareness?", options: ["Temporal lobe", "Parietal lobe", "Medulla", "Cerebellum"], answer: 1 },
+  { id: "temporal", label: "Temporal Lobe", color: "#db2777", location: "Lateral sides of the brain near the ears", purpose: "Supports auditory processing, memory, and language comprehension.", equipment: "Temporal electrodes may be vulnerable to jaw-muscle artifact and cable movement near the ears.", challenge: "Which lobe is closely associated with hearing and memory?", options: ["Temporal lobe", "Frontal lobe", "Occipital lobe", "Brainstem"], answer: 0 },
+  { id: "occipital", label: "Occipital Lobe", color: "#f59e0b", location: "Back of the cerebrum", purpose: "Processes visual information.", equipment: "Occipital EEG rhythms often change when the eyes open or close, which helps demonstrate that the signal is physiologic rather than a fixed electronic pattern.", challenge: "Which lobe is the primary visual-processing region?", options: ["Parietal lobe", "Occipital lobe", "Temporal lobe", "Cerebellum"], answer: 1 },
+  { id: "brainstem", label: "Brainstem", color: "#16a34a", location: "Base of the brain connecting to the spinal cord", purpose: "Supports vital autonomic functions and major ascending and descending pathways.", equipment: "Surface EEG mainly reflects cortical activity; absence of a visible surface rhythm does not directly measure every deeper brain function.", challenge: "Which structure connects the brain to the spinal cord and supports vital autonomic functions?", options: ["Brainstem", "Occipital lobe", "Corpus callosum", "Parietal lobe"], answer: 0 },
+];
+
+function MissionFiveBrainGraphic({ activeId, explored, onSelect, signalMode = "alpha" }) {
+  const nodeClass = (id) => `${activeId === id ? "active" : ""} ${explored.includes(id) ? "explored" : ""}`;
+  return (
+    <div className={`m5-brain-graphic mode-${signalMode}`}>
+      <svg viewBox="0 0 780 650" role="img" aria-label="Original educational brain and EEG illustration">
+        <defs>
+          <linearGradient id="m5-brain-fill" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#f0abfc"/><stop offset=".55" stopColor="#c084fc"/><stop offset="1" stopColor="#7c3aed"/></linearGradient>
+          <filter id="m5-brain-shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="#312e81" floodOpacity=".22"/></filter>
+          <filter id="m5-brain-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g filter="url(#m5-brain-shadow)">
+          <path className="m5-brain-base" d="M174 326 C143 251 181 171 253 147 C284 90 369 77 421 114 C487 91 560 133 574 198 C632 226 645 307 610 355 C629 422 575 480 514 483 C480 529 411 541 362 510 C305 541 229 513 213 457 C159 430 139 371 174 326 Z"/>
+          <path className="m5-brain-fold" d="M240 188 C282 170 315 188 332 221 M344 146 C373 176 374 206 355 235 M430 144 C405 179 410 211 439 238 M499 177 C463 190 449 219 456 251 M211 274 C254 250 295 263 313 295 M349 266 C376 237 421 242 446 275 M482 270 C528 244 568 273 571 312 M199 352 C251 324 291 345 311 383 M346 330 C385 303 430 322 447 359 M487 356 C531 325 571 357 568 398 M245 428 C286 398 325 418 337 454 M394 410 C430 387 471 407 481 447"/>
+          <path className="m5-brainstem-shape" d="M371 470 C389 484 418 489 438 477 C431 514 445 552 466 584 L401 584 C385 550 367 513 371 470 Z"/>
+          <path className="m5-cerebellum" d="M472 421 C531 396 590 426 590 475 C590 521 531 543 479 515 C454 501 450 445 472 421 Z"/>
+        </g>
+        <g className="m5-scalp-electrodes">
+          {[230,310,390,470,550].map((x,i)=><g key={x}><circle cx={x} cy={122+(i%2)*8} r="12"/><path d={`M${x} ${134+(i%2)*8} C${x} 160 ${390+(i-2)*18} 170 390 194`}/></g>)}
+          <rect x="335" y="178" width="110" height="48" rx="12"/><text x="390" y="208">EEG INPUT</text>
+        </g>
+        <g className={`m5-brain-node ${nodeClass("frontal")}`} style={{"--node-color":"#2563eb"}} onClick={()=>onSelect("frontal")} tabIndex="0" role="button"><circle cx="225" cy="270" r="20"/><text x="102" y="264">Frontal Lobe</text></g>
+        <g className={`m5-brain-node ${nodeClass("parietal")}`} style={{"--node-color":"#7c3aed"}} onClick={()=>onSelect("parietal")} tabIndex="0" role="button"><circle cx="389" cy="250" r="20"/><text x="365" y="218">Parietal Lobe</text></g>
+        <g className={`m5-brain-node ${nodeClass("temporal")}`} style={{"--node-color":"#db2777"}} onClick={()=>onSelect("temporal")} tabIndex="0" role="button"><circle cx="326" cy="403" r="20"/><text x="205" y="410">Temporal Lobe</text></g>
+        <g className={`m5-brain-node ${nodeClass("occipital")}`} style={{"--node-color":"#f59e0b"}} onClick={()=>onSelect("occipital")} tabIndex="0" role="button"><circle cx="535" cy="330" r="20"/><text x="557" y="335">Occipital Lobe</text></g>
+        <g className={`m5-brain-node ${nodeClass("brainstem")}`} style={{"--node-color":"#16a34a"}} onClick={()=>onSelect("brainstem")} tabIndex="0" role="button"><circle cx="416" cy="522" r="20"/><text x="438" y="530">Brainstem</text></g>
+      </svg>
+      <div className="m5-eeg-monitor"><div><span>EEG</span><strong>{signalMode === "artifact" ? "ARTIFACT" : signalMode === "beta" ? "BETA" : "ALPHA"}</strong></div><svg viewBox="0 0 900 130" preserveAspectRatio="none"><path className="m5-eeg-trace alpha" d="M0 68 C18 28 36 108 54 68 S90 28 108 68 S144 108 162 68 S198 28 216 68 S252 108 270 68 S306 28 324 68 S360 108 378 68 S414 28 432 68 S468 108 486 68 S522 28 540 68 S576 108 594 68 S630 28 648 68 S684 108 702 68 S738 28 756 68 S792 108 810 68 S846 28 864 68 S900 108 918 68"/><path className="m5-eeg-trace artifact" d="M0 70 L90 70 L110 20 L125 118 L145 30 L165 108 L190 70 L310 70 L340 36 L360 104 L380 40 L405 96 L430 70 L900 70"/></svg><small>Surface electrodes detect microvolt-level voltage differences</small></div>
+    </div>
+  );
+}
+
+const MISSION_FIVE_OXYGEN=[
+{id:"alveoli",label:"Alveoli",color:"#8b5cf6",purpose:"Oxygen diffuses from alveolar gas into pulmonary blood.",challenge:"Where does oxygen cross into pulmonary blood?",options:["Alveoli","Aorta","Finger sensor"],answer:0},
+{id:"hemoglobin",label:"Hemoglobin",color:"#dc2626",purpose:"Hemoglobin inside red blood cells carries most blood oxygen.",challenge:"What carries most oxygen in blood?",options:["Platelets","Hemoglobin","Sodium"],answer:1},
+{id:"pulse",label:"Arterial Pulse",color:"#ef4444",purpose:"Pulsatile arterial blood creates the changing optical signal.",challenge:"What lets pulse oximetry isolate arterial blood?",options:["Arterial pulse","NIBP inflation","ECG voltage"],answer:0},
+{id:"sensor",label:"Finger Sensor",color:"#0ea5e9",purpose:"Red and infrared emitters shine through perfused tissue to a photodetector.",challenge:"What receives the transmitted light?",options:["ECG electrode","Photodetector","Pressure transducer"],answer:1},
+{id:"display",label:"SpO₂ & Pleth",color:"#0284c7",purpose:"Processing converts pulsatile red/infrared absorption into an SpO₂ estimate and pleth.",challenge:"What supports confidence in the SpO₂ number?",options:["Pleth quality and pulse agreement","Screen brightness","NIBP cuff size"],answer:0}
+];
+function MissionFiveOxygenGraphic({activeId,explored,onSelect,running}){
+return <div className={`m5-o2-art ${running?"running":""}`}><svg viewBox="0 0 760 560" role="img" aria-label="Original oxygen transport and pulse oximetry illustration">
+<defs><linearGradient id="o2f" x1="0" x2="1"><stop stopColor="#fed7aa"/><stop offset="1" stopColor="#fdba74"/></linearGradient></defs>
+<g className="o2-alveoli">{[0,1,2,3,4,5].map(n=><circle key={n} cx={105+(n%3)*38} cy={155+Math.floor(n/3)*42} r="27"/>)}</g>
+<path className="o2-blood" d="M180 205 C275 220 305 320 445 320"/>
+<g className="o2-rbc">{[0,1,2,3].map(n=><ellipse key={n} style={{"--d":`${n*.35}s`}} cx={225+n*65} cy={255+(n%2)*32} rx="25" ry="15"/>)}</g>
+<rect className="o2-finger" x="445" y="190" width="240" height="110" rx="55"/><rect className="o2-clip" x="470" y="155" width="185" height="48" rx="17"/><rect className="o2-clip" x="470" y="290" width="185" height="48" rx="17"/>
+<circle className="o2-red" cx="520" cy="180" r="12"/><circle className="o2-ir" cx="575" cy="180" r="12"/><path className="o2-red-beam" d="M520 195V292"/><path className="o2-ir-beam" d="M575 195V292"/><rect className="o2-photo" x="530" y="300" width="55" height="20" rx="7"/>
+<g className="o2-monitor"><rect x="400" y="385" width="315" height="135" rx="22"/><text x="430" y="430">SpO₂</text><text className="o2-value" x="680" y="435">98%</text><path d="M430 480 C450 440 475 440 495 480 S535 520 555 480 S595 440 615 480 S655 520 685 470"/></g>
+{MISSION_FIVE_OXYGEN.map((x,i)=>{const pos=[[100,120],[290,285],[410,320],[680,245],[420,405]][i];return <g key={x.id} className={`o2-node ${activeId===x.id?"active":""} ${explored.includes(x.id)?"done":""}`} onClick={()=>onSelect(x.id)}><circle cx={pos[0]} cy={pos[1]} r="18" fill={x.color}/><text x={pos[0]+24} y={pos[1]+6}>{x.label}</text></g>})}
+</svg></div>}
+
+const MISSION_FIVE_KIDNEY = [
+  { id:"glomerulus", label:"Glomerulus", color:"#7c3aed", purpose:"Filters water and small solutes from blood into the nephron while retaining cells and most proteins.", challenge:"Which structure performs the initial filtration step?", options:["Glomerulus","Ureter","Bladder"], answer:0 },
+  { id:"tubule", label:"Renal Tubule", color:"#0ea5e9", purpose:"Reabsorbs needed water and solutes and secretes selected substances before urine leaves the nephron.", challenge:"Where are useful water and solutes largely reclaimed?", options:["Renal tubule","Aorta","Dialysate drain"], answer:0 },
+  { id:"dialyzer", label:"Dialyzer", color:"#dc2626", purpose:"Uses a semipermeable membrane to separate blood from dialysate while waste and water move across the membrane.", challenge:"What separates blood from dialysate?", options:["Semipermeable membrane","ECG electrode","Air detector"], answer:0 },
+  { id:"bloodpump", label:"Blood Pump", color:"#f97316", purpose:"Moves blood through the extracorporeal circuit at the prescribed flow rate.", challenge:"Which component drives blood through the extracorporeal circuit?", options:["Blood pump","Venous clamp","Conductivity sensor"], answer:0 },
+  { id:"airdetector", label:"Air Detector", color:"#14b8a6", purpose:"Monitors the venous return line for air before blood returns to the patient.", challenge:"Where is air monitored before blood returns to the patient?", options:["Venous return path","Dialysate drain","NIBP cuff"], answer:0 },
+];
+
+function MissionFiveKidneyGraphic({ activeId, explored, onSelect, running=true }) {
+  const node = id => `${activeId===id?"active":""} ${explored.includes(id)?"done":""}`;
+  return <div className={`m5-kidney-art ${running?"running":""}`}>
+    <svg viewBox="0 0 860 650" role="img" aria-label="Original educational illustration of kidneys, nephron filtration, and a hemodialysis circuit">
+      <defs>
+        <linearGradient id="kidneyFill" x1="0" x2="1"><stop stopColor="#fb7185"/><stop offset="1" stopColor="#be123c"/></linearGradient>
+        <linearGradient id="dialyzerFill" x1="0" x2="1"><stop stopColor="#fee2e2"/><stop offset="1" stopColor="#fecaca"/></linearGradient>
+      </defs>
+      <g className="kidney-body">
+        <path d="M90 120C40 145 42 268 95 318C137 359 191 322 194 260C197 195 164 92 90 120Z"/>
+        <path d="M250 120C300 145 298 268 245 318C203 359 149 322 146 260C143 195 176 92 250 120Z" transform="translate(160 0)"/>
+        <path className="kidney-ureter" d="M165 280C170 345 160 385 160 430M335 280C330 345 340 385 340 430"/>
+        <ellipse className="kidney-bladder" cx="250" cy="470" rx="58" ry="38"/>
+      </g>
+      <g className="nephron">
+        <circle className="nephron-glom" cx="120" cy="420" r="42"/>
+        <path className="nephron-tubule" d="M155 420C220 390 215 470 275 445C330 420 315 500 365 465"/>
+        <path className="nephron-filtrate" d="M125 420C205 415 240 455 360 465"/>
+      </g>
+      <g className="dialysis-circuit">
+        <rect className="dialysis-machine" x="480" y="75" width="300" height="460" rx="28"/>
+        <rect className="dialysis-screen" x="520" y="110" width="220" height="90" rx="12"/>
+        <text x="545" y="150">BLOOD FLOW</text><text className="dialysis-value" x="710" y="170">300</text>
+        <circle className="blood-pump" cx="560" cy="275" r="52"/>
+        <path className="blood-line arterial" d="M470 470C430 470 420 380 485 330C520 305 525 300 530 290"/>
+        <rect className="dialyzer" x="625" y="225" width="72" height="190" rx="34"/>
+        <path className="dialyzer-membrane" d="M645 245V395M677 245V395"/>
+        <path className="blood-line venous" d="M665 415C690 470 630 520 570 515C505 510 470 500 455 470"/>
+        <path className="dialysate-line" d="M700 245C760 250 760 390 700 395"/>
+        <circle className="air-detector" cx="560" cy="500" r="24"/>
+        <rect className="venous-clamp" x="595" y="485" width="42" height="30" rx="8"/>
+      </g>
+      <g className="waste-particles">{[0,1,2,3,4].map(n=><circle key={n} style={{"--d":`${n*.4}s`}} cx={650+(n%2)*22} cy={255+n*28} r="7"/>)}</g>
+      {[
+        ["glomerulus",120,420,"Glomerulus","#7c3aed"],
+        ["tubule",300,450,"Renal Tubule","#0ea5e9"],
+        ["bloodpump",560,275,"Blood Pump","#f97316"],
+        ["dialyzer",662,320,"Dialyzer","#dc2626"],
+        ["airdetector",560,500,"Air Detector","#14b8a6"],
+      ].map(([id,x,y,label,color])=><g key={id} className={`kidney-node ${node(id)}`} onClick={()=>onSelect(id)}><circle cx={x} cy={y} r="20" fill={color}/><text x={x+28} y={y+6}>{label}</text></g>)}
+    </svg>
+  </div>;
+}
+
+const MISSION_FIVE_TEMPERATURE = [
+  { id:"receptors", label:"Temperature Receptors", color:"#f59e0b", purpose:"Detect changes in skin and core temperature and send information to the central control system.", challenge:"What detects a change in body temperature first?", options:["Temperature receptors","NIBP cuff","Blood pump"], answer:0 },
+  { id:"hypothalamus", label:"Hypothalamus", color:"#8b5cf6", purpose:"Compares temperature input with the body's target range and coordinates corrective responses.", challenge:"Which structure acts as the body's temperature-control center?", options:["Hypothalamus","Left ventricle","Kidney"], answer:0 },
+  { id:"cold", label:"Cold Response", color:"#2563eb", purpose:"Vasoconstriction and shivering reduce heat loss and increase heat production.", challenge:"Which response helps conserve heat?", options:["Vasoconstriction","Sweating","Vasodilation"], answer:0 },
+  { id:"hot", label:"Heat Response", color:"#dc2626", purpose:"Vasodilation and sweating increase heat transfer away from the body.", challenge:"Which response promotes heat loss?", options:["Sweating and vasodilation","Shivering","Peripheral vasoconstriction"], answer:0 },
+  { id:"probe", label:"Temperature Probe", color:"#7c3f12", purpose:"Measures temperature at a specific site; the value depends on probe type, placement, contact, and site.", challenge:"Why can two temperature readings differ?", options:["Different sites and probe types","Screen size","Battery color"], answer:0 },
+];
+
+function MissionFiveTemperatureGraphic({ activeId, explored, onSelect, mode="normal" }) {
+  const node = id => `${activeId===id?"active":""} ${explored.includes(id)?"done":""}`;
+  const temp = mode==="cold" ? "34.2°C" : mode==="hot" ? "39.4°C" : "37.0°C";
+  return <div className={`m5-temp-art mode-${mode}`}>
+    <svg viewBox="0 0 820 620" role="img" aria-label="Original educational illustration of human temperature regulation and clinical temperature monitoring">
+      <defs>
+        <linearGradient id="bodyTempFill" x1="0" x2="1"><stop stopColor="#fde68a"/><stop offset="1" stopColor="#fdba74"/></linearGradient>
+        <linearGradient id="tempMonitorFill" x1="0" x2="1"><stop stopColor="#0f172a"/><stop offset="1" stopColor="#111827"/></linearGradient>
+      </defs>
+      <g className="temp-body">
+        <circle cx="225" cy="105" r="55"/>
+        <path d="M170 165C150 225 150 335 178 420L150 545H198L225 425L252 545H300L272 420C300 335 300 225 280 165Z"/>
+        <path className="temp-arm" d="M175 195L90 300M275 195L360 300"/>
+        <circle className="temp-brain" cx="225" cy="103" r="22"/>
+        <path className="temp-skin" d="M174 168C152 236 153 338 181 416M276 168C298 236 297 338 269 416"/>
+      </g>
+      <g className="temp-effects">
+        {mode==="cold" && <>{[0,1,2,3].map(n=><path key={n} className="cold-shiver" style={{"--d":`${n*.15}s`}} d={`M${135+n*42} 250l10-12 10 12 10-12`}/>)}</>}
+        {mode==="hot" && <>{[0,1,2,3,4].map(n=><path key={n} className="heat-drop" style={{"--d":`${n*.18}s`}} d={`M${120+n*48} 250C${115+n*48} 270 ${130+n*48} 278 ${125+n*48} 292`}/>)}</>}
+      </g>
+      <g className="temp-probe">
+        <path d="M360 300C430 290 445 345 485 350"/>
+        <rect x="470" y="330" width="62" height="42" rx="14"/>
+        <circle cx="500" cy="351" r="10"/>
+      </g>
+      <g className="temp-monitor">
+        <rect x="500" y="100" width="260" height="220" rx="26"/>
+        <text x="535" y="150">TEMP</text>
+        <text className="temp-value" x="720" y="215">{temp}</text>
+        <path d="M535 270H710"/>
+      </g>
+      <g className="temp-loop">
+        <path d="M225 103C370 40 500 55 560 105"/>
+        <path d="M560 315C490 430 360 480 225 425"/>
+      </g>
+      {[
+        ["receptors",180,190,"Receptors","#f59e0b"],
+        ["hypothalamus",225,103,"Hypothalamus","#8b5cf6"],
+        ["cold",140,360,"Cold Response","#2563eb"],
+        ["hot",300,360,"Heat Response","#dc2626"],
+        ["probe",500,350,"Temp Probe","#7c3f12"],
+      ].map(([id,x,y,label,color])=><g key={id} className={`temp-node ${node(id)}`} onClick={()=>onSelect(id)}><circle cx={x} cy={y} r="19" fill={color}/><text x={x+26} y={y+6}>{label}</text></g>)}
+    </svg>
+  </div>;
+}
+
+const MISSION_FIVE_SYSTEMS = [
+  { id:"ecg", label:"ECG", color:"#00B050", source:"Cardiac electrical activity", chain:"Patient → electrodes → lead wires → ECG input → displayed waveform", fault:"Loose or dry electrodes, damaged leads, motion, muscle artifact, electrical interference." },
+  { id:"spo2", label:"SpO₂", color:"#0096FF", source:"Pulsatile optical absorption", chain:"Patient → sensor → cable → SpO₂ input → pleth and saturation", fault:"Poor perfusion, motion, sensor alignment, ambient light, cable damage, wrong site." },
+  { id:"nibp", label:"NIBP", color:"#222222", source:"Oscillations in cuff pressure", chain:"Patient → cuff → hose → pump/valves/transducer → displayed pressure", fault:"Wrong cuff size, leaks, kinks, movement, loose hose, valve or pump problems." },
+  { id:"ibp", label:"IBP", color:"#D32F2F", source:"Fluid-coupled pressure waveform", chain:"Patient → catheter → tubing/stopcocks → transducer → IBP input → waveform", fault:"Air, clots, damping, leveling, zeroing, stopcock position, loose connection." },
+  { id:"temp", label:"Temperature", color:"#8D6E63", source:"Probe-dependent thermal measurement", chain:"Patient → probe → cable → temperature input → displayed value", fault:"Wrong probe, poor contact, incompatible input, damaged cable, wrong site." },
+];
+
+function MissionFiveSystemsGraphic({ activeId, onSelect, faultMode }) {
+  const active = MISSION_FIVE_SYSTEMS.find(x=>x.id===activeId) || MISSION_FIVE_SYSTEMS[0];
+  const values = faultMode==="spo2"
+    ? {ecg:"84",spo2:"73",nibp:"122/76",ibp:"118/72",temp:"37.0"}
+    : faultMode==="ibp"
+    ? {ecg:"82",spo2:"98",nibp:"120/74",ibp:"48/22",temp:"37.1"}
+    : {ecg:"82",spo2:"98",nibp:"120/74",ibp:"118/70",temp:"37.0"};
+  return <div className="m5-systems-art">
+    <svg viewBox="0 0 900 620" role="img" aria-label="Original bedside systems integration illustration with ECG, SpO2, NIBP, IBP and temperature signal chains">
+      <defs><linearGradient id="sysMon" x1="0" x2="1"><stop stopColor="#0f172a"/><stop offset="1" stopColor="#111827"/></linearGradient></defs>
+      <g className="sys-patient"><circle cx="170" cy="120" r="48"/><path d="M140 170C120 255 125 370 160 470H230C265 370 270 255 250 170Z"/><path d="M145 210L65 320M245 210L325 320"/><path d="M165 470L140 570M225 470L250 570"/></g>
+      <g className="sys-monitor"><rect x="420" y="70" width="410" height="430" rx="28" fill="url(#sysMon)"/><rect x="455" y="105" width="340" height="300" rx="14"/>
+      <text x="485" y="145" fill="#00B050">ECG</text><text className="sys-value" x="760" y="145" fill="#00B050">{values.ecg}</text><path className="wave ecg" d="M485 175L525 175L540 150L555 200L575 175L630 175L645 150L660 200L680 175L740 175"/>
+      <text x="485" y="230" fill="#0096FF">SpO₂</text><text className="sys-value" x="760" y="230" fill="#0096FF">{values.spo2}%</text><path className="wave spo2" d="M485 260C505 220 525 220 545 260S585 300 605 260S645 220 665 260S705 300 735 250"/>
+      <text x="485" y="320" fill="#fff">NIBP</text><text className="sys-value small" x="760" y="320" fill="#fff">{values.nibp}</text>
+      <text x="485" y="370" fill="#D32F2F">IBP</text><text className="sys-value small" x="760" y="370" fill="#D32F2F">{values.ibp}</text>
+      <text x="485" y="420" fill="#8D6E63">TEMP</text><text className="sys-value small" x="760" y="420" fill="#8D6E63">{values.temp}°C</text>
+      </g>
+      <g className="sys-lines">
+        <path className="line ecg" d="M175 190C260 170 340 130 430 130"/>
+        <path className="line spo2" d="M70 320C245 340 330 235 430 235"/>
+        <path className="line nibp" d="M315 320C355 320 380 315 430 315"/>
+        <path className="line ibp" d="M240 290C320 295 360 365 430 365"/>
+        <path className="line temp" d="M200 420C300 425 360 415 430 415"/>
+      </g>
+      {MISSION_FIVE_SYSTEMS.map((x,i)=>{const pos=[[175,190],[70,320],[315,320],[240,290],[200,420]][i];return <g key={x.id} className={`sys-node ${activeId===x.id?"active":""}`} onClick={()=>onSelect(x.id)}><circle cx={pos[0]} cy={pos[1]} r="19" fill={x.color}/><text x={pos[0]+26} y={pos[1]+6}>{x.label}</text></g>})}
+      <g className="sys-active-panel"><rect x="430" y="520" width="400" height="72" rx="18" fill={active.color}/><text x="455" y="548">{active.label}: {active.source}</text><text x="455" y="575">{active.chain}</text></g>
+    </svg>
+  </div>;
+}
+
+function MissionFive({ onExit, developerUnlockAll = false }) {
+  const moduleNumber = 5;
+  const saved = getMissionProgress(moduleNumber);
+  const savedCompleted = saved.completedLessons || [];
+  const [phase, setPhase] = useState(saved.phase && saved.phase !== "complete" ? saved.phase : "briefing");
+  const [lessonIndex, setLessonIndex] = useState(Math.min(Number.isInteger(saved.lessonIndex) ? saved.lessonIndex : 0, 7));
+  const [activeId, setActiveId] = useState("sa");
+  const [explored, setExplored] = useState(saved.m5Explored || []);
+  const [signalStep, setSignalStep] = useState(-1);
+  const [pathOrder, setPathOrder] = useState([]);
+  const [pathFeedback, setPathFeedback] = useState("");
+  const [serviceAnswer, setServiceAnswer] = useState(null);
+  const [recognitionAnswer, setRecognitionAnswer] = useState(null);
+  const [challengeAnswers, setChallengeAnswers] = useState({});
+  const [lungActiveId, setLungActiveId] = useState("trachea");
+  const [lungExplored, setLungExplored] = useState(saved.m5LungExplored || []);
+  const [lungChallenges, setLungChallenges] = useState({});
+  const [breathing, setBreathing] = useState(true);
+  const [gasPath, setGasPath] = useState([]);
+  const [gasFeedback, setGasFeedback] = useState("");
+  const [lungServiceAnswer, setLungServiceAnswer] = useState(null);
+  const [lungRecognition, setLungRecognition] = useState(null);
+  const [circActiveId, setCircActiveId] = useState("rightheart");
+  const [circExplored, setCircExplored] = useState(saved.m5CircExplored || []);
+  const [circChallenges, setCircChallenges] = useState({});
+  const [bloodFlowing, setBloodFlowing] = useState(true);
+  const [bloodPath, setBloodPath] = useState([]);
+  const [bloodFeedback, setBloodFeedback] = useState("");
+  const [circServiceAnswer, setCircServiceAnswer] = useState(null);
+  const [circRecognition, setCircRecognition] = useState(null);
+  const [brainActiveId, setBrainActiveId] = useState("frontal");
+  const [brainExplored, setBrainExplored] = useState(saved.m5BrainExplored || []);
+  const [brainChallenges, setBrainChallenges] = useState({});
+  const [eegMode, setEegMode] = useState("alpha");
+  const [brainPath, setBrainPath] = useState([]);
+  const [brainFeedback, setBrainFeedback] = useState("");
+  const [brainServiceAnswer, setBrainServiceAnswer] = useState(null);
+  const [brainRecognition, setBrainRecognition] = useState(null);
+  const [oxygenActiveId,setOxygenActiveId]=useState("alveoli");
+  const [oxygenExplored,setOxygenExplored]=useState(saved.m5OxygenExplored||[]);
+  const [oxygenChecks,setOxygenChecks]=useState({});
+  const [oxygenPath,setOxygenPath]=useState([]);
+  const [oxygenService,setOxygenService]=useState(null);
+  const [oxygenRecognition,setOxygenRecognition]=useState(null);
+  const [oxygenRunning,setOxygenRunning]=useState(true);
+  const [kidneyActiveId,setKidneyActiveId]=useState("glomerulus");
+  const [kidneyExplored,setKidneyExplored]=useState(saved.m5KidneyExplored||[]);
+  const [kidneyChecks,setKidneyChecks]=useState({});
+  const [kidneyPath,setKidneyPath]=useState([]);
+  const [kidneyService,setKidneyService]=useState(null);
+  const [kidneyRecognition,setKidneyRecognition]=useState(null);
+  const [kidneyRunning,setKidneyRunning]=useState(true);
+  const [tempActiveId,setTempActiveId]=useState("receptors");
+  const [tempExplored,setTempExplored]=useState(saved.m5TempExplored||[]);
+  const [tempChecks,setTempChecks]=useState({});
+  const [tempPath,setTempPath]=useState([]);
+  const [tempService,setTempService]=useState(null);
+  const [tempRecognition,setTempRecognition]=useState(null);
+  const [tempMode,setTempMode]=useState("normal");
+  const [systemsActiveId,setSystemsActiveId]=useState("ecg");
+  const [systemsExplored,setSystemsExplored]=useState(saved.m5SystemsExplored||[]);
+  const [systemsPath,setSystemsPath]=useState([]);
+  const [systemsScenario,setSystemsScenario]=useState(null);
+  const [systemsFault,setSystemsFault]=useState("normal");
+  const [systemsRecognition,setSystemsRecognition]=useState(null);
+  const [systemsPathFeedback,setSystemsPathFeedback]=useState("");
+  const [completedLessons, setCompletedLessons] = useState(savedCompleted);
+  const animationRef = useRef(null);
+
+  const localUnlock = developerUnlockAll && isLocalAcademyHost();
+  const completed = completedLessons.includes(0);
+  const lungCompleted = completedLessons.includes(1);
+  const active = MISSION_FIVE_CONDUCTION.find((item) => item.id === activeId) || MISSION_FIVE_CONDUCTION[0];
+  const lungActive = MISSION_FIVE_RESPIRATORY.find((item) => item.id === lungActiveId) || MISSION_FIVE_RESPIRATORY[0];
+  const circActive = MISSION_FIVE_CIRCULATION.find((item) => item.id === circActiveId) || MISSION_FIVE_CIRCULATION[0];
+  const brainActive = MISSION_FIVE_NEURO.find((item) => item.id === brainActiveId) || MISSION_FIVE_NEURO[0];
+  const allExplored = explored.length === MISSION_FIVE_CONDUCTION.length;
+  const allChallenges = Object.keys(challengeAnswers).length === MISSION_FIVE_CONDUCTION.length && Object.values(challengeAnswers).every(Boolean);
+  const pathComplete = pathOrder.length === MISSION_FIVE_CONDUCTION.length;
+  const serviceCorrect = serviceAnswer === 1;
+  const recognitionCorrect = recognitionAnswer === "av";
+  const ready = allExplored && allChallenges && pathComplete && serviceCorrect && recognitionCorrect;
+  const lungAllExplored = lungExplored.length === MISSION_FIVE_RESPIRATORY.length;
+  const lungAllChallenges = Object.keys(lungChallenges).length === MISSION_FIVE_RESPIRATORY.length && Object.values(lungChallenges).every(Boolean);
+  const gasPathComplete = gasPath.length === 5;
+  const lungServiceCorrect = lungServiceAnswer === 1;
+  const lungRecognitionCorrect = lungRecognition === "alveoli";
+  const lungReady = lungAllExplored && lungAllChallenges && gasPathComplete && lungServiceCorrect && lungRecognitionCorrect;
+  const circCompleted = completedLessons.includes(2);
+  const circAllExplored = circExplored.length === MISSION_FIVE_CIRCULATION.length;
+  const circAllChallenges = Object.keys(circChallenges).length === MISSION_FIVE_CIRCULATION.length && Object.values(circChallenges).every(Boolean);
+  const bloodPathComplete = bloodPath.length === MISSION_FIVE_CIRCULATION.length;
+  const circServiceCorrect = circServiceAnswer === 1;
+  const circRecognitionCorrect = circRecognition === "arteries";
+  const circReady = circAllExplored && circAllChallenges && bloodPathComplete && circServiceCorrect && circRecognitionCorrect;
+  const brainCompleted = completedLessons.includes(3);
+  const brainAllExplored = brainExplored.length === MISSION_FIVE_NEURO.length;
+  const brainAllChallenges = Object.keys(brainChallenges).length === MISSION_FIVE_NEURO.length && Object.values(brainChallenges).every(Boolean);
+  const brainPathComplete = brainPath.length === 4;
+  const brainServiceCorrect = brainServiceAnswer === 1;
+  const brainRecognitionCorrect = brainRecognition === "occipital";
+  const brainReady = brainAllExplored && brainAllChallenges && brainPathComplete && brainServiceCorrect && brainRecognitionCorrect;
+  const oxygenCompleted=completedLessons.includes(4);
+  const oxygenActive=MISSION_FIVE_OXYGEN.find(x=>x.id===oxygenActiveId)||MISSION_FIVE_OXYGEN[0];
+  const oxygenReady=oxygenExplored.length===5&&Object.values(oxygenChecks).filter(Boolean).length===5&&oxygenPath.length===5&&oxygenService===1&&oxygenRecognition==="sensor";
+  const kidneyCompleted=completedLessons.includes(5);
+  const kidneyActive=MISSION_FIVE_KIDNEY.find(x=>x.id===kidneyActiveId)||MISSION_FIVE_KIDNEY[0];
+  const kidneyReady=kidneyExplored.length===5&&Object.values(kidneyChecks).filter(Boolean).length===5&&kidneyPath.length===7&&kidneyService===1&&kidneyRecognition==="dialyzer";
+  const tempCompleted=completedLessons.includes(6);
+  const tempActive=MISSION_FIVE_TEMPERATURE.find(x=>x.id===tempActiveId)||MISSION_FIVE_TEMPERATURE[0];
+  const tempReady=tempExplored.length===5&&Object.values(tempChecks).filter(Boolean).length===5&&tempPath.length===4&&tempService===1&&tempRecognition==="probe";
+  const systemsCompleted=completedLessons.includes(7);
+  const systemsActive=MISSION_FIVE_SYSTEMS.find(x=>x.id===systemsActiveId)||MISSION_FIVE_SYSTEMS[0];
+  const systemsReady=systemsExplored.length===5&&systemsPath.length===6&&systemsScenario===1&&systemsRecognition==="spo2";
+
+  useEffect(() => () => { if (animationRef.current) window.clearInterval(animationRef.current); }, []);
+
+  const persistLesson = (index, patch = {}) => saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: index, completedLessons, ...patch });
+  const openLesson = (index) => { if (index > 7 || (index === 1 && !completed && !localUnlock) || (index === 2 && !lungCompleted && !localUnlock) || (index === 3 && !circCompleted && !localUnlock) || (index === 4 && !brainCompleted && !localUnlock) || (index === 5 && !oxygenCompleted && !localUnlock) || (index === 6 && !kidneyCompleted && !localUnlock) || (index === 7 && !tempCompleted && !localUnlock)) return; setLessonIndex(index); setPhase("lessons"); persistLesson(index); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const selectStructure = (id) => { setActiveId(id); setExplored((current) => { const next=current.includes(id)?current:[...current,id]; saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:0,completedLessons,m5Explored:next}); return next; }); };
+  const selectLungStructure = (id) => { setLungActiveId(id); setLungExplored((current) => { const next=current.includes(id)?current:[...current,id]; saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:1,completedLessons,m5LungExplored:next}); return next; }); };
+  const selectCircStructure = (id) => { setCircActiveId(id); setCircExplored((current) => { const next=current.includes(id)?current:[...current,id]; saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:2,completedLessons,m5CircExplored:next}); return next; }); };
+  const selectBrainStructure = (id) => { setBrainActiveId(id); setBrainExplored((current) => { const next=current.includes(id)?current:[...current,id]; saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:3,completedLessons,m5BrainExplored:next}); return next; }); };
+  const runSignal = () => { if (animationRef.current) window.clearInterval(animationRef.current); let index=0; setSignalStep(0); setActiveId(MISSION_FIVE_CONDUCTION[0].id); animationRef.current=window.setInterval(()=>{index+=1;if(index>=MISSION_FIVE_CONDUCTION.length){window.clearInterval(animationRef.current);animationRef.current=null;window.setTimeout(()=>setSignalStep(-1),900);return;}setSignalStep(index);setActiveId(MISSION_FIVE_CONDUCTION[index].id);},850); };
+  const addPathStep = (id) => { if(pathComplete)return;const expected=MISSION_FIVE_CONDUCTION[pathOrder.length].id;if(id!==expected){setPathFeedback(`Not yet. The next structure should receive the impulse after ${pathOrder.length?MISSION_FIVE_CONDUCTION[pathOrder.length-1].label:"the impulse begins"}.`);playCbetTone("wrong");return;}const next=[...pathOrder,id];setPathOrder(next);setPathFeedback(next.length===MISSION_FIVE_CONDUCTION.length?"Signal path complete — the ventricles can depolarize in a coordinated sequence.":"Correct. Choose the next structure.");playCbetTone("correct"); };
+  const addGasStep = (id) => { const sequence=["trachea","bronchi","alveoli","capillaries","heart"]; if(gasPath.length===sequence.length)return; if(id!==sequence[gasPath.length]){setGasFeedback("Not yet. Follow inspired gas from the airway toward blood returning to the heart.");playCbetTone("wrong");return;}const next=[...gasPath,id];setGasPath(next);setGasFeedback(next.length===sequence.length?"Gas path complete — oxygen moved from inspired air into pulmonary blood returning to the heart.":"Correct. Continue the pathway.");playCbetTone("correct"); };
+  const addBloodStep = (id) => { const sequence=["rightheart","lungs","leftheart","arteries","veins"]; if(bloodPath.length===sequence.length)return; if(id!==sequence[bloodPath.length]){setBloodFeedback("That step is out of sequence. Begin with venous blood entering the right heart, travel through the lungs, then follow systemic circulation.");playCbetTone("wrong");return;}const next=[...bloodPath,id];setBloodPath(next);setBloodFeedback(next.length===sequence.length?"Circulation pathway complete — blood returns to the right heart after moving through pulmonary and systemic circulation.":"Correct — choose the next step.");playCbetTone("correct"); };
+  const addBrainStep = (id) => { const sequence=["cortex","electrodes","leadset","amplifier"]; if(brainPath.length===sequence.length)return; if(id!==sequence[brainPath.length]){setBrainFeedback("That step is out of sequence. Begin with cortical voltage, then follow the acquisition pathway to the EEG amplifier.");playCbetTone("wrong");return;}const next=[...brainPath,id];setBrainPath(next);setBrainFeedback(next.length===sequence.length?"EEG acquisition pathway complete — a tiny cortical voltage has become a displayed waveform.":"Correct — choose the next step.");playCbetTone("correct"); };
+  const finishLesson = () => { if(!ready)return;const next=Array.from(new Set([...completedLessons,0]));saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:0,completedLessons:next,m5Explored:explored});awardCbetXp(50,"mission5-heart-ecg-explorer");setCompletedLessons(next); };
+  const finishLungLesson = () => { if(!lungReady)return;const next=Array.from(new Set([...completedLessons,1]));saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:1,completedLessons:next,m5LungExplored:lungExplored});awardCbetXp(50,"mission5-lungs-ventilation-explorer");setCompletedLessons(next); };
+  const finishCircLesson = () => { if(!circReady)return;const next=Array.from(new Set([...completedLessons,2]));saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:2,completedLessons:next,m5CircExplored:circExplored});awardCbetXp(50,"mission5-blood-pressure-circulation-explorer");setCompletedLessons(next); };
+  const finishBrainLesson = () => { if(!brainReady)return;const next=Array.from(new Set([...completedLessons,3]));saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:3,completedLessons:next,m5BrainExplored:brainExplored});awardCbetXp(50,"mission5-brain-eeg-explorer");setCompletedLessons(next); };
+  const resetExplorer = () => {setActiveId("sa");setExplored([]);setSignalStep(-1);setPathOrder([]);setPathFeedback("");setServiceAnswer(null);setRecognitionAnswer(null);setChallengeAnswers({});};
+  const resetLungExplorer = () => {setLungActiveId("trachea");setLungExplored([]);setLungChallenges({});setBreathing(true);setGasPath([]);setGasFeedback("");setLungServiceAnswer(null);setLungRecognition(null);};
+  const resetCircExplorer = () => {setCircActiveId("rightheart");setCircExplored([]);setCircChallenges({});setBloodFlowing(true);setBloodPath([]);setBloodFeedback("");setCircServiceAnswer(null);setCircRecognition(null);};
+
+  const resetBrainExplorer = () => {setBrainActiveId("frontal");setBrainExplored([]);setBrainChallenges({});setEegMode("alpha");setBrainPath([]);setBrainFeedback("");setBrainServiceAnswer(null);setBrainRecognition(null);};
+  const roadmap=["Heart & ECG","Lungs & Ventilation","Blood Pressure & Circulation","Brain & EEG","Oxygen Transport","Kidneys & Dialysis","Temperature Regulation","Connecting the Systems"];
+  if(phase==="briefing") return <section className="cbet-shell m5-shell m5-briefing"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><span className="m5-kicker">Mission 5 · Anatomy & Physiology</span><h1>Understand the body.<br/>Understand the equipment.</h1><p>Connect human physiology to the signals, waveforms, and measurements biomedical equipment displays.</p><div className="m5-roadmap">{roadmap.map((item,index)=>{const isComplete=completedLessons.includes(index);const available=index===0||(index===1&&(completed||localUnlock))||(index===2&&(lungCompleted||localUnlock))||(index===3&&(circCompleted||localUnlock));return <button key={item} type="button" className={`${available?"ready":"future"} ${isComplete?"complete":""}`} disabled={!available} onClick={()=>openLesson(index)}><span>{isComplete?"✓":index===0?"❤️":index===1?"🫁":index+1}</span><strong>{item}</strong><small>{isComplete?"Complete — review anytime":available?"Ready now":"Coming next"}</small></button>;})}</div><button className="cbet-primary m5-begin" onClick={()=>openLesson((circCompleted||localUnlock)?3:(lungCompleted?2:(completed?1:0)))}>{circCompleted?"Continue to Brain & EEG":localUnlock?"Open Brain & EEG (Local Test)":lungCompleted?"Continue to Blood Pressure & Circulation":completed?"Continue to Lungs & Ventilation":"Begin Heart & ECG Explorer"}</button></section>;
+
+  if(lessonIndex===7) return <section className="cbet-shell m5-shell m5-lesson-stage m5-systems-stage">
+    <div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 8 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"100%"}}/></div>
+    <section className="m5-hero m5-systems-hero"><MissionFiveSystemsGraphic activeId={systemsActiveId} onSelect={id=>{setSystemsActiveId(id);setSystemsExplored(v=>v.includes(id)?v:[...v,id])}} faultMode={systemsFault}/><div className="m5-hero-copy"><span className="m5-kicker">Systems Integration</span><h1>Don’t troubleshoot the number. Troubleshoot the signal chain.</h1><p>Compare physiology, sensors, accessories, connections, configuration, and displayed values as one connected bedside system.</p><div className="m5-system-modes"><button className={systemsFault==="normal"?"active":""} onClick={()=>setSystemsFault("normal")}>Normal</button><button className={systemsFault==="spo2"?"active":""} onClick={()=>setSystemsFault("spo2")}>SpO₂ Fault</button><button className={systemsFault==="ibp"?"active":""} onClick={()=>setSystemsFault("ibp")}>IBP Fault</button></div><div className="m5-explorer-progress"><div><span style={{width:`${systemsExplored.length*20}%`}}/></div><strong>{systemsExplored.length} of 5 signal chains explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_SYSTEMS.map(x=><button key={x.id} className={systemsActiveId===x.id?"active":""} style={{"--structure-color":x.color}} onClick={()=>{setSystemsActiveId(x.id);setSystemsExplored(v=>v.includes(x.id)?v:[...v,x.id])}}>{systemsExplored.includes(x.id)?"✓":"●"} {x.label}</button>)}</div></div></section>
+    <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":systemsActive.color}}><span className="m5-section-label">Signal-Chain Explorer</span><h2>{systemsActive.label}</h2><dl><div><dt>Physiologic source</dt><dd>{systemsActive.source}</dd></div><div><dt>Signal path</dt><dd>{systemsActive.chain}</dd></div><div><dt>Common failure points</dt><dd>{systemsActive.fault}</dd></div></dl></article>
+    <article className="m5-field-card m5-systems-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>Use agreement and disagreement as evidence</h2><p>When one parameter conflicts with the patient and other signals, do not replace the entire monitor first. Identify where the signal originates, how it is acquired, what accessories carry it, and which independent parameter can confirm or challenge it.</p><div className="m5-signal-chain"><span>Patient</span><b>→</b><span>Sensor</span><b>→</b><span>Accessory</span><b>→</b><span>Input</span><b>→</b><span>Display</span></div></article></section>
+    <section className="m5-path-builder m5-systems-path m5-systems-path-polished">
+      <div className="m5-section-heading">
+        <span className="m5-section-label">Build the Universal Signal Chain</span>
+        <h2>How does a physiologic signal reach the screen?</h2>
+        <p className="m5-path-instruction"><strong>Click the cards below</strong> in the order the signal travels from the patient to the displayed value.</p>
+      </div>
+      <div className="m5-path-result m5-path-result-arrowed">{["patient","sensor","accessory","input","processing","display"].map((id,i)=><div className="m5-path-slot-wrap" key={id}><div className={`m5-path-slot ${systemsPath[i]===id?"filled":""}`}><span className="slot-number">{i+1}</span><strong>{systemsPath[i]?({"patient":"Patient","sensor":"Sensor / Transducer","accessory":"Cable / Tubing","input":"Monitor Input","processing":"Signal Processing","display":"Displayed Value"})[systemsPath[i]]:"Choose a step"}</strong></div>{i<5&&<span className="m5-path-arrow">→</span>}</div>)}</div>
+      <div className={`m5-path-feedback ${systemsPathFeedback.startsWith("✓")?"success":systemsPathFeedback.startsWith("Not")?"try-again":""}`} aria-live="polite">{systemsPathFeedback || "Start with the source of the physiologic signal."}</div>
+      <div className="m5-path-options m5-path-choice-cards">{[["processing","Signal Processing","The monitor converts and analyzes the acquired signal."],["patient","Patient","The physiologic signal begins here."],["display","Displayed Value","The final number or waveform shown to the user."],["accessory","Cable / Tubing","Carries the signal from the sensor or transducer."],["input","Monitor Input","Receives the signal at the monitoring device."],["sensor","Sensor / Transducer","Detects or converts the physiologic measurement."]].map(([id,label,hint])=><button key={id} disabled={systemsPath.includes(id)} onClick={()=>{const seq=["patient","sensor","accessory","input","processing","display"];const expected=seq[systemsPath.length];if(id===expected){const next=[...systemsPath,id];setSystemsPath(next);setSystemsPathFeedback(next.length===6?"✓ Signal chain complete! You followed the measurement from the patient to the screen.":"✓ Correct — now choose what receives or carries the signal next.");playCbetTone("correct")}else{setSystemsPathFeedback("Not quite — follow the signal one step at a time from its source toward the monitor.");playCbetTone("wrong")}}}><span className="choice-title">{label}</span><span className="choice-hint">{hint}</span></button>)}</div>
+      <div className="m5-path-actions"><button className="cbet-secondary" onClick={()=>{setSystemsPath([]);setSystemsPathFeedback("")}}>↻ Reset Activity</button></div>
+      {systemsPath.length===6&&<div className="m5-path-summary"><strong>Signal chain complete</strong><span>Patient → Sensor / Transducer → Cable / Tubing → Monitor Input → Signal Processing → Displayed Value</span></div>}
+    </section>
+    <section className="m5-equipment-connections m5-systems-equipment"><span className="m5-section-label">Cross-Parameter Evidence</span><h2>Which signals can validate one another?</h2><div><article><strong>ECG vs. Pulse Rate</strong><span>A major mismatch can indicate pulse-ox artifact, poor perfusion, ectopy, or acquisition problems.</span></article><article><strong>NIBP vs. IBP</strong><span>Trend agreement and waveform quality help identify damping, leveling, zeroing, or cuff-related problems.</span></article><article><strong>SpO₂ vs. Pleth</strong><span>A saturation number without a credible pleth and pulse agreement deserves investigation.</span></article><article><strong>Temperature vs. Clinical Context</strong><span>Probe site, type, contact, and a second validated method help test plausibility.</span></article></div></section>
+    <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Final Bedside Simulation</span><h2>One number does not fit the rest of the bedside picture.</h2><div className="m5-vitals-strip"><span><b>HR</b> 84</span><span className="spo2-alert"><b>SpO₂</b> 73%</span><span className="spo2-alert"><b>Pulse</b> 42</span><span><b>NIBP</b> 122/76</span><span><b>Temp</b> 37.0°C</span></div><p>The ECG is clean, the pleth is weak and irregular, and the patient appears stable. <strong>Which signal chain should you investigate first?</strong></p>{["Replace the entire patient monitor","Inspect the SpO₂ sensor, placement, perfusion, motion, cable, and pleth quality","Replace the NIBP cuff"].map((o,i)=><button key={o} disabled={systemsScenario===1} className={systemsScenario!==null&&i===1?"correct":systemsScenario===i?"wrong":""} onClick={()=>{setSystemsScenario(i);setSystemsFault("spo2");playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</article><article className="m5-recognition"><span className="m5-section-label">Find the Fault</span><h2>Which signal chain is inconsistent with the other evidence?</h2><div>{MISSION_FIVE_SYSTEMS.map(x=><button key={x.id} disabled={systemsRecognition==="spo2"} className={systemsRecognition===x.id?(x.id==="spo2"?"correct":"wrong"):""} onClick={()=>{setSystemsRecognition(x.id);setSystemsActiveId(x.id);playCbetTone(x.id==="spo2"?"correct":"wrong")}}>{x.label}</button>)}</div></article></section>
+    <section className={`m5-completion ${systemsReady||systemsCompleted?"ready":""}`}><div><span>{systemsReady||systemsCompleted?"🏆":"🧩"}</span><div><strong>{systemsCompleted?"Mission 5 Systems Integration Complete":systemsReady?"Final Explorer Ready to Complete":"Complete every activity"}</strong><small>100 XP · Anatomy, physiology, equipment, and systems thinking</small></div></div><button className="cbet-primary" disabled={!systemsReady&&!systemsCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,7]));if(!systemsCompleted)awardCbetXp(100,"mission5-systems-integration");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:7,completedLessons:next,m5SystemsExplored:systemsExplored});completeCbetModule(moduleNumber);}}>{systemsCompleted?"Mission 5 Completed ✓":"Complete Mission 5"}</button></section>
+    <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(6)}>← Previous: Temperature Regulation</button><button className="cbet-secondary" onClick={()=>{setSystemsActiveId("ecg");setSystemsExplored([]);setSystemsPath([]);setSystemsScenario(null);setSystemsRecognition(null);setSystemsFault("normal");setSystemsPathFeedback("")}}>Restart Explorer</button><button className="cbet-primary" onClick={onExit}>Return to Academy →</button></nav>
+  </section>;
+
+  if(lessonIndex===6) return <section className="cbet-shell m5-shell m5-lesson-stage m5-temp-stage">
+    <div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 7 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"87.5%"}}/></div>
+    <section className="m5-hero m5-temp-hero"><MissionFiveTemperatureGraphic activeId={tempActiveId} explored={tempExplored} mode={tempMode} onSelect={id=>{setTempActiveId(id);setTempExplored(v=>v.includes(id)?v:[...v,id])}}/><div className="m5-hero-copy"><span className="m5-kicker">Temperature Regulation & Patient Warming</span><h1>Measure heat. Understand the response.</h1><p>Explore how receptors and the hypothalamus regulate temperature, then connect physiology to clinical probes, warming systems, and troubleshooting.</p><div className="m5-temp-mode-controls"><button className={tempMode==="cold"?"active":""} onClick={()=>setTempMode("cold")}>Cold</button><button className={tempMode==="normal"?"active":""} onClick={()=>setTempMode("normal")}>Normal</button><button className={tempMode==="hot"?"active":""} onClick={()=>setTempMode("hot")}>Hot</button></div><div className="m5-explorer-progress"><div><span style={{width:`${tempExplored.length*20}%`}}/></div><strong>{tempExplored.length} of 5 concepts explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_TEMPERATURE.map(x=><button key={x.id} className={tempActiveId===x.id?"active":""} style={{"--structure-color":x.color}} onClick={()=>{setTempActiveId(x.id);setTempExplored(v=>v.includes(x.id)?v:[...v,x.id])}}>{tempExplored.includes(x.id)?"✓":"●"} {x.label}</button>)}</div></div></section>
+    <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":tempActive.color}}><span className="m5-section-label">Interactive Physiology</span><h2>{tempActive.label}</h2><p>{tempActive.purpose}</p><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{tempActive.challenge}</p>{tempActive.options.map((o,i)=><button key={o} disabled={tempChecks[tempActive.id]===true} className={tempChecks[tempActive.id]!==undefined&&i===tempActive.answer?"correct":""} onClick={()=>{const ok=i===tempActive.answer;setTempChecks(v=>({...v,[tempActive.id]:ok}));playCbetTone(ok?"correct":"wrong")}}>{o}</button>)}</div></article>
+    <article className="m5-field-card m5-temp-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>Temperature is site-specific</h2><p>A skin reading, oral reading, bladder reading, esophageal reading, and rectal reading are not interchangeable. When a value seems implausible, confirm the probe type, placement, compatible input, cable integrity, and comparison method before replacing the monitor.</p><div className="m5-signal-chain"><span>Receptors</span><b>→</b><span>Hypothalamus</span><b>→</b><span>Cold or heat response</span><b>→</b><span>Measured site</span></div></article></section>
+    <section className="m5-path-builder m5-temp-path"><div className="m5-section-heading"><span className="m5-section-label">Build the Temperature-Control Loop</span><h2>From detection to corrective response</h2><p>Select each step in the correct order.</p></div><div className="m5-path-result">{["change","receptors","hypothalamus","response"].map((id,i)=><div key={id} className={tempPath[i]===id?"filled":""}>{tempPath[i]?({"change":"Temperature Change","receptors":"Temperature Receptors","hypothalamus":"Hypothalamus","response":"Corrective Response"})[tempPath[i]]:i+1}</div>)}</div><div className="m5-path-options">{[["change","Temperature Change"],["receptors","Temperature Receptors"],["hypothalamus","Hypothalamus"],["response","Corrective Response"]].map(([id,label])=><button key={id} disabled={tempPath.includes(id)} onClick={()=>{const seq=["change","receptors","hypothalamus","response"];if(id===seq[tempPath.length]){setTempPath(v=>[...v,id]);playCbetTone("correct")}else playCbetTone("wrong")}}>{label}</button>)}</div></section>
+    <section className="m5-equipment-connections m5-temp-equipment"><span className="m5-section-label">Equipment Connections</span><h2>Where and how temperature is measured or controlled</h2><div><article><strong>Skin Probe</strong><span>Tracks surface temperature and is strongly affected by placement, insulation, perfusion, and ambient conditions.</span></article><article><strong>Core Temperature Probe</strong><span>Uses compatible esophageal, bladder, rectal, or other approved sites to estimate core temperature.</span></article><article><strong>Forced-Air Warming</strong><span>Transfers warm air through a blanket system to reduce perioperative heat loss.</span></article><article><strong>Fluid Warmer</strong><span>Warms compatible fluids or blood products while requiring accurate temperature control and alarm protection.</span></article></div></section>
+    <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>Monitor displays 32.1°C, but the patient appears comfortable</h2><p>Other vital signs are stable and a second validated method reads 36.8°C. What should be investigated first?</p>{["Replace the monitor immediately","Check probe type, placement, connection, cable integrity, and compatible input","Replace the ECG cable"].map((o,i)=><button key={o} disabled={tempService===1} className={tempService!==null&&i===1?"correct":tempService===i?"wrong":""} onClick={()=>{setTempService(i);playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Which component directly acquires the temperature signal?</h2><div>{MISSION_FIVE_TEMPERATURE.map(x=><button key={x.id} disabled={tempRecognition==="probe"} className={tempRecognition===x.id?(x.id==="probe"?"correct":"wrong"):""} onClick={()=>{setTempRecognition(x.id);playCbetTone(x.id==="probe"?"correct":"wrong")}}>{x.label}</button>)}</div></article></section>
+    <section className={`m5-completion ${tempReady||tempCompleted?"ready":""}`}><div><span>{tempReady||tempCompleted?"🏅":"🌡️"}</span><div><strong>{tempCompleted?"Temperature Regulation Explorer Complete":tempReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>50 XP · Temperature physiology and monitoring</small></div></div><button className="cbet-primary" disabled={!tempReady&&!tempCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,6]));if(!tempCompleted)awardCbetXp(50,"mission5-temperature");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:6,completedLessons:next,m5TempExplored:tempExplored})}}>{tempCompleted?"Lesson Completed ✓":"Complete Temperature Regulation Explorer"}</button></section>
+    <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(5)}>← Previous: Kidneys & Dialysis</button><button className="cbet-secondary" onClick={()=>{setTempActiveId("receptors");setTempExplored([]);setTempChecks({});setTempPath([]);setTempService(null);setTempRecognition(null);setTempMode("normal")}}>Restart Explorer</button><button className="cbet-primary" disabled={!tempCompleted&&!localUnlock} onClick={()=>openLesson(7)}>Next: Systems Integration →</button></nav>
+  </section>;
+
+  if(lessonIndex===5) return <section className="cbet-shell m5-shell m5-lesson-stage m5-kidney-stage">
+    <div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 6 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"75%"}}/></div>
+    <section className="m5-hero m5-kidney-hero"><MissionFiveKidneyGraphic activeId={kidneyActiveId} explored={kidneyExplored} running={kidneyRunning} onSelect={id=>{setKidneyActiveId(id);setKidneyExplored(v=>v.includes(id)?v:[...v,id])}}/><div className="m5-hero-copy"><span className="m5-kicker">Kidneys & Dialysis</span><h1>Filter the blood. Control the balance.</h1><p>Connect nephron physiology to the extracorporeal dialysis circuit, then trace blood safely from the patient, through the dialyzer, and back again.</p><button className="m5-signal-button m5-kidney-button" onClick={()=>setKidneyRunning(v=>!v)}>{kidneyRunning?"Ⅱ Pause Filtration":"▶ Animate Filtration"}</button><div className="m5-explorer-progress"><div><span style={{width:`${kidneyExplored.length*20}%`}}/></div><strong>{kidneyExplored.length} of 5 concepts explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_KIDNEY.map(x=><button key={x.id} className={kidneyActiveId===x.id?"active":""} style={{"--structure-color":x.color}} onClick={()=>{setKidneyActiveId(x.id);setKidneyExplored(v=>v.includes(x.id)?v:[...v,x.id])}}>{kidneyExplored.includes(x.id)?"✓":"●"} {x.label}</button>)}</div></div></section>
+    <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":kidneyActive.color}}><span className="m5-section-label">Interactive Physiology</span><h2>{kidneyActive.label}</h2><p>{kidneyActive.purpose}</p><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{kidneyActive.challenge}</p>{kidneyActive.options.map((o,i)=><button key={o} disabled={kidneyChecks[kidneyActive.id]===true} className={kidneyChecks[kidneyActive.id]!==undefined&&i===kidneyActive.answer?"correct":""} onClick={()=>{const ok=i===kidneyActive.answer;setKidneyChecks(v=>({...v,[kidneyActive.id]:ok}));playCbetTone(ok?"correct":"wrong")}}>{o}</button>)}</div></article>
+    <article className="m5-field-card m5-kidney-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>An alarm is evidence about the circuit</h2><p>Pressure alarms, air alarms, conductivity alarms, and temperature alarms point to different parts of the dialysis system. Read the alarm, inspect the full extracorporeal and dialysate paths, and reproduce the complaint before replacing equipment.</p><div className="m5-signal-chain"><span>Patient access</span><b>→</b><span>Blood pump</span><b>→</b><span>Dialyzer</span><b>→</b><span>Air detector</span><b>→</b><span>Patient return</span></div></article></section>
+    <section className="m5-path-builder m5-kidney-path"><div className="m5-section-heading"><span className="m5-section-label">Build the Dialysis Circuit</span><h2>Trace blood from the patient and safely back again</h2><p>Select each step in the correct order.</p></div><div className="m5-path-result">{["patient","arterial","pump","dialyzer","air","venous","patient-return"].map((id,i)=><div key={id} className={kidneyPath[i]===id?"filled":""}>{kidneyPath[i]?({"patient":"Patient","arterial":"Arterial Line","pump":"Blood Pump","dialyzer":"Dialyzer","air":"Air Detector","venous":"Venous Line","patient-return":"Patient Return"})[kidneyPath[i]]:i+1}</div>)}</div><div className="m5-path-options">{[["patient","Patient"],["arterial","Arterial Line"],["pump","Blood Pump"],["dialyzer","Dialyzer"],["air","Air Detector"],["venous","Venous Line"],["patient-return","Patient Return"]].map(([id,label])=><button key={id} disabled={kidneyPath.includes(id)} onClick={()=>{const seq=["patient","arterial","pump","dialyzer","air","venous","patient-return"];if(id===seq[kidneyPath.length]){setKidneyPath(v=>[...v,id]);playCbetTone("correct")}else playCbetTone("wrong")}}>{label}</button>)}</div></section>
+    <section className="m5-equipment-connections m5-kidney-equipment"><span className="m5-section-label">Equipment Connections</span><h2>What the dialysis system monitors</h2><div><article><strong>Arterial Pressure</strong><span>Reflects pressure in the blood withdrawal side and may change with access, line position, kinks, or flow demand.</span></article><article><strong>Venous Pressure</strong><span>Reflects resistance in the return side and may rise with clamps, kinks, clotting, or access problems.</span></article><article><strong>Conductivity & Temperature</strong><span>Help verify dialysate composition and temperature before it reaches the dialyzer.</span></article><article><strong>Air Detector & Clamp</strong><span>Protect the venous return path by detecting air and stopping return flow when required.</span></article></div></section>
+    <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>Repeated high venous pressure alarm</h2><p>The machine passes its internal checks and operates normally on a test circuit. What should be investigated next?</p>{["Replace the display","Inspect the patient-side return line, clamps, access, filters, and signs of clotting","Replace the battery"].map((o,i)=><button key={o} disabled={kidneyService===1} className={kidneyService!==null&&i===1?"correct":kidneyService===i?"wrong":""} onClick={()=>{setKidneyService(i);playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Where does diffusion across a membrane occur?</h2><div>{MISSION_FIVE_KIDNEY.map(x=><button key={x.id} disabled={kidneyRecognition==="dialyzer"} className={kidneyRecognition===x.id?(x.id==="dialyzer"?"correct":"wrong"):""} onClick={()=>{setKidneyRecognition(x.id);playCbetTone(x.id==="dialyzer"?"correct":"wrong")}}>{x.label}</button>)}</div></article></section>
+    <section className={`m5-completion ${kidneyReady||kidneyCompleted?"ready":""}`}><div><span>{kidneyReady||kidneyCompleted?"🏅":"💧"}</span><div><strong>{kidneyCompleted?"Kidneys & Dialysis Explorer Complete":kidneyReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>50 XP · Renal physiology and dialysis systems</small></div></div><button className="cbet-primary" disabled={!kidneyReady&&!kidneyCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,5]));if(!kidneyCompleted)awardCbetXp(50,"mission5-kidney-dialysis");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:5,completedLessons:next,m5KidneyExplored:kidneyExplored})}}>{kidneyCompleted?"Lesson Completed ✓":"Complete Kidneys & Dialysis Explorer"}</button></section>
+    <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(4)}>← Previous: Oxygen Transport</button><button className="cbet-secondary" onClick={()=>{setKidneyActiveId("glomerulus");setKidneyExplored([]);setKidneyChecks({});setKidneyPath([]);setKidneyService(null);setKidneyRecognition(null)}}>Restart Explorer</button><button className="cbet-primary" disabled={!kidneyCompleted&&!localUnlock} onClick={()=>openLesson(6)}>Next: Temperature Regulation →</button></nav>
+  </section>;
+
+  if(lessonIndex===4) return <section className="cbet-shell m5-shell m5-lesson-stage m5-o2-stage">
+<div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 5 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"62.5%"}}/></div>
+<section className="m5-hero m5-o2-hero"><MissionFiveOxygenGraphic activeId={oxygenActiveId} explored={oxygenExplored} running={oxygenRunning} onSelect={id=>{setOxygenActiveId(id);setOxygenExplored(v=>v.includes(id)?v:[...v,id])}}/><div className="m5-hero-copy"><span className="m5-kicker">Oxygen Transport & Pulse Oximetry</span><h1>Move oxygen. Shine light. Measure the result.</h1><p>Follow oxygen from alveoli to hemoglobin, then see how red and infrared light through pulsatile tissue becomes SpO₂ and the pleth waveform.</p><button className="m5-signal-button" onClick={()=>setOxygenRunning(v=>!v)}>{oxygenRunning?"Ⅱ Pause Oxygen Flow":"▶ Animate Oxygen Flow"}</button><div className="m5-explorer-progress"><div><span style={{width:`${oxygenExplored.length*20}%`}}/></div><strong>{oxygenExplored.length} of 5 concepts explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_OXYGEN.map(x=><button key={x.id} className={oxygenActiveId===x.id?"active":""} style={{"--structure-color":x.color}} onClick={()=>{setOxygenActiveId(x.id);setOxygenExplored(v=>v.includes(x.id)?v:[...v,x.id])}}>{oxygenExplored.includes(x.id)?"✓":"●"} {x.label}</button>)}</div></div></section>
+<section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":oxygenActive.color}}><span className="m5-section-label">Interactive Physiology</span><h2>{oxygenActive.label}</h2><p>{oxygenActive.purpose}</p><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{oxygenActive.challenge}</p>{oxygenActive.options.map((o,i)=><button key={o} disabled={oxygenChecks[oxygenActive.id]===true} className={oxygenChecks[oxygenActive.id]!==undefined&&i===oxygenActive.answer?"correct":""} onClick={()=>{const ok=i===oxygenActive.answer;setOxygenChecks(v=>({...v,[oxygenActive.id]:ok}));playCbetTone(ok?"correct":"wrong")}}>{o}</button>)}</div></article><article className="m5-field-card"><span className="m5-section-label">Clinical Engineering Insight</span><h2>A believable number needs a believable signal</h2><p>Before blaming the monitor, inspect sensor placement, emitter-detector alignment, cable integrity, perfusion, motion, ambient light, pleth quality, and whether the pulse-ox rate agrees with another source.</p><div className="m5-signal-chain"><span>Alveoli</span><b>→</b><span>Hemoglobin</span><b>→</b><span>Arterial pulse</span><b>→</b><span>Red / IR light</span><b>→</b><span>SpO₂ + pleth</span></div></article></section>
+<section className="m5-path-builder"><div className="m5-section-heading"><span className="m5-section-label">Build the Measurement Path</span><h2>From alveolus to displayed SpO₂</h2></div><div className="m5-path-result">{["alveoli","hemoglobin","pulse","sensor","display"].map((id,i)=><div key={id} className={oxygenPath[i]===id?"filled":""}>{oxygenPath[i]?MISSION_FIVE_OXYGEN.find(x=>x.id===oxygenPath[i]).label:i+1}</div>)}</div><div className="m5-path-options">{MISSION_FIVE_OXYGEN.map(x=><button key={x.id} disabled={oxygenPath.includes(x.id)} onClick={()=>{const seq=["alveoli","hemoglobin","pulse","sensor","display"];if(x.id===seq[oxygenPath.length]){setOxygenPath(v=>[...v,x.id]);playCbetTone("correct")}else playCbetTone("wrong")}}>{x.label}</button>)}</div></section>
+<section className="m5-equipment-connections"><span className="m5-section-label">Equipment Connections</span><h2>What each measurement actually tells you</h2><div><article><strong>Pulse Oximeter</strong><span>Estimates arterial oxygen saturation from pulsatile red/infrared absorption.</span></article><article><strong>Pleth Waveform</strong><span>Shows the pulsatile optical signal and helps judge signal credibility.</span></article><article><strong>Blood Gas Analyzer</strong><span>PaO₂ from a blood sample is not the same measurement as SpO₂.</span></article><article><strong>ECG / Heart Rate</strong><span>Offers an independent rate to compare when artifact is suspected.</span></article></div></section>
+<section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>SpO₂ reads 72%, but the pleth is weak</h2><p>Pulse-ox rate is 44 while ECG heart rate is 88. What should be investigated first?</p>{["Replace the monitor","Check sensor placement, perfusion, motion, cable, and pleth quality","Replace the NIBP cuff"].map((o,i)=><button key={o} disabled={oxygenService===1} className={oxygenService!==null&&i===1?"correct":oxygenService===i?"wrong":""} onClick={()=>{setOxygenService(i);playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Where does optical acquisition occur?</h2><div>{MISSION_FIVE_OXYGEN.map(x=><button key={x.id} disabled={oxygenRecognition==="sensor"} className={oxygenRecognition===x.id?(x.id==="sensor"?"correct":"wrong"):""} onClick={()=>{setOxygenRecognition(x.id);playCbetTone(x.id==="sensor"?"correct":"wrong")}}>{x.label}</button>)}</div></article></section>
+<section className={`m5-completion ${oxygenReady||oxygenCompleted?"ready":""}`}><div><span>{oxygenReady||oxygenCompleted?"🏅":"🩸"}</span><div><strong>{oxygenCompleted?"Oxygen Transport Explorer Complete":oxygenReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>50 XP · Oxygen transport and pulse oximetry</small></div></div><button className="cbet-primary" disabled={!oxygenReady&&!oxygenCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,4]));if(!oxygenCompleted)awardCbetXp(50,"mission5-o2");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:4,completedLessons:next,m5OxygenExplored:oxygenExplored})}}>{oxygenCompleted?"Lesson Completed ✓":"Complete Oxygen Transport Explorer"}</button></section>
+<nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(3)}>← Previous: Brain & EEG</button><button className="cbet-secondary" onClick={()=>{setOxygenActiveId("alveoli");setOxygenExplored([]);setOxygenChecks({});setOxygenPath([]);setOxygenService(null);setOxygenRecognition(null)}}>Restart Explorer</button><button className="cbet-primary" disabled={!oxygenCompleted&&!localUnlock} onClick={()=>openLesson(5)}>Next: Kidneys & Dialysis →</button></nav></section>;
+
+  if(lessonIndex===3) return <section className="cbet-shell m5-shell m5-lesson-stage m5-brain-stage"><div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 4 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"50%"}}/></div>
+    <section className="m5-hero m5-brain-hero"><MissionFiveBrainGraphic activeId={brainActiveId} explored={brainExplored} onSelect={selectBrainStructure} signalMode={eegMode}/><div className="m5-hero-copy"><span className="m5-kicker">Brain & EEG Explorer</span><h1>Detect the signal. Identify the artifact.</h1><p>Explore major brain regions, follow microvolt-level cortical signals to the EEG amplifier, and distinguish a physiologic waveform from acquisition artifact.</p><div className="m5-eeg-mode"><button className={eegMode==="alpha"?"active":""} onClick={()=>setEegMode("alpha")}>Relaxed / Alpha</button><button className={eegMode==="beta"?"active":""} onClick={()=>setEegMode("beta")}>Alert / Beta</button><button className={eegMode==="artifact"?"active":""} onClick={()=>setEegMode("artifact")}>Motion Artifact</button></div><div className="m5-explorer-progress"><div><span style={{width:`${(brainExplored.length/MISSION_FIVE_NEURO.length)*100}%`}}/></div><strong>{brainExplored.length} of 5 structures explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_NEURO.map(item=><button key={item.id} className={`${brainActiveId===item.id?"active":""} ${brainExplored.includes(item.id)?"explored":""}`} style={{"--structure-color":item.color}} onClick={()=>selectBrainStructure(item.id)}><span>{brainExplored.includes(item.id)?"✓":"●"}</span>{item.label}</button>)}</div></div></section>
+    <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":brainActive.color}}><span className="m5-section-label">Interactive Neuroanatomy</span><h2>{brainActive.label}</h2><dl><div><dt>Location</dt><dd>{brainActive.location}</dd></div><div><dt>Purpose</dt><dd>{brainActive.purpose}</dd></div><div><dt>Equipment connection</dt><dd>{brainActive.equipment}</dd></div></dl><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{brainActive.challenge}</p>{brainActive.options.map((option,index)=><button key={option} className={brainChallenges[brainActive.id]!==undefined?(index===brainActive.answer?"correct":""):""} disabled={brainChallenges[brainActive.id]===true} onClick={()=>{const correct=index===brainActive.answer;setBrainChallenges(p=>({...p,[brainActive.id]:correct}));playCbetTone(correct?"correct":"wrong");}}>{option}</button>)}{brainChallenges[brainActive.id]===false&&<small>Not quite. Review the highlighted brain region and try again.</small>}</div></article><article className="m5-field-card m5-brain-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>EEG is a microvolt measurement</h2><p>Because EEG signals are extremely small, electrode impedance, dried conductive material, cable motion, nearby electrical sources, and muscle activity can dominate the display. Verify the acquisition pathway before assuming the waveform represents a neurologic change.</p><div className="m5-signal-chain"><span>Cortical voltage</span><b>→</b><span>Scalp electrode</span><b>→</b><span>Lead set</span><b>→</b><span>Differential amplifier</span><b>→</b><span>Displayed EEG</span></div></article></section>
+    <section className="m5-path-builder m5-brain-path"><div className="m5-section-heading"><span className="m5-section-label">Build the EEG Signal Path</span><h2>Move a cortical signal to the display</h2><p>Select the acquisition steps in the correct order.</p></div><div className="m5-path-result">{["cortex","electrodes","leadset","amplifier"].map((id,index)=><div key={id} className={brainPath[index]===id?"filled":""}>{brainPath[index]?({cortex:"Cortical voltage",electrodes:"Scalp electrodes",leadset:"Lead set",amplifier:"EEG amplifier & display"})[brainPath[index]]:index+1}</div>)}</div><div className="m5-path-options">{[["cortex","Cortical voltage"],["electrodes","Scalp electrodes"],["leadset","Lead set"],["amplifier","EEG amplifier & display"]].map(([id,label])=><button key={id} disabled={brainPath.includes(id)} onClick={()=>addBrainStep(id)}>{label}</button>)}</div>{brainFeedback&&<p className={brainPathComplete?"good":""}>{brainFeedback}</p>}{brainPath.length>0&&!brainPathComplete&&<button className="cbet-secondary" onClick={()=>{setBrainPath([]);setBrainFeedback("");}}>Reset EEG Path</button>}</section>
+    <section className="m5-equipment-connections m5-brain-equipment"><span className="m5-section-label">Equipment Connections</span><h2>What measures or uses this physiology?</h2><div><article><strong>Diagnostic EEG</strong><span>Records multi-channel cortical voltage differences using standardized scalp locations.</span></article><article><strong>BIS / Processed EEG</strong><span>Processes frontal EEG features into a trend used alongside the full clinical assessment during anesthesia.</span></article><article><strong>Evoked-Potential System</strong><span>Measures nervous-system responses to controlled sensory stimulation.</span></article><article><strong>ICP Monitor</strong><span>Measures intracranial pressure; it does not measure the same quantity as EEG.</span></article></div></section>
+    <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>One EEG channel suddenly becomes large and erratic</h2><p>The change appears when the patient clenches the jaw, while neighboring channels remain stable. What should be investigated first?</p>{["Replace the entire EEG system","Check the affected electrode, lead, impedance, and muscle artifact","Diagnose a seizure from the single channel","Increase amplifier gain"].map((option,index)=><button key={option} disabled={brainServiceCorrect} className={`${brainServiceAnswer!==null&&index===1?"correct":""} ${brainServiceAnswer===index&&index!==1?"wrong":""}`} onClick={()=>{setBrainServiceAnswer(index);playCbetTone(index===1?"correct":"wrong");}}><strong>{String.fromCharCode(65+index)}.</strong>{option}</button>)}{brainServiceAnswer!==null&&<div className="m5-feedback"><strong>{brainServiceCorrect?"Best first action.":"Use the channel pattern and patient activity as evidence."}</strong><span>Localized electrode or muscle artifact should be evaluated before replacing the system or interpreting the change as a new neurologic event.</span></div>}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Which lobe primarily processes vision?</h2><p>Select the cortical region at the back of the brain.</p><div>{MISSION_FIVE_NEURO.map(item=><button key={item.id} className={`${brainRecognition===item.id?(item.id==="occipital"?"correct":"wrong"):""}`} disabled={brainRecognitionCorrect} style={{"--structure-color":item.color}} onClick={()=>{setBrainRecognition(item.id);setBrainActiveId(item.id);playCbetTone(item.id==="occipital"?"correct":"wrong");}}>{item.label}</button>)}</div>{brainRecognition&&<p className={brainRecognitionCorrect?"good":"bad"}>{brainRecognitionCorrect?"Correct — the occipital lobe is the primary visual-processing region.":"Not this region. Look toward the posterior cerebrum."}</p>}</article></section>
+    <section className={`m5-completion ${brainReady||brainCompleted?"ready":""}`}><div><span>{brainReady||brainCompleted?"🏅":"🧠"}</span><div><strong>{brainCompleted?"Brain & EEG Explorer Complete":brainReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>{brainCompleted?"Your 50 XP and lesson progress are preserved.":`${brainExplored.length}/5 structures · ${Object.values(brainChallenges).filter(Boolean).length}/5 checks · ${brainPathComplete?"EEG path complete":"EEG path pending"}`}</small></div></div><button className="cbet-primary" disabled={!brainReady&&!brainCompleted} onClick={finishBrainLesson}>{brainCompleted?"Lesson Completed ✓":"Complete Brain & EEG Explorer"}</button></section>
+    <nav className="m5-bottom-nav" aria-label="Mission 5 lesson navigation"><button className="cbet-secondary" onClick={()=>openLesson(2)}>← Previous: Blood Pressure & Circulation</button><button className="cbet-secondary" onClick={resetBrainExplorer}>Restart Explorer</button><button className="cbet-primary" disabled={!brainCompleted&&!localUnlock} onClick={()=>openLesson(4)}>Next: Oxygen Transport →</button></nav>
+  </section>;
+
+  if(lessonIndex===2) return <section className="cbet-shell m5-shell m5-lesson-stage m5-circulation-stage"><div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 3 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"37.5%"}}/></div>
+    <section className="m5-hero m5-circulation-hero"><MissionFiveCirculationGraphic activeId={circActiveId} explored={circExplored} onSelect={selectCircStructure} flowing={bloodFlowing}/><div className="m5-hero-copy"><span className="m5-kicker">Blood Pressure & Circulation Explorer</span><h1>Follow the blood. Understand the pressure.</h1><p>Trace blood through pulmonary and systemic circulation, then connect mechanical blood flow to NIBP, invasive pressure, and pulse-oximetry measurements.</p><button className="m5-signal-button m5-circulation-button" onClick={()=>setBloodFlowing(v=>!v)}>{bloodFlowing?"⏸ Pause Blood Flow":"▶ Start Blood Flow"}</button><div className="m5-explorer-progress"><div><span style={{width:`${(circExplored.length/MISSION_FIVE_CIRCULATION.length)*100}%`}}/></div><strong>{circExplored.length} of 5 structures explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_CIRCULATION.map(item=><button key={item.id} className={`${circActiveId===item.id?"active":""} ${circExplored.includes(item.id)?"explored":""}`} style={{"--structure-color":item.color}} onClick={()=>selectCircStructure(item.id)}><span>{circExplored.includes(item.id)?"✓":"●"}</span>{item.label}</button>)}</div></div></section>
+    <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":circActive.color}}><span className="m5-section-label">Interactive Circulation</span><h2>{circActive.label}</h2><dl><div><dt>Location</dt><dd>{circActive.location}</dd></div><div><dt>Purpose</dt><dd>{circActive.purpose}</dd></div><div><dt>Equipment connection</dt><dd>{circActive.equipment}</dd></div></dl><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{circActive.challenge}</p>{circActive.options.map((option,index)=><button key={option} className={circChallenges[circActive.id]!==undefined?(index===circActive.answer?"correct":""):""} disabled={circChallenges[circActive.id]===true} onClick={()=>{const correct=index===circActive.answer;setCircChallenges(p=>({...p,[circActive.id]:correct}));playCbetTone(correct?"correct":"wrong");}}>{option}</button>)}{circChallenges[circActive.id]===false&&<small>Not quite. Review the highlighted part of the circulation pathway and try again.</small>}</div></article><article className="m5-field-card m5-circulation-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>The monitor reports pressure—not perfusion by itself</h2><p>A cuff and an arterial line measure pressure using different acquisition methods. Neither reading alone proves that every tissue is receiving adequate blood flow. Compare the waveform, pulse, sensor setup, patient condition, and other physiologic signals.</p><div className="m5-signal-chain"><span>Cardiac contraction</span><b>→</b><span>Arterial pressure</span><b>→</b><span>Cuff or transducer</span><b>→</b><span>Signal processing</span><b>→</b><span>Displayed value</span></div></article></section>
+    <section className="m5-path-builder m5-blood-path"><div className="m5-section-heading"><span className="m5-section-label">Build the Blood-Flow Path</span><h2>Trace one complete circulation loop</h2><p>Select each structure in the order blood travels from the right heart through the lungs and body.</p></div><div className="m5-path-result">{MISSION_FIVE_CIRCULATION.map((item,index)=><div key={item.id} className={bloodPath[index]===item.id?"filled":""}>{bloodPath[index]?MISSION_FIVE_CIRCULATION.find(entry=>entry.id===bloodPath[index]).label:index+1}</div>)}</div><div className="m5-path-options">{MISSION_FIVE_CIRCULATION.map(item=><button key={item.id} disabled={bloodPath.includes(item.id)} onClick={()=>addBloodStep(item.id)} style={{"--structure-color":item.color}}>{item.label}</button>)}</div>{bloodFeedback&&<p className={bloodPathComplete?"good":""}>{bloodFeedback}</p>}{bloodPath.length>0&&!bloodPathComplete&&<button className="cbet-secondary" onClick={()=>{setBloodPath([]);setBloodFeedback("");}}>Reset Blood Path</button>}</section>
+    <section className="m5-equipment-connections m5-circulation-equipment"><span className="m5-section-label">Equipment Connections</span><h2>Different devices observe different parts of circulation</h2><div><article><strong>⚫ NIBP Cuff</strong><span>Uses cuff pressure and oscillations to estimate systolic, diastolic, and mean arterial pressure.</span></article><article><strong>🔴 Arterial Line</strong><span>Transmits arterial pressure directly through fluid-filled tubing to a pressure transducer.</span></article><article><strong>🔵 Pulse Oximeter</strong><span>Uses pulsatile arterial blood and light absorption to estimate oxygen saturation and pulse rate.</span></article><article><strong>🟢 ECG Monitor</strong><span>Measures electrical activation; it does not directly measure pulse strength or tissue perfusion.</span></article></div></section>
+    <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>The arterial line reads 62/38, but the cuff reads 118/74</h2><p>The arterial waveform is dampened and the patient appears stable. What should be investigated first?</p>{["Replace the bedside monitor","Inspect the pressure bag, tubing, stopcocks, transducer level, and waveform","Increase the cuff inflation pressure","Assume the cuff is wrong and document the arterial value"].map((option,index)=><button key={option} disabled={circServiceCorrect} className={`${circServiceAnswer!==null&&index===1?"correct":""} ${circServiceAnswer===index&&index!==1?"wrong":""}`} onClick={()=>{setCircServiceAnswer(index);playCbetTone(index===1?"correct":"wrong");}}><strong>{String.fromCharCode(65+index)}.</strong>{option}</button>)}{circServiceAnswer!==null&&<div className="m5-feedback"><strong>{circServiceCorrect?"Best first action.":"Compare the acquisition methods before replacing equipment."}</strong><span>A dampened invasive waveform points first to the fluid-filled pressure pathway, transducer setup, or leveling—not automatically to the monitor or the cuff.</span></div>}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Where is systemic pressure highest?</h2><p>Select the vessel group receiving blood directly from the left ventricle.</p><div>{MISSION_FIVE_CIRCULATION.map(item=><button key={item.id} className={`${circRecognition===item.id?(item.id==="arteries"?"correct":"wrong"):""}`} disabled={circRecognitionCorrect} style={{"--structure-color":item.color}} onClick={()=>{setCircRecognition(item.id);setCircActiveId(item.id);playCbetTone(item.id==="arteries"?"correct":"wrong");}}>{item.label}</button>)}</div>{circRecognition&&<p className={circRecognitionCorrect?"good":"bad"}>{circRecognitionCorrect?"Correct — systemic arteries receive the high-pressure output of the left ventricle.":"Not this part of the pathway. Follow blood leaving the left ventricle."}</p>}</article></section>
+    <section className={`m5-completion ${circReady||circCompleted?"ready":""}`}><div><span>{circReady||circCompleted?"🏅":"🩸"}</span><div><strong>{circCompleted?"Blood Pressure & Circulation Explorer Complete":circReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>{circCompleted?"Your 50 XP and lesson progress are preserved.":`${circExplored.length}/5 structures · ${Object.values(circChallenges).filter(Boolean).length}/5 checks · ${bloodPathComplete?"blood path complete":"blood path pending"}`}</small></div></div><button className="cbet-primary" disabled={!circReady&&!circCompleted} onClick={finishCircLesson}>{circCompleted?"Lesson Completed ✓":"Complete Circulation Explorer"}</button></section>
+    <nav className="m5-bottom-nav" aria-label="Mission 5 lesson navigation"><button className="cbet-secondary" onClick={()=>openLesson(1)}>← Previous: Lungs & Ventilation</button><button className="cbet-secondary" onClick={resetCircExplorer}>Restart Explorer</button><button className="cbet-primary" disabled={!circCompleted&&!localUnlock} onClick={()=>openLesson(3)}>Next: Brain & EEG →</button></nav>
+  </section>;
+
+  if(lessonIndex===1) return <section className="cbet-shell m5-shell m5-lesson-stage m5-lung-stage">
+    <div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 2 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"25%"}}/></div>
+    <section className="m5-hero m5-lung-hero"><MissionFiveLungGraphic activeId={lungActiveId} explored={lungExplored} onSelect={selectLungStructure} breathing={breathing}/><div className="m5-hero-copy"><span className="m5-kicker">Lungs & Ventilation Explorer</span><h1>Move air. Exchange gases. Measure the result.</h1><p>Trace inspired gas through the airway, watch the diaphragm and lungs move, and connect ventilation to SpO₂, capnography, and ventilator measurements.</p><button className="m5-signal-button m5-breathe-button" onClick={()=>setBreathing(v=>!v)}>{breathing?"⏸ Pause Breathing":"▶ Start Breathing"}</button><div className="m5-explorer-progress"><div><span style={{width:`${(lungExplored.length/MISSION_FIVE_RESPIRATORY.length)*100}%`}}/></div><strong>{lungExplored.length} of 5 structures explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_RESPIRATORY.map(item=><button key={item.id} className={`${lungActiveId===item.id?"active":""} ${lungExplored.includes(item.id)?"explored":""}`} style={{"--structure-color":item.color}} onClick={()=>selectLungStructure(item.id)}><span>{lungExplored.includes(item.id)?"✓":"●"}</span>{item.label}</button>)}</div></div></section>
+    <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":lungActive.color}}><span className="m5-section-label">Interactive Anatomy</span><h2>{lungActive.label}</h2><dl><div><dt>Location</dt><dd>{lungActive.location}</dd></div><div><dt>Purpose</dt><dd>{lungActive.purpose}</dd></div><div><dt>Equipment connection</dt><dd>{lungActive.equipment}</dd></div></dl><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{lungActive.challenge}</p>{lungActive.options.map((option,index)=><button key={option} className={lungChallenges[lungActive.id]!==undefined?(index===lungActive.answer?"correct":""):""} disabled={lungChallenges[lungActive.id]===true} onClick={()=>{const correct=index===lungActive.answer;setLungChallenges(p=>({...p,[lungActive.id]:correct}));playCbetTone(correct?"correct":"wrong");}}>{option}</button>)}{lungChallenges[lungActive.id]===false&&<small>Not quite. Review the active structure and try again.</small>}</div></article><article className="m5-field-card m5-lung-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>Ventilation, oxygenation, and perfusion are different</h2><p>A ventilator can deliver the programmed breath while SpO₂ remains low if gas exchange or perfusion is impaired. ETCO₂ confirms exhaled carbon dioxide, while SpO₂ estimates arterial oxygen saturation. Always interpret each signal within its own physiologic pathway.</p><div className="m5-signal-chain"><span>Ventilator flow</span><b>→</b><span>Alveolar ventilation</span><b>→</b><span>Gas exchange</span><b>→</b><span>Blood transport</span><b>→</b><span>SpO₂ / ETCO₂</span></div></article></section>
+    <section className="m5-path-builder m5-gas-path"><div className="m5-section-heading"><span className="m5-section-label">Build the Gas Path</span><h2>Follow oxygen from room air to the heart</h2><p>Select each location in the correct order.</p></div><div className="m5-path-result">{["trachea","bronchi","alveoli","capillaries","heart"].map((id,index)=><div key={id} className={gasPath[index]===id?"filled":""}>{gasPath[index]?({trachea:"Trachea",bronchi:"Bronchi",alveoli:"Alveoli",capillaries:"Pulmonary blood",heart:"Left heart"}[gasPath[index]]):index+1}</div>)}</div><div className="m5-path-options">{[{id:"trachea",label:"Trachea",color:"#0ea5e9"},{id:"bronchi",label:"Bronchi",color:"#0284c7"},{id:"alveoli",label:"Alveoli",color:"#8b5cf6"},{id:"capillaries",label:"Pulmonary blood",color:"#ef4444"},{id:"heart",label:"Left heart",color:"#db2777"}].map(item=><button key={item.id} disabled={gasPath.includes(item.id)} onClick={()=>addGasStep(item.id)} style={{"--structure-color":item.color}}>{item.label}</button>)}</div>{gasFeedback&&<p className={gasPathComplete?"good":""}>{gasFeedback}</p>}{gasPath.length>0&&!gasPathComplete&&<button className="cbet-secondary" onClick={()=>{setGasPath([]);setGasFeedback("");}}>Reset Gas Path</button>}</section>
+    <section className="m5-equipment-connections"><span className="m5-section-label">Equipment Connections</span><h2>What each device actually tells you</h2><div><article><strong>Ventilator</strong><span>Delivers and measures pressure, flow, volume, rate, PEEP, and FiO₂.</span></article><article><strong>Pulse Oximeter</strong><span>Estimates arterial oxygen saturation and displays a pulse-derived pleth waveform.</span></article><article><strong>Capnography</strong><span>Measures exhaled CO₂ and displays the respiratory waveform and ETCO₂ value.</span></article><article><strong>Oxygen Analyzer</strong><span>Verifies oxygen concentration in a delivered gas mixture.</span></article></div></section>
+    <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>SpO₂ is 84%, but the ventilator completes every programmed breath</h2><p>The pressure and volume waveforms appear consistent. What should be checked first before replacing the ventilator?</p>{["Replace the ventilator immediately","Assess the patient, sensor signal, oxygen source, airway, and gas-exchange pathway","Disable the low-SpO₂ alarm","Increase tidal volume without clinical direction"].map((option,index)=><button key={option} disabled={lungServiceCorrect} className={`${lungServiceAnswer!==null&&index===1?"correct":""} ${lungServiceAnswer===index&&index!==1?"wrong":""}`} onClick={()=>{setLungServiceAnswer(index);playCbetTone(index===1?"correct":"wrong");}}><strong>{String.fromCharCode(65+index)}.</strong>{option}</button>)}{lungServiceAnswer!==null&&<div className="m5-feedback"><strong>{lungServiceCorrect?"Best first action.":"Do not equate delivered ventilation with adequate oxygenation."}</strong><span>Confirm the patient, sensor quality, oxygen delivery, airway, and gas-exchange pathway before declaring the ventilator defective.</span></div>}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Where does oxygen cross into blood?</h2><p>Select the structure responsible for most pulmonary gas exchange.</p><div>{MISSION_FIVE_RESPIRATORY.map(item=><button key={item.id} className={`${lungRecognition===item.id?(item.id==="alveoli"?"correct":"wrong"):""}`} disabled={lungRecognitionCorrect} style={{"--structure-color":item.color}} onClick={()=>{setLungRecognition(item.id);setLungActiveId(item.id);playCbetTone(item.id==="alveoli"?"correct":"wrong");}}>{item.label}</button>)}</div>{lungRecognition&&<p className={lungRecognitionCorrect?"good":"bad"}>{lungRecognitionCorrect?"Correct — alveoli provide the thin exchange surface beside pulmonary capillaries.":"Not this structure. Follow inspired gas to the terminal air sacs."}</p>}</article></section>
+    <section className={`m5-completion ${lungReady||lungCompleted?"ready":""}`}><div><span>{lungReady||lungCompleted?"🏅":"🫁"}</span><div><strong>{lungCompleted?"Lungs & Ventilation Explorer Complete":lungReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>{lungCompleted?"Your 50 XP and lesson progress are preserved.":`${lungExplored.length}/5 structures · ${Object.values(lungChallenges).filter(Boolean).length}/5 checks · ${gasPathComplete?"gas path complete":"gas path pending"}`}</small></div></div><button className="cbet-primary" disabled={!lungReady&&!lungCompleted} onClick={finishLungLesson}>{lungCompleted?"Lesson Completed ✓":"Complete Lungs & Ventilation Explorer"}</button></section>
+    <nav className="m5-bottom-nav" aria-label="Mission 5 lesson navigation"><button className="cbet-secondary" onClick={()=>openLesson(0)}>← Previous: Heart & ECG</button><button className="cbet-secondary" onClick={resetLungExplorer}>Restart Explorer</button><button className="cbet-primary" disabled={!lungCompleted&&!localUnlock} onClick={()=>openLesson(2)}>Next: Blood Pressure & Circulation →</button></nav>
+  </section>;
+
+  return <section className="cbet-shell m5-shell m5-lesson-stage"><div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 1 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"12.5%"}}/></div>
+    <section className="m5-hero"><MissionFiveHeartGraphic activeId={activeId} explored={explored} onSelect={selectStructure} signalStep={signalStep}/><div className="m5-hero-copy"><span className="m5-kicker">Heart & ECG Explorer</span><h1>The heart's electrical conduction system</h1><p>Follow the impulse from its origin in the right atrium through the ventricular conduction network—and connect each step to the ECG waveform.</p><button className="m5-signal-button" onClick={runSignal}>▶ Start Electrical Signal</button><div className="m5-explorer-progress"><div><span style={{width:`${(explored.length/MISSION_FIVE_CONDUCTION.length)*100}%`}}/></div><strong>{explored.length} of 5 structures explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_CONDUCTION.map(item=><button key={item.id} className={`${activeId===item.id?"active":""} ${explored.includes(item.id)?"explored":""}`} style={{"--structure-color":item.color}} onClick={()=>selectStructure(item.id)}><span>{explored.includes(item.id)?"✓":"●"}</span>{item.label}</button>)}</div></div></section>
+    <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":active.color}}><span className="m5-section-label">Interactive Anatomy</span><h2>{active.label}</h2><dl><div><dt>Location</dt><dd>{active.location}</dd></div><div><dt>Purpose</dt><dd>{active.purpose}</dd></div><div><dt>Equipment connection</dt><dd>{active.equipment}</dd></div></dl><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{active.challenge}</p>{active.options.map((option,index)=><button key={option} className={challengeAnswers[active.id]!==undefined?(index===active.answer?"correct":""):""} disabled={challengeAnswers[active.id]===true} onClick={()=>{const correct=index===active.answer;setChallengeAnswers(p=>({...p,[active.id]:correct}));playCbetTone(correct?"correct":"wrong");}}>{option}</button>)}{challengeAnswers[active.id]===false&&<small>Not quite. Review the active structure and try again.</small>}</div></article><article className="m5-field-card"><span className="m5-section-label">Clinical Engineering Insight</span><h2>Electrical signal does not always equal mechanical pulse</h2><p>An ECG monitor detects voltage changes at the skin. It does not directly confirm effective blood flow. Compare the ECG with a pulse-derived source, blood pressure, and the patient's condition when the display and the patient do not agree.</p><div className="m5-signal-chain"><span>Heart impulse</span><b>→</b><span>Skin electrodes</span><b>→</b><span>Lead cable</span><b>→</b><span>ECG input</span><b>→</b><span>Displayed waveform</span></div></article></section>
+    <section className="m5-path-builder"><div className="m5-section-heading"><span className="m5-section-label">Build the Signal Path</span><h2>Put conduction in the correct order</h2><p>Select the structures in the order the normal impulse travels.</p></div><div className="m5-path-result">{MISSION_FIVE_CONDUCTION.map((item,index)=><div key={item.id} className={pathOrder[index]===item.id?"filled":""}>{pathOrder[index]?MISSION_FIVE_CONDUCTION.find(entry=>entry.id===pathOrder[index]).label:index+1}</div>)}</div><div className="m5-path-options">{MISSION_FIVE_CONDUCTION.map(item=><button key={item.id} disabled={pathOrder.includes(item.id)} onClick={()=>addPathStep(item.id)} style={{"--structure-color":item.color}}>{item.label}</button>)}</div>{pathFeedback&&<p className={pathComplete?"good":""}>{pathFeedback}</p>}{pathOrder.length>0&&!pathComplete&&<button className="cbet-secondary" onClick={()=>{setPathOrder([]);setPathFeedback("");}}>Reset Signal Path</button>}</section>
+    <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>The monitor suddenly displays ventricular tachycardia</h2><p>The patient is awake, talking, and has a stable pulse derived from SpO₂. What should be investigated first?</p>{["Replace the bedside monitor","Verify ECG electrodes, lead wires, and artifact","Deliver unsynchronized therapy","Replace the NIBP cuff"].map((option,index)=><button key={option} disabled={serviceCorrect} className={`${serviceAnswer!==null&&index===1?"correct":""} ${serviceAnswer===index&&index!==1?"wrong":""}`} onClick={()=>{setServiceAnswer(index);playCbetTone(index===1?"correct":"wrong");}}><strong>{String.fromCharCode(65+index)}.</strong>{option}</button>)}{serviceAnswer!==null&&<div className="m5-feedback"><strong>{serviceCorrect?"Best first action.":"Use the patient and the other signals as evidence."}</strong><span>Verify the ECG acquisition pathway before assuming a true lethal rhythm or replacing the monitor.</span></div>}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Which structure delays the impulse?</h2><p>Select the correct structure. This delay allows ventricular filling before contraction.</p><div>{MISSION_FIVE_CONDUCTION.map(item=><button key={item.id} className={`${recognitionAnswer===item.id?(item.id==="av"?"correct":"wrong"):""}`} disabled={recognitionCorrect} style={{"--structure-color":item.color}} onClick={()=>{setRecognitionAnswer(item.id);setActiveId(item.id);playCbetTone(item.id==="av"?"correct":"wrong");}}>{item.label}</button>)}</div>{recognitionAnswer&&<p className={recognitionCorrect?"good":"bad"}>{recognitionCorrect?"Correct — the AV node provides the normal conduction delay.":"Not this structure. Follow the pathway and try again."}</p>}</article></section>
+    <section className={`m5-completion ${ready||completed?"ready":""}`}><div><span>{ready||completed?"🏅":"❤️"}</span><div><strong>{completed?"Heart & ECG Explorer Complete":ready?"Explorer Ready to Complete":"Complete every activity"}</strong><small>{completed?"Your 50 XP and lesson progress are preserved.":`${explored.length}/5 structures · ${Object.values(challengeAnswers).filter(Boolean).length}/5 checks · ${pathComplete?"signal path complete":"signal path pending"}`}</small></div></div><button className="cbet-primary" disabled={!ready&&!completed} onClick={finishLesson}>{completed?"Lesson Completed ✓":"Complete Heart & ECG Explorer"}</button></section>
+    <nav className="m5-bottom-nav" aria-label="Mission 5 lesson navigation"><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>← Mission Overview</button><button className="cbet-secondary" onClick={resetExplorer}>Restart Explorer</button><button className="cbet-primary" disabled={!completed} onClick={()=>openLesson(1)}>Next: Lungs & Ventilation →</button></nav>
+  </section>;
+}
+
+
 const MISSION_TEN_LESSON_ENHANCEMENTS = {
   1: {
     spotlights: [
@@ -4875,6 +5548,18 @@ function MissionTen({ onExit }) {
 }
 
 export default function CBETAcademy() {
+  const [developerUnlockAll, setDeveloperUnlockAll] = useState(() => {
+    if (!isLocalAcademyHost()) return false;
+    const saved = window.localStorage.getItem("cbet-local-developer-unlock-all");
+    return saved === null ? true : saved === "true";
+  });
+  const toggleDeveloperUnlockAll = () => {
+    setDeveloperUnlockAll((current) => {
+      const next = !current;
+      if (isLocalAcademyHost()) window.localStorage.setItem("cbet-local-developer-unlock-all", String(next));
+      return next;
+    });
+  };
   const markServiceCallComplete = (serviceCallId) => {
     try {
       const current = JSON.parse(window.localStorage.getItem("cbetCompletedServiceCalls") || "[]");
@@ -5079,6 +5764,22 @@ export default function CBETAcademy() {
     );
   }
 
+
+  if (screen === "mission5") {
+    return (
+      <main className="cbet-academy m5-academy">
+        <LocalDeveloperPanel unlockAll={developerUnlockAll} onToggle={toggleDeveloperUnlockAll} />
+        {reviewMissionNumber === 5 && (
+          <div className="cbet-review-banner" role="status">
+            <strong>Review Mode</strong>
+            <span>Your completion, XP, and saved anatomy explorer progress are preserved.</span>
+          </div>
+        )}
+        <MissionFive onExit={leaveMission} developerUnlockAll={developerUnlockAll} />
+      </main>
+    );
+  }
+
   if (screen === "mission10") {
     return (
       <main className="cbet-academy">
@@ -5128,25 +5829,26 @@ export default function CBETAcademy() {
     );
   }
 
-  const missionStates = [1, 2, 3, 4].map((number) => getCbetModuleState(number));
+  const missionStates = [1, 2, 3, 4, 5].map((number) => getCbetModuleState(number));
   const completedMissionCount = missionStates.filter((mission) => mission.complete).length;
 
-  const nextMissionNumber = missionStates.findIndex((mission) => !mission.complete) + 1 || 4;
+  const nextMissionNumber = missionStates.findIndex((mission) => !mission.complete) + 1 || 5;
   const nextMission = cbetAcademyModules.find((module) => module.number === nextMissionNumber);
   const nextMissionProgress = getMissionProgress(nextMissionNumber);
   const nextMissionStarted = nextMissionProgress.phase !== "briefing";
   const nextMissionLabel = missionStates.every((mission) => mission.complete)
-    ? "Review Mission 3"
+    ? "Review Mission 5"
     : nextMissionStarted
     ? `Continue Mission ${nextMissionNumber}`
     : `Start Mission ${nextMissionNumber}`;
 
   const badgeCount = Object.values(academy.modules || {}).filter((module) => module.complete).length;
   const virtualLabPercent = Math.min(100, Math.round((virtualLabLessonsCompleted / 9) * 100));
-  const missionPercent = Math.min(100, Math.round((completedMissionCount / 4) * 100));
+  const missionPercent = Math.min(100, Math.round((completedMissionCount / 5) * 100));
 
   return (
     <main className="cbet-academy" key={refresh}>
+      <LocalDeveloperPanel unlockAll={developerUnlockAll} onToggle={toggleDeveloperUnlockAll} />
       <section id="cbet-academy-top" className="cbet-dashboard-hero cbet-dashboard-hero-v1">
         <div className="cbet-shell">
           <div className="cbet-dashboard-intro">
@@ -5180,7 +5882,7 @@ export default function CBETAcademy() {
                 <span style={{ width: `${progress}%` }} />
               </div>
               <div className="cbet-overview-metrics">
-                <div><strong>{completedMissionCount}/4</strong><span>Missions</span></div>
+                <div><strong>{completedMissionCount}/5</strong><span>Missions</span></div>
                 <div><strong>{virtualLabLessonsCompleted}/9</strong><span>Lab lessons</span></div>
                 <div><strong>{badgeCount}</strong><span>Competencies</span></div>
                 <div><strong>{streak.current || 1}</strong><span>Day streak</span></div>
@@ -5206,7 +5908,7 @@ export default function CBETAcademy() {
             </div>
             <h3>Training Missions</h3>
             <p>Guided instruction, interactive activities, and knowledge checks organized into a clear path.</p>
-            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 4 complete</span><strong>{missionPercent}%</strong></div>
+            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 5 complete</span><strong>{missionPercent}%</strong></div>
             <div className="cbet-card-progress"><span style={{ width: `${missionPercent}%` }} /></div>
             <button className="cbet-primary" onClick={() => openMission(nextMissionNumber, missionStates.every((mission) => mission.complete))}>{nextMissionLabel}</button>
           </article>
@@ -5271,7 +5973,7 @@ export default function CBETAcademy() {
         <div className="cbet-mission-toggle-row">
           <div>
             <span className="cbet-label">Training path</span>
-            <h2>Four missions available now</h2>
+            <h2>Five missions available now</h2>
           </div>
           <button
             className="cbet-secondary"
@@ -5287,8 +5989,8 @@ export default function CBETAcademy() {
           <div id="cbet-training-path" className="cbet-grid cbet-training-grid">
             {cbetAcademyModules.map((module) => {
               const state = getCbetModuleState(module.number);
-              const unlocked = module.number <= 4 || module.number === 10 ? true : isCbetModuleUnlocked(module.number);
-              const available = module.number <= 4 || module.number === 10;
+              const unlocked = developerUnlockAll && isLocalAcademyHost() ? true : module.number <= 4 || module.number === 10 ? true : module.number === 5 ? getCbetModuleState(4).complete : isCbetModuleUnlocked(module.number);
+              const available = module.number <= 5 || module.number === 10;
               return (
                 <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
                   <div className="cbet-card-top">
