@@ -2654,7 +2654,150 @@
     transition: none;
   }
 }
-\n\n/* =========================================================\n   Mission 10 achievement and printable completion card\n   ========================================================= */\n.cbet-module10-results {\n  width: min(920px, 100%);\n  max-width: 920px;\n}\n\n.cbet-module10-result-score {\n  margin: 2px 0 0;\n  color: #07111f;\n  font-size: clamp(4.5rem, 10vw, 7rem);\n  line-height: .92;\n  letter-spacing: -.06em;\n}\n\n.cbet-module10-result-title {\n  margin: 10px 0 8px;\n  color: #123b67;\n  font-size: clamp(1.35rem, 3vw, 2rem);\n  line-height: 1.15;\n}\n\n.cbet-module10-summary > div {\n  background: linear-gradient(145deg, #f7fbff, #eaf3fb);\n  border-color: #c8dced;\n  box-shadow: 0 9px 20px rgba(17, 50, 85, .07);\n}\n\n.cbet-module10-summary span { color: #61778e; }\n.cbet-module10-summary strong { color: #092f59; }\n\n.cbet-achievement-card {\n  position: relative;\n  width: min(760px, 100%);\n  margin: 8px auto 0;\n  padding: clamp(26px, 5vw, 44px);\n  overflow: hidden;\n  border: 2px solid #d8b85c;\n  border-radius: 24px;\n  background:\n    radial-gradient(circle at 12% 8%, rgba(255, 224, 129, .34), transparent 26%),\n    radial-gradient(circle at 88% 92%, rgba(109, 195, 255, .23), transparent 28%),\n    linear-gradient(145deg, #fffdf6, #ffffff 58%, #f4f9ff);\n  box-shadow: 0 18px 42px rgba(17, 50, 85, .12);\n  color: #102d4b;\n  text-align: center;\n}\n\n.cbet-achievement-card::before,\n.cbet-achievement-card::after {\n  position: absolute;\n  width: 74px;\n  height: 74px;\n  border: 3px solid rgba(216, 184, 92, .46);\n  content: "";\n}\n.cbet-achievement-card::before { top: 13px; left: 13px; border-right: 0; border-bottom: 0; border-radius: 18px 0 0; }\n.cbet-achievement-card::after { right: 13px; bottom: 13px; border-top: 0; border-left: 0; border-radius: 0 0 18px; }\n\n.cbet-achievement-eyebrow {\n  display: block;\n  color: #8b6815;\n  font-size: .82rem;\n  font-weight: 950;\n  letter-spacing: .16em;\n  text-transform: uppercase;\n}\n\n.cbet-achievement-mark {\n  margin: 10px 0 4px;\n  font-size: 3.1rem;\n  line-height: 1;\n}\n\n.cbet-achievement-card h2 {\n  margin: 8px auto 12px;\n  color: #0a315d;\n  font-size: clamp(1.65rem, 4vw, 2.65rem);\n  line-height: 1.06;\n}\n\n.cbet-achievement-card > p {\n  max-width: 590px;\n  margin: 0 auto;\n  color: #536b82;\n  line-height: 1.55;\n}\n\n.cbet-achievement-details {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 12px;\n  margin: 24px 0 18px;\n}\n\n.cbet-achievement-details > div {\n  padding: 14px 10px;\n  border: 1px solid #d9e4ee;\n  border-radius: 14px;\n  background: rgba(255, 255, 255, .76);\n}\n\n.cbet-achievement-details span,\n.cbet-achievement-details strong { display: block; }\n.cbet-achievement-details span { color: #718397; font-size: .72rem; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }\n.cbet-achievement-details strong { margin-top: 5px; color: #0b315d; font-size: 1rem; }\n.cbet-achievement-card small { color: #6f7f8e; font-size: .75rem; }\n\n.cbet-module10-result-actions { margin-top: 24px; }\n.cbet-print-achievement { min-width: 235px; }\n\n@media (max-width: 650px) {\n  .cbet-achievement-details { grid-template-columns: 1fr; }\n  .cbet-module10-result-actions { align-items: stretch; }\n  .cbet-module10-result-actions button { width: 100%; }\n}\n\n@media print {\n  body * { visibility: hidden !important; }\n  .cbet-achievement-card,\n  .cbet-achievement-card * { visibility: visible !important; }\n  .cbet-achievement-card {\n    position: fixed;\n    inset: 0;\n    width: 100%;\n    max-width: none;\n    min-height: 100vh;\n    margin: 0;\n    padding: 12vh 8vw;\n    border: 8px double #a9862c;\n    border-radius: 0;\n    box-shadow: none;\n    background: #fffdf6 !important;\n    print-color-adjust: exact;\n    -webkit-print-color-adjust: exact;\n  }\n  .cbet-achievement-card::before,\n  .cbet-achievement-card::after { visibility: visible !important; }\n  @page { size: landscape; margin: .35in; }\n}\n
+
+
+/* =========================================================
+   Mission 10 achievement and printable completion card
+   ========================================================= */
+.cbet-module10-results {
+  width: min(920px, 100%);
+  max-width: 920px;
+}
+
+.cbet-module10-result-score {
+  margin: 2px 0 0;
+  color: #07111f;
+  font-size: clamp(4.5rem, 10vw, 7rem);
+  line-height: .92;
+  letter-spacing: -.06em;
+}
+
+.cbet-module10-result-title {
+  margin: 10px 0 8px;
+  color: #123b67;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.15;
+}
+
+.cbet-module10-summary > div {
+  background: linear-gradient(145deg, #f7fbff, #eaf3fb);
+  border-color: #c8dced;
+  box-shadow: 0 9px 20px rgba(17, 50, 85, .07);
+}
+
+.cbet-module10-summary span { color: #61778e; }
+.cbet-module10-summary strong { color: #092f59; }
+
+.cbet-achievement-card {
+  position: relative;
+  width: min(760px, 100%);
+  margin: 8px auto 0;
+  padding: clamp(26px, 5vw, 44px);
+  overflow: hidden;
+  border: 2px solid #d8b85c;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 224, 129, .34), transparent 26%),
+    radial-gradient(circle at 88% 92%, rgba(109, 195, 255, .23), transparent 28%),
+    linear-gradient(145deg, #fffdf6, #ffffff 58%, #f4f9ff);
+  box-shadow: 0 18px 42px rgba(17, 50, 85, .12);
+  color: #102d4b;
+  text-align: center;
+}
+
+.cbet-achievement-card::before,
+.cbet-achievement-card::after {
+  position: absolute;
+  width: 74px;
+  height: 74px;
+  border: 3px solid rgba(216, 184, 92, .46);
+  content: "";
+}
+.cbet-achievement-card::before { top: 13px; left: 13px; border-right: 0; border-bottom: 0; border-radius: 18px 0 0; }
+.cbet-achievement-card::after { right: 13px; bottom: 13px; border-top: 0; border-left: 0; border-radius: 0 0 18px; }
+
+.cbet-achievement-eyebrow {
+  display: block;
+  color: #8b6815;
+  font-size: .82rem;
+  font-weight: 950;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.cbet-achievement-mark {
+  margin: 10px 0 4px;
+  font-size: 3.1rem;
+  line-height: 1;
+}
+
+.cbet-achievement-card h2 {
+  margin: 8px auto 12px;
+  color: #0a315d;
+  font-size: clamp(1.65rem, 4vw, 2.65rem);
+  line-height: 1.06;
+}
+
+.cbet-achievement-card > p {
+  max-width: 590px;
+  margin: 0 auto;
+  color: #536b82;
+  line-height: 1.55;
+}
+
+.cbet-achievement-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0 18px;
+}
+
+.cbet-achievement-details > div {
+  padding: 14px 10px;
+  border: 1px solid #d9e4ee;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .76);
+}
+
+.cbet-achievement-details span,
+.cbet-achievement-details strong { display: block; }
+.cbet-achievement-details span { color: #718397; font-size: .72rem; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
+.cbet-achievement-details strong { margin-top: 5px; color: #0b315d; font-size: 1rem; }
+.cbet-achievement-card small { color: #6f7f8e; font-size: .75rem; }
+
+.cbet-module10-result-actions { margin-top: 24px; }
+.cbet-print-achievement { min-width: 235px; }
+
+@media (max-width: 650px) {
+  .cbet-achievement-details { grid-template-columns: 1fr; }
+  .cbet-module10-result-actions { align-items: stretch; }
+  .cbet-module10-result-actions button { width: 100%; }
+}
+
+@media print {
+  body * { visibility: hidden !important; }
+  .cbet-achievement-card,
+  .cbet-achievement-card * { visibility: visible !important; }
+  .cbet-achievement-card {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    padding: 12vh 8vw;
+    border: 8px double #a9862c;
+    border-radius: 0;
+    box-shadow: none;
+    background: #fffdf6 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .cbet-achievement-card::before,
+  .cbet-achievement-card::after { visibility: visible !important; }
+  @page { size: landscape; margin: .35in; }
+}
+
 
 /* Mission 10 real-equipment enhancements */
 .cbet-mission10-enhancements {
