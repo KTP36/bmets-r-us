@@ -62,6 +62,13 @@ export const cbetAcademyModules = [
     badge: "CBET Exam Readiness",
     xp: 400,
   },
+  {
+    number: 10,
+    title: "Medical Gas Delivery Equipment",
+    description: "Identify cylinders, regulators, fittings, flowmeters, suction equipment, and point-of-use safety concerns.",
+    badge: "Medical Gas Equipment",
+    xp: 350,
+  },
 ];
 
 export const missionOneBriefing = {
@@ -602,3 +609,257 @@ export const missionTwoQuestions = [
     explanation: "Full-wave rectified 60 Hz power produces 120 Hz ripple, which becomes excessive when filtering is inadequate."
   }
 ];
+
+
+
+export const missionFourBriefing = {
+  title: "Medical Equipment Systems",
+  summary: "Learn how major clinical devices work as complete systems. Focus on operation, accessories, failure evidence, patient-safety priorities, and systematic Clinical Engineering troubleshooting—without turning the mission into a preventive-maintenance checklist.",
+  objectives: [
+    "Interpret common patient-monitoring signals and separate artifact from equipment failure.",
+    "Follow infusion, ventilation, defibrillation, and electrosurgical pathways logically.",
+    "Recognize how accessories, setup, and clinical conditions affect device performance.",
+    "Use symptom-specific evidence to narrow faults before replacing assemblies.",
+    "Prioritize patient support, removal from service, and escalation appropriately."
+  ]
+};
+
+export const missionFourLessons = [
+  { title:"Patient Monitoring Systems", icon:"📟", summary:"Connect ECG, SpO₂, NIBP, temperature, and invasive-pressure signals to the accessories and conditions that create them.", points:["A monitor displays signals; the patient, sensor, cable, module, configuration, and environment all affect the result.","Artifact can resemble a true physiologic event, especially with poor electrode contact or motion.","Compare the displayed heart rate with a second source such as the pulse waveform or clinical assessment.","Start with the reported symptom and signal path before replacing the main monitor."], check:{question:"The ECG displays ventricular tachycardia, but the patient is awake and the pulse rate from SpO₂ is 78. What is the best first technical interpretation?",options:["The defibrillator must be activated","The ECG may contain artifact and the patient/signal should be verified","The SpO₂ module has failed","The monitor should be immediately discarded"],answer:1,explanation:"A mismatch between ECG rate, pulse-derived rate, and patient condition strongly supports verifying electrodes, leads, motion, and signal quality before assuming a true rhythm or monitor failure."}},
+  { title:"Infusion Delivery Systems", icon:"💧", summary:"Use alarm messages and the full fluid path to understand volumetric, syringe, and PCA pump complaints.", points:["The programmed therapy, tubing set, cassette, clamps, container height, access site, and patient line all influence operation.","Upstream and downstream occlusion alarms point to different portions of the delivery path.","Air-in-line alarms may reflect actual air, improper loading, wet or dirty sensor areas, or incompatible tubing.","Do not defeat safety alarms to make a pump continue running."], check:{question:"A pump repeatedly reports downstream occlusion and operates normally on a test line. What should be investigated next?",options:["The facility Wi-Fi","The patient-side tubing, clamps, filters, and access resistance","The display backlight","The upstream fluid container label only"],answer:1,explanation:"Normal performance on a test line shifts attention downstream toward the clinical tubing path, filters, clamps, catheter, and patient access."}},
+  { title:"Defibrillation and Pacing", icon:"⚡", summary:"Understand energy delivery, synchronization, pacing, pads, cables, batteries, and readiness decisions.", points:["Manual defibrillation, synchronized cardioversion, AED analysis, and pacing are distinct functions.","Synchronized cardioversion times energy delivery to the selected ECG marker.","Pads, paddles, cables, batteries, and test loads are part of the therapy pathway.","A failed readiness or discharge check requires removal from use and a ready replacement."], check:{question:"A defibrillator fails its operational energy check before clinical use. What is the correct immediate response?",options:["Leave it available because it passed yesterday","Remove it from service, provide a replacement, and troubleshoot","Increase selected energy until it passes","Disable the warning"],answer:1,explanation:"Therapy equipment that fails a readiness check should not remain available for patient use. Continuity of care comes first, followed by systematic evaluation."}},
+  { title:"Ventilation Systems", icon:"🫁", summary:"Relate gas supply, breathing circuits, sensors, valves, humidification, and patient conditions to ventilator alarms.", points:["Ventilator alarms describe conditions, not necessarily failed components.","Low pressure may result from disconnection or leak; high pressure may result from obstruction, secretions, biting, or reduced compliance.","Gas supply, circuit configuration, exhalation components, filters, and water accumulation can alter performance.","During a patient-use problem, ventilation must be maintained by the clinical team while equipment is evaluated."], check:{question:"A ventilator produces a low-pressure alarm immediately after a patient is moved. Which cause should be checked first?",options:["A disconnected or leaking breathing circuit","The hospital DNS server","The defibrillator battery","The ultrasound transducer"],answer:0,explanation:"A sudden low-pressure alarm after movement strongly suggests a loose connection, disconnection, cuff/circuit leak, or open pathway."}},
+  { title:"Electrosurgical Systems", icon:"🔥", summary:"Trace monopolar and bipolar energy through activation controls, accessories, electrodes, and the patient circuit.", points:["Monopolar current travels from the active electrode through tissue to the return electrode.","Bipolar energy travels between the two tips of the instrument and does not use a remote return electrode in the same way.","Poor clinical effect can originate in settings, activation controls, cables, electrodes, return path, or tissue contact.","Accessory condition and connection are often more likely than generator failure."], check:{question:"An ESU activates and tones normally, but there is no cutting effect. What is the best next troubleshooting direction?",options:["Replace the generator main board immediately","Trace the active accessory, cable, connection, settings, and return pathway","Increase wall oxygen pressure","Reboot the patient monitor"],answer:1,explanation:"The activation tone confirms part of the command pathway. The next step is to follow the complete delivered-energy path and accessories."}},
+  { title:"Anesthesia Workstations", icon:"🩺", summary:"Connect gas delivery, vaporizers, breathing circuits, ventilator pathways, monitoring, and scavenging into one system.", points:["An anesthesia workstation combines several subsystems that can fail independently.","A symptom present only in ventilator mode narrows the fault toward the ventilator pathway and associated valves or seals.","Circuit assembly, absorbers, water traps, sensors, and disposable components can create apparent machine failures.","Preserve patient care and use the workstation's approved checkout and diagnostic information."], check:{question:"The workstation passes manual ventilation but fails to maintain pressure only in ventilator mode. Where should troubleshooting concentrate?",options:["The ECG lead set","The ventilator pathway, valves, bellows/piston system, and related seals","The room lighting circuit","The ultrasound probe"],answer:1,explanation:"A mode-specific failure is a strong localization clue. Components shared by both modes are less likely than the ventilator-only pathway."}},
+  { title:"Ultrasound Systems", icon:"📡", summary:"Use image symptoms to separate transducer, cable, connector, preset, processing, and display concerns.", points:["The transducer converts electrical energy to sound and returning echoes back to electrical signals.","Dropout or intermittent image loss can result from damaged elements, cable conductors, strain relief, or connectors.","Preset, depth, gain, frequency, focus, and probe selection affect image appearance.","Compare with a known-good transducer or alternate port when safe and compatible."], check:{question:"One transducer shows a fixed vertical dropout band, while another transducer works normally on the same system and port. What is most likely?",options:["A transducer element or cable fault","A hospital-wide power failure","A failed NIBP cuff","A ventilator gas-supply problem"],answer:0,explanation:"The symptom follows one transducer while the system and port work with another, localizing the likely fault to that transducer or its cable."}},
+  { title:"Accessories, Interfaces, and Failure Evidence", icon:"🔌", summary:"Treat sensors, cables, cuffs, hoses, transducers, batteries, and disposables as functional parts of the medical-device system.", points:["Accessories carry power, signals, energy, fluids, gases, or mechanical force.","Intermittent complaints often require movement, flexing, substitution, and careful reproduction of the reported condition.","A known-good compatible accessory can help isolate a fault without unnecessary disassembly.","Document the complaint, evidence, tests, actions, and final disposition even when no internal repair is needed."], check:{question:"A device passes every internal test but fails only with one cable. What conclusion is best supported?",options:["The cable or its interface is the leading suspect","The entire device must be replaced","The hospital generator has failed","The clinical complaint is impossible"],answer:0,explanation:"A failure that follows one accessory is strong isolation evidence. Inspect and test the cable and both connection interfaces."}}
+];
+
+export const missionFourScenarios = [
+  {department:"ICU",title:"The Rhythm That Wasn't There",patient:"The central station reports ventricular tachycardia. The bedside patient is alert. ECG rate is 190, but the pulse waveform and palpated pulse are near 82. The ECG electrodes were replaced earlier but one lead wire is visibly moving with the patient.",question:"What is the best Clinical Engineering action?",options:["Declare the monitor defective","Support clinical assessment and evaluate electrode contact, lead integrity, motion, and ECG signal quality","Silence all alarms permanently","Replace the SpO₂ module"],answer:1,explanation:"The discordant pulse sources and moving lead indicate likely ECG artifact. Patient assessment remains primary while the signal path is corrected and verified."},
+  {department:"Emergency Department",title:"The Pump That Works on the Bench",patient:"A volumetric pump repeatedly alarms downstream occlusion in one patient setup. It completes a delivery accuracy check and runs normally with approved test tubing.",question:"What should happen next?",options:["Replace the motor","Inspect the patient-side tubing, clamps, filters, catheter, and access resistance with the clinical team","Disable occlusion detection","Replace the hospital network switch"],answer:1,explanation:"The pump performs normally under controlled conditions, so the clinical delivery path and access conditions require evaluation before internal repair."},
+  {department:"Operating Room",title:"Activation Without Effect",patient:"An ESU powers on, settings are appropriate, and the activation tone occurs. A second approved active cable and electrode restore normal cutting performance.",question:"What does the evidence support?",options:["A generator output-stage failure","A fault in the original active accessory or cable","A failed return electrode monitor in every case","A medical gas problem"],answer:1,explanation:"The problem follows the original accessory and resolves with a known-good compatible replacement, strongly localizing the fault outside the generator."},
+  {department:"Respiratory Care",title:"Alarm After Transport",patient:"A ventilated patient is moved from bed to stretcher. A low-pressure alarm begins immediately. The patient is being manually supported while the circuit is inspected.",question:"What is the highest-probability first technical finding?",options:["A circuit disconnection or significant leak introduced during movement","A failed ultrasound beamformer","A defibrillator synchronization problem","An infusion drug-library mismatch"],answer:0,explanation:"Timing matters. A low-pressure alarm immediately after movement most strongly suggests a newly loosened or disconnected circuit component or leak."}
+];
+
+const m4q=(question,options,answer,explanation,category)=>({question,options,answer,explanation,category});
+export const missionFourQuestions = [
+ m4q("ECG rate is 180 while the pulse-derived rate is 76 and the patient is stable. What should be investigated first?",["ECG artifact and lead quality","NIBP cuff size only","Defibrillator energy selection","Ultrasound frequency"],0,"Discordant heart-rate sources support verifying the ECG signal path and artifact.","Monitoring"),
+ m4q("Which factor can cause a falsely low pulse-oximetry value?",["Motion or poor perfusion","Correct probe placement","Strong pulsatile signal","Stable warm extremity"],0,"Motion and poor perfusion can degrade the pulsatile signal used by pulse oximetry.","Monitoring"),
+ m4q("An NIBP cuff that is too small most commonly causes what concern?",["Potentially inaccurate elevated readings","Guaranteed zero pressure","ECG artifact only","Loss of ultrasound image"],0,"Incorrect cuff sizing can distort NIBP measurements; an undersized cuff may read high.","Monitoring"),
+ m4q("A downstream occlusion alarm directs attention primarily where?",["Between the pump and patient","Between the fluid bag and pump only","The hospital router","The ECG trunk cable"],0,"Downstream means the delivery path after the pumping mechanism toward the patient.","Infusion"),
+ m4q("A pump operates normally with approved test tubing but alarms with one clinical setup. What is the strongest next step?",["Evaluate the clinical tubing and access path","Replace the display","Disable alarms","Replace every battery"],0,"The controlled test shifts suspicion toward the setup, tubing, filter, clamp, or access resistance.","Infusion"),
+ m4q("Why should an infusion-pump alarm not be bypassed?",["It may represent a condition affecting therapy delivery","It only changes screen color","It improves battery life","It is unrelated to safety"],0,"Pump alarms may indicate interrupted, inaccurate, or unsafe delivery conditions.","Infusion"),
+ m4q("What is the immediate disposition of a defibrillator that fails its readiness test?",["Remove from service and provide a replacement","Leave it on the crash cart","Use it at lower energy","Ignore the result"],0,"A failed readiness test means the unit should not remain available for emergency therapy.","Defibrillation"),
+ m4q("Synchronization markers are used during which function?",["Synchronized cardioversion","Routine SpO₂ measurement","NIBP inflation","Ultrasound imaging"],0,"Synchronization coordinates energy delivery with the selected ECG event.","Defibrillation"),
+ m4q("A low-pressure ventilator alarm most directly suggests which broad condition?",["Leak, disconnection, or inability to build pressure","Excessive circuit resistance only","High blood pressure","A PACS outage"],0,"Low pressure commonly reflects an open or leaking breathing pathway.","Ventilation"),
+ m4q("A high-pressure ventilator alarm can result from:",["Obstruction, secretions, biting, kinked tubing, or reduced compliance","A disconnected open circuit only","A missing ECG electrode","A low ultrasound gain setting"],0,"Any condition increasing resistance or reducing compliance can raise airway pressure.","Ventilation"),
+ m4q("During an active ventilator failure, what comes first?",["Maintaining patient ventilation through the clinical response","Opening the ventilator immediately at bedside","Updating the asset tag","Printing the service manual"],0,"Patient support and safe clinical continuity precede technical investigation.","Ventilation"),
+ m4q("In monopolar electrosurgery, the current pathway includes:",["Active electrode, patient tissue, and return electrode","Only the two tips of bipolar forceps","An oxygen cylinder","An NIBP cuff"],0,"Monopolar energy returns through the patient return electrode pathway.","Electrosurgery"),
+ m4q("An ESU tones on activation but has no clinical effect. What is the best first technical strategy?",["Trace settings, controls, accessories, connections, and energy path","Replace the main board","Increase oxygen flow","Disable return monitoring"],0,"Systematic isolation should precede internal component replacement.","Electrosurgery"),
+ m4q("A problem appears only in anesthesia ventilator mode but not manual mode. What does this tell you?",["Focus on the ventilator-specific pathway","The vaporizer must be empty","The ECG cable caused it","The hospital network is down"],0,"Mode specificity narrows the suspect pathway.","Anesthesia"),
+ m4q("Which item can create an apparent anesthesia-machine leak without an internal machine failure?",["Misassembled breathing circuit or damaged disposable seal","A normal outlet label","A charged defibrillator battery","An ultrasound preset"],0,"External circuits and disposables are integral to the pressure pathway and can leak.","Anesthesia"),
+ m4q("A fixed dropout band follows one ultrasound transducer. Another probe works normally. What is most likely?",["Transducer element/cable fault","Main display failure","NIBP hose leak","Ventilator exhalation-valve fault"],0,"The fault follows the transducer, localizing the problem.","Ultrasound"),
+ m4q("What is the best use of a known-good compatible accessory?",["Isolate whether the fault follows the accessory or device","Defeat device safety systems","Avoid documenting the complaint","Change manufacturer specifications"],0,"Controlled substitution is a powerful isolation method when performed safely.","Accessories"),
+ m4q("An intermittent failure appears when a cable is flexed near its strain relief. What does this suggest?",["An internal conductor or strain-relief failure","A hospital-wide voltage surge","A drug-library issue","Normal operation"],0,"Movement-dependent failure is characteristic of broken or intermittent conductors.","Accessories"),
+ m4q("Which statement best describes a medical device system?",["The device plus accessories, configuration, patient interface, environment, and users","Only the internal circuit boards","Only disposable supplies","Only the wall outlet"],0,"Clinical performance depends on the complete system, not just the main enclosure.","Systems"),
+ m4q("What should happen before replacing a major assembly?",["Gather evidence and isolate the failed pathway","Order every available board","Bypass the alarm","Assume the complaint is user error"],0,"Evidence-based isolation reduces unnecessary parts replacement and repeat failures.","Troubleshooting"),
+ m4q("A device passes internal tests but the complaint is reproducible with one accessory. What is the leading suspect?",["The accessory or interface","The entire hospital electrical system","The medical gas plant","The patient monitor database"],0,"A reproducible accessory-specific failure is strong localization evidence.","Troubleshooting"),
+ m4q("Which complaint requires the most urgent continuity-of-care action?",["A life-support ventilator failure during patient use","A cosmetic scratch","A printer paper jam","A missing noncritical label"],0,"Life-support failure during use requires immediate patient support and replacement equipment.","Prioritization"),
+ m4q("When should equipment be removed from service?",["When a safety-critical function cannot be verified","Whenever a user asks a question","Only after a part is ordered","Never if it powers on"],0,"Unverified safety-critical performance requires controlled removal and replacement.","Safety"),
+ m4q("What makes a service-call description most useful?",["Specific symptom, conditions, timing, configuration, and observed evidence","The phrase 'it is broken'","Only the room number","Only the device model"],0,"Precise context makes reproduction and isolation possible.","Communication"),
+ m4q("What should final documentation include?",["Complaint, findings, tests, actions, and disposition","Only labor time","Only the serial number","Nothing when no part was replaced"],0,"Complete documentation preserves evidence and supports future safe service.","Documentation")
+];
+
+export const missionTenBriefing = {
+  title: "Medical Gas Delivery Equipment",
+  summary:
+    "Learn the point-of-use medical gas equipment Clinical Engineers identify, inspect, connect, and troubleshoot. This mission stays focused on equipment support rather than central plant infrastructure managed by Facilities.",
+  objectives: [
+    "Identify common medical gas cylinders and verify labels before use.",
+    "Explain how regulators reduce cylinder pressure to a usable working pressure.",
+    "Differentiate PISS, DISS, and quick-connect safety systems.",
+    "Recognize flowmeters, oxygen-air blenders, vacuum regulators, and suction accessories.",
+    "Use a safe troubleshooting sequence and know when to escalate an infrastructure concern.",
+  ],
+};
+
+export const missionTenLessons = [
+  {
+    title: "Medical Gas Identification",
+    icon: "🏷️",
+    points: [
+      "Always identify a medical gas by its product label and connection system, not by color alone.",
+      "Common point-of-use services include oxygen, medical air, vacuum, nitrous oxide, and WAGD.",
+      "Color conventions can vary by country, standard, or older installation.",
+      "A Clinical Engineer should verify the source, fitting, and intended equipment before connection.",
+    ],
+    check: { question: "What is the most reliable way to identify a medical gas source?", options: ["Cylinder color only", "Room location", "The product label and indexed connection", "The hose length"], answer: 2, explanation: "Labels and indexed connections are the primary identification safeguards; color alone is not enough." },
+  },
+  {
+    title: "Cylinder Types and Pressure",
+    icon: "🧯",
+    points: [
+      "E cylinders are commonly used for portable patient transport.",
+      "Larger H or K cylinders are generally used where greater capacity is needed.",
+      "Cylinder pressure must be checked before use or transport.",
+      "Cylinders must remain secured and protected from impact or valve damage.",
+    ],
+    check: { question: "Which cylinder is commonly used for portable patient transport?", options: ["E cylinder", "H cylinder", "Bulk tank", "Receiver tank"], answer: 0, explanation: "The E cylinder is a common portable cylinder size used on transport carts." },
+  },
+  {
+    title: "Regulators and Gauges",
+    icon: "🎛️",
+    points: [
+      "A regulator reduces high cylinder pressure to a controlled working pressure.",
+      "The pressure gauge indicates remaining cylinder pressure or supply pressure, depending on the design.",
+      "Inspect the regulator body, gauge, yoke, seal, threads, and outlet before use.",
+      "Do not use oil, grease, or unapproved sealants on oxygen equipment.",
+    ],
+    check: { question: "Why is a regulator required on a compressed gas cylinder?", options: ["To increase cylinder pressure", "To reduce high pressure to a usable pressure", "To change oxygen into air", "To cool the gas"], answer: 1, explanation: "Cylinder pressure is too high for direct patient-care use, so the regulator controls the delivered pressure." },
+  },
+  {
+    title: "PISS and Yoke Connections",
+    icon: "🔩",
+    points: [
+      "The Pin Index Safety System uses gas-specific pin positions on small-cylinder yoke connections.",
+      "The correct washer or seal is required for a leak-free connection.",
+      "Never defeat, remove, or alter indexing pins.",
+      "A damaged yoke, missing seal, or misaligned cylinder can cause leakage.",
+    ],
+    check: { question: "What is the purpose of PISS?", options: ["Measure flow", "Prevent connection of the wrong gas cylinder", "Collect suction fluid", "Regulate wall vacuum"], answer: 1, explanation: "Gas-specific pin positions help prevent attaching the wrong cylinder to a yoke." },
+  },
+  {
+    title: "DISS and Quick-Connect Fittings",
+    icon: "🔌",
+    points: [
+      "DISS uses gas-specific threaded dimensions to prevent cross-connection.",
+      "Quick-connect systems may include Ohmeda, Chemetron, or other indexed designs.",
+      "Inspect fittings for damage, contamination, loose parts, and poor retention.",
+      "Never force a fitting that does not engage normally.",
+    ],
+    check: { question: "A fitting will not engage a wall outlet normally. What is the safest action?", options: ["Force it with pliers", "Modify the fitting", "Stop and verify the gas and connection type", "Lubricate it with oil"], answer: 2, explanation: "A mismatch or damaged connection must be identified rather than forced." },
+  },
+  {
+    title: "Flowmeters",
+    icon: "📏",
+    points: [
+      "A Thorpe-tube flowmeter controls and displays gas flow in liters per minute.",
+      "Read a ball float at its center unless the manufacturer specifies otherwise.",
+      "The flowmeter should be upright for an accurate reading.",
+      "Common failures include cracked tubes, stuck floats, damaged knobs, and leaking seals.",
+    ],
+    check: { question: "Where is a ball-style Thorpe-tube float normally read?", options: ["At the top", "At the center", "At the bottom", "At the control knob"], answer: 1, explanation: "Ball floats are generally read at the center; always follow the device labeling and manufacturer instructions." },
+  },
+  {
+    title: "Oxygen-Air Blenders",
+    icon: "🫁",
+    points: [
+      "A blender combines oxygen and medical air to provide a selected oxygen concentration.",
+      "Both gas supplies must be present and within the required pressure range.",
+      "A supply imbalance or missing source can activate an alarm and affect output.",
+      "Verification requires an appropriate oxygen analyzer when specified by the manufacturer or procedure.",
+    ],
+    check: { question: "What two sources are required by a standard oxygen-air blender?", options: ["Oxygen and vacuum", "Air and vacuum", "Oxygen and medical air", "Nitrous oxide and WAGD"], answer: 2, explanation: "The blender mixes pressurized oxygen and medical air to create the selected concentration." },
+  },
+  {
+    title: "Vacuum Regulators",
+    icon: "⬇️",
+    points: [
+      "A vacuum regulator controls the negative pressure delivered from a wall vacuum source.",
+      "Modes may include continuous, intermittent, or full-regulated suction depending on the device.",
+      "Inspect the gauge, mode selector, adjustment control, outlet, and overflow protection.",
+      "Compare performance at another outlet when determining whether a problem is local or room-wide.",
+    ],
+    check: { question: "A vacuum regulator has no suction. What is a good first comparison?", options: ["Replace the central pump", "Try a known-good regulator at the same outlet", "Increase oxygen flow", "Bypass the overflow protection"], answer: 1, explanation: "A known-good comparison helps separate a regulator problem from an outlet or infrastructure issue." },
+  },
+  {
+    title: "Canisters and Suction Accessories",
+    icon: "🧴",
+    points: [
+      "A suction setup commonly includes a vacuum source, regulator, collection canister, tubing, and patient interface.",
+      "Overflow protection helps prevent fluid from entering the regulator or pipeline.",
+      "Leaks, loose lids, blocked filters, kinked tubing, and full canisters can reduce suction.",
+      "Disposable components should be installed and replaced according to facility policy and manufacturer instructions.",
+    ],
+    check: { question: "Which condition can reduce suction even when the wall source is working?", options: ["A loose canister lid", "A secured cylinder", "A labeled outlet", "A clean gauge lens"], answer: 0, explanation: "A loose lid creates an air leak and can prevent the system from developing adequate vacuum." },
+  },
+  {
+    title: "Safe Troubleshooting and Escalation",
+    icon: "🛡️",
+    points: [
+      "Begin with the complaint, verify the setup, and inspect the local equipment and accessories.",
+      "Use known-good substitutions when safe and appropriate to isolate the fault.",
+      "If multiple outlets or rooms are affected, protect patient care and escalate to Facilities or the responsible medical gas team.",
+      "Document findings, actions, test results, and the final disposition of the equipment.",
+    ],
+    check: { question: "Several outlets in one clinical area have low pressure. What should Clinical Engineering do after local checks?", options: ["Open wall piping", "Adjust the central plant", "Escalate the possible infrastructure issue while supporting patient safety", "Ignore it because one device still works"], answer: 2, explanation: "A multi-outlet problem may involve infrastructure and should be escalated to the responsible Facilities or medical gas team." },
+  },
+];
+
+export const missionTenScenarios = [
+  {
+    title: "Transport Cylinder Reads 250 PSI",
+    patient: "A transport team is preparing to move a patient. The attached E cylinder reads approximately 250 PSI.",
+    question: "What is the best response?",
+    options: ["Proceed because any positive pressure is sufficient", "Replace or refill the cylinder according to policy before transport", "Strike the gauge to verify it", "Remove the regulator while the valve is open"],
+    answer: 1,
+    explanation: "A nearly depleted cylinder may not support the planned transport. Follow facility policy and verify adequate reserve before departure.",
+  },
+  {
+    title: "No Suction at the Bedside",
+    patient: "A nurse reports no suction. The regulator is connected, but the gauge does not respond.",
+    question: "What is the best first troubleshooting sequence?",
+    options: ["Replace the hospital vacuum pump", "Verify outlet engagement, regulator mode, tubing, canister seal, and compare with known-good equipment", "Increase oxygen pressure", "Bypass the regulator"],
+    answer: 1,
+    explanation: "Start with the complete local setup and isolate the fault before escalating an infrastructure concern.",
+  },
+  {
+    title: "Blender Alarm After Setup",
+    patient: "An oxygen-air blender alarms immediately after connection. Oxygen is connected, but the air hose is not fully seated.",
+    question: "What should be done first?",
+    options: ["Silence the alarm and continue", "Verify and properly connect both gas supplies", "Replace the concentration knob", "Connect vacuum to the air inlet"],
+    answer: 1,
+    explanation: "The blender requires both oxygen and medical air supplies. A missing or low source can trigger the alarm.",
+  },
+  {
+    title: "Multiple Rooms Report Low Oxygen Pressure",
+    patient: "Three rooms in the same area report low oxygen pressure. Local hoses and devices appear intact.",
+    question: "What is the appropriate Clinical Engineering action?",
+    options: ["Disassemble the wall outlets", "Continue replacing bedside devices", "Support immediate patient-care alternatives and notify the responsible Facilities/medical gas team", "Adjust the bulk oxygen system"],
+    answer: 2,
+    explanation: "A multi-room condition suggests a possible infrastructure problem outside normal Clinical Engineering scope." },
+];
+
+export const missionTenQuestions = [
+  ["Which item is the primary source for identifying a medical gas?", ["Color alone", "Product label", "Room number", "Cylinder height"], 1, "The product label is the primary identifier; indexed connections add another safeguard."],
+  ["What is a common use for an E cylinder?", ["Bulk storage", "Patient transport", "Vacuum production", "Alarm monitoring"], 1, "E cylinders are commonly used as portable gas sources during transport."],
+  ["What does a cylinder regulator do?", ["Raises pressure", "Reduces pressure", "Creates vacuum", "Measures oxygen concentration"], 1, "The regulator reduces high cylinder pressure to a usable working pressure."],
+  ["What does PISS help prevent?", ["Low flow", "Wrong cylinder connection", "Canister overflow", "Pipeline alarm failure"], 1, "Pin positions are gas-specific to reduce the risk of cross-connection."],
+  ["DISS connections are primarily identified by what feature?", ["Gas-specific threaded dimensions", "Cylinder color", "Room signage", "Hose length"], 0, "DISS uses gas-specific diameters and threads."],
+  ["What should you do if a quick-connect fitting will not engage?", ["Force it", "Verify type and inspect for damage", "Apply oil", "File the connector"], 1, "Never force or alter an indexed medical gas connection."],
+  ["A Thorpe-tube flowmeter should normally be used in what position?", ["Horizontal", "Upright", "Upside down", "Any position"], 1, "The tube must generally be upright for accurate float position."],
+  ["A ball float is generally read at what point?", ["Top", "Center", "Bottom", "Left edge"], 1, "Ball-style floats are normally read at the center."],
+  ["What two gases feed an oxygen-air blender?", ["Oxygen and vacuum", "Oxygen and medical air", "Air and WAGD", "Nitrous oxide and oxygen"], 1, "The blender mixes oxygen and medical air."],
+  ["A blender alarms when one supply is missing because of what condition?", ["Supply pressure imbalance", "Canister overflow", "Cylinder indexing", "Vacuum occlusion"], 0, "Blenders monitor the two source pressures and may alarm when one is absent or unequal."],
+  ["What does a vacuum regulator control?", ["Positive oxygen pressure", "Negative pressure", "Oxygen percentage", "Cylinder temperature"], 1, "A vacuum regulator controls the suction level delivered to the setup."],
+  ["Which item protects a vacuum regulator from aspirated fluid?", ["Overflow protection", "PISS pins", "DISS nut", "Flow tube"], 0, "Overflow devices and filters help prevent fluid from reaching the regulator or pipeline."],
+  ["Which setup fault commonly reduces suction?", ["Loose canister lid", "Secure tubing", "Clean filter", "Correct outlet engagement"], 0, "A loose lid creates a leak in the suction circuit."],
+  ["What should be checked before replacing a reported faulty suction regulator?", ["The entire local setup", "Only the wall color", "The bulk oxygen level", "The hospital generator"], 0, "Tubing, canister, filters, mode, connections, and source should all be evaluated."],
+  ["What is WAGD used for?", ["Delivering oxygen", "Removing waste anesthetic gas", "Producing medical air", "Measuring vacuum"], 1, "WAGD removes waste anesthetic gases from the anesthesia system."],
+  ["Why must oxygen equipment be kept free of oil and grease?", ["They reduce gauge accuracy", "They can create a serious fire hazard in oxygen-enriched conditions", "They change cylinder color", "They stop vacuum"], 1, "Hydrocarbon contamination can ignite readily in high-pressure or oxygen-enriched environments."],
+  ["What is the safest way to determine whether a suction problem is the regulator or outlet?", ["Replace central pumps", "Use a known-good comparison", "Increase oxygen flow", "Remove indexing"], 1, "Known-good substitution is an efficient way to isolate the fault."],
+  ["A cylinder must be transported in what condition?", ["Unsecured", "Secured against falling", "With the valve unprotected", "Carried by the regulator"], 1, "Cylinders must be secured and handled to protect the valve and prevent impact."],
+  ["What should be done with a visibly damaged regulator?", ["Use it at low flow", "Remove it from service and evaluate it", "Lubricate it", "Ignore cosmetic damage"], 1, "Damage can affect pressure control and safety; the device should be removed and evaluated."],
+  ["What is the first action when receiving a medical gas equipment complaint?", ["Replace the assembly", "Clarify the complaint and verify the setup", "Call the manufacturer", "Open the wall outlet"], 1, "Good troubleshooting begins by understanding and reproducing the reported problem safely."],
+  ["Several rooms have the same pipeline pressure problem. Who should be notified after local checks?", ["Dietary", "Facilities or the responsible medical gas team", "Only the equipment vendor", "No one"], 1, "A multi-room issue may involve the distribution infrastructure."],
+  ["Which connection system is commonly used on small cylinder yokes?", ["PISS", "DICOM", "HL7", "WAGD"], 0, "PISS is used on gas-specific small-cylinder yoke connections."],
+  ["Which connection system uses gas-specific threaded fittings?", ["PISS", "DISS", "NIBP", "PACS"], 1, "DISS uses gas-specific diameter and thread combinations."],
+  ["A flowmeter float is stuck at zero after the source is opened. What should be checked first?", ["Source availability and control valve", "Hospital network", "Canister lid", "ECG cable"], 0, "Verify that gas is available and the control path is open before replacing the flowmeter."],
+  ["What is a likely cause of a leak at a cylinder yoke?", ["Missing or damaged seal", "Correct pin index", "Secured cylinder", "Closed flow control"], 0, "A missing, damaged, or doubled seal is a common yoke leak cause."],
+  ["What should never be done to a gas-specific fitting?", ["Inspect it", "Clean it per approved procedure", "Modify it to fit another service", "Verify its label"], 2, "Altering an indexed connector defeats a critical safety barrier."],
+  ["A portable suction unit differs from wall suction because it contains what?", ["Its own vacuum pump", "A bulk oxygen tank", "A central compressor", "A zone valve"], 0, "Portable suction creates vacuum using an internal pump rather than the central pipeline."],
+  ["What information should a Clinical Engineer document after troubleshooting?", ["Only the room number", "Complaint, findings, actions, test results, and disposition", "Only the part cost", "Nothing if no part was replaced"], 1, "Complete documentation supports safety, continuity, and future troubleshooting."],
+  ["A regulator gauge remains at zero on a known-full cylinder. What should be suspected first?", ["A closed valve, poor connection, or regulator/gauge fault", "A network outage", "A full suction canister", "An ECG artifact"], 0, "Verify the valve and connection, then evaluate the regulator and gauge."],
+  ["Which statement best describes Clinical Engineering scope in this mission?", ["Maintain the central medical gas plant", "Support point-of-use equipment and escalate infrastructure issues", "Modify pipeline valves", "Certify bulk storage vessels"], 1, "The mission focuses on point-of-use equipment while central infrastructure is handled by the responsible Facilities/medical gas team."],
+].map(([question, options, answer, explanation], index) => ({ question, options, answer, explanation, category: index < 6 ? "Identification" : index < 16 ? "Equipment" : index < 24 ? "Safety" : "Troubleshooting" }));

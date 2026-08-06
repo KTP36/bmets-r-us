@@ -8,6 +8,14 @@ import {
   missionTwoLessons,
   missionTwoQuestions,
   missionTwoScenarios,
+  missionFourBriefing,
+  missionFourLessons,
+  missionFourQuestions,
+  missionFourScenarios,
+  missionTenBriefing,
+  missionTenLessons,
+  missionTenQuestions,
+  missionTenScenarios,
 } from "./cbetAcademyData";
 import {
   cbetCompletionPercent,
@@ -3894,6 +3902,978 @@ function findNextServiceCall(completedCalls, completedId) {
   return orderedIds.find((id) => !completedSet.has(id)) || completedId;
 }
 
+
+
+
+
+const MISSION_FOUR_IMAGES = {
+  monitor: "/images/mission4/patient-monitor.svg",
+  pump: "/images/mission4/infusion-pump.svg",
+  defibrillator: "/images/mission4/defibrillator.svg",
+  ventilator: "/images/mission4/ventilator.svg",
+  esu: "/images/mission4/electrosurgical-unit.svg",
+  anesthesia: "/images/mission4/anesthesia-machine.svg",
+  ultrasound: "/images/mission4/ultrasound-system.svg",
+  accessories: "/images/mission4/equipment-accessories.svg",
+};
+
+const MISSION_FOUR_LESSON_ENHANCEMENTS = {
+  0: { image: MISSION_FOUR_IMAGES.monitor, title: "Patient Monitor", purpose: "Combines multiple physiologic measurements into one bedside display.", insight: "When a value does not match the patient, verify the patient, signal source, accessory, and setup before condemning the monitor." },
+  1: { image: MISSION_FOUR_IMAGES.pump, title: "Infusion Pump", purpose: "Controls medication or fluid delivery at a programmed rate.", insight: "An alarm is evidence. Read the message, inspect the full fluid path, and reproduce the complaint before replacing equipment." },
+  2: { image: MISSION_FOUR_IMAGES.defibrillator, title: "Defibrillator", purpose: "Provides monitored or emergency electrical therapy for selected cardiac rhythms.", insight: "A failed operational check is a patient-safety issue. Remove the unit from use and provide a ready replacement before troubleshooting." },
+  3: { image: MISSION_FOUR_IMAGES.ventilator, title: "Ventilator", purpose: "Supports ventilation by delivering controlled breaths, pressures, volumes, and oxygen concentration.", insight: "During a patient-use failure, clinical staff must maintain ventilation while Clinical Engineering evaluates the device away from the immediate patient-care task." },
+  4: { image: MISSION_FOUR_IMAGES.esu, title: "Electrosurgical Unit", purpose: "Generates high-frequency electrical energy for cutting or coagulation.", insight: "If activation is heard but the clinical effect is poor, follow the complete energy path: generator, activation control, cable, electrode, patient interface, and return path." },
+  5: { image: MISSION_FOUR_IMAGES.anesthesia, title: "Anesthesia Workstation", purpose: "Integrates gas delivery, ventilation, monitoring, vaporization, and scavenging functions.", insight: "Mode-specific symptoms are valuable clues. A failure limited to mechanical ventilation points to a different pathway than a failure present in both manual and ventilator modes." },
+  6: { image: MISSION_FOUR_IMAGES.ultrasound, title: "Ultrasound System", purpose: "Creates diagnostic images from transmitted and returning sound waves.", insight: "Image-quality complaints often begin with the transducer, cable, preset, gel, or connection—not the main system." },
+  7: { image: MISSION_FOUR_IMAGES.accessories, title: "Accessories and Interfaces", purpose: "Connect the patient and device to the measurement, therapy, power, or communication pathway.", insight: "Accessories are part of the system. A device can pass every internal test and still fail clinically because of a damaged cable, sensor, hose, cuff, or transducer." },
+};
+
+function MissionFourImage({ lessonIndex }) {
+  const item = MISSION_FOUR_LESSON_ENHANCEMENTS[lessonIndex];
+  if (!item) return null;
+  return (
+    <section className="cbet-mission4-field-card" aria-label={`${item.title} in the field`}>
+      <div className="cbet-mission4-field-image"><img src={item.image} alt={`Generic educational illustration of a ${item.title}`} loading="lazy" /></div>
+      <div className="cbet-mission4-field-copy">
+        <span className="cbet-equipment-eyebrow">In the Field</span>
+        <h3>{item.title}</h3>
+        <strong>What it does</strong><p>{item.purpose}</p>
+        <div className="cbet-mission4-insight"><strong>Kevin's Clinical Engineering Insight</strong><p>{item.insight}</p></div>
+      </div>
+    </section>
+  );
+}
+
+
+
+const PATIENT_MONITOR_PARAMETERS = [
+  { id: "ecg", label: "ECG", color: "#16a34a", text: "Electrical activity of the heart", detail: "Uses skin electrodes, a lead set, and an ECG input pathway. Poor contact, dried electrodes, motion, and damaged lead wires can create artifact." },
+  { id: "spo2", label: "SpO₂", color: "#168fe8", text: "Peripheral oxygen saturation", detail: "Uses a pulse-oximetry sensor to estimate oxygen saturation and pulse rate. Motion, low perfusion, sensor placement, and ambient light can affect the signal." },
+  { id: "nibp", label: "NIBP", color: "#171717", text: "Non-invasive blood pressure", detail: "Uses an inflatable cuff and hose. Cuff size, placement, leaks, motion, and patient rhythm can affect measurements." },
+  { id: "ibp", label: "IBP", color: "#dc2626", text: "Invasive blood pressure", detail: "Uses a pressure transducer and fluid-filled line. Leveling, zeroing, air bubbles, loose connections, and damping change waveform quality." },
+  { id: "temp", label: "TEMP", color: "#7c3f12", text: "Body temperature", detail: "Uses a compatible temperature probe. Probe type, placement, connection, and damaged cables can create incorrect or missing readings." },
+];
+
+function PatientMonitorGraphic({ activeParameter = "ecg", onSelect, compact = false }) {
+  const active = PATIENT_MONITOR_PARAMETERS.find((item) => item.id === activeParameter) || PATIENT_MONITOR_PARAMETERS[0];
+  return (
+    <div className={`m4-monitor-graphic ${compact ? "compact" : ""}`}>
+      <svg viewBox="0 0 760 570" role="img" aria-label="Original generic patient monitor with color-coded physiologic connections">
+        <defs>
+          <linearGradient id="m4-monitor-shell" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stopColor="#ffffff" />
+            <stop offset="1" stopColor="#dce5ec" />
+          </linearGradient>
+          <linearGradient id="m4-monitor-screen" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stopColor="#121a20" />
+            <stop offset="1" stopColor="#05080a" />
+          </linearGradient>
+          <filter id="m4-monitor-shadow" x="-30%" y="-30%" width="160%" height="170%">
+            <feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="#0b2d48" floodOpacity=".22" />
+          </filter>
+        </defs>
+        <g filter="url(#m4-monitor-shadow)">
+          <path d="M250 92 C250 40 490 40 490 92" fill="none" stroke="#87939d" strokeWidth="30" strokeLinecap="round" />
+          <path d="M250 92 C250 54 490 54 490 92" fill="none" stroke="#dfe6eb" strokeWidth="18" strokeLinecap="round" />
+          <rect x="150" y="80" width="500" height="420" rx="44" fill="url(#m4-monitor-shell)" stroke="#aebbc5" strokeWidth="4" />
+          <rect x="238" y="118" width="365" height="315" rx="18" fill="url(#m4-monitor-screen)" stroke="#293740" strokeWidth="8" />
+          <rect x="177" y="118" width="44" height="315" rx="14" fill="#eef3f6" stroke="#b3c0c9" strokeWidth="3" />
+          {PATIENT_MONITOR_PARAMETERS.map((item, index) => {
+            const y = 155 + index * 59;
+            const selected = activeParameter === item.id;
+            return (
+              <g key={item.id} onClick={() => onSelect?.(item.id)} className="m4-svg-port" style={{ cursor: onSelect ? "pointer" : "default" }}>
+                <circle cx="199" cy={y} r={selected ? 18 : 14} fill={item.color} stroke={selected ? "#ffffff" : "#42505a"} strokeWidth={selected ? 5 : 3} />
+                <path d={`M30 ${y} C85 ${y}, 110 ${y}, 181 ${y}`} fill="none" stroke={item.color} strokeWidth={selected ? 11 : 8} strokeLinecap="round" opacity={selected ? 1 : .78} />
+                <rect x="12" y={y-19} width="72" height="38" rx="8" fill={item.color} />
+                <text x="48" y={y+7} textAnchor="middle" fill="#fff" fontWeight="900" fontSize="18">{item.label}</text>
+              </g>
+            );
+          })}
+          <g className="m4-wave m4-wave-ecg" stroke="#22c55e"><polyline points="260,165 285,165 295,151 305,184 316,135 328,165 360,165 370,151 380,184 391,135 403,165 445,165 455,151 465,184 476,135 488,165 572,165" /></g>
+          <g className="m4-wave m4-wave-spo2" stroke="#2aa8ff"><path d="M260 226 C275 226 278 202 291 202 C305 202 307 226 322 226 C337 226 340 202 353 202 C367 202 370 226 385 226 C400 226 403 202 416 202 C430 202 433 226 448 226 C463 226 466 202 479 202 C493 202 496 226 511 226 C526 226 529 202 542 202 C556 202 559 226 574 226" fill="none" /></g>
+          <g className="m4-wave" stroke="#f3f4f6"><path d="M260 286 C280 278 294 294 312 286 C330 278 344 294 362 286 C380 278 394 294 412 286 C430 278 444 294 462 286 C480 278 494 294 512 286 C530 278 544 294 572 286" fill="none" /></g>
+          <g className="m4-wave" stroke="#ef4444"><polyline points="260,345 280,345 292,329 305,365 319,315 334,345 366,345 378,329 391,365 405,315 420,345 452,345 464,329 477,365 491,315 506,345 572,345" /></g>
+          <g className="m4-wave" stroke="#9a5b25"><path d="M260 402 C325 401 390 403 455 401 C500 401 535 400 572 402" fill="none" /></g>
+          <text x="255" y="145" fill="#22c55e" fontSize="17" fontWeight="800">ECG</text><text x="548" y="175" fill="#22c55e" fontSize="37" fontWeight="900">80</text>
+          <text x="255" y="207" fill="#2aa8ff" fontSize="17" fontWeight="800">SpO₂</text><text x="535" y="235" fill="#2aa8ff" fontSize="37" fontWeight="900">98%</text>
+          <text x="255" y="268" fill="#f3f4f6" fontSize="17" fontWeight="800">NIBP</text><text x="510" y="295" fill="#f3f4f6" fontSize="29" fontWeight="900">120/80</text>
+          <text x="255" y="327" fill="#ef4444" fontSize="17" fontWeight="800">IBP</text><text x="510" y="355" fill="#ef4444" fontSize="28" fontWeight="900">118/76</text>
+          <text x="255" y="389" fill="#9a5b25" fontSize="17" fontWeight="800">TEMP</text><text x="526" y="416" fill="#b66c2d" fontSize="32" fontWeight="900">37.0</text>
+          {[275,330,385,440,495,550].map((x, index) => <rect key={x} x={x} y="456" width="36" height="19" rx="8" fill={index === 5 ? "#f6b51f" : "#cad3d9"} stroke="#83919a" />)}
+          <circle cx="600" cy="466" r="25" fill="#59666e" stroke="#26333b" strokeWidth="5" />
+        </g>
+      </svg>
+      {!compact && <div className="m4-monitor-active-caption" style={{ borderColor: active.color }}><strong style={{ color: active.color }}>{active.label}</strong><span>{active.text}</span></div>}
+    </div>
+  );
+}
+
+const PATIENT_MONITOR_ACCESSORIES = [
+  { id: "ecg", name: "ECG lead set", description: "Skin electrodes and lead wires carry the heart's electrical signal to the ECG input." },
+  { id: "spo2", name: "SpO₂ sensor", description: "An optical sensor estimates oxygen saturation and pulse rate from pulsatile blood flow." },
+  { id: "nibp", name: "NIBP cuff and hose", description: "The cuff and pneumatic hose allow the monitor to determine non-invasive blood pressure." },
+  { id: "ibp", name: "Pressure transducer", description: "A leveled and zeroed transducer converts fluid-line pressure into an electrical signal." },
+  { id: "temp", name: "Temperature probe", description: "A compatible probe measures temperature at the selected clinical site." },
+];
+
+function MonitorAccessoryIcon({ type, color }) {
+  if (type === "nibp") return <span className="m4-accessory-drawing m4-accessory-cuff" style={{ "--accessory-color": color }}><i /><b /></span>;
+  if (type === "spo2") return <span className="m4-accessory-drawing m4-accessory-clip" style={{ "--accessory-color": color }}><i /><b /></span>;
+  if (type === "ibp") return <span className="m4-accessory-drawing m4-accessory-transducer" style={{ "--accessory-color": color }}><i /><b /><em /></span>;
+  if (type === "temp") return <span className="m4-accessory-drawing m4-accessory-probe" style={{ "--accessory-color": color }}><i /><b /></span>;
+  return <span className="m4-accessory-drawing m4-accessory-leads" style={{ "--accessory-color": color }}><i /><b /><em /></span>;
+}
+
+const PATIENT_MONITOR_EXPLORER_CHALLENGES = {
+  ecg: {
+    question: "The ECG rate suddenly reads 180, but the pulse-derived rate remains 78 and the patient is talking. What should you investigate first?",
+    options: ["The ECG electrodes and lead set", "The NIBP pump", "The temperature probe", "The monitor battery"],
+    answer: 0,
+    explanation: "A mismatch between the ECG rate and a pulse-derived rate strongly suggests ECG artifact or a lead/electrode problem. Verify the patient and signal quality before replacing the monitor."
+  },
+  spo2: {
+    question: "The SpO₂ value falls to 74%, but the pleth waveform is nearly flat and the patient's color is unchanged. What is the best first step?",
+    options: ["Replace the main monitor", "Check sensor placement, perfusion, and motion", "Increase NIBP frequency", "Zero the IBP transducer"],
+    answer: 1,
+    explanation: "A weak or absent pleth waveform means the displayed saturation may not be reliable. Check the sensor site, perfusion, movement, and cable path first."
+  },
+  nibp: {
+    question: "The cuff repeatedly inflates and ends with a timeout. Which local issue is most likely?",
+    options: ["A leak, kink, wrong cuff size, or poor placement", "An unzeroed IBP transducer", "A dried ECG electrode", "An incompatible temperature probe"],
+    answer: 0,
+    explanation: "NIBP timeouts commonly result from pneumatic leaks, kinked tubing, incorrect cuff size or placement, motion, or an inability to detect oscillations."
+  },
+  ibp: {
+    question: "An arterial waveform is overdamped after setup. What should be checked before blaming the monitor?",
+    options: ["The SpO₂ sensor", "The fluid line, stopcocks, air bubbles, leveling, and zero", "The NIBP cuff", "The ECG filter only"],
+    answer: 1,
+    explanation: "The complete fluid-filled pressure pathway determines waveform quality. Air, clots, loose connections, stopcock position, leveling, and zeroing should be assessed first."
+  },
+  temp: {
+    question: "The temperature channel shows no reading after a probe is connected. What is the best first technical check?",
+    options: ["Confirm probe compatibility, seating, and cable integrity", "Replace the ECG module", "Inflate the NIBP cuff", "Zero the arterial line"],
+    answer: 0,
+    explanation: "Temperature inputs depend on the correct probe type and a sound connection. Confirm compatibility and the complete probe/cable path before replacing a module."
+  }
+};
+
+function MissionFourPatientMonitoringLesson({ lesson, selected, setSelected, completeLesson, lessonCount }) {
+  const [activeParameter, setActiveParameter] = useState("ecg");
+  const [identifyAnswer, setIdentifyAnswer] = useState(null);
+  const [explored, setExplored] = useState(() => new Set(["ecg"]));
+  const [explorerAnswers, setExplorerAnswers] = useState({});
+  const answered = selected !== null;
+  const identificationComplete = identifyAnswer === "ibp";
+  const explorerComplete = PATIENT_MONITOR_PARAMETERS.every((item) => explorerAnswers[item.id] === PATIENT_MONITOR_EXPLORER_CHALLENGES[item.id].answer);
+  const active = PATIENT_MONITOR_PARAMETERS.find((item) => item.id === activeParameter) || PATIENT_MONITOR_PARAMETERS[0];
+  const activeChallenge = PATIENT_MONITOR_EXPLORER_CHALLENGES[activeParameter];
+  const activeExplorerAnswer = explorerAnswers[activeParameter];
+  const activeExplorerAnswered = activeExplorerAnswer !== undefined;
+  const activeExplorerCorrect = activeExplorerAnswer === activeChallenge.answer;
+  const explorerCorrectCount = PATIENT_MONITOR_PARAMETERS.filter((item) => explorerAnswers[item.id] === PATIENT_MONITOR_EXPLORER_CHALLENGES[item.id].answer).length;
+
+  const chooseParameter = (id) => {
+    setActiveParameter(id);
+    setExplored((previous) => new Set([...previous, id]));
+  };
+
+  const answerExplorer = (index) => {
+    setExplorerAnswers((previous) => ({ ...previous, [activeParameter]: index }));
+    playCbetTone(index === activeChallenge.answer ? "correct" : "wrong");
+  };
+
+  return (
+    <div className="m4-premium-lesson">
+      <section className="m4-premium-hero">
+        <div className="m4-premium-monitor-column"><PatientMonitorGraphic activeParameter={activeParameter} onSelect={chooseParameter} /></div>
+        <div className="m4-premium-copy-column">
+          <span className="m4-premium-kicker">Lesson 1 of {lessonCount}</span>
+          <h1>Patient Monitoring Systems</h1>
+          <p className="m4-premium-lead">Learn how patient monitors acquire, process, display, and help clinicians interpret critical physiologic signals.</p>
+          <div className="m4-parameter-summary">
+            {PATIENT_MONITOR_PARAMETERS.map((item) => <button key={item.id} className={`${activeParameter === item.id ? "active" : ""} ${explorerAnswers[item.id] === PATIENT_MONITOR_EXPLORER_CHALLENGES[item.id].answer ? "mastered" : ""}`} style={{ "--parameter-color": item.color }} onClick={() => chooseParameter(item.id)}><span>{item.label}</span><small>{item.text}</small>{explorerAnswers[item.id] === PATIENT_MONITOR_EXPLORER_CHALLENGES[item.id].answer && <em>✓ Mastered</em>}</button>)}
+          </div>
+          <aside className="m4-lesson-objectives"><strong>In this lesson</strong><ul><li>Monitor overview</li><li>Signal sources</li><li>Accessories and connections</li><li>Artifacts and accuracy</li><li>Troubleshooting basics</li></ul><span>◷ Estimated time: 15 min</span></aside>
+        </div>
+      </section>
+
+      <section className="m4-explorer-progress" aria-label="Equipment explorer progress">
+        <div><span>Interactive Equipment Explorer</span><strong>{explorerCorrectCount} of {PATIENT_MONITOR_PARAMETERS.length} signal paths mastered</strong></div>
+        <div className="m4-explorer-progress-track"><i style={{ width: `${(explorerCorrectCount / PATIENT_MONITOR_PARAMETERS.length) * 100}%` }} /></div>
+        <div className="m4-explorer-dots">{PATIENT_MONITOR_PARAMETERS.map((item) => <button key={item.id} onClick={() => chooseParameter(item.id)} className={`${activeParameter === item.id ? "active" : ""} ${explorerAnswers[item.id] === PATIENT_MONITOR_EXPLORER_CHALLENGES[item.id].answer ? "complete" : explored.has(item.id) ? "visited" : ""}`} style={{ "--parameter-color": item.color }} aria-label={`Explore ${item.label}`}><span>{explorerAnswers[item.id] === PATIENT_MONITOR_EXPLORER_CHALLENGES[item.id].answer ? "✓" : item.label}</span></button>)}</div>
+      </section>
+
+      <section className="m4-premium-lower-grid">
+        <article className="m4-service-call-card">
+          <span className="m4-service-call-kicker">🚨 Service Call Scenario</span>
+          <p>ICU reports that the monitor is displaying ventricular tachycardia, but the patient is awake and talking. The SpO₂ pulse rate is 78.</p>
+          <h2>{lesson.check.question}</h2>
+          <div className="m4-service-options">{lesson.check.options.map((option, index) => <button key={option} disabled={answered} className={`${answered && index === lesson.check.answer ? "correct" : ""} ${answered && index === selected && index !== lesson.check.answer ? "wrong" : ""}`} onClick={() => { setSelected(index); playCbetTone(index === lesson.check.answer ? "correct" : "wrong"); }}><strong>{String.fromCharCode(65 + index)}</strong><span>{option}</span></button>)}</div>
+          {answered && <div className="m4-service-feedback"><strong>{selected === lesson.check.answer ? "Service call cleared." : "Recheck the evidence."}</strong><span>{lesson.check.explanation}</span></div>}
+          <div className="m4-field-tip">💡 <strong>Field Tip:</strong> Compare the ECG rate with a pulse-derived source and the patient's condition before assuming a true critical rhythm.</div>
+        </article>
+
+        <article className="m4-exploration-card">
+          <span className="m4-exploration-kicker">Interactive Exploration</span><h2>Follow the {active.label} signal path</h2><p>Choose a connector or parameter to reveal what it measures and what can make it fail.</p>
+          <div className="m4-exploration-layout"><PatientMonitorGraphic compact activeParameter={activeParameter} onSelect={chooseParameter} /><div className="m4-parameter-detail" style={{ "--parameter-color": active.color }}><span>{active.label}</span><h3>{active.text}</h3><p>{active.detail}</p></div></div>
+          <div className="m4-explorer-mini-challenge" style={{ "--parameter-color": active.color }}>
+            <div className="m4-explorer-mini-heading"><span>Technician Challenge</span><strong>{active.label}</strong></div>
+            <h3>{activeChallenge.question}</h3>
+            <div className="m4-explorer-mini-options">{activeChallenge.options.map((option, index) => <button key={option} disabled={activeExplorerCorrect} className={`${activeExplorerAnswered && index === activeChallenge.answer ? "correct" : ""} ${activeExplorerAnswered && index === activeExplorerAnswer && index !== activeChallenge.answer ? "wrong" : ""}`} onClick={() => answerExplorer(index)}><strong>{String.fromCharCode(65 + index)}</strong><span>{option}</span></button>)}</div>
+            {activeExplorerAnswered && <div className={`m4-explorer-mini-feedback ${activeExplorerCorrect ? "good" : "bad"}`}><strong>{activeExplorerCorrect ? `${active.label} signal path mastered.` : "Try another troubleshooting path."}</strong><span>{activeExplorerCorrect ? activeChallenge.explanation : "Use the signal source, accessory, and clinical evidence to choose the most direct first check."}</span></div>}
+          </div>
+        </article>
+      </section>
+
+      <section className="m4-accessories-section">
+        <div className="m4-section-heading"><span>Accessory Recognition</span><h2>Connect the patient to the correct signal path</h2><p>Select an accessory to highlight its matching monitor parameter.</p></div>
+        <div className="m4-accessory-grid">
+          {PATIENT_MONITOR_ACCESSORIES.map((accessory) => {
+            const parameter = PATIENT_MONITOR_PARAMETERS.find((item) => item.id === accessory.id);
+            const isActive = activeParameter === accessory.id;
+            return <button key={accessory.id} className={isActive ? "active" : ""} style={{ "--accessory-color": parameter.color }} onClick={() => chooseParameter(accessory.id)}>
+              <MonitorAccessoryIcon type={accessory.id} color={parameter.color} />
+              <strong>{accessory.name}</strong><span>{accessory.description}</span>
+            </button>;
+          })}
+        </div>
+      </section>
+
+      <section className="m4-identify-challenge">
+        <div><span className="m4-exploration-kicker">Quick Recognition</span><h2>Which connection is used for invasive blood pressure?</h2><p>Use the standardized colors and signal pathway—not a manufacturer name—to identify the correct port.</p></div>
+        <div className="m4-identify-options">
+          {PATIENT_MONITOR_PARAMETERS.map((item) => {
+            const chosen = identifyAnswer === item.id;
+            return <button key={item.id} disabled={identificationComplete} style={{ "--parameter-color": item.color }} className={`${chosen ? "chosen" : ""} ${chosen && item.id === "ibp" ? "correct" : ""} ${chosen && item.id !== "ibp" ? "wrong" : ""}`} onClick={() => { setIdentifyAnswer(item.id); playCbetTone(item.id === "ibp" ? "correct" : "wrong"); }}><i /><strong>{item.label}</strong></button>;
+          })}
+        </div>
+        {identifyAnswer && <div className={`m4-identify-feedback ${identificationComplete ? "good" : "bad"}`}><strong>{identificationComplete ? "Correct — IBP uses the red signal path." : "Not this connection. Try again."}</strong><span>{identificationComplete ? "The invasive pressure transducer connects through the red IBP pathway." : "Use the parameter color standard and select the invasive pressure pathway."}</span></div>}
+      </section>
+
+      {explorerComplete && <section className="m4-explorer-complete"><span>🏆</span><div><small>Equipment Explorer Complete</small><h2>Patient Monitoring Signal Paths Mastered</h2><p>You worked through ECG, SpO₂, NIBP, IBP, and temperature using accessories, signal evidence, and troubleshooting logic.</p></div></section>}
+
+      <div className="m4-premium-actions"><span>{answered && identificationComplete && explorerComplete ? "Lesson activities complete" : !answered ? "Complete the service call to continue" : !explorerComplete ? `Master all five signal paths (${explorerCorrectCount}/5 complete)` : "Complete the quick-recognition challenge"}</span><button className="cbet-primary" disabled={!answered || !identificationComplete || !explorerComplete} onClick={completeLesson}>Next: Infusion Delivery Systems →</button></div>
+    </div>
+  );
+}
+
+
+const INFUSION_PUMP_COMPONENTS = [
+  { id: "bag", label: "IV Bag", color: "#2563eb", purpose: "Provides the fluid or medication source above the pump.", issues: "An empty bag, closed clamp, blocked vent, or collapsed container can interrupt flow.", insight: "Trace the entire fluid path before blaming the pump. The problem may begin above the device." },
+  { id: "drip", label: "Drip Chamber", color: "#0ea5e9", purpose: "Allows visual confirmation of drops and helps keep air out of the tubing.", issues: "Incorrect fill level, an empty chamber, or air entering the line can trigger delivery problems.", insight: "A chamber that is overfilled or nearly empty removes a useful visual clue during troubleshooting." },
+  { id: "clamp", label: "Roller Clamp", color: "#475569", purpose: "Manually opens, restricts, or stops flow through the administration set.", issues: "A partially closed clamp can look exactly like a pump or downstream occlusion failure.", insight: "Check every clamp—including clamps hidden under bedding or near the patient—before replacing equipment." },
+  { id: "air", label: "Air-in-Line Sensor", color: "#7c3aed", purpose: "Uses an optical or ultrasonic pathway to detect air in the loaded tubing.", issues: "Air bubbles, dirty sensor surfaces, incorrect tubing, or poor loading can create repeated alarms.", insight: "Never defeat an air alarm. Confirm the tubing, remove the air safely, and inspect the sensor channel." },
+  { id: "mechanism", label: "Pumping Mechanism", color: "#f59e0b", purpose: "Moves fluid through the administration set at the programmed rate.", issues: "Improper loading, worn door parts, damaged tubing, or mechanism faults can affect delivery.", insight: "The tubing set is part of the pumping system. Correct device-compatible tubing matters." },
+  { id: "pressure", label: "Pressure Sensor", color: "#dc2626", purpose: "Detects rising line pressure associated with downstream resistance or occlusion.", issues: "Kinks, closed clamps, infiltrated IV sites, clogged filters, or incorrect tubing can raise pressure.", insight: "An occlusion alarm is evidence of resistance somewhere in the pathway—not proof that the pump failed." },
+  { id: "battery", label: "Battery", color: "#16a34a", purpose: "Provides temporary power during transport or loss of AC power.", issues: "Aged batteries, charging faults, poor connections, or long storage can reduce runtime.", insight: "A battery complaint should be verified under load. A displayed charge percentage alone does not prove runtime." },
+];
+
+const INFUSION_PUMP_CHALLENGES = {
+  bag: { question: "The pump displays no-flow, and the bag appears full. What should you verify first?", options: ["Replace the display", "Confirm the bag outlet and upstream clamp are open", "Increase the programmed rate", "Replace the battery"], answer: 1, explanation: "A closed upstream pathway prevents fluid from reaching the pump even when the bag is full." },
+  drip: { question: "The drip chamber is empty while the pump is running. What is the best first check?", options: ["Inspect the upstream fluid path and chamber setup", "Replace the keypad", "Disable the alarm", "Change the network settings"], answer: 0, explanation: "The source, spike, vent, clamp, and chamber setup should be evaluated before assuming an internal failure." },
+  clamp: { question: "A downstream occlusion alarm begins immediately after repositioning the patient. What is most likely?", options: ["A closed or compressed tubing pathway", "A failed speaker", "A depleted backup battery", "An incorrect date setting"], answer: 0, explanation: "Patient movement can kink tubing or close a clamp, increasing downstream resistance." },
+  air: { question: "Repeated air-in-line alarms occur with visible bubbles in the tubing. What is the correct response?", options: ["Bypass the detector", "Remove the air and reload the correct tubing according to procedure", "Increase pressure limits", "Replace the AC cord"], answer: 1, explanation: "Visible air must be addressed safely; the alarm should not be bypassed." },
+  mechanism: { question: "The door closes, but the set is not seated in the pumping channel. What may occur?", options: ["Inaccurate delivery or loading alarms", "Higher battery capacity", "Improved flow accuracy", "A network-only failure"], answer: 0, explanation: "The pumping mechanism depends on correct tubing placement and door engagement." },
+  pressure: { question: "A pump reports downstream occlusion. What is the most direct first action?", options: ["Replace the pump immediately", "Inspect the full downstream path for clamps, kinks, filters, and the IV site", "Increase the flow rate", "Silence and ignore the alarm"], answer: 1, explanation: "Follow the downstream fluid path and remove the cause of resistance before condemning the pump." },
+  battery: { question: "The pump shuts off as soon as AC power is removed. A new battery was installed. What should be investigated next?", options: ["The charging and internal power pathway", "The IV bag label", "The air detector only", "The drip chamber fill level"], answer: 0, explanation: "If a known-good battery cannot support the device, evaluate charging, connection, and internal power circuitry." },
+};
+
+function InfusionPumpGraphic({ activeComponent = "air", onSelect, compact = false, simulation = "normal" }) {
+  const active = INFUSION_PUMP_COMPONENTS.find((item) => item.id === activeComponent) || INFUSION_PUMP_COMPONENTS[0];
+  const select = (id) => onSelect?.(id);
+  return (
+    <div className={`m4-infusion-graphic ${compact ? "compact" : ""} simulation-${simulation}`}>
+      <svg viewBox="0 0 760 650" role="img" aria-label="Original generic infusion pump and fluid pathway with clickable components">
+        <defs>
+          <linearGradient id="m4-pump-shell" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stopColor="#ffffff"/><stop offset="1" stopColor="#dfe8ee"/></linearGradient>
+          <linearGradient id="m4-pump-screen" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stopColor="#17354a"/><stop offset="1" stopColor="#07131d"/></linearGradient>
+          <filter id="m4-pump-shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="16" floodColor="#102f49" floodOpacity=".22"/></filter>
+        </defs>
+        <g filter="url(#m4-pump-shadow)">
+          <path d="M182 52 V595" stroke="#7c8790" strokeWidth="16" strokeLinecap="round"/>
+          <path d="M182 78 H308" stroke="#7c8790" strokeWidth="12" strokeLinecap="round"/>
+          <path d="M288 78 v26" stroke="#7c8790" strokeWidth="8"/>
+          <g className={`m4-pump-hotspot ${activeComponent === "bag" ? "active" : ""}`} onClick={() => select("bag")}>
+            <path d="M238 102 h100 l14 28 v112 q0 25-25 25 h-78 q-25 0-25-25 V130z" fill="#eaf6ff" stroke={activeComponent === "bag" ? active.color : "#7ca8c6"} strokeWidth={activeComponent === "bag" ? 8 : 4}/>
+            <path d="M250 142 h76 v90 h-76z" fill="#bfe4ff" opacity=".8"/><text x="288" y="190" textAnchor="middle" fill="#2563eb" fontWeight="900" fontSize="20">IV FLUID</text>
+          </g>
+          <path d="M288 267 V320" stroke="#70bce8" strokeWidth="10" strokeLinecap="round"/>
+          <g className={`m4-pump-hotspot ${activeComponent === "drip" ? "active" : ""}`} onClick={() => select("drip")}>
+            <rect x="263" y="305" width="50" height="72" rx="20" fill="#eaf8ff" stroke={activeComponent === "drip" ? active.color : "#6598b5"} strokeWidth={activeComponent === "drip" ? 8 : 4}/><path d="M272 344 q16 18 32 0 v24 h-32z" fill="#7dd3fc"/>
+          </g>
+          <path d="M288 377 V422" stroke="#70bce8" strokeWidth="10"/>
+          <g className={`m4-pump-hotspot ${activeComponent === "clamp" ? "active" : ""}`} onClick={() => select("clamp")}><rect x="258" y="397" width="60" height="42" rx="10" fill="#64748b" stroke={activeComponent === "clamp" ? active.color : "#334155"} strokeWidth={activeComponent === "clamp" ? 8 : 4}/><path d="M269 408 l38 20" stroke="#fff" strokeWidth="6"/></g>
+          <path d="M288 439 C288 465 338 470 370 470" fill="none" stroke="#70bce8" strokeWidth="10"/>
+          <rect x="350" y="155" width="300" height="390" rx="36" fill="url(#m4-pump-shell)" stroke="#aebbc5" strokeWidth="5"/>
+          <rect x="398" y="195" width="205" height="105" rx="14" fill="url(#m4-pump-screen)" stroke="#263c4a" strokeWidth="6"/>
+          <text x="420" y="225" fill="#7dd3fc" fontSize="14" fontWeight="800">RATE</text><text x="420" y="273" fill="#fff" fontSize="42" fontWeight="900">125</text><text x="534" y="273" fill="#cbd5e1" fontSize="17">mL/hr</text>
+          <g className={`m4-pump-hotspot ${activeComponent === "battery" ? "active" : ""}`} onClick={() => select("battery")}><rect x="565" y="208" width="25" height="14" rx="3" fill="#16a34a"/><rect x="589" y="212" width="4" height="6" fill="#16a34a"/></g>
+          <rect x="385" y="325" width="230" height="178" rx="20" fill="#f8fafc" stroke="#aab8c2" strokeWidth="4"/>
+          <g className={`m4-pump-hotspot ${activeComponent === "air" ? "active" : ""}`} onClick={() => select("air")}><rect x="405" y="350" width="42" height="112" rx="12" fill="#ede9fe" stroke={activeComponent === "air" ? active.color : "#7c3aed"} strokeWidth={activeComponent === "air" ? 8 : 4}/><circle cx="426" cy="382" r="9" fill="#7c3aed"/><circle cx="426" cy="414" r="6" fill="#a78bfa"/><text x="426" y="485" textAnchor="middle" fill="#6d28d9" fontSize="12" fontWeight="900">AIR</text></g>
+          <g className={`m4-pump-hotspot ${activeComponent === "mechanism" ? "active" : ""}`} onClick={() => select("mechanism")}><rect x="463" y="345" width="78" height="128" rx="14" fill="#fff7db" stroke={activeComponent === "mechanism" ? active.color : "#d69d16"} strokeWidth={activeComponent === "mechanism" ? 8 : 4}/>{[0,1,2,3].map(i=><rect key={i} x="477" y={358+i*27} width="50" height="15" rx="7" fill="#f59e0b"/>)}<text x="502" y="492" textAnchor="middle" fill="#9a6200" fontSize="11" fontWeight="900">PUMP</text></g>
+          <g className={`m4-pump-hotspot ${activeComponent === "pressure" ? "active" : ""}`} onClick={() => select("pressure")}><rect x="556" y="350" width="40" height="112" rx="12" fill="#fee2e2" stroke={activeComponent === "pressure" ? active.color : "#dc2626"} strokeWidth={activeComponent === "pressure" ? 8 : 4}/><path d="M566 410 h20" stroke="#dc2626" strokeWidth="8"/><text x="576" y="485" textAnchor="middle" fill="#b91c1c" fontSize="11" fontWeight="900">PRESS</text></g>
+          <path d="M370 470 H405 M447 406 H463 M541 406 H556 M596 470 C650 470 675 500 675 548" fill="none" stroke="#70bce8" strokeWidth="10" strokeLinecap="round"/>
+          <path d="M675 548 q-20 22-4 46" fill="none" stroke="#70bce8" strokeWidth="10" strokeLinecap="round"/>
+          <circle cx="671" cy="604" r="12" fill="#f4b6a6" stroke="#9f5b4d" strokeWidth="3"/>
+          {[390,430,470,510,550].map((x,i)=><circle key={x} cx={x} cy="525" r="11" fill={i===4?"#f59e0b":"#cbd5e1"} stroke="#64748b"/>)}
+          <g className="m4-fluid-animation" aria-hidden="true">
+            {[0,1,2,3,4].map((i)=><circle key={i} className="m4-fluid-drop" cx="288" cy="285" r="6" style={{"--drop-delay":`${i*.45}s`}} />)}
+          </g>
+          {simulation === "air" && <g className="m4-air-simulation" aria-hidden="true"><circle cx="288" cy="390" r="9"/><circle cx="288" cy="414" r="6"/><text x="326" y="404">AIR DETECTED</text></g>}
+          {simulation === "occlusion" && <g className="m4-occlusion-simulation" aria-hidden="true"><path d="M596 470 C650 470 675 500 675 548"/><circle cx="624" cy="482" r="8"/><circle cx="646" cy="497" r="10"/><text x="610" y="450">PRESSURE RISING</text></g>}
+        </g>
+      </svg>
+      {!compact && <div className="m4-pump-active-caption" style={{ borderColor: active.color }}><strong style={{ color: active.color }}>{active.label}</strong><span>{active.purpose}</span></div>}
+    </div>
+  );
+}
+
+function MissionFourInfusionPumpLesson({ lesson, selected, setSelected, completeLesson, lessonCount }) {
+  const [activeComponent, setActiveComponent] = useState("air");
+  const [componentAnswers, setComponentAnswers] = useState({});
+  const [identifyAnswer, setIdentifyAnswer] = useState(null);
+  const [simulation, setSimulation] = useState("normal");
+  const [diagnosis, setDiagnosis] = useState(null);
+  const answered = selected !== null;
+  const active = INFUSION_PUMP_COMPONENTS.find((item) => item.id === activeComponent) || INFUSION_PUMP_COMPONENTS[0];
+  const challenge = INFUSION_PUMP_CHALLENGES[activeComponent];
+  const challengeAnswer = componentAnswers[activeComponent];
+  const challengeCorrect = challengeAnswer === challenge.answer;
+  const masteredCount = INFUSION_PUMP_COMPONENTS.filter((item) => componentAnswers[item.id] === INFUSION_PUMP_CHALLENGES[item.id].answer).length;
+  const explorerComplete = masteredCount === INFUSION_PUMP_COMPONENTS.length;
+  const recognitionComplete = identifyAnswer === "pressure";
+  const answerComponent = (index) => {
+    if (challengeCorrect) return;
+    setComponentAnswers((previous) => ({ ...previous, [activeComponent]: index }));
+    playCbetTone(index === challenge.answer ? "correct" : "wrong");
+  };
+  return (
+    <div className="m4-premium-lesson m4-infusion-lesson">
+      <section className="m4-premium-hero m4-infusion-hero">
+        <div className="m4-premium-monitor-column"><InfusionPumpGraphic activeComponent={activeComponent} onSelect={setActiveComponent} simulation={simulation}/></div>
+        <div className="m4-premium-copy-column">
+          <span className="m4-premium-kicker">Lesson 2 of {lessonCount}</span>
+          <h1>Infusion Delivery Systems</h1>
+          <p className="m4-premium-lead">Follow fluid from the source to the patient while learning how loading, sensors, pressure, tubing, and power affect delivery.</p>
+          <div className="m4-pump-component-summary">{INFUSION_PUMP_COMPONENTS.map((item)=><button key={item.id} className={`${activeComponent===item.id?"active":""} ${componentAnswers[item.id]===INFUSION_PUMP_CHALLENGES[item.id].answer?"mastered":""}`} style={{"--component-color":item.color}} onClick={()=>setActiveComponent(item.id)}><span>{item.label}</span>{componentAnswers[item.id]===INFUSION_PUMP_CHALLENGES[item.id].answer&&<em>✓ Mastered</em>}</button>)}</div>
+          <aside className="m4-lesson-objectives"><strong>In this lesson</strong><ul><li>Fluid pathway</li><li>Tubing and loading</li><li>Air detection</li><li>Occlusion sensing</li><li>Battery and power</li></ul><span>◷ Estimated time: 18 min</span></aside>
+        </div>
+      </section>
+      <section className="m4-explorer-progress"><div><span>Equipment Explorer</span><strong>{masteredCount} of {INFUSION_PUMP_COMPONENTS.length} components mastered</strong></div><div className="m4-explorer-progress-track"><i style={{width:`${masteredCount/INFUSION_PUMP_COMPONENTS.length*100}%`}}/></div><div className="m4-pump-explorer-dots">{INFUSION_PUMP_COMPONENTS.map(item=><button key={item.id} style={{"--component-color":item.color}} className={`${activeComponent===item.id?"active":""} ${componentAnswers[item.id]===INFUSION_PUMP_CHALLENGES[item.id].answer?"complete":""}`} onClick={()=>setActiveComponent(item.id)}>{componentAnswers[item.id]===INFUSION_PUMP_CHALLENGES[item.id].answer?"✓ ":""}{item.label}</button>)}</div></section>
+      <section className="m4-pump-simulator-panel">
+        <div><span className="m4-exploration-kicker">Live Fluid Simulation</span><h2>See the alarm evidence</h2><p>Switch conditions, watch the pathway change, then identify where you would investigate first.</p></div>
+        <div className="m4-pump-simulation-controls">
+          {[{id:"normal",label:"Normal flow"},{id:"air",label:"Air in line"},{id:"occlusion",label:"Downstream occlusion"}].map((item)=><button key={item.id} className={simulation===item.id?"active":""} onClick={()=>{setSimulation(item.id);setDiagnosis(null)}}>{item.label}</button>)}
+        </div>
+        {simulation!=="normal"&&<div className="m4-pump-diagnosis"><strong>Click the most likely first investigation point:</strong><div>{INFUSION_PUMP_COMPONENTS.map((item)=><button key={item.id} className={diagnosis===item.id?((simulation==="air"&&item.id==="air")||(simulation==="occlusion"&&item.id==="pressure")?"correct":"wrong"):""} onClick={()=>{setDiagnosis(item.id);playCbetTone((simulation==="air"&&item.id==="air")||(simulation==="occlusion"&&item.id==="pressure")?"correct":"wrong")}}>{item.label}</button>)}</div>{diagnosis&&<p>{(simulation==="air"&&diagnosis==="air")||(simulation==="occlusion"&&diagnosis==="pressure")?"Correct. Use the alarm evidence to focus your first check.":"Not the strongest first target. Follow the alarm evidence and fluid pathway."}</p>}</div>}
+      </section>
+      <section className="m4-premium-lower-grid">
+        <article className="m4-service-call-card"><span className="m4-service-call-kicker">🚨 Service Call Scenario</span><p>A pump alarms during medication delivery. The device powers normally, but the alarm returns after the nurse restarts it.</p><h2>{lesson.check.question}</h2><div className="m4-service-options">{lesson.check.options.map((option,index)=><button key={option} disabled={answered} className={`${answered&&index===lesson.check.answer?"correct":""} ${answered&&index===selected&&index!==lesson.check.answer?"wrong":""}`} onClick={()=>setSelected(index)}><strong>{String.fromCharCode(65+index)}</strong><span>{option}</span></button>)}</div>{answered&&<div className="m4-service-feedback"><strong>{selected===lesson.check.answer?"Service call cleared.":"Recheck the fluid path."}</strong><span>{lesson.check.explanation}</span></div>}<div className="m4-field-tip">💡 <strong>Kevin's Clinical Engineering Insight:</strong> Read the alarm, verify the setup, and follow the tubing from bag to patient before replacing the pump.</div></article>
+        <article className="m4-exploration-card"><span className="m4-exploration-kicker">Interactive Exploration</span><h2>{active.label}</h2><p>{active.purpose}</p><div className="m4-exploration-layout"><InfusionPumpGraphic compact activeComponent={activeComponent} onSelect={setActiveComponent} simulation={simulation}/><div className="m4-parameter-detail" style={{"--parameter-color":active.color}}><span>Common evidence</span><h3>{active.issues}</h3><p>{active.insight}</p></div></div><div className="m4-explorer-mini-challenge" style={{"--parameter-color":active.color}}><div className="m4-explorer-mini-heading"><span>Technician Challenge</span><strong>{active.label}</strong></div><h3>{challenge.question}</h3><div className="m4-explorer-mini-options">{challenge.options.map((option,index)=><button key={option} disabled={challengeCorrect} className={`${challengeAnswer!==undefined&&index===challenge.answer?"correct":""} ${challengeAnswer===index&&index!==challenge.answer?"wrong":""}`} onClick={()=>answerComponent(index)}><strong>{String.fromCharCode(65+index)}</strong><span>{option}</span></button>)}</div>{challengeAnswer!==undefined&&<div className={`m4-explorer-mini-feedback ${challengeCorrect?"good":"bad"}`}><strong>{challengeCorrect?`${active.label} mastered.`:"Try another troubleshooting path."}</strong><span>{challengeCorrect?challenge.explanation:"Use the fluid path and alarm evidence to choose the most direct check."}</span></div>}</div></article>
+      </section>
+      <section className="m4-identify-challenge m4-pump-recognition"><div><span className="m4-exploration-kicker">Quick Recognition</span><h2>Which component detects increasing downstream resistance?</h2><p>Select the component that supports an occlusion alarm.</p></div><div className="m4-pump-identify-options">{INFUSION_PUMP_COMPONENTS.map(item=>{const chosen=identifyAnswer===item.id;return <button key={item.id} disabled={recognitionComplete} style={{"--component-color":item.color}} className={`${chosen?"chosen":""} ${chosen&&item.id==="pressure"?"correct":""} ${chosen&&item.id!=="pressure"?"wrong":""}`} onClick={()=>{setIdentifyAnswer(item.id);playCbetTone(item.id==="pressure"?"correct":"wrong")}}><i/><strong>{item.label}</strong></button>})}</div>{identifyAnswer&&<div className={`m4-identify-feedback ${recognitionComplete?"good":"bad"}`}><strong>{recognitionComplete?"Correct — the pressure sensor supports downstream occlusion detection.":"Not this component. Try again."}</strong><span>{recognitionComplete?"A rising downstream pressure signal helps the pump identify resistance beyond the pumping mechanism.":"Think about which component detects resistance rather than air, power, or source flow."}</span></div>}</section>
+      {explorerComplete&&<section className="m4-explorer-complete"><span>🏆</span><div><small>Equipment Explorer Complete</small><h2>Infusion Delivery Path Mastered</h2><p>You traced the system from fluid source to patient and used alarm evidence to isolate common problems.</p></div></section>}
+      <div className="m4-premium-actions"><span>{answered&&recognitionComplete&&explorerComplete?"Lesson activities complete":!answered?"Complete the service call to continue":!explorerComplete?`Master all seven components (${masteredCount}/7 complete)`:"Complete the pressure-sensor recognition challenge"}</span><button className="cbet-primary" disabled={!answered||!recognitionComplete||!explorerComplete} onClick={completeLesson}>Next: Defibrillation and Pacing →</button></div>
+    </div>
+  );
+}
+
+
+function MissionFourNavigator({
+  lessonIndex,
+  lessons,
+  completedLessons,
+  missionComplete,
+  onOpenLesson,
+}) {
+  const [open, setOpen] = useState(true);
+  const furthestUnlocked = missionComplete
+    ? lessons.length - 1
+    : Math.min(
+        lessons.length - 1,
+        Math.max(lessonIndex, completedLessons.length ? Math.max(...completedLessons) + 1 : 0)
+      );
+  const mastered = completedLessons.length;
+  const percent = Math.round((mastered / lessons.length) * 100);
+
+  return (
+    <aside className={`m4-explorer-navigator ${open ? "is-open" : ""}`} aria-label="Mission 4 explorer map">
+      <button
+        type="button"
+        className="m4-explorer-navigator-toggle"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+      >
+        <span><strong>Equipment Explorer Map</strong><small>{mastered} of {lessons.length} explorers complete</small></span>
+        <b>{open ? "Hide map" : "Open map"}</b>
+      </button>
+      {open && (
+        <div className="m4-explorer-navigator-body">
+          <div className="m4-explorer-navigator-progress" aria-label={`${percent}% of equipment explorers complete`}>
+            <span style={{ width: `${percent}%` }} />
+          </div>
+          <div className="m4-explorer-navigator-grid">
+            {lessons.map((lesson, index) => {
+              const complete = completedLessons.includes(index);
+              const current = index === lessonIndex;
+              const unlocked = missionComplete || index <= furthestUnlocked || complete;
+              return (
+                <button
+                  type="button"
+                  key={lesson.title}
+                  disabled={!unlocked}
+                  className={`${complete ? "complete" : ""} ${current ? "current" : ""}`}
+                  onClick={() => unlocked && onOpenLesson(index)}
+                >
+                  <span aria-hidden="true">{complete ? "✓" : current ? "▶" : unlocked ? index + 1 : "🔒"}</span>
+                  <span><strong>{lesson.title}</strong><small>{complete ? "Review Explorer" : current ? "Current Explorer" : unlocked ? "Open Explorer" : "Complete prior explorer"}</small></span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </aside>
+  );
+}
+
+function MissionFour({ onExit }) {
+  const moduleNumber = 4;
+  const savedProgress = getMissionProgress(moduleNumber);
+  const completedModule = getCbetModuleState(moduleNumber);
+  const questions = useMemo(() => missionFourQuestions.map(shuffleQuestion), []);
+  const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
+  const [lessonIndex, setLessonIndexState] = useState(savedProgress.lessonIndex || 0);
+  const [completedLessons, setCompletedLessons] = useState(savedProgress.completedLessons || []);
+  const [scenarioIndex, setScenarioIndexState] = useState(savedProgress.scenarioIndex || 0);
+  const [completedScenarios, setCompletedScenarios] = useState(savedProgress.completedScenarios || []);
+  const hasSavedQuizScore = Number.isFinite(savedProgress.quizScore);
+  const restoredQuizIndex = savedProgress.phase === "quiz" && !hasSavedQuizScore ? 0 : (savedProgress.quizIndex || 0);
+  const [questionIndex, setQuestionIndexState] = useState(restoredQuizIndex);
+  const [selected, setSelected] = useState(null);
+  const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
+  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const stageRef = useRef(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const target = stageRef.current;
+      if (!target) return;
+      window.scrollTo({ top: Math.max(0, target.getBoundingClientRect().top + window.scrollY - 12), left: 0, behavior: "auto" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+
+  const setPhase = (next) => { setPhaseState(next); saveMissionProgress(moduleNumber, { phase: next }); scrollCbetPageToTop(); };
+  const completeLesson = () => {
+    const done = Array.from(new Set([...completedLessons, lessonIndex]));
+    setCompletedLessons(done);
+    awardCbetXp(12, `mission4-lesson-${lessonIndex}`);
+    setSelected(null);
+    if (lessonIndex < missionFourLessons.length - 1) {
+      const next = lessonIndex + 1; setLessonIndexState(next);
+      saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: next, completedLessons: done });
+    } else { saveMissionProgress(moduleNumber, { phase: "scenarios", completedLessons: done, scenarioIndex: 0 }); setPhaseState("scenarios"); }
+  };
+  const completeScenario = () => {
+    const done = Array.from(new Set([...completedScenarios, scenarioIndex]));
+    setCompletedScenarios(done); awardCbetXp(18, `mission4-scenario-${scenarioIndex}`); setSelected(null);
+    if (scenarioIndex < missionFourScenarios.length - 1) {
+      const next = scenarioIndex + 1; setScenarioIndexState(next);
+      saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex: next, completedScenarios: done });
+    } else { setQuestionIndexState(0); setScore(0); saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, quizScore: 0, completedScenarios: done }); setPhaseState("quiz"); }
+  };
+  const answerQuiz = (index) => {
+    if (selected !== null) return;
+    setSelected(index);
+    const nextScore = index === questions[questionIndex].answer ? score + 1 : score;
+    setScore(nextScore); saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: questionIndex, quizScore: nextScore });
+  };
+  const nextQuizQuestion = () => {
+    if (questionIndex < questions.length - 1) {
+      const next = questionIndex + 1; setQuestionIndexState(next); setSelected(null);
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next, quizScore: score }); return;
+    }
+    const finalScore = Math.round((score / questions.length) * 100);
+    completeCbetModule(moduleNumber, finalScore, 450); setResult(finalScore); setPhaseState("complete");
+  };
+  const restartQuiz = () => { setQuestionIndexState(0); setSelected(null); setScore(0); setResult(null); saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, quizScore: 0 }); setPhaseState("quiz"); };
+  const reviewLesson = (index = 0) => {
+    setLessonIndexState(index);
+    setSelected(null);
+    setPhaseState("lessons");
+    saveMissionProgress(moduleNumber, {
+      phase: "lessons",
+      lessonIndex: index,
+      completedLessons,
+      completedScenarios,
+    });
+    scrollCbetPageToTop();
+  };
+  const openExplorer = (index) => {
+    const furthestUnlocked = completedModule.complete
+      ? missionFourLessons.length - 1
+      : Math.min(
+          missionFourLessons.length - 1,
+          Math.max(lessonIndex, completedLessons.length ? Math.max(...completedLessons) + 1 : 0)
+        );
+    if (!completedModule.complete && index > furthestUnlocked && !completedLessons.includes(index)) return;
+    reviewLesson(index);
+  };
+
+  if (phase === "briefing") return (
+    <section className="cbet-shell cbet-mission-briefing cbet-mission4-briefing">
+      <button className="cbet-back" onClick={onExit}>← Back to Academy</button>
+      <span className="cbet-label">Mission 4 · 450 XP</span><h1>{missionFourBriefing.title}</h1><p>{missionFourBriefing.summary}</p>
+      <div className="cbet-objectives"><h2>What you will learn</h2><ul>{missionFourBriefing.objectives.map((item) => <li key={item}>{item}</li>)}</ul></div>
+      <div className="cbet-actions"><button className="cbet-primary" onClick={() => setPhase("lessons")}>{savedProgress.phase !== "briefing" ? "Resume Mission" : "Begin Mission"}</button></div>
+    </section>
+  );
+  if (phase === "lessons") {
+    const lesson = missionFourLessons[lessonIndex], answered = selected !== null;
+    return <section ref={stageRef} className="cbet-shell cbet-lesson-stage cbet-module4-stage">
+      <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
+      <div className="cbet-quiz-meta cbet-module4-meta"><span>Medical Equipment Systems</span><span>Lesson {lessonIndex + 1} of {missionFourLessons.length}</span></div>
+      <div className="cbet-progress-bar cbet-module4-progress"><span style={{ width: `${((lessonIndex + 1) / missionFourLessons.length) * 100}%` }} /></div>
+      <MissionFourNavigator
+        lessonIndex={lessonIndex}
+        lessons={missionFourLessons}
+        completedLessons={completedLessons}
+        missionComplete={completedModule.complete}
+        onOpenLesson={openExplorer}
+      />
+      {lessonIndex === 0 ? (
+        <MissionFourPatientMonitoringLesson lesson={lesson} selected={selected} setSelected={setSelected} completeLesson={completeLesson} lessonCount={missionFourLessons.length} />
+      ) : lessonIndex === 1 ? (
+        <MissionFourInfusionPumpLesson lesson={lesson} selected={selected} setSelected={setSelected} completeLesson={completeLesson} lessonCount={missionFourLessons.length} />
+      ) : (<>
+        <article className="cbet-lesson-card"><div className="cbet-hero-icon">{lesson.icon}</div><h2 className="cbet-lesson-title">{lesson.title}</h2><p className="cbet-lesson-summary">{lesson.summary}</p><ul>{lesson.points.map((p) => <li key={p}>{p}</li>)}</ul></article>
+        <MissionFourImage lessonIndex={lessonIndex} />
+        <article className="cbet-quiz"><span className="cbet-label">Apply what you learned</span><h2>{lesson.check.question}</h2><div className="cbet-options">{lesson.check.options.map((o,i)=><button key={o} disabled={answered} className={`cbet-option ${answered&&i===lesson.check.answer?"correct":""} ${answered&&i===selected&&i!==lesson.check.answer?"wrong":""}`} onClick={()=>setSelected(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className="cbet-feedback"><strong>{selected===lesson.check.answer?"Correct — strong reasoning.":"Review the evidence."}</strong><span>{lesson.check.explanation}</span></div>}<div className="cbet-actions"><button className="cbet-primary" disabled={!answered} onClick={completeLesson}>{lessonIndex===missionFourLessons.length-1?"Begin Service Calls":"Next Lesson"}</button></div></article>
+      </>)}
+      <nav className="m4-explorer-bottom-nav" aria-label="Explorer navigation">
+        <button
+          type="button"
+          className="cbet-secondary"
+          disabled={lessonIndex === 0}
+          onClick={() => openExplorer(lessonIndex - 1)}
+        >
+          ← Previous Explorer
+        </button>
+        <button type="button" className="m4-explorer-map-link" onClick={() => document.querySelector(".m4-explorer-navigator")?.scrollIntoView({ behavior: "smooth", block: "start" })}>
+          Equipment Explorer Map
+        </button>
+        <button
+          type="button"
+          className="cbet-secondary"
+          disabled={lessonIndex >= missionFourLessons.length - 1 || (!completedModule.complete && !completedLessons.includes(lessonIndex) && !completedLessons.includes(lessonIndex + 1))}
+          onClick={() => openExplorer(lessonIndex + 1)}
+        >
+          Next Unlocked Explorer →
+        </button>
+      </nav>
+    </section>;
+  }
+  if (phase === "scenarios") {
+    const scenario=missionFourScenarios[scenarioIndex], answered=selected!==null;
+    return <section ref={stageRef} className="cbet-shell cbet-lesson-stage cbet-module4-stage"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><div className="cbet-quiz-meta cbet-module4-meta"><span>Hospital Service Call</span><span>{scenarioIndex+1} of {missionFourScenarios.length}</span></div><div className="cbet-progress-bar cbet-module4-progress"><span style={{width:`${((scenarioIndex+1)/missionFourScenarios.length)*100}%`}}/></div><article className="cbet-scenario cbet-mission4-scenario"><span className="cbet-label">{scenario.department}</span><h2>{scenario.title}</h2><p>{scenario.patient}</p></article><article className="cbet-quiz"><h2>{scenario.question}</h2><div className="cbet-options">{scenario.options.map((o,i)=><button key={o} disabled={answered} className={`cbet-option ${answered&&i===scenario.answer?"correct":""} ${answered&&i===selected&&i!==scenario.answer?"wrong":""}`} onClick={()=>setSelected(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className="cbet-feedback"><strong>{selected===scenario.answer?"Correct decision.":"Use a more systematic path."}</strong><span>{scenario.explanation}</span></div>}<div className="cbet-actions"><button className="cbet-primary" disabled={!answered} onClick={completeScenario}>{scenarioIndex===missionFourScenarios.length-1?"Start Final Challenge":"Next Service Call"}</button></div></article></section>;
+  }
+  if (phase === "quiz") {
+    const question=questions[questionIndex], answered=selected!==null;
+    return <section ref={stageRef} className="cbet-shell cbet-lesson-stage cbet-module4-stage"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><article className="cbet-quiz"><div className="cbet-quiz-meta cbet-module4-meta"><span>Final Challenge · {questionIndex+1} of {questions.length}</span><span>{question.category}</span></div><div className="cbet-progress-bar cbet-module4-progress"><span style={{width:`${((questionIndex+1)/questions.length)*100}%`}}/></div><h2>{question.question}</h2><div className="cbet-options">{question.options.map((o,i)=><button key={o} disabled={answered} className={`cbet-option ${answered&&i===question.answer?"correct":""} ${answered&&i===selected&&i!==question.answer?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className="cbet-feedback"><strong>{selected===question.answer?"Correct.":"Incorrect."}</strong><span>{question.explanation}</span></div>}<div className="cbet-actions"><span>Score: {score}/{questions.length}</span><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex===questions.length-1?"Finish Mission":"Next Question"}</button></div></article></section>;
+  }
+  const passed=(result||0)>=80;
+  return <section className="cbet-shell cbet-module10-results-shell"><article className={`cbet-results cbet-module10-results ${passed?"passed":""}`}><div className="cbet-hero-icon">{passed?"🏆":"📘"}</div><span className="cbet-label">{passed?"Mission 4 Complete":"Review Required"}</span><h1 className="cbet-module10-result-score">{result||0}%</h1><h2 className="cbet-module10-result-title">Medical Equipment Systems</h2><p>{passed?"You completed the equipment lessons, hospital service calls, and final challenge.":"You need 80% to pass. Review the lessons and retake the final challenge."}</p><div className="cbet-completion-summary cbet-module10-summary"><div><span>Lessons</span><strong>{completedLessons.length}/{missionFourLessons.length}</strong></div><div><span>Service Calls</span><strong>{completedScenarios.length}/{missionFourScenarios.length}</strong></div><div><span>Status</span><strong>{passed?"Complete":"Review"}</strong></div></div>{passed&&<section className="cbet-achievement-card"><span className="cbet-achievement-eyebrow">Achievement Earned</span><div className="cbet-achievement-mark">🏅</div><h2>Medical Equipment Systems</h2><p>This recognizes successful completion of Mission 4 in the MedSkillBuilder CBET Academy.</p><div className="cbet-achievement-details"><div><span>Mission</span><strong>4</strong></div><div><span>Score</span><strong>{result}%</strong></div><div><span>XP</span><strong>450</strong></div></div><button className="cbet-primary cbet-print-achievement" onClick={()=>window.print()}>Print My Achievement</button></section>}<div className="cbet-actions center cbet-module10-result-actions">{!passed&&<button className="cbet-primary" onClick={restartQuiz}>Retake Final Challenge</button>}{passed&&<button className="cbet-primary" onClick={()=>reviewLesson(0)}>Review Equipment Explorers</button>}<button className="cbet-secondary" onClick={onExit}>Return to Academy</button></div></article></section>;
+}
+
+const MISSION_TEN_LESSON_ENHANCEMENTS = {
+  1: {
+    spotlights: [
+      {
+        image: "/images/oxygen-cylinder.jpg",
+        title: "Oxygen Cylinder",
+        purpose: "Provides a portable oxygen source for transport and emergency care.",
+        insight: "Verify the cylinder label, available pressure, valve condition, and connected equipment before transport. Do not rely on color alone to identify the gas.",
+      },
+      {
+        image: "/images/medical-air-cylinder.jpg",
+        title: "Medical Air Cylinder",
+        purpose: "Provides a portable source of compressed medical air for compatible equipment.",
+        insight: "The label and gas-specific connection are the primary identifiers. Similar-looking cylinders must never be identified by color alone.",
+      },
+      {
+        image: "/images/nitrous-oxide-cylinder.jpg",
+        title: "Nitrous Oxide Cylinder",
+        purpose: "Supplies nitrous oxide for approved anesthesia and analgesia applications.",
+        insight: "Confirm the gas label and indexed connection before use. A cylinder that appears familiar can still be the wrong gas or connection standard.",
+      },
+    ],
+    callout: {
+      type: "did-you-know",
+      title: "Did You Know?",
+      text: "Medical-gas cylinder colors can vary by country and supplier. The cylinder label and gas-specific connection—not color alone—should drive identification.",
+    },
+  },
+  3: {
+    spotlights: [
+      {
+        image: "/images/oxygen-regulator.jpg",
+        title: "Oxygen Regulator",
+        purpose: "Reduces cylinder pressure to a usable downstream pressure for connected equipment.",
+        insight: "When a clinician reports no flow, verify the cylinder contains gas, the valve is open, and the regulator is securely connected before assuming the regulator has failed.",
+      },
+      {
+        image: "/images/oxygen-flowmeter.jpg",
+        title: "Oxygen Flowmeter",
+        purpose: "Allows the clinician to set and visually verify oxygen flow in liters per minute.",
+        insight: "A no-flow complaint may originate upstream. Confirm the outlet or cylinder source before removing the flowmeter from service.",
+      },
+    ],
+    callout: {
+      type: "clinical-tip",
+      title: "Clinical Engineering Tip",
+      text: "Start at the source and follow the gas path. Confirm supply, connection, and valve position before replacing point-of-use equipment.",
+    },
+  },
+  4: {
+    spotlights: [
+      {
+        image: "/images/oxygen-pb-quick-connect.jpg",
+        title: "Oxygen Quick-Connect",
+        purpose: "Connects compatible oxygen equipment to a matching point-of-use outlet.",
+        insight: "Gas-specific quick-connects are intentionally noninterchangeable. Never force a connector that does not seat correctly.",
+      },
+      {
+        image: "/images/medical-air-pb-quick-connect.jpg",
+        title: "Medical Air Quick-Connect",
+        purpose: "Connects compatible equipment to the medical-air service.",
+        insight: "The visible label can help, but the safety comes from the connector geometry and indexing that prevent cross-connection.",
+      },
+      {
+        image: "/images/oxygen-diss-to-pb-quick-connect.jpg",
+        title: "DISS-to-Quick-Connect Adapter",
+        purpose: "Adapts between two compatible oxygen connection standards when the clinical setup requires it.",
+        insight: "An adapter solves a connection-standard mismatch; it must never be used to defeat gas-specific indexing or connect unlike services.",
+      },
+    ],
+    callout: {
+      type: "did-you-know",
+      title: "Did You Know?",
+      text: "DISS and quick-connect systems reduce misconnections by making gas services physically different—not merely by using different labels or colors.",
+    },
+  },
+  5: {
+    spotlights: [
+      {
+        image: "/images/vacuum-diss-fitting.jpg",
+        title: "Vacuum DISS Fitting",
+        purpose: "Provides a threaded, service-specific connection for a medical-vacuum setup.",
+        insight: "Vacuum is a negative-pressure service. When suction is unavailable, verify the outlet, regulator setting, tubing, canister, and occlusions before escalating the issue.",
+      },
+      {
+        image: "/images/wagd-diss-to-hose-barb.jpg",
+        title: "WAGD Connection",
+        purpose: "Connects waste-anesthetic-gas disposal tubing to the appropriate scavenging service.",
+        insight: "WAGD removes waste anesthetic gases; it is not interchangeable with routine patient suction. Confirm the intended service before connecting equipment.",
+      },
+    ],
+    callout: {
+      type: "clinical-tip",
+      title: "Clinical Engineering Tip",
+      text: "For a suction complaint, check the complete point-of-use chain before replacing the regulator: outlet, regulator mode, canister, tubing, and obstruction status.",
+    },
+  },
+};
+
+function EquipmentSpotlight({ item }) {
+  const [imageAvailable, setImageAvailable] = useState(true);
+  return (
+    <article className="cbet-equipment-spotlight">
+      <div className="cbet-equipment-photo-wrap">
+        {imageAvailable ? (
+          <img
+            src={item.image}
+            alt={item.title}
+            loading="lazy"
+            onError={() => setImageAvailable(false)}
+          />
+        ) : (
+          <div className="cbet-equipment-photo-fallback" role="img" aria-label={`${item.title} image unavailable`}>
+            <span aria-hidden="true">📷</span>
+            <strong>{item.title}</strong>
+            <small>Add {item.image.replace("/images/", "")} to public/images</small>
+          </div>
+        )}
+      </div>
+      <div className="cbet-equipment-copy">
+        <span className="cbet-equipment-eyebrow">Equipment Spotlight</span>
+        <h3>{item.title}</h3>
+        <div className="cbet-equipment-detail">
+          <strong>Purpose</strong>
+          <p>{item.purpose}</p>
+        </div>
+        <div className="cbet-equipment-detail cbet-equipment-insight">
+          <strong>Clinical Engineering Insight</strong>
+          <p>{item.insight}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function MissionTenCallout({ callout }) {
+  if (!callout) return null;
+  const isTip = callout.type === "clinical-tip";
+  return (
+    <aside className={`cbet-mission10-callout ${isTip ? "clinical-tip" : "did-you-know"}`}>
+      <span className="cbet-mission10-callout-icon" aria-hidden="true">{isTip ? "🔧" : "💡"}</span>
+      <div>
+        <strong>{callout.title}</strong>
+        <p>{callout.text}</p>
+      </div>
+    </aside>
+  );
+}
+
+function MissionTenLessonEnhancement({ lessonIndex }) {
+  const enhancement = MISSION_TEN_LESSON_ENHANCEMENTS[lessonIndex];
+  if (!enhancement) return null;
+  return (
+    <section className="cbet-mission10-enhancements" aria-label="Real equipment learning">
+      <div className="cbet-equipment-spotlight-grid">
+        {enhancement.spotlights.map((item) => (
+          <EquipmentSpotlight key={item.image} item={item} />
+        ))}
+      </div>
+      <MissionTenCallout callout={enhancement.callout} />
+    </section>
+  );
+}
+
+function MissionTenQuestionImage({ question }) {
+  const normalized = `${question?.question || ""} ${question?.category || ""}`.toLowerCase();
+  const image = normalized.includes("flowmeter")
+    ? { src: "/images/oxygen-flowmeter.jpg", alt: "Oxygen flowmeter used as context for this question" }
+    : normalized.includes("quick-connect") || normalized.includes("quick connect")
+    ? { src: "/images/oxygen-diss-to-pb-quick-connect.jpg", alt: "Medical-gas connection adapter used as context for this question" }
+    : normalized.includes("wagd") || normalized.includes("waste anesthetic")
+    ? { src: "/images/wagd-diss-to-hose-barb.jpg", alt: "WAGD fitting used as context for this question" }
+    : normalized.includes("vacuum") || normalized.includes("suction")
+    ? { src: "/images/vacuum-diss-fitting.jpg", alt: "Vacuum fitting used as context for this question" }
+    : normalized.includes("cylinder")
+    ? { src: "/images/oxygen-cylinder.jpg", alt: "Medical oxygen cylinder used as context for this question" }
+    : null;
+
+  const [imageAvailable, setImageAvailable] = useState(true);
+  if (!image || !imageAvailable) return null;
+  return (
+    <figure className="cbet-question-context-image">
+      <img src={image.src} alt={image.alt} loading="lazy" onError={() => setImageAvailable(false)} />
+      <figcaption>Use the equipment photo as context. The answer depends on safe application—not simply reading a label.</figcaption>
+    </figure>
+  );
+}
+
+function MissionTen({ onExit }) {
+  const moduleNumber = 10;
+  const savedProgress = getMissionProgress(moduleNumber);
+  const completedModule = getCbetModuleState(moduleNumber);
+  const questions = useMemo(() => missionTenQuestions.map(shuffleQuestion), []);
+  const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
+  const [lessonIndex, setLessonIndexState] = useState(savedProgress.lessonIndex || 0);
+  const [completedLessons, setCompletedLessons] = useState(savedProgress.completedLessons || []);
+  const [scenarioIndex, setScenarioIndexState] = useState(savedProgress.scenarioIndex || 0);
+  const [completedScenarios, setCompletedScenarios] = useState(savedProgress.completedScenarios || []);
+  const hasSavedQuizScore = Number.isFinite(savedProgress.quizScore);
+  const restoredQuizIndex = savedProgress.phase === "quiz" && !hasSavedQuizScore
+    ? 0
+    : (savedProgress.quizIndex || 0);
+  const [questionIndex, setQuestionIndexState] = useState(restoredQuizIndex);
+  const [selected, setSelected] = useState(null);
+  const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
+  const [finished, setFinished] = useState(savedProgress.phase === "complete" && completedModule.complete);
+  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const missionTenStageRef = useRef(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const target = missionTenStageRef.current;
+      if (!target) return;
+      const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 12);
+      window.scrollTo({ top, left: 0, behavior: "auto" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+
+  function setPhase(next) {
+    setPhaseState(next);
+    saveMissionProgress(moduleNumber, { phase: next });
+    scrollCbetPageToTop();
+  }
+  function completeLesson() {
+    const nextCompleted = Array.from(new Set([...completedLessons, lessonIndex]));
+    setCompletedLessons(nextCompleted);
+    saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex, completedLessons: nextCompleted });
+    awardCbetXp(10, `mission10-lesson-${lessonIndex}`);
+    if (lessonIndex < missionTenLessons.length - 1) {
+      const nextIndex = lessonIndex + 1;
+      setLessonIndexState(nextIndex);
+      saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: nextIndex, completedLessons: nextCompleted });
+    } else setPhase("scenarios");
+  }
+  function completeScenario() {
+    const nextCompleted = Array.from(new Set([...completedScenarios, scenarioIndex]));
+    setCompletedScenarios(nextCompleted);
+    saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex, completedScenarios: nextCompleted });
+    awardCbetXp(15, `mission10-scenario-${scenarioIndex}`);
+    setSelected(null);
+    if (scenarioIndex < missionTenScenarios.length - 1) {
+      const nextIndex = scenarioIndex + 1;
+      setScenarioIndexState(nextIndex);
+      saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex: nextIndex, completedScenarios: nextCompleted });
+    } else {
+      setQuestionIndexState(0);
+      setScore(0);
+      setSelected(null);
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, quizScore: 0 });
+      setPhaseState("quiz");
+    }
+  }
+  function answerQuiz(index) {
+    if (selected !== null) return;
+    setSelected(index);
+    const nextScore = index === questions[questionIndex].answer ? score + 1 : score;
+    setScore(nextScore);
+    saveMissionProgress(moduleNumber, {
+      phase: "quiz",
+      quizIndex: questionIndex,
+      quizScore: nextScore,
+    });
+  }
+  function nextQuizQuestion() {
+    if (questionIndex < questions.length - 1) {
+      const nextIndex = questionIndex + 1;
+      setQuestionIndexState(nextIndex);
+      setSelected(null);
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: nextIndex, quizScore: score });
+      return;
+    }
+    const finalScore = Math.round((score / questions.length) * 100);
+    completeCbetModule(moduleNumber, finalScore, 350);
+    setResult(finalScore);
+    setFinished(true);
+    setPhaseState("complete");
+  }
+  function restartQuiz() {
+    setQuestionIndexState(0); setSelected(null); setScore(0); setFinished(false); setResult(null);
+    saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, quizScore: 0 });
+    setPhaseState("quiz");
+  }
+
+  if (phase === "briefing") return (
+    <section className="cbet-shell cbet-mission-briefing">
+      <button className="cbet-back" onClick={onExit}>← Back to Academy</button>
+      <span className="cbet-label">Mission 10 · 350 XP</span>
+      <h1>{missionTenBriefing.title}</h1>
+      <p>{missionTenBriefing.summary}</p>
+      <div className="cbet-objectives"><h2>What you will learn</h2><ul>{missionTenBriefing.objectives.map((item) => <li key={item}>{item}</li>)}</ul></div>
+      <div className="cbet-actions"><button className="cbet-primary" onClick={() => setPhase("lessons")}>{savedProgress.phase !== "briefing" ? "Resume Mission" : "Begin Mission"}</button></div>
+    </section>
+  );
+
+  if (phase === "lessons") {
+    const lesson = missionTenLessons[lessonIndex];
+    const answered = selected !== null;
+    return (
+      <section ref={missionTenStageRef} className="cbet-shell cbet-lesson-stage cbet-module10-stage">
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
+        <div className="cbet-quiz-meta cbet-module10-meta"><span>Medical Gas Delivery Equipment</span><span>Lesson {lessonIndex + 1} of {missionTenLessons.length}</span></div>
+        <div className="cbet-progress-bar cbet-module10-progress" aria-label={`Lesson ${lessonIndex + 1} of ${missionTenLessons.length}`}><span style={{ width: `${((lessonIndex + 1) / missionTenLessons.length) * 100}%` }} /></div>
+        <article className="cbet-lesson-card"><div className="cbet-hero-icon">{lesson.icon}</div><h2 className="cbet-lesson-title">{lesson.title}</h2><ul>{lesson.points.map((point) => <li key={point}>{point}</li>)}</ul></article>
+        <MissionTenLessonEnhancement lessonIndex={lessonIndex} />
+        <article className="cbet-quiz"><h2>{lesson.check.question}</h2><div className="cbet-options">{lesson.check.options.map((option, index) => <button key={option} disabled={answered} className={`cbet-option ${answered && index === lesson.check.answer ? "correct" : ""} ${answered && index === selected && index !== lesson.check.answer ? "wrong" : ""}`} onClick={() => setSelected(index)}><strong>{String.fromCharCode(65 + index)}.</strong> {option}</button>)}</div>{answered && <div className="cbet-feedback"><strong>{selected === lesson.check.answer ? "Correct." : "Review this point."}</strong><span>{lesson.check.explanation}</span></div>}<div className="cbet-actions cbet-module10-actions"><button className="cbet-primary" disabled={!answered} onClick={() => { setSelected(null); completeLesson(); }}>{lessonIndex === missionTenLessons.length - 1 ? "Begin Scenarios" : "Next Lesson"}</button></div></article>
+      </section>
+    );
+  }
+
+  if (phase === "scenarios") {
+    const scenario = missionTenScenarios[scenarioIndex];
+    const answered = selected !== null;
+    return (
+      <section ref={missionTenStageRef} className="cbet-shell cbet-lesson-stage cbet-module10-stage">
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
+        <div className="cbet-quiz-meta cbet-module10-meta"><span>Applied Field Scenario</span><span>{scenarioIndex + 1} of {missionTenScenarios.length}</span></div>
+        <div className="cbet-progress-bar cbet-module10-progress" aria-label={`Scenario ${scenarioIndex + 1} of ${missionTenScenarios.length}`}><span style={{ width: `${((scenarioIndex + 1) / missionTenScenarios.length) * 100}%` }} /></div>
+        <article className="cbet-lesson-card cbet-scenario-intro">
+          <div className="cbet-field-call-heading"><span className="cbet-field-call-icon" aria-hidden="true">🛠️</span><div><span className="cbet-field-call-eyebrow">Clinical Engineering field call</span><span className="cbet-label">{scenario.title}</span></div></div>
+          <h2 className="cbet-scenario-title">{scenario.patient}</h2>
+          <div className="cbet-field-call-meta"><span>Patient safety first</span><span>Point-of-use assessment</span><span>Choose the best action</span></div>
+        </article>
+        <article className="cbet-quiz"><h2>{scenario.question}</h2><div className="cbet-options">{scenario.options.map((option, index) => <button key={option} disabled={answered} className={`cbet-option ${answered && index === scenario.answer ? "correct" : ""} ${answered && index === selected && index !== scenario.answer ? "wrong" : ""}`} onClick={() => setSelected(index)}><strong>{String.fromCharCode(65 + index)}.</strong> {option}</button>)}</div>{answered && <div className="cbet-feedback"><strong>{selected === scenario.answer ? "Correct decision." : "Safer approach:"}</strong><span>{scenario.explanation}</span></div>}<div className="cbet-actions cbet-module10-actions"><button className="cbet-primary" disabled={!answered} onClick={completeScenario}>{scenarioIndex === missionTenScenarios.length - 1 ? "Start Final Challenge" : "Next Scenario"}</button></div></article>
+      </section>
+    );
+  }
+
+  if (phase === "quiz" && !finished) {
+    const question = questions[questionIndex];
+    const answered = selected !== null;
+    return (
+      <section ref={missionTenStageRef} className="cbet-shell cbet-lesson-stage cbet-module10-stage"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><article className="cbet-quiz"><div className="cbet-quiz-meta cbet-module10-meta"><span>Final Challenge · Question {questionIndex + 1} of {questions.length}</span><span>{question.category}</span></div><div className="cbet-progress-bar cbet-module10-progress" aria-label={`Question ${questionIndex + 1} of ${questions.length}`}><span style={{ width: `${((questionIndex + 1) / questions.length) * 100}%` }} /></div><MissionTenQuestionImage question={question} /><h2>{question.question}</h2><div className="cbet-options">{question.options.map((option, index) => <button key={option} disabled={answered} className={`cbet-option ${answered && index === question.answer ? "correct" : ""} ${answered && index === selected && index !== question.answer ? "wrong" : ""}`} onClick={() => answerQuiz(index)}><strong>{String.fromCharCode(65 + index)}.</strong> {option}</button>)}</div>{answered && <div className="cbet-feedback"><strong>{selected === question.answer ? "Correct." : "Incorrect."}</strong><span>{question.explanation}</span></div>}<div className="cbet-actions cbet-module10-actions"><span>Score: {score}/{questions.length}</span><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex === questions.length - 1 ? "Finish Mission" : "Next Question"}</button></div></article></section>
+    );
+  }
+
+  const passed = (result || 0) >= 80;
+  const completionDate = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date());
+
+  return (
+    <section className="cbet-shell cbet-module10-results-shell">
+      <article className={`cbet-results cbet-module10-results ${passed ? "passed" : ""}`}>
+        <div className="cbet-hero-icon">{passed ? "🏆" : "📘"}</div>
+        <span className="cbet-label">{passed ? "Mission 10 Passed" : "Review Required"}</span>
+        <h1 className="cbet-module10-result-score">{result || 0}%</h1>
+        <h2 className="cbet-module10-result-title">Medical Gas Delivery Equipment</h2>
+        <p>
+          {passed
+            ? "You successfully completed all lessons, field scenarios, and the final challenge. You earned 350 XP on your first passing attempt."
+            : "You need 80% to pass. Review the lessons and retake the challenge."}
+        </p>
+
+        <div className="cbet-completion-summary cbet-module10-summary">
+          <div><span>Lessons</span><strong>{completedLessons.length} of 10 Complete</strong></div>
+          <div><span>Field Scenarios</span><strong>{completedScenarios.length} of 4 Complete</strong></div>
+          <div><span>Final Challenge</span><strong>{result || 0}% {passed ? "Passed" : "Review"}</strong></div>
+        </div>
+
+        {passed && (
+          <section className="cbet-achievement-card" aria-label="Certificate of Achievement">
+            <span className="cbet-achievement-eyebrow">Certificate of Achievement</span>
+            <div className="cbet-achievement-mark" aria-hidden="true">🏅</div>
+            <h2>Medical Gas Delivery Equipment</h2>
+            <p>This recognizes the successful completion of Mission 10 in the MedSkillBuilder CBET Academy.</p>
+            <div className="cbet-achievement-details">
+              <div><span>Final Score</span><strong>{result || 0}%</strong></div>
+              <div><span>XP Earned</span><strong>350 XP</strong></div>
+              <div><span>Completed</span><strong>{completionDate}</strong></div>
+            </div>
+            <small>Educational achievement only — not a professional certification or credential.</small>
+          </section>
+        )}
+
+        <div className="cbet-actions center cbet-module10-result-actions">
+          {!passed && <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>}
+          {passed && <button className="cbet-primary cbet-print-achievement" onClick={() => window.print()}>🖨️ Print My Achievement</button>}
+          <button className="cbet-secondary" onClick={onExit}>Return to Academy</button>
+        </div>
+      </article>
+    </section>
+  );
+}
+
 export default function CBETAcademy() {
   const markServiceCallComplete = (serviceCallId) => {
     try {
@@ -4085,6 +5065,34 @@ export default function CBETAcademy() {
     );
   }
 
+  if (screen === "mission4") {
+    return (
+      <main className="cbet-academy">
+        {reviewMissionNumber === 4 && (
+          <div className="cbet-review-banner" role="status">
+            <strong>Review Mode</strong>
+            <span>Your completion, XP, competency, and achievement are safely preserved.</span>
+          </div>
+        )}
+        <MissionFour onExit={leaveMission} />
+      </main>
+    );
+  }
+
+  if (screen === "mission10") {
+    return (
+      <main className="cbet-academy">
+        {reviewMissionNumber === 10 && (
+          <div className="cbet-review-banner" role="status">
+            <strong>Review Mode</strong>
+            <span>Your completion, XP, competency, and certificate are safely preserved.</span>
+          </div>
+        )}
+        <MissionTen onExit={leaveMission} />
+      </main>
+    );
+  }
+
   if (screen === "equipmentLearning") {
     return (
       <EquipmentLearningScreen
@@ -4120,16 +5128,10 @@ export default function CBETAcademy() {
     );
   }
 
-  const missionStates = [1, 2, 3].map((number) => getCbetModuleState(number));
+  const missionStates = [1, 2, 3, 4].map((number) => getCbetModuleState(number));
   const completedMissionCount = missionStates.filter((mission) => mission.complete).length;
 
-  const nextMissionScreen = !missionStates[0].complete
-    ? "mission1"
-    : !missionStates[1].complete
-    ? "mission2"
-    : "mission3";
-
-  const nextMissionNumber = nextMissionScreen === "mission1" ? 1 : nextMissionScreen === "mission2" ? 2 : 3;
+  const nextMissionNumber = missionStates.findIndex((mission) => !mission.complete) + 1 || 4;
   const nextMission = cbetAcademyModules.find((module) => module.number === nextMissionNumber);
   const nextMissionProgress = getMissionProgress(nextMissionNumber);
   const nextMissionStarted = nextMissionProgress.phase !== "briefing";
@@ -4141,7 +5143,7 @@ export default function CBETAcademy() {
 
   const badgeCount = Object.values(academy.modules || {}).filter((module) => module.complete).length;
   const virtualLabPercent = Math.min(100, Math.round((virtualLabLessonsCompleted / 9) * 100));
-  const missionPercent = Math.min(100, Math.round((completedMissionCount / 3) * 100));
+  const missionPercent = Math.min(100, Math.round((completedMissionCount / 4) * 100));
 
   return (
     <main className="cbet-academy" key={refresh}>
@@ -4178,7 +5180,7 @@ export default function CBETAcademy() {
                 <span style={{ width: `${progress}%` }} />
               </div>
               <div className="cbet-overview-metrics">
-                <div><strong>{completedMissionCount}/3</strong><span>Missions</span></div>
+                <div><strong>{completedMissionCount}/4</strong><span>Missions</span></div>
                 <div><strong>{virtualLabLessonsCompleted}/9</strong><span>Lab lessons</span></div>
                 <div><strong>{badgeCount}</strong><span>Competencies</span></div>
                 <div><strong>{streak.current || 1}</strong><span>Day streak</span></div>
@@ -4204,7 +5206,7 @@ export default function CBETAcademy() {
             </div>
             <h3>Training Missions</h3>
             <p>Guided instruction, interactive activities, and knowledge checks organized into a clear path.</p>
-            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 3 complete</span><strong>{missionPercent}%</strong></div>
+            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 4 complete</span><strong>{missionPercent}%</strong></div>
             <div className="cbet-card-progress"><span style={{ width: `${missionPercent}%` }} /></div>
             <button className="cbet-primary" onClick={() => openMission(nextMissionNumber, missionStates.every((mission) => mission.complete))}>{nextMissionLabel}</button>
           </article>
@@ -4269,7 +5271,7 @@ export default function CBETAcademy() {
         <div className="cbet-mission-toggle-row">
           <div>
             <span className="cbet-label">Training path</span>
-            <h2>Three missions available now</h2>
+            <h2>Four missions available now</h2>
           </div>
           <button
             className="cbet-secondary"
@@ -4285,8 +5287,8 @@ export default function CBETAcademy() {
           <div id="cbet-training-path" className="cbet-grid cbet-training-grid">
             {cbetAcademyModules.map((module) => {
               const state = getCbetModuleState(module.number);
-              const unlocked = module.number <= 3 ? true : isCbetModuleUnlocked(module.number);
-              const available = module.number <= 3;
+              const unlocked = module.number <= 4 || module.number === 10 ? true : isCbetModuleUnlocked(module.number);
+              const available = module.number <= 4 || module.number === 10;
               return (
                 <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
                   <div className="cbet-card-top">

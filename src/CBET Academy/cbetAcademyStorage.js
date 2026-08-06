@@ -16,6 +16,8 @@ const defaultState = {
     1: defaultMissionProgress,
     2: { ...defaultMissionProgress },
     3: { ...defaultMissionProgress },
+    4: { ...defaultMissionProgress },
+    10: { ...defaultMissionProgress },
   },
   finalBoard: { passed: false, bestScore: 0 },
   streak: {
@@ -45,6 +47,14 @@ function mergeState(saved = {}) {
       3: {
         ...defaultMissionProgress,
         ...(saved.missionProgress?.[3] || {}),
+      },
+      4: {
+        ...defaultMissionProgress,
+        ...(saved.missionProgress?.[4] || {}),
+      },
+      10: {
+        ...defaultMissionProgress,
+        ...(saved.missionProgress?.[10] || {}),
       },
     },
     finalBoard: { ...defaultState.finalBoard, ...(saved.finalBoard || {}) },
@@ -173,9 +183,9 @@ export function resetMissionProgress(number = 1) {
 
 export function cbetCompletionPercent() {
   const state = getCbetAcademyState();
-  const completed = Array.from({ length: 9 }, (_, i) => i + 1)
+  const completed = Array.from({ length: 10 }, (_, i) => i + 1)
     .filter((n) => state.modules?.[n]?.complete).length;
-  return Math.round((completed / 9) * 100);
+  return Math.round((completed / 10) * 100);
 }
 
 

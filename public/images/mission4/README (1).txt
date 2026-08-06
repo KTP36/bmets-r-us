@@ -1,0 +1,1 @@
+All SVG illustrations in this folder are original generic educational artwork created for MedSkillBuilder. They contain no manufacturer logos or copyrighted product photography and may be used by MedSkillBuilder without third-party approval.

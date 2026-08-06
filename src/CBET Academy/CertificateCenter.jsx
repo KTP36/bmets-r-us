@@ -181,8 +181,8 @@ export default function CertificateCenter({ modules, onExit, targetCertificateKe
         key: "academy-complete",
         type: "Academy curriculum",
         title: "MedSkillBuilder Academy Curriculum — Certificate of Completion",
-        description: "Recognizes completion of all nine MedSkillBuilder Academy educational modules.",
-        unlocked: modules.length === 9 && modules.every((module) => module.complete),
+        description: "Recognizes completion of all ten MedSkillBuilder Academy educational modules.",
+        unlocked: modules.length === 10 && modules.every((module) => module.complete),
       },
     ];
   }, [modules, completedEquipment]);
