@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Medical Terminology Practice Questions | Free Medical Terms Quiz &amp; Study Tool</title>
-<meta content="Practice medical terminology questions online for free. Learn medical prefixes, suffixes, root words, body system terms, abbreviations, and healthcare vocabulary with a free medical terms quiz and study guide." name="description"/>
+<title>Medical Terminology Practice | Free Interactive Quiz & Study Tool</title>
+<meta content="Free interactive medical terminology practice with instant feedback. Decode medical words, practice prefixes, suffixes, roots, abbreviations, and test your healthcare vocabulary." name="description"/>
 <meta content="medical terminology practice, medical terminology questions, medical terminology quiz, medical terms test, free medical terminology practice, medical terms quiz, medical prefixes and suffixes, root words practice, nursing terminology, healthcare vocabulary, medical terminology for beginners" name="keywords"/>
 <link href="https://medskillbuilder.com/medical-terminology-practice.html" rel="canonical"/>
 <meta content="Medical Terminology Practice Questions | MedSkillBuilder" property="og:title"/>
@@ -517,6 +517,37 @@ color:#fff;
 font-weight:900;
 text-decoration:none;
 }
+
+/* ===== ELITE MEDICAL TERMINOLOGY PRACTICE ===== */
+.practice-dashboard{margin-top:-8px}
+.practice-jump{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 0}
+.practice-jump a{padding:13px 10px;border:1px solid #bfdbfe;border-radius:14px;background:#fff;color:var(--navy);font-weight:900;text-align:center;text-decoration:none}
+.practice-jump a:hover{background:#eff6ff;transform:translateY(-1px)}
+.elite-lab{overflow:hidden;border:2px solid #93c5fd;background:linear-gradient(145deg,#eff6ff,#fff 55%,#ecfdf5)}
+.elite-kicker{display:inline-block;font-size:12px;letter-spacing:.12em;font-weight:900;color:#1d4ed8;margin-bottom:7px}
+.elite-lab-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.elite-score{min-width:150px;padding:12px 16px;border-radius:16px;background:#082f57;color:#fff;text-align:center}
+.elite-score span,.elite-score strong{display:block}.elite-score span{font-size:11px;letter-spacing:.08em}.elite-score strong{font-size:25px}
+.mode-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 14px}
+.mode-tabs button,.quiz-option,.mini-btn{font:inherit;cursor:pointer}
+.mode-tabs button{border:1px solid #bfdbfe;background:#fff;color:#1e3a8a;border-radius:999px;padding:10px 15px;font-weight:900}
+.mode-tabs button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.quiz-shell{background:#fff;border:1px solid #dbeafe;border-radius:22px;padding:24px}
+.quiz-meta{display:flex;justify-content:space-between;gap:10px;color:#64748b;font-size:13px;font-weight:800}
+.quiz-progress{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin:10px 0 22px}.quiz-progress span{display:block;height:100%;background:linear-gradient(90deg,#1d6fa5,#22c55e);transition:.25s}
+.quiz-question{font-size:clamp(23px,3vw,31px);line-height:1.25;color:#082f57;margin:0 0 18px}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.quiz-option{display:flex;align-items:center;gap:11px;border:2px solid #dbeafe;background:#fff;border-radius:15px;padding:14px;text-align:left;font-weight:800;color:#1f2937}
+.quiz-option:hover{border-color:#60a5fa;background:#eff6ff}.quiz-option.selected{border-color:#2563eb;background:#eff6ff}.quiz-option.correct{border-color:#22c55e;background:#f0fdf4}.quiz-option.wrong{border-color:#ef4444;background:#fef2f2}
+.quiz-letter{flex:0 0 30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#e8f1fb;color:#082f57;font-weight:900}
+.quiz-feedback{margin-top:15px;padding:15px 17px;border-radius:14px;display:none}.quiz-feedback.show{display:block}.quiz-feedback.good{background:#f0fdf4;border:1px solid #86efac;color:#166534}.quiz-feedback.bad{background:#fff7ed;border:1px solid #fdba74;color:#9a3412}
+.quiz-actions{display:flex;justify-content:space-between;gap:10px;margin-top:17px}.mini-btn{border:0;border-radius:999px;padding:12px 18px;font-weight:900}.mini-btn.primary{background:#082f57;color:#fff}.mini-btn.secondary{background:#e8f1fb;color:#082f57}.mini-btn:disabled{opacity:.45;cursor:not-allowed}
+.decode-stage{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.decode-word{padding:22px;border-radius:18px;background:#082f57;color:#fff}.decode-word small{display:block;color:#bae6fd;font-weight:900;letter-spacing:.08em}.decode-word strong{display:block;font-size:clamp(29px,4vw,43px);margin:7px 0 14px}.word-parts{display:flex;flex-wrap:wrap;gap:8px}.word-parts span{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.13);font-weight:900}.decode-explain{padding:20px;border:1px solid #bbf7d0;border-radius:18px;background:#f0fdf4}.decode-explain strong{color:#166534;font-size:21px}.decode-explain p{margin:7px 0 0}
+.mastery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.mastery-card{padding:16px;border:1px solid #dbeafe;border-radius:16px;background:#fff}.mastery-card b,.mastery-card span{display:block}.mastery-card b{color:#082f57}.mastery-card span{font-size:13px;color:#64748b;margin-top:4px}
+.final-score{text-align:center;padding:25px}.final-score strong{display:block;font-size:54px;color:#082f57}.final-score h3{font-size:26px;margin:4px 0}.final-score p{max-width:650px;margin:8px auto 16px}
+@media(max-width:800px){.practice-jump,.mastery-grid{grid-template-columns:repeat(2,1fr)}.elite-lab-head,.decode-stage{grid-template-columns:1fr;display:grid}.quiz-options{grid-template-columns:1fr}.elite-score{text-align:left}}
+@media(max-width:520px){.practice-jump,.mastery-grid{grid-template-columns:1fr}.quiz-shell{padding:17px}.quiz-actions{flex-direction:column}.quiz-actions button{width:100%}}
+
 </style>
 </head>
 <body>
@@ -534,8 +565,8 @@ text-decoration:none;
 <header>
 <div class="container">
 <div class="hero-inner">
-<div class="eyebrow">Free Medical Terminology Practice</div>
-<h1>Medical Terminology Practice Questions and Free Medical Terms Quiz</h1>
+<div class="eyebrow">Free Interactive Study Tool · Learn by Doing</div>
+<h1>Medical Terminology Practice: Decode It. Use It. Master It.</h1>
 <p>
           Practice medical terminology questions for free and learn medical prefixes, suffixes, root words, abbreviations, body system terms, and full healthcare vocabulary with interactive review.
         </p>
@@ -557,6 +588,59 @@ text-decoration:none;
 <div class="notice">
       MedSkillBuilder is an independent educational platform. It is not affiliated with or endorsed by AAMI, ATI, Cash App, Google, or any certification provider.
     </div>
+<section class="section elite-lab" id="practice-lab">
+  <div class="elite-lab-head">
+    <div>
+      <span class="elite-kicker">MEDSKILLBUILDER PRACTICE LAB</span>
+      <h2>Start Practicing Medical Terminology Now</h2>
+      <p class="lead">No sign-up. Work through real word parts and clinical vocabulary, get immediate teaching feedback, and see which areas you actually know.</p>
+    </div>
+    <div class="elite-score"><span>SESSION MASTERY</span><strong id="eliteScore">0%</strong></div>
+  </div>
+  <nav class="practice-jump" aria-label="Practice modes">
+    <a href="#practice-lab">Mixed Quiz</a><a href="#decoder">Word Decoder</a><a href="#high-yield">High-Yield Terms</a><a href="#study-plan">Study Plan</a>
+  </nav>
+  <div class="mode-tabs" role="tablist">
+    <button class="active" data-mode="mixed">Mixed Practice</button>
+    <button data-mode="wordparts">Prefixes & Suffixes</button>
+    <button data-mode="clinical">Clinical Terms</button>
+    <button data-mode="abbrev">Abbreviations</button>
+  </div>
+  <div class="quiz-shell" aria-live="polite">
+    <div class="quiz-meta"><span id="quizModeLabel">Mixed Practice</span><span id="quizCounter">Question 1 of 8</span></div>
+    <div class="quiz-progress"><span id="quizProgress" style="width:12.5%"></span></div>
+    <h3 class="quiz-question" id="quizQuestion"></h3>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <div class="quiz-actions">
+      <button class="mini-btn secondary" id="quizRestart">Restart Session</button>
+      <button class="mini-btn primary" id="quizNext" disabled>Next Question →</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="decoder">
+  <span class="elite-kicker">WORD DECODER</span>
+  <h2>Stop Memorizing the Whole Word</h2>
+  <p class="lead">Train your eye to find the clues inside a medical term. Choose a term and watch how its parts translate into plain English.</p>
+  <div class="mode-tabs" id="decoderButtons"></div>
+  <div class="decode-stage">
+    <div class="decode-word"><small>BREAK THE TERM APART</small><strong id="decodeTerm">Hyperglycemia</strong><div class="word-parts" id="decodeParts"></div></div>
+    <div class="decode-explain"><strong id="decodeMeaning">High blood sugar</strong><p id="decodeClinical"></p></div>
+  </div>
+</section>
+
+<section class="section highlight practice-dashboard">
+  <span class="elite-kicker">WHAT YOU ARE BUILDING</span>
+  <h2>Four Skills, Not Just Definitions</h2>
+  <div class="mastery-grid">
+    <div class="mastery-card"><b>Recognize</b><span>Identify common prefixes, roots, suffixes, and abbreviations.</span></div>
+    <div class="mastery-card"><b>Decode</b><span>Break unfamiliar medical words into meaningful parts.</span></div>
+    <div class="mastery-card"><b>Connect</b><span>Link terminology to anatomy, body systems, and clinical use.</span></div>
+    <div class="mastery-card"><b>Apply</b><span>Choose the correct meaning when terminology appears in context.</span></div>
+  </div>
+</section>
+
 <section class="section highlight">
 <h2>Medical Terminology Learning Path</h2>
 <p class="lead">
@@ -840,7 +924,7 @@ text-decoration:none;
 </tbody>
 </table>
 </section>
-<section class="section">
+<section class="section" id="high-yield">
 <h2>25 High-Yield Medical Terms to Practice</h2>
 <p>
         These are the kinds of terms learners should be able to break apart quickly. Practice saying the breakdown and the plain-English meaning.
@@ -883,67 +967,9 @@ text-decoration:none;
 </table>
 </section>
 <section class="section">
-<h2>Sample Medical Terminology Practice Questions</h2>
-<p>
-        Use these quick questions to test recognition. The interactive tool gives the full practice experience, but these examples show the kind of thinking you want to build.
-      </p>
-<div class="grid-2">
-<div class="card">
-<h3>1. What does hyper- mean?</h3>
-<p><strong>Answer:</strong> High or above normal.</p>
-<p>Example: hyperglycemia means high blood sugar.</p>
-</div>
-<div class="card">
-<h3>2. What does hypo- mean?</h3>
-<p><strong>Answer:</strong> Low or below normal.</p>
-<p>Example: hypotension means low blood pressure.</p>
-</div>
-<div class="card">
-<h3>3. What does -itis mean?</h3>
-<p><strong>Answer:</strong> Inflammation.</p>
-<p>Example: bronchitis means inflammation of the bronchial tubes.</p>
-</div>
-<div class="card">
-<h3>4. What does -ectomy mean?</h3>
-<p><strong>Answer:</strong> Surgical removal.</p>
-<p>Example: appendectomy means removal of the appendix.</p>
-</div>
-<div class="card">
-<h3>5. What does bradycardia mean?</h3>
-<p><strong>Answer:</strong> Slow heart rate.</p>
-<p>Brady means slow and cardia refers to the heart.</p>
-</div>
-<div class="card">
-<h3>6. What does dyspnea mean?</h3>
-<p><strong>Answer:</strong> Difficult breathing.</p>
-<p>Dys means difficult or abnormal and pnea refers to breathing.</p>
-</div>
-<div class="card">
-<h3>7. What does -emia mean?</h3>
-<p><strong>Answer:</strong> Blood condition.</p>
-<p>Example: hypernatremia means high sodium in the blood.</p>
-</div>
-<div class="card">
-<h3>8. What does nephro- mean?</h3>
-<p><strong>Answer:</strong> Kidney.</p>
-<p>Example: nephrology is the study of the kidneys.</p>
-</div>
-<div class="card">
-<h3>9. What does tachypnea mean?</h3>
-<p><strong>Answer:</strong> Fast breathing.</p>
-<p>Tachy means fast and pnea refers to breathing.</p>
-</div>
-<div class="card">
-<h3>10. What does appendectomy mean?</h3>
-<p><strong>Answer:</strong> Surgical removal of the appendix.</p>
-<p>The suffix -ectomy means surgical removal.</p>
-</div>
-</div>
-<div class="cta-row">
-<a class="cta-button primary-btn" href="/?tab=Terminology">
-          Open Full Interactive Practice →
-        </a>
-</div>
+<h2>Ready for More Medical Terminology Practice?</h2>
+<p class="lead">Use the Practice Lab at the top for immediate feedback, then move into the full MedSkillBuilder terminology experience for additional repetition and review.</p>
+<div class="cta-row"><a class="cta-button primary-btn" href="#practice-lab">Practice Another Session ↑</a><a class="cta-button secondary-btn" href="/?tab=Terminology">Open Full Interactive Practice →</a></div>
 </section>
 <section class="section">
 <h2>How to Study Medical Terms Effectively</h2>
@@ -1002,7 +1028,7 @@ text-decoration:none;
 <li><strong>Teachers and instructors:</strong> share free terminology practice with students who need extra review.</li>
 </ul>
 </section>
-<section class="section">
+<section class="section" id="study-plan">
 <h2>4 Week Medical Terminology Practice Plan</h2>
 <p>
         A simple plan can help beginners avoid random studying. Spend 15 to 25 minutes a day and repeat missed word parts often.
@@ -1122,5 +1148,80 @@ text-decoration:none;
 <p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
 </div>
 </footer>
+
+<script>
+(function(){
+const banks={
+mixed:[
+{q:"What does bradycardia mean?",a:["Fast breathing","Slow heart rate","High blood pressure","Heart inflammation"],c:1,e:"brady- means slow; cardi refers to the heart. Bradycardia is a slow heart rate."},
+{q:"A patient is described as hypoglycemic. What is low?",a:["Oxygen","Sodium","Blood glucose","Heart rate"],c:2,e:"hypo- means low and glyc refers to sugar/glucose. Hypoglycemia means low blood glucose."},
+{q:"Which suffix means inflammation?",a:["-ectomy","-itis","-emia","-gram"],c:1,e:"-itis means inflammation, as in dermatitis, gastritis, and arthritis."},
+{q:"What does nephrology focus on?",a:["Lungs","Kidneys","Nerves","Skin"],c:1,e:"nephr- refers to the kidney and -ology means study of."},
+{q:"Which term means difficult or labored breathing?",a:["Tachypnea","Dyspnea","Apnea","Bradypnea"],c:1,e:"dys- means difficult/abnormal and -pnea refers to breathing."},
+{q:"What does the abbreviation ECG/EKG refer to?",a:["Kidney filtration","Heart electrical activity","Blood glucose","Lung volume"],c:1,e:"An electrocardiogram records the heart's electrical activity."},
+{q:"A cholecystectomy is removal of the:",a:["Gallbladder","Appendix","Kidney","Spleen"],c:0,e:"cholecyst refers to the gallbladder and -ectomy means surgical removal."},
+{q:"Which term means high sodium in the blood?",a:["Hyponatremia","Hypernatremia","Hyperkalemia","Hypoxemia"],c:1,e:"hyper- = high, natr = sodium, and -emia = blood condition."}
+],
+wordparts:[
+{q:"What does hyper- mean?",a:["Below","High or above normal","Slow","Around"],c:1,e:"hyper- means high, excessive, or above normal."},
+{q:"What does -ectomy mean?",a:["Inflammation","Study of","Surgical removal","Record"],c:2,e:"-ectomy means surgical removal."},
+{q:"What does tachy- mean?",a:["Fast","Slow","Inside","Pain"],c:0,e:"tachy- means fast or rapid."},
+{q:"What does peri- mean?",a:["Under","Around","Within","Across"],c:1,e:"peri- means around, as in pericardium."},
+{q:"What does -emia indicate?",a:["Blood condition","Incision","Enlargement","Breathing"],c:0,e:"-emia refers to a blood condition."},
+{q:"What does derm- refer to?",a:["Bone","Skin","Liver","Joint"],c:1,e:"derm-/dermat- refers to skin."},
+{q:"What does -pathy mean?",a:["Disease or disorder","Removal","Visual exam","Pain"],c:0,e:"-pathy means disease or disorder."},
+{q:"What does hypo- mean?",a:["High","Low or below normal","Fast","After"],c:1,e:"hypo- means low, deficient, or below normal."}
+],
+clinical:[
+{q:"Hyperkalemia describes:",a:["Low sodium","High potassium in blood","Low glucose","High heart rate"],c:1,e:"hyper- = high, kal = potassium, -emia = blood condition."},
+{q:"Dermatitis is:",a:["Skin inflammation","Kidney disease","Bone pain","Liver enlargement"],c:0,e:"dermat = skin and -itis = inflammation."},
+{q:"Tachypnea means:",a:["No breathing","Slow breathing","Fast breathing","Painful breathing"],c:2,e:"tachy- means fast and -pnea refers to breathing."},
+{q:"Neuropathy is best described as:",a:["Nerve disorder","Heart record","Kidney removal","Skin incision"],c:0,e:"neur-/neuro- = nerve and -pathy = disease/disorder."},
+{q:"Hypotension means:",a:["High temperature","Low blood pressure","Low oxygen","High glucose"],c:1,e:"hypo- means low and tension refers here to pressure."},
+{q:"An appendectomy is:",a:["Inflammation of appendix","Imaging of appendix","Removal of appendix","Opening into appendix"],c:2,e:"-ectomy means surgical removal."},
+{q:"Gastroenteritis involves inflammation of the:",a:["Heart and lung","Stomach and intestines","Kidney and bladder","Bone and joint"],c:1,e:"gastr = stomach, enter = intestine, -itis = inflammation."},
+{q:"Subcutaneous means:",a:["Above the skull","Under the skin","Inside a vein","Around the heart"],c:1,e:"sub- means under and cutaneous refers to skin."}
+],
+abbrev:[
+{q:"What does BP commonly mean in healthcare?",a:["Blood pressure","Body position","Breathing pattern","Blood product"],c:0,e:"BP commonly stands for blood pressure."},
+{q:"What does HR commonly mean?",a:["Heart rate","Hospital record","Heat response","Hematology result"],c:0,e:"HR commonly stands for heart rate."},
+{q:"What does NPO mean?",a:["Normal pulse output","Nothing by mouth","No patient oxygen","New physician order"],c:1,e:"NPO means nothing by mouth (nil per os)."},
+{q:"What does PRN mean on an order?",a:["Before meals","As needed","Every night","Immediately"],c:1,e:"PRN means as needed."},
+{q:"What does SOB commonly mean in a clinical note?",a:["Side of bed","Shortness of breath","Start of bolus","Systolic over baseline"],c:1,e:"SOB commonly means shortness of breath."},
+{q:"What does IV mean?",a:["Intravenous","Internal ventilation","Intermittent vital","Invasive volume"],c:0,e:"IV means intravenous—within or into a vein."},
+{q:"What does Dx commonly mean?",a:["Diagnosis","Dose","Discharge","Dialysis"],c:0,e:"Dx is a common abbreviation for diagnosis."},
+{q:"What does Hx commonly mean?",a:["Heart exam","History","Hypoxia","Hematocrit"],c:1,e:"Hx commonly means history."}
+]};
+const decoders=[
+{term:"Hyperglycemia",parts:["hyper = high","glyc = sugar/glucose","emia = blood condition"],meaning:"High blood sugar",clinical:"Once the parts are familiar, the term becomes a translation instead of a memorization problem."},
+{term:"Bradycardia",parts:["brady = slow","cardi = heart","ia = condition"],meaning:"Slow heart rate",clinical:"The prefix tells you the rate direction; the root tells you the body system."},
+{term:"Gastroenteritis",parts:["gastr = stomach","enter = intestine","itis = inflammation"],meaning:"Inflammation of the stomach and intestines",clinical:"A term can contain more than one root. Read each part before translating the whole word."},
+{term:"Nephropathy",parts:["nephr = kidney","pathy = disease/disorder"],meaning:"Kidney disease or disorder",clinical:"Recognizing -pathy lets you transfer the same logic to neuropathy and cardiomyopathy."},
+{term:"Electrocardiogram",parts:["electro = electrical","cardio = heart","gram = record"],meaning:"Record of the heart's electrical activity",clinical:"The suffix -gram tells you the result is a record, not the process of recording."}
+];
+let mode="mixed",idx=0,correct=0,answered=false,session=[];
+const $=id=>document.getElementById(id);
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+function start(){idx=0;correct=0;answered=false;session=shuffle(banks[mode]);render()}
+function render(){
+ const q=session[idx]; $("quizQuestion").textContent=q.q;$("quizCounter").textContent=`Question ${idx+1} of ${session.length}`;$("quizModeLabel").textContent=document.querySelector(`[data-mode="${mode}"]`).textContent;$("quizProgress").style.width=`${((idx+1)/session.length)*100}%`;
+ $("quizOptions").innerHTML="";$("quizFeedback").className="quiz-feedback";$("quizFeedback").innerHTML="";$("quizNext").disabled=true;answered=false;
+ q.a.forEach((txt,i)=>{const b=document.createElement("button");b.className="quiz-option";b.innerHTML=`<span class="quiz-letter">${String.fromCharCode(65+i)}</span><span>${txt}</span>`;b.onclick=()=>answer(i,b);$("quizOptions").appendChild(b)});
+ $("eliteScore").textContent=idx?`${Math.round(correct/idx*100)}%`:"0%";
+}
+function answer(choice,button){
+ if(answered)return;answered=true;const q=session[idx];const buttons=[...document.querySelectorAll(".quiz-option")];
+ buttons.forEach((b,i)=>{if(i===q.c)b.classList.add("correct")});if(choice===q.c){correct++;$("quizFeedback").className="quiz-feedback show good";$("quizFeedback").innerHTML=`<strong>Correct.</strong> ${q.e}`}else{button.classList.add("wrong");$("quizFeedback").className="quiz-feedback show bad";$("quizFeedback").innerHTML=`<strong>Not quite.</strong> ${q.e}`}
+ $("quizNext").disabled=false;$("eliteScore").textContent=`${Math.round(correct/(idx+1)*100)}%`;
+}
+$("quizNext").onclick=()=>{if(idx<session.length-1){idx++;render()}else{const pct=Math.round(correct/session.length*100);$("quizOptions").innerHTML=`<div class="final-score" style="grid-column:1/-1"><span class="elite-kicker">SESSION COMPLETE</span><strong>${pct}%</strong><h3>${pct>=88?"Strong mastery":pct>=70?"Good foundation":"Keep building"}</h3><p>${correct} of ${session.length} correct. Review any explanations you missed, then repeat the session or switch practice modes.</p><button class="mini-btn primary" onclick="document.getElementById('quizRestart').click()">Practice Again</button></div>`;$("quizQuestion").textContent="Your Medical Terminology Practice Result";$("quizFeedback").className="quiz-feedback";$("quizNext").disabled=true;$("quizNext").style.display="none"}};
+$("quizRestart").onclick=()=>{$("quizNext").style.display="";start()};
+document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));b.classList.add("active");mode=b.dataset.mode;$("quizNext").style.display="";start()});
+const db=$("decoderButtons");decoders.forEach((d,i)=>{const b=document.createElement("button");b.textContent=d.term;b.onclick=()=>showDecoder(i);if(i===0)b.classList.add("active");db.appendChild(b)});
+function showDecoder(i){const d=decoders[i];[...db.children].forEach((b,n)=>b.classList.toggle("active",n===i));$("decodeTerm").textContent=d.term;$("decodeParts").innerHTML=d.parts.map(x=>`<span>${x}</span>`).join("");$("decodeMeaning").textContent=d.meaning;$("decodeClinical").textContent=d.clinical}
+showDecoder(0);start();
+})();
+</script>
+
 </body>
 </html>
