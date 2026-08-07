@@ -168,6 +168,12 @@ border-radius:22px;
 padding:28px;
 margin-top:24px;
 }
+
+/* === ELITE INTERACTIVE PRACTICE UPGRADE === */
+.elite-lab{background:linear-gradient(135deg,#052e16 0%,#0b4a6f 100%);color:#fff;border-radius:28px;padding:30px;margin:0 0 24px;box-shadow:0 22px 50px rgba(15,23,42,.18);overflow:hidden;position:relative}
+.elite-lab h2,.elite-lab p{color:#fff}.elite-kicker{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#bbf7d0;margin-bottom:8px}.elite-lab h2{font-size:clamp(30px,4vw,46px);margin-bottom:8px}.elite-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:20px}.decoder,.quick-test{background:rgba(255,255,255,.98);color:#0f172a;border-radius:22px;padding:22px}.decoder p,.quick-test p{color:#334155}.word-build{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0}.morpheme{padding:12px 15px;border-radius:14px;font-weight:900;font-size:18px}.m-prefix{background:#dcfce7;color:#166534}.m-root{background:#dbeafe;color:#1e40af}.m-suffix{background:#ede9fe;color:#6d28d9}.plus{font-weight:900;color:#64748b}.decoded-result{background:#f8fafc;border:1px solid #dbeafe;border-radius:16px;padding:14px;margin-top:12px}.decoded-result strong{display:block;color:#082f57;font-size:22px}.legend{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;font-weight:800;color:#475569}.elite-btn{appearance:none;border:0;border-radius:999px;padding:12px 17px;font-weight:900;cursor:pointer;background:#16a34a;color:#fff;margin:6px 6px 0 0}.elite-btn.alt{background:#082f57}.elite-btn.ghost{background:#eef2ff;color:#3730a3}.answer-choice{display:block;width:100%;text-align:left;border:1px solid #cbd5e1;background:#fff;border-radius:14px;padding:12px 14px;margin:8px 0;font-weight:800;cursor:pointer}.answer-choice:hover{border-color:#16a34a;background:#f0fdf4}.answer-choice.correct{background:#dcfce7;border-color:#22c55e;color:#166534}.answer-choice.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}.feedback{min-height:48px;margin-top:10px;padding:10px 12px;border-radius:12px;background:#f8fafc;font-weight:800}.mastery{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:14px;font-size:14px;font-weight:900}.mastery-track{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden;flex:1}.mastery-fill{height:100%;width:0;background:linear-gradient(90deg,#16a34a,#2563eb);transition:width .25s}.micro-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}.micro-nav a{text-decoration:none;text-align:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:10px;border-radius:12px;color:#fff;font-weight:900;font-size:13px}.challenge-title{color:#082f57;font-size:21px;font-weight:900;margin-bottom:4px}.score-pill{display:inline-block;background:#ecfdf5;color:#166534;border-radius:999px;padding:6px 10px;font-size:13px;font-weight:900;margin-bottom:10px}
+@media(max-width:850px){.elite-grid{grid-template-columns:1fr}.micro-nav{grid-template-columns:1fr 1fr}.elite-lab{padding:22px 18px}.word-build{gap:5px}.morpheme{font-size:16px;padding:10px 12px}}
+
 </style>
 </head>
 <body>
@@ -187,8 +193,8 @@ margin-top:24px;
 <div class="hero-inner">
 <div class="eyebrow">Free Medical Terminology Practice</div>
 <h1>Medical Prefix and Suffix Practice</h1>
-<p class="reading-time">📖 12 minute read • Updated July 2026 • Free Study Guide</p>
-<p>Practice medical prefixes, suffixes, root words, and word breakdowns so long medical terms become easier to understand.</p>
+<p class="reading-time">⚡ Free Interactive Study Tool • Updated August 2026 • Learn by Doing</p>
+<p>Learn medical prefixes, suffixes, and root words by decoding real healthcare terms, building meanings from word parts, and testing yourself with instant feedback.</p>
 <p>Built for nursing students, TEAS learners, anatomy students, allied health programs, medical assistant students, CBET learners, EMT learners, and early healthcare learners.</p>
 <div class="cta-row">
 <a class="cta-btn cta-primary" href="/?tab=Terminology">Start Interactive Terminology Practice →</a>
@@ -199,6 +205,34 @@ margin-top:24px;
 </div>
 </header>
 <main class="container">
+
+<section class="elite-lab" id="interactive-practice" aria-labelledby="elite-practice-title">
+  <div class="elite-kicker">Learn → Build → Test → Master</div>
+  <h2 id="elite-practice-title">Decode Medical Terms Instead of Memorizing Them</h2>
+  <p>Use the same pattern healthcare learners use to break unfamiliar terminology into clues. Identify the prefix, find the root, read the suffix, then rebuild the meaning.</p>
+  <div class="elite-grid">
+    <div class="decoder">
+      <div class="challenge-title">Interactive Word Decoder</div>
+      <p id="decoderPrompt">Start with the clues inside <strong>hyperglycemia</strong>.</p>
+      <div class="word-build" id="wordBuild"></div>
+      <div class="legend"><span>🟢 Prefix = modifies meaning</span><span>🔵 Root = core meaning</span><span>🟣 Suffix = ending/condition</span></div>
+      <div class="decoded-result" id="decodedResult" aria-live="polite"></div>
+      <button class="elite-btn" id="revealWord" type="button">Reveal Meaning</button>
+      <button class="elite-btn alt" id="nextWord" type="button">Try Another Term</button>
+    </div>
+    <div class="quick-test">
+      <div class="score-pill" id="scorePill">Mastery: 0 / 5</div>
+      <div class="challenge-title">60-Second Prefix &amp; Suffix Challenge</div>
+      <p id="quizQuestion"></p>
+      <div id="quizChoices"></div>
+      <div class="feedback" id="quizFeedback" aria-live="polite">Choose the best answer. You will get the reasoning immediately.</div>
+      <div class="mastery"><span>Progress</span><div class="mastery-track"><div class="mastery-fill" id="masteryFill"></div></div></div>
+      <button class="elite-btn ghost" id="restartQuiz" type="button">Restart Challenge</button>
+    </div>
+  </div>
+  <div class="micro-nav"><a href="#prefixes">Study Prefixes</a><a href="#suffixes">Study Suffixes</a><a href="#roots">Study Roots</a><a href="#word-building">See Word Breakdowns</a></div>
+</section>
+
 <div class="stats">
 <div class="stat">
         Prefix
@@ -1478,5 +1512,34 @@ Search hundreds of medical definitions, abbreviations, anatomy terms, lab values
 <p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
 </div>
 </footer>
+
+<script>
+(function(){
+ const words=[
+  {term:'hyperglycemia',parts:[['hyper-','high','m-prefix'],['glyc','sugar','m-root'],['-emia','blood condition','m-suffix']],meaning:'High blood sugar'},
+  {term:'bradycardia',parts:[['brady-','slow','m-prefix'],['cardi','heart','m-root'],['-ia','condition','m-suffix']],meaning:'A condition of a slow heart rate'},
+  {term:'pericarditis',parts:[['peri-','around','m-prefix'],['cardi','heart','m-root'],['-itis','inflammation','m-suffix']],meaning:'Inflammation of the tissue around the heart'},
+  {term:'leukopenia',parts:[['leuk','white','m-root'],['-penia','deficiency / low amount','m-suffix']],meaning:'A low white blood cell count'},
+  {term:'tachypnea',parts:[['tachy-','fast','m-prefix'],['-pnea','breathing','m-suffix']],meaning:'Abnormally rapid breathing'}
+ ];
+ let wi=0;
+ const build=document.getElementById('wordBuild'), result=document.getElementById('decodedResult'), prompt=document.getElementById('decoderPrompt');
+ function renderWord(){const w=words[wi];prompt.innerHTML='Find the clues inside <strong>'+w.term+'</strong>.';build.innerHTML=w.parts.map((p,i)=>'<span class="morpheme '+p[2]+'">'+p[0]+'</span>'+(i<w.parts.length-1?'<span class="plus">+</span>':'')).join('');result.innerHTML='<span>Use the word parts first. Then reveal the complete meaning.</span>';}
+ document.getElementById('revealWord').onclick=()=>{const w=words[wi];result.innerHTML='<strong>'+w.term+'</strong>'+w.parts.map(p=>p[0]+' = '+p[1]).join(' • ')+'<br><b>Meaning:</b> '+w.meaning;};
+ document.getElementById('nextWord').onclick=()=>{wi=(wi+1)%words.length;renderWord();};renderWord();
+ const qs=[
+  {q:'A patient has tachypnea. Which word part tells you the breathing is fast?',a:['tachy-','-pnea','-ia','peri-'],c:0,e:'tachy- means fast. -pnea refers to breathing.'},
+  {q:'Which suffix most directly means inflammation?',a:['-ectomy','-itis','-megaly','-penia'],c:1,e:'-itis means inflammation, as in dermatitis or hepatitis.'},
+  {q:'If hypo- means low and glyc refers to sugar, hypoglycemia most closely means:',a:['High blood sugar','Low blood sugar','Sugar in urine','Inflammation of the pancreas'],c:1,e:'hypo- = low, glyc = sugar, and -emia indicates a blood condition.'},
+  {q:'Which pair is correctly matched?',a:['inter- = within','intra- = between','peri- = around','sub- = above'],c:2,e:'peri- means around. Inter- means between, intra- means within, and sub- means under.'},
+  {q:'A procedure ends in -ectomy. What should you expect?',a:['A visual examination','Surgical removal','Surgical repair','An abnormal condition'],c:1,e:'-ectomy means surgical removal. Compare it with -otomy (cutting into) and -plasty (repair).'}
+ ];
+ let qi=0,score=0,locked=false; const qEl=document.getElementById('quizQuestion'), choices=document.getElementById('quizChoices'), feed=document.getElementById('quizFeedback'), pill=document.getElementById('scorePill'), fill=document.getElementById('masteryFill');
+ function renderQ(){locked=false;const x=qs[qi];qEl.innerHTML='<strong>Question '+(qi+1)+' of '+qs.length+':</strong> '+x.q;choices.innerHTML=x.a.map((a,i)=>'<button type="button" class="answer-choice" data-i="'+i+'">'+a+'</button>').join('');choices.querySelectorAll('button').forEach(b=>b.onclick=answer);}
+ function answer(e){if(locked)return;locked=true;const pick=+e.currentTarget.dataset.i,x=qs[qi];choices.querySelectorAll('button').forEach((b,i)=>{if(i===x.c)b.classList.add('correct');else if(i===pick)b.classList.add('wrong');});if(pick===x.c){score++;feed.textContent='Correct. '+x.e;}else feed.textContent='Not quite. '+x.e;pill.textContent='Mastery: '+score+' / '+qs.length;fill.style.width=((qi+1)/qs.length*100)+'%';setTimeout(()=>{qi++;if(qi<qs.length)renderQ();else{qEl.innerHTML='<strong>Challenge complete.</strong>';choices.innerHTML='';feed.innerHTML=score>=4?'Excellent pattern recognition. You scored <strong>'+score+'/5</strong>.':'You scored <strong>'+score+'/5</strong>. Review the word parts below, then restart and try for 5/5.';}},900);}
+ document.getElementById('restartQuiz').onclick=()=>{qi=0;score=0;pill.textContent='Mastery: 0 / 5';fill.style.width='0';feed.textContent='Choose the best answer. You will get the reasoning immediately.';renderQ();};renderQ();
+})();
+</script>
+
 </body>
 </html>
