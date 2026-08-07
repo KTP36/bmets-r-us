@@ -5084,6 +5084,94 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
     <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(6)}>← Previous: Temperature Regulation</button><button className="cbet-secondary" onClick={()=>{setSystemsActiveId("ecg");setSystemsExplored([]);setSystemsPath([]);setSystemsScenario(null);setSystemsRecognition(null);setSystemsFault("normal");setSystemsPathFeedback("")}}>Restart Explorer</button><button className="cbet-primary" onClick={onExit}>Return to Academy →</button></nav>
   </section>;
 
+  if(lessonIndex===7) return <section className="cbet-shell m6-shell m6-lesson-stage m6-l8">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 8 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m6-progress"><span style={{width:"100%"}}/></div>
+
+    <section className="m6-cap-hero"><div><span className="m6-kicker">Networked Systems Integration · Capstone</span><h1>One install. Four faults. Follow the evidence.</h1><p>A new CT injector workstation has been installed in Imaging. The hardware powers on, but the clinical workflow is not ready. You are the CE assigned to bring the system online without guessing, bypassing controls, or changing unrelated settings.</p><div className="m6-cap-call"><strong>Service Call</strong><span>“The new workstation has no reliable network communication, PACS connectivity fails, and patient data is not populating.”</span></div></div><div className="m6-cap-stack"><div>DEVICE</div><b>↓</b><div>SWITCH / VLAN</div><b>↓</b><div>IP NETWORK</div><b>↓</b><div>DICOM / HL7</div></div></section>
+
+    <section className="m6-cap-rule"><strong>Capstone rule:</strong> You are not told which lesson contains the answer. Use the evidence, isolate one fault at a time, repair it, then retest the next layer.</section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">STAGE 1 · Physical Link</span><h2>The new workstation shows “Network Disconnected.”</h2><p>The installer says the cable was made from spare patch cable in the shop. Inspect both ends.</p>
+      <div className="m6-cable-lab"><div><strong>END A · RJ45</strong><pre>{`Pin 1  White/Orange
+Pin 2  Orange
+Pin 3  White/Green
+Pin 4  Blue
+Pin 5  White/Blue
+Pin 6  Green
+Pin 7  White/Brown
+Pin 8  Brown
+
+T568B`}</pre></div><b>CAT6</b><div><strong>END B · RJ45</strong><pre>{`Pin 1  White/Green
+Pin 2  Green
+Pin 3  White/Orange
+Pin 4  Blue
+Pin 5  White/Blue
+Pin 6  Orange
+Pin 7  White/Brown
+Pin 8  Brown
+
+T568A`}</pre></div></div>
+      <div className="m6-diagnose"><h3>What did you find?</h3>{["Both ends use the same wiring standard","The cable is terminated T568B on one end and T568A on the other, making it a crossover cable","The cable is fiber","The problem proves DNS is down"].map((x,i)=><button key={x} disabled={capA===1} className={capA!==null?(i===1?"correct":capA===i?"wrong":""):""} onClick={()=>{setCapA(i);if(i===1)setCapStage(v=>Math.max(v,1));playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>
+      {capA===1&&<div className="m6-cap-feedback"><strong>Good catch.</strong><span>Modern Ethernet often supports auto-MDI/MDIX, so a crossover cable will not always cause failure. But on equipment or interfaces that do not compensate automatically, the wrong cable type can prevent the link. For a new install, use the manufacturer/site-approved straight-through patch cable and verify link.</span></div>}
+    </section>
+
+    {capStage>=1&&<section className="m6-lab-section"><span className="m6-section-label">STAGE 2 · IP Configuration</span><h2>The link is now up, but communication drops unpredictably.</h2><p>Run the same check you would use on the workstation during a real service call.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Windows Command Prompt</strong></div><div className="m6-console-body"><div>&gt; <button disabled={capEvidence.includes("ip")} onClick={()=>setCapEvidence(v=>[...v,"ip"])}>ipconfig /all</button></div>{capEvidence.includes("ip")&&<pre>{`Ethernet adapter Ethernet:
+   Description . . . . . . . . . : Intel Ethernet Connection
+   Physical Address. . . . . . . : 3C-52-82-A7-11-09
+   DHCP Enabled. . . . . . . . . : No
+   IPv4 Address. . . . . . . . . : 10.24.16.57 (Duplicate)
+   Subnet Mask . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . : 10.24.16.1
+   DNS Servers . . . . . . . . . : 10.24.1.20`}</pre>}</div></div>
+      {capEvidence.includes("ip")&&<div className="m6-diagnose"><h3>What is the fault?</h3>{["The subnet mask is always wrong","10.24.16.57 is flagged as a duplicate address","The DNS server must be changed","The MAC address is invalid"].map((x,i)=><button key={x} disabled={capB===1} className={capB!==null?(i===1?"correct":capB===i?"wrong":""):""} onClick={()=>{setCapB(i);if(i===1)setCapStage(v=>Math.max(v,2));playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {capB===1&&<div className="m6-cap-feedback"><strong>Corrective path:</strong><span>Do not simply pick another address. Coordinate the approved IP assignment and reserve the correct IP to this workstation's MAC address when that is the site's design, then verify the duplicate condition is gone.</span></div>}
+    </section>}
+
+    {capStage>=2&&<section className="m6-lab-section"><span className="m6-section-label">STAGE 3 · Application Layer</span><h2>The workstation now has stable IP communication. Ping to PACS passes, but DICOM verification fails.</h2>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>DICOM Verification</strong></div><div className="m6-console-body"><div>&gt; <button disabled={capEvidence.includes("dicom")} onClick={()=>setCapEvidence(v=>[...v,"dicom"])}>run C-ECHO</button></div>{capEvidence.includes("dicom")&&<pre>{`ping 10.24.60.20 ................. PASS
+TCP 10.24.60.20:104 .............. OPEN
+
+Calling AE Title ................ CT_INJECTOR_NEW
+Called AE Title ................. PACS_MAIN
+
+Association ..................... REJECTED
+Reason .......................... Calling AE not recognized
+
+PACS registered AE .............. CT_INJ_01`}</pre>}</div></div>
+      {capEvidence.includes("dicom")&&<div className="m6-diagnose"><h3>Where is the failure now?</h3>{["The cable failed again","The network path is proven; the DICOM calling AE Title does not match the registered PACS configuration","DHCP did not assign an address","The monitor needs calibration"].map((x,i)=><button key={x} disabled={capC===1} className={capC!==null?(i===1?"correct":capC===i?"wrong":""):""} onClick={()=>{setCapC(i);if(i===1)setCapStage(v=>Math.max(v,3));playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {capC===1&&<div className="m6-cap-feedback"><strong>Layer-by-layer thinking:</strong><span>Do not return to the cable or IP configuration after those layers are proven. Correct the approved DICOM identity so the modality/workstation and PACS agree.</span></div>}
+    </section>}
+
+    {capStage>=3&&<section className="m6-lab-section"><span className="m6-section-label">STAGE 4 · Clinical Workflow</span><h2>DICOM now passes and images transfer, but patient demographics still do not populate.</h2><p>Trace the interface message instead of changing the network again.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Interface Engine</strong></div><div className="m6-console-body"><div>&gt; <button disabled={capEvidence.includes("hl7")} onClick={()=>setCapEvidence(v=>[...v,"hl7"])}>trace patient message</button></div>{capEvidence.includes("hl7")&&<pre>{`ADT^A01 Message ID .............. 881204
+Source .......................... EHR
+Interface Engine ................ RECEIVED
+Expected Destination ............ CT_INJECTOR
+Configured Route ................ CT_INJECTOR_TEST
+Delivery to production .......... NOT ATTEMPTED
+Network connection to device .... AVAILABLE`}</pre>}</div></div>
+      {capEvidence.includes("hl7")&&<div className="m6-diagnose"><h3>What should you conclude?</h3>{["The entire network is down","The ADT reaches the interface engine, but the route is pointed at the test destination instead of the production clinical system","The crossover cable returned","The PACS port must be changed"].map((x,i)=><button key={x} disabled={capD===1} className={capD!==null?(i===1?"correct":capD===i?"wrong":""):""} onClick={()=>{setCapD(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {capD===1&&!capVerified&&<div className="m6-cap-finalcheck"><h3>Repairs are complete. Do you close the call?</h3><p>Not yet. A networked medical-device repair is not complete until the actual clinical workflow is verified end-to-end.</p><button className="cbet-primary" onClick={()=>setCapVerified(true)}>Run End-to-End Clinical Verification</button></div>}
+      {capVerified&&<div className="m6-verify"><span>✓ END-TO-END SYSTEM VERIFIED</span><pre>{`Physical link ................... UP
+Speed / Duplex .................. 1000 Mbps / Full
+Duplicate IP .................... CLEARED
+Gateway / DNS ................... PASS
+DICOM C-ECHO .................... SUCCESS
+DICOM test transfer ............. RECEIVED
+ADT route ....................... PRODUCTION
+Patient demographics ............ RECEIVED
+Clinical workflow ............... PASS
+Security baseline ............... VERIFIED
+Documentation ................... COMPLETE`}</pre><strong>You did not just restore a ping. You restored and verified the clinical system.</strong></div>}
+    </section>}
+
+    <section className="m6-cap-lessons"><article><span>1</span><strong>Start at the failed layer</strong><p>Physical, link, IP, transport, application, workflow.</p></article><article><span>2</span><strong>Do not undo proven work</strong><p>Once a layer is verified, move forward unless new evidence points back to it.</p></article><article><span>3</span><strong>Use evidence, not guesses</strong><p>Commands, logs, port status, application tests, and acknowledgments tell the story.</p></article><article><span>4</span><strong>Verify the clinical outcome</strong><p>Connectivity is not the final goal. Safe clinical workflow is.</p></article></section>
+
+    <section className={`m6-completion ${lesson8Ready||lesson8Completed?"ready":""}`}><div><span>{lesson8Ready||lesson8Completed?"🏆":"🧩"}</span><div><strong>{lesson8Completed?"Networked Systems Integration Complete":lesson8Ready?"Mission 6 Capstone Ready to Complete":"Resolve all four faults and verify the workflow"}</strong><small>125 XP · integrated network troubleshooting capstone</small></div></div><button className="cbet-primary" disabled={!lesson8Ready&&!lesson8Completed} onClick={()=>{const prior=Array.isArray(saved.completedLessons)?saved.completedLessons:[];const next=Array.from(new Set([...prior,0,1,2,3,4,5,6,7]));if(!lesson8Completed)awardCbetXp(125,"mission6-network-integration-capstone");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:7,completedLessons:next,m6L1Explored:explored})}}>{lesson8Completed?"Mission 6 Completed ✓":"Complete Mission 6 Capstone"}</button></section>
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setLessonIndex(6)}>← Previous: Cybersecurity for Medical Devices</button><button className="cbet-secondary" onClick={()=>{setCapStage(0);setCapA(null);setCapB(null);setCapC(null);setCapD(null);setCapEvidence([]);setCapVerified(false)}}>Restart Capstone</button><button className="cbet-primary" disabled>Mission 6 Complete</button></nav>
+  </section>;
+
   if(lessonIndex===6) return <section className="cbet-shell m5-shell m5-lesson-stage m5-temp-stage">
     <div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 7 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"87.5%"}}/></div>
     <section className="m5-hero m5-temp-hero"><MissionFiveTemperatureGraphic activeId={tempActiveId} explored={tempExplored} mode={tempMode} onSelect={id=>{setTempActiveId(id);setTempExplored(v=>v.includes(id)?v:[...v,id])}}/><div className="m5-hero-copy"><span className="m5-kicker">Temperature Regulation & Patient Warming</span><h1>Measure heat. Understand the response.</h1><p>Explore how receptors and the hypothalamus regulate temperature, then connect physiology to clinical probes, warming systems, and troubleshooting.</p><div className="m5-temp-mode-controls"><button className={tempMode==="cold"?"active":""} onClick={()=>setTempMode("cold")}>Cold</button><button className={tempMode==="normal"?"active":""} onClick={()=>setTempMode("normal")}>Normal</button><button className={tempMode==="hot"?"active":""} onClick={()=>setTempMode("hot")}>Hot</button></div><div className="m5-explorer-progress"><div><span style={{width:`${tempExplored.length*20}%`}}/></div><strong>{tempExplored.length} of 5 concepts explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_TEMPERATURE.map(x=><button key={x.id} className={tempActiveId===x.id?"active":""} style={{"--structure-color":x.color}} onClick={()=>{setTempActiveId(x.id);setTempExplored(v=>v.includes(x.id)?v:[...v,x.id])}}>{tempExplored.includes(x.id)?"✓":"●"} {x.label}</button>)}</div></div></section>
@@ -5094,6 +5182,89 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
     <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Service Call</span><h2>Monitor displays 32.1°C, but the patient appears comfortable</h2><p>Other vital signs are stable and a second validated method reads 36.8°C. What should be investigated first?</p>{["Replace the monitor immediately","Check probe type, placement, connection, cable integrity, and compatible input","Replace the ECG cable"].map((o,i)=><button key={o} disabled={tempService===1} className={tempService!==null&&i===1?"correct":tempService===i?"wrong":""} onClick={()=>{setTempService(i);playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</article><article className="m5-recognition"><span className="m5-section-label">Quick Recognition</span><h2>Which component directly acquires the temperature signal?</h2><div>{MISSION_FIVE_TEMPERATURE.map(x=><button key={x.id} disabled={tempRecognition==="probe"} className={tempRecognition===x.id?(x.id==="probe"?"correct":"wrong"):""} onClick={()=>{setTempRecognition(x.id);playCbetTone(x.id==="probe"?"correct":"wrong")}}>{x.label}</button>)}</div></article></section>
     <section className={`m5-completion ${tempReady||tempCompleted?"ready":""}`}><div><span>{tempReady||tempCompleted?"🏅":"🌡️"}</span><div><strong>{tempCompleted?"Temperature Regulation Explorer Complete":tempReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>50 XP · Temperature physiology and monitoring</small></div></div><button className="cbet-primary" disabled={!tempReady&&!tempCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,6]));if(!tempCompleted)awardCbetXp(50,"mission5-temperature");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:6,completedLessons:next,m5TempExplored:tempExplored})}}>{tempCompleted?"Lesson Completed ✓":"Complete Temperature Regulation Explorer"}</button></section>
     <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(5)}>← Previous: Kidneys & Dialysis</button><button className="cbet-secondary" onClick={()=>{setTempActiveId("receptors");setTempExplored([]);setTempChecks({});setTempPath([]);setTempService(null);setTempRecognition(null);setTempMode("normal")}}>Restart Explorer</button><button className="cbet-primary" disabled={!tempCompleted&&!localUnlock} onClick={()=>openLesson(7)}>Next: Systems Integration →</button></nav>
+  </section>;
+
+  if(lessonIndex===6) return <section className="cbet-shell m6-shell m6-lesson-stage m6-l7">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 7 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m6-progress"><span style={{width:"87.5%"}}/></div>
+
+    <section className="m6-cyber-hero">
+      <div>
+        <span className="m6-kicker">Cybersecurity for Medical Devices</span>
+        <h1>Protect the device without breaking patient care.</h1>
+        <p>Medical-device cybersecurity is not about becoming a penetration tester. It is about recognizing risk, preserving safety, following approved change processes, and knowing when to escalate.</p>
+        <div className="m6-cyber-concepts">{[["access","Access Control"],["patch","Patching"],["usb","Removable Media"],["segment","Network Segmentation"]].map(([id,label])=><button key={id} className={cyberExplore.includes(id)?"done":""} onClick={()=>setCyberExplore(v=>v.includes(id)?v:[...v,id])}>{cyberExplore.includes(id)?"✓":"●"} {label}</button>)}</div>
+      </div>
+      <div className="m6-cyber-diagram">
+        <div className="cyber-device">MEDICAL DEVICE</div><b>→</b><div className="cyber-zone">MEDICAL VLAN</div><b>→</b><div className="cyber-firewall">FIREWALL / ACL</div><b>→</b><div className="cyber-services">APPROVED SERVICES</div>
+      </div>
+    </section>
+
+    <section className="m6-vlan-check">
+      <span className="m6-section-label">Security Reasoning</span>
+      <h2>A device needs a software update. What is the safest first principle?</h2>
+      <div>{["Download the newest file you can find and install it immediately","Use the approved vendor/organizational update process and verify compatibility, backup/recovery, change control, and post-update function","Disable security controls so the update installs faster"].map((x,i)=><button key={x} disabled={cyberScenario===1} className={cyberScenario!==null?(i===1?"correct":cyberScenario===i?"wrong":""):""} onClick={()=>{setCyberScenario(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>
+    </section>
+
+    <section className="m6-lab-section">
+      <span className="m6-section-label">🚨 Troubleshooting Call #1 · Unknown USB Media</span>
+      <h2>A vendor arrives to update a networked medical device using a USB drive you did not expect.</h2>
+      <p>The device is currently functioning clinically. Decide what to do before inserting anything.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Service Event Record</strong></div><div className="m6-console-body">
+        <div>&gt; <button disabled={usbStep} onClick={()=>setUsbStep(1)}>review service request</button></div>
+        {usbStep>0&&<pre>{`Device: Networked Infusion Management Workstation
+Current Status: In service
+Requested Action: Software update via USB
+Change Ticket: Not found
+Media Asset ID: Not registered
+Vendor File Hash: Not documented
+Maintenance Window: Not scheduled`}</pre>}
+      </div></div>
+      {usbStep>0&&<div className="m6-diagnose"><h3>What is the strongest concern?</h3>{["The USB drive is probably too small","The change and removable media are not yet verified through the approved process","The IP address is duplicated","The switch port is half duplex"].map((x,i)=><button key={x} disabled={usbDiagnosis===1} className={usbDiagnosis!==null?(i===1?"correct":usbDiagnosis===i?"wrong":""):""} onClick={()=>{setUsbDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {usbDiagnosis===1&&<div className="m6-fix-stage"><h3>What should you do next?</h3>{["Insert the drive and see what happens","Pause the update, verify the approved change/vendor package and removable-media process, coordinate with cybersecurity/IT as required, then proceed only when authorized","Format the USB drive yourself","Turn off antivirus permanently"].map((x,i)=><button key={x} disabled={usbAction===1} className={usbAction!==null?(i===1?"correct":usbAction===i?"wrong":""):""} onClick={()=>{setUsbAction(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {usbAction===1&&!usbVerified&&<div className="m6-port-action"><div><span>CHANGE CONTROL</span><strong>Vendor package + media approved</strong><small>Maintenance window scheduled · rollback plan confirmed</small></div><button className="cbet-primary" onClick={()=>setUsbVerified(true)}>Proceed & Verify</button></div>}
+      {usbVerified&&<div className="m6-verify"><span>✓ UPDATE VERIFIED</span><pre>{`Approved package .......... VERIFIED
+Maintenance window ........ ACTIVE
+Update result .............. SUCCESS
+Device self-test ........... PASS
+Network communication ...... PASS
+Clinical function check .... PASS`}</pre><strong>Security controls and clinical function were both preserved.</strong></div>}
+    </section>
+
+    <section className="m6-lab-section">
+      <span className="m6-section-label">🚨 Troubleshooting Call #2 · Default Credentials</span>
+      <h2>A newly installed device is reachable from the medical network and still uses factory-default administrator credentials.</h2>
+      <p>The device is not yet released for clinical use. Inspect the deployment checklist.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Deployment Security Checklist</strong></div><div className="m6-console-body">
+        <div>&gt; <button disabled={credStep} onClick={()=>setCredStep(1)}>review configuration</button></div>
+        {credStep>0&&<pre>{`Network Segment ............ Medical Devices VLAN
+Remote Management .......... Enabled
+Administrator Account ...... admin
+Password State ............. Factory Default
+Unique Credentials ......... Not configured
+Unused Services ............ 2 enabled
+Security Baseline .......... NOT COMPLETE`}</pre>}
+      </div></div>
+      {credStep>0&&<div className="m6-diagnose"><h3>What should prevent release to clinical use?</h3>{["The hostname is too short","The device still has default administrative credentials and the security baseline is incomplete","The DNS server is reachable","The NIC supports gigabit"].map((x,i)=><button key={x} disabled={credDiagnosis===1} className={credDiagnosis!==null?(i===1?"correct":credDiagnosis===i?"wrong":""):""} onClick={()=>{setCredDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {credDiagnosis===1&&<div className="m6-fix-stage"><h3>What is the appropriate deployment action?</h3>{["Release it now and change the password later","Apply the approved security baseline: unique managed credentials, disable unnecessary services, verify segmentation/access controls, document the configuration, and then validate clinical/network function","Disconnect it from all networks forever","Share one common admin password across all devices"].map((x,i)=><button key={x} disabled={credAction===1} className={credAction!==null?(i===1?"correct":credAction===i?"wrong":""):""} onClick={()=>{setCredAction(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {credAction===1&&!credVerified&&<div className="m6-port-action"><div><span>SECURITY BASELINE</span><strong>Unique credentials · unnecessary services disabled</strong><small>Segmentation and required access verified</small></div><button className="cbet-primary" onClick={()=>setCredVerified(true)}>Validate & Release</button></div>}
+      {credVerified&&<div className="m6-verify"><span>✓ DEPLOYMENT VERIFIED</span><pre>{`Default credentials ........ REMOVED
+Unique managed account ..... ACTIVE
+Unused services ............ DISABLED
+Approved network access .... VERIFIED
+Clinical communication ..... PASS
+Configuration documented ... YES`}</pre></div>}
+    </section>
+
+    <section className="m6-l7takeaways">
+      <article><strong>Do Not Improvise Security Changes</strong><span>Use approved vendor, HTM, IT, and cybersecurity processes.</span></article>
+      <article><strong>Segmentation Reduces Exposure</strong><span>Medical-device VLANs and access controls help limit unnecessary communication paths.</span></article>
+      <article><strong>Default Credentials Are a Deployment Failure</strong><span>Do not release a device until the approved security baseline is complete.</span></article>
+      <article><strong>Know When to Escalate</strong><span>Suspicious activity, unauthorized software/media, or security events belong with the cybersecurity/IT response process.</span></article>
+    </section>
+
+    <section className={`m6-completion ${lesson7Ready||lesson7Completed?"ready":""}`}><div><span>{lesson7Ready||lesson7Completed?"🏅":"🔐"}</span><div><strong>{lesson7Completed?"Cybersecurity for Medical Devices Complete":lesson7Ready?"Lesson Ready to Complete":"Complete both cybersecurity troubleshooting calls"}</strong><small>95 XP · secure deployment, removable media, access control & verification</small></div></div><button className="cbet-primary" disabled={!lesson7Ready&&!lesson7Completed} onClick={()=>{const prior=Array.isArray(saved.completedLessons)?saved.completedLessons:[];const next=Array.from(new Set([...prior,0,1,2,3,4,5,6]));if(!lesson7Completed)awardCbetXp(95,"mission6-cybersecurity");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:6,completedLessons:next,m6L1Explored:explored})}}>{lesson7Completed?"Lesson Completed ✓":"Complete Lesson 7"}</button></section>
+
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setLessonIndex(5)}>← Previous: HL7 & Interface Basics</button><button className="cbet-secondary" onClick={()=>{setCyberExplore([]);setCyberScenario(null);setUsbStep(0);setUsbDiagnosis(null);setUsbAction(null);setUsbVerified(false);setCredStep(0);setCredDiagnosis(null);setCredAction(null);setCredVerified(false)}}>Restart Lesson</button><button className="cbet-primary" disabled={!lesson7Completed&&!localUnlock} onClick={()=>setLessonIndex(7)}>Next: Networked Systems Integration →</button></nav>
   </section>;
 
   if(lessonIndex===5) return <section className="cbet-shell m5-shell m5-lesson-stage m5-kidney-stage">
@@ -5118,6 +5289,7 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
 <section className={`m5-completion ${oxygenReady||oxygenCompleted?"ready":""}`}><div><span>{oxygenReady||oxygenCompleted?"🏅":"🩸"}</span><div><strong>{oxygenCompleted?"Oxygen Transport Explorer Complete":oxygenReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>50 XP · Oxygen transport and pulse oximetry</small></div></div><button className="cbet-primary" disabled={!oxygenReady&&!oxygenCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,4]));if(!oxygenCompleted)awardCbetXp(50,"mission5-o2");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:4,completedLessons:next,m5OxygenExplored:oxygenExplored})}}>{oxygenCompleted?"Lesson Completed ✓":"Complete Oxygen Transport Explorer"}</button></section>
 <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(3)}>← Previous: Brain & EEG</button><button className="cbet-secondary" onClick={()=>{setOxygenActiveId("alveoli");setOxygenExplored([]);setOxygenChecks({});setOxygenPath([]);setOxygenService(null);setOxygenRecognition(null)}}>Restart Explorer</button><button className="cbet-primary" disabled={!oxygenCompleted&&!localUnlock} onClick={()=>openLesson(5)}>Next: Kidneys & Dialysis →</button></nav></section>;
 
+
   if(lessonIndex===3) return <section className="cbet-shell m5-shell m5-lesson-stage m5-brain-stage"><div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 4 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"50%"}}/></div>
     <section className="m5-hero m5-brain-hero"><MissionFiveBrainGraphic activeId={brainActiveId} explored={brainExplored} onSelect={selectBrainStructure} signalMode={eegMode}/><div className="m5-hero-copy"><span className="m5-kicker">Brain & EEG Explorer</span><h1>Detect the signal. Identify the artifact.</h1><p>Explore major brain regions, follow microvolt-level cortical signals to the EEG amplifier, and distinguish a physiologic waveform from acquisition artifact.</p><div className="m5-eeg-mode"><button className={eegMode==="alpha"?"active":""} onClick={()=>setEegMode("alpha")}>Relaxed / Alpha</button><button className={eegMode==="beta"?"active":""} onClick={()=>setEegMode("beta")}>Alert / Beta</button><button className={eegMode==="artifact"?"active":""} onClick={()=>setEegMode("artifact")}>Motion Artifact</button></div><div className="m5-explorer-progress"><div><span style={{width:`${(brainExplored.length/MISSION_FIVE_NEURO.length)*100}%`}}/></div><strong>{brainExplored.length} of 5 structures explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_NEURO.map(item=><button key={item.id} className={`${brainActiveId===item.id?"active":""} ${brainExplored.includes(item.id)?"explored":""}`} style={{"--structure-color":item.color}} onClick={()=>selectBrainStructure(item.id)}><span>{brainExplored.includes(item.id)?"✓":"●"}</span>{item.label}</button>)}</div></div></section>
     <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":brainActive.color}}><span className="m5-section-label">Interactive Neuroanatomy</span><h2>{brainActive.label}</h2><dl><div><dt>Location</dt><dd>{brainActive.location}</dd></div><div><dt>Purpose</dt><dd>{brainActive.purpose}</dd></div><div><dt>Equipment connection</dt><dd>{brainActive.equipment}</dd></div></dl><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{brainActive.challenge}</p>{brainActive.options.map((option,index)=><button key={option} className={brainChallenges[brainActive.id]!==undefined?(index===brainActive.answer?"correct":""):""} disabled={brainChallenges[brainActive.id]===true} onClick={()=>{const correct=index===brainActive.answer;setBrainChallenges(p=>({...p,[brainActive.id]:correct}));playCbetTone(correct?"correct":"wrong");}}>{option}</button>)}{brainChallenges[brainActive.id]===false&&<small>Not quite. Review the highlighted brain region and try again.</small>}</div></article><article className="m5-field-card m5-brain-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>EEG is a microvolt measurement</h2><p>Because EEG signals are extremely small, electrode impedance, dried conductive material, cable motion, nearby electrical sources, and muscle activity can dominate the display. Verify the acquisition pathway before assuming the waveform represents a neurologic change.</p><div className="m5-signal-chain"><span>Cortical voltage</span><b>→</b><span>Scalp electrode</span><b>→</b><span>Lead set</span><b>→</b><span>Differential amplifier</span><b>→</b><span>Displayed EEG</span></div></article></section>
@@ -5128,6 +5300,7 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
     <nav className="m5-bottom-nav" aria-label="Mission 5 lesson navigation"><button className="cbet-secondary" onClick={()=>openLesson(2)}>← Previous: Blood Pressure & Circulation</button><button className="cbet-secondary" onClick={resetBrainExplorer}>Restart Explorer</button><button className="cbet-primary" disabled={!brainCompleted&&!localUnlock} onClick={()=>openLesson(4)}>Next: Oxygen Transport →</button></nav>
   </section>;
 
+
   if(lessonIndex===2) return <section className="cbet-shell m5-shell m5-lesson-stage m5-circulation-stage"><div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 3 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"37.5%"}}/></div>
     <section className="m5-hero m5-circulation-hero"><MissionFiveCirculationGraphic activeId={circActiveId} explored={circExplored} onSelect={selectCircStructure} flowing={bloodFlowing}/><div className="m5-hero-copy"><span className="m5-kicker">Blood Pressure & Circulation Explorer</span><h1>Follow the blood. Understand the pressure.</h1><p>Trace blood through pulmonary and systemic circulation, then connect mechanical blood flow to NIBP, invasive pressure, and pulse-oximetry measurements.</p><button className="m5-signal-button m5-circulation-button" onClick={()=>setBloodFlowing(v=>!v)}>{bloodFlowing?"⏸ Pause Blood Flow":"▶ Start Blood Flow"}</button><div className="m5-explorer-progress"><div><span style={{width:`${(circExplored.length/MISSION_FIVE_CIRCULATION.length)*100}%`}}/></div><strong>{circExplored.length} of 5 structures explored</strong></div><div className="m5-structure-tabs">{MISSION_FIVE_CIRCULATION.map(item=><button key={item.id} className={`${circActiveId===item.id?"active":""} ${circExplored.includes(item.id)?"explored":""}`} style={{"--structure-color":item.color}} onClick={()=>selectCircStructure(item.id)}><span>{circExplored.includes(item.id)?"✓":"●"}</span>{item.label}</button>)}</div></div></section>
     <section className="m5-detail-grid"><article className="m5-structure-detail" style={{"--structure-color":circActive.color}}><span className="m5-section-label">Interactive Circulation</span><h2>{circActive.label}</h2><dl><div><dt>Location</dt><dd>{circActive.location}</dd></div><div><dt>Purpose</dt><dd>{circActive.purpose}</dd></div><div><dt>Equipment connection</dt><dd>{circActive.equipment}</dd></div></dl><div className="m5-mini-challenge"><strong>Check your understanding</strong><p>{circActive.challenge}</p>{circActive.options.map((option,index)=><button key={option} className={circChallenges[circActive.id]!==undefined?(index===circActive.answer?"correct":""):""} disabled={circChallenges[circActive.id]===true} onClick={()=>{const correct=index===circActive.answer;setCircChallenges(p=>({...p,[circActive.id]:correct}));playCbetTone(correct?"correct":"wrong");}}>{option}</button>)}{circChallenges[circActive.id]===false&&<small>Not quite. Review the highlighted part of the circulation pathway and try again.</small>}</div></article><article className="m5-field-card m5-circulation-field"><span className="m5-section-label">Clinical Engineering Insight</span><h2>The monitor reports pressure—not perfusion by itself</h2><p>A cuff and an arterial line measure pressure using different acquisition methods. Neither reading alone proves that every tissue is receiving adequate blood flow. Compare the waveform, pulse, sensor setup, patient condition, and other physiologic signals.</p><div className="m5-signal-chain"><span>Cardiac contraction</span><b>→</b><span>Arterial pressure</span><b>→</b><span>Cuff or transducer</span><b>→</b><span>Signal processing</span><b>→</b><span>Displayed value</span></div></article></section>
@@ -5137,6 +5310,7 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
     <section className={`m5-completion ${circReady||circCompleted?"ready":""}`}><div><span>{circReady||circCompleted?"🏅":"🩸"}</span><div><strong>{circCompleted?"Blood Pressure & Circulation Explorer Complete":circReady?"Explorer Ready to Complete":"Complete every activity"}</strong><small>{circCompleted?"Your 50 XP and lesson progress are preserved.":`${circExplored.length}/5 structures · ${Object.values(circChallenges).filter(Boolean).length}/5 checks · ${bloodPathComplete?"blood path complete":"blood path pending"}`}</small></div></div><button className="cbet-primary" disabled={!circReady&&!circCompleted} onClick={finishCircLesson}>{circCompleted?"Lesson Completed ✓":"Complete Circulation Explorer"}</button></section>
     <nav className="m5-bottom-nav" aria-label="Mission 5 lesson navigation"><button className="cbet-secondary" onClick={()=>openLesson(1)}>← Previous: Lungs & Ventilation</button><button className="cbet-secondary" onClick={resetCircExplorer}>Restart Explorer</button><button className="cbet-primary" disabled={!circCompleted&&!localUnlock} onClick={()=>openLesson(3)}>Next: Brain & EEG →</button></nav>
   </section>;
+
 
   if(lessonIndex===1) return <section className="cbet-shell m5-shell m5-lesson-stage m5-lung-stage">
     <div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 2 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"25%"}}/></div>
@@ -5547,6 +5721,452 @@ function MissionTen({ onExit }) {
   );
 }
 
+
+const MISSION_SIX_NETWORK_NODES = [
+  {id:"device",label:"Medical Device",detail:"The endpoint that generates or receives clinical data.",ip:"10.24.16.57"},
+  {id:"switch",label:"Network Switch",detail:"Connects devices on the local network and forwards Ethernet frames.",ip:"Layer 2"},
+  {id:"gateway",label:"Default Gateway",detail:"Routes traffic from the local subnet toward other networks.",ip:"10.24.16.1"},
+  {id:"server",label:"Clinical Server",detail:"The destination system receiving data from the medical device.",ip:"10.24.40.25"},
+];
+
+function MissionSixNetworkGraphic({activeId,onSelect,packetRunning,faultMode}) {
+  return <div className={`m6-network-art ${packetRunning?"running":""} fault-${faultMode}`}>
+    <svg viewBox="0 0 920 470" role="img" aria-label="Hospital medical device network showing device, switch, default gateway and clinical server">
+      <defs><marker id="m6arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"/></marker></defs>
+      <path className="m6-link" d="M170 235H330M455 235H610M735 235H825"/>
+      <circle className="m6-packet" cx="170" cy="235" r="10"/>
+      <g className={`m6-node ${activeId==="device"?"active":""}`} onClick={()=>onSelect("device")}><rect x="45" y="145" width="150" height="180" rx="20"/><rect className="screen" x="70" y="175" width="100" height="65" rx="8"/><path className="ecg" d="M80 210h18l8-18 12 38 12-20h28"/><text x="120" y="275">MEDICAL</text><text x="120" y="297">DEVICE</text><text className="ip" x="120" y="345">10.24.16.57</text></g>
+      <g className={`m6-node ${activeId==="switch"?"active":""}`} onClick={()=>onSelect("switch")}><rect x="330" y="185" width="125" height="100" rx="15"/>{[0,1,2,3].map(n=><rect key={n} className="port" x={350+n*23} y="225" width="14" height="12" rx="2"/>)}<text x="392" y="315">SWITCH</text></g>
+      <g className={`m6-node ${activeId==="gateway"?"active":""}`} onClick={()=>onSelect("gateway")}><circle cx="610" cy="235" r="70"/><path className="router-arrow" d="M575 235h70M625 215l20 20-20 20M595 215l-20 20 20 20"/><text x="610" y="330">GATEWAY</text><text className="ip" x="610" y="352">10.24.16.1</text></g>
+      <g className={`m6-node ${activeId==="server"?"active":""}`} onClick={()=>onSelect("server")}><rect x="760" y="120" width="125" height="220" rx="16"/>{[0,1,2].map(n=><g key={n}><rect className="server-slot" x="780" y={150+n*55} width="85" height="38" rx="6"/><circle className="server-led" cx="845" cy={169+n*55} r="5"/></g>)}<text x="822" y="375">SERVER</text><text className="ip" x="822" y="397">10.24.40.25</text></g>
+      <text className="m6-path-label" x="250" y="215">LOCAL LAN</text><text className="m6-path-label" x="525" y="215">ROUTED</text><text className="m6-path-label" x="780" y="215">DESTINATION</text>
+    </svg>
+  </div>;
+}
+
+function MissionSix({onExit, developerUnlockAll=false}) {
+  const moduleNumber=6;
+  const saved=getMissionProgress(moduleNumber)||{};
+  const localUnlock=developerUnlockAll && isLocalAcademyHost();
+  const [phase,setPhase]=useState(saved.phase||"briefing");
+  const [lessonIndex,setLessonIndex]=useState(0);
+  const [activeNode,setActiveNode]=useState("device");
+  const [explored,setExplored]=useState(saved.m6L1Explored||[]);
+  const [packetRunning,setPacketRunning]=useState(true);
+  const [path,setPath]=useState([]);
+  const [pathFeedback,setPathFeedback]=useState("");
+  const [consoleStep,setConsoleStep]=useState(0);
+  const [diagnosis,setDiagnosis]=useState(null);
+  const [fix,setFix]=useState(null);
+  const [verify,setVerify]=useState(false);
+  const [dhcpStep,setDhcpStep]=useState(0), [dhcpDiagnosis,setDhcpDiagnosis]=useState(null), [dhcpFix,setDhcpFix]=useState(null);
+  const [dnsStep,setDnsStep]=useState(0), [dnsDiagnosis,setDnsDiagnosis]=useState(null), [dnsFix,setDnsFix]=useState(null), [dnsVerified,setDnsVerified]=useState(false);
+  const [switchExplore,setSwitchExplore]=useState([]);
+  const [vlanAnswer,setVlanAnswer]=useState(null);
+  const [portStep,setPortStep]=useState(0);
+  const [portDiagnosis,setPortDiagnosis]=useState(null);
+  const [portFix,setPortFix]=useState(null);
+  const [portVerified,setPortVerified]=useState(false);
+  const [wifiExplore,setWifiExplore]=useState([]);
+  const [wifiScenario,setWifiScenario]=useState(null);
+  const [wifiStep,setWifiStep]=useState(0);
+  const [wifiDiagnosis,setWifiDiagnosis]=useState(null);
+  const [wifiFix,setWifiFix]=useState(null);
+  const [wifiVerified,setWifiVerified]=useState(false);
+  const [dicomExplore,setDicomExplore]=useState([]);
+  const [dicomPath,setDicomPath]=useState([]);
+  const [dicomPathFeedback,setDicomPathFeedback]=useState("");
+  const [dicomStep,setDicomStep]=useState(0);
+  const [dicomDiagnosis,setDicomDiagnosis]=useState(null);
+  const [dicomFix,setDicomFix]=useState(null);
+  const [dicomVerified,setDicomVerified]=useState(false);
+  const [hl7Explore,setHl7Explore]=useState([]);
+  const [hl7Path,setHl7Path]=useState([]);
+  const [hl7PathFeedback,setHl7PathFeedback]=useState("");
+  const [adtStep,setAdtStep]=useState(0), [adtDiagnosis,setAdtDiagnosis]=useState(null), [adtFix,setAdtFix]=useState(null), [adtVerified,setAdtVerified]=useState(false);
+  const [resultStep,setResultStep]=useState(0), [resultDiagnosis,setResultDiagnosis]=useState(null), [resultFix,setResultFix]=useState(null), [resultVerified,setResultVerified]=useState(false);
+  const [cyberExplore,setCyberExplore]=useState([]);
+  const [cyberScenario,setCyberScenario]=useState(null);
+  const [usbStep,setUsbStep]=useState(0);
+  const [usbDiagnosis,setUsbDiagnosis]=useState(null);
+  const [usbAction,setUsbAction]=useState(null);
+  const [usbVerified,setUsbVerified]=useState(false);
+  const [capStage,setCapStage]=useState(0);
+  const [capA,setCapA]=useState(null), [capB,setCapB]=useState(null), [capC,setCapC]=useState(null), [capD,setCapD]=useState(null);
+  const [capEvidence,setCapEvidence]=useState([]);
+  const [capVerified,setCapVerified]=useState(false);
+  const [credStep,setCredStep]=useState(0);
+  const [credDiagnosis,setCredDiagnosis]=useState(null);
+  const [credAction,setCredAction]=useState(null);
+  const [credVerified,setCredVerified]=useState(false);
+
+  const [storeStep,setStoreStep]=useState(0);
+  const [storeDiagnosis,setStoreDiagnosis]=useState(null);
+  const [storeFix,setStoreFix]=useState(null);
+  const [storeVerified,setStoreVerified]=useState(false);
+  const [authStep,setAuthStep]=useState(0);
+  const [authDiagnosis,setAuthDiagnosis]=useState(null);
+  const [authFix,setAuthFix]=useState(null);
+  const [authVerified,setAuthVerified]=useState(false);
+  const [wrongVlanStep,setWrongVlanStep]=useState(0);
+  const [wrongVlanDiagnosis,setWrongVlanDiagnosis]=useState(null);
+  const [wrongVlanFix,setWrongVlanFix]=useState(null);
+  const [wrongVlanVerified,setWrongVlanVerified]=useState(false);
+  const completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(0);
+  const roadmap=["IP Addresses & TCP/IP","DHCP & DNS","Switches, VLANs & Ports","Wi-Fi in Healthcare","DICOM & PACS","HL7 & Interface Basics","Cybersecurity for Medical Devices","Networked Systems Integration"];
+  const active=MISSION_SIX_NETWORK_NODES.find(x=>x.id===activeNode)||MISSION_SIX_NETWORK_NODES[0];
+  const ready=explored.length===4&&path.length===4&&diagnosis===1&&fix===1&&verify;
+  const lesson1Complete=completed||localUnlock;
+  const lesson2Completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(1);
+  const lesson2Ready=dhcpDiagnosis===1&&dhcpFix===1&&dnsDiagnosis===1&&dnsFix===1&&dnsVerified;
+  const lesson3Completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(2);
+  const lesson3Ready=switchExplore.length===4&&vlanAnswer===1&&portDiagnosis===1&&portFix===1&&portVerified&&wrongVlanDiagnosis===1&&wrongVlanFix===1&&wrongVlanVerified;
+  const lesson4Completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(3);
+  const lesson4Ready=wifiExplore.length===4&&wifiScenario===1&&wifiDiagnosis===1&&wifiFix===1&&wifiVerified&&authDiagnosis===1&&authFix===1&&authVerified;
+  const lesson5Completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(4);
+  const lesson5Ready=dicomExplore.length===4&&dicomPath.length===4&&dicomDiagnosis===1&&dicomFix===1&&dicomVerified&&storeDiagnosis===1&&storeFix===1&&storeVerified;
+  const lesson6Completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(5);
+  const lesson6Ready=hl7Explore.length===4&&hl7Path.length===4&&adtDiagnosis===1&&adtFix===1&&adtVerified&&resultDiagnosis===1&&resultFix===1&&resultVerified;
+  const lesson7Completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(6);
+  const lesson7Ready=cyberExplore.length===4&&cyberScenario===1&&usbDiagnosis===1&&usbAction===1&&usbVerified&&credDiagnosis===1&&credAction===1&&credVerified;
+  const lesson8Completed=Array.isArray(saved.completedLessons)&&saved.completedLessons.includes(7);
+  const lesson8Ready=capA===1&&capB===1&&capC===1&&capD===1&&capVerified;
+
+
+
+
+
+  const explore=id=>{setActiveNode(id);setExplored(v=>v.includes(id)?v:[...v,id])};
+  const reset=()=>{setActiveNode("device");setExplored([]);setPacketRunning(true);setPath([]);setPathFeedback("");setConsoleStep(0);setDiagnosis(null);setFix(null);setVerify(false)};
+
+  if(phase==="briefing") return <section className="cbet-shell m6-shell m6-briefing">
+    <button className="cbet-back" onClick={onExit}>← Back to Academy</button>
+    <span className="m6-kicker">Mission 6 · Networking & Computers</span>
+    <h1>Follow the connection.<br/>Find the failure.</h1>
+    <p>Learn networking the way a Clinical Engineer uses it: inspect the evidence, test the path, isolate the fault, correct it, and verify communication.</p>
+    <div className="m6-roadmap">{roadmap.map((item,index)=>{const available=index===0||(index===1&&lesson1Complete)||(index===2&&(lesson2Completed||localUnlock))||(index===3&&(lesson3Completed||localUnlock))||(index===4&&(lesson4Completed||localUnlock))||(index===5&&(lesson5Completed||localUnlock))||(index===6&&(lesson6Completed||localUnlock))||(index===7&&(lesson7Completed||localUnlock));const done=(index===0&&completed)||(index===1&&lesson2Completed)||(index===2&&lesson3Completed)||(index===3&&lesson4Completed)||(index===4&&lesson5Completed)||(index===5&&lesson6Completed)||(index===6&&lesson7Completed)||(index===7&&lesson8Completed);return <button key={item} className={`${available?"ready":"future"} ${done?"complete":""}`} disabled={!available} onClick={()=>{setLessonIndex(index);setPhase("lessons")}}><span>{done?"✓":index===0?"🌐":index===1?"🧭":index===2?"🔀":index===3?"📶":index===4?"🩻":index===5?"⇄":index===6?"🔐":index===7?"🧩":index+1}</span><strong>{item}</strong><small>{done?"Complete — review anytime":available?"Ready now":"Coming next"}</small></button>})}</div>
+    <button className="cbet-primary m6-begin" onClick={()=>{setPhase("lessons");saveMissionProgress(moduleNumber,{...saved,phase:"lessons",lessonIndex:0})}}>{completed?"Review IP Addresses & TCP/IP":"Begin Network Lab"}</button>
+  </section>;
+
+  if(lessonIndex===5) return <section className="cbet-shell m6-shell m6-lesson-stage m6-l6">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 6 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m6-progress"><span style={{width:"75%"}}/></div>
+    <section className="m6-hl7-hero"><div><span className="m6-kicker">HL7 & Interface Basics</span><h1>The network can work while the workflow fails.</h1><p>Follow the clinical message from source to interface engine to destination. Read the acknowledgment before blaming connectivity.</p><div className="m6-hl7-concepts">{[["adt","ADT"],["oru","ORU"],["engine","Interface Engine"],["ack","ACK / Error"]].map(([id,label])=><button key={id} className={hl7Explore.includes(id)?"done":""} onClick={()=>setHl7Explore(v=>v.includes(id)?v:[...v,id])}>{hl7Explore.includes(id)?"✓":"●"} {label}</button>)}</div></div><div className="m6-hl7-flow"><div><strong>EHR / SOURCE</strong><small>Generate message</small></div><b>→</b><div className="engine"><strong>INTERFACE ENGINE</strong><small>Route · transform · monitor</small></div><b>→</b><div><strong>CLINICAL SYSTEM</strong><small>Receive · ACK / Error</small></div></div></section>
+    <section className="m6-path-builder"><div className="m6-section-heading"><span className="m6-section-label">Trace the HL7 Workflow</span><h2>Find the last proven-good step</h2><p>Build the troubleshooting path.</p></div><div className="m6-path-result">{["source","engine","destination","ack"].map((id,i)=><div className="m6-path-wrap" key={id}><div className={`m6-path-slot ${hl7Path[i]===id?"filled":""}`}><span>{i+1}</span><strong>{hl7Path[i]?({"source":"Source Message","engine":"Interface Engine","destination":"Destination","ack":"ACK / Error"})[hl7Path[i]]:"Choose a step"}</strong></div>{i<3&&<b>→</b>}</div>)}</div><div className={`m6-path-feedback ${hl7PathFeedback.startsWith("✓")?"success":hl7PathFeedback.startsWith("Not")?"try":""}`}>{hl7PathFeedback||"Start by proving the source generated the message."}</div><div className="m6-path-options">{[["destination","Destination"],["ack","ACK / Error"],["source","Source Message"],["engine","Interface Engine"]].map(([id,label])=><button key={id} disabled={hl7Path.includes(id)} onClick={()=>{const seq=["source","engine","destination","ack"];if(id===seq[hl7Path.length]){const n=[...hl7Path,id];setHl7Path(n);setHl7PathFeedback(n.length===4?"✓ Workflow traced.":"✓ Correct — follow the message downstream.");playCbetTone("correct")}else{setHl7PathFeedback("Not quite — prove where the message exists before jumping downstream.");playCbetTone("wrong")}}}>{label}</button>)}</div></section>
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #1 · Patient Never Appears</span><h2>The patient is admitted in the EHR but never appears on the receiving clinical system.</h2><p>The receiving server is reachable. Inspect the interface transaction.</p><div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Interface Engine Message Viewer</strong></div><div className="m6-console-body"><div>&gt; <button disabled={adtStep} onClick={()=>setAdtStep(1)}>open latest ADT message</button></div>{adtStep>0&&<pre>{`MSH|^~\\&|EHR|HOSPITAL|CLINICAL_SYS|HOSPITAL|20260807||ADT^A01|784211|P|2.5
+PID|1||MRN78421^^^HOSPITAL^MR||PATIENT^TEST
+PV1|1|I|3N^312^1
+
+Message Type ............ ADT^A01
+Source .................. EHR
+Expected Destination .... CLINICAL_SYS
+Active Route ............ CLINICAL_TEST
+Delivery ................ NOT ATTEMPTED`}</pre>}</div></div>{adtStep>0&&<div className="m6-diagnose"><h3>What is the strongest finding?</h3>{["The patient monitor needs a new IP","The message exists, but the active interface route points to the wrong destination","DNS must be down","The switch is half duplex"].map((x,i)=><button key={x} disabled={adtDiagnosis===1} className={adtDiagnosis!==null?(i===1?"correct":adtDiagnosis===i?"wrong":""):""} onClick={()=>{setAdtDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}{adtDiagnosis===1&&<div className="m6-fix-stage"><h3>What should happen next?</h3>{["Change the MRN","Correct the approved interface route to CLINICAL_SYS, replay one controlled message, and verify the acknowledgment","Assign a static IP","Replace the cable"].map((x,i)=><button key={x} disabled={adtFix===1} className={adtFix!==null?(i===1?"correct":adtFix===i?"wrong":""):""} onClick={()=>{setAdtFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}{adtFix===1&&!adtVerified&&<div className="m6-port-action"><div><span>INTERFACE ROUTE</span><strong>ADT^A01 → CLINICAL_SYS</strong><small>Replay one controlled message</small></div><button className="cbet-primary" onClick={()=>setAdtVerified(true)}>Replay & Verify</button></div>}{adtVerified&&<div className="m6-verify"><span>✓ ADT DELIVERY VERIFIED</span><pre>{`Route .................... CLINICAL_SYS
+Delivery ................. SENT
+Acknowledgment ........... ACK
+MSA|AA|784211
+Patient visible .......... YES`}</pre></div>}</section>
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #2 · Result Rejected</span><h2>A result leaves the source system but never posts to the chart.</h2><p>The engine says the message was delivered. Read the response.</p><div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>HL7 Transaction Log</strong></div><div className="m6-console-body"><div>&gt; <button disabled={resultStep} onClick={()=>setResultStep(1)}>view ORU transaction</button></div>{resultStep>0&&<pre>{`MSH|^~\\&|DEVICE_SYS|HOSPITAL|EHR|HOSPITAL|20260807||ORU^R01|998271|P|2.5
+PID|1||MRN78421^^^HOSPITAL^MR
+OBR|1|||VITALS
+OBX|1|NM|HR^Heart Rate||84|bpm
+
+Transport ................. DELIVERED
+MSA|AE|998271
+ERR|||PID^1^3|204^Unknown Key Identifier
+Detail: Patient identifier not found in destination`}</pre>}</div></div>{resultStep>0&&<div className="m6-diagnose"><h3>What did the evidence prove?</h3>{["The network never delivered it","Transport succeeded, but the destination rejected the message because the patient identifier was not recognized","Wrong VLAN","Wrong DICOM AE Title"].map((x,i)=><button key={x} disabled={resultDiagnosis===1} className={resultDiagnosis!==null?(i===1?"correct":resultDiagnosis===i?"wrong":""):""} onClick={()=>{setResultDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}{resultDiagnosis===1&&<div className="m6-fix-stage"><h3>What is the appropriate next step?</h3>{["Keep resending the same message","Investigate patient/identifier mapping and registration, correct the approved mapping, then resend and confirm an ACK","Change server IP","Disable the interface engine"].map((x,i)=><button key={x} disabled={resultFix===1} className={resultFix!==null?(i===1?"correct":resultFix===i?"wrong":""):""} onClick={()=>{setResultFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}{resultFix===1&&!resultVerified&&<div className="m6-port-action"><div><span>PATIENT MAPPING</span><strong>Identifier mapping corrected</strong><small>Resend one result and inspect the ACK</small></div><button className="cbet-primary" onClick={()=>setResultVerified(true)}>Resend & Verify</button></div>}{resultVerified&&<div className="m6-verify"><span>✓ RESULT VERIFIED</span><pre>{`Transport ................. DELIVERED
+MSA|AA|998271
+Result posted ............. YES
+Heart Rate ................ 84 bpm`}</pre></div>}</section>
+    <section className="m6-l6takeaways"><article><strong>ADT</strong><span>Patient administration events such as admission, discharge, and transfer.</span></article><article><strong>ORU</strong><span>Observation/result information moving between systems.</span></article><article><strong>ACK / Error</strong><span>Delivery does not guarantee acceptance. Read the destination response.</span></article><article><strong>Follow the Message</strong><span>Source → engine → destination → acknowledgment.</span></article></section>
+    <section className={`m6-completion ${lesson6Ready||lesson6Completed?"ready":""}`}><div><span>{lesson6Ready||lesson6Completed?"🏅":"⇄"}</span><div><strong>{lesson6Completed?"HL7 & Interface Basics Complete":lesson6Ready?"Lesson Ready to Complete":"Complete both HL7 troubleshooting calls"}</strong><small>90 XP · ADT, ORU, routing, ACK/errors & verification</small></div></div><button className="cbet-primary" disabled={!lesson6Ready&&!lesson6Completed} onClick={()=>{const prior=Array.isArray(saved.completedLessons)?saved.completedLessons:[];const next=Array.from(new Set([...prior,0,1,2,3,4,5]));if(!lesson6Completed)awardCbetXp(90,"mission6-hl7-interface");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:5,completedLessons:next,m6L1Explored:explored})}}>{lesson6Completed?"Lesson Completed ✓":"Complete Lesson 6"}</button></section>
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setLessonIndex(4)}>← Previous: DICOM & PACS</button><button className="cbet-secondary" onClick={()=>{setHl7Explore([]);setHl7Path([]);setHl7PathFeedback("");setAdtStep(0);setAdtDiagnosis(null);setAdtFix(null);setAdtVerified(false);setResultStep(0);setResultDiagnosis(null);setResultFix(null);setResultVerified(false)}}>Restart Lesson</button><button className="cbet-primary" disabled={!lesson6Completed&&!localUnlock} onClick={()=>setLessonIndex(6)}>Next: Cybersecurity for Medical Devices →</button></nav>
+  </section>;
+
+  if(lessonIndex===4) return <section className="cbet-shell m6-shell m6-lesson-stage m6-l5">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 5 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m6-progress"><span style={{width:"62.5%"}}/></div>
+
+    <section className="m6-dicom-hero"><div><span className="m6-kicker">DICOM & PACS</span><h1>Network reachability is only the beginning.</h1><p>An imaging modality can ping a PACS server and still fail to send images. DICOM adds application-layer identifiers, ports, and destinations that must all agree.</p><div className="m6-dicom-concepts">{[["modality","Modality"],["ae","AE Title"],["port","DICOM Port"],["pacs","PACS"]].map(([id,label])=><button key={id} className={dicomExplore.includes(id)?"done":""} onClick={()=>setDicomExplore(v=>v.includes(id)?v:[...v,id])}>{dicomExplore.includes(id)?"✓":"●"} {label}</button>)}</div></div>
+    <div className="m6-dicom-map"><div className="dicom-modality"><strong>CT-01</strong><small>10.24.50.31</small><span>AE: CT_ER_01</span></div><b>→</b><div className="dicom-network">HOSPITAL<br/>NETWORK</div><b>→</b><div className="dicom-pacs"><strong>PACS</strong><small>10.24.60.20</small><span>AE: PACS_MAIN</span></div></div></section>
+
+    <section className="m6-path-builder m6-dicom-path"><div className="m6-section-heading"><span className="m6-section-label">Build the DICOM Send Path</span><h2>What has to be correct for a study to reach PACS?</h2><p>Click the cards in the logical troubleshooting order.</p></div><div className="m6-path-result">{["network","ipport","aetitle","store"].map((id,i)=><div className="m6-path-wrap" key={id}><div className={`m6-path-slot ${dicomPath[i]===id?"filled":""}`}><span>{i+1}</span><strong>{dicomPath[i]?({"network":"Network Reachability","ipport":"Destination IP / Port","aetitle":"AE Titles","store":"DICOM Store Test"})[dicomPath[i]]:"Choose a step"}</strong></div>{i<3&&<b>→</b>}</div>)}</div><div className={`m6-path-feedback ${dicomPathFeedback.startsWith("✓")?"success":dicomPathFeedback.startsWith("Not")?"try":""}`}>{dicomPathFeedback||"Start by proving the basic network path."}</div><div className="m6-path-options">{[["aetitle","AE Titles"],["store","DICOM Store Test"],["network","Network Reachability"],["ipport","Destination IP / Port"]].map(([id,label])=><button key={id} disabled={dicomPath.includes(id)} onClick={()=>{const seq=["network","ipport","aetitle","store"];if(id===seq[dicomPath.length]){const next=[...dicomPath,id];setDicomPath(next);setDicomPathFeedback(next.length===4?"✓ DICOM troubleshooting path complete.":"✓ Correct — keep moving up the stack.");playCbetTone("correct")}else{setDicomPathFeedback("Not quite — prove the lower-level dependency first.");playCbetTone("wrong")}}}>{label}</button>)}</div></section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #1 · Ping Works, DICOM Fails</span><h2>The CT can ping PACS, but DICOM verification fails.</h2><p>Use the application-layer evidence. Do not keep troubleshooting the cable after IP connectivity is already proven.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>DICOM Connectivity Test</strong></div><div className="m6-console-body"><div>&gt; <button disabled={dicomStep} onClick={()=>setDicomStep(1)}>run DICOM verification</button></div>{dicomStep>0&&<pre>{`Network Test:
+  ping 10.24.60.20 ........ PASS
+
+Configured Destination:
+  Remote IP ............... 10.24.60.20
+  Remote Port ............. 104
+  Called AE Title ......... PACS_MAIN
+  Calling AE Title ........ CT_ER_01
+
+Association Result:
+  TCP Connection .......... OPEN
+  DICOM Association ....... REJECTED
+  Reason .................. Calling AE Title not recognized
+
+PACS Approved Modality AE:
+  CT_ER1`}</pre>}</div></div>
+      {dicomStep>0&&<div className="m6-diagnose"><h3>What is wrong?</h3>{["The Ethernet cable is disconnected","The calling AE Title configured on the modality does not match the AE Title approved on PACS","The PACS IP is unreachable","The device has an APIPA address"].map((x,i)=><button key={x} disabled={dicomDiagnosis===1} className={dicomDiagnosis!==null?(i===1?"correct":dicomDiagnosis===i?"wrong":""):""} onClick={()=>{setDicomDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {dicomDiagnosis===1&&<div className="m6-fix-stage"><h3>What should be corrected?</h3>{["Change the default gateway randomly","Coordinate the approved DICOM configuration and make the modality/PACS AE Title entries agree exactly","Replace the network switch","Disable DNS"].map((x,i)=><button key={x} disabled={dicomFix===1} className={dicomFix!==null?(i===1?"correct":dicomFix===i?"wrong":""):""} onClick={()=>{setDicomFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {dicomFix===1&&!dicomVerified&&<div className="m6-port-action"><div><span>DICOM CONFIGURATION</span><strong>Calling AE Title → CT_ER1</strong><small>Destination IP / Port remain unchanged</small></div><button className="cbet-primary" onClick={()=>setDicomVerified(true)}>Verify Association</button></div>}
+      {dicomVerified&&<div className="m6-verify"><span>✓ DICOM ASSOCIATION VERIFIED</span><pre>{`TCP Connection .......... OPEN
+DICOM Association ....... ACCEPTED
+C-ECHO .................. SUCCESS
+Remote AE ................ PACS_MAIN
+Calling AE ............... CT_ER1`}</pre><strong>Basic IP connectivity was never the fault. The DICOM identity was.</strong></div>}
+    </section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #2 · Association Works, Images Still Do Not Arrive</span><h2>C-ECHO passes, but completed studies remain in the modality's send queue.</h2><p>Now inspect the store operation and destination service.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>DICOM Store Log</strong></div><div className="m6-console-body"><div>&gt; <button disabled={storeStep} onClick={()=>setStoreStep(1)}>view send queue log</button></div>{storeStep>0&&<pre>{`Association to PACS_MAIN ........ ACCEPTED
+C-ECHO .......................... SUCCESS
+
+C-STORE Study 784221:
+  Destination IP ................. 10.24.60.20
+  Configured Port ................ 11112
+  PACS Storage SCP Port .......... 104
+  Result ......................... CONNECTION REFUSED
+
+Queue Status:
+  23 studies pending`}</pre>}</div></div>
+      {storeStep>0&&<div className="m6-diagnose"><h3>What is the strongest finding?</h3>{["The modality cannot resolve DNS","The configured DICOM storage port does not match the PACS storage service port","The AE Title is definitely wrong","The switch must be half duplex"].map((x,i)=><button key={x} disabled={storeDiagnosis===1} className={storeDiagnosis!==null?(i===1?"correct":storeDiagnosis===i?"wrong":""):""} onClick={()=>{setStoreDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {storeDiagnosis===1&&<div className="m6-fix-stage"><h3>What should happen next?</h3>{["Change the PACS IP to any server that answers ping","Correct the approved DICOM destination port to match the PACS storage service, then resend a test study and verify receipt","Reboot every switch","Change the modality MAC address"].map((x,i)=><button key={x} disabled={storeFix===1} className={storeFix!==null?(i===1?"correct":storeFix===i?"wrong":""):""} onClick={()=>{setStoreFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {storeFix===1&&!storeVerified&&<div className="m6-port-action"><div><span>STORAGE DESTINATION</span><strong>PACS_MAIN · 10.24.60.20 · Port 104</strong><small>Send one controlled test study before releasing the queue</small></div><button className="cbet-primary" onClick={()=>setStoreVerified(true)}>Send Test Study</button></div>}
+      {storeVerified&&<div className="m6-verify"><span>✓ DICOM STORE VERIFIED</span><pre>{`C-STORE Test Study ........ SUCCESS
+PACS Receipt ............... CONFIRMED
+Study Visible in Archive ... YES
+
+Queued studies released:
+23 → sending`}</pre><strong>The storage path is verified before releasing the backlog.</strong></div>}
+    </section>
+
+    <section className="m6-l5takeaways"><article><strong>Ping ≠ DICOM</strong><span>Ping proves IP reachability, not that DICOM configuration is correct.</span></article><article><strong>AE Titles Matter</strong><span>DICOM systems identify application entities by configured AE Titles.</span></article><article><strong>Ports Matter</strong><span>A valid IP with the wrong service port can still fail at the application layer.</span></article><article><strong>Verify With a Test Study</strong><span>Confirm association and actual image receipt before declaring the repair complete.</span></article></section>
+
+    <section className={`m6-completion ${lesson5Ready||lesson5Completed?"ready":""}`}><div><span>{lesson5Ready||lesson5Completed?"🏅":"🩻"}</span><div><strong>{lesson5Completed?"DICOM & PACS Complete":lesson5Ready?"Lesson Ready to Complete":"Complete both DICOM troubleshooting calls"}</strong><small>90 XP · DICOM path, AE Titles, ports, C-ECHO, C-STORE & verification</small></div></div><button className="cbet-primary" disabled={!lesson5Ready&&!lesson5Completed} onClick={()=>{const prior=Array.isArray(saved.completedLessons)?saved.completedLessons:[];const next=Array.from(new Set([...prior,0,1,2,3,4]));if(!lesson5Completed)awardCbetXp(90,"mission6-dicom-pacs");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:4,completedLessons:next,m6L1Explored:explored})}}>{lesson5Completed?"Lesson Completed ✓":"Complete Lesson 5"}</button></section>
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setLessonIndex(3)}>← Previous: Wi-Fi in Healthcare</button><button className="cbet-secondary" onClick={()=>{setDicomExplore([]);setDicomPath([]);setDicomPathFeedback("");setDicomStep(0);setDicomDiagnosis(null);setDicomFix(null);setDicomVerified(false);setStoreStep(0);setStoreDiagnosis(null);setStoreFix(null);setStoreVerified(false)}}>Restart Lesson</button><button className="cbet-primary" disabled={!lesson5Completed&&!localUnlock} onClick={()=>setLessonIndex(5)}>Next: HL7 & Interface Basics →</button></nav>
+  </section>;
+
+  if(lessonIndex===3) return <section className="cbet-shell m6-shell m6-lesson-stage m6-l4">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 4 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m6-progress"><span style={{width:"50%"}}/></div>
+
+    <section className="m6-wifi-hero"><div><span className="m6-kicker">Wi-Fi in Healthcare</span><h1>Wireless failures move with the environment.</h1><p>A device can work perfectly at the bench and fail in patient-care areas because wireless performance depends on coverage, roaming, interference, authentication, and configuration.</p><div className="m6-wifi-concepts">{[["ap","Access Point"],["rssi","Signal Strength"],["roam","Roaming"],["auth","Authentication"]].map(([id,label])=><button key={id} className={wifiExplore.includes(id)?"done":""} onClick={()=>setWifiExplore(v=>v.includes(id)?v:[...v,id])}>{wifiExplore.includes(id)?"✓":"●"} {label}</button>)}</div></div>
+    <div className="m6-wifi-map"><div className="wifi-ap a"><span>AP-1</span><i></i></div><div className="wifi-ap b"><span>AP-2</span><i></i></div><div className="wifi-ap c"><span>AP-3</span><i></i></div><div className="wifi-device">MEDICAL<br/>DEVICE</div><div className="wifi-zone weak">WEAK COVERAGE</div></div></section>
+
+    <section className="m6-vlan-check"><span className="m6-section-label">Wireless Reasoning</span><h2>A device disconnects only when transported down one hallway. What does that pattern suggest first?</h2><div>{["The application server is always offline","Investigate wireless coverage, roaming, and local RF conditions in that area","Replace the battery immediately"].map((x,i)=><button key={x} disabled={wifiScenario===1} className={wifiScenario!==null?(i===1?"correct":wifiScenario===i?"wrong":""):""} onClick={()=>{setWifiScenario(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div></section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #1 · Intermittent Roaming</span><h2>A wireless monitor works in Room 210 but disconnects while moving toward Room 218.</h2><p>Inspect the wireless evidence while the device is in the problem area.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Wireless Diagnostics</strong></div><div className="m6-console-body"><div>&gt; <button disabled={wifiStep} onClick={()=>setWifiStep(1)}>show wireless status</button></div>{wifiStep>0&&<pre>{`SSID: Hospital-Medical
+BSSID: AP-2
+Band: 5 GHz
+Channel: 44
+RSSI: -82 dBm
+Signal Quality: Poor
+Retries: 38%
+Roam Attempts: 7
+Last Roam: Failed
+Neighbor AP-3 RSSI: -63 dBm`}</pre>}</div></div>
+      {wifiStep>0&&<div className="m6-diagnose"><h3>What is the strongest clue?</h3>{["The DNS server must be wrong","The device remains associated to a very weak AP even though a stronger neighboring AP is available","The IP address is duplicated","The Ethernet cable is crossed"].map((x,i)=><button key={x} disabled={wifiDiagnosis===1} className={wifiDiagnosis!==null?(i===1?"correct":wifiDiagnosis===i?"wrong":""):""} onClick={()=>{setWifiDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {wifiDiagnosis===1&&<div className="m6-fix-stage"><h3>What should be investigated next?</h3>{["Replace the monitor display","Review device roaming settings, WLAN design/coverage, AP configuration, and client compatibility with the wireless/network team","Set a random static IP","Change NIBP cuff size"].map((x,i)=><button key={x} disabled={wifiFix===1} className={wifiFix!==null?(i===1?"correct":wifiFix===i?"wrong":""):""} onClick={()=>{setWifiFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {wifiFix===1&&!wifiVerified&&<div className="m6-port-action"><div><span>POST-CHANGE TEST</span><strong>Roaming threshold / WLAN coverage reviewed</strong><small>Retest while moving through the original failure area</small></div><button className="cbet-primary" onClick={()=>setWifiVerified(true)}>Run Roaming Test</button></div>}
+      {wifiVerified&&<div className="m6-verify"><span>✓ ROAMING VERIFIED</span><pre>{`Room 210: AP-1  RSSI -55 dBm
+Hallway:  Roam AP-1 → AP-3  PASS
+Room 218: AP-3  RSSI -61 dBm
+Packet loss during roam: 0%
+Application session: maintained`}</pre><strong>The repair was tested in the location and movement pattern that originally failed.</strong></div>}
+    </section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #2 · Authentication</span><h2>A newly replaced wireless device sees the correct SSID but will not join it.</h2><p>The network is visible. Determine whether the failure occurs before or after IP addressing.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Wireless Authentication Log</strong></div><div className="m6-console-body"><div>&gt; <button disabled={authStep} onClick={()=>setAuthStep(1)}>show wlan connection log</button></div>{authStep>0&&<pre>{`SSID: Hospital-Medical
+Association: Successful
+802.1X Authentication: Failed
+EAP Method: EAP-TLS
+Client Certificate: Expired
+DHCP Request: Not attempted
+IPv4 Address: Not assigned`}</pre>}</div></div>
+      {authStep>0&&<div className="m6-diagnose"><h3>Where is the failure occurring?</h3>{["DHCP is the first failure","Wireless authentication fails before the device reaches DHCP","The server IP is duplicated","The switch port speed is 10 half"].map((x,i)=><button key={x} disabled={authDiagnosis===1} className={authDiagnosis!==null?(i===1?"correct":authDiagnosis===i?"wrong":""):""} onClick={()=>{setAuthDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {authDiagnosis===1&&<div className="m6-fix-stage"><h3>What is the appropriate corrective path?</h3>{["Manually assign an IP to bypass authentication","Renew or install the approved client certificate/profile through the authorized wireless/security process, then reconnect and verify","Disable wireless security","Change the DNS server"].map((x,i)=><button key={x} disabled={authFix===1} className={authFix!==null?(i===1?"correct":authFix===i?"wrong":""):""} onClick={()=>{setAuthFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {authFix===1&&!authVerified&&<div className="m6-port-action"><div><span>WIRELESS PROFILE</span><strong>Approved certificate/profile updated</strong><small>Reconnect and verify authentication + DHCP</small></div><button className="cbet-primary" onClick={()=>setAuthVerified(true)}>Verify Connection</button></div>}
+      {authVerified&&<div className="m6-verify"><span>✓ WIRELESS CONNECTION VERIFIED</span><pre>{`Association: Successful
+802.1X Authentication: Successful
+DHCP: Successful
+IPv4 Address: 10.24.32.71
+Default Gateway: 10.24.32.1
+Clinical Server: Reachable`}</pre></div>}
+    </section>
+
+    <section className="m6-l4takeaways"><article><strong>RSSI Matters</strong><span>A green Wi-Fi icon does not guarantee adequate signal quality.</span></article><article><strong>Roaming Is a Workflow</strong><span>Mobile medical devices must maintain connectivity while moving between access points.</span></article><article><strong>Authentication Happens Before DHCP</strong><span>If 802.1X fails, the device may never reach the stage where it requests an IP.</span></article><article><strong>Test Where It Fails</strong><span>Bench testing alone can miss location-specific RF and roaming problems.</span></article></section>
+
+    <section className={`m6-completion ${lesson4Ready||lesson4Completed?"ready":""}`}><div><span>{lesson4Ready||lesson4Completed?"🏅":"📶"}</span><div><strong>{lesson4Completed?"Wi-Fi in Healthcare Complete":lesson4Ready?"Lesson Ready to Complete":"Complete both wireless troubleshooting calls"}</strong><small>85 XP · coverage, roaming, authentication, verification</small></div></div><button className="cbet-primary" disabled={!lesson4Ready&&!lesson4Completed} onClick={()=>{const prior=Array.isArray(saved.completedLessons)?saved.completedLessons:[];const next=Array.from(new Set([...prior,0,1,2,3]));if(!lesson4Completed)awardCbetXp(85,"mission6-wifi-healthcare");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:3,completedLessons:next,m6L1Explored:explored})}}>{lesson4Completed?"Lesson Completed ✓":"Complete Lesson 4"}</button></section>
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setLessonIndex(2)}>← Previous: Switches, VLANs & Ports</button><button className="cbet-secondary" onClick={()=>{setWifiExplore([]);setWifiScenario(null);setWifiStep(0);setWifiDiagnosis(null);setWifiFix(null);setWifiVerified(false);setAuthStep(0);setAuthDiagnosis(null);setAuthFix(null);setAuthVerified(false)}}>Restart Lesson</button><button className="cbet-primary" disabled={!lesson4Completed&&!localUnlock} onClick={()=>setLessonIndex(4)}>Next: DICOM & PACS →</button></nav>
+  </section>;
+
+  if(lessonIndex===2) return <section className="cbet-shell m6-shell m6-lesson-stage m6-l3">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 3 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m6-progress"><span style={{width:"37.5%"}}/></div>
+
+    <section className="m6-l3hero"><div><span className="m6-kicker">Switches, VLANs & Ports</span><h1>A link light only proves a link.</h1><p>A medical device can be physically connected and still be on the wrong VLAN, negotiating poorly, or attached to a misconfigured switch port. Learn to separate those problems.</p></div>
+    <div className="m6-switch-graphic"><div className="m6-switch-box"><strong>ACCESS SWITCH</strong><div>{[1,2,3,4,5,6,7,8].map(n=><button key={n} className={n===4?"hot":""} onClick={()=>setSwitchExplore(v=>v.includes(n%4)?v:[...v,n%4])}><span>{n}</span><i></i></button>)}</div><small>Click ports to inspect the switch</small></div></div></section>
+
+    <section className="m6-l3-basics"><article onClick={()=>setSwitchExplore(v=>v.includes(0)?v:[...v,0])}><span>01</span><h3>Switch</h3><p>Forwards Ethernet frames between devices on the local network.</p></article><article onClick={()=>setSwitchExplore(v=>v.includes(1)?v:[...v,1])}><span>02</span><h3>Switch Port</h3><p>The physical/logical interface where the endpoint connects.</p></article><article onClick={()=>setSwitchExplore(v=>v.includes(2)?v:[...v,2])}><span>03</span><h3>VLAN</h3><p>Logically separates network traffic even when devices use the same physical switching infrastructure.</p></article><article onClick={()=>setSwitchExplore(v=>v.includes(3)?v:[...v,3])}><span>04</span><h3>Speed & Duplex</h3><p>Link settings must be compatible. A poor negotiation or forced mismatch can severely degrade communication.</p></article></section>
+
+    <section className="m6-vlan-check"><span className="m6-section-label">Quick Network Reasoning</span><h2>Two devices are plugged into the same switch. Must they be on the same network?</h2><div>{["Yes — the same switch always means the same network","No — switch ports can be assigned to different VLANs","Yes — unless they use different cable colors"].map((x,i)=><button key={x} disabled={vlanAnswer===1} className={vlanAnswer!==null?(i===1?"correct":vlanAnswer===i?"wrong":""):""} onClick={()=>{setVlanAnswer(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>{vlanAnswer===1&&<p className="m6-inline-success">✓ Correct. Physical proximity does not prove logical network membership.</p>}</section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #1 · Speed / Duplex</span><h2>The device is online, but transfers are extremely slow and communication is intermittent.</h2><p>The cable has already been verified. Compare both ends of the Ethernet link.</p>
+      <div className="m6-port-compare"><div><span>MEDICAL DEVICE NIC</span><strong>Speed: 1.0 Gbps</strong><strong>Duplex: Full</strong><small>Link detected</small></div><b>↔</b><div><span>SWITCH PORT Gi1/0/4</span><strong>Speed: 10 Mbps</strong><strong>Duplex: Half</strong><small>Link detected</small></div></div>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Switch Port Status</strong></div><div className="m6-console-body"><div>&gt; <button disabled={portStep} onClick={()=>setPortStep(1)}>show interface Gi1/0/4</button></div>{portStep>0&&<pre>{`GigabitEthernet1/0/4 is up, line protocol is up
+  Description: Medical Device
+  MTU 1500 bytes
+  Full-duplex capability: supported
+  Configured speed: 10 Mb/s
+  Configured duplex: half
+  Input errors: 1842
+  CRC errors: 611
+  Late collisions: 327`}</pre>}</div></div>
+      {portStep>0&&<div className="m6-diagnose"><h3>What is the strongest finding?</h3>{["The device needs a new IP address","The endpoint and switch-port speed/duplex settings are incompatible","DNS is causing collisions","The server hostname is wrong"].map((x,i)=><button key={x} disabled={portDiagnosis===1} className={portDiagnosis!==null?(i===1?"correct":portDiagnosis===i?"wrong":""):""} onClick={()=>{setPortDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {portDiagnosis===1&&<div className="m6-fix-stage"><h3>What is the best corrective approach?</h3>{["Force both ends to different settings","Coordinate with network engineering and configure compatible approved settings—normally matching auto-negotiation or matching forced settings on both ends","Change the DNS server","Assign a 169.254 address"].map((x,i)=><button key={x} disabled={portFix===1} className={portFix!==null?(i===1?"correct":portFix===i?"wrong":""):""} onClick={()=>{setPortFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {portFix===1&&!portVerified&&<div className="m6-port-action"><div><span>UPDATED LINK</span><strong>Device: Auto · Switch: Auto</strong><small>Negotiated: 1.0 Gbps / Full Duplex</small></div><button className="cbet-primary" onClick={()=>setPortVerified(true)}>Verify Port</button></div>}
+      {portVerified&&<div className="m6-verify"><span>✓ LINK VERIFIED</span><pre>{`GigabitEthernet1/0/4 is up, line protocol is up
+  1000 Mb/s, full duplex
+  New CRC errors: 0
+  New late collisions: 0
+
+Connectivity test: PASS
+Application communication: PASS`}</pre><strong>The repair is supported by the negotiated link and clean post-change counters.</strong></div>}
+    </section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #2 · Wrong VLAN</span><h2>A replacement medical device has a link light but cannot obtain the expected network configuration.</h2><p>A known-good device works from another wall jack. Inspect this switch port before changing the medical device.</p>
+      <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Switch Port Configuration</strong></div><div className="m6-console-body"><div>&gt; <button disabled={wrongVlanStep} onClick={()=>setWrongVlanStep(1)}>show interface Gi1/0/18 switchport</button></div>{wrongVlanStep>0&&<pre>{`Name: Gi1/0/18
+Switchport: Enabled
+Administrative Mode: static access
+Operational Mode: static access
+Access Mode VLAN: 120 (Guest)
+Voice VLAN: none
+
+Approved Medical Device VLAN: 240`}</pre>}</div></div>
+      {wrongVlanStep>0&&<div className="m6-diagnose"><h3>What should you investigate?</h3>{["The monitor screen brightness","The switch port is assigned to the wrong VLAN","The device needs a different MAC address","The DNS hostname is too long"].map((x,i)=><button key={x} disabled={wrongVlanDiagnosis===1} className={wrongVlanDiagnosis!==null?(i===1?"correct":wrongVlanDiagnosis===i?"wrong":""):""} onClick={()=>{setWrongVlanDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {wrongVlanDiagnosis===1&&<div className="m6-fix-stage"><h3>What should happen next?</h3>{["Change the medical device to match the Guest VLAN","Have the switch port moved to the approved Medical Device VLAN according to the network change process, then renew and retest","Disable DHCP","Replace the Ethernet cable even though the link is good"].map((x,i)=><button key={x} disabled={wrongVlanFix===1} className={wrongVlanFix!==null?(i===1?"correct":wrongVlanFix===i?"wrong":""):""} onClick={()=>{setWrongVlanFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+      {wrongVlanFix===1&&!wrongVlanVerified&&<div className="m6-port-action"><div><span>PORT CHANGE</span><strong>Gi1/0/18 → VLAN 240</strong><small>Approved Medical Device VLAN</small></div><button className="cbet-primary" onClick={()=>setWrongVlanVerified(true)}>Renew & Verify</button></div>}
+      {wrongVlanVerified&&<div className="m6-verify"><span>✓ VLAN PATH VERIFIED</span><pre>{`Access Mode VLAN: 240 (Medical-Devices)
+
+C:\\> ipconfig /renew
+IPv4 Address. . . . . . . . . . . : 10.24.16.88
+Default Gateway . . . . . . . . . : 10.24.16.1
+
+C:\\> ping 10.24.16.1
+Reply from 10.24.16.1: bytes=32 time<1ms`}</pre><strong>The endpoint now receives the expected configuration on the approved network.</strong></div>}
+    </section>
+
+    <section className="m6-l3takeaways"><article><strong>Link Up ≠ Healthy Link</strong><span>Speed, duplex, errors, and collisions can reveal problems hidden behind a green link light.</span></article><article><strong>Same Switch ≠ Same VLAN</strong><span>Port configuration determines logical network membership.</span></article><article><strong>Change Carefully</strong><span>Coordinate switch/VLAN changes with the hospital's network process instead of improvising endpoint settings.</span></article></section>
+
+    <section className={`m6-completion ${lesson3Ready||lesson3Completed?"ready":""}`}><div><span>{lesson3Ready||lesson3Completed?"🏅":"🔀"}</span><div><strong>{lesson3Completed?"Switches, VLANs & Ports Complete":lesson3Ready?"Lesson Ready to Complete":"Complete both port troubleshooting calls"}</strong><small>85 XP · switching, VLANs, speed/duplex, port evidence & verification</small></div></div><button className="cbet-primary" disabled={!lesson3Ready&&!lesson3Completed} onClick={()=>{const prior=Array.isArray(saved.completedLessons)?saved.completedLessons:[];const next=Array.from(new Set([...prior,0,1,2]));if(!lesson3Completed)awardCbetXp(85,"mission6-switches-vlans-ports");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:2,completedLessons:next,m6L1Explored:explored})}}>{lesson3Completed?"Lesson Completed ✓":"Complete Lesson 3"}</button></section>
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setLessonIndex(1)}>← Previous: DHCP & DNS</button><button className="cbet-secondary" onClick={()=>{setSwitchExplore([]);setVlanAnswer(null);setPortStep(0);setPortDiagnosis(null);setPortFix(null);setPortVerified(false);setWrongVlanStep(0);setWrongVlanDiagnosis(null);setWrongVlanFix(null);setWrongVlanVerified(false)}}>Restart Lesson</button><button className="cbet-primary" disabled={!lesson3Completed&&!localUnlock} onClick={()=>setLessonIndex(3)}>Next: Wi-Fi in Healthcare →</button></nav>
+  </section>;
+
+  if(lessonIndex===1) return <section className="cbet-shell m6-shell m6-lesson-stage m6-l2">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 2 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m6-progress"><span style={{width:"25%"}}/></div>
+    <section className="m6-l2hero"><div><span className="m6-kicker">DHCP & DNS</span><h1>Connected does not mean communicating.</h1><p>Use the evidence to decide whether the failure is addressing or name resolution. You diagnose it before the lesson explains it.</p></div><div className="m6-l2flow"><span>Medical Device</span><b>→</b><span>DHCP</span><b>→</b><span>Network</span><b>→</b><span>DNS</span><b>→</b><span>Clinical Server</span></div></section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #1</span><h2>Link light is on, but the device cannot reach the hospital network.</h2><p>Inspect the configuration. Do not assume the cable is bad.</p>
+    <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Command Prompt</strong></div><div className="m6-console-body"><div>C:\&gt; <button disabled={dhcpStep} onClick={()=>setDhcpStep(1)}>ipconfig /all</button></div>{dhcpStep>0&&<pre>{`Ethernet adapter Ethernet:
+
+   Physical Address. . . . . . . . . : 00-25-96-FF-12-08
+   DHCP Enabled. . . . . . . . . . . : Yes
+   IPv4 Address. . . . . . . . . . . : 169.254.44.18
+   Subnet Mask . . . . . . . . . . . : 255.255.0.0
+   Default Gateway . . . . . . . . . :
+   DHCP Server . . . . . . . . . . . :
+   DNS Servers . . . . . . . . . . . :`}</pre>}</div></div>
+    {dhcpStep>0&&<div className="m6-diagnose"><h3>What does this most strongly suggest?</h3>{["The server is definitely offline","The device did not obtain its expected DHCP configuration","DNS is definitely working","The cable must be disconnected"].map((x,i)=><button key={x} disabled={dhcpDiagnosis===1} className={dhcpDiagnosis!==null?(i===1?"correct":dhcpDiagnosis===i?"wrong":""):""} onClick={()=>{setDhcpDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+    {dhcpDiagnosis===1&&<div className="m6-fix-stage"><h3>What should you do next?</h3>{["Randomly assign a static IP","Verify the approved network/VLAN and DHCP path, confirm the MAC/reservation if required, then renew the lease","Change the hostname","Replace the NIC"].map((x,i)=><button key={x} disabled={dhcpFix===1} className={dhcpFix!==null?(i===1?"correct":dhcpFix===i?"wrong":""):""} onClick={()=>{setDhcpFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+    {dhcpFix===1&&<div className="m6-verify"><span>✓ DHCP CONFIGURATION RESTORED</span><pre>{`C:\\> ipconfig /renew
+IPv4 Address. . . . . . . . . . . : 10.24.16.57
+Subnet Mask . . . . . . . . . . . : 255.255.255.0
+Default Gateway . . . . . . . . . : 10.24.16.1
+DHCP Server . . . . . . . . . . . : 10.24.16.10
+DNS Servers . . . . . . . . . . . : 10.24.1.20`}</pre></div>}</section>
+
+    <section className="m6-lab-section"><span className="m6-section-label">🚨 Troubleshooting Call #2</span><h2>The application cannot connect to the server by hostname.</h2><p>Test the destination by IP first, then by name.</p>
+    <div className="m6-console"><div className="m6-console-bar"><span></span><span></span><span></span><strong>Command Prompt</strong></div><div className="m6-console-body"><div>C:\&gt; <button disabled={dnsStep>=1} onClick={()=>setDnsStep(1)}>ping 10.24.40.25</button></div>{dnsStep>=1&&<><pre>{`Reply from 10.24.40.25: bytes=32 time=2ms
+Reply from 10.24.40.25: bytes=32 time=1ms`}</pre><div>C:\&gt; <button disabled={dnsStep>=2} onClick={()=>setDnsStep(2)}>ping monitoring01.hospital.local</button></div></>}{dnsStep>=2&&<><pre>{`Ping request could not find host monitoring01.hospital.local.`}</pre><div>C:\&gt; <button disabled={dnsStep>=3} onClick={()=>setDnsStep(3)}>nslookup monitoring01.hospital.local</button></div></>}{dnsStep>=3&&<pre>{`Server:  UnKnown
+Address:  10.24.99.99
+*** UnKnown can't find monitoring01.hospital.local: Non-existent domain`}</pre>}</div></div>
+    {dnsStep>=3&&<div className="m6-diagnose"><h3>What have you isolated?</h3>{["Bad network cable","IP connectivity works, but name resolution is failing","Server IP is unreachable","Duplicate IP"].map((x,i)=><button key={x} disabled={dnsDiagnosis===1} className={dnsDiagnosis!==null?(i===1?"correct":dnsDiagnosis===i?"wrong":""):""} onClick={()=>{setDnsDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+    {dnsDiagnosis===1&&<div className="m6-fix-stage"><h3>Approved DNS is 10.24.1.20. What should you correct?</h3>{["Change the gateway to the server IP","Correct the device/DHCP DNS configuration to the approved DNS server, then retest","Disable TCP/IP","Change the MAC"].map((x,i)=><button key={x} disabled={dnsFix===1} className={dnsFix!==null?(i===1?"correct":dnsFix===i?"wrong":""):""} onClick={()=>{setDnsFix(i);playCbetTone(i===1?"correct":"wrong")}}>{x}</button>)}</div>}
+    {dnsFix===1&&!dnsVerified&&<div className="m6-dns-action"><strong>DNS Server corrected → 10.24.1.20</strong><button className="cbet-primary" onClick={()=>setDnsVerified(true)}>Verify Name Resolution</button></div>}
+    {dnsVerified&&<div className="m6-verify"><span>✓ DNS VERIFIED</span><pre>{`C:\\> nslookup monitoring01.hospital.local
+Server:  dns01.hospital.local
+Address: 10.24.1.20
+Name:    monitoring01.hospital.local
+Address: 10.24.40.25
+
+C:\\> ping monitoring01.hospital.local
+Reply from 10.24.40.25: bytes=32 time=2ms`}</pre><strong>IP connectivity and name resolution both work.</strong></div>}</section>
+
+    <section className="m6-l2takeaways"><article><strong>169.254.x.x</strong><span>Investigate why the expected DHCP configuration was not obtained.</span></article><article><strong>IP works · hostname fails</strong><span>That evidence points you toward DNS/name resolution.</span></article><article><strong>Do not guess</strong><span>Test, isolate, correct, then verify.</span></article></section>
+    <section className={`m6-completion ${lesson2Ready||lesson2Completed?"ready":""}`}><div><span>{lesson2Ready||lesson2Completed?"🏅":"🧭"}</span><div><strong>{lesson2Completed?"DHCP & DNS Complete":lesson2Ready?"Lesson Ready to Complete":"Complete both troubleshooting calls"}</strong><small>75 XP · DHCP, APIPA evidence, DNS isolation, correction & verification</small></div></div><button className="cbet-primary" disabled={!lesson2Ready&&!lesson2Completed} onClick={()=>{const prior=Array.isArray(saved.completedLessons)?saved.completedLessons:[];const next=Array.from(new Set([...prior,0,1]));if(!lesson2Completed)awardCbetXp(75,"mission6-dhcp-dns");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:1,completedLessons:next,m6L1Explored:explored})}}>{lesson2Completed?"Lesson Completed ✓":"Complete Lesson 2"}</button></section>
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setLessonIndex(0)}>← Previous: IP Addresses & TCP/IP</button><button className="cbet-secondary" onClick={()=>{setDhcpStep(0);setDhcpDiagnosis(null);setDhcpFix(null);setDnsStep(0);setDnsDiagnosis(null);setDnsFix(null);setDnsVerified(false)}}>Restart Lesson</button><button className="cbet-primary" disabled={!lesson2Completed&&!localUnlock} onClick={()=>setLessonIndex(2)}>Next: Switches, VLANs & Ports →</button></nav>
+  </section>;
+
+  return <section className="cbet-shell m6-shell m6-lesson-stage">
+    <div className="m6-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 6 · Lesson 1 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div>
+    <div className="m6-progress"><span style={{width:"12.5%"}}/></div>
+
+    <section className="m6-hero">
+      <MissionSixNetworkGraphic activeId={activeNode} onSelect={explore} packetRunning={packetRunning} faultMode={diagnosis===1?"duplicate":"normal"}/>
+      <div className="m6-hero-copy"><span className="m6-kicker">IP Addresses & TCP/IP</span><h1>Every connection has a path.</h1><p>Start with the medical device and trace how traffic moves through the hospital network. Click every component to inspect its role.</p>
+      <button className="m6-packet-button" onClick={()=>setPacketRunning(v=>!v)}>{packetRunning?"Ⅱ Pause Packet":"▶ Send Packet"}</button>
+      <div className="m6-explorer-progress"><div><span style={{width:`${explored.length*25}%`}}/></div><strong>{explored.length} of 4 network components explored</strong></div>
+      <div className="m6-node-tabs">{MISSION_SIX_NETWORK_NODES.map(x=><button key={x.id} className={activeNode===x.id?"active":""} onClick={()=>explore(x.id)}>{explored.includes(x.id)?"✓":"●"} {x.label}</button>)}</div></div>
+    </section>
+
+    <section className="m6-detail-grid"><article className="m6-detail-card"><span className="m6-section-label">Network Explorer</span><h2>{active.label}</h2><p>{active.detail}</p><div className="m6-address-chip">{active.ip}</div></article>
+    <article className="m6-field-card"><span className="m6-section-label">Clinical Engineering Rule</span><h2>Prove each layer before moving on.</h2><p>Start with the device and physical connection. Then inspect addressing, local reachability, the gateway, and the destination. Do not change settings simply because communication failed.</p><div className="m6-mini-chain"><span>Device</span><b>→</b><span>Switch</span><b>→</b><span>Gateway</span><b>→</b><span>Server</span></div></article></section>
+
+    <section className="m6-path-builder"><div className="m6-section-heading"><span className="m6-section-label">Trace the Packet</span><h2>Build the communication path</h2><p><strong>Click the cards</strong> in the order traffic travels from this medical device to a server on another subnet.</p></div>
+      <div className="m6-path-result">{["device","switch","gateway","server"].map((id,i)=><div className="m6-path-wrap" key={id}><div className={`m6-path-slot ${path[i]===id?"filled":""}`}><span>{i+1}</span><strong>{path[i]?MISSION_SIX_NETWORK_NODES.find(x=>x.id===path[i]).label:"Choose a step"}</strong></div>{i<3&&<b>→</b>}</div>)}</div>
+      <div className={`m6-path-feedback ${pathFeedback.startsWith("✓")?"success":pathFeedback.startsWith("Not")?"try":""}`}>{pathFeedback||"Start where the network traffic originates."}</div>
+      <div className="m6-path-options">{[["gateway","Default Gateway"],["device","Medical Device"],["server","Clinical Server"],["switch","Network Switch"]].map(([id,label])=><button key={id} disabled={path.includes(id)} onClick={()=>{const seq=["device","switch","gateway","server"];if(id===seq[path.length]){const next=[...path,id];setPath(next);setPathFeedback(next.length===4?"✓ Path complete — the packet can now reach the remote server.":"✓ Correct — follow the packet to the next network component.");playCbetTone("correct")}else{setPathFeedback("Not quite — follow the packet one hop at a time.");playCbetTone("wrong")}}}>{label}</button>)}</div>
+      <button className="cbet-secondary m6-reset-small" onClick={()=>{setPath([]);setPathFeedback("")}}>↻ Reset Path</button>
+    </section>
+
+    <section className="m6-service-lab"><div className="m6-service-head"><span className="m6-section-label">🚨 Troubleshooting Call</span><h2>“This device worked yesterday. Today it will not communicate.”</h2><p>You are at the device. Do not guess the fault. Use the available evidence.</p></div>
+      <div className="m6-console">
+        <div className="m6-console-bar"><span></span><span></span><span></span><strong>Command Prompt</strong></div>
+        <div className="m6-console-body">
+          <div>C:\&gt; <button onClick={()=>setConsoleStep(1)} disabled={consoleStep>=1}>ipconfig /all</button></div>
+          {consoleStep>=1&&<pre>{`Ethernet adapter Ethernet:
+
+   Description . . . . . . . . . . : Medical Device Network Adapter
+   Physical Address. . . . . . . . . : 00-1A-2B-3C-4D-5E
+   DHCP Enabled. . . . . . . . . . . : Yes
+   IPv4 Address. . . . . . . . . . . : 10.24.16.57 (Duplicate)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 10.24.16.1
+   DHCP Server . . . . . . . . . . . : 10.24.16.10
+   DNS Servers . . . . . . . . . . . : 10.24.1.20`}</pre>}
+        </div>
+      </div>
+      {consoleStep>=1&&<div className="m6-diagnose"><span className="m6-section-label">Diagnose from the evidence</span><h3>What is wrong?</h3>{["The subnet mask is incorrect","The IPv4 address is duplicated","The DNS server is missing","The default gateway is incorrect"].map((o,i)=><button key={o} disabled={diagnosis===1} className={diagnosis!==null?(i===1?"correct":diagnosis===i?"wrong":""):""} onClick={()=>{setDiagnosis(i);playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</div>}
+      {diagnosis===1&&<div className="m6-fix-stage"><span className="m6-section-label">Correct the fault</span><h3>What is the strongest next action in a DHCP-managed hospital network?</h3><p>Use the information you already gathered. Do not randomly assign an address.</p>{["Choose any unused-looking IP and make it static","Coordinate the approved IP and create/verify a DHCP reservation for this device's MAC address, while confirming no other device is statically using that IP","Change the DNS server","Replace the network card"].map((o,i)=><button key={o} disabled={fix===1} className={fix!==null?(i===1?"correct":fix===i?"wrong":""):""} onClick={()=>{setFix(i);playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</div>}
+      {fix===1&&<div className="m6-reservation"><div><span>DHCP RESERVATION</span><strong>Medical Device</strong></div><dl><div><dt>MAC / Physical Address</dt><dd>00-1A-2B-3C-4D-5E</dd></div><div><dt>Reserved IPv4</dt><dd>10.24.16.57</dd></div><div><dt>Status</dt><dd>Active</dd></div></dl><p>The reservation maps the approved address to this device's MAC address. The conflicting static assignment must also be removed or corrected.</p><button className="cbet-primary" onClick={()=>setVerify(true)}>Renew & Verify Configuration</button></div>}
+      {verify&&<div className="m6-verify"><span>✓ VERIFIED</span><pre>{`C:\\> ipconfig /all
+IPv4 Address. . . . . . . . . . . : 10.24.16.57
+Default Gateway . . . . . . . . . : 10.24.16.1
+
+C:\\> ping 10.24.16.1
+Reply from 10.24.16.1: bytes=32 time<1ms
+
+C:\\> ping 10.24.40.25
+Reply from 10.24.40.25: bytes=32 time=2ms`}</pre><strong>Communication restored. The repair was verified instead of assumed.</strong></div>}
+    </section>
+
+    <section className="m6-toolbox"><span className="m6-section-label">What ipconfig /all gave you</span><h2>One command. Multiple troubleshooting clues.</h2><div><article><strong>IPv4 Address</strong><span>Where the device is addressed on the network.</span></article><article><strong>Physical Address</strong><span>The MAC address used to identify the network interface.</span></article><article><strong>DHCP Status</strong><span>Shows whether addressing is being assigned dynamically.</span></article><article><strong>Gateway & DNS</strong><span>Critical configuration for routed traffic and name resolution.</span></article></div></section>
+
+    <section className={`m6-completion ${ready||completed?"ready":""}`}><div><span>{ready||completed?"🏅":"🌐"}</span><div><strong>{completed?"IP Addresses & TCP/IP Complete":ready?"Lesson Ready to Complete":"Complete the network lab and troubleshooting call"}</strong><small>75 XP · Network path, addressing, diagnosis, correction, verification</small></div></div><button className="cbet-primary" disabled={!ready&&!completed} onClick={()=>{const next=Array.from(new Set([...(Array.isArray(saved.completedLessons)?saved.completedLessons:[]),0]));if(!completed)awardCbetXp(75,"mission6-ip-tcpip");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:0,completedLessons:next,m6L1Explored:explored});}}>{completed?"Lesson Completed ✓":"Complete Lesson 1"}</button></section>
+    <nav className="m6-bottom-nav"><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>← Mission Overview</button><button className="cbet-secondary" onClick={reset}>Restart Lesson</button><button className="cbet-primary" disabled={!completed&&!localUnlock} onClick={()=>setLessonIndex(1)}>Next: DHCP & DNS →</button></nav>
+  </section>;
+}
+
+
 export default function CBETAcademy() {
   const [developerUnlockAll, setDeveloperUnlockAll] = useState(() => {
     if (!isLocalAcademyHost()) return false;
@@ -5780,6 +6400,21 @@ export default function CBETAcademy() {
     );
   }
 
+  if (screen === "mission6") {
+    return (
+      <main className="cbet-academy m6-academy">
+        <LocalDeveloperPanel unlockAll={developerUnlockAll} onToggle={toggleDeveloperUnlockAll} />
+        {reviewMissionNumber === 6 && (
+          <div className="cbet-review-banner" role="status">
+            <strong>Review Mode</strong>
+            <span>Your completion, XP, and saved networking progress are preserved.</span>
+          </div>
+        )}
+        <MissionSix onExit={leaveMission} developerUnlockAll={developerUnlockAll} />
+      </main>
+    );
+  }
+
   if (screen === "mission10") {
     return (
       <main className="cbet-academy">
@@ -5990,7 +6625,7 @@ export default function CBETAcademy() {
             {cbetAcademyModules.map((module) => {
               const state = getCbetModuleState(module.number);
               const unlocked = developerUnlockAll && isLocalAcademyHost() ? true : module.number <= 4 || module.number === 10 ? true : module.number === 5 ? getCbetModuleState(4).complete : isCbetModuleUnlocked(module.number);
-              const available = module.number <= 5 || module.number === 10;
+              const available = module.number <= 6 || module.number === 10;
               return (
                 <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
                   <div className="cbet-card-top">
