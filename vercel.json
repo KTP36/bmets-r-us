@@ -6,7 +6,7 @@
   "redirects": [
     {
       "source": "/schematic-symbols-guide.html",
-      "destination": "/reading-schematics-and-symbols.html",
+      "destination": "/how-to-read-schematics-symbols.html",
       "permanent": true
     }
   ]
