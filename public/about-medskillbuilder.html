@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About MedSkillBuilder | Free Interactive Healthcare Learning</title>
+  <meta name="description" content="Learn about MedSkillBuilder, a free interactive healthcare learning platform for medical terminology, anatomy, CBET and biomed education, nursing fundamentals, and early healthcare learners." />
+  <meta name="keywords" content="about MedSkillBuilder, healthcare learning platform, free medical education, CBET practice, biomed education, anatomy practice, medical terminology practice, nursing study tools" />
+  <link rel="canonical" href="https://medskillbuilder.com/about-medskillbuilder.html" />
+
+  <meta property="og:title" content="About MedSkillBuilder" />
+  <meta property="og:description" content="Free interactive healthcare learning built around recognition, practice, and real clinical connections." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medskillbuilder.com/about-medskillbuilder.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AboutPage",
+    "name":"About MedSkillBuilder",
+    "url":"https://medskillbuilder.com/about-medskillbuilder.html",
+    "about":{
+      "@type":"Organization",
+      "name":"MedSkillBuilder LLC",
+      "url":"https://medskillbuilder.com"
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --navy:#082f57;
+      --blue:#1d6fa5;
+      --green:#16a34a;
+      --green2:#22c55e;
+      --ink:#0f172a;
+      --muted:#475569;
+      --soft:#f8fafc;
+      --border:#dbeafe;
+      --white:#fff;
+      --shadow:0 18px 45px rgba(15,23,42,.10);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      line-height:1.7;
+      background:
+        radial-gradient(circle at top left, rgba(29,111,165,.15), transparent 34%),
+        radial-gradient(circle at top right, rgba(34,197,94,.10), transparent 30%),
+        linear-gradient(180deg,#f8fbff 0%,#eef7ff 48%,#fff 100%);
+    }
+    a{color:inherit}
+    .container{width:min(1100px,calc(100% - 36px));margin:0 auto}
+    .topbar{padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;width:fit-content}
+    .brand img{width:58px;height:auto}
+    .brand strong{display:block;color:var(--navy);font-size:25px;line-height:1.1}
+    .brand span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+
+    header{
+      color:#fff;
+      padding:64px 0;
+      background:
+        radial-gradient(circle at right, rgba(34,197,94,.22), transparent 32%),
+        linear-gradient(135deg,#082f57,#1d6fa5);
+      border-radius:0 0 34px 34px;
+      box-shadow:0 24px 60px rgba(8,47,87,.25);
+    }
+    .hero{max-width:900px}
+    .eyebrow{
+      display:inline-flex;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.28);
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+    h1{font-size:clamp(42px,6vw,70px);line-height:.98;letter-spacing:-.05em;margin-bottom:18px}
+    header p{font-size:clamp(18px,2.2vw,23px);color:#e0f2fe;max-width:860px;margin-bottom:16px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:15px 24px;
+      border-radius:999px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:900;
+    }
+    .btn.primary{background:linear-gradient(135deg,var(--green2),var(--green));box-shadow:0 16px 28px rgba(22,163,74,.28)}
+    .btn.secondary{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25)}
+
+    main{padding:36px 0 52px}
+    .section{
+      background:rgba(255,255,255,.96);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:32px;
+      margin-bottom:24px;
+      box-shadow:var(--shadow);
+    }
+    .section.highlight{
+      background:linear-gradient(180deg,rgba(236,253,245,.88),rgba(255,255,255,.98));
+      border-color:rgba(22,163,74,.30);
+    }
+    .kicker{display:inline-block;font-size:12px;letter-spacing:.11em;font-weight:900;color:#1d4ed8;margin-bottom:6px}
+    h2{font-size:clamp(28px,4vw,42px);line-height:1.12;letter-spacing:-.035em;color:var(--navy);margin-bottom:14px}
+    h3{font-size:21px;color:var(--navy);margin-bottom:8px}
+    p{font-size:17px;color:#1f2937;margin-bottom:13px}
+    .lead{font-size:19px;color:#334155}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
+    .card{
+      background:#f8fbff;
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:20px;
+    }
+    .card strong{color:var(--navy)}
+    .trust{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .trust div{
+      background:#fff;
+      border:1px solid #bfdbfe;
+      border-radius:16px;
+      padding:16px;
+    }
+    .trust b{display:block;color:var(--navy);margin-bottom:5px}
+    .trust span{font-size:14px;color:#64748b}
+    .callout{
+      background:#eff6ff;
+      border:1px solid #bfdbfe;
+      border-left:6px solid #2563eb;
+      border-radius:18px;
+      padding:18px;
+      margin-top:20px;
+      color:#1e3a8a;
+      font-weight:800;
+    }
+    .link-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .study-link{
+      display:block;
+      padding:14px 16px;
+      background:#e8f1fb;
+      border:1px solid #bfdbfe;
+      border-radius:16px;
+      text-decoration:none;
+      color:var(--navy);
+      font-weight:900;
+    }
+    .study-link:hover{background:#dbeafe}
+    .notice{
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#7c2d12;
+      padding:15px 17px;
+      border-radius:16px;
+      font-size:14px;
+      margin-top:18px;
+    }
+    footer{
+      background:var(--navy);
+      color:#fff;
+      padding:34px 0;
+      text-align:center;
+      margin-top:42px;
+    }
+    footer p{color:rgba(255,255,255,.86);font-size:14px;margin-bottom:8px}
+    footer a{color:#7dd3fc;text-decoration:none;font-weight:900}
+    @media(max-width:850px){
+      header{padding:44px 0;border-radius:0 0 26px 26px}
+      .grid-3,.grid-2,.trust,.link-grid{grid-template-columns:1fr}
+      .section{padding:24px 20px}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="MedSkillBuilder logo" />
+        <div>
+          <strong>MedSkillBuilder</strong>
+          <span>Interactive healthcare learning</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="hero">
+        <div class="eyebrow">About MedSkillBuilder</div>
+        <h1>Healthcare Learning Built Around Practice, Recognition, and Real Connections</h1>
+        <p>MedSkillBuilder is a free interactive healthcare learning platform designed to help learners understand medical concepts by doing—not just memorizing definitions.</p>
+        <p>From anatomy and medical terminology to CBET and biomedical equipment training, the goal is to make healthcare learning clearer, more practical, and easier to apply.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="/browse-all-practice.html">Explore Free Practice Tools →</a>
+          <a class="btn secondary" href="/?tab=CBETAcademy">Open CBET Academy</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="section highlight">
+      <span class="kicker">WHY MEDSKILLBUILDER EXISTS</span>
+      <h2>Complex Healthcare Topics Should Not Feel Impossible to Learn</h2>
+      <p class="lead">Many learners are introduced to healthcare through long lists of terms, diagrams, and definitions. MedSkillBuilder takes a different approach: break concepts into smaller pieces, practice them repeatedly, connect them to real clinical meaning, and give learners a reason to understand—not just memorize.</p>
+      <div class="trust">
+        <div><b>Free to Use</b><span>Core learning tools are designed to be accessible without a paid course requirement.</span></div>
+        <div><b>Interactive</b><span>Quizzes, labeling, challenges, audio, scenarios, and guided practice support active learning.</span></div>
+        <div><b>Healthcare Focused</b><span>Content centers on anatomy, terminology, patient-care concepts, biomed, and clinical technology.</span></div>
+        <div><b>Built for Recognition</b><span>Learners practice identifying patterns, structures, terms, signals, and troubleshooting evidence.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="kicker">WHO IT IS FOR</span>
+      <h2>Built for Learners Entering and Growing in Healthcare</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Students & Early Healthcare Learners</h3>
+          <p>Practice medical terminology, anatomy, body systems, lab values, ECG concepts, ABGs, and other foundational topics.</p>
+        </div>
+        <div class="card">
+          <h3>Nursing, TEAS & Allied Health Learners</h3>
+          <p>Use focused practice to strengthen healthcare vocabulary, anatomy recognition, clinical fundamentals, and exam readiness.</p>
+        </div>
+        <div class="card">
+          <h3>CBET & Biomedical Equipment Learners</h3>
+          <p>Study electronics, medical equipment, networking, test equipment, troubleshooting, safety, and healthcare technology concepts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="kicker">THE LEARNING APPROACH</span>
+      <h2>Learn → Recognize → Apply → Verify</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>1. Learn the Concept</h3>
+          <p>Start with a clear explanation that removes unnecessary complexity.</p>
+        </div>
+        <div class="card">
+          <h3>2. Recognize the Pattern</h3>
+          <p>Identify the structure, rhythm, term, component, waveform, or troubleshooting clue.</p>
+        </div>
+        <div class="card">
+          <h3>3. Apply It</h3>
+          <p>Use questions, interactive challenges, and realistic scenarios to make the knowledge useful.</p>
+        </div>
+        <div class="card">
+          <h3>4. Verify Understanding</h3>
+          <p>Review feedback, retest weak areas, and connect the answer back to the clinical or technical purpose.</p>
+        </div>
+      </div>
+      <div class="callout">The goal is not to replace formal education. The goal is to give learners a practical place to build confidence and recognition between classes, exams, labs, and real-world training.</div>
+    </section>
+
+    <section class="section">
+      <span class="kicker">WHAT YOU CAN LEARN</span>
+      <h2>One Platform, Multiple Healthcare Learning Paths</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Anatomy & Physiology</h3><p>Body-system practice, labeling activities, structure recognition, and function connections.</p></div>
+        <div class="card"><h3>Medical Terminology</h3><p>Prefixes, suffixes, root words, term breakdowns, vocabulary practice, and medical word recognition.</p></div>
+        <div class="card"><h3>CBET & Biomed</h3><p>Electronics, equipment identification, networking, test equipment, troubleshooting, and technical competency.</p></div>
+        <div class="card"><h3>Clinical Fundamentals</h3><p>ABGs, lab values, ECG rhythm recognition, heart sounds, lung sounds, and patient-care concepts.</p></div>
+        <div class="card"><h3>Nursing & TEAS Practice</h3><p>Healthcare fundamentals, terminology, anatomy, and exam-style practice for early nursing and allied-health learners.</p></div>
+        <div class="card"><h3>Medical Equipment</h3><p>Learn what common devices do, how they connect to patient care, and why the underlying physiology matters.</p></div>
+      </div>
+    </section>
+
+    <section class="section highlight">
+      <span class="kicker">CBET ACADEMY</span>
+      <h2>From Practice Questions to Structured Technical Training</h2>
+      <p class="lead">CBET Academy extends MedSkillBuilder beyond individual practice pages into structured, mission-based learning. Learners work through realistic technical concepts, troubleshooting situations, competency checks, and guided progression.</p>
+      <p>The focus is on practical understanding: what the equipment is doing, what the evidence means, what the technician should check next, and how to verify that the system is safe and functioning as intended.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="/?tab=CBETAcademy">Enter CBET Academy →</a>
+        <a class="btn secondary" style="background:linear-gradient(135deg,#082f57,#1d6fa5);border:none" href="/free-cbet-practice-test.html">Take the Free CBET Practice Test</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="kicker">TRUST & SCOPE</span>
+      <h2>Educational Support, Not a Replacement for Professional Training</h2>
+      <p>MedSkillBuilder is an independent educational platform. It is designed to support learning and practice, not replace accredited education, employer training, manufacturer service documentation, clinical policies, instructor guidance, official certification materials, or professional judgment.</p>
+      <p>Clinical and technical topics are presented for education. Learners should always follow their school, employer, manufacturer, regulatory, and certification requirements when those sources apply.</p>
+      <div class="notice">MedSkillBuilder is not affiliated with or endorsed by AAMI, ATI, Google, or any certification provider unless specifically stated otherwise.</div>
+    </section>
+
+    <section class="section">
+      <span class="kicker">START LEARNING</span>
+      <h2>Explore MedSkillBuilder</h2>
+      <div class="link-grid">
+        <a class="study-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
+        <a class="study-link" href="/medical-prefix-suffix-practice.html">Medical Prefix & Suffix Practice</a>
+        <a class="study-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
+        <a class="study-link" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
+        <a class="study-link" href="/cres-practice-questions.html">CRES Practice Questions</a>
+        <a class="study-link" href="/medical-equipment-identification-practice.html">Medical Equipment Identification</a>
+        <a class="study-link" href="/browse-all-practice.html">Browse All Practice</a>
+        <a class="study-link" href="/">MedSkillBuilder Home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MedSkillBuilder LLC</strong></p>
+      <p>Free interactive healthcare learning for anatomy, medical terminology, CBET prep, biomed education, and early healthcare learners.</p>
+      <p>
+        <a href="/">Home</a> |
+        <a href="/browse-all-practice.html">Browse All</a> |
+        <a href="/privacy-policy.html">Privacy</a> |
+        <a href="/terms.html">Terms</a>
+      </p>
+      <p>© 2026 MedSkillBuilder LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

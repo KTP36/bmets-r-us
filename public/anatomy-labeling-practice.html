@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Anatomy Labeling Practice | Free Interactive Anatomy Study Tool</title>
+  <title>Anatomy Labeling Practice | Free Interactive Anatomy Quiz & Study Tool</title>
 
-  <meta name="description" content="Practice human anatomy labeling for free with interactive anatomy study tools. Review the heart, brain, lungs, liver, skeleton, muscles, eye, ear, skin layers, digestive system, arteries, veins, and more." />
+  <meta name="description" content="Free interactive anatomy labeling practice with body-system challenges, instant feedback, structure-and-function review, and quizzes for healthcare students." />
 
   <meta name="keywords" content="anatomy labeling practice, anatomy practice, free anatomy quiz, human anatomy labeling, anatomy study tool, nursing anatomy practice, medical anatomy practice, body systems practice, healthcare anatomy quiz" />
 
@@ -321,7 +321,47 @@
         font-size: 21px;
       }
     }
-  </style>
+  
+/* ===== SUPER ELITE ANATOMY LAB ===== */
+.anatomy-lab{border:2px solid #93c5fd;background:linear-gradient(145deg,#eff6ff,#fff 55%,#ecfdf5);overflow:hidden}
+.lab-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.lab-kicker{display:inline-block;font-size:12px;letter-spacing:.12em;font-weight:900;color:#1d4ed8;margin-bottom:7px}
+.mastery-score{min-width:155px;padding:12px 16px;border-radius:16px;background:#082f57;color:#fff;text-align:center}
+.mastery-score span,.mastery-score strong{display:block}.mastery-score span{font-size:11px;letter-spacing:.08em}.mastery-score strong{font-size:26px}
+.system-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:22px 0}
+.system-picker button,.anatomy-option,.lab-btn{font:inherit;cursor:pointer}
+.system-picker button{border:1px solid #bfdbfe;background:#fff;color:#1e3a8a;border-radius:14px;padding:11px 9px;font-weight:900}
+.system-picker button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.challenge{background:#fff;border:1px solid #dbeafe;border-radius:22px;padding:24px}
+.challenge-meta{display:flex;justify-content:space-between;gap:10px;color:#64748b;font-size:13px;font-weight:800}
+.challenge-progress{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin:10px 0 20px}
+.challenge-progress span{display:block;height:100%;background:linear-gradient(90deg,#1d6fa5,#22c55e);transition:.25s}
+.clinical-clue{padding:12px 15px;border-radius:13px;background:#f0fdf4;border-left:5px solid #22c55e;color:#166534;font-weight:800;margin-bottom:16px}
+.challenge h3{font-size:clamp(23px,3vw,31px);line-height:1.25;margin:0 0 17px}
+.anatomy-options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.anatomy-option{display:flex;align-items:center;gap:11px;border:2px solid #dbeafe;background:#fff;border-radius:15px;padding:14px;text-align:left;font-weight:800;color:#1f2937}
+.anatomy-option:hover{border-color:#60a5fa;background:#eff6ff}
+.anatomy-option.correct{border-color:#22c55e;background:#f0fdf4}
+.anatomy-option.wrong{border-color:#ef4444;background:#fef2f2}
+.choice-letter{flex:0 0 30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#e8f1fb;color:#082f57;font-weight:900}
+.lab-feedback{display:none;margin-top:15px;padding:15px 17px;border-radius:14px}
+.lab-feedback.show{display:block}.lab-feedback.good{background:#f0fdf4;border:1px solid #86efac;color:#166534}
+.lab-feedback.bad{background:#fff7ed;border:1px solid #fdba74;color:#9a3412}
+.lab-actions{display:flex;justify-content:space-between;gap:10px;margin-top:17px}
+.lab-btn{border:0;border-radius:999px;padding:12px 18px;font-weight:900}
+.lab-btn.primary{background:#082f57;color:#fff}.lab-btn.secondary{background:#e8f1fb;color:#082f57}
+.lab-btn:disabled{opacity:.45;cursor:not-allowed}
+.system-map,.skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.system-card,.skill-card{padding:17px;border:1px solid #dbeafe;border-radius:17px;background:#fff}
+.system-card{display:flex;flex-direction:column;min-height:180px;text-decoration:none;transition:.18s}
+.system-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(15,23,42,.08)}
+.system-card strong,.skill-card b{color:#082f57}.system-card small,.skill-card span{color:#64748b;line-height:1.45}
+.system-card b{margin-top:auto;padding-top:12px;color:#1d6fa5}
+.skill-card b,.skill-card span{display:block}
+@media(max-width:850px){.lab-head{display:grid;grid-template-columns:1fr}.system-picker,.system-map,.skill-grid{grid-template-columns:repeat(2,1fr)}.anatomy-options{grid-template-columns:1fr}.mastery-score{text-align:left}}
+@media(max-width:520px){.system-picker,.system-map,.skill-grid{grid-template-columns:1fr}.challenge{padding:17px}.lab-actions{flex-direction:column}.lab-actions button{width:100%}}
+
+</style>
 </head>
 
 <body>
@@ -335,9 +375,9 @@
   <header>
     <div class="container">
       <div class="hero-inner">
-        <div class="eyebrow">Free Anatomy Practice</div>
+        <div class="eyebrow">Free Interactive Anatomy Study Tool · Learn by Doing</div>
 
-        <h1>Anatomy Labeling Practice</h1>
+        <h1>Anatomy Labeling Practice: Identify It. Connect It. Master It.</h1>
 
         <p>
           Practice human anatomy with interactive labeling, quizzes, hints, explanations, and body system review tools built for healthcare learners.
@@ -361,6 +401,68 @@
   </header>
 
   <main class="container">
+
+<section class="section anatomy-lab" id="anatomy-lab">
+  <div class="lab-head">
+    <div>
+      <span class="lab-kicker">MEDSKILLBUILDER ANATOMY LAB</span>
+      <h2>Start Anatomy Practice Now</h2>
+      <p class="lead">Choose a body system, identify the structure from the evidence, and learn why it matters. This is recognition + function practice—not passive reading.</p>
+    </div>
+    <div class="mastery-score"><span>SESSION MASTERY</span><strong id="anatomyScore">0%</strong></div>
+  </div>
+  <div class="system-picker" aria-label="Choose anatomy system">
+    <button class="active" data-system="mixed">Mixed Anatomy</button>
+    <button data-system="cardiac">Heart</button>
+    <button data-system="neuro">Brain</button>
+    <button data-system="resp">Lungs</button>
+    <button data-system="digestive">Digestive</button>
+    <button data-system="renal">Kidneys</button>
+    <button data-system="skeletal">Skeleton</button>
+    <button data-system="sensory">Eye / Ear / Skin</button>
+  </div>
+  <div class="challenge" aria-live="polite">
+    <div class="challenge-meta"><span id="systemLabel">Mixed Anatomy</span><span id="anatomyCounter"></span></div>
+    <div class="challenge-progress"><span id="anatomyProgress"></span></div>
+    <div class="clinical-clue" id="clinicalClue"></div>
+    <h3 id="anatomyQuestion"></h3>
+    <div class="anatomy-options" id="anatomyOptions"></div>
+    <div class="lab-feedback" id="anatomyFeedback"></div>
+    <div class="lab-actions">
+      <button class="lab-btn secondary" id="anatomyRestart">Restart Session</button>
+      <button class="lab-btn primary" id="anatomyNext" disabled>Next Challenge →</button>
+    </div>
+  </div>
+</section>
+
+<section class="section highlight">
+  <span class="lab-kicker">ANATOMY MASTERY METHOD</span>
+  <h2>Don't Stop at the Label</h2>
+  <p class="lead">Strong anatomy recall comes from connecting four things every time you study a structure.</p>
+  <div class="skill-grid">
+    <div class="skill-card"><b>1. Identify</b><span>Name the structure correctly.</span></div>
+    <div class="skill-card"><b>2. Locate</b><span>Know where it sits relative to nearby structures.</span></div>
+    <div class="skill-card"><b>3. Explain</b><span>State its major function in plain language.</span></div>
+    <div class="skill-card"><b>4. Connect</b><span>Link it to a clinical finding, device, or body-system process.</span></div>
+  </div>
+</section>
+
+<section class="section" id="body-systems">
+  <span class="lab-kicker">CHOOSE YOUR NEXT PRACTICE</span>
+  <h2>Explore Anatomy by Body System</h2>
+  <p class="lead">Use the quick challenge above for recall, then move into dedicated MedSkillBuilder anatomy activities for deeper practice.</p>
+  <div class="system-map">
+    <a class="system-card" href="/?tab=HeartQuiz"><strong>♥ Heart & Blood Flow</strong><small>Chambers, valves, vessels, circulation, and cardiac structure recognition.</small><b>Practice Heart →</b></a>
+    <a class="system-card" href="/?tab=Anatomy"><strong>🧠 Brain & Nervous System</strong><small>Major brain structures and nervous-system recognition.</small><b>Open Anatomy →</b></a>
+    <a class="system-card" href="/?tab=Anatomy"><strong>🫁 Lungs & Respiratory</strong><small>Airways, lungs, breathing structures, and oxygen movement.</small><b>Open Anatomy →</b></a>
+    <a class="system-card" href="/?tab=Anatomy"><strong>Digestive System</strong><small>GI organs, liver, digestion, and absorption.</small><b>Open Anatomy →</b></a>
+    <a class="system-card" href="/how-kidneys-work.html"><strong>Kidneys & Urinary</strong><small>Filtration, urine production, and fluid balance.</small><b>Study Kidneys →</b></a>
+    <a class="system-card" href="/?tab=BonesQuiz"><strong>🦴 Skeleton</strong><small>Major bones, skeletal landmarks, and recognition.</small><b>Practice Bones →</b></a>
+    <a class="system-card" href="/?tab=Anatomy"><strong>Eye, Ear & Skin</strong><small>Sensory and integumentary structures.</small><b>Open Anatomy →</b></a>
+    <a class="system-card" href="/?tab=Anatomy"><strong>＋ Full Anatomy Library</strong><small>Continue into all interactive anatomy tools.</small><b>Browse Anatomy →</b></a>
+  </div>
+</section>
+
 
     <section class="section highlight">
       <h2>Interactive Anatomy Labeling Practice Tool</h2>
@@ -572,6 +674,22 @@
       <p>&copy; 2026 MedSkillBuilder LLC. All rights reserved.</p>
     </div>
   </footer>
+
+
+<script>
+(function(){
+const B={"cardiac": [["Blood returning from the body enters here first.", "Which chamber receives systemic venous blood?", ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"], 1, "The right atrium receives systemic venous blood through the venae cavae."], ["Between the left atrium and left ventricle.", "Which valve is this?", ["Tricuspid", "Pulmonic", "Mitral", "Aortic"], 2, "The mitral valve separates the left atrium and left ventricle."], ["Generates the pressure needed for systemic circulation.", "Which chamber has the thickest muscular wall?", ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"], 3, "The left ventricle pumps against systemic vascular resistance, so its myocardium is thickest."]], "neuro": [["Important for balance and fine movement.", "Which structure?", ["Cerebellum", "Medulla", "Frontal lobe", "Hypothalamus"], 0, "The cerebellum is central to coordination and balance."], ["Connects the brain to the spinal cord and contains vital autonomic centers.", "Which structure?", ["Cerebellum", "Brainstem", "Parietal lobe", "Corpus callosum"], 1, "The brainstem links the brain and spinal cord and supports vital functions."], ["Strongly associated with vision.", "Which cerebral lobe?", ["Frontal", "Temporal", "Parietal", "Occipital"], 3, "The occipital lobe contains the primary visual cortex."]], "resp": [["Gas exchange occurs across these thin structures.", "Which structures?", ["Bronchi", "Alveoli", "Trachea", "Pleura"], 1, "Alveoli are the primary gas-exchange surfaces."], ["Contracts and moves downward during inspiration.", "Which structure?", ["Diaphragm", "Epiglottis", "Pleura", "Larynx"], 0, "Diaphragm contraction increases thoracic volume."], ["Carries air from the larynx toward the main bronchi.", "Which airway?", ["Esophagus", "Trachea", "Alveolus", "Pharynx"], 1, "The trachea is the conducting airway between the larynx and main bronchi."]], "digestive": [["Most nutrient absorption occurs here.", "Which organ?", ["Stomach", "Large intestine", "Small intestine", "Esophagus"], 2, "Most nutrient absorption occurs in the small intestine."], ["Produces bile and performs major metabolic functions.", "Which organ?", ["Pancreas", "Liver", "Gallbladder", "Spleen"], 1, "The liver produces bile and performs major metabolic functions."], ["Stores and concentrates bile.", "Which organ?", ["Gallbladder", "Appendix", "Pancreas", "Duodenum"], 0, "The gallbladder stores and concentrates bile."]], "renal": [["Functional unit of the kidney.", "Which structure?", ["Alveolus", "Nephron", "Neuron", "Hepatocyte"], 1, "The nephron is the kidney's functional unit."], ["Carries urine from kidney to bladder.", "Which tube?", ["Urethra", "Ureter", "Renal artery", "Collecting duct"], 1, "The ureter carries urine to the bladder."], ["Temporarily stores urine before elimination.", "Which organ?", ["Kidney", "Bladder", "Ureter", "Adrenal gland"], 1, "The urinary bladder stores urine before elimination."]], "skeletal": [["Longest bone in the human body.", "Which bone?", ["Humerus", "Tibia", "Femur", "Radius"], 2, "The femur is the longest bone."], ["Protects the brain.", "Which skeletal structure?", ["Sternum", "Pelvis", "Skull", "Scapula"], 2, "The skull surrounds and protects the brain."], ["Located in the upper arm.", "Which bone?", ["Ulna", "Humerus", "Femur", "Fibula"], 1, "The humerus runs from shoulder to elbow."]], "sensory": [["Light-sensitive layer at the back of the eye.", "Which structure?", ["Cornea", "Iris", "Retina", "Sclera"], 2, "The retina contains photoreceptors."], ["Inner-ear structure central to hearing.", "Which structure?", ["Cochlea", "Pinna", "Tympanic membrane", "Eustachian tube"], 0, "The cochlea contains the sensory apparatus for hearing."], ["Outermost major layer of the skin.", "Which layer?", ["Dermis", "Epidermis", "Hypodermis", "Fascia"], 1, "The epidermis is the outermost major skin layer."]], "mixed": [["Blood returning from the body enters here first.", "Which chamber receives systemic venous blood?", ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"], 1, "The right atrium receives systemic venous blood through the venae cavae."], ["Important for balance and fine movement.", "Which structure?", ["Cerebellum", "Medulla", "Frontal lobe", "Hypothalamus"], 0, "The cerebellum is central to coordination and balance."], ["Gas exchange occurs across these thin structures.", "Which structures?", ["Bronchi", "Alveoli", "Trachea", "Pleura"], 1, "Alveoli are the primary gas-exchange surfaces."], ["Most nutrient absorption occurs here.", "Which organ?", ["Stomach", "Large intestine", "Small intestine", "Esophagus"], 2, "Most nutrient absorption occurs in the small intestine."], ["Functional unit of the kidney.", "Which structure?", ["Alveolus", "Nephron", "Neuron", "Hepatocyte"], 1, "The nephron is the kidney's functional unit."], ["Longest bone in the human body.", "Which bone?", ["Humerus", "Tibia", "Femur", "Radius"], 2, "The femur is the longest bone."], ["Light-sensitive layer at the back of the eye.", "Which structure?", ["Cornea", "Iris", "Retina", "Sclera"], 2, "The retina contains photoreceptors."], ["Generates the pressure needed for systemic circulation.", "Which chamber has the thickest muscular wall?", ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"], 3, "The left ventricle pumps against systemic vascular resistance, so its myocardium is thickest."], ["Contracts and moves downward during inspiration.", "Which structure?", ["Diaphragm", "Epiglottis", "Pleura", "Larynx"], 0, "Diaphragm contraction increases thoracic volume."], ["Produces bile and performs major metabolic functions.", "Which organ?", ["Pancreas", "Liver", "Gallbladder", "Spleen"], 1, "The liver produces bile and performs major metabolic functions."]]};
+let system="mixed",qs=[],i=0,score=0,answered=false;
+const $=x=>document.getElementById(x),shuffle=a=>[...a].sort(()=>Math.random()-.5);
+function start(){qs=shuffle(B[system]).slice(0,6);i=0;score=0;$("anatomyNext").style.display="";render()}
+function render(){let q=qs[i];answered=false;$("clinicalClue").textContent="FUNCTION CLUE: "+q[0];$("anatomyQuestion").textContent=q[1];$("anatomyCounter").textContent=`Challenge ${i+1} of ${qs.length}`;$("anatomyProgress").style.width=`${(i+1)/qs.length*100}%`;$("anatomyScore").textContent=i?Math.round(score/i*100)+"%":"0%";$("anatomyFeedback").className="lab-feedback";$("anatomyOptions").innerHTML="";$("anatomyNext").disabled=true;q[2].forEach((x,n)=>{let b=document.createElement("button");b.className="anatomy-option";b.innerHTML=`<span class="choice-letter">${String.fromCharCode(65+n)}</span><span>${x}</span>`;b.onclick=()=>answer(n,b);$("anatomyOptions").appendChild(b)})}
+function answer(n,b){if(answered)return;answered=true;let q=qs[i],buttons=[...document.querySelectorAll(".anatomy-option")];buttons[q[3]].classList.add("correct");if(n===q[3]){score++;$("anatomyFeedback").className="lab-feedback show good";$("anatomyFeedback").innerHTML="<strong>Correct.</strong> "+q[4]}else{b.classList.add("wrong");$("anatomyFeedback").className="lab-feedback show bad";$("anatomyFeedback").innerHTML="<strong>Not quite.</strong> "+q[4]}$("anatomyScore").textContent=Math.round(score/(i+1)*100)+"%";$("anatomyNext").disabled=false}
+$("anatomyNext").onclick=()=>{if(i<qs.length-1){i++;render()}else{let p=Math.round(score/qs.length*100);$("clinicalClue").textContent="SESSION COMPLETE";$("anatomyQuestion").textContent=p+"% Anatomy Mastery";$("anatomyOptions").innerHTML=`<p class="lead" style="grid-column:1/-1">${score} of ${qs.length} correct. ${p>=85?"Strong recognition—continue into a dedicated labeling activity.":"Repeat this body system and connect each structure to its function."}</p>`;$("anatomyFeedback").className="lab-feedback";$("anatomyNext").style.display="none"}};
+$("anatomyRestart").onclick=start;
+document.querySelectorAll("[data-system]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-system]").forEach(x=>x.classList.remove("active"));b.classList.add("active");system=b.dataset.system;$("systemLabel").textContent=b.textContent;start()});
+start();
+})();
+</script>
 
 </body>
 </html>
