@@ -2,5 +2,12 @@
   "rewrites": [
     { "source": "/partner", "destination": "/" },
     { "source": "/partnership", "destination": "/" }
+  ],
+  "redirects": [
+    {
+      "source": "/schematic-symbols-guide.html",
+      "destination": "/reading-schematics-and-symbols.html",
+      "permanent": true
+    }
   ]
 }
