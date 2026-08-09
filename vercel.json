@@ -8,6 +8,11 @@
       "source": "/schematic-symbols-guide.html",
       "destination": "/how-to-read-schematics-symbols.html",
       "permanent": true
+    },
+    {
+      "source": "/how-to-read-an-ekg.html",
+      "destination": "/how-to-read-ekg.html",
+      "permanent": true
     }
   ]
 }
