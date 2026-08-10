@@ -12,6 +12,14 @@ import {
   missionFourLessons,
   missionFourQuestions,
   missionFourScenarios,
+  missionSevenBriefing,
+  missionSevenLessons,
+  missionSevenQuestions,
+  missionSevenScenarios,
+  missionEightBriefing,
+  missionEightLessons,
+  missionEightQuestions,
+  missionEightScenarios,
   missionTenBriefing,
   missionTenLessons,
   missionTenQuestions,
@@ -5302,6 +5310,227 @@ function EquipmentSpotlight({ item }) {
   );
 }
 
+function MissionEight({ onExit }) {
+  const moduleNumber = 8;
+  const savedProgress = getMissionProgress(moduleNumber);
+  const completedModule = getCbetModuleState(moduleNumber);
+  const questions = useMemo(() => missionEightQuestions.map(shuffleQuestion), []);
+  const lessonChecks = useMemo(() => missionEightLessons.map((lesson) => shuffleQuestion(lesson.check)), []);
+  const scenarioChecks = useMemo(() => missionEightScenarios.map((scenario) => shuffleQuestion({
+    question: scenario.prompt,
+    options: scenario.options,
+    answer: scenario.answer,
+    explanation: scenario.explanation
+  })), []);
+  const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
+  const [lessonIndex, setLessonIndexState] = useState(savedProgress.lessonIndex || 0);
+  const [completedLessons, setCompletedLessons] = useState(savedProgress.completedLessons || []);
+  const [scenarioIndex, setScenarioIndexState] = useState(savedProgress.scenarioIndex || 0);
+  const [completedScenarios, setCompletedScenarios] = useState(savedProgress.completedScenarios || []);
+  const [questionIndex, setQuestionIndexState] = useState(savedProgress.phase === "quiz" ? (savedProgress.quizIndex || 0) : 0);
+  const [selected, setSelected] = useState(null);
+  const [score, setScore] = useState(0);
+  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const stageRef = useRef(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      if (!stageRef.current) return;
+      const top = Math.max(0, stageRef.current.getBoundingClientRect().top + window.scrollY - 12);
+      window.scrollTo({ top, left: 0, behavior: "auto" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+
+  const setPhase = (next) => {
+    setPhaseState(next);
+    saveMissionProgress(moduleNumber, { phase: next });
+    scrollCbetPageToTop();
+  };
+
+  const completeLesson = () => {
+    const nextCompleted = Array.from(new Set([...completedLessons, lessonIndex]));
+    setCompletedLessons(nextCompleted);
+    awardCbetXp(10, `mission8-lesson-${lessonIndex}`);
+    if (lessonIndex < missionEightLessons.length - 1) {
+      const next = lessonIndex + 1;
+      setLessonIndexState(next);
+      setSelected(null);
+      saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: next, completedLessons: nextCompleted });
+    } else {
+      setSelected(null);
+      setScenarioIndexState(0);
+      saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex: 0, completedLessons: nextCompleted });
+      setPhaseState("scenarios");
+    }
+  };
+
+  const completeScenario = () => {
+    const nextCompleted = Array.from(new Set([...completedScenarios, scenarioIndex]));
+    setCompletedScenarios(nextCompleted);
+    awardCbetXp(15, `mission8-scenario-${scenarioIndex}`);
+    setSelected(null);
+    if (scenarioIndex < missionEightScenarios.length - 1) {
+      const next = scenarioIndex + 1;
+      setScenarioIndexState(next);
+      saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex: next, completedScenarios: nextCompleted });
+    } else {
+      setQuestionIndexState(0);
+      setScore(0);
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, completedScenarios: nextCompleted });
+      setPhaseState("quiz");
+    }
+  };
+
+  const answerQuiz = (index) => {
+    if (selected !== null) return;
+    setSelected(index);
+    if (index === questions[questionIndex].answer) setScore((value) => value + 1);
+    playCbetTone(index === questions[questionIndex].answer ? "correct" : "wrong");
+  };
+
+  const nextQuizQuestion = () => {
+    if (questionIndex < questions.length - 1) {
+      const next = questionIndex + 1;
+      setQuestionIndexState(next);
+      setSelected(null);
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next });
+      return;
+    }
+    const finalScore = Math.round((score / questions.length) * 100);
+    setResult(finalScore);
+    if (finalScore >= 80) {
+      completeCbetModule(moduleNumber, finalScore, 450);
+      saveMissionProgress(moduleNumber, { phase: "complete", quizScore: finalScore, passed: true });
+      setPhaseState("complete");
+    } else {
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizScore: finalScore, passed: false });
+      setPhaseState("result");
+    }
+    setSelected(null);
+  };
+
+  const restartQuiz = () => {
+    setQuestionIndexState(0);
+    setSelected(null);
+    setScore(0);
+    setResult(null);
+    saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, quizScore: 0, passed: false });
+    setPhaseState("quiz");
+  };
+
+  const previousLesson = () => {
+    if (lessonIndex <= 0) return;
+    const next = lessonIndex - 1;
+    setLessonIndexState(next);
+    setSelected(null);
+    saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: next, completedLessons });
+  };
+
+  const nextRequiredText = phase === "lessons"
+    ? "Read the field evidence, answer the knowledge check, then select Complete Lesson."
+    : phase === "scenarios"
+    ? "Treat the complaint as evidence, not the diagnosis. Choose the highest-value next diagnostic action."
+    : "Choose one answer. Results are revealed after each question; 80% is required to demonstrate competency.";
+
+  return (
+    <>
+      <style>{`
+        .m8-shell{--m8-navy:#0b2447;--m8-blue:#2457a6;--m8-green:#1f8f5f;--m8-gold:#d99a18}
+        .m8-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+        .m8-top span{font-weight:900;color:#475569}
+        .m8-progress{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:20px}
+        .m8-progress span{display:block;height:100%;background:linear-gradient(90deg,#2457a6,#1f8f5f)}
+        .m8-guide{display:grid;grid-template-columns:.8fr 1.2fr;gap:16px;padding:18px;border:2px solid #bfdbfe;border-radius:18px;background:linear-gradient(135deg,#eff6ff,#fff);margin-bottom:20px}
+        .m8-guide small,.m8-guide strong{display:block}.m8-guide small{font-size:.72rem;letter-spacing:.09em;font-weight:950;color:#2457a6}.m8-guide strong{margin-top:5px;color:#0b2447}.m8-guide .next{background:#0b2447;color:#fff;padding:13px 15px;border-radius:13px}.m8-guide .next small{color:#93c5fd}.m8-guide .next strong{color:#fff}
+        .m8-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;padding:30px;border-radius:26px;background:linear-gradient(135deg,#0b2447,#2457a6);color:#fff;box-shadow:0 18px 45px rgba(11,36,71,.18)}
+        .m8-hero h1{font-size:clamp(2.5rem,5vw,4.6rem);line-height:.98;margin:8px 0 16px}.m8-hero p{color:#dbeafe;font-size:1.08rem}.m8-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.m8-pillrow span{padding:8px 11px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.1);font-weight:850;font-size:.82rem}
+        .m8-shield{display:grid;place-items:center;min-height:250px}.m8-shield div{width:210px;height:230px;clip-path:polygon(50% 0,92% 18%,84% 72%,50% 100%,16% 72%,8% 18%);background:linear-gradient(160deg,#fbbf24,#f59e0b);display:grid;place-items:center;color:#0b2447;text-align:center;padding:35px;font-weight:950;box-shadow:0 18px 35px rgba(0,0,0,.2)}.m8-shield b{font-size:2.8rem;display:block}
+        .m8-brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:20px 0}.m8-brief-grid article{padding:18px;border:1px solid #dbe4f0;border-radius:16px;background:#fff}.m8-brief-grid strong{display:block;color:#0b2447;margin-bottom:5px}.m8-brief-grid span{color:#64748b;font-size:.9rem;line-height:1.45}
+        .m8-objectives{margin:22px 0;padding:24px;border:1px solid #dbe4f0;border-radius:20px;background:#fff}.m8-objectives li{margin:8px 0}
+        .m8-lesson-card{padding:28px;border:1px solid #dbe4f0;border-radius:24px;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.06)}.m8-icon{font-size:2.2rem}.m8-lesson-card h1{font-size:clamp(2rem,3.6vw,3.5rem);line-height:1.12;letter-spacing:-.02em;color:#0b2447;margin:8px auto 12px;max-width:1200px;text-wrap:balance}.m8-summary{font-size:1.06rem;color:#475569}.m8-points{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;padding:0;list-style:none}.m8-points li{padding:14px;border:1px solid #dbeafe;border-radius:13px;background:#f8fbff}
+        .m8-field{margin:20px 0;padding:22px;border:2px solid #facc15;border-radius:20px;background:#fffbeb}.m8-field-label{font-size:.72rem;letter-spacing:.09em;font-weight:950;color:#a16207}.m8-evidence{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}.m8-evidence span{padding:10px;border-radius:10px;background:#fff;border:1px solid #fde68a;color:#713f12;font-weight:800}.m8-field h3{margin:12px 0 5px;color:#422006}.m8-field-answer{padding:13px;border-left:5px solid #d99a18;background:#fff;border-radius:10px;color:#713f12}
+        .m8-check,.m8-scenario{margin-top:20px;padding:24px;border:1px solid #dbe4f0;border-radius:20px;background:#fff}.m8-check h2,.m8-scenario h2{color:#0b2447}.m8-options{display:grid;gap:10px;margin-top:15px}.m8-options button{padding:14px 16px;border:2px solid #dbe4f0;border-radius:13px;background:#fff;text-align:left;font-weight:850;cursor:pointer}.m8-options button:hover{border-color:#60a5fa}.m8-options button.correct{border-color:#22c55e;background:#f0fdf4}.m8-options button.wrong{border-color:#ef4444;background:#fef2f2}.m8-feedback{margin-top:14px;padding:14px;border-radius:12px;background:#eff6ff;color:#1e3a8a}.m8-feedback.good{background:#f0fdf4;color:#166534}.m8-feedback.bad{background:#fff7ed;color:#9a3412}
+        .m8-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid #e2e8f0}.m8-nav button{min-width:160px}
+        .m8-reg-note{margin:20px 0;padding:17px 19px;border-left:5px solid #2563eb;border-radius:12px;background:#eff6ff;color:#1e3a8a}
+        .m8-quizcard{max-width:960px;margin:0 auto;padding:28px;border:1px solid #dbe4f0;border-radius:22px;background:#fff}.m8-quizcat{font-size:.75rem;letter-spacing:.08em;font-weight:950;color:#2457a6}.m8-scorehero{text-align:center;padding:34px;border-radius:24px;background:linear-gradient(135deg,#ecfdf5,#fff);border:2px solid #86efac}.m8-scorehero.review{background:#fff7ed;border-color:#fdba74}.m8-scorehero strong{font-size:clamp(3rem,7vw,5rem);line-height:1;display:block;color:#0b2447;margin:8px 0 14px}.m8-scorehero h1{font-size:clamp(2rem,4.2vw,3.6rem);line-height:1.08;letter-spacing:-.025em;margin:8px auto 14px;color:#0b2447;max-width:1100px;text-wrap:balance}
+        @media(max-width:850px){.m8-hero,.m8-guide{grid-template-columns:1fr}.m8-brief-grid{grid-template-columns:1fr}.m8-points,.m8-evidence{grid-template-columns:1fr}.m8-shield{min-height:180px}}
+        @media(max-width:600px){.m8-top,.m8-nav{align-items:stretch;flex-direction:column}.m8-nav button{width:100%}.m8-lesson-card,.m8-check,.m8-scenario,.m8-quizcard{padding:18px}}
+      `}</style>
+
+      {phase === "briefing" && (
+        <section className="cbet-shell m8-shell">
+          <div className="m8-top"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><span>Mission 8 · 350 XP</span></div>
+          <section className="m8-hero">
+            <div>
+              <span className="cbet-label">SAFETY · RISK · REGULATORY READINESS</span>
+              <h1>{missionEightBriefing.title}</h1>
+              <p>{missionEightBriefing.summary}</p>
+              <div className="m8-pillrow"><span>Electrical Safety</span><span>Return to Service</span><span>Incident Response</span><span>Recalls</span><span>Documentation</span><span>FDA MDR</span></div>
+            </div>
+            <div className="m8-shield"><div><span><b>✓</b>WOULD YOU PUT THIS DEVICE BACK ON A PATIENT?</span></div></div>
+          </section>
+          <div className="m8-brief-grid">
+            <article><strong>8 Guided Lessons</strong><span>Safety decisions tied to actual CE workflow.</span></article>
+            <article><strong>4 Applied Service Calls</strong><span>Incidents, recalls, electrical safety, and alarms.</span></article>
+            <article><strong>20-Question Competency Check</strong><span>80% required to complete Mission 8.</span></article>
+          </div>
+          <section className="m8-objectives"><h2>What you will learn</h2><ul>{missionEightBriefing.objectives.map((item)=><li key={item}>{item}</li>)}</ul></section>
+          <div className="m8-reg-note"><strong>Important:</strong> Standards, manufacturer procedures, and regulatory requirements can change. Mission 8 teaches the decision process and high-yield concepts; real service work must follow current manufacturer documentation, facility policy, and applicable requirements.</div>
+          <div className="cbet-actions"><button className="cbet-primary" onClick={()=>setPhase("lessons")}>{savedProgress.phase && savedProgress.phase !== "briefing" ? "Resume Mission" : "Begin Mission 8"}</button></div>
+        </section>
+      )}
+
+      {phase === "lessons" && (() => {
+        const lesson=missionEightLessons[lessonIndex];
+        const check=lessonChecks[lessonIndex];
+        const correct=selected===check.answer;
+        const answered=selected!==null;
+        return <section ref={stageRef} className="cbet-shell m8-shell">
+          <div className="m8-top"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Lesson {lessonIndex+1} of {missionEightLessons.length}</span></div>
+          <div className="m8-progress"><span style={{width:`${((lessonIndex+1)/missionEightLessons.length)*100}%`}}/></div>
+          <section className="m8-guide"><div><small>HOW TO COMPLETE THIS LESSON</small><strong>1. Study the diagnostic principle → inspect the evidence → choose the best next action → prove your reasoning.</strong></div><div className="next"><small>YOUR NEXT ACTION</small><strong>{answered ? (correct ? "Correct — select Complete Lesson below." : "Review the evidence and choose another answer.") : nextRequiredText}</strong></div></section>
+          <article className="m8-lesson-card">
+            <span className="m8-icon">{lesson.icon}</span><h1>{lesson.title}</h1><p className="m8-summary">{lesson.summary}</p>
+            <ul className="m8-points">{lesson.points.map((p)=><li key={p}>{p}</li>)}</ul>
+            <section className="m8-field"><span className="m8-field-label">IN THE FIELD · {lesson.fieldCase.label}</span><div className="m8-evidence">{lesson.fieldCase.evidence.map((e)=><span key={e}>{e}</span>)}</div><h3>{lesson.fieldCase.question}</h3><div className="m8-field-answer"><strong>CE reasoning:</strong> {lesson.fieldCase.answer}</div></section>
+          </article>
+          <section className="m8-check"><span className="cbet-label">Quick Knowledge Check</span><h2>{check.question}</h2><div className="m8-options">{check.options.map((o,i)=><button key={o} disabled={correct} className={`${answered&&i===check.answer?"correct":""} ${answered&&i===selected&&i!==check.answer?"wrong":""}`} onClick={()=>{setSelected(i);playCbetTone(i===check.answer?"correct":"wrong")}}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m8-feedback ${correct?"good":"bad"}`}><strong>{correct?"Correct.":"Not yet."}</strong> {correct?check.explanation:"Use the field evidence and safety principle above, then try again."}</div>}<div className="m8-nav"><button className="cbet-secondary" disabled={lessonIndex===0} onClick={previousLesson}>← Previous Lesson</button><button className="cbet-primary" disabled={!correct} onClick={completeLesson}>{lessonIndex===missionEightLessons.length-1?"Finish Lessons →":"Complete Lesson →"}</button></div></section>
+        </section>
+      })()}
+
+      {phase === "scenarios" && (() => {
+        const item=missionEightScenarios[scenarioIndex];
+        const scenario=scenarioChecks[scenarioIndex];
+        const answered=selected!==null;
+        const correct=selected===scenario.answer;
+        return <section ref={stageRef} className="cbet-shell m8-shell">
+          <div className="m8-top"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Advanced Service Call {scenarioIndex+1} of {missionEightScenarios.length}</span></div>
+          <div className="m8-progress"><span style={{width:`${((scenarioIndex+1)/missionEightScenarios.length)*100}%`}}/></div>
+          <section className="m8-guide"><div><small>HOW TO COMPLETE THIS CALL</small><strong>Read every clue. Several actions may sound reasonable; choose the one that best narrows the fault without skipping safety.</strong></div><div className="next"><small>YOUR NEXT ACTION</small><strong>{answered?(correct?"Correct — continue to the next call.":"Review the evidence and try another action."):nextRequiredText}</strong></div></section>
+          <section className="m8-scenario"><span className="cbet-label">HOSPITAL SERVICE CALL</span><h1>{item.title}</h1><p className="m8-summary">{item.prompt}</p><div className="m8-options">{scenario.options.map((o,i)=><button key={o} disabled={correct} className={`${answered&&i===scenario.answer?"correct":""} ${answered&&i===selected&&i!==scenario.answer?"wrong":""}`} onClick={()=>{setSelected(i);playCbetTone(i===scenario.answer?"correct":"wrong")}}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m8-feedback ${correct?"good":"bad"}`}><strong>{correct?"Strong troubleshooting decision.":"Keep working the evidence."}</strong> {correct?scenario.explanation:"Use the evidence to choose the action that narrows the fault without bypassing safety."}</div>}<div className="m8-nav"><button className="cbet-secondary" onClick={()=>{setSelected(null);setPhaseState("lessons");setLessonIndexState(missionEightLessons.length-1);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:missionEightLessons.length-1})}}>← Review Last Lesson</button><button className="cbet-primary" disabled={!correct} onClick={completeScenario}>{scenarioIndex===missionEightScenarios.length-1?"Start Competency Check →":"Next Service Call →"}</button></div></section>
+        </section>
+      })()}
+
+      {phase === "quiz" && (() => {
+        const q=questions[questionIndex];
+        const answered=selected!==null;
+        const correct=selected===q.answer;
+        return <section ref={stageRef} className="cbet-shell m8-shell">
+          <div className="m8-top"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 8 Competency Check · {questionIndex+1}/{questions.length}</span></div>
+          <div className="m8-progress"><span style={{width:`${((questionIndex+1)/questions.length)*100}%`}}/></div>
+          <section className="m8-guide"><div><small>COMPETENCY MODE</small><strong>No diagnosis is given. Apply the evidence patterns from the mission.</strong></div><div className="next"><small>PASSING STANDARD</small><strong>80% required · {questions.length} questions</strong></div></section>
+          <article className="m8-quizcard"><span className="m8-quizcat">{q.category||"Advanced Troubleshooting"}</span><h1>{q.question}</h1><div className="m8-options">{q.options.map((o,i)=><button key={o} disabled={answered} className={`${answered&&i===q.answer?"correct":""} ${answered&&i===selected&&i!==q.answer?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m8-feedback ${correct?"good":"bad"}`}><strong>{correct?"Correct.":"Review this point."}</strong> {q.explanation}</div>}<div className="m8-nav"><button className="cbet-secondary" disabled={questionIndex===0} onClick={()=>{const prev=questionIndex-1;setQuestionIndexState(prev);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:prev})}}>← Previous</button><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex===questions.length-1?"Submit Assessment":"Next Question →"}</button></div></article>
+        </section>
+      })()}
+
+      {phase === "result" && <section className="cbet-shell m8-shell"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><section className="m8-scorehero review"><span className="cbet-label">MISSION 8 RESULT</span><strong>{result}%</strong><h1>Review Recommended</h1><p>You need 80% to demonstrate competency. Review the lessons or retake the assessment.</p><div className="cbet-actions"><button className="cbet-secondary" onClick={()=>{setLessonIndexState(0);setSelected(null);setPhaseState("lessons");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:0})}}>Review Mission</button><button className="cbet-primary" onClick={restartQuiz}>Retake Assessment</button></div></section></section>}
+
+      {phase === "complete" && <section className="cbet-shell m8-shell"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><section className="m8-scorehero"><span className="cbet-label">MISSION 8 COMPLETE</span><strong>{result ?? completedModule.bestScore ?? savedProgress.quizScore ?? 80}%</strong><h1>🏆 Evidence-Based Troubleshooting Competency Demonstrated</h1><p>You demonstrated competency across medical equipment, accessories, power, safety interlocks, intermittent faults, networking, environmental causes, and repair verification.</p><div className="cbet-actions"><button className="cbet-secondary" onClick={()=>{setLessonIndexState(0);setSelected(null);setPhaseState("lessons");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:0})}}>Review Mission</button><button className="cbet-primary" onClick={onExit}>Return to Academy →</button></div></section></section>}
+    </>
+  );
+}
+
 function MissionTenCallout({ callout }) {
   if (!callout) return null;
   const isTip = callout.type === "clinical-tip";
@@ -5354,6 +5583,229 @@ function MissionTenQuestionImage({ question }) {
     </figure>
   );
 }
+
+
+function MissionSeven({ onExit }) {
+  const moduleNumber = 7;
+  const savedProgress = getMissionProgress(moduleNumber);
+  const completedModule = getCbetModuleState(moduleNumber);
+  const questions = useMemo(() => missionSevenQuestions.map(shuffleQuestion), []);
+  const lessonChecks = useMemo(() => missionSevenLessons.map((lesson) => shuffleQuestion(lesson.check)), []);
+  const scenarioChecks = useMemo(() => missionSevenScenarios.map((scenario) => shuffleQuestion({
+    question: scenario.prompt,
+    options: scenario.options,
+    answer: scenario.answer,
+    explanation: scenario.explanation
+  })), []);
+  const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
+  const [lessonIndex, setLessonIndexState] = useState(savedProgress.lessonIndex || 0);
+  const [completedLessons, setCompletedLessons] = useState(savedProgress.completedLessons || []);
+  const [scenarioIndex, setScenarioIndexState] = useState(savedProgress.scenarioIndex || 0);
+  const [completedScenarios, setCompletedScenarios] = useState(savedProgress.completedScenarios || []);
+  const [questionIndex, setQuestionIndexState] = useState(savedProgress.phase === "quiz" ? (savedProgress.quizIndex || 0) : 0);
+  const [selected, setSelected] = useState(null);
+  const [score, setScore] = useState(0);
+  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const stageRef = useRef(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      if (!stageRef.current) return;
+      const top = Math.max(0, stageRef.current.getBoundingClientRect().top + window.scrollY - 12);
+      window.scrollTo({ top, left: 0, behavior: "auto" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [phase, lessonIndex, scenarioIndex, questionIndex]);
+
+  const setPhase = (next) => {
+    setPhaseState(next);
+    saveMissionProgress(moduleNumber, { phase: next });
+    scrollCbetPageToTop();
+  };
+
+  const completeLesson = () => {
+    const nextCompleted = Array.from(new Set([...completedLessons, lessonIndex]));
+    setCompletedLessons(nextCompleted);
+    awardCbetXp(10, `mission7-lesson-${lessonIndex}`);
+    if (lessonIndex < missionSevenLessons.length - 1) {
+      const next = lessonIndex + 1;
+      setLessonIndexState(next);
+      setSelected(null);
+      saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: next, completedLessons: nextCompleted });
+    } else {
+      setSelected(null);
+      setScenarioIndexState(0);
+      saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex: 0, completedLessons: nextCompleted });
+      setPhaseState("scenarios");
+    }
+  };
+
+  const completeScenario = () => {
+    const nextCompleted = Array.from(new Set([...completedScenarios, scenarioIndex]));
+    setCompletedScenarios(nextCompleted);
+    awardCbetXp(15, `mission7-scenario-${scenarioIndex}`);
+    setSelected(null);
+    if (scenarioIndex < missionSevenScenarios.length - 1) {
+      const next = scenarioIndex + 1;
+      setScenarioIndexState(next);
+      saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex: next, completedScenarios: nextCompleted });
+    } else {
+      setQuestionIndexState(0);
+      setScore(0);
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, completedScenarios: nextCompleted });
+      setPhaseState("quiz");
+    }
+  };
+
+  const answerQuiz = (index) => {
+    if (selected !== null) return;
+    setSelected(index);
+    if (index === questions[questionIndex].answer) setScore((value) => value + 1);
+    playCbetTone(index === questions[questionIndex].answer ? "correct" : "wrong");
+  };
+
+  const nextQuizQuestion = () => {
+    if (questionIndex < questions.length - 1) {
+      const next = questionIndex + 1;
+      setQuestionIndexState(next);
+      setSelected(null);
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next });
+      return;
+    }
+    const finalScore = Math.round((score / questions.length) * 100);
+    setResult(finalScore);
+    if (finalScore >= 80) {
+      completeCbetModule(moduleNumber, finalScore, 350);
+      saveMissionProgress(moduleNumber, { phase: "complete", quizScore: finalScore, passed: true });
+      setPhaseState("complete");
+    } else {
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizScore: finalScore, passed: false });
+      setPhaseState("result");
+    }
+    setSelected(null);
+  };
+
+  const restartQuiz = () => {
+    setQuestionIndexState(0);
+    setSelected(null);
+    setScore(0);
+    setResult(null);
+    saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, quizScore: 0, passed: false });
+    setPhaseState("quiz");
+  };
+
+  const previousLesson = () => {
+    if (lessonIndex <= 0) return;
+    const next = lessonIndex - 1;
+    setLessonIndexState(next);
+    setSelected(null);
+    saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: next, completedLessons });
+  };
+
+  const nextRequiredText = phase === "lessons"
+    ? "Read the field evidence, answer the knowledge check, then select Complete Lesson."
+    : phase === "scenarios"
+    ? "Read the service-call evidence, choose the safest CE action, then continue."
+    : "Choose one answer. Results are revealed after each question; 80% is required to demonstrate competency.";
+
+  return (
+    <>
+      <style>{`
+        .m7-shell{--m7-navy:#0b2447;--m7-blue:#2457a6;--m7-green:#1f8f5f;--m7-gold:#d99a18}
+        .m7-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+        .m7-top span{font-weight:900;color:#475569}
+        .m7-progress{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-bottom:20px}
+        .m7-progress span{display:block;height:100%;background:linear-gradient(90deg,#2457a6,#1f8f5f)}
+        .m7-guide{display:grid;grid-template-columns:.8fr 1.2fr;gap:16px;padding:18px;border:2px solid #bfdbfe;border-radius:18px;background:linear-gradient(135deg,#eff6ff,#fff);margin-bottom:20px}
+        .m7-guide small,.m7-guide strong{display:block}.m7-guide small{font-size:.72rem;letter-spacing:.09em;font-weight:950;color:#2457a6}.m7-guide strong{margin-top:5px;color:#0b2447}.m7-guide .next{background:#0b2447;color:#fff;padding:13px 15px;border-radius:13px}.m7-guide .next small{color:#93c5fd}.m7-guide .next strong{color:#fff}
+        .m7-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;padding:30px;border-radius:26px;background:linear-gradient(135deg,#0b2447,#2457a6);color:#fff;box-shadow:0 18px 45px rgba(11,36,71,.18)}
+        .m7-hero h1{font-size:clamp(2.5rem,5vw,4.6rem);line-height:.98;margin:8px 0 16px}.m7-hero p{color:#dbeafe;font-size:1.08rem}.m7-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.m7-pillrow span{padding:8px 11px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.1);font-weight:850;font-size:.82rem}
+        .m7-shield{display:grid;place-items:center;min-height:250px}.m7-shield div{width:210px;height:230px;clip-path:polygon(50% 0,92% 18%,84% 72%,50% 100%,16% 72%,8% 18%);background:linear-gradient(160deg,#fbbf24,#f59e0b);display:grid;place-items:center;color:#0b2447;text-align:center;padding:35px;font-weight:950;box-shadow:0 18px 35px rgba(0,0,0,.2)}.m7-shield b{font-size:2.8rem;display:block}
+        .m7-brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:20px 0}.m7-brief-grid article{padding:18px;border:1px solid #dbe4f0;border-radius:16px;background:#fff}.m7-brief-grid strong{display:block;color:#0b2447;margin-bottom:5px}.m7-brief-grid span{color:#64748b;font-size:.9rem;line-height:1.45}
+        .m7-objectives{margin:22px 0;padding:24px;border:1px solid #dbe4f0;border-radius:20px;background:#fff}.m7-objectives li{margin:8px 0}
+        .m7-lesson-card{padding:28px;border:1px solid #dbe4f0;border-radius:24px;background:#fff;box-shadow:0 14px 32px rgba(15,23,42,.06)}.m7-icon{font-size:2.2rem}.m7-lesson-card h1{font-size:clamp(2rem,3.6vw,3.5rem);line-height:1.12;letter-spacing:-.02em;color:#0b2447;margin:8px auto 12px;max-width:1200px;text-wrap:balance}.m7-summary{font-size:1.06rem;color:#475569}.m7-points{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;padding:0;list-style:none}.m7-points li{padding:14px;border:1px solid #dbeafe;border-radius:13px;background:#f8fbff}
+        .m7-field{margin:20px 0;padding:22px;border:2px solid #facc15;border-radius:20px;background:#fffbeb}.m7-field-label{font-size:.72rem;letter-spacing:.09em;font-weight:950;color:#a16207}.m7-evidence{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}.m7-evidence span{padding:10px;border-radius:10px;background:#fff;border:1px solid #fde68a;color:#713f12;font-weight:800}.m7-field h3{margin:12px 0 5px;color:#422006}.m7-field-answer{padding:13px;border-left:5px solid #d99a18;background:#fff;border-radius:10px;color:#713f12}
+        .m7-check,.m7-scenario{margin-top:20px;padding:24px;border:1px solid #dbe4f0;border-radius:20px;background:#fff}.m7-check h2,.m7-scenario h2{color:#0b2447}.m7-options{display:grid;gap:10px;margin-top:15px}.m7-options button{padding:14px 16px;border:2px solid #dbe4f0;border-radius:13px;background:#fff;text-align:left;font-weight:850;cursor:pointer}.m7-options button:hover{border-color:#60a5fa}.m7-options button.correct{border-color:#22c55e;background:#f0fdf4}.m7-options button.wrong{border-color:#ef4444;background:#fef2f2}.m7-feedback{margin-top:14px;padding:14px;border-radius:12px;background:#eff6ff;color:#1e3a8a}.m7-feedback.good{background:#f0fdf4;color:#166534}.m7-feedback.bad{background:#fff7ed;color:#9a3412}
+        .m7-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid #e2e8f0}.m7-nav button{min-width:160px}
+        .m7-reg-note{margin:20px 0;padding:17px 19px;border-left:5px solid #2563eb;border-radius:12px;background:#eff6ff;color:#1e3a8a}
+        .m7-quizcard{max-width:960px;margin:0 auto;padding:28px;border:1px solid #dbe4f0;border-radius:22px;background:#fff}.m7-quizcat{font-size:.75rem;letter-spacing:.08em;font-weight:950;color:#2457a6}.m7-scorehero{text-align:center;padding:34px;border-radius:24px;background:linear-gradient(135deg,#ecfdf5,#fff);border:2px solid #86efac}.m7-scorehero.review{background:#fff7ed;border-color:#fdba74}.m7-scorehero strong{font-size:clamp(3rem,7vw,5rem);line-height:1;display:block;color:#0b2447;margin:8px 0 14px}.m7-scorehero h1{font-size:clamp(2rem,4.2vw,3.6rem);line-height:1.08;letter-spacing:-.025em;margin:8px auto 14px;color:#0b2447;max-width:1100px;text-wrap:balance}
+        @media(max-width:850px){.m7-hero,.m7-guide{grid-template-columns:1fr}.m7-brief-grid{grid-template-columns:1fr}.m7-points,.m7-evidence{grid-template-columns:1fr}.m7-shield{min-height:180px}}
+        @media(max-width:600px){.m7-top,.m7-nav{align-items:stretch;flex-direction:column}.m7-nav button{width:100%}.m7-lesson-card,.m7-check,.m7-scenario,.m7-quizcard{padding:18px}}
+      `}</style>
+
+      {phase === "briefing" && (
+        <section className="cbet-shell m7-shell">
+          <div className="m7-top"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><span>Mission 7 · 350 XP</span></div>
+          <section className="m7-hero">
+            <div>
+              <span className="cbet-label">SAFETY · RISK · REGULATORY READINESS</span>
+              <h1>{missionSevenBriefing.title}</h1>
+              <p>{missionSevenBriefing.summary}</p>
+              <div className="m7-pillrow"><span>Electrical Safety</span><span>Return to Service</span><span>Incident Response</span><span>Recalls</span><span>Documentation</span><span>FDA MDR</span></div>
+            </div>
+            <div className="m7-shield"><div><span><b>✓</b>WOULD YOU PUT THIS DEVICE BACK ON A PATIENT?</span></div></div>
+          </section>
+          <div className="m7-brief-grid">
+            <article><strong>8 Guided Lessons</strong><span>Safety decisions tied to actual CE workflow.</span></article>
+            <article><strong>4 Applied Service Calls</strong><span>Incidents, recalls, electrical safety, and alarms.</span></article>
+            <article><strong>20-Question Competency Check</strong><span>80% required to complete Mission 7.</span></article>
+          </div>
+          <section className="m7-objectives"><h2>What you will learn</h2><ul>{missionSevenBriefing.objectives.map((item)=><li key={item}>{item}</li>)}</ul></section>
+          <div className="m7-reg-note"><strong>Important:</strong> Standards, manufacturer procedures, and regulatory requirements can change. Mission 7 teaches the decision process and high-yield concepts; real service work must follow current manufacturer documentation, facility policy, and applicable requirements.</div>
+          <div className="cbet-actions"><button className="cbet-primary" onClick={()=>setPhase("lessons")}>{savedProgress.phase && savedProgress.phase !== "briefing" ? "Resume Mission" : "Begin Mission 7"}</button></div>
+        </section>
+      )}
+
+      {phase === "lessons" && (() => {
+        const lesson=missionSevenLessons[lessonIndex];
+        const check=lessonChecks[lessonIndex];
+        const correct=selected===check.answer;
+        const answered=selected!==null;
+        return <section ref={stageRef} className="cbet-shell m7-shell">
+          <div className="m7-top"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Lesson {lessonIndex+1} of {missionSevenLessons.length}</span></div>
+          <div className="m7-progress"><span style={{width:`${((lessonIndex+1)/missionSevenLessons.length)*100}%`}}/></div>
+          <section className="m7-guide"><div><small>HOW TO COMPLETE THIS LESSON</small><strong>1. Read the safety concept → 2. Inspect the field evidence → 3. Answer the check → 4. Complete the lesson.</strong></div><div className="next"><small>YOUR NEXT ACTION</small><strong>{answered ? (correct ? "Correct — select Complete Lesson below." : "Review the evidence and choose another answer.") : nextRequiredText}</strong></div></section>
+          <article className="m7-lesson-card">
+            <span className="m7-icon">{lesson.icon}</span><h1>{lesson.title}</h1><p className="m7-summary">{lesson.summary}</p>
+            <ul className="m7-points">{lesson.points.map((p)=><li key={p}>{p}</li>)}</ul>
+            <section className="m7-field"><span className="m7-field-label">IN THE FIELD · {lesson.fieldCase.label}</span><div className="m7-evidence">{lesson.fieldCase.evidence.map((e)=><span key={e}>{e}</span>)}</div><h3>{lesson.fieldCase.question}</h3><div className="m7-field-answer"><strong>CE reasoning:</strong> {lesson.fieldCase.answer}</div></section>
+          </article>
+          <section className="m7-check"><span className="cbet-label">Quick Knowledge Check</span><h2>{check.question}</h2><div className="m7-options">{check.options.map((o,i)=><button key={o} disabled={correct} className={`${answered&&i===check.answer?"correct":""} ${answered&&i===selected&&i!==check.answer?"wrong":""}`} onClick={()=>{setSelected(i);playCbetTone(i===check.answer?"correct":"wrong")}}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m7-feedback ${correct?"good":"bad"}`}><strong>{correct?"Correct.":"Not yet."}</strong> {correct?check.explanation:"Use the field evidence and safety principle above, then try again."}</div>}<div className="m7-nav"><button className="cbet-secondary" disabled={lessonIndex===0} onClick={previousLesson}>← Previous Lesson</button><button className="cbet-primary" disabled={!correct} onClick={completeLesson}>{lessonIndex===missionSevenLessons.length-1?"Finish Lessons →":"Complete Lesson →"}</button></div></section>
+        </section>
+      })()}
+
+      {phase === "scenarios" && (() => {
+        const item=missionSevenScenarios[scenarioIndex];
+        const scenario=scenarioChecks[scenarioIndex];
+        const answered=selected!==null;
+        const correct=selected===scenario.answer;
+        return <section ref={stageRef} className="cbet-shell m7-shell">
+          <div className="m7-top"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Applied Safety Call {scenarioIndex+1} of {missionSevenScenarios.length}</span></div>
+          <div className="m7-progress"><span style={{width:`${((scenarioIndex+1)/missionSevenScenarios.length)*100}%`}}/></div>
+          <section className="m7-guide"><div><small>HOW TO COMPLETE THIS CALL</small><strong>Read the complete situation. Decide what protects the patient, preserves evidence, and satisfies the required process.</strong></div><div className="next"><small>YOUR NEXT ACTION</small><strong>{answered?(correct?"Correct — continue to the next call.":"Review the evidence and try another action."):nextRequiredText}</strong></div></section>
+          <section className="m7-scenario"><span className="cbet-label">HOSPITAL SERVICE CALL</span><h1>{item.title}</h1><p className="m7-summary">{item.prompt}</p><div className="m7-options">{scenario.options.map((o,i)=><button key={o} disabled={correct} className={`${answered&&i===scenario.answer?"correct":""} ${answered&&i===selected&&i!==scenario.answer?"wrong":""}`} onClick={()=>{setSelected(i);playCbetTone(i===scenario.answer?"correct":"wrong")}}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m7-feedback ${correct?"good":"bad"}`}><strong>{correct?"Strong CE decision.":"Keep working the evidence."}</strong> {correct?scenario.explanation:"Choose the action that controls risk without destroying evidence or bypassing required safety processes."}</div>}<div className="m7-nav"><button className="cbet-secondary" onClick={()=>{setSelected(null);setPhaseState("lessons");setLessonIndexState(missionSevenLessons.length-1);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:missionSevenLessons.length-1})}}>← Review Last Lesson</button><button className="cbet-primary" disabled={!correct} onClick={completeScenario}>{scenarioIndex===missionSevenScenarios.length-1?"Start Competency Check →":"Next Service Call →"}</button></div></section>
+        </section>
+      })()}
+
+      {phase === "quiz" && (() => {
+        const q=questions[questionIndex];
+        const answered=selected!==null;
+        const correct=selected===q.answer;
+        return <section ref={stageRef} className="cbet-shell m7-shell">
+          <div className="m7-top"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 7 Competency Check · {questionIndex+1}/{questions.length}</span></div>
+          <div className="m7-progress"><span style={{width:`${((questionIndex+1)/questions.length)*100}%`}}/></div>
+          <section className="m7-guide"><div><small>COMPETENCY MODE</small><strong>No guided field answer here. Apply what you learned across the mission.</strong></div><div className="next"><small>PASSING STANDARD</small><strong>80% required · {questions.length} questions</strong></div></section>
+          <article className="m7-quizcard"><span className="m7-quizcat">{q.category||"Safety & Regulations"}</span><h1>{q.question}</h1><div className="m7-options">{q.options.map((o,i)=><button key={o} disabled={answered} className={`${answered&&i===q.answer?"correct":""} ${answered&&i===selected&&i!==q.answer?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m7-feedback ${correct?"good":"bad"}`}><strong>{correct?"Correct.":"Review this point."}</strong> {q.explanation}</div>}<div className="m7-nav"><button className="cbet-secondary" disabled={questionIndex===0} onClick={()=>{const prev=questionIndex-1;setQuestionIndexState(prev);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:prev})}}>← Previous</button><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex===questions.length-1?"Submit Assessment":"Next Question →"}</button></div></article>
+        </section>
+      })()}
+
+      {phase === "result" && <section className="cbet-shell m7-shell"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><section className="m7-scorehero review"><span className="cbet-label">MISSION 7 RESULT</span><strong>{result}%</strong><h1>Review Recommended</h1><p>You need 80% to demonstrate competency. Review the lessons or retake the assessment.</p><div className="cbet-actions"><button className="cbet-secondary" onClick={()=>{setLessonIndexState(0);setSelected(null);setPhaseState("lessons");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:0})}}>Review Mission</button><button className="cbet-primary" onClick={restartQuiz}>Retake Assessment</button></div></section></section>}
+
+      {phase === "complete" && <section className="cbet-shell m7-shell"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><section className="m7-scorehero"><span className="cbet-label">MISSION 7 COMPLETE</span><strong>{result ?? completedModule.bestScore ?? savedProgress.quizScore ?? 80}%</strong><h1>🏆 Safety & Compliance Competency Demonstrated</h1><p>You demonstrated competency across electrical safety, return-to-service decisions, incident preservation, recalls, documentation, risk management, and regulatory escalation.</p><div className="cbet-actions"><button className="cbet-secondary" onClick={()=>{setLessonIndexState(0);setSelected(null);setPhaseState("lessons");saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:0})}}>Review Mission</button><button className="cbet-primary" onClick={onExit}>Return to Academy →</button></div></section></section>}
+    </>
+  );
+}
+
 
 function MissionTen({ onExit }) {
   const moduleNumber = 10;
@@ -5652,11 +6104,12 @@ function MissionSixAssessment({onExit,onBack}) {
   const pct=finished?Math.round((score/order.length)*100):0;
   const passed=pct>=80;
   const completionDate=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  useEffect(()=>{if(saved.m6AssessmentPassed&&!getCbetModuleState(6).complete){completeCbetModule(6,saved.m6AssessmentBest||80,350);}},[]);
   if(showCertificate&&passed) return <MissionSixCertificate name={learnerName} score={pct} date={completionDate} onBack={()=>setShowCertificate(false)} />;
 
   const categories=["Network Fundamentals","Switching & VLANs","Wireless","Clinical Connectivity","Cybersecurity","Systems Integration"];
   const categoryScores=categories.map(cat=>{const qs=order.filter(q=>q.cat===cat);const hit=qs.filter(q=>answers[q.id]===q.correct).length;return {cat,hit,total:qs.length,pct:qs.length?Math.round(hit/qs.length*100):0};});
-  const finish=()=>{setFinished(true);if(!saved.m6AssessmentBest||pct>saved.m6AssessmentBest){saveMissionProgress(moduleNumber,{...saved,m6AssessmentBest:pct,m6AssessmentPassed:passed});}if(passed&&!saved.m6AssessmentPassed)awardCbetXp(150,"mission6-competency-assessment");};
+  const finish=()=>{const finalScore=order.reduce((n,q)=>n+(answers[q.id]===q.correct?1:0),0);const finalPct=Math.round((finalScore/order.length)*100);const finalPassed=finalPct>=80;setFinished(true);saveMissionProgress(moduleNumber,{...saved,m6AssessmentBest:Math.max(saved.m6AssessmentBest||0,finalPct),m6AssessmentPassed:finalPassed});if(finalPassed){if(!saved.m6AssessmentPassed)awardCbetXp(150,"mission6-competency-assessment");completeCbetModule(6,finalPct,350);}};
   if(finished) return <section className="cbet-shell m6-shell m6-assessment-results">
     <button className="cbet-back" onClick={onExit}>← Back to Academy</button>
     <div className={`m6-result-hero ${passed?"pass":"review"}`}><span>{passed?"🏆":"📘"}</span><div><small>MISSION 6 COMPETENCY ASSESSMENT</small><h1>{passed?"Competency Demonstrated":"Review Recommended"}</h1><p><strong>{score}/{order.length}</strong> correct · <strong>{pct}%</strong> · Passing score: 80%</p></div></div>
@@ -6535,6 +6988,36 @@ export default function CBETAcademy() {
     );
   }
 
+  if (screen === "mission7") {
+    return (
+      <main className="cbet-academy">
+        <LocalDeveloperPanel unlockAll={developerUnlockAll} onToggle={toggleDeveloperUnlockAll} />
+        {reviewMissionNumber === 7 && (
+          <div className="cbet-review-banner" role="status">
+            <strong>Review Mode</strong>
+            <span>Your Mission 7 completion, XP, competency, and saved progress are preserved.</span>
+          </div>
+        )}
+        <MissionSeven onExit={leaveMission} />
+      </main>
+    );
+  }
+
+  if (screen === "mission8") {
+    return (
+      <main className="cbet-academy m8-academy">
+        <LocalDeveloperPanel unlockAll={developerUnlockAll} onToggle={toggleDeveloperUnlockAll} />
+        {reviewMissionNumber === 8 && (
+          <div className="cbet-review-banner" role="status">
+            <strong>Review Mode</strong>
+            <span>Your Mission 8 completion, XP, competency, and saved troubleshooting progress are preserved.</span>
+          </div>
+        )}
+        <MissionEight onExit={leaveMission} />
+      </main>
+    );
+  }
+
   if (screen === "mission10") {
     return (
       <main className="cbet-academy">
@@ -6584,22 +7067,22 @@ export default function CBETAcademy() {
     );
   }
 
-  const missionStates = [1, 2, 3, 4, 5].map((number) => getCbetModuleState(number));
+  const missionStates = [1, 2, 3, 4, 5, 6, 7, 8].map((number) => getCbetModuleState(number));
   const completedMissionCount = missionStates.filter((mission) => mission.complete).length;
 
-  const nextMissionNumber = missionStates.findIndex((mission) => !mission.complete) + 1 || 5;
+  const nextMissionNumber = missionStates.findIndex((mission) => !mission.complete) + 1 || 8;
   const nextMission = cbetAcademyModules.find((module) => module.number === nextMissionNumber);
   const nextMissionProgress = getMissionProgress(nextMissionNumber);
   const nextMissionStarted = nextMissionProgress.phase !== "briefing";
   const nextMissionLabel = missionStates.every((mission) => mission.complete)
-    ? "Review Mission 5"
+    ? "Review Mission 7"
     : nextMissionStarted
     ? `Continue Mission ${nextMissionNumber}`
     : `Start Mission ${nextMissionNumber}`;
 
   const badgeCount = Object.values(academy.modules || {}).filter((module) => module.complete).length;
   const virtualLabPercent = Math.min(100, Math.round((virtualLabLessonsCompleted / 9) * 100));
-  const missionPercent = Math.min(100, Math.round((completedMissionCount / 5) * 100));
+  const missionPercent = Math.min(100, Math.round((completedMissionCount / 8) * 100));
 
   return (
     <main className="cbet-academy" key={refresh}>
@@ -6663,7 +7146,7 @@ export default function CBETAcademy() {
             </div>
             <h3>Training Missions</h3>
             <p>Guided instruction, interactive activities, and knowledge checks organized into a clear path.</p>
-            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 5 complete</span><strong>{missionPercent}%</strong></div>
+            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 8 complete</span><strong>{missionPercent}%</strong></div>
             <div className="cbet-card-progress"><span style={{ width: `${missionPercent}%` }} /></div>
             <button className="cbet-primary" onClick={() => openMission(nextMissionNumber, missionStates.every((mission) => mission.complete))}>{nextMissionLabel}</button>
           </article>
@@ -6728,7 +7211,7 @@ export default function CBETAcademy() {
         <div className="cbet-mission-toggle-row">
           <div>
             <span className="cbet-label">Training path</span>
-            <h2>Five missions available now</h2>
+            <h2>Eight missions available now</h2>
           </div>
           <button
             className="cbet-secondary"
@@ -6745,7 +7228,7 @@ export default function CBETAcademy() {
             {cbetAcademyModules.map((module) => {
               const state = getCbetModuleState(module.number);
               const unlocked = developerUnlockAll && isLocalAcademyHost() ? true : module.number <= 4 || module.number === 10 ? true : module.number === 5 ? getCbetModuleState(4).complete : isCbetModuleUnlocked(module.number);
-              const available = module.number <= 6 || module.number === 10;
+              const available = module.number <= 8 || module.number === 10;
               return (
                 <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
                   <div className="cbet-card-top">

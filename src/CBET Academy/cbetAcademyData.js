@@ -671,6 +671,446 @@ export const missionFourQuestions = [
  m4q("What should final documentation include?",["Complaint, findings, tests, actions, and disposition","Only labor time","Only the serial number","Nothing when no part was replaced"],0,"Complete documentation preserves evidence and supports future safe service.","Documentation")
 ];
 
+
+
+/* =========================
+   MISSION 7 — SAFETY & REGULATIONS
+   ========================= */
+
+export const missionSevenBriefing = {
+  title: "Safety, Risk & Regulatory Readiness",
+  summary:
+    "Learn how Clinical Engineering protects patients before, during, and after service. Work through electrical-safety decisions, post-repair verification, incident preservation, recalls, documentation, and regulatory escalation using realistic hospital situations.",
+  objectives: [
+    "Decide when equipment must remain out of service instead of being returned to a patient-care area.",
+    "Explain protective earth, leakage-current concepts, electrical-safety testing, and why manufacturer procedures matter.",
+    "Use risk, service history, device function, and facility policy to support maintenance and disposition decisions.",
+    "Preserve evidence and documentation after an incident without destroying information needed for investigation.",
+    "Respond to recalls and field corrections using exact model, serial, lot, software, and affected-population information.",
+    "Recognize when a device event must be escalated through the hospital's safety, risk, and medical-device reporting process."
+  ]
+};
+
+export const missionSevenLessons = [
+  {
+    title: "The Return-to-Service Decision",
+    icon: "🛡️",
+    summary: "Treat patient safety and verified function as the finish line—not simply making the complaint disappear.",
+    points: [
+      "A repair is not complete until the reported problem is addressed and the device is verified for its intended clinical use.",
+      "If a safety-related function cannot be verified, the device stays out of service even when it appears to operate normally.",
+      "Clinical Engineering should communicate equipment status clearly so staff know whether a device is safe, restricted, quarantined, or awaiting further evaluation.",
+      "When patient care is active, support the clinical team first; do not create a new hazard by troubleshooting around a patient unnecessarily."
+    ],
+    fieldCase: {
+      label: "Return-to-Service Gate",
+      evidence: [
+        "Complaint: intermittent audible alarm",
+        "Repair: speaker connection reseated",
+        "Power-on self-test: PASS",
+        "Visual display alarm: PASS",
+        "Audible alarm test: fails 1 of 5 activations"
+      ],
+      question: "Would you return this device to clinical service?",
+      answer: "No. An intermittent safety-related alarm is not a verified repair. Keep the device out of service and continue evaluation."
+    },
+    check: {
+      question: "A device powers on after repair, but a safety-related alarm cannot be reproduced reliably. What is the best disposition?",
+      options: [
+        "Return it because the device powers on",
+        "Return it with a note for nursing",
+        "Keep it out until the alarm is reliably verified",
+        "Disable the alarm and monitor the device"
+      ],
+      answer: 2,
+      explanation: "Power-on is not enough. A safety-related function that cannot be verified should prevent return to clinical use."
+    }
+  },
+  {
+    title: "Protective Earth, Leakage & Electrical Safety",
+    icon: "⚡",
+    summary: "Understand what electrical-safety measurements are trying to protect against and why test conditions matter.",
+    points: [
+      "Protective earth provides a low-impedance path intended to reduce shock risk when exposed conductive parts could become energized.",
+      "Leakage-current testing evaluates unintended current paths under defined test conditions; the correct limits and test modes depend on the device, applied parts, manufacturer instructions, and applicable standards.",
+      "A low resistance protective-earth path does not prove every other electrical-safety requirement passes.",
+      "Never invent a universal leakage-current limit. Use the approved analyzer procedure, manufacturer documentation, facility policy, and applicable standard for the equipment being tested."
+    ],
+    fieldCase: {
+      label: "Post-Repair Safety Analyzer",
+      evidence: [
+        "Repair performed: AC power cord replaced",
+        "Visual inspection: PASS",
+        "Protective-earth test: FAIL",
+        "Functional self-test: PASS",
+        "Clinical function: appears normal"
+      ],
+      question: "What matters most?",
+      answer: "The failed protective-earth result blocks return to service. Investigate the cord, inlet, ground path, connections, and test setup before release."
+    },
+    check: {
+      question: "A device passes its functional self-test but fails an approved protective-earth test after an AC power-cord repair. What should happen?",
+      options: [
+        "Return it because clinical function passed",
+        "Keep it out and investigate the earth path/test setup",
+        "Bypass protective earth and retest",
+        "Increase the allowed limit until it passes"
+      ],
+      answer: 1,
+      explanation: "A failed electrical-safety requirement is not overridden by normal functional operation."
+    }
+  },
+  {
+    title: "Post-Repair Verification",
+    icon: "🧪",
+    summary: "Choose verification that is proportional to what you touched and the risk created by the repair.",
+    points: [
+      "Post-repair testing should verify the repaired function and any safety or performance areas that could have been affected by the work.",
+      "Replacing a power cord can require electrical-safety verification; replacing an SpO₂ connector requires verification of the input pathway and compatible accessories.",
+      "A generic power-on check is not an adequate substitute for a manufacturer-defined or facility-approved post-repair procedure.",
+      "Document actual measurements and results rather than only writing 'tested OK.'"
+    ],
+    fieldCase: {
+      label: "Service Scope",
+      evidence: [
+        "Device: bedside monitor",
+        "Repair: SpO₂ input connector replaced",
+        "ECG: not disturbed",
+        "SpO₂ simulator: available",
+        "Compatible sensor/cable: available"
+      ],
+      question: "What verification is strongest?",
+      answer: "Verify the repaired SpO₂ pathway with appropriate simulator/accessories, inspect the repair, confirm alarms/display behavior, and complete any required post-repair safety checks."
+    },
+    check: {
+      question: "Which post-repair note provides the strongest evidence?",
+      options: [
+        "Works now",
+        "Nurse says okay",
+        "SpO₂ verified with simulator at defined values; alarm response and repaired connector inspected; results documented",
+        "Powered on for five minutes"
+      ],
+      answer: 2,
+      explanation: "Specific test method, expected behavior, measured result, and disposition create useful, traceable service documentation."
+    }
+  },
+  {
+    title: "Risk-Based Equipment Management",
+    icon: "📊",
+    summary: "Understand how device function, failure consequence, history, manufacturer guidance, and local policy shape maintenance decisions.",
+    points: [
+      "Risk decisions should consider the device's clinical function, consequences of failure, maintenance requirements, service history, environment, and available controls.",
+      "High-risk equipment deserves strong controls, but risk classification does not justify ignoring manufacturer safety requirements or facility policy.",
+      "Repeated failures can change the maintenance strategy even when the device once appeared low risk.",
+      "Alternative equipment-maintenance strategies require organizational governance, evidence, documentation, and compliance with applicable requirements—not an individual technician simply extending intervals."
+    ],
+    fieldCase: {
+      label: "Repeat Failure Trend",
+      evidence: [
+        "Same model infusion device",
+        "Three battery-related failures in six months",
+        "Failures occur during transport",
+        "PM history shows batteries meeting old replacement interval",
+        "No immediate patient injury reported"
+      ],
+      question: "What should the CE do beyond replacing another battery?",
+      answer: "Escalate the failure trend for equipment-management review, evaluate the maintenance strategy and manufacturer information, and document the pattern."
+    },
+    check: {
+      question: "Which factor should influence equipment risk and maintenance strategy?",
+      options: [
+        "Only purchase price",
+        "Only the technician's preference",
+        "Function, failure impact, guidance, history, environment, and policy",
+        "The color of the equipment"
+      ],
+      answer: 2,
+      explanation: "Risk-based maintenance is evidence-driven and governed; it is not based on one factor or individual preference."
+    }
+  },
+  {
+    title: "Incident Investigation & Evidence Preservation",
+    icon: "🚨",
+    summary: "Respond to a device involved in an event without accidentally erasing the evidence needed to understand what happened.",
+    points: [
+      "Patient care comes first. Once the clinical situation is controlled, secure the involved equipment and accessories according to hospital policy.",
+      "Do not casually reset, update, erase logs, alter configuration, or perform invasive repair before the incident pathway is established.",
+      "Preserve the device, disposables/accessories when appropriate, power supply, cables, event logs, configuration, and identifying information.",
+      "Record who reported the event, the complaint, device identifiers, condition found, and actions taken while maintaining the organization's chain-of-custody or evidence process."
+    ],
+    fieldCase: {
+      label: "Post-Incident Work Order",
+      evidence: [
+        "Infusion pump involved in reported over-infusion",
+        "Patient has been moved to another pump",
+        "Device remains powered on",
+        "Event log still available",
+        "No one has changed settings since the event"
+      ],
+      question: "What is the strongest first CE action?",
+      answer: "Quarantine and preserve the device/state according to the incident process, capture identifying/event information, and coordinate investigation before routine repair."
+    },
+    check: {
+      question: "Which action is most likely to compromise an incident investigation?",
+      options: [
+        "Recording serial number and reported condition",
+        "Quarantining the device",
+        "Factory-resetting the device before saving its logs",
+        "Following the hospital incident process"
+      ],
+      answer: 2,
+      explanation: "Resetting or altering the device can destroy logs, configuration, or other evidence needed to reconstruct the event."
+    }
+  },
+  {
+    title: "Recalls, Corrections & Field Actions",
+    icon: "📣",
+    summary: "Turn a recall notice into controlled action using exact device identification and documented disposition.",
+    points: [
+      "A recall or field correction must be matched against the exact affected population—model, serial/lot, software version, accessory, or other identifiers in the notice.",
+      "Do not assume every unit from the manufacturer is affected, and do not assume an unaffected-looking device can remain in service when its identifier matches the notice.",
+      "Follow the manufacturer's/FDA action: remove, correct, inspect, relabel, update, restrict, or monitor as directed.",
+      "Document inventory search, affected units, actions completed, units not located, disposition, and closure evidence."
+    ],
+    fieldCase: {
+      label: "Urgent Field Action",
+      evidence: [
+        "Affected model: PX-500",
+        "Affected serial range: 500120–500890",
+        "Unit in OR: PX-500 / S/N 500611",
+        "Notice action: remove from use until field correction",
+        "Unit currently passes self-test"
+      ],
+      question: "Does the passing self-test override the notice?",
+      answer: "No. The serial number falls inside the affected population and the notice directs removal from use until correction."
+    },
+    check: {
+      question: "What is the best first step after receiving a device recall/field-correction notice?",
+      options: [
+        "Remove every device made by the manufacturer",
+        "Match exact identifiers and required action to inventory",
+        "Wait until the next PM",
+        "Delete the notice if no failures were reported locally"
+      ],
+      answer: 1,
+      explanation: "Recall response begins by identifying exactly which devices are affected and what the notice requires."
+    }
+  },
+  {
+    title: "Documentation, Traceability & Service Records",
+    icon: "📝",
+    summary: "Write service documentation that another technician, auditor, risk manager, or future investigator can actually use.",
+    points: [
+      "Good documentation states the complaint, condition found, troubleshooting evidence, work performed, parts/software used, verification results, and final disposition.",
+      "Asset ID, manufacturer, model, serial number, location, dates, and technician identity support traceability.",
+      "For safety events or recalls, record the specific action and evidence used to close the work—not only that the work order was completed.",
+      "Avoid vague statements such as 'fixed,' 'checked,' or 'PM done' when a more specific result is available."
+    ],
+    fieldCase: {
+      label: "Two Possible Notes",
+      evidence: [
+        "Note A: 'Pump fixed. OK for use.'",
+        "Note B: 'Replaced occlusion sensor assembly; passed manufacturer functional test, alarm verification, and flow check; no leaks noted; returned to service.'"
+      ],
+      question: "Which note better supports traceability?",
+      answer: "Note B. It tells the next person what failed, what changed, how it was verified, and the disposition."
+    },
+    check: {
+      question: "Which information is most important in a service record after a safety-related repair?",
+      options: [
+        "Only the technician's initials",
+        "Complaint, findings, action, verification, identifiers, and disposition",
+        "Only the part price",
+        "Only the room number"
+      ],
+      answer: 1,
+      explanation: "Complete service records support continuity, auditability, safety, and future troubleshooting."
+    }
+  },
+  {
+    title: "Regulatory Escalation & Medical Device Reporting",
+    icon: "🏛️",
+    summary: "Know the CE role: recognize a potentially reportable event, preserve facts, and move it through the hospital's reporting process.",
+    points: [
+      "Hospitals and other device user facilities have FDA medical-device reporting responsibilities for certain device-related deaths and serious injuries.",
+      "Clinical Engineering usually supports fact gathering, device identification, evidence preservation, manufacturer communication, and technical evaluation; the organization's designated process determines who submits formal reports.",
+      "A medical-device report is a safety-surveillance report; submitting one does not by itself prove the device caused the event.",
+      "Regulatory requirements and standards can change. Follow current FDA requirements, manufacturer instructions, and your organization's policy rather than relying on memory alone."
+    ],
+    fieldCase: {
+      label: "Potentially Reportable Event",
+      evidence: [
+        "Hospital patient experienced a serious injury",
+        "A medical device may have contributed",
+        "Device is available for evaluation",
+        "Manufacturer is known",
+        "Clinical team has initiated the hospital safety event"
+      ],
+      question: "What should the CE do?",
+      answer: "Preserve the device and facts, notify/coordinate through the hospital's designated risk/safety reporting pathway, and support required manufacturer/FDA reporting rather than independently deciding the event is non-reportable."
+    },
+    check: {
+      question: "For a hospital device user facility, which statement is correct under FDA MDR requirements?",
+      options: [
+        "Device-related deaths and serious injuries never require reporting",
+        "A suspected device-related death is reported to FDA and the manufacturer through the facility's required process",
+        "Only the individual technician can submit the report",
+        "Submitting an MDR proves the device caused the event"
+      ],
+      answer: 1,
+      explanation: "FDA MDR requirements include user-facility reporting for certain device-related deaths and serious injuries. The hospital should use its designated reporting process."
+    }
+  }
+];
+
+export const missionSevenScenarios = [
+  {
+    title: "Infusion Pump After a Patient Event",
+    prompt:
+      "An infusion pump is removed from a room after a reported over-infusion. The patient is stable on another device. The pump is still powered on and its event log has not been downloaded. What is the strongest next CE action?",
+    options: [
+      "Factory-reset the pump so it can be tested cleanly",
+      "Quarantine/preserve the device and current state, document identifiers, and follow the hospital incident-investigation process",
+      "Replace the pump battery and return it to the unit",
+      "Delete the event log after taking a photo of the screen"
+    ],
+    answer: 1,
+    explanation:
+      "Once patient care is stabilized, preserve the device and evidence before routine repair or reset. Event logs, configuration, accessories, and device condition may matter to the investigation."
+  },
+  {
+    title: "Recall Notice Matches an OR Unit",
+    prompt:
+      "A manufacturer field action states that PX-500 units with serial numbers 500120–500890 must be removed from use until a field correction. An OR unit is PX-500, S/N 500611, and passes self-test. What should you do?",
+    options: [
+      "Leave it in service because self-test passes",
+      "Remove/control the unit according to the field action and document the recall response",
+      "Wait for the annual PM",
+      "Change the serial number in the CMMS"
+    ],
+    answer: 1,
+    explanation:
+      "The unit matches the affected model and serial range. A normal self-test does not cancel the manufacturer's specified recall/field-action requirement."
+  },
+  {
+    title: "Power Cord Repair Fails Safety Test",
+    prompt:
+      "After replacing a damaged AC power cord, a monitor powers on and functions normally, but the approved protective-earth test fails. What is the best disposition?",
+    options: [
+      "Return it because the clinical test passed",
+      "Keep it out of service and investigate the cord, inlet, protective-earth path, connections, and test setup",
+      "Raise the safety limit until it passes",
+      "Remove the ground conductor and repeat the test"
+    ],
+    answer: 1,
+    explanation:
+      "A failed electrical-safety requirement after a power-path repair must be resolved before the device is returned to clinical service."
+  },
+  {
+    title: "Intermittent Alarm After Repair",
+    prompt:
+      "A bedside monitor's speaker connection was repaired. Visual alarms work, but the audible alarm fails intermittently during repeated verification. What should the CE do?",
+    options: [
+      "Return it with a note that visual alarms still work",
+      "Keep it out of service and continue troubleshooting until the alarm function is reliably verified",
+      "Disable the audible alarm in configuration",
+      "Tell staff to stand closer to the device"
+    ],
+    answer: 1,
+    explanation:
+      "A safety-related alarm that is still intermittent is not a completed repair. The device should not return to service until required alarm performance is verified."
+  }
+];
+
+export const missionSevenQuestions = [
+  ["What is the best definition of a completed repair?", ["The device powers on", "The complaint is gone once", "The repaired and affected functions are verified and the device has an appropriate disposition", "A part was replaced"], 2, "Repair completion requires verification and disposition, not simply replacing a part.", "Return to Service"],
+  ["A safety-related alarm cannot be verified reliably after repair. What should happen?", ["Return it with a warning", "Keep it out of service", "Disable the alarm", "Close the ticket"], 1, "Unverified safety-related function should block release.", "Return to Service"],
+  ["Protective earth is intended primarily to:", ["Improve Wi-Fi", "Provide a low-impedance fault-current path that reduces shock risk", "Store charge", "Increase leakage"], 1, "Protective earth is a safety path for fault current.", "Electrical Safety"],
+  ["Which statement about leakage-current limits is strongest?", ["One universal limit applies to every medical device", "Use the applicable device classification, test condition, manufacturer procedure, facility policy, and standard", "Any measurable leakage is a failure", "Functional testing replaces leakage testing"], 1, "Limits and test conditions depend on the device and applicable requirements.", "Electrical Safety"],
+  ["A device passes functional testing but fails the required electrical-safety test. Which result controls release?", ["Functional result only", "The failed required safety test prevents release until resolved", "Whichever test is faster", "Neither"], 1, "Required safety verification must pass before return to service.", "Electrical Safety"],
+  ["After replacing an SpO₂ input connector, the strongest verification is:", ["Power on only", "Verify the SpO₂ pathway, alarms, and simulator", "Check the network IP only", "Ask whether the screen looks normal"], 1, "Post-repair verification should target the repaired and affected functions.", "Post-Repair"],
+  ["Which service note is strongest?", ["Fixed", "Checked OK", "Replaced AC cord; visual inspection and required electrical-safety/functional tests passed; returned to service", "Nurse notified"], 2, "Specific work and verification results provide traceability.", "Documentation"],
+  ["Risk-based maintenance should consider:", ["Purchase price only", "Clinical function, consequence of failure, history, manufacturer guidance, environment, and policy", "Technician preference only", "Device color"], 1, "Risk decisions are evidence-based and governed.", "Risk Management"],
+  ["Repeated battery failures across the same model should trigger:", ["Only repeated battery replacement", "Trend review and possible equipment-management/maintenance-strategy escalation", "Deletion of old work orders", "Longer PM intervals automatically"], 1, "Repeated failures are a signal that the maintenance strategy may need review.", "Risk Management"],
+  ["After a potentially serious device incident, which action can destroy useful evidence?", ["Documenting serial number", "Quarantining the device", "Factory reset before preserving logs/configuration", "Following the incident policy"], 2, "Resetting can erase data needed for investigation.", "Incident Investigation"],
+  ["What should happen first after patient care is stabilized in a serious device event?", ["Routine repair immediately", "Secure/preserve the device and follow the organization's incident process", "Return it to stock", "Delete event logs"], 1, "Preservation and controlled investigation come before routine repair.", "Incident Investigation"],
+  ["A recall notice applies to a specific serial-number range. What should the CE compare first?", ["Room number", "Exact device identifiers against the affected population", "Technician schedule", "Purchase price"], 1, "Recall control depends on exact affected identifiers and action.", "Recalls"],
+  ["A recalled device passes self-test. The notice says remove from use until correction. What should happen?", ["Keep it in use", "Follow the notice and remove/control it until correction", "Wait for failure", "Ignore the serial number"], 1, "Self-test does not override a field-action instruction.", "Recalls"],
+  ["A manufacturer performs a correction without physically removing the device. Which idea is most accurate?", ["Corrections can include repair, modification, adjustment, relabeling, inspection, or other specified action", "It cannot be a recall action", "No documentation is needed", "Only FDA can initiate any correction"], 0, "FDA defines corrections broadly; recall actions can be implemented without physically moving the product.", "Recalls"],
+  ["Which information best supports traceability?", ["Asset ID/model/serial, complaint, findings, work, test results, and disposition", "Part price only", "Technician first name only", "Room number only"], 0, "Traceability requires device identity plus what happened and how it was verified.", "Documentation"],
+  ["Under FDA MDR requirements, a hospital user facility that becomes aware of a suspected device-related death generally reports it to:", ["No one", "FDA and the manufacturer through the required facility process", "Only the equipment technician", "Only local purchasing"], 1, "FDA states that user facilities report suspected device-related deaths to FDA and the manufacturer.", "Regulatory"],
+  ["Under FDA MDR requirements, a hospital user facility generally reports a device-related serious injury to:", ["The manufacturer, or FDA if the manufacturer is unknown", "Only the patient", "No one", "Only the device distributor"], 0, "FDA's user-facility requirements distinguish serious-injury reporting from death reporting.", "Regulatory"],
+  ["Does filing an MDR by itself prove that the device caused the event?", ["Yes", "No", "Only if a technician signed it", "Only for infusion pumps"], 1, "FDA notes that an MDR itself is not proof of causation.", "Regulatory"],
+  ["What is the CE's strongest role in a potentially reportable event?", ["Independently decide no report is needed", "Preserve facts/device evidence and escalate through the hospital's designated safety/risk reporting process", "Alter logs before risk management sees them", "Send the device back to service"], 1, "CE supports technical fact gathering and preservation while the organization follows its reporting process.", "Regulatory"],
+  ["Why should Mission 7 avoid teaching one memorized safety limit for every device?", ["Safety analyzers cannot measure current", "Device type, applied parts, test conditions, manufacturer instructions, applicable standards, and policy determine what must be tested and accepted", "Limits never exist", "Only voltage matters"], 1, "Safe testing requires the correct device-specific and standard-specific context.", "Electrical Safety"]
+].map(([question, options, answer, explanation, category]) => ({ question, options, answer, explanation, category }));
+
+
+
+export const missionEightBriefing = {
+  title: "Advanced Evidence-Based Troubleshooting",
+  summary: "The complaint is not the diagnosis. Work realistic hospital failures by reading evidence, isolating the fault, choosing the highest-value next test, and proving the repair.",
+  objectives: [
+    "Separate reported symptoms from root causes.",
+    "Isolate device, accessory, setup, environment, power, interlock, and network faults.",
+    "Reproduce intermittent failures under the conditions that trigger them.",
+    "Avoid shotgun part replacement and unsafe interlock bypasses.",
+    "Verify the affected function before return to service."
+  ],
+};
+
+export const missionEightLessons = [
+  {title:"The Complaint Is Not the Diagnosis",icon:"🧠",summary:"Translate the work order into a testable symptom before replacing parts.",points:["Clarify what happened, when, and what changed.", "Ask what still works; partial function narrows the pathway.", "Reproduce safely when practical.", "Treat an error message as evidence, not a diagnosis."],fieldCase:{label:"Portable X-ray will not drive",evidence:["Boots normally", "COLLISION displayed", "No drive motion", "Recently used in trauma"],question:"What has the highest value before opening the drive system?",answer:"Inspect the column, bumper, collision-sensor movement, wheels, and attached items for obstruction or binding."},check:{question:"A portable X-ray boots but reports COLLISION and will not drive. Best first action?",options:["Replace the drive controller", "Inspect the collision/bumper mechanism for obstruction", "Replace both motors", "Disable collision detection"],answer:1,explanation:"Direct inspection should precede electronic replacement."}},
+  {title:"Observe Before You Disassemble",icon:"👀",summary:"Simple physical conditions can create convincing equipment failures.",points:["Look for obstructed sensors, loose connectors, brakes, covers, and control positions.", "Compare current physical state with normal state.", "Never defeat an interlock just to clear a symptom.", "Observation is a diagnostic test."],fieldCase:{label:"Real collision call",evidence:["Collision error", "Drive inhibited", "No chassis damage", "Lead apron hanging on column"],question:"What does the apron change?",answer:"It can prevent the drive collision sensors from swinging freely. Remove the obstruction, then verify sensor movement, drive, and collision protection."},check:{question:"After removing an obstruction from a collision sensor, what completes the repair?",options:["Error disappears once", "Drive and collision protection pass functional verification", "User says it is okay", "Apron is moved"],answer:1,explanation:"The safety function must be verified."}},
+  {title:"Trace the Entire Power Path",icon:"⚡",summary:"No-power complaints require a source-to-load approach.",points:["Verify source, cord, inlet, master switch/breaker, fuses, battery, and rails as appropriate.", "Hidden master controls can make a healthy cart look dead.", "Emergency-off can remove power from an imaging room.", "Confirm why an emergency shutdown occurred before restoring it."],fieldCase:{label:"Portable ultrasound appears dead",evidence:["Known-good outlet", "Cord connected", "No boot response", "Base switch marked I / O"],question:"What should be verified before opening the console?",answer:"Verify the cart master switch/breaker is in I (ON), then verify startup, charging, and operation."},check:{question:"Ultrasound is dead on a known-good outlet. Highest-value next step?",options:["Order a power supply", "Verify every external power control/breaker", "Replace battery", "Measure logic rails"],answer:1,explanation:"Finish external power-path checks first."}},
+  {title:"Safety Controls and Interlocks",icon:"🛑",summary:"Healthy equipment can be intentionally inhibited by a safety circuit.",points:["Emergency-off, door, collision, cover, brake, and position interlocks may inhibit operation.", "Do not bypass safety circuits for clinical use.", "Determine whether a room problem is equipment, infrastructure, or safety state.", "Reset only after confirming the reason for activation is resolved."],fieldCase:{label:"X-ray room completely inoperative",evidence:["Console dark", "Generator disabled", "Nearby power normal", "Emergency-off physically depressed"],question:"What is the leading conclusion?",answer:"The emergency-off state can explain the shutdown. Confirm no unresolved hazard exists before the approved reset process."},check:{question:"Why not immediately reset an accidentally pressed X-ray emergency-off?",options:["It damages the tube", "Confirm it was not activated for an unresolved hazard", "It erases DICOM", "It resets calibration"],answer:1,explanation:"Safety state comes first."}},
+  {title:"Device, Accessory, Setup, or Environment?",icon:"🔬",summary:"A device may pass bench testing because the fault is outside the chassis.",points:["Use known-good accessories and simulators to divide the system.", "If the symptom follows an accessory, investigate it.", "Location-only failures point toward environment/infrastructure/setup.", "Document substitutions and conditions."],fieldCase:{label:"Intermittent ECG artifact",evidence:["Clean simulator test", "Noise on selected beds", "Cable swap does not fix", "Worse near powered equipment"],question:"What should you investigate next?",answer:"Investigate interference, grounding/power conditions, electrode application, and nearby equipment before replacing the ECG module."},check:{question:"Monitor is clean on simulator but noisy only in one area. Best direction?",options:["Replace ECG board", "Investigate local environment and acquisition chain", "Replace display", "Reload network"],answer:1,explanation:"Location dependence shifts the evidence."}},
+  {title:"Test Under Failure Conditions",icon:"📈",summary:"Intermittent faults disappear when bench conditions do not match clinical use.",points:["Reproduce load, motion, battery use, temperature, accessory setup, or clinical mode.", "A battery can look normal unloaded and collapse under load.", "Connectors can fail only during motion.", "A self-test proves only what it exercises."],fieldCase:{label:"Defibrillator intermittent energy",evidence:["Charges normally", "Battery acceptable", "Energy intermittently low", "Changes when therapy cable moves"],question:"What is the best next move?",answer:"Evaluate the therapy cable, connector, and energy path while reproducing the mechanical condition."},check:{question:"Why can a passed self-test be insufficient?",options:["Self-tests never work", "It may not exercise the failed pathway under clinical conditions", "It proves accessory failure", "It replaces external testing"],answer:1,explanation:"Match verification to the complaint."}},
+  {title:"Network Evidence Without Guessing",icon:"🌐",summary:"Troubleshoot network failures by layer and evidence.",points:["Link does not prove application communication.", "Valid-looking IP settings can still conflict or be on the wrong path.", "New installs deserve cabling and switch-port scrutiny.", "Use duplicate-address, ping, link, and switch evidence."],fieldCase:{label:"New install cannot communicate",evidence:["IP build appears correct", "Application unreachable", "Installed today", "Physical path newly patched"],question:"What comes before changing application settings?",answer:"Validate cable/path, termination, link, switch port, and addressing. A physical-layer install error can defeat a correct IP build."},check:{question:"Correct IP settings but no communication after a new install. Strongest next step?",options:["Reinstall app", "Validate cabling, link, switch port, and path", "Change IP randomly", "Replace motherboard"],answer:1,explanation:"Start at the lower layers."}},
+  {title:"Prove the Root Cause and Repair",icon:"✅",summary:"The symptom disappearing is not the same as proving the repair.",points:["A reboot can hide a symptom without fixing cause.", "Repeat the test that exposed the failure.", "Verify related safety functions.", "Document evidence, cause, correction, verification, and disposition."],fieldCase:{label:"Infusion pump occlusion",evidence:["Self-test passes", "Complaint with one set configuration", "Known-good set changes behavior", "No internal fault code"],question:"What would constitute strong closure?",answer:"Identify whether set, clamp, valve, setup, or pump pressure pathway caused the condition; correct it; then verify delivery and occlusion behavior."},check:{question:"Strongest evidence troubleshooting is complete?",options:["Device rebooted", "Root cause corrected and affected function verified", "No complaint for one hour", "A part was replaced"],answer:1,explanation:"Root-cause evidence plus verification is stronger."}},
+];
+
+export const missionEightScenarios = [
+  {title:"Portable X-ray: Collision Error",prompt:"Portable X-ray boots normally but will not drive. COLLISION is displayed after use in a busy trauma bay. No impact damage is obvious. Best next action?",options:["Replace collision board", "Inspect bumper/sensor movement and anything contacting the column", "Replace drive motors", "Disable collision detection"],answer:1,explanation:"Inspection reveals a lead apron hanging on the column and blocking free collision-sensor movement. Remove it and verify drive plus collision protection."},
+  {title:"X-ray Room: Everything Is Dead",prompt:"An entire X-ray room is down. Console and generator are dark while nearby department power is normal. Check before internal generator troubleshooting?",options:["DICOM routing", "Room emergency-off and safety-control state", "Tube calibration", "Detector software"],answer:1,explanation:"An emergency-off can intentionally remove system power. Confirm no unresolved hazard before approved reset."},
+  {title:"Portable Ultrasound: No Power",prompt:"Portable ultrasound has no response. Outlet is known good and AC cord is connected. Highest-value next check?",options:["Replace power supply", "Verify the master I/O breaker at the base", "Replace battery", "Measure internal rails"],answer:1,explanation:"The lower master breaker is in O instead of I. Restore the proper state and verify startup/operation."},
+  {title:"Infusion Pump: Occlusion on the Floor",prompt:"Pump repeatedly alarms downstream occlusion. Shop self-test passes. Complaint follows the clinical administration set and disappears with a known-good set. Best conclusion?",options:["Replace pressure sensor", "Continue isolating the set/setup before condemning the pump", "Replace PCB", "Raise occlusion threshold"],answer:1,explanation:"The evidence follows the set/setup; inspect restrictions, clamps, valves, loading, and interfaces."},
+  {title:"Ventilator: Self-Test Passes, Volume Does Not",prompt:"Ventilator passes self-test, but a verified external analyzer repeatedly measures delivered volume outside tolerance. Best next move?",options:["Return it", "Evaluate configuration, circuit, sensors, and pneumatic path", "Replace display", "Change network"],answer:1,explanation:"Independent repeatable evidence requires further isolation."},
+  {title:"Defibrillator: Intermittent Energy Failure",prompt:"Defibrillator charges normally and battery capacity is acceptable. Energy fails intermittently only when therapy cable is moved near connector. Investigate first?",options:["Battery chemistry", "Therapy cable, connector, and energy-delivery connection", "Printer", "Wi-Fi"],answer:1,explanation:"The failure correlates with cable movement."},
+  {title:"Bedside Monitor: ECG Noise in One Area",prompt:"Multiple monitors show intermittent ECG noise only in one care area; shop simulator testing is clean. Noise worsens near powered equipment. Best direction?",options:["Replace ECG modules", "Investigate interference, power/grounding, and acquisition setup", "Replace displays", "Reimage monitors"],answer:1,explanation:"Shared location dependence points toward environment/infrastructure/acquisition."},
+  {title:"Network: Duplicate Address",prompt:"Replacement workstation cannot communicate reliably. Network status shows intended static address but marks it Duplicate. Best interpretation?",options:["DNS failure", "Another device is using the same IP", "NIC definitely failed", "Reinstall server app"],answer:1,explanation:"Duplicate-address evidence directly indicates an IP conflict."},
+  {title:"Network: New Install, No Communication",prompt:"New medical device has correct IP information but no application communication. Link behavior is abnormal after fresh patching. Validate first?",options:["Database records", "Physical cable/path, termination, link, and switch-port configuration", "Battery", "Patient accessories"],answer:1,explanation:"Start at the physical/link layer; an incorrect cable or patching error can defeat a correct IP build."},
+  {title:"Portable Monitor: Fails Only in Transport",prompt:"Monitor runs normally on AC and battery passes stationary test. During transport it loses power over thresholds or when jostled. Best next test?",options:["Replace display", "Reproduce motion while monitoring battery contacts/connectors/power path", "Change IP", "Replace SpO2 sensor"],answer:1,explanation:"Dynamic testing matches the failure condition."}
+];
+
+export const missionEightQuestions = [
+  ["A user says the machine is broken. Establish first?",["Exact symptom, conditions, timing, and recent changes", "Most expensive board", "Warranty status", "Vendor ETA"],0,"Convert complaint to a testable symptom","Diagnostic Process"],
+  ["Portable X-ray shows COLLISION and will not drive. Best first action?",["Replace controller", "Inspect collision mechanism for obstruction/binding", "Replace motors", "Disable interlock"],1,"Error text is evidence, not diagnosis","Imaging"],
+  ["After removing a lead apron blocking a collision sensor, what completes repair?",["Verify drive and collision protection", "Clear error only", "Replace sensor anyway", "Test imaging only"],0,"Verify affected safety function","Imaging"],
+  ["X-ray room is dark while nearby power is normal. High-value early check?",["Emergency-off and safety-control state", "Detector tables", "PACS routing", "Focal spot"],0,"Safety controls can inhibit the room","Imaging"],
+  ["Why not simply reset an activated emergency-off?",["It destroys calibration", "Reason for activation must be understood first", "It changes frequency", "It disables DICOM"],1,"Confirm no unresolved hazard","Safety"],
+  ["Ultrasound is dead on a known-good outlet. Check before internal rails?",["Master I/O switch/breaker", "Crystal impedance", "Worklist", "Image processing"],0,"Trace external power path first","Ultrasound"],
+  ["Pump occlusion follows one administration set. Evidence suggests?",["Investigate set/setup first", "Main PCB failed", "Battery weak", "Display bad"],0,"Symptom follows accessory/setup","Infusion"],
+  ["Ventilator self-test passes but verified analyzer shows wrong volume. Next?",["Return it", "Investigate setup, sensors, and pneumatic delivery", "Replace display", "Ignore analyzer"],1,"Independent evidence requires isolation","Ventilation"],
+  ["Defibrillator energy failure changes with therapy-cable movement. Target?",["Therapy cable/connector path", "Battery label", "Printer sensor", "Network radio"],0,"Follow the correlation","Defibrillation"],
+  ["Several monitors show ECG noise only in one area. Pattern suggests?",["Environmental/infrastructure influence", "Simultaneous board failures", "Battery failures", "Backlight failure"],0,"Shared location matters","Patient Monitoring"],
+  ["What does a passed self-test prove?",["Only functions/conditions exercised by that self-test", "Every clinical function", "Every accessory", "No intermittent fault"],0,"Know test limitations","Diagnostic Process"],
+  ["Known-good substitution is useful because?",["It divides the system and shows where symptom follows", "It guarantees original part bad", "It eliminates verification", "It replaces documentation"],0,"Controlled substitution isolates","Diagnostic Process"],
+  ["Battery voltage is normal unloaded but device resets under load. Evaluate?",["Battery/load performance and power path under load", "Unloaded voltage only", "Network speed", "Brightness"],0,"Load reveals weakness","Power"],
+  ["Portable device fails only when moved. Reproduce what?",["Motion while monitoring contacts/power connections", "Stationary use only", "Different IP", "Factory reset"],0,"Match failure conditions","Intermittent Faults"],
+  ["Intended static IP is marked Duplicate. Meaning?",["Another host uses that IP", "Subnet always wrong", "DNS definitely down", "Cable must be crossover"],0,"Direct IP conflict evidence","Networking"],
+  ["Correct IP settings but no link after new install. Check before software?",["Cable/path, termination, link, switch port", "Database permissions", "Password", "Waveform scaling"],0,"Start at physical/link layer","Networking"],
+  ["Problem with replacing the likely board before evidence?",["Can mask root cause and waste parts/time", "Boards never fail", "Always voids clearance", "Prevents inspection forever"],0,"Isolate before replacement","Diagnostic Process"],
+  ["Intermittent complaint cannot be reproduced in shop. Strongest move?",["Reconstruct clinical conditions and collect history/logs", "Close immediately", "Replace main board", "Return undocumented"],0,"Recreate conditions and gather evidence","Intermittent Faults"],
+  ["Symptom disappears after reboot. Conclusion?",["Symptom cleared; root cause may remain", "Device proven safe", "Hardware definitely good", "User caused it"],0,"Reboot is not root-cause proof","Diagnostic Process"],
+  ["Fault appears only with one accessory. Next?",["Inspect/test accessory and interface", "Replace host", "Change VLAN", "Ignore pattern"],0,"Follow where symptom travels","Accessories"],
+  ["Best troubleshooting documentation?",["Complaint, conditions, evidence, cause, action, verification, disposition", "Repaired OK", "Part replaced", "User notified"],0,"Detailed evidence supports traceability","Documentation"],
+  ["Safety interlock prevents operation. BMET should?",["Determine why it is active rather than bypass it", "Defeat it", "Short switch for use", "Assume controller failed"],0,"Understand safety state","Safety"],
+  ["Strong clue against replacing internal ECG module?",["Clean simulator test plus location-dependent noise", "Work order says ECG", "Device age", "User frustration"],0,"Controlled evidence outweighs assumption","Patient Monitoring"],
+  ["Best final verification after intermittent repair?",["Repeat triggering condition and verify affected functions", "Power-cycle once", "Wait for complaint", "Cosmetic check"],0,"Challenge repair under original conditions","Verification"],
+  ["Evidence-based troubleshooting means?",["Use observations/tests to narrow fault before corrective action", "Replace common parts first", "Follow error literally", "Start with most complex subsystem"],0,"Progressively reduce uncertainty","Diagnostic Process"]
+].map(([question, options, answer, explanation, category]) => ({ question, options, answer, explanation, category }));
+
 export const missionTenBriefing = {
   title: "Medical Gas Delivery Equipment",
   summary:
