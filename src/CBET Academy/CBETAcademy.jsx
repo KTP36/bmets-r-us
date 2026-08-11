@@ -1400,11 +1400,15 @@ function MissionTwo({ onExit, onContinueMission3 }) {
   const [missedQuestions, setMissedQuestions] = useState({});
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(savedProgress.phase === "complete" && completedModule.complete);
-  const [finalResult, setFinalResult] = useState(
-    savedProgress.phase === "complete" && completedModule.complete
-      ? { correct: Math.round((completedModule.bestScore / 100) * questions.length), percent: completedModule.bestScore }
-      : null
-  );
+  const [finalResult, setFinalResult] = useState(() => {
+    if (savedProgress.phase === "complete" && completedModule.complete) {
+      return { correct: Math.round((completedModule.bestScore / 100) * questions.length), percent: completedModule.bestScore };
+    }
+    if (savedProgress.phase === "result" && Number.isFinite(savedProgress.finalPercent)) {
+      return { correct: Number.isFinite(savedProgress.quizScore) ? savedProgress.quizScore : 0, percent: savedProgress.finalPercent };
+    }
+    return null;
+  });
   const [xpToast, setXpToast] = useState(null);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false);
   const lessonStageRef = useRef(null);
@@ -1528,7 +1532,13 @@ function MissionTwo({ onExit, onContinueMission3 }) {
       return next;
     });
     playCbetTone("correct");
-    if (!missedQuestions[questionIndex]) setScore((previous) => previous + 1);
+    if (!missedQuestions[questionIndex]) {
+      const nextScore = score + 1;
+      setScore(nextScore);
+      saveMissionProgress(3, { phase: "quiz", quizIndex: questionIndex, quizScore: nextScore });
+    } else {
+      saveMissionProgress(3, { phase: "quiz", quizIndex: questionIndex, quizScore: score });
+    }
   }
 
   function nextQuestion() {
@@ -2532,17 +2542,23 @@ function MissionThree({ onExit }) {
   const [scenarioChecks, setScenarioChecks] = useState(
     Object.fromEntries((savedProgress.completedScenarios || []).map((index) => [index, true]))
   );
-  const [questionIndex, setQuestionIndexState] = useState(savedProgress.quizIndex || 0);
+  const hasSavedQuizScore = Number.isFinite(savedProgress.quizScore);
+  const restoredQuizIndex = savedProgress.phase === "quiz" && !hasSavedQuizScore ? 0 : (savedProgress.quizIndex || 0);
+  const [questionIndex, setQuestionIndexState] = useState(restoredQuizIndex);
   const completedModule = getCbetModuleState(3) || { complete: false, bestScore: 0 };
   const [answers, setAnswers] = useState({});
   const [wrongAnswers, setWrongAnswers] = useState({});
   const [missedQuestions, setMissedQuestions] = useState({});
-  const [score, setScore] = useState(0);
-  const [finalResult, setFinalResult] = useState(
-    savedProgress.phase === "complete" && completedModule.complete
-      ? { correct: Math.round((completedModule.bestScore / 100) * questions.length), percent: completedModule.bestScore }
-      : null
-  );
+  const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
+  const [finalResult, setFinalResult] = useState(() => {
+    if (savedProgress.phase === "complete" && completedModule.complete) {
+      return { correct: Math.round((completedModule.bestScore / 100) * questions.length), percent: completedModule.bestScore };
+    }
+    if (savedProgress.phase === "result" && Number.isFinite(savedProgress.finalPercent)) {
+      return { correct: Number.isFinite(savedProgress.quizScore) ? savedProgress.quizScore : 0, percent: savedProgress.finalPercent };
+    }
+    return null;
+  });
   const [xpToast, setXpToast] = useState(null);
   const lessonStageRef = useRef(null);
 
@@ -2674,25 +2690,25 @@ function MissionThree({ onExit }) {
     if (selected === undefined) return;
 
     if (questionIndex < questions.length - 1) {
-      setQuestionIndex(questionIndex + 1);
+      const nextIndex = questionIndex + 1;
+      setQuestionIndexState(nextIndex);
+      saveMissionProgress(3, { phase: "quiz", quizIndex: nextIndex, quizScore: score });
       return;
     }
 
-    const completedAnswers = {
-      ...answers,
-      [questionIndex]: selected
-    };
-
-    const finalCorrect = questions.reduce(
-      (total, item, index) =>
-        total + (completedAnswers[index] === item.answer && !missedQuestions[index] ? 1 : 0),
-      0
-    );
+    // score is persisted after each answered question, so it remains reliable after Save & Exit.
+    const finalCorrect = score;
     const finalScore = Math.round((finalCorrect / questions.length) * 100);
 
     setFinalResult({ correct: finalCorrect, percent: finalScore });
-    completeCbetModule(3, finalScore, 350);
-    setPhase("complete");
+    if (finalScore >= 80) {
+      completeCbetModule(3, finalScore, 350);
+      saveMissionProgress(3, { phase: "complete", quizScore: finalCorrect, finalPercent: finalScore, passed: true });
+      setPhaseState("complete");
+    } else {
+      saveMissionProgress(3, { phase: "result", quizScore: finalCorrect, finalPercent: finalScore, passed: false });
+      setPhaseState("result");
+    }
   }
 
   function restartQuiz() {
@@ -2702,7 +2718,7 @@ function MissionThree({ onExit }) {
     setMissedQuestions({});
     setScore(0);
     setFinalResult(null);
-    saveMissionProgress(3, { phase: "quiz", quizIndex: 0 });
+    saveMissionProgress(3, { phase: "quiz", quizIndex: 0, quizScore: 0, passed: false });
     setPhaseState("quiz");
   }
 
@@ -4381,7 +4397,11 @@ function MissionFour({ onExit }) {
   const [questionIndex, setQuestionIndexState] = useState(restoredQuizIndex);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
-  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const [result, setResult] = useState(
+    completedModule.complete
+      ? completedModule.bestScore
+      : (savedProgress.phase === "result" && Number.isFinite(savedProgress.finalPercent) ? savedProgress.finalPercent : null)
+  );
   const stageRef = useRef(null);
 
   useEffect(() => {
@@ -4424,7 +4444,15 @@ function MissionFour({ onExit }) {
       saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next, quizScore: score }); return;
     }
     const finalScore = Math.round((score / questions.length) * 100);
-    completeCbetModule(moduleNumber, finalScore, 450); setResult(finalScore); setPhaseState("complete");
+    setResult(finalScore);
+    if (finalScore >= 80) {
+      completeCbetModule(moduleNumber, finalScore, 450);
+      saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
+      setPhaseState("complete");
+    } else {
+      saveMissionProgress(moduleNumber, { phase: "result", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: false });
+      setPhaseState("result");
+    }
   };
   const restartQuiz = () => { setQuestionIndexState(0); setSelected(null); setScore(0); setResult(null); saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: 0, quizScore: 0 }); setPhaseState("quiz"); };
   const reviewLesson = (index = 0) => {
@@ -5334,10 +5362,16 @@ function MissionEight({ onExit }) {
   const [completedLessons, setCompletedLessons] = useState(savedProgress.completedLessons || []);
   const [scenarioIndex, setScenarioIndexState] = useState(savedProgress.scenarioIndex || 0);
   const [completedScenarios, setCompletedScenarios] = useState(savedProgress.completedScenarios || []);
-  const [questionIndex, setQuestionIndexState] = useState(savedProgress.phase === "quiz" ? (savedProgress.quizIndex || 0) : 0);
+  const hasSavedQuizScore = Number.isFinite(savedProgress.quizScore);
+  const restoredQuizIndex = savedProgress.phase === "quiz" && !hasSavedQuizScore ? 0 : (savedProgress.quizIndex || 0);
+  const [questionIndex, setQuestionIndexState] = useState(restoredQuizIndex);
   const [selected, setSelected] = useState(null);
-  const [score, setScore] = useState(0);
-  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
+  const [result, setResult] = useState(
+    completedModule.complete
+      ? completedModule.bestScore
+      : (savedProgress.phase === "result" && Number.isFinite(savedProgress.finalPercent) ? savedProgress.finalPercent : null)
+  );
   const stageRef = useRef(null);
 
   useEffect(() => {
@@ -5392,7 +5426,9 @@ function MissionEight({ onExit }) {
   const answerQuiz = (index) => {
     if (selected !== null) return;
     setSelected(index);
-    if (index === questions[questionIndex].answer) setScore((value) => value + 1);
+    const nextScore = index === questions[questionIndex].answer ? score + 1 : score;
+    setScore(nextScore);
+    saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: questionIndex, quizScore: nextScore });
     playCbetTone(index === questions[questionIndex].answer ? "correct" : "wrong");
   };
 
@@ -5401,17 +5437,17 @@ function MissionEight({ onExit }) {
       const next = questionIndex + 1;
       setQuestionIndexState(next);
       setSelected(null);
-      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next });
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next, quizScore: score });
       return;
     }
     const finalScore = Math.round((score / questions.length) * 100);
     setResult(finalScore);
     if (finalScore >= 80) {
       completeCbetModule(moduleNumber, finalScore, 450);
-      saveMissionProgress(moduleNumber, { phase: "complete", quizScore: finalScore, passed: true });
+      saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
       setPhaseState("complete");
     } else {
-      saveMissionProgress(moduleNumber, { phase: "quiz", quizScore: finalScore, passed: false });
+      saveMissionProgress(moduleNumber, { phase: "result", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: false });
       setPhaseState("result");
     }
     setSelected(null);
@@ -5586,16 +5622,17 @@ function MissionNine({ onExit }) {
   const [scenarioIndex,setScenarioIndex]=useState(saved.scenarioIndex || 0);
   const [questionIndex,setQuestionIndex]=useState(saved.phase === "quiz" ? (saved.quizIndex || 0) : 0);
   const [selected,setSelected]=useState(null);
-  const [score,setScore]=useState(0);
-  const [result,setResult]=useState(completedModule.complete ? completedModule.bestScore : null);
+  const savedQuizCorrect = saved.phase === "quiz" && Number.isFinite(saved.quizScore) ? saved.quizScore : 0;
+  const [score,setScore]=useState(savedQuizCorrect);
+  const [result,setResult]=useState(completedModule.complete ? completedModule.bestScore : (Number.isFinite(saved.quizScore) ? saved.quizScore : null));
   const stageRef=useRef(null);
   useEffect(()=>{const t=window.setTimeout(()=>stageRef.current?.scrollIntoView({behavior:"auto",block:"start"}),30);return()=>window.clearTimeout(t)},[phase,lessonIndex,scenarioIndex,questionIndex]);
   const go=(next,data={})=>{setSelected(null);setPhaseState(next);saveMissionProgress(moduleNumber,{phase:next,...data})};
   const answer=(i,correct)=>{if(selected!==null)return;setSelected(i);playCbetTone(i===correct?"correct":"wrong")};
   const nextLesson=()=>{awardCbetXp(10,`mission9-lesson-${lessonIndex}`);if(lessonIndex<lessons.length-1){const n=lessonIndex+1;setLessonIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:n})}else{setScenarioIndex(0);go("scenarios",{scenarioIndex:0})}};
-  const nextScenario=()=>{awardCbetXp(15,`mission9-scenario-${scenarioIndex}`);if(scenarioIndex<scenarios.length-1){const n=scenarioIndex+1;setScenarioIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"scenarios",scenarioIndex:n})}else{setQuestionIndex(0);setScore(0);go("quiz",{quizIndex:0})}};
-  const answerQuiz=(i)=>{if(selected!==null)return;setSelected(i);const ok=i===questions[questionIndex].answer;if(ok)setScore(v=>v+1);playCbetTone(ok?"correct":"wrong")};
-  const nextQuiz=()=>{if(questionIndex<questions.length-1){const n=questionIndex+1;setQuestionIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:n});return}const pct=Math.round((score/questions.length)*100);setResult(pct);if(pct>=80){completeCbetModule(moduleNumber,pct,400);go("complete",{quizScore:pct,passed:true})}else go("result",{quizScore:pct,passed:false})};
+  const nextScenario=()=>{awardCbetXp(15,`mission9-scenario-${scenarioIndex}`);if(scenarioIndex<scenarios.length-1){const n=scenarioIndex+1;setScenarioIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"scenarios",scenarioIndex:n})}else{setQuestionIndex(0);setScore(0);go("quiz",{quizIndex:0,quizScore:0})}};
+  const answerQuiz=(i)=>{if(selected!==null)return;setSelected(i);const ok=i===questions[questionIndex].answer;const nextScore=ok?score+1:score;setScore(nextScore);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:questionIndex,quizScore:nextScore});playCbetTone(ok?"correct":"wrong")};
+  const nextQuiz=()=>{if(questionIndex<questions.length-1){const n=questionIndex+1;setQuestionIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:n,quizScore:score});return}const pct=Math.round((score/questions.length)*100);setResult(pct);if(pct>=80){completeCbetModule(moduleNumber,pct,400);go("complete",{quizScore:pct,passed:true})}else go("result",{quizScore:pct,passed:false})};
   const restart=()=>{setQuestionIndex(0);setScore(0);setResult(null);go("quiz",{quizIndex:0,quizScore:0,passed:false})};
   const guide=(text)=><div className="m9-guide"><div><span>HOW TO THINK</span><strong>Observe → isolate → verify → document.</strong></div><div><span>YOUR NEXT ACTION</span><strong>{text}</strong></div></div>;
   return <section ref={stageRef} className="cbet-shell m9-shell"><style>{`
@@ -5681,10 +5718,16 @@ function MissionSeven({ onExit }) {
   const [completedLessons, setCompletedLessons] = useState(savedProgress.completedLessons || []);
   const [scenarioIndex, setScenarioIndexState] = useState(savedProgress.scenarioIndex || 0);
   const [completedScenarios, setCompletedScenarios] = useState(savedProgress.completedScenarios || []);
-  const [questionIndex, setQuestionIndexState] = useState(savedProgress.phase === "quiz" ? (savedProgress.quizIndex || 0) : 0);
+  const hasSavedQuizScore = Number.isFinite(savedProgress.quizScore);
+  const restoredQuizIndex = savedProgress.phase === "quiz" && !hasSavedQuizScore ? 0 : (savedProgress.quizIndex || 0);
+  const [questionIndex, setQuestionIndexState] = useState(restoredQuizIndex);
   const [selected, setSelected] = useState(null);
-  const [score, setScore] = useState(0);
-  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
+  const [result, setResult] = useState(
+    completedModule.complete
+      ? completedModule.bestScore
+      : (savedProgress.phase === "result" && Number.isFinite(savedProgress.finalPercent) ? savedProgress.finalPercent : null)
+  );
   const stageRef = useRef(null);
 
   useEffect(() => {
@@ -5739,7 +5782,9 @@ function MissionSeven({ onExit }) {
   const answerQuiz = (index) => {
     if (selected !== null) return;
     setSelected(index);
-    if (index === questions[questionIndex].answer) setScore((value) => value + 1);
+    const nextScore = index === questions[questionIndex].answer ? score + 1 : score;
+    setScore(nextScore);
+    saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: questionIndex, quizScore: nextScore });
     playCbetTone(index === questions[questionIndex].answer ? "correct" : "wrong");
   };
 
@@ -5748,17 +5793,17 @@ function MissionSeven({ onExit }) {
       const next = questionIndex + 1;
       setQuestionIndexState(next);
       setSelected(null);
-      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next });
+      saveMissionProgress(moduleNumber, { phase: "quiz", quizIndex: next, quizScore: score });
       return;
     }
     const finalScore = Math.round((score / questions.length) * 100);
     setResult(finalScore);
     if (finalScore >= 80) {
       completeCbetModule(moduleNumber, finalScore, 350);
-      saveMissionProgress(moduleNumber, { phase: "complete", quizScore: finalScore, passed: true });
+      saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
       setPhaseState("complete");
     } else {
-      saveMissionProgress(moduleNumber, { phase: "quiz", quizScore: finalScore, passed: false });
+      saveMissionProgress(moduleNumber, { phase: "result", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: false });
       setPhaseState("result");
     }
     setSelected(null);
@@ -5874,7 +5919,7 @@ function MissionSeven({ onExit }) {
           <div className="m7-top"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 7 Competency Check · {questionIndex+1}/{questions.length}</span></div>
           <div className="m7-progress"><span style={{width:`${((questionIndex+1)/questions.length)*100}%`}}/></div>
           <section className="m7-guide"><div><small>COMPETENCY MODE</small><strong>No guided field answer here. Apply what you learned across the mission.</strong></div><div className="next"><small>PASSING STANDARD</small><strong>80% required · {questions.length} questions</strong></div></section>
-          <article className="m7-quizcard"><span className="m7-quizcat">{q.category||"Safety & Regulations"}</span><h1>{q.question}</h1><div className="m7-options">{q.options.map((o,i)=><button key={o} disabled={answered} className={`${answered&&i===q.answer?"correct":""} ${answered&&i===selected&&i!==q.answer?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m7-feedback ${correct?"good":"bad"}`}><strong>{correct?"Correct.":"Review this point."}</strong> {q.explanation}</div>}<div className="m7-nav"><button className="cbet-secondary" disabled={questionIndex===0} onClick={()=>{const prev=questionIndex-1;setQuestionIndexState(prev);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:prev})}}>← Previous</button><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex===questions.length-1?"Submit Assessment":"Next Question →"}</button></div></article>
+          <article className="m7-quizcard"><span className="m7-quizcat">{q.category||"Safety & Regulations"}</span><h1>{q.question}</h1><div className="m7-options">{q.options.map((o,i)=><button key={o} disabled={answered} className={`${answered&&i===q.answer?"correct":""} ${answered&&i===selected&&i!==q.answer?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className={`m7-feedback ${correct?"good":"bad"}`}><strong>{correct?"Correct.":"Review this point."}</strong> {q.explanation}</div>}<div className="m7-nav"><button className="cbet-secondary" disabled={questionIndex===0} onClick={()=>{const prev=questionIndex-1;setQuestionIndexState(prev);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:prev,quizScore:score})}}>← Previous</button><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex===questions.length-1?"Submit Assessment":"Next Question →"}</button></div></article>
         </section>
       })()}
 
@@ -5920,7 +5965,11 @@ function MissionTen({ onExit }) {
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
   const [finished, setFinished] = useState(savedProgress.phase === "complete" && completedModule.complete);
-  const [result, setResult] = useState(completedModule.complete ? completedModule.bestScore : null);
+  const [result, setResult] = useState(
+    completedModule.complete
+      ? completedModule.bestScore
+      : (savedProgress.phase === "result" && Number.isFinite(savedProgress.finalPercent) ? savedProgress.finalPercent : null)
+  );
   const missionTenStageRef = useRef(null);
 
   useEffect(() => {
@@ -5991,11 +6040,12 @@ function MissionTen({ onExit }) {
     setFinished(true);
     if (finalScore >= 80) {
       completeCbetModule(moduleNumber, finalScore, 350);
-      saveMissionProgress(moduleNumber, { phase: "complete", quizScore: finalScore, passed: true });
+      saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
+      setPhaseState("complete");
     } else {
-      saveMissionProgress(moduleNumber, { phase: "result", quizScore: finalScore, passed: false });
+      saveMissionProgress(moduleNumber, { phase: "result", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: false });
+      setPhaseState("result");
     }
-    setPhaseState("complete");
   }
   function restartQuiz() {
     setQuestionIndexState(0); setSelected(null); setScore(0); setFinished(false); setResult(null);
@@ -6907,7 +6957,7 @@ export default function CBETAcademy() {
   const [screen, setScreen] = useState("dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
-  const [showAllMissions, setShowAllMissions] = useState(true);
+  const [showAllMissions, setShowAllMissions] = useState(false);
   const [reviewMissionNumber, setReviewMissionNumber] = useState(null);
   const [certificateTarget, setCertificateTarget] = useState(null);
   const [streak, setStreak] = useState(() => registerCbetVisit());
@@ -7216,22 +7266,29 @@ export default function CBETAcademy() {
     );
   }
 
-  const missionStates = [1, 2, 3, 4, 5, 6, 7, 8].map((number) => getCbetModuleState(number));
+  const missionStates = cbetAcademyModules.map((module) => ({
+    number: module.number,
+    ...getCbetModuleState(module.number),
+  }));
+  const totalMissionCount = missionStates.length;
   const completedMissionCount = missionStates.filter((mission) => mission.complete).length;
-
-  const nextMissionNumber = missionStates.findIndex((mission) => !mission.complete) + 1 || 8;
+  const allMissionsComplete = completedMissionCount === totalMissionCount;
+  const nextMissionState = missionStates.find((mission) => !mission.complete);
+  const nextMissionNumber = nextMissionState?.number || cbetAcademyModules.at(-1)?.number || 1;
   const nextMission = cbetAcademyModules.find((module) => module.number === nextMissionNumber);
   const nextMissionProgress = getMissionProgress(nextMissionNumber);
   const nextMissionStarted = nextMissionProgress.phase !== "briefing";
-  const nextMissionLabel = missionStates.every((mission) => mission.complete)
-    ? "Review Mission 7"
+  const nextMissionLabel = allMissionsComplete
+    ? `Review Mission ${nextMissionNumber}`
     : nextMissionStarted
     ? `Continue Mission ${nextMissionNumber}`
     : `Start Mission ${nextMissionNumber}`;
 
   const badgeCount = Object.values(academy.modules || {}).filter((module) => module.complete).length;
   const virtualLabPercent = Math.min(100, Math.round((virtualLabLessonsCompleted / 9) * 100));
-  const missionPercent = Math.min(100, Math.round((completedMissionCount / 8) * 100));
+  const missionPercent = totalMissionCount
+    ? Math.min(100, Math.round((completedMissionCount / totalMissionCount) * 100))
+    : 0;
 
   return (
     <main className="cbet-academy" key={refresh}>
@@ -7246,7 +7303,7 @@ export default function CBETAcademy() {
                 Build your electronics knowledge, practice on the virtual bench, and apply it to realistic hospital service calls.
               </p>
               <div className="cbet-dashboard-continue">
-                <button className="cbet-primary cbet-continue-button" onClick={() => openMission(nextMissionNumber, missionStates.every((mission) => mission.complete))}>
+                <button className="cbet-primary cbet-continue-button" onClick={() => openMission(nextMissionNumber, allMissionsComplete)}>
                   <span>{nextMissionLabel}</span>
                   <small>{nextMission?.title || "Training Mission"}</small>
                 </button>
@@ -7269,7 +7326,7 @@ export default function CBETAcademy() {
                 <span style={{ width: `${progress}%` }} />
               </div>
               <div className="cbet-overview-metrics">
-                <div><strong>{completedMissionCount}/5</strong><span>Missions</span></div>
+                <div><strong>{completedMissionCount}/{totalMissionCount}</strong><span>Missions</span></div>
                 <div><strong>{virtualLabLessonsCompleted}/9</strong><span>Lab lessons</span></div>
                 <div><strong>{badgeCount}</strong><span>Competencies</span></div>
                 <div><strong>{streak.current || 1}</strong><span>Day streak</span></div>
@@ -7283,8 +7340,8 @@ export default function CBETAcademy() {
       <section className="cbet-shell cbet-dashboard cbet-dashboard-v1">
         <div className="cbet-section-heading cbet-dashboard-heading">
           <span className="cbet-label">Choose your next step</span>
-          <h2>Everything you need, in one place</h2>
-          <p>Learn the concepts, practice the skills, then use them on the job.</p>
+          <h2>Your CBET training hub</h2>
+          <p>Continue your mission, practice a skill, or work a service call.</p>
         </div>
 
         <div className="cbet-hub-grid">
@@ -7294,10 +7351,10 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Learn</span>
             </div>
             <h3>Training Missions</h3>
-            <p>Guided instruction, interactive activities, and knowledge checks organized into a clear path.</p>
-            <div className="cbet-card-progress-row"><span>{completedMissionCount} of 8 complete</span><strong>{missionPercent}%</strong></div>
+            <p>Follow the guided CBET learning path and pick up where you left off.</p>
+            <div className="cbet-card-progress-row"><span>{completedMissionCount} of {totalMissionCount} complete</span><strong>{missionPercent}%</strong></div>
             <div className="cbet-card-progress"><span style={{ width: `${missionPercent}%` }} /></div>
-            <button className="cbet-primary" onClick={() => openMission(nextMissionNumber, missionStates.every((mission) => mission.complete))}>{nextMissionLabel}</button>
+            <button className="cbet-primary" onClick={() => openMission(nextMissionNumber, allMissionsComplete)}>{nextMissionLabel}</button>
           </article>
 
           <article className="cbet-hub-card">
@@ -7306,7 +7363,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Practice</span>
             </div>
             <h3>Virtual Lab</h3>
-            <p>Practice meter setup, circuit measurements, and troubleshooting on an interactive electronics bench.</p>
+            <p>Practice measurements and troubleshooting on an interactive electronics bench.</p>
             <div className="cbet-card-progress-row"><span>{virtualLabLessonsCompleted} of 9 lessons</span><strong>{virtualLabPercent}%</strong></div>
             <div className="cbet-card-progress"><span style={{ width: `${virtualLabPercent}%` }} /></div>
             <button className="cbet-secondary" onClick={() => setScreen("virtualLab")}>Open Virtual Lab</button>
@@ -7318,7 +7375,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Explore</span>
             </div>
             <h3>Equipment Learning Center</h3>
-            <p>Understand clinical purpose, operating principles, major components, reported symptoms, and BMET reasoning. Preventive maintenance is discussed conceptually, but no PM procedures are simulated.</p>
+            <p>Explore equipment operation, components, symptoms, and BMET reasoning.</p>
             <div className="cbet-hub-summary"><strong>8</strong><span>equipment families</span></div>
             <button className="cbet-secondary" onClick={() => setScreen("equipmentLearning")}>Explore Equipment</button>
           </article>
@@ -7329,7 +7386,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Work</span>
             </div>
             <h3>Hospital Simulator</h3>
-            <p>Complete realistic service calls, isolate faults, document repairs, and return equipment to service.</p>
+            <p>Work realistic service calls from fault isolation through verification.</p>
             <div className="cbet-hub-summary"><strong>{stats.scenariosCompleted}</strong><span>scenarios completed</span></div>
             <button className="cbet-secondary" onClick={() => setScreen("hospital")}>Enter Hospital</button>
           </article>
@@ -7340,7 +7397,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Progress</span>
             </div>
             <h3>Your Progress</h3>
-            <p>Review XP, completed lessons, professional competencies, scores, and your learning streak.</p>
+            <p>Review XP, completed missions, competencies, scores, and streaks.</p>
             <div className="cbet-hub-summary"><strong>{academy.xp.toLocaleString()}</strong><span>total XP earned</span></div>
             <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
           </article>
@@ -7351,7 +7408,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Recognize</span>
             </div>
             <h3>Certificates of Completion</h3>
-            <p>View educational completion certificates for finished Academy modules. These are not CBET certifications or professional credentials.</p>
+            <p>View educational completion certificates for finished Academy modules.</p>
             <div className="cbet-hub-summary"><strong>{badgeCount}</strong><span>module certificates available</span></div>
             <button className="cbet-secondary" onClick={() => setScreen("certificates")}>Open Certificate Center</button>
           </article>
@@ -7376,7 +7433,7 @@ export default function CBETAcademy() {
           <div id="cbet-training-path" className="cbet-grid cbet-training-grid">
             {cbetAcademyModules.map((module) => {
               const state = getCbetModuleState(module.number);
-              const unlocked = developerUnlockAll && isLocalAcademyHost() ? true : module.number <= 4 || module.number === 10 ? true : module.number === 5 ? getCbetModuleState(4).complete : isCbetModuleUnlocked(module.number);
+              const unlocked = state.complete || (developerUnlockAll && isLocalAcademyHost()) || module.number <= 4 || (module.number === 5 ? getCbetModuleState(4).complete : isCbetModuleUnlocked(module.number));
               const available = module.number <= 10;
               return (
                 <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
