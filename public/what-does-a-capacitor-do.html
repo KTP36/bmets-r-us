@@ -638,7 +638,63 @@
 }
 @media(max-width:760px){.msb-academy-funnel{align-items:stretch;flex-direction:column;padding:20px}.msb-academy-funnel>a{width:100%}}
 
-</style>
+
+    .visual-diagram {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #f8fbff, #eef6ff);
+      border: 1px solid #cfe0ef;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .visual-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+
+    .visual-caption {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .wave-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .wave-card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .wave-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .wave-card svg {
+      width: 100%;
+      height: 165px;
+    }
+
+    @media (max-width: 760px) {
+      .wave-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
@@ -709,8 +765,42 @@
           and discharge when the circuit needs energy.
         </p>
 
-        <div class="diagram">
-          <span>Voltage applied</span> → <span>Capacitor charges</span> → <span>Energy stored</span> → <span>Capacitor discharges</span>
+        <div class="visual-diagram">
+          <svg viewBox="0 0 820 270" role="img" aria-label="Capacitor charging, storing energy, and discharging">
+            <defs>
+              <marker id="capArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"></path>
+              </marker>
+            </defs>
+
+            <text x="120" y="32" font-size="22" font-weight="900" fill="#12355b" text-anchor="middle">Voltage applied</text>
+            <text x="410" y="32" font-size="22" font-weight="900" fill="#12355b" text-anchor="middle">Energy stored</text>
+            <text x="700" y="32" font-size="22" font-weight="900" fill="#12355b" text-anchor="middle">Discharge</text>
+
+            <line x1="40" y1="125" x2="170" y2="125" stroke="#12355b" stroke-width="6"></line>
+            <line x1="190" y1="75" x2="190" y2="175" stroke="#12355b" stroke-width="8"></line>
+            <line x1="240" y1="75" x2="240" y2="175" stroke="#12355b" stroke-width="8"></line>
+            <line x1="260" y1="125" x2="340" y2="125" stroke="#12355b" stroke-width="6"></line>
+
+            <text x="160" y="70" font-size="22" font-weight="900" fill="#dc2626">+</text>
+            <text x="247" y="70" font-size="22" font-weight="900" fill="#2563eb">−</text>
+
+            <line x1="110" y1="210" x2="330" y2="210" stroke="#2563eb" stroke-width="6" marker-end="url(#capArrow)"></line>
+            <text x="220" y="238" font-size="18" font-weight="900" fill="#2563eb" text-anchor="middle">charges</text>
+
+            <circle cx="410" cy="125" r="72" fill="#eff6ff" stroke="#2563eb" stroke-width="5"></circle>
+            <text x="410" y="118" font-size="24" font-weight="900" fill="#12355b" text-anchor="middle">Electric</text>
+            <text x="410" y="148" font-size="24" font-weight="900" fill="#12355b" text-anchor="middle">field</text>
+
+            <line x1="500" y1="125" x2="575" y2="125" stroke="#12355b" stroke-width="6"></line>
+            <line x1="595" y1="75" x2="595" y2="175" stroke="#12355b" stroke-width="8"></line>
+            <line x1="645" y1="75" x2="645" y2="175" stroke="#12355b" stroke-width="8"></line>
+            <line x1="665" y1="125" x2="780" y2="125" stroke="#12355b" stroke-width="6"></line>
+
+            <line x1="710" y1="210" x2="540" y2="210" stroke="#16a34a" stroke-width="6" marker-end="url(#capArrow)"></line>
+            <text x="625" y="238" font-size="18" font-weight="900" fill="#15803d" text-anchor="middle">releases energy</text>
+          </svg>
+          <div class="visual-caption">A capacitor does not create energy—it temporarily stores charge in an electric field and releases it back into the circuit.</div>
         </div>
 
         <div class="notice-first">
@@ -792,9 +882,31 @@
           rectifier, the DC signal may still have ripple. A capacitor helps smooth that ripple so the circuit receives a more stable DC voltage.
         </p>
 
-        <div class="diagram">
-          <span>AC input</span> → <span>Rectifier</span> → <span>Pulsing DC</span> → <span>Capacitor smoothing</span> → <span>Steadier DC</span>
+        <div class="wave-grid">
+          <div class="wave-card">
+            <h3>Before the Capacitor: Pulsing DC</h3>
+            <svg viewBox="0 0 420 170" role="img" aria-label="Pulsing DC waveform before capacitor smoothing">
+              <line x1="28" y1="140" x2="395" y2="140" stroke="#94a3b8" stroke-width="2"></line>
+              <line x1="28" y1="20" x2="28" y2="140" stroke="#94a3b8" stroke-width="2"></line>
+              <path d="M30 140 Q65 25 100 140 Q135 25 170 140 Q205 25 240 140 Q275 25 310 140 Q345 25 380 140"
+                    fill="none" stroke="#dc2626" stroke-width="6" stroke-linecap="round"></path>
+              <text x="210" y="162" font-size="16" font-weight="900" fill="#b91c1c" text-anchor="middle">large ripple</text>
+            </svg>
+          </div>
+
+          <div class="wave-card">
+            <h3>After the Capacitor: Smoother DC</h3>
+            <svg viewBox="0 0 420 170" role="img" aria-label="Smoother DC waveform after capacitor filtering">
+              <line x1="28" y1="140" x2="395" y2="140" stroke="#94a3b8" stroke-width="2"></line>
+              <line x1="28" y1="20" x2="28" y2="140" stroke="#94a3b8" stroke-width="2"></line>
+              <path d="M30 60 C55 42 80 48 105 57 S155 46 180 55 S230 45 255 54 S305 46 330 55 S365 48 390 56"
+                    fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"></path>
+              <text x="210" y="162" font-size="16" font-weight="900" fill="#15803d" text-anchor="middle">reduced ripple</text>
+            </svg>
+          </div>
         </div>
+
+        <div class="visual-caption">Rectifier first: AC becomes pulsing DC. Capacitor second: the voltage variations are reduced so the output is steadier.</div>
 
         <p>
           That is why capacitors and rectifiers are often learned together.
