@@ -627,6 +627,87 @@
 }
 @media(max-width:760px){.msb-academy-funnel{align-items:stretch;flex-direction:column;padding:20px}.msb-academy-funnel>a{width:100%}}
 
+
+    .visual-diagram {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #f8fbff, #eef6ff);
+      border: 1px solid #cfe0ef;
+      box-shadow: var(--soft-shadow);
+    }
+    .visual-diagram svg { display:block; width:100%; height:auto; max-height:300px; }
+    .visual-caption {
+      margin-top:10px; text-align:center; color:var(--muted);
+      font-size:14px; font-weight:800;
+    }
+    .stage-flow {
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:10px;
+      align-items:stretch;
+      margin-top:18px;
+    }
+    .stage-box {
+      position:relative;
+      padding:16px 10px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:#fff;
+      text-align:center;
+      color:var(--navy);
+      font-weight:900;
+    }
+    .stage-box span {
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+    }
+    .stage-box:not(:last-child)::after {
+      content:"→";
+      position:absolute;
+      right:-15px;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:2;
+      color:var(--bright-blue);
+      font-size:22px;
+      font-weight:900;
+    }
+    .wave-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .wave-card {
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px;
+    }
+    .wave-card h3 {
+      margin:0 0 8px;
+      color:var(--navy);
+      font-size:17px;
+      text-align:center;
+    }
+    .wave-card svg { width:100%; height:145px; }
+    @media(max-width:850px) {
+      .stage-flow,.wave-grid { grid-template-columns:1fr; }
+      .stage-box:not(:last-child)::after {
+        content:"↓";
+        right:auto;
+        left:50%;
+        top:auto;
+        bottom:-24px;
+        transform:translateX(-50%);
+      }
+      .stage-box { margin-bottom:10px; }
+    }
+
 </style>
 </head>
 
@@ -698,8 +779,15 @@
           The power supply is responsible for converting, smoothing, regulating, and delivering the correct voltage to the device.
         </p>
 
-        <div class="diagram">
-          <span>AC input</span> → <span>Rectifier</span> → <span>Capacitor filter</span> → <span>Regulator</span> → <span>DC output</span>
+        <div class="visual-diagram">
+          <div class="stage-flow" aria-label="Power supply stages from AC input to regulated DC output">
+            <div class="stage-box">AC Input<span>Wall power enters</span></div>
+            <div class="stage-box">Rectifier<span>AC becomes DC</span></div>
+            <div class="stage-box">Capacitor Filter<span>Ripple is smoothed</span></div>
+            <div class="stage-box">Regulator<span>Voltage is stabilized</span></div>
+            <div class="stage-box">DC Output<span>Circuits receive usable power</span></div>
+          </div>
+          <div class="visual-caption">CBET memory path: convert → smooth → regulate → deliver.</div>
         </div>
 
         <div class="notice-first">
@@ -790,8 +878,32 @@
           This is a critical step because most electronic circuits require DC power to function correctly.
         </p>
 
-        <div class="diagram">
-          <span>AC input</span> → <span>Diodes</span> → <span>Rectified DC</span>
+        <div class="wave-grid">
+          <div class="wave-card">
+            <h3>AC Input</h3>
+            <svg viewBox="0 0 360 145" role="img" aria-label="AC waveform">
+              <line x1="20" y1="72" x2="340" y2="72" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M20 72 C45 18 70 18 95 72 S145 126 170 72 S220 18 245 72 S295 126 340 72"
+                    fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="wave-card">
+            <h3>Rectifier / Diodes</h3>
+            <svg viewBox="0 0 360 145" role="img" aria-label="Diode rectifier symbol">
+              <line x1="30" y1="72" x2="115" y2="72" stroke="#12355b" stroke-width="6"/>
+              <polygon points="115,38 115,106 215,72" fill="none" stroke="#12355b" stroke-width="6"/>
+              <line x1="225" y1="35" x2="225" y2="109" stroke="#12355b" stroke-width="8"/>
+              <line x1="230" y1="72" x2="330" y2="72" stroke="#12355b" stroke-width="6"/>
+            </svg>
+          </div>
+          <div class="wave-card">
+            <h3>Rectified DC</h3>
+            <svg viewBox="0 0 360 145" role="img" aria-label="Pulsating rectified DC waveform">
+              <line x1="20" y1="125" x2="340" y2="125" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M20 125 Q60 20 100 125 Q140 20 180 125 Q220 20 260 125 Q300 20 340 125"
+                    fill="none" stroke="#dc2626" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
         </div>
 
         <p>
@@ -812,8 +924,32 @@
           Capacitors are used to smooth out these fluctuations and create a more stable signal.
         </p>
 
-        <div class="diagram">
-          <span>Pulsing DC</span> → <span>Capacitor smoothing</span> → <span>Steadier DC</span>
+        <div class="wave-grid">
+          <div class="wave-card">
+            <h3>Pulsing DC</h3>
+            <svg viewBox="0 0 360 145" role="img" aria-label="Pulsing DC waveform">
+              <line x1="20" y1="125" x2="340" y2="125" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M20 125 Q60 20 100 125 Q140 20 180 125 Q220 20 260 125 Q300 20 340 125"
+                    fill="none" stroke="#dc2626" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="wave-card">
+            <h3>Capacitor Filter</h3>
+            <svg viewBox="0 0 360 145" role="img" aria-label="Capacitor schematic symbol">
+              <line x1="30" y1="72" x2="145" y2="72" stroke="#12355b" stroke-width="6"/>
+              <line x1="150" y1="30" x2="150" y2="114" stroke="#12355b" stroke-width="8"/>
+              <line x1="210" y1="30" x2="210" y2="114" stroke="#12355b" stroke-width="8"/>
+              <line x1="215" y1="72" x2="330" y2="72" stroke="#12355b" stroke-width="6"/>
+            </svg>
+          </div>
+          <div class="wave-card">
+            <h3>Steadier DC</h3>
+            <svg viewBox="0 0 360 145" role="img" aria-label="Smoothed DC waveform">
+              <line x1="20" y1="125" x2="340" y2="125" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M20 52 C50 40 80 47 110 54 S170 44 200 53 S260 44 290 53 S325 47 340 51"
+                    fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
         </div>
 
         <p>
