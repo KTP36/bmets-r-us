@@ -4455,6 +4455,13 @@ function MissionFour({ onExit }) {
       <button className="cbet-back" onClick={onExit}>← Back to Academy</button>
       <span className="cbet-label">Mission 4 · 450 XP</span><h1>{missionFourBriefing.title}</h1><p>{missionFourBriefing.summary}</p>
       <div className="cbet-objectives"><h2>What you will learn</h2><ul>{missionFourBriefing.objectives.map((item) => <li key={item}>{item}</li>)}</ul></div>
+      <div className="m10-brief-stats">
+        <div><strong>{lessons.length}</strong><span>Equipment lessons</span></div>
+        <div><strong>{scenarios.length}</strong><span>Field scenarios</span></div>
+        <div><strong>{questions.length}</strong><span>Final questions</span></div>
+        <div><strong>80%</strong><span>Passing standard</span></div>
+      </div>
+      <div className="m10-safety-note"><strong>Medical-gas safety rule:</strong> Do not defeat gas-specific connectors, improvise fittings, or introduce oil/grease into oxygen-service equipment. Follow current manufacturer instructions and facility policy.</div>
       <div className="cbet-actions"><button className="cbet-primary" onClick={() => setPhase("lessons")}>{savedProgress.phase !== "briefing" ? "Resume Mission" : "Begin Mission"}</button></div>
     </section>
   );
@@ -5534,12 +5541,12 @@ function MissionEight({ onExit }) {
 
 
 const MISSION_NINE_LESSONS = [
-  { title: "Read the Complaint Without Anchoring", icon: "🧭", points: ["Treat the user complaint as evidence, not a diagnosis.", "Separate what is observed from what is assumed.", "Look for the fastest safe check that can eliminate an entire fault category."], check: { question: "A portable X-ray unit displays COLLISION and will not drive. What is the strongest first action?", options: ["Inspect the unit's travel path, bumpers, and collision sensors for a physical obstruction", "Enter service mode and clear the collision flag before inspecting the unit", "Replace the drive-control board because motion is inhibited", "Cycle facility power to reset the portable detector and generator"], answer: 0, explanation: "A collision message plus inhibited motion makes a physical interlock or obstructed sensor a high-value first check. Confirm the simple external cause before escalating." } },
-  { title: "Power, Interlocks & Emergency Stops", icon: "⛔", points: ["A device that appears dead may be intentionally inhibited by an interlock.", "Check emergency stops, breakers, line power, detachable cords, and mechanical power switches before opening equipment.", "Never bypass a safety interlock to make a symptom disappear."], check: { question: "An entire radiographic room appears powered but the imaging system will not enable after environmental services cleaned the room. What should move near the top of your first-pass inspection?", options: ["Verify emergency-off controls and system enable/interlock states before internal troubleshooting", "Replace the generator contactor because the room cannot expose", "Recalibrate the tube-position encoders before checking external controls", "Reload the acquisition workstation image because cleaning may have interrupted networking"], answer: 0, explanation: "An accidentally operated emergency-off is plausible, externally verifiable, and can inhibit the room while other power remains present." } },
-  { title: "Mechanical Before Electronic", icon: "⚙️", points: ["Mechanical states often create electronic-looking symptoms.", "Inspect brakes, latches, wheels, bumpers, cables, connectors, sensors, and accessories before assuming a board failure.", "Ask what changed immediately before the failure."], check: { question: "A portable ultrasound powers normally but staff report it suddenly will not roll. No alarms are present. What is the best first diagnostic move?", options: ["Inspect the wheel/brake controls and verify the brake is in the released operating position", "Measure motor-drive voltage at the wheel assembly under load", "Replace the caster set because one wheel may have seized internally", "Export system logs and compare them with the previous software revision"], answer: 0, explanation: "A brake left in the stop position can perfectly mimic a mobility failure. Verify the mechanical state before electrical disassembly." } },
-  { title: "Signal Chain Reasoning", icon: "📈", points: ["Follow the signal from source to sensor, cable, module, processing, display, and network destination.", "Use substitutions only when they isolate a specific stage.", "A displayed number is the end of a chain, not the beginning of a diagnosis."], check: { question: "A bedside monitor shows intermittent SpO₂ dropouts on one patient. ECG and NIBP are stable. What is the most efficient next step?", options: ["Inspect the sensor site and cable, then compare with a known-good compatible sensor if needed", "Replace the monitor's main processor because only one parameter is unstable", "Change the central-station network port to rule out packet loss", "Perform an electrical-safety test before touching the patient accessory"], answer: 0, explanation: "The failure is isolated to one acquisition chain. Start at the patient/accessory end and move inward using evidence." } },
-  { title: "Network or Device?", icon: "🌐", points: ["Local function and network function are different layers.", "Prove whether data exists at the source before troubleshooting the destination.", "Use scope: one device, one room, one VLAN, or the entire service."], check: { question: "A patient monitor displays waveforms correctly at bedside but disappears from the central station after being moved to another room. What evidence is most useful next?", options: ["Verify the monitor's network link, addressing, room assignment, and reachability before replacing monitor hardware", "Replace the ECG trunk cable because central monitoring depends on ECG data", "Reboot every central station so the monitor can automatically re-register", "Perform NIBP calibration to confirm the bedside monitor is clinically accurate"], answer: 0, explanation: "Local acquisition works. The fault boundary has shifted toward connectivity, configuration, or central registration." } },
-  { title: "Return to Service Is a Decision", icon: "✅", points: ["A repair is not complete when the symptom disappears.", "Verify the function that failed, related safety functions, and the clinical workflow affected by the repair.", "Document objective evidence and final disposition."], check: { question: "You reseat a loose connector and a transport monitor powers up again. Which action best supports return to service?", options: ["Reproduce normal operation under representative conditions and verify the affected functions before documenting disposition", "Return it immediately because the original symptom is no longer present", "Run only an electrical-safety test because it proves all clinical functions are safe", "Replace the battery preemptively so the same complaint cannot recur"], answer: 0, explanation: "Restored power is necessary but not sufficient. Verification should address the original failure and representative clinical use." } },
+  { title: "Read the Complaint Without Anchoring", icon: "🧭", points: ["Treat the user complaint as evidence, not a diagnosis.", "Separate what is observed from what is assumed.", "Look for the fastest safe check that can eliminate an entire fault category."], check: { question: "A portable X-ray unit displays COLLISION and will not drive. What is the strongest first action?", options: ["Inspect travel path, bumpers, and collision sensors for obstruction", "Clear the collision flag in service mode and retest movement", "Replace the drive-control board and verify motor operation", "Cycle system power and repeat the drive-enable sequence"], answer: 0, explanation: "A collision message plus inhibited motion makes a physical interlock or obstructed sensor a high-value first check. Confirm the simple external cause before escalating." } },
+  { title: "Power, Interlocks & Emergency Stops", icon: "⛔", points: ["A device that appears dead may be intentionally inhibited by an interlock.", "Check emergency stops, breakers, line power, detachable cords, and mechanical power switches before opening equipment.", "Never bypass a safety interlock to make a symptom disappear."], check: { question: "An entire radiographic room appears powered but the imaging system will not enable after environmental services cleaned the room. What should move near the top of your first-pass inspection?", options: ["Verify emergency-off controls and system interlock/enable states", "Inspect the generator contactor and exposure-enable circuit", "Recalibrate tube-position encoders and repeat system initialization", "Restart acquisition services and verify workstation communication status"], answer: 0, explanation: "An accidentally operated emergency-off is plausible, externally verifiable, and can inhibit the room while other power remains present." } },
+  { title: "Mechanical Before Electronic", icon: "⚙️", points: ["Mechanical states often create electronic-looking symptoms.", "Inspect brakes, latches, wheels, bumpers, cables, connectors, sensors, and accessories before assuming a board failure.", "Ask what changed immediately before the failure."], check: { question: "A portable ultrasound powers normally but staff report it suddenly will not roll. No alarms are present. What is the best first diagnostic move?", options: ["Inspect wheel/brake controls and confirm the brake is released", "Measure wheel-drive voltage while commanding cart movement", "Inspect and replace any caster that binds under load", "Review system logs for motion or brake-related faults"], answer: 0, explanation: "A brake left in the stop position can perfectly mimic a mobility failure. Verify the mechanical state before electrical disassembly." } },
+  { title: "Signal Chain Reasoning", icon: "📈", points: ["Follow the signal from source to sensor, cable, module, processing, display, and network destination.", "Use substitutions only when they isolate a specific stage.", "A displayed number is the end of a chain, not the beginning of a diagnosis."], check: { question: "A bedside monitor shows intermittent SpO₂ dropouts on one patient. ECG and NIBP are stable. What is the most efficient next step?", options: ["Inspect sensor/site and compare with a known-good compatible sensor", "Replace the parameter module and repeat the SpO₂ functional check", "Move the monitor to a known-good network port and retest", "Run electrical-safety testing before evaluating the SpO₂ accessory"], answer: 0, explanation: "The failure is isolated to one acquisition chain. Start at the patient/accessory end and move inward using evidence." } },
+  { title: "Network or Device?", icon: "🌐", points: ["Local function and network function are different layers.", "Prove whether data exists at the source before troubleshooting the destination.", "Use scope: one device, one room, one VLAN, or the entire service."], check: { question: "A patient monitor displays waveforms correctly at bedside but disappears from the central station after being moved to another room. What evidence is most useful next?", options: ["Verify network connectivity, addressing, and room assignment", "Inspect ECG acquisition, cable integrity, and bedside alarm configuration", "Restart the central station and force the monitor to re-register", "Run NIBP calibration and compare the monitor with a simulator"], answer: 0, explanation: "Local acquisition works. The fault boundary has shifted toward connectivity, configuration, or central registration." } },
+  { title: "Return to Service Is a Decision", icon: "✅", points: ["A repair is not complete when the symptom disappears.", "Verify the function that failed, related safety functions, and the clinical workflow affected by the repair.", "Document objective evidence and final disposition."], check: { question: "You reseat a loose connector and a transport monitor powers up again. Which action best supports return to service?", options: ["Verify affected functions under representative use, then document disposition", "Return the monitor because normal power has already been restored", "Run electrical-safety testing and return it if the test passes", "Replace the battery and repeat startup before returning the monitor"], answer: 0, explanation: "Restored power is necessary but not sufficient. Verification should address the original failure and representative clinical use." } },
 ];
 
 const MISSION_NINE_SCENARIOS = [
@@ -5592,7 +5599,7 @@ function MissionNine({ onExit }) {
   const restart=()=>{setQuestionIndex(0);setScore(0);setResult(null);go("quiz",{quizIndex:0,quizScore:0,passed:false})};
   const guide=(text)=><div className="m9-guide"><div><span>HOW TO THINK</span><strong>Observe → isolate → verify → document.</strong></div><div><span>YOUR NEXT ACTION</span><strong>{text}</strong></div></div>;
   return <section ref={stageRef} className="cbet-shell m9-shell"><style>{`
-    .m9-shell{--navy:#0b2447;--blue:#1859a9;--green:#18865d;padding-bottom:60px}.m9-back{margin:14px 0}.m9-guide{display:grid;grid-template-columns:.75fr 1.25fr;gap:16px;border:2px solid #bfdbfe;background:#f8fbff;padding:18px;border-radius:18px;margin:18px 0}.m9-guide>div:last-child{background:var(--navy);color:white;border-radius:14px;padding:14px}.m9-guide span{display:block;font-size:.74rem;font-weight:950;letter-spacing:.1em;color:#2563a8}.m9-guide>div:last-child span{color:#93c5fd}.m9-guide strong{display:block;margin-top:5px;font-size:1.05rem}.m9-hero{background:linear-gradient(135deg,#071b36,#174f91);color:white;border-radius:28px;padding:36px;box-shadow:0 20px 45px rgba(11,36,71,.18)}.m9-hero h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1;margin:8px 0 14px}.m9-hero p{font-size:1.1rem;color:#dbeafe;max-width:850px}.m9-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.m9-chips span{border:1px solid #ffffff44;background:#ffffff12;padding:8px 12px;border-radius:999px;font-weight:800}.m9-objectives,.m9-card{background:white;border:1px solid #dbe4f0;border-radius:22px;padding:26px;margin-top:20px}.m9-objectives li{margin:10px 0}.m9-title{text-align:center;margin:24px 0 12px}.m9-title h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1.08;margin:8px auto;max-width:1000px}.m9-points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.m9-points p{margin:0;padding:16px;border-radius:15px;background:#f3f7fc;border:1px solid #dbe7f4}.m9-options{display:grid;gap:11px;margin:18px 0}.m9-options button{text-align:left;border:2px solid #d9e3ef;background:white;border-radius:14px;padding:15px;font-weight:750;color:#102846}.m9-options button:hover:not(:disabled){border-color:#60a5fa}.m9-options button.correct{border-color:#22c55e;background:#ecfdf5}.m9-options button.wrong{border-color:#ef4444;background:#fff1f2}.m9-feedback{padding:15px;border-radius:14px;background:#eff6ff;margin:12px 0}.m9-feedback.good{background:#ecfdf5}.m9-feedback.bad{background:#fff1f2}.m9-nav{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px}.m9-meta{display:flex;justify-content:space-between;gap:12px;font-weight:850;color:#52647b;margin:10px 0}.m9-progress{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden}.m9-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green))}.m9-score{text-align:center;padding:38px}.m9-score strong{display:block;font-size:5rem;color:var(--navy)}@media(max-width:760px){.m9-guide,.m9-points{grid-template-columns:1fr}.m9-nav{flex-direction:column}.m9-nav button{width:100%}}
+    .m9-shell{--navy:#0b2447;--blue:#1859a9;--green:#18865d;padding-bottom:60px}.m9-back{margin:14px 0}.m9-guide{display:grid;grid-template-columns:.75fr 1.25fr;gap:16px;border:2px solid #bfdbfe;background:#f8fbff;padding:18px;border-radius:18px;margin:18px 0}.m9-guide>div:last-child{background:var(--navy);color:white;border-radius:14px;padding:14px}.m9-guide span{display:block;font-size:.74rem;font-weight:950;letter-spacing:.1em;color:#2563a8}.m9-guide>div:last-child span{color:#93c5fd}.m9-guide strong{display:block;margin-top:5px;font-size:1.05rem}.m9-hero{background:linear-gradient(135deg,#071b36,#174f91);color:white;border-radius:28px;padding:36px;box-shadow:0 20px 45px rgba(11,36,71,.18)}.m9-hero h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1;margin:8px 0 14px}.m9-hero p{font-size:1.1rem;color:#dbeafe;max-width:850px}.m9-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.m9-chips span{border:1px solid #ffffff44;background:#ffffff12;padding:8px 12px;border-radius:999px;font-weight:800}.m9-objectives,.m9-card{background:white;border:1px solid #dbe4f0;border-radius:22px;padding:26px;margin-top:20px}.m9-objectives li{margin:10px 0}.m9-title{text-align:center;margin:16px 0 10px}.m9-title h1{font-size:clamp(2rem,3.2vw,2.9rem);line-height:1.08;margin:5px auto 8px;max-width:900px}.m9-points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.m9-points p{margin:0;padding:16px;border-radius:15px;background:#f3f7fc;border:1px solid #dbe7f4}.m9-options{display:grid;gap:11px;margin:18px 0}.m9-options button{text-align:left;border:2px solid #d9e3ef;background:white;border-radius:14px;padding:15px;font-weight:750;color:#102846}.m9-options button:hover:not(:disabled){border-color:#60a5fa}.m9-options button.correct{border-color:#22c55e;background:#ecfdf5}.m9-options button.wrong{border-color:#ef4444;background:#fff1f2}.m9-feedback{padding:15px;border-radius:14px;background:#eff6ff;margin:12px 0}.m9-feedback.good{background:#ecfdf5}.m9-feedback.bad{background:#fff1f2}.m9-nav{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px}.m9-meta{display:flex;justify-content:space-between;gap:12px;font-weight:850;color:#52647b;margin:10px 0}.m9-progress{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden}.m9-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green))}.m9-score{text-align:center;padding:38px}.m9-score strong{display:block;font-size:5rem;color:var(--navy)}@media(max-width:760px){.m9-guide,.m9-points{grid-template-columns:1fr}.m9-nav{flex-direction:column}.m9-nav button{width:100%}}
   `}</style><button className="cbet-text-button m9-back" onClick={onExit}>← Save & Exit</button>
   {phase==="briefing"&&<><div className="m9-hero"><span className="cbet-label">MISSION 9 · CBET EXAM READINESS</span><h1>Think Like a BMET.</h1><p>This mission is not a vocabulary review. It tests whether you can read incomplete field evidence, resist distractors, choose the safest high-value next step, and verify a repair like a working biomedical equipment technician.</p><div className="m9-chips"><span>Equipment faults</span><span>Electrical reasoning</span><span>Clinical systems</span><span>Networking</span><span>Safety</span><span>Exam strategy</span></div></div><div className="m9-objectives"><h2>Mission objectives</h2><ul><li>Separate the reported complaint from the actual fault.</li><li>Recognize simple mechanical and interlock problems before escalating to electronics.</li><li>Use signal-chain and substitution evidence to narrow faults.</li><li>Choose defensible return-to-service verification.</li><li>Handle CBET-style “best next action” questions without relying on answer length or position.</li></ul><div className="cbet-stats"><div><strong>{lessons.length}</strong><span>Lessons</span></div><div><strong>{scenarios.length}</strong><span>Field Calls</span></div><div><strong>{questions.length}</strong><span>Challenge Qs</span></div><div><strong>400</strong><span>XP</span></div></div><button className="cbet-primary full" onClick={()=>go("lessons",{lessonIndex:0})}>Begin Mission 9 →</button></div></>}
   {phase==="lessons"&&(()=>{const l=lessons[lessonIndex],c=l.check,ok=selected===c.answer;return <>{guide("Read the evidence, then choose the BEST next action—not merely an action that could work.")}<div className="m9-meta"><span>Mission 9 · Lesson {lessonIndex+1} of {lessons.length}</span><span>CBET reasoning</span></div><div className="m9-progress"><span style={{width:`${((lessonIndex+1)/lessons.length)*100}%`}}/></div><div className="m9-title"><span className="cbet-label">{l.icon} FIELD REASONING</span><h1>{l.title}</h1></div><article className="m9-card"><div className="m9-points">{l.points.map(x=><p key={x}>{x}</p>)}</div><h2>{c.question}</h2><div className="m9-options">{c.options.map((o,i)=><button key={o} disabled={ok} className={`${selected!==null&&i===c.answer?"correct":""} ${selected===i&&!ok?"wrong":""}`} onClick={()=>answer(i,c.answer)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{selected!==null&&<div className={`m9-feedback ${ok?"good":"bad"}`}><strong>{ok?"Strong decision.":"Not the best next action."}</strong> {ok?c.explanation:"Use the evidence to eliminate the largest fault category safely, then try again."}</div>}<div className="m9-nav"><button className="cbet-secondary" disabled={lessonIndex===0} onClick={()=>{setLessonIndex(v=>v-1);setSelected(null)}}>← Previous</button><button className="cbet-primary" disabled={!ok} onClick={nextLesson}>{lessonIndex===lessons.length-1?"Start Field Calls →":"Complete Lesson →"}</button></div></article></>})()}
@@ -5884,6 +5891,22 @@ function MissionTen({ onExit }) {
   const savedProgress = getMissionProgress(moduleNumber);
   const completedModule = getCbetModuleState(moduleNumber);
   const questions = useMemo(() => missionTenQuestions.map(shuffleQuestion), []);
+  const lessons = useMemo(
+    () => missionTenLessons.map((lesson) => ({ ...lesson, check: shuffleQuestion(lesson.check) })),
+    []
+  );
+  const scenarios = useMemo(
+    () => missionTenScenarios.map((scenario) => ({
+      ...scenario,
+      ...shuffleQuestion({
+        question: scenario.question,
+        options: scenario.options,
+        answer: scenario.answer,
+        explanation: scenario.explanation,
+      }),
+    })),
+    []
+  );
   const [phase, setPhaseState] = useState(savedProgress.phase || "briefing");
   const [lessonIndex, setLessonIndexState] = useState(savedProgress.lessonIndex || 0);
   const [completedLessons, setCompletedLessons] = useState(savedProgress.completedLessons || []);
@@ -5920,7 +5943,7 @@ function MissionTen({ onExit }) {
     setCompletedLessons(nextCompleted);
     saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex, completedLessons: nextCompleted });
     awardCbetXp(10, `mission10-lesson-${lessonIndex}`);
-    if (lessonIndex < missionTenLessons.length - 1) {
+    if (lessonIndex < lessons.length - 1) {
       const nextIndex = lessonIndex + 1;
       setLessonIndexState(nextIndex);
       saveMissionProgress(moduleNumber, { phase: "lessons", lessonIndex: nextIndex, completedLessons: nextCompleted });
@@ -5932,7 +5955,7 @@ function MissionTen({ onExit }) {
     saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex, completedScenarios: nextCompleted });
     awardCbetXp(15, `mission10-scenario-${scenarioIndex}`);
     setSelected(null);
-    if (scenarioIndex < missionTenScenarios.length - 1) {
+    if (scenarioIndex < scenarios.length - 1) {
       const nextIndex = scenarioIndex + 1;
       setScenarioIndexState(nextIndex);
       saveMissionProgress(moduleNumber, { phase: "scenarios", scenarioIndex: nextIndex, completedScenarios: nextCompleted });
@@ -5964,9 +5987,14 @@ function MissionTen({ onExit }) {
       return;
     }
     const finalScore = Math.round((score / questions.length) * 100);
-    completeCbetModule(moduleNumber, finalScore, 350);
     setResult(finalScore);
     setFinished(true);
+    if (finalScore >= 80) {
+      completeCbetModule(moduleNumber, finalScore, 350);
+      saveMissionProgress(moduleNumber, { phase: "complete", quizScore: finalScore, passed: true });
+    } else {
+      saveMissionProgress(moduleNumber, { phase: "result", quizScore: finalScore, passed: false });
+    }
     setPhaseState("complete");
   }
   function restartQuiz() {
@@ -5976,7 +6004,17 @@ function MissionTen({ onExit }) {
   }
 
   if (phase === "briefing") return (
-    <section className="cbet-shell cbet-mission-briefing">
+    <section className="cbet-shell cbet-mission-briefing m10-shell">
+      <style>{`
+        .m10-shell h1,.cbet-module10-stage .cbet-lesson-title,.cbet-module10-results .cbet-module10-result-title{line-height:1.1;text-wrap:balance}
+        .m10-brief-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+        .m10-brief-stats>div{background:#f8fbff;border:1px solid #dbe7f4;border-radius:16px;padding:16px;text-align:center}
+        .m10-brief-stats strong{display:block;font-size:1.65rem;color:#0b2447}.m10-brief-stats span{color:#52677f;font-weight:700;font-size:.88rem}
+        .m10-safety-note,.m10-how{border-left:5px solid #2563eb;background:#eff6ff;border-radius:12px;padding:14px 16px;margin:18px 0;color:#15345d}
+        .m10-how span{display:block;font-size:.72rem;font-weight:950;letter-spacing:.09em;color:#2563eb;margin-bottom:4px}
+        .m10-how strong{display:block;line-height:1.45}
+        @media(max-width:760px){.m10-brief-stats{grid-template-columns:1fr 1fr}}
+      `}</style>
       <button className="cbet-back" onClick={onExit}>← Back to Academy</button>
       <span className="cbet-label">Mission 10 · 350 XP</span>
       <h1>{missionTenBriefing.title}</h1>
@@ -5987,34 +6025,58 @@ function MissionTen({ onExit }) {
   );
 
   if (phase === "lessons") {
-    const lesson = missionTenLessons[lessonIndex];
+    const lesson = lessons[lessonIndex];
     const answered = selected !== null;
     return (
       <section ref={missionTenStageRef} className="cbet-shell cbet-lesson-stage cbet-module10-stage">
         <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
-        <div className="cbet-quiz-meta cbet-module10-meta"><span>Medical Gas Delivery Equipment</span><span>Lesson {lessonIndex + 1} of {missionTenLessons.length}</span></div>
+        <div className="cbet-quiz-meta cbet-module10-meta"><span>Medical Gas Delivery Equipment</span><span>Lesson {lessonIndex + 1} of {lessons.length}</span></div>
         <div className="cbet-progress-bar cbet-module10-progress" aria-label={`Lesson ${lessonIndex + 1} of ${missionTenLessons.length}`}><span style={{ width: `${((lessonIndex + 1) / missionTenLessons.length) * 100}%` }} /></div>
         <article className="cbet-lesson-card"><div className="cbet-hero-icon">{lesson.icon}</div><h2 className="cbet-lesson-title">{lesson.title}</h2><ul>{lesson.points.map((point) => <li key={point}>{point}</li>)}</ul></article>
         <MissionTenLessonEnhancement lessonIndex={lessonIndex} />
-        <article className="cbet-quiz"><h2>{lesson.check.question}</h2><div className="cbet-options">{lesson.check.options.map((option, index) => <button key={option} disabled={answered} className={`cbet-option ${answered && index === lesson.check.answer ? "correct" : ""} ${answered && index === selected && index !== lesson.check.answer ? "wrong" : ""}`} onClick={() => setSelected(index)}><strong>{String.fromCharCode(65 + index)}.</strong> {option}</button>)}</div>{answered && <div className="cbet-feedback"><strong>{selected === lesson.check.answer ? "Correct." : "Review this point."}</strong><span>{lesson.check.explanation}</span></div>}<div className="cbet-actions cbet-module10-actions"><button className="cbet-primary" disabled={!answered} onClick={() => { setSelected(null); completeLesson(); }}>{lessonIndex === missionTenLessons.length - 1 ? "Begin Scenarios" : "Next Lesson"}</button></div></article>
+        <article className="cbet-quiz">
+          <div className="m10-how"><span>HOW TO COMPLETE THIS LESSON</span><strong>Review the equipment concept, use the field visual, then answer correctly before continuing.</strong></div>
+          <h2>{lesson.check.question}</h2>
+          <div className="cbet-options">{lesson.check.options.map((option, index) => {
+            const correct = selected === lesson.check.answer;
+            return <button key={option} disabled={correct} className={`cbet-option ${selected !== null && index === lesson.check.answer ? "correct" : ""} ${selected === index && index !== lesson.check.answer ? "wrong" : ""}`} onClick={() => { setSelected(index); playCbetTone(index === lesson.check.answer ? "correct" : "wrong"); }}><strong>{String.fromCharCode(65 + index)}.</strong> {option}</button>;
+          })}</div>
+          {answered && <div className={`cbet-feedback ${selected === lesson.check.answer ? "good" : "bad"}`}><strong>{selected === lesson.check.answer ? "Correct — continue." : "Not yet — use the equipment evidence and try again."}</strong><span>{selected === lesson.check.answer ? lesson.check.explanation : "The most defensible answer should preserve the gas-specific safety system and isolate the fault without creating a new hazard."}</span></div>}
+          <div className="cbet-actions cbet-module10-actions">
+            <button className="cbet-secondary" disabled={lessonIndex === 0} onClick={() => { setSelected(null); setLessonIndexState((value) => Math.max(0, value - 1)); }}>← Previous Lesson</button>
+            <button className="cbet-primary" disabled={selected !== lesson.check.answer} onClick={() => { setSelected(null); completeLesson(); }}>{lessonIndex === lessons.length - 1 ? "Begin Field Scenarios →" : "Complete Lesson →"}</button>
+          </div>
+        </article>
       </section>
     );
   }
 
   if (phase === "scenarios") {
-    const scenario = missionTenScenarios[scenarioIndex];
+    const scenario = scenarios[scenarioIndex];
     const answered = selected !== null;
     return (
       <section ref={missionTenStageRef} className="cbet-shell cbet-lesson-stage cbet-module10-stage">
         <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
-        <div className="cbet-quiz-meta cbet-module10-meta"><span>Applied Field Scenario</span><span>{scenarioIndex + 1} of {missionTenScenarios.length}</span></div>
+        <div className="cbet-quiz-meta cbet-module10-meta"><span>Applied Field Scenario</span><span>{scenarioIndex + 1} of {scenarios.length}</span></div>
         <div className="cbet-progress-bar cbet-module10-progress" aria-label={`Scenario ${scenarioIndex + 1} of ${missionTenScenarios.length}`}><span style={{ width: `${((scenarioIndex + 1) / missionTenScenarios.length) * 100}%` }} /></div>
         <article className="cbet-lesson-card cbet-scenario-intro">
           <div className="cbet-field-call-heading"><span className="cbet-field-call-icon" aria-hidden="true">🛠️</span><div><span className="cbet-field-call-eyebrow">Clinical Engineering field call</span><span className="cbet-label">{scenario.title}</span></div></div>
           <h2 className="cbet-scenario-title">{scenario.patient}</h2>
           <div className="cbet-field-call-meta"><span>Patient safety first</span><span>Point-of-use assessment</span><span>Choose the best action</span></div>
         </article>
-        <article className="cbet-quiz"><h2>{scenario.question}</h2><div className="cbet-options">{scenario.options.map((option, index) => <button key={option} disabled={answered} className={`cbet-option ${answered && index === scenario.answer ? "correct" : ""} ${answered && index === selected && index !== scenario.answer ? "wrong" : ""}`} onClick={() => setSelected(index)}><strong>{String.fromCharCode(65 + index)}.</strong> {option}</button>)}</div>{answered && <div className="cbet-feedback"><strong>{selected === scenario.answer ? "Correct decision." : "Safer approach:"}</strong><span>{scenario.explanation}</span></div>}<div className="cbet-actions cbet-module10-actions"><button className="cbet-primary" disabled={!answered} onClick={completeScenario}>{scenarioIndex === missionTenScenarios.length - 1 ? "Start Final Challenge" : "Next Scenario"}</button></div></article>
+        <article className="cbet-quiz">
+          <div className="m10-how"><span>FIELD DECISION</span><strong>Several actions may sound possible. Choose the best next action using the failure pattern and safety constraints.</strong></div>
+          <h2>{scenario.question}</h2>
+          <div className="cbet-options">{scenario.options.map((option, index) => {
+            const correct = selected === scenario.answer;
+            return <button key={option} disabled={correct} className={`cbet-option ${selected !== null && index === scenario.answer ? "correct" : ""} ${selected === index && index !== scenario.answer ? "wrong" : ""}`} onClick={() => { setSelected(index); playCbetTone(index === scenario.answer ? "correct" : "wrong"); }}><strong>{String.fromCharCode(65 + index)}.</strong> {option}</button>;
+          })}</div>
+          {answered && <div className={`cbet-feedback ${selected === scenario.answer ? "good" : "bad"}`}><strong>{selected === scenario.answer ? "Strong CE decision." : "Keep isolating the problem."}</strong><span>{selected === scenario.answer ? scenario.explanation : "Use the scope of the failure, the connection state, and the safest point-of-use test to choose again."}</span></div>}
+          <div className="cbet-actions cbet-module10-actions">
+            <button className="cbet-secondary" disabled={scenarioIndex === 0} onClick={() => { setSelected(null); setScenarioIndexState((value) => Math.max(0, value - 1)); }}>← Previous Scenario</button>
+            <button className="cbet-primary" disabled={selected !== scenario.answer} onClick={completeScenario}>{scenarioIndex === scenarios.length - 1 ? "Start Final Challenge →" : "Complete Scenario →"}</button>
+          </div>
+        </article>
       </section>
     );
   }
@@ -6048,8 +6110,8 @@ function MissionTen({ onExit }) {
         </p>
 
         <div className="cbet-completion-summary cbet-module10-summary">
-          <div><span>Lessons</span><strong>{completedLessons.length} of 10 Complete</strong></div>
-          <div><span>Field Scenarios</span><strong>{completedScenarios.length} of 4 Complete</strong></div>
+          <div><span>Lessons</span><strong>{completedLessons.length} of {lessons.length} Complete</strong></div>
+          <div><span>Field Scenarios</span><strong>{completedScenarios.length} of {scenarios.length} Complete</strong></div>
           <div><span>Final Challenge</span><strong>{result || 0}% {passed ? "Passed" : "Review"}</strong></div>
         </div>
 
