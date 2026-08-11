@@ -1144,6 +1144,9 @@ function MissionOne({ onBack, onComplete, onContinueMission2 }) {
       setScore(finalCorrect);
       const wasComplete = getCbetModuleState(1).complete;
       completeCbetModule(1, finalScore, 250);
+      if (finalScore >= 80) {
+        trackCbetAcademyEvent("cbet_mission_complete", { mission_number: 1, score: finalScore }, "mission-complete-1");
+      }
       if (finalScore >= 80 && !wasComplete) {
         setShowBadgeUnlock(true);
         setXpToast({ amount: 250, label: "Mission complete" });
@@ -1562,6 +1565,9 @@ function MissionTwo({ onExit, onContinueMission3 }) {
 
       const wasComplete = getCbetModuleState(2).complete;
       completeCbetModule(2, finalScore, 300);
+      if (finalScore >= 80) {
+        trackCbetAcademyEvent("cbet_mission_complete", { mission_number: 2, score: finalScore }, "mission-complete-2");
+      }
 
       if (finalScore >= 80 && !wasComplete) {
         setShowBadgeUnlock(true);
@@ -2705,6 +2711,7 @@ function MissionThree({ onExit }) {
     setFinalResult({ correct: finalCorrect, percent: finalScore });
     if (finalScore >= 80) {
       completeCbetModule(3, finalScore, 350);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: 3, score: finalScore }, `mission-complete-${3}`);
       saveMissionProgress(3, { phase: "complete", quizScore: finalCorrect, finalPercent: finalScore, passed: true });
       setPhaseState("complete");
     } else {
@@ -4449,6 +4456,7 @@ function MissionFour({ onExit }) {
     setResult(finalScore);
     if (finalScore >= 80) {
       completeCbetModule(moduleNumber, finalScore, 450);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: moduleNumber, score: finalScore }, `mission-complete-${moduleNumber}`);
       saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
       setPhaseState("complete");
     } else {
@@ -5127,7 +5135,8 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
     </section>
     <section className="m5-equipment-connections m5-systems-equipment"><span className="m5-section-label">Cross-Parameter Evidence</span><h2>Which signals can validate one another?</h2><div><article><strong>ECG vs. Pulse Rate</strong><span>A major mismatch can indicate pulse-ox artifact, poor perfusion, ectopy, or acquisition problems.</span></article><article><strong>NIBP vs. IBP</strong><span>Trend agreement and waveform quality help identify damping, leveling, zeroing, or cuff-related problems.</span></article><article><strong>SpO₂ vs. Pleth</strong><span>A saturation number without a credible pleth and pulse agreement deserves investigation.</span></article><article><strong>Temperature vs. Clinical Context</strong><span>Probe site, type, contact, and a second validated method help test plausibility.</span></article></div></section>
     <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Final Bedside Simulation</span><h2>One number does not fit the rest of the bedside picture.</h2><div className="m5-vitals-strip"><span><b>HR</b> 84</span><span className="spo2-alert"><b>SpO₂</b> 73%</span><span className="spo2-alert"><b>Pulse</b> 42</span><span><b>NIBP</b> 122/76</span><span><b>Temp</b> 37.0°C</span></div><p>The ECG is clean, the pleth is weak and irregular, and the patient appears stable. <strong>Which signal chain should you investigate first?</strong></p>{["Replace the entire patient monitor","Inspect the SpO₂ sensor, placement, perfusion, motion, cable, and pleth quality","Replace the NIBP cuff"].map((o,i)=><button key={o} disabled={systemsScenario===1} className={systemsScenario!==null&&i===1?"correct":systemsScenario===i?"wrong":""} onClick={()=>{setSystemsScenario(i);setSystemsFault("spo2");playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</article><article className="m5-recognition"><span className="m5-section-label">Find the Fault</span><h2>Which signal chain is inconsistent with the other evidence?</h2><div>{MISSION_FIVE_SYSTEMS.map(x=><button key={x.id} disabled={systemsRecognition==="spo2"} className={systemsRecognition===x.id?(x.id==="spo2"?"correct":"wrong"):""} onClick={()=>{setSystemsRecognition(x.id);setSystemsActiveId(x.id);playCbetTone(x.id==="spo2"?"correct":"wrong")}}>{x.label}</button>)}</div></article></section>
-    <section className={`m5-completion ${systemsReady||systemsCompleted?"ready":""}`}><div><span>{systemsReady||systemsCompleted?"🏆":"🧩"}</span><div><strong>{systemsCompleted?"Mission 5 Systems Integration Complete":systemsReady?"Final Explorer Ready to Complete":"Complete every activity"}</strong><small>100 XP · Anatomy, physiology, equipment, and systems thinking</small></div></div><button className="cbet-primary" disabled={!systemsReady&&!systemsCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,7]));if(!systemsCompleted)awardCbetXp(100,"mission5-systems-integration");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"complete",lessonIndex:7,completedLessons:next,m5SystemsExplored:systemsExplored,finalPercent:100,passed:true});completeCbetModule(moduleNumber,100,0);}}>{systemsCompleted?"Mission 5 Completed ✓":"Complete Mission 5"}</button></section>
+    <section className={`m5-completion ${systemsReady||systemsCompleted?"ready":""}`}><div><span>{systemsReady||systemsCompleted?"🏆":"🧩"}</span><div><strong>{systemsCompleted?"Mission 5 Systems Integration Complete":systemsReady?"Final Explorer Ready to Complete":"Complete every activity"}</strong><small>100 XP · Anatomy, physiology, equipment, and systems thinking</small></div></div><button className="cbet-primary" disabled={!systemsReady&&!systemsCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,7]));if(!systemsCompleted)awardCbetXp(100,"mission5-systems-integration");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"complete",lessonIndex:7,completedLessons:next,m5SystemsExplored:systemsExplored,finalPercent:100,passed:true});completeCbetModule(moduleNumber,100,0);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: moduleNumber, score: 100 }, `mission-complete-${moduleNumber}`);}}>{systemsCompleted?"Mission 5 Completed ✓":"Complete Mission 5"}</button></section>
     <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(6)}>← Previous: Temperature Regulation</button><button className="cbet-secondary" onClick={()=>{setSystemsActiveId("ecg");setSystemsExplored([]);setSystemsPath([]);setSystemsScenario(null);setSystemsRecognition(null);setSystemsFault("normal");setSystemsPathFeedback("")}}>Restart Explorer</button><button className="cbet-primary" onClick={onExit}>Return to Academy →</button></nav>
   </section>;
 
@@ -5448,6 +5457,7 @@ function MissionEight({ onExit }) {
     setResult(finalScore);
     if (finalScore >= 80) {
       completeCbetModule(moduleNumber, finalScore, 450);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: moduleNumber, score: finalScore }, `mission-complete-${moduleNumber}`);
       saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
       setPhaseState("complete");
     } else {
@@ -5636,7 +5646,8 @@ function MissionNine({ onExit }) {
   const nextLesson=()=>{awardCbetXp(10,`mission9-lesson-${lessonIndex}`);if(lessonIndex<lessons.length-1){const n=lessonIndex+1;setLessonIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:n})}else{setScenarioIndex(0);go("scenarios",{scenarioIndex:0})}};
   const nextScenario=()=>{awardCbetXp(15,`mission9-scenario-${scenarioIndex}`);if(scenarioIndex<scenarios.length-1){const n=scenarioIndex+1;setScenarioIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"scenarios",scenarioIndex:n})}else{setQuestionIndex(0);setScore(0);go("quiz",{quizIndex:0,quizScore:0})}};
   const answerQuiz=(i)=>{if(selected!==null)return;setSelected(i);const ok=i===questions[questionIndex].answer;const nextScore=ok?score+1:score;setScore(nextScore);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:questionIndex,quizScore:nextScore});playCbetTone(ok?"correct":"wrong")};
-  const nextQuiz=()=>{if(questionIndex<questions.length-1){const n=questionIndex+1;setQuestionIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:n,quizScore:score});return}const pct=Math.round((score/questions.length)*100);setResult(pct);if(pct>=80){completeCbetModule(moduleNumber,pct,400);go("complete",{quizScore:pct,passed:true})}else go("result",{quizScore:pct,passed:false})};
+  const nextQuiz=()=>{if(questionIndex<questions.length-1){const n=questionIndex+1;setQuestionIndex(n);setSelected(null);saveMissionProgress(moduleNumber,{phase:"quiz",quizIndex:n,quizScore:score});return}const pct=Math.round((score/questions.length)*100);setResult(pct);if(pct>=80){completeCbetModule(moduleNumber,pct,400);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: moduleNumber, score: pct }, `mission-complete-${moduleNumber}`);go("complete",{quizScore:pct,passed:true})}else go("result",{quizScore:pct,passed:false})};
   const restart=()=>{setQuestionIndex(0);setScore(0);setResult(null);go("quiz",{quizIndex:0,quizScore:0,passed:false})};
   const guide=(text)=><div className="m9-guide"><div><span>HOW TO THINK</span><strong>Observe → isolate → verify → document.</strong></div><div><span>YOUR NEXT ACTION</span><strong>{text}</strong></div></div>;
   return <section ref={stageRef} className="cbet-shell m9-shell"><style>{`
@@ -5804,6 +5815,7 @@ function MissionSeven({ onExit }) {
     setResult(finalScore);
     if (finalScore >= 80) {
       completeCbetModule(moduleNumber, finalScore, 350);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: moduleNumber, score: finalScore }, `mission-complete-${moduleNumber}`);
       saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
       setPhaseState("complete");
     } else {
@@ -6044,6 +6056,12 @@ function MissionTen({ onExit }) {
     setFinished(true);
     if (finalScore >= 80) {
       completeCbetModule(moduleNumber, finalScore, 350);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: moduleNumber, score: finalScore }, `mission-complete-${moduleNumber}`);
+      trackCbetAcademyEvent(
+        "cbet_academy_complete",
+        { mission_number: 10, score: finalScore },
+        "academy-complete"
+      );
       saveMissionProgress(moduleNumber, { phase: "complete", quizIndex: questionIndex, quizScore: score, finalPercent: finalScore, passed: true });
       setPhaseState("complete");
     } else {
@@ -6292,12 +6310,14 @@ function MissionSixAssessment({onExit,onBack}) {
   const pct=finished?Math.round((score/order.length)*100):0;
   const passed=pct>=80;
   const completionDate=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
-  useEffect(()=>{if(saved.m6AssessmentPassed&&!getCbetModuleState(6).complete){completeCbetModule(6,saved.m6AssessmentBest||80,350);}},[]);
+  useEffect(()=>{if(saved.m6AssessmentPassed&&!getCbetModuleState(6).complete){completeCbetModule(6,saved.m6AssessmentBest||80,350);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: 6, score: saved.m6AssessmentBest||80 }, `mission-complete-${6}`);}},[]);
   if(showCertificate&&passed) return <MissionSixCertificate name={learnerName} score={pct} date={completionDate} onBack={()=>setShowCertificate(false)} />;
 
   const categories=["Network Fundamentals","Switching & VLANs","Wireless","Clinical Connectivity","Cybersecurity","Systems Integration"];
   const categoryScores=categories.map(cat=>{const qs=order.filter(q=>q.cat===cat);const hit=qs.filter(q=>answers[q.id]===q.correct).length;return {cat,hit,total:qs.length,pct:qs.length?Math.round(hit/qs.length*100):0};});
-  const finish=()=>{const finalScore=order.reduce((n,q)=>n+(answers[q.id]===q.correct?1:0),0);const finalPct=Math.round((finalScore/order.length)*100);const finalPassed=finalPct>=80;setFinished(true);saveMissionProgress(moduleNumber,{...saved,m6AssessmentBest:Math.max(saved.m6AssessmentBest||0,finalPct),m6AssessmentPassed:finalPassed});if(finalPassed){if(!saved.m6AssessmentPassed)awardCbetXp(150,"mission6-competency-assessment");completeCbetModule(6,finalPct,350);}};
+  const finish=()=>{const finalScore=order.reduce((n,q)=>n+(answers[q.id]===q.correct?1:0),0);const finalPct=Math.round((finalScore/order.length)*100);const finalPassed=finalPct>=80;setFinished(true);saveMissionProgress(moduleNumber,{...saved,m6AssessmentBest:Math.max(saved.m6AssessmentBest||0,finalPct),m6AssessmentPassed:finalPassed});if(finalPassed){if(!saved.m6AssessmentPassed)awardCbetXp(150,"mission6-competency-assessment");completeCbetModule(6,finalPct,350);
+    trackCbetAcademyEvent("cbet_mission_complete", { mission_number: 6, score: finalPct }, `mission-complete-${6}`);}};
   if(finished) return <section className="cbet-shell m6-shell m6-assessment-results">
     <button className="cbet-back" onClick={onExit}>← Back to Academy</button>
     <div className={`m6-result-hero ${passed?"pass":"review"}`}><span>{passed?"🏆":"📘"}</span><div><small>MISSION 6 COMPETENCY ASSESSMENT</small><h1>{passed?"Competency Demonstrated":"Review Recommended"}</h1><p><strong>{score}/{order.length}</strong> correct · <strong>{pct}%</strong> · Passing score: 80%</p></div></div>
@@ -6928,12 +6948,63 @@ Reply from 10.24.40.25: bytes=32 time=2ms`}</pre><strong>Communication restored.
 }
 
 
-export default function CBETAcademy() {
+
+let cbetTrackSiteEvent = () => {};
+const cbetAnalyticsSeen = new Set();
+
+function resolveCbetAcademySource() {
+  if (typeof window === "undefined") return "unknown";
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const explicitSource = params.get("source");
+    if (explicitSource) {
+      window.sessionStorage.setItem("cbet-academy-source", explicitSource);
+      return explicitSource;
+    }
+    const savedSource = window.sessionStorage.getItem("cbet-academy-source");
+    if (savedSource) return savedSource;
+    if (document.referrer) {
+      const referrerUrl = new URL(document.referrer);
+      if (referrerUrl.origin === window.location.origin) {
+        const referrerPath = referrerUrl.pathname.replace(/^\/|\/$/g, "");
+        if (referrerPath) {
+          const normalized = referrerPath.replace(/\.html$/i, "") || "home";
+          window.sessionStorage.setItem("cbet-academy-source", normalized);
+          return normalized;
+        }
+      }
+    }
+  } catch {
+    // Analytics must never interrupt Academy learning.
+  }
+  return "direct_or_unknown";
+}
+
+function trackCbetAcademyEvent(eventName, params = {}, onceKey = "") {
+  if (onceKey && cbetAnalyticsSeen.has(onceKey)) return;
+  if (onceKey) cbetAnalyticsSeen.add(onceKey);
+  try {
+    cbetTrackSiteEvent(eventName, {
+      academy: "CBET Academy",
+      academy_source: resolveCbetAcademySource(),
+      ...params,
+    });
+  } catch {
+    // Analytics must never interrupt Academy learning.
+  }
+}
+
+export default function CBETAcademy({ trackSiteEvent = () => {} }) {
+  cbetTrackSiteEvent = trackSiteEvent;
   const [developerUnlockAll, setDeveloperUnlockAll] = useState(() => {
     if (!isLocalAcademyHost()) return false;
     const saved = window.localStorage.getItem("cbet-local-developer-unlock-all");
     return saved === null ? true : saved === "true";
   });
+  useEffect(() => {
+    trackCbetAcademyEvent("cbet_academy_start", { entry_tab: "CBETAcademy" }, "academy-start");
+  }, []);
+
   const toggleDeveloperUnlockAll = () => {
     setDeveloperUnlockAll((current) => {
       const next = !current;
@@ -6989,6 +7060,11 @@ export default function CBETAcademy() {
     } else {
       setReviewMissionNumber(null);
     }
+    trackCbetAcademyEvent(
+      "cbet_mission_start",
+      { mission_number: number, review_mode: Boolean(review && completed) },
+      `mission-start-${number}`
+    );
     setScreen(`mission${number}`);
     setRefresh((value) => value + 1);
   }

@@ -8314,7 +8314,7 @@ export default function App() {
       {activeTab === "MedicationAcademy" && <MedicationAcademy />}
 
       {/* CBET CERTIFICATION ACADEMY */}
-      {activeTab === "CBETAcademy" && <CBETAcademy />}
+      {activeTab === "CBETAcademy" && <CBETAcademy trackSiteEvent={trackSiteEvent} />}
 
       {/* HOME TAB */}
       {activeTab === "Home" && (
