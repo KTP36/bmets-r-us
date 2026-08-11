@@ -42,7 +42,7 @@
 
   <div class="locked" id="lockedMessage">
     <h2>Certificate Locked</h2>
-    <p>Complete all eight Medication Mastery Academy modules to unlock the completion certificate.</p>
+    <p>Complete all eight Medication Mastery Academy missions and pass the Final Board Challenge to unlock the completion certificate.</p>
     <a class="back" href="/medication-mastery-learning-path.html">Return to Learning Path</a>
   </div>
 
@@ -65,15 +65,19 @@
   <script src="/academy-framework.js"></script>
   <script>
     let passed = false;
+    let completionDate = null;
     try {
-      const path = MSBAcademy.syncAcademyPath("medication_mastery", 8);
-      passed = Boolean(path.academyComplete);
+      const finalBoard = JSON.parse(
+        localStorage.getItem("msb_academy_medication_mastery_final_board_v1") || "{}"
+      );
+      passed = Boolean(finalBoard.passed);
+      completionDate = finalBoard.completedAt || null;
     } catch {}
 
     if (passed) {
       document.getElementById("lockedMessage").style.display = "none";
       document.getElementById("certificate").classList.add("show");
-      document.getElementById("date").textContent = new Date().toLocaleDateString();
+      document.getElementById("date").textContent = completionDate ? new Date(completionDate).toLocaleDateString() : new Date().toLocaleDateString();
     }
   </script>
 </body>
