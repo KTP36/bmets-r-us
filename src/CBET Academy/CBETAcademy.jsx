@@ -1561,11 +1561,11 @@ function MissionTwo({ onExit, onContinueMission3 }) {
       });
 
       const wasComplete = getCbetModuleState(2).complete;
-      completeCbetModule(2, finalScore, 350);
+      completeCbetModule(2, finalScore, 300);
 
       if (finalScore >= 80 && !wasComplete) {
         setShowBadgeUnlock(true);
-        setXpToast({ amount: 350, label: "Mission 2 complete" });
+        setXpToast({ amount: 300, label: "Mission 2 complete" });
       }
 
       setFinished(finalScore >= 80);
@@ -5104,7 +5104,9 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
 
   const resetBrainExplorer = () => {setBrainActiveId("frontal");setBrainExplored([]);setBrainChallenges({});setEegMode("alpha");setBrainPath([]);setBrainFeedback("");setBrainServiceAnswer(null);setBrainRecognition(null);};
   const roadmap=["Heart & ECG","Lungs & Ventilation","Blood Pressure & Circulation","Brain & EEG","Oxygen Transport","Kidneys & Dialysis","Temperature Regulation","Connecting the Systems"];
-  if(phase==="briefing") return <section className="cbet-shell m5-shell m5-briefing"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><span className="m5-kicker">Mission 5 · Anatomy & Physiology</span><h1>Understand the body.<br/>Understand the equipment.</h1><p>Connect human physiology to the signals, waveforms, and measurements biomedical equipment displays.</p><div className="m5-roadmap">{roadmap.map((item,index)=>{const isComplete=completedLessons.includes(index);const available=index===0||(index===1&&(completed||localUnlock))||(index===2&&(lungCompleted||localUnlock))||(index===3&&(circCompleted||localUnlock));return <button key={item} type="button" className={`${available?"ready":"future"} ${isComplete?"complete":""}`} disabled={!available} onClick={()=>openLesson(index)}><span>{isComplete?"✓":index===0?"❤️":index===1?"🫁":index+1}</span><strong>{item}</strong><small>{isComplete?"Complete — review anytime":available?"Ready now":"Coming next"}</small></button>;})}</div><button className="cbet-primary m5-begin" onClick={()=>openLesson((circCompleted||localUnlock)?3:(lungCompleted?2:(completed?1:0)))}>{circCompleted?"Continue to Brain & EEG":localUnlock?"Open Brain & EEG (Local Test)":lungCompleted?"Continue to Blood Pressure & Circulation":completed?"Continue to Lungs & Ventilation":"Begin Heart & ECG Explorer"}</button></section>;
+  const missionFivePrerequisites=[true,completed,lungCompleted,circCompleted,brainCompleted,oxygenCompleted,kidneyCompleted,tempCompleted];
+  const missionFiveResumeIndex=systemsCompleted?7:tempCompleted?7:kidneyCompleted?6:oxygenCompleted?5:brainCompleted?4:circCompleted?3:lungCompleted?2:completed?1:0;
+  if(phase==="briefing") return <section className="cbet-shell m5-shell m5-briefing"><button className="cbet-back" onClick={onExit}>← Back to Academy</button><span className="m5-kicker">Mission 5 · Anatomy & Physiology</span><h1>Understand the body.<br/>Understand the equipment.</h1><p>Connect human physiology to the signals, waveforms, and measurements biomedical equipment displays.</p><div className="m5-roadmap">{roadmap.map((item,index)=>{const isComplete=completedLessons.includes(index);const available=Boolean(missionFivePrerequisites[index]||localUnlock);return <button key={item} type="button" className={`${available?"ready":"future"} ${isComplete?"complete":""}`} disabled={!available} onClick={()=>openLesson(index)}><span>{isComplete?"✓":index===0?"❤️":index===1?"🫁":index+1}</span><strong>{item}</strong><small>{isComplete?"Complete — review anytime":available?"Ready now":"Coming next"}</small></button>;})}</div><button className="cbet-primary m5-begin" onClick={()=>openLesson(localUnlock?Math.max(missionFiveResumeIndex,7):missionFiveResumeIndex)}>{systemsCompleted?"Review Connecting the Systems":tempCompleted?"Continue to Connecting the Systems":kidneyCompleted?"Continue to Temperature Regulation":oxygenCompleted?"Continue to Kidneys & Dialysis":brainCompleted?"Continue to Oxygen Transport":circCompleted?"Continue to Brain & EEG":lungCompleted?"Continue to Blood Pressure & Circulation":completed?"Continue to Lungs & Ventilation":"Begin Heart & ECG Explorer"}</button></section>;
 
   if(lessonIndex===7) return <section className="cbet-shell m5-shell m5-lesson-stage m5-systems-stage">
     <div className="m5-top-nav"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><span>Mission 5 · Lesson 8 of 8</span><button className="cbet-secondary" onClick={()=>setPhase("briefing")}>Mission Overview</button></div><div className="m5-progress"><span style={{width:"100%"}}/></div>
@@ -5125,7 +5127,7 @@ function MissionFive({ onExit, developerUnlockAll = false }) {
     </section>
     <section className="m5-equipment-connections m5-systems-equipment"><span className="m5-section-label">Cross-Parameter Evidence</span><h2>Which signals can validate one another?</h2><div><article><strong>ECG vs. Pulse Rate</strong><span>A major mismatch can indicate pulse-ox artifact, poor perfusion, ectopy, or acquisition problems.</span></article><article><strong>NIBP vs. IBP</strong><span>Trend agreement and waveform quality help identify damping, leveling, zeroing, or cuff-related problems.</span></article><article><strong>SpO₂ vs. Pleth</strong><span>A saturation number without a credible pleth and pulse agreement deserves investigation.</span></article><article><strong>Temperature vs. Clinical Context</strong><span>Probe site, type, contact, and a second validated method help test plausibility.</span></article></div></section>
     <section className="m5-challenge-grid"><article className="m5-service-call"><span className="m5-section-label">🚨 Final Bedside Simulation</span><h2>One number does not fit the rest of the bedside picture.</h2><div className="m5-vitals-strip"><span><b>HR</b> 84</span><span className="spo2-alert"><b>SpO₂</b> 73%</span><span className="spo2-alert"><b>Pulse</b> 42</span><span><b>NIBP</b> 122/76</span><span><b>Temp</b> 37.0°C</span></div><p>The ECG is clean, the pleth is weak and irregular, and the patient appears stable. <strong>Which signal chain should you investigate first?</strong></p>{["Replace the entire patient monitor","Inspect the SpO₂ sensor, placement, perfusion, motion, cable, and pleth quality","Replace the NIBP cuff"].map((o,i)=><button key={o} disabled={systemsScenario===1} className={systemsScenario!==null&&i===1?"correct":systemsScenario===i?"wrong":""} onClick={()=>{setSystemsScenario(i);setSystemsFault("spo2");playCbetTone(i===1?"correct":"wrong")}}>{o}</button>)}</article><article className="m5-recognition"><span className="m5-section-label">Find the Fault</span><h2>Which signal chain is inconsistent with the other evidence?</h2><div>{MISSION_FIVE_SYSTEMS.map(x=><button key={x.id} disabled={systemsRecognition==="spo2"} className={systemsRecognition===x.id?(x.id==="spo2"?"correct":"wrong"):""} onClick={()=>{setSystemsRecognition(x.id);setSystemsActiveId(x.id);playCbetTone(x.id==="spo2"?"correct":"wrong")}}>{x.label}</button>)}</div></article></section>
-    <section className={`m5-completion ${systemsReady||systemsCompleted?"ready":""}`}><div><span>{systemsReady||systemsCompleted?"🏆":"🧩"}</span><div><strong>{systemsCompleted?"Mission 5 Systems Integration Complete":systemsReady?"Final Explorer Ready to Complete":"Complete every activity"}</strong><small>100 XP · Anatomy, physiology, equipment, and systems thinking</small></div></div><button className="cbet-primary" disabled={!systemsReady&&!systemsCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,7]));if(!systemsCompleted)awardCbetXp(100,"mission5-systems-integration");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"lessons",lessonIndex:7,completedLessons:next,m5SystemsExplored:systemsExplored});completeCbetModule(moduleNumber);}}>{systemsCompleted?"Mission 5 Completed ✓":"Complete Mission 5"}</button></section>
+    <section className={`m5-completion ${systemsReady||systemsCompleted?"ready":""}`}><div><span>{systemsReady||systemsCompleted?"🏆":"🧩"}</span><div><strong>{systemsCompleted?"Mission 5 Systems Integration Complete":systemsReady?"Final Explorer Ready to Complete":"Complete every activity"}</strong><small>100 XP · Anatomy, physiology, equipment, and systems thinking</small></div></div><button className="cbet-primary" disabled={!systemsReady&&!systemsCompleted} onClick={()=>{const next=Array.from(new Set([...completedLessons,7]));if(!systemsCompleted)awardCbetXp(100,"mission5-systems-integration");setCompletedLessons(next);saveMissionProgress(moduleNumber,{phase:"complete",lessonIndex:7,completedLessons:next,m5SystemsExplored:systemsExplored,finalPercent:100,passed:true});completeCbetModule(moduleNumber,100,0);}}>{systemsCompleted?"Mission 5 Completed ✓":"Complete Mission 5"}</button></section>
     <nav className="m5-bottom-nav"><button className="cbet-secondary" onClick={()=>openLesson(6)}>← Previous: Temperature Regulation</button><button className="cbet-secondary" onClick={()=>{setSystemsActiveId("ecg");setSystemsExplored([]);setSystemsPath([]);setSystemsScenario(null);setSystemsRecognition(null);setSystemsFault("normal");setSystemsPathFeedback("")}}>Restart Explorer</button><button className="cbet-primary" onClick={onExit}>Return to Academy →</button></nav>
   </section>;
 
@@ -6972,7 +6974,16 @@ export default function CBETAcademy() {
     : 0;
 
   function openMission(number, review = false) {
-    if (review) {
+    const completed = Boolean(getCbetModuleState(number).complete);
+    const localUnlocked = developerUnlockAll && isLocalAcademyHost();
+    const unlocked = completed || localUnlocked || isCbetModuleUnlocked(number);
+
+    // Enforce the same sequential progression rule in navigation that the
+    // dashboard communicates visually. Completed missions remain reviewable,
+    // and Local Developer Mode can still bypass prerequisites for testing.
+    if (!unlocked) return;
+
+    if (review && completed) {
       beginMissionReview(number);
       setReviewMissionNumber(number);
     } else {
@@ -7435,7 +7446,7 @@ export default function CBETAcademy() {
           <div id="cbet-training-path" className="cbet-grid cbet-training-grid">
             {cbetAcademyModules.map((module) => {
               const state = getCbetModuleState(module.number);
-              const unlocked = state.complete || (developerUnlockAll && isLocalAcademyHost()) || module.number <= 4 || (module.number === 5 ? getCbetModuleState(4).complete : isCbetModuleUnlocked(module.number));
+              const unlocked = state.complete || (developerUnlockAll && isLocalAcademyHost()) || isCbetModuleUnlocked(module.number);
               const available = module.number <= 10;
               return (
                 <article key={module.number} className={`cbet-module-card ${!unlocked ? "locked" : ""}`}>
