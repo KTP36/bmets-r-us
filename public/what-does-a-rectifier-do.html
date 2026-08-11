@@ -631,6 +631,49 @@
 }
 @media(max-width:760px){.msb-academy-funnel{align-items:stretch;flex-direction:column;padding:20px}.msb-academy-funnel>a{width:100%}}
 
+
+    .visual-diagram {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #f8fbff, #eef6ff);
+      border: 1px solid #cfe0ef;
+      box-shadow: var(--soft-shadow);
+    }
+    .visual-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+    .visual-caption {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .wave-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .wave-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .wave-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 18px;
+      text-align: center;
+    }
+    .wave-card svg { width:100%; height:150px; }
+    @media(max-width:760px){ .wave-grid{grid-template-columns:1fr;} }
+
 </style>
 </head>
 
@@ -702,9 +745,33 @@
           A rectifier is the part of the power supply that helps make that conversion possible.
         </p>
 
-        <div class="diagram">
-          <span>AC input</span> → <span>Rectifier</span> → <span>Pulsing DC</span> → <span>Filter</span> → <span>Steadier DC</span>
+        <div class="wave-grid">
+          <div class="wave-card">
+            <h3>1. AC Input</h3>
+            <svg viewBox="0 0 360 150" role="img" aria-label="Alternating current waveform">
+              <line x1="20" y1="75" x2="340" y2="75" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M20 75 C45 20 70 20 95 75 S145 130 170 75 S220 20 245 75 S295 130 340 75"
+                    fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="wave-card">
+            <h3>2. Rectified DC</h3>
+            <svg viewBox="0 0 360 150" role="img" aria-label="Full-wave rectified pulsating DC waveform">
+              <line x1="20" y1="130" x2="340" y2="130" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M20 130 Q60 25 100 130 Q140 25 180 130 Q220 25 260 130 Q300 25 340 130"
+                    fill="none" stroke="#dc2626" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="wave-card">
+            <h3>3. Filtered DC</h3>
+            <svg viewBox="0 0 360 150" role="img" aria-label="Filtered steadier DC waveform">
+              <line x1="20" y1="130" x2="340" y2="130" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M20 55 C50 42 80 48 110 55 S170 45 200 54 S260 45 290 54 S325 48 340 52"
+                    fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+          </div>
         </div>
+        <div class="visual-caption">Recognition sequence: AC alternates above and below zero → rectification redirects the waveform into one polarity → filtering reduces ripple.</div>
 
         <div class="notice-first">
           <strong>What to notice first:</strong>
@@ -795,6 +862,30 @@
               After rectification, capacitors often smooth the pulsing DC into a steadier output before regulation.
             </p>
           </div>
+        </div>
+
+        <div class="visual-diagram">
+          <svg viewBox="0 0 820 300" role="img" aria-label="Simplified four diode bridge rectifier">
+            <text x="90" y="38" font-size="22" font-weight="900" fill="#12355b" text-anchor="middle">AC</text>
+            <text x="730" y="38" font-size="22" font-weight="900" fill="#12355b" text-anchor="middle">DC</text>
+
+            <circle cx="410" cy="150" r="115" fill="#f8fbff" stroke="#bfdbfe" stroke-width="4"/>
+            <text x="410" y="145" font-size="28" font-weight="900" fill="#12355b" text-anchor="middle">4 Diodes</text>
+            <text x="410" y="178" font-size="20" font-weight="800" fill="#475569" text-anchor="middle">Bridge Rectifier</text>
+
+            <line x1="90" y1="90" x2="295" y2="90" stroke="#2563eb" stroke-width="7"/>
+            <line x1="90" y1="210" x2="295" y2="210" stroke="#2563eb" stroke-width="7"/>
+            <text x="55" y="97" font-size="22" font-weight="900" fill="#2563eb">~</text>
+            <text x="55" y="217" font-size="22" font-weight="900" fill="#2563eb">~</text>
+
+            <line x1="525" y1="90" x2="730" y2="90" stroke="#16a34a" stroke-width="7"/>
+            <line x1="525" y1="210" x2="730" y2="210" stroke="#16a34a" stroke-width="7"/>
+            <text x="748" y="98" font-size="24" font-weight="900" fill="#15803d">+</text>
+            <text x="748" y="218" font-size="24" font-weight="900" fill="#15803d">−</text>
+
+            <text x="410" y="286" font-size="18" font-weight="900" fill="#475569" text-anchor="middle">Different diode pairs conduct on alternating half-cycles, keeping output polarity the same.</text>
+          </svg>
+          <div class="visual-caption">CBET recognition cue: bridge rectifier = four diodes + full-wave rectification.</div>
         </div>
 
         <div class="notice-first">
