@@ -1366,7 +1366,7 @@ function MissionOne({ onBack, onComplete, onContinueMission2 }) {
           </div>
           <div className="cbet-actions center">
             {!passed && <button className="cbet-secondary" onClick={restart}>Retake Challenge</button>}
-            <button className="cbet-secondary" onClick={onBack}>Return to Academy</button>
+            <button className="cbet-secondary" onClick={onBack}>Back to Academy</button>
             {passed && (
               <button className="cbet-primary" onClick={onContinueMission2}>Continue to Mission 2 →</button>
             )}
@@ -1393,12 +1393,14 @@ function MissionTwo({ onExit, onContinueMission3 }) {
   const [scenarioChecks, setScenarioChecks] = useState(
     Object.fromEntries((savedProgress.completedScenarios || []).map((index) => [index, true]))
   );
-  const [questionIndex, setQuestionIndexState] = useState(savedProgress.quizIndex || 0);
+  const hasSavedQuizScore = Number.isFinite(savedProgress.quizScore);
+  const restoredQuizIndex = savedProgress.phase === "quiz" && !hasSavedQuizScore ? 0 : (savedProgress.quizIndex || 0);
+  const [questionIndex, setQuestionIndexState] = useState(restoredQuizIndex);
   const completedModule = getCbetModuleState(2) || { complete: false, bestScore: 0 };
   const [answers, setAnswers] = useState({});
   const [wrongAnswers, setWrongAnswers] = useState({});
   const [missedQuestions, setMissedQuestions] = useState({});
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(hasSavedQuizScore ? savedProgress.quizScore : 0);
   const [finished, setFinished] = useState(savedProgress.phase === "complete" && completedModule.complete);
   const [finalResult, setFinalResult] = useState(() => {
     if (savedProgress.phase === "complete" && completedModule.complete) {
@@ -1535,9 +1537,9 @@ function MissionTwo({ onExit, onContinueMission3 }) {
     if (!missedQuestions[questionIndex]) {
       const nextScore = score + 1;
       setScore(nextScore);
-      saveMissionProgress(3, { phase: "quiz", quizIndex: questionIndex, quizScore: nextScore });
+      saveMissionProgress(2, { phase: "quiz", quizIndex: questionIndex, quizScore: nextScore });
     } else {
-      saveMissionProgress(3, { phase: "quiz", quizIndex: questionIndex, quizScore: score });
+      saveMissionProgress(2, { phase: "quiz", quizIndex: questionIndex, quizScore: score });
     }
   }
 
@@ -1545,16 +1547,9 @@ function MissionTwo({ onExit, onContinueMission3 }) {
     if (questionIndex < questions.length - 1) {
       setQuestionIndex(questionIndex + 1);
     } else {
-      const completedAnswers = {
-        ...answers,
-        [questionIndex]: selected,
-      };
-
-      const finalCorrect = questions.reduce(
-        (total, item, index) =>
-          total + (completedAnswers[index] === item.answer && !missedQuestions[index] ? 1 : 0),
-        0
-      );
+      // The running score is persisted after every first-try correct answer,
+      // so it remains accurate even when a learner resumes mid-challenge.
+      const finalCorrect = score;
 
       const finalScore = Math.round(
         (finalCorrect / questions.length) * 100
@@ -1573,8 +1568,15 @@ function MissionTwo({ onExit, onContinueMission3 }) {
         setXpToast({ amount: 350, label: "Mission 2 complete" });
       }
 
-      setFinished(true);
-      setPhase("complete");
+      setFinished(finalScore >= 80);
+      if (finalScore >= 80) {
+        saveMissionProgress(2, { phase: "complete", quizScore: finalCorrect, finalPercent: finalScore, passed: true });
+        setPhaseState("complete");
+      } else {
+        saveMissionProgress(2, { phase: "result", quizScore: finalCorrect, finalPercent: finalScore, passed: false });
+        setPhaseState("result");
+      }
+      scrollCbetPageToTop();
     }
   }
 
@@ -1584,7 +1586,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
     setScore(0);
     setFinished(false);
     setFinalResult(null);
-    saveMissionProgress(2, { phase: "quiz", quizIndex: 0 });
+    saveMissionProgress(2, { phase: "quiz", quizIndex: 0, quizScore: 0, finalPercent: null, passed: false });
     setPhaseState("quiz");
   }
 
@@ -2082,7 +2084,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
     return (
       <section className="cbet-shell">
         {missionOverlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
         <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Lesson {lessonIndex + 1} of {lessons.length}</span>
@@ -2160,7 +2162,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
     return (
       <section className="cbet-shell">
         {missionOverlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
         <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Applied Case {scenarioIndex + 1} of {scenarios.length}</span>
@@ -2195,7 +2197,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
     return (
       <section className="cbet-shell">
         {missionOverlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
         <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Question {questionIndex + 1} of {questions.length}</span>
@@ -2229,7 +2231,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
   return (
     <section className="cbet-shell">
       {missionOverlay}
-      <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+      <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
       <MissionJourney phase="complete" lessonIndex={lessons.length - 1} lessonCount={lessons.length} passed={passed} />
       <article className={`cbet-results ${passed ? "passed" : ""}`}>
         {passed && (
@@ -2256,7 +2258,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
         </div>
         <div className="cbet-nav-row center">
           {!passed && <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>}
-          <button className="cbet-secondary" onClick={onExit}>Return to Academy</button>
+          <button className="cbet-secondary" onClick={onExit}>Back to Academy</button>
           {passed && (
             <button className="cbet-primary" onClick={onContinueMission3}>Continue to Mission 3 →</button>
           )}
@@ -2732,7 +2734,7 @@ function MissionThree({ onExit }) {
     return (
       <section className="cbet-shell">
         {overlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
         <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={false} />
         <article className="cbet-briefing mission-three-briefing">
           <div className="cbet-hero-icon">🧰</div>
@@ -2767,7 +2769,7 @@ function MissionThree({ onExit }) {
     return (
       <section className="cbet-shell">
         {overlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
         <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Lesson {lessonIndex + 1} of {lessons.length}</span>
@@ -2841,7 +2843,7 @@ function MissionThree({ onExit }) {
     return (
       <section className="cbet-shell">
         {overlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
         <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Applied Case {scenarioIndex + 1} of {scenarios.length}</span>
@@ -2887,7 +2889,7 @@ function MissionThree({ onExit }) {
     return (
       <section className="cbet-shell">
         {overlay}
-        <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+        <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
         <MissionJourney phase={phase} lessonIndex={lessonIndex} lessonCount={lessons.length} passed={phase === "complete" && passed} />
         <div className="cbet-subprogress">
           <span>Question {questionIndex + 1} of {questions.length}</span>
@@ -2934,7 +2936,7 @@ function MissionThree({ onExit }) {
 
   return (
     <section className="cbet-shell">
-      <button className="cbet-back" onClick={onExit}>← Academy Dashboard</button>
+      <button className="cbet-back" onClick={onExit}>← Save & Exit</button>
       <MissionJourney phase="complete" lessonIndex={lessons.length - 1} lessonCount={lessons.length} passed={passed} />
       <article className={`cbet-results ${passed ? "passed" : ""}`}>
         <div className="cbet-hero-icon">{passed ? "🧰" : "📘"}</div>
@@ -4547,7 +4549,7 @@ function MissionFour({ onExit }) {
     return <section ref={stageRef} className="cbet-shell cbet-lesson-stage cbet-module4-stage"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><article className="cbet-quiz"><div className="cbet-quiz-meta cbet-module4-meta"><span>Final Challenge · {questionIndex+1} of {questions.length}</span><span>{question.category}</span></div><div className="cbet-progress-bar cbet-module4-progress"><span style={{width:`${((questionIndex+1)/questions.length)*100}%`}}/></div><h2>{question.question}</h2><div className="cbet-options">{question.options.map((o,i)=><button key={o} disabled={answered} className={`cbet-option ${answered&&i===question.answer?"correct":""} ${answered&&i===selected&&i!==question.answer?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className="cbet-feedback"><strong>{selected===question.answer?"Correct.":"Incorrect."}</strong><span>{question.explanation}</span></div>}<div className="cbet-actions"><span>Score: {score}/{questions.length}</span><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex===questions.length-1?"Finish Mission":"Next Question"}</button></div></article></section>;
   }
   const passed=(result||0)>=80;
-  return <section className="cbet-shell cbet-module10-results-shell"><article className={`cbet-results cbet-module10-results ${passed?"passed":""}`}><div className="cbet-hero-icon">{passed?"🏆":"📘"}</div><span className="cbet-label">{passed?"Mission 4 Complete":"Review Required"}</span><h1 className="cbet-module10-result-score">{result||0}%</h1><h2 className="cbet-module10-result-title">Medical Equipment Systems</h2><p>{passed?"You completed the equipment lessons, hospital service calls, and final challenge.":"You need 80% to pass. Review the lessons and retake the final challenge."}</p><div className="cbet-completion-summary cbet-module10-summary"><div><span>Lessons</span><strong>{completedLessons.length}/{missionFourLessons.length}</strong></div><div><span>Service Calls</span><strong>{completedScenarios.length}/{missionFourScenarios.length}</strong></div><div><span>Status</span><strong>{passed?"Complete":"Review"}</strong></div></div>{passed&&<section className="cbet-achievement-card"><span className="cbet-achievement-eyebrow">Achievement Earned</span><div className="cbet-achievement-mark">🏅</div><h2>Medical Equipment Systems</h2><p>This recognizes successful completion of Mission 4 in the MedSkillBuilder CBET Academy.</p><div className="cbet-achievement-details"><div><span>Mission</span><strong>4</strong></div><div><span>Score</span><strong>{result}%</strong></div><div><span>XP</span><strong>450</strong></div></div><button className="cbet-primary cbet-print-achievement" onClick={()=>window.print()}>Print My Achievement</button></section>}<div className="cbet-actions center cbet-module10-result-actions">{!passed&&<button className="cbet-primary" onClick={restartQuiz}>Retake Final Challenge</button>}{passed&&<button className="cbet-primary" onClick={()=>reviewLesson(0)}>Review Equipment Explorers</button>}<button className="cbet-secondary" onClick={onExit}>Return to Academy</button></div></article></section>;
+  return <section className="cbet-shell cbet-module10-results-shell"><article className={`cbet-results cbet-module10-results ${passed?"passed":""}`}><div className="cbet-hero-icon">{passed?"🏆":"📘"}</div><span className="cbet-label">{passed?"Mission 4 Complete":"Review Required"}</span><h1 className="cbet-module10-result-score">{result||0}%</h1><h2 className="cbet-module10-result-title">Medical Equipment Systems</h2><p>{passed?"You completed the equipment lessons, hospital service calls, and final challenge.":"You need 80% to pass. Review the lessons and retake the final challenge."}</p><div className="cbet-completion-summary cbet-module10-summary"><div><span>Lessons</span><strong>{completedLessons.length}/{missionFourLessons.length}</strong></div><div><span>Service Calls</span><strong>{completedScenarios.length}/{missionFourScenarios.length}</strong></div><div><span>Status</span><strong>{passed?"Complete":"Review"}</strong></div></div>{passed&&<section className="cbet-achievement-card"><span className="cbet-achievement-eyebrow">Achievement Earned</span><div className="cbet-achievement-mark">🏅</div><h2>Medical Equipment Systems</h2><p>This recognizes successful completion of Mission 4 in the MedSkillBuilder CBET Academy.</p><div className="cbet-achievement-details"><div><span>Mission</span><strong>4</strong></div><div><span>Score</span><strong>{result}%</strong></div><div><span>XP</span><strong>450</strong></div></div><button className="cbet-primary cbet-print-achievement" onClick={()=>window.print()}>Print My Achievement</button></section>}<div className="cbet-actions center cbet-module10-result-actions">{!passed&&<button className="cbet-primary" onClick={restartQuiz}>Retake Challenge</button>}{passed&&<button className="cbet-primary" onClick={()=>reviewLesson(0)}>Review Equipment Explorers</button>}<button className="cbet-secondary" onClick={onExit}>Back to Academy</button></div></article></section>;
 }
 
 
@@ -5642,7 +5644,7 @@ function MissionNine({ onExit }) {
   {phase==="lessons"&&(()=>{const l=lessons[lessonIndex],c=l.check,ok=selected===c.answer;return <>{guide("Read the evidence, then choose the BEST next action—not merely an action that could work.")}<div className="m9-meta"><span>Mission 9 · Lesson {lessonIndex+1} of {lessons.length}</span><span>CBET reasoning</span></div><div className="m9-progress"><span style={{width:`${((lessonIndex+1)/lessons.length)*100}%`}}/></div><div className="m9-title"><span className="cbet-label">{l.icon} FIELD REASONING</span><h1>{l.title}</h1></div><article className="m9-card"><div className="m9-points">{l.points.map(x=><p key={x}>{x}</p>)}</div><h2>{c.question}</h2><div className="m9-options">{c.options.map((o,i)=><button key={o} disabled={ok} className={`${selected!==null&&i===c.answer?"correct":""} ${selected===i&&!ok?"wrong":""}`} onClick={()=>answer(i,c.answer)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{selected!==null&&<div className={`m9-feedback ${ok?"good":"bad"}`}><strong>{ok?"Strong decision.":"Not the best next action."}</strong> {ok?c.explanation:"Use the evidence to eliminate the largest fault category safely, then try again."}</div>}<div className="m9-nav"><button className="cbet-secondary" disabled={lessonIndex===0} onClick={()=>{setLessonIndex(v=>v-1);setSelected(null)}}>← Previous</button><button className="cbet-primary" disabled={!ok} onClick={nextLesson}>{lessonIndex===lessons.length-1?"Start Field Calls →":"Complete Lesson →"}</button></div></article></>})()}
   {phase==="scenarios"&&(()=>{const x=scenarios[scenarioIndex],ok=selected===x.answer;return <>{guide("Work the complaint like a service call. Look for the simplest evidence-supported cause before invasive testing.")}<div className="m9-meta"><span>Advanced Field Call {scenarioIndex+1} of {scenarios.length}</span><span>Applied troubleshooting</span></div><div className="m9-progress"><span style={{width:`${((scenarioIndex+1)/scenarios.length)*100}%`}}/></div><article className="m9-card"><span className="cbet-label">HOSPITAL SERVICE CALL</span><h1>{x.title}</h1><p>{x.prompt}</p><h2>{x.question}</h2><div className="m9-options">{x.options.map((o,i)=><button key={o} disabled={ok} className={`${selected!==null&&i===x.answer?"correct":""} ${selected===i&&!ok?"wrong":""}`} onClick={()=>answer(i,x.answer)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{selected!==null&&<div className={`m9-feedback ${ok?"good":"bad"}`}><strong>{ok?"Best next step.":"Keep isolating."}</strong> {ok?x.explanation:"That action may be possible, but it is not the strongest next step from the evidence given."}</div>}<div className="m9-nav"><span>Complaint ≠ diagnosis</span><button className="cbet-primary" disabled={!ok} onClick={nextScenario}>{scenarioIndex===scenarios.length-1?"Start Final Challenge →":"Next Service Call →"}</button></div></article></>})()}
   {phase==="quiz"&&(()=>{const q=questions[questionIndex],ok=selected===q.answer;return <>{guide("Choose one BEST answer. Answer positions are randomized every attempt; do not use length or placement as a clue.")}<div className="m9-meta"><span>Final Challenge · {questionIndex+1} of {questions.length}</span><span>{q.category}</span></div><div className="m9-progress"><span style={{width:`${((questionIndex+1)/questions.length)*100}%`}}/></div><article className="m9-card"><h2>{q.question}</h2><div className="m9-options">{q.options.map((o,i)=><button key={o} disabled={selected!==null} className={`${selected!==null&&i===q.answer?"correct":""} ${selected===i&&!ok?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{selected!==null&&<div className={`m9-feedback ${ok?"good":"bad"}`}><strong>{ok?"Correct.":"Incorrect."}</strong> {q.explanation}</div>}<div className="m9-nav"><span>Current score: {score}/{questions.length}</span><button className="cbet-primary" disabled={selected===null} onClick={nextQuiz}>{questionIndex===questions.length-1?"Finish Mission":"Next Question →"}</button></div></article></>})()}
-  {phase==="result"&&<div className="m9-card m9-score"><span className="cbet-label">MISSION 9 RESULT</span><strong>{result}%</strong><h1>80% is required to demonstrate exam readiness.</h1><p>Review the reasoning—not just the missed answer. The goal is to choose the safest evidence-based next action under exam pressure.</p><button className="cbet-primary" onClick={restart}>Retake Final Challenge</button></div>}
+  {phase==="result"&&<div className="m9-card m9-score"><span className="cbet-label">MISSION 9 RESULT</span><strong>{result}%</strong><h1>80% is required to demonstrate exam readiness.</h1><p>Review the reasoning—not just the missed answer. The goal is to choose the safest evidence-based next action under exam pressure.</p><button className="cbet-primary" onClick={restart}>Retake Challenge</button></div>}
   {phase==="complete"&&<div className="m9-card m9-score"><span className="cbet-label">MISSION 9 COMPLETE</span><strong>{result}%</strong><h1>🏆 CBET Exam Readiness Demonstrated</h1><p>You demonstrated evidence-based troubleshooting across equipment, electrical, clinical, networking, safety, documentation, and return-to-service decisions.</p><div className="m9-nav"><button className="cbet-secondary" onClick={restart}>Retake Challenge</button><button className="cbet-primary" onClick={onExit}>Return to Academy →</button></div></div>}
   </section>;
 }
@@ -6183,7 +6185,7 @@ function MissionTen({ onExit }) {
         <div className="cbet-actions center cbet-module10-result-actions">
           {!passed && <button className="cbet-secondary" onClick={restartQuiz}>Retake Challenge</button>}
           {passed && <button className="cbet-primary cbet-print-achievement" onClick={() => window.print()}>🖨️ Print My Achievement</button>}
-          <button className="cbet-secondary" onClick={onExit}>Return to Academy</button>
+          <button className="cbet-secondary" onClick={onExit}>Back to Academy</button>
         </div>
       </article>
     </section>
@@ -7300,7 +7302,7 @@ export default function CBETAcademy() {
               <span className="cbet-label">MedSkillBuilder Academy</span>
               <h1>CBET Academy</h1>
               <p>
-                Build your electronics knowledge, practice on the virtual bench, and apply it to realistic hospital service calls.
+                Learn, practice, and troubleshoot your way through the CBET Academy.
               </p>
               <div className="cbet-dashboard-continue">
                 <button className="cbet-primary cbet-continue-button" onClick={() => openMission(nextMissionNumber, allMissionsComplete)}>
@@ -7339,9 +7341,8 @@ export default function CBETAcademy() {
 
       <section className="cbet-shell cbet-dashboard cbet-dashboard-v1">
         <div className="cbet-section-heading cbet-dashboard-heading">
-          <span className="cbet-label">Choose your next step</span>
-          <h2>Your CBET training hub</h2>
-          <p>Continue your mission, practice a skill, or work a service call.</p>
+          <span className="cbet-label">Keep moving</span>
+          <h2>Choose what to work on</h2>
         </div>
 
         <div className="cbet-hub-grid">
@@ -7351,7 +7352,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Learn</span>
             </div>
             <h3>Training Missions</h3>
-            <p>Follow the guided CBET learning path and pick up where you left off.</p>
+            <p>Continue your guided mission path.</p>
             <div className="cbet-card-progress-row"><span>{completedMissionCount} of {totalMissionCount} complete</span><strong>{missionPercent}%</strong></div>
             <div className="cbet-card-progress"><span style={{ width: `${missionPercent}%` }} /></div>
             <button className="cbet-primary" onClick={() => openMission(nextMissionNumber, allMissionsComplete)}>{nextMissionLabel}</button>
@@ -7363,7 +7364,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Practice</span>
             </div>
             <h3>Virtual Lab</h3>
-            <p>Practice measurements and troubleshooting on an interactive electronics bench.</p>
+            <p>Practice measurements and troubleshooting.</p>
             <div className="cbet-card-progress-row"><span>{virtualLabLessonsCompleted} of 9 lessons</span><strong>{virtualLabPercent}%</strong></div>
             <div className="cbet-card-progress"><span style={{ width: `${virtualLabPercent}%` }} /></div>
             <button className="cbet-secondary" onClick={() => setScreen("virtualLab")}>Open Virtual Lab</button>
@@ -7375,7 +7376,7 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Explore</span>
             </div>
             <h3>Equipment Learning Center</h3>
-            <p>Explore equipment operation, components, symptoms, and BMET reasoning.</p>
+            <p>Learn equipment, components, and common faults.</p>
             <div className="cbet-hub-summary"><strong>8</strong><span>equipment families</span></div>
             <button className="cbet-secondary" onClick={() => setScreen("equipmentLearning")}>Explore Equipment</button>
           </article>
@@ -7386,9 +7387,9 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Work</span>
             </div>
             <h3>Hospital Simulator</h3>
-            <p>Work realistic service calls from fault isolation through verification.</p>
+            <p>Troubleshoot realistic hospital service calls.</p>
             <div className="cbet-hub-summary"><strong>{stats.scenariosCompleted}</strong><span>scenarios completed</span></div>
-            <button className="cbet-secondary" onClick={() => setScreen("hospital")}>Enter Hospital</button>
+            <button className="cbet-secondary" onClick={() => setScreen("hospital")}>Open Simulator</button>
           </article>
 
           <article className="cbet-hub-card">
@@ -7397,9 +7398,9 @@ export default function CBETAcademy() {
               <span className="cbet-hub-kicker">Progress</span>
             </div>
             <h3>Your Progress</h3>
-            <p>Review XP, completed missions, competencies, scores, and streaks.</p>
+            <p>See your missions, XP, scores, and streak.</p>
             <div className="cbet-hub-summary"><strong>{academy.xp.toLocaleString()}</strong><span>total XP earned</span></div>
-            <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Statistics</button>
+            <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Progress</button>
           </article>
 
           <article className="cbet-hub-card">
@@ -7407,17 +7408,18 @@ export default function CBETAcademy() {
               <span className="cbet-hub-icon" aria-hidden="true">📜</span>
               <span className="cbet-hub-kicker">Recognize</span>
             </div>
-            <h3>Certificates of Completion</h3>
-            <p>View educational completion certificates for finished Academy modules.</p>
+            <h3>Completion Certificates</h3>
+            <p>View certificates for completed Academy missions.</p>
             <div className="cbet-hub-summary"><strong>{badgeCount}</strong><span>module certificates available</span></div>
-            <button className="cbet-secondary" onClick={() => setScreen("certificates")}>Open Certificate Center</button>
+            <button className="cbet-secondary" onClick={() => setScreen("certificates")}>View Certificates</button>
           </article>
         </div>
 
         <div className="cbet-mission-toggle-row">
           <div>
             <span className="cbet-label">Training path</span>
-            <h2>Ten missions available now</h2>
+            <h2>CBET Mission Path</h2>
+            <p>10 missions · Complete them in order</p>
           </div>
           <button
             className="cbet-secondary"
@@ -7425,7 +7427,7 @@ export default function CBETAcademy() {
             aria-controls="cbet-training-path"
             onClick={() => setShowAllMissions((value) => !value)}
           >
-            {showAllMissions ? "Hide Missions" : "View All Missions"}
+            {showAllMissions ? "Hide Mission Path" : "View Mission Path"}
           </button>
         </div>
 
@@ -7444,8 +7446,7 @@ export default function CBETAcademy() {
                     </span>
                   </div>
                   <h3>{module.title}</h3>
-                  <p>{module.description}</p>
-                  <div className="cbet-badge"><span aria-hidden="true">✓</span> Professional Competency: {module.badge}</div>
+                  <div className="cbet-badge"><span aria-hidden="true">✓</span> {module.badge}</div>
                   <div className="cbet-card-footer">
                     <span>{module.xp} XP</span>
                     {available ? (
