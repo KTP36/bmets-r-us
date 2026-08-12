@@ -666,6 +666,124 @@
 }
 @media(max-width:760px){.msb-academy-funnel{align-items:stretch;flex-direction:column;padding:20px}.msb-academy-funnel>a{width:100%}}
 
+
+    .visual-diagram {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #f8fbff, #eef6ff);
+      border: 1px solid #cfe0ef;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .visual-diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+    }
+
+    .visual-caption {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .current-visuals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .current-card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    .current-card h3 {
+      margin: 0 0 6px;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .current-card p {
+      margin: 0 0 8px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .current-card svg {
+      width: 100%;
+      height: 170px;
+    }
+
+    .power-path-visual {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .power-stage {
+      position: relative;
+      padding: 16px 10px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #ffffff;
+      text-align: center;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .power-stage span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .power-stage:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      color: var(--bright-blue);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 850px) {
+      .current-visuals,
+      .power-path-visual {
+        grid-template-columns: 1fr;
+      }
+
+      .power-stage:not(:last-child)::after {
+        content: "↓";
+        right: auto;
+        left: 50%;
+        top: auto;
+        bottom: -25px;
+        transform: translateX(-50%);
+      }
+
+      .power-stage {
+        margin-bottom: 11px;
+      }
+    }
+
 </style>
 </head>
 
@@ -744,9 +862,36 @@
           Medical equipment may plug into AC power but often converts that power into DC for internal boards, sensors, displays, processors, and control circuits.
         </p>
 
-        <div class="diagram">
-          <span>Wall outlet AC</span> → <span>Power supply</span> → <span>Rectifier</span> → <span>Internal DC</span>
+        <div class="current-visuals">
+          <div class="current-card">
+            <h3>AC — Alternating Current</h3>
+            <p>Direction changes back and forth.</p>
+            <svg viewBox="0 0 420 170" role="img" aria-label="Alternating current waveform crossing above and below zero">
+              <line x1="25" y1="85" x2="395" y2="85" stroke="#94a3b8" stroke-width="2"/>
+              <line x1="25" y1="20" x2="25" y2="150" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M25 85 C55 25 85 25 115 85 S175 145 205 85 S265 25 295 85 S355 145 395 85"
+                    fill="none" stroke="#2563eb" stroke-width="7" stroke-linecap="round"/>
+              <text x="42" y="35" font-size="16" font-weight="900" fill="#2563eb">+</text>
+              <text x="42" y="145" font-size="16" font-weight="900" fill="#2563eb">−</text>
+              <text x="210" y="165" font-size="15" font-weight="900" fill="#475569" text-anchor="middle">crosses zero as direction reverses</text>
+            </svg>
+          </div>
+
+          <div class="current-card">
+            <h3>DC — Direct Current</h3>
+            <p>Polarity stays in one direction.</p>
+            <svg viewBox="0 0 420 170" role="img" aria-label="Direct current steady waveform above zero">
+              <line x1="25" y1="130" x2="395" y2="130" stroke="#94a3b8" stroke-width="2"/>
+              <line x1="25" y1="20" x2="25" y2="145" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M30 55 L390 55"
+                    fill="none" stroke="#16a34a" stroke-width="7" stroke-linecap="round"/>
+              <text x="42" y="38" font-size="16" font-weight="900" fill="#15803d">+</text>
+              <text x="210" y="165" font-size="15" font-weight="900" fill="#475569" text-anchor="middle">steady polarity — one direction</text>
+            </svg>
+          </div>
         </div>
+
+        <div class="visual-caption">Recognition cue: AC alternates across zero; DC stays on one side with a fixed polarity.</div>
 
         <div class="notice-first">
           <strong>What to notice first:</strong>
@@ -883,8 +1028,34 @@
           to convert that energy into the DC voltages needed by the internal electronics.
         </p>
 
-        <div class="diagram">
-          <span>AC input</span> → <span>Transformer or input stage</span> → <span>Rectifier</span> → <span>Capacitor smoothing</span> → <span>Voltage regulation</span> → <span>DC output</span>
+        <div class="visual-diagram">
+          <div class="power-path-visual" aria-label="AC to DC power supply conversion path">
+            <div class="power-stage">AC Input<span>Wall or facility power</span></div>
+            <div class="power-stage">Input Stage<span>Transforms or conditions input</span></div>
+            <div class="power-stage">Rectifier<span>Creates pulsating DC</span></div>
+            <div class="power-stage">Capacitor<span>Smooths ripple</span></div>
+            <div class="power-stage">Regulator<span>Stabilizes voltage</span></div>
+            <div class="power-stage">DC Output<span>Powers internal electronics</span></div>
+          </div>
+
+          <svg viewBox="0 0 900 210" role="img" aria-label="Waveform progression from AC to pulsating DC to smoother regulated DC">
+            <line x1="25" y1="105" x2="275" y2="105" stroke="#94a3b8" stroke-width="2"/>
+            <path d="M25 105 C45 55 65 55 85 105 S125 155 145 105 S185 55 205 105 S245 155 275 105"
+                  fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+            <text x="150" y="195" font-size="16" font-weight="900" fill="#2563eb" text-anchor="middle">AC</text>
+
+            <line x1="325" y1="165" x2="575" y2="165" stroke="#94a3b8" stroke-width="2"/>
+            <path d="M325 165 Q355 65 385 165 Q415 65 445 165 Q475 65 505 165 Q535 65 575 165"
+                  fill="none" stroke="#dc2626" stroke-width="6" stroke-linecap="round"/>
+            <text x="450" y="195" font-size="16" font-weight="900" fill="#b91c1c" text-anchor="middle">Pulsating DC</text>
+
+            <line x1="625" y1="165" x2="875" y2="165" stroke="#94a3b8" stroke-width="2"/>
+            <path d="M625 75 C650 62 675 69 700 76 S750 66 775 75 S825 66 850 75 S865 70 875 72"
+                  fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>
+            <text x="750" y="195" font-size="16" font-weight="900" fill="#15803d" text-anchor="middle">Smoothed / Regulated DC</text>
+          </svg>
+
+          <div class="visual-caption">Follow the waveform: alternating AC → rectified pulsating DC → smoother, stabilized DC for internal circuits.</div>
         </div>
 
         <p>
