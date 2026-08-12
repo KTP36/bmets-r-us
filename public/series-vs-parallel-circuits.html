@@ -629,6 +629,101 @@
 }
 @media(max-width:760px){.msb-academy-funnel{align-items:stretch;flex-direction:column;padding:20px}.msb-academy-funnel>a{width:100%}}
 
+
+    .visual-diagram {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #f8fbff, #eef6ff);
+      border: 1px solid #cfe0ef;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .visual-caption {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .circuit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .circuit-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .circuit-card h3 {
+      margin: 0 0 6px;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .circuit-card p {
+      margin: 0 0 10px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .circuit-card svg {
+      width: 100%;
+      height: 230px;
+      display: block;
+    }
+
+    .failure-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .failure-card {
+      border-radius: 18px;
+      padding: 18px;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+
+    .failure-card.series-fail {
+      background: #fff7ed;
+      border-color: #fed7aa;
+    }
+
+    .failure-card.parallel-fail {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .failure-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .failure-card svg {
+      width: 100%;
+      height: 200px;
+      display: block;
+    }
+
+    @media (max-width: 850px) {
+      .circuit-grid,
+      .failure-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
 </style>
 </head>
 
@@ -691,9 +786,81 @@
         Series means one path. Parallel means multiple paths.
       </div>
 
-      <div class="diagram">
-        <span>Series</span> → <span>One path</span> &nbsp;&nbsp; | &nbsp;&nbsp; <span>Parallel</span> → <span>Multiple paths</span>
+      <div class="circuit-grid">
+        <div class="circuit-card">
+          <h3>Series Circuit — One Path</h3>
+          <p>The same current must pass through every component.</p>
+          <svg viewBox="0 0 520 230" role="img" aria-label="Series circuit with one continuous current path through three resistors">
+            <defs>
+              <marker id="seriesArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"></path>
+              </marker>
+            </defs>
+
+            <line x1="55" y1="115" x2="110" y2="115" stroke="#12355b" stroke-width="6"/>
+            <line x1="110" y1="82" x2="110" y2="148" stroke="#12355b" stroke-width="7"/>
+            <line x1="132" y1="92" x2="132" y2="138" stroke="#12355b" stroke-width="5"/>
+            <line x1="132" y1="115" x2="170" y2="115" stroke="#12355b" stroke-width="6"/>
+
+            <polyline points="170,115 185,97 200,133 215,97 230,133 245,97 260,115"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+            <line x1="260" y1="115" x2="295" y2="115" stroke="#12355b" stroke-width="6"/>
+
+            <polyline points="295,115 310,97 325,133 340,97 355,133 370,97 385,115"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+            <line x1="385" y1="115" x2="420" y2="115" stroke="#12355b" stroke-width="6"/>
+
+            <polyline points="420,115 435,97 450,133 465,97 480,133 495,97 510,115"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+
+            <line x1="510" y1="115" x2="510" y2="185" stroke="#12355b" stroke-width="6"/>
+            <line x1="510" y1="185" x2="55" y2="185" stroke="#12355b" stroke-width="6"/>
+            <line x1="55" y1="185" x2="55" y2="115" stroke="#12355b" stroke-width="6"/>
+
+            <line x1="180" y1="55" x2="420" y2="55" stroke="#2563eb" stroke-width="6" marker-end="url(#seriesArrow)"/>
+            <text x="300" y="40" font-size="18" font-weight="900" fill="#2563eb" text-anchor="middle">one continuous current path</text>
+          </svg>
+        </div>
+
+        <div class="circuit-card">
+          <h3>Parallel Circuit — Multiple Paths</h3>
+          <p>Current can divide into separate branches and recombine.</p>
+          <svg viewBox="0 0 520 230" role="img" aria-label="Parallel circuit with three separate resistor branches">
+            <defs>
+              <marker id="parallelArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"></path>
+              </marker>
+            </defs>
+
+            <line x1="55" y1="115" x2="105" y2="115" stroke="#12355b" stroke-width="6"/>
+            <line x1="105" y1="82" x2="105" y2="148" stroke="#12355b" stroke-width="7"/>
+            <line x1="127" y1="92" x2="127" y2="138" stroke="#12355b" stroke-width="5"/>
+            <line x1="127" y1="115" x2="165" y2="115" stroke="#12355b" stroke-width="6"/>
+
+            <line x1="165" y1="55" x2="165" y2="180" stroke="#12355b" stroke-width="6"/>
+            <line x1="165" y1="55" x2="455" y2="55" stroke="#12355b" stroke-width="6"/>
+            <line x1="165" y1="115" x2="455" y2="115" stroke="#12355b" stroke-width="6"/>
+            <line x1="165" y1="180" x2="455" y2="180" stroke="#12355b" stroke-width="6"/>
+            <line x1="455" y1="55" x2="455" y2="180" stroke="#12355b" stroke-width="6"/>
+            <line x1="455" y1="115" x2="505" y2="115" stroke="#12355b" stroke-width="6"/>
+            <line x1="505" y1="115" x2="505" y2="205" stroke="#12355b" stroke-width="6"/>
+            <line x1="505" y1="205" x2="55" y2="205" stroke="#12355b" stroke-width="6"/>
+            <line x1="55" y1="205" x2="55" y2="115" stroke="#12355b" stroke-width="6"/>
+
+            <polyline points="245,55 258,40 271,70 284,40 297,70 310,40 323,55"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+            <polyline points="245,115 258,100 271,130 284,100 297,130 310,100 323,115"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+            <polyline points="245,180 258,165 271,195 284,165 297,195 310,165 323,180"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+
+            <line x1="190" y1="35" x2="420" y2="35" stroke="#16a34a" stroke-width="5" marker-end="url(#parallelArrow)"/>
+            <text x="305" y="24" font-size="17" font-weight="900" fill="#15803d" text-anchor="middle">current splits into branches</text>
+          </svg>
+        </div>
       </div>
+
+      <div class="visual-caption">Recognition cue: one uninterrupted path = series; branches = parallel.</div>
 
       <p>
         In a series circuit, current has only one path to follow. In a parallel circuit, current has more than one path or branch.
@@ -916,6 +1083,56 @@
       <p>
         This connects directly to <a href="/what-is-ohms-law.html">Ohm's Law</a> and <a href="/voltage-current-resistance-cbet.html">voltage, current, and resistance</a>.
       </p>
+    </section>
+
+    <section class="card">
+      <h2>What Happens When One Part Opens?</h2>
+
+      <div class="failure-grid">
+        <div class="failure-card series-fail">
+          <h3>Series: One Open Stops the Path</h3>
+          <svg viewBox="0 0 520 200" role="img" aria-label="Series circuit with an open component stopping current through the whole circuit">
+            <line x1="40" y1="100" x2="130" y2="100" stroke="#12355b" stroke-width="6"/>
+            <polyline points="130,100 145,83 160,117 175,83 190,117 205,83 220,100"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+            <line x1="220" y1="100" x2="280" y2="100" stroke="#12355b" stroke-width="6"/>
+            <line x1="280" y1="100" x2="325" y2="72" stroke="#dc2626" stroke-width="6"/>
+            <circle cx="280" cy="100" r="7" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+            <circle cx="345" cy="100" r="7" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+            <line x1="355" y1="100" x2="415" y2="100" stroke="#12355b" stroke-width="6"/>
+            <polyline points="415,100 430,83 445,117 460,83 475,117 490,83 505,100"
+                      fill="none" stroke="#12355b" stroke-width="5"/>
+            <text x="312" y="50" font-size="18" font-weight="900" fill="#b91c1c" text-anchor="middle">OPEN</text>
+            <text x="260" y="175" font-size="18" font-weight="900" fill="#b91c1c" text-anchor="middle">No alternate path → current stops everywhere</text>
+          </svg>
+        </div>
+
+        <div class="failure-card parallel-fail">
+          <h3>Parallel: Other Branches Can Still Work</h3>
+          <svg viewBox="0 0 520 200" role="img" aria-label="Parallel circuit with one open branch while other branches remain complete">
+            <line x1="70" y1="40" x2="70" y2="160" stroke="#12355b" stroke-width="6"/>
+            <line x1="70" y1="40" x2="450" y2="40" stroke="#12355b" stroke-width="6"/>
+            <line x1="70" y1="100" x2="250" y2="100" stroke="#12355b" stroke-width="6"/>
+            <line x1="330" y1="100" x2="450" y2="100" stroke="#12355b" stroke-width="6"/>
+            <line x1="70" y1="160" x2="450" y2="160" stroke="#12355b" stroke-width="6"/>
+            <line x1="450" y1="40" x2="450" y2="160" stroke="#12355b" stroke-width="6"/>
+
+            <polyline points="220,40 235,25 250,55 265,25 280,55 295,25 310,40"
+                      fill="none" stroke="#16a34a" stroke-width="5"/>
+            <polyline points="220,160 235,145 250,175 265,145 280,175 295,145 310,160"
+                      fill="none" stroke="#16a34a" stroke-width="5"/>
+
+            <circle cx="250" cy="100" r="7" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+            <circle cx="330" cy="100" r="7" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+            <line x1="255" y1="95" x2="315" y2="70" stroke="#dc2626" stroke-width="6"/>
+
+            <text x="290" y="60" font-size="18" font-weight="900" fill="#b91c1c" text-anchor="middle">one branch open</text>
+            <text x="260" y="192" font-size="18" font-weight="900" fill="#15803d" text-anchor="middle">Other complete branches still have a path</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="visual-caption">Failure clue: series has no alternate route; parallel branches can operate independently.</div>
     </section>
 
     <section class="card">
