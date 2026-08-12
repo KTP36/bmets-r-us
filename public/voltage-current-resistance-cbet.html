@@ -731,6 +731,71 @@
     .elite-callout p, .elite-callout li { color: rgba(255,255,255,.9); }
     .elite-callout h3 { color: white; margin-top: 0; }
 .msb-academy-funnel{display:flex;align-items:center;justify-content:space-between;gap:22px;margin:26px auto;padding:22px 24px;border:1px solid #bae6fd;border-radius:22px;background:linear-gradient(135deg,#f0f9ff,#ecfeff);box-shadow:0 10px 28px rgba(15,23,42,.06);max-width:1120px}.msb-academy-funnel-copy{max-width:760px}.msb-academy-funnel-copy span{display:inline-block;margin-bottom:6px;color:#0369a1;font-size:12px;font-weight:900;letter-spacing:.08em}.msb-academy-funnel h2{margin:0 0 6px;color:#082f57;font-size:clamp(22px,3vw,30px)}.msb-academy-funnel p{margin:0;color:#475569}.msb-academy-funnel>a{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border-radius:14px;background:#082f57;color:#fff;text-decoration:none;font-weight:900;white-space:nowrap}@media(max-width:760px){.msb-academy-funnel{align-items:stretch;flex-direction:column;padding:20px}.msb-academy-funnel>a{width:100%}}
+
+    .visual-diagram {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #f8fbff, #eef6ff);
+      border: 1px solid #cfe0ef;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .visual-diagram svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 320px;
+    }
+
+    .visual-caption {
+      margin-top: 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .relationship-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .relationship-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .relationship-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .relationship-card p {
+      margin: 0 0 8px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .relationship-card svg {
+      width: 100%;
+      height: 190px;
+      display: block;
+    }
+
+    @media (max-width: 850px) {
+      .relationship-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -800,6 +865,53 @@
 <strong>What to notice first:</strong>
         If voltage increases while resistance stays the same, current increases. If resistance increases while voltage stays the same, current decreases.
       </div>
+
+<div class="relationship-grid">
+  <div class="relationship-card">
+    <h3>Same Voltage + Lower Resistance</h3>
+    <p>More current can flow.</p>
+    <svg viewBox="0 0 420 190" role="img" aria-label="Constant voltage circuit with lower resistance and higher current">
+      <defs>
+        <marker id="highCurrentArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#16a34a"></path>
+        </marker>
+      </defs>
+      <text x="60" y="35" font-size="20" font-weight="900" fill="#12355b">12 V</text>
+      <line x1="60" y1="55" x2="60" y2="135" stroke="#12355b" stroke-width="6"/>
+      <line x1="80" y1="70" x2="80" y2="120" stroke="#12355b" stroke-width="4"/>
+      <line x1="80" y1="95" x2="150" y2="95" stroke="#12355b" stroke-width="6"/>
+      <polyline points="150,95 165,78 180,112 195,78 210,112 225,78 240,95"
+                fill="none" stroke="#12355b" stroke-width="5"/>
+      <text x="195" y="58" font-size="18" font-weight="900" fill="#7c3aed" text-anchor="middle">6 Ω</text>
+      <line x1="240" y1="95" x2="350" y2="95" stroke="#12355b" stroke-width="6"/>
+      <line x1="135" y1="150" x2="335" y2="150" stroke="#16a34a" stroke-width="7" marker-end="url(#highCurrentArrow)"/>
+      <text x="235" y="178" font-size="18" font-weight="900" fill="#15803d" text-anchor="middle">I = 2 A</text>
+    </svg>
+  </div>
+
+  <div class="relationship-card">
+    <h3>Same Voltage + Higher Resistance</h3>
+    <p>Less current can flow.</p>
+    <svg viewBox="0 0 420 190" role="img" aria-label="Constant voltage circuit with higher resistance and lower current">
+      <defs>
+        <marker id="lowCurrentArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#dc2626"></path>
+        </marker>
+      </defs>
+      <text x="60" y="35" font-size="20" font-weight="900" fill="#12355b">12 V</text>
+      <line x1="60" y1="55" x2="60" y2="135" stroke="#12355b" stroke-width="6"/>
+      <line x1="80" y1="70" x2="80" y2="120" stroke="#12355b" stroke-width="4"/>
+      <line x1="80" y1="95" x2="150" y2="95" stroke="#12355b" stroke-width="6"/>
+      <polyline points="150,95 160,70 170,120 180,70 190,120 200,70 210,120 220,70 230,120 240,95"
+                fill="none" stroke="#12355b" stroke-width="5"/>
+      <text x="195" y="58" font-size="18" font-weight="900" fill="#7c3aed" text-anchor="middle">12 Ω</text>
+      <line x1="240" y1="95" x2="350" y2="95" stroke="#12355b" stroke-width="6"/>
+      <line x1="180" y1="150" x2="310" y2="150" stroke="#dc2626" stroke-width="7" marker-end="url(#lowCurrentArrow)"/>
+      <text x="245" y="178" font-size="18" font-weight="900" fill="#b91c1c" text-anchor="middle">I = 1 A</text>
+    </svg>
+  </div>
+</div>
+<div class="visual-caption">With voltage held at 12 V, doubling resistance from 6 Ω to 12 Ω cuts current from 2 A to 1 A.</div>
 </section>
 <section class="card">
 <h2>Jump to a Topic</h2>
@@ -1107,16 +1219,34 @@
 <p>
     A basic circuit needs a source, a path, a load, and a return. If any part is open, current cannot complete the loop.
   </p>
-<div class="diagram-box">
-<div class="simple-diagram">
-<div class="diagram-part">Power Source<br/><span>Voltage push</span></div>
-<div class="arrow">→</div>
-<div class="diagram-part">Wire / Trace<br/><span>Conductive path</span></div>
-<div class="arrow">→</div>
-<div class="diagram-part">Load<br/><span>Resistance</span></div>
-<div class="arrow">→</div>
-<div class="diagram-part">Return Path<br/><span>Complete circuit</span></div>
-</div>
+<div class="visual-diagram">
+<svg viewBox="0 0 900 300" role="img" aria-label="Simple electrical circuit showing voltage push, current flow, resistance, and return path">
+  <defs>
+    <marker id="currentArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb"></path>
+    </marker>
+  </defs>
+
+  <line x1="120" y1="80" x2="120" y2="220" stroke="#12355b" stroke-width="7"/>
+  <line x1="145" y1="100" x2="145" y2="200" stroke="#12355b" stroke-width="5"/>
+  <text x="85" y="135" font-size="22" font-weight="900" fill="#dc2626">+</text>
+  <text x="85" y="195" font-size="22" font-weight="900" fill="#2563eb">−</text>
+
+  <line x1="145" y1="80" x2="310" y2="80" stroke="#12355b" stroke-width="7"/>
+  <polyline points="310,80 330,58 350,102 370,58 390,102 410,58 430,102 450,58 470,80"
+            fill="none" stroke="#12355b" stroke-width="6"/>
+  <line x1="470" y1="80" x2="760" y2="80" stroke="#12355b" stroke-width="7"/>
+  <line x1="760" y1="80" x2="760" y2="220" stroke="#12355b" stroke-width="7"/>
+  <line x1="760" y1="220" x2="120" y2="220" stroke="#12355b" stroke-width="7"/>
+
+  <line x1="205" y1="45" x2="675" y2="45" stroke="#2563eb" stroke-width="7" marker-end="url(#currentArrow)"/>
+  <text x="440" y="30" font-size="20" font-weight="900" fill="#2563eb" text-anchor="middle">I = current flow</text>
+
+  <text x="120" y="265" font-size="22" font-weight="900" fill="#12355b" text-anchor="middle">V = voltage push</text>
+  <text x="390" y="140" font-size="22" font-weight="900" fill="#7c3aed" text-anchor="middle">R = resistance</text>
+  <text x="600" y="265" font-size="20" font-weight="900" fill="#475569" text-anchor="middle">return path completes the loop</text>
+</svg>
+<div class="visual-caption">Voltage provides the push, current is the flow around the loop, and resistance opposes that flow.</div>
 </div>
 <p>
     In medical equipment, the "load" may be a motor, display circuit, sensor circuit, relay coil, heater, lamp, pump mechanism, or control board.
