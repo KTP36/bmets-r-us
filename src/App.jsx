@@ -7858,112 +7858,11 @@ export default function App() {
         </div>
       </div>
 
-      {/* START PRACTICING BY CATEGORY */}
-      <div
-        style={{
-          marginBottom: 18,
-          padding: "22px 18px",
-          borderRadius: 20,
-          background: "rgba(255,255,255,0.88)",
-          border: "1px solid #d8e4f2",
-          boxShadow: "0 10px 24px rgba(18,53,91,0.08)"
-        }}
-      >
-        <div
-          style={{
-            textAlign: "center",
-            color: "#12355b",
-            fontWeight: 900,
-            letterSpacing: 1,
-            fontSize: 16,
-            marginBottom: 8
-          }}
-        >
-          START PRACTICING BY CATEGORY
-        </div>
-        <p
-          style={{
-            textAlign: "center",
-            color: "#4f6275",
-            fontSize: 16,
-            margin: "0 auto 18px auto",
-            maxWidth: 720
-          }}
-        >
-          Pick a path and jump straight into the practice area that matches what you are studying.
-        </p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(185px, 1fr))",
-            gap: 12,
-            maxWidth: 1050,
-            margin: "0 auto"
-          }}
-        >
-          <button
-            onClick={() => jumpToPracticeCategory("CBET", { examName: "CBET Practice" })}
-            style={categoryHomeButtonStyle("#ff6a00", "#ff4d4d")}
-          >
-            🔧 CBET Prep
-            <span style={categoryHomeButtonSubtextStyle}>Biomedical equipment</span>
-          </button>
-          <button
-            onClick={() => jumpToPracticeCategory("CRES", { examName: "CRES Practice" })}
-            style={categoryHomeButtonStyle("#1e3a8a", "#2563eb")}
-          >
-            🩻 CRES / Imaging
-            <span style={categoryHomeButtonSubtextStyle}>X-ray and imaging systems</span>
-          </button>
-          <button
-            onClick={() => jumpToPracticeCategory("RN", { examName: "RN Practice" })}
-            style={categoryHomeButtonStyle("#0f766e", "#14b8a6")}
-          >
-            🩺 RN / NCLEX
-            <span style={categoryHomeButtonSubtextStyle}>Clinical thinking</span>
-          </button>
-          <button
-            onClick={() =>
-              jumpToPracticeCategory("Anatomy", {
-                setup: () => {
-                  setMode("organs");
-                  setSelectedSet(null);
-                }
-              })
-            }
-            style={categoryHomeButtonStyle("#7c3aed", "#a855f7")}
-          >
-            🧠 Anatomy
-            <span style={categoryHomeButtonSubtextStyle}>Labeling and recognition</span>
-          </button>
-          <button
-            onClick={() => jumpToPracticeCategory("Equipment", { examName: "Equipment Practice" })}
-            style={categoryHomeButtonStyle("#0f172a", "#334155")}
-          >
-            🏥 Equipment ID
-            <span style={categoryHomeButtonSubtextStyle}>Devices and functions</span>
-          </button>
-          <a
-            href="/browse-all-practice.html"
-            style={{
-              ...categoryHomeButtonStyle("#12355b", "#1d6fa5"),
-              textDecoration: "none",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            📚 View All Practice
-            <span style={categoryHomeButtonSubtextStyle}>Complete study hub</span>
-          </a>
-        </div>
-      </div>
-
       <div style={{ marginBottom: 16 }}>
         {renderAdSlot(topAdSlot)}
       </div>
       {/* NAV BUTTONS (FIXED WRAPPER) */}
+      {activeTab !== "Home" && (
       <div
         style={{
           display: "flex",
@@ -8307,6 +8206,7 @@ export default function App() {
           </>
         )}
       </div>
+      )}
       {/* PARTNER WITH MEDSKILLBUILDER */}
       {activeTab === "Partner" && <PartnerPage />}
 
@@ -9143,7 +9043,7 @@ export default function App() {
                       lineHeight: 1.45
                     }}
                   >
-                    Your highest-value practice links are now grouped like a real launch pad instead of a plain list.
+                    Choose a focused study path, jump into practice, or browse the full library when you want more options.
                   </p>
                 </div>
 
