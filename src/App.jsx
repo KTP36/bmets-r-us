@@ -7589,7 +7589,20 @@ export default function App() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (activeTab === "Home") return;
+
+    // These full-page views render ABOVE #practice-area.
+    // Scrolling to the shared practice anchor would jump past their content.
+    const fullPageTabs = new Set([
+      "Home",
+      "Partner",
+      "MedicationAcademy",
+      "CBETAcademy"
+    ]);
+
+    if (fullPageTabs.has(activeTab)) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+      return;
+    }
 
     scrollToPracticeContent();
   }, [activeTab]);
@@ -8513,7 +8526,7 @@ export default function App() {
               </div>
               <div style={{ position: "relative", display: "grid", gap: 10 }}>
                 <a
-                  href="/medication-mastery-academy.html"
+                  href="/?tab=MedicationAcademy"
                   style={{
                     ...homeActionLinkStyle("linear-gradient(135deg, #e11d48, #f97316)"),
                     width: "100%",

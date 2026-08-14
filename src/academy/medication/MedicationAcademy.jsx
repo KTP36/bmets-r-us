@@ -3781,6 +3781,44 @@ export default function MedicationAcademy() {
     forceRefresh((value) => value + 1);
   }
 
+  useEffect(() => {
+    if (screen !== "path" || typeof window === "undefined") return undefined;
+
+    const previousScrollRestoration =
+      "scrollRestoration" in window.history
+        ? window.history.scrollRestoration
+        : null;
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    const scrollToAcademyTop = () => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto"
+      });
+    };
+
+    // Repeat briefly so browser scroll restoration, route effects, fonts,
+    // and late layout shifts cannot pull the Academy back down the page.
+    const timers = [0, 80, 200, 450, 800, 1200].map((delay) =>
+      window.setTimeout(scrollToAcademyTop, delay)
+    );
+
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+
+      if (
+        previousScrollRestoration !== null &&
+        "scrollRestoration" in window.history
+      ) {
+        window.history.scrollRestoration = previousScrollRestoration;
+      }
+    };
+  }, [screen]);
+
   if (screen === "module1") {
     return (
       <MedicationModuleOne
