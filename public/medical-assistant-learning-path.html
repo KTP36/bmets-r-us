@@ -599,7 +599,7 @@
               <h3>Laboratory Fundamentals</h3>
               <span class="status locked" id="module6Status">Locked</span>
             </div>
-            <p class="module-desc">Laboratory safety, specimen identification and transport, CLIA-waived testing, urinalysis, blood glucose, hematology, microbiology, quality control, documentation, and result escalation.</p>
+            <p class="module-desc">Laboratory safety, phlebotomy basics, blood collection tubes and order of draw, specimen identification and transport, CLIA-waived testing, urinalysis, blood glucose, hematology, microbiology, quality control, documentation, and result escalation.</p>
             <div class="module-meta">
               <span>8 lessons</span>
               <span>75–105 minutes</span>
@@ -737,6 +737,12 @@
   <script>
     (() => {
       const PATH_KEY = "msb_ma_path_v1";
+      // Local testing only: unlock all academy module cards on localhost/direct file preview.
+      // Production on medskillbuilder.com keeps the normal completion-based locking.
+      const IS_LOCAL_TEST =
+        location.protocol === "file:" ||
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1";
 
       function read(key){
         try{return JSON.parse(localStorage.getItem(key))||{};}
@@ -883,13 +889,13 @@
           module1Button.textContent=m1.completedLessons.length?"Continue Module":"Open Module";
         }
 
-        setCard(2,c2?"complete":c1?"current":"locked",percent(m2));
-        setCard(3,c3?"complete":c2?"current":"locked",percent(m3));
-        setCard(4,c4?"complete":c3?"current":"locked",percent(m4));
-        setCard(5,c5?"complete":c4?"current":"locked",percent(m5));
-        setCard(6,c6?"complete":c5?"current":"locked",percent(m6));
-        setCard(7,c7?"complete":c6?"current":"locked",percent(m7));
-        setCard(8,c8?"complete":c7?"current":"locked",percent(m8));
+        setCard(2,c2?"complete":(IS_LOCAL_TEST||c1)?"current":"locked",percent(m2));
+        setCard(3,c3?"complete":(IS_LOCAL_TEST||c2)?"current":"locked",percent(m3));
+        setCard(4,c4?"complete":(IS_LOCAL_TEST||c3)?"current":"locked",percent(m4));
+        setCard(5,c5?"complete":(IS_LOCAL_TEST||c4)?"current":"locked",percent(m5));
+        setCard(6,c6?"complete":(IS_LOCAL_TEST||c5)?"current":"locked",percent(m6));
+        setCard(7,c7?"complete":(IS_LOCAL_TEST||c6)?"current":"locked",percent(m7));
+        setCard(8,c8?"complete":(IS_LOCAL_TEST||c7)?"current":"locked",percent(m8));
 
         const m2Button=document.getElementById("module2Button");
         const m3Button=document.getElementById("module3Button");
@@ -907,13 +913,13 @@
         m7Button.href="/medical-assistant-module-7.html";
         m8Button.href="/medical-assistant-module-8.html";
 
-        if(!c1) m2Button.textContent="Complete Module 1";
-        if(!c2) m3Button.textContent="Complete Module 2";
-        if(!c3) m4Button.textContent="Complete Module 3";
-        if(!c4) m5Button.textContent="Complete Module 4";
-        if(!c5) m6Button.textContent="Complete Module 5";
-        if(!c6) m7Button.textContent="Complete Module 6";
-        if(!c7) m8Button.textContent="Complete Module 7";
+        if(!IS_LOCAL_TEST && !c1) m2Button.textContent="Complete Module 1";
+        if(!IS_LOCAL_TEST && !c2) m3Button.textContent="Complete Module 2";
+        if(!IS_LOCAL_TEST && !c3) m4Button.textContent="Complete Module 3";
+        if(!IS_LOCAL_TEST && !c4) m5Button.textContent="Complete Module 4";
+        if(!IS_LOCAL_TEST && !c5) m6Button.textContent="Complete Module 5";
+        if(!IS_LOCAL_TEST && !c6) m7Button.textContent="Complete Module 6";
+        if(!IS_LOCAL_TEST && !c7) m8Button.textContent="Complete Module 7";
 
         const hero=document.getElementById("heroContinueButton");
         const cont=document.getElementById("continueButton");

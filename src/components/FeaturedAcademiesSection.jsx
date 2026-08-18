@@ -115,7 +115,7 @@ export default function FeaturedAcademiesSection({ isSmallScreen, trackSiteEvent
           position: "relative",
           zIndex: 1,
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(285px, 1fr))",
+          gridTemplateColumns: isSmallScreen ? "1fr" : "repeat(2, minmax(0, 1fr))",
           gap: isSmallScreen ? 16 : 22,
           maxWidth: 1180,
           margin: "0 auto"
@@ -252,6 +252,51 @@ export default function FeaturedAcademiesSection({ isSmallScreen, trackSiteEvent
             ))}
           </div>
           <span className="featured-academy-cta" style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "100%", padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, #0f766e, #0e7490)", color: "white", fontWeight: 950, boxShadow: "0 8px 18px rgba(15,118,110,0.18)" }}>
+            Start Academy <span aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        <a
+          className="featured-academy-card"
+          href="/emt-learning-path.html"
+          onClick={() =>
+            trackSiteEvent("featured_academy_click", {
+              academy: "emt",
+              target_url: "/emt-learning-path.html",
+              source: "homepage_featured_academies"
+            })
+          }
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 390,
+            padding: isSmallScreen ? 22 : 26,
+            borderRadius: 24,
+            color: "#1e293b",
+            textDecoration: "none",
+            background: "rgba(255,255,255,0.98)",
+            border: "1px solid #fed7aa",
+            boxShadow: "0 14px 30px rgba(194,65,12,0.11)",
+            overflow: "hidden"
+          }}
+        >
+          <div style={{ height: 7, margin: isSmallScreen ? "-22px -22px 22px" : "-26px -26px 24px", background: "linear-gradient(90deg, #991b1b, #dc2626, #f97316)" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+            <span style={{ width: 54, height: 54, borderRadius: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(145deg, #fee2e2, #ffedd5)", fontSize: 27, boxShadow: "0 8px 18px rgba(194,65,12,0.12)" }}>🚑</span>
+            <span style={{ padding: "6px 10px", borderRadius: 999, background: "#fff7ed", color: "#c2410c", border: "1px solid #fed7aa", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>Career Path</span>
+          </div>
+          <h3 style={{ color: "#b91c1c", fontSize: isSmallScreen ? 25 : 28, lineHeight: 1.15, margin: "20px 0 10px" }}>
+            EMT Academy
+          </h3>
+          <p style={{ margin: "0 0 18px", lineHeight: 1.6, color: "#526579" }}>
+            Learn what it takes to become an EMT through guided lessons, responder safety, anatomy, airway skills, patient-care decisions, and realistic scenarios.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 22 }}>
+            {["8-module path", "EMT fundamentals", "Patient scenarios", "Saved progress"].map((label) => (
+              <span key={label} style={{ padding: "7px 10px", borderRadius: 999, background: "#fff7ed", border: "1px solid #fed7aa", color: "#7c2d12", fontSize: 12, fontWeight: 800 }}>✓ {label}</span>
+            ))}
+          </div>
+          <span className="featured-academy-cta" style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "100%", padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, #b91c1c, #ea580c)", color: "white", fontWeight: 950, boxShadow: "0 8px 18px rgba(194,65,12,0.18)" }}>
             Start Academy <span aria-hidden="true">→</span>
           </span>
         </a>

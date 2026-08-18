@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EMT Module 2: Anatomy, Physiology & Medical Terminology | MedSkillBuilder</title>
+<meta name="description" content="Learn EMT-focused medical terminology, anatomy, physiology, major body systems, perfusion, and how body-system failure appears in emergency patients.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://medskillbuilder.com/emt-module-2.html">
+<meta property="og:title" content="EMT Module 2: Anatomy, Physiology & Medical Terminology">
+<meta property="og:description" content="Learn anatomy through the EMT lens: recognize body systems, understand what they do, and identify signs that a system may be failing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://medskillbuilder.com/emt-module-2.html">
+<meta property="og:site_name" content="MedSkillBuilder">
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Course",
+ "name":"EMT Module 2: Anatomy, Physiology & Medical Terminology",
+ "description":"EMT-focused anatomy and physiology covering terminology, anatomical position, respiratory, cardiovascular, nervous, musculoskeletal, abdominal systems, perfusion, and body-system failure.",
+ "provider":{"@type":"Organization","name":"MedSkillBuilder","url":"https://medskillbuilder.com"},
+ "isAccessibleForFree":true,
+ "educationalLevel":"Beginner",
+ "inLanguage":"en-US"
+}
+</script>
+
+<style>
+:root{
+ --navy:#102f4f;--navy-dark:#081f36;--blue:#2563eb;--red:#dc2626;--orange:#f97316;
+ --green:#16a34a;--teal:#0f766e;--purple:#7c3aed;--slate:#334155;--muted:#64748b;
+ --border:#dbe4ee;--shadow:0 18px 46px rgba(15,23,42,.10);--soft:0 7px 20px rgba(15,23,42,.07)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{
+ margin:0;font-family:Arial,Helvetica,sans-serif;color:#0f172a;line-height:1.65;
+ background:radial-gradient(circle at top left,rgba(220,38,38,.08),transparent 30%),
+ radial-gradient(circle at top right,rgba(249,115,22,.10),transparent 28%),
+ linear-gradient(180deg,#f8fafc,#fff7ed 48%,#fff)
+}
+.container{max-width:1120px;margin:auto;padding:22px 20px 70px}
+.top-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.top-link,.top-nav a{
+ display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--navy);
+ background:#fff;border:1px solid var(--border);border-radius:999px;padding:10px 15px;font-weight:900;
+ box-shadow:var(--soft);font-size:.94rem
+}
+.top-nav{display:flex;gap:9px;flex-wrap:wrap}
+.hero{
+ background:linear-gradient(135deg,var(--navy-dark),#991b1b 52%,var(--orange));
+ color:#fff;border-radius:30px;padding:32px 38px;box-shadow:var(--shadow);position:relative;overflow:hidden;margin-bottom:24px
+}
+.hero:after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;right:-105px;top:-150px;background:rgba(255,255,255,.11)}
+.eyebrow{display:inline-flex;padding:7px 13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:999px;font-weight:900;position:relative;z-index:2}
+h1{margin:12px 0 10px;font-size:clamp(2rem,5vw,3.35rem);line-height:1.04;letter-spacing:-.04em;max-width:950px;position:relative;z-index:2}
+.hero p{color:rgba(255,255,255,.94);max-width:920px;font-size:1.04rem;margin:0;position:relative;z-index:2}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin-top:18px;position:relative;z-index:2}
+.meta-card{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:17px;padding:13px 15px;font-weight:900}
+.meta-card span{display:block;color:rgba(255,255,255,.82);font-size:.88rem;font-weight:700;margin-top:2px}
+.progress-wrap,.card,.lesson,.scenario-lab,.quiz-card,.completion-card{
+ background:rgba(255,255,255,.97);border:1px solid var(--border);border-radius:23px;padding:25px;box-shadow:var(--soft);margin-bottom:22px
+}
+.progress-wrap{padding:18px 20px}
+.progress-head{display:flex;justify-content:space-between;gap:12px;font-weight:900;color:var(--navy);margin-bottom:9px}
+.progress-track{height:13px;background:#e8eef6;border-radius:999px;overflow:hidden}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--orange));transition:.3s}
+.grid-two{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px}
+.grid-two .card{margin:0}
+h2{color:var(--navy);margin:0 0 10px;font-size:clamp(1.55rem,3vw,2.1rem);line-height:1.15;letter-spacing:-.02em}
+h3{color:var(--navy);margin:21px 0 8px;font-size:1.23rem}
+p{margin:0 0 14px;color:var(--slate)}
+ul{color:var(--slate);padding-left:21px}li{margin-bottom:7px}
+.lesson-tag{display:inline-flex;background:#ffedd5;color:#9a3412;border-radius:999px;padding:6px 11px;font-size:.84rem;font-weight:900;margin-bottom:10px}
+.system-grid,.term-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+.system-card,.term-card{border:1px solid var(--border);border-radius:17px;padding:16px;background:#f8fafc}
+.system-card strong,.term-card strong{display:block;color:var(--navy);font-size:1.03rem}
+.system-card span,.term-card span{display:block;color:var(--muted);margin-top:4px}
+.callout,.pearl,.warning,.memory{border-radius:18px;padding:17px;margin:17px 0}
+.callout{background:#eff6ff;border-left:5px solid var(--blue)}
+.pearl{background:#ecfdf5;border-left:5px solid var(--green)}
+.warning{background:#fff7ed;border-left:5px solid var(--orange)}
+.memory{background:#fef2f2;border-left:5px solid var(--red)}
+.callout strong,.pearl strong,.warning strong,.memory strong{color:var(--navy)}
+.lesson-complete{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:21px;padding-top:17px;border-top:1px solid var(--border);flex-wrap:wrap}
+.complete-btn,.quiz-btn,.reset-btn,.case-btn{
+ border:none;cursor:pointer;border-radius:999px;padding:11px 17px;font-weight:900;transition:.18s
+}
+.complete-btn,.quiz-btn,.case-btn{background:linear-gradient(90deg,var(--red),var(--orange));color:#fff}
+.complete-btn.done{background:linear-gradient(90deg,var(--green),#15803d)}
+.reset-btn{background:#e2e8f0;color:var(--navy)}
+.complete-btn:hover,.quiz-btn:hover,.reset-btn:hover,.case-btn:hover{transform:translateY(-1px);opacity:.95}
+
+.scenario-lab{background:linear-gradient(135deg,#fff7ed,#fff 45%,#eff6ff);border-color:#fed7aa}
+.case-head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.case-badge{display:inline-flex;padding:6px 11px;border-radius:999px;background:#fee2e2;color:#991b1b;font-weight:900;font-size:.82rem}
+.case-progress{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin:15px 0 20px}
+.case-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--orange));transition:.25s}
+.case-box{background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px}
+.case-title{font-weight:900;color:var(--navy);font-size:1.13rem;margin-bottom:8px}
+.case-text{font-size:1.04rem;color:var(--slate);margin-bottom:15px}
+.vitals{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.vitals span{padding:6px 10px;border-radius:999px;background:#f1f5f9;color:var(--navy);font-weight:800;font-size:.86rem}
+.case-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.case-options button{border:1px solid var(--border);background:#fff;border-radius:14px;padding:14px;font-weight:800;cursor:pointer;text-align:left}
+.case-options button:hover{background:#fff7ed;border-color:#fdba74}
+.case-options button.correct{background:#dcfce7;border-color:#86efac}.case-options button.wrong{background:#fee2e2;border-color:#fca5a5}
+.case-feedback{display:none;margin-top:15px;padding:14px;border-radius:14px;font-weight:800}
+.case-feedback.show{display:block}.case-feedback.good{background:#dcfce7;color:#166534}.case-feedback.bad{background:#fee2e2;color:#991b1b}
+.case-feedback .detail{font-weight:600;margin-top:5px}
+.case-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.case-score{font-weight:900;color:var(--navy);font-size:1.08rem}
+
+.quiz-intro{background:linear-gradient(135deg,var(--navy),#991b1b);color:#fff;border-radius:20px;padding:21px;margin-bottom:20px}
+.quiz-intro p{color:rgba(255,255,255,.9)}
+.question{border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:16px;background:#fff}
+.question legend{font-weight:900;color:var(--navy);padding:0 5px}
+.option{display:block;margin:9px 0;padding:10px 12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;cursor:pointer}
+.option:hover{background:#fff7ed}
+.feedback{display:none;margin-top:10px;padding:11px 13px;border-radius:12px;font-weight:700}
+.feedback.correct{display:block;background:#dcfce7;color:#166534}.feedback.incorrect{display:block;background:#fee2e2;color:#991b1b}
+.result-box{display:none;margin-top:20px;border-radius:20px;padding:22px;background:#fff7ed;border:1px solid #fed7aa}.result-box.show{display:block}
+.badge-box{text-align:center;padding:24px;border:2px dashed #fdba74;border-radius:20px;background:#fff7ed}.badge-icon{font-size:3.2rem}
+.nav-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:24px}
+.nav-footer a{flex:1;min-width:210px;text-align:center;text-decoration:none;border-radius:999px;padding:13px 18px;font-weight:900;border:1px solid var(--border);background:#fff;color:var(--navy);box-shadow:var(--soft)}
+footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
+@media(max-width:760px){
+ .container{padding:16px 13px 48px}.hero{padding:27px 18px;border-radius:22px}.grid-two{grid-template-columns:1fr}
+ .card,.lesson,.scenario-lab,.quiz-card,.completion-card{padding:20px 16px;border-radius:19px}.scene-options,.case-options{grid-template-columns:1fr}.top-nav a{flex:1}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+ <div class="top-row">
+  <a class="top-link" href="/emt-learning-path.html">← EMT Learning Path</a>
+  <nav class="top-nav">
+   <a href="#systemChallenge">Interactive Challenge</a>
+   <a href="#quiz">Final Quiz</a>
+   <a href="/">Home</a>
+  </nav>
+ </div>
+
+ <header class="hero">
+  <div class="eyebrow">🚑 MedSkillBuilder EMT Academy</div>
+  <h1>Module 2: Anatomy, Physiology & Medical Terminology</h1>
+  <p>Learn anatomy the way an EMT needs it: identify where a problem is happening, understand what that body system is supposed to do, recognize what failure can look like, and communicate findings using clear medical language.</p>
+  <div class="meta-grid">
+   <div class="meta-card">📚 8 Lessons<span>EMT-focused A&amp;P</span></div>
+   <div class="meta-card">🧠 Interactive<span>What System Is Failing?</span></div>
+   <div class="meta-card">⭐ 250 XP<span>Earned after passing</span></div>
+   <div class="meta-card">✅ Passing Score<span>80% or higher</span></div>
+  </div>
+ </header>
+
+ <section class="progress-wrap">
+  <div class="progress-head"><span>Module Progress</span><span id="progressText">0%</span></div>
+  <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+ </section>
+
+ <div class="grid-two">
+  <section class="card">
+   <h2>Learning Objectives</h2>
+   <ul>
+    <li>Use common EMS medical terms and directional language.</li>
+    <li>Locate major anatomical regions using standard position.</li>
+    <li>Explain the basic jobs of the respiratory, cardiovascular, nervous, and musculoskeletal systems.</li>
+    <li>Connect major abdominal organs with their general functions.</li>
+    <li>Recognize signs that oxygenation, ventilation, perfusion, or neurologic function may be failing.</li>
+    <li>Translate anatomy knowledge into patient-assessment clues.</li>
+   </ul>
+  </section>
+  <section class="card">
+   <h2>The EMT Lens</h2>
+   <p>You do not need to memorize every structure in the human body before you can think like an EMT.</p>
+   <div class="memory"><strong>Ask four questions:</strong><br>Where is the problem? → What system is involved? → What is that system supposed to do? → What does failure look like?</div>
+  </section>
+ </div>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.1</div>
+  <h2>Medical Terminology for EMS</h2>
+  <p>Medical terminology gives responders a shared language. Breaking a word into parts often provides clues to its meaning, but EMT communication also depends on simple descriptive terms that identify location, symptoms, and changes in condition.</p>
+  <div class="term-grid">
+   <div class="term-card"><strong>Brady-</strong><span>Slow</span></div>
+   <div class="term-card"><strong>Tachy-</strong><span>Fast</span></div>
+   <div class="term-card"><strong>Hypo-</strong><span>Below / deficient</span></div>
+   <div class="term-card"><strong>Hyper-</strong><span>Above / excessive</span></div>
+   <div class="term-card"><strong>-pnea</strong><span>Breathing</span></div>
+   <div class="term-card"><strong>-cardia</strong><span>Heart rate / heart condition</span></div>
+  </div>
+  <div class="pearl"><strong>Example:</strong> Tachypnea describes abnormally rapid breathing. Bradycardia describes a slow heart rate. Recognizing the pieces makes unfamiliar terms easier to interpret.</div>
+  <div class="lesson-complete"><span>Terminology lesson completed.</span><button class="complete-btn" data-complete="1">Mark Complete</button></div>
+ </section>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.2</div>
+  <h2>Anatomical Position & Directional Terms</h2>
+  <p>Directional terms prevent ambiguity. In standard anatomical position, the patient is considered upright, facing forward, with arms at the sides and palms forward. Right and left refer to the patient's right and left.</p>
+  <div class="term-grid">
+   <div class="term-card"><strong>Anterior</strong><span>Toward the front.</span></div>
+   <div class="term-card"><strong>Posterior</strong><span>Toward the back.</span></div>
+   <div class="term-card"><strong>Superior</strong><span>Toward the head / above.</span></div>
+   <div class="term-card"><strong>Inferior</strong><span>Toward the feet / below.</span></div>
+   <div class="term-card"><strong>Medial</strong><span>Toward the midline.</span></div>
+   <div class="term-card"><strong>Lateral</strong><span>Away from the midline.</span></div>
+   <div class="term-card"><strong>Proximal</strong><span>Closer to the trunk or point of origin.</span></div>
+   <div class="term-card"><strong>Distal</strong><span>Farther from the trunk or point of origin.</span></div>
+  </div>
+  <div class="memory"><strong>EMS Translation:</strong> “Pain distal to the right elbow” communicates location more precisely than “pain down the arm.”</div>
+  <div class="lesson-complete"><span>Anatomical-language lesson completed.</span><button class="complete-btn" data-complete="2">Mark Complete</button></div>
+ </section>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.3</div>
+  <h2>Airway & Respiratory System</h2>
+  <p>The respiratory system moves air and supports gas exchange. For an EMT, three concepts matter immediately: the airway must be open, ventilation must move air effectively, and oxygen must reach the bloodstream and tissues.</p>
+  <div class="system-grid">
+   <div class="system-card"><strong>Upper Airway</strong><span>Nose, mouth, pharynx, and structures leading toward the larynx.</span></div>
+   <div class="system-card"><strong>Lower Airway</strong><span>Trachea, bronchi, bronchioles, and lungs.</span></div>
+   <div class="system-card"><strong>Ventilation</strong><span>Movement of air into and out of the lungs.</span></div>
+   <div class="system-card"><strong>Gas Exchange</strong><span>Oxygen and carbon dioxide move between alveoli and blood.</span></div>
+  </div>
+  <div class="warning"><strong>Failure clues:</strong> Abnormal respiratory rate or effort, inability to speak normally, altered mental status, poor air movement, abnormal skin findings, or worsening fatigue can signal a serious breathing problem.</div>
+  <div class="lesson-complete"><span>Respiratory-system lesson completed.</span><button class="complete-btn" data-complete="3">Mark Complete</button></div>
+ </section>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.4</div>
+  <h2>Cardiovascular System & Perfusion</h2>
+  <p>The cardiovascular system moves blood through the body. The heart provides the pump, blood vessels provide the pathway, and blood carries oxygen and other substances to tissues.</p>
+  <div class="system-grid">
+   <div class="system-card"><strong>Heart</strong><span>Pumps blood through pulmonary and systemic circulation.</span></div>
+   <div class="system-card"><strong>Arteries</strong><span>Carry blood away from the heart.</span></div>
+   <div class="system-card"><strong>Veins</strong><span>Return blood toward the heart.</span></div>
+   <div class="system-card"><strong>Capillaries</strong><span>Small vessels where exchange with tissues occurs.</span></div>
+  </div>
+  <div class="memory"><strong>Perfusion:</strong> Think “delivery.” Adequate perfusion means tissues are receiving enough oxygenated blood to meet their needs.</div>
+  <div class="warning"><strong>Poor-perfusion clues:</strong> Weak pulses, cool or pale skin, altered mental status, delayed peripheral circulation, or other signs of circulatory compromise should raise concern in the clinical context.</div>
+  <div class="lesson-complete"><span>Cardiovascular lesson completed.</span><button class="complete-btn" data-complete="4">Mark Complete</button></div>
+ </section>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.5</div>
+  <h2>Nervous System</h2>
+  <p>The nervous system controls awareness, movement, sensation, breathing drive, and many automatic functions. The brain and spinal cord form the central nervous system; nerves extending throughout the body connect the CNS with tissues and organs.</p>
+  <div class="system-grid">
+   <div class="system-card"><strong>Brain</strong><span>Coordinates consciousness, thought, movement, sensation, and vital functions.</span></div>
+   <div class="system-card"><strong>Spinal Cord</strong><span>Major communication pathway between brain and body.</span></div>
+   <div class="system-card"><strong>Peripheral Nerves</strong><span>Carry sensory and motor information.</span></div>
+  </div>
+  <div class="warning"><strong>Neurologic warning signs:</strong> New altered mental status, weakness, speech difficulty, seizure activity, abnormal responsiveness, or loss of normal movement/sensation can indicate serious neurologic dysfunction.</div>
+  <div class="lesson-complete"><span>Nervous-system lesson completed.</span><button class="complete-btn" data-complete="5">Mark Complete</button></div>
+ </section>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.6</div>
+  <h2>Musculoskeletal System</h2>
+  <p>Bones provide structure and protection, joints permit movement, and muscles generate movement. In trauma, EMTs also think about what important structures lie beneath or beside an injured bone or joint.</p>
+  <div class="system-grid">
+   <div class="system-card"><strong>Skull</strong><span>Protects the brain.</span></div>
+   <div class="system-card"><strong>Spine</strong><span>Supports the body and protects the spinal cord.</span></div>
+   <div class="system-card"><strong>Thorax</strong><span>Ribs and sternum help protect the heart and lungs.</span></div>
+   <div class="system-card"><strong>Pelvis</strong><span>Supports the trunk and protects major vessels and pelvic organs.</span></div>
+  </div>
+  <div class="pearl"><strong>EMT connection:</strong> A musculoskeletal injury can be more than a “broken bone.” Think about bleeding, circulation, nerve function, underlying organs, and mechanism of injury.</div>
+  <div class="lesson-complete"><span>Musculoskeletal lesson completed.</span><button class="complete-btn" data-complete="6">Mark Complete</button></div>
+ </section>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.7</div>
+  <h2>Abdominal Organs & Major Body Systems</h2>
+  <p>The abdomen contains organs from several systems. EMTs use location, history, mechanism, and patient findings to guide assessment rather than trying to make a definitive diagnosis in the field.</p>
+  <div class="system-grid">
+   <div class="system-card"><strong>Liver</strong><span>Large upper-right abdominal organ with metabolic, storage, and blood-related functions.</span></div>
+   <div class="system-card"><strong>Spleen</strong><span>Upper-left abdominal organ associated with blood and immune functions.</span></div>
+   <div class="system-card"><strong>Stomach & Intestines</strong><span>Digest and absorb nutrients.</span></div>
+   <div class="system-card"><strong>Kidneys</strong><span>Filter blood, regulate fluid/electrolyte balance, and produce urine.</span></div>
+   <div class="system-card"><strong>Pancreas</strong><span>Supports digestion and blood-glucose regulation.</span></div>
+   <div class="system-card"><strong>Bladder</strong><span>Stores urine before elimination.</span></div>
+  </div>
+  <div class="callout"><strong>Assessment principle:</strong> Know what structures are likely in a region, but treat the patient and findings—not an assumed diagnosis.</div>
+  <div class="lesson-complete"><span>Abdominal-systems lesson completed.</span><button class="complete-btn" data-complete="7">Mark Complete</button></div>
+ </section>
+
+ <section class="lesson">
+  <div class="lesson-tag">Lesson 2.8</div>
+  <h2>How Body Systems Fail</h2>
+  <p>Emergency patients often present with a failure of function rather than a neat diagnostic label. Recognizing the pattern helps an EMT identify priorities.</p>
+  <div class="system-grid">
+   <div class="system-card"><strong>Airway Failure</strong><span>Air cannot move freely through the airway.</span></div>
+   <div class="system-card"><strong>Ventilatory Failure</strong><span>Breathing does not move enough air.</span></div>
+   <div class="system-card"><strong>Oxygenation Problem</strong><span>Oxygen transfer or delivery is inadequate.</span></div>
+   <div class="system-card"><strong>Perfusion Failure</strong><span>Tissues do not receive adequate blood flow.</span></div>
+   <div class="system-card"><strong>Neurologic Failure</strong><span>Normal brain or nervous-system function is impaired.</span></div>
+  </div>
+  <div class="memory"><strong>Do not wait for a diagnosis:</strong> If a patient cannot maintain an airway, breathe adequately, perfuse vital organs, or maintain normal neurologic function, that functional problem becomes the priority.</div>
+  <div class="lesson-complete"><span>System-failure lesson completed.</span><button class="complete-btn" data-complete="8">Mark Complete</button></div>
+ </section>
+
+ <section class="scenario-lab" id="systemChallenge">
+  <div class="case-head">
+   <div><div class="case-badge">🧠 Interactive Challenge</div><h2>What System Is Failing?</h2><p>Use the findings—not a memorized disease label—to identify the body function that is most concerning.</p></div>
+   <strong id="caseCounter">Case 1 / 10</strong>
+  </div>
+  <div class="case-progress"><span id="caseProgress"></span></div>
+  <div class="case-box">
+   <div class="case-title" id="caseTitle"></div>
+   <div class="case-text" id="caseText"></div>
+   <div class="vitals" id="caseVitals"></div>
+   <div class="case-options" id="caseOptions"></div>
+   <div class="case-feedback" id="caseFeedback"></div>
+   <div class="case-actions">
+    <button type="button" class="case-btn" id="caseNext" style="display:none">Next Case →</button>
+    <button type="button" class="reset-btn" id="caseRestart" style="display:none">Restart Challenge</button>
+   </div>
+   <p class="case-score" id="caseScore">Score: 0 / 0</p>
+  </div>
+ </section>
+
+ <section class="quiz-card" id="quiz">
+  <div class="quiz-intro">
+   <h2 style="color:#fff">Module 2 Final Quiz</h2>
+   <p>Answer all 15 questions. Score 80% or higher to complete Module 2, earn 250 XP, and unlock Module 3.</p>
+  </div>
+  <form id="quizForm">
+
+   <fieldset class="question" data-answer="b"><legend>1. “Tachypnea” most directly describes:</legend>
+    <label class="option"><input type="radio" name="q1" value="a"> Slow heart rate</label>
+    <label class="option"><input type="radio" name="q1" value="b"> Rapid breathing</label>
+    <label class="option"><input type="radio" name="q1" value="c"> Low blood pressure</label>
+    <label class="option"><input type="radio" name="q1" value="d"> Abdominal pain</label>
+    <div class="feedback">“Tachy-” means fast and “-pnea” relates to breathing.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="c"><legend>2. In anatomical terminology, “lateral” means:</legend>
+    <label class="option"><input type="radio" name="q2" value="a"> Toward the midline</label>
+    <label class="option"><input type="radio" name="q2" value="b"> Toward the head</label>
+    <label class="option"><input type="radio" name="q2" value="c"> Away from the midline</label>
+    <label class="option"><input type="radio" name="q2" value="d"> Toward the back only</label>
+    <div class="feedback">Lateral means farther from the body's midline.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="a"><legend>3. Ventilation is best described as:</legend>
+    <label class="option"><input type="radio" name="q3" value="a"> Movement of air into and out of the lungs</label>
+    <label class="option"><input type="radio" name="q3" value="b"> Movement of blood through arteries</label>
+    <label class="option"><input type="radio" name="q3" value="c"> Filtration of blood by the kidneys</label>
+    <label class="option"><input type="radio" name="q3" value="d"> Electrical signaling in peripheral nerves</label>
+    <div class="feedback">Ventilation is the mechanical movement of air into and out of the lungs.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="d"><legend>4. Which vessels return blood toward the heart?</legend>
+    <label class="option"><input type="radio" name="q4" value="a"> Bronchi</label>
+    <label class="option"><input type="radio" name="q4" value="b"> Arteries</label>
+    <label class="option"><input type="radio" name="q4" value="c"> Alveoli</label>
+    <label class="option"><input type="radio" name="q4" value="d"> Veins</label>
+    <div class="feedback">Veins return blood toward the heart.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="b"><legend>5. For an EMT, perfusion is most usefully thought of as:</legend>
+    <label class="option"><input type="radio" name="q5" value="a"> Digestion</label>
+    <label class="option"><input type="radio" name="q5" value="b"> Delivery of blood flow to tissues</label>
+    <label class="option"><input type="radio" name="q5" value="c"> Movement at a joint</label>
+    <label class="option"><input type="radio" name="q5" value="d"> Production of urine</label>
+    <div class="feedback">Perfusion concerns adequate blood flow to tissues and organs.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="c"><legend>6. Which structure protects the spinal cord?</legend>
+    <label class="option"><input type="radio" name="q6" value="a"> Sternum</label>
+    <label class="option"><input type="radio" name="q6" value="b"> Pelvis</label>
+    <label class="option"><input type="radio" name="q6" value="c"> Vertebral column</label>
+    <label class="option"><input type="radio" name="q6" value="d"> Scapula</label>
+    <div class="feedback">The vertebral column surrounds and protects the spinal cord.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="a"><legend>7. Which organ is located primarily in the upper-right abdomen?</legend>
+    <label class="option"><input type="radio" name="q7" value="a"> Liver</label>
+    <label class="option"><input type="radio" name="q7" value="b"> Spleen</label>
+    <label class="option"><input type="radio" name="q7" value="c"> Bladder</label>
+    <label class="option"><input type="radio" name="q7" value="d"> Brain</label>
+    <div class="feedback">The liver occupies much of the right upper abdomen.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="d"><legend>8. New weakness, speech difficulty, and altered responsiveness most directly raise concern for dysfunction of the:</legend>
+    <label class="option"><input type="radio" name="q8" value="a"> Digestive system</label>
+    <label class="option"><input type="radio" name="q8" value="b"> Skeletal system only</label>
+    <label class="option"><input type="radio" name="q8" value="c"> Urinary system</label>
+    <label class="option"><input type="radio" name="q8" value="d"> Nervous system</label>
+    <div class="feedback">Those findings strongly suggest impaired neurologic function.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="b"><legend>9. Which finding is most concerning for inadequate ventilation?</legend>
+    <label class="option"><input type="radio" name="q9" value="a"> Normal conversation with effortless breathing</label>
+    <label class="option"><input type="radio" name="q9" value="b"> Increasing fatigue with poor air movement</label>
+    <label class="option"><input type="radio" name="q9" value="c"> Isolated ankle tenderness</label>
+    <label class="option"><input type="radio" name="q9" value="d"> Hunger before lunch</label>
+    <div class="feedback">Poor air movement with fatigue can signal failure to ventilate adequately.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="c"><legend>10. Which organ filters blood and helps regulate fluid and electrolyte balance?</legend>
+    <label class="option"><input type="radio" name="q10" value="a"> Stomach</label>
+    <label class="option"><input type="radio" name="q10" value="b"> Spleen</label>
+    <label class="option"><input type="radio" name="q10" value="c"> Kidneys</label>
+    <label class="option"><input type="radio" name="q10" value="d"> Trachea</label>
+    <div class="feedback">The kidneys filter blood and play major roles in fluid and electrolyte regulation.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="a"><legend>11. “Distal to the knee” means:</legend>
+    <label class="option"><input type="radio" name="q11" value="a"> Farther from the trunk than the knee</label>
+    <label class="option"><input type="radio" name="q11" value="b"> Closer to the trunk than the knee</label>
+    <label class="option"><input type="radio" name="q11" value="c"> Toward the body's midline</label>
+    <label class="option"><input type="radio" name="q11" value="d"> Directly behind the knee</label>
+    <div class="feedback">Distal means farther from the trunk or point of origin.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="d"><legend>12. Which combination is most concerning for poor perfusion?</legend>
+    <label class="option"><input type="radio" name="q12" value="a"> Warm skin and normal mentation after exercise</label>
+    <label class="option"><input type="radio" name="q12" value="b"> Isolated finger pain</label>
+    <label class="option"><input type="radio" name="q12" value="c"> Normal pulse and normal skin findings</label>
+    <label class="option"><input type="radio" name="q12" value="d"> Weak rapid pulse, cool pale skin, and altered mental status</label>
+    <div class="feedback">Taken together, those findings can indicate inadequate circulation to vital tissues.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="b"><legend>13. The alveoli are important because they are a primary site of:</legend>
+    <label class="option"><input type="radio" name="q13" value="a"> Urine storage</label>
+    <label class="option"><input type="radio" name="q13" value="b"> Gas exchange</label>
+    <label class="option"><input type="radio" name="q13" value="c"> Bone formation</label>
+    <label class="option"><input type="radio" name="q13" value="d"> Blood-cell production in the spleen</label>
+    <div class="feedback">Gas exchange between air and blood occurs at the alveolar-capillary interface.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="c"><legend>14. Why should an EMT learn anatomy without trying to diagnose every complaint?</legend>
+    <label class="option"><input type="radio" name="q14" value="a"> Anatomy is unrelated to assessment</label>
+    <label class="option"><input type="radio" name="q14" value="b"> Diagnosis is always obvious from location alone</label>
+    <label class="option"><input type="radio" name="q14" value="c"> Anatomy helps recognize involved systems and threats while field care remains focused on patient findings and priorities</label>
+    <label class="option"><input type="radio" name="q14" value="d"> EMTs should ignore body systems completely</label>
+    <div class="feedback">Anatomy supports assessment and prioritization without requiring a definitive field diagnosis.</div>
+   </fieldset>
+
+   <fieldset class="question" data-answer="a"><legend>15. A patient is becoming less responsive and breathing is slow and shallow. Which functional problem is most immediately concerning?</legend>
+    <label class="option"><input type="radio" name="q15" value="a"> Inadequate ventilation with neurologic deterioration</label>
+    <label class="option"><input type="radio" name="q15" value="b"> Isolated musculoskeletal injury</label>
+    <label class="option"><input type="radio" name="q15" value="c"> Normal physiologic adaptation</label>
+    <label class="option"><input type="radio" name="q15" value="d"> Digestive-system function only</label>
+    <div class="feedback">Slow shallow breathing plus worsening responsiveness signals an immediate ventilation and neurologic concern.</div>
+   </fieldset>
+
+   <button type="button" class="quiz-btn" id="submitQuiz">Submit Final Quiz</button>
+   <button type="button" class="reset-btn" id="resetQuiz">Reset Quiz</button>
+  </form>
+  <div class="result-box" id="resultBox"><h2 id="resultTitle">Your Result</h2><p id="resultText"></p></div>
+ </section>
+
+ <section class="completion-card">
+  <h2>Module Achievement</h2>
+  <div class="badge-box">
+   <div class="badge-icon">🫀</div>
+   <h3>EMT Anatomy & Systems Badge</h3>
+   <p id="badgeStatus">Pass the final quiz with 80% or higher to complete Module 2 and earn 250 XP.</p>
+  </div>
+ </section>
+
+ <div class="nav-footer">
+  <a href="/emt-module-1.html">← Module 1</a>
+  <a href="/emt-learning-path.html">EMT Learning Path</a>
+  <a href="/emt-learning-path.html">Module 3 unlocks after passing →</a>
+ </div>
+
+ <footer>© 2026 MedSkillBuilder LLC. Supplemental educational practice only. This content does not replace an approved EMT education program, hands-on training, medical direction, certification, or state licensure requirements.</footer>
+</div>
+
+<script>
+const PATH_KEY="msb_emt_path_v1";
+const lessonButtons=document.querySelectorAll("[data-complete]");
+const totalLessons=lessonButtons.length;
+
+function readPath(){try{return JSON.parse(localStorage.getItem(PATH_KEY))||{}}catch(e){return {}}}
+function getState(){
+ const p=readPath(),s=p.module2||{};
+ return{
+  completedLessons:Array.isArray(s.completedLessons)?s.completedLessons:[],
+  quizPassed:!!s.quizPassed,bestScore:Number(s.bestScore)||0,xp:Number(s.xp)||0,systemBest:Number(s.systemBest)||0
+ };
+}
+function saveState(s){try{const p=readPath();p.module2=s;localStorage.setItem(PATH_KEY,JSON.stringify(p))}catch(e){console.error(e)}}
+function updateProgress(){
+ const s=getState(),percent=Math.round(((s.completedLessons.length+(s.quizPassed?1:0))/(totalLessons+1))*100);
+ document.getElementById("progressBar").style.width=percent+"%";
+ document.getElementById("progressText").textContent=percent+"%";
+ lessonButtons.forEach(b=>{
+  const id=Number(b.dataset.complete),done=s.completedLessons.includes(id);
+  b.textContent=done?"✓ Completed":"Mark Complete";b.classList.toggle("done",done);
+ });
+ if(s.quizPassed)document.getElementById("badgeStatus").textContent="Unlocked! Module 2 is complete. You earned the EMT Anatomy & Systems badge and 250 XP.";
+}
+lessonButtons.forEach(b=>b.addEventListener("click",()=>{
+ const s=getState(),id=Number(b.dataset.complete);
+ s.completedLessons=s.completedLessons.includes(id)?s.completedLessons.filter(x=>x!==id):[...s.completedLessons,id].sort((a,b)=>a-b);
+ saveState(s);updateProgress();
+}));
+
+const cases=[
+ {title:"Breathing Is Fading",text:"An adult is increasingly drowsy. Respirations are slow and shallow, and chest rise is poor.",v:["RR 6","Poor chest rise","Increasingly drowsy"],answer:"Ventilation",options:["Perfusion","Ventilation","Musculoskeletal","Digestive"],why:"The immediate functional problem is inadequate movement of air. Slow, shallow respirations with poor chest rise indicate inadequate ventilation."},
+ {title:"Cool, Pale & Confused",text:"After significant bleeding, a patient is restless and becoming confused.",v:["Pulse 124, weak","Cool pale skin","Altered mental status"],answer:"Perfusion",options:["Perfusion","Digestive","Musculoskeletal","Urinary"],why:"The pattern suggests inadequate circulation and delivery of oxygenated blood to tissues—poor perfusion."},
+ {title:"One-Sided Weakness",text:"A patient suddenly develops facial asymmetry, difficulty speaking, and weakness of one arm.",v:["Sudden onset","Speech abnormal","Unilateral weakness"],answer:"Neurologic",options:["Respiratory","Neurologic","Musculoskeletal only","Digestive"],why:"Sudden focal weakness and speech difficulty are major clues to nervous-system dysfunction."},
+ {title:"Noisy Upper Airway",text:"A patient develops severe difficulty moving air after a choking episode. Air movement is markedly restricted.",v:["Severe distress","Restricted airflow","Choking history"],answer:"Airway",options:["Airway","Perfusion","Renal","Musculoskeletal"],why:"The primary functional concern is an obstructed or compromised airway."},
+ {title:"Crushed Lower Leg",text:"A patient's lower leg is deformed after a collision. The foot is cool and the distal pulse is difficult to detect.",v:["Leg deformity","Cool distal extremity","Weak distal pulse"],answer:"Musculoskeletal with neurovascular concern",options:["Digestive only","Musculoskeletal with neurovascular concern","Respiratory only","Normal finding"],why:"The injury is musculoskeletal, but distal circulation and nerve function are also critical concerns."},
+ {title:"Upper-Left Abdominal Trauma",text:"A patient has significant tenderness after blunt trauma to the left upper abdomen.",v:["Blunt trauma","LUQ tenderness","Increasing weakness"],answer:"Abdominal organ / possible internal bleeding concern",options:["Airway obstruction","Abdominal organ / possible internal bleeding concern","Isolated nervous-system failure","Normal musculoskeletal finding"],why:"The left upper abdomen contains structures including the spleen. Trauma plus worsening weakness should raise concern for internal injury and bleeding."},
+ {title:"Working Hard to Breathe",text:"A patient is upright, breathing rapidly, using accessory muscles, and can speak only a few words at a time.",v:["RR 32","Accessory muscles","Short phrases"],answer:"Respiratory",options:["Respiratory","Skeletal only","Urinary","Digestive"],why:"Increased work of breathing and limited speech are strong signs of significant respiratory compromise."},
+ {title:"Unresponsive After Head Injury",text:"After a fall, a patient becomes progressively less responsive.",v:["Head trauma","Declining responsiveness","Abnormal neurologic status"],answer:"Neurologic",options:["Digestive","Neurologic","Musculoskeletal only","Urinary"],why:"A decline in responsiveness following head trauma is a major neurologic warning sign."},
+ {title:"Blood Flow Problem",text:"A patient has a rapid weak pulse, cool skin, and delayed peripheral circulation after a serious injury.",v:["Rapid weak pulse","Cool skin","Poor peripheral circulation"],answer:"Perfusion",options:["Ventilation only","Perfusion","Digestive","Normal physiology"],why:"These findings point toward inadequate circulation and tissue perfusion."},
+ {title:"Breathing but Poor Exchange",text:"A patient is breathing rapidly and appears cyanotic despite visible chest movement.",v:["Rapid breathing","Chest movement present","Cyanotic appearance"],answer:"Oxygenation / respiratory",options:["Oxygenation / respiratory","Musculoskeletal","Urinary","Digestive"],why:"Air movement may be occurring, but the findings raise concern that adequate oxygenation is not being achieved."}
+];
+let bank=[...cases].sort(()=>Math.random()-.5),idx=0,score=0,answered=false;
+function renderCase(){
+ const c=bank[idx];answered=false;
+ document.getElementById("caseCounter").textContent=`Case ${idx+1} / ${bank.length}`;
+ document.getElementById("caseTitle").textContent=c.title;document.getElementById("caseText").textContent=c.text;
+ document.getElementById("caseVitals").innerHTML=c.v.map(v=>`<span>${v}</span>`).join("");
+ document.getElementById("caseProgress").style.width=(idx/bank.length*100)+"%";
+ const opts=document.getElementById("caseOptions");opts.innerHTML="";
+ [...c.options].sort(()=>Math.random()-.5).forEach(o=>{
+  const b=document.createElement("button");b.type="button";b.textContent=o;
+  b.onclick=()=>answerCase(b,o,c,opts);opts.appendChild(b);
+ });
+ const fb=document.getElementById("caseFeedback");fb.className="case-feedback";fb.innerHTML="";
+ document.getElementById("caseNext").style.display="none";document.getElementById("caseRestart").style.display="none";
+}
+function answerCase(btn,o,c,opts){
+ if(answered)return;answered=true;const ok=o===c.answer;if(ok){score++;btn.classList.add("correct")}else{btn.classList.add("wrong");[...opts.children].find(x=>x.textContent===c.answer)?.classList.add("correct")}
+ const fb=document.getElementById("caseFeedback");fb.className="case-feedback show "+(ok?"good":"bad");fb.innerHTML=(ok?"Correct. ":"Not quite. ")+`<div class="detail">${c.why}</div>`;
+ document.getElementById("caseScore").textContent=`Score: ${score} / ${idx+1}`;
+ document.getElementById("caseProgress").style.width=((idx+1)/bank.length*100)+"%";
+ if(idx===bank.length-1){
+  const s=getState();s.systemBest=Math.max(s.systemBest||0,score);saveState(s);
+  document.getElementById("caseScore").textContent=`Challenge complete — Score: ${score} / ${bank.length}`;
+  document.getElementById("caseRestart").style.display="inline-block";
+ }else document.getElementById("caseNext").style.display="inline-block";
+}
+document.getElementById("caseNext").onclick=()=>{if(idx<bank.length-1){idx++;renderCase()}};
+document.getElementById("caseRestart").onclick=()=>{bank=[...cases].sort(()=>Math.random()-.5);idx=0;score=0;document.getElementById("caseScore").textContent="Score: 0 / 0";renderCase()};
+renderCase();
+
+document.getElementById("submitQuiz").onclick=()=>{
+ const qs=document.querySelectorAll(".question");let score=0,answered=0;
+ qs.forEach(q=>{
+  const selected=q.querySelector("input:checked"),fb=q.querySelector(".feedback");
+  fb.classList.remove("correct","incorrect");
+  const base=fb.textContent.replace(/^Correct\. /,"").replace(/^Incorrect\. /,"");
+  if(selected){answered++;if(selected.value===q.dataset.answer){score++;fb.classList.add("correct");fb.textContent="Correct. "+base}else{fb.classList.add("incorrect");fb.textContent="Incorrect. "+base}}
+ });
+ const box=document.getElementById("resultBox"),title=document.getElementById("resultTitle"),text=document.getElementById("resultText");
+ if(answered<qs.length){box.classList.add("show");title.textContent="Please Complete Every Question";text.textContent=`You answered ${answered} of ${qs.length} questions.`;box.scrollIntoView({behavior:"smooth",block:"center"});return}
+ const pct=Math.round(score/qs.length*100),s=getState();s.bestScore=Math.max(s.bestScore||0,pct);
+ if(pct>=80){
+  s.quizPassed=true;s.completedLessons=[1,2,3,4,5,6,7,8];s.xp=250;
+  title.textContent="Module Passed! 🫀";
+  text.innerHTML=`You scored ${score} out of ${qs.length} (${pct}%). Module 2 is complete, you earned 250 XP, and Module 3 is now unlocked.<br><br><a href="/emt-learning-path.html" style="font-weight:900;color:#991b1b">Return to the EMT Learning Path →</a>`;
+ }else{title.textContent="Keep Practicing";text.textContent=`You scored ${score} out of ${qs.length} (${pct}%). Review the lessons and try again. You need 80% to pass.`}
+ saveState(s);updateProgress();box.classList.add("show");box.scrollIntoView({behavior:"smooth",block:"center"});
+};
+document.getElementById("resetQuiz").onclick=()=>{
+ document.getElementById("quizForm").reset();document.querySelectorAll(".feedback").forEach(x=>x.classList.remove("correct","incorrect"));document.getElementById("resultBox").classList.remove("show")
+};
+updateProgress();
+</script>
+</body>
+</html>

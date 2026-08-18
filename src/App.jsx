@@ -8572,6 +8572,134 @@ export default function App() {
                 Free educational practice. Progress is saved on this device.
               </div>
             </div>
+
+            <div
+              style={{
+                ...homeInfoCardStyle,
+                flex: isSmallScreen ? "1 1 100%" : "1 1 300px",
+                background: "linear-gradient(145deg, #fef2f2 0%, #ffffff 48%, #fff7ed 100%)",
+                border: "1px solid #fecaca",
+                textAlign: "left",
+                position: "relative",
+                overflow: "hidden"
+              }}
+            >
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  width: 155,
+                  height: 155,
+                  borderRadius: "50%",
+                  background: "rgba(220,38,38,0.08)",
+                  top: -72,
+                  right: -58
+                }}
+              />
+              <div
+                style={{
+                  position: "relative",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 7,
+                  padding: "6px 10px",
+                  borderRadius: 999,
+                  background: "#fef2f2",
+                  border: "1px solid #fecaca",
+                  color: "#991b1b",
+                  fontWeight: 900,
+                  fontSize: 12,
+                  letterSpacing: 0.5,
+                  textTransform: "uppercase",
+                  marginBottom: 12
+                }}
+              >
+                🚑 Career Academy
+              </div>
+              <h3
+                style={{
+                  position: "relative",
+                  color: "#12355b",
+                  marginTop: 0,
+                  marginBottom: 10,
+                  fontSize: isSmallScreen ? 23 : 25,
+                  lineHeight: 1.15
+                }}
+              >
+                EMT Academy
+              </h3>
+              <p
+                style={{
+                  position: "relative",
+                  color: "#4f6275",
+                  fontSize: 14,
+                  lineHeight: 1.55,
+                  marginTop: 0,
+                  marginBottom: 14
+                }}
+              >
+                Want to become an EMT? Learn what to expect, what you need to know, and practice making patient-care decisions step by step.
+              </p>
+              <div
+                style={{
+                  position: "relative",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                  gap: 8,
+                  marginBottom: 16
+                }}
+              >
+                {[
+                  ["8", "Modules"],
+                  ["🧠", "Scenarios"],
+                  ["Free", "Academy"]
+                ].map(([value, label]) => (
+                  <div
+                    key={label}
+                    style={{
+                      padding: "10px 6px",
+                      borderRadius: 14,
+                      background: "rgba(255,255,255,0.9)",
+                      border: "1px solid #e2e8f0",
+                      textAlign: "center",
+                      boxShadow: "0 5px 14px rgba(18,53,91,0.05)"
+                    }}
+                  >
+                    <div style={{ color: "#12355b", fontWeight: 900, fontSize: 18 }}>{value}</div>
+                    <div style={{ color: "#64748b", fontSize: 11, fontWeight: 800, lineHeight: 1.2 }}>
+                      {label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ position: "relative", display: "grid", gap: 10 }}>
+                <a
+                  href="/emt-learning-path.html"
+                  style={{
+                    ...homeActionLinkStyle("linear-gradient(135deg, #dc2626, #f97316)"),
+                    width: "100%",
+                    textAlign: "center",
+                    justifyContent: "center",
+                    boxSizing: "border-box"
+                  }}
+                >
+                  Explore EMT Academy →
+                </a>
+              </div>
+              <div
+                style={{
+                  position: "relative",
+                  marginTop: 14,
+                  paddingTop: 12,
+                  borderTop: "1px solid #e2e8f0",
+                  color: "#64748b",
+                  fontSize: 12,
+                  lineHeight: 1.45
+                }}
+              >
+                Career roadmap + guided modules + scenario-based practice.
+              </div>
+            </div>
           </div>
           <div
             style={{

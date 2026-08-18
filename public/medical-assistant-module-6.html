@@ -483,7 +483,242 @@
       table{font-size:.92rem}
       th,td{padding:9px}
     }
-  </style>
+
+    .practice-lab{
+      margin:24px 0;
+      padding:26px;
+      border:1px solid #cfe0ef;
+      border-radius:24px;
+      background:linear-gradient(135deg,#eff6ff,#ffffff 55%,#f0fdfa);
+      box-shadow:var(--soft-shadow);
+    }
+    .phleb-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .phleb-head h2{margin:3px 0 6px}
+    .phleb-head p{margin:0;max-width:780px}
+    .phleb-kicker{
+      color:var(--teal);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-size:.78rem;
+    }
+    .phleb-badge,.phleb-step{
+      display:inline-flex;
+      align-items:center;
+      border-radius:999px;
+      padding:6px 11px;
+      font-weight:900;
+      font-size:.82rem;
+    }
+    .phleb-badge{background:#dcfce7;color:#166534}
+    .phleb-step{background:#dbeafe;color:#1e3a8a;margin-bottom:8px}
+    .phleb-panel{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:22px;
+      margin-top:16px;
+    }
+    .phleb-panel h3{margin:2px 0 7px}
+    .phleb-sub{color:var(--muted)}
+    .phleb-progress{
+      height:8px;
+      background:#e2e8f0;
+      border-radius:999px;
+      overflow:hidden;
+      margin:14px 0 18px;
+    }
+    .phleb-progress span{
+      display:block;
+      width:0;
+      height:100%;
+      background:linear-gradient(90deg,var(--teal),var(--green));
+      transition:width .25s ease;
+    }
+    .phleb-tube-bank{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:10px;
+      margin:12px 0 16px;
+    }
+    .phleb-tube-choice{
+      min-height:145px;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:16px;
+      padding:12px 8px;
+      cursor:pointer;
+      font-weight:900;
+      color:var(--navy);
+      text-align:center;
+    }
+    .phleb-tube-choice:hover{background:#eff6ff;border-color:#93c5fd}
+    .phleb-tube-choice.used{opacity:.32;cursor:default}
+    .phleb-tube-choice small{
+      display:block;
+      margin-top:7px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:.75rem;
+    }
+    .phleb-tube-visual,.phleb-big-tube{
+      --cap:#a78bfa;
+      display:block;
+      margin:0 auto 8px;
+      width:42px;
+      height:88px;
+      border:2px solid #94a3b8;
+      border-top:0;
+      border-radius:0 0 12px 12px;
+      background:linear-gradient(90deg,#fff,#eef2f7 55%,#fff);
+      position:relative;
+    }
+    .phleb-tube-visual::before,.phleb-big-tube::before{
+      content:"";
+      position:absolute;
+      left:-4px;
+      right:-4px;
+      top:-10px;
+      height:16px;
+      border-radius:4px;
+      background:var(--cap);
+      border:1px solid rgba(15,23,42,.16);
+    }
+    .phleb-tube-visual::after,.phleb-big-tube::after{
+      content:"";
+      position:absolute;
+      left:6px;
+      right:6px;
+      bottom:5px;
+      height:30px;
+      border-radius:3px 3px 8px 8px;
+      background:linear-gradient(180deg,rgba(220,38,38,.17),rgba(153,27,27,.39));
+    }
+    .phleb-tube-visual.multi::before{
+      background:linear-gradient(90deg,#facc15 0 48%,#dc2626 48% 100%);
+    }
+    .phleb-sequence{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:10px;
+      margin-bottom:16px;
+    }
+    .phleb-slot{
+      min-height:88px;
+      border:2px dashed #bfdbfe;
+      background:#eff6ff;
+      border-radius:14px;
+      padding:10px;
+    }
+    .phleb-slot strong{
+      display:block;
+      color:var(--blue);
+      font-size:.72rem;
+    }
+    .phleb-slot button{
+      width:100%;
+      border:0;
+      background:transparent;
+      color:var(--navy);
+      text-align:left;
+      font-weight:900;
+      cursor:pointer;
+      padding:6px 0 0;
+    }
+    .phleb-slot button span{
+      display:block;
+      color:var(--muted);
+      font-size:.72rem;
+      font-weight:700;
+      margin-top:3px;
+    }
+    .phleb-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .phleb-btn{
+      border:0;
+      border-radius:999px;
+      padding:11px 17px;
+      font-weight:900;
+      cursor:pointer;
+      background:linear-gradient(90deg,var(--teal),var(--green));
+      color:#fff;
+    }
+    .phleb-btn.secondary{background:#e2e8f0;color:var(--navy)}
+    .phleb-feedback{
+      display:none;
+      margin-top:14px;
+      padding:14px;
+      border-radius:13px;
+      font-weight:800;
+    }
+    .phleb-feedback.show{display:block}
+    .phleb-feedback.good{background:#dcfce7;color:#166534}
+    .phleb-feedback.bad{background:#fee2e2;color:#991b1b}
+    .phleb-feedback.near{background:#fff7ed;color:#9a3412}
+    .phleb-feedback .detail{font-weight:600;margin-top:5px}
+    .phleb-learning{display:none;margin-top:18px}
+    .phleb-learning.show{display:block}
+    .phleb-order-list{display:grid;gap:8px}
+    .phleb-order-list div{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:11px 13px;
+    }
+    .phleb-order-list span{color:var(--muted)}
+    .phleb-note{
+      background:#fff7ed;
+      border-left:5px solid var(--orange);
+      padding:14px 16px;
+      border-radius:12px;
+      margin-top:16px;
+      color:#7c2d12;
+    }
+    .phleb-id-stage{text-align:center;padding:6px 0 12px}
+    .phleb-big-tube{width:58px;height:132px;margin-bottom:12px}
+    .phleb-big-tube::before{top:-12px;height:20px}
+    .phleb-big-tube::after{left:9px;right:9px;bottom:8px;height:52px}
+    .phleb-id-name{font-size:1.3rem;font-weight:900;color:var(--navy)}
+    .phleb-question{font-size:1.08rem;font-weight:900;color:var(--navy);margin:10px 0 12px}
+    .phleb-answer-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+    .phleb-answer-grid button{
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:13px;
+      padding:12px 13px;
+      font-weight:800;
+      cursor:pointer;
+      text-align:left;
+    }
+    .phleb-answer-grid button:hover{background:#eff6ff;border-color:#93c5fd}
+    .phleb-answer-grid button.correct{background:#dcfce7;border-color:#86efac}
+    .phleb-answer-grid button.wrong{background:#fee2e2;border-color:#fca5a5}
+    .phleb-score{font-size:1.08rem;font-weight:900;color:var(--navy);margin:14px 0 0}
+    @media(max-width:850px){
+      .phleb-tube-bank,.phleb-sequence{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
+    @media(max-width:650px){
+      .practice-lab{padding:18px 14px}
+      .phleb-panel{padding:18px 14px}
+      .phleb-tube-bank,.phleb-sequence{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .phleb-answer-grid{grid-template-columns:1fr}
+    }
+
+</style>
 </head>
 
 <body>
@@ -526,7 +761,7 @@
       <section class="card">
         <h2>Learning Objectives</h2>
         <ul class="objective-list">
-          <li>Apply laboratory safety and specimen-identification principles.</li>
+          <li>Apply laboratory safety, specimen-identification, and basic phlebotomy principles.</li>
           <li>Explain the purpose of CLIA-waived point-of-care testing.</li>
           <li>Describe common urinalysis and blood-glucose workflows.</li>
           <li>Recognize basic hematology and microbiology concepts.</li>
@@ -540,6 +775,8 @@
         <ul class="objective-list">
           <li>Laboratory safety</li>
           <li>Specimen labeling</li>
+          <li>Blood collection tubes and order of draw</li>
+          <li>Tube selection for common laboratory tests</li>
           <li>Point-of-care testing</li>
           <li>Urinalysis</li>
           <li>Blood glucose testing</li>
@@ -550,7 +787,88 @@
       </section>
     </div>
 
-    <section class="lesson" data-lesson="1">
+    <section class="practice-lab" aria-labelledby="phlebotomyPracticeTitle">
+      <div class="phleb-head">
+        <div>
+          <div class="phleb-kicker">🩸 Interactive Phlebotomy Practice</div>
+          <h2 id="phlebotomyPracticeTitle">Phlebotomy Practice Lab</h2>
+          <p>Practice order of draw, tube identification, additives, and common test-to-tube associations without leaving Module 6.</p>
+        </div>
+        <span class="phleb-badge">Practice Activity</span>
+      </div>
+
+      <div class="phleb-panel">
+        <div class="phleb-step">Challenge 1 of 3</div>
+        <h3>Build the Order of Draw</h3>
+        <p class="phleb-sub">Tap the six tube categories in the order they should commonly be collected. Tap a placed item to remove it.</p>
+
+        <div class="phleb-progress"><span id="phlebOrderProgress"></span></div>
+        <div id="phlebTubeBank" class="phleb-tube-bank"></div>
+        <div id="phlebSequence" class="phleb-sequence"></div>
+
+        <div class="phleb-actions">
+          <button type="button" class="phleb-btn" id="phlebCheckOrder">Check My Order</button>
+          <button type="button" class="phleb-btn secondary" id="phlebResetOrder">Shuffle & Try Again</button>
+        </div>
+        <div id="phlebOrderFeedback" class="phleb-feedback" aria-live="polite"></div>
+
+        <div id="phlebOrderLearning" class="phleb-learning">
+          <h3>Learn the Sequence</h3>
+          <div class="phleb-order-list">
+            <div><strong>1. Blood cultures / sterile specimens</strong><span>Culture bottles or the appropriate sterile collection system.</span></div>
+            <div><strong>2. Sodium citrate</strong><span>Commonly light blue; coagulation testing.</span></div>
+            <div><strong>3. Serum</strong><span>Commonly red, gold, or SST depending on the collection system.</span></div>
+            <div><strong>4. Heparin</strong><span>Commonly green.</span></div>
+            <div><strong>5. EDTA</strong><span>Commonly lavender or purple.</span></div>
+            <div><strong>6. Glycolytic inhibitor</strong><span>Commonly gray.</span></div>
+          </div>
+          <div class="phleb-note"><strong>Why order matters:</strong> The sequence helps reduce additive carryover between tubes, which can affect specimen quality and test results.</div>
+        </div>
+      </div>
+
+      <div class="phleb-panel">
+        <div class="phleb-step">Challenge 2 of 3</div>
+        <h3>Identify the Tube</h3>
+        <p class="phleb-sub">Use the cap color and question prompt to identify the commonly associated additive or tube category.</p>
+
+        <div class="phleb-progress"><span id="phlebIdProgress"></span></div>
+        <div class="phleb-id-stage">
+          <span class="phleb-big-tube" id="phlebIdTube" aria-hidden="true"></span>
+          <div class="phleb-id-name" id="phlebIdName"></div>
+        </div>
+
+        <div class="phleb-question" id="phlebIdPrompt"></div>
+        <div class="phleb-answer-grid" id="phlebIdAnswers"></div>
+        <div id="phlebIdFeedback" class="phleb-feedback" aria-live="polite"></div>
+
+        <div class="phleb-actions">
+          <button type="button" class="phleb-btn" id="phlebIdNext" style="display:none">Next Tube →</button>
+        </div>
+        <p class="phleb-score" id="phlebIdScore">Score: 0 / 0</p>
+      </div>
+
+      <div class="phleb-panel">
+        <div class="phleb-step">Challenge 3 of 3</div>
+        <h3>Which Tube for Which Test?</h3>
+        <p class="phleb-sub">Choose the tube category commonly associated with each laboratory order.</p>
+
+        <div class="phleb-progress"><span id="phlebTestProgress"></span></div>
+        <div class="phleb-question" id="phlebTestPrompt"></div>
+        <div class="phleb-answer-grid" id="phlebTestAnswers"></div>
+        <div id="phlebTestFeedback" class="phleb-feedback" aria-live="polite"></div>
+
+        <div class="phleb-actions">
+          <button type="button" class="phleb-btn" id="phlebTestNext" style="display:none">Next Question →</button>
+        </div>
+        <p class="phleb-score" id="phlebTestScore">Score: 0 / 0</p>
+      </div>
+
+      <div class="phleb-note">
+        <strong>Important:</strong> Tube colors, additives, fill requirements, test requirements, and collection systems can vary. Always verify the tube label and follow the current laboratory/facility procedure.
+      </div>
+    </section>
+
+<section class="lesson" data-lesson="1">
       <div class="lesson-tag">Lesson 6.1</div>
       <h2>Laboratory Safety and Workflow</h2>
       <p>
@@ -592,10 +910,6 @@
         <li>Use the required storage temperature and transport method.</li>
         <li>Protect specimens from contamination, leakage, and delay.</li>
       </ul>
-
-      <div class="pearl">
-        <strong>🩸 New Interactive Practice:</strong> Build the venous blood tube sequence and test common tube-to-test associations in the <a href="/order-of-draw-practice.html"><strong>Order of Draw Challenge →</strong></a>
-      </div>
 
       <div class="scenario">
         <h3>Clinical Scenario</h3>
@@ -1136,6 +1450,262 @@
       });
       document.getElementById("resultBox").classList.remove("show");
     });
+
+
+    // ------------------------------
+    // Embedded Phlebotomy Practice Lab
+    // ------------------------------
+    const phlebItems=[
+      {id:"culture",name:"Blood Cultures",sub:"Sterile collection",cap:"multi"},
+      {id:"citrate",name:"Sodium Citrate",sub:"Commonly light blue",cap:"#60a5fa"},
+      {id:"serum",name:"Serum",sub:"Red / gold / SST",cap:"#f59e0b"},
+      {id:"heparin",name:"Heparin",sub:"Commonly green",cap:"#22c55e"},
+      {id:"edta",name:"EDTA",sub:"Commonly lavender",cap:"#a78bfa"},
+      {id:"gray",name:"Glycolytic Inhibitor",sub:"Commonly gray",cap:"#94a3b8"}
+    ];
+    const phlebCorrect=phlebItems.map(item=>item.id);
+    let phlebPlaced=[];
+    let phlebDetailsRevealed=false;
+    const phlebShuffle=array=>[...array].sort(()=>Math.random()-.5);
+    let phlebBankItems=phlebShuffle(phlebItems);
+
+    function phlebTubeVisual(item){
+      const multi=item.cap==="multi";
+      return `<span class="phleb-tube-visual ${multi?"multi":""}" ${multi?"":`style="--cap:${item.cap}"`} aria-hidden="true"></span>`;
+    }
+
+    function phlebRenderOrder(){
+      const bank=document.getElementById("phlebTubeBank");
+      const sequence=document.getElementById("phlebSequence");
+      if(!bank || !sequence) return;
+
+      bank.innerHTML="";
+      phlebBankItems.forEach(item=>{
+        const button=document.createElement("button");
+        button.type="button";
+        button.className="phleb-tube-choice"+(phlebPlaced.includes(item.id)?" used":"");
+        button.setAttribute("aria-label",item.name+(phlebDetailsRevealed?", "+item.sub:""));
+        button.innerHTML=phlebTubeVisual(item)+item.name+(phlebDetailsRevealed?`<small>${item.sub}</small>`:"");
+        button.addEventListener("click",()=>{
+          if(!phlebPlaced.includes(item.id)){
+            phlebPlaced.push(item.id);
+            phlebRenderOrder();
+          }
+        });
+        bank.appendChild(button);
+      });
+
+      sequence.innerHTML="";
+      for(let i=0;i<6;i++){
+        const slot=document.createElement("div");
+        slot.className="phleb-slot";
+        slot.innerHTML=`<strong>POSITION ${i+1}</strong>`;
+        if(phlebPlaced[i]){
+          const item=phlebItems.find(x=>x.id===phlebPlaced[i]);
+          const remove=document.createElement("button");
+          remove.type="button";
+          remove.innerHTML=`${item.name}<span>Tap to remove</span>`;
+          remove.addEventListener("click",()=>{
+            phlebPlaced.splice(i,1);
+            phlebRenderOrder();
+          });
+          slot.appendChild(remove);
+        }
+        sequence.appendChild(slot);
+      }
+
+      document.getElementById("phlebOrderProgress").style.width=(phlebPlaced.length/6*100)+"%";
+    }
+
+    document.getElementById("phlebResetOrder")?.addEventListener("click",()=>{
+      phlebPlaced=[];
+      phlebBankItems=phlebShuffle(phlebItems);
+      const feedback=document.getElementById("phlebOrderFeedback");
+      feedback.className="phleb-feedback";
+      feedback.textContent="";
+      phlebRenderOrder();
+    });
+
+    document.getElementById("phlebCheckOrder")?.addEventListener("click",()=>{
+      const feedback=document.getElementById("phlebOrderFeedback");
+      if(phlebPlaced.length<6){
+        feedback.className="phleb-feedback show bad";
+        feedback.textContent="Place all six categories before checking.";
+        return;
+      }
+
+      const matches=phlebCorrect.filter((id,index)=>phlebPlaced[index]===id).length;
+      phlebDetailsRevealed=true;
+      document.getElementById("phlebOrderLearning").classList.add("show");
+      phlebRenderOrder();
+
+      if(matches===6){
+        feedback.className="phleb-feedback show good";
+        feedback.textContent="Perfect — 6 of 6 positions correct. You built the commonly taught venous order of draw.";
+      }else if(matches>=3){
+        feedback.className="phleb-feedback show near";
+        feedback.textContent=`Close — ${matches} of 6 positions are correct. Review the sequence below, then shuffle and try again.`;
+      }else{
+        feedback.className="phleb-feedback show bad";
+        feedback.textContent=`You have ${matches} of 6 positions correct. Review the sequence below, then reset and try again.`;
+      }
+    });
+
+    const phlebIdQuestions=[
+      {color:"Light Blue",cap:"#60a5fa",q:"Which additive is commonly associated with this tube?",a:"Sodium citrate",opts:["Sodium citrate","EDTA","Heparin","Glycolytic inhibitor"],e:"Light-blue tubes are commonly associated with sodium citrate and coagulation testing."},
+      {color:"Lavender / Purple",cap:"#a78bfa",q:"Which additive is commonly associated with this tube?",a:"EDTA",opts:["Heparin","EDTA","Sodium citrate","Serum clot activator"],e:"Lavender or purple tubes are commonly associated with EDTA and hematology testing."},
+      {color:"Green",cap:"#22c55e",q:"Which additive category is commonly associated with this tube?",a:"Heparin",opts:["EDTA","Heparin","Sodium citrate","Glycolytic inhibitor"],e:"Green tubes are commonly associated with heparin."},
+      {color:"Gray",cap:"#94a3b8",q:"Which category is commonly associated with this tube?",a:"Glycolytic inhibitor",opts:["Serum","Heparin","Glycolytic inhibitor","EDTA"],e:"Gray tubes commonly use a glycolytic-inhibitor system and are associated with selected glucose-related testing."},
+      {color:"Gold / SST",cap:"#f59e0b",q:"Which specimen category is commonly produced after clotting and centrifugation?",a:"Serum",opts:["Whole blood only","Serum","Citrated plasma","EDTA plasma"],e:"Gold/SST tubes are commonly used to collect serum for many chemistry and serology tests."}
+    ];
+
+    let phlebIdBank=phlebShuffle(phlebIdQuestions);
+    let phlebIdIndex=0;
+    let phlebIdScore=0;
+    let phlebIdAnswered=false;
+
+    function phlebRenderId(){
+      const item=phlebIdBank[phlebIdIndex];
+      const tube=document.getElementById("phlebIdTube");
+      if(!item || !tube) return;
+
+      tube.style.setProperty("--cap",item.cap);
+      document.getElementById("phlebIdName").textContent=item.color+" Top";
+      document.getElementById("phlebIdPrompt").textContent=item.q;
+
+      const answers=document.getElementById("phlebIdAnswers");
+      answers.innerHTML="";
+      phlebIdAnswered=false;
+
+      phlebShuffle(item.opts).forEach(option=>{
+        const button=document.createElement("button");
+        button.type="button";
+        button.textContent=option;
+        button.addEventListener("click",()=>phlebAnswerId(button,option,item,answers));
+        answers.appendChild(button);
+      });
+
+      const feedback=document.getElementById("phlebIdFeedback");
+      feedback.className="phleb-feedback";
+      feedback.innerHTML="";
+      document.getElementById("phlebIdNext").style.display="none";
+      document.getElementById("phlebIdProgress").style.width=(phlebIdIndex/phlebIdBank.length*100)+"%";
+    }
+
+    function phlebAnswerId(button,option,item,answers){
+      if(phlebIdAnswered) return;
+      phlebIdAnswered=true;
+      const correct=option===item.a;
+
+      if(correct){
+        phlebIdScore++;
+        button.classList.add("correct");
+      }else{
+        button.classList.add("wrong");
+        [...answers.children].find(el=>el.textContent===item.a)?.classList.add("correct");
+      }
+
+      const feedback=document.getElementById("phlebIdFeedback");
+      feedback.className="phleb-feedback show "+(correct?"good":"bad");
+      feedback.innerHTML=(correct?"Correct. ":"Not quite. ")+`<div class="detail">${item.e}</div>`;
+
+      document.getElementById("phlebIdScore").textContent=`Score: ${phlebIdScore} / ${phlebIdIndex+1}`;
+      document.getElementById("phlebIdProgress").style.width=((phlebIdIndex+1)/phlebIdBank.length*100)+"%";
+
+      const nextButton=document.getElementById("phlebIdNext");
+      if(phlebIdIndex===phlebIdBank.length-1){
+        nextButton.style.display="none";
+        document.getElementById("phlebIdScore").textContent=
+          `Challenge complete — Score: ${phlebIdScore} / ${phlebIdBank.length}`;
+      }else{
+        nextButton.style.display="inline-block";
+      }
+    }
+
+    document.getElementById("phlebIdNext")?.addEventListener("click",()=>{
+      if(phlebIdIndex<phlebIdBank.length-1){
+        phlebIdIndex++;
+        phlebRenderId();
+      }
+    });
+
+    const phlebTestQuestions=[
+      {q:"A CBC is ordered. Which tube is commonly associated with this test?",a:"Lavender / EDTA",opts:["Lavender / EDTA","Light Blue / Sodium citrate","Gray","Blood culture"],e:"CBC testing commonly uses EDTA because it helps preserve cellular components."},
+      {q:"A PT/INR is ordered. Which tube is commonly associated with this test?",a:"Light Blue / Sodium citrate",opts:["Green / Heparin","Light Blue / Sodium citrate","Lavender / EDTA","Gray"],e:"PT/INR is a coagulation test commonly collected in a sodium-citrate light-blue tube."},
+      {q:"Blood cultures are ordered. Which collection system should be selected?",a:"Blood culture bottles / sterile system",opts:["Lavender tube","Gray tube","Blood culture bottles / sterile system","Green tube"],e:"Blood cultures require the appropriate sterile blood-culture collection system."},
+      {q:"Which tube category is commonly associated with selected glucose-related testing?",a:"Gray / glycolytic inhibitor",opts:["Gray / glycolytic inhibitor","Lavender / EDTA","Light Blue / citrate","Blood culture"],e:"Gray tubes commonly contain a glycolytic-inhibitor system used for selected glucose-related testing."},
+      {q:"Many routine serum chemistry tests may use which category, depending on the laboratory?",a:"Serum / SST",opts:["Serum / SST","Blood culture bottles","Light Blue only","Lavender only"],e:"Serum tubes, including SST configurations, are commonly used for many chemistry tests; follow the laboratory test directory."},
+      {q:"Which tube is commonly associated with hematology testing such as a CBC?",a:"Lavender / EDTA",opts:["Green / Heparin","Gold / SST","Lavender / EDTA","Light Blue / citrate"],e:"Lavender EDTA tubes are commonly associated with hematology testing."},
+      {q:"Which tube is commonly associated with coagulation testing?",a:"Light Blue / Sodium citrate",opts:["Light Blue / Sodium citrate","Gray","Gold / SST","Lavender / EDTA"],e:"Light-blue sodium-citrate tubes are commonly used for coagulation studies."},
+      {q:"Which statement is safest when selecting a tube?",a:"Verify the tube label and current lab procedure",opts:["Choose by cap color alone","Verify the tube label and current lab procedure","Use the same tube for every chemistry test","Ignore fill requirements"],e:"Color is a helpful cue, but the tube label and current laboratory collection instructions control."}
+    ];
+
+    let phlebTestBank=phlebShuffle(phlebTestQuestions);
+    let phlebTestIndex=0;
+    let phlebTestScore=0;
+    let phlebTestAnswered=false;
+
+    function phlebRenderTest(){
+      const item=phlebTestBank[phlebTestIndex];
+      if(!item) return;
+
+      document.getElementById("phlebTestPrompt").textContent=`${phlebTestIndex+1}. ${item.q}`;
+      const answers=document.getElementById("phlebTestAnswers");
+      answers.innerHTML="";
+      phlebTestAnswered=false;
+
+      phlebShuffle(item.opts).forEach(option=>{
+        const button=document.createElement("button");
+        button.type="button";
+        button.textContent=option;
+        button.addEventListener("click",()=>phlebAnswerTest(button,option,item,answers));
+        answers.appendChild(button);
+      });
+
+      const feedback=document.getElementById("phlebTestFeedback");
+      feedback.className="phleb-feedback";
+      feedback.innerHTML="";
+      document.getElementById("phlebTestNext").style.display="none";
+      document.getElementById("phlebTestProgress").style.width=(phlebTestIndex/phlebTestBank.length*100)+"%";
+    }
+
+    function phlebAnswerTest(button,option,item,answers){
+      if(phlebTestAnswered) return;
+      phlebTestAnswered=true;
+      const correct=option===item.a;
+
+      if(correct){
+        phlebTestScore++;
+        button.classList.add("correct");
+      }else{
+        button.classList.add("wrong");
+        [...answers.children].find(el=>el.textContent===item.a)?.classList.add("correct");
+      }
+
+      const feedback=document.getElementById("phlebTestFeedback");
+      feedback.className="phleb-feedback show "+(correct?"good":"bad");
+      feedback.innerHTML=(correct?"Correct. ":"Not quite. ")+`<div class="detail">${item.e}</div>`;
+
+      document.getElementById("phlebTestScore").textContent=`Score: ${phlebTestScore} / ${phlebTestIndex+1}`;
+      document.getElementById("phlebTestProgress").style.width=((phlebTestIndex+1)/phlebTestBank.length*100)+"%";
+      document.getElementById("phlebTestNext").style.display="inline-block";
+    }
+
+    document.getElementById("phlebTestNext")?.addEventListener("click",()=>{
+      if(phlebTestIndex<phlebTestBank.length-1){
+        phlebTestIndex++;
+      }else{
+        phlebTestBank=phlebShuffle(phlebTestQuestions);
+        phlebTestIndex=0;
+        phlebTestScore=0;
+        document.getElementById("phlebTestScore").textContent="Score: 0 / 0";
+      }
+      phlebRenderTest();
+    });
+
+    phlebRenderOrder();
+    phlebRenderId();
+    phlebRenderTest();
 
     updateProgress();
   </script>
