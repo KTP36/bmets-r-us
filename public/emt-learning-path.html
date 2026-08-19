@@ -472,21 +472,6 @@
       color:#166534;
       font-weight:700;
     }
-
-
-    .emt-test-banner{
-      position:sticky;
-      top:0;
-      z-index:9999;
-      background:#fef3c7;
-      color:#92400e;
-      border-bottom:1px solid #f59e0b;
-      padding:8px 14px;
-      text-align:center;
-      font-weight:900;
-      font-size:.88rem;
-    }
-
 </style>
 
 <style>
@@ -705,7 +690,8 @@
 </style>
 
 </head>
-<body><div class="emt-test-banner">🧪 EMT ACADEMY TEST MODE — Modules 1–8 + Capstone unlocked. Set TEST_MODE=false before pushing live.</div>
+<body>
+<!-- EMT ACADEMY PRODUCTION BUILD -->
 <header class="hero">
   <div class="container">
     <div class="top-row">
@@ -1294,7 +1280,7 @@
 (function(){
   const KEY="msb_emt_path_v1";
   const BUILT_MODULES=8;
-  const TEST_MODE=false; // TESTING ONLY: set to false before pushing live
+  const TEST_MODE=false; // PRODUCTION
   const IS_LOCAL_TEST=TEST_MODE||location.protocol==="file:"||location.hostname==="localhost"||location.hostname==="127.0.0.1";
   const blank=()=>({completedLessons:[],quizPassed:false});
   const MODULE_TITLES={1:'Module 1: EMS Foundations & Responder Safety',2:'Module 2: Anatomy, Physiology & Medical Terminology',3:'Module 3: Airway, Respiration & Ventilation',4:'Module 4: Patient Assessment',5:'Module 5: Medical Emergencies',6:'Module 6: Trauma',7:'Module 7: Special Populations',8:'Module 8: EMS Operations & Integrated Decision-Making'};
