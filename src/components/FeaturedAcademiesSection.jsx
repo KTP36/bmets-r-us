@@ -300,6 +300,51 @@ export default function FeaturedAcademiesSection({ isSmallScreen, trackSiteEvent
             Start Academy <span aria-hidden="true">→</span>
           </span>
         </a>
+
+        <a
+          className="featured-academy-card"
+          href="/surgical-technologist-academy.html"
+          onClick={() =>
+            trackSiteEvent("featured_academy_click", {
+              academy: "surgical_technologist",
+              target_url: "/surgical-technologist-academy.html",
+              source: "homepage_featured_academies"
+            })
+          }
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 390,
+            padding: isSmallScreen ? 22 : 26,
+            borderRadius: 24,
+            color: "#1e293b",
+            textDecoration: "none",
+            background: "rgba(255,255,255,0.98)",
+            border: "1px solid #99f6e4",
+            boxShadow: "0 14px 30px rgba(13,148,136,0.11)",
+            overflow: "hidden"
+          }}
+        >
+          <div style={{ height: 7, margin: isSmallScreen ? "-22px -22px 22px" : "-26px -26px 24px", background: "linear-gradient(90deg, #082f57, #0f766e, #22c5d2)" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+            <span style={{ width: 54, height: 54, borderRadius: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(145deg, #ccfbf1, #e0f2fe)", fontSize: 27, boxShadow: "0 8px 18px rgba(13,148,136,0.12)" }}>🧤</span>
+            <span style={{ padding: "6px 10px", borderRadius: 999, background: "#f0fdfa", color: "#0f766e", border: "1px solid #99f6e4", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>Career Path</span>
+          </div>
+          <h3 style={{ color: "#0f766e", fontSize: isSmallScreen ? 25 : 28, lineHeight: 1.15, margin: "20px 0 10px" }}>
+            Surgical Technologist Academy
+          </h3>
+          <p style={{ margin: "0 0 18px", lineHeight: 1.6, color: "#526579" }}>
+            Explore the pathway into surgical technology while building foundational OR knowledge in asepsis, patient safety, instrumentation, setup, procedures, and clinical decision-making.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 22 }}>
+            {["8-module path", "Sterile technique", "OR scenarios", "Capstone + certificate"].map((label) => (
+              <span key={label} style={{ padding: "7px 10px", borderRadius: 999, background: "#f0fdfa", border: "1px solid #99f6e4", color: "#134e4a", fontSize: 12, fontWeight: 800 }}>✓ {label}</span>
+            ))}
+          </div>
+          <span className="featured-academy-cta" style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "100%", padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, #082f57, #0f766e)", color: "white", fontWeight: 950, boxShadow: "0 8px 18px rgba(13,148,136,0.18)" }}>
+            Start Academy <span aria-hidden="true">→</span>
+          </span>
+        </a>
       </div>
     </section>
   );
