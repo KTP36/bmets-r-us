@@ -5738,6 +5738,15 @@ function getDeepLinkedTab() {
     return "Partner";
   }
 
+  // Medication Mastery SPA aliases. These are safe fallbacks when the request
+  // reaches the React app instead of a static public HTML file.
+  if (
+    normalizedPath === "/medication-mastery" ||
+    normalizedPath === "/medication-mastery-app"
+  ) {
+    return "MedicationAcademy";
+  }
+
   const queryTab =
     url.searchParams.get("tab") ||
     url.searchParams.get("section") ||
@@ -7711,6 +7720,8 @@ export default function App() {
         margin: "0 auto"
       }}
     >
+      {activeTab !== "MedicationAcademy" && (
+        <>
       <HomePage
         isSmallScreen={isSmallScreen}
         jumpToPracticeCategory={jumpToPracticeCategory}
@@ -7874,6 +7885,8 @@ export default function App() {
       <div style={{ marginBottom: 16 }}>
         {renderAdSlot(topAdSlot)}
       </div>
+        </>
+      )}
       {/* NAV BUTTONS (FIXED WRAPPER) */}
       {activeTab !== "Home" && (
       <div

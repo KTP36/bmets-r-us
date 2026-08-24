@@ -3506,6 +3506,10 @@ function MedicationFinalBoard({ onBack, onComplete }) {
   const [secondsRemaining, setSecondsRemaining] = useState(120 * 60);
   const [result, setResult] = useState(null);
   const [learnerName, setLearnerName] = useState("");
+  const [learnerEmail, setLearnerEmail] = useState("");
+  const [marketingOptIn, setMarketingOptIn] = useState(false);
+  const [certificateStatus, setCertificateStatus] = useState("");
+  const [submittingCertificate, setSubmittingCertificate] = useState(false);
 
   const currentQuestion = questions[questionIndex];
   const answeredCount = Object.keys(answers).length;
@@ -3576,6 +3580,68 @@ function MedicationFinalBoard({ onBack, onComplete }) {
     setSecondsRemaining(120 * 60);
     setResult(null);
     setPhase("intro");
+  }
+
+  function validCertificateEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  async function unlockCertificate() {
+    const name = learnerName.trim();
+    const email = learnerEmail.trim();
+
+    setCertificateStatus("");
+
+    if (!name) {
+      setCertificateStatus("Please enter the name for your certificate.");
+      return;
+    }
+    if (!validCertificateEmail(email)) {
+      setCertificateStatus("Please enter a valid email address.");
+      return;
+    }
+    if (!result?.passed || submittingCertificate) return;
+
+    const submission = new FormData();
+    submission.append("name", name);
+    submission.append("email", email);
+    submission.append("activity", "Medication Mastery Academy");
+    submission.append("lead_type", "Academy Graduate");
+    submission.append("score_percent", String(result.percent));
+    submission.append("score_correct", String(result.correct));
+    submission.append("score_total", String(result.total));
+    submission.append("completion_date", result.completedAt);
+    submission.append("marketing_opt_in", marketingOptIn ? "Yes" : "No");
+    submission.append("_source", "academy-certificate");
+    submission.append("_subject", "MedSkillBuilder Academy Graduate - Medication Mastery");
+    submission.append("message", [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      "Activity: Medication Mastery Academy",
+      "Lead Type: Academy Graduate",
+      `Final Board Score: ${result.percent}% (${result.correct}/${result.total})`,
+      `Completion Date: ${result.completedAt}`,
+      `Marketing Opt-In: ${marketingOptIn ? "Yes" : "No"}`,
+      "This email was submitted from the Medication Mastery Academy certificate unlock form."
+    ].join("\n"));
+
+    try {
+      setSubmittingCertificate(true);
+      setCertificateStatus("Saving your completion…");
+      const response = await fetch("https://formspree.io/f/xgonbzaj", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: submission,
+      });
+      if (!response.ok) throw new Error("submit_failed");
+
+      setCertificateStatus("Completion saved. Certificate unlocked.");
+      setPhase("certificate");
+    } catch {
+      setCertificateStatus("We could not save your completion. Please check your connection and try again.");
+    } finally {
+      setSubmittingCertificate(false);
+    }
   }
 
   if (phase === "intro") {
@@ -3749,11 +3815,53 @@ function MedicationFinalBoard({ onBack, onComplete }) {
 
       {result.passed ? (
         <div className="mma-certificate-claim">
-          <h2>Create Your Certificate of Completion</h2>
-          <p>No email or account is required. Enter the name you want displayed.</p>
+          <h2>Unlock Your Certificate of Completion</h2>
+          <p>Enter your name and email to record your Academy completion and open your certificate.</p>
+
           <label htmlFor="mma-learner-name">Name for certificate</label>
-          <input id="mma-learner-name" value={learnerName} onChange={(event) => setLearnerName(event.target.value)} placeholder="Enter your name" maxLength={60} />
-          <button className="mma-primary-button full" disabled={!learnerName.trim()} onClick={() => setPhase("certificate")}>View My Certificate</button>
+          <input
+            id="mma-learner-name"
+            value={learnerName}
+            onChange={(event) => { setLearnerName(event.target.value); setCertificateStatus(""); }}
+            placeholder="Enter your name"
+            maxLength={60}
+            autoComplete="name"
+          />
+
+          <label htmlFor="mma-learner-email">Email address</label>
+          <input
+            id="mma-learner-email"
+            type="email"
+            value={learnerEmail}
+            onChange={(event) => { setLearnerEmail(event.target.value); setCertificateStatus(""); }}
+            placeholder="you@example.com"
+            maxLength={120}
+            autoComplete="email"
+          />
+
+          <label style={{display:"flex",gap:9,alignItems:"flex-start",margin:"10px 0",fontSize:12,lineHeight:1.45,color:"#64748b",textAlign:"left"}}>
+            <input
+              type="checkbox"
+              checked={marketingOptIn}
+              onChange={(event) => setMarketingOptIn(event.target.checked)}
+              style={{marginTop:3}}
+            />
+            <span>Send me MedSkillBuilder learning resources, Academy announcements, and occasional partner offers. Optional.</span>
+          </label>
+
+          {certificateStatus && (
+            <p className="mma-no-print" role="status" style={{margin:"10px 0",fontWeight:800}}>
+              {certificateStatus}
+            </p>
+          )}
+
+          <button
+            className="mma-primary-button full"
+            disabled={submittingCertificate || !learnerName.trim() || !learnerEmail.trim()}
+            onClick={unlockCertificate}
+          >
+            {submittingCertificate ? "Saving Completion…" : "Unlock My Certificate →"}
+          </button>
           <small>Educational achievement only—not a professional credential or continuing education credit.</small>
         </div>
       ) : (
@@ -4012,6 +4120,7 @@ export default function MedicationAcademy() {
             );
           })}
         </div>
+
 
         <section className={`mma-final-card ${academy.academyComplete ? "unlocked" : "locked"}`}>
           <div className="mma-final-card-icon">🏆</div>
