@@ -32,6 +32,21 @@
       .name-input{border-bottom:3px solid var(--gold)}
       @page{size:landscape;margin:.25in}
     }
+
+    .gate{display:none;max-width:760px;margin:50px auto;background:#fff;border-radius:22px;padding:30px;box-shadow:0 14px 35px rgba(15,23,42,.12);font-family:Arial,sans-serif}
+    .gate.show{display:block}
+    .gate h2{margin:0 0 8px;color:var(--navy);font-size:28px;text-align:center}
+    .gate p{color:#64748b;text-align:center;margin:0 0 22px}
+    .gate-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .gate label.field{display:block;font-weight:800;color:var(--navy)}
+    .gate input[type="text"],.gate input[type="email"]{width:100%;margin-top:6px;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font:16px Arial,sans-serif}
+    .consent{display:flex;gap:9px;align-items:flex-start;margin:14px 0;color:#64748b;font:12px/1.45 Arial,sans-serif}
+    .unlock{border:0;border-radius:999px;padding:12px 18px;background:linear-gradient(90deg,var(--blue),var(--gold));color:#fff;font:800 15px Arial,sans-serif;cursor:pointer}
+    .unlock:disabled{opacity:.65;cursor:not-allowed}
+    .status{font:800 13px Arial,sans-serif;margin-top:12px}
+    .status.error{color:#991b1b}.status.success{color:#166534}
+    @media(max-width:650px){.gate-grid{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -46,12 +61,33 @@
     <a class="back" href="/medical-assistant-module-8.html">Return to Module 8</a>
   </div>
 
+  <section class="gate" id="certificateGate">
+    <h2>Unlock Your Certificate</h2>
+    <p>Module 8 is complete. Enter your name and email to record your completion and open your certificate.</p>
+    <form id="certificateGateForm">
+      <div class="gate-grid">
+        <label class="field">Name to appear on certificate
+          <input id="learnerName" type="text" maxlength="80" autocomplete="name" placeholder="Enter learner name" required />
+        </label>
+        <label class="field">Email address
+          <input id="learnerEmail" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com" required />
+        </label>
+      </div>
+      <label class="consent">
+        <input id="marketingOptIn" type="checkbox" />
+        <span>Send me MedSkillBuilder learning resources, Academy announcements, and occasional partner offers. Optional.</span>
+      </label>
+      <button class="unlock" id="unlockCertificateBtn" type="submit">Unlock My Certificate →</button>
+      <div id="certificateStatus" class="status" aria-live="polite"></div>
+    </form>
+  </section>
+
   <main class="certificate" id="certificate">
     <div class="seal">🎓</div>
     <div class="brand">MedSkillBuilder Academy</div>
     <h1>Certificate of Completion</h1>
     <div class="presented">This certificate is presented to</div>
-    <input class="name-input" type="text" aria-label="Student name" placeholder="Enter student name" />
+    <input class="name-input" id="certificateName" type="text" aria-label="Student name" placeholder="Student name" readonly />
     <div class="body">
       for successfully completing the eight-module <strong>Medical Assistant Academy</strong>, including medical terminology, anatomy and physiology, infection control, vital signs, clinical procedures, laboratory fundamentals, medical equipment, and professional practice.
     </div>
@@ -63,16 +99,121 @@
   </main>
 
   <script>
+    const MODULE_KEY="medskillbuilder_ma_module8";
+    const CLAIM_KEY="medskillbuilder_ma_certificate_claim_v1";
+    const FORMSPREE_ENDPOINT="https://formspree.io/f/xgonbzaj";
+
     let passed=false;
     try{
-      const state=JSON.parse(localStorage.getItem("medskillbuilder_ma_module8"))||{};
+      const state=JSON.parse(localStorage.getItem(MODULE_KEY))||{};
       passed=state.passed===true;
     }catch{}
-    if(passed){
-      document.getElementById("lockedMessage").style.display="none";
-      document.getElementById("certificate").classList.add("show");
-      document.getElementById("date").textContent=new Date().toLocaleDateString();
+
+    const locked=document.getElementById("lockedMessage");
+    const gate=document.getElementById("certificateGate");
+    const certificate=document.getElementById("certificate");
+    const form=document.getElementById("certificateGateForm");
+    const nameInput=document.getElementById("learnerName");
+    const emailInput=document.getElementById("learnerEmail");
+    const optIn=document.getElementById("marketingOptIn");
+    const status=document.getElementById("certificateStatus");
+    const unlockBtn=document.getElementById("unlockCertificateBtn");
+    const certificateName=document.getElementById("certificateName");
+
+    function validEmail(value){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     }
+    function showCertificate(claim){
+      locked.style.display="none";
+      gate.classList.remove("show");
+      certificate.classList.add("show");
+      certificateName.value=claim.name||"";
+      document.getElementById("date").textContent=new Date(claim.completedAt||Date.now()).toLocaleDateString();
+    }
+
+    let savedClaim=null;
+    try{savedClaim=JSON.parse(localStorage.getItem(CLAIM_KEY))||null}catch{}
+
+    if(passed){
+      locked.style.display="none";
+      if(savedClaim && savedClaim.submitted===true && savedClaim.name && savedClaim.email){
+        showCertificate(savedClaim);
+      }else{
+        gate.classList.add("show");
+      }
+    }
+
+    form.addEventListener("submit",async(event)=>{
+      event.preventDefault();
+      if(!passed)return;
+
+      const name=nameInput.value.trim();
+      const email=emailInput.value.trim();
+      const marketing=optIn.checked;
+
+      status.textContent="";
+      status.className="status";
+
+      if(!name){
+        status.textContent="Please enter the name for your certificate.";
+        status.className="status error";
+        nameInput.focus();
+        return;
+      }
+      if(!validEmail(email)){
+        status.textContent="Please enter a valid email address.";
+        status.className="status error";
+        emailInput.focus();
+        return;
+      }
+
+      const completedAt=new Date().toISOString();
+      const submission=new FormData();
+      submission.append("name",name);
+      submission.append("email",email);
+      submission.append("activity","Medical Assistant Academy");
+      submission.append("lead_type","Academy Graduate");
+      submission.append("completion_requirement","Module 8 passed at 80% or higher");
+      submission.append("completion_date",completedAt);
+      submission.append("marketing_opt_in",marketing?"Yes":"No");
+      submission.append("_source","academy-certificate");
+      submission.append("_subject","MedSkillBuilder Academy Graduate - Medical Assistant");
+      submission.append("message",[
+        `Name: ${name}`,
+        `Email: ${email}`,
+        "Activity: Medical Assistant Academy",
+        "Lead Type: Academy Graduate",
+        "Completion Requirement: Module 8 passed at 80% or higher",
+        `Completion Date: ${completedAt}`,
+        `Marketing Opt-In: ${marketing?"Yes":"No"}`,
+        "This email was submitted from the Medical Assistant Academy certificate unlock form."
+      ].join("\n"));
+
+      try{
+        unlockBtn.disabled=true;
+        unlockBtn.textContent="Saving Completion…";
+        status.textContent="Saving your completion…";
+
+        const response=await fetch(FORMSPREE_ENDPOINT,{
+          method:"POST",
+          headers:{Accept:"application/json"},
+          body:submission
+        });
+        if(!response.ok)throw new Error("submit_failed");
+
+        const claim={name,email,marketingOptIn:marketing,completedAt,submitted:true};
+        localStorage.setItem(CLAIM_KEY,JSON.stringify(claim));
+        status.textContent="Completion saved. Certificate unlocked.";
+        status.className="status success";
+        showCertificate(claim);
+      }catch(error){
+        status.textContent="We could not save your completion. Please check your connection and try again.";
+        status.className="status error";
+      }finally{
+        unlockBtn.disabled=false;
+        unlockBtn.textContent="Unlock My Certificate →";
+      }
+    });
   </script>
 </body>
 </html>
