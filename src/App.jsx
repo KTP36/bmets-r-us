@@ -17,6 +17,7 @@ import AchievementCase from "./components/AchievementCase";
 import EquipmentTab from "./components/EquipmentTab";
 import VitalsChallengeGame from "./components/VitalsChallengeGame";
 import MedicationAcademy from "./academy/medication/MedicationAcademy";
+import NursingAssessmentAcademy from "./academy/nursing/NursingAssessmentAcademy";
 import CBETAcademy from "./CBET Academy/CBETAcademy";
 
 
@@ -5638,6 +5639,7 @@ const DEEP_LINK_TABS = new Set([
   "Home",
   "LabValuesQuiz",
   "MedicationAcademy",
+  "NursingAssessmentAcademy",
   "CBETAcademy",
   "Leaderboard",
   "MuscleConceptQuiz",
@@ -5710,6 +5712,9 @@ const DEEP_LINK_TAB_ALIASES = {
   terminology: "Terminology",
   medicalterminology: "Terminology",
   medicalterminologybuilder: "Terminology",
+  nursingassessmentacademy: "NursingAssessmentAcademy",
+  nursingassessment: "NursingAssessmentAcademy",
+  nursingacademy: "NursingAssessmentAcademy",
   medicationacademy: "MedicationAcademy",
   medicationmastery: "MedicationAcademy",
   medications: "MedicationAcademy",
@@ -5736,6 +5741,14 @@ function getDeepLinkedTab() {
   // Professional standalone partnership URL.
   if (normalizedPath === "/partner" || normalizedPath === "/partnership") {
     return "Partner";
+  }
+
+  if (
+    normalizedPath === "/nursing-assessment" ||
+    normalizedPath === "/nursing-assessment-app" ||
+    normalizedPath === "/nursing-assessment-academy.html"
+  ) {
+    return "NursingAssessmentAcademy";
   }
 
   // Medication Mastery SPA aliases. These are safe fallbacks when the request
@@ -7605,6 +7618,7 @@ export default function App() {
       "Home",
       "Partner",
       "MedicationAcademy",
+      "NursingAssessmentAcademy",
       "CBETAcademy"
     ]);
 
@@ -7720,7 +7734,7 @@ export default function App() {
         margin: "0 auto"
       }}
     >
-      {activeTab !== "MedicationAcademy" && (
+      {activeTab !== "MedicationAcademy" && activeTab !== "NursingAssessmentAcademy" && (
         <>
       <HomePage
         isSmallScreen={isSmallScreen}
@@ -8238,6 +8252,9 @@ export default function App() {
 
       {/* MEDICATION MASTERY ACADEMY */}
       {activeTab === "MedicationAcademy" && <MedicationAcademy />}
+
+      {/* NURSING ASSESSMENT ACADEMY */}
+      {activeTab === "NursingAssessmentAcademy" && <NursingAssessmentAcademy />}
 
       {/* CBET CERTIFICATION ACADEMY */}
       {activeTab === "CBETAcademy" && <CBETAcademy trackSiteEvent={trackSiteEvent} />}
