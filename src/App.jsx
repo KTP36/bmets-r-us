@@ -19,8 +19,7 @@ import VitalsChallengeGame from "./components/VitalsChallengeGame";
 import MedicationAcademy from "./academy/medication/MedicationAcademy";
 import NursingAssessmentAcademy from "./academy/nursing/NursingAssessmentAcademy";
 import CBETAcademy from "./CBET Academy/CBETAcademy";
-
-
+import RadiologicTechnologistAcademy from "./academy/radiography/RadiographyAcademy";
 const SHOW_CARM_PARTNER = true;
 
 const extraCbetQuestions = [
@@ -5715,6 +5714,10 @@ const DEEP_LINK_TAB_ALIASES = {
   nursingassessmentacademy: "NursingAssessmentAcademy",
   nursingassessment: "NursingAssessmentAcademy",
   nursingacademy: "NursingAssessmentAcademy",
+  radiologictechnologistacademy: "RadiologicTechnologistAcademy",
+  radiologictechnologist: "RadiologicTechnologistAcademy",
+  radiographyacademy: "RadiologicTechnologistAcademy",
+  xrayacademy: "RadiologicTechnologistAcademy",
   medicationacademy: "MedicationAcademy",
   medicationmastery: "MedicationAcademy",
   medications: "MedicationAcademy",
@@ -7734,8 +7737,9 @@ export default function App() {
         margin: "0 auto"
       }}
     >
-      {activeTab !== "MedicationAcademy" && activeTab !== "NursingAssessmentAcademy" && (
-        <>
+ {activeTab !== "MedicationAcademy" &&
+  activeTab !== "NursingAssessmentAcademy" &&
+  activeTab !== "RadiologicTechnologistAcademy" && (       <>
       <HomePage
         isSmallScreen={isSmallScreen}
         jumpToPracticeCategory={jumpToPracticeCategory}
@@ -8255,6 +8259,9 @@ export default function App() {
 
       {/* NURSING ASSESSMENT ACADEMY */}
       {activeTab === "NursingAssessmentAcademy" && <NursingAssessmentAcademy />}
+
+      {/* RADIOLOGIC TECHNOLOGIST ACADEMY */}
+      {activeTab === "RadiologicTechnologistAcademy" && <RadiologicTechnologistAcademy />}
 
       {/* CBET CERTIFICATION ACADEMY */}
       {activeTab === "CBETAcademy" && <CBETAcademy trackSiteEvent={trackSiteEvent} />}

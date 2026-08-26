@@ -390,6 +390,51 @@ export default function FeaturedAcademiesSection({ isSmallScreen, trackSiteEvent
             Start Academy <span aria-hidden="true">→</span>
           </span>
         </a>
+        <a
+          className="featured-academy-card"
+          href="/?tab=RadiologicTechnologistAcademy"
+          onClick={() =>
+            trackSiteEvent("featured_academy_click", {
+              academy: "radiologic_technologist",
+              target_url: "/?tab=RadiologicTechnologistAcademy",
+              source: "homepage_featured_academies"
+            })
+          }
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 390,
+            padding: isSmallScreen ? 22 : 26,
+            borderRadius: 24,
+            color: "#1e293b",
+            textDecoration: "none",
+            background: "rgba(255,255,255,0.98)",
+            border: "1px solid #c4b5fd",
+            boxShadow: "0 14px 30px rgba(67,56,202,0.11)",
+            overflow: "hidden"
+          }}
+        >
+          <div style={{ height: 7, margin: isSmallScreen ? "-22px -22px 22px" : "-26px -26px 24px", background: "linear-gradient(90deg, #312e81, #2563eb, #06b6d4)" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+            <span style={{ width: 54, height: 54, borderRadius: 16, display: "inline-flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(145deg, #ede9fe, #cffafe)", fontSize: 27, boxShadow: "0 8px 18px rgba(67,56,202,0.12)" }}>🩻</span>
+            <span style={{ padding: "6px 10px", borderRadius: 999, background: "#eef2ff", color: "#4338ca", border: "1px solid #c7d2fe", fontSize: 11, fontWeight: 950, letterSpacing: 0.7, textTransform: "uppercase" }}>Career Path</span>
+          </div>
+          <h3 style={{ color: "#3730a3", fontSize: isSmallScreen ? 25 : 28, lineHeight: 1.15, margin: "20px 0 10px" }}>
+            Radiologic Technologist Academy
+          </h3>
+          <p style={{ margin: "0 0 18px", lineHeight: 1.6, color: "#526579" }}>
+            Build foundational radiography knowledge through patient care, positioning, radiation safety, image acquisition, image evaluation, and challenging clinical scenarios.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 22 }}>
+            {["8-module path", "Radiographic positioning", "85% mastery", "Capstone + certificate"].map((label) => (
+              <span key={label} style={{ padding: "7px 10px", borderRadius: 999, background: "#eef2ff", border: "1px solid #c7d2fe", color: "#3730a3", fontSize: 12, fontWeight: 800 }}>✓ {label}</span>
+            ))}
+          </div>
+          <span className="featured-academy-cta" style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", justifyContent: "space-between", gap: 12, width: "100%", padding: "13px 16px", borderRadius: 14, background: "linear-gradient(135deg, #312e81, #2563eb)", color: "white", fontWeight: 950, boxShadow: "0 8px 18px rgba(67,56,202,0.18)" }}>
+            Start Academy <span aria-hidden="true">→</span>
+          </span>
+        </a>
+
       </div>
     </section>
   );
