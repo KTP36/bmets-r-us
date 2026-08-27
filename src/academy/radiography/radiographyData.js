@@ -454,10 +454,10 @@ export const radiographyModuleContent = {
       {
             "question": "A technologist centers using a fixed distance below the iliac crest, but the anatomy of interest is consistently clipped in very tall patients. What should be changed?",
             "options": [
-                  "Rotate the detector to correct for body height",
-                  "Increase mAs so more anatomy becomes visible",
-                  "Increase SID until the field automatically enlarges",
-                  "Use anatomy and required coverage rather than a fixed distance alone"
+                  "Rotate the detector to compensate for differences in patient body height",
+                  "Increase mAs so clipped anatomy becomes more visible on the receptor",
+                  "Increase SID until the field automatically includes the missing anatomy",
+                  "Use palpable anatomy and required coverage rather than a fixed distance alone"
             ],
             "answer": 3,
             "explanation": "Surface anatomy and required image coverage should guide centering."
@@ -745,10 +745,10 @@ export const radiographyModuleContent = {
       {
             "question": "Why is low-energy filtration valuable even though it reduces photon quantity?",
             "options": [
-                  "It removes photons likely to increase skin dose without useful penetration",
-                  "It converts scatter into primary radiation",
-                  "It increases field size without changing dose",
-                  "It lowers tube heat by reducing electron flow"
+                  "It removes low-energy photons that add skin dose with little image benefit",
+                  "It converts scattered photons into useful primary-beam radiation",
+                  "It increases field size while keeping patient exposure unchanged",
+                  "It lowers tube heat by reducing the number of electrons crossing the tube"
             ],
             "answer": 0,
             "explanation": "Low-energy photons add dose with little image benefit."
@@ -790,9 +790,9 @@ export const radiographyModuleContent = {
             "question": "A high-frequency generator is compared with a single-phase generator at the same selected kVp and mAs. Which difference is most relevant?",
             "options": [
                   "High-frequency output is more consistent because voltage ripple is lower",
-                  "Single-phase output always produces a smaller focal spot",
-                  "High-frequency output eliminates all scatter",
-                  "Single-phase output requires no rectification"
+                  "Single-phase output consistently produces a smaller focal spot at the same technique",
+                  "High-frequency output eliminates scatter interactions within the patient",
+                  "Single-phase output requires no rectification before electrons reach the tube"
             ],
             "answer": 0,
             "explanation": "Lower voltage ripple improves output consistency."
@@ -1003,10 +1003,10 @@ export const radiographyModuleContent = {
       {
             "question": "An AEC chamber lies under a prosthetic hip during an AP pelvis. What exposure error is most likely?",
             "options": [
-                  "The image will be underexposed only at the skin surface",
-                  "The exposure will always terminate early because metal increases scatter",
-                  "The system will ignore the chamber automatically",
-                  "The exposure may continue too long because the dense prosthesis delays chamber response"
+                  "The image will be underexposed only over tissue away from the prosthesis",
+                  "The exposure will terminate early because metal increases detector signal",
+                  "The AEC system will ignore the chamber covered by the prosthetic material",
+                  "The exposure may continue too long because dense material delays chamber response"
             ],
             "answer": 3,
             "explanation": "Dense material over an AEC chamber can delay termination."
@@ -1014,10 +1014,10 @@ export const radiographyModuleContent = {
       {
             "question": "A digital image is too noisy, but the exposure indicator is within the manufacturer’s target range. What should be checked next?",
             "options": [
-                  "Positioning, collimation, processing, and whether the target range is appropriate for the exam",
-                  "Increase mAs automatically because noise always means underexposure",
-                  "Decrease kVp because lower energy always improves noise",
-                  "Ignore the noise because the indicator is within range"
+                  "Review positioning, collimation, processing, and the exam-specific target range",
+                  "Increase mAs because visible noise always means detector underexposure",
+                  "Decrease kVp because lower beam energy consistently improves image noise",
+                  "Accept the image because a target-range exposure indicator rules out problems"
             ],
             "answer": 0,
             "explanation": "Exposure indicators must be interpreted with the image and exam type."
@@ -1036,10 +1036,10 @@ export const radiographyModuleContent = {
       {
             "question": "A technologist doubles mAs while keeping all other factors unchanged. What is the expected primary effect?",
             "options": [
-                  "Halved magnification",
-                  "Doubled maximum photon energy",
-                  "Approximately doubled photon quantity reaching the receptor",
-                  "Elimination of scatter"
+                  "Halved magnification because receptor exposure has increased",
+                  "Doubled maximum photon energy with unchanged beam quantity",
+                  "Approximately doubled photon quantity with unchanged selected kVp",
+                  "Elimination of scatter because twice as many photons reach the detector"
             ],
             "answer": 2,
             "explanation": "mAs is directly related to photon quantity."
@@ -1047,10 +1047,10 @@ export const radiographyModuleContent = {
       {
             "question": "A radiograph shows anatomy cut off at the edge although detector exposure is appropriate. Which adjustment is most relevant?",
             "options": [
-                  "Change post-processing to reconstruct clipped anatomy",
-                  "Increase mAs to reveal the missing anatomy",
-                  "Increase kVp to widen the field",
-                  "Correct positioning and field placement rather than changing exposure factors"
+                  "Use post-processing to reconstruct anatomy outside the exposed field",
+                  "Increase mAs so the missing anatomy becomes visible on the detector",
+                  "Increase kVp so the useful x-ray field widens beyond collimation",
+                  "Correct positioning and field placement rather than exposure factors"
             ],
             "answer": 3,
             "explanation": "Clipped anatomy is a positioning/collimation problem."
@@ -1058,10 +1058,10 @@ export const radiographyModuleContent = {
       {
             "question": "Why can dose creep occur with digital radiography?",
             "options": [
-                  "Post-processing can preserve acceptable brightness despite excessive exposure",
-                  "Digital detectors stop responding above target exposure",
-                  "AEC prevents all excessive exposures",
-                  "High exposure always makes the image visibly black"
+                  "Processing can preserve acceptable brightness despite excessive exposure",
+                  "Digital detectors stop responding when receptor exposure exceeds target",
+                  "AEC prevents dose creep by terminating every exposure at the ideal level",
+                  "Excess exposure always produces a visibly darker digital image"
             ],
             "answer": 0,
             "explanation": "Digital processing can mask excessive detector exposure."
@@ -1091,10 +1091,10 @@ export const radiographyModuleContent = {
       {
             "question": "An exposure indicator is consistently high across one exam type even though images look acceptable. What is the best department response?",
             "options": [
-                  "Disable the exposure indicator display",
-                  "Ignore the trend because image brightness is acceptable",
-                  "Lower SID for every patient",
-                  "Review technique charts and target exposure ranges for that exam"
+                  "Disable exposure-indicator display for this exam type",
+                  "Ignore the trend because processed brightness remains acceptable",
+                  "Lower SID for all patients to increase receptor exposure consistency",
+                  "Review technique charts and target exposure ranges for this exam"
             ],
             "answer": 3,
             "explanation": "Consistently high indicators suggest a technique-management issue."
@@ -1102,10 +1102,10 @@ export const radiographyModuleContent = {
       {
             "question": "A grid is removed for a thin extremity exam. What benefit may result if scatter is already low?",
             "options": [
-                  "Lower exposure requirement without meaningful loss of contrast",
-                  "Higher photon energy without changing kVp",
-                  "Improved magnification from larger OID",
-                  "Automatic elimination of motion"
+                  "Lower exposure requirement with little contrast penalty when scatter is minimal",
+                  "Higher photon energy because grid removal increases beam penetrability",
+                  "Improved magnification because removing the grid decreases OID",
+                  "Automatic elimination of motion because exposure time becomes irrelevant"
             ],
             "answer": 0,
             "explanation": "When scatter is low, grid removal can reduce exposure requirements."
@@ -1261,10 +1261,10 @@ export const radiographyModuleContent = {
       {
             "question": "A technologist can reduce field size without clipping required anatomy. What is the best reason to do so?",
             "options": [
-                  "Increase tube loading",
-                  "Increase magnification",
-                  "Reduce irradiated tissue and scatter production",
-                  "Lengthen exposure time"
+                  "Increase tube loading so fewer scattered photons reach the detector",
+                  "Increase magnification so the region of interest fills the detector",
+                  "Reduce irradiated tissue volume and the amount of scatter produced",
+                  "Lengthen exposure time so the field can be narrowed more accurately"
             ],
             "answer": 2,
             "explanation": "Collimation reduces tissue volume exposed and scatter."
@@ -1294,10 +1294,10 @@ export const radiographyModuleContent = {
       {
             "question": "During mobile imaging, a caregiver must remain with a patient. What principle should guide protection?",
             "options": [
-                  "Stand beside the tube because scatter is lowest there",
-                  "Use distance and shielding as allowed while minimizing time near the exposure",
-                  "Hold the detector to reduce patient motion",
-                  "Remain in the primary beam if wearing gloves"
+                  "Remain near the tube because scatter is lowest beside the x-ray source",
+                  "Use distance and shielding when possible while minimizing time near exposure",
+                  "Hold the detector during exposure so the patient does not need assistance",
+                  "Stand in the primary beam if protective gloves and an apron are available"
             ],
             "answer": 1,
             "explanation": "Time, distance, and shielding should be optimized."
@@ -1327,10 +1327,10 @@ export const radiographyModuleContent = {
       {
             "question": "A department’s repeat analysis shows a cluster of motion repeats during erect chest exams in frail patients. What is the best response?",
             "options": [
-                  "Investigate positioning support and communication workflow",
-                  "Increase exposure for every chest exam",
-                  "Delete motion repeats from the analysis",
-                  "Use larger field sizes to compensate"
+                  "Investigate positioning support, exposure timing, and patient communication workflow",
+                  "Increase exposure for all erect chest exams to reduce repeat frequency",
+                  "Remove motion-related rejects from the department's repeat analysis",
+                  "Use larger field sizes so motion is less likely to require another exposure"
             ],
             "answer": 0,
             "explanation": "Repeat analysis should identify correctable workflow causes."
@@ -1360,21 +1360,21 @@ export const radiographyModuleContent = {
       {
             "question": "Why is preventing unnecessary repeats an important radiation-protection strategy?",
             "options": [
-                  "Repeats eliminate scatter",
-                  "Repeats always damage the detector",
-                  "Repeats lower photon energy",
-                  "Each avoided repeat prevents additional exposure that adds no new clinical value"
+                  "Repeats eliminate scatter that was present on the first image",
+                  "Repeated exposures may increase dose without added clinical value",
+                  "Repeats reduce photon energy reaching radiosensitive tissues",
+                  "Repeat imaging prevents detector artifacts from recurring"
             ],
-            "answer": 3,
+            "answer": 1,
             "explanation": "Avoiding unnecessary repeat exposures directly reduces dose."
       },
       {
             "question": "A patient asks whether an x-ray exam has zero risk. Which response is most accurate?",
             "options": [
-                  "Use is justified when the expected clinical benefit outweighs the small radiation risk",
-                  "Diagnostic x-rays have no biological effect at any dose",
-                  "Any radiation exposure is too dangerous to justify",
-                  "Risk is determined only by detector size"
+                  "A justified exam balances expected clinical benefit against radiation risk",
+                  "Diagnostic x-rays produce no biological effect at routine exposure levels",
+                  "Any ionizing-radiation exposure is too risky to justify clinically",
+                  "Radiation risk depends mainly on detector dimensions and field shape"
             ],
             "answer": 0,
             "explanation": "Radiation use is based on justification and optimization."
@@ -1382,10 +1382,10 @@ export const radiographyModuleContent = {
       {
             "question": "Which change is most consistent with ALARA when diagnostic quality is already adequate?",
             "options": [
-                  "Increase mAs to eliminate all visible noise",
-                  "Avoid increasing exposure merely to make the image look cleaner",
-                  "Open collimation to prevent clipping",
-                  "Repeat every image with minor cosmetic flaws"
+                  "Increase mAs until all visible quantum noise is eliminated",
+                  "Avoid increasing exposure merely to make an already diagnostic image look cleaner",
+                  "Open collimation to reduce the risk of clipping peripheral anatomy",
+                  "Repeat images that have minor cosmetic flaws despite diagnostic adequacy"
             ],
             "answer": 1,
             "explanation": "ALARA means avoiding unnecessary exposure once diagnostic adequacy is achieved."
@@ -1530,10 +1530,10 @@ export const radiographyModuleContent = {
       {
             "question": "A PA chest image shows the scapulae projected over the lateral lungs. Which positioning change is most appropriate?",
             "options": [
-                  "Increase SID",
-                  "Increase kVp",
+                  "Increase SID to move the scapulae away from the lung fields",
+                  "Increase kVp to reduce superimposition of the scapulae",
                   "Roll the shoulders forward to move the scapulae laterally",
-                  "Angle the central ray cephalically"
+                  "Angle the central ray cephalically to clear the scapulae"
             ],
             "answer": 2,
             "explanation": "Rolling the shoulders forward helps move the scapulae off the lung fields."
@@ -1552,10 +1552,10 @@ export const radiographyModuleContent = {
       {
             "question": "A supine abdomen image includes the diaphragm but excludes the symphysis. If the clinical question is distal bowel obstruction, what is the best action?",
             "options": [
-                  "Repeat with inferior centering to include the required anatomy",
-                  "Accept because the diaphragm is included",
-                  "Increase kVp without repositioning",
-                  "Crop the image to the visible bowel"
+                  "Repeat with more inferior centering to include the required distal anatomy",
+                  "Accept the image because inclusion of the diaphragm confirms adequate coverage",
+                  "Increase kVp on the next image without changing the centering point",
+                  "Crop the displayed image to emphasize the bowel that was included"
             ],
             "answer": 0,
             "explanation": "Repeat decisions should be driven by required anatomy."
@@ -1585,9 +1585,9 @@ export const radiographyModuleContent = {
       {
             "question": "A trauma patient cannot turn for an oblique foot. What is the best principle?",
             "options": [
-                  "Skip the projection without documenting the limitation",
-                  "Force the patient into the routine position",
-                  "Increase exposure and keep the routine position",
+                  "Skip the projection and omit documentation of the limitation",
+                  "Force the patient into the routine position despite trauma restrictions",
+                  "Increase exposure factors while keeping the routine positioning setup",
                   "Modify tube and detector relationships while minimizing patient movement"
             ],
             "answer": 3,
@@ -1640,10 +1640,10 @@ export const radiographyModuleContent = {
       {
             "question": "A chest image is motion-blurred even though positioning is correct. What should be considered for the repeat?",
             "options": [
-                  "Shorter exposure time while maintaining needed mAs",
-                  "Longer exposure time with lower mA",
-                  "Larger OID",
-                  "Wider collimation"
+                  "Use a shorter exposure time while maintaining the required mAs",
+                  "Use a longer exposure time with lower mA to preserve receptor exposure",
+                  "Increase OID so motion is less visible on the final image",
+                  "Open collimation so the blurred anatomy is easier to recognize"
             ],
             "answer": 0,
             "explanation": "Reducing exposure time helps control motion blur."
@@ -1673,10 +1673,10 @@ export const radiographyModuleContent = {
       {
             "question": "A portable chest image is taken semierect because the patient cannot sit fully upright. What should be documented or considered?",
             "options": [
-                  "That rotation criteria can be ignored",
-                  "That the image is automatically unacceptable",
-                  "That exposure factors no longer matter",
-                  "The modified position and its effect on image interpretation"
+                  "Document that routine rotation criteria were intentionally disregarded",
+                  "Classify the image as automatically unacceptable because it is semierect",
+                  "Treat exposure factors as irrelevant because the patient is not fully upright",
+                  "Document the modified position and consider its effect on image appearance"
             ],
             "answer": 3,
             "explanation": "Modified positioning can affect appearance and interpretation."
@@ -1909,10 +1909,10 @@ export const radiographyModuleContent = {
       {
             "question": "A lateral cervical spine image does not include C7-T1 because the shoulders remain elevated. Which next step is most appropriate?",
             "options": [
-                  "Increase kVp and accept missing anatomy",
-                  "Force both shoulders downward despite pain",
-                  "Use an approved alternative technique to demonstrate the cervicothoracic junction",
-                  "Crop the image so the lower cervical spine is not obvious"
+                  "Increase kVp and accept that the cervicothoracic junction is not shown",
+                  "Force the shoulders down despite pain to obtain the routine projection",
+                  "Use an approved alternative technique to demonstrate the C7-T1 region",
+                  "Crop the lower cervical region so the missing anatomy is less apparent"
             ],
             "answer": 2,
             "explanation": "Required anatomy may require an alternative projection."
@@ -1920,10 +1920,10 @@ export const radiographyModuleContent = {
       {
             "question": "A mobile detector used in isolation leaves the room inside a protective cover. What should be done next?",
             "options": [
-                  "Store it until the end of the shift",
-                  "Carry it directly to the next patient",
-                  "Wipe only the handle if it looks clean",
-                  "Remove the contaminated barrier and disinfect according to policy"
+                  "Store the covered detector until the end of the shift before cleaning it",
+                  "Carry the covered detector directly to the next patient for efficiency",
+                  "Wipe only the visible handle if no contamination is seen on the cover",
+                  "Remove the contaminated barrier and disinfect the detector per policy"
             ],
             "answer": 3,
             "explanation": "Barrier removal and disinfection prevent cross-contamination."
@@ -1931,10 +1931,10 @@ export const radiographyModuleContent = {
       {
             "question": "During fluoroscopy, the image receptor is moved farther from the patient. What general effect may occur?",
             "options": [
-                  "Higher dose may be required to maintain image quality",
-                  "Patient dose always falls",
-                  "Scatter becomes zero",
-                  "Tube current becomes irrelevant"
+                  "Patient dose may increase because the system may raise output to maintain the image",
+                  "Patient dose always decreases because the receptor is farther from the patient",
+                  "Scatter production falls to zero when receptor distance is increased",
+                  "Tube current becomes irrelevant once the receptor is moved away from the patient"
             ],
             "answer": 0,
             "explanation": "Increasing receptor distance can prompt greater system output."
@@ -1953,10 +1953,10 @@ export const radiographyModuleContent = {
       {
             "question": "A patient cannot flex the neck for a requested skull projection because of trauma precautions. What should guide the response?",
             "options": [
-                  "Force flexion briefly during exposure",
-                  "Ignore precautions because positioning is more important",
-                  "Use a safe alternative consistent with the diagnostic goal and local protocol",
-                  "Increase mAs to compensate for limited flexion"
+                  "Force brief neck flexion because routine positioning takes priority",
+                  "Ignore the trauma precaution once the detector has been positioned",
+                  "Use a safe alternative that preserves the diagnostic objective and protocol",
+                  "Increase mAs to compensate for the inability to flex the patient's neck"
             ],
             "answer": 2,
             "explanation": "Patient safety and diagnostic objective guide alternative positioning."
@@ -1964,10 +1964,10 @@ export const radiographyModuleContent = {
       {
             "question": "A surgical C-arm image shows anatomy larger than expected. Which geometry change can reduce magnification when possible?",
             "options": [
-                  "Reduce SID",
-                  "Move the tube closer to the patient",
-                  "Increase OID",
-                  "Move the image receptor closer to the patient"
+                  "Reduce SID by moving the x-ray tube closer to the patient",
+                  "Move the x-ray tube closer while leaving the receptor in place",
+                  "Increase OID so the anatomy projects larger on the receptor",
+                  "Move the image receptor closer to the patient when possible"
             ],
             "answer": 3,
             "explanation": "Reducing object-to-receptor distance helps reduce magnification."
@@ -1986,10 +1986,10 @@ export const radiographyModuleContent = {
       {
             "question": "A fluoroscopic procedure is taking longer than expected. Which strategy best supports dose management?",
             "options": [
-                  "Increase magnification mode continuously",
+                  "Increase magnification mode so anatomy is easier to follow throughout",
                   "Use the lowest practical pulse rate and minimize beam-on time",
-                  "Open collimation to the full detector",
-                  "Keep the beam on while planning the next step"
+                  "Open collimation to the full detector to avoid repositioning delays",
+                  "Keep the beam on while planning the next procedural step"
             ],
             "answer": 1,
             "explanation": "Reducing beam-on time and pulse rate supports dose management."
@@ -2123,10 +2123,10 @@ export const radiographyModuleContent = {
       {
             "question": "A trauma image is technically imperfect but demonstrates all required anatomy and answers the immediate clinical question. The patient deteriorates after the exposure. What is the best next action?",
             "options": [
-                  "Move the patient to a routine position to improve image symmetry",
-                  "Repeat immediately so the image meets routine positioning standards",
-                  "Adjust technique and obtain an additional image before reporting the change",
-                  "Prioritize the patient and communicate the clinical change rather than repeat for perfection"
+                  "Move the patient to a routine position before addressing the clinical change",
+                  "Repeat immediately so the image meets routine positioning criteria",
+                  "Obtain another exposure before communicating the patient's deterioration",
+                  "Prioritize the patient and report the clinical change rather than repeat for perfection"
             ],
             "answer": 3,
             "explanation": "Patient condition takes priority; repeats should be clinically justified, especially when the existing image is diagnostic."
@@ -2156,10 +2156,10 @@ export const radiographyModuleContent = {
       {
             "question": "A repeated artifact appears in the same detector location on multiple patients. What should be suspected first?",
             "options": [
-                  "Incorrect patient rotation",
-                  "Patient motion",
-                  "Detector or processing-system artifact",
-                  "Low kVp"
+                  "Incorrect patient rotation that reproduces the same receptor location",
+                  "Patient motion occurring in exactly the same detector coordinates",
+                  "A detector or processing-system artifact fixed to that image location",
+                  "Low kVp that produces the same localized artifact on every patient"
             ],
             "answer": 2,
             "explanation": "A fixed artifact location across patients points to the imaging system."
@@ -2167,9 +2167,9 @@ export const radiographyModuleContent = {
       {
             "question": "An image is diagnostically adequate but slightly undercollimated beyond the anatomy of interest. What is the best quality-improvement response?",
             "options": [
-                  "Ignore collimation because exposure was correct",
-                  "Repeat immediately for cosmetic field size",
-                  "Increase mAs on the repeat",
+                  "Ignore collimation because the exposure indicator is acceptable",
+                  "Repeat immediately so the field margins look more symmetric",
+                  "Increase mAs on the repeat to improve the visible field margins",
                   "Improve collimation on future exams without repeating this diagnostic image"
             ],
             "answer": 3,
@@ -2178,10 +2178,10 @@ export const radiographyModuleContent = {
       {
             "question": "A lateral knee image shows motion blur but correct rotation. What should be changed first on repeat?",
             "options": [
-                  "Reduce motion, often by improving support and shortening exposure time",
-                  "Increase OID",
-                  "Increase field size",
-                  "Change the side marker"
+                  "Improve support and shorten exposure time if technique permits",
+                  "Increase OID to separate anatomy from the detector",
+                  "Open collimation to reduce the effect of patient motion",
+                  "Change the side marker before making the repeat exposure"
             ],
             "answer": 0,
             "explanation": "Motion blur is addressed through support and exposure-time management."
@@ -2189,10 +2189,10 @@ export const radiographyModuleContent = {
       {
             "question": "A chest image is underpenetrated and the exposure indicator is low. Which change most directly addresses both findings if positioning is correct?",
             "options": [
-                  "Increase OID",
-                  "Increase appropriate exposure technique based on chart and patient size",
-                  "Use a smaller field only",
-                  "Decrease SID without recalculation"
+                  "Increase OID to improve penetration through thicker anatomy",
+                  "Increase technique appropriately for the patient and exam",
+                  "Use tighter collimation as the only exposure correction",
+                  "Shorten SID without recalculating the exposure factors"
             ],
             "answer": 1,
             "explanation": "Low exposure and inadequate penetration call for technique reassessment."
@@ -2200,10 +2200,10 @@ export const radiographyModuleContent = {
       {
             "question": "An extremity image shows one cortex sharply defined and the opposite cortex elongated. Which factor is most likely?",
             "options": [
-                  "Low exposure indicator",
-                  "High mAs",
-                  "Part-detector or central-ray misalignment",
-                  "Excessive filtration"
+                  "A detector exposure problem caused by inadequate photon quantity",
+                  "An exposure-factor error that changed only receptor brightness",
+                  "Part-detector or central-ray misalignment causing shape distortion",
+                  "A filtration problem that changed beam quality but not geometry"
             ],
             "answer": 2,
             "explanation": "Unequal shape distortion suggests geometric misalignment."
@@ -2211,12 +2211,12 @@ export const radiographyModuleContent = {
       {
             "question": "A chest image has a high exposure indicator but acceptable displayed brightness. What should be concluded?",
             "options": [
-                  "The exposure indicator can be ignored",
-                  "The exposure was definitely ideal",
-                  "Brightness proves patient dose was low",
-                  "The image may represent unnecessary detector and patient exposure despite acceptable display"
+                  "The exposure indicator is unreliable after processing",
+                  "The displayed brightness confirms exposure was appropriate",
+                  "The receptor may have received more exposure than necessary",
+                  "The image should be repeated with a larger field"
             ],
-            "answer": 3,
+            "answer": 2,
             "explanation": "Digital processing can mask excessive exposure."
       },
       {
@@ -2233,10 +2233,10 @@ export const radiographyModuleContent = {
       {
             "question": "A line-like artifact changes position when the patient is repositioned but not when the detector is changed. What source is more likely?",
             "options": [
-                  "A fixed detector defect",
-                  "Something associated with the patient or positioning setup",
-                  "A processing calibration error fixed to the detector",
-                  "Tube target damage only"
+                  "A fixed detector defect that remains in the same receptor location",
+                  "An object associated with the patient or positioning setup",
+                  "A processing-calibration error fixed to the same detector coordinates",
+                  "A tube-target defect that produces the same artifact on every exposure"
             ],
             "answer": 1,
             "explanation": "Artifacts that move with the patient/setup are less likely detector artifacts."
@@ -2277,10 +2277,10 @@ export const radiographyModuleContent = {
       {
             "question": "A repeat image corrects rotation but introduces motion blur. What does this illustrate?",
             "options": [
-                  "Correcting rotation guarantees acceptability",
-                  "Image evaluation must consider all quality criteria, not one corrected error",
-                  "Motion is unrelated to diagnostic quality",
-                  "Exposure indicator determines whether motion matters"
+                  "Correcting one positioning error makes the repeat diagnostically acceptable",
+                  "Image evaluation must consider all quality criteria, including new errors",
+                  "Motion blur is unrelated to whether the repeat answers the clinical question",
+                  "Exposure indicator values determine whether motion can be disregarded"
             ],
             "answer": 1,
             "explanation": "Overall diagnostic criteria matter, not one corrected issue."
@@ -2303,482 +2303,482 @@ export const radiographyModuleContent = {
 export const radiographyCapstone = [
   {
     "category": "Patient Care & Professional Practice",
-    "question": "A patient states the correct name but gives a date of birth that differs from the order by one digit. The wristband matches the patient’s statement, not the order. What is the best next action?",
+    "question": "A confused inpatient arrives with an order for a left hip radiograph, but the wristband name differs from the order by one letter. The patient cannot reliably confirm identity. What should occur first?",
     "options": [
-      "Ask a family member which date of birth is correct",
-      "Pause and reconcile the discrepancy before positioning the patient",
-      "Use the wristband because it is attached to the patient",
-      "Proceed if the requested anatomy matches the complaint"
-    ],
-    "answer": 1,
-    "explanation": "Conflicting identifiers must be resolved before the examination; neither a plausible order nor a single matching source is enough."
-  },
-  {
-    "category": "Patient Care & Professional Practice",
-    "question": "An inpatient arrives for a chest exam with oxygen tubing, an IV pump, and a recent fall-risk alert. Which action best prepares for transfer?",
-    "options": [
-      "Assess mobility and lines, then obtain appropriate assistance",
-      "Disconnect the oxygen briefly to simplify the transfer",
-      "Ask the patient to stand while the detector is positioned",
-      "Move the patient first and organize the lines afterward"
+      "Resolve the identity discrepancy using approved identifiers before imaging",
+      "Proceed because the room assignment and transport request both match",
+      "Use a chart photograph as the only identifier and begin positioning",
+      "Image both hips so an unresolved laterality or identity error is less likely"
     ],
     "answer": 0,
-    "explanation": "Transfer planning should account for mobility, attached devices, and available help before movement begins."
+    "explanation": "Identity must be positively established before exposure, especially when the patient cannot reliably self-identify."
   },
   {
     "category": "Patient Care & Professional Practice",
-    "question": "A patient with limited English proficiency nods during instructions but cannot repeat the breathing directions. What is the best response?",
+    "question": "A patient becomes increasingly lethargic while waiting for a routine extremity exam and is difficult to arouse. Which action has priority?",
     "options": [
-      "Repeat the same instructions more slowly and loudly",
-      "Ask an accompanying child to interpret the instructions",
-      "Proceed because nodding indicates adequate understanding",
-      "Use qualified language assistance and confirm understanding"
+      "Complete the first exposure so the order is partially satisfied",
+      "Pause the examination and obtain appropriate clinical assistance",
+      "Move the patient to the table before reassessing responsiveness",
+      "Ask a family member whether this behavior is normal and continue"
     ],
-    "answer": 3,
-    "explanation": "Communication should be adapted and verified; qualified language support is preferable to assumptions or inappropriate interpreters."
+    "answer": 1,
+    "explanation": "A significant change in responsiveness requires clinical assessment before continuing imaging."
   },
   {
     "category": "Patient Care & Professional Practice",
-    "question": "During preparation for a contrast-related procedure, the patient reports a prior severe reaction but the order contains no allergy information. What should the technologist do?",
+    "question": "A portable detector was used in a contact-precaution room and the outer barrier tears during removal. What is the best next step?",
     "options": [
-      "Document the history only after the procedure is finished",
-      "Ask the patient whether the prior reaction felt serious",
-      "Stop and communicate the history before proceeding",
-      "Proceed because the current order is already authorized"
+      "Wipe only the visible tear because the rest of the cover remained intact",
+      "Place a second clean barrier over it and proceed to the next patient",
+      "Treat the detector as potentially contaminated and disinfect it per policy",
+      "Return the detector to storage until routine end-of-day cleaning"
     ],
     "answer": 2,
-    "explanation": "A potentially significant prior reaction requires clarification and communication before contrast administration."
+    "explanation": "A breached barrier requires contamination control before the detector is reused."
   },
   {
     "category": "Patient Care & Professional Practice",
-    "question": "A patient becomes pale and diaphoretic while upright for imaging and says, “I feel like I’m going to pass out.” What is the priority?",
+    "question": "A competent adult agrees to positioning but then withdraws consent immediately before exposure. What should the technologist do?",
     "options": [
-      "Leave the patient standing while obtaining assistance",
-      "Protect the patient from falling and initiate appropriate assessment",
-      "Finish the exposure quickly before changing the position",
-      "Ask the patient to hold still until symptoms improve"
-    ],
-    "answer": 1,
-    "explanation": "Immediate patient safety and assessment take priority over completing the exposure."
-  },
-  {
-    "category": "Radiographic Anatomy & Positioning Foundations",
-    "question": "A technologist intends a true lateral knee, but the femoral condyles are not superimposed on the image. Which conclusion is most appropriate?",
-    "options": [
-      "The part was rotated and requires positioning correction",
-      "The SID was too long and reduced recorded detail",
-      "The mAs was too low and changed joint alignment",
-      "The collimation field was too small for the detector"
-    ],
-    "answer": 0,
-    "explanation": "Failure to superimpose structures expected on a lateral image indicates rotational positioning error."
-  },
-  {
-    "category": "Radiographic Anatomy & Positioning Foundations",
-    "question": "A patient with a broad, hypersthenic body habitus is positioned using a memorized centering point, but the required anatomy is clipped. What is the best lesson?",
-    "options": [
-      "Increase SID so more anatomy automatically fits the detector",
-      "Increase kVp because penetration determines anatomic coverage",
-      "Rotate the patient slightly to move anatomy toward the field",
-      "Use palpable anatomy and image requirements rather than fixed distances alone"
+      "Have a family member authorize the exposure instead",
+      "Proceed because consent was given earlier in the examination",
+      "Ask the ordering provider to override the patient's refusal",
+      "Stop and address the refusal rather than making the exposure"
     ],
     "answer": 3,
-    "explanation": "Body habitus changes anatomic relationships; centering should be based on landmarks and required coverage."
+    "explanation": "Consent can be withdrawn; the patient's refusal should be respected and communicated."
   },
   {
-    "category": "Radiographic Anatomy & Positioning Foundations",
-    "question": "The central ray is angled while the part and detector remain parallel. Which geometric effect is most likely if the angle is not required by the projection?",
+    "category": "Patient Care & Professional Practice",
+    "question": "A patient with oxygen, a chest tube, and a weight-bearing restriction needs transfer to the imaging table. Which plan best reduces risk?",
     "options": [
-      "Loss of receptor exposure caused by reduced tube current",
-      "Improved spatial resolution from a smaller effective field",
-      "Shape distortion from misalignment of the imaging components",
-      "Uniform magnification caused only by increased SID"
-    ],
-    "answer": 2,
-    "explanation": "Misalignment of tube, part, and detector can produce shape distortion."
-  },
-  {
-    "category": "Radiographic Anatomy & Positioning Foundations",
-    "question": "Which description best distinguishes an AP projection from an AP position?",
-    "options": [
-      "Projection describes anatomy; position describes exposure technique",
-      "Projection describes ray path; position describes patient placement",
-      "Projection describes patient placement; position describes ray path",
-      "Projection describes detector size; position describes field size"
-    ],
-    "answer": 1,
-    "explanation": "Projection refers to the direction of the central ray through the patient; position refers to how the patient is placed."
-  },
-  {
-    "category": "Radiographic Anatomy & Positioning Foundations",
-    "question": "A marker is visible, anatomy is included, and exposure is adequate, but a joint space expected to be open is closed. What should be evaluated first?",
-    "options": [
-      "Part alignment and central-ray relationship to the joint",
-      "Detector exposure indicator and processing algorithm",
-      "Patient identification and order-entry information",
-      "Tube heat units and generator waveform"
+      "Coordinate transfer after reviewing restrictions, devices, and needed assistance",
+      "Disconnect oxygen briefly so tubing cannot become entangled during transfer",
+      "Move first and reposition drains and lines after the patient reaches the table",
+      "Ask the patient to stand-pivot so fewer staff members are needed for transfer"
     ],
     "answer": 0,
-    "explanation": "Closed joint spaces commonly reflect alignment/angle problems rather than exposure or administrative issues."
+    "explanation": "Safe transfer planning must account for mobility restrictions and attached devices before movement."
+  },
+  {
+    "category": "Radiographic Anatomy & Positioning Foundations",
+    "question": "A true lateral wrist is intended, but the radius and ulna are not superimposed as expected. Exposure and collimation are appropriate. What should be corrected?",
+    "options": [
+      "Tube current because mAs controls alignment",
+      "Part rotation relative to the detector",
+      "Field size because collimation changes rotation",
+      "SID because distance determines superimposition"
+    ],
+    "answer": 1,
+    "explanation": "Failure of expected superimposition is primarily a positioning issue."
+  },
+  {
+    "category": "Radiographic Anatomy & Positioning Foundations",
+    "question": "A pelvis image shows one iliac wing wider than the other and one obturator foramen narrower. Which conclusion is most defensible?",
+    "options": [
+      "The detector exposure is excessive",
+      "The kVp is too low for the patient's habitus",
+      "The pelvis is rotated relative to the detector",
+      "The SID is too short for the projection"
+    ],
+    "answer": 2,
+    "explanation": "Asymmetry of paired pelvic structures is a classic sign of rotation."
+  },
+  {
+    "category": "Radiographic Anatomy & Positioning Foundations",
+    "question": "A projection requires the central ray perpendicular to the part, but the part is angled while the detector remains flat. Which image effect is most likely?",
+    "options": [
+      "Reduced scatter because the part is oblique",
+      "Uniform magnification without distortion",
+      "Improved spatial resolution from the angle",
+      "Shape distortion from geometric misalignment"
+    ],
+    "answer": 3,
+    "explanation": "Misalignment among source, part, and detector produces distortion."
+  },
+  {
+    "category": "Radiographic Anatomy & Positioning Foundations",
+    "question": "A very broad patient is centered using a memorized distance from the iliac crest, and the anatomy is clipped. What is the best correction strategy?",
+    "options": [
+      "Recenter using palpable anatomy and required image coverage",
+      "Increase kVp so the missing anatomy becomes visible",
+      "Increase mAs so the detector records more peripheral anatomy",
+      "Increase SID until the anatomy automatically fits the receptor"
+    ],
+    "answer": 0,
+    "explanation": "Landmarks and required coverage should guide centering rather than fixed distances alone."
+  },
+  {
+    "category": "Radiographic Anatomy & Positioning Foundations",
+    "question": "A joint projection is centered properly but the joint space is closed. Which factor should be evaluated before changing exposure technique?",
+    "options": [
+      "Detector exposure indicator and image-processing response",
+      "Part alignment and central-ray angle relative to the joint",
+      "Focal-spot size and tube-loading limits for the exposure",
+      "SID and receptor dimensions used for the projection"
+    ],
+    "answer": 1,
+    "explanation": "Closed joint spaces usually reflect positioning or central-ray geometry."
   },
   {
     "category": "Radiation Physics & X-Ray Production",
-    "question": "An exposure is made with increased tube current while kVp and time are unchanged. Which change occurs most directly at the x-ray tube?",
+    "question": "mA is increased while exposure time is reduced so that mAs stays constant. With kVp unchanged, what is the expected primary result?",
     "options": [
-      "Electrons strike the target with greater kinetic energy",
-      "The average photon energy rises without changing quantity",
-      "The focal spot becomes smaller because current increased",
-      "More electrons cross the tube per unit time"
+      "Lower beam penetration because time is shorter",
+      "Higher maximum photon energy with unchanged heat",
+      "Similar photon quantity with a shorter exposure duration",
+      "Greater scatter solely because mA increased"
     ],
-    "answer": 3,
-    "explanation": "Tube current controls the rate of electron flow and therefore primarily affects photon quantity."
+    "answer": 2,
+    "explanation": "Reciprocal mA/time changes can maintain mAs and photon quantity while altering exposure duration."
   },
   {
     "category": "Radiation Physics & X-Ray Production",
-    "question": "A photon transfers part of its energy to an outer-shell electron and changes direction. Which interaction occurred?",
+    "question": "A photon interaction produces an inner-shell vacancy and no scattered photon leaves the atom. Which mechanism best explains the event?",
     "options": [
-      "Pair production",
-      "Coherent tube emission",
+      "Bremsstrahlung production",
       "Compton scatter",
+      "Coherent scatter",
       "Photoelectric absorption"
     ],
-    "answer": 2,
-    "explanation": "Compton interaction produces a scattered photon and recoil electron after partial energy transfer."
+    "answer": 3,
+    "explanation": "Photoelectric absorption involves complete photon absorption and inner-shell ionization."
   },
   {
     "category": "Radiation Physics & X-Ray Production",
-    "question": "A thicker patient produces more scatter at the same field size and technique. Which change most directly reduces scatter production?",
+    "question": "A scattered photon leaves the patient after transferring only part of its energy to an outer-shell electron. Which interaction is responsible?",
     "options": [
-      "A shorter SID to increase beam intensity",
-      "Tighter collimation to the anatomy of interest",
-      "A larger detector to capture the full scatter field",
-      "A higher mAs to improve detector signal"
-    ],
-    "answer": 1,
-    "explanation": "Reducing field size decreases the volume of tissue irradiated and therefore reduces scatter production."
-  },
-  {
-    "category": "Radiation Physics & X-Ray Production",
-    "question": "Additional filtration is introduced into the useful beam. Which effect is expected?",
-    "options": [
-      "Low-energy photons are preferentially removed from the beam",
-      "High-energy photons are converted into characteristic radiation",
-      "Photon quantity increases because tube current is unchanged",
-      "Scatter production rises because field size becomes larger"
+      "Compton scatter",
+      "Photoelectric absorption",
+      "Characteristic radiation",
+      "Pair production"
     ],
     "answer": 0,
-    "explanation": "Filtration preferentially removes low-energy photons that contribute to skin dose without useful image formation."
+    "explanation": "Compton interaction transfers part of the photon energy and changes the photon direction."
   },
   {
     "category": "Radiation Physics & X-Ray Production",
-    "question": "A technologist selects a smaller focal spot for a detail-sensitive exam. What tradeoff should be anticipated?",
+    "question": "Two beams are produced at the same selected kVp and mAs, but one has additional filtration. Compared with the unfiltered beam, which change is most expected?",
     "options": [
-      "Greater photon energy with less anode heat production",
-      "Lower patient dose regardless of the selected technique",
-      "More scatter cleanup without using a grid",
-      "Improved geometric detail with more restrictive tube loading"
-    ],
-    "answer": 3,
-    "explanation": "A smaller focal spot improves spatial resolution but typically limits allowable tube loading because heat is concentrated over a smaller target area."
-  },
-  {
-    "category": "Exposure Factors & Image Acquisition",
-    "question": "A radiograph has adequate penetration but the exposure indicator shows substantially excessive detector exposure. Which change most directly reduces detector exposure while preserving beam penetration?",
-    "options": [
-      "Increase OID while maintaining both exposure factors",
-      "Decrease SID while maintaining both exposure factors",
-      "Reduce mAs while maintaining the selected kVp",
-      "Reduce kVp while maintaining the selected mAs"
-    ],
-    "answer": 2,
-    "explanation": "Reducing mAs primarily reduces photon quantity while preserving the selected beam energy/penetration."
-  },
-  {
-    "category": "Exposure Factors & Image Acquisition",
-    "question": "A patient is moved farther from the detector while SID remains unchanged. What combination is most likely?",
-    "options": [
-      "Lower detector exposure with unchanged geometric sharpness",
-      "Greater magnification and reduced recorded spatial detail",
-      "Less magnification and improved recorded spatial detail",
-      "Higher beam energy and lower scatter production"
+      "A larger field size with the same photon-energy distribution",
+      "A higher average photon energy with fewer low-energy photons",
+      "A smaller focal spot with unchanged beam quality",
+      "More low-energy photons reaching the patient's skin"
     ],
     "answer": 1,
+    "explanation": "Filtration removes lower-energy photons that contribute little to image formation."
+  },
+  {
+    "category": "Radiation Physics & X-Ray Production",
+    "question": "A small focal spot is selected for a detail-sensitive study. What limitation should the technologist anticipate?",
+    "options": [
+      "Greater scatter production because the focal area is small",
+      "Lower beam energy because focal spot controls kVp",
+      "More restrictive tube loading because heat is concentrated",
+      "Automatic reduction in patient dose regardless of technique"
+    ],
+    "answer": 2,
+    "explanation": "Small focal spots improve detail but tolerate less tube loading."
+  },
+  {
+    "category": "Exposure Factors & Image Acquisition",
+    "question": "A digital radiograph is adequately penetrated, but the exposure indicator is well above target. Which change best reduces receptor exposure while preserving beam penetration?",
+    "options": [
+      "Decrease SID without recalculating technique",
+      "Reduce kVp while keeping the same mAs",
+      "Increase OID while leaving technique unchanged",
+      "Reduce mAs while keeping the selected kVp"
+    ],
+    "answer": 3,
+    "explanation": "Reducing mAs lowers photon quantity while preserving the selected beam energy."
+  },
+  {
+    "category": "Exposure Factors & Image Acquisition",
+    "question": "A technologist increases OID for a lateral exam because the patient cannot approach the detector. SID is not changed. Which image-quality tradeoff should be anticipated?",
+    "options": [
+      "Greater magnification with reduced geometric sharpness",
+      "Less magnification with improved recorded detail",
+      "Higher beam energy with less scatter production",
+      "No geometric effect because exposure factors are unchanged"
+    ],
+    "answer": 0,
     "explanation": "Increasing OID increases magnification and geometric unsharpness."
   },
   {
     "category": "Exposure Factors & Image Acquisition",
-    "question": "An AEC chest exposure terminates too early because the selected chamber is partly outside the lung field. What is the best correction?",
+    "question": "An AEC chest exposure is longer than expected because the active chamber lies beneath dense prosthetic material. What should be corrected first?",
     "options": [
-      "Reposition and select a chamber fully covered by the intended anatomy",
-      "Increase backup time so the exposure cannot terminate early",
-      "Increase mA because AEC responds directly to tube current",
-      "Open collimation so every chamber receives scatter radiation"
+      "Increase backup time so the system can complete the exposure",
+      "Reposition or select an appropriate chamber for the intended anatomy",
+      "Increase mA so the chamber reaches termination sooner",
+      "Open collimation so scatter reaches the chamber more quickly"
     ],
-    "answer": 0,
-    "explanation": "AEC depends on correct chamber selection and positioning; changing backup or mA does not fix an uncovered chamber."
+    "answer": 1,
+    "explanation": "AEC performance depends on correct chamber selection and anatomy placement."
   },
   {
     "category": "Exposure Factors & Image Acquisition",
-    "question": "A grid is added for a thicker body part without changing other factors. What is the most likely immediate effect?",
+    "question": "A grid is added for a thicker patient without changing technique. Which immediate effect is most likely?",
     "options": [
-      "More scatter reaches the detector and receptor exposure rises",
-      "Magnification decreases because the grid reduces OID",
       "Beam energy increases because the grid hardens the beam",
-      "Less scatter reaches the detector but receptor exposure may fall"
+      "More scatter reaches the detector and receptor exposure rises",
+      "Less scatter reaches the detector and receptor exposure may decrease",
+      "Magnification decreases because the grid reduces OID"
     ],
-    "answer": 3,
-    "explanation": "A grid removes scatter and some primary radiation, often requiring an exposure increase to maintain receptor exposure."
+    "answer": 2,
+    "explanation": "A grid removes scatter and some primary radiation, often requiring technique compensation."
   },
   {
     "category": "Exposure Factors & Image Acquisition",
-    "question": "Two digital images appear similarly bright after processing, but one has a much higher exposure indicator than target. What should the technologist conclude?",
+    "question": "Two digital images have similar displayed brightness, but one exposure indicator is far above target. What is the best interpretation?",
     "options": [
-      "Post-processing eliminates any patient-dose difference",
-      "Exposure indicators are unrelated to technique selection",
-      "Display brightness can mask excessive detector exposure",
-      "The images received identical detector exposure"
+      "Display brightness is a reliable substitute for exposure indicators",
+      "Both images received essentially identical detector exposure",
+      "The high exposure indicator proves the image is underexposed",
+      "Processing may be masking excessive detector exposure"
     ],
-    "answer": 2,
-    "explanation": "Digital processing can normalize brightness, so exposure indicators help reveal dose creep or excessive receptor exposure."
+    "answer": 3,
+    "explanation": "Digital processing can normalize brightness despite excessive receptor exposure."
   },
   {
     "category": "Radiation Biology & Protection",
-    "question": "A repeat is considered because the anatomy is slightly off center but all required structures are included and diagnostic criteria are met. Which choice best supports ALARA?",
+    "question": "A diagnostic image meets all required criteria, but the technologist considers repeating it to improve cosmetic centering. Which choice best supports ALARA?",
     "options": [
-      "Repeat with a larger field to improve visual symmetry",
-      "Do not repeat solely to improve cosmetic centering",
-      "Repeat because every image must be perfectly centered",
-      "Increase technique and repeat to ensure greater penetration"
+      "Do not repeat unless diagnostic information would improve",
+      "Repeat because exact centering is required for every image",
+      "Increase technique on the repeat to ensure a cleaner image",
+      "Open the field on repeat so positioning is easier"
     ],
-    "answer": 1,
-    "explanation": "A repeat that adds exposure without improving diagnostic adequacy is inconsistent with ALARA."
+    "answer": 0,
+    "explanation": "Repeats that add dose without diagnostic benefit are inconsistent with ALARA."
   },
   {
     "category": "Radiation Biology & Protection",
-    "question": "During mobile imaging, a staff member can step farther from the patient without compromising care. Which protection principle is being used most directly?",
+    "question": "During mobile imaging, a staff member can safely double the distance from the patient during exposure. Which protection principle is being used?",
     "options": [
-      "Distance from the radiation source and scatter field",
-      "Filtration of low-energy photons from the primary beam",
-      "Collimation of the beam to the anatomy of interest",
-      "Reduction of fluoroscopic pulse rate during a procedure"
+      "Primary-beam filtration selected at the x-ray tube",
+      "Distance from the patient and scatter source during exposure",
+      "Detector collimation used to limit the exposed field",
+      "Shorter SID used to increase beam intensity at the receptor"
     ],
-    "answer": 0,
-    "explanation": "Increasing distance reduces exposure according to geometric principles and is a key occupational protection strategy."
+    "answer": 1,
+    "explanation": "Increasing distance from the scatter source reduces occupational exposure."
   },
   {
     "category": "Radiation Biology & Protection",
-    "question": "A patient reports possible pregnancy before a medically indicated pelvic exam. What is the best technologist response?",
+    "question": "A patient reports possible pregnancy before a medically indicated pelvic radiograph. Which response is most appropriate?",
     "options": [
-      "Cancel the examination without consulting the care team",
-      "Proceed without documentation because the exam is ordered",
-      "Substitute a different projection without authorization",
-      "Follow pregnancy-screening policy and communicate before exposure"
+      "Proceed because the provider's order overrides screening",
+      "Cancel the examination independently without consultation",
+      "Follow pregnancy-screening policy and communicate before exposure",
+      "Substitute a different projection without authorization"
     ],
-    "answer": 3,
-    "explanation": "Pregnancy concerns require policy-based screening and communication; the technologist should not independently cancel or redesign the exam outside role."
+    "answer": 2,
+    "explanation": "Pregnancy concerns require policy-based screening and communication."
   },
   {
     "category": "Radiation Biology & Protection",
-    "question": "Which change usually reduces both patient tissue irradiated and scatter production?",
+    "question": "A department identifies repeated positioning rejects on the same projection. What is the most effective radiation-safety response?",
     "options": [
-      "Increase SID while opening collimation",
-      "Use a larger detector with the same field size",
-      "Collimate more closely to the required anatomy",
-      "Increase field size while reducing mAs"
+      "Remove those rejects from analysis because they are technique-related",
+      "Increase mAs on all future images to reduce repeat frequency",
+      "Use a larger field so positioning errors are less obvious",
+      "Analyze the pattern and correct the underlying positioning process"
     ],
-    "answer": 2,
-    "explanation": "Tighter collimation reduces irradiated volume and scatter production."
+    "answer": 3,
+    "explanation": "Repeat analysis should identify and correct systematic causes of unnecessary exposure."
   },
   {
     "category": "Radiation Biology & Protection",
-    "question": "A department notices repeated lateral knee rejects for rotation. What is the most effective safety response?",
+    "question": "Which change can reduce both the volume of tissue irradiated and the amount of scatter produced?",
     "options": [
-      "Increase field size to reduce the chance of rotation",
-      "Analyze the pattern and correct the positioning process",
-      "Tell technologists to increase mAs on all lateral knees",
-      "Remove reject analysis so staff do not feel penalized"
-    ],
-    "answer": 1,
-    "explanation": "Repeat analysis should identify systematic causes and guide process improvement, reducing future unnecessary exposures."
-  },
-  {
-    "category": "Chest, Abdomen & Extremity Procedures",
-    "question": "An upright PA chest shows the medial clavicles equidistant from the spinous processes, but only eight posterior ribs are visible above the diaphragm. Which issue is most likely?",
-    "options": [
-      "Inadequate inspiration rather than patient rotation",
-      "Excessive rotation rather than inadequate inspiration",
-      "Excessive SID rather than inadequate inspiration",
-      "Insufficient mAs rather than inadequate inspiration"
+      "Tighter collimation to the anatomy of interest",
+      "Increasing mAs while keeping field size constant",
+      "Using a larger detector with the same beam field",
+      "Increasing SID while opening the collimated field"
     ],
     "answer": 0,
-    "explanation": "Symmetric clavicular relationships argue against rotation; low rib count suggests suboptimal inspiration."
+    "explanation": "Collimation reduces irradiated tissue volume and scatter production."
   },
   {
     "category": "Chest, Abdomen & Extremity Procedures",
-    "question": "A trauma patient with suspected hip fracture cannot internally rotate the affected leg. Which approach is most appropriate?",
+    "question": "An upright PA chest shows symmetric sternoclavicular joints but only seven posterior ribs above the diaphragm. What is the primary issue?",
     "options": [
-      "Internally rotate the leg to obtain the routine AP appearance",
-      "Externally rotate both legs equally to improve symmetry",
-      "Delay all imaging until the patient can tolerate rotation",
-      "Maintain the limb position and use a trauma-appropriate lateral method"
-    ],
-    "answer": 3,
-    "explanation": "Suspected fracture is a contraindication to routine internal rotation; equipment and projection should adapt to the patient."
-  },
-  {
-    "category": "Chest, Abdomen & Extremity Procedures",
-    "question": "A forearm image includes the wrist but clips the elbow joint. What is the primary problem?",
-    "options": [
-      "The beam energy is too low for cortical bone visualization",
-      "The patient is rotated because the elbow is not included",
-      "Required anatomy is incomplete for a long-bone examination",
-      "The exposure indicator is invalid because a joint is missing"
-    ],
-    "answer": 2,
-    "explanation": "Long-bone studies generally require inclusion of both adjacent joints."
-  },
-  {
-    "category": "Chest, Abdomen & Extremity Procedures",
-    "question": "An AP supine abdomen is requested to evaluate bowel gas pattern. The image clips the pubic symphysis. What should drive the repeat decision?",
-    "options": [
-      "Whether a grid was used for the first exposure",
-      "Whether required abdominal anatomy for the exam is fully included",
-      "Whether the exposure indicator falls within the target range",
-      "Whether the patient can hold a deeper inspiration next time"
+      "Rotation rather than inadequate inspiration",
+      "Inadequate inspiration rather than rotation",
+      "Excessive SID rather than poor inspiration",
+      "Insufficient mAs rather than poor inspiration"
     ],
     "answer": 1,
-    "explanation": "Coverage of required anatomy is a core image criterion; exposure adequacy cannot compensate for missing anatomy."
+    "explanation": "Symmetry argues against rotation; low rib count suggests inadequate inspiration."
   },
   {
     "category": "Chest, Abdomen & Extremity Procedures",
-    "question": "A patient with a painful shoulder cannot abduct the arm for a routine projection. What is the best principle?",
+    "question": "A trauma patient with suspected proximal femur fracture has the affected leg shortened and externally rotated. What should the technologist avoid?",
     "options": [
-      "Adapt the projection to the patient while preserving the diagnostic goal",
-      "Force the routine position because standardization is always required",
-      "Increase kVp so positioning becomes less important",
-      "Use a larger field so the arm position does not matter"
-    ],
-    "answer": 0,
-    "explanation": "Patient condition may require modified projections; the diagnostic objective should be preserved without causing harm."
-  },
-  {
-    "category": "Spine, Pelvis, Skull & Advanced Procedures",
-    "question": "A patient with suspected cervical spine injury remains immobilized. Which principle should guide the initial lateral imaging approach?",
-    "options": [
-      "Rotate the head until the mandibular rami are superimposed",
-      "Flex the neck to separate the lower cervical vertebrae",
-      "Remove immobilization if it interferes with standard positioning",
-      "Move the tube and detector rather than manipulating the cervical spine"
-    ],
-    "answer": 3,
-    "explanation": "In trauma, equipment should adapt to the patient while spinal precautions are maintained."
-  },
-  {
-    "category": "Spine, Pelvis, Skull & Advanced Procedures",
-    "question": "An AP pelvis is requested after high-energy trauma. The affected leg is shortened and externally rotated. What should the technologist do?",
-    "options": [
-      "Apply traction before positioning to restore normal alignment",
-      "Delay imaging until the leg position becomes symmetric",
-      "Avoid routine internal rotation and image according to trauma protocol",
-      "Internally rotate both legs to place the femoral necks parallel"
+      "Maintaining trauma precautions during positioning",
+      "Using a horizontal-beam approach when indicated",
+      "Routine internal rotation of the injured leg",
+      "Adapting detector placement to limit movement"
     ],
     "answer": 2,
-    "explanation": "Shortening and external rotation can indicate fracture; routine internal rotation may worsen injury."
+    "explanation": "Routine internal rotation can worsen pain or injury when fracture is suspected."
   },
   {
-    "category": "Spine, Pelvis, Skull & Advanced Procedures",
-    "question": "A skull projection shows asymmetric orbital margins when symmetry is expected. Which error should be considered first?",
+    "category": "Chest, Abdomen & Extremity Procedures",
+    "question": "A forearm study includes the elbow but clips the wrist. Exposure is adequate. What determines whether a repeat is required?",
     "options": [
-      "Grid ratio too low for the selected kVp",
-      "Head rotation relative to the detector",
-      "Excessive mAs relative to patient thickness",
-      "Insufficient filtration of the primary beam"
+      "Whether post-processing can increase field size",
+      "Whether the exposure indicator is within the target range",
+      "Whether the patient can tolerate a second exposure",
+      "Whether the ordered projection requires inclusion of both joints"
+    ],
+    "answer": 3,
+    "explanation": "Required anatomy and exam criteria determine repeat necessity."
+  },
+  {
+    "category": "Chest, Abdomen & Extremity Procedures",
+    "question": "A true lateral elbow is intended, but the epicondyles are not superimposed. What is the most appropriate correction?",
+    "options": [
+      "Adjust elbow rotation before repeating",
+      "Increase kVp to separate the epicondyles",
+      "Increase SID to improve superimposition",
+      "Use a grid to reduce overlap"
+    ],
+    "answer": 0,
+    "explanation": "Epicondylar misalignment indicates rotation."
+  },
+  {
+    "category": "Chest, Abdomen & Extremity Procedures",
+    "question": "A PA chest image shows the scapulae projected over the lungs despite adequate inspiration. Which positioning change is most relevant?",
+    "options": [
+      "Increase kVp so the scapulae are less visible",
+      "Roll the shoulders forward to move the scapulae laterally",
+      "Increase SID to move the scapulae away from the lungs",
+      "Angle the central ray cephalically to clear the lung fields"
     ],
     "answer": 1,
-    "explanation": "Asymmetry of paired structures commonly indicates rotation."
+    "explanation": "Shoulder positioning helps move the scapulae off the lung fields."
   },
   {
     "category": "Spine, Pelvis, Skull & Advanced Procedures",
-    "question": "During a mobile exam in isolation, the detector has been placed behind the patient and is now contaminated. What is the best next step?",
+    "question": "A trauma cervical-spine patient remains immobilized on a stretcher. Which approach best preserves safety and the diagnostic goal?",
     "options": [
-      "Handle and disinfect the detector according to isolation and equipment policy",
-      "Return the detector directly to the department for later cleaning",
-      "Cover the detector with a clean sheet and continue using it",
-      "Wipe only the visible surface if no fluid is present"
-    ],
-    "answer": 0,
-    "explanation": "Portable equipment can transmit organisms; cleaning must follow infection-control and manufacturer/facility procedures."
-  },
-  {
-    "category": "Spine, Pelvis, Skull & Advanced Procedures",
-    "question": "During fluoroscopy, which change most directly reduces exposure when clinically feasible?",
-    "options": [
-      "Increase magnification mode for every image sequence",
-      "Move personnel closer to improve communication",
-      "Open collimation to prevent anatomy from leaving the field",
-      "Minimize beam-on time and use dose-saving operating modes"
-    ],
-    "answer": 3,
-    "explanation": "Reducing fluoroscopy time and using dose-saving modes lowers exposure while maintaining the clinical task."
-  },
-  {
-    "category": "Image Evaluation & Clinical Judgment",
-    "question": "A chest image is adequately exposed and includes the lungs, but the sternoclavicular joints are asymmetric and one scapula overlies the lung field. What is the best interpretation?",
-    "options": [
-      "Detector artifact is present despite acceptable collimation",
-      "Motion is present despite acceptable inspiration",
-      "Positioning error is present despite acceptable exposure",
-      "Exposure error is present despite acceptable positioning"
+      "Ask the patient to rotate the head until the anatomy aligns",
+      "Remove immobilization briefly to obtain the routine projection",
+      "Adapt tube and detector placement while maintaining immobilization",
+      "Delay imaging until the patient can sit or stand without support"
     ],
     "answer": 2,
-    "explanation": "Asymmetric thoracic landmarks and scapular superimposition indicate positioning problems."
+    "explanation": "Trauma imaging should preserve immobilization and minimize movement."
   },
   {
-    "category": "Image Evaluation & Clinical Judgment",
-    "question": "A digital abdomen appears appropriately bright, but the exposure indicator is far above target and noise is minimal. What is the best corrective action for future similar patients?",
+    "category": "Spine, Pelvis, Skull & Advanced Procedures",
+    "question": "An AP pelvis shows asymmetric obturator foramina and iliac wings. What should be corrected first?",
     "options": [
-      "Increase field size so the detector receives more scatter",
-      "Reduce technique appropriately rather than relying on processed brightness",
-      "Increase technique further to ensure the image remains noise free",
-      "Ignore the indicator because displayed brightness is acceptable"
+      "Grid ratio",
+      "Detector exposure",
+      "mAs",
+      "Pelvic rotation"
+    ],
+    "answer": 3,
+    "explanation": "Asymmetric paired pelvic structures indicate rotation."
+  },
+  {
+    "category": "Spine, Pelvis, Skull & Advanced Procedures",
+    "question": "A lateral lumbar image shows posterior vertebral bodies not superimposed. Exposure and collimation are adequate. What is the likely cause?",
+    "options": [
+      "Patient rotation",
+      "Insufficient penetration",
+      "Grid cutoff",
+      "Excessive SID"
+    ],
+    "answer": 0,
+    "explanation": "Failure of posterior vertebral body superimposition indicates rotation."
+  },
+  {
+    "category": "Spine, Pelvis, Skull & Advanced Procedures",
+    "question": "Fluoroscopy time has increased because the operator repeatedly rechecks anatomy between steps. Which workflow change would best reduce unnecessary radiation?",
+    "options": [
+      "Keep the beam active while planning so anatomy remains continuously visible",
+      "Plan steps off-beam and use the shortest practical beam-on intervals",
+      "Use tighter collimation only after the procedure has already been completed",
+      "Increase magnification mode so fewer image checks are needed"
     ],
     "answer": 1,
-    "explanation": "Processed brightness can conceal excessive detector exposure; technique should be optimized using exposure feedback."
+    "explanation": "Planning off-beam and limiting beam-on time directly reduces unnecessary fluoroscopic exposure."
   },
   {
-    "category": "Image Evaluation & Clinical Judgment",
-    "question": "A repeated image still shows the same linear artifact in the identical detector location despite repositioning the patient. What source is most likely?",
+    "category": "Spine, Pelvis, Skull & Advanced Procedures",
+    "question": "A C-arm image shows more magnification than desired. Which geometry change can reduce magnification when practical?",
     "options": [
-      "Detector or image-receptor related artifact",
-      "Patient clothing artifact",
-      "Patient motion during exposure",
-      "Anatomic structure from patient rotation"
-    ],
-    "answer": 0,
-    "explanation": "A fixed artifact that remains in the same detector location despite patient repositioning suggests a detector/system source."
-  },
-  {
-    "category": "Image Evaluation & Clinical Judgment",
-    "question": "An image is clipped laterally, but the exposure indicator is within target and positioning is otherwise correct. What should be changed on repeat?",
-    "options": [
-      "Increase mAs to compensate for the missing anatomy",
-      "Increase kVp to widen the useful x-ray beam",
-      "Shorten exposure time to reduce geometric clipping",
-      "Center and collimate to include the required anatomy"
-    ],
-    "answer": 3,
-    "explanation": "Missing anatomy is a centering/field-coverage problem, not an exposure-factor problem."
-  },
-  {
-    "category": "Image Evaluation & Clinical Judgment",
-    "question": "A trauma image is technically imperfect but demonstrates all required anatomy and answers the immediate clinical question. The patient deteriorates after the exposure. What is the best next action?",
-    "options": [
-      "Adjust technique and obtain an additional image before reporting the change",
-      "Move the patient to a routine position to improve image symmetry",
-      "Prioritize the patient and communicate the clinical change rather than repeat for perfection",
-      "Repeat immediately so the image meets routine positioning standards"
+      "Increase OID",
+      "Move the x-ray tube closer to the patient",
+      "Move the image receptor closer to the patient",
+      "Reduce SID"
     ],
     "answer": 2,
-    "explanation": "Patient condition takes priority; repeats should be clinically justified, especially when the existing image is diagnostic."
+    "explanation": "Reducing object-to-receptor distance reduces magnification."
+  },
+  {
+    "category": "Image Evaluation & Clinical Judgment",
+    "question": "A chest image is adequately exposed, but one sternoclavicular joint is farther from the spine and one scapula overlies the lung. What is the best conclusion?",
+    "options": [
+      "Motion is the only likely cause of the asymmetry",
+      "Exposure error is present despite acceptable positioning",
+      "A fixed detector artifact explains both findings",
+      "Positioning error is present despite acceptable exposure"
+    ],
+    "answer": 3,
+    "explanation": "The combined asymmetry and scapular superimposition indicate positioning error."
+  },
+  {
+    "category": "Image Evaluation & Clinical Judgment",
+    "question": "A repeated linear artifact remains in the same receptor location after the patient is repositioned. What source is most likely?",
+    "options": [
+      "Detector or processing-system artifact fixed to the receptor location",
+      "Patient motion that happened to recur during both exposures",
+      "Patient clothing artifact remaining in the same anatomic region",
+      "Anatomic superimposition caused by identical patient rotation"
+    ],
+    "answer": 0,
+    "explanation": "A fixed artifact in detector coordinates suggests an imaging-system source."
+  },
+  {
+    "category": "Image Evaluation & Clinical Judgment",
+    "question": "An image has adequate exposure but clips required anatomy laterally. What should be changed on repeat?",
+    "options": [
+      "Increase mAs to reveal anatomy beyond the field",
+      "Center and collimate to include the required anatomy",
+      "Increase kVp so the x-ray field becomes wider",
+      "Shorten exposure time to reduce clipping"
+    ],
+    "answer": 1,
+    "explanation": "Missing anatomy is a centering/field-coverage problem."
+  },
+  {
+    "category": "Image Evaluation & Clinical Judgment",
+    "question": "A trauma image is technically imperfect but answers the immediate clinical question. The patient deteriorates immediately after exposure. What is the priority?",
+    "options": [
+      "Obtain a higher-exposure image before reporting the clinical deterioration",
+      "Repeat immediately so the image meets routine positioning expectations",
+      "Address the patient's condition before considering any technically improved repeat",
+      "Move the patient into a routine position to improve image symmetry"
+    ],
+    "answer": 2,
+    "explanation": "Patient condition takes priority when the existing image is diagnostically adequate."
+  },
+  {
+    "category": "Image Evaluation & Clinical Judgment",
+    "question": "A department notices that one abdominal technique consistently produces very low noise and exposure indicators above the target range even though displayed brightness looks normal. What change is most appropriate?",
+    "options": [
+      "Increase technique slightly so the low-noise appearance is preserved",
+      "Open collimation so additional scatter lowers the exposure indicator",
+      "Ignore the trend because post-processing keeps brightness acceptable",
+      "Reduce technique and monitor exposure indicators for similar patients"
+    ],
+    "answer": 3,
+    "explanation": "The pattern suggests excessive receptor exposure; technique should be reduced and monitored rather than judged by brightness alone."
   }
 ];
