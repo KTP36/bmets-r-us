@@ -150,7 +150,7 @@ const extraCbetQuestions = [
   }
 ];
 
-const cbetQuestions = [...baseCbetQuestions, ...extraCbetQuestions];
+const cbetQuestions = baseCbetQuestions;
 
 const cbetQuestionPools = {
   mixed: cbetQuestions,
@@ -193,11 +193,9 @@ function shuffleQuestionSet(questionSet) {
 
 
 function buildCBET75(questionSet) {
-  let pool = [];
-  while (pool.length < 75) {
-    pool = [...pool, ...shuffleQuestionSet(questionSet)];
-  }
-  return pool.slice(0, 75);
+  // Draw up to 75 UNIQUE questions from the master bank.
+  // Each question and its answer choices are shuffled once per exam attempt.
+  return shuffleQuestionSet(questionSet).slice(0, Math.min(75, questionSet.length));
 }
 
 const TEAS_PRACTICE_COUNT = 25;
