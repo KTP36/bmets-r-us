@@ -738,7 +738,7 @@ function EkgBasics() {
   );
 }
 
-function EkgQuiz({ onComplete }) {
+function EkgQuiz({ onComplete, onStart }) {
   const [mode, setMode] = useState("quiz");
   const [questions, setQuestions] = useState(() => shuffleQuestionSet(ekgQuestions));
   const [index, setIndex] = useState(0);
@@ -751,6 +751,7 @@ function EkgQuiz({ onComplete }) {
   const isAnswered = selected !== undefined;
 
   const restartQuiz = () => {
+    onStart && onStart();
     setQuestions(shuffleQuestionSet(ekgQuestions));
     setIndex(0);
     setScore(0);
@@ -7156,6 +7157,7 @@ export default function App() {
     setShowRnMissedReview(false);
   };
   const restartRnExam = () => {
+    trackExamStart("RN Practice");
     resetRnExam();
   };
   const saveTeasProgress = () => {
@@ -7462,6 +7464,25 @@ export default function App() {
       active_tab: activeTab
     });
   };
+
+  // TIMER FIX:
+  // Some learners arrive directly at quiz URLs (for example ?tab=RN or ?tab=EKGQuiz).
+  // In that path there is no navigation-button click to call trackExamStart(),
+  // so completed scores were being saved with Time: 0:00.
+  // Start the timer automatically when these quiz views are entered, but only
+  // when a timer was not already started by a normal button click.
+  useEffect(() => {
+    const directQuizExamNames = {
+      RN: "RN Practice",
+      AnatomyQuiz: "Anatomy Quiz",
+      EKGQuiz: "EKG Waveform Quiz"
+    };
+
+    const examName = directQuizExamNames[activeTab];
+    if (examName && !examStartTimesRef.current[examName]) {
+      trackExamStart(examName);
+    }
+  }, [activeTab]);
 
   const startQuickPractice = (practiceType) => {
     const quickQuestionCount = 5;
@@ -9659,7 +9680,12 @@ export default function App() {
           </div>
         )}
         {activeTab === "EKGQuiz" && (
-          <EkgQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("EKG Waveform Quiz", finalScore, totalQuestions)} />
+          <EkgQuiz
+            onStart={() => trackExamStart("EKG Waveform Quiz")}
+            onComplete={(finalScore, totalQuestions) =>
+              trackExamCompletion("EKG Waveform Quiz", finalScore, totalQuestions)
+            }
+          />
         )}
         {activeTab === "LabValuesQuiz" && (
           <div style={{ padding: 20 }}>

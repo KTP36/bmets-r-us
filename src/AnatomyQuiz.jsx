@@ -1,9 +1,41 @@
 import React, { useEffect, useRef, useState } from "react";
 import { anatomyQuestions } from "./AnatomyQuizData";
 
+
+function shuffleArray(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function shuffleAnatomyQuestion(question) {
+  const optionsWithAnswerFlag = question.options.map((option, index) => ({
+    option,
+    isCorrect: index === question.answer
+  }));
+
+  const shuffledOptions = shuffleArray(optionsWithAnswerFlag);
+
+  return {
+    ...question,
+    options: shuffledOptions.map((item) => item.option),
+    answer: shuffledOptions.findIndex((item) => item.isCorrect)
+  };
+}
+
+function buildShuffledAnatomyQuestions() {
+  return anatomyQuestions.map((question) => shuffleAnatomyQuestion(question));
+}
+
 export default function AnatomyQuiz({ onComplete }) {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 500;
 
+  const [shuffledQuestions, setShuffledQuestions] = useState(
+    () => buildShuffledAnatomyQuestions()
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
@@ -22,7 +54,7 @@ export default function AnatomyQuiz({ onComplete }) {
   };
 
   useEffect(() => {
-    if (showResult || !anatomyQuestions.length) return;
+    if (showResult || !shuffledQuestions.length) return;
 
     const intervalId = window.setInterval(() => {
       setElapsedSeconds(
@@ -33,12 +65,12 @@ export default function AnatomyQuiz({ onComplete }) {
     return () => window.clearInterval(intervalId);
   }, [showResult, startTime]);
 
-  if (!anatomyQuestions || anatomyQuestions.length === 0) {
+  if (!shuffledQuestions || shuffledQuestions.length === 0) {
     return <div style={{ padding: 20 }}>No anatomy questions found.</div>;
   }
 
-  const currentQuestion = anatomyQuestions[currentIndex];
-  const resultPercent = Math.round((score / anatomyQuestions.length) * 100);
+  const currentQuestion = shuffledQuestions[currentIndex];
+  const resultPercent = Math.round((score / shuffledQuestions.length) * 100);
 
   const handleAnswer = (index) => {
     if (selected !== null) return;
@@ -62,7 +94,7 @@ export default function AnatomyQuiz({ onComplete }) {
 
     const currentQuestionWasCorrect = selected === currentQuestion.answer;
 
-    if (currentIndex + 1 < anatomyQuestions.length) {
+    if (currentIndex + 1 < shuffledQuestions.length) {
       setSelected(null);
       setCurrentIndex((prev) => prev + 1);
     } else {
@@ -76,7 +108,7 @@ export default function AnatomyQuiz({ onComplete }) {
       setCompletionTime(elapsed);
 
       if (onComplete) {
-        onComplete(finalScore, anatomyQuestions.length, elapsed, "Anatomy Quiz");
+        onComplete(finalScore, shuffledQuestions.length, elapsed, "Anatomy Quiz");
       }
 
       setScore(finalScore);
@@ -87,6 +119,7 @@ export default function AnatomyQuiz({ onComplete }) {
   const restartQuiz = () => {
     const now = Date.now();
 
+    setShuffledQuestions(buildShuffledAnatomyQuestions());
     setCurrentIndex(0);
     setSelected(null);
     setScore(0);
@@ -152,7 +185,7 @@ export default function AnatomyQuiz({ onComplete }) {
               fontWeight: 900
             }}
           >
-            <div style={{ fontSize: 28 }}>{score} / {anatomyQuestions.length}</div>
+            <div style={{ fontSize: 28 }}>{score} / {shuffledQuestions.length}</div>
             <div style={{ fontSize: 13, color: "#475569" }}>Score</div>
           </div>
 
@@ -314,7 +347,7 @@ export default function AnatomyQuiz({ onComplete }) {
             boxSizing: "border-box"
           }}
         >
-          <div>Question {currentIndex + 1} of {anatomyQuestions.length}</div>
+          <div>Question {currentIndex + 1} of {shuffledQuestions.length}</div>
           <div>Score: {score}</div>
           <div
             style={{
@@ -449,7 +482,7 @@ export default function AnatomyQuiz({ onComplete }) {
               onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
               onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
             >
-              {currentIndex === anatomyQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
+              {currentIndex === shuffledQuestions.length - 1 ? "Finish Quiz" : "Next Question"}
             </button>
           </div>
         )}
