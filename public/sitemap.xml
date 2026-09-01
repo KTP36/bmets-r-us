@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://medskillbuilder.com/</loc>
-    <lastmod>2026-03-21</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -142,7 +142,7 @@
 
   <url>
     <loc>https://medskillbuilder.com/browse-all-practice.html</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -723,7 +723,8 @@
   </url>
 
   <url>
-    <loc>https://medskillbuilder.com/?tab=MedicationAcademy</loc>
+    <loc>https://medskillbuilder.com/?tab=CBETAcademy</loc>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
