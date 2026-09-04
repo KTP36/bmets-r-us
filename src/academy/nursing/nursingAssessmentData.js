@@ -1,59 +1,61 @@
+// Clinically revised September 4, 2026.
+// Supplemental education only; local policy, scope, orders, and supervised competency validation govern clinical practice.
 export const nursingAssessmentModules = [
   {
     "number": 1,
     "title": "Assessment Foundations",
     "description": "Baseline, focused vs. comprehensive assessment, subjective/objective data, sequence, reassessment, and escalation.",
     "badge": "Assessment Foundations Specialist",
-    "icon": "\ud83e\udded"
+    "icon": "🧭"
   },
   {
     "number": 2,
     "title": "Vital Signs, Pain & General Survey",
     "description": "Interpret trends, recognize conflicting findings, assess pain safely, and identify early deterioration.",
     "badge": "Clinical Observation Specialist",
-    "icon": "\ud83d\udcc8"
+    "icon": "📈"
   },
   {
     "number": 3,
     "title": "Neurological Assessment",
     "description": "Mental status, pupils, strength, sensation, GCS concepts, stroke red flags, and change from baseline.",
     "badge": "Neurological Assessment Specialist",
-    "icon": "\ud83e\udde0"
+    "icon": "🧠"
   },
   {
     "number": 4,
     "title": "Respiratory Assessment",
     "description": "Work of breathing, oxygenation, lung sounds, respiratory pattern, and recognition of worsening status.",
     "badge": "Respiratory Assessment Specialist",
-    "icon": "\ud83e\udec1"
+    "icon": "🫁"
   },
   {
     "number": 5,
     "title": "Cardiovascular & Peripheral Vascular",
     "description": "Perfusion, pulses, edema, heart sounds, capillary refill, and hemodynamic clues.",
     "badge": "Cardiovascular Assessment Specialist",
-    "icon": "\u2764\ufe0f"
+    "icon": "❤️"
   },
   {
     "number": 6,
     "title": "Abdominal, GI & GU Assessment",
     "description": "Abdominal sequence, bowel sounds, distention, tenderness, urinary findings, and output trends.",
     "badge": "GI & GU Assessment Specialist",
-    "icon": "\ud83e\ude7a"
+    "icon": "🩺"
   },
   {
     "number": 7,
     "title": "Skin, Wounds & Musculoskeletal",
     "description": "Skin integrity, pressure injury risk, wounds, mobility, falls, ROM, and neurovascular checks.",
     "badge": "Skin & Mobility Assessment Specialist",
-    "icon": "\ud83e\uddb4"
+    "icon": "🦴"
   },
   {
     "number": 8,
     "title": "Head-to-Toe Clinical Judgment",
     "description": "Integrated patient assessment, prioritization, deterioration patterns, reassessment, and escalation.",
     "badge": "Clinical Assessment Specialist",
-    "icon": "\ud83c\udfe5"
+    "icon": "🏥"
   }
 ];
 
@@ -71,13 +73,18 @@ export const nursingModuleContent = {
     },
     "lessons": [
       {
+        "title": "Begin With Safety and Permission",
+        "body": "Before assessment, use two patient identifiers, perform hand hygiene, use indicated PPE, explain the assessment, protect privacy, obtain the patient’s cooperation or consent as applicable, and clean shared equipment according to facility policy.",
+        "takeaway": "Safe assessment begins before the first clinical finding."
+      },
+      {
         "title": "Start With the Patient, Not the Checklist",
-        "body": "A complete assessment is organized, but it is not mechanical. Begin with the patient\u2019s appearance, immediate safety, reason for care, and known baseline. A checklist should support clinical thinking\u2014not override an obvious change in condition.",
+        "body": "A complete assessment is organized, but it is not mechanical. Begin with the patient’s appearance, immediate safety, reason for care, and known baseline. A checklist should support clinical thinking—not override an obvious change in condition.",
         "takeaway": "A change from baseline can matter more than whether a number falls inside a reference range."
       },
       {
         "title": "Subjective and Objective Data",
-        "body": "Subjective data are reported by the patient or caregiver. Objective data are observed, measured, or verified. Strong assessment connects both: a patient saying \u201cI feel different\u201d may be clinically important even before a dramatic vital-sign change appears.",
+        "body": "Subjective data are reported by the patient or caregiver. Objective data are observed, measured, or verified. Strong assessment connects both: a patient saying “I feel different” may be clinically important even before a dramatic vital-sign change appears.",
         "takeaway": "Do not dismiss a patient-reported change simply because the first objective measure looks normal."
       },
       {
@@ -92,14 +99,14 @@ export const nursingModuleContent = {
       },
       {
         "title": "Reassess After an Intervention",
-        "body": "An intervention is incomplete until its effect is evaluated. Reassessment should target the problem you were trying to change and should occur soon enough to detect improvement, failure, or deterioration.",
-        "takeaway": "\u201cDone\u201d is not the same as \u201ceffective.\u201d"
+        "body": "An intervention is incomplete until its effect is evaluated. Reassessment should target the problem you were trying to change and should occur soon enough to detect improvement, failure, or deterioration. Escalation routes and triggers must follow the learner’s role, organizational policy, and chain of command.",
+        "takeaway": "“Done” is not the same as “effective.”"
       }
     ],
     "scenarios": [
       {
         "title": "Assess First",
-        "patient": "A postoperative patient says, \u201cSomething feels wrong.\u201d BP is 118/72, HR 92, RR 20, SpO\u2082 96%. The patient is pale and newly restless.",
+        "patient": "A postoperative patient says, “Something feels wrong.” BP is 118/72, HR 92, RR 20, SpO₂ 96%. The patient is pale and newly restless.",
         "question": "What is the best next action?",
         "options": [
           "Document that vital signs are normal and continue rounds",
@@ -139,7 +146,7 @@ export const nursingModuleContent = {
     ],
     "questions": [
       {
-        "question": "A patient\u2019s baseline systolic BP is usually 150\u2013160. Today it is 112, and the patient is dizzy. Which interpretation is best?",
+        "question": "A patient’s baseline systolic BP is usually 150–160. Today it is 112, and the patient is dizzy. Which interpretation is best?",
         "options": [
           "112 is normal, so no concern",
           "The change from baseline plus symptoms is clinically important",
@@ -152,8 +159,8 @@ export const nursingModuleContent = {
       {
         "question": "Which finding is subjective?",
         "options": [
-          "Temperature 38.1\u00b0C",
-          "Patient reports \u201cmy chest feels tight\u201d",
+          "Temperature 38.1°C",
+          "Patient reports “my chest feels tight”",
           "RR 28/min",
           "Left ankle visibly swollen"
         ],
@@ -194,7 +201,7 @@ export const nursingModuleContent = {
         "explanation": "Reassessment evaluates whether the intervention achieved its goal and whether the condition changed."
       },
       {
-        "question": "A patient says \u201cI feel worse\u201d but the monitor values are unchanged. Best response?",
+        "question": "A patient says “I feel worse” but the monitor values are unchanged. Best response?",
         "options": [
           "Ignore the report",
           "Perform a focused reassessment and compare with baseline",
@@ -220,7 +227,7 @@ export const nursingModuleContent = {
     "lessons": [
       {
         "title": "Trends Beat Snapshots",
-        "body": "A single vital sign is useful; a trend is usually more informative. A heart rate rising from 76 to 104 may be significant even if the patient has no dramatic symptom yet.",
+        "body": "A single vital sign is useful; a trend is usually more informative. A heart rate rising from 76 to 104 may be significant even if the patient has no dramatic symptom yet. Unexpected values should be repeated using correct technique and appropriate equipment size and placement while the patient is assessed.",
         "takeaway": "Look for direction, speed of change, and the patient context."
       },
       {
@@ -230,12 +237,12 @@ export const nursingModuleContent = {
       },
       {
         "title": "Pain Is More Than a Number",
-        "body": "Assess location, quality, onset, duration, provoking/relieving factors, associated symptoms, functional impact, and response to treatment. A pain score without context can be misleading.",
+        "body": "Assess location, quality, onset, duration, provoking/relieving factors, associated symptoms, functional impact, and response to treatment. A pain score without context can be misleading. Reassessment timing depends on the intervention, orders, patient condition, and organizational policy.",
         "takeaway": "Pain assessment asks what the pain means for this patient now."
       },
       {
         "title": "Conflicting Findings Require Verification",
-        "body": "If a monitor value conflicts with the patient presentation, verify the measurement and assess the patient. Do not automatically trust or ignore technology.",
+        "body": "If a monitor value conflicts with the patient presentation, verify the measurement and assess the patient. Do not automatically trust or ignore technology. Pulse-oximeter readings may also be affected by skin pigmentation; interpret readings with symptoms, signal quality, and other clinical findings.",
         "takeaway": "Validate unexpected data before acting on an isolated number."
       },
       {
@@ -247,7 +254,7 @@ export const nursingModuleContent = {
     "scenarios": [
       {
         "title": "Trend Recognition",
-        "patient": "Over 3 hours a patient\u2019s HR rises 78\u219294\u2192108, urine output falls, and skin becomes cool. BP remains 110/68.",
+        "patient": "Over 3 hours a patient’s HR rises 78→94→108, urine output falls, and skin becomes cool. BP remains 110/68.",
         "question": "Which interpretation is strongest?",
         "options": [
           "The patient is stable because BP is normal",
@@ -273,7 +280,7 @@ export const nursingModuleContent = {
       },
       {
         "title": "Pain With Red Flags",
-        "patient": "A patient reports 8/10 \u201cindigestion\u201d with diaphoresis and nausea.",
+        "patient": "A patient reports 8/10 “indigestion” with diaphoresis and nausea.",
         "question": "What is the priority?",
         "options": [
           "Focus only on gastrointestinal history",
@@ -289,10 +296,10 @@ export const nursingModuleContent = {
       {
         "question": "Which trend is most concerning?",
         "options": [
-          "HR 82\u219284, stable symptoms",
-          "HR 76\u2192108 with cool skin and falling urine output",
-          "Temp 36.8\u219236.9",
-          "SpO\u2082 97\u219296 with no symptoms"
+          "HR 82→84, stable symptoms",
+          "HR 76→108 with cool skin and falling urine output",
+          "Temp 36.8→36.9",
+          "SpO₂ 97→96 with no symptoms"
         ],
         "answer": 1,
         "explanation": "A rising HR paired with perfusion changes is a concerning pattern."
@@ -311,7 +318,7 @@ export const nursingModuleContent = {
       {
         "question": "Which pain assessment is most complete?",
         "options": [
-          "\u201cPain 7/10\u201d",
+          "“Pain 7/10”",
           "Location, quality, onset, aggravating/relieving factors, associated symptoms, function, and response",
           "Ask only whether pain is sharp",
           "Ask only if medication is wanted"
@@ -331,12 +338,12 @@ export const nursingModuleContent = {
         "explanation": "Restlessness can precede more obvious deterioration."
       },
       {
-        "question": "A patient\u2019s RR is 20 but respirations are shallow and the patient is difficult to arouse. Best interpretation?",
+        "question": "A patient’s RR is 20 but respirations are shallow and the patient is difficult to arouse. Best interpretation?",
         "options": [
           "Normal because rate is 20",
           "The pattern is concerning despite the rate",
           "No assessment needed",
-          "Only SpO\u2082 matters"
+          "Only SpO₂ matters"
         ],
         "answer": 1,
         "explanation": "Depth and mental status can reveal danger hidden by a normal rate."
@@ -368,7 +375,7 @@ export const nursingModuleContent = {
     "lessons": [
       {
         "title": "Baseline Mental Status Matters",
-        "body": "Orientation questions are useful, but the most important finding may be a new change from the patient\u2019s baseline. Compare current behavior, speech, attention, and responsiveness with what is expected for that person.",
+        "body": "Orientation questions are useful, but the most important finding may be a new change from the patient’s baseline. Compare current behavior, speech, attention, and responsiveness with what is expected for that person.",
         "takeaway": "New confusion is never explained away by age alone."
       },
       {
@@ -383,7 +390,7 @@ export const nursingModuleContent = {
       },
       {
         "title": "GCS Is a Trend Tool",
-        "body": "Glasgow Coma Scale components evaluate eye, verbal, and motor responses. The trend and the specific component that changed are often more informative than memorizing a total score.",
+        "body": "Glasgow Coma Scale components evaluate eye, verbal, and motor responses. The trend and the specific component that changed are often more informative than memorizing a total score. Record eye, verbal, and motor components using the structured method. Intubation, sedation, paralysis, language, hearing, and local protocol can limit interpretation.",
         "takeaway": "A falling neurologic score is a change in condition."
       },
       {
@@ -404,16 +411,16 @@ export const nursingModuleContent = {
           "Offer oral fluids"
         ],
         "answer": 1,
-        "explanation": "Sudden focal neurologic deficits require immediate focused assessment and escalation."
+        "explanation": "Sudden focal neurologic deficits require immediate focused assessment and escalation. Document last-known-well or symptom-onset time when known and activate the facility-specific urgent response."
       },
       {
         "title": "GCS Trend",
-        "patient": "A patient\u2019s total GCS falls because the motor response worsens while eye and verbal responses are unchanged.",
+        "patient": "A patient’s total GCS falls because the motor response worsens while eye and verbal responses are unchanged.",
         "question": "What is most useful to communicate?",
         "options": [
           "Only the new total score",
           "The specific component change plus the total and clinical context",
-          "That the patient is \u201csleepy\u201d",
+          "That the patient is “sleepy”",
           "Nothing until the next scheduled assessment"
         ],
         "answer": 1,
@@ -508,7 +515,7 @@ export const nursingModuleContent = {
       "summary": "Work of breathing, oxygenation, lung sounds, respiratory pattern, and recognition of worsening status.",
       "objectives": [
         "Work of Breathing Comes First",
-        "Oxygenation Is More Than SpO\u2082",
+        "Oxygenation Is More Than SpO₂",
         "Listen Systematically",
         "Breath Sounds Need Context"
       ]
@@ -520,18 +527,18 @@ export const nursingModuleContent = {
         "takeaway": "Normal-looking numbers do not cancel visible respiratory distress."
       },
       {
-        "title": "Oxygenation Is More Than SpO\u2082",
-        "body": "Pulse oximetry is valuable but has limitations. Poor perfusion, motion, nail products, device placement, and some dyshemoglobinemias can affect readings. Assess the patient and waveform/quality when available.",
+        "title": "Oxygenation Is More Than SpO₂",
+        "body": "Pulse oximetry is valuable but has limitations. Poor perfusion, motion, skin temperature, device placement, nail products, tobacco use, dyshemoglobinemias, and skin pigmentation can affect readings. SpO₂ estimates oxygen saturation; it does not measure ventilation. Assess the patient and signal quality when available.",
         "takeaway": "Treat the patient, verify the data."
       },
       {
         "title": "Listen Systematically",
-        "body": "Compare corresponding areas side-to-side and describe intensity and adventitious sounds. A new unilateral decrease can carry different significance than diffuse chronic findings.",
+        "body": "Compare corresponding areas side-to-side and describe intensity and adventitious sounds. A new unilateral decrease can carry different significance than diffuse chronic findings. Terminology for adventitious sounds can vary; describe location, timing, and change, and do not assign a diagnosis from a sound alone.",
         "takeaway": "Comparison reveals asymmetry."
       },
       {
         "title": "Breath Sounds Need Context",
-        "body": "Crackles, wheezes, rhonchi, stridor, and diminished sounds are findings\u2014not diagnoses. Interpret them alongside effort, oxygenation, history, and change from baseline.",
+        "body": "Crackles, wheezes, rhonchi, stridor, and diminished sounds are findings—not diagnoses. Interpret them alongside effort, oxygenation, history, and change from baseline.",
         "takeaway": "Do not diagnose from one sound in isolation."
       },
       {
@@ -562,14 +569,14 @@ export const nursingModuleContent = {
           "Document and wait for routine rounds",
           "Recognize a significant new asymmetric finding and escalate promptly",
           "Ask the patient to cough for 20 minutes",
-          "Only repeat SpO\u2082"
+          "Only repeat SpO₂"
         ],
         "answer": 1,
         "explanation": "New unilateral diminished sounds with sudden dyspnea are concerning and require prompt evaluation."
       },
       {
         "title": "SpO2 Mismatch",
-        "patient": "SpO\u2082 is 95%, but the patient can speak only 2\u20133 words at a time and uses accessory muscles.",
+        "patient": "SpO₂ is 95%, but the patient can speak only 2–3 words at a time and uses accessory muscles.",
         "question": "Best interpretation?",
         "options": [
           "Oxygen saturation proves breathing is adequate",
@@ -578,7 +585,7 @@ export const nursingModuleContent = {
           "No reassessment is needed"
         ],
         "answer": 1,
-        "explanation": "Work of breathing and speech limitation can indicate serious respiratory compromise even with a preserved SpO\u2082."
+        "explanation": "Work of breathing and speech limitation can indicate serious respiratory compromise even with a preserved SpO₂."
       }
     ],
     "questions": [
@@ -616,7 +623,7 @@ export const nursingModuleContent = {
         "explanation": "Side-to-side comparison helps identify focal abnormalities."
       },
       {
-        "question": "Which statement about SpO\u2082 is best?",
+        "question": "Which statement about SpO₂ is best?",
         "options": [
           "It replaces respiratory assessment",
           "It is one data point and should be interpreted with signal quality and clinical findings",
@@ -675,7 +682,7 @@ export const nursingModuleContent = {
       {
         "title": "Edema Needs Description",
         "body": "Describe location, symmetry, pitting/non-pitting character when appropriate, and change over time. Pair edema with respiratory findings, weight trends, mobility, and vascular clues.",
-        "takeaway": "\u201cEdema present\u201d is incomplete documentation."
+        "takeaway": "“Edema present” is incomplete documentation."
       },
       {
         "title": "Heart Sounds Are Contextual",
@@ -684,7 +691,7 @@ export const nursingModuleContent = {
       },
       {
         "title": "Orthostatic Symptoms Matter",
-        "body": "Position changes can reveal impaired compensation. If dizziness, weakness, or near-syncope occurs, prioritize safety and follow the ordered/protocol-based assessment process.",
+        "body": "Position changes can reveal impaired compensation. If dizziness, weakness, or near-syncope occurs, prioritize safety and follow the ordered/protocol-based assessment process. Measurement steps and thresholds must follow orders and local protocol.",
         "takeaway": "Prevent the fall while you assess the cause."
       }
     ],
@@ -755,7 +762,7 @@ export const nursingModuleContent = {
       {
         "question": "Edema documentation should include:",
         "options": [
-          "Only \u201cedema present\u201d",
+          "Only “edema present”",
           "Location, symmetry, degree/character when appropriate, and trend",
           "Only skin color",
           "Only weight"
@@ -794,7 +801,7 @@ export const nursingModuleContent = {
           "A substitute for BP"
         ],
         "answer": 1,
-        "explanation": "Capillary refill is context-dependent and should not be interpreted alone."
+        "explanation": "Capillary refill is affected by temperature, age, lighting, assessment site, and perfusion. It is one contextual clue and should not be interpreted alone."
       }
     ]
   },
@@ -823,17 +830,17 @@ export const nursingModuleContent = {
       {
         "title": "Pain Changes How You Palpate",
         "body": "Begin away from the painful area and use gentle technique. Rigidity, rebound-type pain, severe tenderness, or worsening instability are concerning findings that require escalation according to scope and protocol.",
-        "takeaway": "Do not repeatedly provoke severe pain to \u201cconfirm\u201d it."
+        "takeaway": "Do not repeatedly provoke severe pain to “confirm” it."
       },
       {
         "title": "Urine Output Is a Trend",
-        "body": "Output should be interpreted with intake, renal history, hemodynamics, medications, devices, and time. A falling trend can be an early perfusion or renal clue.",
+        "body": "Urine output is neither fully sensitive nor specific for kidney function or perfusion. Interpret the amount and time trend with intake, hemodynamics, medications, renal history, device status, and available laboratory data.",
         "takeaway": "Look at the pattern, not only the latest number."
       },
       {
         "title": "Devices Can Mislead",
-        "body": "Low urine output may reflect patient physiology or a kinked/obstructed collection system. Assess the patient and equipment before assuming the cause.",
-        "takeaway": "Troubleshoot the system while evaluating the patient."
+        "body": "Low urine output may reflect patient physiology or a kinked, dependent, or obstructed collection system. Assess the patient and inspect the equipment using infection-prevention practices and local catheter policy. Do not disconnect a closed drainage system merely to investigate low output.",
+        "takeaway": "Protect the closed system while evaluating both the patient and equipment."
       }
     ],
     "scenarios": [
@@ -852,16 +859,16 @@ export const nursingModuleContent = {
       },
       {
         "title": "Urine Output Drop",
-        "patient": "A catheterized patient\u2019s urine output drops abruptly. The patient is otherwise stable.",
+        "patient": "A catheterized patient’s urine output drops abruptly. The patient is otherwise stable.",
         "question": "What should happen first?",
         "options": [
           "Assume renal failure",
-          "Assess the patient and check the drainage system for kinks/obstruction while evaluating the trend",
+          "Assess the patient and inspect the closed drainage system for positioning, kinks, or obstruction according to local policy",
           "Remove the catheter without an order",
           "Ignore the change"
         ],
         "answer": 1,
-        "explanation": "Both patient physiology and device problems can cause low output; assess both."
+        "explanation": "Both patient physiology and equipment problems can reduce output. Inspect the closed system without disconnecting it, use infection-prevention practices, and follow local catheter policy."
       },
       {
         "title": "Rigid Abdomen",
@@ -904,12 +911,12 @@ export const nursingModuleContent = {
         "question": "Low urine output with a catheter should lead to:",
         "options": [
           "Assume kidney failure immediately",
-          "Assess the patient and drainage system while evaluating the trend",
+          "Assess the patient and inspect the closed drainage system according to local policy while evaluating the trend",
           "Clamp the catheter",
           "Ignore it for 8 hours"
         ],
         "answer": 1,
-        "explanation": "Both physiologic and mechanical causes should be considered."
+        "explanation": "Consider physiologic and mechanical causes while protecting the closed system and following infection-prevention and local catheter policy."
       },
       {
         "question": "Which finding makes low urine output more concerning?",
@@ -965,22 +972,22 @@ export const nursingModuleContent = {
       },
       {
         "title": "Pressure Injury Risk Is Dynamic",
-        "body": "Mobility, moisture, nutrition, perfusion, sensation, friction/shear, and device pressure all affect risk. Reassess when condition or mobility changes.",
+        "body": "Mobility, moisture, nutrition, perfusion, sensation, friction/shear, and device pressure all affect risk. Reassess when condition or mobility changes. Use current facility-approved terminology and risk tools; staging should not be learned from text alone without validated visuals and qualified instruction.",
         "takeaway": "Risk changes when the patient changes."
       },
       {
         "title": "Describe Wounds Objectively",
-        "body": "Document location, dimensions, tissue appearance, drainage, odor when appropriate, surrounding skin, pain, and signs of complication using organizational standards.",
+        "body": "Document location, dimensions using a consistent facility-approved measurement method, tissue appearance, drainage, surrounding skin, pain, and change over time. Assess odor only when clinically appropriate and with infection-prevention safeguards.",
         "takeaway": "Objective description supports trend comparison."
       },
       {
         "title": "Neurovascular Checks Are Time-Sensitive",
-        "body": "Assess pain, color, temperature, capillary refill, pulses when applicable, movement, and sensation after injury/procedure/casting according to orders and protocol.",
+        "body": "Assess pain, color, temperature, capillary refill, pulses when applicable, movement, and sensation after injury/procedure/casting according to orders and protocol. Do not remove or alter casts, splints, dressings, or other devices outside your role, orders, and local protocol.",
         "takeaway": "A new neurovascular deficit can be limb-threatening."
       },
       {
         "title": "Mobility Is an Assessment",
-        "body": "Observe gait, transfers, balance, strength, assistive-device use, and tolerance. A patient who \u201cwalked yesterday\u201d may not be safe today.",
+        "body": "Observe gait, transfers, balance, strength, assistive-device use, and tolerance. A patient who “walked yesterday” may not be safe today. Fall-risk screening applies to the population and setting defined by local policy; CDC STEADI resources specifically address older adults.",
         "takeaway": "Functional ability must be reassessed, not assumed."
       }
     ],
@@ -1003,10 +1010,10 @@ export const nursingModuleContent = {
         "patient": "A patient walked independently yesterday but is now dizzy when standing and requires the bedrail to steady themselves.",
         "question": "Best action?",
         "options": [
-          "Use yesterday\u2019s mobility status",
+          "Use yesterday’s mobility status",
           "Reassess mobility/fall risk and provide appropriate assistance",
           "Tell the patient to walk alone to rebuild strength",
-          "Document \u201cindependent\u201d"
+          "Document “independent”"
         ],
         "answer": 1,
         "explanation": "Functional status can change rapidly and must be reassessed."
@@ -1051,7 +1058,7 @@ export const nursingModuleContent = {
       {
         "question": "Best wound documentation includes:",
         "options": [
-          "\u201cLooks bad\u201d",
+          "“Looks bad”",
           "Objective dimensions, tissue, drainage, surrounding skin, pain, and trend",
           "Only wound color",
           "Only odor"
@@ -1062,7 +1069,7 @@ export const nursingModuleContent = {
       {
         "question": "A patient who was independent yesterday is dizzy and unsteady today. Best action?",
         "options": [
-          "Keep yesterday\u2019s mobility label",
+          "Keep yesterday’s mobility label",
           "Reassess mobility/fall risk and assist appropriately",
           "Encourage walking alone",
           "Ignore dizziness"
@@ -1123,8 +1130,8 @@ export const nursingModuleContent = {
       },
       {
         "title": "Communicate Changes Clearly",
-        "body": "When escalating, communicate the change from baseline, relevant assessment findings, trends, interventions already performed, and response.",
-        "takeaway": "Good assessment loses value if the change is not communicated clearly."
+        "body": "When escalating, communicate the change from baseline, relevant assessment findings, trends, interventions already performed, and response. Use the organization’s structured communication method, such as SBAR, and confirm that urgent messages and instructions are received using closed-loop communication or check-back.",
+        "takeaway": "State the change, urgency, recommendation, and response—and confirm the message was received."
       },
       {
         "title": "Know When to Stop Collecting Data",
@@ -1221,7 +1228,7 @@ export const nursingModuleContent = {
       {
         "question": "When communicating deterioration, include:",
         "options": [
-          "Only \u201cpatient looks bad\u201d",
+          "Only “patient looks bad”",
           "Change from baseline, relevant trends/findings, interventions, and response",
           "Only room number",
           "Only diagnosis"
@@ -1247,7 +1254,7 @@ export const nursingModuleContent = {
 export const nursingAssessmentCapstone = [
   {
     "category": "Assessment Foundations",
-    "question": "A patient\u2019s baseline systolic BP is usually 150\u2013160. Today it is 112, and the patient is dizzy. Which interpretation is best?",
+    "question": "A patient’s baseline systolic BP is usually 150–160. Today it is 112, and the patient is dizzy. Which interpretation is best?",
     "options": [
       "112 is normal, so no concern",
       "The change from baseline plus symptoms is clinically important",
@@ -1261,8 +1268,8 @@ export const nursingAssessmentCapstone = [
     "category": "Assessment Foundations",
     "question": "Which finding is subjective?",
     "options": [
-      "Temperature 38.1\u00b0C",
-      "Patient reports \u201cmy chest feels tight\u201d",
+      "Temperature 38.1°C",
+      "Patient reports “my chest feels tight”",
       "RR 28/min",
       "Left ankle visibly swollen"
     ],
@@ -1309,10 +1316,10 @@ export const nursingAssessmentCapstone = [
     "category": "Vital Signs, Pain & General Survey",
     "question": "Which trend is most concerning?",
     "options": [
-      "HR 82\u219284, stable symptoms",
-      "HR 76\u2192108 with cool skin and falling urine output",
-      "Temp 36.8\u219236.9",
-      "SpO\u2082 97\u219296 with no symptoms"
+      "HR 82→84, stable symptoms",
+      "HR 76→108 with cool skin and falling urine output",
+      "Temp 36.8→36.9",
+      "SpO₂ 97→96 with no symptoms"
     ],
     "answer": 1,
     "explanation": "A rising HR paired with perfusion changes is a concerning pattern."
@@ -1333,7 +1340,7 @@ export const nursingAssessmentCapstone = [
     "category": "Vital Signs, Pain & General Survey",
     "question": "Which pain assessment is most complete?",
     "options": [
-      "\u201cPain 7/10\u201d",
+      "“Pain 7/10”",
       "Location, quality, onset, aggravating/relieving factors, associated symptoms, function, and response",
       "Ask only whether pain is sharp",
       "Ask only if medication is wanted"
@@ -1355,12 +1362,12 @@ export const nursingAssessmentCapstone = [
   },
   {
     "category": "Vital Signs, Pain & General Survey",
-    "question": "A patient\u2019s RR is 20 but respirations are shallow and the patient is difficult to arouse. Best interpretation?",
+    "question": "A patient’s RR is 20 but respirations are shallow and the patient is difficult to arouse. Best interpretation?",
     "options": [
       "Normal because rate is 20",
       "The pattern is concerning despite the rate",
       "No assessment needed",
-      "Only SpO\u2082 matters"
+      "Only SpO₂ matters"
     ],
     "answer": 1,
     "explanation": "Depth and mental status can reveal danger hidden by a normal rate."
@@ -1463,7 +1470,7 @@ export const nursingAssessmentCapstone = [
   },
   {
     "category": "Respiratory Assessment",
-    "question": "Which statement about SpO\u2082 is best?",
+    "question": "Which statement about SpO₂ is best?",
     "options": [
       "It replaces respiratory assessment",
       "It is one data point and should be interpreted with signal quality and clinical findings",
@@ -1513,7 +1520,7 @@ export const nursingAssessmentCapstone = [
     "category": "Cardiovascular & Peripheral Vascular",
     "question": "Edema documentation should include:",
     "options": [
-      "Only \u201cedema present\u201d",
+      "Only “edema present”",
       "Location, symmetry, degree/character when appropriate, and trend",
       "Only skin color",
       "Only weight"
@@ -1633,7 +1640,7 @@ export const nursingAssessmentCapstone = [
     "category": "Skin, Wounds & Musculoskeletal",
     "question": "Best wound documentation includes:",
     "options": [
-      "\u201cLooks bad\u201d",
+      "“Looks bad”",
       "Objective dimensions, tissue, drainage, surrounding skin, pain, and trend",
       "Only wound color",
       "Only odor"
@@ -1645,7 +1652,7 @@ export const nursingAssessmentCapstone = [
     "category": "Skin, Wounds & Musculoskeletal",
     "question": "A patient who was independent yesterday is dizzy and unsteady today. Best action?",
     "options": [
-      "Keep yesterday\u2019s mobility label",
+      "Keep yesterday’s mobility label",
       "Reassess mobility/fall risk and assist appropriately",
       "Encourage walking alone",
       "Ignore dizziness"
@@ -1717,7 +1724,7 @@ export const nursingAssessmentCapstone = [
     "category": "Head-to-Toe Clinical Judgment",
     "question": "When communicating deterioration, include:",
     "options": [
-      "Only \u201cpatient looks bad\u201d",
+      "Only “patient looks bad”",
       "Change from baseline, relevant trends/findings, interventions, and response",
       "Only room number",
       "Only diagnosis"
@@ -1727,9 +1734,9 @@ export const nursingAssessmentCapstone = [
   },
   {
     "category": "Integrated Clinical Judgment",
-    "question": "A patient with pneumonia has SpO\u2082 93% on oxygen, RR 28, new confusion, and increasing accessory-muscle use. Which finding most changes the priority?",
+    "question": "A patient with pneumonia has SpO₂ 93% on oxygen, RR 28, new confusion, and increasing accessory-muscle use. Which finding most changes the priority?",
     "options": [
-      "SpO\u2082 alone",
+      "SpO₂ alone",
       "New confusion plus increased work of breathing",
       "Diagnosis of pneumonia",
       "Oxygen device brand"
@@ -1787,7 +1794,7 @@ export const nursingAssessmentCapstone = [
   },
   {
     "category": "Integrated Clinical Judgment",
-    "question": "A patient\u2019s monitor shows HR 150, but palpated pulse is 76 and the patient feels well. What is best?",
+    "question": "A patient’s monitor shows HR 150, but palpated pulse is 76 and the patient feels well. What is best?",
     "options": [
       "Treat the monitor number immediately without verification",
       "Assess the patient and verify leads/signal/rhythm source",
@@ -1813,10 +1820,10 @@ export const nursingAssessmentCapstone = [
     "category": "Integrated Clinical Judgment",
     "question": "Which documentation is most clinically useful?",
     "options": [
-      "\u201cPatient worse\u201d",
-      "\u201cNew confusion from baseline; HR 112 from 82; urine output 20 mL/hr; skin cool; provider/rapid-response process notified per protocol\u201d",
-      "\u201cPatient okay\u201d",
-      "\u201cContinue to monitor\u201d"
+      "“Patient worse”",
+      "“New confusion from baseline; HR 112 from 82; urine output 20 mL/hr; skin cool; provider/rapid-response process notified per protocol”",
+      "“Patient okay”",
+      "“Continue to monitor”"
     ],
     "answer": 1,
     "explanation": "Specific changes, trends, and actions communicate clinical significance."
