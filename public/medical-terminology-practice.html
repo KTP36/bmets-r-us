@@ -192,6 +192,13 @@
       padding: 18px 0;
     }
 
+    .topbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
     .brand {
       display: flex;
       align-items: center;
@@ -218,6 +225,10 @@
       font-size: 13px;
       margin-top: 2px;
     }
+
+    .site-nav { display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex-wrap: wrap; }
+    .site-nav a { color: var(--navy); font-size: 14px; font-weight: 850; text-decoration: none; padding: 9px 11px; border-radius: 999px; }
+    .site-nav a:hover { background: #e8f1fb; color: #1d4ed8; }
 
     header {
       color: white;
@@ -567,7 +578,7 @@ text-decoration:none;
 /* ===== SEARCH INTENT + ACCESSIBILITY POLISH ===== */
 .search-intent{border-top:5px solid var(--green);background:linear-gradient(180deg,#f0fdf4,#ffffff)}
 .search-intent .grid-3{margin-bottom:8px}
-.cta-button:focus-visible,.study-link:focus-visible,.practice-jump a:focus-visible,.mode-tabs button:focus-visible,.quiz-option:focus-visible,.mini-btn:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
+.cta-button:focus-visible,.study-link:focus-visible,.practice-jump a:focus-visible,.mode-tabs button:focus-visible,.quiz-option:focus-visible,.mini-btn:focus-visible,.site-nav a:focus-visible,.result-link:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.cta-button:hover,.practice-jump a:hover{transform:none}}
 
 /* ===== ELITE MEDICAL TERMINOLOGY PRACTICE ===== */
@@ -596,9 +607,10 @@ text-decoration:none;
 .quiz-actions{display:flex;justify-content:space-between;gap:10px;margin-top:17px}.mini-btn{border:0;border-radius:999px;padding:12px 18px;font-weight:900}.mini-btn.primary{background:#082f57;color:#fff}.mini-btn.secondary{background:#e8f1fb;color:#082f57}.mini-btn:disabled{opacity:.45;cursor:not-allowed}
 .decode-stage{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.decode-word{padding:22px;border-radius:18px;background:#082f57;color:#fff}.decode-word small{display:block;color:#bae6fd;font-weight:900;letter-spacing:.08em}.decode-word strong{display:block;font-size:clamp(29px,4vw,43px);margin:7px 0 14px}.word-parts{display:flex;flex-wrap:wrap;gap:8px}.word-parts span{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.13);font-weight:900}.decode-explain{padding:20px;border:1px solid #bbf7d0;border-radius:18px;background:#f0fdf4}.decode-explain strong{color:#166534;font-size:21px}.decode-explain p{margin:7px 0 0}
 .mastery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.mastery-card{padding:16px;border:1px solid #dbeafe;border-radius:16px;background:#fff}.mastery-card b,.mastery-card span{display:block}.mastery-card b{color:#082f57}.mastery-card span{font-size:13px;color:#64748b;margin-top:4px}
-.final-score{text-align:center;padding:25px}.final-score strong{display:block;font-size:54px;color:#082f57}.final-score h3{font-size:26px;margin:4px 0}.final-score p{max-width:650px;margin:8px auto 16px}
+.final-score{text-align:center;padding:25px}.final-score strong{display:block;font-size:54px;color:#082f57}.final-score h3{font-size:26px;margin:4px 0}.final-score p{max-width:650px;margin:8px auto 16px}.result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:680px;margin:20px auto 0}.result-link{display:flex;align-items:center;justify-content:center;min-height:48px;padding:11px 16px;border-radius:999px;background:#e8f1fb;color:#082f57;font-weight:900;text-decoration:none}.result-link:hover{background:#dbeafe}.result-link.primary{background:#082f57;color:#fff}.result-link.green{background:#166534;color:#fff}
 @media(max-width:800px){.practice-jump,.mastery-grid{grid-template-columns:repeat(2,1fr)}.elite-lab-head,.decode-stage{grid-template-columns:1fr;display:grid}.quiz-options{grid-template-columns:1fr}.elite-score{text-align:left}}
-@media(max-width:520px){.practice-jump,.mastery-grid{grid-template-columns:1fr}.quiz-shell{padding:17px}.quiz-actions{flex-direction:column}.quiz-actions button{width:100%}}
+@media(max-width:700px){.topbar .container{align-items:flex-start;flex-direction:column;gap:12px}.site-nav{justify-content:flex-start}.site-nav a{padding:8px 9px}}
+@media(max-width:520px){.practice-jump,.mastery-grid,.result-actions{grid-template-columns:1fr}.quiz-shell{padding:17px}.quiz-actions{flex-direction:column}.quiz-actions button{width:100%}.brand span{display:none}}
 
 </style>
 </head>
@@ -612,6 +624,13 @@ text-decoration:none;
 <span>Interactive medical terminology and healthcare learning</span>
 </div>
 </a>
+<nav class="site-nav" aria-label="Main navigation">
+<a href="/">Home</a>
+<a href="/?tab=Home#featured-academies-heading">Academies</a>
+<a href="/browse-all-practice.html">Practice</a>
+<a href="/medical-dictionary.html">Medical Dictionary</a>
+<a href="/about.html">About</a>
+</nav>
 </div>
 </div>
 <header>
@@ -1280,7 +1299,7 @@ function answer(choice,button){
  buttons.forEach((b,i)=>{if(i===q.c)b.classList.add("correct")});if(choice===q.c){correct++;$("quizFeedback").className="quiz-feedback show good";$("quizFeedback").innerHTML=`<strong>Correct.</strong> ${q.e}`}else{button.classList.add("wrong");$("quizFeedback").className="quiz-feedback show bad";$("quizFeedback").innerHTML=`<strong>Not quite.</strong> ${q.e}`}
  $("quizNext").disabled=false;$("eliteScore").textContent=`${Math.round(correct/(idx+1)*100)}%`;
 }
-$("quizNext").onclick=()=>{if(idx<session.length-1){idx++;render()}else{const pct=Math.round(correct/session.length*100);$("quizOptions").innerHTML=`<div class="final-score" style="grid-column:1/-1"><span class="elite-kicker">SESSION COMPLETE</span><strong>${pct}%</strong><h3>${pct>=88?"Strong mastery":pct>=70?"Good foundation":"Keep building"}</h3><p>${correct} of ${session.length} correct. Review any explanations you missed, then repeat the session or switch practice modes.</p><button class="mini-btn primary" onclick="document.getElementById('quizRestart').click()">Practice Again</button></div>`;$("quizQuestion").textContent="Your Medical Terminology Practice Result";$("quizFeedback").className="quiz-feedback";$("quizNext").disabled=true;$("quizNext").style.display="none"}};
+$("quizNext").onclick=()=>{if(idx<session.length-1){idx++;render()}else{const pct=Math.round(correct/session.length*100);$("quizOptions").innerHTML=`<div class="final-score" style="grid-column:1/-1"><span class="elite-kicker">SESSION COMPLETE</span><strong>${pct}%</strong><h3>${pct>=88?"Strong mastery":pct>=70?"Good foundation":"Keep building"}</h3><p>${correct} of ${session.length} correct. Keep your momentum going with the best next step for you.</p><div class="result-actions"><button class="mini-btn primary" onclick="document.getElementById('quizRestart').click()">Practice Another Session</button><a class="result-link" href="/medical-prefix-suffix-practice.html">Strengthen Prefixes &amp; Suffixes</a><a class="result-link green" href="/medical-terminology-builder.html">Explore Medical Terminology</a><a class="result-link" href="/?tab=Home#featured-academies-heading">Browse All Academies</a></div></div>`;$("quizQuestion").textContent="Your Medical Terminology Practice Result";$("quizFeedback").className="quiz-feedback";$("quizNext").disabled=true;$("quizNext").style.display="none"}};
 $("quizRestart").onclick=()=>{$("quizNext").style.display="";start()};
 document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-mode]").forEach(x=>x.classList.remove("active"));b.classList.add("active");mode=b.dataset.mode;$("quizNext").style.display="";start()});
 const db=$("decoderButtons");decoders.forEach((d,i)=>{const b=document.createElement("button");b.textContent=d.term;b.onclick=()=>showDecoder(i);if(i===0)b.classList.add("active");db.appendChild(b)});

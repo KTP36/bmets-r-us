@@ -6096,7 +6096,9 @@ export default function App() {
     } else if (activeTab === "Home") {
       url.pathname = "/";
       url.searchParams.delete("tab");
-      url.hash = "";
+      if (url.hash !== "#featured-academies-heading") {
+        url.hash = "";
+      }
     } else {
       url.pathname = "/";
       url.searchParams.set("tab", activeTab);
@@ -6108,6 +6110,14 @@ export default function App() {
 
     if (nextUrl !== currentUrl) {
       window.history.replaceState({}, "", nextUrl);
+    }
+
+    if (activeTab === "Home" && url.hash === "#featured-academies-heading") {
+      window.requestAnimationFrame(() => {
+        document
+          .getElementById("featured-academies-heading")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
     }
   }, [activeTab]);
   const [ownerExamStats, setOwnerExamStats] = useState(() => {
@@ -7756,9 +7766,7 @@ export default function App() {
         margin: "0 auto"
       }}
     >
- {activeTab !== "MedicationAcademy" &&
-  activeTab !== "NursingAssessmentAcademy" &&
-  activeTab !== "RadiologicTechnologistAcademy" && (       <>
+ {activeTab === "Home" && (       <>
       <HomePage
         isSmallScreen={isSmallScreen}
         jumpToPracticeCategory={jumpToPracticeCategory}
