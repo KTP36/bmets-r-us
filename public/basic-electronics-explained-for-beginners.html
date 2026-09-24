@@ -32,6 +32,7 @@
     "name": "Basic Electronics Explained for Beginners",
     "description": "A free beginner electronics guide for CBET and biomedical equipment learners covering voltage, current, resistance, Ohm's Law, AC vs DC, circuits, common components, multimeters, and power supply basics.",
     "url": "https://medskillbuilder.com/basic-electronics-explained-for-beginners.html",
+    "dateModified": "2026-09-24",
     "learningResourceType": "Beginner guide",
     "educationalLevel": "Beginner",
     "audience": {
@@ -46,6 +47,8 @@
     "isAccessibleForFree": true
   }
   </script>
+
+  <script>document.documentElement.classList.add('js');</script>
 
   <script type="application/ld+json">
   {
@@ -522,6 +525,170 @@
       }
     }
   .msb-academy-funnel{display:flex;align-items:center;justify-content:space-between;gap:22px;margin:26px auto;padding:22px 24px;border:1px solid #bae6fd;border-radius:22px;background:linear-gradient(135deg,#f0f9ff,#ecfeff);box-shadow:0 10px 28px rgba(15,23,42,.06);max-width:1120px}.msb-academy-funnel-copy{max-width:760px}.msb-academy-funnel-copy span{display:inline-block;margin-bottom:6px;color:#0369a1;font-size:12px;font-weight:900;letter-spacing:.08em}.msb-academy-funnel h2{margin:0 0 6px;color:#082f57;font-size:clamp(22px,3vw,30px)}.msb-academy-funnel p{margin:0;color:#475569}.msb-academy-funnel>a{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border-radius:14px;background:#082f57;color:#fff;text-decoration:none;font-weight:900;white-space:nowrap}@media(max-width:760px){.msb-academy-funnel{align-items:stretch;flex-direction:column;padding:20px}.msb-academy-funnel>a{width:100%}}
+
+  /* MedSkillBuilder dark learning experience */
+  body {
+    background:
+      radial-gradient(circle at 12% 0%, rgba(37, 99, 235, 0.22), transparent 34%),
+      radial-gradient(circle at 88% 8%, rgba(8, 145, 178, 0.17), transparent 30%),
+      #07111f;
+    color: #dce7f5;
+  }
+
+  .top-link,
+  .mini-nav a,
+  .card,
+  .mini-card,
+  .concept-card,
+  .component-card,
+  .toc a,
+  .study-link,
+  .path-card,
+  details,
+  .compare-table td,
+  .footer-cta {
+    background: #0d1b2d;
+    color: #dce7f5;
+    border-color: #293f5a;
+  }
+
+  .card,
+  .footer-cta {
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+  }
+
+  h2,
+  h3,
+  .top-link,
+  .mini-nav a,
+  .quick-check strong {
+    color: #f8fbff;
+  }
+
+  a,
+  summary {
+    color: #78a9ff;
+  }
+
+  .compare-table th {
+    background: #142743;
+    color: #f8fbff;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    border-color: #2b405b;
+  }
+
+  .msb-academy-funnel {
+    background: linear-gradient(135deg, #102746, #0b2430);
+    border-color: #285678;
+  }
+
+  .msb-academy-funnel h2,
+  .msb-academy-funnel-copy span {
+    color: #f8fbff;
+  }
+
+  .msb-academy-funnel p,
+  footer {
+    color: #a9bbd0;
+  }
+
+  .quick-check {
+    background: linear-gradient(145deg, #102238, #0a1727);
+    border-color: #304966;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  }
+
+  .js #practice .quick-check details {
+    display: none;
+  }
+
+  .quiz-options {
+    display: grid;
+    gap: 9px;
+    margin-top: 14px;
+  }
+
+  .quiz-option {
+    width: 100%;
+    text-align: left;
+    background: #13253a;
+    color: #e3edf9;
+    border: 1px solid #314966;
+    border-radius: 12px;
+    padding: 11px 13px;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .quiz-option:hover,
+  .quiz-option:focus-visible {
+    transform: translateY(-1px);
+    border-color: #78a9ff;
+    outline: none;
+  }
+
+  .quiz-option.correct {
+    background: #123a2a;
+    border-color: #22c55e;
+    color: #d7ffe5;
+  }
+
+  .quiz-option.incorrect {
+    background: #411b25;
+    border-color: #fb7185;
+    color: #ffe0e6;
+  }
+
+  .quiz-feedback {
+    display: none;
+    margin-top: 12px;
+    border-radius: 12px;
+    padding: 11px 13px;
+    background: #102d24;
+    border: 1px solid #287b54;
+    color: #c9f9d9;
+  }
+
+  .quick-check.answered .quiz-feedback {
+    display: block;
+  }
+
+  .checkpoint-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, #142743, #102d24);
+    border: 1px solid #36516f;
+    border-radius: 18px;
+    padding: 18px;
+    margin: 20px 0;
+  }
+
+  .checkpoint-summary strong {
+    display: block;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+
+  .checkpoint-summary span {
+    color: #b7c8dc;
+  }
+
+  .reset-checkpoint {
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 17px;
+    background: #fff;
+    color: #0b2440;
+    font-weight: 900;
+    cursor: pointer;
+  }
 </style>
 </head>
 
@@ -960,6 +1127,14 @@
         </details>
       </div>
 
+      <div class="checkpoint-summary" aria-live="polite">
+        <div>
+          <strong id="checkpoint-score">Score: 0 / 8</strong>
+          <span id="checkpoint-progress">0 of 8 questions answered</span>
+        </div>
+        <button class="reset-checkpoint" id="reset-checkpoint" type="button">Reset checkpoint</button>
+      </div>
+
       <div class="link-list">
         <a class="study-link" href="/cbet-electronics-practice-questions.html">Full Electronics Practice</a>
         <a class="study-link" href="/most-missed-cbet-electronics-questions.html">Most Missed Questions</a>
@@ -1046,5 +1221,116 @@
     </footer>
 
   </div>
+
+  <script>
+  (() => {
+    const checks = [...document.querySelectorAll('#practice .quick-check')];
+    const quiz = [
+      {
+        choices: ['Stores electrical charge', 'Provides electrical potential difference', 'Measures circuit resistance', 'Converts AC to DC'],
+        correct: 1,
+        feedback: 'Voltage is the electrical potential difference—the push that can drive current through a circuit.'
+      },
+      {
+        choices: ['Opposes current flow', 'Creates electrical power', 'Changes DC into AC', 'Measures voltage'],
+        correct: 0,
+        feedback: 'Resistance limits current flow and is measured in ohms.'
+      },
+      {
+        choices: ['Current decreases', 'Current stays constant', 'Current increases', 'Resistance becomes zero'],
+        correct: 2,
+        feedback: 'By Ohm’s Law, I = V ÷ R. If resistance is unchanged, increasing voltage increases current.'
+      },
+      {
+        choices: ['Direct current', 'Alternating current', 'Static current', 'Pulsed DC only'],
+        correct: 1,
+        feedback: 'A typical wall outlet supplies alternating current, or AC.'
+      },
+      {
+        choices: ['Limits current', 'Stores charge', 'Converts AC to DC', 'Amplifies every signal'],
+        correct: 2,
+        feedback: 'A rectifier uses diodes to convert alternating current into direct current.'
+      },
+      {
+        choices: ['Oscilloscope', 'Multimeter', 'Signal generator', 'Isolation transformer'],
+        correct: 1,
+        feedback: 'A multimeter commonly measures voltage, resistance, and continuity. Some meters also measure current and other values.'
+      },
+      {
+        choices: ['One path', 'Two equal paths', 'One path per component', 'Unlimited paths'],
+        correct: 0,
+        feedback: 'A series circuit has one continuous path for current.'
+      },
+      {
+        choices: ['Resistor', 'Fuse', 'Capacitor', 'Rectifier'],
+        correct: 2,
+        feedback: 'A capacitor stores electrical energy in an electric field and can release it back into the circuit.'
+      }
+    ];
+
+    const scoreDisplay = document.getElementById('checkpoint-score');
+    const progressDisplay = document.getElementById('checkpoint-progress');
+    const resetButton = document.getElementById('reset-checkpoint');
+    let score = 0;
+    let answered = 0;
+
+    function updateSummary() {
+      scoreDisplay.textContent = `Score: ${score} / ${checks.length}`;
+      progressDisplay.textContent = `${answered} of ${checks.length} questions answered`;
+    }
+
+    checks.forEach((check, checkIndex) => {
+      const options = document.createElement('div');
+      options.className = 'quiz-options';
+
+      quiz[checkIndex].choices.forEach((choice, choiceIndex) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'quiz-option';
+        button.textContent = choice;
+        button.addEventListener('click', () => {
+          if (check.dataset.answered === 'true') return;
+
+          check.dataset.answered = 'true';
+          check.classList.add('answered');
+          answered += 1;
+
+          const buttons = [...options.querySelectorAll('.quiz-option')];
+          buttons[quiz[checkIndex].correct].classList.add('correct');
+          if (choiceIndex === quiz[checkIndex].correct) {
+            score += 1;
+          } else {
+            button.classList.add('incorrect');
+          }
+          buttons.forEach(item => item.disabled = true);
+          updateSummary();
+        });
+        options.appendChild(button);
+      });
+
+      const feedback = document.createElement('div');
+      feedback.className = 'quiz-feedback';
+      feedback.textContent = quiz[checkIndex].feedback;
+      check.append(options, feedback);
+    });
+
+    resetButton.addEventListener('click', () => {
+      score = 0;
+      answered = 0;
+      checks.forEach(check => {
+        check.dataset.answered = 'false';
+        check.classList.remove('answered');
+        check.querySelectorAll('.quiz-option').forEach(button => {
+          button.disabled = false;
+          button.classList.remove('correct', 'incorrect');
+        });
+      });
+      updateSummary();
+      checks[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    updateSummary();
+  })();
+  </script>
 </body>
 </html>
