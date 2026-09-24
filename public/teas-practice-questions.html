@@ -25,6 +25,7 @@
   "name": "TEAS Practice Questions",
   "description": "Free TEAS-style practice questions and study guidance for reading, math, science, and English language usage.",
   "url": "https://medskillbuilder.com/teas-practice-questions.html",
+  "dateModified": "2026-09-24",
   "learningResourceType": "Practice questions",
   "educationalLevel": "Nursing entrance exam preparation",
   "audience": {
@@ -39,6 +40,8 @@
   "isAccessibleForFree": true
 }
 </script>
+
+<script>document.documentElement.classList.add('js');</script>
 
 <script type="application/ld+json">
 {
@@ -565,6 +568,179 @@ footer {
     margin-bottom: 10px;
   }
 }
+
+/* MedSkillBuilder dark learning experience */
+body {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(37, 99, 235, 0.22), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(34, 197, 94, 0.14), transparent 30%),
+    #07111f;
+  color: #dce7f5;
+}
+
+.back-link,
+.mini-nav a,
+.card,
+.mini-card,
+.path-card,
+.practice-card,
+.toc a,
+.pills a,
+td,
+.why {
+  background: #0d1b2d;
+  color: #dce7f5;
+  border-color: #263b55;
+}
+
+.card {
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+}
+
+h2,
+h3,
+.back-link,
+.mini-nav a {
+  color: #f8fbff;
+}
+
+a {
+  color: #75a7ff;
+}
+
+.mini-card p,
+.path-card span,
+.practice-card span,
+.small,
+footer {
+  color: #9fb0c6;
+}
+
+.notice {
+  background: #102746;
+}
+
+.warning {
+  background: #342313;
+}
+
+.success {
+  background: #102d24;
+}
+
+.strategy-box {
+  background: #241b43;
+}
+
+th {
+  background: #142743;
+  color: #f8fbff;
+}
+
+th,
+td {
+  border-color: #2b405b;
+}
+
+.question-card {
+  background: linear-gradient(145deg, #102238, #0a1727);
+  border-color: #304966;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.question-card::after {
+  background: #16c766;
+  color: #04150b;
+}
+
+.options {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.options li {
+  background: #13253a;
+  border: 1px solid #314966;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0;
+}
+
+.js .options li {
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.js .options li:hover,
+.js .options li:focus-visible {
+  transform: translateY(-1px);
+  border-color: #75a7ff;
+  outline: none;
+}
+
+.options li.correct {
+  background: #123a2a;
+  border-color: #22c55e;
+  color: #d7ffe5;
+}
+
+.options li.incorrect {
+  background: #411b25;
+  border-color: #fb7185;
+  color: #ffe0e6;
+}
+
+.js .question-card .answer,
+.js .question-card .why {
+  display: none;
+}
+
+.js .question-card.revealed .answer,
+.js .question-card.revealed .why {
+  display: block;
+}
+
+.answer {
+  background: #103528;
+  border-color: #238754;
+  color: #b9f6cf;
+}
+
+.quiz-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #142743, #102d24);
+  border: 1px solid #36516f;
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 22px;
+}
+
+.quiz-summary strong {
+  display: block;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.quiz-summary span {
+  color: #b7c8dc;
+}
+
+.reset-quiz {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 17px;
+  background: #ffffff;
+  color: #0b2440;
+  font-weight: 900;
+  cursor: pointer;
+}
 </style>
 </head>
 
@@ -844,9 +1020,9 @@ footer {
   </section>
 
   <section id="practice-questions" class="card">
-    <h2>Sample TEAS Practice Questions with Explanations</h2>
+    <h2>10-Question TEAS Diagnostic with Explanations</h2>
     <p>
-      Use these sample questions to practice the way you should think. The full interactive TEAS practice area gives you randomized 25-question sets.
+      Select one answer for each question. You will get immediate feedback, a clear explanation, and a score you can use to choose what to study next. The full TEAS practice area gives you randomized 25-question sets.
     </p>
 
     <div class="question-card">
@@ -967,6 +1143,14 @@ footer {
       </ul>
       <div class="answer">Answer: B. Hypoglycemia</div>
       <div class="why">Hypo- means low, and glycemia refers to blood sugar. Hypoglycemia means low blood sugar.</div>
+    </div>
+
+    <div class="quiz-summary" aria-live="polite">
+      <div>
+        <strong id="quiz-score">Score: 0 / 10</strong>
+        <span id="quiz-progress">0 of 10 questions answered</span>
+      </div>
+      <button class="reset-quiz" id="reset-quiz" type="button">Reset diagnostic</button>
     </div>
 
     <div class="cta-row">
@@ -1239,5 +1423,79 @@ footer {
 
 </div>
 
+<script>
+(() => {
+  const cards = [...document.querySelectorAll('#practice-questions .question-card')];
+  const correctAnswers = [1, 2, 1, 2, 1, 2, 1, 1, 1, 1];
+  const scoreDisplay = document.getElementById('quiz-score');
+  const progressDisplay = document.getElementById('quiz-progress');
+  const resetButton = document.getElementById('reset-quiz');
+  let score = 0;
+  let answered = 0;
+
+  function updateSummary() {
+    scoreDisplay.textContent = `Score: ${score} / ${cards.length}`;
+    progressDisplay.textContent = `${answered} of ${cards.length} questions answered`;
+  }
+
+  function answerQuestion(card, option, optionIndex, cardIndex) {
+    if (card.dataset.answered === 'true') return;
+
+    card.dataset.answered = 'true';
+    card.classList.add('revealed');
+    answered += 1;
+
+    const options = [...card.querySelectorAll('.options li')];
+    const correctOption = options[correctAnswers[cardIndex]];
+    correctOption.classList.add('correct');
+
+    if (optionIndex === correctAnswers[cardIndex]) {
+      score += 1;
+    } else {
+      option.classList.add('incorrect');
+    }
+
+    options.forEach(item => {
+      item.setAttribute('aria-disabled', 'true');
+      item.setAttribute('tabindex', '-1');
+    });
+    updateSummary();
+  }
+
+  cards.forEach((card, cardIndex) => {
+    const options = [...card.querySelectorAll('.options li')];
+    options.forEach((option, optionIndex) => {
+      option.setAttribute('role', 'button');
+      option.setAttribute('tabindex', '0');
+      option.setAttribute('aria-label', `Answer choice ${option.textContent.trim()}`);
+      option.addEventListener('click', () => answerQuestion(card, option, optionIndex, cardIndex));
+      option.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          answerQuestion(card, option, optionIndex, cardIndex);
+        }
+      });
+    });
+  });
+
+  resetButton.addEventListener('click', () => {
+    score = 0;
+    answered = 0;
+    cards.forEach(card => {
+      card.dataset.answered = 'false';
+      card.classList.remove('revealed');
+      card.querySelectorAll('.options li').forEach(option => {
+        option.classList.remove('correct', 'incorrect');
+        option.setAttribute('aria-disabled', 'false');
+        option.setAttribute('tabindex', '0');
+      });
+    });
+    updateSummary();
+    cards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  updateSummary();
+})();
+</script>
 </body>
 </html>
