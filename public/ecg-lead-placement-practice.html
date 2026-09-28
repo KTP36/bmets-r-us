@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12-Lead ECG Placement Practice | Leads & Artifacts</title>
+  <meta name="description" content="Practice 12-lead ECG electrode placement, V1–V6 landmarks, limb electrodes, lead reversal, skin preparation, artifacts, and troubleshooting with interactive questions.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://medskillbuilder.com/ecg-lead-placement-practice.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="12-Lead ECG Placement Practice">
+  <meta property="og:description" content="Learn chest and limb electrode placement, then test yourself with interactive placement and troubleshooting scenarios.">
+  <meta property="og:url" content="https://medskillbuilder.com/ecg-lead-placement-practice.html">
+  <meta property="og:site_name" content="MedSkillBuilder">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"LearningResource",
+        "name":"12-Lead ECG Placement Practice",
+        "description":"Interactive practice for standard 12-lead ECG electrode placement, artifacts, and troubleshooting.",
+        "url":"https://medskillbuilder.com/ecg-lead-placement-practice.html",
+        "learningResourceType":["Study Guide","Practice Quiz","Interactive Learning Tool"],
+        "educationalLevel":"Beginner to Intermediate",
+        "isAccessibleForFree":true,
+        "inLanguage":"en-US",
+        "dateModified":"2026-09-28",
+        "provider":{"@type":"Organization","name":"MedSkillBuilder","url":"https://medskillbuilder.com/"}
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://medskillbuilder.com/"},
+          {"@type":"ListItem","position":2,"name":"Browse All Practice","item":"https://medskillbuilder.com/browse-all-practice.html"},
+          {"@type":"ListItem","position":3,"name":"12-Lead ECG Placement Practice","item":"https://medskillbuilder.com/ecg-lead-placement-practice.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root{--navy:#081a2f;--navy2:#0d2945;--ink:#102033;--muted:#526378;--line:#d8e3ef;--blue:#2563eb;--cyan:#06b6d4;--green:#16a34a;--red:#dc2626;--amber:#d97706;--paper:#fff;--soft:#f4f8fc;--shadow:0 18px 48px rgba(8,26,47,.12);--radius:24px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.65;background:radial-gradient(circle at 0 0,#dbeafe 0,transparent 32%),linear-gradient(180deg,#f7fbff,#eaf2fb)}
+    a{color:inherit}.page{width:min(1180px,calc(100% - 32px));margin:auto;padding:18px 0 48px}.breadcrumbs{font-size:14px;font-weight:800;color:#506177;margin:4px 4px 14px}.breadcrumbs a{color:#1d4ed8}
+    .hero{position:relative;overflow:hidden;color:white;background:radial-gradient(circle at 88% 12%,rgba(6,182,212,.3),transparent 25%),linear-gradient(135deg,#071a30 10%,#153e68 60%,#155e75);border-radius:30px;padding:52px 42px;box-shadow:0 24px 60px rgba(8,26,47,.24)}
+    .hero:after{content:"ECG";position:absolute;right:-20px;bottom:-65px;font-size:220px;font-weight:1000;letter-spacing:-18px;color:rgba(255,255,255,.035)}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:8px 13px;border-radius:999px;font-size:14px;font-weight:900}.hero h1{position:relative;z-index:1;font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-.045em;max-width:920px;margin:18px 0}.hero p{position:relative;z-index:1;color:#dbeafe;font-size:19px;max-width:840px}.cta-row,.topic-nav{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px;position:relative;z-index:1}.btn,.topic-nav a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:900;border-radius:14px;padding:12px 17px}.btn{background:#fff;color:#0b3154}.btn.secondary{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.28)}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(8,26,47,.06)}.stat strong{display:block;color:#0f4775;font-size:23px}.stat span{color:var(--muted);font-size:14px;font-weight:700}
+    .section{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:var(--radius);padding:32px;margin:22px 0;box-shadow:var(--shadow)}.section h2{font-size:clamp(28px,4vw,42px);line-height:1.1;letter-spacing:-.035em;margin:0 0 12px}.section h3{color:#123f68}.lead{font-size:18px;color:var(--muted);max-width:900px}.topic-nav a{background:#eaf3ff;border:1px solid #bfdbfe;color:#174e7c;padding:8px 12px;font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.card{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:18px}.card strong{display:block;color:#0f4775;font-size:18px;margin-bottom:5px}.callout,.warning,.success{border-radius:17px;padding:16px 18px;margin:18px 0;font-weight:750}.callout{background:#eff6ff;border-left:6px solid var(--blue)}.warning{background:#fff7ed;border-left:6px solid var(--amber)}.success{background:#ecfdf5;border-left:6px solid var(--green)}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px;margin-top:18px}.study-table{width:100%;border-collapse:collapse;min-width:720px;background:#fff}.study-table th{background:#0d2945;color:#fff;text-align:left}.study-table th,.study-table td{padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top}.study-table tr:last-child td{border-bottom:0}.study-table td:first-child{font-weight:900;color:#154b78}
+    .interactive{background:linear-gradient(145deg,#071a30,#103c62);color:#fff;border-radius:22px;padding:25px;margin-top:20px}.interactive h3{color:#fff;margin-top:0}.interactive p{color:#d8eaff}.progress{height:10px;background:rgba(255,255,255,.13);border-radius:999px;overflow:hidden}.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,#22d3ee,#34d399);transition:.25s}.practice-layout{display:grid;grid-template-columns:minmax(260px,.85fr) 1.15fr;gap:24px;align-items:center;margin-top:20px}.torso{position:relative;width:min(100%,390px);aspect-ratio:4/5;margin:auto;background:linear-gradient(160deg,#dbeafe,#b6d5f4);border-radius:46% 46% 24% 24%/24% 24% 14% 14%;border:3px solid rgba(255,255,255,.55);box-shadow:inset 0 0 50px rgba(14,80,132,.15)}.torso:before{content:"";position:absolute;left:50%;top:-44px;transform:translateX(-50%);width:94px;height:94px;border-radius:50%;background:#c9e0f7;border:3px solid rgba(255,255,255,.55)}.midline{position:absolute;top:5%;bottom:5%;left:50%;width:2px;background:rgba(15,71,117,.14)}.landmark{position:absolute;transform:translate(-50%,-50%);width:43px;height:43px;border:0;border-radius:50%;background:#fff;color:#123f68;font-weight:1000;box-shadow:0 6px 16px rgba(8,26,47,.23);cursor:pointer;transition:.15s}.landmark:hover,.landmark:focus{transform:translate(-50%,-50%) scale(1.1);outline:3px solid #22d3ee}.landmark.correct{background:#22c55e;color:#fff}.landmark.wrong{background:#ef4444;color:#fff}.p-v1{left:55%;top:30%}.p-v2{left:45%;top:30%}.p-v3{left:39%;top:38%}.p-v4{left:32%;top:47%}.p-v5{left:23%;top:45%}.p-v6{left:14%;top:43%}.p-high{left:50%;top:18%}.p-low{left:50%;top:62%}.practice-panel{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:20px}.prompt-label{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#7dd3fc;font-weight:900}.target-name{font-size:34px;font-weight:1000;margin:3px 0}.target-desc{min-height:54px}.feedback{min-height:72px;background:rgba(0,0,0,.18);border-radius:13px;padding:12px;margin-top:14px}.small-btn{border:0;border-radius:12px;padding:11px 15px;background:#22d3ee;color:#082033;font-weight:1000;cursor:pointer}.small-btn:disabled{opacity:.55;cursor:not-allowed}
+    /* Anterior view: the patient's right appears on the viewer's left. */
+    .p-v1{left:45%}.p-v2{left:55%}.p-v3{left:61%}.p-v4{left:68%}.p-v5{left:77%}.p-v6{left:86%}
+    .memory{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:18px}.memory div{border-radius:14px;padding:13px 8px;text-align:center;background:linear-gradient(180deg,#eff6ff,#fff);border:1px solid #bfdbfe}.memory strong{display:block;font-size:22px;color:#154b78}.memory span{font-size:12px;color:#526378;font-weight:800}
+    .quiz-head{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.quiz-meta{font-weight:900;color:#0f4775}.quiz-card{border:1px solid var(--line);border-radius:20px;background:#f8fbff;padding:22px;margin-top:16px}.quiz-card h3{margin:0 0 10px}.options{display:grid;gap:10px;margin-top:15px}.option{width:100%;text-align:left;background:#fff;border:2px solid #dbe5ef;border-radius:14px;padding:13px 15px;color:#17324d;font-weight:800;cursor:pointer}.option:hover:not(:disabled){border-color:#60a5fa;background:#eff6ff}.option.correct{border-color:#16a34a;background:#ecfdf5}.option.wrong{border-color:#dc2626;background:#fef2f2}.option:disabled{cursor:default}.explanation{display:none;margin-top:14px;background:#eef5fb;border-radius:14px;padding:14px;color:#29445f}.explanation.show{display:block}.quiz-controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.quiz-controls button{border:0;border-radius:13px;padding:12px 17px;background:#0f4775;color:#fff;font-weight:900;cursor:pointer}.quiz-controls .ghost{background:#e5edf5;color:#17324d}.results{display:none;border-radius:18px;margin-top:18px;padding:22px;background:linear-gradient(135deg,#ecfdf5,#eff6ff);border:1px solid #a7f3d0}.results.show{display:block}.results strong{font-size:28px;color:#0e5f48}
+    .workflow{counter-reset:step;display:grid;gap:12px;margin-top:20px}.workflow li{list-style:none;position:relative;padding:17px 18px 17px 68px;background:#f7fbff;border:1px solid var(--line);border-radius:17px}.workflow li:before{counter-increment:step;content:counter(step);position:absolute;left:17px;top:15px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#154b78;color:#fff;font-weight:1000}.workflow strong{display:block;color:#123f68}
+    .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}.case{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}.case summary{padding:17px 18px;font-weight:900;color:#123f68;cursor:pointer;background:#f4f8fc}.case-body{padding:17px 18px}.case-body p{margin:5px 0}.case-tag{display:inline-block;border-radius:999px;background:#e0f2fe;color:#075985;padding:4px 9px;font-size:12px;font-weight:900;margin-bottom:8px}
+    .lead-family{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:18px}.family-card{border-radius:18px;padding:19px;background:linear-gradient(160deg,#f8fbff,#edf5ff);border:1px solid #cfe0f1}.family-card h3{margin:0 0 7px}.family-card ul{padding-left:20px;margin-bottom:0}.family-card li{margin:6px 0}
+    .source-list li{margin:10px 0}.source-list a{color:#1d4ed8;font-weight:800}.final-cta{background:linear-gradient(135deg,#071a30,#154b78);color:#fff;border-radius:24px;padding:30px;margin-top:22px}.final-cta h2{margin-top:0}.link-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.resource{display:block;text-decoration:none;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:16px;font-weight:900}.resource span{display:block;color:#cfe5f9;font-size:13px;margin-top:5px}.footer{text-align:center;color:#526378;padding:30px 10px;font-size:14px}
+    @media(max-width:850px){.hero{padding:38px 23px}.stats,.grid,.link-grid,.lead-family{grid-template-columns:1fr 1fr}.practice-layout{grid-template-columns:1fr}.memory{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:560px){.page{width:min(100% - 20px,1180px)}.section{padding:23px 18px}.stats,.grid,.link-grid,.lead-family,.case-grid{grid-template-columns:1fr}.hero h1{font-size:39px}.memory{grid-template-columns:repeat(2,1fr)}.torso{width:290px}.landmark{width:39px;height:39px}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/browse-all-practice.html">Browse All Practice</a> &rsaquo; ECG Lead Placement</nav>
+
+    <header class="hero">
+      <div class="badge">❤️ Interactive ECG Skills Lab</div>
+      <h1>12-Lead ECG Placement Practice</h1>
+      <p>Master the ten electrodes that create a 12-lead ECG. Learn V1–V6 landmarks, limb-electrode placement, skin preparation, lead reversal clues, and artifact troubleshooting—then prove it with interactive practice.</p>
+      <div class="cta-row">
+        <a class="btn" href="#placement-lab">Start Placement Lab</a>
+        <a class="btn secondary" href="#scenario-quiz">Take Scenario Quiz</a>
+        <a class="btn secondary" href="/ekg-practice-quiz.html">EKG Rhythm Practice</a>
+      </div>
+    </header>
+
+    <div class="stats" aria-label="Page highlights">
+      <div class="stat"><strong>10 electrodes</strong><span>Create 12 diagnostic leads</span></div>
+      <div class="stat"><strong>6 chest sites</strong><span>V1 through V6 landmarks</span></div>
+      <div class="stat"><strong>Interactive</strong><span>Placement practice with feedback</span></div>
+      <div class="stat"><strong>15-question quiz</strong><span>Randomized from 30 scenarios</span></div>
+    </div>
+
+    <section class="section">
+      <h2>Learn the placement—not just the colors.</h2>
+      <p class="lead">A standard 12-lead ECG uses ten electrodes: four limb electrodes and six precordial electrodes. The machine combines those signals into twelve views of cardiac electrical activity. Wire colors can differ by labeling convention, so anatomical labels and landmarks matter more than memorizing color alone.</p>
+      <nav class="topic-nav" aria-label="Jump to a topic">
+        <a href="#quick-map">Quick map</a><a href="#placement-lab">Placement lab</a><a href="#workflow">Acquisition workflow</a><a href="#limb-leads">Limb electrodes</a><a href="#lead-views">Lead views</a><a href="#prep">Patient preparation</a><a href="#artifacts">Artifacts</a><a href="#reversal-cases">Error cases</a><a href="#scenario-quiz">Scenario quiz</a>
+      </nav>
+      <div class="callout"><strong>What to notice first:</strong> V1 and V2 establish the horizontal level. V4 is placed next, V3 goes between V2 and V4, and V5–V6 remain level with V4.</div>
+    </section>
+
+    <section class="section" id="workflow">
+      <h2>Complete 12-Lead Acquisition Workflow</h2>
+      <p class="lead">Elite performance comes from using the same safe, repeatable sequence every time. Placement accuracy is only one part of producing a clinically useful tracing.</p>
+      <ol class="workflow">
+        <li><strong>Verify the order, patient, and indication.</strong>Use two approved identifiers and confirm that the requested test matches the patient and clinical situation.</li>
+        <li><strong>Explain the procedure and protect privacy.</strong>Describe what the electrodes do, obtain cooperation, position the patient appropriately, and expose only the areas needed.</li>
+        <li><strong>Assess factors that may affect the tracing.</strong>Notice tremor, shivering, respiratory distress, inability to lie flat, implanted devices, dressings, limb limitations, and skin condition.</li>
+        <li><strong>Prepare each electrode site.</strong>Clean and dry the skin, manage hair according to policy, remove loose dead skin when indicated, and avoid placing disposable electrodes over lotion.</li>
+        <li><strong>Identify landmarks before attaching chest electrodes.</strong>Locate the sternal angle and count intercostal spaces rather than estimating from appearance.</li>
+        <li><strong>Place and label all ten electrodes.</strong>Confirm RA, LA, RL, LL, and V1–V6 by printed labels. Remember that color standards may differ.</li>
+        <li><strong>Reduce cable tension and patient movement.</strong>Support lead wires, ask the patient to relax and remain still, and wait for avoidable motion to settle when clinically appropriate.</li>
+        <li><strong>Inspect signal quality before accepting.</strong>Check baseline stability, lead-off messages, clipping, interference, unexpected morphology, calibration, and acquisition settings.</li>
+        <li><strong>Respond to the patient before the equipment.</strong>If the tracing or patient condition is concerning, follow the appropriate escalation process. Never delay care to perfect a tracing.</li>
+        <li><strong>Label, document, and transmit correctly.</strong>Record nonstandard placement, technical limitations, symptoms, and required identifiers according to policy.</li>
+      </ol>
+    </section>
+
+    <section class="section" id="quick-map">
+      <h2>V1–V6 Quick Placement Map</h2>
+      <p class="lead">Use anatomical landmarks. Do not estimate placement from the nipple line because anatomy varies.</p>
+      <div class="table-wrap">
+        <table class="study-table">
+          <thead><tr><th>Electrode</th><th>Standard location</th><th>High-yield reminder</th></tr></thead>
+          <tbody>
+            <tr><td>V1</td><td>Fourth intercostal space, right sternal border</td><td>Right of the sternum—not the patient’s right midclavicular line.</td></tr>
+            <tr><td>V2</td><td>Fourth intercostal space, left sternal border</td><td>Same horizontal level as V1.</td></tr>
+            <tr><td>V3</td><td>Midway between V2 and V4</td><td>Place V4 before locating V3.</td></tr>
+            <tr><td>V4</td><td>Fifth intercostal space, left midclavicular line</td><td>Anchor for the level of V5 and V6.</td></tr>
+            <tr><td>V5</td><td>Left anterior axillary line, level with V4</td><td>Do not follow the rib downward.</td></tr>
+            <tr><td>V6</td><td>Left midaxillary line, level with V4 and V5</td><td>Keep V4–V6 on one horizontal plane.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="memory" aria-label="V1 through V6 memory strip">
+        <div><strong>V1</strong><span>4th ICS · right sternum</span></div><div><strong>V2</strong><span>4th ICS · left sternum</span></div><div><strong>V3</strong><span>Between V2 & V4</span></div><div><strong>V4</strong><span>5th ICS · MCL</span></div><div><strong>V5</strong><span>Anterior axillary</span></div><div><strong>V6</strong><span>Midaxillary</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="placement-lab">
+      <h2>Interactive Chest-Lead Placement Lab</h2>
+      <p class="lead">Read the target, then select its anatomical location on the chest map. The map is a learning aid and is not drawn to patient-specific scale.</p>
+      <div class="interactive">
+        <div class="progress" aria-label="Placement progress"><span id="placementBar"></span></div>
+        <div class="practice-layout">
+          <div class="torso" aria-label="Simplified anterior chest placement map">
+            <div class="midline"></div>
+            <button class="landmark p-v1" data-site="V1" aria-label="Fourth intercostal space at right sternal border">1</button>
+            <button class="landmark p-v2" data-site="V2" aria-label="Fourth intercostal space at left sternal border">2</button>
+            <button class="landmark p-v3" data-site="V3" aria-label="Midway between V2 and V4">3</button>
+            <button class="landmark p-v4" data-site="V4" aria-label="Fifth intercostal space at left midclavicular line">4</button>
+            <button class="landmark p-v5" data-site="V5" aria-label="Left anterior axillary line level with V4">5</button>
+            <button class="landmark p-v6" data-site="V6" aria-label="Left midaxillary line level with V4">6</button>
+            <button class="landmark p-high" data-site="HIGH" aria-label="Incorrect high chest location">?</button>
+            <button class="landmark p-low" data-site="LOW" aria-label="Incorrect low central location">?</button>
+          </div>
+          <div class="practice-panel">
+            <div class="prompt-label">Place this electrode</div>
+            <div class="target-name" id="targetName">V1</div>
+            <p class="target-desc" id="targetDesc">Fourth intercostal space at the right sternal border.</p>
+            <div class="feedback" id="placementFeedback" aria-live="polite">Choose a location on the chest map.</div>
+            <button class="small-btn" id="nextPlacement" disabled>Next electrode</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="limb-leads">
+      <h2>Limb Electrodes: RA, LA, RL and LL</h2>
+      <p class="lead">For a standard resting diagnostic ECG, follow your device instructions and facility procedure. Electrode relocation onto the torso can change the tracing and should not be treated as interchangeable with standard limb placement.</p>
+      <div class="grid">
+        <div class="card"><strong>RA</strong>Right arm electrode. Place on appropriate fleshy tissue while avoiding prominent bone and large muscle groups.</div>
+        <div class="card"><strong>LA</strong>Left arm electrode. Use a symmetrical location relative to RA whenever possible.</div>
+        <div class="card"><strong>RL</strong>Right leg electrode. Commonly functions as the reference or ground electrode.</div>
+        <div class="card"><strong>LL</strong>Left leg electrode. Position symmetrically with RL when possible.</div>
+        <div class="card"><strong>Labels over colors</strong>AAMI and IEC color conventions differ. Verify the printed RA, LA, RL, LL, and V1–V6 labels.</div>
+        <div class="card"><strong>Consistency matters</strong>Document nonstandard placement when standard sites cannot be used and follow the clinical protocol.</div>
+      </div>
+      <div class="warning"><strong>Common mistake:</strong> Placing limb electrodes on the torso for convenience may reduce motion artifact, but it can also alter ECG morphology. Use the placement method required for the intended exam.</div>
+    </section>
+
+    <section class="section" id="lead-views">
+      <h2>Ten Electrodes, Twelve Views</h2>
+      <p class="lead">Electrodes are physical sensors on the body. Leads are calculated electrical viewpoints. Understanding that difference makes placement errors easier to reason through.</p>
+      <div class="lead-family">
+        <div class="family-card">
+          <h3>Bipolar limb leads</h3>
+          <ul><li><strong>Lead I:</strong> RA to LA relationship</li><li><strong>Lead II:</strong> RA to LL relationship</li><li><strong>Lead III:</strong> LA to LL relationship</li></ul>
+        </div>
+        <div class="family-card">
+          <h3>Augmented limb leads</h3>
+          <ul><li><strong>aVR:</strong> rightward viewpoint</li><li><strong>aVL:</strong> high lateral viewpoint</li><li><strong>aVF:</strong> inferior viewpoint</li></ul>
+        </div>
+        <div class="family-card">
+          <h3>Precordial leads</h3>
+          <ul><li><strong>V1–V2:</strong> septal/right anterior views</li><li><strong>V3–V4:</strong> anterior transition</li><li><strong>V5–V6:</strong> lateral views</li></ul>
+        </div>
+      </div>
+      <div class="callout"><strong>Why reversals matter:</strong> Moving one limb electrode can affect several calculated leads at the same time. Moving one chest electrode primarily alters its local precordial view and the expected progression across neighboring chest leads.</div>
+    </section>
+
+    <section class="section" id="prep">
+      <h2>Patient Preparation for a Clean Signal</h2>
+      <div class="grid">
+        <div class="card"><strong>Explain and position</strong>Help the patient relax, lie still, and avoid talking during acquisition when clinically appropriate.</div>
+        <div class="card"><strong>Expose landmarks</strong>Preserve privacy while making the sternum, intercostal spaces, and lateral chest accessible.</div>
+        <div class="card"><strong>Prepare the skin</strong>Clean and dry the site. Remove oils and dead skin according to product and facility instructions.</div>
+        <div class="card"><strong>Manage hair</strong>Clip—not shave—only when needed for reliable electrode contact and according to policy.</div>
+        <div class="card"><strong>Check electrodes</strong>Use compatible, intact, in-date electrodes and press the adhesive firmly.</div>
+        <div class="card"><strong>Support lead wires</strong>Reduce cable pull and movement so tension does not loosen the electrode.</div>
+      </div>
+      <div class="success"><strong>Best troubleshooting order:</strong> patient movement → skin preparation → electrode adhesion → lead-wire connection → cable condition → nearby electrical interference → equipment or acquisition settings.</div>
+    </section>
+
+    <section class="section" id="artifacts">
+      <h2>Artifacts and Lead-Placement Errors</h2>
+      <div class="table-wrap">
+        <table class="study-table">
+          <thead><tr><th>What you see</th><th>Possible cause</th><th>What to check first</th></tr></thead>
+          <tbody>
+            <tr><td>Irregular jagged baseline</td><td>Muscle tremor, tension, shivering, movement</td><td>Warm and relax the patient; support limbs and cables.</td></tr>
+            <tr><td>Slow wandering baseline</td><td>Respiration, movement, loose electrode, poor contact</td><td>Reprepare skin and secure electrodes and wires.</td></tr>
+            <tr><td>Uniform rapid interference</td><td>AC electrical interference or nearby equipment</td><td>Check grounding, cable routing, and nearby powered devices.</td></tr>
+            <tr><td>Flat line in one channel</td><td>Disconnected lead wire, failed electrode, damaged cable</td><td>Trace that labeled lead from patient to connector.</td></tr>
+            <tr><td>Unexpected axis or inverted Lead I</td><td>Possible RA/LA reversal</td><td>Verify limb labels and anatomical sides before interpretation.</td></tr>
+            <tr><td>Poor R-wave progression</td><td>Possible precordial misplacement, especially V1/V2 too high</td><td>Relocate landmarks and repeat per clinical protocol.</td></tr>
+            <tr><td>Abrupt morphology change</td><td>Electrode moved or was replaced in a different location</td><td>Compare placement and document changes.</td></tr>
+            <tr><td>Noise in every lead</td><td>Common reference, preparation, cable, or environment issue</td><td>Start with patient connection and common components.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><strong>Clinical safety:</strong> Never assume an unusual tracing is only artifact. Check the patient first, then verify signal quality and placement according to your role and protocol.</div>
+    </section>
+
+    <section class="section" id="reversal-cases">
+      <h2>Lead Error Detective: Four Advanced Cases</h2>
+      <p class="lead">Open each case only after deciding what you would verify first. These are pattern-recognition exercises—not substitutes for clinical interpretation.</p>
+      <div class="case-grid">
+        <details class="case">
+          <summary>Case 1: Lead I is inverted and aVR looks unexpectedly positive</summary>
+          <div class="case-body"><span class="case-tag">Possible reversal</span><p><strong>First check:</strong> Verify the RA and LA electrodes and lead-wire labels.</p><p><strong>Reasoning:</strong> Swapping the arm electrodes reverses the direction of Lead I and changes the frontal-plane appearance.</p><p><strong>Do not:</strong> Diagnose a new axis abnormality before verifying setup and assessing the patient.</p></div>
+        </details>
+        <details class="case">
+          <summary>Case 2: V1 and V2 show unexpected morphology after a rushed setup</summary>
+          <div class="case-body"><span class="case-tag">Landmark error</span><p><strong>First check:</strong> Recount the intercostal spaces and confirm both electrodes are in the fourth intercostal space.</p><p><strong>Reasoning:</strong> V1 and V2 are commonly placed too high, which can alter P-wave appearance and R-wave progression.</p><p><strong>Do not:</strong> Use the clavicle or nipple line as a substitute for palpated landmarks.</p></div>
+        </details>
+        <details class="case">
+          <summary>Case 3: The baseline wanders whenever the patient breathes deeply</summary>
+          <div class="case-body"><span class="case-tag">Contact or motion</span><p><strong>First check:</strong> Inspect electrode adhesion, cable pull, and placement over areas moving with respiration.</p><p><strong>Reasoning:</strong> Respiratory movement and poor contact can shift the baseline without representing a cardiac rhythm change.</p><p><strong>Do not:</strong> Apply a filter before correcting preventable acquisition problems when the patient is stable.</p></div>
+        </details>
+        <details class="case">
+          <summary>Case 4: One precordial lead is flat while the other eleven leads remain visible</summary>
+          <div class="case-body"><span class="case-tag">Isolated signal loss</span><p><strong>First check:</strong> Trace that electrode, snap, lead wire, and connector from patient to machine.</p><p><strong>Reasoning:</strong> A single missing channel suggests a localized connection, electrode, or cable problem.</p><p><strong>Do not:</strong> Replace every electrode or remove the machine from service before isolating the failed path.</p></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="scenario-quiz">
+      <div class="quiz-head"><div><h2>ECG Placement & Artifact Challenge</h2><p class="lead">Fifteen questions are selected from a 30-question bank each time.</p></div><div class="quiz-meta" id="quizMeta">Question 1 of 15</div></div>
+      <div id="quizCard" class="quiz-card"></div>
+      <div class="quiz-controls"><button id="nextQuestion" disabled>Next question</button><button class="ghost" id="restartQuiz">New question set</button></div>
+      <div class="results" id="quizResults" aria-live="polite"></div>
+    </section>
+
+    <section class="section" aria-labelledby="sources-title">
+      <h2 id="sources-title">Authoritative ECG Resources</h2>
+      <p>Use this practice page alongside current facility policies, device instructions, formal training, and qualified clinical judgment.</p>
+      <ul class="source-list">
+        <li><a href="https://www.ahajournals.org/doi/10.1161/circulationaha.106.180200" target="_blank" rel="noopener noreferrer">AHA/ACC/HRS: Standardization and Interpretation of the Electrocardiogram</a></li>
+        <li><a href="https://www.gehealthcare.com/en-gb/insights/article/ecg-signal-quality-a-practical-guide-for-ecg-readings" target="_blank" rel="noopener noreferrer">GE HealthCare: ECG Signal Quality—A Practical Guide</a></li>
+        <li><a href="https://www.documents.philips.com/assets/20191003/7d8c5dce56854cc9928baadb0178386a.pdf" target="_blank" rel="noopener noreferrer">Philips: Improving ECG Quality</a></li>
+        <li><a href="https://www.heart.org/en/health-topics/heart-attack/diagnosing-a-heart-attack/electrocardiogram" target="_blank" rel="noopener noreferrer">American Heart Association: Electrocardiogram Overview</a></li>
+      </ul>
+      <div class="warning">Educational use only. This independent MedSkillBuilder resource does not replace manufacturer instructions, facility procedures, certification requirements, supervision, or clinical evaluation. Electrode placement may be modified for special clinical circumstances only under the appropriate protocol.</div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Turn placement into complete ECG understanding.</h2>
+      <p>Continue from electrode placement into rhythm recognition, heart anatomy, clinical equipment, and patient assessment.</p>
+      <div class="link-grid">
+        <a class="resource" href="/ekg-practice-quiz.html">EKG Practice Quiz<span>Test rhythm recognition and ECG basics.</span></a>
+        <a class="resource" href="/ekg-rhythm-cheat-sheet.html">EKG Rhythm Cheat Sheet<span>Compare high-yield rhythm patterns.</span></a>
+        <a class="resource" href="/how-to-read-ekg.html">How to Read an EKG<span>Use a step-by-step interpretation method.</span></a>
+        <a class="resource" href="/heart-anatomy-guide.html">Heart Anatomy Guide<span>Connect electrical activity to cardiac structures.</span></a>
+        <a class="resource" href="/medical-equipment-identification-practice.html">Equipment Identification<span>Recognize ECG and monitoring equipment.</span></a>
+        <a class="resource" href="/browse-all-practice.html">Browse All Practice<span>Explore every MedSkillBuilder learning tool.</span></a>
+      </div>
+    </section>
+
+    <footer class="footer">MedSkillBuilder.com — Learn. Practice. Grow.</footer>
+  </main>
+
+  <script>
+    const placementSteps = [
+      {site:'V1',desc:'Fourth intercostal space at the right sternal border.'},
+      {site:'V2',desc:'Fourth intercostal space at the left sternal border.'},
+      {site:'V4',desc:'Fifth intercostal space at the left midclavicular line.'},
+      {site:'V3',desc:'Midway between V2 and V4.'},
+      {site:'V5',desc:'Left anterior axillary line, level with V4.'},
+      {site:'V6',desc:'Left midaxillary line, level with V4 and V5.'}
+    ];
+    let placementIndex=0, placementLocked=false;
+    const landmarks=[...document.querySelectorAll('.landmark')];
+    const targetName=document.getElementById('targetName'), targetDesc=document.getElementById('targetDesc');
+    const placementFeedback=document.getElementById('placementFeedback'), nextPlacement=document.getElementById('nextPlacement'), placementBar=document.getElementById('placementBar');
+    function loadPlacement(){
+      placementLocked=false; landmarks.forEach(b=>b.classList.remove('correct','wrong'));
+      const step=placementSteps[placementIndex]; targetName.textContent=step.site; targetDesc.textContent=step.desc;
+      placementFeedback.textContent='Choose a location on the chest map.'; nextPlacement.disabled=true;
+      nextPlacement.textContent=placementIndex===placementSteps.length-1?'Restart placement lab':'Next electrode';
+      placementBar.style.width=(placementIndex/placementSteps.length*100)+'%';
+    }
+    landmarks.forEach(btn=>btn.addEventListener('click',()=>{
+      if(placementLocked)return; const correct=placementSteps[placementIndex].site;
+      if(btn.dataset.site===correct){
+        btn.classList.add('correct'); placementLocked=true; placementFeedback.innerHTML='<strong>Correct.</strong> '+placementSteps[placementIndex].desc; nextPlacement.disabled=false; placementBar.style.width=((placementIndex+1)/placementSteps.length*100)+'%';
+      }else{btn.classList.add('wrong');placementFeedback.innerHTML='<strong>Not this site.</strong> Recheck the intercostal space and anatomical line, then try again.';setTimeout(()=>btn.classList.remove('wrong'),600)}
+    }));
+    nextPlacement.addEventListener('click',()=>{placementIndex=(placementIndex+1)%placementSteps.length;loadPlacement()});
+    loadPlacement();
+
+    const bank=[
+      {q:'Where is V1 placed for a standard 12-lead ECG?',o:['Fourth intercostal space at the right sternal border','Fourth intercostal space at the left sternal border','Fifth intercostal space at the midclavicular line','Left midaxillary line'],a:0,e:'V1 is placed in the fourth intercostal space at the right sternal border.'},
+      {q:'Where is V2 placed?',o:['Fifth intercostal space at the right sternal border','Fourth intercostal space at the left sternal border','Between V3 and V4','Left anterior axillary line'],a:1,e:'V2 mirrors V1 at the fourth intercostal space on the left sternal border.'},
+      {q:'Which electrode should usually be located before placing V3?',o:['RA','V4','V6','RL'],a:1,e:'V3 belongs midway between V2 and V4, so locating V4 first improves accuracy.'},
+      {q:'Where is V4 placed?',o:['Fourth intercostal space, left midaxillary line','Fifth intercostal space, left midclavicular line','Between V1 and V2','Fifth intercostal space, right midclavicular line'],a:1,e:'V4 is at the fifth intercostal space on the left midclavicular line.'},
+      {q:'How should V5 align vertically?',o:['Level with V1','Level with V2','Level with V4','Below V6'],a:2,e:'V5 is on the left anterior axillary line at the same horizontal level as V4.'},
+      {q:'Where is V6 placed?',o:['Left midaxillary line, level with V4 and V5','Right midaxillary line, level with V1','Left sternal border','Left scapular line'],a:0,e:'V6 is on the left midaxillary line and remains level with V4 and V5.'},
+      {q:'How many electrodes generate a standard 12-lead ECG?',o:['6','10','12','14'],a:1,e:'Ten electrodes—four limb and six chest—produce twelve ECG leads.'},
+      {q:'Why should wire colors not be the only placement guide?',o:['Colors fade during every ECG','AAMI and IEC color conventions can differ','All chest wires are the same color','Colors identify rhythms, not wires'],a:1,e:'Color standards can differ. Verify the printed anatomical labels on the lead wires.'},
+      {q:'Lead I is unexpectedly inverted. Which setup problem should be checked?',o:['RA and LA reversal','V3 and V4 at the same location','RL electrode too low','Paper speed only'],a:0,e:'Right-arm and left-arm reversal can invert Lead I and alter the apparent axis.'},
+      {q:'A slow wandering baseline most strongly suggests which first check?',o:['Loose electrode, respiration, or movement','Increase gain immediately','Replace the ECG machine first','Diagnose ventricular fibrillation'],a:0,e:'Movement and poor electrode contact commonly cause baseline wander. Check the patient and connections first.'},
+      {q:'A jagged baseline appears while the patient is shivering. What is the likely source?',o:['Muscle artifact','Correct calibration pulse','Lead reversal','Normal pacemaker spike'],a:0,e:'Skeletal muscle activity can create irregular, rapid artifact.'},
+      {q:'A flat line appears in only one channel while the other leads look normal. What should be checked first?',o:['That lead wire and electrode connection','The entire power grid','Patient temperature only','Every chest electrode at once'],a:0,e:'An isolated channel problem points first to that electrode, lead wire, or connector.'},
+      {q:'What is the best first response to an unusual tracing?',o:['Assume it is artifact','Check the patient, then verify signal quality','Delete the ECG','Move every electrode'],a:1,e:'Patient assessment comes first. Then verify placement, contact, wires, and signal quality.'},
+      {q:'Why should V1 and V2 not be placed too high?',o:['It can alter morphology and R-wave progression','It always stops the recorder','It changes electrode colors','It doubles paper speed'],a:0,e:'High V1/V2 placement can create clinically misleading morphology.'},
+      {q:'Which action supports better electrode contact?',o:['Apply over lotion','Clean and dry the skin according to instructions','Place over thick clothing','Hold the wire instead of adhering the electrode'],a:1,e:'Clean, dry skin and appropriate preparation reduce impedance and artifact.'},
+      {q:'What is the preferred approach when chest hair prevents adhesion?',o:['Ignore loose electrodes','Clip only as needed according to policy','Place every lead on the abdomen','Use extra lotion'],a:1,e:'Clipping only what is needed can improve contact while reducing skin irritation.'},
+      {q:'Which pattern is most consistent with AC electrical interference?',o:['Uniform rapid interference','One missing P wave','Slow respiratory drift only','A normal calibration mark'],a:0,e:'Regular rapid noise can be produced by electrical interference, grounding, or nearby equipment.'},
+      {q:'What is the RL electrode commonly used as?',o:['Chest lead V7','Reference or ground','A replacement for V1','The left-arm signal'],a:1,e:'The right-leg electrode commonly serves as the reference/ground in standard ECG acquisition.'},
+      {q:'Why should V4, V5, and V6 remain on the same horizontal plane?',o:['To preserve standardized precordial sampling positions','To match the patient’s clothing','To eliminate every artifact','To change limb-lead axis'],a:0,e:'Standardized horizontal alignment supports consistent precordial views and comparison.'},
+      {q:'If an electrode is moved between serial ECGs, what is important?',o:['Hide the change','Document the altered placement and follow protocol','Change all labels','Assume both tracings are identical'],a:1,e:'Placement changes can alter morphology. Consistency and documentation matter for comparison.'},
+      {q:'Which statement correctly distinguishes an electrode from a lead?',o:['An electrode is a body sensor; a lead is an electrical viewpoint','They are always identical terms','A lead is adhesive and an electrode is printed paper','Electrodes exist only inside the ECG machine'],a:0,e:'Ten physical electrodes are used to create twelve calculated ECG leads or viewpoints.'},
+      {q:'Where should V3 be placed if V2 and V4 are correctly positioned?',o:['Directly below V1','Midway between V2 and V4','At the right midaxillary line','Beside the LL electrode'],a:1,e:'V3 is positioned halfway between the locations of V2 and V4.'},
+      {q:'Which group should remain at the same horizontal level?',o:['V1, V2, and V3','RA, LA, and V1','V4, V5, and V6','V2, V3, and RL'],a:2,e:'V4, V5, and V6 share the horizontal level established by V4.'},
+      {q:'Why is the nipple line unreliable as the main chest-placement landmark?',o:['It is not visible on an ECG','Its position varies among patients','It identifies only limb leads','It always marks the fourth intercostal space'],a:1,e:'Nipple position varies. Use intercostal spaces and anatomical lines instead.'},
+      {q:'A patient is talking throughout the acquisition and the baseline is noisy. What is the best first action when clinically appropriate?',o:['Ask the patient to relax and remain still briefly','Increase every filter to maximum','Reverse RA and LA','Move all chest leads downward'],a:0,e:'Speech and muscle activity can introduce artifact. Reduce avoidable movement before changing technical settings.'},
+      {q:'Which situation most strongly suggests a common reference or widespread setup issue?',o:['Noise in nearly every lead','A single detached V6 electrode','One mislabeled printed page','One isolated flat channel'],a:0,e:'Noise across many channels points toward shared preparation, reference, cable, or environmental factors.'},
+      {q:'What should be done before accepting a tracing with a lead-off message?',o:['Verify the indicated electrode and connection','Ignore the message if some waves are visible','Diagnose a rhythm from the remaining noise','Increase paper speed'],a:0,e:'A lead-off message indicates a connection problem that should be corrected before accepting the tracing when possible.'},
+      {q:'Why should cable tension be minimized?',o:['Pulling can loosen electrodes and create intermittent artifact','It changes the patient’s heart rate','It converts limb leads into chest leads','It automatically reverses polarity'],a:0,e:'Unsupported or pulling cables can disrupt skin contact and cause intermittent noise.'},
+      {q:'Which documentation detail is most important after nonstandard electrode placement?',o:['The reason and altered locations according to policy','The color of the patient’s clothing','Only the room number','Nothing if the tracing printed'],a:0,e:'Nonstandard placement can affect comparison and interpretation, so location and reason should be documented according to policy.'},
+      {q:'A tracing changes abruptly immediately after an electrode is replaced. What should be considered first?',o:['The replacement may be in a different location','The patient must have developed a new diagnosis','The ECG paper is too white','All prior tracings are invalid'],a:0,e:'Even small placement changes can alter morphology. Verify location and assess the patient before drawing conclusions.'}
+    ];
+    let quiz=[],qi=0,score=0,answered=false;
+    const shuffle=a=>[...a].sort(()=>Math.random()-.5);
+    const quizCard=document.getElementById('quizCard'),quizMeta=document.getElementById('quizMeta'),nextQuestion=document.getElementById('nextQuestion'),quizResults=document.getElementById('quizResults');
+    function startQuiz(){quiz=shuffle(bank).slice(0,15);qi=0;score=0;answered=false;quizResults.classList.remove('show');renderQuestion()}
+    function renderQuestion(){
+      answered=false;nextQuestion.disabled=true;const item=quiz[qi];quizMeta.textContent=`Question ${qi+1} of ${quiz.length}`;
+      quizCard.innerHTML=`<h3>${qi+1}. ${item.q}</h3><div class="options">${item.o.map((x,i)=>`<button class="option" data-i="${i}">${String.fromCharCode(65+i)}. ${x}</button>`).join('')}</div><div class="explanation" id="explanation"><strong>Teaching:</strong> ${item.e}</div>`;
+      quizCard.querySelectorAll('.option').forEach(b=>b.addEventListener('click',()=>answerQuestion(Number(b.dataset.i))));
+      nextQuestion.textContent=qi===quiz.length-1?'See results':'Next question';
+    }
+    function answerQuestion(choice){if(answered)return;answered=true;const item=quiz[qi];const buttons=[...quizCard.querySelectorAll('.option')];buttons.forEach((b,i)=>{b.disabled=true;if(i===item.a)b.classList.add('correct')});if(choice===item.a)score++;else buttons[choice].classList.add('wrong');document.getElementById('explanation').classList.add('show');nextQuestion.disabled=false}
+    nextQuestion.addEventListener('click',()=>{if(qi<quiz.length-1){qi++;renderQuestion()}else{quizCard.style.display='none';nextQuestion.disabled=true;quizMeta.textContent='Complete';const pct=Math.round(score/quiz.length*100);quizResults.innerHTML=`<strong>${score}/${quiz.length} · ${pct}%</strong><p>${pct>=80?'Strong work. Review any missed explanations, then practice rhythm recognition.':'Good start. Review the placement map and artifact table, then try a new question set.'}</p>`;quizResults.classList.add('show')}});
+    document.getElementById('restartQuiz').addEventListener('click',()=>{quizCard.style.display='block';nextQuestion.disabled=false;startQuiz()});
+    startQuiz();
+  </script>
+</body>
+</html>
