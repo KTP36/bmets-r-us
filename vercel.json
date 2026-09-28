@@ -1,9 +1,20 @@
 {
   "rewrites": [
-    { "source": "/partner", "destination": "/" },
-    { "source": "/partnership", "destination": "/" }
+    {
+      "source": "/partner",
+      "destination": "/"
+    },
+    {
+      "source": "/partnership",
+      "destination": "/"
+    }
   ],
   "redirects": [
+    {
+      "source": "/ads.txt",
+      "destination": "https://adstxt.journeymv.com/sites/78bdf4aa-0439-4dc3-988a-53d34ece9563/ads.txt",
+      "permanent": true
+    },
     {
       "source": "/schematic-symbols-guide.html",
       "destination": "/how-to-read-schematics-symbols.html",
