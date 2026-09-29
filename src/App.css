@@ -234,3 +234,27 @@ body {
 .practice-link.terms:hover {
   filter: brightness(1.05);
 }
+
+/* ===== Mobile Horizontal Overflow Fix ===== */
+/* Keep wide cards, embeds, and injected ad elements inside the viewport. */
+@media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+}
