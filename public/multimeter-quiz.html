@@ -43,6 +43,33 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://medskillbuilder.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Browse All Practice",
+        "item": "https://medskillbuilder.com/browse-all-practice.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Multimeter Quiz",
+        "item": "https://medskillbuilder.com/multimeter-quiz.html"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       {
@@ -170,6 +197,21 @@
       font-weight: 900;
       box-shadow: var(--soft-shadow);
       font-size: 0.94rem;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 2px 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .breadcrumbs a {
+      color: var(--navy);
+      text-decoration: none;
     }
 
     .hero {
@@ -449,6 +491,46 @@
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
     }
 
+    .table-wrap {
+      overflow-x: auto;
+      margin: 18px 0;
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+
+    th,
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #dbeafe;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eff6ff;
+      color: var(--navy);
+      font-size: 15px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .decision-steps {
+      margin: 14px 0 0 22px;
+      color: #1f2937;
+    }
+
+    .decision-steps li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
     .final-cta {
       background:
         radial-gradient(circle at right, rgba(34,197,94,0.18), transparent 32%),
@@ -530,6 +612,14 @@
       </nav>
     </div>
 
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="/browse-all-practice.html">Browse All Practice</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Multimeter Quiz</span>
+    </nav>
+
     <section class="hero">
       <div class="eyebrow">CBET Electronics Quiz</div>
       <h1>Multimeter Quiz</h1>
@@ -573,9 +663,68 @@
         Choose the best answer for each question, then submit your quiz to see your score and review cues.
       </p>
       <p>
-        This quiz keeps all 25 questions from your original version and adds stronger styling, SEO, and study links.
+        Use the guide below to review how meter setup changes with the measurement, then apply those decisions throughout the quiz.
       </p>
     </div>
+
+    <section class="card">
+      <h2>Choose the Correct Multimeter Setup</h2>
+      <p>
+        A safe measurement begins before the probes touch the circuit. Identify what you need to measure, confirm the expected range, select the correct function, and verify the lead ports. The meter must then be connected in the correct way for that measurement.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Measurement</th>
+              <th>Circuit condition</th>
+              <th>Meter connection</th>
+              <th>Typical lead setup</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Voltage</strong></td>
+              <td>The circuit is normally energized for the reading. Use properly rated equipment and follow applicable safety procedures.</td>
+              <td>Connect the meter in parallel across the source or component.</td>
+              <td>Black lead in COM; red lead in the V/Ω port.</td>
+            </tr>
+            <tr>
+              <td><strong>Resistance</strong></td>
+              <td>Power must be off, and stored energy must be safely discharged.</td>
+              <td>Measure across the isolated component or test points.</td>
+              <td>Black lead in COM; red lead in the V/Ω port.</td>
+            </tr>
+            <tr>
+              <td><strong>Continuity</strong></td>
+              <td>Power must be off, and stored energy must be safely discharged.</td>
+              <td>Test across the wire, fuse, switch, or path being evaluated.</td>
+              <td>Black lead in COM; red lead in the V/Ω port.</td>
+            </tr>
+            <tr>
+              <td><strong>Current</strong></td>
+              <td>Use the correct current range, port, meter rating, and approved procedure.</td>
+              <td>The meter becomes part of the circuit and is connected in series—not directly across a source.</td>
+              <td>Black lead in COM; red lead in the appropriate current port.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-box">
+        <strong>Critical mistake to avoid:</strong> Never place a meter set for current directly across a voltage source. That can create a short circuit, damage the meter, or cause injury.
+      </div>
+
+      <h2>A Five-Step Measurement Check</h2>
+      <ol class="decision-steps">
+        <li>Identify the electrical quantity you need to measure.</li>
+        <li>Determine whether the circuit should be energized or de-energized.</li>
+        <li>Confirm the meter function, range, lead ports, and equipment rating.</li>
+        <li>Connect the probes in parallel for voltage or in series for current.</li>
+        <li>Interpret the reading in context instead of relying on the display alone.</li>
+      </ol>
+    </section>
 
     <form id="quizForm">
 
@@ -827,6 +976,29 @@
     </section>
 
     <section class="card">
+      <h2>How to Interpret Common Multimeter Results</h2>
+      <p>
+        A meter reading is evidence, not a complete diagnosis. Compare the result with the schematic, manufacturer information, expected circuit state, and a known-good reference whenever possible.
+      </p>
+
+      <div class="notice-box">
+        <strong>OL during resistance testing:</strong> This commonly indicates an open path or a value beyond the selected range. Confirm probe contact, range selection, and circuit isolation before concluding that the component has failed.
+      </div>
+
+      <div class="notice-box">
+        <strong>Near-zero resistance:</strong> A very low reading may be normal for a closed switch, fuse, or short conductor, but unexpected low resistance can indicate a short. Circuit context matters.
+      </div>
+
+      <div class="notice-box">
+        <strong>Unexpected voltage:</strong> Verify AC versus DC mode, reference point, probe placement, and expected range before replacing a component.
+      </div>
+
+      <div class="notice-box">
+        <strong>Capacitor behavior:</strong> A changing resistance reading may suggest charging behavior, but resistance mode does not provide a complete capacitance or ESR evaluation. Use the appropriate test method and follow discharge procedures.
+      </div>
+    </section>
+
+    <section class="card">
       <h2>Related Electronics Guides</h2>
       <p>
         Continue building your CBET electronics foundation with these related MedSkillBuilder pages.
@@ -861,7 +1033,7 @@
     </section>
 
     <p class="safety">
-      For learning purposes only. Always ensure equipment is powered off and properly discharged before testing.
+      For learning purposes only. Follow the meter manufacturer's instructions and applicable electrical-safety procedures. De-energize and safely discharge circuits before resistance, continuity, or capacitor checks.
     </p>
   </div>
 
