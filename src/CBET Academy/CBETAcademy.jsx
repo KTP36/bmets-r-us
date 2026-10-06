@@ -4952,8 +4952,28 @@ function MissionFiveSystemsGraphic({ activeId, onSelect, faultMode }) {
     : {ecg:"82",spo2:"98",nibp:"120/74",ibp:"118/70",temp:"37.0"};
   return <div className="m5-systems-art">
     <svg viewBox="0 0 900 620" role="img" aria-label="Original bedside systems integration illustration with ECG, SpO2, NIBP, IBP and temperature signal chains">
-      <defs><linearGradient id="sysMon" x1="0" x2="1"><stop stopColor="#0f172a"/><stop offset="1" stopColor="#111827"/></linearGradient></defs>
-      <g className="sys-patient"><circle cx="170" cy="120" r="48"/><path d="M140 170C120 255 125 370 160 470H230C265 370 270 255 250 170Z"/><path d="M145 210L65 320M245 210L325 320"/><path d="M165 470L140 570M225 470L250 570"/></g>
+      <defs>
+        <linearGradient id="sysMon" x1="0" x2="1"><stop stopColor="#0f172a"/><stop offset="1" stopColor="#111827"/></linearGradient>
+        <linearGradient id="sysGown" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#eff8ff"/><stop offset="1" stopColor="#cfe8f7"/></linearGradient>
+        <pattern id="sysGownDots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2" fill="#91bdd8" opacity=".55"/></pattern>
+      </defs>
+      <g className="sys-patient-professional" aria-hidden="true">
+        <ellipse className="sys-patient-shadow" cx="188" cy="579" rx="92" ry="13"/>
+        <path className="sys-patient-hair" d="M135 106C137 58 166 41 201 47C232 52 246 78 239 112C226 89 210 83 183 83C162 83 149 91 135 106Z"/>
+        <circle className="sys-patient-skin" cx="188" cy="112" r="48"/>
+        <path className="sys-patient-hair" d="M143 83C158 55 207 48 230 79C209 70 184 68 163 78C155 82 149 89 143 97Z"/>
+        <circle className="sys-patient-eye" cx="171" cy="111" r="3.5"/><circle className="sys-patient-eye" cx="205" cy="111" r="3.5"/>
+        <path className="sys-patient-face" d="M177 132C184 138 193 138 200 132"/>
+        <path className="sys-patient-skin" d="M174 151V170H202V151"/>
+        <path className="sys-patient-gown" d="M137 167Q188 151 239 167L259 390Q232 418 188 418Q144 418 117 390Z"/>
+        <path className="sys-patient-gown-pattern" d="M137 167Q188 151 239 167L259 390Q232 418 188 418Q144 418 117 390Z"/>
+        <path className="sys-patient-neckline" d="M165 166Q188 190 211 166"/>
+        <path className="sys-patient-skin-limb" d="M130 184L82 333"/><path className="sys-patient-skin-limb" d="M246 184L293 325"/>
+        <circle className="sys-patient-hand" cx="79" cy="347" r="15"/><circle className="sys-patient-hand" cx="296" cy="340" r="15"/>
+        <path className="sys-patient-cuff" d="M257 245L282 237L294 280L268 289Z"/>
+        <path className="sys-patient-skin-limb" d="M160 410L151 555"/><path className="sys-patient-skin-limb" d="M216 410L226 555"/>
+        <ellipse className="sys-patient-foot" cx="143" cy="568" rx="29" ry="12"/><ellipse className="sys-patient-foot" cx="234" cy="568" rx="29" ry="12"/>
+      </g>
       <g className="sys-monitor"><rect x="420" y="70" width="410" height="430" rx="28" fill="url(#sysMon)"/><rect x="455" y="105" width="340" height="300" rx="14"/>
       <text x="485" y="145" fill="#00B050">ECG</text><text className="sys-value" x="760" y="145" fill="#00B050">{values.ecg}</text><path className="wave ecg" d="M485 175L525 175L540 150L555 200L575 175L630 175L645 150L660 200L680 175L740 175"/>
       <text x="485" y="230" fill="#0096FF">SpO₂</text><text className="sys-value" x="760" y="230" fill="#0096FF">{values.spo2}%</text><path className="wave spo2" d="M485 260C505 220 525 220 545 260S585 300 605 260S645 220 665 260S705 300 735 250"/>
@@ -4969,7 +4989,7 @@ function MissionFiveSystemsGraphic({ activeId, onSelect, faultMode }) {
         <path className="line temp" d="M200 420C300 425 360 415 430 415"/>
       </g>
       {MISSION_FIVE_SYSTEMS.map((x,i)=>{const pos=[[175,190],[70,320],[315,320],[240,290],[200,420]][i];return <g key={x.id} className={`sys-node ${activeId===x.id?"active":""}`} onClick={()=>onSelect(x.id)}><circle cx={pos[0]} cy={pos[1]} r="19" fill={x.color}/><text x={pos[0]+26} y={pos[1]+6}>{x.label}</text></g>})}
-      <g className="sys-active-panel"><rect x="430" y="520" width="400" height="72" rx="18" fill={active.color}/><text x="455" y="548">{active.label}: {active.source}</text><text x="455" y="575">{active.chain}</text></g>
+      <g className="sys-active-panel"><rect x="405" y="515" width="425" height="82" rx="18" fill={active.color}/><foreignObject x="428" y="528" width="378" height="58"><div className="sys-active-panel-copy"><strong>{active.label}: {active.source}</strong><span>{active.chain}</span></div></foreignObject></g>
     </svg>
   </div>;
 }
