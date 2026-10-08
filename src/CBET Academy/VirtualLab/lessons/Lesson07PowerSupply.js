@@ -32,11 +32,11 @@ const lesson = {
   },
   "readingRule": "powered",
   "diagnosis": {
-    "correct": "Open output fuse",
+    "correct": "Further isolation required",
     "options": [
-      "Failed transformer",
-      "Open output fuse",
-      "Shorted load"
+      "Replace the transformer",
+      "Replace the output fuse",
+      "Further isolation required"
     ]
   },
   "steps": [
@@ -78,8 +78,8 @@ const lesson = {
     ],
     [
       "diagnose",
-      "Identify the Failure",
-      "Choose the most likely fault.",
+      "Interpret the Evidence",
+      "A missing output rail confirms a power-path fault, but one reading cannot identify the failed component. Choose the technically defensible conclusion.",
       "diagnose"
     ]
   ]

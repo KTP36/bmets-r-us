@@ -51,6 +51,12 @@ const lesson = {
       "mode"
     ],
     [
+      "jack",
+      "Move the Red Lead",
+      "Move the red test lead from V/Ω to the fused A jack before connecting the meter in series.",
+      "jack"
+    ],
+    [
       "series",
       "Open the Circuit",
       "Click the SERIES GAP to create a safe meter insertion point.",
@@ -59,13 +65,13 @@ const lesson = {
     [
       "black",
       "Connect the Black Probe",
-      "Select the black probe, then click RETURN.",
+      "Select the black probe, then connect it to the load side of the opened circuit at RETURN.",
       "black"
     ],
     [
       "red",
       "Connect the Red Probe",
-      "Select the red probe, then click SOURCE.",
+      "Select the red probe, then connect it to the source side of the opened circuit. The meter now completes the circuit in series.",
       "red"
     ],
     [

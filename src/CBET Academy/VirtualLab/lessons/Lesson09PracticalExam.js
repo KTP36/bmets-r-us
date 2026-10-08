@@ -32,9 +32,9 @@ const lesson = {
   },
   "readingRule": "powered",
   "diagnosis": {
-    "correct": "Failed 12 V output stage",
+    "correct": "Continue isolating the power path",
     "options": [
-      "Failed 12 V output stage",
+      "Continue isolating the power path",
       "Open ECG lead",
       "Speaker failure"
     ]
@@ -78,8 +78,8 @@ const lesson = {
     ],
     [
       "diagnose",
-      "Submit Your Diagnosis",
-      "Identify the most likely failed stage.",
+      "Choose the Next Technical Conclusion",
+      "A 0 V rail confirms the complaint but does not identify a component. Select the conclusion supported by the evidence.",
       "diagnose"
     ]
   ]

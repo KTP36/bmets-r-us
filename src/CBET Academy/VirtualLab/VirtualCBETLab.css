@@ -1787,3 +1787,42 @@
   .vl-certificate { position: fixed; inset: 0; width: 100%; min-height: 100%; margin: 0; box-shadow: none; }
   .no-print { display: none !important; }
 }
+
+/* Virtual Lab instruction and equipment-accuracy refinements */
+.vl-safety-callout {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  border-radius: 12px;
+  color: #fde68a;
+  background: rgba(120, 53, 15, 0.28);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.vl-component-capacitor,
+.vl-component-fault {
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.vl-component-capacitor b,
+.vl-component-fault b {
+  color: #dbeafe;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(0.72rem, 1.2vw, 1rem);
+}
+
+.vl-meter-jacks button.jack {
+  display: inline-block;
+  padding: 0;
+  cursor: pointer;
+}
+
+.practical-mode .target-highlight {
+  animation: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}

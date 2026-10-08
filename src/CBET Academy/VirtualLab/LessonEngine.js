@@ -24,10 +24,14 @@ export function isReadingReady({
   redConnected,
   seriesOpen,
   discharged,
+  redJack,
 }) {
   if (!lesson || !blackConnected || !redConnected || meterMode !== lesson.mode) {
     return false;
   }
+
+  const requiredJack = lesson.mode === "current" ? "amps" : "vohm";
+  if (redJack !== requiredJack) return false;
 
   switch (lesson.readingRule) {
     case "powered":
@@ -40,6 +44,11 @@ export function isReadingReady({
     default:
       return !supplyOn;
   }
+}
+
+export function splitMeterReading(reading = "") {
+  const match = String(reading).trim().match(/^(.+?)\s*(mA|µF|kΩ|MΩ|Ω|mV|V|A)$/);
+  return match ? { value: match[1], unit: match[2] } : { value: reading, unit: "" };
 }
 
 export function getDisplayValue({ lesson, ready, meterMode }) {

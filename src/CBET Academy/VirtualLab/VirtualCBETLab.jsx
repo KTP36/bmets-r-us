@@ -7,6 +7,7 @@ import {
   isReadingReady,
   loadCourseState,
   saveCourseState,
+  splitMeterReading,
 } from "./LessonEngine";
 
 const MODE_OPTIONS = [
@@ -134,13 +135,15 @@ function InstructorPanel({ lesson, step, action, onContinue }) {
       </div>
 
       <div className="vl-task-label">Current task</div>
-      <h2>{step?.[0] || `Welcome to ${lesson.title}`}</h2>
-      <p className="vl-task-main">{step?.[1] || lesson.intro}</p>
+      <h2>{step?.[1] || `Welcome to ${lesson.title}`}</h2>
+      <p className="vl-task-main">{step?.[2] || lesson.intro}</p>
 
       <div className="vl-why-card">
         <strong>💡 Why this matters</strong>
-        <p>{step?.[2] || lesson.why || lesson.intro}</p>
+        <p>{lesson.why || lesson.intro}</p>
       </div>
+
+      {lesson.safety && <div className="vl-safety-callout">⚠ {lesson.safety}</div>}
 
       {action === "continue" && (
         <button type="button" className="vl-primary" onClick={onContinue}>
@@ -239,11 +242,12 @@ function CircuitBoard({
               <b>▶|</b>
               <i className="cathode" />
             </div>
+          ) : lesson.component?.kind === "capacitor" ? (
+            <div className="vl-resistor vl-component-capacitor"><span>100 µF</span><b>＋ |( | −</b></div>
+          ) : lesson.component?.kind === "fault" ? (
+            <div className="vl-resistor vl-component-fault"><span>{lesson.component.label}</span><b>{lesson.component.symbol}</b></div>
           ) : (
-            <div className="vl-resistor">
-              <span>{lesson.expected || "1 kΩ"}</span>
-              <i />
-            </div>
+            <div className="vl-resistor"><span>1 kΩ</span><i /></div>
           )}
 
           <button
@@ -262,8 +266,8 @@ function CircuitBoard({
         </div>
 
         <div className={`vl-training-load ${lesson.id === "continuity" ? "fuse-load" : ""} ${lesson.id === "diode" ? "diode-load" : ""}`}>
-          <span className="vl-device-title">{lesson.id === "continuity" ? "Training Fuse" : lesson.id === "diode" ? "Training Diode" : "Training Load"}</span>
-          <div className="vl-load-symbol">{lesson.id === "continuity" ? "—[ FUSE ]—" : lesson.id === "diode" ? "—▶|—" : "—/\/\—"}</div>
+          <span className="vl-device-title">{lesson.component?.label || "Training Load"}</span>
+          <div className="vl-load-symbol">{lesson.component?.symbol || "—/\\/\\—"}</div>
           <strong>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "CONTINUITY" : "OPEN") : "TEST REQUIRED") : lesson.id === "diode" ? (readingReady ? (diodeScenario === "good" ? "FORWARD DROP" : diodeScenario === "open" ? "OPEN" : "SHORT") : "TEST REQUIRED") : lesson.expected || "1 kΩ"}</strong>
           <small>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "Electrical path complete" : "Electrical path broken") : "Condition hidden") : lesson.id === "diode" ? (readingReady ? (diodeScenario === "good" ? "Normal silicon junction" : diodeScenario === "open" ? "No forward conduction" : "Near-zero junction drop") : "Condition hidden") : seriesOpen ? "Open circuit" : "Connected"}</small>
         </div>
@@ -329,12 +333,15 @@ function Meter({
   meterMode,
   displayValue,
   readingReady,
+  redJack,
   onMode,
+  onJack,
   onRecord,
 }) {
   const normalizedLessonMode = modeFromLesson(lesson);
   const activeIndex = Math.max(0, MODE_OPTIONS.findIndex((item) => item.id === meterMode));
   const dialAngle = -130 + activeIndex * 43;
+  const reading = splitMeterReading(displayValue || (meterMode === "off" ? "— — —" : "OL"));
 
   return (
     <section className="vl-meter-card">
@@ -349,8 +356,8 @@ function Meter({
         onClick={onRecord}
       >
         <small>{meterMode === "off" ? "SELECT FUNCTION" : MODE_OPTIONS.find((m) => m.id === meterMode)?.label}</small>
-        <strong>{displayValue || (meterMode === "off" ? "— — —" : "OL")}</strong>
-        <span>{meterMode === "resistance" ? "kΩ" : meterMode === "voltage" ? "V" : meterMode === "current" ? "A" : ""}</span>
+        <strong>{reading.value}</strong>
+        <span>{reading.unit}</span>
         <i>{meterMode === "continuity" && readingReady && displayValue !== "OL" ? "BEEP" : readingReady ? "STABLE" : "AUTO"}</i>
       </button>
 
@@ -388,7 +395,7 @@ function Meter({
       <div className="vl-meter-jacks">
         <div>
           <strong>A</strong>
-          <span className="jack red" />
+          <button type="button" aria-label="Connect red lead to current jack" className={`jack red ${redJack === "amps" ? "plugged" : ""} ${action === "jack" && lesson.mode === "current" ? "target-highlight" : ""}`} onClick={() => onJack("amps")} />
           <small>10 A FUSED</small>
         </div>
         <div>
@@ -398,7 +405,7 @@ function Meter({
         </div>
         <div>
           <strong>V Ω</strong>
-          <span className="jack red plugged" />
+          <button type="button" aria-label="Connect red lead to voltage and resistance jack" className={`jack red ${redJack === "vohm" ? "plugged" : ""} ${action === "jack" && lesson.mode !== "current" ? "target-highlight" : ""}`} onClick={() => onJack("vohm")} />
           <small>RED</small>
         </div>
       </div>
@@ -411,6 +418,8 @@ function ProbeDock({
   selectedProbe,
   blackConnected,
   redConnected,
+  lesson,
+  redJack,
   onSelect,
 }) {
   return (
@@ -423,7 +432,7 @@ function ProbeDock({
         <span className="vl-probe-icon"><i /></span>
         <span>
           <strong>Black Probe</strong>
-          <small>{blackConnected ? "Connected to COM" : "Click to select"}</small>
+          <small>{blackConnected ? `Touching ${lesson.probeTargets.black.toUpperCase()}` : "Lead in COM · click to select"}</small>
         </span>
         <em className="vl-probe-body" />
       </button>
@@ -436,7 +445,7 @@ function ProbeDock({
         <span className="vl-probe-icon"><i /></span>
         <span>
           <strong>Red Probe</strong>
-          <small>{redConnected ? "Connected to V / Ω" : "Click to select"}</small>
+          <small>{redConnected ? `Touching ${lesson.probeTargets.red.toUpperCase()}` : `Lead in ${redJack === "amps" ? "A" : "V / Ω"} · click to select`}</small>
         </span>
         <em className="vl-probe-body" />
       </button>
@@ -494,7 +503,7 @@ function CompletionScreen({ lesson, lastLesson, nextLesson, resetBench, onExit }
 
 function CertificateScreen({ learnerName, setLearnerName, onBack, onExit }) {
   const completionDate = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" }).format(new Date());
-  const certificateId = `MSB-VMA-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`;
+  const [certificateId] = useState(() => `MSB-VMA-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`);
 
   function updateName(value) {
     setLearnerName(value);
@@ -547,6 +556,7 @@ export default function VirtualCBETLab({ onExit }) {
   const [learnerName, setLearnerName] = useState(() => localStorage.getItem("msbLearnerName") || "");
   const [supplyOn, setSupplyOn] = useState(false);
   const [meterMode, setMeterMode] = useState("off");
+  const [redJack, setRedJack] = useState("vohm");
   const [selectedProbe, setSelectedProbe] = useState("");
   const [blackConnected, setBlackConnected] = useState(false);
   const [redConnected, setRedConnected] = useState(false);
@@ -621,6 +631,7 @@ export default function VirtualCBETLab({ onExit }) {
     setScreen("lesson");
     setSupplyOn(false);
     setMeterMode("off");
+    setRedJack("vohm");
     setSelectedProbe("");
     setBlackConnected(false);
     setRedConnected(false);
@@ -629,7 +640,7 @@ export default function VirtualCBETLab({ onExit }) {
     setDiagnosis("");
     if (LESSONS[nextLessonIndex]?.id === "continuity") setContinuityScenario(Math.random() < 0.5 ? "good" : "blown");
     if (LESSONS[nextLessonIndex]?.id === "diode") setDiodeScenario(["good", "open", "shorted"][Math.floor(Math.random() * 3)]);
-    setFeedback("Follow the glowing control.");
+    setFeedback(LESSONS[nextLessonIndex]?.id === "practical" ? "Choose the safest next action using the evidence provided." : "Follow the glowing control.");
     setFeedbackKind("");
   }
 
@@ -683,6 +694,14 @@ export default function VirtualCBETLab({ onExit }) {
     advance(`Correct. ${lesson.shortTitle} mode selected.`);
   }
 
+  function handleJack(jack) {
+    if (action !== "jack") return wrong("Move the red lead only when the instructions call for it.");
+    const required = lesson.mode === "current" ? "amps" : "vohm";
+    if (jack !== required) return wrong(`For this measurement, connect the red lead to the ${required === "amps" ? "A" : "V/Ω"} jack.`);
+    setRedJack(jack);
+    advance(`Red lead connected to the ${required === "amps" ? "current" : "V/Ω"} jack.`);
+  }
+
   function handleSeriesGap() {
     if (action !== "series") return wrong("The series gap is not needed right now.");
     setSeriesOpen(true);
@@ -722,6 +741,7 @@ export default function VirtualCBETLab({ onExit }) {
     redConnected,
     seriesOpen,
     discharged,
+    redJack,
   });
 
   function recordReading() {
@@ -762,7 +782,7 @@ export default function VirtualCBETLab({ onExit }) {
   const stepProgress = ((stepIndex + 1) / lesson.steps.length) * 100;
 
   return (
-    <main className={`virtual-lab-shell feedback-${feedbackKind}`}>
+    <main className={`virtual-lab-shell feedback-${feedbackKind} ${lesson.id === "practical" ? "practical-mode" : ""}`}>
       <header id="multimeter-foundations" className="vl-topbar">
         <div>
           <span>CBET Virtual Lab 4.0</span>
@@ -838,7 +858,9 @@ export default function VirtualCBETLab({ onExit }) {
                 meterMode={meterMode}
                 displayValue={displayValue}
                 readingReady={readingReady}
+                redJack={redJack}
                 onMode={handleMode}
+                onJack={handleJack}
                 onRecord={recordReading}
               />
 
@@ -847,6 +869,8 @@ export default function VirtualCBETLab({ onExit }) {
                 selectedProbe={selectedProbe}
                 blackConnected={blackConnected}
                 redConnected={redConnected}
+                lesson={lesson}
+                redJack={redJack}
                 onSelect={selectProbe}
               />
             </div>
