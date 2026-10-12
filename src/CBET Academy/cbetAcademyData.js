@@ -11,7 +11,7 @@ export const cbetAcademyModules = [
     title: "Electronic Components",
     description: "Recognize resistors, capacitors, diodes, transistors, relays, transformers, and failure modes.",
     badge: "Electronic Components",
-    xp: 300,
+    xp: 350,
   },
   {
     number: 3,
@@ -57,9 +57,9 @@ export const cbetAcademyModules = [
   },
   {
     number: 9,
-    title: "CBET Exam Strategy",
-    description: "Practice formulas, test-taking strategy, timing, and mixed high-yield review.",
-    badge: "CBET Exam Readiness",
+    title: "Field Troubleshooting Decisions",
+    description: "Use service evidence, eliminate distractors, choose the safest next action, and verify repairs.",
+    badge: "Troubleshooting Decision-Making",
     xp: 400,
   },
   {

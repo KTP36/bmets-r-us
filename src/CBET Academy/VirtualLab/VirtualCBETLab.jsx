@@ -268,7 +268,7 @@ function CircuitBoard({
         <div className={`vl-training-load ${lesson.id === "continuity" ? "fuse-load" : ""} ${lesson.id === "diode" ? "diode-load" : ""}`}>
           <span className="vl-device-title">{lesson.component?.label || "Training Load"}</span>
           <div className="vl-load-symbol">{lesson.component?.symbol || "—/\\/\\—"}</div>
-          <strong>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "CONTINUITY" : "OPEN") : "TEST REQUIRED") : lesson.id === "diode" ? (readingReady ? (diodeScenario === "good" ? "FORWARD DROP" : diodeScenario === "open" ? "OPEN" : "SHORT") : "TEST REQUIRED") : lesson.expected || "1 kΩ"}</strong>
+          <strong>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "CONTINUITY" : "OPEN") : "TEST REQUIRED") : lesson.id === "diode" ? (readingReady ? (diodeScenario === "good" ? "FORWARD DROP" : diodeScenario === "open" ? "OPEN" : "SHORT") : "TEST REQUIRED") : lesson.readingRule?.startsWith("powered") && !supplyOn ? (lesson.mode === "current" ? "0.0 mA" : "0.0 V") : lesson.expected || "1 kΩ"}</strong>
           <small>{lesson.id === "continuity" ? (readingReady ? (continuityScenario === "good" ? "Electrical path complete" : "Electrical path broken") : "Condition hidden") : lesson.id === "diode" ? (readingReady ? (diodeScenario === "good" ? "Normal silicon junction" : diodeScenario === "open" ? "No forward conduction" : "Near-zero junction drop") : "Condition hidden") : seriesOpen ? "Open circuit" : "Connected"}</small>
         </div>
       </div>

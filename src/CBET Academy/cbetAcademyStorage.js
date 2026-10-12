@@ -1,5 +1,18 @@
 const STORAGE_KEY = "msbCbetAcademyStateV2";
 
+const CBET_MISSION_XP_CAPS = {
+  1: 250,
+  2: 350,
+  3: 350,
+  4: 450,
+  5: 300,
+  6: 350,
+  7: 350,
+  8: 450,
+  9: 400,
+  10: 350,
+};
+
 const defaultMissionProgress = {
   phase: "briefing",
   lessonIndex: 0,
@@ -11,6 +24,7 @@ const defaultMissionProgress = {
 
 const defaultState = {
   xp: 0,
+  missionXp: {},
   modules: {},
   missionProgress: {
     1: defaultMissionProgress,
@@ -33,6 +47,7 @@ function mergeState(saved = {}) {
     ...defaultState,
     ...saved,
     modules: { ...defaultState.modules, ...(saved.modules || {}) },
+    missionXp: { ...defaultState.missionXp, ...(saved.missionXp || {}) },
     missionProgress: {
       ...defaultState.missionProgress,
       ...(saved.missionProgress || {}),
@@ -112,8 +127,23 @@ export function awardCbetXp(amount, awardKey) {
   const awards = state.xpAwards || {};
   if (awards[awardKey]) return state;
 
-  state.xp += amount;
+  const missionMatch = String(awardKey).match(/^mission(\d+)-/);
+  const missionNumber = missionMatch ? Number(missionMatch[1]) : null;
+  const cap = missionNumber ? CBET_MISSION_XP_CAPS[missionNumber] : null;
+  const currentMissionXp = missionNumber ? Number(state.missionXp?.[missionNumber] || 0) : 0;
+  const appliedAmount = cap == null
+    ? amount
+    : Math.max(0, Math.min(amount, cap - currentMissionXp));
+
+  state.xp += appliedAmount;
   state.xpAwards = { ...awards, [awardKey]: true };
+  state.xpAwardAmounts = { ...(state.xpAwardAmounts || {}), [awardKey]: appliedAmount };
+  if (missionNumber) {
+    state.missionXp = {
+      ...(state.missionXp || {}),
+      [missionNumber]: currentMissionXp + appliedAmount,
+    };
+  }
   saveCbetAcademyState(state);
   return state;
 }
@@ -122,10 +152,17 @@ export function completeCbetModule(number, score, xp) {
   const state = getCbetAcademyState();
   const previous = state.modules?.[number] || {};
   const firstPass = !previous.complete && score >= 80;
+  const cap = CBET_MISSION_XP_CAPS[number] ?? xp;
+  const currentMissionXp = Number(state.missionXp?.[number] || 0);
+  const completionAward = firstPass ? Math.max(0, cap - currentMissionXp) : 0;
 
   const next = {
     ...state,
-    xp: state.xp + (firstPass ? xp : 0),
+    xp: state.xp + completionAward,
+    missionXp: {
+      ...(state.missionXp || {}),
+      [number]: currentMissionXp + completionAward,
+    },
     modules: {
       ...state.modules,
       [number]: {
