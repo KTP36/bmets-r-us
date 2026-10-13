@@ -213,6 +213,7 @@ function buildRnPractice(questionSet, count = RN_PRACTICE_COUNT) {
 }
 
 function formatDuration(totalSeconds) {
+  if (totalSeconds === null || totalSeconds === undefined) return "Not recorded";
   const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
   const minutes = Math.floor(safeSeconds / 60);
   const seconds = safeSeconds % 60;
@@ -4742,17 +4743,23 @@ const muscleConceptQuestions = [
   }
 ];
 
-function MuscleQuiz({ onComplete }) {
+function MuscleQuiz({ onComplete, onStart }) {
   const [current, setCurrent] = React.useState(0);
   const [selected, setSelected] = React.useState(null);
   const [score, setScore] = React.useState(0);
   const [showResults, setShowResults] = React.useState(false);
+  const attemptRef = React.useRef({ startedAt: Date.now(), answers: {}, completed: false });
+  const advanceLockRef = React.useRef(false);
+  React.useEffect(() => { advanceLockRef.current = false; }, [current]);
 
   const question = muscleQuizQuestions[current];
   const total = muscleQuizQuestions.length;
   const isAnswered = selected !== null;
 
   const restartQuiz = () => {
+    attemptRef.current = { startedAt: Date.now(), answers: {}, completed: false };
+    advanceLockRef.current = false;
+    onStart?.();
     setCurrent(0);
     setSelected(null);
     setScore(0);
@@ -4874,11 +4881,13 @@ function MuscleQuiz({ onComplete }) {
             <button
               key={i}
               onClick={() => {
-                if (isAnswered) return;
+                const attempt = attemptRef.current;
+                if (attempt.completed || Object.prototype.hasOwnProperty.call(attempt.answers, current)) return;
+                attempt.answers[current] = i;
                 setSelected(i);
-                if (i === question.answer) {
-                  setScore((prev) => prev + 1);
-                }
+                setScore(Object.entries(attempt.answers).filter(([index, answer]) =>
+                  answer === muscleQuizQuestions[Number(index)].answer
+                ).length);
               }}
               style={{
                 width: "100%",
@@ -4929,13 +4938,18 @@ function MuscleQuiz({ onComplete }) {
         <div style={{ textAlign: "center", marginTop: 20 }}>
           <button
             onClick={() => {
-              if (!isAnswered) return;
-              const isCorrect = selected === question.answer;
-              const nextScore = isCorrect ? score + 1 : score;
+              const attempt = attemptRef.current;
+              if (!isAnswered || attempt.completed || advanceLockRef.current) return;
+              advanceLockRef.current = true;
               if (current + 1 === total) {
-                onComplete && onComplete(nextScore, total);
-                setScore(nextScore);
+                attempt.completed = true;
+                const finalScore = Object.entries(attempt.answers).filter(([index, answer]) =>
+                  answer === muscleQuizQuestions[Number(index)].answer
+                ).length;
+                const elapsed = Math.max(1, Math.floor((Date.now() - attempt.startedAt) / 1000));
+                setScore(finalScore);
                 setShowResults(true);
+                onComplete?.(finalScore, total, elapsed);
               } else {
                 setCurrent((prev) => prev + 1);
                 setSelected(null);
@@ -4963,17 +4977,23 @@ function MuscleQuiz({ onComplete }) {
 
 
 
-function MuscleConceptQuiz({ onComplete }) {
+function MuscleConceptQuiz({ onComplete, onStart }) {
   const [current, setCurrent] = React.useState(0);
   const [selected, setSelected] = React.useState(null);
   const [score, setScore] = React.useState(0);
   const [showResults, setShowResults] = React.useState(false);
+  const attemptRef = React.useRef({ startedAt: Date.now(), answers: {}, completed: false });
+  const advanceLockRef = React.useRef(false);
+  React.useEffect(() => { advanceLockRef.current = false; }, [current]);
 
   const question = muscleConceptQuestions[current];
   const total = muscleConceptQuestions.length;
   const isAnswered = selected !== null;
 
   const restartQuiz = () => {
+    attemptRef.current = { startedAt: Date.now(), answers: {}, completed: false };
+    advanceLockRef.current = false;
+    onStart?.();
     setCurrent(0);
     setSelected(null);
     setScore(0);
@@ -5095,11 +5115,13 @@ function MuscleConceptQuiz({ onComplete }) {
             <button
               key={i}
               onClick={() => {
-                if (isAnswered) return;
+                const attempt = attemptRef.current;
+                if (attempt.completed || Object.prototype.hasOwnProperty.call(attempt.answers, current)) return;
+                attempt.answers[current] = i;
                 setSelected(i);
-                if (i === question.answer) {
-                  setScore((prev) => prev + 1);
-                }
+                setScore(Object.entries(attempt.answers).filter(([index, answer]) =>
+                  answer === muscleConceptQuestions[Number(index)].answer
+                ).length);
               }}
               style={{
                 width: "100%",
@@ -5150,13 +5172,18 @@ function MuscleConceptQuiz({ onComplete }) {
         <div style={{ textAlign: "center", marginTop: 20 }}>
           <button
             onClick={() => {
-              if (!isAnswered) return;
-              const isCorrect = selected === question.answer;
-              const nextScore = isCorrect ? score + 1 : score;
+              const attempt = attemptRef.current;
+              if (!isAnswered || attempt.completed || advanceLockRef.current) return;
+              advanceLockRef.current = true;
               if (current + 1 === total) {
-                onComplete && onComplete(nextScore, total);
-                setScore(nextScore);
+                attempt.completed = true;
+                const finalScore = Object.entries(attempt.answers).filter(([index, answer]) =>
+                  answer === muscleConceptQuestions[Number(index)].answer
+                ).length;
+                const elapsed = Math.max(1, Math.floor((Date.now() - attempt.startedAt) / 1000));
+                setScore(finalScore);
                 setShowResults(true);
+                onComplete?.(finalScore, total, elapsed);
               } else {
                 setCurrent((prev) => prev + 1);
                 setSelected(null);
@@ -6246,6 +6273,7 @@ export default function App() {
   }, []);
 
   const examStartTimesRef = useRef({});
+  const scoreSaveInFlightRef = useRef(false);
   const anatomyStartRef = useRef({ name: "", startedAt: 0 });
   const anatomyCompletionSavedRef = useRef("");
   const anatomyGameRef = useRef(null);
@@ -6673,6 +6701,13 @@ export default function App() {
 
   const submitSavedScore = async (e) => {
     e.preventDefault();
+    if (scoreSaveInFlightRef.current) return;
+    const { score: resultScore, total: resultTotal, timeSeconds: resultTime } = saveScoreState;
+    if (!Number.isInteger(resultScore) || !Number.isInteger(resultTotal) || resultTotal <= 0 || resultScore < 0 || resultScore > resultTotal || (resultTime !== null && (!Number.isFinite(resultTime) || resultTime <= 0))) {
+      setSaveScoreStatus("error");
+      setSaveScoreMessage("This result could not be validated. Please restart the quiz and try again.");
+      return;
+    }
     const username = saveScoreForm.username.trim();
     const email = saveScoreForm.email.trim();
     if (!username || !email) {
@@ -6695,11 +6730,10 @@ export default function App() {
       completedAt: new Date().toISOString()
     };
 
+    scoreSaveInFlightRef.current = true;
+    setSaveScoreStatus("saving");
+    setSaveScoreMessage("Saving your score…");
     try {
-      const nextEntries = [entry, ...leaderboardEntries];
-      setLeaderboardEntries(nextEntries);
-      localStorage.setItem("msbLeaderboardEntries", JSON.stringify(nextEntries));
-
       const privateSubmission = new FormData();
       privateSubmission.append("name", username);
       privateSubmission.append("email", email);
@@ -6717,12 +6751,16 @@ export default function App() {
       );
       privateSubmission.append("_source", "leaderboard-save");
 
-      await fetch("https://formspree.io/f/xgonbzaj", {
+      const response = await fetch("https://formspree.io/f/xgonbzaj", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: privateSubmission
       });
 
+      if (!response.ok) throw new Error("score_save_failed");
+      const nextEntries = [entry, ...leaderboardEntries];
+      localStorage.setItem("msbLeaderboardEntries", JSON.stringify(nextEntries));
+      setLeaderboardEntries(nextEntries);
       setSaveScoreStatus("success");
       setSaveScoreMessage("Score saved. Your username can appear on the leaderboard. Your email stays private.");
 
@@ -6735,6 +6773,8 @@ export default function App() {
     } catch (error) {
       setSaveScoreStatus("error");
       setSaveScoreMessage("Your score could not be saved right now. Please try again.");
+    } finally {
+      scoreSaveInFlightRef.current = false;
     }
   };
 
@@ -6884,6 +6924,7 @@ export default function App() {
     localStorage.setItem("harderCbetProgress", JSON.stringify(progress));
   };
   const restartHarderCbetExam = () => {
+    trackExamStart("CBET Harder Practice");
     const reshuffled = shuffleQuestionSet(harderCbetQuestions);
     localStorage.removeItem("harderCbetProgress");
     setShuffledHarderCbetQuestions(reshuffled);
@@ -7389,9 +7430,12 @@ export default function App() {
     });
   };
 
-  const trackExamCompletion = (examName, scoreValue, totalValue) => {
+  const trackExamCompletion = (examName, scoreValue, totalValue, measuredSeconds) => {
+  if (!Number.isInteger(scoreValue) || !Number.isInteger(totalValue) || totalValue <= 0 || scoreValue < 0 || scoreValue > totalValue) return;
   const startedAt = examStartTimesRef.current[examName];
-  const timeSeconds = startedAt ? Math.max(1, Math.round((Date.now() - startedAt) / 1000)) : 0;
+  const timeSeconds = Number.isFinite(measuredSeconds) && measuredSeconds > 0
+    ? Math.floor(measuredSeconds)
+    : startedAt ? Math.max(1, Math.round((Date.now() - startedAt) / 1000)) : null;
   const completionPercent = totalValue > 0 ? Math.round((scoreValue / totalValue) * 100) : 0;
   delete examStartTimesRef.current[examName];
 
@@ -7439,9 +7483,8 @@ export default function App() {
     return next;
   });
 
-  if (typeof window === "undefined" || typeof window.gtag !== "function") {
-    return;
-  }
+  openSaveScorePrompt(examName, scoreValue, totalValue, timeSeconds);
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
 
   window.gtag("event", "exam_completed", {
     exam_name: examName,
@@ -7451,7 +7494,6 @@ export default function App() {
     time_seconds: timeSeconds
   });
 
-  openSaveScorePrompt(examName, scoreValue, totalValue, timeSeconds);
 };
   const trackExamStart = (examName) => {
   examStartTimesRef.current[examName] = Date.now();
@@ -7487,7 +7529,10 @@ export default function App() {
     const directQuizExamNames = {
       RN: "RN Practice",
       AnatomyQuiz: "Anatomy Quiz",
-      EKGQuiz: "EKG Waveform Quiz"
+      EKGQuiz: "EKG Waveform Quiz",
+      MuscleQuiz: "Muscle Quiz",
+      MuscleConceptQuiz: "Muscle Concepts Quiz",
+      HarderCBET: "CBET Harder Practice"
     };
 
     const examName = directQuizExamNames[activeTab];
@@ -10501,8 +10546,8 @@ export default function App() {
         )}
         {activeTab === "AnatomyQuiz" && <AnatomyQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Anatomy Quiz", finalScore, totalQuestions)} />}
         {activeTab === "BonesQuiz" && <BonesQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Bones Quiz", finalScore, totalQuestions)} />}
-        {activeTab === "MuscleQuiz" && <MuscleQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Muscle Quiz", finalScore, totalQuestions)} />}
-        {activeTab === "MuscleConceptQuiz" && <MuscleConceptQuiz onComplete={(finalScore, totalQuestions) => trackExamCompletion("Muscle Concepts Quiz", finalScore, totalQuestions)} />}
+        {activeTab === "MuscleQuiz" && <MuscleQuiz onStart={() => trackExamStart("Muscle Quiz")} onComplete={(finalScore, totalQuestions, elapsed) => trackExamCompletion("Muscle Quiz", finalScore, totalQuestions, elapsed)} />}
+        {activeTab === "MuscleConceptQuiz" && <MuscleConceptQuiz onStart={() => trackExamStart("Muscle Concepts Quiz")} onComplete={(finalScore, totalQuestions, elapsed) => trackExamCompletion("Muscle Concepts Quiz", finalScore, totalQuestions, elapsed)} />}
                {activeTab === "CBET" && (
           <div
             style={{
