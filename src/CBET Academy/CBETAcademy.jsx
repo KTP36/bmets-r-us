@@ -40,6 +40,7 @@ import {
   saveMissionProgress,
 } from "./cbetAcademyStorage";
 import "./CBETAcademy.css";
+import BiomedReferences from "./components/BiomedReferences";
 import "./CBETServiceCall.css";
 import VirtualCBETLab from "./VirtualLab/VirtualCBETLab";
 import { loadCourseState } from "./VirtualLab/LessonEngine";
@@ -7570,6 +7571,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
           </div>
         )}
       </section>
+      <BiomedReferences />
       {showStats && <StatsPanel stats={stats} onClose={() => setShowStats(false)} />}
     </main>
   );
