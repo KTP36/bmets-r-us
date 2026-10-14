@@ -3,6 +3,7 @@ import AmazonBanner from "../components/AmazonBanner";
 import CArmPartnerBanner from "../components/CArmPartnerBanner";
 import FeaturedAcademiesSection from "../components/FeaturedAcademiesSection";
 import HeroSection from "../components/HeroSection";
+import HomeGiveaway from "../components/HomeGiveaway";
 import QuickPracticeSection from "../components/QuickPracticeSection";
 
 export default function HomePage({
@@ -15,13 +16,16 @@ export default function HomePage({
   setCurrentStudyGearPickIndex,
   studyGearPicks,
   setMode,
-  setSelectedSet
+  setSelectedSet,
+  supportingContent,
 }) {
   return (
     <>
       <HeroSection
         isSmallScreen={isSmallScreen}
         jumpToPracticeCategory={jumpToPracticeCategory}
+        setMode={setMode}
+        setSelectedSet={setSelectedSet}
       />
 
       {showCarmPartner && (
@@ -30,15 +34,6 @@ export default function HomePage({
           isSmallScreen={isSmallScreen}
         />
       )}
-
-      <AmazonBanner
-        currentStudyGearPick={currentStudyGearPick}
-        currentStudyGearPickIndex={currentStudyGearPickIndex}
-        setCurrentStudyGearPickIndex={setCurrentStudyGearPickIndex}
-        studyGearPicks={studyGearPicks}
-        trackSiteEvent={trackSiteEvent}
-        isSmallScreen={isSmallScreen}
-      />
 
       <FeaturedAcademiesSection
         isSmallScreen={isSmallScreen}
@@ -52,6 +47,20 @@ export default function HomePage({
         setSelectedSet={setSelectedSet}
         trackSiteEvent={trackSiteEvent}
       />
+      <HomeGiveaway
+        isSmallScreen={isSmallScreen}
+        trackSiteEvent={trackSiteEvent}
+      />
+      <AmazonBanner
+        currentStudyGearPick={currentStudyGearPick}
+        currentStudyGearPickIndex={currentStudyGearPickIndex}
+        setCurrentStudyGearPickIndex={setCurrentStudyGearPickIndex}
+        studyGearPicks={studyGearPicks}
+        trackSiteEvent={trackSiteEvent}
+        isSmallScreen={isSmallScreen}
+      />
+
+      {supportingContent}
     </>
   );
 }
