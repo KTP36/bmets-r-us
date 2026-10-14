@@ -1,6 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./VirtualCBETLab.css";
 import "./ContinuityBench.css";
+import "./VoltageBench.css";
+import "./ResistanceBench.css";
+import ResistanceBench from "./components/ResistanceBench";
+import {getResistanceMeasurement, resistorEvidence, RESISTOR_SCENARIOS} from "./components/resistanceModel";
+import VoltageBench from "./components/VoltageBench";
+import { getVoltageMeasurement } from "./components/voltageModel";
 import ContinuityBench from "./components/ContinuityBench";
 import { getContinuityMeasurement, createContinuityTone } from "./components/continuityModel";
 import medSkillBuilderLogo from "./MedSkillBuilder-logo.png";
@@ -330,7 +336,7 @@ function Meter({
     <section className="vl-meter-card">
       <div className="vl-meter-brand">
         <strong>MEDSKILL</strong>
-        <span>{lesson.id === "continuity" ? "MSB-30 TRAINING MULTIMETER" : "117 TRUE RMS MULTIMETER"}</span>
+        <span>{["continuity", "voltage", "resistance"].includes(lesson.id) ? "MSB-30 TRAINING MULTIMETER" : "117 TRUE RMS MULTIMETER"}</span>
       </div>
 
       <button
@@ -345,10 +351,10 @@ function Meter({
       </button>
 
       <div className="vl-meter-softkeys">
-        <button type="button" disabled={lesson.id === "continuity"} title={lesson.id === "continuity" ? "Not available on this training meter" : undefined}>HOLD</button>
-        <button type="button" disabled={lesson.id === "continuity"} title={lesson.id === "continuity" ? "Not available on this training meter" : undefined}>MIN MAX</button>
-        <button type="button" disabled={lesson.id === "continuity"} title={lesson.id === "continuity" ? "Not available on this training meter" : undefined}>RANGE</button>
-        <button type="button" className="yellow" aria-label="Backlight" disabled={lesson.id === "continuity"} />
+        <button type="button" disabled={["continuity", "voltage", "resistance"].includes(lesson.id)} title={["continuity", "voltage", "resistance"].includes(lesson.id) ? "Not available on this training meter" : undefined}>HOLD</button>
+        <button type="button" disabled={["continuity", "voltage", "resistance"].includes(lesson.id)} title={["continuity", "voltage", "resistance"].includes(lesson.id) ? "Not available on this training meter" : undefined}>MIN MAX</button>
+        <button type="button" disabled={["continuity", "voltage", "resistance"].includes(lesson.id)} title={["continuity", "voltage", "resistance"].includes(lesson.id) ? "Not available on this training meter" : undefined}>RANGE</button>
+        <button type="button" className="yellow" aria-label="Backlight" disabled={["continuity", "voltage", "resistance"].includes(lesson.id)} />
       </div>
 
       <div className="vl-selector">
@@ -417,7 +423,7 @@ function ProbeDock({
         <span className="vl-probe-icon"><i /></span>
         <span>
           <strong>Black Probe</strong>
-          <small>{blackConnected ? `Touching ${(lesson.id === "continuity" ? blackPoint : lesson.probeTargets.black).toUpperCase()}` : "Lead in COM · click to select"}</small>
+          <small>{blackConnected ? `Touching ${(["continuity", "voltage", "resistance"].includes(lesson.id) ? blackPoint : lesson.probeTargets.black).toUpperCase()}` : "Lead in COM · click to select"}</small>
         </span>
         <em className="vl-probe-body" />
       </button>
@@ -430,7 +436,7 @@ function ProbeDock({
         <span className="vl-probe-icon"><i /></span>
         <span>
           <strong>Red Probe</strong>
-          <small>{redConnected ? `Touching ${(lesson.id === "continuity" ? redPoint : lesson.probeTargets.red).toUpperCase()}` : `Lead in ${redJack === "amps" ? "A" : "V / Ω"} · click to select`}</small>
+          <small>{redConnected ? `Touching ${(["continuity", "voltage", "resistance"].includes(lesson.id) ? redPoint : lesson.probeTargets.red).toUpperCase()}` : `Lead in ${redJack === "amps" ? "A" : "V / Ω"} · click to select`}</small>
         </span>
         <em className="vl-probe-body" />
       </button>
@@ -540,6 +546,8 @@ export default function VirtualCBETLab({ onExit }) {
   const [screen, setScreen] = useState("lesson");
   const [learnerName, setLearnerName] = useState(() => localStorage.getItem("msbLearnerName") || "");
   const [supplyOn, setSupplyOn] = useState(false);
+  const [supplyVoltage, setSupplyVoltage] = useState(12);
+  const [resistorCondition, setResistorCondition] = useState(() => RESISTOR_SCENARIOS[Math.floor(Math.random()*4)]);
   const [meterMode, setMeterMode] = useState("off");
   const [redJack, setRedJack] = useState("vohm");
   const [selectedProbe, setSelectedProbe] = useState("");
@@ -573,6 +581,10 @@ export default function VirtualCBETLab({ onExit }) {
 
   const baseLesson = LESSONS[lessonIndex];
   const lesson = useMemo(() => {
+    if (baseLesson?.id === "resistance") {
+      const evidence = resistorEvidence(resistorCondition);
+      return {...baseLesson,expected:evidence.display,diagnosis:{correct:evidence.diagnosis,options:["Within tolerance","Outside tolerance","Open resistor","Shorted resistor"]}};
+    }
     if (baseLesson?.id === "continuity") {
       const goodFuse = continuityScenario === "good";
       return {
@@ -595,7 +607,7 @@ export default function VirtualCBETLab({ onExit }) {
     }
 
     return baseLesson;
-  }, [baseLesson, continuityScenario, diodeScenario]);
+  }, [baseLesson, continuityScenario, diodeScenario, resistorCondition]);
   const step = lesson.steps[stepIndex];
   const action = step?.[3];
 
@@ -642,6 +654,7 @@ export default function VirtualCBETLab({ onExit }) {
     setStepIndex(0);
     setScreen("lesson");
     setSupplyOn(false);
+    setSupplyVoltage(12);
     setMeterMode("off");
     setRedJack("vohm");
     setSelectedProbe("");
@@ -650,6 +663,7 @@ export default function VirtualCBETLab({ onExit }) {
     setSeriesOpen(false);
     setDischarged(false);
     setDiagnosis("");
+    if (LESSONS[nextLessonIndex]?.id === "resistance") setResistorCondition(RESISTOR_SCENARIOS[Math.floor(Math.random()*4)]);
     if (LESSONS[nextLessonIndex]?.id === "continuity") setContinuityScenario(Math.random() < 0.5 ? "good" : "blown");
     if (LESSONS[nextLessonIndex]?.id === "diode") setDiodeScenario(["good", "open", "shorted"][Math.floor(Math.random() * 3)]);
     setFeedback(LESSONS[nextLessonIndex]?.id === "practical" ? "Choose the safest next action using the evidence provided." : "Follow the glowing control.");
@@ -691,6 +705,18 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function handlePower() {
+    if (lesson.id === "resistance") {
+      setSupplyOn(false); setIsolationVerified(true);
+      if (action === "poweroff") advance("Power is off. The resistor is removed from equipment and isolated from stored energy.");
+      else showFeedback("The isolated resistor fixture has no power source connected.");
+      return;
+    }
+    if (lesson.id === "voltage") {
+      setSupplyOn(!supplyOn);
+      if (action === "power" && !supplyOn) advance("Supply output enabled. Measure across the terminals.");
+      else showFeedback(supplyOn ? "Output disabled. Connected probes should show zero volts." : "Supply output enabled.");
+      return;
+    }
     if (lesson.id === "continuity") {
       unlockContinuityAudio();
       setSupplyOn(false);
@@ -711,6 +737,18 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function handleMode(mode) {
+    if (lesson.id === "resistance") {
+      setMeterMode(mode);
+      if (action === "mode" && mode === "resistance") advance("Resistance mode selected.");
+      else showFeedback(mode === "resistance" ? "Measure across both leads and compare with the rated tolerance." : "Select resistance (Ω) for this test.", mode === "resistance" ? "good" : "warn");
+      return;
+    }
+    if (lesson.id === "voltage") {
+      setMeterMode(mode);
+      if (action === "mode" && mode === "voltage") advance("DC voltage selected.");
+      else showFeedback(mode === "voltage" ? "DC voltage measures the difference between the probe contacts." : "Select DC voltage for this powered supply.", mode === "voltage" ? "good" : "warn");
+      return;
+    }
     if (lesson.id === "continuity") {
       unlockContinuityAudio();
       setMeterMode(mode);
@@ -725,6 +763,12 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function handleJack(jack) {
+    if (lesson.id === "resistance") { setRedJack(jack); showFeedback(jack === "vohm" ? "Red lead in V/Ω; black lead in COM." : "Use the V/Ω jack for resistance.", jack === "vohm" ? "good" : "warn"); return; }
+    if (lesson.id === "voltage") {
+      setRedJack(jack);
+      showFeedback(jack === "vohm" ? "Red lead in V/Ω; black lead stays in COM." : "Unsafe setup: a current input across a supply can short the output. This simulator blocks the measurement.", jack === "vohm" ? "good" : "warn");
+      return;
+    }
     if (lesson.id === "continuity") {
       unlockContinuityAudio();
       setRedJack(jack);
@@ -752,6 +796,12 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function selectProbe(probe) {
+    if (lesson.id === "resistance") { setSelectedProbe(probe); showFeedback(`${probe} probe selected. Touch either metal lead.`); return; }
+    if (lesson.id === "voltage") {
+      setSelectedProbe(probe);
+      showFeedback(`${probe} probe selected. Choose either output terminal.`);
+      return;
+    }
     if (lesson.id === "continuity") {
       unlockContinuityAudio();
       setSelectedProbe(probe);
@@ -765,6 +815,25 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function connectPoint(point) {
+    if (lesson.id === "resistance") {
+      if (!selectedProbe) return wrong("Select a probe first.");
+      const nextBlack = selectedProbe === "black" ? point : blackPoint;
+      const nextRed = selectedProbe === "red" ? point : redPoint;
+      if (selectedProbe === "black") setBlackPoint(point); else setRedPoint(point);
+      if (action === selectedProbe && isolationVerified && meterMode === "resistance" && redJack === "vohm" && (action === "black" || (nextBlack && nextBlack !== nextRed))) advance(`${selectedProbe} probe connected.`);
+      else showFeedback(nextBlack && nextBlack === nextRed ? "Both probes touch one lead. This does not measure the resistor." : "Contact updated. Observe the resistance reading.");
+      setSelectedProbe("");return;
+    }
+    if (lesson.id === "voltage") {
+      if (!selectedProbe) return wrong("Select a probe first.");
+      const nextBlack = selectedProbe === "black" ? point : blackPoint;
+      const nextRed = selectedProbe === "red" ? point : redPoint;
+      if (selectedProbe === "black") setBlackPoint(point); else setRedPoint(point);
+      if (action === selectedProbe && supplyOn && meterMode === "voltage" && redJack === "vohm" && point === lesson.probeTargets[selectedProbe]) advance(`${selectedProbe} probe connected.`);
+      else showFeedback(nextBlack && nextBlack === nextRed ? "Both probes touch one terminal: no voltage difference." : "Contact updated. Observe the signed voltage reading.");
+      setSelectedProbe("");
+      return;
+    }
     if (lesson.id === "continuity") {
       if (!selectedProbe) return wrong("Select the black or red probe first.");
       unlockContinuityAudio();
@@ -787,6 +856,8 @@ export default function VirtualCBETLab({ onExit }) {
     advance(`${action === "black" ? "Black" : "Red"} probe connected correctly.`);
   }
 
+  const resistanceMeasurement = getResistanceMeasurement({mode:meterMode, redJack, supplyOn, isolationVerified, blackPoint, redPoint, condition:resistorCondition});
+  const voltageMeasurement = getVoltageMeasurement({mode:meterMode, redJack, supplyOn, voltage:supplyVoltage, blackPoint, redPoint});
   const continuityMeasurement = getContinuityMeasurement({ mode: meterMode, redJack, supplyOn, blackPoint, redPoint, fuseCondition: continuityScenario });
   const continuityDetected = lesson.id === "continuity" && screen === "lesson" && continuityMeasurement.beeps;
   useEffect(() => {
@@ -801,7 +872,7 @@ export default function VirtualCBETLab({ onExit }) {
     showFeedback("Probe lifted. Contact is broken.");
   }
 
-  const readingReady = lesson.id === "continuity" ? isolationVerified && continuityMeasurement.acrossFuse && !continuityMeasurement.setupError && meterMode === "continuity" : isReadingReady({
+  const readingReady = lesson.id === "resistance" ? resistanceMeasurement.ready : lesson.id === "voltage" ? voltageMeasurement.ready : lesson.id === "continuity" ? isolationVerified && continuityMeasurement.acrossFuse && !continuityMeasurement.setupError && meterMode === "continuity" : isReadingReady({
     lesson,
     supplyOn,
     meterMode,
@@ -815,6 +886,12 @@ export default function VirtualCBETLab({ onExit }) {
   function recordReading() {
     if (action !== "read") return wrong("The display is not the current step.");
     if (!readingReady) return wrong("Check the meter mode, power state, safety step, and probe placement.");
+    if (lesson.id === "resistance") { advance("Reading recorded. Compare the measurement with 950–1,050 Ω and diagnose the resistor."); return; }
+    if (lesson.id === "voltage") {
+      if (Math.abs(voltageMeasurement.value) !== 12 || voltageMeasurement.value < 0) return wrong("For the initial check, set 12.0 V and connect red to positive, black to negative.");
+      advance("12.0 V recorded. Now set the supply to 9.0 V and evaluate the output for equipment requiring 12.0 V.");
+      return;
+    }
     if (lesson.id === "continuity") {
       advance("Reading recorded. Use the resistance reading and continuity indicator to choose your diagnosis.");
       return;
@@ -834,6 +911,8 @@ export default function VirtualCBETLab({ onExit }) {
   function handleDiagnosis(option) {
     if (action !== "diagnose") return wrong("Complete the measurement before diagnosing.");
     if (lesson.id === "continuity" && !readingReady) return wrong("Reconnect the probes across the fuse with the correct setup before submitting a diagnosis.");
+    if (lesson.id === "voltage" && (!readingReady || supplyVoltage !== 9)) return wrong("Set 9.0 V, enable output, and measure across the terminals in DC voltage mode before diagnosing.");
+    if (lesson.id === "resistance" && !readingReady) return wrong("Verify isolation, select Ω and V/Ω, and contact opposite leads before diagnosing.");
     setDiagnosis(option);
     if (option !== lesson.diagnosis.correct) return wrong("That diagnosis does not match the measured evidence.");
     advance(`Correct diagnosis: ${option}.`);
@@ -844,13 +923,13 @@ export default function VirtualCBETLab({ onExit }) {
     else setScreen("courseComplete");
   }
 
-  const displayValue = lesson.id === "continuity" ? continuityMeasurement.display : getDisplayValue({ lesson, ready: readingReady, meterMode });
+  const displayValue = lesson.id === "resistance" ? resistanceMeasurement.display : lesson.id === "voltage" ? voltageMeasurement.display : lesson.id === "continuity" ? continuityMeasurement.display : getDisplayValue({ lesson, ready: readingReady, meterMode });
   const lastLesson = lessonIndex === LESSONS.length - 1;
   const totalPossibleXp = LESSONS.reduce((sum, item) => sum + item.xp, 0);
   const stepProgress = ((stepIndex + 1) / lesson.steps.length) * 100;
 
   return (
-    <main className={`virtual-lab-shell feedback-${feedbackKind} ${lesson.id === "continuity" ? "continuity-bench" : ""} ${lesson.id === "practical" ? "practical-mode" : ""}`}>
+    <main className={`virtual-lab-shell feedback-${feedbackKind} ${lesson.id === "continuity" ? "continuity-bench" : lesson.id === "voltage" ? "voltage-bench" : lesson.id === "resistance" ? "resistance-bench" : ""} ${lesson.id === "practical" ? "practical-mode" : ""}`}>
       <header id="multimeter-foundations" className="vl-topbar">
         <div>
           <span>CBET Virtual Lab 4.0</span>
@@ -900,7 +979,16 @@ export default function VirtualCBETLab({ onExit }) {
             <div className="vl-step-track"><i style={{ width: `${stepProgress}%` }} /></div>
 
             <div className="vl-workbench-grid">
-              {lesson.id === "continuity" ? <ContinuityBench
+              {lesson.id === "resistance" ? <ResistanceBench
+                selectedProbe={selectedProbe} blackPoint={blackPoint} redPoint={redPoint}
+                isolationVerified={isolationVerified} action={action} diagnosis={diagnosis}
+                onPoint={connectPoint} onDisconnect={liftProbe} onVerify={handlePower} onDiagnosis={handleDiagnosis}
+              /> : lesson.id === "voltage" ? <VoltageBench
+                supplyOn={supplyOn} voltage={supplyVoltage} selectedProbe={selectedProbe}
+                blackPoint={blackPoint} redPoint={redPoint} action={action} diagnosis={diagnosis}
+                onPower={handlePower} onVoltage={value => { setSupplyVoltage(value); showFeedback("Setpoint changed. Verify the voltage using the meter."); }}
+                onPoint={connectPoint} onDisconnect={liftProbe} onDiagnosis={handleDiagnosis}
+              /> : lesson.id === "continuity" ? <ContinuityBench
                 selectedProbe={selectedProbe} blackPoint={blackPoint} redPoint={redPoint}
                 isolationVerified={isolationVerified} action={action}
                 diagnosisOptions={lesson.diagnosis.options} diagnosis={diagnosis}
@@ -943,8 +1031,8 @@ export default function VirtualCBETLab({ onExit }) {
               <ProbeDock
                 action={action}
                 selectedProbe={selectedProbe}
-                blackConnected={lesson.id === "continuity" ? Boolean(blackPoint) : blackConnected}
-                redConnected={lesson.id === "continuity" ? Boolean(redPoint) : redConnected}
+                blackConnected={["continuity", "voltage", "resistance"].includes(lesson.id) ? Boolean(blackPoint) : blackConnected}
+                redConnected={["continuity", "voltage", "resistance"].includes(lesson.id) ? Boolean(redPoint) : redConnected}
                 blackPoint={blackPoint}
                 redPoint={redPoint}
                 lesson={lesson}

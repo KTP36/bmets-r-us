@@ -4,13 +4,13 @@ const lesson = {
   "shortTitle": "Voltage",
   "badge": "Voltage Apprentice",
   "xp": 100,
-  "intro": "Measure electrical pressure between two energized points.",
+  "intro": "Measure a low-voltage DC supply in parallel, observe polarity, and identify an output below specification.",
   "expected": "12.0 V",
   "mode": "voltage",
   "component": {
     "label": "TRAINING LOAD",
-    "symbol": "—/\\\\/\\\\—",
-    "name": "1 kΩ Resistor",
+    "symbol": "\u2014/\\\\/\\\\\u2014",
+    "name": "1 k\u03a9 Resistor",
     "kind": "resistor"
   },
   "points": [
@@ -40,13 +40,13 @@ const lesson = {
     [
       "power",
       "Turn On the Supply",
-      "Click the highlighted OUTPUT button.",
+      "Click Output OFF to enable the 12.0 V DC supply.",
       "power"
     ],
     [
       "mode",
       "Select DC Voltage",
-      "Click V⎓ on the multimeter.",
+      "Click V\u2393 on the multimeter.",
       "mode"
     ],
     [
@@ -66,8 +66,20 @@ const lesson = {
       "Record the Reading",
       "Click the meter display when it shows 12.0 V.",
       "read"
+    ],
+    [
+      "diagnose",
+      "Check a Low Output",
+      "Set the supply to 9.0 V. Measure across the output and decide whether it meets the equipment requirement of 12.0 V DC.",
+      "diagnose"
     ]
-  ]
+  ],
+  "diagnosis": {
+    "correct": "Output below specification",
+    "options": [
+      "Output within specification",
+      "Output below specification"
+    ]
+  }
 };
-
 export default lesson;

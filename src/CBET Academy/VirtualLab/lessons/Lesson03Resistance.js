@@ -4,13 +4,13 @@ const lesson = {
   "shortTitle": "Resistance",
   "badge": "Resistance Reader",
   "xp": 120,
-  "intro": "Measure opposition to current with the circuit de-energized.",
-  "expected": "1.00 kΩ",
+  "intro": "Measure an isolated 1 k\u03a9 \u00b15% resistor and identify whether its resistance is within tolerance, drifted, open, or shorted.",
+  "expected": "1.00 k\u03a9",
   "mode": "resistance",
   "component": {
     "label": "TRAINING LOAD",
-    "symbol": "—/\\\\/\\\\—",
-    "name": "1 kΩ Resistor",
+    "symbol": "\u2014/\\\\/\\\\\u2014",
+    "name": "1 k\u03a9 Resistor",
     "kind": "resistor"
   },
   "points": [
@@ -34,40 +34,45 @@ const lesson = {
     [
       "welcome",
       "Welcome to Lesson 3",
-      "You will measure a 1 kΩ resistor safely.",
+      "You will measure a 1 k\u03a9 resistor safely.",
       "continue"
     ],
     [
       "poweroff",
       "Verify Power Is Off",
-      "Resistance is measured without power.",
+      "Verify power is off and the resistor is removed from equipment and isolated from stored energy.",
       "poweroff"
     ],
     [
       "mode",
       "Select Resistance",
-      "Click Ω on the multimeter.",
+      "Click \u03a9 on the multimeter.",
       "mode"
     ],
     [
       "black",
       "Connect the Black Probe",
-      "Select black, then click LEFT LEAD.",
+      "Select black, then touch either metal lead.",
       "black"
     ],
     [
       "red",
       "Connect the Red Probe",
-      "Select red, then click RIGHT LEAD.",
+      "Select red, then touch the opposite metal lead.",
       "red"
     ],
     [
       "read",
       "Record the Reading",
-      "Click the meter display when it shows 1.00 kΩ.",
+      "Click the meter display with both probes contacting opposite leads. Record the measured resistance, including OL if the path is open.",
       "read"
+    ],
+    [
+      "diagnose",
+      "Evaluate the Resistor",
+      "Compare the measurement with the rated 1 k\u03a9 \u00b15% range (950\u20131,050 \u03a9). Choose the matching diagnosis.",
+      "diagnose"
     ]
   ]
 };
-
 export default lesson;
