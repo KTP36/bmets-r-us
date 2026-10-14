@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./VirtualCBETLab.css";
+import "./ContinuityBench.css";
+import ContinuityBench from "./components/ContinuityBench";
+import { getContinuityMeasurement, createContinuityTone } from "./components/continuityModel";
 import medSkillBuilderLogo from "./MedSkillBuilder-logo.png";
 import LESSONS from "./lessons";
 import {
@@ -38,27 +41,6 @@ function titleCase(value = "") {
   return String(value)
     .replace(/[-_]/g, " ")
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
-function playContinuityBeep() {
-  try {
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
-    const context = new AudioContextClass();
-    const oscillator = context.createOscillator();
-    const gain = context.createGain();
-    oscillator.type = "square";
-    oscillator.frequency.setValueAtTime(1050, context.currentTime);
-    gain.gain.setValueAtTime(0.04, context.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.28);
-    oscillator.connect(gain);
-    gain.connect(context.destination);
-    oscillator.start();
-    oscillator.stop(context.currentTime + 0.28);
-    oscillator.addEventListener("ended", () => context.close());
-  } catch {
-    // Audio is optional.
-  }
 }
 
 function modeFromLesson(lesson) {
@@ -334,6 +316,7 @@ function Meter({
   displayValue,
   readingReady,
   redJack,
+  continuityDetected = false,
   onMode,
   onJack,
   onRecord,
@@ -347,7 +330,7 @@ function Meter({
     <section className="vl-meter-card">
       <div className="vl-meter-brand">
         <strong>MEDSKILL</strong>
-        <span>117 TRUE RMS MULTIMETER</span>
+        <span>{lesson.id === "continuity" ? "MSB-30 TRAINING MULTIMETER" : "117 TRUE RMS MULTIMETER"}</span>
       </div>
 
       <button
@@ -358,14 +341,14 @@ function Meter({
         <small>{meterMode === "off" ? "SELECT FUNCTION" : MODE_OPTIONS.find((m) => m.id === meterMode)?.label}</small>
         <strong>{reading.value}</strong>
         <span>{reading.unit}</span>
-        <i>{meterMode === "continuity" && readingReady && displayValue !== "OL" ? "BEEP" : readingReady ? "STABLE" : "AUTO"}</i>
+        <i>{(lesson.id === "continuity" ? continuityDetected : meterMode === "continuity" && readingReady && displayValue !== "OL") ? "CONTINUITY" : readingReady ? "STABLE" : "AUTO"}</i>
       </button>
 
       <div className="vl-meter-softkeys">
-        <button type="button">HOLD</button>
-        <button type="button">MIN MAX</button>
-        <button type="button">RANGE</button>
-        <button type="button" className="yellow" aria-label="Backlight" />
+        <button type="button" disabled={lesson.id === "continuity"} title={lesson.id === "continuity" ? "Not available on this training meter" : undefined}>HOLD</button>
+        <button type="button" disabled={lesson.id === "continuity"} title={lesson.id === "continuity" ? "Not available on this training meter" : undefined}>MIN MAX</button>
+        <button type="button" disabled={lesson.id === "continuity"} title={lesson.id === "continuity" ? "Not available on this training meter" : undefined}>RANGE</button>
+        <button type="button" className="yellow" aria-label="Backlight" disabled={lesson.id === "continuity"} />
       </div>
 
       <div className="vl-selector">
@@ -420,6 +403,8 @@ function ProbeDock({
   redConnected,
   lesson,
   redJack,
+  blackPoint,
+  redPoint,
   onSelect,
 }) {
   return (
@@ -432,7 +417,7 @@ function ProbeDock({
         <span className="vl-probe-icon"><i /></span>
         <span>
           <strong>Black Probe</strong>
-          <small>{blackConnected ? `Touching ${lesson.probeTargets.black.toUpperCase()}` : "Lead in COM · click to select"}</small>
+          <small>{blackConnected ? `Touching ${(lesson.id === "continuity" ? blackPoint : lesson.probeTargets.black).toUpperCase()}` : "Lead in COM · click to select"}</small>
         </span>
         <em className="vl-probe-body" />
       </button>
@@ -445,7 +430,7 @@ function ProbeDock({
         <span className="vl-probe-icon"><i /></span>
         <span>
           <strong>Red Probe</strong>
-          <small>{redConnected ? `Touching ${lesson.probeTargets.red.toUpperCase()}` : `Lead in ${redJack === "amps" ? "A" : "V / Ω"} · click to select`}</small>
+          <small>{redConnected ? `Touching ${(lesson.id === "continuity" ? redPoint : lesson.probeTargets.red).toUpperCase()}` : `Lead in ${redJack === "amps" ? "A" : "V / Ω"} · click to select`}</small>
         </span>
         <em className="vl-probe-body" />
       </button>
@@ -568,6 +553,23 @@ export default function VirtualCBETLab({ onExit }) {
   const [feedback, setFeedback] = useState("Follow the glowing control.");
   const [feedbackKind, setFeedbackKind] = useState("");
   const timer = useRef(null);
+  const advanceTimer = useRef(null);
+  const advancing = useRef(false);
+  const [blackPoint, setBlackPoint] = useState("");
+  const [redPoint, setRedPoint] = useState("");
+  const [isolationVerified, setIsolationVerified] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [audioUnavailable, setAudioUnavailable] = useState(false);
+  const continuityTone = useRef(null);
+
+  function unlockContinuityAudio() {
+    if (!continuityTone.current) continuityTone.current = createContinuityTone(() => {
+      const Audio = window.AudioContext || window.webkitAudioContext;
+      return Audio ? new Audio() : null;
+    }, () => setAudioUnavailable(true));
+    continuityTone.current.unlock();
+  }
+
 
   const baseLesson = LESSONS[lessonIndex];
   const lesson = useMemo(() => {
@@ -576,7 +578,7 @@ export default function VirtualCBETLab({ onExit }) {
       return {
         ...baseLesson,
         expected: goodFuse ? "0.2 Ω" : "OL",
-        component: { ...(baseLesson.component || {}), label: "TRAINING FUSE", symbol: "—[ FUSE ]—", name: goodFuse ? "Good Fuse" : "Blown Fuse", kind: "fuse" },
+        component: { ...(baseLesson.component || {}), label: "TRAINING FUSE", symbol: "—[ FUSE ]—", name: "Unknown Fuse", kind: "fuse" },
         diagnosis: { correct: goodFuse ? "Fuse Good" : "Fuse Blown", options: ["Fuse Good", "Fuse Blown"] },
       };
     }
@@ -597,7 +599,11 @@ export default function VirtualCBETLab({ onExit }) {
   const step = lesson.steps[stepIndex];
   const action = step?.[3];
 
-  useEffect(() => () => clearTimeout(timer.current), []);
+  useEffect(() => () => {
+    clearTimeout(timer.current);
+    clearTimeout(advanceTimer.current);
+    continuityTone.current?.dispose();
+  }, []);
 
   useEffect(() => {
     const positionLab = () => {
@@ -626,6 +632,12 @@ export default function VirtualCBETLab({ onExit }) {
   }, [lessonIndex, completedLessons, totalXp]);
 
   function resetBench(nextLessonIndex = lessonIndex) {
+    clearTimeout(advanceTimer.current);
+    advancing.current = false;
+    continuityTone.current?.stop();
+    setBlackPoint("");
+    setRedPoint("");
+    setIsolationVerified(false);
     setLessonIndex(nextLessonIndex);
     setStepIndex(0);
     setScreen("lesson");
@@ -652,8 +664,11 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function advance(message) {
+    if (advancing.current) return;
+    advancing.current = true;
     showFeedback(message);
-    setTimeout(() => {
+    advanceTimer.current = setTimeout(() => {
+      advancing.current = false;
       if (stepIndex === lesson.steps.length - 1) {
         const firstCompletion = !completedLessons.includes(lesson.id);
         if (firstCompletion) {
@@ -676,6 +691,14 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function handlePower() {
+    if (lesson.id === "continuity") {
+      unlockContinuityAudio();
+      setSupplyOn(false);
+      setIsolationVerified(true);
+      if (action === "poweroff") advance("The isolated training fixture is disconnected from all power sources.");
+      else showFeedback("The fuse is removed from equipment and has no power source connected.");
+      return;
+    }
     if (action === "power") {
       setSupplyOn(true);
       advance("Power is on.");
@@ -688,6 +711,13 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function handleMode(mode) {
+    if (lesson.id === "continuity") {
+      unlockContinuityAudio();
+      setMeterMode(mode);
+      if (action === "mode" && mode === "continuity") advance("Continuity mode selected. Observe the meter as you make contact.");
+      else showFeedback(mode === "continuity" ? "Continuity mode: listen while the probes contact a low-resistance path." : mode === "resistance" ? "Resistance mode shows ohms without the continuity tone." : mode === "off" ? "Meter switched off." : "Select continuity or resistance to test this isolated fuse.");
+      return;
+    }
     if (action !== "mode") return wrong("The meter setting is not the current step.");
     if (mode !== modeFromLesson(lesson)) return wrong(`Choose the ${lesson.shortTitle} setting.`);
     setMeterMode(mode);
@@ -695,6 +725,12 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function handleJack(jack) {
+    if (lesson.id === "continuity") {
+      unlockContinuityAudio();
+      setRedJack(jack);
+      showFeedback(jack === "vohm" ? "Red lead in V/Ω. The black lead stays in COM." : "The current jack is not suitable for a continuity measurement.", jack === "vohm" ? "good" : "warn");
+      return;
+    }
     if (action !== "jack") return wrong("Move the red lead only when the instructions call for it.");
     const required = lesson.mode === "current" ? "amps" : "vohm";
     if (jack !== required) return wrong(`For this measurement, connect the red lead to the ${required === "amps" ? "A" : "V/Ω"} jack.`);
@@ -716,6 +752,12 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function selectProbe(probe) {
+    if (lesson.id === "continuity") {
+      unlockContinuityAudio();
+      setSelectedProbe(probe);
+      showFeedback(`${probe === "black" ? "Black" : "Red"} probe selected. Touch either metal contact.`);
+      return;
+    }
     if (!["black", "red"].includes(action)) return wrong("The probes are not needed yet.");
     if (probe !== action) return wrong(`Select the ${action} probe.`);
     setSelectedProbe(probe);
@@ -723,6 +765,18 @@ export default function VirtualCBETLab({ onExit }) {
   }
 
   function connectPoint(point) {
+    if (lesson.id === "continuity") {
+      if (!selectedProbe) return wrong("Select the black or red probe first.");
+      unlockContinuityAudio();
+      const nextBlack = selectedProbe === "black" ? point : blackPoint;
+      const nextRed = selectedProbe === "red" ? point : redPoint;
+      if (selectedProbe === "black") setBlackPoint(point);
+      else setRedPoint(point);
+      if (action === selectedProbe && isolationVerified && meterMode === "continuity" && redJack === "vohm" && (action === "black" || (nextBlack && nextBlack !== nextRed))) advance(`${selectedProbe === "black" ? "Black" : "Red"} probe in contact.`);
+      else showFeedback(nextBlack && nextBlack === nextRed ? "Both probes touch the same contact. This checks the leads, not the fuse." : "Probe contact updated. Observe the meter.");
+      setSelectedProbe("");
+      return;
+    }
     if (!["black", "red"].includes(action)) return wrong("This test point is not needed now.");
     if (selectedProbe !== action) return wrong(`Select the ${action} probe first.`);
     if (lesson.probeTargets[action] !== point) return wrong("Almost. Use the highlighted connection point.");
@@ -733,7 +787,21 @@ export default function VirtualCBETLab({ onExit }) {
     advance(`${action === "black" ? "Black" : "Red"} probe connected correctly.`);
   }
 
-  const readingReady = isReadingReady({
+  const continuityMeasurement = getContinuityMeasurement({ mode: meterMode, redJack, supplyOn, blackPoint, redPoint, fuseCondition: continuityScenario });
+  const continuityDetected = lesson.id === "continuity" && screen === "lesson" && continuityMeasurement.beeps;
+  useEffect(() => {
+    if (continuityDetected && soundEnabled) continuityTone.current?.start();
+    else continuityTone.current?.stop();
+  }, [continuityDetected, soundEnabled]);
+
+  function liftProbe(probe) {
+    continuityTone.current?.stop();
+    if (probe === "black") setBlackPoint("");
+    else setRedPoint("");
+    showFeedback("Probe lifted. Contact is broken.");
+  }
+
+  const readingReady = lesson.id === "continuity" ? isolationVerified && continuityMeasurement.acrossFuse && !continuityMeasurement.setupError && meterMode === "continuity" : isReadingReady({
     lesson,
     supplyOn,
     meterMode,
@@ -747,9 +815,8 @@ export default function VirtualCBETLab({ onExit }) {
   function recordReading() {
     if (action !== "read") return wrong("The display is not the current step.");
     if (!readingReady) return wrong("Check the meter mode, power state, safety step, and probe placement.");
-    if (lesson.id === "continuity" && continuityScenario === "good") playContinuityBeep();
     if (lesson.id === "continuity") {
-      advance(continuityScenario === "good" ? "Beep confirmed. The fuse has a complete electrical path." : "OL confirmed. The fuse has an open electrical path.");
+      advance("Reading recorded. Use the resistance reading and continuity indicator to choose your diagnosis.");
       return;
     }
     if (lesson.id === "diode") {
@@ -766,6 +833,7 @@ export default function VirtualCBETLab({ onExit }) {
 
   function handleDiagnosis(option) {
     if (action !== "diagnose") return wrong("Complete the measurement before diagnosing.");
+    if (lesson.id === "continuity" && !readingReady) return wrong("Reconnect the probes across the fuse with the correct setup before submitting a diagnosis.");
     setDiagnosis(option);
     if (option !== lesson.diagnosis.correct) return wrong("That diagnosis does not match the measured evidence.");
     advance(`Correct diagnosis: ${option}.`);
@@ -776,13 +844,13 @@ export default function VirtualCBETLab({ onExit }) {
     else setScreen("courseComplete");
   }
 
-  const displayValue = getDisplayValue({ lesson, ready: readingReady, meterMode });
+  const displayValue = lesson.id === "continuity" ? continuityMeasurement.display : getDisplayValue({ lesson, ready: readingReady, meterMode });
   const lastLesson = lessonIndex === LESSONS.length - 1;
   const totalPossibleXp = LESSONS.reduce((sum, item) => sum + item.xp, 0);
   const stepProgress = ((stepIndex + 1) / lesson.steps.length) * 100;
 
   return (
-    <main className={`virtual-lab-shell feedback-${feedbackKind} ${lesson.id === "practical" ? "practical-mode" : ""}`}>
+    <main className={`virtual-lab-shell feedback-${feedbackKind} ${lesson.id === "continuity" ? "continuity-bench" : ""} ${lesson.id === "practical" ? "practical-mode" : ""}`}>
       <header id="multimeter-foundations" className="vl-topbar">
         <div>
           <span>CBET Virtual Lab 4.0</span>
@@ -832,7 +900,14 @@ export default function VirtualCBETLab({ onExit }) {
             <div className="vl-step-track"><i style={{ width: `${stepProgress}%` }} /></div>
 
             <div className="vl-workbench-grid">
-              <CircuitBoard
+              {lesson.id === "continuity" ? <ContinuityBench
+                selectedProbe={selectedProbe} blackPoint={blackPoint} redPoint={redPoint}
+                isolationVerified={isolationVerified} action={action}
+                diagnosisOptions={lesson.diagnosis.options} diagnosis={diagnosis}
+                onPoint={connectPoint} onDisconnect={liftProbe} onVerifyIsolation={handlePower}
+                onDiagnosis={handleDiagnosis} soundEnabled={soundEnabled} audioUnavailable={audioUnavailable}
+                onSoundToggle={() => { unlockContinuityAudio(); setSoundEnabled(value => !value); }}
+              /> : <CircuitBoard
                 lesson={lesson}
                 action={action}
                 supplyOn={supplyOn}
@@ -850,7 +925,7 @@ export default function VirtualCBETLab({ onExit }) {
                 onDischarge={handleDischarge}
                 onPoint={connectPoint}
                 onDiagnosis={handleDiagnosis}
-              />
+              />}
 
               <Meter
                 lesson={lesson}
@@ -858,6 +933,7 @@ export default function VirtualCBETLab({ onExit }) {
                 meterMode={meterMode}
                 displayValue={displayValue}
                 readingReady={readingReady}
+                continuityDetected={continuityDetected}
                 redJack={redJack}
                 onMode={handleMode}
                 onJack={handleJack}
@@ -867,8 +943,10 @@ export default function VirtualCBETLab({ onExit }) {
               <ProbeDock
                 action={action}
                 selectedProbe={selectedProbe}
-                blackConnected={blackConnected}
-                redConnected={redConnected}
+                blackConnected={lesson.id === "continuity" ? Boolean(blackPoint) : blackConnected}
+                redConnected={lesson.id === "continuity" ? Boolean(redPoint) : redConnected}
+                blackPoint={blackPoint}
+                redPoint={redPoint}
                 lesson={lesson}
                 redJack={redJack}
                 onSelect={selectProbe}

@@ -49,19 +49,19 @@ const lesson = {
     [
       "black",
       "Connect the black probe",
-      "Select the black probe, then touch the left side of the fuse.",
+      "Select the black probe and touch either metal contact.",
       "black",
     ],
     [
       "red",
       "Connect the red probe",
-      "Select the red probe, then touch the right side of the fuse.",
+      "Select the red probe and touch the opposite metal contact.",
       "red",
     ],
     [
       "read",
       "Interpret the meter",
-      "A low reading with a beep means continuity. OL without a beep means the path is open.",
+      "Read the display with both probes across the fuse. Low resistance activates the continuity indicator and tone; OL stays silent. Click the display to record the measurement.",
       "read",
     ],
     [
