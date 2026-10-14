@@ -14,6 +14,7 @@ import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
 import AnatomyStudyHubIntro from "./components/AnatomyStudyHubIntro";
 import HomePage from "./pages/HomePage";
+import TerminologyChoices from "./components/TerminologyChoices";
 import PartnerPage from "./pages/PartnerPage";
 import AchievementCase from "./components/AchievementCase";
 import EquipmentTab from "./components/EquipmentTab";
@@ -6428,7 +6429,8 @@ export default function App() {
   const [shuffledTerminologyQuestions, setShuffledTerminologyQuestions] = useState(() =>
     shuffleQuestionSet(terminologyQuestions)
   );
-  const [terminologySubTab, setTerminologySubTab] = useState("terms");
+  const [terminologySubTab, setTerminologySubTab] = useState("choices");
+  const [hasSavedTerminologyProgress, setHasSavedTerminologyProgress] = useState(false);
   const [terminologyIndex, setTerminologyIndex] = useState(0);
   const [terminologyScore, setTerminologyScore] = useState(0);
   const [terminologyAnswers, setTerminologyAnswers] = useState({});
@@ -6542,8 +6544,10 @@ export default function App() {
     }
   }, []);
   useEffect(() => {
-    const savedTerminology = JSON.parse(localStorage.getItem("terminologyProgress"));
-    if (savedTerminology) {
+    let savedTerminology;
+    try { savedTerminology = JSON.parse(localStorage.getItem("terminologyProgress")); } catch { return; }
+    if (savedTerminology && Array.isArray(savedTerminology.shuffledTerminologyQuestions) && savedTerminology.shuffledTerminologyQuestions.length > 0) {
+      setHasSavedTerminologyProgress(true);
       setShuffledTerminologyQuestions(
         savedTerminology.shuffledTerminologyQuestions || shuffleQuestionSet(terminologyQuestions)
       );
@@ -7156,9 +7160,14 @@ export default function App() {
       showTerminologyMissedReview
     };
     localStorage.setItem("terminologyProgress", JSON.stringify(progress));
+    setHasSavedTerminologyProgress(true);
   };
-  const restartTerminologyQuiz = () => {
-    const reshuffled = shuffleQuestionSet(terminologyQuestions);
+  const restartTerminologyQuiz = (questionCount = shuffledTerminologyQuestions.length) => {
+    const count = typeof questionCount === "number" ? questionCount : shuffledTerminologyQuestions.length;
+    const reshuffled = shuffleQuestionSet(terminologyQuestions).slice(0, count);
+    setHasSavedTerminologyProgress(false);
+    setTerminologySubTab("terms");
+    trackExamStart(count === 5 ? "Medical Terminology Quick Practice" : "Medical Terminology Practice");
     localStorage.removeItem("terminologyProgress");
     setShuffledTerminologyQuestions(reshuffled);
     setTerminologyIndex(0);
@@ -7576,6 +7585,7 @@ export default function App() {
 
     if (practiceType === "terminology") {
       const quickQuestions = shuffleQuestionSet(terminologyQuestions).slice(0, quickQuestionCount);
+      setHasSavedTerminologyProgress(false);
 
       localStorage.removeItem("terminologyProgress");
       setTerminologySubTab("terms");
@@ -11458,74 +11468,23 @@ export default function App() {
               margin: "0 auto"
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: 10,
-                marginBottom: 20,
-                flexWrap: "wrap"
-              }}
-            >
-              <button
-                onClick={() => setTerminologySubTab("terms")}
-                style={{
-                  padding: "8px 16px",
-                  borderRadius: 999,
-                  border: "none",
-                  background:
-                    terminologySubTab === "terms"
-                      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
-                      : "#e2e8f0",
-                  color: terminologySubTab === "terms" ? "white" : "#12355b",
-                  fontWeight: 700,
-                  cursor: "pointer"
-                }}
-              >
-                Terms
-              </button>
-              <button
-                onClick={() => {
-                  trackExamStart("Medical Prefix and Suffix Practice");
-                  setTerminologySubTab("wordParts");
-                }}
-                style={{
-                  padding: "8px 16px",
-                  borderRadius: 999,
-                  border: "none",
-                  background:
-                    terminologySubTab === "wordParts"
-                      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
-                      : "#e2e8f0",
-                  color: terminologySubTab === "wordParts" ? "white" : "#12355b",
-                  fontWeight: 700,
-                  cursor: "pointer"
-                }}
-              >
-                Prefixes and Suffixes
-              </button>
-              <button
-                onClick={() => {
-                  trackExamStart("Medical Terminology Builder");
-                  setTerminologySubTab("builder");
-                }}
-                style={{
-                  padding: "8px 16px",
-                  borderRadius: 999,
-                  border: "none",
-                  background:
-                    terminologySubTab === "builder"
-                      ? "linear-gradient(135deg, #12355b, #1d6fa5)"
-                      : "#e2e8f0",
-                  color: terminologySubTab === "builder" ? "white" : "#12355b",
-                  fontWeight: 700,
-                  cursor: "pointer"
-                }}
-              >
-                Term Builder
-              </button>
-            </div>
-            {terminologySubTab === "terms" ? (
+            {terminologySubTab !== "choices" && <button onClick={() => { if (terminologySubTab === "terms") saveTerminologyProgress(); setTerminologySubTab("choices"); }} style={{padding:"10px 16px",marginBottom:20,borderRadius:12,border:"1px solid #bfdbfe",background:"#eff6ff",color:"#12355b",fontWeight:800,cursor:"pointer"}}>← Back to Terminology Choices</button>}
+            {terminologySubTab === "choices" ? (
+              <TerminologyChoices questionCount={terminologyQuestions.length} hasSavedProgress={hasSavedTerminologyProgress}
+                onWordParts={() => setTerminologySubTab("learn")}
+                onQuick={() => startQuickPractice("terminology")}
+                onFull={() => restartTerminologyQuiz(terminologyQuestions.length)}
+                onContinue={() => { trackExamStart(shuffledTerminologyQuestions.length === 5 ? "Medical Terminology Quick Practice" : "Medical Terminology Practice"); setTerminologySubTab("terms"); }} />
+            ) : terminologySubTab === "learn" ? (
+              <section aria-labelledby="word-parts-choice-heading"><h2 id="word-parts-choice-heading" style={{color:"#12355b"}}>Learn Word Parts</h2>
+                <p style={{color:"#475569",lineHeight:1.6}}>Study prefixes, suffixes, and roots, then practice combining them into medical terms.</p>
+                <div style={{display:"flex",flexWrap:"wrap",gap:12}}>
+                  <a style={{padding:"12px 18px",borderRadius:12,border:"1px solid #bfdbfe",background:"#eff6ff",color:"#12355b",font:"inherit",fontWeight:750,cursor:"pointer",textDecoration:"none"}} href="/medical-prefix-suffix-practice.html">Word-part study guide →</a>
+                  <button style={{padding:"12px 18px",borderRadius:12,border:"1px solid #bfdbfe",background:"#eff6ff",color:"#12355b",font:"inherit",fontWeight:750,cursor:"pointer",textDecoration:"none"}} onClick={() => { trackExamStart("Medical Prefix and Suffix Practice"); setTerminologySubTab("wordParts"); }}>Prefixes and Suffixes Practice</button>
+                  <button style={{padding:"12px 18px",borderRadius:12,border:"1px solid #bfdbfe",background:"#eff6ff",color:"#12355b",font:"inherit",fontWeight:750,cursor:"pointer",textDecoration:"none"}} onClick={() => { trackExamStart("Medical Terminology Builder"); setTerminologySubTab("builder"); }}>Term Builder</button>
+                </div>
+              </section>
+            ) : terminologySubTab === "terms" ? (
               <>
                 {!terminologyShowResult && !showTerminologyMissedReview ? (
                   <>
