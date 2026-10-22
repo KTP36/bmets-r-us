@@ -281,8 +281,18 @@ export function getCbetStats() {
     bestMissionOneScore: state.modules?.[1]?.bestScore || 0,
     lessonsCompleted: lessonAwards,
     scenariosCompleted: scenarioAwards,
+    serviceCallsCompleted: getCompletedServiceCalls().length,
     currentStreak: state.streak?.current || 0,
     longestStreak: state.streak?.longest || 0,
     activeDays: state.streak?.visitDates?.length || 0,
   };
+}
+
+// Hospital service calls are separate from mission exercises.
+export function getCompletedServiceCalls() {
+  if (typeof window === "undefined") return [];
+  try {
+    const saved = JSON.parse(window.localStorage.getItem("cbetCompletedServiceCalls") || "[]");
+    return Array.isArray(saved) ? [...new Set(saved.filter((id) => typeof id === "string" && id.length > 0))] : [];
+  } catch { return []; }
 }

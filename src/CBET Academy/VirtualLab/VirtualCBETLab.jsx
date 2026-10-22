@@ -329,7 +329,7 @@ function Meter({
 }) {
   const normalizedLessonMode = modeFromLesson(lesson);
   const activeIndex = Math.max(0, MODE_OPTIONS.findIndex((item) => item.id === meterMode));
-  const dialAngle = -130 + activeIndex * 43;
+  const dialAngle = -135 + activeIndex * 45;
   const reading = splitMeterReading(displayValue || (meterMode === "off" ? "— — —" : "OL"));
 
   return (
@@ -367,6 +367,7 @@ function Meter({
                 action === "mode" && mode.id === normalizedLessonMode ? "target-highlight" : ""
               }`}
               style={{ "--position": index }}
+              aria-pressed={meterMode === mode.id}
               onClick={() => onMode(mode.id)}
               title={mode.label}
             >
@@ -376,7 +377,7 @@ function Meter({
           ))}
         </div>
         <div className="vl-dial">
-          <i style={{ transform: `translateX(-50%) rotate(${dialAngle}deg)` }} />
+          <i style={{ transform: `translate(-50%, -100%) rotate(${dialAngle}deg)` }} />
           <span />
         </div>
       </div>
@@ -700,6 +701,21 @@ export default function VirtualCBETLab({ onExit }) {
     showFeedback(message, "warn");
   }
 
+  // Recognize a correct setup even when controls were used before this step.
+  // Reading and diagnosis still require explicit learner actions.
+  useEffect(() => {
+    if (lesson.id !== "voltage" || screen !== "lesson") return;
+    const meterReady = supplyOn && meterMode === "voltage" && redJack === "vohm";
+    const satisfied = action === "power" ? supplyOn
+      : action === "mode" ? meterReady
+      : action === "black" ? meterReady && blackPoint === lesson.probeTargets.black
+      : action === "red" ? meterReady && blackPoint === lesson.probeTargets.black && redPoint === lesson.probeTargets.red
+      : false;
+    if (!satisfied) return;
+    const setupTimer = setTimeout(() => setStepIndex((index) => index + 1), 450);
+    return () => clearTimeout(setupTimer);
+  }, [lesson.id, lesson.probeTargets, screen, action, supplyOn, meterMode, redJack, blackPoint, redPoint]);
+
   function handleContinue() {
     if (action === "continue") advance("Let's begin.");
   }
@@ -713,8 +729,7 @@ export default function VirtualCBETLab({ onExit }) {
     }
     if (lesson.id === "voltage") {
       setSupplyOn(!supplyOn);
-      if (action === "power" && !supplyOn) advance("Supply output enabled. Measure across the terminals.");
-      else showFeedback(supplyOn ? "Output disabled. Connected probes should show zero volts." : "Supply output enabled.");
+      showFeedback(supplyOn ? "Output disabled. Connected probes should show zero volts." : "Supply output enabled.");
       return;
     }
     if (lesson.id === "continuity") {
@@ -745,8 +760,7 @@ export default function VirtualCBETLab({ onExit }) {
     }
     if (lesson.id === "voltage") {
       setMeterMode(mode);
-      if (action === "mode" && mode === "voltage") advance("DC voltage selected.");
-      else showFeedback(mode === "voltage" ? "DC voltage measures the difference between the probe contacts." : "Select DC voltage for this powered supply.", mode === "voltage" ? "good" : "warn");
+      showFeedback(mode === "voltage" ? "DC voltage measures the difference between the probe contacts." : "Select DC voltage for this powered supply.", mode === "voltage" ? "good" : "warn");
       return;
     }
     if (lesson.id === "continuity") {
@@ -829,8 +843,7 @@ export default function VirtualCBETLab({ onExit }) {
       const nextBlack = selectedProbe === "black" ? point : blackPoint;
       const nextRed = selectedProbe === "red" ? point : redPoint;
       if (selectedProbe === "black") setBlackPoint(point); else setRedPoint(point);
-      if (action === selectedProbe && supplyOn && meterMode === "voltage" && redJack === "vohm" && point === lesson.probeTargets[selectedProbe]) advance(`${selectedProbe} probe connected.`);
-      else showFeedback(nextBlack && nextBlack === nextRed ? "Both probes touch one terminal: no voltage difference." : "Contact updated. Observe the signed voltage reading.");
+      showFeedback(nextBlack && nextBlack === nextRed ? "Both probes touch one terminal: no voltage difference." : "Contact updated. Observe the signed voltage reading.");
       setSelectedProbe("");
       return;
     }

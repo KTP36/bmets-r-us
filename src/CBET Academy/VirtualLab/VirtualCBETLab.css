@@ -1892,3 +1892,70 @@
   white-space: normal;
   overflow-wrap: anywhere;
 }
+
+/* Legible instrument markings on the dark meter housing. */
+.virtual-lab-shell .vl-dial-labels button { color: #f1f5f9; }
+.virtual-lab-shell .vl-dial-labels button b { font-size: 1.1rem; }
+.virtual-lab-shell .vl-dial-labels button small { font-size: .62rem; line-height: 1.15; }
+.virtual-lab-shell .vl-dial-labels button.active { color: #67e8f9; }
+.virtual-lab-shell .vl-dial-labels button:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; border-radius: 5px; }
+.virtual-lab-shell .vl-meter-jacks strong { color: #f1f5f9; font-size: 1rem; }
+.virtual-lab-shell .vl-meter-jacks small { color: #e2e8f0; font-size: .62rem; }
+
+/* Reserve separate cells for every marking so the knob cannot cover text.
+   This replaces the fixed-radius transforms at every viewport width. */
+.virtual-lab-shell .vl-selector {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(60px, auto) 116px minmax(60px, auto);
+  align-items: center;
+  min-height: 236px !important;
+  transform: none !important;
+  margin: 8px 0;
+}
+.virtual-lab-shell .vl-dial-labels { display: contents; }
+.virtual-lab-shell .vl-dial-labels button {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 100% !important;
+  min-width: 0;
+  min-height: 48px;
+  padding: 4px 2px;
+  box-sizing: border-box;
+  transform: none !important;
+  z-index: 1;
+}
+.virtual-lab-shell .vl-dial-labels button small {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.virtual-lab-shell .vl-dial-labels button:nth-child(1) { grid-area: 3 / 1; }
+.virtual-lab-shell .vl-dial-labels button:nth-child(2) { grid-area: 2 / 1; }
+.virtual-lab-shell .vl-dial-labels button:nth-child(3) { grid-area: 1 / 1; }
+.virtual-lab-shell .vl-dial-labels button:nth-child(4) { grid-area: 1 / 2; }
+.virtual-lab-shell .vl-dial-labels button:nth-child(5) { grid-area: 1 / 3; }
+.virtual-lab-shell .vl-dial-labels button:nth-child(6) { grid-area: 2 / 3; }
+.virtual-lab-shell .vl-dial-labels button:nth-child(7) { grid-area: 3 / 3; }
+.virtual-lab-shell .vl-dial {
+  grid-area: 2 / 2;
+  position: relative;
+  left: auto;
+  top: auto;
+  justify-self: center;
+  box-sizing: border-box;
+  width: min(100%, 108px) !important;
+  height: auto !important;
+  aspect-ratio: 1;
+  border-width: 6px;
+  transform: none;
+  box-shadow: inset 0 0 0 10px #242b30, inset 0 0 0 13px #0f1519,
+    0 5px 10px rgba(0,0,0,.28);
+}
+.virtual-lab-shell .vl-dial i {
+  top: 50%;
+  height: calc(50% - 5px);
+  width: 7px;
+  transform-origin: 50% 100%;
+}
+.virtual-lab-shell .vl-dial span { inset: 34%; }

@@ -1,3 +1,4 @@
+import { getCompletedServiceCalls } from "./cbetAcademyStorage";
 import React, { useMemo, useState } from "react";
 import "./CBETHospitalDashboard.css";
 
@@ -124,16 +125,6 @@ const SERVICE_CALLS = [
 
 const TOTAL_PLANNED_CALLS = 10;
 
-function readCompletedCalls() {
-  if (typeof window === "undefined") return [];
-  try {
-    const parsed = JSON.parse(window.localStorage.getItem("cbetCompletedServiceCalls") || "[]");
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
 function readActiveCall() {
   if (typeof window === "undefined") return "WO-1001";
   try {
@@ -163,7 +154,7 @@ export default function CBETHospitalDashboard({
   onOpenStats,
 }) {
   const [activeCallId, setActiveCallId] = useState(readActiveCall);
-  const [completedCalls] = useState(readCompletedCalls);
+  const [completedCalls] = useState(getCompletedServiceCalls);
 
   const completedSet = useMemo(() => new Set(completedCalls), [completedCalls]);
   const completedCount = completedSet.size;

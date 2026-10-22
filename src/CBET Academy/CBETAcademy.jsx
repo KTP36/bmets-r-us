@@ -7496,7 +7496,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
             </div>
             <h3>Hospital Simulator</h3>
             <p>Troubleshoot realistic hospital service calls.</p>
-            <div className="cbet-hub-summary"><strong>{stats.scenariosCompleted}</strong><span>scenarios completed</span></div>
+            <div className="cbet-hub-summary"><strong>{stats.serviceCallsCompleted}</strong><span>scenarios completed</span></div>
             <button className="cbet-secondary" onClick={() => setScreen("hospital")}>Open Simulator</button>
           </article>
 

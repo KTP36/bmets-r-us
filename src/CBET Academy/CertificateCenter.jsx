@@ -1,3 +1,4 @@
+import { cbetAcademyModules } from "./cbetAcademyData";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   CERTIFICATE_DISCLAIMER,
@@ -207,8 +208,8 @@ export default function CertificateCenter({ modules, onExit, targetCertificateKe
         key: "academy-complete",
         type: "Academy curriculum",
         title: "MedSkillBuilder Academy Curriculum — Certificate of Completion",
-        description: "Recognizes completion of all nine MedSkillBuilder Academy educational modules.",
-        unlocked: modules.length === 9 && modules.every((module) => module.complete),
+        description: `Recognizes completion of all ${cbetAcademyModules.length} MedSkillBuilder Academy educational modules.`,
+        unlocked: cbetAcademyModules.every((required) => modules.some((module) => module.number === required.number && module.complete)),
       },
     ];
   }, [modules, completedEquipment]);
