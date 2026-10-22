@@ -190,7 +190,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
    <div class="term-card"><strong>-cardia</strong><span>Heart rate / heart condition</span></div>
   </div>
   <div class="pearl"><strong>Example:</strong> Tachypnea describes abnormally rapid breathing. Bradycardia describes a slow heart rate. Recognizing the pieces makes unfamiliar terms easier to interpret.</div>
-  <div class="lesson-complete"><span>Terminology lesson completed.</span><button class="complete-btn" data-complete="1">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>Terminology lesson completed.</span><button class="complete-btn" data-complete="1">Mark Complete</button></div>
  </section>
 
  <section class="lesson">
@@ -208,7 +208,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
    <div class="term-card"><strong>Distal</strong><span>Farther from the trunk or point of origin.</span></div>
   </div>
   <div class="memory"><strong>EMS Translation:</strong> “Pain distal to the right elbow” communicates location more precisely than “pain down the arm.”</div>
-  <div class="lesson-complete"><span>Anatomical-language lesson completed.</span><button class="complete-btn" data-complete="2">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>Anatomical-language lesson completed.</span><button class="complete-btn" data-complete="2">Mark Complete</button></div>
  </section>
 
  <section class="lesson">
@@ -222,7 +222,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
    <div class="system-card"><strong>Gas Exchange</strong><span>Oxygen and carbon dioxide move between alveoli and blood.</span></div>
   </div>
   <div class="warning"><strong>Failure clues:</strong> Abnormal respiratory rate or effort, inability to speak normally, altered mental status, poor air movement, abnormal skin findings, or worsening fatigue can signal a serious breathing problem.</div>
-  <div class="lesson-complete"><span>Respiratory-system lesson completed.</span><button class="complete-btn" data-complete="3">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>Respiratory-system lesson completed.</span><button class="complete-btn" data-complete="3">Mark Complete</button></div>
  </section>
 
  <section class="lesson">
@@ -237,7 +237,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
   </div>
   <div class="memory"><strong>Perfusion:</strong> Think “delivery.” Adequate perfusion means tissues are receiving enough oxygenated blood to meet their needs.</div>
   <div class="warning"><strong>Poor-perfusion clues:</strong> Weak pulses, cool or pale skin, altered mental status, delayed peripheral circulation, or other signs of circulatory compromise should raise concern in the clinical context.</div>
-  <div class="lesson-complete"><span>Cardiovascular lesson completed.</span><button class="complete-btn" data-complete="4">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>Cardiovascular lesson completed.</span><button class="complete-btn" data-complete="4">Mark Complete</button></div>
  </section>
 
  <section class="lesson">
@@ -250,7 +250,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
    <div class="system-card"><strong>Peripheral Nerves</strong><span>Carry sensory and motor information.</span></div>
   </div>
   <div class="warning"><strong>Neurologic warning signs:</strong> New altered mental status, weakness, speech difficulty, seizure activity, abnormal responsiveness, or loss of normal movement/sensation can indicate serious neurologic dysfunction.</div>
-  <div class="lesson-complete"><span>Nervous-system lesson completed.</span><button class="complete-btn" data-complete="5">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>Nervous-system lesson completed.</span><button class="complete-btn" data-complete="5">Mark Complete</button></div>
  </section>
 
  <section class="lesson">
@@ -264,7 +264,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
    <div class="system-card"><strong>Pelvis</strong><span>Supports the trunk and protects major vessels and pelvic organs.</span></div>
   </div>
   <div class="pearl"><strong>EMT connection:</strong> A musculoskeletal injury can be more than a “broken bone.” Think about bleeding, circulation, nerve function, underlying organs, and mechanism of injury.</div>
-  <div class="lesson-complete"><span>Musculoskeletal lesson completed.</span><button class="complete-btn" data-complete="6">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>Musculoskeletal lesson completed.</span><button class="complete-btn" data-complete="6">Mark Complete</button></div>
  </section>
 
  <section class="lesson">
@@ -280,7 +280,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
    <div class="system-card"><strong>Bladder</strong><span>Stores urine before elimination.</span></div>
   </div>
   <div class="callout"><strong>Assessment principle:</strong> Know what structures are likely in a region, but treat the patient and findings—not an assumed diagnosis.</div>
-  <div class="lesson-complete"><span>Abdominal-systems lesson completed.</span><button class="complete-btn" data-complete="7">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>Abdominal-systems lesson completed.</span><button class="complete-btn" data-complete="7">Mark Complete</button></div>
  </section>
 
  <section class="lesson">
@@ -295,7 +295,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
    <div class="system-card"><strong>Neurologic Failure</strong><span>Normal brain or nervous-system function is impaired.</span></div>
   </div>
   <div class="memory"><strong>Do not wait for a diagnosis:</strong> If a patient cannot maintain an airway, breathe adequately, perfuse vital organs, or maintain normal neurologic function, that functional problem becomes the priority.</div>
-  <div class="lesson-complete"><span>System-failure lesson completed.</span><button class="complete-btn" data-complete="8">Mark Complete</button></div>
+  <div class="lesson-complete"><span hidden>System-failure lesson completed.</span><button class="complete-btn" data-complete="8">Mark Complete</button></div>
  </section>
 
  <section class="scenario-lab" id="systemChallenge">
@@ -489,7 +489,7 @@ function updateProgress(){
  document.getElementById("progressText").textContent=percent+"%";
  lessonButtons.forEach(b=>{
   const id=Number(b.dataset.complete),done=s.completedLessons.includes(id);
-  b.textContent=done?"✓ Completed":"Mark Complete";b.classList.toggle("done",done);
+  b.textContent=done?"✓ Completed":"Mark Complete";b.classList.toggle("done",done);b.parentElement.querySelector("span").hidden=!done;
  });
  if(s.quizPassed)document.getElementById("badgeStatus").textContent="Unlocked! Module 2 is complete. You earned the EMT Anatomy & Systems badge and 250 XP.";
 }
