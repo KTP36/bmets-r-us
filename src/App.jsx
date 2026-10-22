@@ -6099,8 +6099,52 @@ function AnatomyLearningCard({
     ) : null;
 }
 
+const ACADEMY_SEARCH_METADATA = {
+  CBETAcademy: {
+    title: "CBET Academy: Biomedical Equipment Training | MedSkillBuilder",
+    description: "Build biomedical equipment knowledge with 10 CBET Academy missions, electronics practice, a virtual lab, and hospital troubleshooting scenarios.",
+    canonical: "https://medskillbuilder.com/?tab=CBETAcademy",
+  },
+  MedicationAcademy: {
+    title: "Medication Mastery Academy | MedSkillBuilder",
+    description: "Build medication knowledge through recognition, safety principles, and clinical reasoning with MedSkillBuilder's Medication Mastery Academy.",
+    canonical: "https://medskillbuilder.com/?tab=MedicationAcademy",
+  },
+};
+
+function useAcademySearchMetadata(activeTab) {
+  useEffect(() => {
+    const metadata = ACADEMY_SEARCH_METADATA[activeTab];
+    if (!metadata) return;
+
+    const previousTitle = document.title;
+    const restorations = [];
+    document.title = metadata.title;
+    for (const [selector, tagName, attributes] of [
+      ['meta[name="description"]', "meta", { name: "description", content: metadata.description }],
+      ['link[rel="canonical"]', "link", { rel: "canonical", href: metadata.canonical }],
+    ]) {
+      const existing = document.head.querySelector(selector);
+      const node = existing || document.createElement(tagName);
+      const previousAttributes = Array.from(node.attributes, ({ name, value }) => [name, value]);
+      for (const [name, value] of Object.entries(attributes)) node.setAttribute(name, value);
+      if (!existing) document.head.appendChild(node);
+      restorations.push(() => {
+        if (!existing) { node.remove(); return; }
+        for (const attribute of Array.from(node.attributes)) node.removeAttribute(attribute.name);
+        for (const [name, value] of previousAttributes) node.setAttribute(name, value);
+      });
+    }
+    return () => {
+      document.title = previousTitle;
+      restorations.forEach(restore => restore());
+    };
+  }, [activeTab]);
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState(() => getDeepLinkedTab());
+  useAcademySearchMetadata(activeTab);
   const ownerAnalyticsEnabled = import.meta.env.VITE_OWNER_ANALYTICS_TAB === "true";
 
   useEffect(() => {
