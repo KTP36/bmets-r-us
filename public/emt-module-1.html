@@ -260,7 +260,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     <div class="memory"><strong>EMT Mindset:</strong> The goal is not to name every diagnosis. The goal is to recognize threats, support the patient, and make safe decisions with the information available.</div>
 
     <div class="lesson-complete">
-      <span>EMT role lesson completed.</span>
+      <span hidden>EMT role lesson completed.</span>
       <button class="complete-btn" data-complete="1">Mark Complete</button>
     </div>
   </section>
@@ -282,7 +282,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     </ul>
 
     <div class="lesson-complete">
-      <span>EMS-system lesson completed.</span>
+      <span hidden>EMS-system lesson completed.</span>
       <button class="complete-btn" data-complete="2">Mark Complete</button>
     </div>
   </section>
@@ -305,7 +305,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     </ul>
 
     <div class="lesson-complete">
-      <span>Roles-and-scope lesson completed.</span>
+      <span hidden>Roles-and-scope lesson completed.</span>
       <button class="complete-btn" data-complete="3">Mark Complete</button>
     </div>
   </section>
@@ -325,7 +325,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     <div class="warning"><strong>Important:</strong> Consent and refusal requirements can vary by jurisdiction and situation. Use your approved EMS education, local protocol, and medical direction.</div>
 
     <div class="lesson-complete">
-      <span>Consent-and-rights lesson completed.</span>
+      <span hidden>Consent-and-rights lesson completed.</span>
       <button class="complete-btn" data-complete="4">Mark Complete</button>
     </div>
   </section>
@@ -345,7 +345,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     <div class="memory"><strong>Before Patient Contact:</strong> Ask yourself, “What can hurt me here?” and “What protection or resource do I need before I go closer?”</div>
 
     <div class="lesson-complete">
-      <span>PPE lesson completed.</span>
+      <span hidden>PPE lesson completed.</span>
       <button class="complete-btn" data-complete="5">Mark Complete</button>
     </div>
   </section>
@@ -368,7 +368,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     <div class="warning"><strong>Scene-Safety Principle:</strong> An injured rescuer cannot help the original patient and may create another patient. Do not enter an uncontrolled dangerous scene simply because someone needs help.</div>
 
     <div class="lesson-complete">
-      <span>Scene-safety lesson completed.</span>
+      <span hidden>Scene-safety lesson completed.</span>
       <button class="complete-btn" data-complete="6">Mark Complete</button>
     </div>
   </section>
@@ -411,7 +411,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     <div class="pearl"><strong>Documentation Pearl:</strong> Write what you observed and what happened. Avoid unsupported assumptions or judgmental language.</div>
 
     <div class="lesson-complete">
-      <span>Communication-and-documentation lesson completed.</span>
+      <span hidden>Communication-and-documentation lesson completed.</span>
       <button class="complete-btn" data-complete="7">Mark Complete</button>
     </div>
   </section>
@@ -434,7 +434,7 @@ footer{text-align:center;color:var(--muted);margin-top:34px;font-size:.92rem}
     <div class="callout"><strong>What good EMTs keep doing:</strong> Learn, practice, ask questions, review mistakes, and keep safety at the center of every call.</div>
 
     <div class="lesson-complete">
-      <span>Professional-readiness lesson completed.</span>
+      <span hidden>Professional-readiness lesson completed.</span>
       <button class="complete-btn" data-complete="8">Mark Complete</button>
     </div>
   </section>
@@ -652,7 +652,10 @@ function updateProgress(){
 
   lessonButtons.forEach(btn=>{
     const id=Number(btn.dataset.complete);
-    if(state.completedLessons.includes(id)){
+    const completed=state.completedLessons.includes(id);
+    const message=btn.parentElement.querySelector("span");
+    if(message) message.hidden=!completed;
+    if(completed){
       btn.textContent="✓ Completed";
       btn.classList.add("done");
     }else{
