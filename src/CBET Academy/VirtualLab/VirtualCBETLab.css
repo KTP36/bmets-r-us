@@ -25,6 +25,10 @@
 
 .virtual-lab-shell * { box-sizing: border-box; }
 .virtual-lab-shell button { font: inherit; }
+/* Leave room for fixed advertising so the last lab controls can be scrolled clear. */
+.virtual-lab-shell { padding-bottom: max(180px, calc(150px + env(safe-area-inset-bottom))); }
+html:has(.virtual-lab-shell) { scroll-padding-bottom: 180px; }
+.virtual-lab-shell :is(button, input, select, [tabindex]) { scroll-margin-bottom: 180px; }
 .virtual-lab-shell button:focus-visible {
   outline: 3px solid rgba(80, 216, 255, .75);
   outline-offset: 3px;
@@ -1153,7 +1157,7 @@
 }
 
 @media (max-width: 780px) {
-  .virtual-lab-shell { padding: 10px; }
+  .virtual-lab-shell { padding: 10px 10px max(180px, calc(150px + env(safe-area-inset-bottom))); }
   .vl-topbar,
   .vl-stepbar,
   .vl-panel-heading > div {
