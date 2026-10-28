@@ -981,11 +981,12 @@
   </div>
 
   
-  <div class="capstone-gate" id="capstoneGate" hidden>
+  <div class="capstone-gate" id="capstoneGate">
     <strong>🔒 Capstone Locked</strong>
     <span>Complete Module 8 to unlock the EMT Academy Capstone.</span>
   </div>
 
+  <div id="capstoneContent" hidden>
   <div class="capstone-callout"><strong>How to approach it:</strong> Several choices may sound reasonable. Choose the <em>best immediate EMT action or interpretation</em> based on scene safety, ABCs, perfusion, mental status, reassessment, and transport priority.</div>
 
   <form id="capstoneForm">
@@ -1059,7 +1060,7 @@
       <fieldset class="cap-question" data-q="12" data-answer="a">
         <legend><span class="cap-qnum">12</span>Which patient most clearly needs assisted ventilation rather than oxygen alone?</legend>
         <div class="cap-options"><label class="cap-option"><input type="radio" name="capq12" value="a"><span class="cap-letter">A</span><span>Drowsy patient breathing 6/min with poor chest rise</span></label><label class="cap-option"><input type="radio" name="capq12" value="b"><span class="cap-letter">B</span><span>Alert patient breathing 24/min with good chest rise</span></label><label class="cap-option"><input type="radio" name="capq12" value="c"><span class="cap-letter">C</span><span>Anxious patient breathing 22/min and speaking full sentences</span></label><label class="cap-option"><input type="radio" name="capq12" value="d"><span class="cap-letter">D</span><span>Patient with chest pain breathing 18/min with normal effort</span></label></div>
-        <div class="cap-explanation" hidden><strong>Review:</strong> The drowsy patient breathing 6/min with poor chest rise shows signs of inadequate ventilation.</div>
+        <div class="cap-explanation" hidden><strong>Review:</strong> Rate, depth, and mental status indicate inadequate ventilation in the second patient.</div>
       </fieldset>
 
       <fieldset class="cap-question" data-q="13" data-answer="c">
@@ -1295,6 +1296,7 @@
     </div>
   </form>
   <div class="capstone-result" id="capstoneResult" hidden></div>
+  </div>
 
 <section class="certificate-section locked" id="certificateSection">
   <div class="section-heading">
@@ -1432,6 +1434,8 @@
       capstone.querySelectorAll("input,button").forEach(el=>{ el.disabled=!capstoneUnlocked; });
     }
     if(capstoneGate) capstoneGate.hidden=capstoneUnlocked;
+    const capstoneContent=document.getElementById("capstoneContent");
+    if(capstoneContent) capstoneContent.hidden=!capstoneUnlocked;
 
     mods.forEach((m,idx)=>{
       const n=idx+1;
