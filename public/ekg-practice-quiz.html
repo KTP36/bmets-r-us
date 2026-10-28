@@ -7,7 +7,7 @@
 
   <meta
     name="description"
-    content="Take a free EKG practice quiz and learn ECG rhythm interpretation step-by-step. Practice normal sinus rhythm, atrial fibrillation, atrial flutter, V-Tach, V-Fib, asystole, PVCs, and more with beginner-friendly explanations."
+    content="Try three free ECG rhythm-strip questions with answers and explanations, then open the full EKG waveform quiz. Review rate, regularity, P waves, and QRS width."
   />
 
   <link rel="canonical" href="https://medskillbuilder.com/ekg-practice-quiz.html" />
@@ -268,788 +268,81 @@
     }
 /* Consistent MedSkillBuilder site navigation */
 .msb-sitebar{padding:16px 0;background:rgba(255,255,255,.88);border-bottom:1px solid #dbe4ee}.msb-sitebar-inner{width:min(1120px,calc(100% - 36px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.msb-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#082f57}.msb-brand img{width:48px;height:auto}.msb-brand strong{display:block;font-size:20px;line-height:1.1}.msb-brand span{display:block;margin-top:2px;color:#64748b;font-size:12px}.msb-nav{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:wrap}.msb-nav a{padding:8px 10px;border-radius:999px;color:#082f57;font-size:13px;font-weight:900;text-decoration:none}.msb-nav a:hover{background:#e8f1fb;color:#1d4ed8}.msb-nav a:focus-visible,.msb-brand:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}@media(max-width:720px){.msb-sitebar-inner{align-items:flex-start;flex-direction:column;gap:10px}.msb-nav{justify-content:flex-start}.msb-nav a{padding:7px 8px}}@media(max-width:480px){.msb-brand span{display:none}}
-  </style>
+  
+    [hidden]{display:none!important}
+    .skip-link{position:absolute;left:12px;top:-70px;background:#fff;padding:12px;z-index:20}.skip-link:focus{top:10px}
+    :focus-visible{outline:3px solid #0369a1;outline-offset:4px}
+    .hero .cta:focus-visible{outline-color:#fff}
+    .quick-intro{margin-bottom:20px}.question{margin:22px 0 30px;border:1px solid var(--border);border-radius:16px;padding:22px;min-width:0}
+    .question legend{font-weight:800;font-size:19px;padding:0 6px;max-width:100%}
+    .strip{margin:8px 0 16px}.strip svg{display:block;width:100%;height:auto;background:#fff8f8;border:1px solid #d1aeb5;border-radius:8px}
+    .strip figcaption{color:#475569;font-size:13px;margin-top:7px}.strip summary{font-size:14px;cursor:pointer;color:#334155}
+    .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+    .answer{display:flex;align-items:flex-start;gap:9px;border:1px solid #cbd5e1;padding:12px;border-radius:10px;cursor:pointer;font-size:15px;line-height:1.45}
+    .answer input{margin-top:4px;accent-color:#991b1b;flex-shrink:0}.answer:has(input:checked){background:#eff6ff;border-color:#2563eb}
+    .question button{font:inherit;border-radius:10px;padding:11px 18px;cursor:pointer;min-height:44px;border:1px solid #991b1b;background:#991b1b;color:white;font-weight:700}
+    .question button.secondary-button{background:white;color:#991b1b;margin-left:8px}.feedback{padding:14px;border-left:4px solid #2563eb;background:#eff6ff;margin-top:16px}.feedback[data-result="correct"]{border-color:#15803d;background:#f0fdf4}.feedback[data-result="incorrect"]{border-color:#b45309;background:#fffbeb}
+    .feedback:empty{display:none}.practice-total{font-weight:700;margin-bottom:0}.section-links{display:flex;gap:10px 22px;flex-wrap:wrap;padding:0;list-style:none}.section-links a{color:#1d4ed8}
+    .table-scroll{overflow-x:auto}.table-scroll table{min-width:510px}.optional-review>summary{cursor:pointer;font-weight:800;font-size:20px}.optional-review>summary::marker{color:#991b1b}
+    .source-list li{margin-bottom:12px}.source-list a{overflow-wrap:anywhere}.publisher{font-size:14px;color:#475569}.educational-note{font-size:14px;color:#475569}
+    @media(max-width:640px){.answers{grid-template-columns:1fr}.question{padding:14px}.question legend{font-size:17px}.hero h1{font-size:30px}.hero{padding:24px}.container{padding:16px}.question button.secondary-button{margin-top:8px}.msb-brand span{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+</style>
 </head>
 
 <body>
+<a class="skip-link" href="#main">Skip to practice and guide</a>
 <div class="msb-sitebar">
   <div class="msb-sitebar-inner">
     <a class="msb-brand" href="/"><img src="/logo.png" alt="MedSkillBuilder Logo" /><div><strong>MedSkillBuilder</strong><span>Interactive healthcare and biomedical learning</span></div></a>
     <nav class="msb-nav" aria-label="Main navigation"><a href="/">Home</a><a href="/?tab=Home#featured-academies-heading">Academies</a><a href="/browse-all-practice.html">Practice</a><a href="/medical-dictionary.html">Dictionary</a><a href="/about.html">About</a></nav>
   </div>
 </div>
-  <div class="container">
-
-    <a class="top-link" href="/">← Back to MedSkillBuilder Home</a>
-
-    <section class="hero">
-      <h1>EKG Practice Quiz: Free ECG Rhythm Test for Beginners</h1>
-
-      <p>
-        Practice reading EKG rhythms with a beginner-friendly quiz built to help you recognize patterns, understand waveforms, and build confidence with ECG interpretation.
-      </p>
-
-      <p>
-        Instead of only memorizing rhythm names, MedSkillBuilder teaches you what to notice first: rate, rhythm, P waves, QRS width, and whether the tracing is organized or chaotic.
-      </p>
-
-      <div class="cta-row">
-        <a class="cta" href="/?tab=ekg">Start EKG Practice Now</a>
-        <a class="cta secondary" href="/how-to-read-ekg.html">Read the EKG Guide</a>
-      </div>
-
-      <div class="hero-badges">
-        <span class="badge">Free EKG Practice</span>
-        <span class="badge">Beginner Friendly</span>
-        <span class="badge">Rhythm Recognition</span>
-        <span class="badge">NCLEX / CBET / Clinical Prep</span>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>What This EKG Practice Quiz Helps You Learn</h2>
-
-      <p>
-        EKG interpretation can feel overwhelming at first because every rhythm strip looks like a series of lines, spikes, and waves. The goal of this practice page is to make EKG reading easier by breaking each rhythm into simple visual clues.
-      </p>
-
-      <p>
-        This quiz is designed for early healthcare learners, nursing students, CBET candidates, clinical staff, biomedical equipment technicians, and anyone who wants a clearer way to understand ECG rhythms.
-      </p>
-
-      <div class="grid">
-        <div class="mini-card">
-          <h3>Rhythm Recognition</h3>
-          <p>Learn how to quickly identify common rhythms by looking for repeatable patterns.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>Waveform Basics</h3>
-          <p>Understand P waves, QRS complexes, T waves, and how they relate to cardiac electrical activity.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>Clinical Thinking</h3>
-          <p>Practice what to notice first before jumping to the rhythm name.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>Exam Prep</h3>
-          <p>Build confidence for nursing exams, healthcare training, and CBET-related cardiac monitoring questions.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>How to Read an EKG Rhythm Strip Step by Step</h2>
-
-      <p>
-        A simple method prevents guessing. When you look at an EKG rhythm strip, do not start by asking, “What is the name of this rhythm?” Start by asking what the strip is showing you.
-      </p>
-
-      <ol>
-        <li><strong>Check the rate.</strong> Is the rhythm slow, normal, or fast?</li>
-        <li><strong>Check regularity.</strong> Are the R waves evenly spaced or irregular?</li>
-        <li><strong>Look for P waves.</strong> Are P waves present before each QRS complex?</li>
-        <li><strong>Check the QRS complex.</strong> Is the QRS narrow or wide?</li>
-        <li><strong>Look at the overall pattern.</strong> Is it organized, irregular, sawtooth, wide and fast, or chaotic?</li>
-        <li><strong>Match the clues.</strong> Use the clues to narrow the rhythm instead of guessing.</li>
-      </ol>
-
-      <div class="notice">
-        <strong>Beginner tip:</strong> The rhythm name comes last. First, collect the clues.
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>What to Notice First on an EKG</h2>
-
-      <p>
-        This is the most important skill for beginners. If you learn what to notice first, EKG interpretation becomes much less intimidating.
-      </p>
-
-      <table class="rhythm-table">
-        <thead>
-          <tr>
-            <th>Question</th>
-            <th>Why It Matters</th>
-            <th>What It Can Suggest</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Is the rhythm regular?</td>
-            <td>Regular spacing often points toward organized rhythms.</td>
-            <td>Normal sinus rhythm, sinus tachycardia, sinus bradycardia, atrial flutter with fixed conduction.</td>
-          </tr>
-          <tr>
-            <td>Is the rhythm irregular?</td>
-            <td>Irregular rhythm can quickly narrow your choices.</td>
-            <td>Atrial fibrillation, premature beats, variable block rhythms.</td>
-          </tr>
-          <tr>
-            <td>Are P waves visible?</td>
-            <td>P waves help show atrial activity.</td>
-            <td>Sinus rhythms usually have clear P waves. Afib often does not.</td>
-          </tr>
-          <tr>
-            <td>Is the QRS narrow or wide?</td>
-            <td>QRS width helps separate supraventricular rhythms from ventricular rhythms.</td>
-            <td>Wide QRS may suggest ventricular rhythms or conduction delay.</td>
-          </tr>
-          <tr>
-            <td>Is the tracing chaotic?</td>
-            <td>Chaotic rhythms are urgent patterns to recognize.</td>
-            <td>Ventricular fibrillation or artifact depending on context.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="card">
-      <h2>EKG Waveform Basics</h2>
-
-      <p>
-        Before you can confidently identify rhythms, you need to understand the basic parts of the EKG waveform. Each part represents electrical activity moving through the heart.
-      </p>
-
-      <h3>P Wave</h3>
-      <p>
-        The P wave represents atrial depolarization. In simple terms, it shows electrical activity moving through the atria before the ventricles contract.
-      </p>
-
-      <div class="success">
-        <strong>What to notice first:</strong> Is there a P wave before every QRS complex?
-      </div>
-
-      <h3>QRS Complex</h3>
-      <p>
-        The QRS complex represents ventricular depolarization. This is usually the most obvious spike on an EKG strip. A narrow QRS often means the impulse is traveling normally through the ventricular conduction system. A wide QRS can suggest a ventricular rhythm or abnormal conduction.
-      </p>
-
-      <div class="success">
-        <strong>What to notice first:</strong> Is the QRS narrow and organized, or wide and abnormal?
-      </div>
-
-      <h3>T Wave</h3>
-      <p>
-        The T wave represents ventricular repolarization. This is the recovery phase after the ventricles depolarize.
-      </p>
-
-      <div class="success">
-        <strong>What to notice first:</strong> Is the T wave present and following the QRS in a consistent way?
-      </div>
-
-      <h3>Baseline</h3>
-      <p>
-        The baseline is the flat area between waveform activity. A baseline that looks chaotic, wavy, or sawtooth can be an important rhythm clue.
-      </p>
-    </section>
-
-    <section class="card"><h2>Advanced EKG Interpretation: Cardiac Conduction System</h2><p>Every heartbeat begins in the SA node before traveling through the AV node, Bundle of His, bundle branches, and Purkinje fibers. Learning this pathway makes rhythm interpretation much easier than memorization.</p><h3>Electrical Pathway</h3><ol><li>SA Node</li><li>Atria (P wave)</li><li>AV Node</li><li>Bundle of His</li><li>Right & Left Bundle Branches</li><li>Purkinje Fibers (QRS)</li></ol><div class="success"><strong>Memory:</strong> SA → AV → His → Bundle Branches → Purkinje.</div><h3>Heart Rate Calculation</h3><table class="rhythm-table"><tr><th>Method</th><th>Formula</th></tr><tr><td>300 Rule</td><td>300 ÷ large boxes</td></tr><tr><td>1500 Rule</td><td>1500 ÷ small boxes</td></tr><tr><td>6 Second Rule</td><td>QRS in 6 seconds × 10</td></tr></table><h3>Intervals</h3><table class="rhythm-table"><tr><th>Interval</th><th>Normal</th></tr><tr><td>PR</td><td>0.12–0.20 sec</td></tr><tr><td>QRS</td><td>&lt;0.12 sec</td></tr><tr><td>QT</td><td>Rate dependent</td></tr></table><h3>AV Blocks</h3><ul><li>1st Degree: Long PR, every beat conducts.</li><li>Mobitz I: Longer, longer, longer, drop.</li><li>Mobitz II: Constant PR with dropped QRS.</li><li>3rd Degree: Complete AV dissociation.</li></ul><div class="critical">Wide + Fast = Think Ventricular Tachycardia until proven otherwise.</div><h3>Electrolytes</h3><table class="rhythm-table"><tr><th>Electrolyte</th><th>ECG Finding</th></tr><tr><td>Hyperkalemia</td><td>Peaked T waves</td></tr><tr><td>Hypokalemia</td><td>U waves</td></tr><tr><td>Hypercalcemia</td><td>Short QT</td></tr><tr><td>Hypocalcemia</td><td>Long QT</td></tr></table><h3>Practice</h3><ol><li>Irregularly irregular + no P waves = <strong>Atrial Fibrillation</strong></li><li>Sawtooth baseline = <strong>Atrial Flutter</strong></li><li>Wide rhythm at 180 bpm = <strong>Ventricular Tachycardia</strong></li><li>Progressive PR prolongation then dropped beat = <strong>Mobitz I</strong></li><li>P before every QRS at 45 bpm = <strong>Sinus Bradycardia</strong></li></ol></section>
-<section class="card">
-      <h2>Common EKG Rhythms Covered in This Practice Quiz</h2>
-
-      <p>
-        The quiz focuses on rhythm recognition patterns that beginners commonly need to know. These rhythms are also useful for nursing students, healthcare training, patient monitoring, and biomedical equipment education.
-      </p>
-
-      <h3>Normal Sinus Rhythm</h3>
-      <p>
-        Normal sinus rhythm is the basic rhythm every learner should understand first. It is the reference point for comparing abnormal rhythms.
-      </p>
-
-      <ul>
-        <li>Rate is usually 60 to 100 beats per minute.</li>
-        <li>Rhythm is regular.</li>
-        <li>P wave appears before each QRS complex.</li>
-        <li>QRS complexes are usually narrow.</li>
-        <li>The overall pattern looks organized and predictable.</li>
-      </ul>
-
-      <div class="notice">
-        <strong>What to notice first:</strong> Look for a clean, regular rhythm with a P wave before every QRS.
-      </div>
-
-      <h3>Sinus Bradycardia</h3>
-      <p>
-        Sinus bradycardia looks like normal sinus rhythm, but slower. The rhythm is still organized, but the rate is below the normal adult range.
-      </p>
-
-      <ul>
-        <li>Rate is usually less than 60 beats per minute.</li>
-        <li>Rhythm is regular.</li>
-        <li>P waves are usually present before each QRS complex.</li>
-        <li>The strip looks organized but slow.</li>
-      </ul>
-
-      <div class="notice">
-        <strong>What to notice first:</strong> The rhythm looks normal, but the spacing is wider because the rate is slow.
-      </div>
-
-      <h3>Sinus Tachycardia</h3>
-      <p>
-        Sinus tachycardia also looks like normal sinus rhythm, but faster. The key is that the rhythm remains organized and sinus-based.
-      </p>
-
-      <ul>
-        <li>Rate is usually greater than 100 beats per minute.</li>
-        <li>Rhythm is regular.</li>
-        <li>P waves usually appear before QRS complexes.</li>
-        <li>QRS complexes are typically narrow.</li>
-      </ul>
-
-      <div class="notice">
-        <strong>What to notice first:</strong> The pattern looks organized, but everything is closer together because the rate is fast.
-      </div>
-
-      <h3>Atrial Fibrillation</h3>
-      <p>
-        Atrial fibrillation is one of the most important rhythms for beginners to recognize. It is commonly described as irregularly irregular.
-      </p>
-
-      <ul>
-        <li>Rhythm is irregularly irregular.</li>
-        <li>P waves are usually absent.</li>
-        <li>The baseline may appear wavy or chaotic.</li>
-        <li>QRS complexes may be narrow unless another conduction problem exists.</li>
-      </ul>
-
-      <div class="critical">
-        <strong>What to notice first:</strong> The R-R intervals are uneven and there are no consistent P waves.
-      </div>
-
-      <h3>Atrial Flutter</h3>
-      <p>
-        Atrial flutter often has a sawtooth appearance. The rhythm may be regular or variable depending on conduction.
-      </p>
-
-      <ul>
-        <li>Flutter waves can create a sawtooth baseline.</li>
-        <li>The rhythm may be regular with fixed conduction.</li>
-        <li>P waves are replaced by flutter waves.</li>
-        <li>QRS complexes may be narrow.</li>
-      </ul>
-
-      <div class="notice">
-        <strong>What to notice first:</strong> Look for repeating sawtooth flutter waves between QRS complexes.
-      </div>
-
-      <h3>Premature Ventricular Contractions</h3>
-      <p>
-        Premature ventricular contractions, or PVCs, are early beats that originate in the ventricles. They often appear as wide, unusual-looking beats that interrupt the normal rhythm.
-      </p>
-
-      <ul>
-        <li>Early beat occurs before the next expected beat.</li>
-        <li>QRS is usually wide and abnormal-looking.</li>
-        <li>P wave may not be associated with the PVC.</li>
-        <li>There may be a pause after the PVC.</li>
-      </ul>
-
-      <div class="warning">
-        <strong>What to notice first:</strong> Look for a single wide beat that appears early and looks different from the others.
-      </div>
-
-      <h3>Ventricular Tachycardia</h3>
-      <p>
-        Ventricular tachycardia, often called V-Tach, is a fast rhythm that originates from the ventricles. It is important to recognize because it can be unstable and dangerous.
-      </p>
-
-      <ul>
-        <li>Rate is usually fast.</li>
-        <li>QRS complexes are wide.</li>
-        <li>Rhythm may be regular.</li>
-        <li>P waves may not be visible.</li>
-        <li>The strip often looks like a rapid wide-complex rhythm.</li>
-      </ul>
-
-      <div class="critical">
-        <strong>What to notice first:</strong> Fast rate plus wide QRS complexes should immediately make you think about ventricular rhythms.
-      </div>
-
-      <h3>Ventricular Fibrillation</h3>
-      <p>
-        Ventricular fibrillation, or V-Fib, is a chaotic rhythm with no organized ventricular contraction. On a strip, it does not show normal QRS complexes.
-      </p>
-
-      <ul>
-        <li>No organized rhythm.</li>
-        <li>No clear P waves.</li>
-        <li>No clear QRS complexes.</li>
-        <li>Chaotic waveform appearance.</li>
-      </ul>
-
-      <div class="critical">
-        <strong>What to notice first:</strong> The tracing is chaotic with no organized QRS complexes.
-      </div>
-
-      <h3>Asystole</h3>
-      <p>
-        Asystole is commonly known as a flatline. It shows no meaningful electrical activity on the rhythm strip.
-      </p>
-
-      <ul>
-        <li>Flat or nearly flat tracing.</li>
-        <li>No organized rhythm.</li>
-        <li>No P waves.</li>
-        <li>No QRS complexes.</li>
-      </ul>
-
-      <div class="critical">
-        <strong>What to notice first:</strong> There is no organized electrical activity.
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Quick Rhythm Comparison Chart</h2>
-
-      <table class="rhythm-table">
-        <thead>
-          <tr>
-            <th>Rhythm</th>
-            <th>Key Pattern</th>
-            <th>Beginner Clue</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Normal Sinus Rhythm</td>
-            <td>Regular, P before every QRS, rate 60–100</td>
-            <td>Clean and organized</td>
-          </tr>
-
-          <tr>
-            <td>Sinus Bradycardia</td>
-            <td>Regular sinus rhythm below 60 bpm</td>
-            <td>Normal-looking but slow</td>
-          </tr>
-
-          <tr>
-            <td>Sinus Tachycardia</td>
-            <td>Regular sinus rhythm above 100 bpm</td>
-            <td>Normal-looking but fast</td>
-          </tr>
-
-          <tr>
-            <td>Atrial Fibrillation</td>
-            <td>Irregularly irregular, no consistent P waves</td>
-            <td>Uneven spacing</td>
-          </tr>
-
-          <tr>
-            <td>Atrial Flutter</td>
-            <td>Sawtooth flutter waves</td>
-            <td>Repeating sawtooth baseline</td>
-          </tr>
-
-          <tr>
-            <td>PVC</td>
-            <td>Early wide beat</td>
-            <td>One beat looks early and different</td>
-          </tr>
-
-          <tr>
-            <td>Ventricular Tachycardia</td>
-            <td>Fast wide-complex rhythm</td>
-            <td>Wide and rapid</td>
-          </tr>
-
-          <tr>
-            <td>Ventricular Fibrillation</td>
-            <td>Chaotic, no organized QRS</td>
-            <td>Completely disorganized tracing</td>
-          </tr>
-
-          <tr>
-            <td>Asystole</td>
-            <td>No meaningful electrical activity</td>
-            <td>Flatline pattern</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="card">
-      <h2>Common Mistakes Beginners Make When Reading EKGs</h2>
-
-      <p>
-        Most beginners do not struggle because they are not smart enough. They struggle because they try to memorize too many rhythm names before they understand the visual clues.
-      </p>
-
-      <h3>Mistake 1: Naming the Rhythm Too Early</h3>
-      <p>
-        If you try to name the rhythm before checking rate, regularity, P waves, and QRS width, you are guessing. Slow down and collect evidence first.
-      </p>
-
-      <h3>Mistake 2: Ignoring Regularity</h3>
-      <p>
-        Regularity is one of the fastest ways to narrow your options. A rhythm that is perfectly regular is very different from a rhythm that is irregularly irregular.
-      </p>
-
-      <h3>Mistake 3: Missing P Waves</h3>
-      <p>
-        P waves tell you a lot about atrial activity. If you do not look for them, you may confuse sinus rhythms with atrial rhythms.
-      </p>
-
-      <h3>Mistake 4: Confusing Afib and Aflutter</h3>
-      <p>
-        Atrial fibrillation is usually irregularly irregular with no consistent P waves. Atrial flutter often has a repeating sawtooth pattern. That visual difference matters.
-      </p>
-
-      <h3>Mistake 5: Not Checking QRS Width</h3>
-      <p>
-        A wide QRS complex can be a major clue. Fast and wide should make you think carefully about ventricular tachycardia or other wide-complex rhythms.
-      </p>
-    </section>
-
-    <section class="card">
-      <h2>Beginner EKG Practice Checklist</h2>
-
-      <p>
-        Use this checklist every time you practice. The goal is to build a repeatable habit.
-      </p>
-
-      <ol>
-        <li>Look at the whole strip before focusing on one beat.</li>
-        <li>Ask whether the rhythm is regular or irregular.</li>
-        <li>Find the R waves and compare spacing.</li>
-        <li>Look for P waves before QRS complexes.</li>
-        <li>Decide if the QRS complexes are narrow or wide.</li>
-        <li>Look at the baseline for sawtooth or chaotic activity.</li>
-        <li>Use the pattern to narrow the rhythm.</li>
-        <li>Only then choose the rhythm name.</li>
-      </ol>
-
-      <div class="success">
-        <strong>Practice goal:</strong> Do not just ask, “What rhythm is this?” Ask, “What clues prove it?”
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>How This EKG Quiz Builds Real Recognition</h2>
-
-      <p>
-        Passive reading can help you understand the words, but EKG interpretation is a recognition skill. You get better by seeing rhythms repeatedly and making decisions.
-      </p>
-
-      <p>
-        This is why interactive practice matters. A quiz forces your brain to compare patterns, choose an answer, and learn from feedback. That active recall helps the information stick better than simply reading a list of rhythms.
-      </p>
-
-      <p>
-        MedSkillBuilder is built around this idea: make difficult healthcare concepts practical, visual, and memorable.
-      </p>
-
-      <a class="cta" style="background:#dc2626;color:white;" href="/?tab=ekg">Take the Free EKG Quiz</a>
-    </section>
-
-    <section class="card">
-      <h2>Who Should Use This EKG Practice Quiz?</h2>
-
-      <ul>
-        <li><strong>Nursing students:</strong> Practice rhythm recognition for class, clinicals, and NCLEX preparation.</li>
-        <li><strong>CBET candidates:</strong> Review cardiac monitoring concepts that connect biomedical equipment with patient care.</li>
-        <li><strong>New healthcare workers:</strong> Build confidence with common rhythms seen in clinical environments.</li>
-        <li><strong>Students learning anatomy and physiology:</strong> Connect heart electrical activity with cardiac function.</li>
-        <li><strong>Biomedical equipment learners:</strong> Understand the clinical meaning behind the waveforms displayed by patient monitors.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>EKG Practice Questions: Example Learning Style</h2>
-
-      <p>
-        The best EKG questions do more than ask for a name. They train you to notice the clue.
-      </p>
-
-      <h3>Example 1</h3>
-      <p>
-        A rhythm strip shows an irregularly irregular rhythm with no consistent P waves. What should you suspect?
-      </p>
-      <p>
-        <strong>Answer:</strong> Atrial fibrillation.
-      </p>
-      <p>
-        <strong>What to notice first:</strong> The uneven spacing and missing consistent P waves are the key clues.
-      </p>
-
-      <h3>Example 2</h3>
-      <p>
-        A rhythm strip shows a rapid rhythm with wide QRS complexes. What rhythm should be considered?
-      </p>
-      <p>
-        <strong>Answer:</strong> Ventricular tachycardia.
-      </p>
-      <p>
-        <strong>What to notice first:</strong> Fast plus wide is the pattern that should stand out.
-      </p>
-
-      <h3>Example 3</h3>
-      <p>
-        A rhythm strip shows repeating sawtooth waves between QRS complexes. What rhythm does this suggest?
-      </p>
-      <p>
-        <strong>Answer:</strong> Atrial flutter.
-      </p>
-      <p>
-        <strong>What to notice first:</strong> The sawtooth baseline is the major visual clue.
-      </p>
-    </section>
-
-    <section class="card">
-      <h2>EKG Terms Beginners Should Know</h2>
-
-      <div class="grid">
-        <div class="mini-card">
-          <h3>Rate</h3>
-          <p>How fast the heart is beating.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>Rhythm</h3>
-          <p>Whether beats occur in a regular or irregular pattern.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>P Wave</h3>
-          <p>Atrial electrical activity before ventricular contraction.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>QRS Complex</h3>
-          <p>Ventricular electrical activity and usually the largest spike on the strip.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>T Wave</h3>
-          <p>Ventricular recovery after depolarization.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>Artifact</h3>
-          <p>Distortion or interference that can make a tracing look abnormal.</p>
-        </div>
-      </div>
-    </section>
-
-    
-<section class="card">
-<h2>Advanced 12-Lead ECG Interpretation</h2>
-<p>Rhythm strips usually show one lead, but a full 12-lead ECG helps identify ischemia, infarction, conduction abnormalities, chamber enlargement, and axis changes.</p>
-
-<h3>What Each Lead Looks At</h3>
-<table class="rhythm-table">
-<tr><th>Lead Group</th><th>Heart Region</th><th>Clinical Importance</th></tr>
-<tr><td>II, III, aVF</td><td>Inferior Wall</td><td>Inferior STEMI</td></tr>
-<tr><td>I, aVL, V5, V6</td><td>Lateral Wall</td><td>Lateral Ischemia</td></tr>
-<tr><td>V1–V2</td><td>Septal</td><td>Septal MI, BBB clues</td></tr>
-<tr><td>V3–V4</td><td>Anterior</td><td>LAD occlusion</td></tr>
-</table>
-
-<h3>Bundle Branch Blocks</h3>
-<p>Bundle branch blocks delay ventricular depolarization and typically widen the QRS complex.</p>
-<ul>
-<li><strong>Right Bundle Branch Block (RBBB):</strong> Wide QRS, terminal R' in V1 ("rabbit ears").</li>
-<li><strong>Left Bundle Branch Block (LBBB):</strong> Wide QRS with broad/notched R waves in lateral leads.</li>
-</ul>
-
-<div class="warning"><strong>Clinical Pearl:</strong> New LBBB with ischemic symptoms requires careful evaluation because it can obscure acute infarction findings.</div>
-
-<h3>Junctional Rhythms</h3>
-<table class="rhythm-table">
-<tr><th>Finding</th><th>Typical Appearance</th></tr>
-<tr><td>Rate</td><td>40–60 bpm</td></tr>
-<tr><td>P Waves</td><td>Absent, inverted, or after the QRS</td></tr>
-<tr><td>QRS</td><td>Usually narrow</td></tr>
-</table>
-
-<h3>Pacemaker Rhythms</h3>
-<p>Pacemaker spikes appear as thin vertical lines immediately before atrial depolarization, ventricular depolarization, or both depending on the device type.</p>
-
-<h3>STEMI Localization Basics</h3>
-<table class="rhythm-table">
-<tr><th>ST Elevation</th><th>Likely Region</th><th>Usually Supplied By</th></tr>
-<tr><td>II, III, aVF</td><td>Inferior</td><td>RCA</td></tr>
-<tr><td>V1–V4</td><td>Anterior</td><td>LAD</td></tr>
-<tr><td>I, aVL, V5, V6</td><td>Lateral</td><td>Circumflex / Diagonal</td></tr>
-</table>
-
-<h3>Clinical Scenarios</h3>
-<div class="success">
-<p><strong>Scenario 1:</strong> A patient has chest pain with ST elevation in II, III and aVF. <strong>Answer:</strong> Inferior STEMI.</p>
-<p><strong>Scenario 2:</strong> ECG shows wide QRS with RSR' pattern in V1. <strong>Answer:</strong> Right Bundle Branch Block.</p>
-<p><strong>Scenario 3:</strong> No visible P waves, narrow QRS, rate 50 bpm. <strong>Answer:</strong> Junctional Rhythm.</p>
-<p><strong>Scenario 4:</strong> Thin pacing spike immediately before each QRS. <strong>Answer:</strong> Ventricular Paced Rhythm.</p>
-<p><strong>Scenario 5:</strong> Peaked T waves in a patient with renal failure. <strong>Answer:</strong> Hyperkalemia.</p>
-</div>
-
-<h3>Memory Aids</h3>
-<ul>
-<li>Wide + Fast = Think Ventricular Tachycardia.</li>
-<li>Longer, Longer, Drop = Mobitz I.</li>
-<li>No Relationship = Third Degree Heart Block.</li>
-<li>Sawtooth = Atrial Flutter.</li>
-<li>Irregularly Irregular = Atrial Fibrillation.</li>
-</ul>
-</section>
-
-<section class="card">
-      <h2>FAQ: EKG Practice and Rhythm Interpretation</h2>
-
-      <h3>What is the best way to start learning EKG interpretation?</h3>
-      <p>
-        Start with normal sinus rhythm. Learn what normal looks like first. Then compare abnormal rhythms against that normal pattern.
-      </p>
-
-      <h3>What should I look for first on an EKG?</h3>
-      <p>
-        Start with regularity. Ask whether the rhythm is regular or irregular. Then look for P waves, QRS width, and the overall rhythm pattern.
-      </p>
-
-      <h3>What is the difference between EKG and ECG?</h3>
-      <p>
-        EKG and ECG are commonly used to refer to the same test: an electrocardiogram. Both terms describe a recording of the heart’s electrical activity.
-      </p>
-
-      <h3>Is atrial fibrillation regular or irregular?</h3>
-      <p>
-        Atrial fibrillation is typically irregularly irregular. That uneven spacing is one of the most important clues.
-      </p>
-
-      <h3>What does a wide QRS mean?</h3>
-      <p>
-        A wide QRS can suggest that ventricular conduction is abnormal or that the rhythm may originate from the ventricles.
-      </p>
-
-      <h3>What does asystole look like?</h3>
-      <p>
-        Asystole usually appears as a flatline or nearly flat tracing with no organized electrical activity.
-      </p>
-
-      <h3>How do I get better at identifying rhythms?</h3>
-      <p>
-        Practice repeatedly. Focus on the clues, not just the names. Over time, your brain starts recognizing patterns faster.
-      </p>
-
-      <h3>Is this quiz good for nursing students?</h3>
-      <p>
-        Yes. This quiz is designed to help nursing students build rhythm recognition skills for class, clinical learning, and exam preparation.
-      </p>
-
-      <h3>Is this useful for CBET exam prep?</h3>
-      <p>
-        Yes. CBET candidates benefit from understanding cardiac monitoring basics, patient monitor waveforms, and the meaning behind common ECG rhythms.
-      </p>
-    </section>
-
-    
-<section class="card">
-<h2>Master ECG Interpretation Algorithm</h2>
-<p>Use this algorithm on every rhythm strip before naming the rhythm.</p>
-<ol>
-<li>Check patient first, then the monitor.</li>
-<li>Determine heart rate.</li>
-<li>Assess rhythm regularity.</li>
-<li>Identify P waves.</li>
-<li>Measure PR interval.</li>
-<li>Measure QRS duration.</li>
-<li>Evaluate ST segment and T waves.</li>
-<li>Look for ectopy, pauses, or dropped beats.</li>
-<li>Match findings to the rhythm.</li>
-<li>Consider the patient's symptoms before deciding urgency.</li>
-</ol>
-
-<h3>ECG Artifact Recognition</h3>
-<table class="rhythm-table">
-<tr><th>Artifact</th><th>Appearance</th><th>Common Cause</th></tr>
-<tr><td>Muscle Tremor</td><td>Jagged baseline</td><td>Shivering/Parkinson's</td></tr>
-<tr><td>Loose Lead</td><td>Sudden wandering baseline</td><td>Poor electrode contact</td></tr>
-<tr><td>60-Cycle Interference</td><td>Uniform electrical noise</td><td>Nearby electrical equipment</td></tr>
-<tr><td>Motion Artifact</td><td>Irregular distortion</td><td>Patient movement</td></tr>
-</table>
-
-<h3>Medication Effects on ECG</h3>
-<table class="rhythm-table">
-<tr><th>Medication</th><th>Possible ECG Finding</th></tr>
-<tr><td>Digoxin</td><td>Scooped ST depression, AV block</td></tr>
-<tr><td>Beta Blockers</td><td>Bradycardia, prolonged PR</td></tr>
-<tr><td>Calcium Channel Blockers</td><td>Bradycardia, AV conduction delay</td></tr>
-<tr><td>Amiodarone</td><td>QT prolongation</td></tr>
-</table>
-
-<h3>Advanced Clinical Cases</h3>
-<div class="notice">
-<p><strong>Case 1:</strong> Wide-complex tachycardia at 190 bpm in an unconscious patient. Treat as ventricular tachycardia until proven otherwise.</p>
-<p><strong>Case 2:</strong> Inferior ST elevation with hypotension may indicate right ventricular involvement.</p>
-<p><strong>Case 3:</strong> Long QT plus syncope increases risk for Torsades de Pointes.</p>
-<p><strong>Case 4:</strong> Hyperkalemia can progress from peaked T waves to sine-wave morphology if untreated.</p>
-</div>
-
-<h3>20 Rapid-Fire Review Questions</h3>
-<ol>
-<li>Which interval represents AV conduction? <strong>PR</strong></li>
-<li>Normal QRS duration? <strong>&lt;0.12 sec</strong></li>
-<li>Irregularly irregular rhythm? <strong>Atrial Fibrillation</strong></li>
-<li>Sawtooth pattern? <strong>Atrial Flutter</strong></li>
-<li>Wide fast rhythm? <strong>Ventricular Tachycardia</strong></li>
-<li>No organized electrical activity? <strong>Asystole</strong></li>
-<li>Chaotic waveform? <strong>Ventricular Fibrillation</strong></li>
-<li>Natural pacemaker? <strong>SA Node</strong></li>
-<li>Normal sinus rate? <strong>60–100 bpm</strong></li>
-<li>Peaked T waves? <strong>Hyperkalemia</strong></li>
-<li>U waves? <strong>Hypokalemia</strong></li>
-<li>QT shortening? <strong>Hypercalcemia</strong></li>
-<li>QT prolongation? <strong>Hypocalcemia</strong></li>
-<li>Progressively longer PR then dropped beat? <strong>Mobitz I</strong></li>
-<li>Constant PR with dropped beat? <strong>Mobitz II</strong></li>
-<li>No P-QRS relationship? <strong>Third-degree AV block</strong></li>
-<li>Inferior STEMI leads? <strong>II, III, aVF</strong></li>
-<li>Anterior STEMI leads? <strong>V1–V4</strong></li>
-<li>Lateral STEMI leads? <strong>I, aVL, V5, V6</strong></li>
-<li>Best habit? <strong>Collect clues before naming the rhythm.</strong></li>
-</ol>
-</section>
-
-<section class="card">
-      <h2>Related MedSkillBuilder Practice</h2>
-
-      <p>
-        Keep building your cardiac, anatomy, and clinical knowledge with related practice tools.
-      </p>
-
-      <div class="link-grid">
-        <a class="practice-link" href="/how-to-read-ekg.html">How to Read an EKG</a>
-        <a class="practice-link" href="/ekg-rhythm-cheat-sheet.html">EKG Rhythm Cheat Sheet</a>
-        <a class="practice-link" href="/heart-anatomy-quiz.html">Heart Anatomy Quiz</a>
-        <a class="practice-link" href="/anatomy-labeling-practice.html">Anatomy Labeling Practice</a>
-        <a class="practice-link" href="/lab-values-practice-quiz.html">Lab Values Practice Quiz</a>
-        <a class="practice-link" href="/rn-practice-questions.html">RN Practice Questions</a>
-        <a class="practice-link" href="/free-cbet-practice-test.html">Free CBET Practice Test</a>
-        <a class="practice-link" href="/medical-terminology-practice.html">Medical Terminology Practice</a>
-        <a class="practice-link" href="/medical-equipment-identification-practice.html">Medical Equipment Identification</a>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Start Practicing EKG Rhythms</h2>
-
-      <p>
-        The best way to improve is to practice. Start with the quiz, review the explanations, and come back until the rhythm patterns begin to feel familiar.
-      </p>
-
-      <p>
-        Focus on what you notice first. That habit will help you move from guessing to understanding.
-      </p>
-
-      <a class="cta" style="background:#dc2626;color:white;" href="/?tab=ekg">Start the Free EKG Practice Quiz</a>
-    </section>
-
-    <p class="footer-note">
-      MedSkillBuilder helps early healthcare learners build confidence through interactive practice, visual learning, and beginner-friendly explanations.
-    </p>
-
-  </div>
-</body>
-</html>
+<main class="container" id="main">
+<a class="top-link" href="/browse-all-practice.html">← Browse all practice</a>
+<section class="hero" aria-labelledby="page-title"><h1 id="page-title">EKG Practice Quiz: Free ECG Rhythm Test for Beginners</h1><p>Read the strip, choose a rhythm, and learn which clues support your answer. Try three questions here, then continue to the full waveform quiz.</p><div class="cta-row"><a class="cta" href="#quick-practice">Try 3 ECG questions</a><a class="cta secondary" href="/?tab=ekg">Open the full EKG quiz</a></div><div class="hero-badges"><span class="badge">Free practice</span><span class="badge">Visual rhythm strips</span><span class="badge">Answers with explanations</span></div></section>
+<section class="card" id="quick-practice" aria-labelledby="quick-heading"><h2 id="quick-heading">Start with three rhythm strips</h2><p class="quick-intro">For each tracing, check rate, regularity, P waves, and QRS width before naming the rhythm. Your answers stay on this page and are not submitted or saved.</p><p class="educational-note">These are simplified adult single-lead simulations, not patient recordings or diagnostic tests. Real tracings require clinical context, correct lead setup, and qualified interpretation.</p>
+<form class="practice-question" data-question="1"><fieldset class="question"><legend>1. Which rhythm best matches this tracing?</legend><figure class="strip"><svg viewBox="0 0 600 154" role="img" aria-labelledby="strip-title-1 strip-desc-1" xmlns="http://www.w3.org/2000/svg"><title id="strip-title-1">Simulated six-second rhythm strip for question 1</title><desc id="strip-desc-1">R waves are evenly spaced about four large boxes apart. Similar small rounded waves precede each narrow QRS, followed by a broader recovery wave.</desc><defs><pattern id="small-1" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M 4 0 L 0 0 0 4" fill="none" stroke="#f0cbd0" stroke-width="0.35"/></pattern><pattern id="large-1" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="url(#small-1)"/><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#d98e9b" stroke-width="0.65"/></pattern></defs><rect width="600" height="154" fill="#fff8f8"/><rect width="600" height="140" fill="url(#large-1)"/><polyline points="0.0,82.00 0.5,82.00 1.0,82.00 1.5,82.00 2.0,82.00 2.5,82.00 3.0,82.00 3.5,82.00 4.0,81.99 4.5,81.98 5.0,81.97 5.5,81.94 6.0,81.90 6.5,81.82 7.0,81.71 7.5,81.54 8.0,81.30 8.5,80.97 9.0,80.55 9.5,80.05 10.0,79.47 10.5,78.85 11.0,78.22 11.5,77.66 12.0,77.20 12.5,76.90 13.0,76.80 13.5,76.90 14.0,77.20 14.5,77.66 15.0,78.22 15.5,78.85 16.0,79.47 16.5,80.05 17.0,80.55 17.5,80.97 18.0,81.30 18.5,81.54 19.0,81.71 19.5,81.82 20.0,81.90 20.5,81.94 21.0,81.97 21.5,81.98 22.0,81.99 22.5,82.00 23.0,82.00 23.5,82.00 24.0,82.00 24.5,82.03 25.0,82.14 25.5,82.51 26.0,83.38 26.5,84.65 27.0,85.33 27.5,83.60 28.0,77.80 28.5,67.71 29.0,55.24 29.5,44.58 30.0,40.55 30.5,45.43 31.0,57.13 31.5,70.72 32.0,81.80 32.5,88.27 33.0,90.23 33.5,89.10 34.0,86.71 34.5,84.50 35.0,83.06 35.5,82.36 36.0,82.08 36.5,81.99 37.0,81.95 37.5,81.93 38.0,81.91 38.5,81.88 39.0,81.84 39.5,81.79 40.0,81.73 40.5,81.65 41.0,81.56 41.5,81.45 42.0,81.31 42.5,81.15 43.0,80.96 43.5,80.74 44.0,80.48 44.5,80.19 45.0,79.86 45.5,79.48 46.0,79.06 46.5,78.61 47.0,78.11 47.5,77.58 48.0,77.02 48.5,76.43 49.0,75.82 49.5,75.21 50.0,74.59 50.5,73.99 51.0,73.40 51.5,72.85 52.0,72.35 52.5,71.90 53.0,71.52 53.5,71.21 54.0,70.98 54.5,70.85 55.0,70.80 55.5,70.85 56.0,70.98 56.5,71.21 57.0,71.52 57.5,71.90 58.0,72.35 58.5,72.85 59.0,73.40 59.5,73.99 60.0,74.59 60.5,75.21 61.0,75.82 61.5,76.43 62.0,77.02 62.5,77.58 63.0,78.11 63.5,78.61 64.0,79.06 64.5,79.48 65.0,79.86 65.5,80.19 66.0,80.48 66.5,80.74 67.0,80.96 67.5,81.15 68.0,81.31 68.5,81.45 69.0,81.56 69.5,81.65 70.0,81.73 70.5,81.79 71.0,81.84 71.5,81.88 72.0,81.91 72.5,81.93 73.0,81.95 73.5,81.96 74.0,81.97 74.5,81.98 75.0,81.98 75.5,81.99 76.0,81.99 76.5,81.99 77.0,82.00 77.5,82.00 78.0,82.00 78.5,82.00 79.0,82.00 79.5,82.00 80.0,82.00 80.5,82.00 81.0,82.00 81.5,82.00 82.0,82.00 82.5,82.00 83.0,82.00 83.5,82.00 84.0,81.99 84.5,81.98 85.0,81.97 85.5,81.94 86.0,81.90 86.5,81.82 87.0,81.71 87.5,81.54 88.0,81.30 88.5,80.97 89.0,80.55 89.5,80.05 90.0,79.47 90.5,78.85 91.0,78.22 91.5,77.66 92.0,77.20 92.5,76.90 93.0,76.80 93.5,76.90 94.0,77.20 94.5,77.66 95.0,78.22 95.5,78.85 96.0,79.47 96.5,80.05 97.0,80.55 97.5,80.97 98.0,81.30 98.5,81.54 99.0,81.71 99.5,81.82 100.0,81.90 100.5,81.94 101.0,81.97 101.5,81.98 102.0,81.99 102.5,82.00 103.0,82.00 103.5,82.00 104.0,82.00 104.5,82.03 105.0,82.14 105.5,82.51 106.0,83.38 106.5,84.65 107.0,85.33 107.5,83.60 108.0,77.80 108.5,67.71 109.0,55.24 109.5,44.58 110.0,40.55 110.5,45.43 111.0,57.13 111.5,70.72 112.0,81.80 112.5,88.27 113.0,90.23 113.5,89.10 114.0,86.71 114.5,84.50 115.0,83.06 115.5,82.36 116.0,82.08 116.5,81.99 117.0,81.95 117.5,81.93 118.0,81.91 118.5,81.88 119.0,81.84 119.5,81.79 120.0,81.73 120.5,81.65 121.0,81.56 121.5,81.45 122.0,81.31 122.5,81.15 123.0,80.96 123.5,80.74 124.0,80.48 124.5,80.19 125.0,79.86 125.5,79.48 126.0,79.06 126.5,78.61 127.0,78.11 127.5,77.58 128.0,77.02 128.5,76.43 129.0,75.82 129.5,75.21 130.0,74.59 130.5,73.99 131.0,73.40 131.5,72.85 132.0,72.35 132.5,71.90 133.0,71.52 133.5,71.21 134.0,70.98 134.5,70.85 135.0,70.80 135.5,70.85 136.0,70.98 136.5,71.21 137.0,71.52 137.5,71.90 138.0,72.35 138.5,72.85 139.0,73.40 139.5,73.99 140.0,74.59 140.5,75.21 141.0,75.82 141.5,76.43 142.0,77.02 142.5,77.58 143.0,78.11 143.5,78.61 144.0,79.06 144.5,79.48 145.0,79.86 145.5,80.19 146.0,80.48 146.5,80.74 147.0,80.96 147.5,81.15 148.0,81.31 148.5,81.45 149.0,81.56 149.5,81.65 150.0,81.73 150.5,81.79 151.0,81.84 151.5,81.88 152.0,81.91 152.5,81.93 153.0,81.95 153.5,81.96 154.0,81.97 154.5,81.98 155.0,81.98 155.5,81.99 156.0,81.99 156.5,81.99 157.0,82.00 157.5,82.00 158.0,82.00 158.5,82.00 159.0,82.00 159.5,82.00 160.0,82.00 160.5,82.00 161.0,82.00 161.5,82.00 162.0,82.00 162.5,82.00 163.0,82.00 163.5,82.00 164.0,81.99 164.5,81.98 165.0,81.97 165.5,81.94 166.0,81.90 166.5,81.82 167.0,81.71 167.5,81.54 168.0,81.30 168.5,80.97 169.0,80.55 169.5,80.05 170.0,79.47 170.5,78.85 171.0,78.22 171.5,77.66 172.0,77.20 172.5,76.90 173.0,76.80 173.5,76.90 174.0,77.20 174.5,77.66 175.0,78.22 175.5,78.85 176.0,79.47 176.5,80.05 177.0,80.55 177.5,80.97 178.0,81.30 178.5,81.54 179.0,81.71 179.5,81.82 180.0,81.90 180.5,81.94 181.0,81.97 181.5,81.98 182.0,81.99 182.5,82.00 183.0,82.00 183.5,82.00 184.0,82.00 184.5,82.03 185.0,82.14 185.5,82.51 186.0,83.38 186.5,84.65 187.0,85.33 187.5,83.60 188.0,77.80 188.5,67.71 189.0,55.24 189.5,44.58 190.0,40.55 190.5,45.43 191.0,57.13 191.5,70.72 192.0,81.80 192.5,88.27 193.0,90.23 193.5,89.10 194.0,86.71 194.5,84.50 195.0,83.06 195.5,82.36 196.0,82.08 196.5,81.99 197.0,81.95 197.5,81.93 198.0,81.91 198.5,81.88 199.0,81.84 199.5,81.79 200.0,81.73 200.5,81.65 201.0,81.56 201.5,81.45 202.0,81.31 202.5,81.15 203.0,80.96 203.5,80.74 204.0,80.48 204.5,80.19 205.0,79.86 205.5,79.48 206.0,79.06 206.5,78.61 207.0,78.11 207.5,77.58 208.0,77.02 208.5,76.43 209.0,75.82 209.5,75.21 210.0,74.59 210.5,73.99 211.0,73.40 211.5,72.85 212.0,72.35 212.5,71.90 213.0,71.52 213.5,71.21 214.0,70.98 214.5,70.85 215.0,70.80 215.5,70.85 216.0,70.98 216.5,71.21 217.0,71.52 217.5,71.90 218.0,72.35 218.5,72.85 219.0,73.40 219.5,73.99 220.0,74.59 220.5,75.21 221.0,75.82 221.5,76.43 222.0,77.02 222.5,77.58 223.0,78.11 223.5,78.61 224.0,79.06 224.5,79.48 225.0,79.86 225.5,80.19 226.0,80.48 226.5,80.74 227.0,80.96 227.5,81.15 228.0,81.31 228.5,81.45 229.0,81.56 229.5,81.65 230.0,81.73 230.5,81.79 231.0,81.84 231.5,81.88 232.0,81.91 232.5,81.93 233.0,81.95 233.5,81.96 234.0,81.97 234.5,81.98 235.0,81.98 235.5,81.99 236.0,81.99 236.5,81.99 237.0,82.00 237.5,82.00 238.0,82.00 238.5,82.00 239.0,82.00 239.5,82.00 240.0,82.00 240.5,82.00 241.0,82.00 241.5,82.00 242.0,82.00 242.5,82.00 243.0,82.00 243.5,82.00 244.0,81.99 244.5,81.98 245.0,81.97 245.5,81.94 246.0,81.90 246.5,81.82 247.0,81.71 247.5,81.54 248.0,81.30 248.5,80.97 249.0,80.55 249.5,80.05 250.0,79.47 250.5,78.85 251.0,78.22 251.5,77.66 252.0,77.20 252.5,76.90 253.0,76.80 253.5,76.90 254.0,77.20 254.5,77.66 255.0,78.22 255.5,78.85 256.0,79.47 256.5,80.05 257.0,80.55 257.5,80.97 258.0,81.30 258.5,81.54 259.0,81.71 259.5,81.82 260.0,81.90 260.5,81.94 261.0,81.97 261.5,81.98 262.0,81.99 262.5,82.00 263.0,82.00 263.5,82.00 264.0,82.00 264.5,82.03 265.0,82.14 265.5,82.51 266.0,83.38 266.5,84.65 267.0,85.33 267.5,83.60 268.0,77.80 268.5,67.71 269.0,55.24 269.5,44.58 270.0,40.55 270.5,45.43 271.0,57.13 271.5,70.72 272.0,81.80 272.5,88.27 273.0,90.23 273.5,89.10 274.0,86.71 274.5,84.50 275.0,83.06 275.5,82.36 276.0,82.08 276.5,81.99 277.0,81.95 277.5,81.93 278.0,81.91 278.5,81.88 279.0,81.84 279.5,81.79 280.0,81.73 280.5,81.65 281.0,81.56 281.5,81.45 282.0,81.31 282.5,81.15 283.0,80.96 283.5,80.74 284.0,80.48 284.5,80.19 285.0,79.86 285.5,79.48 286.0,79.06 286.5,78.61 287.0,78.11 287.5,77.58 288.0,77.02 288.5,76.43 289.0,75.82 289.5,75.21 290.0,74.59 290.5,73.99 291.0,73.40 291.5,72.85 292.0,72.35 292.5,71.90 293.0,71.52 293.5,71.21 294.0,70.98 294.5,70.85 295.0,70.80 295.5,70.85 296.0,70.98 296.5,71.21 297.0,71.52 297.5,71.90 298.0,72.35 298.5,72.85 299.0,73.40 299.5,73.99 300.0,74.59 300.5,75.21 301.0,75.82 301.5,76.43 302.0,77.02 302.5,77.58 303.0,78.11 303.5,78.61 304.0,79.06 304.5,79.48 305.0,79.86 305.5,80.19 306.0,80.48 306.5,80.74 307.0,80.96 307.5,81.15 308.0,81.31 308.5,81.45 309.0,81.56 309.5,81.65 310.0,81.73 310.5,81.79 311.0,81.84 311.5,81.88 312.0,81.91 312.5,81.93 313.0,81.95 313.5,81.96 314.0,81.97 314.5,81.98 315.0,81.98 315.5,81.99 316.0,81.99 316.5,81.99 317.0,82.00 317.5,82.00 318.0,82.00 318.5,82.00 319.0,82.00 319.5,82.00 320.0,82.00 320.5,82.00 321.0,82.00 321.5,82.00 322.0,82.00 322.5,82.00 323.0,82.00 323.5,82.00 324.0,81.99 324.5,81.98 325.0,81.97 325.5,81.94 326.0,81.90 326.5,81.82 327.0,81.71 327.5,81.54 328.0,81.30 328.5,80.97 329.0,80.55 329.5,80.05 330.0,79.47 330.5,78.85 331.0,78.22 331.5,77.66 332.0,77.20 332.5,76.90 333.0,76.80 333.5,76.90 334.0,77.20 334.5,77.66 335.0,78.22 335.5,78.85 336.0,79.47 336.5,80.05 337.0,80.55 337.5,80.97 338.0,81.30 338.5,81.54 339.0,81.71 339.5,81.82 340.0,81.90 340.5,81.94 341.0,81.97 341.5,81.98 342.0,81.99 342.5,82.00 343.0,82.00 343.5,82.00 344.0,82.00 344.5,82.03 345.0,82.14 345.5,82.51 346.0,83.38 346.5,84.65 347.0,85.33 347.5,83.60 348.0,77.80 348.5,67.71 349.0,55.24 349.5,44.58 350.0,40.55 350.5,45.43 351.0,57.13 351.5,70.72 352.0,81.80 352.5,88.27 353.0,90.23 353.5,89.10 354.0,86.71 354.5,84.50 355.0,83.06 355.5,82.36 356.0,82.08 356.5,81.99 357.0,81.95 357.5,81.93 358.0,81.91 358.5,81.88 359.0,81.84 359.5,81.79 360.0,81.73 360.5,81.65 361.0,81.56 361.5,81.45 362.0,81.31 362.5,81.15 363.0,80.96 363.5,80.74 364.0,80.48 364.5,80.19 365.0,79.86 365.5,79.48 366.0,79.06 366.5,78.61 367.0,78.11 367.5,77.58 368.0,77.02 368.5,76.43 369.0,75.82 369.5,75.21 370.0,74.59 370.5,73.99 371.0,73.40 371.5,72.85 372.0,72.35 372.5,71.90 373.0,71.52 373.5,71.21 374.0,70.98 374.5,70.85 375.0,70.80 375.5,70.85 376.0,70.98 376.5,71.21 377.0,71.52 377.5,71.90 378.0,72.35 378.5,72.85 379.0,73.40 379.5,73.99 380.0,74.59 380.5,75.21 381.0,75.82 381.5,76.43 382.0,77.02 382.5,77.58 383.0,78.11 383.5,78.61 384.0,79.06 384.5,79.48 385.0,79.86 385.5,80.19 386.0,80.48 386.5,80.74 387.0,80.96 387.5,81.15 388.0,81.31 388.5,81.45 389.0,81.56 389.5,81.65 390.0,81.73 390.5,81.79 391.0,81.84 391.5,81.88 392.0,81.91 392.5,81.93 393.0,81.95 393.5,81.96 394.0,81.97 394.5,81.98 395.0,81.98 395.5,81.99 396.0,81.99 396.5,81.99 397.0,82.00 397.5,82.00 398.0,82.00 398.5,82.00 399.0,82.00 399.5,82.00 400.0,82.00 400.5,82.00 401.0,82.00 401.5,82.00 402.0,82.00 402.5,82.00 403.0,82.00 403.5,82.00 404.0,81.99 404.5,81.98 405.0,81.97 405.5,81.94 406.0,81.90 406.5,81.82 407.0,81.71 407.5,81.54 408.0,81.30 408.5,80.97 409.0,80.55 409.5,80.05 410.0,79.47 410.5,78.85 411.0,78.22 411.5,77.66 412.0,77.20 412.5,76.90 413.0,76.80 413.5,76.90 414.0,77.20 414.5,77.66 415.0,78.22 415.5,78.85 416.0,79.47 416.5,80.05 417.0,80.55 417.5,80.97 418.0,81.30 418.5,81.54 419.0,81.71 419.5,81.82 420.0,81.90 420.5,81.94 421.0,81.97 421.5,81.98 422.0,81.99 422.5,82.00 423.0,82.00 423.5,82.00 424.0,82.00 424.5,82.03 425.0,82.14 425.5,82.51 426.0,83.38 426.5,84.65 427.0,85.33 427.5,83.60 428.0,77.80 428.5,67.71 429.0,55.24 429.5,44.58 430.0,40.55 430.5,45.43 431.0,57.13 431.5,70.72 432.0,81.80 432.5,88.27 433.0,90.23 433.5,89.10 434.0,86.71 434.5,84.50 435.0,83.06 435.5,82.36 436.0,82.08 436.5,81.99 437.0,81.95 437.5,81.93 438.0,81.91 438.5,81.88 439.0,81.84 439.5,81.79 440.0,81.73 440.5,81.65 441.0,81.56 441.5,81.45 442.0,81.31 442.5,81.15 443.0,80.96 443.5,80.74 444.0,80.48 444.5,80.19 445.0,79.86 445.5,79.48 446.0,79.06 446.5,78.61 447.0,78.11 447.5,77.58 448.0,77.02 448.5,76.43 449.0,75.82 449.5,75.21 450.0,74.59 450.5,73.99 451.0,73.40 451.5,72.85 452.0,72.35 452.5,71.90 453.0,71.52 453.5,71.21 454.0,70.98 454.5,70.85 455.0,70.80 455.5,70.85 456.0,70.98 456.5,71.21 457.0,71.52 457.5,71.90 458.0,72.35 458.5,72.85 459.0,73.40 459.5,73.99 460.0,74.59 460.5,75.21 461.0,75.82 461.5,76.43 462.0,77.02 462.5,77.58 463.0,78.11 463.5,78.61 464.0,79.06 464.5,79.48 465.0,79.86 465.5,80.19 466.0,80.48 466.5,80.74 467.0,80.96 467.5,81.15 468.0,81.31 468.5,81.45 469.0,81.56 469.5,81.65 470.0,81.73 470.5,81.79 471.0,81.84 471.5,81.88 472.0,81.91 472.5,81.93 473.0,81.95 473.5,81.96 474.0,81.97 474.5,81.98 475.0,81.98 475.5,81.99 476.0,81.99 476.5,81.99 477.0,82.00 477.5,82.00 478.0,82.00 478.5,82.00 479.0,82.00 479.5,82.00 480.0,82.00 480.5,82.00 481.0,82.00 481.5,82.00 482.0,82.00 482.5,82.00 483.0,82.00 483.5,82.00 484.0,81.99 484.5,81.98 485.0,81.97 485.5,81.94 486.0,81.90 486.5,81.82 487.0,81.71 487.5,81.54 488.0,81.30 488.5,80.97 489.0,80.55 489.5,80.05 490.0,79.47 490.5,78.85 491.0,78.22 491.5,77.66 492.0,77.20 492.5,76.90 493.0,76.80 493.5,76.90 494.0,77.20 494.5,77.66 495.0,78.22 495.5,78.85 496.0,79.47 496.5,80.05 497.0,80.55 497.5,80.97 498.0,81.30 498.5,81.54 499.0,81.71 499.5,81.82 500.0,81.90 500.5,81.94 501.0,81.97 501.5,81.98 502.0,81.99 502.5,82.00 503.0,82.00 503.5,82.00 504.0,82.00 504.5,82.03 505.0,82.14 505.5,82.51 506.0,83.38 506.5,84.65 507.0,85.33 507.5,83.60 508.0,77.80 508.5,67.71 509.0,55.24 509.5,44.58 510.0,40.55 510.5,45.43 511.0,57.13 511.5,70.72 512.0,81.80 512.5,88.27 513.0,90.23 513.5,89.10 514.0,86.71 514.5,84.50 515.0,83.06 515.5,82.36 516.0,82.08 516.5,81.99 517.0,81.95 517.5,81.93 518.0,81.91 518.5,81.88 519.0,81.84 519.5,81.79 520.0,81.73 520.5,81.65 521.0,81.56 521.5,81.45 522.0,81.31 522.5,81.15 523.0,80.96 523.5,80.74 524.0,80.48 524.5,80.19 525.0,79.86 525.5,79.48 526.0,79.06 526.5,78.61 527.0,78.11 527.5,77.58 528.0,77.02 528.5,76.43 529.0,75.82 529.5,75.21 530.0,74.59 530.5,73.99 531.0,73.40 531.5,72.85 532.0,72.35 532.5,71.90 533.0,71.52 533.5,71.21 534.0,70.98 534.5,70.85 535.0,70.80 535.5,70.85 536.0,70.98 536.5,71.21 537.0,71.52 537.5,71.90 538.0,72.35 538.5,72.85 539.0,73.40 539.5,73.99 540.0,74.59 540.5,75.21 541.0,75.82 541.5,76.43 542.0,77.02 542.5,77.58 543.0,78.11 543.5,78.61 544.0,79.06 544.5,79.48 545.0,79.86 545.5,80.19 546.0,80.48 546.5,80.74 547.0,80.96 547.5,81.15 548.0,81.31 548.5,81.45 549.0,81.56 549.5,81.65 550.0,81.73 550.5,81.79 551.0,81.84 551.5,81.88 552.0,81.91 552.5,81.93 553.0,81.95 553.5,81.96 554.0,81.97 554.5,81.98 555.0,81.98 555.5,81.99 556.0,81.99 556.5,81.99 557.0,82.00 557.5,82.00 558.0,82.00 558.5,82.00 559.0,82.00 559.5,82.00 560.0,82.00 560.5,82.00 561.0,82.00 561.5,82.00 562.0,82.00 562.5,82.00 563.0,82.00 563.5,82.00 564.0,81.99 564.5,81.98 565.0,81.97 565.5,81.94 566.0,81.90 566.5,81.82 567.0,81.71 567.5,81.54 568.0,81.30 568.5,80.97 569.0,80.55 569.5,80.05 570.0,79.47 570.5,78.85 571.0,78.22 571.5,77.66 572.0,77.20 572.5,76.90 573.0,76.80 573.5,76.90 574.0,77.20 574.5,77.66 575.0,78.22 575.5,78.85 576.0,79.47 576.5,80.05 577.0,80.55 577.5,80.97 578.0,81.30 578.5,81.54 579.0,81.71 579.5,81.82 580.0,81.90 580.5,81.94 581.0,81.97 581.5,81.98 582.0,81.99 582.5,82.00 583.0,82.00 583.5,82.00 584.0,82.00 584.5,82.03 585.0,82.14 585.5,82.51 586.0,83.38 586.5,84.65 587.0,85.33 587.5,83.60 588.0,77.80 588.5,67.71 589.0,55.24 589.5,44.58 590.0,40.55 590.5,45.43 591.0,57.13 591.5,70.72 592.0,81.80 592.5,88.27 593.0,90.23 593.5,89.10 594.0,86.71 594.5,84.50 595.0,83.06 595.5,82.36 596.0,82.08 596.5,81.99 597.0,81.95 597.5,81.93 598.0,81.91 598.5,81.88 599.0,81.84 599.5,81.79 600.0,81.73" fill="none" stroke="#172e46" stroke-width="1.5" stroke-linejoin="round"/><text x="2" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="start" fill="#334155">0 s</text><text x="100" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">1 s</text><text x="200" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">2 s</text><text x="300" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">3 s</text><text x="400" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">4 s</text><text x="500" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">5 s</text><text x="598" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="end" fill="#334155">6 s</text></svg><figcaption>Original educational simulation • 6-second window • nominal 25 mm/s and 10 mm/mV. Resizing changes the printed box size; use the labeled time scale.</figcaption><details><summary>Read a text description of the tracing</summary><p>R waves are evenly spaced about four large boxes apart. Similar small rounded waves precede each narrow QRS, followed by a broader recovery wave.</p></details></figure><div class="answers"><label class="answer"><input type="radio" name="q1" value="a"><span>A. Sinus bradycardia</span></label><label class="answer"><input type="radio" name="q1" value="b"><span>B. Normal sinus rhythm</span></label><label class="answer"><input type="radio" name="q1" value="c"><span>C. Atrial fibrillation</span></label><label class="answer"><input type="radio" name="q1" value="d"><span>D. Atrial flutter</span></label></div><button type="submit">Check answer</button><button type="button" class="secondary-button" data-reset>Try again</button><div class="feedback" role="status" aria-live="polite" aria-atomic="true"></div></fieldset></form><form class="practice-question" data-question="2"><fieldset class="question"><legend>2. Which rhythm best matches this tracing?</legend><figure class="strip"><svg viewBox="0 0 600 154" role="img" aria-labelledby="strip-title-2 strip-desc-2" xmlns="http://www.w3.org/2000/svg"><title id="strip-title-2">Simulated six-second rhythm strip for question 2</title><desc id="strip-desc-2">Narrow QRS complexes occur at uneven intervals without a repeating pattern. The baseline has low-amplitude irregular activity without consistent discrete P waves.</desc><defs><pattern id="small-2" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M 4 0 L 0 0 0 4" fill="none" stroke="#f0cbd0" stroke-width="0.35"/></pattern><pattern id="large-2" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="url(#small-2)"/><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#d98e9b" stroke-width="0.65"/></pattern></defs><rect width="600" height="154" fill="#fff8f8"/><rect width="600" height="140" fill="url(#large-2)"/><polyline points="0.0,81.07 0.5,80.27 1.0,79.73 1.5,79.50 2.0,79.60 2.5,79.97 3.0,80.54 3.5,81.17 4.0,81.74 4.5,82.16 5.0,82.38 5.5,82.39 6.0,82.23 6.5,81.97 7.0,81.72 7.5,81.56 8.0,81.54 8.5,81.69 9.0,81.99 9.5,82.38 10.0,82.79 10.5,83.14 11.0,83.38 11.5,83.47 12.0,83.43 12.5,83.27 13.0,83.05 13.5,82.82 14.0,82.61 14.5,82.44 15.0,82.28 15.5,82.12 16.0,81.91 16.5,81.61 17.0,81.22 17.5,80.74 18.0,80.24 18.5,79.79 19.0,79.50 19.5,79.43 20.0,79.64 20.5,80.14 21.0,80.90 21.5,81.81 22.0,82.77 22.5,83.62 23.0,84.25 23.5,84.58 24.0,84.57 24.5,84.26 25.0,83.71 25.5,83.06 26.0,82.41 26.5,81.89 27.0,81.56 27.5,81.46 28.0,81.56 28.5,81.78 29.0,82.06 29.5,82.30 30.0,82.50 30.5,82.80 31.0,83.43 31.5,84.36 32.0,84.64 32.5,82.54 33.0,76.47 33.5,66.24 34.0,53.78 34.5,43.27 35.0,39.47 35.5,44.63 36.0,56.57 36.5,70.39 37.0,81.64 37.5,88.28 38.0,90.42 38.5,89.54 39.0,87.47 39.5,85.66 40.0,84.68 40.5,84.39 41.0,84.43 41.5,84.45 42.0,84.28 42.5,83.84 43.0,83.13 43.5,82.23 44.0,81.24 44.5,80.30 45.0,79.54 45.5,79.04 46.0,78.86 46.5,78.99 47.0,79.36 47.5,79.86 48.0,80.38 48.5,80.77 49.0,80.94 49.5,80.85 50.0,80.50 50.5,79.94 51.0,79.25 51.5,78.54 52.0,77.88 52.5,77.33 53.0,76.92 53.5,76.63 54.0,76.40 54.5,76.16 55.0,75.85 55.5,75.42 56.0,74.86 56.5,74.19 57.0,73.45 57.5,72.71 58.0,72.03 58.5,71.46 59.0,71.02 59.5,70.70 60.0,70.49 60.5,70.34 61.0,70.22 61.5,70.11 62.0,70.03 62.5,70.03 63.0,70.17 63.5,70.52 64.0,71.14 64.5,72.06 65.0,73.27 65.5,74.70 66.0,76.25 66.5,77.76 67.0,79.12 67.5,80.19 68.0,80.91 68.5,81.25 69.0,81.25 69.5,81.01 70.0,80.64 70.5,80.28 71.0,80.04 71.5,79.99 72.0,80.13 72.5,80.45 73.0,80.87 73.5,81.30 74.0,81.64 74.5,81.83 75.0,81.83 75.5,81.66 76.0,81.38 76.5,81.04 77.0,80.75 77.5,80.55 78.0,80.50 78.5,80.61 79.0,80.84 79.5,81.15 80.0,81.49 80.5,81.80 81.0,82.06 81.5,82.26 82.0,82.42 82.5,82.59 83.0,82.79 83.5,83.06 84.0,83.38 84.5,83.71 85.0,84.01 85.5,84.18 86.0,84.16 86.5,83.90 87.0,83.38 87.5,82.63 88.0,81.74 88.5,80.83 89.0,80.02 89.5,79.43 90.0,79.15 90.5,79.22 91.0,79.61 91.5,80.24 92.0,81.00 92.5,81.76 93.0,82.39 93.5,82.81 94.0,82.99 94.5,82.93 95.0,82.70 95.5,82.39 96.0,82.11 96.5,81.93 97.0,81.91 97.5,82.06 98.0,82.35 98.5,82.70 99.0,83.04 99.5,83.29 100.0,83.40 100.5,83.35 101.0,83.16 101.5,82.85 102.0,82.50 102.5,82.16 103.0,81.86 103.5,81.63 104.0,81.46 104.5,81.31 105.0,81.15 105.5,80.96 106.0,80.71 106.5,80.43 107.0,80.16 107.5,79.98 108.0,79.96 108.5,80.16 109.0,80.60 109.5,81.29 110.0,82.24 110.5,83.51 111.0,85.22 111.5,87.14 112.0,88.19 112.5,86.48 113.0,80.38 113.5,69.69 114.0,56.46 114.5,44.99 115.0,40.24 115.5,44.60 116.0,56.01 116.5,69.58 117.0,80.84 117.5,87.61 118.0,89.90 118.5,89.03 119.0,86.75 119.5,84.47 120.0,82.82 120.5,81.80 121.0,81.19 121.5,80.81 122.0,80.62 122.5,80.60 123.0,80.73 123.5,80.99 124.0,81.32 124.5,81.64 125.0,81.92 125.5,82.11 126.0,82.21 126.5,82.24 127.0,82.23 127.5,82.21 128.0,82.20 128.5,82.20 129.0,82.16 129.5,82.04 130.0,81.75 130.5,81.24 131.0,80.46 131.5,79.41 132.0,78.14 132.5,76.74 133.0,75.33 133.5,74.04 134.0,72.99 134.5,72.26 135.0,71.87 135.5,71.79 136.0,71.96 136.5,72.24 137.0,72.53 137.5,72.71 138.0,72.72 138.5,72.53 139.0,72.18 139.5,71.76 140.0,71.36 140.5,71.09 141.0,71.03 141.5,71.22 142.0,71.66 142.5,72.31 143.0,73.08 143.5,73.89 144.0,74.64 144.5,75.27 145.0,75.76 145.5,76.12 146.0,76.37 146.5,76.58 147.0,76.80 147.5,77.06 148.0,77.37 148.5,77.72 149.0,78.07 149.5,78.40 150.0,78.65 150.5,78.83 151.0,78.95 151.5,79.06 152.0,79.23 152.5,79.51 153.0,79.96 153.5,80.61 154.0,81.42 154.5,82.34 155.0,83.25 155.5,84.04 156.0,84.61 156.5,84.85 157.0,84.74 157.5,84.30 158.0,83.61 158.5,82.78 159.0,81.94 159.5,81.23 160.0,80.74 160.5,80.52 161.0,80.56 161.5,80.82 162.0,81.19 162.5,81.58 163.0,81.98 163.5,82.48 164.0,83.30 164.5,84.37 165.0,84.76 165.5,82.73 166.0,76.70 166.5,66.50 167.0,54.09 167.5,43.65 168.0,39.96 168.5,45.25 169.0,57.34 169.5,71.28 170.0,82.61 170.5,89.24 171.0,91.30 171.5,90.23 172.0,87.91 172.5,85.78 173.0,84.47 173.5,83.87 174.0,83.65 174.5,83.50 175.0,83.23 175.5,82.78 176.0,82.13 176.5,81.33 177.0,80.48 177.5,79.68 178.0,79.06 178.5,78.69 179.0,78.65 179.5,78.92 180.0,79.45 180.5,80.13 181.0,80.83 181.5,81.40 182.0,81.75 182.5,81.78 183.0,81.49 183.5,80.92 184.0,80.14 184.5,79.27 185.0,78.41 185.5,77.66 186.0,77.04 186.5,76.58 187.0,76.22 187.5,75.90 188.0,75.54 188.5,75.09 189.0,74.50 189.5,73.78 190.0,72.96 190.5,72.12 191.0,71.32 191.5,70.63 192.0,70.12 192.5,69.79 193.0,69.65 193.5,69.66 194.0,69.77 194.5,69.97 195.0,70.22 195.5,70.53 196.0,70.94 196.5,71.49 197.0,72.22 197.5,73.17 198.0,74.32 198.5,75.63 199.0,77.02 199.5,78.37 200.0,79.57 200.5,80.49 201.0,81.06 201.5,81.26 202.0,81.11 202.5,80.71 203.0,80.18 203.5,79.65 204.0,79.25 204.5,79.07 205.0,79.15 205.5,79.48 206.0,79.97 206.5,80.54 207.0,81.08 207.5,81.49 208.0,81.72 208.5,81.75 209.0,81.61 209.5,81.38 210.0,81.13 210.5,80.96 211.0,80.93 211.5,81.05 212.0,81.33 212.5,81.72 213.0,82.15 213.5,82.56 214.0,82.89 214.5,83.11 215.0,83.22 215.5,83.25 216.0,83.24 216.5,83.22 217.0,83.21 217.5,83.23 218.0,83.24 218.5,83.20 219.0,83.06 219.5,82.76 220.0,82.30 220.5,81.67 221.0,80.95 221.5,80.22 222.0,79.59 222.5,79.18 223.0,79.06 223.5,79.27 224.0,79.80 224.5,80.57 225.0,81.49 225.5,82.40 226.0,83.17 226.5,83.71 227.0,83.95 227.5,83.90 228.0,83.60 228.5,83.16 229.0,82.68 229.5,82.28 230.0,82.02 230.5,81.96 231.0,82.07 231.5,82.30 232.0,82.57 232.5,82.80 233.0,82.92 233.5,82.87 234.0,82.65 234.5,82.31 235.0,81.89 235.5,81.47 236.0,81.11 236.5,80.85 237.0,80.71 237.5,80.68 238.0,80.72 238.5,80.79 239.0,80.85 239.5,80.88 240.0,80.91 240.5,80.96 241.0,81.08 241.5,81.32 242.0,81.71 242.5,82.26 243.0,82.92 243.5,83.61 244.0,84.25 244.5,84.71 245.0,84.90 245.5,84.78 246.0,84.33 246.5,83.61 247.0,82.71 247.5,81.77 248.0,80.92 248.5,80.29 249.0,79.94 249.5,79.91 250.0,80.15 250.5,80.58 251.0,81.09 251.5,81.57 252.0,81.92 252.5,82.09 253.0,82.07 253.5,81.90 254.0,81.64 254.5,81.41 255.0,81.36 255.5,81.71 256.0,82.73 256.5,84.30 257.0,85.38 257.5,84.08 258.0,78.67 258.5,68.87 259.0,56.57 259.5,45.95 260.0,41.88 260.5,46.66 261.0,58.24 261.5,71.74 262.0,82.75 262.5,89.15 263.0,91.00 263.5,89.67 264.0,86.96 264.5,84.27 265.0,82.25 265.5,80.89 266.0,80.00 266.5,79.42 267.0,79.13 267.5,79.15 268.0,79.49 268.5,80.11 269.0,80.94 269.5,81.84 270.0,82.68 270.5,83.33 271.0,83.68 271.5,83.70 272.0,83.40 272.5,82.84 273.0,82.11 273.5,81.35 274.0,80.64 274.5,80.07 275.0,79.67 275.5,79.40 276.0,79.21 276.5,79.01 277.0,78.72 277.5,78.28 278.0,77.63 278.5,76.80 279.0,75.83 279.5,74.79 280.0,73.77 280.5,72.84 281.0,72.05 281.5,71.43 282.0,70.97 282.5,70.64 283.0,70.41 283.5,70.25 284.0,70.14 284.5,70.11 285.0,70.18 285.5,70.40 286.0,70.80 286.5,71.42 287.0,72.25 287.5,73.22 288.0,74.26 288.5,75.26 289.0,76.12 289.5,76.73 290.0,77.06 290.5,77.10 291.0,76.90 291.5,76.56 292.0,76.21 292.5,75.98 293.0,75.96 293.5,76.23 294.0,76.77 294.5,77.54 295.0,78.45 295.5,79.38 296.0,80.20 296.5,80.84 297.0,81.24 297.5,81.41 298.0,81.40 298.5,81.30 299.0,81.28 299.5,81.60 300.0,82.55 300.5,84.05 301.0,85.10 301.5,83.81 302.0,78.46 302.5,68.74 303.0,56.53 303.5,45.99 304.0,41.94 304.5,46.71 305.0,58.22 305.5,71.62 306.0,82.53 306.5,88.86 307.0,90.70 307.5,89.41 308.0,86.80 308.5,84.26 309.0,82.39 309.5,81.15 310.0,80.33 310.5,79.74 311.0,79.37 311.5,79.25 312.0,79.42 312.5,79.89 313.0,80.60 313.5,81.47 314.0,82.37 314.5,83.15 315.0,83.69 315.5,83.91 316.0,83.78 316.5,83.33 317.0,82.62 317.5,81.78 318.0,80.91 318.5,80.14 319.0,79.52 319.5,79.07 320.0,78.77 320.5,78.55 321.0,78.31 321.5,77.98 322.0,77.49 322.5,76.80 323.0,75.94 323.5,74.96 324.0,73.93 324.5,72.95 325.0,72.09 325.5,71.39 326.0,70.89 326.5,70.57 327.0,70.39 327.5,70.31 328.0,70.31 328.5,70.36 329.0,70.47 329.5,70.67 330.0,71.00 330.5,71.49 331.0,72.17 331.5,73.00 332.0,73.95 332.5,74.93 333.0,75.83 333.5,76.57 334.0,77.05 334.5,77.25 335.0,77.19 335.5,76.92 336.0,76.55 336.5,76.21 337.0,76.03 337.5,76.10 338.0,76.45 338.5,77.09 339.0,77.95 339.5,78.92 340.0,79.88 340.5,80.71 341.0,81.32 341.5,81.69 342.0,81.81 342.5,81.75 343.0,81.59 343.5,81.44 344.0,81.38 344.5,81.46 345.0,81.69 345.5,82.04 346.0,82.47 346.5,82.88 347.0,83.21 347.5,83.40 348.0,83.45 348.5,83.35 349.0,83.14 349.5,82.88 350.0,82.62 350.5,82.39 351.0,82.20 351.5,82.04 352.0,81.87 352.5,81.65 353.0,81.35 353.5,80.97 354.0,80.53 354.5,80.09 355.0,79.73 355.5,79.54 356.0,79.60 356.5,79.93 357.0,80.53 357.5,81.36 358.0,82.29 358.5,83.22 359.0,83.99 359.5,84.52 360.0,84.71 360.5,84.57 361.0,84.14 361.5,83.51 362.0,82.81 362.5,82.15 363.0,81.66 363.5,81.38 364.0,81.32 364.5,81.47 365.0,81.72 365.5,81.99 366.0,82.20 366.5,82.26 367.0,82.16 367.5,81.90 368.0,81.55 368.5,81.16 369.0,80.83 369.5,80.60 370.0,80.53 370.5,80.61 371.0,80.81 371.5,81.09 372.0,81.39 372.5,81.67 373.0,81.90 373.5,82.09 374.0,82.26 374.5,82.47 375.0,82.81 375.5,83.49 376.0,84.73 376.5,86.40 377.0,87.42 377.5,85.90 378.0,80.12 378.5,69.77 379.0,56.77 379.5,45.36 380.0,40.42 380.5,44.38 381.0,55.24 381.5,68.24 382.0,79.02 382.5,85.54 383.0,87.87 383.5,87.35 384.0,85.69 384.5,84.19 385.0,83.36 385.5,83.04 386.0,82.91 386.5,82.75 387.0,82.49 387.5,82.17 388.0,81.89 388.5,81.72 389.0,81.69 389.5,81.83 390.0,82.07 390.5,82.37 391.0,82.63 391.5,82.77 392.0,82.75 392.5,82.55 393.0,82.18 393.5,81.67 394.0,81.09 394.5,80.47 395.0,79.87 395.5,79.28 396.0,78.69 396.5,78.07 397.0,77.39 397.5,76.61 398.0,75.75 398.5,74.82 399.0,73.90 399.5,73.06 400.0,72.40 400.5,71.97 401.0,71.83 401.5,71.96 402.0,72.31 402.5,72.78 403.0,73.26 403.5,73.62 404.0,73.78 404.5,73.69 405.0,73.35 405.5,72.83 406.0,72.23 406.5,71.69 407.0,71.31 407.5,71.20 408.0,71.39 408.5,71.88 409.0,72.62 409.5,73.49 410.0,74.40 410.5,75.23 411.0,75.92 411.5,76.43 412.0,76.77 412.5,77.00 413.0,77.18 413.5,77.39 414.0,77.68 414.5,78.09 415.0,78.62 415.5,79.23 416.0,79.87 416.5,80.48 417.0,81.02 417.5,81.46 418.0,81.81 418.5,82.09 419.0,82.35 419.5,82.63 420.0,82.94 420.5,83.27 421.0,83.60 421.5,83.85 422.0,83.96 422.5,83.86 423.0,83.52 423.5,82.93 424.0,82.15 424.5,81.26 425.0,80.40 425.5,79.68 426.0,79.21 426.5,79.08 427.0,79.29 427.5,79.80 428.0,80.52 428.5,81.33 429.0,82.09 429.5,82.69 430.0,83.05 430.5,83.15 431.0,83.03 431.5,82.76 432.0,82.42 432.5,82.14 433.0,81.98 433.5,81.99 434.0,82.16 434.5,82.45 435.0,82.79 435.5,83.09 436.0,83.30 436.5,83.35 437.0,83.24 437.5,82.99 438.0,82.64 438.5,82.26 439.0,81.91 439.5,81.62 440.0,81.41 440.5,81.25 441.0,81.13 441.5,80.99 442.0,80.83 442.5,80.62 443.0,80.39 443.5,80.20 444.0,80.10 444.5,80.17 445.0,80.46 445.5,80.99 446.0,81.71 446.5,82.56 447.0,83.43 447.5,84.19 448.0,84.72 448.5,84.95 449.0,84.83 449.5,84.39 450.0,83.70 450.5,82.88 451.0,82.06 451.5,81.37 452.0,80.90 452.5,80.69 453.0,80.74 453.5,80.98 454.0,81.33 454.5,81.67 455.0,81.91 455.5,82.00 456.0,81.91 456.5,81.68 457.0,81.37 457.5,81.05 458.0,80.82 458.5,80.71 459.0,80.78 459.5,80.99 460.0,81.33 460.5,81.72 461.0,82.10 461.5,82.43 462.0,82.68 462.5,82.85 463.0,82.96 463.5,83.05 464.0,83.16 464.5,83.31 465.0,83.48 465.5,83.64 466.0,83.73 466.5,83.70 467.0,83.47 467.5,83.03 468.0,82.38 468.5,81.59 469.0,80.74 469.5,79.96 470.0,79.36 470.5,79.05 471.0,79.08 471.5,79.45 472.0,80.09 472.5,80.91 473.0,81.77 473.5,82.55 474.0,83.12 474.5,83.43 475.0,83.47 475.5,83.28 476.0,82.94 476.5,82.55 477.0,82.23 477.5,82.05 478.0,82.04 478.5,82.20 479.0,82.47 479.5,82.78 480.0,83.04 480.5,83.19 481.0,83.18 481.5,83.01 482.0,82.70 482.5,82.31 483.0,81.90 483.5,81.54 484.0,81.26 484.5,81.06 485.0,80.95 485.5,80.89 486.0,80.83 486.5,80.75 487.0,80.64 487.5,80.52 488.0,80.44 488.5,80.45 489.0,80.63 489.5,81.02 490.0,81.70 490.5,82.80 491.0,84.47 491.5,86.53 492.0,87.85 492.5,86.50 493.0,80.77 493.5,70.39 494.0,57.34 494.5,45.88 495.0,40.96 495.5,45.01 496.0,56.03 496.5,69.20 497.0,80.15 497.5,86.75 498.0,89.03 498.5,88.30 499.0,86.30 499.5,84.36 500.0,83.04 500.5,82.26 501.0,81.77 501.5,81.39 502.0,81.08 502.5,80.86 503.0,80.79 503.5,80.88 504.0,81.11 504.5,81.44 505.0,81.80 505.5,82.12 506.0,82.35 506.5,82.46 507.0,82.44 507.5,82.34 508.0,82.17 508.5,81.97 509.0,81.76 509.5,81.53 510.0,81.25 510.5,80.87 511.0,80.32 511.5,79.56 512.0,78.58 512.5,77.39 513.0,76.07 513.5,74.71 514.0,73.44 514.5,72.38 515.0,71.62 515.5,71.21 516.0,71.14 516.5,71.35 517.0,71.74 517.5,72.18 518.0,72.56 518.5,72.77 519.0,72.78 519.5,72.59 520.0,72.27 520.5,71.90 521.0,71.59 521.5,71.46 522.0,71.55 522.5,71.91 523.0,72.50 523.5,73.26 524.0,74.09 524.5,74.90 525.0,75.61 525.5,76.17 526.0,76.56 526.5,76.82 527.0,76.99 527.5,77.14 528.0,77.31 528.5,77.55 529.0,77.86 529.5,78.23 530.0,78.61 530.5,78.97 531.0,79.27 531.5,79.52 532.0,79.72 532.5,79.93 533.0,80.19 533.5,80.57 534.0,81.10 534.5,81.77 535.0,82.54 535.5,83.34 536.0,84.06 536.5,84.59 537.0,84.85 537.5,84.76 538.0,84.35 538.5,83.66 539.0,82.78 539.5,81.87 540.0,81.04 540.5,80.42 541.0,80.09 541.5,80.08 542.0,80.41 542.5,81.19 543.0,82.54 543.5,84.25 544.0,85.24 544.5,83.64 545.0,77.78 545.5,67.49 546.0,54.75 546.5,43.84 547.0,39.65 547.5,44.53 548.0,56.39 548.5,70.29 549.0,81.77 549.5,88.67 550.0,91.02 550.5,90.18 551.0,87.97 551.5,85.82 552.0,84.36 552.5,83.59 553.0,83.25 553.5,83.11 554.0,83.05 554.5,82.99 555.0,82.88 555.5,82.65 556.0,82.27 556.5,81.72 557.0,81.03 557.5,80.26 558.0,79.50 558.5,78.86 559.0,78.44 559.5,78.30 560.0,78.46 560.5,78.88 561.0,79.48 561.5,80.12 562.0,80.68 562.5,81.02 563.0,81.04 563.5,80.72 564.0,80.07 564.5,79.15 565.0,78.09 565.5,77.00 566.0,75.99 566.5,75.15 567.0,74.49 567.5,74.02 568.0,73.68 568.5,73.39 569.0,73.09 569.5,72.71 570.0,72.23 570.5,71.67 571.0,71.07 571.5,70.50 572.0,70.05 572.5,69.76 573.0,69.69 573.5,69.83 574.0,70.16 574.5,70.63 575.0,71.20 575.5,71.80 576.0,72.43 576.5,73.08 577.0,73.77 577.5,74.56 578.0,75.46 578.5,76.49 579.0,77.63 579.5,78.83 580.0,80.00 580.5,81.04 581.0,81.84 581.5,82.31 582.0,82.42 582.5,82.19 583.0,81.67 583.5,80.99 584.0,80.29 584.5,79.68 585.0,79.30 585.5,79.20 586.0,79.39 586.5,79.82 587.0,80.40 587.5,81.01 588.0,81.55 588.5,81.92 589.0,82.09 589.5,82.06 590.0,81.88 590.5,81.64 591.0,81.41 591.5,81.29 592.0,81.33 592.5,81.52 593.0,81.86 593.5,82.27 594.0,82.69 594.5,83.05 595.0,83.30 595.5,83.41 596.0,83.40 596.5,83.30 597.0,83.15 597.5,83.00 598.0,82.87 598.5,82.77 599.0,82.66 599.5,82.51 600.0,82.28" fill="none" stroke="#172e46" stroke-width="1.5" stroke-linejoin="round"/><text x="2" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="start" fill="#334155">0 s</text><text x="100" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">1 s</text><text x="200" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">2 s</text><text x="300" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">3 s</text><text x="400" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">4 s</text><text x="500" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">5 s</text><text x="598" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="end" fill="#334155">6 s</text></svg><figcaption>Original educational simulation • 6-second window • nominal 25 mm/s and 10 mm/mV. Resizing changes the printed box size; use the labeled time scale.</figcaption><details><summary>Read a text description of the tracing</summary><p>Narrow QRS complexes occur at uneven intervals without a repeating pattern. The baseline has low-amplitude irregular activity without consistent discrete P waves.</p></details></figure><div class="answers"><label class="answer"><input type="radio" name="q2" value="a"><span>A. Normal sinus rhythm</span></label><label class="answer"><input type="radio" name="q2" value="b"><span>B. Sinus tachycardia</span></label><label class="answer"><input type="radio" name="q2" value="c"><span>C. Atrial fibrillation</span></label><label class="answer"><input type="radio" name="q2" value="d"><span>D. Atrial flutter with fixed conduction</span></label></div><button type="submit">Check answer</button><button type="button" class="secondary-button" data-reset>Try again</button><div class="feedback" role="status" aria-live="polite" aria-atomic="true"></div></fieldset></form><form class="practice-question" data-question="3"><fieldset class="question"><legend>3. Which rhythm best matches this tracing?</legend><figure class="strip"><svg viewBox="0 0 600 154" role="img" aria-labelledby="strip-title-3 strip-desc-3" xmlns="http://www.w3.org/2000/svg"><title id="strip-title-3">Simulated six-second rhythm strip for question 3</title><desc id="strip-desc-3">R waves are evenly spaced about six large boxes apart. A similar small rounded wave precedes every narrow QRS, and the baseline between cycles is organized.</desc><defs><pattern id="small-3" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M 4 0 L 0 0 0 4" fill="none" stroke="#f0cbd0" stroke-width="0.35"/></pattern><pattern id="large-3" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="url(#small-3)"/><path d="M 20 0 L 0 0 0 20" fill="none" stroke="#d98e9b" stroke-width="0.65"/></pattern></defs><rect width="600" height="154" fill="#fff8f8"/><rect width="600" height="140" fill="url(#large-3)"/><polyline points="0.0,82.00 0.5,82.00 1.0,82.00 1.5,82.00 2.0,82.00 2.5,82.00 3.0,82.00 3.5,82.00 4.0,82.00 4.5,82.00 5.0,82.00 5.5,82.00 6.0,82.00 6.5,82.00 7.0,82.00 7.5,82.00 8.0,82.00 8.5,82.00 9.0,82.00 9.5,82.00 10.0,82.00 10.5,82.00 11.0,82.00 11.5,82.00 12.0,82.00 12.5,82.00 13.0,82.00 13.5,82.00 14.0,82.00 14.5,82.00 15.0,82.00 15.5,82.00 16.0,82.00 16.5,82.00 17.0,82.00 17.5,82.00 18.0,82.00 18.5,82.00 19.0,82.00 19.5,82.00 20.0,82.00 20.5,82.00 21.0,82.00 21.5,82.00 22.0,82.00 22.5,82.00 23.0,82.00 23.5,82.00 24.0,81.99 24.5,81.98 25.0,81.97 25.5,81.94 26.0,81.90 26.5,81.82 27.0,81.71 27.5,81.54 28.0,81.30 28.5,80.97 29.0,80.55 29.5,80.05 30.0,79.47 30.5,78.85 31.0,78.22 31.5,77.66 32.0,77.20 32.5,76.90 33.0,76.80 33.5,76.90 34.0,77.20 34.5,77.66 35.0,78.22 35.5,78.85 36.0,79.47 36.5,80.05 37.0,80.55 37.5,80.97 38.0,81.30 38.5,81.54 39.0,81.71 39.5,81.82 40.0,81.90 40.5,81.94 41.0,81.97 41.5,81.98 42.0,81.99 42.5,82.00 43.0,82.00 43.5,82.00 44.0,82.00 44.5,82.03 45.0,82.14 45.5,82.51 46.0,83.38 46.5,84.65 47.0,85.33 47.5,83.60 48.0,77.80 48.5,67.71 49.0,55.24 49.5,44.58 50.0,40.55 50.5,45.43 51.0,57.13 51.5,70.72 52.0,81.80 52.5,88.27 53.0,90.23 53.5,89.10 54.0,86.71 54.5,84.50 55.0,83.06 55.5,82.36 56.0,82.08 56.5,81.99 57.0,81.95 57.5,81.93 58.0,81.91 58.5,81.88 59.0,81.84 59.5,81.79 60.0,81.73 60.5,81.65 61.0,81.56 61.5,81.45 62.0,81.31 62.5,81.15 63.0,80.96 63.5,80.74 64.0,80.48 64.5,80.19 65.0,79.86 65.5,79.48 66.0,79.06 66.5,78.61 67.0,78.11 67.5,77.58 68.0,77.02 68.5,76.43 69.0,75.82 69.5,75.21 70.0,74.59 70.5,73.99 71.0,73.40 71.5,72.85 72.0,72.35 72.5,71.90 73.0,71.52 73.5,71.21 74.0,70.98 74.5,70.85 75.0,70.80 75.5,70.85 76.0,70.98 76.5,71.21 77.0,71.52 77.5,71.90 78.0,72.35 78.5,72.85 79.0,73.40 79.5,73.99 80.0,74.59 80.5,75.21 81.0,75.82 81.5,76.43 82.0,77.02 82.5,77.58 83.0,78.11 83.5,78.61 84.0,79.06 84.5,79.48 85.0,79.86 85.5,80.19 86.0,80.48 86.5,80.74 87.0,80.96 87.5,81.15 88.0,81.31 88.5,81.45 89.0,81.56 89.5,81.65 90.0,81.73 90.5,81.79 91.0,81.84 91.5,81.88 92.0,81.91 92.5,81.93 93.0,81.95 93.5,81.96 94.0,81.97 94.5,81.98 95.0,81.98 95.5,81.99 96.0,81.99 96.5,81.99 97.0,82.00 97.5,82.00 98.0,82.00 98.5,82.00 99.0,82.00 99.5,82.00 100.0,82.00 100.5,82.00 101.0,82.00 101.5,82.00 102.0,82.00 102.5,82.00 103.0,82.00 103.5,82.00 104.0,82.00 104.5,82.00 105.0,82.00 105.5,82.00 106.0,82.00 106.5,82.00 107.0,82.00 107.5,82.00 108.0,82.00 108.5,82.00 109.0,82.00 109.5,82.00 110.0,82.00 110.5,82.00 111.0,82.00 111.5,82.00 112.0,82.00 112.5,82.00 113.0,82.00 113.5,82.00 114.0,82.00 114.5,82.00 115.0,82.00 115.5,82.00 116.0,82.00 116.5,82.00 117.0,82.00 117.5,82.00 118.0,82.00 118.5,82.00 119.0,82.00 119.5,82.00 120.0,82.00 120.5,82.00 121.0,82.00 121.5,82.00 122.0,82.00 122.5,82.00 123.0,82.00 123.5,82.00 124.0,82.00 124.5,82.00 125.0,82.00 125.5,82.00 126.0,82.00 126.5,82.00 127.0,82.00 127.5,82.00 128.0,82.00 128.5,82.00 129.0,82.00 129.5,82.00 130.0,82.00 130.5,82.00 131.0,82.00 131.5,82.00 132.0,82.00 132.5,82.00 133.0,82.00 133.5,82.00 134.0,82.00 134.5,82.00 135.0,82.00 135.5,82.00 136.0,82.00 136.5,82.00 137.0,82.00 137.5,82.00 138.0,82.00 138.5,82.00 139.0,82.00 139.5,82.00 140.0,82.00 140.5,82.00 141.0,82.00 141.5,82.00 142.0,82.00 142.5,82.00 143.0,82.00 143.5,82.00 144.0,81.99 144.5,81.98 145.0,81.97 145.5,81.94 146.0,81.90 146.5,81.82 147.0,81.71 147.5,81.54 148.0,81.30 148.5,80.97 149.0,80.55 149.5,80.05 150.0,79.47 150.5,78.85 151.0,78.22 151.5,77.66 152.0,77.20 152.5,76.90 153.0,76.80 153.5,76.90 154.0,77.20 154.5,77.66 155.0,78.22 155.5,78.85 156.0,79.47 156.5,80.05 157.0,80.55 157.5,80.97 158.0,81.30 158.5,81.54 159.0,81.71 159.5,81.82 160.0,81.90 160.5,81.94 161.0,81.97 161.5,81.98 162.0,81.99 162.5,82.00 163.0,82.00 163.5,82.00 164.0,82.00 164.5,82.03 165.0,82.14 165.5,82.51 166.0,83.38 166.5,84.65 167.0,85.33 167.5,83.60 168.0,77.80 168.5,67.71 169.0,55.24 169.5,44.58 170.0,40.55 170.5,45.43 171.0,57.13 171.5,70.72 172.0,81.80 172.5,88.27 173.0,90.23 173.5,89.10 174.0,86.71 174.5,84.50 175.0,83.06 175.5,82.36 176.0,82.08 176.5,81.99 177.0,81.95 177.5,81.93 178.0,81.91 178.5,81.88 179.0,81.84 179.5,81.79 180.0,81.73 180.5,81.65 181.0,81.56 181.5,81.45 182.0,81.31 182.5,81.15 183.0,80.96 183.5,80.74 184.0,80.48 184.5,80.19 185.0,79.86 185.5,79.48 186.0,79.06 186.5,78.61 187.0,78.11 187.5,77.58 188.0,77.02 188.5,76.43 189.0,75.82 189.5,75.21 190.0,74.59 190.5,73.99 191.0,73.40 191.5,72.85 192.0,72.35 192.5,71.90 193.0,71.52 193.5,71.21 194.0,70.98 194.5,70.85 195.0,70.80 195.5,70.85 196.0,70.98 196.5,71.21 197.0,71.52 197.5,71.90 198.0,72.35 198.5,72.85 199.0,73.40 199.5,73.99 200.0,74.59 200.5,75.21 201.0,75.82 201.5,76.43 202.0,77.02 202.5,77.58 203.0,78.11 203.5,78.61 204.0,79.06 204.5,79.48 205.0,79.86 205.5,80.19 206.0,80.48 206.5,80.74 207.0,80.96 207.5,81.15 208.0,81.31 208.5,81.45 209.0,81.56 209.5,81.65 210.0,81.73 210.5,81.79 211.0,81.84 211.5,81.88 212.0,81.91 212.5,81.93 213.0,81.95 213.5,81.96 214.0,81.97 214.5,81.98 215.0,81.98 215.5,81.99 216.0,81.99 216.5,81.99 217.0,82.00 217.5,82.00 218.0,82.00 218.5,82.00 219.0,82.00 219.5,82.00 220.0,82.00 220.5,82.00 221.0,82.00 221.5,82.00 222.0,82.00 222.5,82.00 223.0,82.00 223.5,82.00 224.0,82.00 224.5,82.00 225.0,82.00 225.5,82.00 226.0,82.00 226.5,82.00 227.0,82.00 227.5,82.00 228.0,82.00 228.5,82.00 229.0,82.00 229.5,82.00 230.0,82.00 230.5,82.00 231.0,82.00 231.5,82.00 232.0,82.00 232.5,82.00 233.0,82.00 233.5,82.00 234.0,82.00 234.5,82.00 235.0,82.00 235.5,82.00 236.0,82.00 236.5,82.00 237.0,82.00 237.5,82.00 238.0,82.00 238.5,82.00 239.0,82.00 239.5,82.00 240.0,82.00 240.5,82.00 241.0,82.00 241.5,82.00 242.0,82.00 242.5,82.00 243.0,82.00 243.5,82.00 244.0,82.00 244.5,82.00 245.0,82.00 245.5,82.00 246.0,82.00 246.5,82.00 247.0,82.00 247.5,82.00 248.0,82.00 248.5,82.00 249.0,82.00 249.5,82.00 250.0,82.00 250.5,82.00 251.0,82.00 251.5,82.00 252.0,82.00 252.5,82.00 253.0,82.00 253.5,82.00 254.0,82.00 254.5,82.00 255.0,82.00 255.5,82.00 256.0,82.00 256.5,82.00 257.0,82.00 257.5,82.00 258.0,82.00 258.5,82.00 259.0,82.00 259.5,82.00 260.0,82.00 260.5,82.00 261.0,82.00 261.5,82.00 262.0,82.00 262.5,82.00 263.0,82.00 263.5,82.00 264.0,81.99 264.5,81.98 265.0,81.97 265.5,81.94 266.0,81.90 266.5,81.82 267.0,81.71 267.5,81.54 268.0,81.30 268.5,80.97 269.0,80.55 269.5,80.05 270.0,79.47 270.5,78.85 271.0,78.22 271.5,77.66 272.0,77.20 272.5,76.90 273.0,76.80 273.5,76.90 274.0,77.20 274.5,77.66 275.0,78.22 275.5,78.85 276.0,79.47 276.5,80.05 277.0,80.55 277.5,80.97 278.0,81.30 278.5,81.54 279.0,81.71 279.5,81.82 280.0,81.90 280.5,81.94 281.0,81.97 281.5,81.98 282.0,81.99 282.5,82.00 283.0,82.00 283.5,82.00 284.0,82.00 284.5,82.03 285.0,82.14 285.5,82.51 286.0,83.38 286.5,84.65 287.0,85.33 287.5,83.60 288.0,77.80 288.5,67.71 289.0,55.24 289.5,44.58 290.0,40.55 290.5,45.43 291.0,57.13 291.5,70.72 292.0,81.80 292.5,88.27 293.0,90.23 293.5,89.10 294.0,86.71 294.5,84.50 295.0,83.06 295.5,82.36 296.0,82.08 296.5,81.99 297.0,81.95 297.5,81.93 298.0,81.91 298.5,81.88 299.0,81.84 299.5,81.79 300.0,81.73 300.5,81.65 301.0,81.56 301.5,81.45 302.0,81.31 302.5,81.15 303.0,80.96 303.5,80.74 304.0,80.48 304.5,80.19 305.0,79.86 305.5,79.48 306.0,79.06 306.5,78.61 307.0,78.11 307.5,77.58 308.0,77.02 308.5,76.43 309.0,75.82 309.5,75.21 310.0,74.59 310.5,73.99 311.0,73.40 311.5,72.85 312.0,72.35 312.5,71.90 313.0,71.52 313.5,71.21 314.0,70.98 314.5,70.85 315.0,70.80 315.5,70.85 316.0,70.98 316.5,71.21 317.0,71.52 317.5,71.90 318.0,72.35 318.5,72.85 319.0,73.40 319.5,73.99 320.0,74.59 320.5,75.21 321.0,75.82 321.5,76.43 322.0,77.02 322.5,77.58 323.0,78.11 323.5,78.61 324.0,79.06 324.5,79.48 325.0,79.86 325.5,80.19 326.0,80.48 326.5,80.74 327.0,80.96 327.5,81.15 328.0,81.31 328.5,81.45 329.0,81.56 329.5,81.65 330.0,81.73 330.5,81.79 331.0,81.84 331.5,81.88 332.0,81.91 332.5,81.93 333.0,81.95 333.5,81.96 334.0,81.97 334.5,81.98 335.0,81.98 335.5,81.99 336.0,81.99 336.5,81.99 337.0,82.00 337.5,82.00 338.0,82.00 338.5,82.00 339.0,82.00 339.5,82.00 340.0,82.00 340.5,82.00 341.0,82.00 341.5,82.00 342.0,82.00 342.5,82.00 343.0,82.00 343.5,82.00 344.0,82.00 344.5,82.00 345.0,82.00 345.5,82.00 346.0,82.00 346.5,82.00 347.0,82.00 347.5,82.00 348.0,82.00 348.5,82.00 349.0,82.00 349.5,82.00 350.0,82.00 350.5,82.00 351.0,82.00 351.5,82.00 352.0,82.00 352.5,82.00 353.0,82.00 353.5,82.00 354.0,82.00 354.5,82.00 355.0,82.00 355.5,82.00 356.0,82.00 356.5,82.00 357.0,82.00 357.5,82.00 358.0,82.00 358.5,82.00 359.0,82.00 359.5,82.00 360.0,82.00 360.5,82.00 361.0,82.00 361.5,82.00 362.0,82.00 362.5,82.00 363.0,82.00 363.5,82.00 364.0,82.00 364.5,82.00 365.0,82.00 365.5,82.00 366.0,82.00 366.5,82.00 367.0,82.00 367.5,82.00 368.0,82.00 368.5,82.00 369.0,82.00 369.5,82.00 370.0,82.00 370.5,82.00 371.0,82.00 371.5,82.00 372.0,82.00 372.5,82.00 373.0,82.00 373.5,82.00 374.0,82.00 374.5,82.00 375.0,82.00 375.5,82.00 376.0,82.00 376.5,82.00 377.0,82.00 377.5,82.00 378.0,82.00 378.5,82.00 379.0,82.00 379.5,82.00 380.0,82.00 380.5,82.00 381.0,82.00 381.5,82.00 382.0,82.00 382.5,82.00 383.0,82.00 383.5,82.00 384.0,81.99 384.5,81.98 385.0,81.97 385.5,81.94 386.0,81.90 386.5,81.82 387.0,81.71 387.5,81.54 388.0,81.30 388.5,80.97 389.0,80.55 389.5,80.05 390.0,79.47 390.5,78.85 391.0,78.22 391.5,77.66 392.0,77.20 392.5,76.90 393.0,76.80 393.5,76.90 394.0,77.20 394.5,77.66 395.0,78.22 395.5,78.85 396.0,79.47 396.5,80.05 397.0,80.55 397.5,80.97 398.0,81.30 398.5,81.54 399.0,81.71 399.5,81.82 400.0,81.90 400.5,81.94 401.0,81.97 401.5,81.98 402.0,81.99 402.5,82.00 403.0,82.00 403.5,82.00 404.0,82.00 404.5,82.03 405.0,82.14 405.5,82.51 406.0,83.38 406.5,84.65 407.0,85.33 407.5,83.60 408.0,77.80 408.5,67.71 409.0,55.24 409.5,44.58 410.0,40.55 410.5,45.43 411.0,57.13 411.5,70.72 412.0,81.80 412.5,88.27 413.0,90.23 413.5,89.10 414.0,86.71 414.5,84.50 415.0,83.06 415.5,82.36 416.0,82.08 416.5,81.99 417.0,81.95 417.5,81.93 418.0,81.91 418.5,81.88 419.0,81.84 419.5,81.79 420.0,81.73 420.5,81.65 421.0,81.56 421.5,81.45 422.0,81.31 422.5,81.15 423.0,80.96 423.5,80.74 424.0,80.48 424.5,80.19 425.0,79.86 425.5,79.48 426.0,79.06 426.5,78.61 427.0,78.11 427.5,77.58 428.0,77.02 428.5,76.43 429.0,75.82 429.5,75.21 430.0,74.59 430.5,73.99 431.0,73.40 431.5,72.85 432.0,72.35 432.5,71.90 433.0,71.52 433.5,71.21 434.0,70.98 434.5,70.85 435.0,70.80 435.5,70.85 436.0,70.98 436.5,71.21 437.0,71.52 437.5,71.90 438.0,72.35 438.5,72.85 439.0,73.40 439.5,73.99 440.0,74.59 440.5,75.21 441.0,75.82 441.5,76.43 442.0,77.02 442.5,77.58 443.0,78.11 443.5,78.61 444.0,79.06 444.5,79.48 445.0,79.86 445.5,80.19 446.0,80.48 446.5,80.74 447.0,80.96 447.5,81.15 448.0,81.31 448.5,81.45 449.0,81.56 449.5,81.65 450.0,81.73 450.5,81.79 451.0,81.84 451.5,81.88 452.0,81.91 452.5,81.93 453.0,81.95 453.5,81.96 454.0,81.97 454.5,81.98 455.0,81.98 455.5,81.99 456.0,81.99 456.5,81.99 457.0,82.00 457.5,82.00 458.0,82.00 458.5,82.00 459.0,82.00 459.5,82.00 460.0,82.00 460.5,82.00 461.0,82.00 461.5,82.00 462.0,82.00 462.5,82.00 463.0,82.00 463.5,82.00 464.0,82.00 464.5,82.00 465.0,82.00 465.5,82.00 466.0,82.00 466.5,82.00 467.0,82.00 467.5,82.00 468.0,82.00 468.5,82.00 469.0,82.00 469.5,82.00 470.0,82.00 470.5,82.00 471.0,82.00 471.5,82.00 472.0,82.00 472.5,82.00 473.0,82.00 473.5,82.00 474.0,82.00 474.5,82.00 475.0,82.00 475.5,82.00 476.0,82.00 476.5,82.00 477.0,82.00 477.5,82.00 478.0,82.00 478.5,82.00 479.0,82.00 479.5,82.00 480.0,82.00 480.5,82.00 481.0,82.00 481.5,82.00 482.0,82.00 482.5,82.00 483.0,82.00 483.5,82.00 484.0,82.00 484.5,82.00 485.0,82.00 485.5,82.00 486.0,82.00 486.5,82.00 487.0,82.00 487.5,82.00 488.0,82.00 488.5,82.00 489.0,82.00 489.5,82.00 490.0,82.00 490.5,82.00 491.0,82.00 491.5,82.00 492.0,82.00 492.5,82.00 493.0,82.00 493.5,82.00 494.0,82.00 494.5,82.00 495.0,82.00 495.5,82.00 496.0,82.00 496.5,82.00 497.0,82.00 497.5,82.00 498.0,82.00 498.5,82.00 499.0,82.00 499.5,82.00 500.0,82.00 500.5,82.00 501.0,82.00 501.5,82.00 502.0,82.00 502.5,82.00 503.0,82.00 503.5,82.00 504.0,81.99 504.5,81.98 505.0,81.97 505.5,81.94 506.0,81.90 506.5,81.82 507.0,81.71 507.5,81.54 508.0,81.30 508.5,80.97 509.0,80.55 509.5,80.05 510.0,79.47 510.5,78.85 511.0,78.22 511.5,77.66 512.0,77.20 512.5,76.90 513.0,76.80 513.5,76.90 514.0,77.20 514.5,77.66 515.0,78.22 515.5,78.85 516.0,79.47 516.5,80.05 517.0,80.55 517.5,80.97 518.0,81.30 518.5,81.54 519.0,81.71 519.5,81.82 520.0,81.90 520.5,81.94 521.0,81.97 521.5,81.98 522.0,81.99 522.5,82.00 523.0,82.00 523.5,82.00 524.0,82.00 524.5,82.03 525.0,82.14 525.5,82.51 526.0,83.38 526.5,84.65 527.0,85.33 527.5,83.60 528.0,77.80 528.5,67.71 529.0,55.24 529.5,44.58 530.0,40.55 530.5,45.43 531.0,57.13 531.5,70.72 532.0,81.80 532.5,88.27 533.0,90.23 533.5,89.10 534.0,86.71 534.5,84.50 535.0,83.06 535.5,82.36 536.0,82.08 536.5,81.99 537.0,81.95 537.5,81.93 538.0,81.91 538.5,81.88 539.0,81.84 539.5,81.79 540.0,81.73 540.5,81.65 541.0,81.56 541.5,81.45 542.0,81.31 542.5,81.15 543.0,80.96 543.5,80.74 544.0,80.48 544.5,80.19 545.0,79.86 545.5,79.48 546.0,79.06 546.5,78.61 547.0,78.11 547.5,77.58 548.0,77.02 548.5,76.43 549.0,75.82 549.5,75.21 550.0,74.59 550.5,73.99 551.0,73.40 551.5,72.85 552.0,72.35 552.5,71.90 553.0,71.52 553.5,71.21 554.0,70.98 554.5,70.85 555.0,70.80 555.5,70.85 556.0,70.98 556.5,71.21 557.0,71.52 557.5,71.90 558.0,72.35 558.5,72.85 559.0,73.40 559.5,73.99 560.0,74.59 560.5,75.21 561.0,75.82 561.5,76.43 562.0,77.02 562.5,77.58 563.0,78.11 563.5,78.61 564.0,79.06 564.5,79.48 565.0,79.86 565.5,80.19 566.0,80.48 566.5,80.74 567.0,80.96 567.5,81.15 568.0,81.31 568.5,81.45 569.0,81.56 569.5,81.65 570.0,81.73 570.5,81.79 571.0,81.84 571.5,81.88 572.0,81.91 572.5,81.93 573.0,81.95 573.5,81.96 574.0,81.97 574.5,81.98 575.0,81.98 575.5,81.99 576.0,81.99 576.5,81.99 577.0,82.00 577.5,82.00 578.0,82.00 578.5,82.00 579.0,82.00 579.5,82.00 580.0,82.00 580.5,82.00 581.0,82.00 581.5,82.00 582.0,82.00 582.5,82.00 583.0,82.00 583.5,82.00 584.0,82.00 584.5,82.00 585.0,82.00 585.5,82.00 586.0,82.00 586.5,82.00 587.0,82.00 587.5,82.00 588.0,82.00 588.5,82.00 589.0,82.00 589.5,82.00 590.0,82.00 590.5,82.00 591.0,82.00 591.5,82.00 592.0,82.00 592.5,82.00 593.0,82.00 593.5,82.00 594.0,82.00 594.5,82.00 595.0,82.00 595.5,82.00 596.0,82.00 596.5,82.00 597.0,82.00 597.5,82.00 598.0,82.00 598.5,82.00 599.0,82.00 599.5,82.00 600.0,82.00" fill="none" stroke="#172e46" stroke-width="1.5" stroke-linejoin="round"/><text x="2" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="start" fill="#334155">0 s</text><text x="100" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">1 s</text><text x="200" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">2 s</text><text x="300" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">3 s</text><text x="400" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">4 s</text><text x="500" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="middle" fill="#334155">5 s</text><text x="598" y="151" font-family="Arial,sans-serif" font-size="9" text-anchor="end" fill="#334155">6 s</text></svg><figcaption>Original educational simulation • 6-second window • nominal 25 mm/s and 10 mm/mV. Resizing changes the printed box size; use the labeled time scale.</figcaption><details><summary>Read a text description of the tracing</summary><p>R waves are evenly spaced about six large boxes apart. A similar small rounded wave precedes every narrow QRS, and the baseline between cycles is organized.</p></details></figure><div class="answers"><label class="answer"><input type="radio" name="q3" value="a"><span>A. Sinus bradycardia</span></label><label class="answer"><input type="radio" name="q3" value="b"><span>B. Normal sinus rhythm</span></label><label class="answer"><input type="radio" name="q3" value="c"><span>C. Sinus tachycardia</span></label><label class="answer"><input type="radio" name="q3" value="d"><span>D. Atrial fibrillation</span></label></div><button type="submit">Check answer</button><button type="button" class="secondary-button" data-reset>Try again</button><div class="feedback" role="status" aria-live="polite" aria-atomic="true"></div></fieldset></form>
+<p class="practice-total" id="practice-total" role="status" aria-live="polite">0 of 3 questions checked.</p><p><a class="practice-link" href="/?tab=ekg">Continue to the full EKG waveform quiz →</a></p><noscript><p>JavaScript is needed to check these answers. The rhythm guide and full-quiz link remain available.</p></noscript></section>
+<nav aria-label="On this page"><ul class="section-links"><li><a href="#reading-method">Reading method</a></li><li><a href="#rhythm-reference">Rhythm comparison</a></li><li><a href="#beyond-patterns">Beyond the pattern</a></li><li><a href="#sources">Sources</a></li></ul></nav>
+<section class="card" id="reading-method"><h2>How to read an ECG rhythm strip</h2><p>EKG and ECG both mean electrocardiogram: a recording of the heart’s electrical activity. Use the same sequence for each practice strip.</p><ol><li><strong>Confirm the recording.</strong> Check the time scale, calibration, lead, and signal quality. A distorted trace may be artifact.</li><li><strong>Estimate the rate.</strong> For a regular rhythm at 25 mm/s, use 300 divided by large boxes between R waves, or 1500 divided by small boxes. For a six-second strip, counting QRS complexes and multiplying by ten gives an approximate rate, especially useful when irregular.</li><li><strong>Check regularity.</strong> Compare several R–R intervals, not just two beats.</li><li><strong>Find atrial activity.</strong> Look for consistent P waves and their relationship to the QRS complexes.</li><li><strong>Measure conduction.</strong> Inspect the PR interval and QRS duration. An adult QRS of 0.12 seconds or more is wide.</li><li><strong>Combine the clues.</strong> Choose a rhythm supported by the complete pattern, not a single feature.</li></ol><p>In sinus rhythm, the impulse starts in the SA node and travels through the atria, AV node, His–Purkinje system, and ventricles. Other rhythms can start elsewhere. The P wave reflects atrial depolarization, the QRS ventricular depolarization, and the T wave ventricular repolarization.</p><p><a href="/how-to-read-ekg.html">Read the step-by-step EKG guide →</a></p></section>
+<section class="card" id="rhythm-reference"><h2>Common ECG rhythms at a glance</h2><p>These are typical introductory patterns, not stand-alone diagnostic rules.</p><div class="table-scroll" role="region" aria-label="Rhythm comparison table" tabindex="0"><table class="rhythm-table"><caption>Combine rate, regularity, atrial activity, and QRS appearance.</caption><thead><tr><th scope="col">Rhythm</th><th scope="col">Typical pattern</th><th scope="col">Important qualification</th></tr></thead><tbody>
+<tr><th scope="row">Normal sinus rhythm</th><td>Regular, consistent P before each QRS; resting adult rate commonly 60–100/min.</td><td>Check atrial and ventricular relationships, not rate alone.</td></tr>
+<tr><th scope="row">Sinus bradycardia</th><td>Sinus pattern with an adult rate below 60/min.</td><td>Its significance depends on symptoms and context.</td></tr>
+<tr><th scope="row">Sinus tachycardia</th><td>Sinus pattern with an adult rate above 100/min.</td><td>A fast rate alone does not identify the rhythm or its cause.</td></tr>
+<tr><th scope="row">Atrial fibrillation</th><td>Irregularly irregular ventricular response without consistent discrete P waves.</td><td>Some other rhythms are also irregular; inspect atrial activity.</td></tr>
+<tr><th scope="row">Atrial flutter</th><td>Organized flutter activity, often sawtooth in suitable leads.</td><td>The ventricular response may be regular or variable.</td></tr>
+<tr><th scope="row">Premature ventricular beat</th><td>An early, typically wide ventricular complex.</td><td>Assess the surrounding rhythm and full tracing.</td></tr>
+<tr><th scope="row">Ventricular tachycardia</th><td>A rapid rhythm of ventricular origin, typically with wide complexes.</td><td>A wide-complex tachycardia can have other causes.</td></tr>
+<tr><th scope="row">Ventricular fibrillation</th><td>Disorganized activity without identifiable organized QRS complexes.</td><td>Signal quality and the patient’s condition matter.</td></tr>
+<tr><th scope="row">Asystole</th><td>Absence of discernible ventricular electrical activity.</td><td>A near-flat trace also requires checking leads, connections, and equipment.</td></tr>
+</tbody></table></div><p><a href="/ekg-rhythm-cheat-sheet.html">Open the EKG rhythm cheat sheet →</a></p></section>
+<section class="card" id="beyond-patterns"><details class="optional-review"><summary>Beyond the pattern: why context matters</summary><h3>Wide and fast is a description, not a complete diagnosis</h3><p>A regular wide-complex rhythm at 180/min should raise concern for ventricular tachycardia, but rate and width alone do not prove VT. Supraventricular rhythms with abnormal conduction or pre-excitation can also be wide. Clinical assessment and additional ECG evidence guide qualified interpretation.</p><h3>A monitor trace is not the whole patient</h3><p>Motion, muscle activity, poor electrode contact, and electrical interference can distort a tracing. In clinical work, assess the patient and recording quality and follow approved training and local protocols. Do not make treatment or return-to-service decisions from these practice examples.</p><h3>A rhythm strip is not a complete 12-lead interpretation</h3><p>These exercises teach basic rhythm recognition. They do not establish ischemia, infarction, electrolyte abnormalities, or a treatment plan from a single visual clue. Use the linked learning resources for further study and qualified instruction for clinical decisions.</p></details></section>
+<section class="card" id="sources"><h2>Sources and content information</h2><p class="publisher">Published by MedSkillBuilder LLC. Content and source check: October 28, 2026. The strips on this page are original simulated teaching illustrations. No independent clinical reviewer is named for this edition.</p><ul class="source-list"><li><a href="https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia">American Heart Association: What is an arrhythmia?</a> — normal conduction, backup pacemakers, and rhythm disturbances.</li><li><a href="https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia/tachycardia--fast-heart-rate">American Heart Association: Tachycardia</a> — sinus and ventricular tachycardia concepts.</li><li><a href="https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia/bradycardia--slow-heart-rate">American Heart Association: Bradycardia</a> — slow heart rate and sinus-node context.</li><li><a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000001193">2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline</a> — atrial fibrillation and flutter interpretation concepts.</li><li><a href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support/">2025 American Heart Association Adult Advanced Life Support</a> — wide-complex rhythm differentiation and clinical context.</li><li><a href="https://www.utmb.edu/pedi_ed/CoreV2/Cardiology/Cardiology4.html">University of Texas Medical Branch: EKG interpretation</a> — standard paper speed and rate calculation. This source includes pediatric material; adult rate categories are used on this page.</li></ul><p class="educational-note">References support the concepts presented; they do not imply endorsement, certification, or review of MedSkillBuilder by the organizations listed. This page provides supplemental education, not diagnosis, treatment advice, or professional certification.</p></section>
+<section class="card"><h2>Continue practicing</h2><div class="link-grid"><a class="practice-link" href="/?tab=ekg">Full EKG waveform quiz</a><a class="practice-link" href="/how-to-read-ekg.html">How to read an EKG</a><a class="practice-link" href="/ekg-rhythm-cheat-sheet.html">EKG rhythm cheat sheet</a><a class="practice-link" href="/ecg-lead-placement-practice.html">12-lead electrode placement practice</a><a class="practice-link" href="/heart-anatomy-quiz.html">Heart anatomy quiz</a><a class="practice-link" href="/browse-all-practice.html">Browse all practice tools</a></div></section>
+<p class="footer-note">© 2026 MedSkillBuilder LLC. Educational practice for healthcare learners.</p></main>
+<script>
+(()=>{
+'use strict';
+const key={"1": {"answer": "b", "label": "Normal sinus rhythm", "reason": "The R–R interval is about 0.80 seconds (four large boxes at 25 mm/s), giving about 75 beats/min. The rhythm is regular, with a consistent P wave before each narrow QRS."}, "2": {"answer": "c", "label": "Atrial fibrillation", "reason": "Uneven R–R intervals without a repeating pattern, together with no consistent discrete P waves, support atrial fibrillation in this simulated example. Irregularity alone is not enough to name every real-world rhythm."}, "3": {"answer": "a", "label": "Sinus bradycardia", "reason": "Six large boxes between R waves at 25 mm/s gives 300 ÷ 6 = 50 beats/min. The regular pattern and consistent P-before-QRS relationship support sinus bradycardia."}};
+const checked=new Map();
+const total=document.getElementById('practice-total');
+const updateTotal=()=>{const count=checked.size;const correct=[...checked.values()].filter(Boolean).length;total.textContent=count+' of 3 questions checked'+(count?' · '+correct+' correct.':'.');};
+document.querySelectorAll('.practice-question').forEach(form=>{
+ const id=form.dataset.question;
+ const feedback=form.querySelector('.feedback');
+ form.addEventListener('submit',event=>{
+  event.preventDefault();
+  const chosen=form.querySelector('input[type="radio"]:checked');
+  if(!chosen){feedback.textContent='Choose an answer before checking.';feedback.dataset.result='prompt';form.querySelector('input').focus();return;}
+  const item=key[id];const correct=chosen.value===item.answer;
+  checked.set(id,correct);feedback.dataset.result=correct?'correct':'incorrect';
+  feedback.textContent=(correct?'Correct — ':'Review — ')+item.label+'. '+item.reason;
+  updateTotal();
+ });
+ form.addEventListener('change',()=>{checked.delete(id);feedback.textContent='';delete feedback.dataset.result;updateTotal();});
+ form.querySelector('[data-reset]').addEventListener('click',()=>{form.reset();checked.delete(id);feedback.textContent='';delete feedback.dataset.result;updateTotal();form.querySelector('input').focus();});
+});
+})();
+</script></body></html>
