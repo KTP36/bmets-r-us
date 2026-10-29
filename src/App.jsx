@@ -1,3 +1,4 @@
+import { harderCbetQuestions } from "./cbetHarderQuestions";
 
 
 import React, { useState, useEffect, useRef } from "react";
@@ -1422,133 +1423,6 @@ const equipmentConceptQuestions = [
     options: ["Humidity only", "Temperature", "Pressure only", "Oxygen level only"],
     answer: 1
   }
-];
-const harderCbetQuestions = [
-  {
-    question: "A defibrillator fails an energy output test at 200 J but passes at lower settings. Which issue is MOST likely?",
-    options: ["Weak battery in the ECG module", "High-voltage capacitor or charging circuit problem", "Damaged patient cable only", "Printer paper sensor failure"],
-    answer: 1
-  },
-  {
-    question: "During preventive maintenance, leakage current exceeds limits only when the device polarity is reversed. What should you suspect first?",
-    options: ["Normal operation with no action needed", "Compromised insulation or line filter issue", "Low battery capacity", "Incorrect heart rate alarm settings"],
-    answer: 1
-  },
-  {
-    question: "A monitor intermittently reboots when plugged into wall power but runs normally on battery. The MOST likely source is:",
-    options: ["The display backlight only", "The AC input or power supply section", "The speaker volume setting", "The SpO2 sensor"],
-    answer: 1
-  },
-  {
-    question: "What is the BEST reason to verify a complaint before replacing parts?",
-    options: ["It improves cosmetic appearance", "It reduces unnecessary parts replacement and misdiagnosis", "It avoids documenting the issue", "It lets nursing recalibrate the device"],
-    answer: 1
-  },
-  {
-    question: "A device repeatedly blows its fuse immediately on power-up. After verifying correct fuse type, what is the next BEST step?",
-    options: ["Install a larger fuse", "Inspect for a short in the power input stage", "Bypass the fuse temporarily", "Replace the enclosure label"],
-    answer: 1
-  },
-  {
-    question: "An infusion pump passes flow-rate accuracy but its occlusion alarm does not activate within specification. The device should be:",
-    options: ["Returned to service because flow is accurate", "Tagged out until the alarm function is corrected", "Used only in low-risk areas", "Released if the nurse is informed"],
-    answer: 1
-  },
-  {
-    question: "When a service manual specifies torque values for internal hardware, why should they be followed?",
-    options: ["To reduce cleaning time", "To maintain safety, alignment, and reliable assembly", "Only to improve appearance", "Because torque values affect battery charge time"],
-    answer: 1
-  },
-  {
-    question: "A patient monitor shows noisy ECG only when connected to AC power in one room. Which troubleshooting approach is MOST appropriate?",
-    options: ["Replace the monitor main board immediately", "Compare operation on battery and evaluate power quality/grounding in that room", "Ignore it if alarms still sound", "Replace the ECG electrodes with temperature probes"],
-    answer: 1
-  },
-  {
-    question: "A ventilator returns from outside repair. Before clinical use, the technician should FIRST ensure:",
-    options: ["The unit has a new asset tag", "Incoming inspection, safety checks, and functional verification are complete", "The staff has already used it once", "The battery has been removed"],
-    answer: 1
-  },
-  {
-    question: "Which document is MOST important for demonstrating that a device was safe to return to service after repair?",
-    options: ["A handwritten sticky note", "Completed service documentation with test results", "An email that parts were ordered", "A user complaint log only"],
-    answer: 1
-  },
-  {
-    question: "An ESU fails output power verification across multiple load settings. Which instrument is specifically intended to evaluate this?",
-    options: ["Oscilloscope only", "ESU analyzer", "Infusion device analyzer", "NIBP simulator"],
-    answer: 1
-  },
-  {
-    question: "A medical device has a damaged power cord strain relief. Why is this significant?",
-    options: ["It only affects cosmetic appearance", "It increases risk of conductor damage, shock, and intermittent faults", "It lowers speaker volume", "It changes screen brightness"],
-    answer: 1
-  },
-  {
-    question: "In troubleshooting, a symptom that appears only after the unit warms up for 20 minutes suggests:",
-    options: ["A purely mechanical shipping issue", "A thermal or intermittent electronic fault", "A labeling problem only", "A guaranteed software licensing issue"],
-    answer: 1
-  },
-  {
-    question: "Which action BEST supports root-cause repair instead of repeated temporary fixes?",
-    options: ["Resetting the breaker and sending the device back each time", "Trending failures, reproducing conditions, and verifying the failed stage", "Replacing accessories randomly", "Skipping final test to save time"],
-    answer: 1
-  },
-  {
-    question: "A device alarm volume is functioning, but the visual alarm indicator does not illuminate. The device should be considered:",
-    options: ["Acceptable because one alarm path still works", "Incomplete alarm functionality and not ready for service", "Safe for day shift only", "Ready if documented as a known issue"],
-    answer: 1
-  },
-  {
-    question: "What is the strongest reason to use manufacturer-approved accessories when specified?",
-    options: ["They always cost less", "Compatibility and validated safety/performance", "They eliminate the need for PM", "They remove the need for user training"],
-    answer: 1
-  },
-  {
-    question: "A preventive maintenance interval should primarily be based on:",
-    options: ["The technician's preference", "Manufacturer guidance, device risk, and facility policy", "How often stickers are available", "Whether the unit is stored near nursing"],
-    answer: 1
-  },
-  {
-    question: "A unit intermittently fails self-test, but only after transport between departments. What is the BEST next step?",
-    options: ["Assume user error", "Inspect connectors, mounting, and transport-related intermittents while reproducing movement", "Replace the battery only", "Disable self-test if possible"],
-    answer: 1
-  },
-  {
-    question: "If a device repeatedly returns with the same failure after board replacement, the BEST conclusion is:",
-    options: ["Board replacement always fails", "The underlying cause may be elsewhere and has not been identified", "The user is definitely at fault", "Documentation can be skipped next time"],
-    answer: 1
-  },
-  {
-    question: "Which step is MOST appropriate immediately after completing a repair on a life-support device?",
-    options: ["Return it directly to the unit", "Perform required functional and safety verification before release", "Ask clinical staff to watch it closely", "Clear the service history"],
-    answer: 1
-  },
-  {
-    question: "A battery-operated device shows drastically reduced runtime but otherwise functions. The BEST classification is:",
-    options: ["No issue if AC power is available", "A performance/safety concern that should be corrected before expected battery use", "A cosmetic problem", "A network configuration fault"],
-    answer: 1
-  },
-  {
-    question: "When measuring a low resistance value in a circuit, what common issue can significantly affect accuracy?",
-    options: ["Ambient room color", "Test lead resistance and contact quality", "Battery label orientation", "Ground pin length only"],
-    answer: 1
-  },
-  {
-    question: "A service report says 'unable to duplicate,' but the customer can reproduce the issue easily. What should be improved FIRST?",
-    options: ["Inventory labeling", "Complaint intake details and test conditions used to reproduce the problem", "Screen brightness", "Cleaning agent selection"],
-    answer: 1
-  },
-  {
-    question: "Why is configuration verification important after replacing a main board in a medical device?",
-    options: ["It is only needed for cosmetic repairs", "Incorrect configuration can affect alarms, options, calibration, or clinical behavior", "It prevents the unit from being cleaned", "It only changes the serial number label"],
-    answer: 1
-  },
-  {
-    question: "The BEST reason to quarantine a device with an intermittent safety-related fault is that intermittent problems:",
-    options: ["Are easier for users to work around", "Can recur unpredictably and create unacceptable patient risk", "Always disappear on their own", "Only affect accessories and not the main device"],
-    answer: 1
-  },
 ];
 const equipmentQuestions = [
   {
@@ -6514,7 +6388,8 @@ export default function App() {
     };
   }, []);
   useEffect(() => {
-    const savedCbet = JSON.parse(localStorage.getItem("cbetProgress"));
+    const parsedCbet = JSON.parse(localStorage.getItem("cbetProgress"));
+    const savedCbet = parsedCbet?.questionBankVersion === 2 ? parsedCbet : null;
     if (savedCbet) {
       setShuffledCbetQuestions(savedCbet.shuffledCbetQuestions || shuffleQuestionSet(cbetQuestions));
       setCbetIndex(savedCbet.cbetIndex || 0);
@@ -6528,7 +6403,8 @@ export default function App() {
     }
   }, []);
   useEffect(() => {
-    const savedHarderCbet = JSON.parse(localStorage.getItem("harderCbetProgress"));
+    const parsedHarderCbet = JSON.parse(localStorage.getItem("harderCbetProgress"));
+    const savedHarderCbet = parsedHarderCbet?.questionBankVersion === 2 ? parsedHarderCbet : null;
     if (savedHarderCbet) {
       setShuffledHarderCbetQuestions(
         savedHarderCbet.shuffledHarderCbetQuestions || shuffleQuestionSet(harderCbetQuestions)
@@ -6890,6 +6766,7 @@ export default function App() {
   const saveCbetProgress = () => {
     if (cbetMode !== "practice") return;
     const progress = {
+      questionBankVersion: 2,
       shuffledCbetQuestions,
       cbetIndex,
       cbetScore,
@@ -6962,6 +6839,7 @@ export default function App() {
   };
   const saveHarderCbetProgress = () => {
     const progress = {
+      questionBankVersion: 2,
       shuffledHarderCbetQuestions,
       harderCbetIndex,
       harderCbetScore,
@@ -9262,12 +9140,12 @@ export default function App() {
                       ? `CBET Electronics Practice (${cbetQuestionTarget} Questions)`
                       : shuffledCbetQuestions.length === 5
                       ? "CBET Quick Practice (5 Questions)"
-                      : "CBET Practice Mode"}
+                      : `CBET Practice Bank (${shuffledCbetQuestions.length} Questions)`}
                   </h2>
                   <p style={{ color: "#4f6275", margin: 0 }}>
                     {cbetMode === "full"
-                      ? "Practice questions designed to simulate the CBET exam format in a longer 75-question study session."
-                      : "Questions are shuffled each restart. Select one answer and build confidence as you work through practice mode."}
+                      ? "A 75-question study session sampled from the 100-question practice bank. This is not an official exam simulation."
+                      : "Practice mode uses the selected question pool; the separate exam button draws 75 questions. Questions and answer choices shuffle each restart."}
                   </p>
                   <p style={{ color: "#1d6fa5", margin: "8px 0 0 0", fontWeight: 700 }}>
                     {cbetMode === "full"
@@ -9308,7 +9186,7 @@ export default function App() {
                     Quick 5 Questions
                   </button>
                   <button
-                    onClick={startCbetPracticeMode}
+                    onClick={() => startCbetPracticeMode()}
                     style={{
                       padding: "10px 18px",
                       borderRadius: 999,
@@ -9324,7 +9202,7 @@ export default function App() {
                       transform: cbetMode === "full" ? "scale(1.04)" : "scale(1)"
                     }}
                   >
-                    Practice Mode
+                    {cbetCategory === "electronics" ? "Electronics Practice Bank" : "100-Question Practice Bank"}
                   </button>
                   <button
                     onClick={startCbetFullExam}
@@ -10078,6 +9956,12 @@ export default function App() {
                       </button>
                     );
                   })}
+                  {harderCbetAnswers[harderCbetIndex] !== undefined && (
+                    <div role="status" style={{ padding: 16, marginTop: 12, borderRadius: 10, background: "#eff6ff", color: "#12355b", lineHeight: 1.6 }}>
+                      <strong>Why this answer: </strong>
+                      {shuffledHarderCbetQuestions[harderCbetIndex].explanation}
+                    </div>
+                  )}
                   <div style={{ textAlign: "center", marginTop: 20 }}>
                     <button
                       onClick={() => {
