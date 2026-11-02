@@ -9381,6 +9381,19 @@ export default function App() {
                         key={i}
                         onClick={() => {
                           if (isAnswered) return;
+                         if (Object.keys(cbetAnswers).length === 0) {
+  trackExamStart(
+    cbetMode === "full"
+      ? "CBET 75-Question Practice Exam"
+      : cbetCategory === "electronics"
+      ? shuffledCbetQuestions.length === 5
+        ? "CBET Electronics Quick Practice"
+        : "CBET Electronics Practice"
+      : shuffledCbetQuestions.length === 5
+      ? "CBET Quick Practice"
+      : "CBET Practice"
+  );
+} 
                           setCbetAnswers((prev) => ({ ...prev, [cbetIndex]: i }));
                           if (i === correct) {
                             setCbetScore((prev) => prev + 1);
@@ -9920,6 +9933,9 @@ export default function App() {
                         key={i}
                         onClick={() => {
                           if (isAnswered) return;
+                          if (Object.keys(harderCbetAnswers).length === 0) {
+  trackExamStart("CBET Harder Practice");
+}
                           setHarderCbetAnswers((prev) => ({
                             ...prev,
                             [harderCbetIndex]: i
