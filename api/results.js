@@ -24,6 +24,12 @@ export default async function handler(req,res){
  }
  if(req.method==='GET'){
   const expected=process.env.RESULTS_ADMIN_TOKEN||'',actual=(req.headers.authorization||'').replace(/^Bearer /,'');
+  console.info('Admin token diagnostic', {
+  configured: expected.length >= 32,
+  savedLength: expected.length,
+  receivedLength: actual.length,
+  matches: actual === expected
+});
   if(expected.length<32||Buffer.byteLength(actual)!==Buffer.byteLength(expected)||!timingSafeEqual(Buffer.from(actual),Buffer.from(expected)))return res.status(401).json({error:'Unauthorized'});
   const r=await fetch(`${base}/rest/v1/quiz_results?select=id,username,activity,score,total,percent,time_seconds,created_at,verification&order=created_at.desc&limit=200`,{headers,signal:AbortSignal.timeout(10000)});
   if(!r.ok)throw Error('database');return res.status(200).json(await r.json());
