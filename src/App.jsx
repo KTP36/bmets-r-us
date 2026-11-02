@@ -6675,7 +6675,13 @@ export default function App() {
       );
       privateSubmission.append("_source", "leaderboard-save");
 
-      const response = await fetch("https://formspree.io/f/xgonbzaj", {
+      const useBackend = import.meta.env.VITE_CBET_RESULTS_BACKEND === "true" &&
+        ["CBET Practice", "CBET Harder Practice", "CBET Harder Questions", "CBET 75-Question Practice Exam"].includes(entry.activityName);
+      const response = useBackend ? await fetch("/api/results", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...entry, email })
+      }) : await fetch("https://formspree.io/f/xgonbzaj", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: privateSubmission
