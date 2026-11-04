@@ -743,6 +743,115 @@ function EkgBasics() {
   );
 }
 
+// Original educational strips: regular rhythms at 25 mm/sec, not diagnostic recordings.
+const heartRateBoxCounts = [20, 25, 15, 30, 10, 18, 24, 12, 22, 16, 28, 14, 32, 26, 19];
+function makeHeartRateQuestions() {
+  return heartRateBoxCounts.map((boxes, index) => {
+    const bpm = Math.round(1500 / boxes);
+    const choices = [...new Set([bpm, Math.round(1500 / (boxes + 5)), Math.round(1500 / (boxes - 5)), Math.round(300 / boxes)])];
+    for (let i = choices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [choices[i], choices[j]] = [choices[j], choices[i]];
+    }
+    return { boxes, bpm, choices, guided: index < 5 };
+  });
+}
+function scoreHeartRateAnswers(questions, answers) {
+  return questions.reduce((total, question, i) => total + (answers[i] === question.bpm ? 1 : 0), 0);
+}
+function HeartRateStrip({ boxes, guided, reveal }) {
+  const cell = 14, start = 70, end = start + boxes * cell;
+  const width = end + 70, height = 210;
+  const id = React.useId().replace(/:/g, "");
+  const peaks = [start, end];
+  const points = [];
+  for (let x = 0; x <= width; x += 0.5) {
+    let y = 145;
+    for (const peak of peaks) {
+      const d = x - peak;
+      y += -10 * Math.exp(-Math.pow((d + 34) / 7, 2))
+        + 10 * Math.exp(-Math.pow((d + 7) / 2, 2))
+        - 76 * Math.exp(-Math.pow(d / 2.2, 2))
+        + 18 * Math.exp(-Math.pow((d - 7) / 3, 2))
+        - 19 * Math.exp(-Math.pow((d - 39) / 11, 2));
+    }
+    points.push(`${x},${y}`);
+  }
+  return <div>
+    <p style={{ color: "#475569", fontSize: 14 }}>Paper speed: <strong>25 mm/sec</strong> · Regular rhythm · Training simulation</p>
+    <div role="region" aria-label="EKG strip; scroll horizontally to inspect all small boxes" tabIndex={0} style={{ overflowX: "auto", border: "1px solid #e8a8b0", borderRadius: 12, background: "white" }}>
+      <svg role="img" aria-label={`Regular EKG strip. ${guided || reveal ? "R-wave peaks marked. " : ""}${reveal ? `${boxes} small boxes between peaks.` : "Count the small boxes between the two sharp R-wave peaks."}`} viewBox={`0 0 ${width} ${height}`} style={{ display: "block", width: "100%", minWidth: width, height: "auto" }}>
+        <defs>
+          <pattern id={`small-${id}`} x={start} y="5" width={cell} height={cell} patternUnits="userSpaceOnUse"><path d={`M ${cell} 0 L 0 0 0 ${cell}`} fill="none" stroke="#f2ccd1" strokeWidth="0.7" /></pattern>
+          <pattern id={`large-${id}`} x={start} y="5" width={cell * 5} height={cell * 5} patternUnits="userSpaceOnUse"><rect width={cell * 5} height={cell * 5} fill={`url(#small-${id})`} /><path d={`M ${cell * 5} 0 L 0 0 0 ${cell * 5}`} fill="none" stroke="#d98c99" strokeWidth="1" /></pattern>
+        </defs>
+        <rect width={width} height={height} fill={`url(#large-${id})`} />
+        {reveal && Array.from({ length: boxes }, (_, i) => <g key={i}><rect x={start + i * cell} y="50" width={cell} height="135" fill={i % 2 ? "#14b8a6" : "#0f766e"} opacity="0.12" /><text x={start + (i + .5) * cell} y="42" textAnchor="middle" fontSize="10" fill="#0f766e">{i + 1}</text></g>)}
+        <polyline points={points.join(" ")} fill="none" stroke="#12355b" strokeWidth="2" />
+        {(guided || reveal) && peaks.map((x, i) => <g key={x}><line x1={x} x2={x} y1="49" y2="190" stroke="#0f766e" strokeDasharray="4 4" /><text x={x} y="22" textAnchor="middle" fontSize="13" fill="#12355b">R{i + 1}</text></g>)}
+      </svg>
+    </div>
+    <p style={{ color: "#64748b", fontSize: 13 }}>Count spaces between grid lines, not the lines themselves. On a narrow screen, swipe the strip sideways.</p>
+  </div>;
+}
+function HeartRateQuiz({ onStart, onComplete }) {
+  const [questions, setQuestions] = useState(makeHeartRateQuestions);
+  const [answers, setAnswers] = useState({});
+  const [index, setIndex] = useState(0);
+  const [finished, setFinished] = useState(false);
+  const [review, setReview] = useState(false);
+  const answersRef = useRef({});
+  const completedRef = useRef(false);
+  const advanceRef = useRef(-1);
+  const startedRef = useRef(null);
+  const [elapsed, setElapsed] = useState(0);
+  const q = questions[index];
+  const selected = answers[index];
+  const answered = selected !== undefined;
+  const score = scoreHeartRateAnswers(questions, answers);
+  const button = { padding: "12px 24px", borderRadius: 999, border: "none", background: "linear-gradient(135deg, #12355b, #1d6fa5)", color: "white", fontWeight: 800, cursor: "pointer" };
+  const restart = () => {
+    setQuestions(makeHeartRateQuestions()); setAnswers({}); answersRef.current = {};
+    setIndex(0); setFinished(false); setReview(false); setElapsed(0);
+    completedRef.current = false; advanceRef.current = -1; startedRef.current = null;
+  };
+  const choose = (value) => {
+    if (answersRef.current[index] !== undefined || completedRef.current) return;
+    if (startedRef.current === null) { startedRef.current = Date.now(); onStart?.(); }
+    answersRef.current = { ...answersRef.current, [index]: value };
+    setAnswers(answersRef.current);
+  };
+  const next = () => {
+    if (answersRef.current[index] === undefined || advanceRef.current === index) return;
+    advanceRef.current = index;
+    if (index < questions.length - 1) { setIndex(index + 1); return; }
+    if (completedRef.current) return;
+    completedRef.current = true;
+    const seconds = Math.max(1, Math.round((Date.now() - startedRef.current) / 1000));
+    setElapsed(seconds); setFinished(true);
+    onComplete?.(scoreHeartRateAnswers(questions, answersRef.current), questions.length, seconds);
+  };
+  return <div style={{ padding: 20 }}><div style={{ background: "rgba(255,255,255,0.96)", borderRadius: 24, padding: 28, boxShadow: "0 10px 30px rgba(0,0,0,0.08)", border: "1px solid #dbeafe", maxWidth: 980, margin: "0 auto" }}>
+    <h2 style={{ color: "#12355b", marginTop: 0 }}>EKG Heart Rate Practice{finished ? " Complete" : ""}</h2>
+    {!finished ? <>
+      <p style={{ color: "#4f6275" }}>Count the small boxes between the two sharp R-wave peaks. Calculate <strong>1,500 ÷ small boxes</strong> and round to the nearest whole bpm. The first five questions mark the peaks for you.</p>
+      <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10, margin: "20px 0", color: "#12355b", fontWeight: 700 }}><span>Question {index + 1} / 15</span><span>Score: {score} / 15</span></div>
+      <progress aria-label="Questions answered" value={Object.keys(answers).length} max={15} style={{ width: "100%", accentColor: "#0f766e" }} />
+      <HeartRateStrip boxes={q.boxes} guided={q.guided} reveal={answered} />
+      <h3 style={{ color: "#12355b" }}>What is the heart rate, rounded to the nearest whole bpm?</h3>
+      {q.choices.map((value, i) => <button key={value} disabled={answered} onClick={() => choose(value)} style={{ width: "100%", textAlign: "left", padding: "14px 16px", marginBottom: 12, borderRadius: 12, fontSize: 16, fontWeight: 600, color: "#1e293b", cursor: answered ? "default" : "pointer", border: answered && value === q.bpm ? "2px solid #15803d" : answered && value === selected ? "2px solid #b91c1c" : "1px solid #cbd5e1", background: answered && value === q.bpm ? "#dcfce7" : answered && value === selected ? "#fee2e2" : "#f8fafc" }}>{String.fromCharCode(65 + i)}. {value} bpm{answered && value === q.bpm ? " — Correct answer" : answered && value === selected ? " — Your answer" : ""}</button>)}
+      {answered && <div role="status" style={{ padding: 16, borderRadius: 12, background: selected === q.bpm ? "#eff6ff" : "#fff7ed", color: "#12355b", margin: "12px 0" }}><strong>{selected === q.bpm ? "Correct!" : "Review the calculation:"}</strong> There are {q.boxes} small boxes between the R-wave peaks. 1,500 ÷ {q.boxes} = {(1500 / q.boxes).toFixed(2)} ≈ <strong>{q.bpm} bpm</strong>. At 25 mm/sec, each small box is 0.04 seconds, so one minute contains 1,500 small boxes.</div>}
+      <button disabled={!answered} onClick={next} style={{ ...button, opacity: answered ? 1 : .5 }}>{index === 14 ? "Finish & See Results" : "Next Question"}</button>
+    </> : <>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 12, margin: "24px 0" }}>{[[`${score} / 15`, "Score"], [`${Math.round(score / 15 * 100)}%`, "Accuracy"], [15 - score, "Missed"], [`${Math.floor(elapsed / 60)}:${String(elapsed % 60).padStart(2, "0")}`, "Time"]].map(([value, label]) => <div key={label} style={{ padding: 16, borderRadius: 18, background: "#eff6ff", color: "#12355b", textAlign: "center" }}><strong style={{ fontSize: 28 }}>{value}</strong><div>{label}</div></div>)}</div>
+      <p>Each question is worth one point. Your first answer counts; reviewing explanations does not change your score.</p>
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}><button onClick={restart} style={button}>Restart Practice</button><button onClick={() => setReview(!review)} style={button}>{review ? "Hide" : "Review"} Missed Questions</button></div>
+      {review && (score === 15 ? <p>No missed questions—15 out of 15!</p> : questions.map((item, i) => answers[i] === item.bpm ? null : <div key={i} style={{ borderTop: "1px solid #dbeafe", marginTop: 24, paddingTop: 16 }}><h3>Question {i + 1}</h3><HeartRateStrip boxes={item.boxes} guided reveal /><p>Your answer: {answers[i]} bpm. Correct: 1,500 ÷ {item.boxes} ≈ <strong>{item.bpm} bpm</strong>.</p></div>))}
+    </>}
+    <p style={{ color: "#64748b", fontSize: 13, marginTop: 24 }}>Educational practice only. Use this method for regular rhythms at 25 mm/sec. For an irregular rhythm, estimate rate over a timed strip. Calculating rate does not identify the rhythm or confirm a pulse.</p>
+  </div></div>;
+}
+
 function EkgQuiz({ onComplete, onStart }) {
   const [mode, setMode] = useState("quiz");
   const [questions, setQuestions] = useState(() => shuffleQuestionSet(ekgQuestions));
@@ -5535,6 +5644,7 @@ const DEEP_LINK_TABS = new Set([
   "Dashboard",
   "DigestiveQuiz",
   "EKGQuiz",
+  "EKGHeartRate",
   "Equipment",
   "HarderCBET",
   "HeartQuiz",
@@ -5575,6 +5685,8 @@ const DEEP_LINK_TAB_ALIASES = {
   contact: "Contact",
   dashboard: "Dashboard",
   digestivequiz: "DigestiveQuiz",
+  ekgheartrate: "EKGHeartRate",
+  heartrate: "EKGHeartRate",
   ekg: "EKGQuiz",
   ekgquiz: "EKGQuiz",
   ekgrhythm: "EKGQuiz",
@@ -6097,6 +6209,7 @@ export default function App() {
     "Anatomy Quick Practice",
     "Cable ID Quiz",
     "EKG Waveform Quiz",
+    "EKG Heart Rate Practice",
     "Lab Values Quiz",
     "ABG Quiz"
   ];
@@ -7944,6 +8057,14 @@ export default function App() {
         >
           EKG Rhythm Practice
         </button>
+        <button
+          onClick={() => { setActiveTab("EKGHeartRate"); setSelectedSet(null); }}
+          onMouseEnter={() => setHoveredNavTab("EKGHeartRate")}
+          onMouseLeave={() => setHoveredNavTab("")}
+          style={navButtonStyle(activeTab === "EKGHeartRate", hoveredNavTab === "EKGHeartRate")}
+        >
+          EKG Heart Rate Practice
+        </button>
 
 
         <button
@@ -8310,6 +8431,14 @@ export default function App() {
               }
             />
           </div>
+        )}
+        {activeTab === "EKGHeartRate" && (
+          <HeartRateQuiz
+            onStart={() => trackExamStart("EKG Heart Rate Practice")}
+            onComplete={(finalScore, totalQuestions, seconds) =>
+              trackExamCompletion("EKG Heart Rate Practice", finalScore, totalQuestions, seconds)
+            }
+          />
         )}
         {activeTab === "EKGQuiz" && (
           <EkgQuiz
