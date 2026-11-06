@@ -760,6 +760,7 @@ function scoreHeartRateAnswers(questions, answers) {
   return questions.reduce((total, question, i) => total + (answers[i] === question.bpm ? 1 : 0), 0);
 }
 function HeartRateStrip({ boxes, guided, reveal }) {
+  const [zoomed, setZoomed] = useState(false);
   const cell = 14, start = 70, end = start + boxes * cell;
   const width = end + 70, height = 210;
   const id = React.useId().replace(/:/g, "");
@@ -779,8 +780,9 @@ function HeartRateStrip({ boxes, guided, reveal }) {
   }
   return <div>
     <p style={{ color: "#475569", fontSize: 14 }}>Paper speed: <strong>25 mm/sec</strong> · Regular rhythm · Training simulation</p>
-    <div role="region" aria-label="EKG strip; scroll horizontally to inspect all small boxes" tabIndex={0} style={{ overflowX: "auto", border: "1px solid #e8a8b0", borderRadius: 12, background: "white" }}>
-      <svg role="img" aria-label={`Regular EKG strip. ${guided || reveal ? "R-wave peaks marked. " : ""}${reveal ? `${boxes} small boxes between peaks.` : "Count the small boxes between the two sharp R-wave peaks."}`} viewBox={`0 0 ${width} ${height}`} style={{ display: "block", width: "100%", minWidth: width, height: "auto" }}>
+    <button type="button" onClick={() => setZoomed((value) => !value)} aria-pressed={zoomed} style={{ marginBottom: 8, padding: "8px 12px", borderRadius: 8, border: "1px solid #12355b", background: "white", color: "#12355b", cursor: "pointer" }}>{zoomed ? "Fit full strip" : "Enlarge grid"}</button>
+    <div role="region" aria-label={zoomed ? "Enlarged EKG strip; scroll horizontally to inspect all small boxes" : "Complete EKG strip with both R-wave peaks visible"} tabIndex={0} style={{ overflowX: "auto", border: "1px solid #e8a8b0", borderRadius: 12, background: "white" }}>
+      <svg role="img" aria-label={`Regular EKG strip. ${guided || reveal ? "R-wave peaks marked. " : ""}${reveal ? `${boxes} small boxes between peaks.` : "Count the small boxes between the two sharp R-wave peaks."}`} viewBox={`0 0 ${width} ${height}`} style={{ display: "block", width: "100%", minWidth: zoomed ? width : 0, height: "auto" }}>
         <defs>
           <pattern id={`small-${id}`} x={start} y="5" width={cell} height={cell} patternUnits="userSpaceOnUse"><path d={`M ${cell} 0 L 0 0 0 ${cell}`} fill="none" stroke="#f2ccd1" strokeWidth="0.7" /></pattern>
           <pattern id={`large-${id}`} x={start} y="5" width={cell * 5} height={cell * 5} patternUnits="userSpaceOnUse"><rect width={cell * 5} height={cell * 5} fill={`url(#small-${id})`} /><path d={`M ${cell * 5} 0 L 0 0 0 ${cell * 5}`} fill="none" stroke="#d98c99" strokeWidth="1" /></pattern>
@@ -791,7 +793,7 @@ function HeartRateStrip({ boxes, guided, reveal }) {
         {(guided || reveal) && peaks.map((x, i) => <g key={x}><line x1={x} x2={x} y1="49" y2="190" stroke="#0f766e" strokeDasharray="4 4" /><text x={x} y="22" textAnchor="middle" fontSize="13" fill="#12355b">R{i + 1}</text></g>)}
       </svg>
     </div>
-    <p style={{ color: "#64748b", fontSize: 13 }}>Count spaces between grid lines, not the lines themselves. On a narrow screen, swipe the strip sideways.</p>
+    <p style={{ color: "#64748b", fontSize: 13 }}>Count spaces between grid lines, not the lines themselves. Both peaks fit in the default view. Use Enlarge grid for a closer look, then swipe sideways if needed.</p>
   </div>;
 }
 function HeartRateQuiz({ onStart, onComplete }) {
