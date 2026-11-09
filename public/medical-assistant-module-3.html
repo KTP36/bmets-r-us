@@ -798,11 +798,11 @@
           <label class="option"><input type="radio" name="q3" value="c"> Gloves only</label>
           <label class="option"><input type="radio" name="q3" value="d"> Shoe covers only</label></fieldset>
 
-        <fieldset class="quiz-card"><legend>4. PPE should be selected primarily according to:</legend>
-          <label class="option"><input type="radio" name="q4" value="a"> The worker's favorite equipment</label>
-          <label class="option"><input type="radio" name="q4" value="b"> The anticipated exposure</label>
-          <label class="option"><input type="radio" name="q4" value="c"> The patient's age only</label>
-          <label class="option"><input type="radio" name="q4" value="d"> The length of the appointment</label></fieldset>
+        <fieldset class="quiz-card"><legend>4. You are assisting with wound irrigation. Splashes toward your face and clothing are anticipated, and no airborne precautions are indicated. Which PPE combination best addresses this exposure?</legend>
+          <label class="option"><input type="radio" name="q4" value="a"> Gloves and a fluid-resistant gown</label>
+          <label class="option"><input type="radio" name="q4" value="b"> Gloves, a fluid-resistant gown, a surgical mask, and eye protection</label>
+          <label class="option"><input type="radio" name="q4" value="c"> Gloves, a surgical mask, and eye protection</label>
+          <label class="option"><input type="radio" name="q4" value="d"> Gloves, a fluid-resistant gown, and a surgical mask</label></fieldset>
 
         <fieldset class="quiz-card"><legend>5. Gloves replace hand hygiene:</legend>
           <label class="option"><input type="radio" name="q5" value="a"> Always</label>
@@ -1008,6 +1008,8 @@
         result.innerHTML=score>=80
           ? `<strong>${score}% — Passed!</strong><p>Your Module 3 completion has been saved and Module 4 is now unlocked.</p><p><a class="btn primary" href="/medical-assistant-module-4.html" style="margin-top:10px;">Continue to Module 4 →</a></p>`
           : `<strong>${score}% — Keep practicing.</strong><p>Review the lessons and try again. You need 80% to pass.</p>`;
+
+        result.innerHTML += "<p><strong>Question 4 — Answer B:</strong> Gloves protect the hands; a fluid-resistant gown protects skin and clothing; a surgical mask and eye protection cover the nose, mouth, and eyes. Each other option leaves an anticipated splash exposure unprotected. Select PPE according to the task, applicable precautions, and workplace policy.</p>";
 
         if(score>=80){
           document.getElementById("completionCard").scrollIntoView({behavior:"smooth"});
