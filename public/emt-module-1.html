@@ -687,60 +687,100 @@ lessonButtons.forEach(btn=>{
 // Interactive Scene Safety Challenge
 const sceneBank=[
   {
-    title:"High-Speed Roadway Crash",
-    text:"You arrive at a two-car collision on a high-speed roadway. One vehicle is partly in an active travel lane and traffic is passing close to the scene.",
-    answer:"Establish safer traffic/scene control before committing to patient contact",
-    options:["Run directly to the nearest patient","Establish safer traffic/scene control before committing to patient contact","Park in the travel lane without warning devices","Ask the patient to walk into traffic toward you"],
-    explanation:"Traffic is an immediate responder hazard. Create an appropriately protected work area and use available traffic-control resources before committing personnel."
+    "title": "High-Speed Roadway Crash",
+    "text": "You arrive at a two-car collision on a high-speed roadway. Traffic is passing close to an occupied vehicle in an active lane. No protected patient-access route has been established. What is the best initial action?",
+    "answer": "Request traffic-control resources and establish protected access before patient contact",
+    "options": [
+      "Approach along the shoulder and begin assessment while traffic continues nearby",
+      "Request traffic-control resources and establish protected access before patient contact",
+      "Use high-visibility clothing and begin assessment while your partner watches traffic",
+      "Begin patient contact once approaching drivers appear to slow down"
+    ],
+    "explanation": "Passing traffic remains an uncontrolled hazard. Request appropriate traffic-control resources and establish protected access using agency procedures. High-visibility clothing, a lookout, or slowing vehicles do not by themselves provide a protected work area."
   },
   {
-    title:"Possible Violence",
-    text:"Dispatch reports a person injured during a fight. As you approach, yelling continues and a bystander says one participant may still have a weapon.",
-    answer:"Stage at a safe location and request/await appropriate law-enforcement scene control",
-    options:["Enter immediately because the patient may be bleeding","Stage at a safe location and request/await appropriate law-enforcement scene control","Ask your partner to enter alone","Turn off the radio and walk in quietly"],
-    explanation:"An uncontrolled violent scene can rapidly create additional patients. EMS should not enter until the threat is appropriately controlled."
+    "title": "Possible Violence",
+    "text": "You approach a reported fight with an injured person. Yelling continues, and a bystander reports a possible weapon. Law enforcement has not confirmed that the scene is controlled. What is the best initial action?",
+    "answer": "Wait at a safe staging location and request law-enforcement scene control",
+    "options": [
+      "Approach the patient from another entrance while avoiding the reported confrontation",
+      "Enter with your partner once a bystander says the injured person is ready for care",
+      "Wait at a safe staging location and request law-enforcement scene control",
+      "Move to the doorway to assess the patient while officers are still responding"
+    ],
+    "explanation": "A possible weapon and continuing conflict make entry unsafe. Stage at a safe location, update dispatch, and await appropriate law-enforcement scene control per policy. A different entrance, a reassuring bystander, or a doorway assessment does not establish that the threat is controlled."
   },
   {
-    title:"Unknown Chemical Exposure",
-    text:"Several workers are down inside a small industrial room. You notice a strong unknown odor near the doorway.",
-    answer:"Stay out of the hazard area and request appropriate hazardous-materials resources",
-    options:["Enter with gloves only","Hold your breath and pull out the closest worker","Stay out of the hazard area and request appropriate hazardous-materials resources","Send a bystander inside with a towel over their face"],
-    explanation:"Unknown atmospheres can incapacitate rescuers. Do not enter without hazard identification, proper control, and appropriate protection."
+    "title": "Unknown Chemical Exposure",
+    "text": "Several workers are collapsed inside an industrial room. You detect an unfamiliar odor near the doorway. Your crew has routine EMS PPE but no equipment or training for entry into an unknown hazardous atmosphere. What should you do?",
+    "answer": "Withdraw to a safe location, prevent further entry, and request hazardous-materials resources",
+    "options": [
+      "Withdraw to a safe location, prevent further entry, and request hazardous-materials resources",
+      "Don an N95 respirator and make a brief entry to reach the closest worker",
+      "Open the room door fully and enter once the odor appears to decrease",
+      "Wait at the doorway for the supervisor to identify the chemical before moving away"
+    ],
+    "explanation": "An unknown atmosphere may contain toxic gases or insufficient oxygen. Withdraw from possible exposure and request trained, equipped resources. An N95 does not make such an atmosphere safe; less odor does not prove safety, and gathering details must not delay withdrawal. Follow agency hazardous-materials procedures."
   },
   {
-    title:"Aggressive Dog",
-    text:"A patient is lying in a fenced yard while a large dog is barking, lunging, and blocking the gate.",
-    answer:"Do not enter until the animal hazard is controlled",
-    options:["Climb the fence quickly","Use your medical bag as a shield and enter","Do not enter until the animal hazard is controlled","Ignore the dog because the patient is visible"],
-    explanation:"The animal is an uncontrolled scene hazard. The safest initial action is to have the hazard controlled before entry."
+    "title": "Aggressive Dog",
+    "text": "A patient is lying in a fenced yard. A dog is lunging at the gate, and the owner offers to hold its collar while you pass. Which action best controls the access hazard?",
+    "answer": "Have the dog secured behind a separate closed barrier before entering",
+    "options": [
+      "Enter while the owner holds the collar and your partner watches the dog",
+      "Use a second gate while the owner distracts the dog near the first gate",
+      "Wait for the dog to stop barking, then approach the patient slowly",
+      "Have the dog secured behind a separate closed barrier before entering"
+    ],
+    "explanation": "The dog must be reliably separated from the patient-access area before entry. Holding its collar, distracting it, or waiting for quiet does not reliably prevent contact. If it cannot be secured safely, remain outside and request appropriate assistance."
   },
   {
-    title:"Downed Power Line",
-    text:"After a storm, a patient is lying near a fallen utility line that is touching a vehicle.",
-    answer:"Keep everyone away and request the appropriate utility/fire resources",
-    options:["Approach the patient from the opposite side of the vehicle","Touch the vehicle to check whether it is energized","Keep everyone away and request the appropriate utility/fire resources","Move the line with a dry stick"],
-    explanation:"A downed line may energize the ground or vehicle. Maintain distance and use the appropriate specialized resources."
+    "title": "Downed Power Line",
+    "text": "A fallen utility line touches a vehicle after a storm. A patient is on the ground nearby. The line is not sparking, and its electrical status has not been confirmed. What is the best initial action?",
+    "answer": "Keep people clear and request fire/utility resources to control the electrical hazard",
+    "options": [
+      "Approach from the side of the vehicle opposite the fallen line",
+      "Keep people clear and request fire/utility resources to control the electrical hazard",
+      "Approach once a bystander confirms that nearby buildings have lost power",
+      "Use rubber examination gloves before approaching the patient"
+    ],
+    "explanation": "Treat the line and surrounding area as potentially energized until qualified personnel establish safety. Lack of sparks or a neighborhood outage does not prove the line is de-energized. The opposite side of the vehicle and examination gloves do not establish safe access. Maintain a safe distance according to local procedures."
   },
   {
-    title:"Blood Everywhere",
-    text:"A patient has a deep arm laceration with active bleeding. There is visible blood on the floor and nearby surfaces.",
-    answer:"Use appropriate PPE before contact and then begin patient care",
-    options:["Begin care bare-handed to save time","Use appropriate PPE before contact and then begin patient care","Wait outside until all blood is cleaned","Ask the patient to control bleeding while you leave"],
-    explanation:"The scene can still be safe for entry, but blood exposure requires appropriate barrier protection before contact."
+    "title": "Bleeding Patient: Exposure Assessment",
+    "text": "The scene is otherwise safe. A patient has an actively bleeding arm wound, and blood may splash onto your face and clothing during care. No respiratory precautions are indicated. Which approach best balances protection and prompt care?",
+    "answer": "Use gloves, eye protection, a surgical mask, and a fluid-resistant gown, then begin bleeding control",
+    "options": [
+      "Use gloves and eye protection, then begin bleeding control",
+      "Use gloves, a surgical mask, and a fluid-resistant gown, then begin bleeding control",
+      "Use gloves, eye protection, a surgical mask, and a fluid-resistant gown, then begin bleeding control",
+      "Use gloves, eye protection, and a surgical mask, then begin bleeding control"
+    ],
+    "explanation": "The expected exposure involves hands, eyes, nose, mouth, and clothing. The complete PPE combination covers these areas before contact while allowing prompt care. The other choices omit protection for the face, eyes, or clothing. Follow agency PPE and patient-care procedures."
   },
   {
-    title:"Multiple Patients",
-    text:"You are first ambulance to a crash involving a shuttle van. Several people are walking around and at least four appear injured.",
-    answer:"Request additional resources early while beginning organized scene size-up",
-    options:["Treat one patient and ignore everyone else","Request additional resources early while beginning organized scene size-up","Transport the first patient immediately without reporting the others","Tell all patients to wait until another ambulance happens to arrive"],
-    explanation:"The number of patients may exceed one crew's capability. Early resource requests are a key part of scene size-up."
+    "title": "Multiple Patients",
+    "text": "Your ambulance is first at a shuttle-van crash. The scene is safe to approach, several people are walking, and at least four appear injured. The total patient count and severity are not yet known. What is the best initial approach?",
+    "answer": "Request additional resources early and begin organized scene size-up and triage per protocol",
+    "options": [
+      "Request additional resources early and begin organized scene size-up and triage per protocol",
+      "Complete a detailed assessment of the nearest patient before requesting more ambulances",
+      "Obtain an exact count and complete set of vital signs before estimating resource needs",
+      "Begin transporting the first stable patient before reporting the remaining patient needs"
+    ],
+    "explanation": "The visible patient load may exceed one crew's capacity. Report an initial estimate, request resources early, and begin organized triage and scene management per local protocol, updating the request as information improves. Do not delay resource requests for detailed assessments or an exact count; provide immediate interventions as directed by the triage protocol."
   },
   {
-    title:"Quiet Residence",
-    text:"You are dispatched for an elderly patient with weakness. The home appears calm, no hazards are visible, and a family member meets you at the door.",
-    answer:"Proceed with normal scene awareness and appropriate PPE",
-    options:["Refuse to enter because every residence is unsafe","Proceed with normal scene awareness and appropriate PPE","Request a hazmat team before entry","Wait for police even though no threat is identified"],
-    explanation:"Not every scene requires staging. Continue normal scene assessment, appropriate PPE, and awareness as you approach."
+    "title": "Quiet Residence",
+    "text": "You arrive for an older adult with weakness. A family member invites you inside. Your initial survey identifies no threats or hazardous conditions. What is the best approach?",
+    "answer": "Approach with appropriate PPE while continuing to assess the scene and patient",
+    "options": [
+      "Complete the patient history with the family outside before approaching the patient",
+      "Remain outside until a second crew completes an independent safety survey",
+      "Use the family's reassurance as the scene assessment and focus only on the patient",
+      "Approach with appropriate PPE while continuing to assess the scene and patient"
+    ],
+    "explanation": "With no identified hazard, proceed with appropriate precautions and ongoing scene awareness. Unnecessary staging or a prolonged outside interview can delay assessment. Family reassurance is useful information but does not replace your own continuing scene assessment; withdraw and request help if a threat develops."
   }
 ];
 
