@@ -6394,15 +6394,19 @@ export default function App() {
     return () => window.clearInterval(gearRotation);
   }, [studyGearPicks.length]);
   // --- CBET STATE ---
+  const [opensCbetExam] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("tab") === "CBETPractice" && params.get("mode") === "exam";
+  });
   const [shuffledCbetQuestions, setShuffledCbetQuestions] = useState(() =>
-    shuffleQuestionSet(cbetQuestions)
+    opensCbetExam ? buildCBET75(cbetQuestions) : shuffleQuestionSet(cbetQuestions)
   );
   const [cbetIndex, setCbetIndex] = useState(0);
   const [cbetScore, setCbetScore] = useState(0);
   const [cbetAnswers, setCbetAnswers] = useState({});
   const [cbetShowResult, setCbetShowResult] = useState(false);
   const [showMissedReview, setShowMissedReview] = useState(false);
-  const [cbetMode, setCbetMode] = useState("practice");
+  const [cbetMode, setCbetMode] = useState(opensCbetExam ? "full" : "practice");
   const [cbetCategory, setCbetCategory] = useState("mixed");
   const [cbetQuestionTarget, setCbetQuestionTarget] = useState(() => Math.min(75, cbetQuestions.length));
   const [harderCbetUnlocked, setHarderCbetUnlocked] = useState(
@@ -6503,6 +6507,7 @@ export default function App() {
     };
   }, []);
   useEffect(() => {
+    if (opensCbetExam) return;
     const parsedCbet = JSON.parse(localStorage.getItem("cbetProgress"));
     const savedCbet = parsedCbet?.questionBankVersion === 2 ? parsedCbet : null;
     if (savedCbet) {
@@ -6516,7 +6521,7 @@ export default function App() {
       setCbetCategory(savedCbet.cbetCategory || "mixed");
       setCbetQuestionTarget(savedCbet.cbetQuestionTarget || cbetQuestions.length);
     }
-  }, []);
+  }, [opensCbetExam]);
   useEffect(() => {
     const parsedHarderCbet = JSON.parse(localStorage.getItem("harderCbetProgress"));
     const savedHarderCbet = parsedHarderCbet?.questionBankVersion === 2 ? parsedHarderCbet : null;
@@ -7587,11 +7592,14 @@ export default function App() {
       HarderCBET: "CBET Harder Practice"
     };
 
-    const examName = directQuizExamNames[activeTab];
+    const examName =
+      opensCbetExam && activeTab === "CBET" && cbetMode === "full"
+        ? "CBET 75-Question Practice Exam"
+        : directQuizExamNames[activeTab];
     if (examName && !examStartTimesRef.current[examName]) {
       trackExamStart(examName);
     }
-  }, [activeTab]);
+  }, [activeTab, cbetMode, opensCbetExam]);
 
   const startQuickPractice = (practiceType) => {
     const quickQuestionCount = 5;
