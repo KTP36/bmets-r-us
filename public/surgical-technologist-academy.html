@@ -28,7 +28,7 @@
 .progress-wrap{display:flex;align-items:center;gap:12px;margin:15px 0}.progress{height:12px;background:#e7eef4;border-radius:999px;overflow:hidden;flex:1}.progress > div{height:100%;background:linear-gradient(90deg,var(--teal),#33c6c8);width:0}.progress-label{font-weight:900;color:var(--navy)}
 .module-grid{display:grid;gap:14px}.module-card{display:grid;grid-template-columns:72px 1fr auto;gap:18px;align-items:center;border:1px solid var(--border);border-radius:20px;padding:18px;background:#fff}.module-num{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,var(--navy),var(--teal));color:#fff;font-size:25px;font-weight:950}.module-card h3{margin:0;color:var(--navy)}.module-card p{margin:5px 0;color:var(--muted)}.module-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}.pill{font-size:12px;font-weight:900;padding:6px 9px;border-radius:999px;background:#edf8fa;color:#0d6670;border:1px solid #ccebee}.open-btn,.primary{border:0;border-radius:999px;background:linear-gradient(90deg,var(--navy),var(--teal));color:#fff;font-weight:950;padding:12px 17px;cursor:pointer}.open-btn[disabled]{background:#d7e0e7;color:#728295;cursor:not-allowed}.lock{font-size:12px;font-weight:900;color:#8a5d00}
 .challenge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.challenge-card{border:1px solid var(--border);border-radius:18px;padding:16px;background:#fbfeff}.challenge-card .emoji{font-size:28px}.challenge-card b{display:block;margin:6px 0;color:var(--navy)}.challenge-card span{font-size:13px;color:var(--muted)}
-#moduleOverlay{position:fixed;inset:0;background:rgba(3,15,30,.68);z-index:100;display:none;padding:24px;overflow:auto}.module-panel{width:min(1040px,100%);margin:20px auto;background:#fff;border-radius:26px;box-shadow:0 30px 80px rgba(0,0,0,.3);overflow:hidden}.module-head{background:linear-gradient(115deg,var(--navy),var(--teal));color:#fff;padding:28px;position:sticky;top:0;z-index:3}.module-head-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.module-head h2{margin:0;font-size:31px}.close-btn{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:9px 13px;cursor:pointer;font-weight:900}.module-body{padding:26px}.lesson{border:1px solid var(--border);border-radius:16px;padding:16px;margin:11px 0;background:#fff}.lesson h4{margin:0 0 6px;color:var(--navy)}.lesson p{margin:0;color:#42566c}.challenge-box,.quiz-box{margin-top:26px;border-top:2px solid #dcecef;padding-top:22px}.question{border:1px solid var(--border);border-radius:16px;padding:16px;margin:13px 0;background:#fbfdfe}.question h4{margin:0 0 10px}.answers{display:grid;gap:8px}.answer{display:flex;gap:9px;align-items:flex-start;border:1px solid #d7e2ea;border-radius:12px;padding:10px;background:#fff;cursor:pointer}.answer:hover{border-color:#6bcbd0}.result{margin-top:16px;border-radius:14px;padding:15px;font-weight:800}.pass{background:#eaf8ef;color:#166534;border:1px solid #b7e4c5}.fail{background:#fff1f2;color:#9f1239;border:1px solid #fecdd3}.module-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.secondary{border:1px solid #cbd9e2;background:#fff;color:var(--navy);font-weight:900;border-radius:999px;padding:11px 15px;cursor:pointer}
+#moduleOverlay{position:fixed;inset:0;background:rgba(3,15,30,.68);width:100%;height:100%;max-width:none;max-height:none;border:0;margin:0;padding:24px;overflow:auto}.module-panel{width:min(1040px,100%);margin:20px auto;background:#fff;border-radius:26px;box-shadow:0 30px 80px rgba(0,0,0,.3);overflow:hidden}.module-head{background:linear-gradient(115deg,var(--navy),var(--teal));color:#fff;padding:28px;position:sticky;top:0;z-index:3}.module-head-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.module-head h2{margin:0;font-size:31px}.close-btn{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:9px 13px;cursor:pointer;font-weight:900}.module-body{padding:26px}.lesson{border:1px solid var(--border);border-radius:16px;padding:16px;margin:11px 0;background:#fff}.lesson h4{margin:0 0 6px;color:var(--navy)}.lesson p{margin:0;color:#42566c}.challenge-box,.quiz-box{margin-top:26px;border-top:2px solid #dcecef;padding-top:22px}.question{border:1px solid var(--border);border-radius:16px;padding:16px;margin:13px 0;background:#fbfdfe}.question h4{margin:0 0 10px}.answers{display:grid;gap:8px}.answer{display:flex;gap:9px;align-items:flex-start;border:1px solid #d7e2ea;border-radius:12px;padding:10px;background:#fff;cursor:pointer}.answer:hover{border-color:#6bcbd0}.result{margin-top:16px;border-radius:14px;padding:15px;font-weight:800}.pass{background:#eaf8ef;color:#166534;border:1px solid #b7e4c5}.fail{background:#fff1f2;color:#9f1239;border:1px solid #fecdd3}.module-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.secondary{border:1px solid #cbd9e2;background:#fff;color:var(--navy);font-weight:900;border-radius:999px;padding:11px 15px;cursor:pointer}
 .capstone-card{border:2px solid #d8b86c;background:linear-gradient(135deg,#fffdf5,#fff);border-radius:22px;padding:23px}.capstone-card.locked{opacity:.62}.capstone-q{margin:14px 0;border:1px solid var(--border);border-radius:16px;padding:15px}.certificate{display:none;margin-top:20px;border:8px solid var(--navy);outline:2px solid var(--gold);outline-offset:-16px;padding:42px;text-align:center;background:#fff}.certificate.show{display:block}.certificate h2{font-size:39px;margin:8px;color:var(--navy)}.cert-name{font-size:31px;font-weight:950;color:#0f7e86;border-bottom:2px solid #cbd5e1;display:inline-block;padding:4px 25px}.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px auto;max-width:760px}.cert-stat{padding:13px;background:#f7fbfd;border:1px solid var(--border);border-radius:14px}.cert-stat b{display:block;color:var(--navy)}
 .footer{background:#062a4a;color:#dbe9f1;margin-top:30px;padding:26px 0}.footer .container{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.small{font-size:12px;color:#7890a5}
 .test-banner{display:none;background:#fff3cd;color:#7c5b00;padding:10px;text-align:center;font-weight:900;border-bottom:1px solid #f1d982}
@@ -613,7 +613,7 @@ html{
 </section>
 </main>
 
-<div id="moduleOverlay"><div class="module-panel"><div class="module-head"><div class="module-head-top"><div><div class="eyebrow" id="moduleEyebrow">Module</div><h2 id="moduleTitle"></h2><p id="moduleSummary"></p></div><button class="close-btn" id="closeModule">Close ✕</button></div></div><div class="module-body" id="moduleBody"></div></div></div>
+<dialog id="moduleOverlay" aria-modal="true" aria-labelledby="moduleTitle"><div class="module-panel"><div class="module-head"><div class="module-head-top"><div><div class="eyebrow" id="moduleEyebrow">Module</div><h2 id="moduleTitle"></h2><p id="moduleSummary"></p></div><button class="close-btn" id="closeModule" autofocus>Close ✕</button></div></div><div class="module-body" id="moduleBody"></div></div></dialog>
 
 <footer class="footer"><div class="container"><div><b>MedSkillBuilder</b><br><span>Learn. Practice. Master.</span></div><div>100% Online · Interactive Learning · Career Focused</div><div class="small">Supplemental educational practice only. Follow approved education, employer policy, credentialing requirements, and applicable laws/regulations.</div></div></footer>
 
@@ -664,7 +664,9 @@ function renderModules(){
         : '<span class="module-status locked">Locked</span>';
   const icon=({1:"🏥",2:"🧠",3:"🧫",4:"🛏️",5:"✂️",6:"🧤",7:"💉",8:"🎯"})[m.n]||"📘";
   card.innerHTML=`<div class="module-num"><span>${m.n}</span></div><div>${status}<div class="module-title-row"><div class="module-visual-icon">${icon}</div><h3>${m.title}</h3></div><p>${m.summary}</p><div class="module-meta"><span class="pill">8 lessons</span><span class="pill">5-scenario challenge</span><span class="pill">15-question assessment</span><span class="pill">${m.xp} XP</span></div>${mp.bestScore?`<div class="module-score">Best assessment score: ${mp.bestScore}%</div>`:""}${(!open && !IS_LOCAL_TEST)?'<div class="lock">🔒 Complete the previous module to unlock this one.</div>':""}</div><button class="open-btn" ${open?'':'disabled'}>${done?'Review Module':current?'Start Module':'Open Module'}</button>`;
-  card.querySelector("button").addEventListener("click",()=>openModule(m.n));
+  const openButton=card.querySelector("button");
+  openButton.dataset.module=m.n;
+  openButton.addEventListener("click",()=>openModule(m.n,openButton));
   grid.appendChild(card);
  });
  document.getElementById("progressBar").style.width=pct()+"%";document.getElementById("progressLabel").textContent=pct()+"%";
@@ -684,7 +686,10 @@ function renderQuestions(id,questions,prefix,answers){
 }
 function selected(prefix,i){const e=document.querySelector(`input[name="${prefix}${i}"]:checked`);return e?Number(e.value):null}
 function answeredCount(prefix,total){let n=0;for(let i=0;i<total;i++)if(selected(prefix,i)!==null)n++;return n}
-function openModule(n){
+const moduleDialog=document.getElementById("moduleOverlay");
+const moduleCloseButton=document.getElementById("closeModule");
+let moduleOpener, previousBodyOverflow;
+function openModule(n,opener=document.activeElement){
  const m=ACADEMY_DATA.modules.find(x=>x.n===n);if(!m||!unlocked(n))return;
  document.getElementById("moduleEyebrow").textContent=`Module ${n} · ${m.xp} XP`;
  document.getElementById("moduleTitle").textContent=m.title;document.getElementById("moduleSummary").textContent=m.summary;
@@ -698,8 +703,14 @@ function openModule(n){
  document.getElementById("checkChallenge").onclick=()=>checkChallenge(m);
  document.getElementById("submitQuiz").onclick=()=>submitQuiz(m);
  document.getElementById("resetQuiz").onclick=()=>openModule(n);
- document.getElementById("moduleOverlay").style.display="block";document.body.style.overflow="hidden";
- document.querySelector(".module-panel").scrollTop=0;
+ if(!moduleDialog.open){
+  moduleOpener=opener;
+  previousBodyOverflow=document.body.style.overflow;
+  moduleDialog.showModal();
+  document.body.style.overflow="hidden";
+ }
+ moduleDialog.scrollTop=0;
+ moduleCloseButton.focus({preventScroll:true});
 }
 function checkChallenge(m){
  const answered=answeredCount("c",m.challenge.length);
@@ -718,10 +729,24 @@ function submitQuiz(m){
  document.getElementById("quizResult").innerHTML=`<div class="result ${passed?'pass':'fail'}">${passed?'✓ Module Passed':'Not passed yet'} — ${correct}/${m.quiz.length} (${score}%). ${passed?(m.n<8?'Module '+(m.n+1)+' is now unlocked.':'The Capstone is now unlocked.'):'Review this module and try again. A score of 80% is required.'}</div>`;
  renderModules();
 }
-function closeModule(){document.getElementById("moduleOverlay").style.display="none";document.body.style.overflow=""}
-document.getElementById("closeModule").onclick=closeModule;
-document.getElementById("moduleOverlay").addEventListener("click",e=>{if(e.target.id==="moduleOverlay")closeModule()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("moduleOverlay").style.display==="block")closeModule()});
+function closeModule(){
+ if(!moduleDialog.open)return;
+ moduleDialog.close();
+ document.body.style.overflow=previousBodyOverflow;
+ const replacement=moduleOpener?.dataset.module
+  ? document.querySelector(`.open-btn[data-module="${moduleOpener.dataset.module}"]`) : null;
+ (moduleOpener?.isConnected ? moduleOpener : replacement || document.getElementById("heroContinue"))?.focus();
+ moduleOpener=null;
+}
+moduleCloseButton.onclick=closeModule;
+moduleDialog.addEventListener("click",e=>{if(e.target===moduleDialog)closeModule()});
+moduleDialog.addEventListener("cancel",e=>{e.preventDefault();closeModule()});
+moduleDialog.addEventListener("keydown",e=>{
+ if(e.key!=="Tab")return;
+ const last=document.getElementById("resetQuiz");
+ if(e.shiftKey&&document.activeElement===moduleCloseButton){e.preventDefault();last.focus()}
+ else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();moduleCloseButton.focus()}
+});
 function renderCapstone(){
  const card=document.getElementById("capstoneCard"), lock=document.getElementById("capstoneLock"), body=document.getElementById("capstoneBody");
  const open=capstoneUnlocked();card.classList.toggle("locked",!open);lock.hidden=open;body.hidden=!open;
@@ -845,7 +870,7 @@ function showCert(c){
 
 document.getElementById("heroContinue").onclick=()=>{
  if(completedCount()===8){document.getElementById("capstone").scrollIntoView({behavior:"smooth"});return}
- openModule(firstIncompleteModule());
+ openModule(firstIncompleteModule(),document.getElementById("heroContinue"));
 };
 renderModules();
 </script>
