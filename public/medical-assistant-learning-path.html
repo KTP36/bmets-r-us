@@ -467,7 +467,7 @@
         </div>
         <div class="dash-card">
           <small>Study Streak</small>
-          <strong id="studyStreak">1 day</strong>
+          <strong id="studyStreak">No streak yet</strong>
         </div>
       </div>
     </div>
@@ -496,7 +496,7 @@
           <div>
             <div class="module-title">
               <h3>Medical Terminology Foundations</h3>
-              <span class="status active" id="module1Status">In Progress</span>
+              <span class="status active" id="module1Status">Start Here</span>
             </div>
             <p class="module-desc">Prefixes, suffixes, root words, combining forms, directional terms, high-yield vocabulary, and terminology practice.</p>
             <div class="module-meta">
@@ -755,7 +755,7 @@
           completedLessons:Array.isArray(s.completedLessons)?s.completedLessons:[],
           quizPassed:!!s.quizPassed,
           quickCheckPassed:!!s.quickCheckPassed,
-          streak:s.streak||1,
+          streak:Number(s.streak)||0,
           storedXp:Number(s.xp)||0
         };
       }
@@ -766,7 +766,7 @@
           completedLessons:Array.isArray(s.completedLessons)?s.completedLessons:[],
           quizPassed:!!s.passed,
           quickCheckPassed:false,
-          streak:s.streak||1,
+          streak:Number(s.streak)||0,
           storedXp:Number(s.xp)||0
         };
       }
@@ -857,7 +857,7 @@
         document.getElementById("overallProgressBar").style.width=overallPercent+"%";
         document.getElementById("totalXp").textContent=totalXp;
         document.getElementById("modulesCompleted").textContent=completedModules+"/8";
-        document.getElementById("studyStreak").textContent=streak+(streak===1?" day":" days");
+        document.getElementById("studyStreak").textContent=streak>0?streak+(streak===1?" day":" days"):"No streak yet";
         document.getElementById("module1Progress").style.width=percent(m1)+"%";
 
         document.getElementById("achievementFirst").classList.toggle("unlocked",m1.completedLessons.length>=1);
