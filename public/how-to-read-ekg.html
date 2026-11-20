@@ -409,6 +409,39 @@
       </div>
     </div>
 
+    <section class="card" id="ekg-rate-practice" aria-labelledby="ekg-rate-heading">
+      <h2 id="ekg-rate-heading">Practice calculating heart rate on an EKG strip</h2>
+      <p>These simulated strips use standard paper speed (25 mm/s). For a regular rhythm, divide 300 by the number of large boxes between consecutive R peaks.</p>
+      <h3>Worked example</h3>
+      <svg viewBox="0 0 320 120" role="img" aria-labelledby="ekg-worked-title ekg-worked-desc" style="display:block;width:100%;max-width:640px;height:auto;margin:12px 0">
+          <title id="ekg-worked-title">Worked practice strip</title><desc id="ekg-worked-desc">Two marked R peaks on a grid, 4 large boxes apart.</desc>
+          <defs><pattern id="ekg-worked-small" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M8 0H0V8" fill="none" stroke="#efc3cc" stroke-width="1"/></pattern>
+          <pattern id="ekg-worked-grid" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="url(#ekg-worked-small)"/><path d="M40 0H0V40" fill="none" stroke="#cc798c" stroke-width="2"/></pattern></defs>
+          <rect width="320" height="120" fill="#fff7f8"/><rect width="320" height="120" fill="url(#ekg-worked-grid)"/>
+          <path d="M0 72H12 M83 72H172 M243 72H320" stroke="#72182c" stroke-width="2"/>
+          <g fill="none" stroke="#72182c" stroke-width="2" stroke-linejoin="round"><path d="M-28 72 h4 q3 0 5 -4 q3 -5 7 0 q2 4 6 4 h1 l2 4 l3 -28 l4 34 l4 -10 h3 q5 0 9 -6 q7 -8 13 0 q4 6 10 6" transform="translate(40 0)"/><path d="M-28 72 h4 q3 0 5 -4 q3 -5 7 0 q2 4 6 4 h1 l2 4 l3 -28 l4 34 l4 -10 h3 q5 0 9 -6 q7 -8 13 0 q4 6 10 6" transform="translate(200 0)"/></g>
+          <g fill="#12345b" text-anchor="middle" font-size="14" font-weight="bold"><text x="40" y="20">R1</text><text x="200" y="20">R2</text></g>
+          <path d="M40 25V44 M200 25V44" stroke="#12345b" stroke-dasharray="3 2"/>
+        </svg>
+      <ol><li>Find the two marked R peaks: R1 and R2.</li><li>Count the spaces between the bold grid lines: four large boxes.</li><li>Divide 300 by 4 to get <strong>75 beats per minute</strong>.</li></ol>
+      <h3>Try it yourself</h3>
+      <p>Use the same method on this second strip. What is the rate?</p>
+      <svg viewBox="0 0 320 120" role="img" aria-labelledby="ekg-try-title ekg-try-desc" style="display:block;width:100%;max-width:640px;height:auto;margin:12px 0">
+          <title id="ekg-try-title">Independent practice strip</title><desc id="ekg-try-desc">Two marked R peaks on a grid. Count the large boxes between them.</desc>
+          <defs><pattern id="ekg-try-small" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M8 0H0V8" fill="none" stroke="#efc3cc" stroke-width="1"/></pattern>
+          <pattern id="ekg-try-grid" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="url(#ekg-try-small)"/><path d="M40 0H0V40" fill="none" stroke="#cc798c" stroke-width="2"/></pattern></defs>
+          <rect width="320" height="120" fill="#fff7f8"/><rect width="320" height="120" fill="url(#ekg-try-grid)"/>
+          <path d="M0 72H12 M83 72H212 M283 72H320" stroke="#72182c" stroke-width="2"/>
+          <g fill="none" stroke="#72182c" stroke-width="2" stroke-linejoin="round"><path d="M-28 72 h4 q3 0 5 -4 q3 -5 7 0 q2 4 6 4 h1 l2 4 l3 -28 l4 34 l4 -10 h3 q5 0 9 -6 q7 -8 13 0 q4 6 10 6" transform="translate(40 0)"/><path d="M-28 72 h4 q3 0 5 -4 q3 -5 7 0 q2 4 6 4 h1 l2 4 l3 -28 l4 34 l4 -10 h3 q5 0 9 -6 q7 -8 13 0 q4 6 10 6" transform="translate(240 0)"/></g>
+          <g fill="#12345b" text-anchor="middle" font-size="14" font-weight="bold"><text x="40" y="20">R1</text><text x="240" y="20">R2</text></g>
+          <path d="M40 25V44 M240 25V44" stroke="#12345b" stroke-dasharray="3 2"/>
+        </svg>
+      <details><summary>Reveal the answer and explanation</summary>
+        <p><strong>60 beats per minute.</strong> R1 and R2 are five large boxes apart, so 300 ÷ 5 = 60.</p>
+      </details>
+      <p>Want to review what the waves represent? Watch <a href="/ecg-to-heartbeat-lesson.html">From ECG to Heartbeat</a>.</p>
+    </section>
+
     <div class="card">
       <h2>Quick EKG Rhythm Comparison</h2>
       <table class="comparison-table">
