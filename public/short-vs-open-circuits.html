@@ -2,6 +2,19 @@
 <link rel="canonical" href="https://medskillbuilder.com/short-vs-open-circuits.html">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#edf5fa;color:#142b42;font:1rem/1.55 system-ui,sans-serif}main{width:min(960px,94%);margin:2rem auto}header,section{padding:clamp(1rem,4vw,2.5rem);border-radius:20px;margin-bottom:1.25rem;background:white;border:1px solid #d4e4ef}header{background:#102b45;color:white}h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.1;margin:.4em 0}h2{margin-top:0}a{color:#006489}nav{margin-bottom:1rem}button{font:inherit;font-weight:650;border:1px solid #52809b;border-radius:10px;background:white;color:#12344e;padding:.65rem .9rem;cursor:pointer}button[aria-pressed=true],#next{background:#07587b;color:white}button:focus-visible,a:focus-visible{outline:3px solid #d87916;outline-offset:3px}.choices,.controls{display:flex;flex-wrap:wrap;gap:.6rem}.choices{display:grid;margin:1rem 0}.choices button{text-align:left}.choices button:disabled{cursor:default;color:#243548}.choices .correct{background:#d8f1e6;border-color:#23775b}.choices .incorrect{background:#ffe8e3;border-color:#9f4435}svg{display:block;width:min(100%,560px);margin:1rem auto;background:#eff7fb;border-radius:12px}#feedback:not(:empty){background:#edf5fa;border-left:4px solid #07587b;padding:.8rem;margin:1rem 0}.eyebrow{letter-spacing:.12em;text-transform:uppercase;color:#a8e8ff;font-weight:700}summary{cursor:pointer}h3:focus{outline:none}
+
+/* circuit-visual-update */
+header{background:radial-gradient(ellipse at top right,#226586,transparent 72%),#102b45}
+#modes button{flex:1 1 150px}
+section svg{width:100%;max-width:720px;background:radial-gradient(ellipse at center,#193c55,#0a2033);border:1px solid #254d69;border-radius:18px}
+svg g[stroke="#49677b"]{stroke:#9eb9cc}
+svg g[fill="#173852"]{fill:#eef8ff;font-weight:700}
+svg #overlay [stroke="#007c80"]{stroke:#61eed1}
+svg #overlay [stroke="#eff7fb"]{stroke:#17364d}
+svg #overlay [fill="#aa4618"]{fill:#ffcd79}
+svg #overlay [stroke="#a44017"]{stroke:#ffa58e}
+svg #overlay text{fill:#ffdcac;font-weight:700}
+#explain{padding:1rem;border-radius:12px;background:#e6f0f7;border-left:5px solid #07587b}
 </style><main><nav><a href="/browse-all-practice.html">Browse All Practice</a> · <a href="/?tab=CBETAcademy">CBET Academy</a></nav>
 <header><div class="eyebrow">MedSkillBuilder · CBET electronics</div><h1>Short vs. Open Circuits</h1><p>Both faults can leave a load off. Follow the current path to tell them apart.</p></header>
 <section><h2>Follow the current path</h2><div class="controls" id="modes"><button data-mode="0" aria-pressed="true">Normal circuit</button><button data-mode="1" aria-pressed="false">Open circuit</button><button data-mode="2" aria-pressed="false">Short across the load</button></div>
@@ -11,9 +24,9 @@
 <script>
 const by=id=>document.getElementById(id);
 const modes=[
- ['Normal circuit','The loop is complete. Current passes through the load, which limits current.','<path d="M60 75V42H139 M231 42H300V167H60V128" fill="none" stroke="#007c80" stroke-width="5"/>'],
- ['Open circuit','The wire has a break. No steady current flows around this loop, but voltage can still exist across the break.','<path d="M254 42H276" stroke="#eff7fb" stroke-width="9"/><circle cx="252" cy="42" r="4" fill="#aa4618"/><circle cx="278" cy="42" r="4" fill="#aa4618"/><text x="265" y="65" text-anchor="middle" fill="#823312" font-size="13">Break</text>'],
- ['Short across the load','The added low-resistance branch bypasses the load. In this example, source current may rise or protection may shut the source down.','<path d="M120 42V80H247V42" fill="none" stroke="#a44017" stroke-width="5"/><text x="185" y="101" text-anchor="middle" fill="#823312" font-size="13">Unintended path</text>']
+ ['Normal circuit','The loop is complete. Current passes through the load, which limits current.','<path d="M60 75V42H139 M231 42H300V167H60V128 M103 36l9 6-9 6 M262 161l-9 6 9 6" fill="none" stroke="#007c80" stroke-width="5"/>'],
+ ['Open circuit','The wire has a break. No steady current flows around this loop, but voltage can still exist across the break.','<path d="M252 42H278" stroke="#eff7fb" stroke-width="9"/><circle cx="252" cy="42" r="4" fill="#aa4618"/><circle cx="278" cy="42" r="4" fill="#aa4618"/><text x="265" y="65" text-anchor="middle" fill="#823312" font-size="13">Break</text>'],
+ ['Short across the load','The added low-resistance branch bypasses the load. In this example, source current may rise or protection may shut the source down.','<path d="M120 42V80H247V42 M180 74l9 6-9 6" fill="none" stroke="#a44017" stroke-width="5"/><text x="185" y="101" text-anchor="middle" fill="#823312" font-size="13">Bypass around the load</text>']
 ];function mode(i){const [title,copy,art]=modes[i];by('diagramTitle').textContent=title;by('overlay').innerHTML=art;by('explain').textContent=copy;document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.mode===i)))}document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>mode(+b.dataset.mode));mode(0);
 const bank=[
 ['An isolated wire should conduct. Your meter reads OL from end to end. What does that suggest?',['Open wire','Short to another wire','Normal intact wire'],0,'OL suggests no conductive path through the isolated wire.'],
@@ -25,10 +38,36 @@ const bank=[
 ['An open switch interrupts a simple DC loop. Which statement is true?',['Zero loop current means zero voltage everywhere','Loop current stops, but voltage can exist across the switch','Opening the switch bypasses the load'],1,'A voltage difference can exist across a gap even when no steady current flows through it.'],
 ['After turning off power to your training circuit, an in-circuit reading suggests unexpected continuity. What should you consider before blaming the part?',['Another branch may provide a parallel path','Continuity proves the part is shorted','Any parallel path guarantees OL'],0,'Other components can influence an in-circuit resistance reading. Isolating the part can help distinguish the paths.']
 ];
+function addSaveForm(){
+ const savedScore=score,savedTotal=queue.length;
+ const section=document.createElement('section');
+ section.innerHTML='<hr><h3>Save my practice result (optional)</h3><p>Your email stays private and will not appear on a public leaderboard. You can skip this and keep practicing. This is a practice result, not certification or CE credit.</p><form id="save-result"><label>Username<input name="name" autocomplete="nickname" maxlength="80" required></label><label>Email<input type="email" name="email" autocomplete="email" required></label><button type="submit">Save my result</button><p role="status" aria-live="polite" id="save-status"></p></form>';
+ by("quiz").append(section);
+ const form=section.querySelector('form'),message=section.querySelector('#save-status');
+ form.onsubmit=async e=>{
+ e.preventDefault();
+ const button=form.querySelector('button');button.disabled=true;message.textContent='Saving…';
+ const data=new FormData(form);
+ const percent=Math.round(savedScore/savedTotal*100);
+ data.set('_source','leaderboard-save');
+ data.set('subject','Leaderboard Save - Short vs. Open Circuits');
+ data.set('activity','Short vs. Open Circuits');
+ data.set('score_correct',savedScore);data.set('score_total',savedTotal);data.set('score_percent',percent);
+ data.set('attempt_type',queue===bank?'Full quiz':'Missed-question retry');
+ data.set('verification','client_reported');
+ data.set('message','Username: '+data.get('name')+'\nActivity: Short vs. Open Circuits\nScore: '+savedScore+'/'+savedTotal+'\nPercent: '+percent+'%\nAttempt: '+data.get('attempt_type')+'\nClient-reported practice result. This email should remain private.');
+ try{
+ const response=await fetch('https://formspree.io/f/xgonbzaj',{method:'POST',body:data,headers:{Accept:'application/json'}});
+ if(!response.ok)throw new Error('save failed');
+ message.textContent='Your practice result was saved. Thank you!';
+ button.textContent='Result saved';form.querySelectorAll('input').forEach(el=>el.disabled=true);
+ }catch(error){message.textContent='Your result could not be saved. Please try again. Your quiz result is still shown above.';button.disabled=false}
+ };
+}
 let queue,pos,score,missed;
 function start(items){queue=items;pos=0;score=0;missed=[];show()}
 function focus(){by('quiz').querySelector('h3').focus()}
-function show(){const host=by('quiz');if(pos===queue.length){host.innerHTML='<h3 tabindex="-1">Score: '+score+' / '+queue.length+'</h3><div class="controls"><button id="all">Retake all</button>'+(missed.length?'<button id="retry">Retry missed</button>':'')+'</div>';by('all').onclick=()=>start(bank);if(missed.length)by('retry').onclick=()=>start(missed.slice());focus();return}
+function show(){const host=by('quiz');if(pos===queue.length){host.innerHTML='<h3 tabindex="-1">Score: '+score+' / '+queue.length+'</h3><div class="controls"><button id="all">Retake all</button>'+(missed.length?'<button id="retry">Retry missed</button>':'')+'</div>';by('all').onclick=()=>start(bank);if(missed.length)by('retry').onclick=()=>start(missed.slice());addSaveForm();focus();return}
 const item=queue[pos];host.innerHTML='<p>Question '+(pos+1)+' of '+queue.length+'</p><h3 tabindex="-1">'+item[0]+'</h3><div class="choices"></div><p id="feedback" tabindex="-1" role="status"></p><button id="next" hidden>'+(pos+1===queue.length?'See score':'Next question')+'</button>';const buttons=item[1].map((label,i)=>{const b=document.createElement('button');b.textContent=label;host.querySelector('.choices').append(b);b.onclick=()=>{buttons.forEach(x=>x.disabled=true);buttons[item[2]].classList.add('correct');if(i===item[2])score++;else{b.classList.add('incorrect');missed.push(item)}by('feedback').textContent=(i===item[2]?'Correct. ':'Correct answer: '+item[1][item[2]]+'. ')+item[3];by('next').hidden=false;by('feedback').focus()};return b});by('next').onclick=()=>{pos++;show()};focus()}
 queue=bank;pos=0;score=0;missed=[];show();document.activeElement.blur();
 </script></html>
