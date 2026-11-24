@@ -15,14 +15,56 @@ svg #overlay [fill="#aa4618"]{fill:#ffcd79}
 svg #overlay [stroke="#a44017"]{stroke:#ffa58e}
 svg #overlay text{fill:#ffdcac;font-weight:700}
 #explain{padding:1rem;border-radius:12px;background:#e6f0f7;border-left:5px solid #07587b}
+.bench-photo{margin:1.25rem 0 0}.bench-photo img{display:block;width:100%;aspect-ratio:2/1;object-fit:cover;border-radius:12px}.bench-photo figcaption{margin-top:.5rem;color:#e0eff9;font-size:.9rem}#meter-lab{border-top:5px solid #087b82}.lab-kicker{color:#056568;letter-spacing:.08em;font-size:.8rem;font-weight:800}.meter-diagram{background:#102b45!important}#meter-feedback:not(:empty){padding:.9rem;background:#e8f5f4;border-radius:8px}#meter-choices button[aria-pressed="true"]{background:#07587b;color:white}
 </style><main><nav><a href="/browse-all-practice.html">Browse All Practice</a> · <a href="/?tab=CBETAcademy">CBET Academy</a></nav>
-<header><div class="eyebrow">MedSkillBuilder · CBET electronics</div><h1>Short vs. Open Circuits</h1><p>Both faults can leave a load off. Follow the current path to tell them apart.</p></header>
+<header><div class="eyebrow">MedSkillBuilder · CBET electronics</div><h1>Short vs. Open Circuits</h1><p>Both faults can leave a load off. Follow the current path to tell them apart.</p><figure class="bench-photo"><img src="/images/short-vs-open-circuits-bench.webp" width="1200" height="800" alt="Miniature training lamp with disconnected test clips and a multimeter on a workbench"><figcaption>A training lamp, test clips, and a multimeter. Use the diagram below to trace the circuit.</figcaption></figure></header>
 <section><h2>Follow the current path</h2><div class="controls" id="modes"><button data-mode="0" aria-pressed="true">Normal circuit</button><button data-mode="1" aria-pressed="false">Open circuit</button><button data-mode="2" aria-pressed="false">Short across the load</button></div>
 <svg viewBox="0 0 360 220" role="img" aria-labelledby="diagramTitle"><title id="diagramTitle">Normal circuit</title><g fill="none" stroke="#49677b" stroke-width="4" stroke-linecap="round"><path d="M60 90V42H145 M225 42H300V167H60V113"/><path d="M43 90H77 M50 113H70"/><rect x="145" y="30" width="80" height="24" rx="3"/></g><g id="overlay"></g><g fill="#173852" font-family="system-ui" font-size="14"><text x="185" y="23" text-anchor="middle">Load</text><text x="86" y="106">DC source</text></g></svg>
 <p id="explain" aria-live="polite"></p><p><strong>Remember:</strong> An open is a break in a path. A short is an unintended low-resistance connection. A closed switch is normal; it isn’t automatically a fault.</p><details><summary>What would a meter tell you?</summary><p>In a de-energized training circuit with the part isolated, OL across a wire that should conduct suggests an open. Near-zero resistance across two conductors that should be separate suggests a short. A continuity beep alone doesn’t prove a fault: intact wires and some components legitimately have low resistance.</p></details></section>
+<section id="meter-lab" aria-labelledby="meter-title">
+<p class="lab-kicker">BENCH CHALLENGE · 1 MINUTE</p>
+<h2 id="meter-title">The lamp is dark. What will the meter read?</h2>
+<p>A 6 V DC supply is on. The lamp and its return wire are intact, but the wire from the positive terminal has a break. A digital multimeter is set to DC volts, with one probe on each side of the gap.</p>
+<svg class="meter-diagram" viewBox="0 0 360 210" role="img" aria-labelledby="meter-diagram-title meter-diagram-desc">
+<title id="meter-diagram-title">Meter probes across an open wire</title>
+<desc id="meter-diagram-desc">The red probe touches the supply side of the gap. The black probe touches the lamp side, which connects through the intact lamp to the negative terminal.</desc>
+<g fill="none" stroke="#a6c4da" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M52 127V83H147 M199 83H307V126 M307 154V178H52V150 M34 127H70 M42 150H62"/>
+<circle cx="307" cy="140" r="14"/><path d="m298 131 18 18m0-18-18 18"/>
+</g>
+<rect x="139" y="13" width="68" height="38" rx="8" fill="#d9f3f0"/>
+<text id="meter-display" x="173" y="38" text-anchor="middle" fill="#102b45" font-size="17" font-weight="800">? V</text>
+<path d="M153 51L147 83" stroke="#ff9e91" stroke-width="4"/><path d="M192 51L199 83" stroke="#c4d1da" stroke-width="4"/>
+<circle cx="147" cy="83" r="5" fill="#ff9e91"/><circle cx="199" cy="83" r="5" fill="#c4d1da"/>
+<g fill="#eef8ff" font-size="15" font-weight="700"><text x="173" y="109" text-anchor="middle">Open gap</text><text x="78" y="145">6 V DC</text><text x="280" y="145" text-anchor="end">Lamp off</text></g>
+</svg>
+<div class="choices" id="meter-choices">
+<button type="button" data-reading="zero">About 0 V — the lamp is off.</button>
+<button type="button" data-reading="supply">About +6 V — the probes are on opposite sides of the break.</button>
+<button type="button" data-reading="ol">OL — there is no continuity across the gap.</button>
+</div>
+<p id="meter-feedback" role="status"></p>
+<details><summary>How does this differ from a short across the lamp?</summary>
+<p>A short adds a low-resistance path between the lamp terminals. The voltage across the lamp may drop close to zero, or protection may shut the supply down. A dark lamp alone cannot tell you which fault occurred.</p></details>
+<p><strong>Bench takeaway:</strong> A gap breaks the current path. A short adds an unintended path. Location matters: say exactly where the meter probes are and which mode the meter is in.</p>
+</section>
 <section><h2>Check your understanding</h2><div id="quiz"></div></section></main>
 <script>
 const by=id=>document.getElementById(id);
+const readings={
+zero:"Not quite. The lamp is off because the gap stops load current. The source still maintains a voltage difference across the gap.",
+supply:"Correct. The red probe is near +6 V, and the black probe is near 0 V through the intact lamp and return wire. The voltmeter reads the difference. A high-impedance meter draws too little current to light the lamp.",
+ol:"OL can indicate an open when measuring resistance on an isolated, de-energized circuit. Here the meter is in DC volts mode and reads the voltage difference across the gap."
+};
+document.querySelectorAll("[data-reading]").forEach(button=>{
+button.setAttribute("aria-pressed","false");
+button.addEventListener("click",()=>{
+document.querySelectorAll("[data-reading]").forEach(choice=>choice.setAttribute("aria-pressed",String(choice===button)));
+by("meter-display").textContent="+6 V";
+by("meter-feedback").textContent=readings[button.dataset.reading]+" The expected reading is about +6 V.";
+});
+});
+
 const modes=[
  ['Normal circuit','The loop is complete. Current passes through the load, which limits current.','<path d="M60 75V42H139 M231 42H300V167H60V128 M103 36l9 6-9 6 M262 161l-9 6 9 6" fill="none" stroke="#007c80" stroke-width="5"/>'],
  ['Open circuit','The wire has a break. No steady current flows around this loop, but voltage can still exist across the break.','<path d="M252 42H278" stroke="#eff7fb" stroke-width="9"/><circle cx="252" cy="42" r="4" fill="#aa4618"/><circle cx="278" cy="42" r="4" fill="#aa4618"/><text x="265" y="65" text-anchor="middle" fill="#823312" font-size="13">Break</text>'],
