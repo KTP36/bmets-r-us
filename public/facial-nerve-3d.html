@@ -5,7 +5,7 @@
 <link rel="canonical" href="https://medskillbuilder.com/facial-nerve-3d.html">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#eef5fa;color:#142d45;font:1rem/1.55 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:1rem}a{color:#086280}header,section,.lesson{border-radius:20px;padding:clamp(1rem,4vw,2rem);margin:1rem 0;background:#fff}header{background:#102b45;color:white}h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin:.4em 0}h2{line-height:1.2}.tag{font-weight:800;letter-spacing:.1em;font-size:.82rem;color:#51dfcc}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1.2rem}canvas{display:block;width:100%;background:#0c2237;border-radius:14px;touch-action:pan-y}.view{padding:0;min-width:0;margin:1rem 0}.controls,.choices{display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem 0}.choices button{flex:1 1 42%}button{font:inherit;font-weight:650;padding:.6rem .8rem;border:1px solid #7391a8;border-radius:9px;background:#f6fbff;color:#183950;cursor:pointer}button[aria-pressed=true],button.primary{background:#085f69;color:white}button:focus-visible,a:focus-visible{outline:3px solid #c36a00;outline-offset:3px}button:disabled{cursor:default;opacity:.75}.note{font-size:.9rem;color:#3d586c}.feedback{min-height:3em}#model-description{min-height:2.8em}details{margin-top:.7rem}@media(max-width:720px){.layout{grid-template-columns:1fr;gap:0}.lesson{margin-top:0}}[hidden]{display:none!important}
-.study-nav{display:flex;gap:.7rem 1.1rem;flex-wrap:wrap;margin-top:1rem}.study-nav a{color:#85f1e0}.branch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr));gap:.75rem}.branch-grid div,.pathway li{background:#f2f7fb;border:1px solid #d2e0ea;border-radius:12px;padding:.9rem}.branch-grid dt{font-weight:800}.branch-grid dd{margin:.3rem 0 0}.pathway{display:grid;gap:.65rem;padding-left:1.5rem}.pathway a{font-weight:750}#share-result{border-top:1px solid #d2e0ea;margin-top:1rem;padding-top:.75rem}#share-status{min-height:1.5em}</style></head><body><main>
+.study-nav{display:flex;gap:.7rem 1.1rem;flex-wrap:wrap;margin-top:1rem}.study-nav a{color:#85f1e0}.branch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr));gap:.75rem}.branch-grid div,.pathway li{background:#f2f7fb;border:1px solid #d2e0ea;border-radius:12px;padding:.9rem}.branch-grid dt{font-weight:800}.branch-grid dd{margin:.3rem 0 0}.pathway{display:grid;gap:.65rem;padding-left:1.5rem}.pathway a{font-weight:750}#share-result{border-top:1px solid #d2e0ea;margin-top:1rem;padding-top:.75rem}#share-status{min-height:1.5em}#save-score-form{display:grid;gap:.45rem;max-width:28rem}#save-score-form label{font-weight:650}#save-score-form input{font:inherit;width:100%;padding:.55rem;border:1px solid #7391a8;border-radius:8px}#save-score-form button{justify-self:start;margin-top:.35rem}</style></head><body><main>
 <nav><a href="/browse-all-practice.html#anatomy">← Browse anatomy practice</a></nav>
 <header><div class="tag">MEDSKILLBUILDER / ANATOMY LAB</div><h1>Five branches of the facial nerve</h1><p>Rotate the head, connect each branch to a landmark, then identify all five without the labels.</p><nav class="study-nav" aria-label="On this page"><a href="#lab">Practice on the 3D model</a><a href="#study-guide">Study guide</a><a href="#keep-learning">Keep learning</a></nav></header>
 <div class="layout" id="lab"><div class="view">
@@ -15,7 +15,7 @@
 <section class="lesson" aria-label="Facial nerve exercise">
 <div class="controls"><button id="learn" aria-pressed="true">Explore</button><button id="test" aria-pressed="false">Start challenge</button></div>
 <div id="study"><h2>To Zanzibar By Motor Car</h2><p>Use <strong>T–Z–B–M–C</strong> to remember the five major terminal motor branches of cranial nerve VII. Select a branch to trace its general route.</p><div id="branches" class="choices"></div><h3 id="branchName"></h3><p id="branchClue" aria-live="polite"></p></div>
-<div id="quiz" hidden><p id="progress"></p><h2 id="prompt" tabindex="-1">Name the highlighted branch</h2><details id="hint"><summary>Need a landmark hint?</summary><p id="clue"></p></details><p id="result-note" hidden></p><div id="answers" class="choices"></div><p id="feedback" class="feedback" role="status"></p><button class="primary" id="next" hidden>Next branch</button><div id="share-result" hidden><h3>Share your score?</h3><p class="note">Optional. Send your score and whether you used a hint to MedSkillBuilder. We don’t ask for your name or email, and this won’t appear on a public leaderboard.</p><button id="share-score" type="button">Share my score</button><p id="share-status" role="status"></p></div></div>
+<div id="quiz" hidden><p id="progress"></p><h2 id="prompt" tabindex="-1">Name the highlighted branch</h2><details id="hint"><summary>Need a landmark hint?</summary><p id="clue"></p></details><p id="result-note" hidden></p><div id="answers" class="choices"></div><p id="feedback" class="feedback" role="status"></p><button class="primary" id="next" hidden>Next branch</button><div id="share-result" hidden><h3>Save my practice result (optional)</h3><p class="note">Your email stays private and will not appear on a public leaderboard. You can skip this and keep practicing.</p><form id="save-score-form"><label for="score-name">Username</label><input id="score-name" name="name" autocomplete="nickname" maxlength="80" required><label for="score-email">Email</label><input id="score-email" name="email" type="email" autocomplete="email" maxlength="254" required><button id="share-score" type="submit">Save my result</button></form><p id="share-status" role="status"></p></div></div>
 </section></div>
 <section id="study-guide"><h2>Study guide: Name the branch from the landmark</h2><p>Start near the ear and work down the face. Say <strong>To Zanzibar By Motor Car</strong>, then name each branch without looking at the list.</p><dl class="branch-grid">
 <div><dt>T · Temporal</dt><dd>Temple and forehead</dd></div>
@@ -94,21 +94,28 @@ by('hint').addEventListener('toggle',()=>{if(playing&&by('hint').open)hintUsed=t
 function allowShare(){
  const attempt={score,hintUsed,state:'ready'};
  result=attempt;
- const button=by('share-score'), message=by('share-status');
- by('share-result').hidden=false;button.disabled=false;button.textContent='Share my score';
- button.onclick=async()=>{
- if(attempt.state!=='ready')return;
- attempt.state='sending';button.disabled=true;message.textContent='Sending…';
- const form=new FormData();
- for(const [key,value] of Object.entries({_source:'anonymous-score-share',subject:'Facial Nerve 3D Lab — Score Share',activity:'Facial Nerve 3D Lab',score_correct:attempt.score,score_total:5,hint_used:attempt.hintUsed?'yes':'no',attempt_type:'full-quiz',verification:'client_reported'}))form.set(key,String(value));
+ const form=by('save-score-form'),button=by('share-score'),message=by('share-status');
+ form.reset();by('score-name').disabled=false;by('score-email').disabled=false;
+ by('share-result').hidden=false;button.disabled=false;button.textContent='Save my result';message.textContent='';
+ form.onsubmit=async event=>{
+ event.preventDefault();
+ if(attempt.state!=='ready'||!form.reportValidity())return;
+ const data=new FormData(form),name=String(data.get('name')||'').trim();
+ if(!name){message.textContent='Enter a username to save your score.';by('score-name').focus();return}
+ const percent=attempt.score*20;
+ data.set('name',name);
+ for(const [key,value] of Object.entries({_source:'leaderboard-save',subject:'Leaderboard Save - Facial Nerve 3D Lab',activity:'Facial Nerve 3D Lab',score_correct:attempt.score,score_total:5,score_percent:percent,hint_used:attempt.hintUsed?'yes':'no',attempt_type:'Full quiz',verification:'client_reported'}))data.set(key,String(value));
+ data.set('message', 'Username: '+name+'\nActivity: Facial Nerve 3D Lab\nScore: '+attempt.score+'/5\nPercent: '+percent+'%\nThis email was submitted from the score-save form. The email should remain private.');
+ attempt.state='sending';button.disabled=true;message.textContent='Saving…';
  try{
- const response=await fetch('https://formspree.io/f/xgonbzaj',{method:'POST',headers:{Accept:'application/json'},body:form,referrerPolicy:'no-referrer'});
- if(!response.ok)throw Error('Score share failed');
+ const response=await fetch('https://formspree.io/f/xgonbzaj',{method:'POST',headers:{Accept:'application/json'},body:data,referrerPolicy:'no-referrer'});
+ if(!response.ok)throw Error('Score save failed');
  attempt.state='sent';if(result!==attempt)return;
- button.textContent='Score shared';message.textContent='Thanks! Your score was shared with MedSkillBuilder.';
+ by('score-name').disabled=true;by('score-email').disabled=true;
+ button.textContent='Result saved';message.textContent='Thanks! Your practice result was saved.';
  }catch{
  attempt.state='ready';if(result!==attempt)return;
- button.disabled=false;message.textContent='Your score wasn’t shared. Try again, or continue studying.';
+ button.disabled=false;message.textContent='Your result wasn’t saved. Try again, or continue studying.';
  }
  };
 }
