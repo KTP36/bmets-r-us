@@ -318,12 +318,12 @@ export default function CertificateCenter({ modules, onExit, targetCertificateKe
     submission.append("message", [
       `Name: ${name}`,
       `Email: ${email}`,
-      "Activity: CBET Academy",
+      "Activity: MedSkillBuilder Biomed Academy",
       "Lead Type: Academy Graduate / Certificate Claim",
       `Certificate: ${pendingIssue.title}`,
       `Certificate Key: ${pendingIssue.key}`,
       `Marketing Opt-In: ${marketingOptIn ? "Yes" : "No"}`,
-      "This email was submitted from the CBET Academy Certificate Center."
+      "This email was submitted from the MedSkillBuilder Biomed Academy Certificate Center."
     ].join("\n"));
 
     try {

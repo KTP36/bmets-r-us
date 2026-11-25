@@ -6089,8 +6089,8 @@ function AnatomyLearningCard({
 
 const ACADEMY_SEARCH_METADATA = {
   CBETAcademy: {
-    title: "CBET Academy: Biomedical Equipment Training | MedSkillBuilder",
-    description: "Build biomedical equipment knowledge with 10 CBET Academy missions, electronics practice, a virtual lab, and hospital troubleshooting scenarios.",
+    title: "MedSkillBuilder Biomed Academy | Biomedical Equipment Training",
+    description: "Practice electronics, test equipment, and biomedical troubleshooting. Explore hands-on learning activities and the Independent CBET Exam Prep track.",
     canonical: "https://medskillbuilder.com/?tab=CBETAcademy",
   },
   MedicationAcademy: {

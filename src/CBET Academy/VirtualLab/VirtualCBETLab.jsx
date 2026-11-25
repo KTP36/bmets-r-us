@@ -1092,7 +1092,7 @@ export default function VirtualCBETLab({ onExit }) {
           <div className="vl-complete-actions">
             <button className="vl-primary" onClick={() => setScreen("certificate")}>View Certificate of Completion →</button>
             <button onClick={() => resetBench(0)}>Review Lessons</button>
-            <button onClick={onExit}>Return to CBET Academy</button>
+            <button onClick={onExit}>Return to MedSkillBuilder Biomed Academy</button>
           </div>
         </section>
       )}

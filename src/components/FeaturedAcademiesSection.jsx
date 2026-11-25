@@ -475,7 +475,7 @@ export default function FeaturedAcademiesSection({
                 textTransform: "uppercase",
               }}
             >
-              Certification Prep
+              Biomedical Training
             </span>
           </div>
           <h3
@@ -486,12 +486,12 @@ export default function FeaturedAcademiesSection({
               margin: "20px 0 10px",
             }}
           >
-            CBET Certification Academy
+            MedSkillBuilder Biomed Academy
           </h3>
           <p style={{ margin: "0 0 18px", lineHeight: 1.6, color: "#526579" }}>
             Build biomedical equipment technician skills through guided
             electronics lessons, test-equipment training, troubleshooting, and
-            the Virtual Lab.
+            the Virtual Lab. Includes the Independent CBET Exam Prep track.
           </p>
           <div
             style={{

@@ -169,8 +169,8 @@ function XpToast({ amount, label, onDone }) {
 function StatsPanel({ stats, onClose }) {
   const cards = [
     ["⚡", "Total XP", stats.xp],
-    ["🔥", "Current streak", `${stats.currentStreak} day${stats.currentStreak === 1 ? "" : "s"}`],
-    ["🏆", "Longest streak", `${stats.longestStreak} day${stats.longestStreak === 1 ? "" : "s"}`],
+    ["🔥", "Current visit streak", `${stats.currentStreak} day${stats.currentStreak === 1 ? "" : "s"}`],
+    ["🏆", "Longest visit streak", `${stats.longestStreak} day${stats.longestStreak === 1 ? "" : "s"}`],
     ["📚", "Lessons complete", `${stats.lessonsCompleted} / 9`],
     ["🧰", "Scenarios complete", stats.scenariosCompleted],
     ["🎯", "Best Mission 1 score", `${stats.bestMissionOneScore}%`],
@@ -1994,7 +1994,7 @@ function MissionTwo({ onExit, onContinueMission3 }) {
             <span aria-hidden="true">←</span>
             Back to Academy Dashboard
           </button>
-          <span className="mission-two-path">CBET Certification Academy</span>
+          <span className="mission-two-path">MedSkillBuilder Biomed Academy</span>
         </div>
 
         <article className="mission-two-launch-card">
@@ -4558,7 +4558,7 @@ function MissionFour({ onExit }) {
     return <section ref={stageRef} className="cbet-shell cbet-lesson-stage cbet-module4-stage"><button className="cbet-back" onClick={onExit}>← Save & Exit</button><article className="cbet-quiz"><div className="cbet-quiz-meta cbet-module4-meta"><span>Final Challenge · {questionIndex+1} of {questions.length}</span><span>{question.category}</span></div><div className="cbet-progress-bar cbet-module4-progress"><span style={{width:`${((questionIndex+1)/questions.length)*100}%`}}/></div><h2>{question.question}</h2><div className="cbet-options">{question.options.map((o,i)=><button key={o} disabled={answered} className={`cbet-option ${answered&&i===question.answer?"correct":""} ${answered&&i===selected&&i!==question.answer?"wrong":""}`} onClick={()=>answerQuiz(i)}><strong>{String.fromCharCode(65+i)}.</strong> {o}</button>)}</div>{answered&&<div className="cbet-feedback"><strong>{selected===question.answer?"Correct.":"Incorrect."}</strong><span>{question.explanation}</span></div>}<div className="cbet-actions"><span>Score: {score}/{questions.length}</span><button className="cbet-primary" disabled={!answered} onClick={nextQuizQuestion}>{questionIndex===questions.length-1?"Finish Mission":"Next Question"}</button></div></article></section>;
   }
   const passed=(result||0)>=80;
-  return <section className="cbet-shell cbet-module10-results-shell"><article className={`cbet-results cbet-module10-results ${passed?"passed":""}`}><div className="cbet-hero-icon">{passed?"🏆":"📘"}</div><span className="cbet-label">{passed?"Mission 4 Complete":"Review Required"}</span><h1 className="cbet-module10-result-score">{result||0}%</h1><h2 className="cbet-module10-result-title">Medical Equipment Systems</h2><p>{passed?"You completed the equipment lessons, hospital service calls, and final challenge.":"You need 80% to pass. Review the lessons and retake the final challenge."}</p><div className="cbet-completion-summary cbet-module10-summary"><div><span>Lessons</span><strong>{completedLessons.length}/{missionFourLessons.length}</strong></div><div><span>Service Calls</span><strong>{completedScenarios.length}/{missionFourScenarios.length}</strong></div><div><span>Status</span><strong>{passed?"Complete":"Review"}</strong></div></div>{passed&&<section className="cbet-achievement-card"><span className="cbet-achievement-eyebrow">Achievement Earned</span><div className="cbet-achievement-mark">🏅</div><h2>Medical Equipment Systems</h2><p>This recognizes successful completion of Mission 4 in the MedSkillBuilder CBET Academy.</p><div className="cbet-achievement-details"><div><span>Mission</span><strong>4</strong></div><div><span>Score</span><strong>{result}%</strong></div><div><span>XP</span><strong>450</strong></div></div><button className="cbet-primary cbet-print-achievement" onClick={()=>window.print()}>Print My Achievement</button></section>}<div className="cbet-actions center cbet-module10-result-actions">{!passed&&<button className="cbet-primary" onClick={restartQuiz}>Retake Challenge</button>}{passed&&<button className="cbet-primary" onClick={()=>reviewLesson(0)}>Review Equipment Explorers</button>}<button className="cbet-secondary" onClick={onExit}>Back to Academy</button></div></article></section>;
+  return <section className="cbet-shell cbet-module10-results-shell"><article className={`cbet-results cbet-module10-results ${passed?"passed":""}`}><div className="cbet-hero-icon">{passed?"🏆":"📘"}</div><span className="cbet-label">{passed?"Mission 4 Complete":"Review Required"}</span><h1 className="cbet-module10-result-score">{result||0}%</h1><h2 className="cbet-module10-result-title">Medical Equipment Systems</h2><p>{passed?"You completed the equipment lessons, hospital service calls, and final challenge.":"You need 80% to pass. Review the lessons and retake the final challenge."}</p><div className="cbet-completion-summary cbet-module10-summary"><div><span>Lessons</span><strong>{completedLessons.length}/{missionFourLessons.length}</strong></div><div><span>Service Calls</span><strong>{completedScenarios.length}/{missionFourScenarios.length}</strong></div><div><span>Status</span><strong>{passed?"Complete":"Review"}</strong></div></div>{passed&&<section className="cbet-achievement-card"><span className="cbet-achievement-eyebrow">Achievement Earned</span><div className="cbet-achievement-mark">🏅</div><h2>Medical Equipment Systems</h2><p>This recognizes successful completion of Mission 4 in the MedSkillBuilder Biomed Academy.</p><div className="cbet-achievement-details"><div><span>Mission</span><strong>4</strong></div><div><span>Score</span><strong>{result}%</strong></div><div><span>XP</span><strong>450</strong></div></div><button className="cbet-primary cbet-print-achievement" onClick={()=>window.print()}>Print My Achievement</button></section>}<div className="cbet-actions center cbet-module10-result-actions">{!passed&&<button className="cbet-primary" onClick={restartQuiz}>Retake Challenge</button>}{passed&&<button className="cbet-primary" onClick={()=>reviewLesson(0)}>Review Equipment Explorers</button>}<button className="cbet-secondary" onClick={onExit}>Back to Academy</button></div></article></section>;
 }
 
 
@@ -6213,7 +6213,7 @@ function MissionTen({ onExit }) {
             <span className="cbet-achievement-eyebrow">Certificate of Achievement</span>
             <div className="cbet-achievement-mark" aria-hidden="true">🏅</div>
             <h2>Medical Gas Delivery Equipment</h2>
-            <p>This recognizes the successful completion of Mission 10 in the MedSkillBuilder CBET Academy.</p>
+            <p>This recognizes the successful completion of Mission 10 in the MedSkillBuilder Biomed Academy.</p>
             <div className="cbet-achievement-details">
               <div><span>Final Score</span><strong>{result || 0}%</strong></div>
               <div><span>XP Earned</span><strong>350 XP</strong></div>
@@ -6292,7 +6292,7 @@ function MissionSixCertificate({name,score,date,onBack}) {
     </div>
     <section className="m6-certificate">
       <div className="m6-cert-border">
-        <span className="m6-cert-brand">MedSkillBuilder · CBET Academy</span>
+        <span className="m6-cert-brand">MedSkillBuilder Biomed Academy</span>
         <h1>Certificate of Competency</h1>
         <p className="m6-cert-intro">This certifies that</p>
         <div className="m6-cert-name">{name||"Learner Name"}</div>
@@ -6306,7 +6306,7 @@ function MissionSixCertificate({name,score,date,onBack}) {
         </div>
         <p className="m6-cert-scope">Competency areas include IP addressing, DHCP/DNS, switching and VLANs, Wi-Fi, DICOM/PACS, HL7 interfaces, medical-device cybersecurity, and integrated clinical-network troubleshooting.</p>
         <div className="m6-cert-footer">
-          <div><strong>MedSkillBuilder</strong><span>CBET Academy Training Platform</span></div>
+          <div><strong>MedSkillBuilder</strong><span>MedSkillBuilder Biomed Academy Training Platform</span></div>
           <div className="m6-cert-seal">MSB</div>
           <div><strong>Mission 6</strong><span>Networking & Connectivity</span></div>
         </div>
@@ -7134,7 +7134,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
           xp={academy.xp}
           progress={progress}
           badges={Object.values(academy.modules || {}).filter((module) => module.complete).length}
-          streak={streak.current || 1}
+          streak={streak.current || 0}
           onOpenTraining={() => setScreen("dashboard")}
           onOpenLab={() => setScreen("virtualLab")}
           onOpenMission={(orderId) => {
@@ -7408,9 +7408,9 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
           <div className="cbet-dashboard-intro">
             <div className="cbet-dashboard-copy">
               <span className="cbet-label">MedSkillBuilder Academy</span>
-              <h1>CBET Academy</h1>
+              <h1>MedSkillBuilder Biomed Academy</h1>
               <p>
-                Learn, practice, and troubleshoot your way through the CBET Academy.
+                Build practical biomedical equipment skills through guided training and troubleshooting.
               </p>
               <div className="cbet-dashboard-continue">
                 <button className="cbet-primary cbet-continue-button" onClick={() => openMission(nextMissionNumber, allMissionsComplete)}>
@@ -7420,6 +7420,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
                 <button className="cbet-hero-secondary" onClick={() => setScreen("virtualLab")}>
                   Open Virtual Lab
                 </button>
+                <a className="cbet-hero-secondary" href="/cbet-practice-questions.html">Independent CBET Exam Prep</a>
               </div>
             </div>
 
@@ -7439,7 +7440,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
                 <div><strong>{completedMissionCount}/{totalMissionCount}</strong><span>Missions</span></div>
                 <div><strong>{virtualLabLessonsCompleted}/9</strong><span>Lab lessons</span></div>
                 <div><strong>{badgeCount}</strong><span>Competencies</span></div>
-                <div><strong>{streak.current || 1}</strong><span>Day streak</span></div>
+                <div><strong>{streak.current || 0}</strong><span>Day visit streak</span></div>
               </div>
               <button className="cbet-overview-link" onClick={() => setShowStats(true)}>View full progress →</button>
             </aside>
@@ -7526,7 +7527,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
         <div className="cbet-mission-toggle-row">
           <div>
             <span className="cbet-label">Training path</span>
-            <h2>CBET Mission Path</h2>
+            <h2>Biomed Academy Mission Path</h2>
             <p>10 missions · Complete them in order</p>
           </div>
           <button

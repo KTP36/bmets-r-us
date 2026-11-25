@@ -67,7 +67,7 @@ export function CourseCompleteScreen({
       </div>
       <div className="vl-complete-actions">
         <button className="vl-primary" onClick={onExit}>
-          Return to CBET Academy →
+          Return to MedSkillBuilder Biomed Academy →
         </button>
         <button onClick={onReview}>Review Lessons</button>
       </div>
