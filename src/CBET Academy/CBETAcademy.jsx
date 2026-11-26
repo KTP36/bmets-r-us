@@ -7440,7 +7440,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
                 <div><strong>{completedMissionCount}/{totalMissionCount}</strong><span>Missions</span></div>
                 <div><strong>{virtualLabLessonsCompleted}/9</strong><span>Lab lessons</span></div>
                 <div><strong>{badgeCount}</strong><span>Competencies</span></div>
-                <div><strong>{streak.current || 0}</strong><span>Day visit streak</span></div>
+                <div><strong>{streak.current || 0}</strong><span>Consecutive visit days</span></div>
               </div>
               <button className="cbet-overview-link" onClick={() => setShowStats(true)}>View full progress →</button>
             </aside>
@@ -7507,7 +7507,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
               <span className="cbet-hub-kicker">Progress</span>
             </div>
             <h3>Your Progress</h3>
-            <p>See your missions, XP, scores, and streak.</p>
+            <p>See your missions, XP, scores, and visit streak. Visiting the academy counts toward your streak; completing training is not required.</p>
             <div className="cbet-hub-summary"><strong>{academy.xp.toLocaleString()}</strong><span>total XP earned</span></div>
             <button className="cbet-secondary" onClick={() => setShowStats(true)}>View Progress</button>
           </article>
