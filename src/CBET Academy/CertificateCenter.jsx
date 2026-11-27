@@ -1,3 +1,4 @@
+import {readAlaris,alarisEligible} from "./alarisProgress";
 import { cbetAcademyModules } from "./cbetAcademyData";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -195,6 +196,7 @@ export default function CertificateCenter({ modules, onExit, targetCertificateKe
     }));
     const allEquipmentDevices = EQUIPMENT_CERTIFICATE_GROUPS.flatMap((group) => group.devices);
     return [
+      ...(import.meta.env.VITE_ENABLE_ALARIS === "true" ? [{key:"alaris-mastery",type:"Equipment mastery",title:"Alaris System Mastery — Certificate of Completion",description:"Complete all ten missions and achieve 100% final mastery.",unlocked:alarisEligible()}] : []),
       ...equipmentItems,
       {
         key: "equipment-all-complete",
@@ -302,19 +304,23 @@ export default function CertificateCenter({ modules, onExit, targetCertificateKe
     }
     if (!pendingIssue || submittingCertificate) return;
 
+    const isAlaris = pendingIssue.key === "alaris-mastery";
+    const alaris = readAlaris();
+    if (isAlaris && !alarisEligible(alaris)) {setMessage("Complete all ten missions first.");return;}
     setSubmittingCertificate(true);
     setMessage("Saving your completion…");
 
     const submission = new FormData();
     submission.append("name", name);
     submission.append("email", email);
-    submission.append("activity", "CBET Academy");
+    submission.append("activity", isAlaris ? "Alaris System Mastery" : "CBET Academy");
+    if(isAlaris){submission.append("missions_completed","10");submission.append("first_attempt_score",`${alaris[10].firstScore}/50`);submission.append("final_mastery","100%");submission.append("completion_date",alaris[10].date);submission.append("score_source","browser-reported");}
     submission.append("lead_type", "Academy Graduate / Certificate Claim");
     submission.append("certificate_title", pendingIssue.title);
     submission.append("certificate_key", pendingIssue.key);
     submission.append("marketing_opt_in", marketingOptIn ? "Yes" : "No");
     submission.append("_source", "academy-certificate");
-    submission.append("_subject", `MedSkillBuilder CBET Certificate Claim - ${pendingIssue.title}`);
+    submission.append("_subject", `MedSkillBuilder Certificate Claim - ${pendingIssue.title}`);
     submission.append("message", [
       `Name: ${name}`,
       `Email: ${email}`,
