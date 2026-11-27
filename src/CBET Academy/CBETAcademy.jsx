@@ -47,6 +47,7 @@ import { loadCourseState } from "./VirtualLab/LessonEngine";
 import CBETHospitalDashboard from "./CBETHospitalDashboard";
 import EquipmentLearningScreen from "./components/EquipmentLearningScreen";
 import CertificateCenter from "./CertificateCenter";
+import AlarisAcademy from "./AlarisAcademy";
 
 function isLocalAcademyHost() {
   if (typeof window === "undefined") return false;
@@ -7050,7 +7051,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
     }
     setRefresh((value) => value + 1);
   };
-  const [screen, setScreen] = useState("dashboard");
+  const [screen, setScreen] = useState(() => import.meta.env.VITE_ENABLE_ALARIS === "true" && new URLSearchParams(window.location.search).get("alaris") === "1" ? "alaris" : "dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
   const [showAllMissions, setShowAllMissions] = useState(false);
@@ -7361,6 +7362,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
     );
   }
 
+  if (screen === "alaris") return <AlarisAcademy onExit={()=>setScreen("dashboard")} onCertificate={()=>{setCertificateTarget("alaris-mastery");setScreen("certificates");}} />;
   if (screen === "certificates") {
     const certificateModules = cbetAcademyModules.map((module) => ({
       ...module,
@@ -7490,6 +7492,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
             <button className="cbet-secondary" onClick={() => setScreen("equipmentLearning")}>Explore Equipment</button>
           </article>
 
+          {import.meta.env.VITE_ENABLE_ALARIS === "true" && <article className="cbet-hub-card"><h3>Alaris System Mastery</h3><p>Ten guided equipment-specific missions.</p><button className="cbet-primary" onClick={()=>setScreen("alaris")}>Start Alaris training</button></article>}
           <article className="cbet-hub-card">
             <div className="cbet-hub-card-top">
               <span className="cbet-hub-icon" aria-hidden="true">🏥</span>
