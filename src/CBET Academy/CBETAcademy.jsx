@@ -7051,7 +7051,7 @@ export default function CBETAcademy({ trackSiteEvent = () => {} }) {
     }
     setRefresh((value) => value + 1);
   };
-  const [screen, setScreen] = useState("dashboard");
+  const [screen, setScreen] = useState(() => import.meta.env.VITE_ENABLE_ALARIS === "true" && new URLSearchParams(window.location.search).get("alaris") === "1" ? "alaris" : "dashboard");
   const [refresh, setRefresh] = useState(0);
   const [showStats, setShowStats] = useState(false);
   const [showAllMissions, setShowAllMissions] = useState(false);
